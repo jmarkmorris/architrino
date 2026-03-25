@@ -2,9 +2,9 @@
 
 In this model, all energy is fundamentally tied to architrinos and the causal wakes they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone wake substance or vacuum energy independent of architrinos and their assemblies. A **wake** is the causal-isochron imprint of an architrino's emissions; motion affects the geometry, not the existence, of the wake. `Wake` is the architrino-native description of what appears as a field at the effective level.
 
-All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with wake speed $c_f=1$.
+All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with wake speed $c_f=1$.
 
-Crucially, what we call "spacetime" at the effective level is not the bare Euclidean background, but a **dense sea of scalable high-energy tri-binary assemblies**. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium in which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea controls how energy, inertia, and effective geometry appear at larger scales.
+Crucially, `spacetime` in this framework belongs to the effective level, not the ontological one. The underlying substrate is a **dense sea of scalable high-energy tri-binary assemblies** occupying the Euclidean void. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the Noether Sea through which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea control how energy, inertia, and effective geometry appear at larger scales.
 
 ---
 
@@ -18,7 +18,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
   
-  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the spacetime tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
+  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -138,7 +138,7 @@ In practice, for finite systems or simulation domains, we verify conservation by
 
 ---
 
-## Spacetime as a Tri-Binary Sea and Energy Storage
+## Noether Sea, Effective Spacetime, and Energy Storage
 
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy tri-binary assemblies**:
 
@@ -153,7 +153,7 @@ Energy in this picture is distributed across:
 
 1. **Free Architrinos** (rare at low energies),
 2. **Standard Model assemblies** (electrons, nucleons, etc.),
-3. The **tri-binary sea** that constitutes the Noether Sea and, in bridge prose, the effective spacetime medium.
+3. The **tri-binary sea** that constitutes the Noether Sea and, in bridge prose, the spacetime medium.
 
 ---
 
@@ -301,7 +301,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both spacetime tri-binaries and "matter" assemblies will determine:
+  The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
   - How strongly spacetime curvature responds to different kinds of energy.

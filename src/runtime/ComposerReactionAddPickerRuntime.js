@@ -168,14 +168,14 @@ export const composerReactionAddPickerColumns = Object.freeze([
     id: "composite_bridge",
     entries: Object.freeze([
       createPickerEntry({
-        id: "composite_bridge_top_vacant",
-        label: "Vacant",
-        vacant: true,
+        id: "proton",
+        label: "Proton",
+        templateId: "proton",
       }),
       createPickerEntry({
-        id: "composite_bridge_middle_vacant",
-        label: "Vacant",
-        vacant: true,
+        id: "neutron",
+        label: "Neutron",
+        templateId: "neutron",
       }),
       createPickerEntry({
         id: "higgs",

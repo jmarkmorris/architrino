@@ -12,7 +12,7 @@ Illustrative diagrams can be added later. For now the chapter uses axis strings 
 
 ### Core and axial split
 
-The quark construction used here follows the same nucleus-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether-core-plus-axial split already used in the fermion mapping chapters:
 
 - The **Noether core** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.

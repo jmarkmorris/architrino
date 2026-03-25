@@ -149,7 +149,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Work–Energy Relation and Per-Hit Power](../aaa/dynamics/energy.md?section=Work%E2%80%93Energy+Relation+and+Per-Hit+Power)
     - [Potential Energy and Net Potential](../aaa/dynamics/energy.md?section=Potential+Energy+and+Net+Potential)
     - [Energy Conservation and Exchange](../aaa/dynamics/energy.md?section=Energy+Conservation+and+Exchange)
-    - [Spacetime as a Tri-Binary Sea and Energy Storage](../aaa/dynamics/energy.md?section=Spacetime+as+a+Tri-Binary+Sea+and+Energy+Storage)
+    - [Noether Sea, Effective Spacetime, and Energy Storage](../aaa/dynamics/energy.md?section=Noether+Sea%2C+Effective+Spacetime%2C+and+Energy+Storage)
     - [Assemblies: Internal vs Apparent Energy](../aaa/dynamics/energy.md?section=Assemblies%3A+Internal+vs+Apparent+Energy)
     - [Emergent Inertia (Mass) from Shielded Energy](../aaa/dynamics/energy.md?section=Emergent+Inertia+%28Mass%29+from+Shielded+Energy)
     - [Effective Energy-Momentum Closure](../aaa/dynamics/energy.md?section=Effective+Energy-Momentum+Closure)

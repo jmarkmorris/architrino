@@ -243,7 +243,7 @@ The following review notes come from a close scan of the Markdown documents unde
 - blur ontological AAA language with effective or Standard Model language,
 - or risk confusion with established terminology from quantum mechanics, relativity, field theory, or higher ontology layers.
 
-Completed families such as `field` to `wake`, background-vs-contents, the main `Noether Sea` / `spacetime medium` policy, and the `particle` / `wave` / `assembly` / `wake` family are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
+Completed families such as `field` to `wake`, background-vs-contents, the main `Noether Sea` / `spacetime medium` policy, the `particle` / `wave` / `assembly` / `wake` family, the `nucleus` / `core` / `Noether core` cleanup, and the main `orbit` / `orbital` / `circulation` cleanup are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
 
 For the `particle` / `wave` / `assembly` / `wake` family, the preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ response to standard `particle versus wave` language is `assembly and wake`. Use `particle` and `wave` for standard comparative framing when needed, but treat `assembly` and `wake` as the native ontological pair.
 
@@ -270,48 +270,7 @@ Representative files:
 - `content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md`
 - `content/markdown/aaa/foundations/ontology.md`
 
-### 2. `nucleus` vs `core` vs `Noether core`
-
-This is a high-value cleanup candidate because `nucleus` strongly collides with atomic and nuclear terminology.
-
-- Some fermion-facing documents still say `nucleus` when they mean the central tri-binary scaffold.
-- Elsewhere the same object is called the `core` or `Noether core`.
-- In atomic and nuclear chapters, `nucleus` already has its standard meaning, so the overlap can be actively misleading.
-
-Recommended direction:
-
-- Prefer `Noether core` as the canonical technical term for the central tri-binary scaffold.
-- Allow `core` as a local shortened form when the referent is already established.
-- Avoid `nucleus` for the internal fermion scaffold except perhaps in historical or transition notes that explicitly map old wording to the new canon.
-
-Representative files:
-
-- `content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md`
-- `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`
-- `content/markdown/aaa/nuclear-atomic/nucleon-structure.md`
-
-### 3. `orbit` / `orbital` / `circulation`
-
-This one remains partially unresolved after the earlier axial-language conversion work.
-
-- Some uses of `orbit` and `orbital` are legitimate because they refer to standard atomic orbitals or to genuinely orbit-like binary dynamics.
-- Other uses appear to be older wording for nonclassical internal motion that is now better described as `axial circulation` or another explicit AAA dynamical term.
-- The problem is not that `orbit` must vanish everywhere; the problem is that the same word is used for several different dynamical ideas.
-
-Recommended direction:
-
-- Keep `orbital` where the text is explicitly discussing standard atomic orbitals.
-- Keep `orbit` where a literal orbit-like binary or geometric path is genuinely intended.
-- Prefer `axial circulation` or another explicit AAA dynamical term when describing the nonclassical internal motion of the axial architecture.
-- Review ambiguous phrases such as `orbit radius`, `nominal orbit`, or `path around the orbit` in foundational and quantum chapters.
-
-Representative files:
-
-- `content/markdown/aaa/quantum/reality-quantum-causality.md`
-- `content/markdown/aaa/dynamics/effective-lagrangian.md`
-- `content/markdown/aaa/foundations/ontology.md`
-
-### 4. `shell` vs `layer`
+### 2. `shell` vs `layer`
 
 This is a genuine overload family, though not every use needs correction.
 
@@ -339,7 +298,7 @@ Representative files:
 - `content/markdown/aaa/spacetime/black-holes.md`
 - `content/markdown/aaa/dynamics/master-equation.md`
 
-### 5. Weak-sector local geometry terms
+### 3. Weak-sector local geometry terms
 
 This cluster is smaller, but it still looks under-consolidated.
 
@@ -362,7 +321,7 @@ Representative files:
 - `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`
 - `content/markdown/aaa/assemblies/fermions/quarks.md`
 
-### 6. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
+### 4. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
 
 This family looked more controlled than the others during the scan, so it is not the first conversion target.
 
@@ -385,9 +344,7 @@ Representative files:
 If a new terminology pass is scheduled, the most important order appears to be:
 
 1. apply the `spacetime` / `void` / `absolute timespace` policy across the corpus
-2. `nucleus` vs `core` vs `Noether core`
-3. `orbit` / `orbital` / `circulation`
-4. `shell` vs `layer`
-5. weak-sector triad-family terms
+2. `shell` vs `layer`
+3. weak-sector triad-family terms
 
 These categories appear to offer the largest clarity gains while reducing the strongest terminology collisions with quantum mechanics, relativity, and higher-level ontological language.

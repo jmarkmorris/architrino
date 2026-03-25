@@ -584,7 +584,7 @@ To build the minimal **Switch**, I recommend:
 #### Rationale for Atom Selection
 
 **1. The Sensor (Rubidium): The "Feeler"**
-*   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to its nucleus.
+*   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to the atomic nucleus.
 *   **The "Edge" State:** Because it is so loosely bound, we can easily excite this electron into a **Rydberg State** (a high principal quantum number, e.g., $n=50$). In this state, the electron's orbital radius is huge, and its velocity slows down, but its sensitivity to external fields skyrockets. It is essentially a giant antenna, flapping in the architrino breeze, barely holding on. It is perpetually **metastable**.
 
 **2. The Bias Unit (The Helium Pair): The "Vise"**
@@ -645,7 +645,7 @@ If the Rb is ionized, subtract **12** per missing electron.
 ## Suggested Refinements
 
 1. **Natural Selection of States**
-   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
+   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable circulation-locked/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
 
 2. **Middle-binary bifurcation**
    - We should specify at least one toy dynamical system (even a low-dimensional map) where:

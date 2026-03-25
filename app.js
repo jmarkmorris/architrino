@@ -62,6 +62,10 @@ import {
   openComposerSubassemblyMenu,
 } from "./src/runtime/ComposerCanvasMenuRuntime.js";
 import { createBuiltInComposerAssemblyDraftRuntime } from "./src/runtime/ComposerAssemblyFactoryRuntime.js";
+import {
+  buildComposerAssemblyStructure,
+  summarizeComposerAssemblyStructure,
+} from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
 import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
@@ -2978,15 +2982,48 @@ function renderComposerAssemblyEditor() {
   meta.textContent = `${selectedAssembly.name.trim() || selectedAssembly.id} - ${selectedAssembly.id}`;
   body.appendChild(meta);
 
+  const memberCount = Array.isArray(selectedAssembly?.members) ? selectedAssembly.members.length : 0;
   const structureSummary = document.createElement("div");
   structureSummary.className = "composer-assembly-summary";
   const subassemblyCount = Array.isArray(selectedAssembly.subassemblies)
     ? selectedAssembly.subassemblies.length
     : 0;
-  structureSummary.textContent = `${selectedAssembly.members.length} member${
-    selectedAssembly.members.length === 1 ? "" : "s"
+  structureSummary.textContent = `${memberCount} member${
+    memberCount === 1 ? "" : "s"
   } • ${subassemblyCount} subassembl${subassemblyCount === 1 ? "y" : "ies"}`;
   body.appendChild(structureSummary);
+
+  try {
+    const canonicalStructure = buildComposerAssemblyStructure(selectedAssembly);
+    const canonicalSummary = summarizeComposerAssemblyStructure(
+      canonicalStructure.root,
+      canonicalStructure.validation
+    );
+
+    const canonicalSummaryLabel = document.createElement("div");
+    canonicalSummaryLabel.className = "composer-assembly-summary";
+    canonicalSummaryLabel.textContent = `Canonical bridge: ${canonicalSummary.nodeCount} node${
+      canonicalSummary.nodeCount === 1 ? "" : "s"
+    } • ${canonicalSummary.slotCount} slot${canonicalSummary.slotCount === 1 ? "" : "s"} • ${canonicalSummary.binarySlotCount} occupied binary slot${
+      canonicalSummary.binarySlotCount === 1 ? "" : "s"
+    }`;
+    body.appendChild(canonicalSummaryLabel);
+
+    const canonicalValidationNote = document.createElement("div");
+    canonicalValidationNote.className = "composer-field-note";
+    canonicalValidationNote.textContent = canonicalSummary.valid
+      ? "Canonical structure bridge is valid for this assembly."
+      : `Canonical structure bridge has ${canonicalSummary.errorCount} validation issue${
+          canonicalSummary.errorCount === 1 ? "" : "s"
+        }. This is read-only for now and does not affect canvas editing.`;
+    body.appendChild(canonicalValidationNote);
+  } catch (_error) {
+    const canonicalValidationNote = document.createElement("div");
+    canonicalValidationNote.className = "composer-field-note";
+    canonicalValidationNote.textContent =
+      "Canonical structure bridge is temporarily unavailable for this assembly. Canvas editing is unaffected.";
+    body.appendChild(canonicalValidationNote);
+  }
 
   const hint = document.createElement("div");
   hint.className = "composer-field-note";

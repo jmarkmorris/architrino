@@ -1,12 +1,12 @@
 # Structure Formation
 
-This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean background. Its purpose is to explain how overdensity growth, effective expansion variables, and dark-sector clustering are meant to fit together when the Noether Sea replaces metric expansion as the underlying ontology.
+This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean void. Its purpose is to explain how overdensity growth, effective expansion variables, and dark-sector clustering are meant to fit together when the Noether Sea replaces metric expansion as the underlying ontology.
 
 ## Scope and Physical Picture
 
 Structure formation describes how the nearly homogeneous early universe developed the web of galaxies, clusters, filaments, and voids observed today. In standard $\Lambda$CDM this story unfolds through gravitational instability of small density perturbations in an expanding Friedmann–Robertson–Walker metric, seeded during inflation and amplified by pressureless cold dark matter that decouples early from the photon–baryon plasma.
 
-In the Architrino Assembly Architecture the same phenomenology is reinterpreted as **medium-and-assembly co-evolution inside a fixed Euclidean background with absolute time**. The Noether Sea, the dense lattice of coupled pro/anti tri-binary assemblies, plays the role of the dynamical medium. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to this medium. Growth of overdensities is governed by how the medium transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the medium's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
+In the Architrino Assembly Architecture the same phenomenology is reinterpreted as **medium-and-assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether Sea, the dense lattice of coupled pro/anti tri-binary assemblies, plays the role of the dynamical medium. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to this medium. Growth of overdensities is governed by how the medium transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the medium's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
 
 No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the tri-binary medium**: assembly radii, oscillation frequencies, local number density, and the resulting effective refractive and inertial properties. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this medium-plus-assembly history at different scales and epochs.
 
@@ -284,4 +284,4 @@ In the modular cosmology architecture, this document provides:
 
 ## Synthesis
 
-Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean background, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.
+Structure formation is modeled here as medium-response gravitational instability in a fixed Euclidean void, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta,\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from the medium response equations, and propagate the resulting growth history through the coupled cosmology modules.

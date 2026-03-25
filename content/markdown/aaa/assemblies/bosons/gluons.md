@@ -8,7 +8,7 @@ In the Standard Model, color is an abstract $SU(3)$ label. In the current $\math
 
 ### The Tri-Binary Substrate
 
-Timespace itself is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form a background sea of Noether cores in color-singlet configurations.
+The Euclidean void is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
 
 A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
@@ -48,7 +48,7 @@ In this model, the gluon is not a fundamental point particle but an emergent met
 
 ### Polar Vortices and Flux Tubes
 
-- **Source:** each orbiting binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Source:** each circulating binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient tri-binaries carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether Sea to its isotropic ground state.
 

@@ -60,7 +60,7 @@ This separation of branches helps keep levels distinct. The theory does not plac
 
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics.
 
--   **Angular momentum:** emerges from organized orbital motion of point potentials and from the ordered orientation data of nested binaries.
+-   **Angular momentum:** emerges from organized binary circulation of point potentials and from the ordered orientation data of nested binaries.
 -   **Chirality:** emerges from the handed precession order of a stable core.
 -   **Apparent mass and reactivity:** depend on shielding, drag against the surrounding medium, and how exposed the deeper binary structure is to external coupling.
 

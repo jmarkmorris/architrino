@@ -89,7 +89,7 @@ $$
 
 **Challenge:** The frequency is determined by:
 - The Middle Binary's orbital frequency (sets the magnetic moment)
-- The coupling strength between electron and nucleus (mediated by spacetime-medium response and photon exchange)
+- The coupling strength between electron and atomic nucleus (mediated by spacetime-medium response and photon exchange)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
