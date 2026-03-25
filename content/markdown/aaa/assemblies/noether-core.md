@@ -60,7 +60,7 @@ This volume, defined by the collective paths of the core's constituents, acts as
 
 ### The Oblate Spheroidal Form
 
-The tri-binary structure of the Noether Core is inherently anisotropic. The three nested binaries orbit and precess, with their orbital planes tending towards mutual orthogonality for stability in low apparent energy timespace. This dynamic geometry is not perfectly spherical.
+The tri-binary structure of the Noether Core is inherently anisotropic. The three nested binaries orbit and precess, with their orbital planes tending towards mutual orthogonality for stability in low-apparent-energy conditions. This dynamic geometry is not perfectly spherical.
 
 The overall shape of the exclusion zone is primarily determined by the path of the **outermost binary**. This binary has the largest orbital radius and the slowest frequency, and its orbital plane defines the equatorial plane of the assembly. The faster, smaller, inner binaries contribute to the internal dynamics and the density of the exclusion zone, but the boundary is set by the sweep of the outermost pair. The rotational dynamics of this outer orbit, combined with the precession of the entire system, naturally produce a shape that is flattened at the poles and bulging at the equator: an **ellipsoidal**.
 
@@ -70,7 +70,7 @@ The ellipsoidal is not a rigid structure. Its shape is a direct consequence of t
 
 If a Noether Core is subjected to a strong external field, the orbits of its binaries can be perturbed. This is particularly true for the outermost, most loosely bound binary. A distortion of these orbits will lead to a corresponding deformation of the spheroidal exclusion zone. This deformability is a key feature of the assembly, allowing it to respond to and interact with its environment. As we will see, the presence of dense local assemblies is a cause of Noether core deformation, which is the source of gravity.
 
-Yes, Einstein’s field equations can be mapped to a scalable, deformable ellipsoidal—though doing so requires careful treatment of symmetry, curvature, and the stress-energy distribution. This approach is particularly relevant in modeling astrophysical bodies like rotating planets or stars, which often exhibit ellipsoidalal geometry due to centrifugal flattening.
+Yes, Einstein’s field equations can be mapped to a scalable, deformable ellipsoidal, though doing so requires careful treatment of symmetry, curvature, and the stress-energy distribution. This approach is particularly relevant in modeling astrophysical bodies like rotating planets or stars, which often exhibit ellipsoidal geometry due to centrifugal flattening.
 
 ### Mapping General Relativity to Oblate Spheroids
 

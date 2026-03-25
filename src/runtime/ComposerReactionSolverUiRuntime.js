@@ -6,6 +6,9 @@ import {
   createComposerReactionParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
 import {
+  createComposerReactionAnchorRenderRuntime,
+} from "./ComposerReactionAnchorRenderRuntime.js";
+import {
   buildNodeKey,
   createComposerReactionAnchorStateRuntime,
   nodeKeysConflict,
@@ -16,6 +19,7 @@ import {
   getBinaryPersonalityChoice,
   invertBinaryChoiceId,
 } from "./ComposerReactionBinarySelectionRuntime.js";
+import { getComposerReactionAddPickerCells } from "./ComposerReactionAddPickerRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
@@ -183,12 +187,19 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
   return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
 }
 
-function buildParticipantStructure(participantId, templateId, baseLabel, polarity = "") {
+function buildParticipantStructure(
+  participantId,
+  templateId,
+  baseLabel,
+  polarity = "",
+  structureOptions = null
+) {
   const structureId = `${participantId}__structure`;
   return buildReactionParticipantStructure(templateId, {
     id: structureId,
     label: formatParticipantLabel(baseLabel, templateId, polarity),
     polarity,
+    ...(structureOptions && typeof structureOptions === "object" ? structureOptions : {}),
   });
 }
 
@@ -511,6 +522,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   const centerColumn = root?.querySelector(".composer-reaction-solver-center") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
   const sortedTemplateEntries = sortTemplatePickerEntries(templateEntries);
+  const addPickerCells = getComposerReactionAddPickerCells();
   const state = {
     active: false,
     nextParticipantId: 1,
@@ -526,6 +538,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
+    menuAnchorElement: null,
     anchorRegistry: new Map(),
     dragParticipantId: "",
     dragPointerId: null,
@@ -534,6 +547,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   };
 
   let drawFrameId = 0;
+  let applyHoveredRouteState = () => {};
+  let createAnchorButton = () => document.createElement("button");
+  let createInlineAnchorLane = () => document.createElement("div");
+  let setHoveredMappingIds = () => {};
 
   const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
     canTargetMappingRole,
@@ -611,6 +628,29 @@ export function createComposerReactionSolverUiRuntime(deps) {
     markMappingsRecent,
     pruneRecentRouteState,
   } = anchorStateRuntime;
+  const anchorRenderRuntime = createComposerReactionAnchorRenderRuntime({
+    findMappingsByNodeKey,
+    getAnchorAvailability,
+    getHoveredMappingIds: () => state.hoveredMappingIds,
+    getMappingIdsForAnchor,
+    getPendingSourceKey: () => state.pendingSourceKey,
+    getPendingSourceRole: () => state.pendingSourceRole,
+    getRecentMappingIds: () => state.recentMappingIds,
+    handleAnchorClick,
+    isSingleMappingAnchorRole,
+    mapSvg,
+    markMappingsRecent,
+    setHoveredMappingIdsState: (mappingIds) => {
+      state.hoveredMappingIds = Array.isArray(mappingIds) ? mappingIds : [];
+    },
+    surface,
+  });
+  ({
+    applyHoveredRouteState,
+    createAnchorButton,
+    createInlineAnchorLane,
+    setHoveredMappingIds,
+  } = anchorRenderRuntime);
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
@@ -622,6 +662,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     label,
     hierarchy,
     structure = null,
+    structureOptions = null,
     extraFields = {},
   }) {
     const resolvedTemplateId = templateId || inferTemplateIdFromStructure(structure?.root ?? structure);
@@ -658,7 +699,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
             participant.id,
             participant.templateId,
             participant.baseLabel,
-            participant.polarity
+            participant.polarity,
+            structureOptions
           );
     participant.structure = participantStructure.root;
     participant.structureValidation = participantStructure.validation;
@@ -1159,6 +1201,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     state.menuOpen = false;
+    state.menuAnchorElement = null;
     menu.hidden = true;
     menu.setAttribute("aria-hidden", "true");
     menu.innerHTML = "";
@@ -1167,6 +1210,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function updateMenuPosition() {
     if (!state.menuOpen || !menu || !root) {
       return;
+    }
+    if (
+      state.menuMode === "template-grid-picker" &&
+      state.menuAnchorElement instanceof Element
+    ) {
+      const bounds = state.menuAnchorElement.getBoundingClientRect();
+      state.menuClientX =
+        state.menuSide === "product" ? bounds.right - 12 : bounds.left;
+      state.menuClientY = bounds.bottom + 10;
     }
     const { left, top } = clampMenuPosition(
       state.menuClientX,
@@ -1215,10 +1267,95 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return button;
   }
 
+  function createPickerTilePreview(pickerCell = null) {
+    const preview = document.createElement("div");
+    preview.className = "composer-reaction-solver-particle composer-reaction-solver-picker-card";
+    if (!pickerCell || pickerCell.vacant) {
+      preview.classList.add("is-vacant");
+      preview.setAttribute("aria-hidden", "true");
+      return preview;
+    }
+    const previewParticipant = {
+      templateId: pickerCell.templateId,
+      label: pickerCell.label,
+      polarity: "",
+    };
+    const meta = getParticipantCardMeta(previewParticipant);
+    preview.style.setProperty("--solver-accent", meta.accent);
+    const label = document.createElement("div");
+    label.className = "composer-reaction-solver-particle-label";
+    getParticipantCardLabelLines(pickerCell.label, previewParticipant).forEach((line) => {
+      const lineElement = document.createElement("span");
+      lineElement.className = "composer-reaction-solver-particle-label-line";
+      lineElement.textContent = line;
+      label.appendChild(lineElement);
+    });
+    preview.appendChild(label);
+    return preview;
+  }
+
+  function createColumnAddButton(side) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "composer-reaction-solver-add-button";
+    button.dataset.addSide = side;
+    button.setAttribute(
+      "aria-label",
+      side === "product" ? "Add product" : side === "center" ? "Add transmute tile" : "Add reactant"
+    );
+    if (
+      state.menuOpen &&
+      state.menuMode === "template-grid-picker" &&
+      state.menuSide === side
+    ) {
+      button.classList.add("is-active");
+    }
+    button.textContent = "+";
+    if (side === "center") {
+      button.addEventListener("click", () => addTransmuteParticipant());
+    } else {
+      button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
+    }
+    return button;
+  }
+
+  function createColumnAddControl(side) {
+    const control = document.createElement("div");
+    control.className = `composer-reaction-solver-add-control is-${side}`;
+    control.appendChild(createColumnAddButton(side));
+    return control;
+  }
+
   function openTemplatePicker(side) {
     state.menuMode = "template-picker";
     state.menuSide = side === "product" ? "product" : "reactant";
     state.menuParticipantId = "";
+    renderMenu();
+  }
+
+  function openTemplateGridPicker(side, triggerElement = null) {
+    if (!state.active || !menu || !triggerElement) {
+      return;
+    }
+    const resolvedSide = side === "product" ? "product" : "reactant";
+    if (
+      state.menuOpen &&
+      state.menuMode === "template-grid-picker" &&
+      state.menuSide === resolvedSide
+    ) {
+      closeMenu();
+      return;
+    }
+    closeExternalMenus();
+    const bounds = triggerElement.getBoundingClientRect();
+    state.menuClientX =
+      resolvedSide === "product" ? bounds.right - 12 : bounds.left;
+    state.menuClientY = bounds.bottom + 10;
+    state.menuAnchorElement = triggerElement;
+    state.menuMode = "template-grid-picker";
+    state.menuSide = resolvedSide;
+    state.menuParticipantId = "";
+    state.menuOpen = true;
     renderMenu();
   }
 
@@ -1229,6 +1366,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeExternalMenus();
     state.menuClientX = clientX;
     state.menuClientY = clientY;
+    state.menuAnchorElement = null;
     state.menuMode = "participant-actions";
     state.menuParticipantId = participantId;
     state.menuOpen = true;
@@ -1256,6 +1394,27 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     state.participants.push(participant);
     state.pendingSourceKey = "";
+    closeMenu();
+    render();
+    setStatus(
+      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver.`
+    );
+  }
+
+  function addParticipantFromPickerCell(side, pickerCell = null) {
+    if (!pickerCell?.templateId || pickerCell.vacant) {
+      return;
+    }
+    const participant = createParticipantRecord({
+      side,
+      templateId: pickerCell.templateId,
+      label: pickerCell.label,
+      hierarchy: buildFallbackHierarchyForTemplate(pickerCell.templateId, pickerCell.label),
+      structureOptions: pickerCell.structureOptions,
+    });
+    state.participants.push(participant);
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
     closeMenu();
     render();
     setStatus(
@@ -1301,61 +1460,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus("Reaction canvas cleared.");
   }
 
-  function applyHoveredRouteState() {
-    if (!surface || !mapSvg) {
-      return;
-    }
-    const hoveredMappingIds = new Set(state.hoveredMappingIds);
-    const recentMappingIds = new Set(state.recentMappingIds);
-
-    surface
-      .querySelectorAll(".composer-reaction-solver-anchor[data-anchor-key][data-anchor-side]")
-      .forEach((anchor) => {
-        const anchorKey = anchor.getAttribute("data-anchor-key") ?? "";
-        const anchorRole = anchor.getAttribute("data-anchor-side") ?? "";
-        const mappingIds = getMappingIdsForAnchor(anchorKey, anchorRole);
-        const isMapped = mappingIds.length > 0;
-        const isHighlighted =
-          isMapped && mappingIds.some((mappingId) => hoveredMappingIds.has(mappingId));
-        const isRecent =
-          isMapped && mappingIds.some((mappingId) => recentMappingIds.has(mappingId));
-        anchor.classList.toggle("is-route-highlighted", isHighlighted);
-        anchor.classList.toggle("is-route-recent", !isHighlighted && isRecent);
-        anchor.classList.toggle(
-          "is-route-dimmed",
-          isMapped && !isHighlighted && !isRecent
-        );
-      });
-
-    mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
-      const mappingId = path.getAttribute("data-mapping-id") ?? "";
-      const isHighlighted = hoveredMappingIds.has(mappingId);
-      const isRecent = recentMappingIds.has(mappingId);
-      path.classList.toggle("is-route-highlighted", isHighlighted);
-      path.classList.toggle("is-route-recent", !isHighlighted && isRecent);
-      path.classList.toggle(
-        "is-route-dimmed",
-        !isHighlighted && !isRecent
-      );
-    });
-  }
-
-  function setHoveredMappingIds(mappingIds = []) {
-    const nextIds = [...new Set(mappingIds.filter(Boolean))].sort();
-    const currentIds = [...state.hoveredMappingIds].sort();
-    if (
-      nextIds.length === currentIds.length &&
-      nextIds.every((mappingId, index) => mappingId === currentIds[index])
-    ) {
-      return;
-    }
-    if (!nextIds.length && currentIds.length) {
-      markMappingsRecent(currentIds);
-    }
-    state.hoveredMappingIds = nextIds;
-    applyHoveredRouteState();
-  }
-
   function renderMenu() {
     if (!menu) {
       return;
@@ -1386,6 +1490,33 @@ export function createComposerReactionSolverUiRuntime(deps) {
           state.menuParticipantId = "";
           renderMenu();
         },
+      });
+    } else if (state.menuMode === "template-grid-picker") {
+      renderMenuTitle(state.menuSide === "product" ? "Add Product" : "Add Reactant");
+      addPickerCells.forEach((pickerCell) => {
+        if (pickerCell.vacant) {
+          const vacantCell = document.createElement("span");
+          vacantCell.className = "composer-reaction-solver-picker-vacant";
+          vacantCell.style.gridColumn = String(pickerCell.columnIndex + 1);
+          vacantCell.style.gridRow = String(pickerCell.rowIndex + 2);
+          vacantCell.appendChild(createPickerTilePreview(pickerCell));
+          menu.appendChild(vacantCell);
+          return;
+        }
+        const tileButton = document.createElement("button");
+        tileButton.type = "button";
+        tileButton.className = "composer-reaction-solver-picker-tile";
+        tileButton.style.gridColumn = String(pickerCell.columnIndex + 1);
+        tileButton.style.gridRow = String(pickerCell.rowIndex + 2);
+        tileButton.setAttribute(
+          "aria-label",
+          `${state.menuSide === "product" ? "Add product" : "Add reactant"} ${pickerCell.label}`
+        );
+        tileButton.appendChild(createPickerTilePreview(pickerCell));
+        tileButton.addEventListener("click", () =>
+          addParticipantFromPickerCell(state.menuSide, pickerCell)
+        );
+        menu.appendChild(tileButton);
       });
     } else if (state.menuMode === "participant-actions") {
       const participant = findParticipantById(state.menuParticipantId);
@@ -1476,6 +1607,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeExternalMenus();
     state.menuClientX = clientX;
     state.menuClientY = clientY;
+    state.menuAnchorElement = null;
     state.menuMode = "root";
     state.menuParticipantId = "";
     state.menuOpen = true;
@@ -1509,7 +1641,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Right-click the reaction canvas to add reactants, products, or a Transmute tile."
+          ? "Reaction solver opened. Use the + controls to add reactants, products, or a transmute tile."
           : "Reaction solver closed."
       );
     }
@@ -1705,49 +1837,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return wrapper;
   }
 
-  function createAnchorButton(participant, node, nodeKey, options = {}) {
-    const { extraClassNames = [], anchorRole = participant.side } = options;
-    const anchorAvailability = getAnchorAvailability(anchorRole, nodeKey);
-    const mappings = findMappingsByNodeKey(nodeKey);
-    const mapping = isSingleMappingAnchorRole(anchorRole) ? mappings[0] ?? null : null;
-    const hasRoleMapping = isSingleMappingAnchorRole(anchorRole)
-      ? !!mapping
-      : mappings.some((entry) =>
-          entry.sourceRole === anchorRole || entry.targetRole === anchorRole
-        );
-    const anchor = document.createElement("button");
-    anchor.type = "button";
-    anchor.className = "composer-reaction-solver-anchor";
-    extraClassNames
-      .filter(Boolean)
-      .forEach((className) => anchor.classList.add(className));
-    anchor.dataset.anchorKey = nodeKey;
-    anchor.dataset.anchorSide = anchorRole;
-    anchor.setAttribute(
-      "aria-label",
-      `${anchorRole === "product" ? "Product" : anchorRole === "transmute-input" ? "Transmute input" : anchorRole === "transmute-output" ? "Transmute output" : "Reactant"} attach point for ${node.label}`
-    );
-    anchor.disabled = anchorAvailability.disabled;
-    if (anchorAvailability.reason) {
-      anchor.title = anchorAvailability.reason;
-    }
-    if (state.pendingSourceKey === nodeKey && state.pendingSourceRole === anchorRole) {
-      anchor.classList.add("is-pending");
-    }
-    if (hasRoleMapping) {
-      anchor.classList.add("is-mapped");
-    }
-    anchor.addEventListener("pointerenter", () =>
-      setHoveredMappingIds(getMappingIdsForAnchor(nodeKey, anchorRole))
-    );
-    anchor.addEventListener("pointerleave", () => setHoveredMappingIds([]));
-    anchor.addEventListener("click", () => {
-      markMappingsRecent(getMappingIdsForAnchor(nodeKey, anchorRole));
-      handleAnchorClick(anchorRole, nodeKey);
-    });
-    return anchor;
-  }
-
   function getCoreBinaryNodes(node) {
     const slotRankByCode = {
       I: 0,
@@ -1787,13 +1876,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     placeholder.className = "composer-reaction-solver-binary-choice is-static is-placeholder";
     placeholder.setAttribute("aria-hidden", "true");
     return placeholder;
-  }
-
-  function createInlineAnchorLane(participant, node, nodeKey) {
-    const lane = document.createElement("div");
-    lane.className = `composer-reaction-solver-inline-anchor-lane is-${participant.side}`;
-    lane.appendChild(createAnchorButton(participant, node, nodeKey));
-    return lane;
   }
 
   function createSideSlotHeader(side) {
@@ -2638,7 +2720,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Right-click the reaction canvas to add reactants, products, or a transmute tile.";
+        "Use the + controls to add reactants, products, or a transmute tile.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -2781,12 +2863,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const centerParticipants = state.participants.filter(
       (participant) => participant.side === "center"
     );
+    reactantsColumn.appendChild(createColumnAddControl("reactant"));
     if (reactantParticipants.length) {
       reactantsColumn.appendChild(createSideSlotHeader("reactant"));
     }
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
+    productsColumn.appendChild(createColumnAddControl("product"));
+    centerColumn.appendChild(createColumnAddControl("center"));
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader("product"));
     }
@@ -2806,7 +2891,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     event.preventDefault();
-    openMenuAt(event.clientX, event.clientY);
   }
 
   function handleDocumentPointerDown(event) {
@@ -2869,6 +2953,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         "scroll",
         () => {
           if (state.active) {
+            updateMenuPosition();
             scheduleMappingDraw();
           }
         },

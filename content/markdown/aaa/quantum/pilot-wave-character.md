@@ -101,7 +101,7 @@ The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mat
 **Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is played jointly by:
 
 - **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian forces that depend on path history and trajectory curvature.
-- **Noether Sea feedback**: the local medium of spacetime tri-binary assemblies responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the medium.
+- **Noether Sea feedback**: the local medium of Noether-Sea tri-binary assemblies responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the medium.
 
 Together, these produce trajectory-shaping forces that are context-dependent, history-dependent, and irreducible to classical pairwise potentials—matching the qualitative role of $Q$.
 

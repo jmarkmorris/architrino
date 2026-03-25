@@ -9,7 +9,7 @@
 ### Core Thesis
 In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the spacetime medium composed of neutral tri-binary assemblies).
 
-**Mass is coupling to spacetime assemblies.**
+**Mass is coupling to Noether-Sea assemblies.**
 
 ### The Two-Component Mechanism
 
@@ -25,13 +25,13 @@ Apparent inertial mass arises from two intertwined effects:
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer binaries are missing. With fewer layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass.
 
 #### Noether Sea Drag (Medium Coupling)
-- **The Medium:** The Noether Sea is not empty space; it is a dynamic lattice of neutral tri-binaries. Moving an assembly through this medium requires navigating, displacing, or reorganizing these spacetime nodes.
+- **The Medium:** The Noether Sea is not empty space; it is a dynamic lattice of neutral tri-binaries. Moving an assembly through this medium requires navigating, displacing, or reorganizing these Noether-Sea nodes.
 - **The Drag:** As the assembly accelerates, it must "push" the surrounding sea structures out of the way. This creates a **resistance to motion** analogous to hydrodynamic drag or the friction experienced by a solid moving through a fluid.
 - **Velocity Dependence:** The drag increases with speed, producing an effective relativistic response:
   $$
   F_{\text{drag}} \propto v, \quad \text{giving rise to} \quad m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c^2}}.
   $$
-- **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher vacuum density (e.g., near massive objects), the effective inertia increases.
+- **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher Noether-Sea density (e.g., near massive objects), the effective inertia increases.
 
 ### Stability Constraint
 A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would decay, radiating energy and collapsing into the nucleus (classical electron catastrophe).
@@ -161,7 +161,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
  - Near massive objects: $\rho_{\text{vac}} = \rho_0 (1 + \alpha \Phi / c^2)$ (density increases in gravitational wells).
 
 2. **Drag Force Derivation**:
- - Model the assembly as a "defect" in the lattice. As it moves, it creates a "wake" of perturbed vacuum nodes.
+ - Model the assembly as a "defect" in the lattice. As it moves, it creates a wake of perturbed Noether-Sea nodes.
  - Use continuum mechanics (or lattice simulations) to compute the drag force \$F_{\text{drag}} = -\beta v$, where $\beta$ is the drag coefficient.
  - **Prediction:** $\beta \propto \rho_{\text{vac}} \times (\text{cross-section})$.
 

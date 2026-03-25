@@ -79,7 +79,7 @@ There is **no backward-in-$t$ influence**. The absolute-time ordering is strictl
 
 From the viewpoint of an embedded assembly:
 
-- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with spacetime assemblies / photon-like modes.
+- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether-Sea assemblies and photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**

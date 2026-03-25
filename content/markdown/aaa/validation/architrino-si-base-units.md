@@ -208,7 +208,7 @@ $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a spacetime assembly (neutral 2:2 core):
+For a Noether-Sea assembly (neutral 2:2 core):
 - 6 degrees of freedom (3 translational + 3 rotational)
 - Mean energy: $\langle E \rangle = 3 k_B T$
 
@@ -218,7 +218,7 @@ k_B = f(\text{Noether-Sea assembly mass, } c_f, \text{ thermal equilibrium distr
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a spacetime assembly (from tri-binary dynamics)
+1. Calculate the **effective mass** of a Noether-Sea assembly (from tri-binary dynamics)
 2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether Sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
@@ -334,7 +334,7 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
    - Compare to 9,192,631,770 Hz
 
 5. **Derive $k_B$ from Noether-Sea thermodynamics**
-   - Calculate spacetime assembly effective mass
+   - Calculate Noether-Sea assembly effective mass
    - Show thermal equilibrium reproduces Maxwell-Boltzmann
    - Predict $k_B$ value
 

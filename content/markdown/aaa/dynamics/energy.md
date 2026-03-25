@@ -223,9 +223,9 @@ with $\alpha$ fixed to $1$ by a reference assembly (e.g., electron) in the regim
 
 ---
 
-### Spacetime Sea and Effective Relativistic Behavior
+### Noether Sea and Effective Relativistic Behavior
 
-The tri-binary spacetime sea adds an additional layer:
+The tri-binary Noether Sea adds an additional layer:
 
 - Moving assemblies must drag along or re-arrange their local tri-binary environment.
 - The effective resistance to high center-of-mass speed (near the internal tri-binary field speed) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.

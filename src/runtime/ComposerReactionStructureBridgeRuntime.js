@@ -270,6 +270,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
   const structureId = String(options.id ?? `structure_${normalizedTemplateId || "node"}`).trim();
   const label = String(options.label ?? "").trim();
   const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+  const occupiedSlots = Array.isArray(options.occupiedSlots) ? options.occupiedSlots : undefined;
 
   let root = null;
   if (normalizedTemplateId === "electron") {
@@ -277,28 +278,28 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
       label || "Electron",
-      { polarity }
+      { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "neutrino") {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
       label || "Neutrino",
-      { polarity }
+      { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "up_quark") {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
       label || "Up quark",
-      { polarity }
+      { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "down_quark") {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
       label || "Down quark",
-      { polarity }
+      { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "proton") {
     root = createBaryonNode(
@@ -330,6 +331,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     root = createNoetherCoreNode(structureId, {
       label: label || `${polarity} Noether core`,
       polarity,
+      occupiedSlots,
     });
   } else if (normalizedTemplateId === "transmute") {
     root = createTransmuteNode(structureId, { label: label || "Transmute" });
