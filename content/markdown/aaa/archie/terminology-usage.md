@@ -1,6 +1,6 @@
 # Terminology Usage
 
-This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, and sentence-level examples that remain valuable even after older terminology has been removed from the corpus.
+This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, and sentence-level examples that remain valuable even after older terminology has been removed from the corpus. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
 
 Use this document alongside [academic-style-guide.md](./academic-style-guide.md), [mathematics-style-guide.md](./mathematics-style-guide.md), [mathematics-terminology.md](./mathematics-terminology.md), and [comparative-glossary.md](./comparative-glossary.md).
 
@@ -107,6 +107,37 @@ Use `spacetime` for emergent/effective structure, not as the default name for th
 | fixed ontological container | `Euclidean void` | plain `spacetime` | "The Euclidean void does not curve." |
 | global product background | `absolute timespace` | vague `spacetime` in ontology-first prose | "Absolute timespace is $\mathbb{R}\times\mathbb{R}^3$." |
 | emergent relativistic geometry | `spacetime`, `effective metric`, `effective geometry` | not applicable | "Spacetime curvature is an emergent refractive effect." |
+
+## Particle, Wave, Assembly, and Wake
+
+The standard quantum phrase `particle versus wave` should be treated as a description of a limit or paradox inside the standard mathematical formalism, not as the native AAA ontology.
+
+The preferred AAA response is `assembly and wake`.
+
+- `assembly` names the localized ontological object: an architrino or a bound hierarchy of architrinos with definite geometry, inventory, stability conditions, and interaction channels.
+- `wake` names the distributed causal structure emitted by those architrinos or assemblies: the potential-bearing residue that propagates outward, overlaps, interferes, and later contributes to received interactions.
+- The point of the `and` is that the two are not rival identities of one thing. The assembly is the source-organized object; the wake is its emitted causal structure.
+- In AAA, interference, diffraction, phase accumulation, and nonlocal-looking transport belong primarily to wake behavior, while localization, counting, detection records, and bound-state identity belong primarily to assembly behavior.
+
+This yields a cleaner translation rule:
+
+| When standard prose says... | AAA clarification |
+| --- | --- |
+| `particle` | usually an `assembly` viewed at the observer or phenomenological level |
+| `wave` | usually a `wake`, `causal wake`, or effective wake superposition |
+| `particle-wave duality` | an effective observational tension that AAA reinterprets as `assembly and wake` |
+| `wave-particle paradox` | not a native AAA paradox; it marks a limit of the standard formal split between localized entity and distributed propagation |
+
+Use `particle` when doing Standard Model comparison, detector language, cross-section language, or historical discussion of quantum mechanics. Use `assembly` when stating AAA ontology directly.
+
+Use `wave` when discussing standard QM language, experimental narratives, or intentionally effective descriptions. Use `wake` when naming the emitted substrate-level causal structure in AAA.
+
+Sentence guidance:
+
+- Prefer: "The observed particle is an assembly in AAA ontology."
+- Prefer: "The interference pattern is produced by wake structure, not by an ontic wave-particle ambiguity."
+- Prefer: "AAA responds to particle-versus-wave language with assembly and wake."
+- Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 
 ## Core, Nucleus, and Assembly Usage
 

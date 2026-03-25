@@ -243,49 +243,11 @@ The following review notes come from a close scan of the Markdown documents unde
 - blur ontological AAA language with effective or Standard Model language,
 - or risk confusion with established terminology from quantum mechanics, relativity, field theory, or higher ontology layers.
 
-The strongest candidates are listed first.
+Completed families such as `field` to `wake`, background-vs-contents, and the main `Noether Sea` / `spacetime medium` policy are now documented in `content/markdown/aaa/archie/terminology-usage.md` and should no longer be treated as open queue items here.
 
-### 1. `field` to `wake` conversion
+The `particle` / `wave` / `assembly` / `wake` family is also now moving into canon: the preferred AAA response to standard `particle versus wave` language is `assembly and wake`. Use `particle` and `wave` for standard comparative framing when needed, but treat `assembly` and `wake` as the native ontological pair.
 
-This family is now better treated as active canon rather than as an open-ended review note.
-
-- Use `wake` or `causal wake` for emitted substrate-level structure.
-- Reserve `field` for explicitly effective, continuum, observer-level, or Standard Model comparative language.
-- Use the `Field-to-Wake Translation Table` above when converting older prose.
-
-Representative files:
-
-- `content/markdown/aaa/quantum/pilot-wave-character.md`
-- `content/markdown/aaa/quantum/reality-quantum-causality.md`
-- `content/markdown/aaa/quantum/entanglement-nonlocality.md`
-
-### 2. `Noether Sea` vs `vacuum` vs `aether` vs `medium` vs `spacetime medium`
-
-This is another major terminology cluster with high confusion risk.
-
-- These terms often point to the same underlying substrate or environment.
-- But they carry different external meanings:
-  - `vacuum` suggests QFT vacuum language,
-  - `aether` carries strong historical baggage,
-  - `medium` is generic and can become too vague,
-  - `spacetime medium` sounds like an effective bridge term,
-  - `Noether Sea` is the most distinct AAA-specific term.
-
-Recommended direction:
-
-- Use `Noether Sea` when the underlying ontological substrate is meant directly.
-- Use `vacuum` mainly for Standard Model/QFT comparison or translation into observer-level language.
-- Use `aether` sparingly, if at all, and only where historical comparison is genuinely useful.
-- Use `medium` only when a generic constitutive statement is sufficient and the substrate identity is already clear.
-- Treat `spacetime medium` as a neutral bridge term, not the primary ontological label. It is useful when connecting emergent spacetime language to constitutive substrate language, but it should not replace the clearer `Noether Sea` / `Euclidean void` distinction.
-
-Representative files:
-
-- `content/markdown/aaa/quantum/reality-quantum-causality.md`
-- `content/markdown/aaa/assemblies/bosons/gluons.md`
-- `content/markdown/aaa/validation/architrino-si-base-units.md`
-
-### 3. `spacetime` vs `void` vs `timespace`
+### 1. `spacetime` vs `void` vs `timespace`
 
 This family needs a stronger policy distinction between fundamental ontology and emergent description.
 
@@ -307,7 +269,7 @@ Representative files:
 - `content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md`
 - `content/markdown/aaa/foundations/ontology.md`
 
-### 4. `nucleus` vs `core` vs `Noether core`
+### 2. `nucleus` vs `core` vs `Noether core`
 
 This is a high-value cleanup candidate because `nucleus` strongly collides with atomic and nuclear terminology.
 
@@ -327,27 +289,7 @@ Representative files:
 - `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`
 - `content/markdown/aaa/nuclear-atomic/nucleon-structure.md`
 
-### 5. `particle` vs `assembly`
-
-This family deserves a corpus-level policy because it affects almost every comparative chapter.
-
-- `assembly` is the more natural AAA ontological term.
-- `particle` is often the correct translation term when speaking in Standard Model or observer-facing language.
-- Many documents use both within the same explanatory block without clearly marking the level shift.
-
-Recommended direction:
-
-- Prefer `assembly` or `architrino assembly` for AAA ontological description.
-- Keep `particle` for Standard Model comparison, experimental language, or effective observer-level shorthand.
-- When both appear in the same section, mark the translation boundary explicitly so the reader knows whether the prose is speaking in AAA ontology or in standard phenomenological language.
-
-Representative files:
-
-- `content/markdown/aaa/quantum/reality-quantum-causality.md`
-- `content/markdown/aaa/quantum/pilot-wave-character.md`
-- `content/markdown/aaa/quantum/entanglement-nonlocality.md`
-
-### 6. `orbit` / `orbital` / `circulation`
+### 3. `orbit` / `orbital` / `circulation`
 
 This one remains partially unresolved after the earlier axial-language conversion work.
 
@@ -368,7 +310,7 @@ Representative files:
 - `content/markdown/aaa/dynamics/effective-lagrangian.md`
 - `content/markdown/aaa/foundations/ontology.md`
 
-### 7. `shell` vs `layer`
+### 4. `shell` vs `layer`
 
 This is a genuine overload family, though not every use needs correction.
 
@@ -396,7 +338,7 @@ Representative files:
 - `content/markdown/aaa/spacetime/black-holes.md`
 - `content/markdown/aaa/dynamics/master-equation.md`
 
-### 8. Weak-sector local geometry terms
+### 5. Weak-sector local geometry terms
 
 This cluster is smaller, but it still looks under-consolidated.
 
@@ -419,7 +361,7 @@ Representative files:
 - `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`
 - `content/markdown/aaa/assemblies/fermions/quarks.md`
 
-### 9. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
+### 6. Lower-priority but worth watching: `spin` vs `helicity` vs `chirality`
 
 This family looked more controlled than the others during the scan, so it is not the first conversion target.
 
@@ -441,12 +383,10 @@ Representative files:
 
 If a new terminology pass is scheduled, the most important order appears to be:
 
-1. `Noether Sea` vs `vacuum` vs `aether` vs `medium`
-2. `spacetime` vs `void` vs `timespace`
-3. `nucleus` vs `core` vs `Noether core`
-4. `particle` vs `assembly`
-5. `orbit` / `orbital` / `circulation`
-6. `shell` vs `layer`
-7. weak-sector triad-family terms
+1. `spacetime` vs `void` vs `timespace`
+2. `nucleus` vs `core` vs `Noether core`
+3. `orbit` / `orbital` / `circulation`
+4. `shell` vs `layer`
+5. weak-sector triad-family terms
 
 These categories appear to offer the largest clarity gains while reducing the strongest terminology collisions with quantum mechanics, relativity, and higher-level ontological language.
