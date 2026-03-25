@@ -131,9 +131,11 @@ function normalizeParticipantPolarity(polarity) {
 }
 
 const {
+  binaryAssignmentsMatch,
   getAllowedBinaryChoiceIds,
   getBinaryChoiceInventory,
   getBinarySelectorRuleForParticipant,
+  getBinarySelectorNodes,
   getInitialParticipantBinarySelections,
   getParticipantBinarySelectorGroups,
   getResolvedBinarySelectionMap,

@@ -464,6 +464,7 @@ export function createComposerReactionBinarySelectionRuntime(options = {}) {
   }
 
   return {
+    binaryAssignmentsMatch,
     getAllowedBinaryChoiceIds,
     getBinaryChoiceInventory,
     getBinaryPersonalityChoice,

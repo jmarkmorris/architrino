@@ -32,7 +32,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Purpose and Scope](../aaa/foundations/ontology.md?section=Purpose+and+Scope)
     - [The Substrate (What Exists Fundamentally)](../aaa/foundations/ontology.md?section=The+Substrate+%28What+Exists+Fundamentally%29)
     - [The Fundamental Entity (Architrino)](../aaa/foundations/ontology.md?section=The+Fundamental+Entity+%28Architrino%29)
-    - [The Physical Medium (Noether Sea / Spacetime Aether)](../aaa/foundations/ontology.md?section=The+Physical+Medium+%28Noether+Sea+%2F+Spacetime+Aether%29)
+    - [The Physical Medium (Noether Sea / Spacetime Medium)](../aaa/foundations/ontology.md?section=The+Physical+Medium+%28Noether+Sea+%2F+Spacetime+Medium%29)
     - [The Observer Framework (Ontic vs Epistemic)](../aaa/foundations/ontology.md?section=The+Observer+Framework+%28Ontic+vs+Epistemic%29)
     - [Terminology Discipline (Locked Definitions)](../aaa/foundations/ontology.md?section=Terminology+Discipline+%28Locked+Definitions%29)
     - [Parameter Ledger (Foundation Level)](../aaa/foundations/ontology.md?section=Parameter+Ledger+%28Foundation+Level%29)

@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** (absolute time, Euclidean space, and their product structure)
 2. **The Fundamental Entity** (architrino: point transmitter/receiver of potential)
-3. **The Physical Medium** (Noether Sea / spacetime aether: assembly lattice)
+3. **The Physical Medium** (Noether Sea / spacetime medium: assembly lattice)
 4. **The Observer Framework** (Absolute vs Physical observers; ontic vs epistemic)
 5. **Terminology Discipline** (locked definitions to prevent semantic drift)
 6. **Parameter Ledger** (fundamental postulates vs derived quantities)
@@ -708,7 +708,7 @@ combining time translations, spatial translations/rotations, and boosts in the s
 
 **Important note:** While the **background kinematics** are invariant under all Galilean transformations, the **interaction law** (defining forces and accelerations) selects a **preferred frame**: the **absolute rest frame** in which the maximum signal speed $c_f$ (field speed) is isotropic. This breaks the boost symmetry at the dynamical level, recovering a preferred frame for non-relativistic dynamics.
 
-This symmetry breaking is precisely what allows for a preferred "aether" frame for the dynamics, a concept forbidden in relativity but essential for $\mathbb{A}\mathbb{A}\mathbb{A}$'s propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to $\mathbb{A}\mathbb{A}\mathbb{A}$. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
+This symmetry breaking is precisely what allows for a preferred medium rest frame for the dynamics, a concept forbidden in relativity but essential for $\mathbb{A}\mathbb{A}\mathbb{A}$'s propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to $\mathbb{A}\mathbb{A}\mathbb{A}$. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
 
 ---
 
@@ -1237,7 +1237,7 @@ C(v)=\sqrt{1-\beta^2}=\gamma^{-1},\qquad T(v)=T_0\gamma,\quad T_0=\frac{2L_0}{c_
 $$
 Hence the Lorentz contraction/dilation scaling is derived in a controlled reduced model. What remains open is extension to the full multi-mode tri-binary NFDE dynamics without assuming a two-leg closure.
 
-## The Physical Medium (Noether Sea / Spacetime Aether)
+## The Physical Medium (Noether Sea / Spacetime Medium)
 
 ### Void vs Vacuum Distinction
 
@@ -1246,7 +1246,7 @@ Hence the Lorentz contraction/dilation scaling is derived in a controlled reduce
 $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 
 1. **The Euclidean Void** (substrate, ontological ground)
-2. **The Noether Sea / Spacetime Aether** (physical medium, emergent structure)
+2. **The Noether Sea / Spacetime Medium** (physical contents, emergent structure)
 
 **The Euclidean Void:**
 
@@ -1255,7 +1255,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 - It carries **no energy**, has **no dynamics**, and does **not respond** to matter.
 - Coordinates $(x,y,z,t)$ are **permanent addresses** in this fixed background.
 
-**The Noether Sea / Spacetime Aether:**
+**The Noether Sea / Spacetime Medium:**
 
 - A **dense lattice** of coupled neutral tri-binary assemblies (see Section 3.2).
 - Also called the "**Sea of Noether Cores**" or "**Spacetime Fabric**."
@@ -1265,8 +1265,8 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes sharply between:
 
 **Terminology Lock:**
 
-✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance) 
-❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Curved space" (space itself is flat; only the medium's effective geometry curves)
+✅ **USE:** "Euclidean void" (fixed container/background), "Noether Sea" (canonical ambient contents), "spacetime medium" (bridge term toward effective spacetime language)
+❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Aether" as the default ontological name, "Curved space" (space itself is flat; only the medium's effective geometry curves)
 
 ### Ontological Status of the Noether Sea
 
@@ -1554,11 +1554,12 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Term** | **Definition** |
 |:---------|:---------------|
 | **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) |
-| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores |
+| **Noether Sea** | Canonical ontological name for the ambient coupled tri-binary contents that populate the Euclidean void |
+| **Spacetime Medium** | Neutral bridge term for those contents when translating toward effective spacetime language |
 | **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ |
 | **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly |
 | **Absolute $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** / **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** | Conceptual probe with complete microstate knowledge |
-| **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics |
+| **Physical Observer (PO)** | Assembly-based detector/observer subject to Noether-Sea or spacetime-medium dynamics |
 | **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) |
 | **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) |
@@ -1571,8 +1572,9 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 |:--------------------|:-----------|:----------------|
 | **Causal Propogating Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
 | **Vacuum** (alone) | Ambiguous; connotes emptiness (void) or QFT vacuum energy | **Noether Sea** / **Spacetime Medium** |
+| **Aether** (as default ontology term) | Historical baggage; obscures the distinction between canon and bridge language | **Noether Sea** / **Spacetime Medium** |
 | **Curved Space** | The void is flat; only the medium's effective geometry curves | **Effective Metric** / **Refractive Gravity** |
-| **Spacetime** (without qualifier) | Ambiguous; conflates substrate (void+time) with medium (Noether Sea) | **Absolute Timespace** (substrate) vs **Spacetime Aether** (medium) |
+| **Spacetime** (without qualifier) | Ambiguous; conflates substrate (void+time) with contents (Noether Sea) | **Euclidean Void** + **Absolute Time** (substrate) vs **Spacetime Medium** (bridge term) vs **Effective Spacetime** (emergent description) |
 | **Virtual Particle** | QFT jargon; unclear ontology | **Transient Assembly** / **Potential Fluctuation** (context-dependent) |
 | **Collapse** (wavefunction) | Implies discontinuous physical process | **Measurement Interaction** / **Decoherence** / **Effective Update** |
 
@@ -1643,7 +1645,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
-| Noether Sea density | $\rho_{vac}$ | TBD | Number/Volume | Baseline vacuum density |
+| Noether Sea density | $\rho_{vac}$ | TBD | Number/Volume | Baseline ambient Noether-Sea density |
 | Tri-binary radius (inner) | $R_{\text{inner}}$ | TBD | Length | Maximum-curvature orbit radius |
 | Tri-binary radius (middle) | $R_{\text{middle}}$ | TBD | Length | At-field-speed ($v = c_f$) orbit |
 | Tri-binary radius (outer) | $R_{\text{outer}}$ | TBD | Length | Sub-field-speed orbit |

@@ -140,11 +140,11 @@ In practice, for finite systems or simulation domains, we verify conservation by
 
 ## Spacetime as a Tri-Binary Sea and Energy Storage
 
-At the fundamental level, space is an empty Euclidean container. **Effective spacetime**, the medium in which Standard Model particles live and propagate, is a **sea of high-energy tri-binary assemblies**:
+At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy tri-binary assemblies**:
 
 - These tri-binaries are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each tri-binary is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
-- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This medium is characterized by a non-zero vacuum expectation value of assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive architrino dynamics into effective relativistic kinematics, providing a medium for:
+- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Emergent light cones and Lorentz-like behavior,
   - Effective gravitational coupling (emergent geometry at large scales).
@@ -153,7 +153,7 @@ Energy in this picture is distributed across:
 
 1. **Free Architrinos** (rare at low energies),
 2. **Standard Model assemblies** (electrons, nucleons, etc.),
-3. The **tri-binary sea** that constitutes the effective spacetime medium.
+3. The **tri-binary sea** that constitutes the Noether Sea and, in bridge prose, the effective spacetime medium.
 
 ---
 
@@ -174,7 +174,7 @@ where:
 
 - $E_{k,i}$ is the kinetic energy of architrino $i$,
 - $U_{ij}$ is mutual potential energy of pair $(i,j)$,
-- $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding tri-binary sea (local "spacetime medium").
+- $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding tri-binary sea, that is, the local Noether-Sea environment (or in bridge prose, the local spacetime medium).
 
 This internal energy can be **very large**: tri-binaries and more complex assemblies may store Planck-scale or higher internal energy, even when the assembly appears as a low-mass particle externally.
 
@@ -273,9 +273,9 @@ Cross-links:
 In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
-- Energy that an architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
+- Energy that an architrino (or assembly) emitted into its local Noether-Sea environment can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local tri-binary configuration.
 
-At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → tri-binary medium → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
+At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether Sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
 
 ---
 
@@ -283,7 +283,7 @@ At the exact causal-action level, global energy is conserved: self-hit just rout
 
 Inside an assembly there is a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
 
-Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. In nested fermion cores, the outer binaries also act like energy screens around the deeper engine. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly and the deeper layers are partly hidden behind those screening shells. The tiny leftover ripples are what we call gravity and particle masses.
+Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull; they live in how the hull is built and how it pulls on the water. In nested fermion cores, the outer binaries also act like energy screens around the deeper engine. Most of the ocean's energy never shows up in long-range effective fields, because the waves from different directions cancel almost exactly and the deeper layers are partly hidden behind those screening shells. The tiny leftover ripples are what we call gravity and particle masses.
 
 ## Summary and Role in the Larger Theory
 
@@ -301,9 +301,9 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy tri-binaries forms the effective medium whose coarse-grained energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both spacetime tri-binaries and "matter" assemblies will determine:
+  The sea of small, high-energy tri-binaries forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both spacetime tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
-  - The cosmological spacetime energy density,
+  - The cosmological Noether-Sea energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
   
   Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.

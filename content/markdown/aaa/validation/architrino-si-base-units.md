@@ -48,12 +48,12 @@ In our theory, the **truly fundamental** quantities are:
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Tri-binary radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Spacetime assembly density** $\rho_{\text{vac}}$ (neutral 2:2 or 4:4 cores per unit volume)
+- **Noether-Sea assembly density** $\rho_{\text{vac}}$ (neutral 2:2 or 4:4 cores per unit volume)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
 - Tri-binary stability conditions (quantization)
-- Aether coupling (emergent metric, inertia)
+- Noether-Sea coupling (emergent metric, inertia)
 
 ### Primitive-to-Derived Measure Ladder
 
@@ -84,18 +84,18 @@ The hyperfine transition is caused by:
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{tri-binary geometry, } c_f, |e/6|, \text{ aether coupling})
+\Delta \nu_{\text{Cs}} = f(\text{tri-binary geometry, } c_f, |e/6|, \text{ Noether-Sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
 - The Middle Binary's orbital frequency (sets the magnetic moment)
-- The coupling strength between electron and nucleus (mediated by aether/photon exchange)
+- The coupling strength between electron and nucleus (mediated by spacetime-medium response and photon exchange)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
 1. Calculate the electron's Middle Binary orbital frequency $\omega_{\text{MB}}$ for Cs ground state
 2. Calculate the magnetic moment $\mu = \frac{|e/6| \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
-3. Calculate the nuclear spin coupling via aether-mediated potential exchange
+3. Calculate the nuclear spin coupling via Noether-Sea-mediated potential exchange
 4. Derive the splitting frequency
 
 
@@ -111,26 +111,26 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the **effective propagation speed** of photon-like assemblies (planar Middle Binaries at $v \approx c_f$) through the spacetime aether.
+The speed of light $c$ is **not fundamental**. It is the **effective propagation speed** of photon-like assemblies (planar Middle Binaries at $v \approx c_f$) through the Noether Sea, or in bridge language, the spacetime medium.
 
 **Key relation:**
 $$
-c = c_f \cdot f(\rho_{\text{vac}}, \text{aether coupling strength})
+c = c_f \cdot f(\rho_{\text{vac}}, \text{spacetime-medium coupling strength})
 $$
 
-In the low-energy limit (flat spacetime, weak aether gradients):
+In the low-energy limit (flat spacetime, weak Noether-Sea gradients):
 $$
-c \approx c_f \quad (\text{small corrections from aether refraction})
+c \approx c_f \quad (\text{small corrections from Noether-Sea refraction})
 $$
 
 **What we must show:**
 - Photons are planar assemblies (2D tri-binaries, bosonic statistics)
-- Their propagation through the aether sea (graviton-Higgs-binary medium) is **not instantaneous** but limited by $c_f$
+- Their propagation through the Noether Sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
 **Prediction:**
-- In strong gravitational fields (dense aether): $c_{\text{eff}} < c_f$ (gravitational lensing, Shapiro delay)
-- At Planck scales (aether structure resolves): $c_{\text{eff}} \neq c_f$ (Lorentz violation signatures)
+- In strong gravitational fields (dense Noether Sea): $c_{\text{eff}} < c_f$ (gravitational lensing, Shapiro delay)
+- At Planck scales (Noether-Sea microstructure resolves): $c_{\text{eff}} \neq c_f$ (Lorentz violation signatures)
 
 
 ---
@@ -203,7 +203,7 @@ $$
 Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in the architrino framework?
 
 **Hypothesis:**
-Temperature is the **mean kinetic energy per degree of freedom** in the aether bath:
+Temperature is the **mean kinetic energy per degree of freedom** in the Noether-Sea bath:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
@@ -214,12 +214,12 @@ For a spacetime assembly (neutral 2:2 core):
 
 **What we must derive:**
 $$
-k_B = f(\text{aether assembly mass, } c_f, \text{ thermal equilibrium distribution})
+k_B = f(\text{Noether-Sea assembly mass, } c_f, \text{ thermal equilibrium distribution})
 $$
 
 **Pathway:**
 1. Calculate the **effective mass** of a spacetime assembly (from tri-binary dynamics)
-2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the aether sea)
+2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether Sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
 **Prediction:**
@@ -247,7 +247,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from tri-binary geometry (3 quarks = 3 tri-binaries + gluon field = aether coupling)
+- The proton mass $m_p$ from tri-binary geometry (3 quarks = 3 tri-binaries + gluon wake structure + Noether-Sea coupling)
 
 
 ---
@@ -280,7 +280,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | SI Constant | Status in Architrino Framework | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
-| $c$ | **Fundamental ≈ $c_f$** | Field speed in void; small corrections from aether |
+| $c$ | **Fundamental ≈ $c_f$** | Signal speed in the void; small corrections from the Noether Sea |
 | $h$ | **Derivable** | Outer Binary angular momentum quantization |
 | $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
 | $k_B$ | **Derivable** | Aether thermal equilibrium + assembly mass |
@@ -297,11 +297,11 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
 1. **Architrino charge** $|e/6|$ (replaces $e$)
 2. **Field speed** $c_f$ (replaces $c$)
 3. **Tri-binary geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
-4. **Aether assembly mass** $m_{\text{aether}}$ (replaces $k_B$ when combined with $c_f$)
+4. **Noether-Sea assembly mass** $m_{\text{aether}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is derived:**
 - $e = 6 |e/6|$
-- $c = c_f$ (up to small aether corrections)
+- $c = c_f$ (up to small Noether-Sea corrections)
 - $h = 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$
 - $k_B = f(m_{\text{aether}}, c_f)$
 - $N_A = f(m_p / m_{\text{aether}})$
@@ -319,11 +319,11 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
    - Predict $h$ and compare to SI value
 
 2. **Confirm $c = c_f$ within bounds**
-   - Show photon propagation through aether matches $c$ to $<10^{-17}$
+   - Show photon propagation through the Noether Sea matches $c$ to $<10^{-17}$
    - Identify where/how deviations appear (Planck scale, strong gravity)
 
 3. **Derive particle masses**
-   - Proton: $m_p = f(\text{3 quark tri-binaries + aether coupling})$
+   - Proton: $m_p = f(\text{3 quark tri-binaries + Noether-Sea coupling})$
    - Electron: $m_e = f(\text{single tri-binary geometry})$
    - Predict mass ratios: $m_p/m_e \approx 1836$
 
@@ -333,7 +333,7 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
    - Derive hyperfine coupling strength
    - Compare to 9,192,631,770 Hz
 
-5. **Derive $k_B$ from aether thermodynamics**
+5. **Derive $k_B$ from Noether-Sea thermodynamics**
    - Calculate spacetime assembly effective mass
    - Show thermal equilibrium reproduces Maxwell-Boltzmann
    - Predict $k_B$ value
@@ -345,7 +345,7 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
 
 7. **Explain fine-structure constant $\alpha$**
    - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
-   - In architrino terms: $\alpha = f(|e/6|, c_f, r_{\text{outer}}, \text{aether})$
+   - In architrino terms: $\alpha = f(|e/6|, c_f, r_{\text{outer}}, \text{Noether Sea})$
    - Derive numerically; explain why $\alpha \ll 1$
 
 ---
