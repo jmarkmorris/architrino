@@ -10792,6 +10792,8 @@ const appShellUiRuntime = createAppShellUiRuntime({
 });
 const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
   element: composerTitle,
+  labelPrefix: "Composer v7",
+  lastChangedAt: "2026-03-26T17:58:00-04:00",
 });
 
 appDirector.init();

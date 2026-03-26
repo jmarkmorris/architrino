@@ -16,38 +16,36 @@ function formatComposerHeaderTimestamp(date) {
   return `${weekday} ${month} ${day} ${time}`;
 }
 
-export function createComposerHeaderTimestampRuntime({ element, now = () => new Date() } = {}) {
-  let updateTimerId = null;
+export function createComposerHeaderTimestampRuntime({
+  element,
+  lastChangedAt = null,
+  labelPrefix = "",
+} = {}) {
+  const resolvedDate =
+    lastChangedAt instanceof Date
+      ? lastChangedAt
+      : typeof lastChangedAt === "string" || typeof lastChangedAt === "number"
+        ? new Date(lastChangedAt)
+        : null;
 
   function render() {
     if (!element) {
       return;
     }
-    element.textContent = formatComposerHeaderTimestamp(now());
-  }
-
-  function scheduleNextUpdate() {
-    if (!element) {
-      return;
-    }
-    const currentTime = now();
-    const msUntilNextMinute =
-      (60 - currentTime.getSeconds()) * 1000 - currentTime.getMilliseconds();
-    updateTimerId = window.setTimeout(() => {
-      render();
-      scheduleNextUpdate();
-    }, Math.max(msUntilNextMinute, 0));
+    const timestamp = resolvedDate && Number.isFinite(resolvedDate.getTime())
+      ? formatComposerHeaderTimestamp(resolvedDate)
+      : "timestamp unavailable";
+    const prefix = String(labelPrefix || "").trim();
+    element.textContent = prefix ? `${prefix} · ${timestamp}` : timestamp;
   }
 
   function init() {
     render();
-    scheduleNextUpdate();
   }
 
   function dispose() {
-    if (updateTimerId !== null) {
-      window.clearTimeout(updateTimerId);
-      updateTimerId = null;
+    if (!element) {
+      return;
     }
   }
 

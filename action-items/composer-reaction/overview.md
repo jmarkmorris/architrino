@@ -25,6 +25,14 @@ This workstream covers the scene system, composer, reaction app, PDG solver, and
 - The composer shell is real enough that the remaining work is gap-closing rather than first invention.
 - The reaction app is the primary manual provenance surface.
 - A read-only canonical-structure bridge exists, but it does not yet drive live structure mutations.
+- The reaction app modularity/reuse restructuring is largely complete for the current solver surface:
+  - shared structure-domain modules now own canonical structure, classification, validation, traversal, and transforms;
+  - shared reaction runtimes now own descriptor generation, mapping rules, binary selection, participant mutation, anchor state, anchor rendering, and participant rendering;
+  - and the reaction solver has automated local coverage around those extracted runtimes.
+- Composer-side reuse has begun but is not complete:
+  - the composer can already read the shared canonical structure bridge in summaries, menus, hover states, and a first viewport-facing badge;
+  - the first narrow shared-structure mutation path exists for `Split Group`;
+  - but the broader composer-side structural-edit migration is paused while the canvas click paths, menus, and action grammar are being refactored for usability.
 
 ## Ordered Objectives
 
