@@ -762,9 +762,7 @@ function validateSceneTypeSpecificRules(scenePath, data) {
 
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
-const indexableMarkdownFiles = allMarkdownFiles.filter(
-  (markdownPath) => !normalizePath(markdownPath).includes("/_meta/")
-);
+const indexableMarkdownFiles = allMarkdownFiles;
 
 const sceneConfigs = [];
 const ancillarySceneJson = [];

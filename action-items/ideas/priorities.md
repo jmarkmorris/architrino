@@ -33,8 +33,8 @@ Scoring system:
 
 ### 1. Execute the frozen breather proof program
 - Value `10`, Cost `4`, ROI `2.50`.
-- Treat [collinear-breather.md](../../markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
-- Treat [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.
+- Treat [collinear-breather.md](../content/markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold, not as the live place for new theorem discovery.
+- Treat [master-equation-breather.md](../content/markdown/aaa/dynamics/master-equation-breather.md) as a frozen proof-program blueprint rather than a live architecture notebook. The current task is now proof execution inside that already-built theorem DAG, not further scaffold expansion unless a real defect is found.
 - Current state:
   - the 1D note now has a full theorem ladder from collapse-to-crossing through caustic transit, post-crossing recapture, outer-turn closure, seed-history nonvacuity, invariant-envelope synthesis, and the final Schauder capstone;
   - the major global packaging defects were audited and made explicit: the convex tame-envelope step is now honestly marked as a target, the admissible parameter regime is now a coupled solvability target rather than a false decoupling argument, and the section anchoring now explicitly quotients out time-translation symmetry;
@@ -42,7 +42,7 @@ Scoring system:
   - the bridge chapter now records the portable return-map / tame-envelope / Schauder architecture, the completed reduced-planar binary bridge, and the completed first unreduced-planar binary bridge;
   - the reduced-planar bridge now runs end-to-end through section/gauge fixing, directional sorting, deep-past relocation, cone transversality, bounded caustic transit, vector recapture, tame-envelope closure, Schauder, and precise failure alternatives;
   - the unreduced-planar binary bridge now runs end-to-end through gauge-fixed sectioning, finite active branch graph control, deep-past provenance or exclusion, multi-channel recapture, tame-envelope closure, Schauder, and precise closure-stage obstruction alternatives;
-  - the live bridge note has now completed that next boundary: the planar three-body bridge in [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone;
+  - the live bridge note has now completed that next boundary: the planar three-body bridge in [master-equation-breather.md](../content/markdown/aaa/dynamics/master-equation-breather.md) now carries a full theorem-program ladder through unreduced well-posedness, gauge selection, no-accumulation, bounded caustic transit, finite active delay hypergraph, cluster-valued ancestry and deep-past exclusion, multi-observable recapture, explicit convex-core construction, boundary trapping, invariant-envelope closure, and the final Schauder capstone;
   - the planar three-body bridge now includes an explicit symmetric seed packet, a delayed seed-margin persistence lemma, a seed-centered realization of the convex tame core, an explicit principal-channel parameter corridor, and a sharpened caustic-transit package with exact fold-time cancellation and uniform fold ceilings;
   - the ancestry package now reduces deep-past memory to a finite-state backward-search problem with explicit trapped-cycle exclusion via monotone source-time drift, so the deep-past contribution has been converted into one fixed arithmetic ceiling
     $$
@@ -73,7 +73,7 @@ Scoring system:
     $$
     rather than on a mismatched tame-subclass / macro-envelope pair.
 - Next-session prompt / active handoff:
-  - read [master-equation-breather.md](../../markdown/aaa/dynamics/master-equation-breather.md) from the seed-side section through the no-accumulation, caustic-transit, ancestry, recapture, convex-core, and Schauder closure packages, treating the architecture as frozen;
+  - read [master-equation-breather.md](../content/markdown/aaa/dynamics/master-equation-breather.md) from the seed-side section through the no-accumulation, caustic-transit, ancestry, recapture, convex-core, and Schauder closure packages, treating the architecture as frozen;
   - do not add new theorem layers or new replacement packages unless a real proof-breaking defect is discovered;
   - begin formal proof execution inside the existing DAG, starting with the seed-side and early branch-regularity lemmas that feed everything else;
   - first target:
@@ -122,7 +122,7 @@ Scoring system:
 - Value `10`, Cost `4`, ROI `2.50`.
 - For scorecard purposes, this is now the main Parameter Closure + Mass Formulas bucket.
 - If the goal is fastest total-score increase, pair this item with item `10` for Parameter Closure + Coverage first.
-- Treat [parameter-ledger.md](../../markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
+- Treat [parameter-ledger.md](../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The real priority is to turn the open mass-side symbols it names into one reusable derived map.
 - First concrete deliverable: one derived tri-binary attractor family with radii, frequencies, binding scales, and a reproducible shielding-extraction protocol.
 - Second concrete deliverable: derive `\zeta(A)` from the delayed kernel strongly enough to predict a baseline electron mass and at least one next-step hierarchy check such as `m_\mu / m_e`.
 - Third concrete deliverable: decide which quantities survive as shared inputs across the mass-side program, especially `\kappa`, the physical role of `\eta`, and whether the first mass map also constrains the bridge to `h` and `G`.
@@ -226,7 +226,7 @@ Scoring system:
 
 ### 4. Finish the tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
 - Value `10`, Cost `5`, ROI `2.00`.
-- Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../../markdown/aaa/dynamics/master-equation.md) as the top theory priority.
+- Keep dynamics, math, geometry, and mapping centered on [master-equation.md](../content/markdown/aaa/dynamics/master-equation.md) as the top theory priority.
 - This is now also the home of the Lorentz / metric / clock / ruler bridge to GR. Item `8` is no longer separate because it is a downstream closure branch of this same master-equation stack.
 - This stack has to carry the whole closure program from the `\eta`-regularized delayed action to the continuum bridges:
   1. full 3D translating tri-binary NFDE / DDE analysis for emergent `\gamma`-scaling,
@@ -272,7 +272,7 @@ Scoring system:
     - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below `10^{-17}`,
     - if the contraction and clock-slowing law require ad hoc tuning of `\kappa`, `\eta`, or axial-structure-specific detail, the bridge fails;
   - close `d\tau/dt = F(v,\rho,\Phi)` and the substrate-to-metric functional;
-  - derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../../markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../../markdown/aaa/spacetime/proper-time-and-time-dilation.md);
+  - derive the weak-field map from hit-density / medium variables to `g_{\mathrm{eff}}` constraints in [emergent-metric.md](../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation.md](../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md);
   - derive the constitutive closure from the coarse-grained medium itself:
     - take the continuum limit of the `\eta`-regularized delayed action and the effective medium Lagrangian seriously enough that the constitutive law is derived rather than postulated,
     - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium,
@@ -291,7 +291,7 @@ Scoring system:
 
 ### 5. Advance the dyadic resonance lock reduced-map program
 - Value `7`, Cost `4`, ROI `1.75`.
-- [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
+- [dyadic-resonance-lock.md](../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
   - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
   - self-similar near-horizon closure gives the broader family $1:s:s^2$,
@@ -305,7 +305,7 @@ Scoring system:
   - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
   - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 - Immediate next move:
-  1. Use [dyadic-resonance-lock.md](../../markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
+  1. Use [dyadic-resonance-lock.md](../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](phenomenological-heuristics.md) as the scratch/archive notebook.
   2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
   3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
   4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
@@ -314,7 +314,7 @@ Scoring system:
 ### 6. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best
 - Value `8`, Cost `5`, ROI `1.60`.
 - The quark catalog, the basic `SU(3)\times SU(2)\times U(1)` bookkeeping, and the current spinor / statistics framing are now in place. The remaining leverage is:
-  - extend [quarks.md](../../markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
+  - extend [quarks.md](../content/markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`,
   - finish the remaining quantum-number dictionary pieces from the tri-binary geometry:
     - move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM / PMNS data.
 - Push the Standard Model bridge from calibration to geometry:
@@ -328,7 +328,7 @@ Scoring system:
 
 ### 7. Lock the simulations, regularization, and shell numerics
 - Value `8`, Cost `5`, ROI `1.60`.
-- Implement tier-0 / tier-1 simulations per [run-protocols.md](../../markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
+- Implement tier-0 / tier-1 simulations per [run-protocols.md](../content/markdown/aaa/validation/simulations/run-protocols.md) and the `validation/simulations/action-energy/*` material.
 - Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically.
 - Publish convergence plots and `\mathbb{U}_{\text{now}}` provenance logs.
 - Consolidate a formal `\eta > 0` package: existence, uniqueness, continuation criteria, and no-runaway bounds.
@@ -338,10 +338,10 @@ Scoring system:
 ### 8. Finish the remaining black-hole / strong-field quantitative closure
 - Value `4`, Cost `5`, ROI `0.80`.
 - The core chapter architecture is now in place:
-  - [black-holes.md](../../markdown/aaa/spacetime/black-holes.md),
-  - [singularity-resolution.md](../../markdown/aaa/spacetime/singularity-resolution.md),
+  - [black-holes.md](../content/markdown/aaa/spacetime/black-holes.md),
+  - [singularity-resolution.md](../content/markdown/aaa/spacetime/singularity-resolution.md),
   - the aligned cosmology chapters,
-  - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../../markdown/aaa/dynamics/tri-binary-dynamics.md).
+  - and the equivalence-principle rewrite in [tri-binary-dynamics.md](../content/markdown/aaa/dynamics/tri-binary-dynamics.md).
 - The actual priority here is now narrow and quantitative:
   - derive a stronger observer-level strong-field prediction set,
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,
@@ -397,14 +397,14 @@ Scoring system:
 - Chapter-writing order after that:
   1. `Assembly Atlas`
   2. `Chronology of Nature`
-  3. [nuclear-binding.md](../../markdown/aaa/nuclear-atomic/nuclear-binding.md)
-  4. [nucleon-structure.md](../../markdown/aaa/nuclear-atomic/nucleon-structure.md)
-  5. [atomic-spectra.md](../../markdown/aaa/nuclear-atomic/atomic-spectra.md)
+  3. [nuclear-binding.md](../content/markdown/aaa/nuclear-atomic/nuclear-binding.md)
+  4. [nucleon-structure.md](../content/markdown/aaa/nuclear-atomic/nucleon-structure.md)
+  5. [atomic-spectra.md](../content/markdown/aaa/nuclear-atomic/atomic-spectra.md)
   6. `Dense Matter and Degeneracy Pressure`
-  7. [molecular-geometry.md](../../markdown/aaa/nuclear-atomic/molecular-geometry.md)
-  8. [condensed-matter.md](../../markdown/aaa/nuclear-atomic/condensed-matter.md)
-  9. [no-go-theorems.md](../../markdown/aaa/validation/no-go-theorems.md)
-  10. [known-tensions.md](../../markdown/aaa/validation/known-tensions.md)
+  7. [molecular-geometry.md](../content/markdown/aaa/nuclear-atomic/molecular-geometry.md)
+  8. [condensed-matter.md](../content/markdown/aaa/nuclear-atomic/condensed-matter.md)
+  9. [no-go-theorems.md](../content/markdown/aaa/validation/no-go-theorems.md)
+  10. [known-tensions.md](../content/markdown/aaa/validation/known-tensions.md)
   11. `Hierarchy Problem and Asymptotic Safety`
   12. `Reconstructing Physics and Cosmology`
   13. `Vision for the Future / Toward New Technologies`

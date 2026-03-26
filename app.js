@@ -8028,7 +8028,7 @@ const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "content/_meta/ideas/composer.md";
+  "action-items/ideas/composer.md";
 const markdownDocBadgeCharacterThreshold = 512;
 const markdownOpenCharacterThreshold = 512;
 const markdownGlowByteThreshold = 2048;
