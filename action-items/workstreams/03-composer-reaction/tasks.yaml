@@ -1,0 +1,30 @@
+workstream:
+  id: composer_reaction
+  rank: 3
+  title: Scene system, composer, PDG solver, applications, and later enhancements
+  value: 9
+  cost: 4
+  roi: 2.25
+  status: active
+  report: ../../report.md
+tasks:
+  - id: reaction_manual_workflow
+    title: Finish the reaction app manual workflow and state legibility
+    status: next
+    depends_on: []
+  - id: solved_reaction_handoff
+    title: Make accepted reaction solves durable and bridge them into the main composer
+    status: pending
+    depends_on:
+      - reaction_manual_workflow
+  - id: observer_timeline_model
+    title: Replace observer placeholders with a real authored timeline model
+    status: pending
+    depends_on:
+      - solved_reaction_handoff
+  - id: canonical_structure_edits
+    title: Move live composer structure edits onto the shared canonical model
+    status: pending
+    depends_on:
+      - observer_timeline_model
+

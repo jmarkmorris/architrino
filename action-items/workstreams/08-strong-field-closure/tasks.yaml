@@ -1,0 +1,25 @@
+workstream:
+  id: strong_field_closure
+  rank: 8
+  title: Remaining black-hole / strong-field quantitative closure
+  value: 4
+  cost: 5
+  roi: 0.80
+  status: queued
+  report: ../../report.md
+tasks:
+  - id: observer_predictions
+    title: Derive a stronger observer-level strong-field prediction set
+    status: next
+    depends_on: []
+  - id: release_channel_selection
+    title: Decide the release-channel selection between jets, diffuse outflow, and dark-sector escape
+    status: pending
+    depends_on:
+      - observer_predictions
+  - id: discriminating_observable
+    title: Extract at least one discriminating observable against GR-like strong-field behavior
+    status: pending
+    depends_on:
+      - release_channel_selection
+
