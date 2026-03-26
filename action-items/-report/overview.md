@@ -60,8 +60,8 @@ This single table is the canonical rollup for every direct child of `action-item
 | 12 | [`cosmology-closure`](../cosmology-closure/overview.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
 | 13 | [`deferred-outlook`](../deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
 | — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
-| — | [`archive`](../archive) | Archive | — | — | — |
-| — | [`icebox`](../icebox) | Icebox | — | — | — |
+| — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
+| — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../composer/overview.md) | Composer | — | — | — |
 | — | [`reaction`](../reaction/overview.md) | Reaction design | — | — | — |
 | — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |

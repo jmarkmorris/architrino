@@ -1,6 +1,6 @@
 # Dyadic Resonance Lock Archive
 
-The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../content/markdown/aaa/dynamics/dyadic-resonance-lock.md). This action-items note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
+The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md). This action-items note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
 
 ## Preserved Intuitions from Reviewer Audit
 

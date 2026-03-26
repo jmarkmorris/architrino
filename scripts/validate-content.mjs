@@ -11,6 +11,7 @@ const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
 const NO_INCOMING_LINK_REPORT_LIMIT = 25;
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
+const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
 const ALLOWED_SCENE_TYPES = new Set([
   "Scene-Index",
   "Scene-Markdown-View",
@@ -103,7 +104,8 @@ function readJson(relativePath) {
   }
 }
 
-function walkFiles(relativeDir, predicate) {
+function walkFiles(relativeDir, predicate, options = {}) {
+  const ignoreDirNames = options.ignoreDirNames ?? new Set();
   const absoluteDir = path.join(rootDir, relativeDir);
   const result = [];
   const stack = [absoluteDir];
@@ -115,6 +117,9 @@ function walkFiles(relativeDir, predicate) {
     for (const entry of entries) {
       const absolutePath = path.join(currentDir, entry.name);
       if (entry.isDirectory()) {
+        if (ignoreDirNames.has(entry.name)) {
+          continue;
+        }
         stack.push(absolutePath);
         continue;
       }
@@ -514,6 +519,90 @@ function parseMarkdownHeading(line) {
   return { level, title };
 }
 
+function stripMarkdownLinkTarget(linkTarget) {
+  const trimmed = String(linkTarget || "").trim();
+  const match = trimmed.match(/^(\S+)(?:\s+["'][^"']*["'])?$/);
+  return match ? match[1] : trimmed;
+}
+
+function isExternalMarkdownLinkTarget(linkTarget) {
+  return /^(https?:|mailto:|tel:|data:|#)/i.test(linkTarget);
+}
+
+function extractMarkdownLinks(markdownText) {
+  const links = [];
+  const lines = String(markdownText || "").split(/\r?\n/);
+  let fencedCodeBlock = false;
+  for (const [index, line] of lines.entries()) {
+    if (/^```/.test(line)) {
+      fencedCodeBlock = !fencedCodeBlock;
+      continue;
+    }
+    if (fencedCodeBlock) {
+      continue;
+    }
+    const linkRegex = /!?\[[^\]]*\]\(([^)]+)\)/g;
+    let match;
+    while ((match = linkRegex.exec(line))) {
+      links.push({ line: index + 1, target: stripMarkdownLinkTarget(match[1]) });
+    }
+  }
+  return links;
+}
+
+function splitMarkdownLinkTarget(linkTarget) {
+  const trimmed = String(linkTarget || "").trim();
+  const hashIndex = trimmed.indexOf("#");
+  const beforeHash = hashIndex >= 0 ? trimmed.slice(0, hashIndex) : trimmed;
+  const queryIndex = beforeHash.indexOf("?");
+  return queryIndex >= 0 ? beforeHash.slice(0, queryIndex) : beforeHash;
+}
+
+function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
+  for (const markdownPath of markdownPaths) {
+    const markdownText = markdownTextByPath.get(markdownPath);
+    if (typeof markdownText !== "string") {
+      continue;
+    }
+    const sourceAbsolutePath = path.join(rootDir, markdownPath);
+    for (const link of extractMarkdownLinks(markdownText)) {
+      const target = link.target;
+      if (!target || isExternalMarkdownLinkTarget(target)) {
+        continue;
+      }
+      if (target.startsWith("/")) {
+        errors.push(
+          `${markdownPath}:${link.line}: markdown link target must be relative, not "${target}"`
+        );
+        continue;
+      }
+      const pathTarget = splitMarkdownLinkTarget(target);
+      if (!pathTarget) {
+        continue;
+      }
+      const resolvedAbsolutePath = path.resolve(path.dirname(sourceAbsolutePath), pathTarget);
+      const resolvedRelativePath = normalizePath(path.relative(rootDir, resolvedAbsolutePath));
+      if (resolvedRelativePath.startsWith("..")) {
+        errors.push(
+          `${markdownPath}:${link.line}: markdown link target escapes repo "${target}"`
+        );
+        continue;
+      }
+      if (!fs.existsSync(resolvedAbsolutePath)) {
+        errors.push(
+          `${markdownPath}:${link.line}: markdown link target "${target}" resolves to missing path "${resolvedRelativePath}"`
+        );
+        continue;
+      }
+      if (fs.statSync(resolvedAbsolutePath).isDirectory()) {
+        warnings.push(
+          `${markdownPath}:${link.line}: markdown link target "${target}" resolves to a directory "${resolvedRelativePath}"`
+        );
+      }
+    }
+  }
+}
+
 function readStableIdLabelLock() {
   const parsed = readJson(STABLE_ID_LABEL_LOCK_PATH);
   if (!parsed.ok) {
@@ -763,6 +852,9 @@ function validateSceneTypeSpecificRules(scenePath, data) {
 const allSceneJson = walkFiles(SCENES_DIR, (name) => name.toLowerCase().endsWith(".json"));
 const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().endsWith(".md"));
 const indexableMarkdownFiles = allMarkdownFiles;
+const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
+  ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
+});
 
 const sceneConfigs = [];
 const ancillarySceneJson = [];
@@ -811,11 +903,14 @@ if (!sceneSchemaResult.ok) {
 
 const markdownTextByPath = new Map();
 const markdownHeadingKeyCountByPath = new Map();
-for (const markdownPath of indexableMarkdownFiles) {
+for (const markdownPath of repoMarkdownAuditFiles) {
   const absoluteMarkdownPath = path.join(rootDir, markdownPath);
   try {
     const markdownText = fs.readFileSync(absoluteMarkdownPath, "utf8");
     markdownTextByPath.set(markdownPath, markdownText);
+    if (!indexableMarkdownFiles.includes(markdownPath)) {
+      continue;
+    }
     const headingCounts = new Map();
     markdownText.split(/\r?\n/).forEach((line) => {
       const heading = parseMarkdownHeading(line);
@@ -833,6 +928,8 @@ for (const markdownPath of indexableMarkdownFiles) {
     warnings.push(`${markdownPath}: failed to read markdown source (${error.message})`);
   }
 }
+
+auditMarkdownRelativeLinks(repoMarkdownAuditFiles, markdownTextByPath);
 
 const scenePathBySceneId = new Map();
 for (const scenePath of sceneConfigs) {
@@ -1185,6 +1282,7 @@ if (mode === "write") {
 console.log(`validate-content mode: ${mode}${strict ? " (strict)" : ""}`);
 console.log(`- Scene config files discovered: ${sceneConfigs.length}`);
 console.log(`- Markdown files discovered: ${allMarkdownFiles.length}`);
+console.log(`- Repo markdown files audited: ${repoMarkdownAuditFiles.length}`);
 if (ancillarySceneJson.length) {
   console.log(`- Non-scene JSON ignored: ${ancillarySceneJson.length}`);
 }

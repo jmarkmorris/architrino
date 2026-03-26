@@ -1,6 +1,6 @@
 # Reaction Design
 
-This note collects reaction-specific UI, solver, provenance, schema, and example-scene design material that previously lived inside [composer.md](composer.md).
+This note collects reaction-specific UI, solver, provenance, schema, and example-scene design material that previously lived inside [composer.md](../composer/overview.md).
 
 ## Terminology note: reaction, not decay
 
