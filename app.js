@@ -81,6 +81,7 @@ import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
 import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
+import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -153,6 +154,7 @@ const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const composerOverlay = document.getElementById("composer-overlay");
+const composerTitle = document.getElementById("composer-title");
 const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
@@ -10788,12 +10790,16 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
+const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
+  element: composerTitle,
+});
 
 appDirector.init();
 appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 composerControlsUiRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
+composerHeaderTimestampRuntime.init();
 window.addEventListener("keydown", (event) => {
   if (
     event.code === "Space" &&

@@ -14,6 +14,8 @@ Choose terms by ontological level.
 - Use effective or comparative language when the subject is observer-level closure, continuum approximation, or Standard Model comparison.
 - Do not let terms drift across levels without saying so explicitly.
 
+The recurring editorial task is not merely lexical replacement. It is ontological bookkeeping. A good terminology choice tells the reader which level is being described, what sort of thing is being claimed to exist, and which parts of older language are being retained only as a translation aid. A bad terminology choice can make an effective summary sound ontological, or make an ontological claim sound like inherited Standard Model shorthand.
+
 ## Canon Maintenance Rule
 
 Treat terminology maintenance as a theory-protective cleanup discipline, not as a search for literary variation.
@@ -40,6 +42,8 @@ Use `axial` for the six-site system-level organization and `polar` for the local
 | coarse-grained orientation of the six-site structure | `axial frame` | vague orientation wording when frame structure matters | "Weak mixing is phrased as axial-frame misalignment." |
 | microscopic motion of the six-site structure | `axial circulation` | `axial orbit` | "Use axial circulation when the motion is internal and nonclassical." |
 
+This distinction carries more than descriptive neatness. `Axial` names the organized six-site whole as a system with bookkeeping, orientation, and symmetry consequences. `Polar` names the local geometric seat or site. If those levels are blurred, the prose starts to slide between constituent placement and whole-assembly organization, and the reader loses track of whether a sentence is about local attachment geometry or about the electroweakly meaningful six-site arrangement.
+
 ## Charge, Polarity, and Architrino Usage
 
 At the architrino level, the ontological term is not `charge`. The primitive is an `architrino` with definite `polarity`.
@@ -56,6 +60,8 @@ Sentence guidance:
 - Prefer: "The architrino has definite polarity."
 - Prefer: "The assembly carries electric charge $Q$ at the effective level."
 - Avoid by default: "The basic entities are charges."
+
+The important reframing here is that `charge` is not being denied; it is being relocated. In $\mathbb{A}\mathbb{A}\mathbb{A}$, `charge` is a higher-level bookkeeping summary of a deeper polarity-bearing substrate. Keeping `polarity` for the primitive level prevents the reader from importing the point-charge ontology too early, while keeping `charge` for effective summaries preserves continuity with standard electrodynamic and particle-physics calculations.
 
 ## Field and Wake Usage
 
@@ -76,6 +82,8 @@ Sentence guidance:
 - Prefer: "The coarse-grained wake behaves like an effective field."
 - Avoid by default: "The field emitted by the architrino..." when pure substrate $\mathbb{A}\mathbb{A}\mathbb{A}$ prose is intended.
 
+The mapping issue is subtle. `Field` in standard usage often behaves like an all-purpose carrier word for both ontology and mathematics. `Wake` is sharper because it keeps the emitted structure tied to causal history, source provenance, and later intersections. The field description is not thereby false; it is a closure or continuum summary of many wake contributions. Using `wake` at the substrate level therefore preserves the causal picture that $\mathbb{A}\mathbb{A}\mathbb{A}$ is trying to expose, instead of immediately compressing it into a solved continuum object.
+
 ## Background and Contents Usage
 
 Keep the fixed 3D container distinct from what occupies it.
@@ -94,6 +102,8 @@ Sentence guidance:
 - Avoid by default: "The background is the Noether Sea."
 - Avoid by default: "Spacetime is filled with..." when the actual meaning is ontological substrate contents.
 
+This separation matters because many inherited phrases silently fuse container and contents. Once that fusion happens, the prose begins to oscillate between talking about geometry, medium, and occupancy as though they were one object. $\mathbb{A}\mathbb{A}\mathbb{A}$ needs the split kept clean: the void is the fixed container, the Noether Sea is what occupies it, and emergent spacetime is a downstream description reconstructed from how assemblies and wakes behave in that occupied background.
+
 ## Noether Sea, Vacuum, Aether, and Medium
 
 These terms are not interchangeable.
@@ -110,6 +120,8 @@ Sentence guidance:
 - Prefer: "The Noether Sea is the canonical ontological term."
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
+
+Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether Sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
 ## Spacetime, Void, and Timespace
 
@@ -171,6 +183,8 @@ Editorial rule:
 - Use `Euclidean void` and `absolute time` when the prose is naming the substrate concretely.
 - Use plain `spacetime` only when the sentence is deliberately operating at the emergent, relativistic, or observer-level description.
 
+The deeper mapping discipline is that effective relativity language should remain available without being allowed to swallow the ontology. In other words, $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need to ban `spacetime`; it needs to stop `spacetime` from becoming a covert name for every layer of the theory at once. The terminology stack above is how that discipline is maintained in prose.
+
 ## Particle, Wave, Assembly, and Wake
 
 The standard quantum phrase `particle versus wave` should be treated as a description of a limit or paradox inside the standard mathematical formalism, not as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
@@ -202,6 +216,8 @@ Sentence guidance:
 - Prefer: "$\mathbb{A}\mathbb{A}\mathbb{A}$ responds to particle-versus-wave language with assembly and wake."
 - Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 
+This is not a mere relabeling of the old paradox. The explanatory burden is being repartitioned. Localization, counting, and stable identity are assigned to assembly structure, while distributed propagation, phase transport, and interference are assigned to wake structure. The gain is that the reader is no longer asked to imagine one ontic thing flipping between incompatible metaphors. Instead, the theory says that two coupled but distinct aspects of one causal process were previously being compressed into the same vocabulary.
+
 ## Core and Assembly Usage
 
 Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at the effective or comparative level.
@@ -211,6 +227,8 @@ Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at
 | the central neutral scaffold of a fermion | `Noether core`, `core` | vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether core." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
+
+This distinction prevents a common scale-collapse in exposition. The `Noether core` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
 
 ## Association and Dissociation in Reactions
 
@@ -279,6 +297,8 @@ These pairs are context-sensitive and should not be flattened.
 | atomic, chemical, or mathematical shell language | `shell` | forced conversion to `layer` | "Electron shell language remains standard in chemistry contexts." |
 | organizational or constitutive strata | `layer` | vague `shell` | "The axial layer is the six-site organization." |
 
+These choices are partly about metaphor control. `Orbit` and `shell` bring with them strong visual and classical intuitions. Sometimes that is appropriate and should be preserved. Sometimes it quietly smuggles the wrong geometry into a nonclassical internal structure. The goal is therefore not blanket purification, but disciplined use: keep inherited terms when they genuinely match the level and mechanism, and switch to `circulation` or `layer` when the text needs to stop the reader from over-literalizing the picture.
+
 ## Weak-Sector Local Geometry
 
 Use `weak-coupling triad` as the canonical technical term and the only base term for the three-site weak-coupling geometry.
@@ -289,6 +309,8 @@ If a sentence needs to describe coupling posture, keep `weak-coupling triad` as 
 - "the weak-coupling triad is rotated into the wake"
 - "the complementary three polar sites carry the remaining bookkeeping"
 
+The reason to keep one stable base noun here is that weak-sector prose can otherwise become too improvisational. Once multiple near-synonyms begin circulating, the reader can no longer tell whether a new phrase signals a new mechanism or merely a stylistic variation. `Weak-coupling triad` fixes the geometry as the noun, while posture, exposure, and orientation are added explicitly in the sentence around it.
+
 ## Editorial Rule of Thumb
 
 When a sentence feels ambiguous, ask three questions:
@@ -298,3 +320,5 @@ When a sentence feels ambiguous, ask three questions:
 3. Am I naming a specific structure, or am I using a vague inherited label?
 
 If the answer is unclear, rewrite the sentence so the level and referent are explicit.
+
+One practical test is to ask what misunderstanding the sentence would invite if a Standard Model-trained reader encountered it cold. If the likely misunderstanding changes what the reader thinks exists, what carries causation, or what level a quantity belongs to, the terminology is not yet sharp enough.

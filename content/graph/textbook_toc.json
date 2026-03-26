@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 850
+      "sections": 852
     }
   },
   "tocRoot": {
@@ -1540,26 +1540,42 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Branch-Topology Control",
+                "title": "Local Cone Control and Branch Regularity",
                 "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-                "markdownSection": "Branch-Topology Control",
-                "sectionKey": "branch topology control",
+                "markdownSection": "Local Cone Control and Branch Regularity",
+                "sectionKey": "local cone control and branch regularity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Vector Recapture Margins",
+                "title": "Delay-Adapted Angle Control",
                 "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-                "markdownSection": "Vector Recapture Margins",
-                "sectionKey": "vector recapture margins",
+                "markdownSection": "Delay-Adapted Angle Control",
+                "sectionKey": "delay adapted angle control",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Tame-Envelope Closure",
+                "title": "Bounded Caustic Transit",
                 "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
-                "markdownSection": "Tame-Envelope Closure",
-                "sectionKey": "tame envelope closure",
+                "markdownSection": "Bounded Caustic Transit",
+                "sectionKey": "bounded caustic transit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Radial Turnaround Versus Centrifugal Leakage",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Radial Turnaround Versus Centrifugal Leakage",
+                "sectionKey": "radial turnaround versus centrifugal leakage",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Tame-Envelope and Gauge Closure",
+                "markdownPath": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+                "markdownSection": "Tame-Envelope and Gauge Closure",
+                "sectionKey": "tame envelope and gauge closure",
                 "headingLevel": 2
               },
               {
