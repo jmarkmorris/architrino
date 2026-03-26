@@ -42,6 +42,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const getParticipantCardMeta = options.getParticipantCardMeta ?? (() => ({ accent: "#b889ff" }));
   const getParticipantRootNode = options.getParticipantRootNode ?? (() => null);
   const getPendingSourceKey = options.getPendingSourceKey ?? (() => "");
+  const getTransmuteCardLeft = options.getTransmuteCardLeft ?? (() => "50%");
   const getTransmuteCardTop = options.getTransmuteCardTop ?? (() => "50%");
   const getTransmuteLedgerSummary = options.getTransmuteLedgerSummary ?? (() => ({
     incomingLedger: { electrino: 0, positrino: 0 },
@@ -651,6 +652,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     const card = document.createElement("article");
     card.className = "composer-reaction-solver-participant is-center is-transmute-participant";
     card.dataset.participantId = participant.id;
+    card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
 
     const rootNode = getTransmuteNode(participant);
@@ -705,7 +707,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     });
     if (!ledgerSummary.isBalanced) {
       card.classList.add("is-ineligible");
-      visual.title = `Transmute remains dim until incoming and outgoing ledgers match. Incoming: ${formatLedger(
+      visual.title = `${participant.label} remains dim until incoming and outgoing ledgers match. Incoming: ${formatLedger(
         ledgerSummary.incomingLedger
       )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
     }

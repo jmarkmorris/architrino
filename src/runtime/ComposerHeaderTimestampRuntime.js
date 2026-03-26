@@ -19,7 +19,6 @@ function formatComposerHeaderTimestamp(date) {
 export function createComposerHeaderTimestampRuntime({
   element,
   lastChangedAt = null,
-  labelPrefix = "",
 } = {}) {
   const resolvedDate =
     lastChangedAt instanceof Date
@@ -32,11 +31,9 @@ export function createComposerHeaderTimestampRuntime({
     if (!element) {
       return;
     }
-    const timestamp = resolvedDate && Number.isFinite(resolvedDate.getTime())
+    element.textContent = resolvedDate && Number.isFinite(resolvedDate.getTime())
       ? formatComposerHeaderTimestamp(resolvedDate)
       : "timestamp unavailable";
-    const prefix = String(labelPrefix || "").trim();
-    element.textContent = prefix ? `${prefix} · ${timestamp}` : timestamp;
   }
 
   function init() {

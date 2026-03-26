@@ -424,24 +424,9 @@ export function openComposerAssemblyPropertiesMenu(config) {
     appendMenuSectionHeader,
     appendMenuButtonRow,
     getAssemblyDraftById,
-    getAssemblyCanonicalBridgeSummary,
-    formatAssemblyCanonicalBridgeSummary,
     renderAssemblyEditor,
-    assemblyPositionInputs,
     renderJsonPreview,
-    rebaseAssemblyParentFrame,
-    syncAssemblyPositionInputs,
-    pathState,
-    normalizeAssemblyPathPoints,
-    vectorFromTriplet,
-    updatePathGeometry,
     closeMenu,
-    normalizeSubassemblyList,
-    normalizeMemberList,
-    getMemberId,
-    getSubassemblyId,
-    openMemberMenuAt,
-    openSubassemblyMenuAt,
     clearPendingTransfer,
     openAssemblyPropertiesMenuAt,
     ensureAssemblyDrafts,
@@ -468,123 +453,9 @@ export function openComposerAssemblyPropertiesMenu(config) {
   subtitle.textContent = assembly.name.trim() || assembly.id;
   menu.appendChild(subtitle);
 
-  const canonicalSummary =
-    typeof getAssemblyCanonicalBridgeSummary === "function"
-      ? getAssemblyCanonicalBridgeSummary(assembly)
-      : null;
-  if (canonicalSummary && typeof formatAssemblyCanonicalBridgeSummary === "function") {
-    const canonicalBridge = document.createElement("div");
-    canonicalBridge.className = "composer-assembly-menu-subtitle";
-    canonicalBridge.textContent = `Canonical bridge: ${formatAssemblyCanonicalBridgeSummary(canonicalSummary)}`;
-    menu.appendChild(canonicalBridge);
-
-    appendMenuNote(
-      menu,
-      canonicalSummary.valid
-        ? "Canonical bridge is valid for this assembly."
-        : `Canonical bridge currently reports ${canonicalSummary.errorCount} validation issue${
-            canonicalSummary.errorCount === 1 ? "" : "s"
-          }. This menu remains read-only with respect to the canonical structure model.`
-    );
-  }
-
-  const form = document.createElement("div");
-  form.className = "composer-form";
-
-  const nameField = document.createElement("label");
-  nameField.className = "composer-field";
-  const nameLabel = document.createElement("span");
-  nameLabel.textContent = "Name";
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  nameInput.value = "";
-  nameInput.placeholder = assembly.name;
-  nameInput.addEventListener("input", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    liveAssembly.name = String(nameInput.value ?? "").trim() || assembly.name;
-    subtitle.textContent = liveAssembly.name.trim() || liveAssembly.id;
-    renderAssemblyEditor();
-    assemblyPositionInputs.set(liveAssembly.id, positionInputs);
-    renderJsonPreview();
-  });
-  nameField.append(nameLabel, nameInput);
-  form.appendChild(nameField);
-
-  const parentField = document.createElement("label");
-  parentField.className = "composer-field";
-  const parentLabel = document.createElement("span");
-  parentLabel.textContent = "Parent";
-  const parentSelect = document.createElement("select");
-  const rootOption = document.createElement("option");
-  rootOption.value = "";
-  rootOption.textContent = "Scene Root";
-  parentSelect.appendChild(rootOption);
-  assemblyDrafts.forEach((candidate) => {
-    if (candidate.id === assembly.id) {
-      return;
-    }
-    const option = document.createElement("option");
-    option.value = candidate.id;
-    option.textContent = candidate.name.trim() || candidate.id;
-    parentSelect.appendChild(option);
-  });
-  parentSelect.value = assembly.parentId || "";
-  parentSelect.addEventListener("change", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    const nextParentId = parentSelect.value;
-    rebaseAssemblyParentFrame(liveAssembly, nextParentId);
-    liveAssembly.parentId = nextParentId;
-    syncAssemblyPositionInputs(liveAssembly.id, liveAssembly.position);
-    if (pathState.ownerAssemblyId === liveAssembly.id) {
-      pathState.points = normalizeAssemblyPathPoints(liveAssembly.pathPoints).map((point) =>
-        vectorFromTriplet(point)
-      );
-      updatePathGeometry();
-    }
-    renderJsonPreview();
-  });
-  parentField.append(parentLabel, parentSelect);
-  form.appendChild(parentField);
-
-  const positionGrid = document.createElement("div");
-  positionGrid.className = "composer-assembly-menu-grid-3";
-  const positionInputs = [];
-  ["X", "Y", "Z"].forEach((axis, axisIndex) => {
-    const axisField = document.createElement("label");
-    axisField.className = "composer-field";
-    const axisLabel = document.createElement("span");
-    axisLabel.textContent = axis;
-    const axisInput = document.createElement("input");
-    axisInput.type = "number";
-    axisInput.step = "0.1";
-    axisInput.value = String(Number(assembly.position?.[axisIndex] ?? 0));
-    axisInput.addEventListener("input", () => {
-      const liveAssembly = getAssemblyDraftById(assembly.id);
-      if (!liveAssembly) {
-        return;
-      }
-      const nextPosition = Array.isArray(liveAssembly.position) ? [...liveAssembly.position] : [0, 0, 0];
-      nextPosition[axisIndex] = Number(axisInput.value) || 0;
-      liveAssembly.position = nextPosition;
-      renderJsonPreview();
-    });
-    positionInputs[axisIndex] = axisInput;
-    axisField.append(axisLabel, axisInput);
-    positionGrid.appendChild(axisField);
-  });
-  assemblyPositionInputs.set(assembly.id, positionInputs);
-  form.appendChild(positionGrid);
-  menu.appendChild(form);
-
   appendMenuNote(
     menu,
-    "Canvas-first staging: drag the center to move the assembly, drag member dots to place visible points, drag path points directly, and use the reaction workflow for internal split, regroup, or provenance edits."
+    "Canvas-first staging: drag the center to move the assembly, drag path points directly, and use scene-level controls rather than form fields for canvas work."
   );
 
   appendMenuSectionHeader(menu, "Structure", `${Array.isArray(assembly.members) ? assembly.members.length : 0}`);
@@ -605,37 +476,6 @@ export function openComposerAssemblyPropertiesMenu(config) {
   });
   structureActions.appendChild(pathButton);
   menu.appendChild(structureActions);
-
-  const subassemblies = normalizeSubassemblyList(assembly.subassemblies);
-  const childMemberIds = new Set(subassemblies.flatMap((entry) => entry?.members ?? []));
-  const rootMembers = normalizeMemberList(assembly.members).filter(
-    (entry, memberIndex) => !childMemberIds.has(getMemberId(entry, memberIndex))
-  );
-
-  if (rootMembers.length) {
-    appendMenuSectionHeader(menu, "Root Members", `${rootMembers.length}`);
-    rootMembers.forEach((entry, memberIndex) => {
-      const memberId = getMemberId(entry, memberIndex);
-      appendMenuButtonRow(menu, [
-        { text: memberId, onClick: () => openMemberMenuAt(clientX, clientY, assembly.id, memberId) },
-        null,
-      ]);
-    });
-  }
-
-  if (subassemblies.length) {
-    appendMenuSectionHeader(menu, "Subassemblies", `${subassemblies.length}`);
-    subassemblies.forEach((entry, subassemblyIndex) => {
-      const subassemblyId = getSubassemblyId(entry, subassemblyIndex);
-      appendMenuButtonRow(menu, [
-        {
-          text: `${subassemblyId} (${(entry.members ?? []).length})`,
-          onClick: () => openSubassemblyMenuAt(clientX, clientY, assembly.id, subassemblyId),
-        },
-        null,
-      ]);
-    });
-  }
 
   if (pendingTransferSource?.assemblyId) {
     appendMenuSectionHeader(menu, "Legacy Transfer Draft");
@@ -701,7 +541,7 @@ export function openComposerAssemblyPropertiesMenu(config) {
     renderJsonPreview();
   });
   menu.appendChild(removeButton);
-  positionMenu(clientX, clientY, 320, 720);
+  positionMenu(clientX, clientY, 320, 560);
 }
 
 export function openComposerPathPointMenu(config) {
