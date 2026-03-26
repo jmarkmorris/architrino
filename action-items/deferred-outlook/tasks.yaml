@@ -8,7 +8,7 @@ workstream:
   cost: 6
   roi: 0.17
   status: deferred
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: preserve_outlook_ideas
     title: Preserve outlook and product ideas without promoting them ahead of theory closure

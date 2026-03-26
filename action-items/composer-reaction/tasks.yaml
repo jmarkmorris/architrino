@@ -8,7 +8,7 @@ workstream:
   cost: 4
   roi: 2.25
   status: active
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: reaction_manual_workflow
     title: Finish the reaction app manual workflow and state legibility

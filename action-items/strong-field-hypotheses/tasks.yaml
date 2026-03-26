@@ -8,7 +8,7 @@ workstream:
   cost: 3
   roi: 0.67
   status: watchlist
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: keep_hypothesis_registry
     title: Keep the strong-field hypothesis registry current as quantitative work sharpens

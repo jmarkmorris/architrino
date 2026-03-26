@@ -8,7 +8,7 @@ workstream:
   cost: 5
   roi: 0.80
   status: queued
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: observer_predictions
     title: Derive a stronger observer-level strong-field prediction set

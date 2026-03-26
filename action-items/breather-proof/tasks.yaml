@@ -8,7 +8,7 @@ workstream:
   cost: 4
   roi: 2.50
   status: active
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: seed_margin_persistence
     title: Formalize the delayed seed-margin persistence lemma

@@ -8,7 +8,7 @@ workstream:
   cost: 5
   roi: 1.60
   status: queued
-  report: ../report/overview.md
+  report: ../-report/overview.md
 tasks:
   - id: quark_mass_predictions
     title: Extend quark geometry from catalog closure to first-pass mass predictions
