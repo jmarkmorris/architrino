@@ -1,0 +1,212 @@
+# Planar Bridge Closure
+
+## Purpose
+
+This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](./master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](./causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+
+The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](./horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
+
+## Position in the Dynamics Stack
+
+The present chapter sits between four existing layers:
+
+1. the exact delayed equations in [Master Equation of Motion](./master-equation.md),
+2. the topological branch formalism in [Causal Action Functional](./causal-action-functional.md),
+3. the reduced return-map success in [1D Collinear Breather](./collinear-breather.md),
+4. the higher-dimensional program statement in [Master-Equation Breather Program](./master-equation-breather.md).
+
+The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
+
+## Reduced Planar Bridge Regime
+
+Work in the reflection-symmetric planar two-body subclass
+$$
+\mathbf{x}_1(t)=-\mathbf{r}(t),
+\qquad
+\mathbf{x}_2(t)=\mathbf{r}(t),
+\qquad
+\mathbf{r}(t)\in \Pi\cong\mathbb{R}^2,
+\qquad
+q_1=-\epsilon,
+\qquad
+q_2=+\epsilon.
+$$
+Write
+$$
+\rho(t)\equiv \|\mathbf{r}(t)\|,
+\qquad
+\hat{\mathbf e}_r(t)\equiv \frac{\mathbf r(t)}{\rho(t)},
+\qquad
+\hat{\mathbf e}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf e}_r(t),
+$$
+and decompose
+$$
+\dot{\mathbf r}(t)=u_r(t)\hat{\mathbf e}_r(t)+u_\theta(t)\hat{\mathbf e}_\theta(t).
+$$
+
+This is the smallest regime that still contains all the new burdens that matter:
+
+- branch sorting is no longer inherited from a line order,
+- recapture must control both radial and tangential escape,
+- rotational symmetry must be reduced without destroying a convex return domain,
+- and self-hit geometry must remain tame across a full excursion.
+
+## Rotational Gauge and Return Section
+
+The natural section should remove rigid planar rotation locally and fix only one genuine return constraint. The reduced gauge choice is
+$$
+\mathbf r(0)=\rho_\ast \mathbf e_1,
+\qquad
+\mathbf e_2\cdot \dot{\mathbf r}(0)>0,
+$$
+so that the section-defining equality is
+$$
+\rho(0)=\rho_\ast.
+$$
+
+This choice serves three purposes:
+
+- it removes time-shift and rigid-rotation redundancy cleanly enough for a return map,
+- it keeps the section codimension one in the reduced history space,
+- and it avoids building the proof on a non-affine section whose geometry is hard to close under convexity arguments.
+
+The first local target is stricter than mere section definition: histories in the seed packet should satisfy a quantitative transversality condition
+$$
+\dot{\rho}(0)\le -u_r<0,
+$$
+so that the first return time is not born tangent to the section. Without such a margin, the gauge-reset map for the returned history need not depend continuously on the return event.
+
+## Local Cone Control and Branch Regularity
+
+The first branch theorem should be local, not global. The correct opening package is a directional-cone result showing that the post-section planar velocity remains inside a strict admissible angular sector for a controlled time window. This is the planar replacement for 1D line ordering.
+
+The target statement is of the following form:
+
+> On an admissible planar seed packet, the delayed chords and instantaneous velocities remain inside a finite directional atlas on a short post-section interval, with quantitative angular separation from the Jacobian-null directions.
+
+The right conceptual bridge to [Causal Action Functional](./causal-action-functional.md) is the causal locus picture. In the regular regime, branch labels remain locally constant and can change only when
+$$
+F(t,t')=0,
+\qquad
+\nabla F(t,t')=0.
+$$
+So the opening burden is not yet a whole-cycle branch census. It is to prove enough local transversality that the planar delayed geometry stays away from the singular directions long enough to support a finite branch atlas on an initial excursion slab.
+
+This local cone control is the first point at which the planar program can either gain traction or expose a real obstruction.
+
+## Delay-Adapted Angle Control
+
+The Jacobian
+$$
+J=1-\frac{\mathbf v\cdot \hat{\mathbf r}}{c_f}
+$$
+depends on the angle between the instantaneous velocity and the delayed chord. Planar closure therefore needs a delay-adapted moving frame that tracks this angle directly rather than only through coarse Cartesian bounds.
+
+The working geometric data are:
+
+- the radial/tangential decomposition relative to $(\hat{\mathbf e}_r,\hat{\mathbf e}_\theta)$,
+- the angular offset between $\mathbf v(t)$ and each active delayed chord,
+- and a finite sector atlas controlling how those offsets evolve.
+
+The immediate theorem target is a finite-time cone-transversality estimate implying
+$$
+J\ge \nu>0
+$$
+on a controlled interval before the first fold tube is entered.
+
+## Bounded Caustic Transit
+
+The planar bridge should not assume that the full excursion avoids every Jacobian-null event. The hinge at which self-hit branches are born is part of the mechanism and must be crossed in a controlled way.
+
+The right target is therefore a bounded fold-transit theorem:
+
+> When an admissible history enters a sufficiently small tubular neighborhood of a planar fold where $F=0$ and $\nabla F=0$, the dual-mollified delayed impulse remains finite and the outgoing history stays inside an explicitly controlled post-fold sector.
+
+This is the first place where the topological criterion from [Causal Action Functional](./causal-action-functional.md) must be combined with quantitative delayed dynamics rather than cited abstractly.
+
+## Radial Turnaround Versus Centrifugal Leakage
+
+A planar breather is fundamentally a radial turnaround problem. The main escape channel is not an abstract vector norm; it is the centrifugal barrier generated by tangential motion. The correct recapture target is therefore a strict radial majorization of the form
+$$
+\ddot{\rho}
+=
+a_r^{\mathrm{partner}}
++a_r^{\mathrm{self}}
++\rho\dot{\vartheta}^2
+\le
+-\mathfrak M_{\mathrm{in}}<0
+$$
+on the inbound leg, with sign conventions chosen consistently with the delayed force decomposition.
+
+The proof burden splits into two parts:
+
+- partner attraction and delayed memory must produce enough inward radial impulse,
+- tangential forcing must remain bounded strongly enough that the centrifugal term does not outrun radial braking before the turn.
+
+This makes tangential control subordinate but essential. Tangential dynamics do not supply a separate closure theorem; they must be bounded tightly enough to prevent centrifugal leakage from destroying the radial return.
+
+## Tame-Envelope and Gauge Closure
+
+The eventual return theorem needs a closed domain on which a fixed-point or continuation argument can act. The desired envelope should control at least:
+
+- section radius and admissible radial excursion,
+- tangential speed and accumulated angle,
+- minimum branch separation,
+- distance from Jacobian-null caustics,
+- and history norms strong enough to pass compactness and continuity steps.
+
+The closure target is:
+
+> The one-cycle return map sends a convex tame envelope of reduced planar histories into itself.
+
+The gauge-reset operator must be included in that statement. After one excursion, the returned history must be rotated back into the section gauge. That step is continuous only if the return event is quantitatively transverse; otherwise the return time and the compensating rotation angle need not vary continuously with the incoming history.
+
+This is the exact higher-dimensional replacement for the collinear tame-class closure. If it succeeds, the abstract fixed-point capstone from [Master-Equation Breather Program](./master-equation-breather.md) becomes actionable rather than aspirational.
+
+## Failure Alternatives
+
+This chapter is useful even if the bridge does not close. There are only a few meaningful failure modes:
+
+1. no seed packet with quantitative section transversality can be maintained;
+2. local cone control fails before the first useful excursion slab is complete;
+3. fold transit produces unbounded delayed impulse or uncontrolled branch proliferation;
+4. centrifugal leakage outruns radial recapture before turnaround;
+5. the reduced return map loses continuity under gauge reset.
+
+Each failure would be informative. It would tell us whether the theory needs:
+
+- a more restrictive planar regime,
+- a different section choice,
+- a different regularity class,
+- or a revision of the stabilization claims made in the binary and tri-binary chapters.
+
+## Immediate Theorem Program
+
+The next sequence should be short and disciplined.
+
+1. Define the reduced planar history space, seed packet, and quantitative section transversality.
+2. Prove local sectorized cone control and short-time branch regularity on the first excursion slab.
+3. Prove a bounded caustic-transit theorem for the first planar fold tube.
+4. Prove a radial-turnaround inequality in which inward delayed forcing beats centrifugal leakage.
+5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
+
+That order matters. Without a transverse seed packet, the return map is not well-defined. Without local cone control, the branch atlas is not stable enough to transport. Without bounded fold transit, the self-hit mechanism is not mathematically usable. Without a radial-turnaround inequality, no planar breather can exist.
+
+## Why This Is the Best Next Closure Target
+
+This chapter is the top bottleneck because it is upstream of several attractive but softer narratives.
+
+- It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](./mapping-Planck-scale.md).
+- It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](./horizon-chirality.md).
+- It is upstream of any reliable effective reduction in [Effective Lagrangian](./effective-lagrangian.md) and [Gauge Symmetries](./gauge-symmetries.md).
+
+If planar bridge closure fails, those higher-level chapters must become more conditional. If it succeeds, they gain a much firmer substrate basis.
+
+## Interfaces to Other Chapters
+
+- [Master Equation of Motion](./master-equation.md): exact delayed law, root equations, and Jacobian structure.
+- [Causal Action Functional](./causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
+- [1D Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
+- [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
+- [Tri-Binary Dynamics](./tri-binary-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
+- [Horizon Chirality and Planar Spin](./horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

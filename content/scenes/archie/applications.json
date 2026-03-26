@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__applications",
+    "title": "Applications",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "hideScaleLabels": true,
+    "children": [
+      {
+        "nodeId": "composer",
+        "scenePath": "content/scenes/archie/composer.json"
+      },
+      {
+        "nodeId": "reaction_designer",
+        "scenePath": "content/scenes/archie/composer.json"
+      },
+      {
+        "nodeId": "hyde_periodic_table",
+        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
+      },
+      {
+        "nodeId": "periodic_table",
+        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
+      },
+      {
+        "nodeId": "atom",
+        "scenePath": "content/scenes/nuclear/atom.json"
+      },
+      {
+        "nodeId": "standard_model",
+        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+      },
+      {
+        "nodeId": "molecule",
+        "scenePath": "content/scenes/chemistry/molecule.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "composer",
+      "title": "Composer",
+      "radius": 2.2,
+      "color": "#7ee0d7",
+      "labelTitle": "Composer"
+    },
+    {
+      "id": "reaction_designer",
+      "title": "Reaction Designer",
+      "radius": 2.2,
+      "color": "#36b3bc",
+      "labelTitle": "Reaction Designer"
+    },
+    {
+      "id": "hyde_periodic_table",
+      "title": "Hyde Periodic Table",
+      "radius": 2.2,
+      "color": "#7a5a2f",
+      "labelTitle": "Hyde Periodic Table"
+    },
+    {
+      "id": "periodic_table",
+      "title": "Periodic Table",
+      "radius": 2.2,
+      "color": "#4f7b3a",
+      "labelTitle": "Periodic Table"
+    },
+    {
+      "id": "atom",
+      "title": "Atom",
+      "radius": 2.2,
+      "color": "#a50041",
+      "labelTitle": "Atom"
+    },
+    {
+      "id": "standard_model",
+      "title": "Standard Model",
+      "radius": 2.2,
+      "color": "#4b0082",
+      "labelTitle": "Standard Model"
+    },
+    {
+      "id": "molecule",
+      "title": "Molecule",
+      "radius": 2.2,
+      "color": "#327a5e",
+      "labelTitle": "Molecule"
+    }
+  ]
+}

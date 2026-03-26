@@ -231,6 +231,19 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$-first prose, prefer `assembly and wake`:
 
 The important editorial point is that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not frame the issue as one thing being either particle or wave depending on circumstance. The localized assembly and the distributed wake are both part of the same causal account.
 
+### Reaction terminology
+
+Do not let generic Standard Model `decay` language become the running explanatory vocabulary of $\mathbb{A}\mathbb{A}\mathbb{A}$ chapters.
+
+Preferred prose discipline:
+
+- `reaction` as the default channel label when mechanism detail is not yet specified,
+- `associate` / `association` for reaction-built sub-assemblies or corridors forming,
+- `dissociate` / `dissociation` for unstable assemblies or sub-assemblies breaking apart,
+- `reconfigure`, `convert`, or more specific mechanism terms when they say more.
+
+Use `decay` only for fixed historical or canonical Standard Model labels, and translate immediately at first mention, for example `beta reaction` (SM label: `beta decay`).
+
 ### Spacetime terminology
 
 Do not let `spacetime`, `void`, `timespace`, `Noether Sea`, and `spacetime medium` drift into one another.

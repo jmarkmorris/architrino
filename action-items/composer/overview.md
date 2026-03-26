@@ -1015,7 +1015,7 @@ Observed composer capabilities in the runtime:
 - built-in assembly templates for Noether core, electron, down quark, and up quark;
 - assembly center handles, per-assembly path points, member handles, polar-site handles, subassembly halos, and observer-path waypoints as live canvas objects;
 - per-assembly path editing with direct point dragging, spline or polyline interpolation, and closed/open path state;
-- canvas-first assembly editing through center-handle menus, including member creation, axial assignment, parent rebasing, subassembly creation/dissolve, transfer start/complete, and per-assembly display toggles;
+- canvas-first assembly editing through center-handle menus, including member creation, axial assignment, parent rebasing, subassembly creation/split, transfer start/complete, and per-assembly display toggles;
 - the first shared canonical-structure bridge for composer assemblies, currently read-only:
   - assembly drafts can already be converted into the shared canonical structure model,
   - the assembly detail panel can summarize that canonical structure and report validation state,
@@ -1034,7 +1034,7 @@ Observed composer capabilities in the runtime:
 Implemented-but-still-transitional areas:
 
 - reaction mapping still rides on authored transfer lines and straight draft corridors rather than a dedicated spline-native reaction canvas;
-- the composer-side canonical structure bridge is still read-only and does not yet drive the live mutation path for regroup, dissolve, split, or deeper structural edits;
+- the composer-side canonical structure bridge is still read-only and does not yet drive the live mutation path for regroup, group split, split, or deeper structural edits;
 - observer authoring still uses runtime `camera` machinery internally and does not yet expose a true observer interval object;
 - `Audio` is cataloged in the add menu, but there is no finished audio timeline object yet;
 - and the dedicated `Scene-Composed-Animation` runtime path is still not the final runtime boundary.

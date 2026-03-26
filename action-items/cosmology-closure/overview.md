@@ -1,0 +1,29 @@
+# Cosmology Transfer-Function Closure
+
+## Workstream Metadata
+
+- Kind: `deferred-priority`
+- Rank: `12`
+- Value: `2`
+- Cost: `9`
+- ROI: `0.22`
+- Status: `deferred`
+
+## Task Queue
+
+1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
+2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
+
+## Scope
+
+Convert the current cosmology story from narrative strength to equation-level closure by building a predictive transfer-function pipeline.
+
+## Main Interfaces
+
+- Background expansion
+- Recombination and CMB transfer
+- BBN yields
+- Growth and lensing
+- Distance-ladder calibration
+
+The goal is to expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each component.

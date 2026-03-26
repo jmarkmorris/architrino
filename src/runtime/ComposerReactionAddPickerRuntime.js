@@ -1,4 +1,5 @@
 import { STRUCTURE_SLOT_ORDER } from "../domain/structure/StructureSchema.js";
+import { resolveStructureDisplayLabel } from "../domain/structure/StructureDisplayLabel.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 
 function getOccupiedSlots(count = 0) {
@@ -191,8 +192,18 @@ export function getComposerReactionAddPickerCells() {
   composerReactionAddPickerColumns.forEach((column, columnIndex) => {
     const entries = Array.isArray(column?.entries) ? column.entries : [];
     entries.forEach((entry, rowIndex) => {
+      const previewStructure =
+        entry?.vacant === true
+          ? null
+          : buildReactionParticipantStructureForPickerCell(entry, {
+              participantId: `picker_${String(entry?.id ?? "cell").trim() || "cell"}`,
+            });
       cells.push({
         ...entry,
+        label:
+          entry?.vacant === true
+            ? String(entry?.label ?? "").trim()
+            : resolveStructureDisplayLabel(previewStructure?.root ?? previewStructure),
         columnId: String(column?.id ?? `column_${columnIndex + 1}`),
         columnIndex,
         rowIndex,
@@ -212,11 +223,11 @@ export function buildReactionParticipantStructureForPickerCell(
   const participantId = String(options.participantId ?? "").trim() || "picker_participant";
   const structureId = `${participantId}__structure`;
   const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
-  const label = String(options.label ?? pickerCell.label ?? "").trim() || "Structure";
+  const label = String(options.label ?? "").trim();
   return buildReactionParticipantStructure(pickerCell.templateId, {
     id: structureId,
-    label,
     polarity,
+    ...(label ? { label } : {}),
     ...(pickerCell.structureBuildOptions ?? {}),
   });
 }

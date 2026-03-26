@@ -12,35 +12,7 @@ import {
   clearNoetherCoreSlotOccupant,
 } from "../domain/structure/StructureTransforms.js";
 import { validateStructureTree } from "../domain/structure/StructureValidation.js";
-
-function formatStructureSpeciesLabel(species = "") {
-  const normalizedSpecies = String(species ?? "").trim().toLowerCase();
-  if (!normalizedSpecies) {
-    return "";
-  }
-  const explicitLabels = {
-    noether_core: "Noether Core",
-    higgs_cluster: "Higgs Cluster",
-    photon: "Photon",
-    electron_neutrino: "Electron Neutrino",
-    muon_neutrino: "Muon Neutrino",
-    tau_neutrino: "Tau Neutrino",
-    up_quark: "Up Quark",
-    charm_quark: "Charm Quark",
-    top_quark: "Top Quark",
-    down_quark: "Down Quark",
-    strange_quark: "Strange Quark",
-    bottom_quark: "Bottom Quark",
-  };
-  if (explicitLabels[normalizedSpecies]) {
-    return explicitLabels[normalizedSpecies];
-  }
-  return normalizedSpecies
-    .split("_")
-    .filter(Boolean)
-    .map((word) => word[0]?.toUpperCase?.() + word.slice(1))
-    .join(" ");
-}
+import { resolveStructureDisplayLabel } from "../domain/structure/StructureDisplayLabel.js";
 
 export function createComposerReactionParticipantMutationRuntime(options = {}) {
   const supportsParticipantPolarity =
@@ -103,11 +75,7 @@ export function createComposerReactionParticipantMutationRuntime(options = {}) {
   }
 
   function inferParticipantBaseLabelFromStructure(structureRoot) {
-    const speciesLabel = formatStructureSpeciesLabel(structureRoot?.species);
-    if (speciesLabel) {
-      return speciesLabel;
-    }
-    return String(structureRoot?.label ?? structureRoot?.species ?? "Structure").trim() || "Structure";
+    return resolveStructureDisplayLabel(structureRoot);
   }
 
   function refreshParticipantFromStructure(participant, nextStructure, options = {}) {

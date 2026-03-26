@@ -1,6 +1,8 @@
 # Terminology Usage
 
-This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, and sentence-level examples that remain valuable even after older terminology has been removed from the corpus. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
+This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, sentence-level examples, and the underlying rationale when a terminology choice protects the ontology from being blurred by inherited language. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
+
+Despite the filename, this document is not only a usage sheet in the narrow copyediting sense. It is also the place where the project records why certain terms are preferred, what level-boundary errors those preferences prevent, and how $\mathbb{A}\mathbb{A}\mathbb{A}$ native wording should relate to older Standard Model or relativistic vocabulary. In that sense it functions as a canon-and-rationale reference for terminology decisions that remain important after the immediate cleanup pass is over.
 
 Use this document alongside [academic-style-guide.md](./academic-style-guide.md), [mathematics-style-guide.md](./mathematics-style-guide.md), [mathematics-terminology.md](./mathematics-terminology.md), and [comparative-glossary.md](./comparative-glossary.md).
 
@@ -11,6 +13,8 @@ Choose terms by ontological level.
 - Use substrate-native language when the subject is architrino ontology or causal microdynamics.
 - Use effective or comparative language when the subject is observer-level closure, continuum approximation, or Standard Model comparison.
 - Do not let terms drift across levels without saying so explicitly.
+
+The recurring editorial task is not merely lexical replacement. It is ontological bookkeeping. A good terminology choice tells the reader which level is being described, what sort of thing is being claimed to exist, and which parts of older language are being retained only as a translation aid. A bad terminology choice can make an effective summary sound ontological, or make an ontological claim sound like inherited Standard Model shorthand.
 
 ## Canon Maintenance Rule
 
@@ -38,6 +42,8 @@ Use `axial` for the six-site system-level organization and `polar` for the local
 | coarse-grained orientation of the six-site structure | `axial frame` | vague orientation wording when frame structure matters | "Weak mixing is phrased as axial-frame misalignment." |
 | microscopic motion of the six-site structure | `axial circulation` | `axial orbit` | "Use axial circulation when the motion is internal and nonclassical." |
 
+This distinction carries more than descriptive neatness. `Axial` names the organized six-site whole as a system with bookkeeping, orientation, and symmetry consequences. `Polar` names the local geometric seat or site. If those levels are blurred, the prose starts to slide between constituent placement and whole-assembly organization, and the reader loses track of whether a sentence is about local attachment geometry or about the electroweakly meaningful six-site arrangement.
+
 ## Charge, Polarity, and Architrino Usage
 
 At the architrino level, the ontological term is not `charge`. The primitive is an `architrino` with definite `polarity`.
@@ -54,6 +60,8 @@ Sentence guidance:
 - Prefer: "The architrino has definite polarity."
 - Prefer: "The assembly carries electric charge $Q$ at the effective level."
 - Avoid by default: "The basic entities are charges."
+
+The important reframing here is that `charge` is not being denied; it is being relocated. In $\mathbb{A}\mathbb{A}\mathbb{A}$, `charge` is a higher-level bookkeeping summary of a deeper polarity-bearing substrate. Keeping `polarity` for the primitive level prevents the reader from importing the point-charge ontology too early, while keeping `charge` for effective summaries preserves continuity with standard electrodynamic and particle-physics calculations.
 
 ## Field and Wake Usage
 
@@ -74,6 +82,8 @@ Sentence guidance:
 - Prefer: "The coarse-grained wake behaves like an effective field."
 - Avoid by default: "The field emitted by the architrino..." when pure substrate $\mathbb{A}\mathbb{A}\mathbb{A}$ prose is intended.
 
+The mapping issue is subtle. `Field` in standard usage often behaves like an all-purpose carrier word for both ontology and mathematics. `Wake` is sharper because it keeps the emitted structure tied to causal history, source provenance, and later intersections. The field description is not thereby false; it is a closure or continuum summary of many wake contributions. Using `wake` at the substrate level therefore preserves the causal picture that $\mathbb{A}\mathbb{A}\mathbb{A}$ is trying to expose, instead of immediately compressing it into a solved continuum object.
+
 ## Background and Contents Usage
 
 Keep the fixed 3D container distinct from what occupies it.
@@ -92,6 +102,8 @@ Sentence guidance:
 - Avoid by default: "The background is the Noether Sea."
 - Avoid by default: "Spacetime is filled with..." when the actual meaning is ontological substrate contents.
 
+This separation matters because many inherited phrases silently fuse container and contents. Once that fusion happens, the prose begins to oscillate between talking about geometry, medium, and occupancy as though they were one object. $\mathbb{A}\mathbb{A}\mathbb{A}$ needs the split kept clean: the void is the fixed container, the Noether Sea is what occupies it, and emergent spacetime is a downstream description reconstructed from how assemblies and wakes behave in that occupied background.
+
 ## Noether Sea, Vacuum, Aether, and Medium
 
 These terms are not interchangeable.
@@ -108,6 +120,8 @@ Sentence guidance:
 - Prefer: "The Noether Sea is the canonical ontological term."
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
+
+Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether Sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
 ## Spacetime, Void, and Timespace
 
@@ -169,6 +183,8 @@ Editorial rule:
 - Use `Euclidean void` and `absolute time` when the prose is naming the substrate concretely.
 - Use plain `spacetime` only when the sentence is deliberately operating at the emergent, relativistic, or observer-level description.
 
+The deeper mapping discipline is that effective relativity language should remain available without being allowed to swallow the ontology. In other words, $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need to ban `spacetime`; it needs to stop `spacetime` from becoming a covert name for every layer of the theory at once. The terminology stack above is how that discipline is maintained in prose.
+
 ## Particle, Wave, Assembly, and Wake
 
 The standard quantum phrase `particle versus wave` should be treated as a description of a limit or paradox inside the standard mathematical formalism, not as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
@@ -200,6 +216,8 @@ Sentence guidance:
 - Prefer: "$\mathbb{A}\mathbb{A}\mathbb{A}$ responds to particle-versus-wave language with assembly and wake."
 - Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 
+This is not a mere relabeling of the old paradox. The explanatory burden is being repartitioned. Localization, counting, and stable identity are assigned to assembly structure, while distributed propagation, phase transport, and interference are assigned to wake structure. The gain is that the reader is no longer asked to imagine one ontic thing flipping between incompatible metaphors. Instead, the theory says that two coupled but distinct aspects of one causal process were previously being compressed into the same vocabulary.
+
 ## Core and Assembly Usage
 
 Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at the effective or comparative level.
@@ -209,6 +227,64 @@ Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at
 | the central neutral scaffold of a fermion | `Noether core`, `core` | vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether core." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
+
+This distinction prevents a common scale-collapse in exposition. The `Noether core` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
+
+## Association and Dissociation in Reactions
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$-first reaction prose, do not use `decay` as the native verb for an assembly event. Use `associate` for the formation or docking of a reaction-built sub-assembly, and use `dissociate` for the breakup, release, or channel exit of that assembly.
+
+This rule is specifically about assembly events and reaction narration. It does not ban every use of the English word `decay`.
+
+The deeper reason is ontological, not merely stylistic. `Decay` is a poor explanatory verb for $\mathbb{A}\mathbb{A}\mathbb{A}$ because it suppresses the very questions the theory is trying to keep visible: what sub-assemblies formed, what sub-assemblies broke apart, what shielding changed, what corridor associated, what corridor dissociated, and how provenance was preserved. In other words, `decay` tends to package a structured reaction into an opaque one-word outcome label.
+
+This is why repeated use of Standard Model `decay` language can mislead even when the underlying mathematics is not in question. The issue is not that mainstream physics lacks calculational structure for those channels. The issue is that `decay` carries a weak ontological picture. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the stronger explanatory task is to identify the assembly process: association, dissociation, reconfiguration, shielding gain, shielding loss, corridor formation, corridor release, or some other specific channel.
+
+For that reason, the project should not solve the problem by constantly repeating `decay` and then adding parenthetical apologies. The cleaner discipline is to make `decay` non-default everywhere in $\mathbb{A}\mathbb{A}\mathbb{A}$ prose. Native wording should carry the explanation. Legacy wording should be quarantined as a comparison label only when needed for interoperability with standard literature.
+
+The practical mapping rule is therefore:
+
+- `reaction` is the default replacement when a sentence names a channel but does not yet specify the mechanism in detail.
+- `associate` and `dissociate` are the preferred mechanistic verbs when the sentence is about the formation or breakup of assemblies or sub-assemblies.
+- `reconfigure`, `convert`, `relax`, `shielding-gain transition`, and `shielding-loss transition` remain available when they are the sharper mechanism.
+- `decay` should appear only as a quoted or explicitly marked legacy label, for example at first mention of a Standard Model channel name.
+
+This policy also reveals an important mapping fact between ontologies: many processes that standard language groups under `decay` are not one kind of thing in $\mathbb{A}\mathbb{A}\mathbb{A}$. Some are dissociations of unstable assemblies. Some are associations of new shielding layers or new binaries. Some are corridor-mediated reconfigurations. Some are mixed association-dissociation events. Treating them all as `decay` hides those distinctions precisely where $\mathbb{A}\mathbb{A}\mathbb{A}$ most needs them.
+
+`Reaction` also needs to stay broader than collision language. In $\mathbb{A}\mathbb{A}\mathbb{A}$, a reaction is a channel event, not necessarily a visibly two-body encounter. A reaction may involve multiple incoming assemblies, medium-mediated forcing, or a single assembly reaching instability while unresolved ambient path-history and a local potential pulse together open a dissociation channel. For that reason, `reaction` is the right umbrella term even when the event looks spontaneous at observer level.
+
+This point is worth stating explicitly because the ontology is causal, not magical. A "spontaneous" reaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ does not mean uncaused. It means that the relevant micro-causal trigger was not operationally resolved in the sentence, model, or experiment. If an assembly reaches an edge orbit or instability threshold at the same moment that a potential pulse ripples through and the assembly dissociates, that is still a reaction. The word `reaction` names the channel event. The sharper follow-up question is then whether the channel is best described as dissociation, association, reconfiguration, shielding loss, or some more specific mechanism.
+
+| When you mean... | Prefer | Keep other wording only when... | Example |
+| --- | --- | --- | --- |
+| a reaction channel in general, when mechanism detail is not yet being foregrounded | `reaction` | not applicable | "The charged-current reaction connects the heavy and light assembly channels." |
+| an apparently spontaneous threshold event affecting one assembly | `reaction`, `spontaneous reaction` | the sentence needs to emphasize that the trigger is unresolved at observer level rather than absent in ontology | "The excited assembly undergoes a spontaneous reaction when a threshold pulse opens a dissociation corridor." |
+| a transient sub-assembly or corridor forming during a reaction | `associate`, `association` | not applicable | "A charged corridor associates during the weak interaction." |
+| a transient or unstable assembly breaking apart into other assemblies or released channels | `dissociate`, `dissociation` | not applicable | "The meson dissociates into lighter assemblies." |
+| a stable relation, equilibrium hold, or energy term | `bind`, `binding`, `bound state` | the sentence is about sustained structure, binding energy, or equilibrium rather than the reaction event itself | "The axial layer is bound to the Noether core." |
+| a Standard Model comparative label or fixed historical name | quoted legacy label plus native replacement, for example `beta reaction` (SM label: `beta decay`) | the sentence is explicitly introducing a mainstream canonical label or quoting a source | "At first mention, write `beta reaction` (SM label: `beta decay`)." |
+| a non-assembly quantity such as trajectory loss, amplitude falloff, or a measured rate label | `orbital decay`, `geometric decay`, `decay rate` | the sentence is not using `decay` as an ontological event verb for assemblies | "The observed orbital decay constrains extra drag." |
+
+Sentence guidance:
+
+- Prefer: "During the reaction, a transient corridor associates and then dissociates after charge transfer."
+- Prefer: "The unstable assembly dissociates into a lighter assembly and emitted byproducts."
+- Prefer: "During nucleosynthesis, proton and neutron assemblies associate into light nuclei."
+- Prefer: "The top-to-bottom weak reaction proceeds through corridor association and later dissociation."
+- Prefer: "The unstable assembly undergoes a spontaneous reaction when an ambient pulse opens a dissociation path."
+- Prefer: "The event appears spontaneous at observer level, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is still a causal reaction driven by local threshold conditions and path history."
+- Prefer at first mention: "`beta reaction` (SM label: `beta decay`)."
+- Avoid by default: "The assembly decays..." when the prose is stating $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology directly.
+
+Editorial boundary:
+
+- Keep `decay` for mathematical or continuum phrases such as `orbital decay`, `geometric decay`, `exponentially decaying amplitude`, or `decaying equation of state`.
+- Do not use generic Standard Model `decay` wording as running prose in $\mathbb{A}\mathbb{A}\mathbb{A}$ chapters. Replace it with `reaction` unless a sharper mechanism term is ready.
+- Keep `decay` only when the text is naming a fixed historical or canonical label from standard literature, and translate it immediately into native $\mathbb{A}\mathbb{A}\mathbb{A}$ wording.
+- Rewrite `decay` to `dissociate` when the sentence is explaining what an assembly physically does in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- Rewrite reaction-built `assembled`, `capture`, `regrowth`, `re-binding`, or similar event language to `associate` when the point is the formation of a transient or newly stabilized sub-assembly.
+- Do not let `reaction` shrink into collision-only language. A reaction may be multi-assembly, medium-mediated, or apparently spontaneous when a single assembly crosses a threshold under unresolved local driving.
+- When in doubt, ask: is this sentence naming a Standard Model label, or is it trying to explain the actual $\mathbb{A}\mathbb{A}\mathbb{A}$ process? If it is explaining the process, do not use `decay`.
 
 ## Orbit, Circulation, Shell, and Layer Usage
 
@@ -221,6 +297,8 @@ These pairs are context-sensitive and should not be flattened.
 | atomic, chemical, or mathematical shell language | `shell` | forced conversion to `layer` | "Electron shell language remains standard in chemistry contexts." |
 | organizational or constitutive strata | `layer` | vague `shell` | "The axial layer is the six-site organization." |
 
+These choices are partly about metaphor control. `Orbit` and `shell` bring with them strong visual and classical intuitions. Sometimes that is appropriate and should be preserved. Sometimes it quietly smuggles the wrong geometry into a nonclassical internal structure. The goal is therefore not blanket purification, but disciplined use: keep inherited terms when they genuinely match the level and mechanism, and switch to `circulation` or `layer` when the text needs to stop the reader from over-literalizing the picture.
+
 ## Weak-Sector Local Geometry
 
 Use `weak-coupling triad` as the canonical technical term and the only base term for the three-site weak-coupling geometry.
@@ -231,6 +309,8 @@ If a sentence needs to describe coupling posture, keep `weak-coupling triad` as 
 - "the weak-coupling triad is rotated into the wake"
 - "the complementary three polar sites carry the remaining bookkeeping"
 
+The reason to keep one stable base noun here is that weak-sector prose can otherwise become too improvisational. Once multiple near-synonyms begin circulating, the reader can no longer tell whether a new phrase signals a new mechanism or merely a stylistic variation. `Weak-coupling triad` fixes the geometry as the noun, while posture, exposure, and orientation are added explicitly in the sentence around it.
+
 ## Editorial Rule of Thumb
 
 When a sentence feels ambiguous, ask three questions:
@@ -240,3 +320,5 @@ When a sentence feels ambiguous, ask three questions:
 3. Am I naming a specific structure, or am I using a vague inherited label?
 
 If the answer is unclear, rewrite the sentence so the level and referent are explicit.
+
+One practical test is to ask what misunderstanding the sentence would invite if a Standard Model-trained reader encountered it cold. If the likely misunderstanding changes what the reader thinks exists, what carries causation, or what level a quantity belongs to, the terminology is not yet sharp enough.

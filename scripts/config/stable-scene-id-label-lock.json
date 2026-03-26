@@ -57,6 +57,7 @@
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "mapping_planck_scale": "Mapping Planck Scale",
         "master_equation_of_motion": "Master Equation of Motion",
+        "planar_bridge_closure": "Planar Bridge Closure",
         "mode_taxonomy": "Mode Taxonomy",
         "quantum": "Quantum",
         "tri_binary_dynamics": "Tri-Binary Dynamics"
@@ -91,17 +92,10 @@
       "sceneId": "archie",
       "sceneName": "Archie",
       "objects": {
-        "about": "About the Webapp",
-        "composer": "Composer",
-        "glossary": "Comparative Glossary",
-        "help": "Navigation & Controls",
-        "academic_style_guide": "Academic Style Guide",
-        "mathematical_style_guide": "Mathematical Style Guide",
-        "mathematical_terminology": "Mathematical Terminology Reference",
-        "textbook_file_structure": "Textbook File Structure",
-        "licenses_attributions": "Licenses & Attributions",
-        "github_presence_and_community": "GitHub Presence & Community",
-        "scene_taxonomy": "Scene Taxonomy"
+        "user_interface": "User Interface",
+        "documentation": "Documentation",
+        "applications": "Applications",
+        "project": "Project"
       }
     },
     "content/scenes/nuclear/nuclear_atomic.json": {

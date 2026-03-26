@@ -68,6 +68,7 @@ import {
   formatComposerAssemblyStructureSummary,
   summarizeComposerAssemblyStructure,
 } from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
+import { splitComposerAssemblyGroup as splitComposerAssemblyGroupRuntime } from "./src/runtime/ComposerAssemblyStructureMutationRuntime.js";
 import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
@@ -80,6 +81,7 @@ import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
 import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
+import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -152,6 +154,7 @@ const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const composerOverlay = document.getElementById("composer-overlay");
+const composerTitle = document.getElementById("composer-title");
 const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
@@ -1091,30 +1094,20 @@ function createComposerSubassemblyFromMembers(assembly, memberIds = []) {
   return nextId;
 }
 
-function dissolveComposerSubassembly(assembly, subassemblyId) {
+function splitComposerAssemblyGroup(assembly, subassemblyId) {
   const liveAssembly = assembly?.id ? getComposerAssemblyDraftById(assembly.id) ?? assembly : assembly;
   const normalizedSubassemblyId = sanitizeComposerEntityId(subassemblyId, "");
   if (!liveAssembly?.id || !normalizedSubassemblyId) {
     return false;
   }
-  const subassemblies = normalizeComposerSubassemblyList(liveAssembly?.subassemblies);
-  const subassembly = subassemblies.find(
-    (entry, index) => getComposerSubassemblyId(entry, index) === normalizedSubassemblyId
-  );
-  if (!subassembly) {
+  const nextAssembly = splitComposerAssemblyGroupRuntime(liveAssembly, normalizedSubassemblyId);
+  if (!nextAssembly) {
     return false;
   }
-  const memberIds = Array.isArray(subassembly.members) ? [...subassembly.members] : [];
-  memberIds.forEach((memberId) => {
-    moveComposerMemberToRoot(liveAssembly, memberId);
-  });
   updateComposerAssemblyDraftByIdState(liveAssembly.id, (currentAssembly) => ({
     ...currentAssembly,
-    subassemblies: pruneComposerSubassemblyList(
-      normalizeComposerSubassemblyList(currentAssembly?.subassemblies).filter(
-        (entry, index) => getComposerSubassemblyId(entry, index) !== normalizedSubassemblyId
-      )
-    ),
+    members: normalizeComposerMemberList(nextAssembly.members),
+    subassemblies: pruneComposerSubassemblyList(nextAssembly.subassemblies),
   }));
   return true;
 }
@@ -3697,7 +3690,7 @@ function openComposerSubassemblyMenuAt(clientX, clientY, assemblyId, subassembly
     appendMenuNote: appendComposerMenuNote,
     appendMenuButtonRow: appendComposerMenuButtonRow,
     appendMenuSectionHeader: appendComposerMenuSectionHeader,
-    dissolveSubassembly: dissolveComposerSubassembly,
+    splitGroup: splitComposerAssemblyGroup,
     closeMenu: closeComposerAssemblyMenu,
     renderAssemblyEditor: renderComposerAssemblyEditor,
     renderJsonPreview: renderComposerJsonPreview,
@@ -8035,7 +8028,7 @@ const composerSceneId = "composer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "content/_meta/ideas/composer.md";
+  "action-items/composer/overview.md";
 const markdownDocBadgeCharacterThreshold = 512;
 const markdownOpenCharacterThreshold = 512;
 const markdownGlowByteThreshold = 2048;
@@ -10797,12 +10790,16 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
+const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
+  element: composerTitle,
+});
 
 appDirector.init();
 appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 composerControlsUiRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
+composerHeaderTimestampRuntime.init();
 window.addEventListener("keydown", (event) => {
   if (
     event.code === "Space" &&

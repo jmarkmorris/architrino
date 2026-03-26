@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__project",
+    "title": "Project",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "hideScaleLabels": true,
+    "children": [
+      {
+        "nodeId": "licenses_attributions",
+        "scenePath": "content/scenes/archie/licenses_attributions.json"
+      },
+      {
+        "nodeId": "github_presence_and_community",
+        "scenePath": "content/scenes/archie/github_presence_and_community.json"
+      },
+      {
+        "nodeId": "support_architrino_research",
+        "scenePath": "content/scenes/archie/support_architrino_research.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "licenses_attributions",
+      "title": "Licenses & Attributions",
+      "radius": 2.2,
+      "color": "#6a3c3c",
+      "labelTitle": "Licenses & Attributions",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "github_presence_and_community",
+      "title": "GitHub Presence & Community",
+      "radius": 2.2,
+      "color": "#3f5f6f",
+      "labelTitle": "GitHub Presence & Community",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "support_architrino_research",
+      "title": "Support Architrino Research",
+      "radius": 2.2,
+      "color": "#7a5a2f",
+      "labelTitle": "Support Architrino Research",
+      "labelBadge": "doc"
+    }
+  ]
+}

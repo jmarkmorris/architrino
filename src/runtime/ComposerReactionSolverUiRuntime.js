@@ -728,16 +728,28 @@ export function createComposerReactionSolverUiRuntime(deps) {
     extraFields = {},
   }) {
     const resolvedTemplateId = templateId || inferTemplateIdFromStructure(structure?.root ?? structure);
-    const resolvedBaseLabel = stripLeadingParticipantPolarity(
-      label || inferParticipantBaseLabelFromStructure(structure?.root ?? structure)
-    );
     const resolvedPolarity = supportsParticipantPolarity(resolvedTemplateId)
       ? normalizeParticipantPolarity(
           extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
         )
       : "";
+    const participantId = `solver_participant_${state.nextParticipantId++}`;
+    const pendingBaseLabel = stripLeadingParticipantPolarity(String(label ?? "").trim());
+    const factoryStructure =
+      !structure && typeof structureFactory === "function"
+        ? structureFactory({
+            participantId,
+            templateId: resolvedTemplateId,
+            baseLabel: pendingBaseLabel,
+            polarity: resolvedPolarity,
+          })
+        : null;
+    const sourceStructure = structure ?? factoryStructure;
+    const resolvedBaseLabel = stripLeadingParticipantPolarity(
+      pendingBaseLabel || inferParticipantBaseLabelFromStructure(sourceStructure?.root ?? sourceStructure)
+    );
     const participant = {
-      id: `solver_participant_${state.nextParticipantId++}`,
+      id: participantId,
       side,
       templateId: resolvedTemplateId,
       baseLabel: resolvedBaseLabel,
@@ -747,17 +759,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       binarySelections: {},
       ...extraFields,
     };
-    const factoryStructure =
-      !structure && typeof structureFactory === "function"
-        ? structureFactory({
-            participant,
-            participantId: participant.id,
-            templateId: participant.templateId,
-            baseLabel: participant.baseLabel,
-            polarity: participant.polarity,
-          })
-        : null;
-    const sourceStructure = structure ?? factoryStructure;
     const participantStructure = sourceStructure?.root
       ? {
           root: cloneStructureNode(sourceStructure.root),
@@ -1496,11 +1497,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const participant = createParticipantRecord({
       side,
       templateId: pickerCell.templateId,
-      label: pickerCell.label,
       structureFactory: ({ participantId, polarity }) =>
         buildReactionParticipantStructureForPickerCell(pickerCell, {
           participantId,
-          label: pickerCell.label,
           polarity,
         }),
     });

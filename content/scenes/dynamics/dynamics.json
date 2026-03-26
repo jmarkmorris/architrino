@@ -48,6 +48,10 @@
         "scenePath": "content/scenes/dynamics/mapping_planck_scale.json"
       },
       {
+        "nodeId": "planar_bridge_closure",
+        "scenePath": "content/scenes/dynamics/planar_bridge_closure.json"
+      },
+      {
         "nodeId": "horizon_chirality",
         "scenePath": "content/scenes/dynamics/horizon_chirality.json"
       },
@@ -177,6 +181,17 @@
         "type": "fixed"
       },
       "labelTitle": "Mapping Planck Scale",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "planar_bridge_closure",
+      "title": "Planar Bridge Closure",
+      "radius": 2.688,
+      "color": "#6f5a2f",
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Planar Bridge Closure",
       "labelBadge": "doc"
     },
     {
