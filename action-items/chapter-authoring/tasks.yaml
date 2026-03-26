@@ -1,4 +1,6 @@
 workstream:
+  slug: chapter-authoring
+  kind: priority
   id: chapter_authoring
   rank: 10
   title: Unified chapter authoring queue and legacy-material recovery
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - fill_thin_chapters
-

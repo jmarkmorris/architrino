@@ -1,4 +1,6 @@
 workstream:
+  slug: composer-reaction
+  kind: priority
   id: composer_reaction
   rank: 3
   title: Scene system, composer, PDG solver, applications, and later enhancements
@@ -27,4 +29,3 @@ tasks:
     status: pending
     depends_on:
       - observer_timeline_model
-

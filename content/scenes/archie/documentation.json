@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__documentation",
+    "title": "Documentation",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "hideScaleLabels": true,
+    "children": [
+      {
+        "nodeId": "glossary",
+        "scenePath": "content/scenes/archie/glossary.json"
+      },
+      {
+        "nodeId": "academic_style_guide",
+        "scenePath": "content/scenes/archie/academic_style_guide.json"
+      },
+      {
+        "nodeId": "mathematical_style_guide",
+        "scenePath": "content/scenes/archie/mathematical_style_guide.json"
+      },
+      {
+        "nodeId": "mathematical_terminology",
+        "scenePath": "content/scenes/archie/mathematical_terminology.json"
+      },
+      {
+        "nodeId": "textbook_file_structure",
+        "scenePath": "content/scenes/archie/textbook_file_structure.json"
+      },
+      {
+        "nodeId": "scene_taxonomy",
+        "scenePath": "content/scenes/archie/scene_taxonomy.json"
+      },
+      {
+        "nodeId": "research_notebook",
+        "scenePath": "content/scenes/archie/research_notebook.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "glossary",
+      "title": "Comparative Glossary",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "labelTitle": "Comparative Glossary",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "academic_style_guide",
+      "title": "Academic Style Guide",
+      "radius": 2.2,
+      "color": "#5b4c8f",
+      "labelTitle": "Academic Style Guide",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "mathematical_style_guide",
+      "title": "Mathematical Style Guide",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "labelTitle": "Mathematical Style Guide",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "mathematical_terminology",
+      "title": "Mathematical Terminology Reference",
+      "radius": 2.2,
+      "color": "#2f4f7a",
+      "labelTitle": "Mathematical Terminology Reference",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "textbook_file_structure",
+      "title": "Textbook File Structure",
+      "radius": 2.2,
+      "color": "#465f3a",
+      "labelTitle": "Textbook File Structure",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "scene_taxonomy",
+      "title": "Scene Taxonomy",
+      "radius": 2.2,
+      "color": "#6a5a8f",
+      "labelTitle": "Scene Taxonomy",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "research_notebook",
+      "title": "Research Notebook",
+      "radius": 2.2,
+      "color": "#8b6f3a",
+      "labelTitle": "Research Notebook",
+      "labelBadge": "doc"
+    }
+  ]
+}

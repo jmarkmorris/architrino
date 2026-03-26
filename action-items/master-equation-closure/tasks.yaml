@@ -1,4 +1,6 @@
 workstream:
+  slug: master-equation-closure
+  kind: priority
   id: master_equation_closure
   rank: 4
   title: Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - spiral_turning_conditions
-

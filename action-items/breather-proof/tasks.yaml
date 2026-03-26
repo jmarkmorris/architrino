@@ -1,4 +1,6 @@
 workstream:
+  slug: breather-proof
+  kind: priority
   id: breather_proof
   rank: 1
   title: Execute the frozen breather proof program
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - branch_regularity_chain
-

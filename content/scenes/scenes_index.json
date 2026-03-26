@@ -1424,6 +1424,26 @@
       "id": "dynamics__planar_bridge_closure",
       "name": "Planar Bridge Closure",
       "path": "content/scenes/dynamics/planar_bridge_closure.json"
+    },
+    {
+      "id": "archie__applications",
+      "name": "Applications",
+      "path": "content/scenes/archie/applications.json"
+    },
+    {
+      "id": "archie__documentation",
+      "name": "Documentation",
+      "path": "content/scenes/archie/documentation.json"
+    },
+    {
+      "id": "archie__project",
+      "name": "Project",
+      "path": "content/scenes/archie/project.json"
+    },
+    {
+      "id": "archie__user_interface",
+      "name": "User Interface",
+      "path": "content/scenes/archie/user_interface.json"
     }
   ]
 }

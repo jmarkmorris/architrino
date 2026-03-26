@@ -1,4 +1,6 @@
 workstream:
+  slug: standard-model-closure
+  kind: priority
   id: standard_model_closure
   rank: 6
   title: Remaining Standard Model assembly gaps, flavor mixing, and confinement
@@ -27,4 +29,3 @@ tasks:
     status: pending
     depends_on:
       - overlap_integrals
-

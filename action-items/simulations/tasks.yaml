@@ -1,4 +1,6 @@
 workstream:
+  slug: simulations
+  kind: priority
   id: simulations
   rank: 7
   title: Simulations, regularization, and shell numerics
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - tier0_tier1_runs
-

@@ -1,4 +1,6 @@
 workstream:
+  slug: mass-map
+  kind: priority
   id: mass_map
   rank: 2
   title: Noether-core stability, shielding, parameter ledger, and first mass map
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - derive_zeta
-

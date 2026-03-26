@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__user_interface",
+    "title": "User Interface",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "hideScaleLabels": true,
+    "children": [
+      {
+        "nodeId": "textbook_toc",
+        "scenePath": "content/scenes/archie/textbook_toc.json"
+      },
+      {
+        "nodeId": "about",
+        "scenePath": "content/scenes/archie/about.json"
+      },
+      {
+        "nodeId": "help",
+        "scenePath": "content/scenes/archie/help.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "textbook_toc",
+      "title": "Textbook TOC",
+      "radius": 2.2,
+      "color": "#7a5a2f",
+      "labelTitle": "Textbook TOC",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "about",
+      "title": "About the Webapp",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "labelTitle": "About the Webapp",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "help",
+      "title": "Navigation & Controls",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "labelTitle": "Navigation & Controls",
+      "labelBadge": "doc"
+    }
+  ]
+}

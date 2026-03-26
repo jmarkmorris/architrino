@@ -1,4 +1,6 @@
 workstream:
+  slug: strong-field-hypotheses
+  kind: hypothesis-bank
   id: strong_field_hypotheses
   rank: 9
   title: Preserve strong-field / tri-binary hypotheses
@@ -16,4 +18,3 @@ tasks:
     title: Preserve the 4:2:1 model idea as a hypothesis, not a foundation
     status: ongoing
     depends_on: []
-

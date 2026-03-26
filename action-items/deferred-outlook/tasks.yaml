@@ -1,4 +1,6 @@
 workstream:
+  slug: deferred-outlook
+  kind: deferred-priority
   id: deferred_outlook
   rank: 13
   title: Deferred product / outlook work

@@ -1,4 +1,6 @@
 workstream:
+  slug: dyadic-lock
+  kind: priority
   id: dyadic_lock
   rank: 5
   title: Dyadic resonance lock reduced-map program
@@ -22,4 +24,3 @@ tasks:
     status: pending
     depends_on:
       - stable_12_fixed_point
-

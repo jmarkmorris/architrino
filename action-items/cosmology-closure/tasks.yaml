@@ -1,4 +1,6 @@
 workstream:
+  slug: cosmology-closure
+  kind: deferred-priority
   id: cosmology_closure
   rank: 12
   title: Cosmology transfer-function closure
@@ -17,4 +19,3 @@ tasks:
     status: deferred
     depends_on:
       - component_interfaces
-
