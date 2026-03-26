@@ -19,33 +19,33 @@ The full pre-split monolith is preserved at [archive/priorities-legacy.md](../ar
 
 This single table is the canonical rollup for every direct child of `action-items`. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
 
-| Rank | Slug | Title | Kind | Value | Cost | ROI | Status | Keep As Active Action Item? | Folder |
-| ---: | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
-| 1 | `breather-proof` | Execute the frozen breather proof program | `priority` | 10 | 4 | 2.50 | active | yes | [breather-proof](../breather-proof/overview.md) |
-| 2 | `mass-map` | Noether-core stability, shielding, parameter ledger, and first mass map | `priority` | 10 | 4 | 2.50 | active | yes | [mass-map](../mass-map/overview.md) |
-| 3 | `composer-reaction` | Scene system, composer, PDG solver, applications, and later enhancements | `priority` | 9 | 4 | 2.25 | active | yes | [composer-reaction](../composer-reaction/overview.md) |
-| 4 | `master-equation-closure` | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | `priority` | 10 | 5 | 2.00 | active | yes | [master-equation-closure](../master-equation-closure/overview.md) |
-| 5 | `dyadic-lock` | Dyadic resonance lock reduced-map program | `priority` | 7 | 4 | 1.75 | queued | yes | [dyadic-lock](../dyadic-lock/overview.md) |
-| 6 | `standard-model-closure` | Remaining Standard Model assembly gaps, flavor mixing, and confinement | `priority` | 8 | 5 | 1.60 | queued | yes | [standard-model-closure](../standard-model-closure/overview.md) |
-| 7 | `simulations` | Simulations, regularization, and shell numerics | `priority` | 8 | 5 | 1.60 | queued | yes | [simulations](../simulations/overview.md) |
-| 8 | `strong-field-closure` | Remaining black-hole / strong-field quantitative closure | `priority` | 4 | 5 | 0.80 | queued | yes | [strong-field-closure](../strong-field-closure/overview.md) |
-| 9 | `strong-field-hypotheses` | Preserve strong-field / tri-binary hypotheses | `hypothesis-bank` | 2 | 3 | 0.67 | watchlist | maybe | [strong-field-hypotheses](../strong-field-hypotheses/overview.md) |
-| 10 | `chapter-authoring` | Unified chapter authoring queue and legacy-material recovery | `priority` | 3 | 5 | 0.60 | queued | yes | [chapter-authoring](../chapter-authoring/overview.md) |
-| 11 | `quantum-closure` | Born-rule / quantum closure with hard tests | `deferred-priority` | 4 | 8 | 0.50 | deferred | maybe later | [quantum-closure](../quantum-closure/overview.md) |
-| 12 | `cosmology-closure` | Cosmology transfer-function closure | `deferred-priority` | 2 | 9 | 0.22 | deferred | maybe later | [cosmology-closure](../cosmology-closure/overview.md) |
-| 13 | `deferred-outlook` | Deferred product / outlook work | `deferred-priority` | 1 | 6 | 0.17 | deferred | no, until theory stabilizes | [deferred-outlook](../deferred-outlook/overview.md) |
-| — | `-report` | Action-items report control surface | `control-surface` | — | — | — | canonical | yes | [-report](./overview.md) |
-| — | `archive` | Archive | `archive` | — | — | — | reference | no | [archive](../archive) |
-| — | `icebox` | Icebox | `archive-scratch` | — | — | — | frozen | no | [icebox](../icebox) |
-| — | `composer` | Composer | `support-note` | — | — | — | supporting | maybe merge into `composer-reaction` later | [composer](../composer/overview.md) |
-| — | `reaction` | Reaction design | `support-note` | — | — | — | supporting | maybe merge into `composer-reaction` later | [reaction](../reaction/overview.md) |
-| — | `glyph` | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | `support-note` | — | — | — | supporting | maybe keep separate | [glyph](../glyph/overview.md) |
-| — | `viewports` | Viewports | `support-note` | — | — | — | supporting | maybe merge into `composer-reaction` later | [viewports](../viewports/overview.md) |
-| — | `3x3` | 3x3 binary-slot matrix | `idea-note` | — | — | — | speculative | probably not | [3x3](../3x3/overview.md) |
-| — | `ellipsoid` | Ellipsoid app idea | `idea-note` | — | — | — | speculative | probably not | [ellipsoid](../ellipsoid/overview.md) |
-| — | `phenomenological-heuristics` | Dyadic resonance lock archive | `archive-note` | — | — | — | scratch | probably not | [phenomenological-heuristics](../phenomenological-heuristics/overview.md) |
-| — | `dynamo-team-insights` | Consolidated geometry and dynamics observations | `team-note` | — | — | — | supporting | probably not | [dynamo-team-insights](../dynamo-team-insights/overview.md) |
-| — | `codex` | Codex operator notes | `operator-note` | — | — | — | supporting | probably not | [codex](../codex/overview.md) |
+| Rank | Slug | Title | Value | Cost | ROI |
+| ---: | --- | --- | ---: | ---: | ---: |
+| 1 | [`breather-proof`](../breather-proof/overview.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
+| 2 | [`mass-map`](../mass-map/overview.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
+| 3 | [`composer-reaction`](../composer-reaction/overview.md) | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 4 | [`master-equation-closure`](../master-equation-closure/overview.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
+| 5 | [`dyadic-lock`](../dyadic-lock/overview.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 6 | [`standard-model-closure`](../standard-model-closure/overview.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
+| 7 | [`simulations`](../simulations/overview.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 8 | [`strong-field-closure`](../strong-field-closure/overview.md) | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 9 | [`strong-field-hypotheses`](../strong-field-hypotheses/overview.md) | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 10 | [`chapter-authoring`](../chapter-authoring/overview.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 11 | [`quantum-closure`](../quantum-closure/overview.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| 12 | [`cosmology-closure`](../cosmology-closure/overview.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 13 | [`deferred-outlook`](../deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
+| — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
+| — | [`archive`](../archive) | Archive | — | — | — |
+| — | [`icebox`](../icebox) | Icebox | — | — | — |
+| — | [`composer`](../composer/overview.md) | Composer | — | — | — |
+| — | [`reaction`](../reaction/overview.md) | Reaction design | — | — | — |
+| — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
+| — | [`viewports`](../viewports/overview.md) | Viewports | — | — | — |
+| — | [`3x3`](../3x3/overview.md) | 3x3 binary-slot matrix | — | — | — |
+| — | [`ellipsoid`](../ellipsoid/overview.md) | Ellipsoid app idea | — | — | — |
+| — | [`phenomenological-heuristics`](../phenomenological-heuristics/overview.md) | Dyadic resonance lock archive | — | — | — |
+| — | [`dynamo-team-insights`](../dynamo-team-insights/overview.md) | Consolidated geometry and dynamics observations | — | — | — |
+| — | [`codex`](../codex/overview.md) | Codex operator notes | — | — | — |
 
 ## Current Focus
 
