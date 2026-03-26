@@ -1,6 +1,6 @@
 # Action-Items Report
 
-This file is the canonical control surface for `action-items`. Directory names are stable identities. Rank, status, and classification live here and in each workstream `tasks.yaml`, not in the filesystem names.
+This file is the canonical control surface for `action-items`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream `overview.md`, not in the filesystem names.
 
 The full pre-split monolith is preserved at [archive/priorities-legacy.md](../archive/priorities-legacy.md).
 
@@ -14,6 +14,31 @@ The full pre-split monolith is preserved at [archive/priorities-legacy.md](../ar
 - Compute `ROI = Value / Cost`.
 - Use the scoring table as the canonical ranking.
 - Break ties by higher `Value`, then lower `Cost`.
+
+## Workstream Overview Structure
+
+Each active workstream `overview.md` should use the same front-matter order before any local theory or product notes:
+
+1. `## Workstream Metadata`
+2. `## Task Queue`
+3. `## Scope`
+
+After that fixed front matter, each workstream may add its own domain-specific sections such as `Current State`, `Main Directions`, `Quantitative Targets`, or `Hypotheses To Preserve`.
+
+Keep the metadata field order fixed:
+
+- `Kind`
+- `Rank`
+- `Value`
+- `Cost`
+- `ROI`
+- `Status`
+
+Keep task queue lines in one compact sentence form:
+
+- `` `task_id` — Task title. Status: `state`. Depends on: ... ``
+
+This keeps the files readable in plain Markdown, diff-friendly in git, and structurally consistent without requiring a separate machine-control file.
 
 ## Unified Priority Table
 

@@ -1,5 +1,20 @@
 # Noether-Core Stability and First Mass Map
 
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `2`
+- Value: `10`
+- Cost: `4`
+- ROI: `2.50`
+- Status: `active`
+
+## Task Queue
+
+1. `derive_first_attractor_family` — Derive the first tri-binary attractor family with shielding extraction. Status: `next`. Depends on: none.
+2. `derive_zeta` — Derive zeta(A) and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
+3. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `derive_zeta`.
+
 ## Scope
 
 This is the parameter-closure and first mass-formula bucket. Treat [parameter-ledger.md](../../content/markdown/aaa/validation/parameter-ledger.md) as bookkeeping only. The live target is one reusable derived mass map.

@@ -1,5 +1,20 @@
 # Execute the Frozen Breather Proof Program
 
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `1`
+- Value: `10`
+- Cost: `4`
+- ROI: `2.50`
+- Status: `active`
+
+## Task Queue
+
+1. `seed_margin_persistence` — Formalize the delayed seed-margin persistence lemma. Status: `next`. Depends on: none.
+2. `branch_regularity_chain` — Polish the no-accumulation and simple-branch persistence lemmas. Status: `pending`. Depends on: `seed_margin_persistence`.
+3. `type_ii_caustic_transit` — Formalize the sharpened Type II caustic-transit integral estimate. Status: `pending`. Depends on: `branch_regularity_chain`.
+
 ## Scope
 
 Treat [collinear-breather.md](../../content/markdown/aaa/dynamics/collinear-breather.md) as a frozen reference scaffold and [master-equation-breather.md](../../content/markdown/aaa/dynamics/master-equation-breather.md) as the frozen proof-program blueprint. The active job is proof execution inside the existing theorem DAG, not architectural redesign.

@@ -1,5 +1,19 @@
 # Preserve Strong-Field and Tri-Binary Hypotheses
 
+## Workstream Metadata
+
+- Kind: `hypothesis-bank`
+- Rank: `9`
+- Value: `2`
+- Cost: `3`
+- ROI: `0.67`
+- Status: `watchlist`
+
+## Task Queue
+
+1. `keep_hypothesis_registry` — Keep the strong-field hypothesis registry current as quantitative work sharpens. Status: `ongoing`. Depends on: none.
+2. `protect_421_model` — Preserve the 4:2:1 model idea as a hypothesis, not a foundation. Status: `ongoing`. Depends on: none.
+
 ## Scope
 
 This is a watchlist workstream. It exists to keep strong-field and tri-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.

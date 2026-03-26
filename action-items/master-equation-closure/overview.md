@@ -1,5 +1,20 @@
 # Master-Equation Closure for Lorentz, GR, Quantum, and Core Dynamics
 
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `4`
+- Value: `10`
+- Cost: `5`
+- ROI: `2.00`
+- Status: `active`
+
+## Task Queue
+
+1. `circular_asymptotics` — Extend higher-winding and large-beta circular self-force asymptotics. Status: `next`. Depends on: none.
+2. `spiral_turning_conditions` — Derive a non-circular turning condition that can test the circular obstruction. Status: `pending`. Depends on: `circular_asymptotics`.
+3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_turning_conditions`.
+
 ## Scope
 
 Keep dynamics, geometry, and mapping centered on [master-equation.md](../../content/markdown/aaa/dynamics/master-equation.md). This workstream now also carries the Lorentz / metric / clock / ruler bridge to GR and the deep closure burden for quantum and core dynamics.
