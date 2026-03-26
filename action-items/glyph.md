@@ -500,9 +500,9 @@ In other words:
 
 The current concrete implementation artifacts are:
 
-- the generator at [scripts/glyphs/glyph.py](../../scripts/glyphs/glyph.py);
-- standalone outputs at [glyph-binary-bare.svg](../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../scripts/glyphs/glyph-binary-neutral.svg), and [glyph-binary-positive.svg](../../scripts/glyphs/glyph-binary-positive.svg);
-- and the canonical page artifact at [quark-glyph-prototype.svg](../../scripts/glyphs/quark-glyph-prototype.svg).
+- the generator at [scripts/glyphs/glyph.py](../scripts/glyphs/glyph.py);
+- standalone outputs at [glyph-binary-bare.svg](../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../scripts/glyphs/glyph-binary-neutral.svg), and [glyph-binary-positive.svg](../scripts/glyphs/glyph-binary-positive.svg);
+- and the canonical page artifact at [quark-glyph-prototype.svg](../scripts/glyphs/quark-glyph-prototype.svg).
 
 Those artifacts now cover:
 
