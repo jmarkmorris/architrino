@@ -20,6 +20,11 @@ export const REACTION_STRUCTURE_RENDER_MODES = Object.freeze({
   TRANSMUTE_TILE: "transmute-tile",
 });
 
+const REACTION_STRUCTURE_TRACK_SLOT_CODES = Object.freeze({
+  reactant: Object.freeze(["I", "M", "O"]),
+  product: Object.freeze(["O", "M", "I"]),
+});
+
 function createInventory(electrino = 0, positrino = 0, extra = {}) {
   return {
     ...extra,
@@ -65,6 +70,12 @@ function createBinarySlotDescriptor(id, label, slotCode, options = {}) {
           ),
         ],
   };
+}
+
+export function getReactionStructureTrackSlotCodes(side = "reactant") {
+  return REACTION_STRUCTURE_TRACK_SLOT_CODES[
+    side === "product" ? "product" : "reactant"
+  ];
 }
 
 function getSlotCode(slotName = "") {
@@ -127,7 +138,10 @@ function buildNoetherCoreDescriptorTree(coreNode) {
   return [{
     id: String(coreNode?.id ?? "root"),
     label: coreLabel,
+    templateId: "noether_core",
+    polarity,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
+    layoutRole: "track-row",
     inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
@@ -153,7 +167,9 @@ function buildFamilyParticleDescriptorTree(structureRoot) {
     id: String(structureRoot?.id ?? "root"),
     label: getBinarySelectorGroupLabel(structureRoot),
     templateId,
+    polarity: "pro",
     renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
+    layoutRole: "track-row",
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
         `${structureRoot?.id ?? "root"}/${slotName}`,
@@ -184,7 +200,10 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
       return {
         id: childNode.id || `core_${index + 1}`,
         label: getCanonicalNoetherCoreLabel(polarity),
+        templateId: "noether_core",
+        polarity,
         renderMode: REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID,
+        layoutRole: "composite-row",
         inventory: polarity === "anti" ? { antiCore: 1 } : { proCore: 1 },
         children: STRUCTURE_SLOT_ORDER
           .filter((slotName) => childBinaryPresence[slotName])
@@ -220,7 +239,9 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
           label: getQuarkDescriptorLabel(childFamily),
           templateId:
             childFamily === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "up_quark" : "down_quark",
+          polarity: "pro",
           renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
+          layoutRole: "composite-row",
           children: STRUCTURE_SLOT_ORDER.map((slotName) =>
             createBinarySlotDescriptor(
               `${childNode.id}/${slotName}`,

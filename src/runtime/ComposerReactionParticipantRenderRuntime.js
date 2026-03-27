@@ -1,12 +1,45 @@
 import { getBinaryPersonalityChoice } from "./ComposerReactionBinarySelectionRuntime.js";
 import {
+  getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
   isReactionStructureInlineAnchorRenderMode,
   REACTION_STRUCTURE_RENDER_MODES,
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 
 export function getRenderedSlotCodesForSide(side) {
-  return side === "product" ? ["O", "M", "I"] : ["I", "M", "O"];
+  return getReactionStructureTrackSlotCodes(side);
+}
+
+function getParticipantTrackHeaderOffset(participant = null) {
+  const rootNode = Array.isArray(participant?.hierarchy) ? participant.hierarchy[0] : null;
+  if (!rootNode) {
+    return "0px";
+  }
+  if (isReactionStructureCompositeGridRenderMode(rootNode.renderMode)) {
+    return "calc((var(--binary-choice-size) * 2) + (var(--solver-anchor-size) * 2) + var(--solver-tile-gap) + (var(--solver-attachment-gap) * 3))";
+  }
+  if (isReactionStructureInlineAnchorRenderMode(rootNode.renderMode)) {
+    return "calc(var(--binary-choice-size) + var(--solver-tile-gap))";
+  }
+  return "0px";
+}
+
+export function getReactionSideSlotHeaderProfile(participants = [], side = "reactant") {
+  const normalizedSide = side === "product" ? "product" : "reactant";
+  const inlineParticipants = (Array.isArray(participants) ? participants : []).filter((participant) =>
+    isReactionStructureInlineAnchorRenderMode(participant?.hierarchy?.[0]?.renderMode ?? "")
+  );
+  const referenceParticipant =
+    inlineParticipants.find((participant) =>
+      isReactionStructureCompositeGridRenderMode(participant?.hierarchy?.[0]?.renderMode ?? "")
+    ) ??
+    inlineParticipants[0] ??
+    null;
+  return {
+    side: normalizedSide,
+    slotCodes: getRenderedSlotCodesForSide(normalizedSide),
+    offset: getParticipantTrackHeaderOffset(referenceParticipant),
+  };
 }
 
 export function getReactionParticipantCardSectionOrder({
@@ -14,10 +47,7 @@ export function getReactionParticipantCardSectionOrder({
   isReactantComposite = false,
   isProductComposite = false,
 } = {}) {
-  if (isProductComposite) {
-    return ["visual", "hierarchy"];
-  }
-  if (side === "product" || isReactantComposite) {
+  if (side === "product") {
     return ["hierarchy", "visual"];
   }
   return ["visual", "hierarchy"];
@@ -179,10 +209,12 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return placeholder;
   }
 
-  function createSideSlotHeader(side) {
+  function createSideSlotHeader(participants, side) {
+    const profile = getReactionSideSlotHeaderProfile(participants, side);
     const header = document.createElement("div");
-    header.className = `composer-reaction-solver-side-slot-header is-${side}`;
-    getRenderedSlotCodesForSide(side).forEach((slotCode) => {
+    header.className = `composer-reaction-solver-side-slot-header is-${profile.side}`;
+    header.style.setProperty("--solver-slot-header-offset", profile.offset);
+    profile.slotCodes.forEach((slotCode) => {
       const slot = document.createElement("span");
       slot.className = "composer-reaction-solver-side-slot-header-slot";
       slot.textContent = slotCode;
@@ -433,28 +465,22 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createCompositeAssemblyRowCard(participant, rowNode) {
-    const antiCoreCount = Number(rowNode?.inventory?.antiCore ?? 0);
-    const inferredTemplateId =
-      rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID
-        ? "noether_core"
-        : String(rowNode?.templateId ?? "").trim().toLowerCase();
-    const inferredPolarity =
-      inferredTemplateId === "noether_core"
-        ? Number.isFinite(antiCoreCount) && antiCoreCount > 0
-          ? "anti"
-          : "pro"
-        : supportsParticipantPolarity(inferredTemplateId)
-          ? "pro"
-          : "";
-    const baseLabel = getDefaultParticipantBaseLabel(inferredTemplateId, rowNode?.label);
+    const templateId =
+      String(rowNode?.templateId ?? "").trim().toLowerCase() ||
+      (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID ? "noether_core" : "");
+    const polarity = String(rowNode?.polarity ?? "").trim().toLowerCase();
+    const baseLabel = getDefaultParticipantBaseLabel(templateId, rowNode?.label);
     const cardParticipant = {
-      templateId: inferredTemplateId,
-      polarity: inferredPolarity,
+      templateId,
+      polarity:
+        templateId === "noether_core" || supportsParticipantPolarity(templateId)
+          ? (polarity || "pro")
+          : "",
       label:
-        inferredTemplateId === "noether_core"
+        templateId === "noether_core"
           ? String(rowNode?.label ?? baseLabel).trim() || baseLabel
-          : supportsParticipantPolarity(inferredTemplateId)
-            ? formatParticipantLabel(baseLabel, inferredTemplateId, inferredPolarity)
+          : supportsParticipantPolarity(templateId)
+            ? formatParticipantLabel(baseLabel, templateId, polarity || "pro")
             : baseLabel,
     };
     const card = document.createElement("div");
@@ -477,19 +503,13 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createCompositeAssemblyRowBody(participant, rowNode) {
+    const rowNodeKey = buildNodeKey(participant.id, rowNode.id);
     const body = document.createElement("div");
     body.className = `composer-reaction-solver-composite-row-body is-${participant.side}`;
     const card = createCompositeAssemblyRowCard(participant, rowNode);
     const track = createCompositeAssemblyRowTrack(participant, rowNode);
-    const rowNodeKey = buildNodeKey(participant.id, rowNode.id);
-    const selectorLane = document.createElement("div");
-    selectorLane.className = `composer-reaction-solver-composite-row-selector-lane is-${participant.side}`;
-    const selector = createAnchorButton(participant, rowNode, rowNodeKey, {
-      extraClassNames: ["composer-reaction-solver-composite-row-anchor"],
-    });
-    selector.dataset.compositeParticipantId = participant.id;
-    selector.dataset.compositeSourceKey = rowNodeKey;
-    selectorLane.appendChild(selector);
+    const selectorLane = createInlineAnchorLane(participant, rowNode, rowNodeKey);
+    selectorLane.classList.add("composer-reaction-solver-composite-row-selector-lane");
     if (participant.side === "product") {
       body.append(selectorLane, track, card);
     } else {
@@ -498,29 +518,48 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return body;
   }
 
+  function createCompositeSpanRail(participant, rowNodes = []) {
+    const rail = document.createElement("div");
+    rail.className = `composer-reaction-solver-composite-span-rail is-${participant.side}`;
+    const stem = document.createElement("span");
+    stem.className = "composer-reaction-solver-composite-span-stem";
+    stem.dataset.compositeSpanParticipantId = participant.id;
+    rail.appendChild(stem);
+    rowNodes.forEach(() => {
+      const slot = document.createElement("div");
+      slot.className = "composer-reaction-solver-composite-span-slot";
+      const node = document.createElement("span");
+      node.className = "composer-reaction-solver-composite-span-node";
+      node.setAttribute("aria-hidden", "true");
+      slot.appendChild(node);
+      rail.appendChild(slot);
+    });
+    return rail;
+  }
+
   function createCompositeAssemblyGridContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-higgs-cluster-grid is-${participant.side}`;
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
     const rows = document.createElement("div");
     rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
-    coreNodes.forEach((coreNode, index) => {
+    coreNodes.forEach((coreNode) => {
       const row = document.createElement("div");
       row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
       const rowBody = createCompositeAssemblyRowBody(participant, coreNode);
-      if (index === 0) {
-        row.classList.add("has-selector");
-      }
       row.appendChild(rowBody);
       rows.appendChild(row);
     });
-    wrapper.appendChild(rows);
+    const spanRail = createCompositeSpanRail(participant, coreNodes);
+    if (participant.side === "product") {
+      wrapper.append(rows, spanRail);
+    } else {
+      wrapper.append(spanRail, rows);
+    }
     return wrapper;
   }
 
   function createCompositeVisualRail(participant) {
-    const rootNode = getParticipantRootNode(participant);
-    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const rail = document.createElement("div");
     rail.className = "composer-reaction-solver-composite-visual-rail";
 
@@ -530,19 +569,10 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     collector.setAttribute("aria-hidden", "true");
 
     const visual = createParticipantVisual(participant);
-    if (participant.side === "product" && rootNode && rootNodeKey) {
-      const rootAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
-        extraClassNames: ["composer-reaction-solver-composite-root-anchor"],
-      });
-      rail.append(rootAnchor, visual, collector);
-      return rail;
-    }
-    rail.append(collector, visual);
-    if (rootNode && rootNodeKey) {
-      const rootAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
-        extraClassNames: ["composer-reaction-solver-composite-root-anchor"],
-      });
-      rail.appendChild(rootAnchor);
+    if (participant.side === "product") {
+      rail.append(collector, visual);
+    } else {
+      rail.append(visual, collector);
     }
     return rail;
   }

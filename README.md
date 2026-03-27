@@ -5,17 +5,24 @@ Use a local web server so ES modules load correctly.
 
 ```bash
 cd architrino
+node scripts/dev/start-local-dev.mjs
+```
+
+Then open `http://localhost:5173/`.
+
+If you need the old split-terminal workflow, keep the watcher running in one terminal:
+
+```bash
+cd architrino
 node scripts/watch-composer-header-signature.mjs
 ```
 
-In a second terminal:
+and serve the repo root from another:
 
 ```bash
 cd architrino
 python3 -m http.server 5173
 ```
-
-Then open `http://localhost:5173/`.
 
 ## Controls
 - Click/tap a sphere to descend into its contents.
