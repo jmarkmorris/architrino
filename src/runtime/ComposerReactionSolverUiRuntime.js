@@ -521,7 +521,7 @@ const transmuteParticipantWidthPx = 126;
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
-const transmuteColumnCount = 3;
+const transmuteColumnCount = 1;
 const transmuteColumnEdgePaddingPx = 18;
 const solverRouteAnchorGapPx = 0.25;
 const centerTransformerGraphicConnectionStepPx = 79;
@@ -1153,7 +1153,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four Noether core assemblies.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster dissociated into four Noether core assemblies.`
     );
     return true;
   }
@@ -1197,14 +1197,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     removeMappingsForParticipant(participantId);
     closeMenu();
     render();
-    const splitSummary =
+    const dissociationSummary =
       participant.templateId === "photon"
-        ? "split into pro and anti Noether core assemblies."
+        ? "dissociated into pro and anti Noether core assemblies."
         : participant.templateId === "higgs_cluster"
-          ? "split into four Noether core assemblies."
-          : "split into constituent quarks.";
+          ? "dissociated into four Noether core assemblies."
+          : "dissociated into constituent quarks.";
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${splitSummary}`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${dissociationSummary}`
     );
     return true;
   }
@@ -1465,7 +1465,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       side === "product"
         ? "Add product"
         : side === "center"
-          ? `Add transmute node in middle column ${centerColumnIndex + 1}`
+          ? "Add transmute node"
           : "Add reactant"
     );
     if (state.menuOpen && state.menuMode === "template-grid-picker" && state.menuSide === side) {
@@ -1500,9 +1500,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createCenterAddControls() {
     const controls = document.createElement("div");
     controls.className = "composer-reaction-solver-center-add-controls";
-    Array.from({ length: transmuteColumnCount }, (_, columnIndex) => {
-      controls.appendChild(createColumnAddControl("center", { centerColumnIndex: columnIndex }));
-    });
+    controls.appendChild(createColumnAddControl("center", { centerColumnIndex: 0 }));
     return controls;
   }
 
@@ -1751,7 +1749,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         participant.templateId === "neutron" ||
         participant.templateId === "proton"
       ) {
-        renderMenuButton("Split assembly", {
+        renderMenuButton("Dissociate", {
           onClick: () => splitCompositeParticipantById(participant.id),
         });
       }
@@ -1861,7 +1859,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the + controls to add reactants, products, or a transmute node."
+          ? "Reaction solver opened. Use the left and right + controls for reactants and products, and the middle + control for a transmute node."
           : "Reaction solver closed."
       );
     }
@@ -2332,7 +2330,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the + controls to add reactants, products, or a transmute node.";
+        "Use the left and right + controls for reactants and products, and the middle + control for a transmute node.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -2573,8 +2571,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
-    productsColumn.appendChild(createColumnAddControl("product"));
     centerColumn.appendChild(createCenterAddControls());
+    productsColumn.appendChild(createColumnAddControl("product"));
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader("product"));
     }
@@ -2595,6 +2593,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     event.preventDefault();
+    if (menu?.contains(event.target) || event.target instanceof Element && event.target.closest(".composer-reaction-solver-anchor")) {
+      return;
+    }
+    openMenuAt(event.clientX, event.clientY);
   }
 
   function handleDocumentPointerDown(event) {

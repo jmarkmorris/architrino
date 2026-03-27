@@ -1,3 +1,5 @@
+import { isElementScene } from "../services/SceneCapabilitiesService.js";
+
 export function createSceneGraphRuntime(deps) {
   const ELEMENT_FIRST_SHELL_OFFSET = 0.80;
   const ELEMENT_SHELL_GAP = 0.8;
@@ -613,8 +615,7 @@ export function createSceneGraphRuntime(deps) {
 
     const spacing = config.spacing ?? 7;
     const centerOffset = (config.nodes.length - 1) / 2;
-    const isElementScene =
-      typeof levelId === "string" && levelId.startsWith("content/scenes/elements/");
+    const isElementLevel = isElementScene({ id: levelId });
 
     config.nodes.forEach((nodeDataRaw, index) => {
       const nodeData = deps.cloneNodeData(nodeDataRaw);
@@ -665,7 +666,7 @@ export function createSceneGraphRuntime(deps) {
       }
     });
 
-    if (isElementScene) {
+    if (isElementLevel) {
       let nucleusRadius = 0;
       const nucleons = nodes.filter(
         (n) => n.data.category === "proton" || n.data.category === "neutron"

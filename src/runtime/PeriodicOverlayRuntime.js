@@ -1,3 +1,10 @@
+import {
+  extractElementSymbolFromScene,
+  isElementScene,
+  isHydePeriodicTableScene,
+  isPeriodicTableScene,
+} from "../services/SceneCapabilitiesService.js";
+
 export function createPeriodicOverlayRuntime(deps) {
   const {
     periodicOverlay,
@@ -237,9 +244,9 @@ export function createPeriodicOverlayRuntime(deps) {
       }
     }
     console.warn(
-      `[PeriodicOverlayRuntime] Missing manifest route for periodic symbol "${normalizedSymbol}"`
+      `[PeriodicOverlayRuntime] Missing manifest route for periodic symbol "${normalizedSymbol}", falling back to canonical element scene path`
     );
-    return null;
+    return `content/scenes/elements/${normalizedSymbol}.json`;
   }
 
   function getPeriodicColor(category) {
@@ -412,6 +419,23 @@ export function createPeriodicOverlayRuntime(deps) {
     jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 2000 });
   }
 
+  function wireHydeHotspotOpenBehavior(target, element, overlay) {
+    if (!(target instanceof Element) || !element) {
+      return;
+    }
+    target.addEventListener("pointerup", (event) => {
+      if (event.defaultPrevented) {
+        return;
+      }
+      if (typeof event.button === "number" && event.button !== 0) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      openPeriodicElementScene(element, overlay);
+    });
+  }
+
   function renderPeriodicLegend(legend, legendSet) {
     if (!(legend instanceof HTMLElement)) {
       return;
@@ -457,12 +481,9 @@ export function createPeriodicOverlayRuntime(deps) {
   }
 
   function isHydePeriodicSceneActive(level = getCurrentLevel()) {
-    const sceneId = level?.sceneId;
-    const scenePath = typeof level?.id === "string" ? level.id : "";
-    return (
-      sceneId === activeHydePeriodicSceneId ||
-      scenePath.endsWith("/hyde_periodic_table_scene.json")
-    );
+    return isHydePeriodicTableScene(level, {
+      hydePeriodicSceneId: activeHydePeriodicSceneId,
+    });
   }
 
   function showHydeHotspotTooltip(node) {
@@ -1790,9 +1811,7 @@ export function createPeriodicOverlayRuntime(deps) {
         circle.appendChild(title);
       }
       if (element) {
-        circle.addEventListener("click", () => {
-          openPeriodicElementScene(element, overlay);
-        });
+        wireHydeHotspotOpenBehavior(circle, element, overlay);
       }
       circle.addEventListener("mouseenter", (event) => {
         setHoveredHydeHotspot(circle);
@@ -2012,14 +2031,12 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     const currentLevel = getCurrentLevel();
-    const sceneId = currentLevel?.sceneId;
-    const scenePath = typeof currentLevel?.id === "string" ? currentLevel.id : "";
-    const isPeriodic =
-      sceneId === activePeriodicSceneId ||
-      scenePath.endsWith("/periodic_table_scene.json");
-    const isHydePeriodic =
-      sceneId === activeHydePeriodicSceneId ||
-      scenePath.endsWith("/hyde_periodic_table_scene.json");
+    const isPeriodic = isPeriodicTableScene(currentLevel, {
+      periodicSceneId: activePeriodicSceneId,
+    });
+    const isHydePeriodic = isHydePeriodicTableScene(currentLevel, {
+      hydePeriodicSceneId: activeHydePeriodicSceneId,
+    });
     const enteringHydePeriodic = isHydePeriodic && !hydePeriodicWasOpen;
 
     setOverlayOpenState(periodicOverlay, isPeriodic);
@@ -2106,10 +2123,7 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     const currentLevel = getCurrentLevel();
-    const isElement =
-      currentLevel && typeof currentLevel.id === "string"
-        ? currentLevel.id.startsWith("content/scenes/elements/")
-        : false;
+    const isElement = isElementScene(currentLevel);
     elementLegend.classList.toggle("is-open", isElement);
     elementLegend.setAttribute("aria-hidden", isElement ? "false" : "true");
     elementLegend.inert = !isElement;
@@ -2120,14 +2134,8 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     const currentLevel = getCurrentLevel();
-    const scenePath = currentLevel?.id ?? "";
-    const sceneId = currentLevel?.sceneId ?? "";
-    const symbolFromPath = scenePath.includes("/elements/")
-      ? scenePath.split("/").pop()?.replace(".json", "")
-      : null;
-    const symbol = (sceneId || symbolFromPath || "").trim();
-    const isElement =
-      scenePath.includes("/elements/") || /^[a-z]{1,3}$/i.test(symbol);
+    const symbol = extractElementSymbolFromScene(currentLevel)?.trim() ?? "";
+    const isElement = isElementScene(currentLevel);
 
     if (!isElement) {
       if (elementInfoPinned) {

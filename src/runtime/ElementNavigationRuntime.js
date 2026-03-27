@@ -1,3 +1,8 @@
+import {
+  extractElementSymbolFromScene,
+  isElementScene,
+} from "../services/SceneCapabilitiesService.js";
+
 export function createElementNavigationRuntime({
   buttons,
   mini,
@@ -42,24 +47,15 @@ export function createElementNavigationRuntime({
   }
 
   function isElementSceneLevel(level = getCurrentLevel?.()) {
-    return !!(
-      level &&
-      typeof level.id === "string" &&
-      level.id.startsWith("content/scenes/elements/")
-    );
+    return isElementScene(level);
   }
 
   function extractElementSymbolFromLevel(level = getCurrentLevel?.()) {
-    if (!isElementSceneLevel(level)) {
-      return null;
-    }
-    const sceneId = normalizeElementSymbol(level.sceneId);
+    const sceneId = normalizeElementSymbol(
+      extractElementSymbolFromScene(level, { scenePathPattern: elementScenePathPattern })
+    );
     if (sceneId && state.elementBySymbol.has(sceneId)) {
       return sceneId;
-    }
-    const match = normalizeElementSymbol(level.id).match(elementScenePathPattern);
-    if (match?.[1]) {
-      return match[1];
     }
     return sceneId || null;
   }

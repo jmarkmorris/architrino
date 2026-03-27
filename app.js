@@ -110,6 +110,12 @@ import { createSceneGraphManifestService } from "./src/services/SceneGraphManife
 import { createSceneStateHashService } from "./src/services/SceneStateHashService.js";
 import { createSceneBootstrapService } from "./src/services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "./src/services/SceneSearchCoordinatorService.js";
+import {
+  isAtomContextScene,
+  isAtomicParticleFocusTarget,
+  isHydePeriodicTableScene,
+  isStandardModelScene,
+} from "./src/services/SceneCapabilitiesService.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -8799,12 +8805,7 @@ function dismissZoomToastPermanently() {
 }
 
 function isHydePeriodicLevel(level = currentLevel) {
-  const sceneId = level?.sceneId;
-  const scenePath = typeof level?.id === "string" ? level.id : "";
-  return (
-    sceneId === "hyde_periodic_table" ||
-    scenePath.endsWith("/hyde_periodic_table_scene.json")
-  );
+  return isHydePeriodicTableScene(level);
 }
 
 function showZoomToastIfNeeded() {
@@ -8928,7 +8929,7 @@ function setDetailPanel(node) {
     detailBody.appendChild(row);
   };
 
-  if (currentLevel?.sceneId === "standard_model" && node.data.category) {
+  if (isStandardModelScene(currentLevel) && node.data.category) {
     appendDetailRow("Class", node.data.category);
   }
 
@@ -9945,34 +9946,10 @@ function setLevelOpacityWithFocusAndLabel(
 }
 
 function isAtomicParticleFocusTransition(level, targetNode) {
-  if (!level || !targetNode?.data) {
+  if (!isAtomContextScene(level)) {
     return false;
   }
-  const levelId = typeof level.id === "string" ? level.id.toLowerCase() : "";
-  const sceneId = typeof level.sceneId === "string" ? level.sceneId.toLowerCase() : "";
-  const isAtomContext =
-    levelId.startsWith("content/scenes/elements/") ||
-    levelId.endsWith("/nuclear/atom.json") ||
-    sceneId === "atom";
-  if (!isAtomContext) {
-    return false;
-  }
-  const category =
-    typeof targetNode.data.category === "string"
-      ? targetNode.data.category.toLowerCase()
-      : "";
-  const label =
-    typeof targetNode.data.label === "string"
-      ? targetNode.data.label.toLowerCase()
-      : "";
-  return (
-    category === "proton" ||
-    category === "neutron" ||
-    category === "electron" ||
-    label === "p" ||
-    label === "n" ||
-    label === "e"
-  );
+  return isAtomicParticleFocusTarget(targetNode);
 }
 
 function updateLevelHalo(level, timeSeconds) {
@@ -10391,7 +10368,7 @@ const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
     composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
     composerOverlay?.classList.toggle("is-reaction-app-mode", !!active);
     if (active) {
-      setComposerStatus("Use the + controls to add reactants, products, or a transmute node.");
+      setComposerStatus("Use the left and right + controls for reactants and products, and the middle + control for a transmute node.");
     }
   },
 });
