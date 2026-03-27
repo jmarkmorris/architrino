@@ -1004,6 +1004,7 @@ body {
 #composer-scene-button,
 #composer-clear-button,
 #composer-save-button,
+#composer-reaction-back-button,
 #composer-docs-button {
   display: inline-flex;
   align-items: center;
@@ -1044,6 +1045,11 @@ body {
 #composer-scene-button,
 #composer-clear-button,
 #composer-save-button {
+  padding: 0 12px;
+}
+
+#composer-reaction-back-button {
+  display: none;
   padding: 0 12px;
 }
 
@@ -1544,6 +1550,51 @@ body {
   overflow: hidden;
 }
 
+#composer-overlay.is-reaction-app-mode .composer-header {
+  padding: 10px 16px;
+  background:
+    linear-gradient(180deg, rgba(7, 11, 22, 0.98), rgba(10, 14, 28, 0.985));
+  border-bottom-color: rgba(160, 170, 220, 0.16);
+}
+
+#composer-overlay.is-reaction-app-mode .composer-header-main {
+  gap: 4px;
+}
+
+#composer-overlay.is-reaction-app-mode #composer-scene-button,
+#composer-overlay.is-reaction-app-mode #composer-clear-button,
+#composer-overlay.is-reaction-app-mode #composer-save-button,
+#composer-overlay.is-reaction-app-mode #composer-reaction-button {
+  display: none;
+}
+
+#composer-overlay.is-reaction-app-mode #composer-reaction-back-button {
+  display: inline-flex;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-workspace,
+#composer-overlay.is-reaction-app-mode .composer-main {
+  min-height: 0;
+  height: 100%;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-main {
+  padding: 0;
+  overflow: hidden;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-canvas-wrap {
+  min-height: 0;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-assembly-menu {
+  display: none !important;
+}
+
 .composer-reaction-solver {
   --solver-attachment-gap: 3px;
   --solver-anchor-size: 16px;
@@ -1562,6 +1613,13 @@ body {
 
 .composer-reaction-solver.is-open {
   display: flex;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-reaction-solver {
+  inset: 0;
+  gap: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .composer-reaction-solver[hidden],
@@ -1592,6 +1650,10 @@ body {
   grid-template-columns: minmax(0, 1fr) minmax(0, 46ch);
   align-items: start;
   gap: 14px;
+}
+
+#composer-overlay.is-reaction-app-mode .composer-reaction-solver-topbar {
+  display: none;
 }
 
 .composer-reaction-solver-topbar-copy {
@@ -1632,6 +1694,20 @@ body {
       transparent 72px
     );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+#composer-overlay.is-reaction-app-mode .composer-reaction-solver-surface {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  padding: 22px 20px 20px;
+  border: none;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(96, 132, 208, 0.16), transparent 34%),
+    radial-gradient(circle at 80% 18%, rgba(243, 198, 108, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(8, 12, 24, 0.98), rgba(10, 14, 28, 0.99));
+  box-shadow: none;
 }
 
 .composer-reaction-solver-svg {

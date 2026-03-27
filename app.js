@@ -81,6 +81,10 @@ import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
 import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
 import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
+import {
+  getComposerActiveCameraPathId,
+  resolveComposerViewportFramingState,
+} from "./src/runtime/ComposerViewportFramingRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "./src/runtime/TransitionEngine.js";
 import { SceneRepository } from "./src/services/SceneRepository.js";
@@ -158,6 +162,7 @@ const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
 const composerReactionButton = document.getElementById("composer-reaction-button");
+const composerReactionBackButton = document.getElementById("composer-reaction-back-button");
 const composerDocsButton = document.getElementById("composer-docs-button");
 const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
@@ -5752,6 +5757,11 @@ function updateComposerAnimatedViewport(timeSeconds) {
   if (!composerCurrentDocument) {
     return;
   }
+  composerCurrentViewportFramingState = resolveComposerViewportFramingState(
+    composerCurrentDocument,
+    timeSeconds,
+    getComposerSceneTimeWindow(composerCurrentDocument)
+  );
   const motionTime =
     composerEditorPreviewState.renderMotionTimeOverride != null &&
     Math.abs(timeSeconds - Number(composerEditorPreviewState.renderMotionTimePlayhead ?? NaN)) <= 0.0005
@@ -6674,39 +6684,17 @@ function addComposerAssemblyProxy(center, assembly, index) {
   composerAssemblyMeshes.push(group);
 }
 
-function resolveComposerShotInterval(shot, timeWindow) {
-  const timing = shot?.timing ?? {};
-  const start = Number(timing.start ?? timeWindow.start);
-  const fadeIn = Math.max(0, Number(timing.fadeIn ?? 0));
-  const hold = Math.max(0, Number(timing.hold ?? 0));
-  const fadeOut = Math.max(0, Number(timing.fadeOut ?? 0));
-  const end = start + fadeIn + hold + fadeOut;
-  return {
-    start,
-    end: Math.max(start, end),
-  };
-}
-
-function getComposerActiveCameraShot(documentData, timeSeconds) {
-  const shots = Array.isArray(documentData?.cameraShots) ? documentData.cameraShots : [];
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  return shots.find((shot) => {
-    const interval = resolveComposerShotInterval(shot, timeWindow);
-    return timeSeconds >= interval.start && timeSeconds <= interval.end;
-  }) ?? null;
-}
-
 function addComposerDocumentCameraVisuals(documentData) {
   if ((composerCameraFlightState?.waypoints?.length ?? 0) > 0) {
     return;
   }
   const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
   const pathById = new Map(cameraPaths.map((path) => [path.id, path]));
-  const activeCameraPathId =
-    documentData?.scene?.view?.activeCameraPath ??
-    documentData?.cameraShots?.[0]?.cameraPath ??
-    cameraPaths[0]?.id ??
-    null;
+  const activeCameraPathId = getComposerActiveCameraPathId(
+    documentData,
+    composerPlaybackState.playheadSeconds,
+    getComposerSceneTimeWindow(documentData)
+  );
   const cameraPath = activeCameraPathId ? pathById.get(activeCameraPathId) : null;
   const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
   if (!waypoints.length || !composerViewportGroup) {
@@ -7974,11 +7962,26 @@ const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
+const composerScenePath = "content/scenes/archie/composer.json";
+const reactionScenePath = "content/scenes/archie/reaction_designer.json";
 const composerSceneId = "composer";
+const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "action-items/composer/overview.md";
+
+function isComposerOverlaySceneId(sceneId = "") {
+  return (
+    sceneId === composerSceneId ||
+    sceneId === reactionSceneId ||
+    sceneId === composerPreviewSceneId
+  );
+}
+
+function shouldHideLevelForComposerOverlayScene(sceneId = "") {
+  return sceneId === composerSceneId || sceneId === reactionSceneId;
+}
 const markdownDocBadgeCharacterThreshold = 512;
 const markdownOpenCharacterThreshold = 512;
 const markdownGlowByteThreshold = 2048;
@@ -8218,6 +8221,7 @@ let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentDocument = null;
+let composerCurrentViewportFramingState = null;
 let composerPathPointInfoPill = null;
 
 function formatComposerCoordinatePillValue(value) {
@@ -9202,9 +9206,8 @@ async function jumpToScene(scenePath, options = {}) {
   if (!config) {
     return;
   }
-  const forceInstantComposerEntry =
-    config?.sceneId === composerSceneId || config?.sceneId === composerPreviewSceneId;
-  const shouldHideLevelForComposer = config?.sceneId === composerSceneId;
+  const forceInstantComposerEntry = isComposerOverlaySceneId(config?.sceneId);
+  const shouldHideLevelForComposer = shouldHideLevelForComposerOverlayScene(config?.sceneId);
   if (options.mode === "instant" || forceInstantComposerEntry) {
     purgeWorldState();
     worldGroup.position.copy(jumpWorldTarget);
@@ -10068,7 +10071,7 @@ async function startLevelTransitionFromNode(targetNode) {
     return;
   }
 
-  if (config.sceneId === composerSceneId || config.sceneId === composerPreviewSceneId) {
+  if (isComposerOverlaySceneId(config.sceneId)) {
     closeDetailPanel();
     hideHoverTooltip();
     markdownRuntime.hideMarkdownPanel();
@@ -10347,6 +10350,7 @@ const composerUiRuntime = createComposerUiRuntime({
   composerTabs,
   composerPanels,
   composerSceneId,
+  reactionSceneId,
   composerPreviewSceneId,
   composerPreviewScenePath,
   composerDocsPath,
@@ -10385,6 +10389,10 @@ const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
   storageKey: composerReactionSolverStorageKey,
   onActiveChange: (active) => {
     composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
+    composerOverlay?.classList.toggle("is-reaction-app-mode", !!active);
+    if (active) {
+      setComposerStatus("Use the + controls to add reactants, products, or a center transformer.");
+    }
   },
 });
 
@@ -10419,6 +10427,17 @@ const elementNavigationRuntime = createElementNavigationRuntime({
   isEditingTextInput,
 });
 
+function syncComposerReactionSceneState() {
+  const sceneId = currentLevel?.sceneId ?? "";
+  if (sceneId === reactionSceneId) {
+    composerReactionSolverUiRuntime.setActive(true, { persist: false, announce: false });
+    return;
+  }
+  if (!isComposerOverlaySceneId(sceneId)) {
+    composerReactionSolverUiRuntime.setActive(false, { persist: false, announce: false });
+  }
+}
+
 function updateSceneLabel() {
   sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
@@ -10432,6 +10451,7 @@ function updateSceneLabel() {
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
   composerUiRuntime.updateComposerOverlay(currentLevel);
+  syncComposerReactionSceneState();
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
   periodicOverlayRuntime.updateElementInfoPanel();
@@ -10532,6 +10552,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerDocsButton,
   composerExitButton,
   composerPreviewButton,
+  composerReactionBackButton,
   composerExportButton,
   composerLibrarySaveButton,
   composerRepoSaveButton,
@@ -10593,6 +10614,14 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   loadComposerSceneFromLibrary,
   deleteComposerSceneFromLibrary,
   isTransitionActive: () => transitionState.active,
+  exitReactionApp: () => {
+    if (currentLevel?.sceneId === reactionSceneId) {
+      composerReactionSolverUiRuntime.setActive(false, { persist: false, announce: false });
+      jumpToScene(composerScenePath, { mode: "instant" });
+      return;
+    }
+    composerReactionSolverUiRuntime.setActive(false);
+  },
   exitComposer: () => {
     if (browserBackStack.length > 0) {
       navUpButton?.click();

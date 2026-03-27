@@ -5,6 +5,7 @@ export function createComposerUiRuntime(deps) {
     composerTabs,
     composerPanels,
     composerSceneId,
+    reactionSceneId,
     composerPreviewSceneId,
     composerPreviewScenePath,
     composerDocsPath,
@@ -54,16 +55,18 @@ export function createComposerUiRuntime(deps) {
     if (!composerOverlay) {
       return;
     }
-    const isComposer =
+    const isComposerScene =
       currentLevel?.sceneId === composerSceneId ||
       currentLevel?.sceneId === composerPreviewSceneId;
-    composerOverlay.classList.toggle("is-open", !!isComposer);
-    composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
-    composerOverlay.inert = !isComposer;
+    const isReactionScene = currentLevel?.sceneId === reactionSceneId;
+    const isOverlayScene = isComposerScene || isReactionScene;
+    composerOverlay.classList.toggle("is-open", !!isOverlayScene);
+    composerOverlay.setAttribute("aria-hidden", isOverlayScene ? "false" : "true");
+    composerOverlay.inert = !isOverlayScene;
     if (app) {
-      app.classList.toggle("composer-mode", !!isComposer);
+      app.classList.toggle("composer-mode", !!isOverlayScene);
     }
-    if (isComposer) {
+    if (isComposerScene) {
       initComposerCanvas();
       deps.setComposerNeedsResize(true);
       setComposerPanel(composerActivePanel);

@@ -15,6 +15,7 @@
 - Primary style guides: `content/markdown/aaa/archie/academic-style-guide.md` and `content/markdown/aaa/archie/mathematics-style-guide.md`.
 - Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
 - For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `action-items`.
+- For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow `content/markdown/aaa/archie/software-architecture-and-maintenance.md`.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:

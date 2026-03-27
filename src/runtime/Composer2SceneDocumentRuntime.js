@@ -641,29 +641,6 @@ function createDefaultMarkers(rawMarkers, start, end) {
   return [];
 }
 
-function createDefaultCameraShots(rawCameraShots, cameraPathId, start, end) {
-  if (Array.isArray(rawCameraShots) && rawCameraShots.length) {
-    return rawCameraShots;
-  }
-  if (!cameraPathId) {
-    return [];
-  }
-  return [
-    {
-      id: "shot_main",
-      timing: {
-        start,
-        fadeIn: 0,
-        hold: Math.max(0, end - start),
-        fadeOut: 0,
-      },
-      cameraPath: cameraPathId,
-      kind: "follow",
-      framing: "medium",
-    },
-  ];
-}
-
 function normalizeAssemblies(rawAssemblies, ownerPathIds = new Map(), primaryPathId = null) {
   const source = Array.isArray(rawAssemblies) && rawAssemblies.length
     ? rawAssemblies
@@ -796,7 +773,7 @@ export function normalizeComposerSceneDocument(rawDocument = {}) {
           },
         ]
       : [],
-    cameraShots: createDefaultCameraShots(
+    cameraShots: normalizeComposerCameraShots(
       rawDocument.cameraShots,
       primaryCameraPathId,
       sceneStart,
@@ -1080,3 +1057,4 @@ export function buildComposerPreviewSceneData(document, options = {}) {
     links,
   };
 }
+import { normalizeComposerCameraShots } from "./ComposerViewportFramingRuntime.js";
