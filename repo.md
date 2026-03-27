@@ -147,6 +147,12 @@ git checkout -b codex/<element-name>
 
 Use this process after the PR has been merged successfully.
 
+Precondition:
+
+- Before leaving the just-merged branch, run `git status -sb`.
+- Continue only if the worktree is clean, or if any remaining edits have been intentionally committed or stashed.
+- Do not carry stray edits onto `main` during rollover.
+
 ### 1. Verify the PR is merged
 
 - Confirm the PR merged on GitHub before cleaning up branches.
@@ -188,6 +194,9 @@ git branch -D codex/<previous-topic>
 ```
 
 ### 4. Delete the previous working branch remotely
+
+- If the remote branch has already been deleted by GitHub or by another operator, treat that as already complete and skip this step.
+- A failure caused only by the remote branch already being absent is benign.
 
 Command:
 
