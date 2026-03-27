@@ -141,6 +141,15 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
     if (getPendingSourceKey() === nodeKey && getPendingSourceRole() === anchorRole) {
       anchor.classList.add("is-pending");
     }
+    if (
+      getPendingSourceKey() &&
+      getPendingSourceKey() !== nodeKey &&
+      (anchorRole === "product" || anchorRole === "transmute-input") &&
+      !anchorAvailability.disabled &&
+      !anchorAvailability.invalid
+    ) {
+      anchor.classList.add("is-target-ready");
+    }
     if (hasRoleMapping) {
       anchor.classList.add("is-mapped");
     }

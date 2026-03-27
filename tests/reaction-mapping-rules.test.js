@@ -64,7 +64,7 @@ test("transmute output remains invalid until outgoing ledger exactly matches inc
   assert.match(validation.reason, /remains incomplete/i);
 });
 
-test("transmute output becomes valid only when the candidate closes the ledger exactly", () => {
+test("pending transmute output target becomes available when the candidate closes the ledger exactly", () => {
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
@@ -88,8 +88,43 @@ test("transmute output becomes valid only when the candidate closes the ledger e
     },
   });
 
+  const availability = rules.evaluatePendingTargetAvailability({
+    pendingSourceKey: "transmute_b::output",
+    pendingSourceRole: "transmute-output",
+    role: "product",
+    sourceContext,
+    targetContext,
+  });
+
+  assert.equal(availability, null);
+});
+
+test("committed transmute output mapping stays valid when the existing outgoing ledger is already balanced", () => {
+  const targetParticipant = createParticipant("noether_core", "pro");
+  const targetContext = createNodeContext(targetParticipant);
+  const sourceContext = {
+    participant: { id: "transmute_c", templateId: "transmute" },
+    node: { id: "transmute_c/output" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "transmute_c::output": sourceContext,
+        "noether_core_pro::root": targetContext,
+      }[nodeKey] ?? null),
+    getTransmuteLedgerSummary: () => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 3, positrino: 3 },
+      isBalanced: true,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_b::output",
+    sourceKey: "transmute_c::output",
     targetKey: "noether_core_pro::root",
     sourceRole: "transmute-output",
     targetRole: "product",

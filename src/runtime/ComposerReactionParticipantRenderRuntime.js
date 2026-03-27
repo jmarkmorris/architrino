@@ -364,8 +364,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         button.title = choice.label;
         if (selectedChoice.id === choice.id) {
           button.classList.add("is-selected");
-        } else {
-          button.classList.add("is-dimmed");
         }
         button.appendChild(
           createBinaryGlyph(choice, {
@@ -601,8 +599,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       button.title = choice.label;
       if (selectedChoice.id === choice.id) {
         button.classList.add("is-selected");
-      } else {
-        button.classList.add("is-dimmed");
       }
       button.appendChild(
         createBinaryGlyph(choice, {

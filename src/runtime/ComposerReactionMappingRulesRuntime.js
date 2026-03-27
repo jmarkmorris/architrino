@@ -99,26 +99,26 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       ? options.resolveBinaryChoiceInventory
       : () => null;
 
-  function evaluateTransmuteOutputCandidate(transmuteId = "", candidateTargetContext = null) {
-    const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-    const candidateLedger = addLedgers(
-      transmuteSummary.outgoingLedger,
-      getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
-    );
-    if (!hasLedger(transmuteSummary.incomingLedger)) {
+  function evaluateTransmuteOutputLedger(transmuteSummary = null, outputLedger = null) {
+    const normalizedSummary = transmuteSummary ?? {
+      incomingLedger: createEmptyLedger(),
+      outgoingLedger: createEmptyLedger(),
+    };
+    const candidateLedger = normalizeLedger(outputLedger);
+    if (!hasLedger(normalizedSummary.incomingLedger)) {
       return {
         valid: false,
         reason: "Add conservative reactant inputs to this transmute node first.",
       };
     }
-    if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
+    if (!ledgerFitsWithin(normalizedSummary.incomingLedger, candidateLedger)) {
       return {
         valid: false,
-        reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
+        reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(normalizedSummary.incomingLedger)} available.`,
       };
     }
-    if (!ledgersMatch(transmuteSummary.incomingLedger, candidateLedger)) {
-      const remainingLedger = subtractLedgers(transmuteSummary.incomingLedger, candidateLedger);
+    if (!ledgersMatch(normalizedSummary.incomingLedger, candidateLedger)) {
+      const remainingLedger = subtractLedgers(normalizedSummary.incomingLedger, candidateLedger);
       return {
         valid: false,
         reason: `Center transformer output remains incomplete: ${formatLedger(remainingLedger)} still unmatched.`,
@@ -128,6 +128,15 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       valid: true,
       reason: "Transmute output is fully conservative.",
     };
+  }
+
+  function evaluateTransmuteOutputCandidate(transmuteId = "", candidateTargetContext = null) {
+    const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+    const candidateLedger = addLedgers(
+      transmuteSummary.outgoingLedger,
+      getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
+    );
+    return evaluateTransmuteOutputLedger(transmuteSummary, candidateLedger);
   }
 
   function getMappingValidation(mapping = null) {
@@ -163,7 +172,11 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {
       const { participantId: transmuteId } = parseNodeKey(mapping.sourceKey);
-      return evaluateTransmuteOutputCandidate(transmuteId, targetContext);
+      const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+      return evaluateTransmuteOutputLedger(
+        transmuteSummary,
+        transmuteSummary.outgoingLedger
+      );
     }
     return {
       valid: false,

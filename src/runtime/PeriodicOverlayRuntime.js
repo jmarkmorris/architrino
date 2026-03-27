@@ -184,7 +184,6 @@ export function createPeriodicOverlayRuntime(deps) {
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
   const hydeHotspotRadiusScale = 1.2;
-  const hydeHotspotActiveStrokeWidth = 5.8;
   const svgNamespace = "http://www.w3.org/2000/svg";
   const hydeAtomicCycleOrder = [
     1,
@@ -507,15 +506,18 @@ export function createPeriodicOverlayRuntime(deps) {
     showPeriodicTooltip(tooltipText, rect.left + rect.width / 2, rect.top + rect.height / 2);
   }
 
-  function clearActiveHydeHotspotVisual(node) {
+  function clearActiveHydeHotspotVisual(node, options = {}) {
     if (!(node instanceof Element)) {
       return;
     }
-    if (hydeActiveHotspotRing instanceof Element) {
+    const shouldRemoveActiveRing =
+      options.removeRing !== false && node === hydeActiveHotspotTarget;
+    if (shouldRemoveActiveRing && hydeActiveHotspotRing instanceof Element) {
       hydeActiveHotspotRing.remove();
       hydeActiveHotspotRing = null;
     }
     node.classList.remove("is-focused");
+    node.classList.remove("is-hovered");
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
@@ -564,20 +566,8 @@ export function createPeriodicOverlayRuntime(deps) {
       clearHoveredHydeHotspotVisual();
       return null;
     }
-    if (node === hydeActiveHotspotTarget) {
-      clearHoveredHydeHotspotVisual();
-      node.classList.add("is-hovered");
-      return node;
-    }
-    if (hydeHoverHotspotTarget === node && hydeHoverHotspotRing instanceof Element) {
-      node.classList.add("is-hovered");
-      return node;
-    }
     clearHoveredHydeHotspotVisual();
-    hydeHoverHotspotTarget = node;
-    hydeHoverHotspotTarget.classList.add("is-hovered");
-    syncHoveredHydeHotspotRing(hydeHoverHotspotTarget);
-    return hydeHoverHotspotTarget;
+    return setActiveHydeHotspot(node, { focus: false });
   }
 
   function syncActiveHydeHotspotRing(node) {
@@ -592,18 +582,30 @@ export function createPeriodicOverlayRuntime(deps) {
       hydeActiveHotspotRing.remove();
       hydeActiveHotspotRing = null;
     }
-    const ring = document.createElementNS(svgNamespace, "circle");
-    ring.classList.add("hyde-hotspot-active-ring");
-    ring.setAttribute("cx", node.getAttribute("cx") || "0");
-    ring.setAttribute("cy", node.getAttribute("cy") || "0");
-    ring.setAttribute("r", node.getAttribute("r") || "0");
     const transform = node.getAttribute("transform");
+    const cx = node.getAttribute("cx") || "0";
+    const cy = node.getAttribute("cy") || "0";
+    const radius = Number.parseFloat(node.getAttribute("r") || "0");
+    const ringGroup = document.createElementNS(svgNamespace, "g");
+    ringGroup.classList.add("hyde-hotspot-active-ring-group");
     if (transform) {
-      ring.setAttribute("transform", transform);
+      ringGroup.setAttribute("transform", transform);
     }
-    hydePeriodicGrid.appendChild(ring);
+    const outerRing = document.createElementNS(svgNamespace, "circle");
+    outerRing.classList.add("hyde-hotspot-active-ring");
+    outerRing.setAttribute("cx", cx);
+    outerRing.setAttribute("cy", cy);
+    outerRing.setAttribute("r", `${radius}`);
+    const innerRing = document.createElementNS(svgNamespace, "circle");
+    innerRing.classList.add("hyde-hotspot-active-ring-inner");
+    innerRing.setAttribute("cx", cx);
+    innerRing.setAttribute("cy", cy);
+    innerRing.setAttribute("r", `${Math.max(0, radius - 4.5)}`);
+    ringGroup.appendChild(outerRing);
+    ringGroup.appendChild(innerRing);
+    hydePeriodicGrid.appendChild(ringGroup);
     hydePeriodicGrid.appendChild(node);
-    hydeActiveHotspotRing = ring;
+    hydeActiveHotspotRing = ringGroup;
   }
 
   function applyActiveHydeHotspotVisual(node) {
@@ -611,18 +613,23 @@ export function createPeriodicOverlayRuntime(deps) {
       return;
     }
     node.classList.add("is-focused");
+    node.classList.add("is-hovered");
     if (node.classList.contains("hyde-periodic-extra-tile")) {
       return;
     }
     syncActiveHydeHotspotRing(node);
-    node.style.setProperty("fill", "rgba(148, 191, 255, 0.38)");
-    node.style.setProperty("stroke", "rgba(245, 249, 255, 0.98)");
-    node.style.setProperty("stroke-width", `${hydeHotspotActiveStrokeWidth}`);
   }
 
   function setActiveHydeHotspot(node, options = {}) {
     if (!(node instanceof Element)) {
       return null;
+    }
+    if (hydeActiveHotspotTarget === node) {
+      showHydeHotspotTooltip(hydeActiveHotspotTarget);
+      if (options.focus) {
+        hydeActiveHotspotTarget.focus({ preventScroll: true });
+      }
+      return hydeActiveHotspotTarget;
     }
     if (hydeActiveHotspotTarget && hydeActiveHotspotTarget !== node) {
       clearActiveHydeHotspotVisual(hydeActiveHotspotTarget);
@@ -1840,7 +1847,7 @@ export function createPeriodicOverlayRuntime(deps) {
       });
       circle.addEventListener("blur", () => {
         if (hydeActiveHotspotTarget !== circle) {
-          clearActiveHydeHotspotVisual(circle);
+          clearActiveHydeHotspotVisual(circle, { removeRing: false });
           hidePeriodicTooltip();
         }
       });
