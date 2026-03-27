@@ -14,17 +14,8 @@ export function openComposerMemberMenu(config) {
     resetMenu,
     appendMenuNote,
     appendMenuButtonRow,
-    appendMenuSectionHeader,
-    closeMenu,
-    renderAssemblyEditor,
-    renderJsonPreview,
-    moveMemberToRoot,
-    openMemberMenuAt,
-    createSubassemblyFromMembers,
-    openSubassemblyMenuAt,
-    removeAssemblyMember,
     openAssemblyPropertiesMenuAt,
-    moveMemberToSubassembly,
+    openSubassemblyMenuAt,
     positionMenu,
   } = config;
   if (!menu) {
@@ -37,10 +28,6 @@ export function openComposerMemberMenu(config) {
   }
   const currentSubassemblyId = getMemberSubassemblyId(assembly, normalizedMemberId);
   const memberOffset = resolveAssemblyMemberLocalOffset(assembly, normalizedMemberId);
-  const siblingSubassemblies = normalizeSubassemblyList(assembly?.subassemblies).filter(
-    (entry, index) => getSubassemblyId(entry, index) !== currentSubassemblyId
-  );
-
   resetMenu();
 
   const title = document.createElement("div");
@@ -63,79 +50,19 @@ export function openComposerMemberMenu(config) {
     menu,
     `Current local offset: ${memberOffset[0]}, ${memberOffset[1]}, ${memberOffset[2]}`
   );
+  appendMenuNote(
+    menu,
+    "Internal particle structure is read-only in the composer. Use the reaction workflow for split, regroup, remove, or other provenance-changing edits."
+  );
 
   appendMenuButtonRow(menu, [
+    { text: "Assembly Menu", onClick: () => openAssemblyPropertiesMenuAt(clientX, clientY, assemblyId) },
     currentSubassemblyId
-      ? {
-          text: "Move To Root",
-          onClick: () => {
-            const liveAssembly = getAssemblyDraftById(assemblyId);
-            if (!liveAssembly || !moveMemberToRoot(liveAssembly, normalizedMemberId)) {
-              return;
-            }
-            closeMenu();
-            renderAssemblyEditor();
-            renderJsonPreview();
-            openMemberMenuAt(clientX, clientY, assemblyId, normalizedMemberId);
-          },
-        }
-      : {
-          text: "New Subassembly",
-          onClick: () => {
-            const liveAssembly = getAssemblyDraftById(assemblyId);
-            if (!liveAssembly) {
-              return;
-            }
-            const nextSubassemblyId = createSubassemblyFromMembers(liveAssembly, [normalizedMemberId]);
-            if (!nextSubassemblyId) {
-              return;
-            }
-            closeMenu();
-            renderAssemblyEditor();
-            renderJsonPreview();
-            openSubassemblyMenuAt(clientX, clientY, assemblyId, nextSubassemblyId);
-          },
-        },
-    {
-      text: "Remove Member",
-      className: "composer-assembly-menu-danger",
-      onClick: () => {
-        const liveAssembly = getAssemblyDraftById(assemblyId);
-        if (!liveAssembly || !removeAssemblyMember(liveAssembly, normalizedMemberId)) {
-          return;
-        }
-        closeMenu();
-        renderAssemblyEditor();
-        renderJsonPreview();
-        openAssemblyPropertiesMenuAt(clientX, clientY, assemblyId);
-      },
-    },
+      ? { text: "Group Menu", onClick: () => openSubassemblyMenuAt(clientX, clientY, assemblyId, currentSubassemblyId) }
+      : null,
   ]);
 
-  if (siblingSubassemblies.length) {
-    appendMenuSectionHeader(menu, "Move To Group", `${siblingSubassemblies.length}`);
-    siblingSubassemblies.forEach((entry, index) => {
-      const targetSubassemblyId = getSubassemblyId(entry, index);
-      appendMenuButtonRow(menu, [
-        {
-          text: targetSubassemblyId,
-          onClick: () => {
-            const liveAssembly = getAssemblyDraftById(assemblyId);
-            if (!liveAssembly || !moveMemberToSubassembly(liveAssembly, normalizedMemberId, targetSubassemblyId)) {
-              return;
-            }
-            closeMenu();
-            renderAssemblyEditor();
-            renderJsonPreview();
-            openMemberMenuAt(clientX, clientY, assemblyId, normalizedMemberId);
-          },
-        },
-        null,
-      ]);
-    });
-  }
-
-  positionMenu(clientX, clientY, 320, 420);
+  positionMenu(clientX, clientY, 320, 320);
 }
 
 export function openComposerPersonalitySlotMenu(config) {
@@ -153,10 +80,6 @@ export function openComposerPersonalitySlotMenu(config) {
     getMemberState,
     resetMenu,
     appendMenuNote,
-    appendMenuButtonRow,
-    ensureAssemblyMemberRecord,
-    closeMenu,
-    renderJsonPreview,
     positionMenu,
   } = config;
   if (!menu) {
@@ -184,38 +107,17 @@ export function openComposerPersonalitySlotMenu(config) {
   appendMenuNote(
     menu,
     currentState === "unset"
-      ? "Unset slot. Choose electrino or positrino."
+      ? "Unset polar site. The composer now treats axial-site assignment as read-only."
       : currentState === "electrino"
-        ? "Electrino set. You can flip this slot to positrino."
-        : "Positrino set. You can flip this slot to electrino."
+        ? "Electrino assigned. Axial-site assignment is read-only in the composer."
+        : "Positrino assigned. Axial-site assignment is read-only in the composer."
+  );
+  appendMenuNote(
+    menu,
+    "Use the reaction workflow for provenance-changing internal edits."
   );
 
-  const setPersonalityState = (nextState) => {
-    const liveAssembly = getAssemblyDraftById(assemblyId);
-    const liveMember = ensureAssemblyMemberRecord(liveAssembly, getMemberId(member));
-    if (!liveMember) {
-      return;
-    }
-    liveMember.state = nextState;
-    closeMenu();
-    renderJsonPreview();
-  };
-
-  if (currentState === "unset") {
-    appendMenuButtonRow(menu, [
-      { text: "Set Electrino", onClick: () => setPersonalityState("electrino") },
-      { text: "Set Positrino", onClick: () => setPersonalityState("positrino") },
-    ]);
-  } else {
-    appendMenuButtonRow(menu, [
-      {
-        text: currentState === "electrino" ? "Flip To Positrino" : "Flip To Electrino",
-        onClick: () => setPersonalityState(currentState === "electrino" ? "positrino" : "electrino"),
-      },
-    ]);
-  }
-
-  positionMenu(clientX, clientY, 236, 166);
+  positionMenu(clientX, clientY, 236, 164);
   return true;
 }
 
@@ -234,10 +136,6 @@ export function openComposerSubassemblyMenu(config) {
     appendMenuNote,
     appendMenuButtonRow,
     appendMenuSectionHeader,
-    splitGroup,
-    closeMenu,
-    renderAssemblyEditor,
-    renderJsonPreview,
     openAssemblyPropertiesMenuAt,
     openMemberMenuAt,
     positionMenu,
@@ -280,19 +178,15 @@ export function openComposerSubassemblyMenu(config) {
     menu,
     `${(subassembly.members ?? []).length} member${(subassembly.members ?? []).length === 1 ? "" : "s"}`
   );
+  appendMenuNote(
+    menu,
+    "Group splitting and regrouping are being moved out of the composer and into the reaction workflow. This menu is now inspection-only."
+  );
 
   appendMenuButtonRow(menu, [
     {
-      text: "Split Group",
-      className: "composer-assembly-menu-danger",
+      text: "Assembly Menu",
       onClick: () => {
-        const liveAssembly = getAssemblyDraftById(assemblyId);
-        if (!liveAssembly || !splitGroup(liveAssembly, normalizedSubassemblyId)) {
-          return;
-        }
-        closeMenu();
-        renderAssemblyEditor();
-        renderJsonPreview();
         openAssemblyPropertiesMenuAt(clientX, clientY, assemblyId);
       },
     },
@@ -530,30 +424,9 @@ export function openComposerAssemblyPropertiesMenu(config) {
     appendMenuSectionHeader,
     appendMenuButtonRow,
     getAssemblyDraftById,
-    getAssemblyCanonicalBridgeSummary,
-    formatAssemblyCanonicalBridgeSummary,
     renderAssemblyEditor,
-    assemblyPositionInputs,
     renderJsonPreview,
-    rebaseAssemblyParentFrame,
-    syncAssemblyPositionInputs,
-    pathState,
-    normalizeAssemblyPathPoints,
-    vectorFromTriplet,
-    updatePathGeometry,
-    addAssemblyMemberByKind,
     closeMenu,
-    getAvailablePersonalitySlotCount,
-    getPersonalitySlotCapacity,
-    setStatus,
-    normalizeSubassemblyList,
-    normalizeMemberList,
-    getMemberId,
-    getSubassemblyId,
-    openMemberMenuAt,
-    openSubassemblyMenuAt,
-    startTransferFromAssembly,
-    completeTransferToAssembly,
     clearPendingTransfer,
     openAssemblyPropertiesMenuAt,
     ensureAssemblyDrafts,
@@ -580,196 +453,16 @@ export function openComposerAssemblyPropertiesMenu(config) {
   subtitle.textContent = assembly.name.trim() || assembly.id;
   menu.appendChild(subtitle);
 
-  if (pendingTransferSource?.assemblyId) {
-    const transferDraft = document.createElement("div");
-    transferDraft.className = "composer-assembly-menu-subtitle";
-    transferDraft.textContent = `Transfer from ${pendingTransferSource.assemblyId}.${pendingTransferSource.memberId}`;
-    menu.appendChild(transferDraft);
-  }
-
-  const canonicalSummary =
-    typeof getAssemblyCanonicalBridgeSummary === "function"
-      ? getAssemblyCanonicalBridgeSummary(assembly)
-      : null;
-  if (canonicalSummary && typeof formatAssemblyCanonicalBridgeSummary === "function") {
-    const canonicalBridge = document.createElement("div");
-    canonicalBridge.className = "composer-assembly-menu-subtitle";
-    canonicalBridge.textContent = `Canonical bridge: ${formatAssemblyCanonicalBridgeSummary(canonicalSummary)}`;
-    menu.appendChild(canonicalBridge);
-
-    appendMenuNote(
-      menu,
-      canonicalSummary.valid
-        ? "Canonical bridge is valid for this assembly."
-        : `Canonical bridge currently reports ${canonicalSummary.errorCount} validation issue${
-            canonicalSummary.errorCount === 1 ? "" : "s"
-          }. This menu remains read-only with respect to the canonical structure model.`
-    );
-  }
-
-  const form = document.createElement("div");
-  form.className = "composer-form";
-
-  const nameField = document.createElement("label");
-  nameField.className = "composer-field";
-  const nameLabel = document.createElement("span");
-  nameLabel.textContent = "Name";
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  nameInput.value = "";
-  nameInput.placeholder = assembly.name;
-  nameInput.addEventListener("input", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    liveAssembly.name = String(nameInput.value ?? "").trim() || assembly.name;
-    subtitle.textContent = liveAssembly.name.trim() || liveAssembly.id;
-    renderAssemblyEditor();
-    assemblyPositionInputs.set(liveAssembly.id, positionInputs);
-    renderJsonPreview();
-  });
-  nameField.append(nameLabel, nameInput);
-  form.appendChild(nameField);
-
-  const parentField = document.createElement("label");
-  parentField.className = "composer-field";
-  const parentLabel = document.createElement("span");
-  parentLabel.textContent = "Parent";
-  const parentSelect = document.createElement("select");
-  const rootOption = document.createElement("option");
-  rootOption.value = "";
-  rootOption.textContent = "Scene Root";
-  parentSelect.appendChild(rootOption);
-  assemblyDrafts.forEach((candidate) => {
-    if (candidate.id === assembly.id) {
-      return;
-    }
-    const option = document.createElement("option");
-    option.value = candidate.id;
-    option.textContent = candidate.name.trim() || candidate.id;
-    parentSelect.appendChild(option);
-  });
-  parentSelect.value = assembly.parentId || "";
-  parentSelect.addEventListener("change", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    const nextParentId = parentSelect.value;
-    rebaseAssemblyParentFrame(liveAssembly, nextParentId);
-    liveAssembly.parentId = nextParentId;
-    syncAssemblyPositionInputs(liveAssembly.id, liveAssembly.position);
-    if (pathState.ownerAssemblyId === liveAssembly.id) {
-      pathState.points = normalizeAssemblyPathPoints(liveAssembly.pathPoints).map((point) =>
-        vectorFromTriplet(point)
-      );
-      updatePathGeometry();
-    }
-    renderJsonPreview();
-  });
-  parentField.append(parentLabel, parentSelect);
-  form.appendChild(parentField);
-
-  const positionGrid = document.createElement("div");
-  positionGrid.className = "composer-assembly-menu-grid-3";
-  const positionInputs = [];
-  ["X", "Y", "Z"].forEach((axis, axisIndex) => {
-    const axisField = document.createElement("label");
-    axisField.className = "composer-field";
-    const axisLabel = document.createElement("span");
-    axisLabel.textContent = axis;
-    const axisInput = document.createElement("input");
-    axisInput.type = "number";
-    axisInput.step = "0.1";
-    axisInput.value = String(Number(assembly.position?.[axisIndex] ?? 0));
-    axisInput.addEventListener("input", () => {
-      const liveAssembly = getAssemblyDraftById(assembly.id);
-      if (!liveAssembly) {
-        return;
-      }
-      const nextPosition = Array.isArray(liveAssembly.position) ? [...liveAssembly.position] : [0, 0, 0];
-      nextPosition[axisIndex] = Number(axisInput.value) || 0;
-      liveAssembly.position = nextPosition;
-      renderJsonPreview();
-    });
-    positionInputs[axisIndex] = axisInput;
-    axisField.append(axisLabel, axisInput);
-    positionGrid.appendChild(axisField);
-  });
-  assemblyPositionInputs.set(assembly.id, positionInputs);
-  form.appendChild(positionGrid);
-  menu.appendChild(form);
-
   appendMenuNote(
     menu,
-    "Canvas-first structure: drag the center to move the assembly, drag member dots to place members, drag subassembly halos to place groups, and right-click visible handles for focused actions."
+    "Canvas-first staging: drag the center to move the assembly, drag path points directly, and use scene-level controls rather than form fields for canvas work."
   );
 
   appendMenuSectionHeader(menu, "Structure", `${Array.isArray(assembly.members) ? assembly.members.length : 0}`);
-
-  const actions = document.createElement("div");
-  actions.className = "composer-button-row";
-  const addPositrinoButton = document.createElement("button");
-  addPositrinoButton.type = "button";
-  addPositrinoButton.textContent = "Add Positrino";
-  addPositrinoButton.addEventListener("click", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly || !addAssemblyMemberByKind(liveAssembly, "positrino")) {
-      return;
-    }
-    closeMenu();
-    renderAssemblyEditor();
-    renderJsonPreview();
-    openAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
-  });
-  actions.appendChild(addPositrinoButton);
-
-  const addElectrinoButton = document.createElement("button");
-  addElectrinoButton.type = "button";
-  addElectrinoButton.textContent = "Add Electrino";
-  addElectrinoButton.addEventListener("click", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly || !addAssemblyMemberByKind(liveAssembly, "electrino")) {
-      return;
-    }
-    closeMenu();
-    renderAssemblyEditor();
-    renderJsonPreview();
-    openAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
-  });
-  actions.appendChild(addElectrinoButton);
-
-  const addPairButton = document.createElement("button");
-  addPairButton.type = "button";
-  addPairButton.textContent = "Add Pair";
-  addPairButton.addEventListener("click", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    const hasCore = Array.isArray(liveAssembly?.core?.shells) && liveAssembly.core.shells.length > 0;
-    if (hasCore && getAvailablePersonalitySlotCount(liveAssembly) < 2) {
-      setStatus(
-        `Not enough personality slots remain for a pair. ${getAvailablePersonalitySlotCount(liveAssembly)} of ${getPersonalitySlotCapacity(liveAssembly)} slot${
-          getPersonalitySlotCapacity(liveAssembly) === 1 ? "" : "s"
-        } available.`
-      );
-      return;
-    }
-    if (!addAssemblyMemberByKind(liveAssembly, "positrino")) {
-      return;
-    }
-    if (!addAssemblyMemberByKind(liveAssembly, "electrino")) {
-      return;
-    }
-    closeMenu();
-    renderAssemblyEditor();
-    renderJsonPreview();
-    openAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
-  });
-  actions.appendChild(addPairButton);
-  menu.appendChild(actions);
+  appendMenuNote(
+    menu,
+    "Internal particle structure is now treated as read-only in the composer. Use the reaction workflow to split, regroup, remove constituents, or author provenance-changing edits."
+  );
 
   const structureActions = document.createElement("div");
   structureActions.className = "composer-button-row";
@@ -782,81 +475,17 @@ export function openComposerAssemblyPropertiesMenu(config) {
     renderJsonPreview();
   });
   structureActions.appendChild(pathButton);
-
-  const clearMembersButton = document.createElement("button");
-  clearMembersButton.type = "button";
-  clearMembersButton.textContent = "Clear Members";
-  clearMembersButton.addEventListener("click", () => {
-    const liveAssembly = getAssemblyDraftById(assembly.id);
-    if (!liveAssembly) {
-      return;
-    }
-    liveAssembly.members = [];
-    liveAssembly.subassemblies = [];
-    closeMenu();
-    renderAssemblyEditor();
-    renderJsonPreview();
-    openAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
-  });
-  structureActions.appendChild(clearMembersButton);
   menu.appendChild(structureActions);
 
-  const subassemblies = normalizeSubassemblyList(assembly.subassemblies);
-  const childMemberIds = new Set(subassemblies.flatMap((entry) => entry?.members ?? []));
-  const rootMembers = normalizeMemberList(assembly.members).filter(
-    (entry, memberIndex) => !childMemberIds.has(getMemberId(entry, memberIndex))
-  );
-
-  if (rootMembers.length) {
-    appendMenuSectionHeader(menu, "Root Members", `${rootMembers.length}`);
-    rootMembers.forEach((entry, memberIndex) => {
-      const memberId = getMemberId(entry, memberIndex);
-      appendMenuButtonRow(menu, [
-        { text: memberId, onClick: () => openMemberMenuAt(clientX, clientY, assembly.id, memberId) },
-        null,
-      ]);
-    });
-  }
-
-  if (subassemblies.length) {
-    appendMenuSectionHeader(menu, "Subassemblies", `${subassemblies.length}`);
-    subassemblies.forEach((entry, subassemblyIndex) => {
-      const subassemblyId = getSubassemblyId(entry, subassemblyIndex);
-      appendMenuButtonRow(menu, [
-        {
-          text: `${subassemblyId} (${(entry.members ?? []).length})`,
-          onClick: () => openSubassemblyMenuAt(clientX, clientY, assembly.id, subassemblyId),
-        },
-        null,
-      ]);
-    });
-  }
-
-  appendMenuSectionHeader(menu, "Transfers");
-  const transferButton = document.createElement("button");
-  transferButton.type = "button";
-  transferButton.textContent =
-    pendingTransferSource?.assemblyId && pendingTransferSource.assemblyId !== assembly.id
-      ? "Complete Transfer Here"
-      : "Start Transfer From Here";
-  transferButton.addEventListener("click", () => {
-    const didUpdate =
-      pendingTransferSource?.assemblyId && pendingTransferSource.assemblyId !== assembly.id
-        ? completeTransferToAssembly(assembly)
-        : startTransferFromAssembly(assembly);
-    if (!didUpdate) {
-      return;
-    }
-    closeMenu();
-    renderJsonPreview();
-    openAssemblyPropertiesMenuAt(clientX, clientY, assembly.id);
-  });
-  menu.appendChild(transferButton);
-
   if (pendingTransferSource?.assemblyId) {
+    appendMenuSectionHeader(menu, "Legacy Transfer Draft");
+    appendMenuNote(
+      menu,
+      `A previous canvas transfer draft from ${pendingTransferSource.assemblyId}.${pendingTransferSource.memberId} is still present. New transfer drafting is being retired from the composer.`
+    );
     const cancelTransferButton = document.createElement("button");
     cancelTransferButton.type = "button";
-    cancelTransferButton.textContent = "Cancel Transfer Draft";
+    cancelTransferButton.textContent = "Cancel Legacy Transfer Draft";
     cancelTransferButton.addEventListener("click", () => {
       clearPendingTransfer();
       closeMenu();
@@ -912,7 +541,7 @@ export function openComposerAssemblyPropertiesMenu(config) {
     renderJsonPreview();
   });
   menu.appendChild(removeButton);
-  positionMenu(clientX, clientY, 320, 720);
+  positionMenu(clientX, clientY, 320, 560);
 }
 
 export function openComposerPathPointMenu(config) {

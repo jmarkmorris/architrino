@@ -205,6 +205,7 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
 }
 
 function buildCompositeParticleDescriptorTree(structureRoot) {
+  const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
   const family = String(structureRoot?.classification?.family ?? "").trim();
   if (family === STRUCTURE_CLASSIFICATION_FAMILIES.BARYON) {
     return [{
@@ -233,18 +234,31 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
     }];
   }
 
-  if (String(structureRoot?.species ?? "").trim() === "higgs_cluster") {
+  if (normalizedSpecies === "higgs_cluster") {
     return buildCoreAssemblyDescriptorTree(structureRoot, "Higgs cluster");
   }
 
-  if (String(structureRoot?.species ?? "").trim() === "photon") {
+  if (normalizedSpecies === "photon") {
     return buildCoreAssemblyDescriptorTree(structureRoot, "Photon");
   }
 
-  if (String(structureRoot?.species ?? "").trim() === "transmute") {
+  if (
+    normalizedSpecies === "transmute" ||
+    normalizedSpecies === "associate" ||
+    normalizedSpecies === "dissociate"
+  ) {
     return [{
       id: String(structureRoot?.id ?? "root"),
-      label: String(structureRoot?.label ?? "Transmute").trim() || "Transmute",
+      label:
+        String(
+          structureRoot?.label ??
+            (normalizedSpecies === "associate"
+              ? "Associate"
+              : normalizedSpecies === "dissociate"
+                ? "Dissociate"
+                : "Transmute")
+        ).trim() ||
+        "Transmute",
       renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
       children: [],
     }];
@@ -328,11 +342,25 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
   }
   if (
     structureRoot.kind === STRUCTURE_KINDS.COMPOSITE &&
-    String(structureRoot?.species ?? "").trim() === "transmute"
+    (
+      String(structureRoot?.species ?? "").trim() === "transmute" ||
+      String(structureRoot?.species ?? "").trim() === "associate" ||
+      String(structureRoot?.species ?? "").trim() === "dissociate"
+    )
   ) {
+    const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
     return [{
       id: String(structureRoot?.id ?? "root"),
-      label: String(structureRoot?.label ?? "Transmute").trim() || "Transmute",
+      label:
+        String(
+          structureRoot?.label ??
+            (normalizedSpecies === "associate"
+              ? "Associate"
+              : normalizedSpecies === "dissociate"
+                ? "Dissociate"
+                : "Transmute")
+        ).trim() ||
+        "Transmute",
       renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
       children: [],
     }];

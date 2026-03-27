@@ -15,7 +15,7 @@ export const composerReactionRuleRegistry = Object.freeze([
     id: "prevent-invalid-product-targets",
     category: "ui",
     description:
-      "When a reactant source is selected, product targets that do not conserve inventory should gray out and deactivate.",
+      "When a connection breaks a rule, keep the mapping visible and flag the offending path instead of hiding the target.",
   },
 ]);
 

@@ -226,18 +226,19 @@ function createPhotonNode(id, options = {}) {
   });
 }
 
-function createTransmuteNode(id, options = {}) {
+function createCenterTransformerNode(id, species, options = {}) {
+  const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "transmute";
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.COMPOSITE,
-    species: "transmute",
-    label: options.label ?? "Transmute",
+    species: normalizedSpecies,
+    label: options.label ?? normalizedSpecies,
     classification: {
       family: STRUCTURE_CLASSIFICATION_FAMILIES.EXOTIC,
       source: "authored_override",
     },
     traits: {
-      variant: "transmute_junction",
+      variant: "center_transformer",
       allowNonCanonicalChildren: true,
     },
     children: [],
@@ -333,8 +334,20 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       polarity,
       occupiedSlots,
     });
-  } else if (normalizedTemplateId === "transmute") {
-    root = createTransmuteNode(structureId, { label: label || "Transmute" });
+  } else if (
+    normalizedTemplateId === "transmute" ||
+    normalizedTemplateId === "associate" ||
+    normalizedTemplateId === "dissociate"
+  ) {
+    root = createCenterTransformerNode(structureId, normalizedTemplateId, {
+      label:
+        label ||
+        (normalizedTemplateId === "associate"
+          ? "Associate"
+          : normalizedTemplateId === "dissociate"
+            ? "Dissociate"
+            : "Transmute"),
+    });
   } else if (normalizedTemplateId === "fermion_gen1") {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {
       label: label || "Gen I Fermion",

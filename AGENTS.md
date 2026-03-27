@@ -31,7 +31,7 @@
 - When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
-- The user-visible composer header version in `index.html` should increment by `1` on each code-changing turn. The baseline has been reset to `v1`; the next code-changing turn should become `v2`.
+- The user-visible composer header should remain timestamp-only; do not prepend version labels.
 
 ## SWE Architecture and Modularity
 

@@ -6,7 +6,7 @@ $$
 $$
 states.
 
-The point of the note is not to replace the canonical axis-based quark construction in [quarks.md](../content/markdown/aaa/assemblies/fermions/quarks.md). It is to ask what the radial three-slot bookkeeping sees before any stronger dynamical or symmetry argument is imposed.
+The point of the note is not to replace the canonical axis-based quark construction in [quarks.md](../../content/markdown/aaa/assemblies/fermions/quarks.md). It is to ask what the radial three-slot bookkeeping sees before any stronger dynamical or symmetry argument is imposed.
 
 ## Composition classes and resulting sectors
 
@@ -83,7 +83,7 @@ So the mixed class $B^0$ changes ordering structure without changing net charge 
 Within this bookkeeping:
 
 - up-type quarks occupy the composition class $(B^0,B^+,B^+)$ up to permutation;
-- down-type quarks currently admit two allowed classes in [quarks.md](../content/markdown/aaa/assemblies/fermions/quarks.md):
+- down-type quarks currently admit two allowed classes in [quarks.md](../../content/markdown/aaa/assemblies/fermions/quarks.md):
   - $(B^+,B^-,B^-)$ up to permutation;
   - $(B^-,B^0,B^0)$ up to permutation.
 
@@ -109,7 +109,7 @@ The radial $3 \times 3$ matrix looks like a good microscopic ledger:
 - it makes the two allowed down-type families visible immediately;
 - it provides a clean basis for asking which slot permutations might later be identified with color, generation, handedness, or another ordering datum.
 
-What it does **not** yet establish is that quark color can be read directly as `Inner/Middle/Outer`. That stronger claim needs a separate bridge to the canonical ordered-axis construction in [quarks.md](../content/markdown/aaa/assemblies/fermions/quarks.md).
+What it does **not** yet establish is that quark color can be read directly as `Inner/Middle/Outer`. That stronger claim needs a separate bridge to the canonical ordered-axis construction in [quarks.md](../../content/markdown/aaa/assemblies/fermions/quarks.md).
 
 ## Next theoretical targets
 
