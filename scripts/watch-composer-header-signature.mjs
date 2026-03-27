@@ -1,24 +1,66 @@
-import { watch } from "node:fs";
+import { statSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawn } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "..");
-const WATCH_IGNORED_SEGMENTS = new Set([".git", ".tmp"]);
+const OUTPUT_PATH = resolve(REPO_ROOT, ".tmp/composer-header-signature.json");
 const GENERATE_SCRIPT_PATH = resolve(SCRIPT_DIR, "generate-composer-header-signature.mjs");
 const REGEN_DEBOUNCE_MS = 200;
+const POLL_INTERVAL_MS = 1000;
 
 let regenTimeoutId = null;
 let isClosed = false;
+let pollIntervalId = null;
+let lastFingerprint = "";
 
-function shouldIgnore(relativePath) {
-  if (typeof relativePath !== "string" || !relativePath) {
-    return false;
+function runGit(args) {
+  try {
+    return execFileSync("git", args, {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch (_error) {
+    return "";
   }
-  return relativePath
-    .split(/[\\/]+/)
-    .some((segment) => WATCH_IGNORED_SEGMENTS.has(segment));
+}
+
+function listGitFiles(args) {
+  return runGit(args)
+    .split(/\r?\n/g)
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+function getRepoFingerprint() {
+  const trackedFiles = listGitFiles(["ls-files"]);
+  const untrackedFiles = listGitFiles(["ls-files", "--others", "--exclude-standard"]);
+  const files = [...new Set([...trackedFiles, ...untrackedFiles])]
+    .map((relativePath) => resolve(REPO_ROOT, relativePath))
+    .filter((absolutePath) => absolutePath !== OUTPUT_PATH);
+  let latestMs = 0;
+  let latestPath = "";
+  files.forEach((absolutePath) => {
+    try {
+      const candidateMs = Number(statSync(absolutePath).mtimeMs);
+      if (!Number.isFinite(candidateMs)) {
+        return;
+      }
+      if (candidateMs > latestMs) {
+        latestMs = candidateMs;
+        latestPath = absolutePath;
+      }
+    } catch (_error) {
+      // Ignore files that disappeared during the scan.
+    }
+  });
+  return JSON.stringify({
+    fileCount: files.length,
+    latestMs: Math.round(latestMs),
+    latestPath,
+  });
 }
 
 function runGenerator() {
@@ -49,21 +91,21 @@ function scheduleRegeneration() {
   }, REGEN_DEBOUNCE_MS);
 }
 
-await runGenerator();
-
-const watcher = watch(
-  REPO_ROOT,
-  {
-    recursive: true,
-  },
-  (_eventType, filename) => {
-    const relativePath = typeof filename === "string" ? filename : String(filename ?? "");
-    if (shouldIgnore(relativePath)) {
+async function startPolling() {
+  await runGenerator();
+  lastFingerprint = getRepoFingerprint();
+  pollIntervalId = setInterval(() => {
+    if (isClosed) {
       return;
     }
+    const nextFingerprint = getRepoFingerprint();
+    if (nextFingerprint === lastFingerprint) {
+      return;
+    }
+    lastFingerprint = nextFingerprint;
     scheduleRegeneration();
-  }
-);
+  }, POLL_INTERVAL_MS);
+}
 
 function closeWatcher() {
   if (isClosed) {
@@ -74,7 +116,10 @@ function closeWatcher() {
     clearTimeout(regenTimeoutId);
     regenTimeoutId = null;
   }
-  watcher.close();
+  if (pollIntervalId !== null) {
+    clearInterval(pollIntervalId);
+    pollIntervalId = null;
+  }
 }
 
 process.on("SIGINT", () => {
@@ -86,6 +131,8 @@ process.on("SIGTERM", () => {
   closeWatcher();
   process.exit(0);
 });
+
+await startPolling();
 
 process.stdout.write(
   `watching composer header signature in ${REPO_ROOT}${sep}\n`

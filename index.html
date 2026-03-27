@@ -191,7 +191,8 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div id="composer-title" class="composer-title">Loading signature...</div>
+            <div id="composer-title" class="composer-title">Composer v8 • Loading signature...</div>
+            <div id="composer-status" class="composer-header-status" aria-live="polite"></div>
           </div>
           <div class="composer-actions">
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
@@ -210,6 +211,13 @@
               aria-pressed="false"
             >
               Reaction
+            </button>
+            <button
+              id="composer-reaction-back-button"
+              type="button"
+              aria-label="Return to composer canvas"
+            >
+              Composer
             </button>
             <button
               id="composer-docs-button"
@@ -247,7 +255,7 @@
                     id="composer-reaction-solver-hint"
                     class="composer-reaction-solver-hint"
                   >
-                    Use the + controls to add reactants, products, or a center transformer.
+                    Use the left and right + controls for reactants and products, and the middle + control for a transmute node.
                   </div>
                 </div>
                 <div

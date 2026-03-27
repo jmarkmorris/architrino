@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,6 +20,14 @@ function runGit(args) {
   }
 }
 
+function listGitFiles(args) {
+  const output = runGit(args);
+  return output
+    .split(/\r?\n/g)
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
 function readFileIfPresent(path) {
   try {
     return readFileSync(path, "utf8");
@@ -28,14 +36,42 @@ function readFileIfPresent(path) {
   }
 }
 
+function getRepoContentPaths() {
+  const trackedFiles = listGitFiles(["ls-files"]);
+  const untrackedFiles = listGitFiles(["ls-files", "--others", "--exclude-standard"]);
+  return [...new Set([...trackedFiles, ...untrackedFiles])]
+    .map((relativePath) => resolve(REPO_ROOT, relativePath))
+    .filter((absolutePath) => absolutePath !== OUTPUT_PATH);
+}
+
+function getLatestRepoChangeDate() {
+  const contentPaths = getRepoContentPaths();
+  let latestMs = Number.NaN;
+  for (const absolutePath of contentPaths) {
+    try {
+      const stats = statSync(absolutePath);
+      const candidateMs = Number(stats.mtimeMs);
+      if (!Number.isFinite(candidateMs)) {
+        continue;
+      }
+      if (!Number.isFinite(latestMs) || candidateMs > latestMs) {
+        latestMs = candidateMs;
+      }
+    } catch (_error) {
+      // Ignore files that disappeared between git listing and stat.
+    }
+  }
+  return Number.isFinite(latestMs) ? new Date(latestMs) : new Date();
+}
+
 function buildSignaturePayload() {
   const shortSha = runGit(["rev-parse", "--short", "HEAD"]) || "unknown";
-  const dirtyStatus = runGit(["status", "--short", "--untracked-files=no"]);
+  const dirtyStatus = runGit(["status", "--short"]);
   return {
     comment: GENERATED_COMMENT,
     shortSha,
     dirty: dirtyStatus.length > 0,
-    generatedAt: new Date().toISOString(),
+    generatedAt: getLatestRepoChangeDate().toISOString(),
   };
 }
 

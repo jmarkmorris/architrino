@@ -17,7 +17,7 @@
       },
       {
         "nodeId": "reaction_designer",
-        "scenePath": "content/scenes/archie/composer.json"
+        "scenePath": "content/scenes/archie/reaction_designer.json"
       },
       {
         "nodeId": "hyde_periodic_table",

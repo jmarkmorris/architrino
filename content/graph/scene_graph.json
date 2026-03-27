@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 418,
-      "edges": 1164,
-      "scenes": 289,
+      "nodes": 420,
+      "edges": 1165,
+      "scenes": 290,
       "markdownIndexes": 0,
-      "markdownDocs": 129,
+      "markdownDocs": 130,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1883,6 +1883,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "reaction_designer",
+      "name": "Reaction Designer",
+      "path": "content/scenes/archie/reaction_designer.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -1946,6 +1952,12 @@
       "id": "content/markdown/aaa/archie/scene-taxonomy.md",
       "name": "Scene Taxonomy",
       "path": "content/markdown/aaa/archie/scene-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2773,6 +2785,15 @@
       "name": "Project",
       "path": "content/scenes/archie/project.json",
       "searchTarget": "content/scenes/archie/project.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/reaction_designer.json",
+      "nodeType": "scene",
+      "id": "reaction_designer",
+      "name": "Reaction Designer",
+      "path": "content/scenes/archie/reaction_designer.json",
+      "searchTarget": "content/scenes/archie/reaction_designer.json",
       "implicit": false
     },
     {
@@ -5359,6 +5380,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "searchTarget": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/support-architrino-research.md",
@@ -6428,6 +6458,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/reaction_designer.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",

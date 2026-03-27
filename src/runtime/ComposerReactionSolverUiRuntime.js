@@ -1,7 +1,6 @@
 import {
-  classifyComposerReactionNode,
-  evaluateComposerReactionMappingCandidate,
-} from "./ComposerReactionStructureMappingRuntime.js";
+  createComposerReactionMappingRulesRuntime,
+} from "./ComposerReactionMappingRulesRuntime.js";
 import {
   createComposerReactionParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
@@ -26,6 +25,11 @@ import {
   buildReactionParticipantStructureForPickerCell,
   getComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
+import {
+  getReactionCompositeModeLabel,
+  normalizeReactionCompositeMode,
+  supportsReactionCompositeModes,
+} from "./ComposerReactionCompositeModeRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import {
   createComposerReactionParticipantRenderRuntime,
@@ -78,6 +82,9 @@ const centerTransformerEntries = Object.freeze([
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
+const addableCenterTransformerEntries = Object.freeze(
+  centerTransformerEntries.filter((entry) => entry.templateId === "transmute")
+);
 const centerTransformerTemplateIds = new Set(
   centerTransformerEntries.map((entry) => entry.templateId)
 );
@@ -346,6 +353,36 @@ function getParticipantCardMeta(participant = null) {
   return baseMeta;
 }
 
+function syncParticipantCompositeMode(participant) {
+  if (!participant) {
+    return "";
+  }
+  const nextMode = supportsReactionCompositeModes(participant.templateId)
+    ? normalizeReactionCompositeMode(
+        participant.templateId,
+        participant.compositeMode,
+        participant.side
+      )
+    : "";
+  if (nextMode) {
+    participant.compositeMode = nextMode;
+    return nextMode;
+  }
+  delete participant.compositeMode;
+  return "";
+}
+
+function getParticipantCompositeModeLabel(participant) {
+  const mode = supportsReactionCompositeModes(participant?.templateId)
+    ? normalizeReactionCompositeMode(
+        participant?.templateId,
+        participant?.compositeMode,
+        participant?.side
+      )
+    : "";
+  return mode ? getReactionCompositeModeLabel(mode) : "";
+}
+
 function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplateId === "noether_core") {
@@ -483,14 +520,14 @@ const transmuteParticipantWidthPx = 126;
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
-const transmuteColumnCount = 3;
+const transmuteColumnCount = 1;
 const transmuteColumnEdgePaddingPx = 18;
 const solverRouteAnchorGapPx = 0.25;
 const centerTransformerGraphicConnectionStepPx = 79;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
-    side === "product" ? "product" : side === "center" ? "center transformer" : "reactant";
+    side === "product" ? "product" : side === "center" ? "transmute node" : "reactant";
   if (!options.capitalized) {
     return label;
   }
@@ -599,6 +636,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
   let syncCenterTransformerOperatorFan = () => {};
+  const mappingRulesRuntime = createComposerReactionMappingRulesRuntime({
+    getNodeContext,
+    getTransmuteLedgerSummary,
+    parseNodeKey,
+    resolveBinaryChoiceInventory,
+  });
 
   const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
     canTargetMappingRole,
@@ -610,62 +653,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     isSingleMappingAnchorRole,
     onRecentStateChange: () => applyHoveredRouteState(),
     recentRouteFadeMs,
-    resolvePendingTargetAvailability: ({
-      pendingSourceKey,
-      pendingSourceRole,
-      role,
-      sourceContext,
-      targetContext,
-    }) => {
-      if (pendingSourceRole === "reactant" && role === "product") {
-        const evaluation = evaluateComposerReactionMappingCandidate({
-          sourceParticipant: sourceContext?.participant,
-          sourceNode: sourceContext?.node,
-          targetParticipant: targetContext?.participant,
-          targetNode: targetContext?.node,
-          resolveBinaryChoiceInventory,
-        });
-        if (!evaluation.allowed) {
-          return {
-            disabled: false,
-            reason: evaluation.reason,
-            invalid: true,
-          };
-        }
-      }
-      if (pendingSourceRole === "transmute-output" && role === "product") {
-        const transmuteId = parseNodeKey(pendingSourceKey).participantId;
-        const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-        const candidateLedger = addLedgers(
-          transmuteSummary.outgoingLedger,
-          classifyComposerReactionNode(targetContext?.participant, targetContext?.node, {
-            resolveBinaryChoiceInventory,
-          })?.inventory
-        );
-        if (!hasLedger(transmuteSummary.incomingLedger)) {
-          return {
-            disabled: false,
-            reason: "Add conservative reactant inputs to this center transformer first.",
-            invalid: true,
-          };
-        }
-        if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
-          return {
-            disabled: false,
-            reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
-            invalid: true,
-          };
-        }
-      }
-      if (pendingSourceRole === "transmute-output" && role === "transmute-input") {
-        return {
-          disabled: false,
-          reason: "Center transformer outputs connect to product targets only.",
-          invalid: true,
-        };
-      }
-      return null;
-    },
+    resolvePendingTargetAvailability: (payload) =>
+      mappingRulesRuntime.evaluatePendingTargetAvailability(payload),
     setRecentMappingIds: (mappingIds) => {
       state.recentMappingIds = Array.isArray(mappingIds) ? mappingIds : [];
     },
@@ -823,6 +812,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     participant.hierarchy = buildParticipantHierarchy(participantStructure.root, hierarchy);
     syncParticipantHierarchyForPolarity(participant);
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
+    syncParticipantCompositeMode(participant);
     return participant;
   }
 
@@ -948,12 +938,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function getNodeLedger(nodeKey) {
     const context = getNodeContext(nodeKey);
-    const spec = context
-      ? classifyComposerReactionNode(context.participant, context.node, {
-          resolveBinaryChoiceInventory,
-        })
-      : null;
-    return spec?.inventory ?? createEmptyLedger();
+    return mappingRulesRuntime.getNodeLedgerFromContext(
+      context,
+      resolveBinaryChoiceInventory
+    );
   }
 
   function getTransmuteLedgerSummary(participantId) {
@@ -1054,6 +1042,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     refreshParticipantFromStructure(participant, nextStructure, {
       preserveBinarySelections: true,
     });
+    syncParticipantCompositeMode(participant);
     closeMenu();
     render();
     setStatus(
@@ -1072,6 +1061,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     refreshParticipantFromStructure(participant, nextStructure, {
       preserveBinarySelections: true,
     });
+    syncParticipantCompositeMode(participant);
     closeMenu();
     render();
     setStatus(
@@ -1112,7 +1102,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster split into four Noether core assemblies.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster dissociated into four Noether core assemblies.`
     );
     return true;
   }
@@ -1156,14 +1146,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     removeMappingsForParticipant(participantId);
     closeMenu();
     render();
-    const splitSummary =
+    const dissociationSummary =
       participant.templateId === "photon"
-        ? "split into pro and anti Noether core assemblies."
+        ? "dissociated into pro and anti Noether core assemblies."
         : participant.templateId === "higgs_cluster"
-          ? "split into four Noether core assemblies."
-          : "split into constituent quarks.";
+          ? "dissociated into four Noether core assemblies."
+          : "dissociated into constituent quarks.";
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${splitSummary}`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${dissociationSummary}`
     );
     return true;
   }
@@ -1424,22 +1414,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
       side === "product"
         ? "Add product"
         : side === "center"
-          ? `Add center transformer in middle column ${centerColumnIndex + 1}`
+          ? "Add transmute node"
           : "Add reactant"
     );
-    if (
-      state.menuOpen &&
-      ((state.menuMode === "template-grid-picker" && state.menuSide === side) ||
-        (side === "center" &&
-          state.menuMode === "center-transform-picker" &&
-          state.menuCenterColumnIndex === centerColumnIndex))
-    ) {
+    if (state.menuOpen && state.menuMode === "template-grid-picker" && state.menuSide === side) {
       button.classList.add("is-active");
     }
     button.textContent = "+";
     if (side === "center") {
-      button.addEventListener("click", (event) =>
-        openCenterTransformPicker(centerColumnIndex, event.currentTarget)
+      button.addEventListener("click", () =>
+        addCenterTransformerParticipant(
+          addableCenterTransformerEntries[0]?.templateId ?? "transmute",
+          centerColumnIndex
+        )
       );
     } else {
       button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
@@ -1462,9 +1449,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createCenterAddControls() {
     const controls = document.createElement("div");
     controls.className = "composer-reaction-solver-center-add-controls";
-    Array.from({ length: transmuteColumnCount }, (_, columnIndex) => {
-      controls.appendChild(createColumnAddControl("center", { centerColumnIndex: columnIndex }));
-    });
+    controls.appendChild(createColumnAddControl("center", { centerColumnIndex: 0 }));
     return controls;
   }
 
@@ -1496,32 +1481,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.menuAnchorElement = triggerElement;
     state.menuMode = "template-grid-picker";
     state.menuSide = resolvedSide;
-    state.menuParticipantId = "";
-    state.menuOpen = true;
-    renderMenu();
-  }
-
-  function openCenterTransformPicker(centerColumnIndex = 1, triggerElement = null) {
-    if (!state.active || !menu || !triggerElement) {
-      return;
-    }
-    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
-    if (
-      state.menuOpen &&
-      state.menuMode === "center-transform-picker" &&
-      state.menuCenterColumnIndex === resolvedColumnIndex
-    ) {
-      closeMenu();
-      return;
-    }
-    closeExternalMenus();
-    const bounds = triggerElement.getBoundingClientRect();
-    state.menuClientX = bounds.left + bounds.width / 2;
-    state.menuClientY = bounds.bottom + 10;
-    state.menuAnchorElement = triggerElement;
-    state.menuMode = "center-transform-picker";
-    state.menuSide = "center";
-    state.menuCenterColumnIndex = resolvedColumnIndex;
     state.menuParticipantId = "";
     state.menuOpen = true;
     renderMenu();
@@ -1578,8 +1537,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceKey = "";
     closeMenu();
     render();
+    const compositeModeLabel = getParticipantCompositeModeLabel(participant);
     setStatus(
-      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver.`
+      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver${
+        compositeModeLabel ? ` in ${compositeModeLabel.toLowerCase()} mode` : ""
+      }.`
     );
   }
 
@@ -1601,8 +1563,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceRole = "";
     closeMenu();
     render();
+    const compositeModeLabel = getParticipantCompositeModeLabel(participant);
     setStatus(
-      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver.`
+      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver${
+        compositeModeLabel ? ` in ${compositeModeLabel.toLowerCase()} mode` : ""
+      }.`
     );
   }
 
@@ -1632,7 +1597,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceRole = "";
     closeMenu();
     render();
-    setStatus(`${participant.label} transformer added to the reaction solver.`);
+    setStatus(`${participant.label} transmute node added to the reaction solver.`);
   }
 
   function clearReactionCanvas() {
@@ -1711,14 +1676,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
         );
         menu.appendChild(tileButton);
       });
-    } else if (state.menuMode === "center-transform-picker") {
-      renderMenuTitle("Add Center Transformer");
-      centerTransformerEntries.forEach((entry) => {
-        renderMenuButton(entry.label, {
-          onClick: () =>
-            addCenterTransformerParticipant(entry.templateId, state.menuCenterColumnIndex),
-        });
-      });
     } else if (state.menuMode === "participant-actions") {
       const participant = findParticipantById(state.menuParticipantId);
       if (!participant) {
@@ -1728,13 +1685,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
         return;
       }
       renderMenuTitle(participant.label);
+      const compositeModeLabel = getParticipantCompositeModeLabel(participant);
+      if (compositeModeLabel) {
+        renderMenuButton(`Mode: ${compositeModeLabel}`, {
+          disabled: true,
+          kind: "secondary",
+        });
+      }
       if (
         participant.templateId === "higgs_cluster" ||
         participant.templateId === "photon" ||
         participant.templateId === "neutron" ||
         participant.templateId === "proton"
       ) {
-        renderMenuButton("Split assembly", {
+        renderMenuButton("Dissociate", {
           onClick: () => splitCompositeParticipantById(participant.id),
         });
       }
@@ -1782,7 +1746,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
-      centerTransformerEntries.forEach((entry) => {
+      addableCenterTransformerEntries.forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
           extraClassNames: ["is-wide", "is-root-tile"],
@@ -1844,7 +1808,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the + controls to add reactants, products, or a center transformer."
+          ? "Reaction solver opened. Use the left and right + controls for reactants and products, and the middle + control for a transmute node."
           : "Reaction solver closed."
       );
     }
@@ -1886,7 +1850,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (!state.pendingSourceKey) {
         setStatus(
           role === "transmute-output"
-            ? "Center transformer output anchor cleared."
+            ? "Transmute output anchor cleared."
             : "Reactant anchor cleared."
         );
         return;
@@ -1909,7 +1873,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
 
     if (!state.pendingSourceKey || !state.pendingSourceRole) {
-      setStatus("Choose a reactant or center-transformer output anchor first.");
+      setStatus("Choose a reactant or transmute output anchor first.");
       return;
     }
 
@@ -1918,11 +1882,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       role !== "product" &&
       role !== "transmute-input"
     ) {
-      setStatus("Reactant anchors connect to products or to a center-transformer input.");
+      setStatus("Reactant anchors connect to products or to a transmute input.");
       return;
     }
     if (state.pendingSourceRole === "transmute-output" && role !== "product") {
-      setStatus("Center transformer outputs connect to product anchors only.");
+      setStatus("Transmute outputs connect to product anchors only.");
       return;
     }
 
@@ -1942,7 +1906,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(
       validation.valid
         ? role === "transmute-input"
-          ? "Reactant routed into center transformer."
+          ? "Reactant routed into transmute node."
           : "Reaction mapping added."
         : `Connection added but invalid: ${validation.reason}`
     );
@@ -1965,60 +1929,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getMappingValidation(mapping) {
-    if (!mapping) {
-      return { valid: true, reason: "" };
-    }
-    const sourceContext = getNodeContext(mapping.sourceKey);
-    const targetContext = getNodeContext(mapping.targetKey);
-    if (!sourceContext || !targetContext) {
-      return {
-        valid: false,
-        reason: "Mapping references an unavailable source or target node.",
-      };
-    }
-    if (mapping.sourceRole === "reactant" && mapping.targetRole === "product") {
-      const evaluation = evaluateComposerReactionMappingCandidate({
-        sourceParticipant: sourceContext.participant,
-        sourceNode: sourceContext.node,
-        targetParticipant: targetContext.participant,
-        targetNode: targetContext.node,
-        resolveBinaryChoiceInventory,
-      });
-      return {
-        valid: evaluation.allowed,
-        reason: evaluation.reason,
-      };
-    }
-    if (mapping.sourceRole === "reactant" && mapping.targetRole === "transmute-input") {
-      return {
-        valid: true,
-        reason: "Reactant routed into center transformer.",
-      };
-    }
-    if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {
-      const { participantId: transmuteId } = parseNodeKey(mapping.sourceKey);
-      const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-      if (!hasLedger(transmuteSummary.incomingLedger)) {
-        return {
-          valid: false,
-          reason: "Add conservative reactant inputs to this center transformer first.",
-        };
-      }
-      if (!ledgerFitsWithin(transmuteSummary.incomingLedger, transmuteSummary.outgoingLedger)) {
-        return {
-          valid: false,
-          reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
-        };
-      }
-      return {
-        valid: true,
-        reason: "Center transformer output remains conservative.",
-      };
-    }
-    return {
-      valid: false,
-      reason: "This connection direction breaks the current reaction-mapping rules.",
-    };
+    return mappingRulesRuntime.getMappingValidation(mapping);
   }
 
   function getTransmuteColumnFallbackRatios(requiredCount = transmuteColumnCount) {
@@ -2315,7 +2226,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the + controls to add reactants, products, or a center transformer.";
+        "Use the left and right + controls for reactants and products, and the middle + control for a transmute node.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -2327,7 +2238,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product or center-transformer anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or transmute anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
@@ -2399,6 +2310,27 @@ export function createComposerReactionSolverUiRuntime(deps) {
           `.composer-reaction-solver-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
         );
         if (!collector) {
+          return;
+        }
+        const spanStem = surface.querySelector(
+          `.composer-reaction-solver-composite-span-stem[data-composite-span-participant-id="${CSS.escape(participant.id)}"]`
+        );
+        if (spanStem) {
+          const { startX, startY, endX, endY } = getTrimmedRouteEndpoints(
+            spanStem,
+            collector,
+            bounds
+          );
+          const deltaX = endX - startX;
+          const controlStartX = startX + deltaX * 0.42;
+          const controlEndX = startX + deltaX * 0.82;
+          const path = createSvgElement("path");
+          path.setAttribute(
+            "d",
+            `M ${startX} ${startY} C ${controlStartX} ${startY}, ${controlEndX} ${endY}, ${endX} ${endY}`
+          );
+          path.setAttribute("class", "composer-reaction-solver-composite-link");
+          mapSvg.appendChild(path);
           return;
         }
         const sourceAnchors = Array.from(
@@ -2509,6 +2441,77 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function syncSideColumnTrackAlignment(columnElement, side) {
+    if (!(columnElement instanceof HTMLElement)) {
+      return false;
+    }
+    const columnBounds = columnElement.getBoundingClientRect();
+    if (columnBounds.width <= 1 || columnBounds.height <= 1) {
+      return false;
+    }
+    const header = columnElement.querySelector(
+      `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
+    );
+    const participants = Array.from(
+      columnElement.querySelectorAll(`.composer-reaction-solver-participant.is-${CSS.escape(side)}`)
+    );
+    const trackGeometries = participants
+      .map((participantElement) => {
+        if (!(participantElement instanceof HTMLElement)) {
+          return null;
+        }
+        const trackElement = participantElement.querySelector(
+          ".composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-binary-selector-grid-track"
+        );
+        if (!(trackElement instanceof HTMLElement)) {
+          participantElement.style.setProperty("--solver-track-align-shift", "0px");
+          return null;
+        }
+        const trackBounds = trackElement.getBoundingClientRect();
+        return {
+          participantElement,
+          start: trackBounds.left - columnBounds.left,
+          width: trackBounds.width,
+        };
+      })
+      .filter(Boolean);
+    if (!trackGeometries.length) {
+      if (header instanceof HTMLElement) {
+        header.style.setProperty("--solver-slot-header-offset", "0px");
+      }
+      return false;
+    }
+    const targetStart = Math.max(...trackGeometries.map((entry) => entry.start));
+    trackGeometries.forEach(({ participantElement, start }) => {
+      participantElement.style.setProperty(
+        "--solver-track-align-shift",
+        `${Math.max(0, targetStart - start)}px`
+      );
+    });
+    if (header instanceof HTMLElement) {
+      const trackWidth = Math.max(...trackGeometries.map((entry) => entry.width));
+      const headerOffset =
+        side === "product"
+          ? Math.max(0, columnBounds.width - targetStart - trackWidth)
+          : Math.max(0, targetStart);
+      header.style.setProperty("--solver-slot-header-offset", `${headerOffset}px`);
+    }
+    return true;
+  }
+
+  function syncSideColumnGeometry() {
+    if (!state.active || !reactantsColumn || !productsColumn) {
+      return false;
+    }
+    const reactantsSynced = syncSideColumnTrackAlignment(reactantsColumn, "reactant");
+    const productsSynced = syncSideColumnTrackAlignment(productsColumn, "product");
+    if (reactantsSynced || productsSynced) {
+      scheduleMappingDraw();
+      return true;
+    }
+    return false;
+  }
+
   function scheduleCenterLaneLayout(attemptsRemaining = 2) {
     if (centerLayoutFrameId) {
       cancelAnimationFrame(centerLayoutFrameId);
@@ -2518,6 +2521,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const synced = syncCenterLaneLayout();
       if (!synced && attemptsRemaining > 0) {
         scheduleCenterLaneLayout(attemptsRemaining - 1);
+      }
+    });
+  }
+
+  function scheduleSideColumnGeometry(attemptsRemaining = 2) {
+    requestAnimationFrame(() => {
+      const synced = syncSideColumnGeometry();
+      if (!synced && attemptsRemaining > 0) {
+        scheduleSideColumnGeometry(attemptsRemaining - 1);
       }
     });
   }
@@ -2551,15 +2563,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     reactantsColumn.appendChild(createColumnAddControl("reactant"));
     if (reactantParticipants.length) {
-      reactantsColumn.appendChild(createSideSlotHeader("reactant"));
+      reactantsColumn.appendChild(createSideSlotHeader(reactantParticipants, "reactant"));
     }
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
-    productsColumn.appendChild(createColumnAddControl("product"));
     centerColumn.appendChild(createCenterAddControls());
+    productsColumn.appendChild(createColumnAddControl("product"));
     if (productParticipants.length) {
-      productsColumn.appendChild(createSideSlotHeader("product"));
+      productsColumn.appendChild(createSideSlotHeader(productParticipants, "product"));
     }
     productParticipants.forEach((participant) => {
       productsColumn.appendChild(renderParticipantCard(participant));
@@ -2569,6 +2581,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       centerColumn.appendChild(createTransmuteParticipantCard(participant));
     });
     updateHint();
+    scheduleSideColumnGeometry();
     scheduleMappingDraw();
     scheduleCenterLaneLayout();
   }
@@ -2578,6 +2591,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     event.preventDefault();
+    if (menu?.contains(event.target) || event.target instanceof Element && event.target.closest(".composer-reaction-solver-anchor")) {
+      return;
+    }
+    openMenuAt(event.clientX, event.clientY);
   }
 
   function handleDocumentPointerDown(event) {
@@ -2656,6 +2673,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       window.addEventListener("resize", () => {
         if (state.active) {
           updateMenuPosition();
+          scheduleSideColumnGeometry();
           scheduleCenterLaneLayout();
           scheduleMappingDraw();
         }

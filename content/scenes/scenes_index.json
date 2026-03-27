@@ -1444,6 +1444,11 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
+    },
+    {
+      "id": "reaction_designer",
+      "name": "Reaction Designer",
+      "path": "content/scenes/archie/reaction_designer.json"
     }
   ]
 }

@@ -14,6 +14,7 @@ This guide should be read alongside:
 
 - [navigation-and-controls.md](navigation-and-controls.md)
 - [scene-taxonomy.md](scene-taxonomy.md)
+- [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
 - [textbook-file-structure.md](textbook-file-structure.md)
 - [comparative-glossary.md](comparative-glossary.md)
 - [github-presence-and-community.md](github-presence-and-community.md)

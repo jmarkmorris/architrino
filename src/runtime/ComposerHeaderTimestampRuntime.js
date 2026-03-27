@@ -1,19 +1,24 @@
 function formatComposerHeaderTimestamp(date) {
-  const weekday = new Intl.DateTimeFormat("en-US", {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
     weekday: "short",
-  }).format(date);
-  const month = new Intl.DateTimeFormat("en-US", {
     month: "short",
-  }).format(date);
-  const day = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
-  }).format(date);
-  const time = new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
+    hour: "2-digit",
     minute: "2-digit",
-    hour12: true,
-  }).format(date);
-  return `${weekday} ${month} ${day} ${time}`;
+    hour12: false,
+    timeZoneName: "short",
+  }).formatToParts(date);
+
+  const valueByType = new Map(parts.map((part) => [part.type, part.value]));
+  const weekday = valueByType.get("weekday") ?? "";
+  const month = valueByType.get("month") ?? "";
+  const day = valueByType.get("day") ?? "";
+  const hour = valueByType.get("hour") ?? "";
+  const minute = valueByType.get("minute") ?? "";
+  const timeZoneName = valueByType.get("timeZoneName") ?? "";
+
+  return `${weekday} ${month} ${day} ${hour}:${minute} ${timeZoneName}`.trim();
 }
 
 function resolveComposerHeaderDate(value) {

@@ -12,6 +12,7 @@ This guide should be read alongside:
 
 - [about-the-webapp.md](about-the-webapp.md)
 - [navigation-and-controls.md](navigation-and-controls.md)
+- [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
 - [textbook-file-structure.md](textbook-file-structure.md)
 
 ## Core Claim

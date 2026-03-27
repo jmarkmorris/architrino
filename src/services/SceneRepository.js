@@ -1,3 +1,5 @@
+import { shouldExcludeStructuredSpherePalette } from "./SceneCapabilitiesService.js";
+
 export class SceneRepository {
   constructor(deps) {
     this.fetchImpl = deps.fetchImpl;
@@ -338,27 +340,7 @@ export class SceneRepository {
     if (!isStructuredLayout && !isHomeScene) {
       return false;
     }
-    if (typeof scenePath === "string") {
-      if (
-        scenePath.startsWith("runtime:markdown:") ||
-        scenePath === "content/scenes/architrino-theory/electrino.json" ||
-        scenePath === "content/scenes/architrino-theory/positrino.json" ||
-        scenePath === "content/scenes/standard-model-particles/higgs_boson.json" ||
-        scenePath === "content/scenes/nuclear/proton.json" ||
-        scenePath === "content/scenes/nuclear/neutron.json" ||
-        scenePath.startsWith("content/scenes/elements/") ||
-        scenePath === "content/scenes/chemistry/periodic_table_scene.json"
-      ) {
-        return false;
-      }
-    }
-    if (
-      sceneId === "electrino" ||
-      sceneId === "positrino" ||
-      sceneId === "higgs_boson" ||
-      sceneId === "proton" ||
-      sceneId === "neutron"
-    ) {
+    if (shouldExcludeStructuredSpherePalette(null, { sceneId, scenePath })) {
       return false;
     }
     return true;
