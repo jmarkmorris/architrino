@@ -8229,6 +8229,49 @@ function formatComposerCoordinatePillValue(value) {
   return fixed.replace(/\.?0+$/, "");
 }
 
+function syncComposerPathPointInfoPillCoordinateInputs(point, { force = false } = {}) {
+  if (!composerPathPointInfoPill?.inputs || !(point instanceof THREE.Vector3)) {
+    return;
+  }
+  ["x", "y", "z"].forEach((axis) => {
+    const input = composerPathPointInfoPill.inputs[axis];
+    if (!(input instanceof HTMLInputElement)) {
+      return;
+    }
+    if (!force && document.activeElement === input) {
+      return;
+    }
+    input.value = formatComposerCoordinatePillValue(point[axis]);
+  });
+}
+
+function commitComposerPathPointCoordinateInput(axis, rawValue) {
+  if (!["x", "y", "z"].includes(axis)) {
+    return;
+  }
+  const pointIndex = getComposerSelectedPointIndexState();
+  if (
+    !Number.isInteger(pointIndex) ||
+    pointIndex < 0 ||
+    pointIndex >= composerPathState.points.length
+  ) {
+    return;
+  }
+  const nextValue = Number(rawValue);
+  if (!Number.isFinite(nextValue)) {
+    return;
+  }
+  updateComposerPathPointAtState(pointIndex, (point) => {
+    point[axis] = nextValue;
+  });
+  if (composerPointMeshes[pointIndex]) {
+    composerPointMeshes[pointIndex].position.copy(composerPathState.points[pointIndex]);
+  }
+  updateComposerPathGeometry();
+  renderComposerJsonPreview();
+  updateComposerPathPointInfoPill();
+}
+
 function ensureComposerPathPointInfoPill() {
   if (!composerViewportOverlays) {
     return null;
@@ -8244,23 +8287,66 @@ function ensureComposerPathPointInfoPill() {
   grid.className = "composer-path-point-pill-grid";
   element.appendChild(grid);
 
-  const values = {};
+  const inputs = {};
+  let timeValue = null;
   ["t", "x", "y", "z"].forEach((key) => {
     const field = document.createElement("div");
     field.className = "composer-path-point-pill-field";
     const label = document.createElement("div");
     label.className = "composer-path-point-pill-label";
     label.textContent = key;
-    const value = document.createElement("div");
-    value.className = "composer-path-point-pill-value";
-    value.textContent = "0";
+    let value = null;
+    if (key === "t") {
+      value = document.createElement("div");
+      value.className = "composer-path-point-pill-value";
+      value.textContent = "0";
+      timeValue = value;
+    } else {
+      value = document.createElement("input");
+      value.type = "number";
+      value.step = "0.001";
+      value.inputMode = "decimal";
+      value.className = "composer-path-point-pill-input";
+      value.value = "0";
+      value.addEventListener("pointerdown", (event) => {
+        event.stopPropagation();
+      });
+      value.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+      value.addEventListener("keydown", (event) => {
+        event.stopPropagation();
+        if (event.key === "Enter") {
+          value.blur();
+        }
+      });
+      value.addEventListener("input", () => {
+        commitComposerPathPointCoordinateInput(key, value.value);
+      });
+      value.addEventListener("blur", () => {
+        const pointIndex = getComposerSelectedPointIndexState();
+        const point =
+          Number.isInteger(pointIndex) && pointIndex >= 0
+            ? composerPathState.points[pointIndex] ?? null
+            : null;
+        if (!point) {
+          value.value = "0";
+          return;
+        }
+        if (!Number.isFinite(Number(value.value))) {
+          value.value = formatComposerCoordinatePillValue(point[key]);
+          return;
+        }
+        value.value = formatComposerCoordinatePillValue(point[key]);
+      });
+      inputs[key] = value;
+    }
     field.append(label, value);
     grid.appendChild(field);
-    values[key] = value;
   });
 
   composerViewportOverlays.appendChild(element);
-  composerPathPointInfoPill = { element, values };
+  composerPathPointInfoPill = { element, inputs, timeValue };
   return composerPathPointInfoPill;
 }
 
@@ -8362,10 +8448,10 @@ function updateComposerPathPointInfoPill() {
     ? getComposerPlaybackTimeForMotionProgress(composerCurrentDocument, normalizedT)
     : 0;
 
-  pill.values.t.textContent = formatComposerTimeLabel(absoluteTime);
-  pill.values.x.textContent = formatComposerCoordinatePillValue(point.x);
-  pill.values.y.textContent = formatComposerCoordinatePillValue(point.y);
-  pill.values.z.textContent = formatComposerCoordinatePillValue(point.z);
+  if (pill.timeValue) {
+    pill.timeValue.textContent = formatComposerTimeLabel(absoluteTime);
+  }
+  syncComposerPathPointInfoPillCoordinateInputs(point);
   pill.element.style.left = `${projected.x}px`;
   pill.element.style.top = `${projected.y}px`;
   pill.element.classList.add("is-visible");

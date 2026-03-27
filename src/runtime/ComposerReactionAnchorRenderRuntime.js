@@ -57,12 +57,11 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
         .forEach((anchor) => {
           anchor.classList.remove(
             "is-route-highlighted",
-            "is-route-recent",
-            "is-route-dimmed"
+            "is-route-recent"
           );
         });
       mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
-        path.classList.remove("is-route-highlighted", "is-route-recent", "is-route-dimmed");
+        path.classList.remove("is-route-highlighted", "is-route-recent");
       });
       return;
     }
@@ -82,7 +81,7 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
           isMapped && mappingIds.some((mappingId) => recentMappingIds.has(mappingId));
         anchor.classList.toggle("is-route-highlighted", isHighlighted);
         anchor.classList.toggle("is-route-recent", !isHighlighted && isRecent);
-        anchor.classList.toggle("is-route-dimmed", isMapped && !isHighlighted && !isRecent);
+        anchor.classList.remove("is-route-dimmed");
       });
 
     mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
@@ -91,7 +90,7 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
       const isRecent = recentMappingIds.has(mappingId);
       path.classList.toggle("is-route-highlighted", isHighlighted);
       path.classList.toggle("is-route-recent", !isHighlighted && isRecent);
-      path.classList.toggle("is-route-dimmed", !isHighlighted && !isRecent);
+      path.classList.remove("is-route-dimmed");
     });
   }
 

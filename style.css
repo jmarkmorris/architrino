@@ -1669,9 +1669,21 @@ body {
   filter: drop-shadow(0 0 12px rgba(118, 186, 255, 0.28));
 }
 
+.composer-reaction-solver-path.is-invalid {
+  stroke: rgba(255, 72, 72, 0.98);
+  stroke-width: 2.85;
+  filter: drop-shadow(0 0 12px rgba(255, 68, 68, 0.28));
+}
+
+.composer-reaction-solver-path.is-invalid.is-route-recent,
+.composer-reaction-solver-path.is-invalid.is-route-highlighted {
+  stroke: rgba(255, 92, 92, 1);
+  stroke-width: 3.05;
+  filter: drop-shadow(0 0 14px rgba(255, 78, 78, 0.34));
+}
+
 .composer-reaction-solver-path.is-route-dimmed {
-  opacity: 0.18;
-  filter: none;
+  opacity: 1;
 }
 
 .composer-reaction-solver-composite-link {
@@ -1680,11 +1692,6 @@ body {
   stroke-width: 2.2;
   stroke-linecap: round;
   filter: drop-shadow(0 0 8px rgba(82, 152, 255, 0.14));
-}
-
-.composer-reaction-solver-composite-link.is-ineligible {
-  stroke: rgba(123, 148, 182, 0.34);
-  filter: none;
 }
 
 .composer-reaction-solver-empty {
@@ -1897,14 +1904,6 @@ body {
   align-items: center;
 }
 
-.composer-reaction-solver-participant.is-ineligible {
-  opacity: 0.42;
-}
-
-.composer-reaction-solver-participant.is-ineligible .composer-reaction-solver-particle-label {
-  color: rgba(170, 178, 204, 0.58);
-}
-
 .composer-reaction-solver-particle {
   --solver-anti-fill-accent: #a259ff;
   box-sizing: border-box;
@@ -1964,6 +1963,39 @@ body {
   font-size: 10px;
   line-height: 1.02;
   overflow-wrap: anywhere;
+}
+
+.composer-reaction-solver-participant.is-center.is-associate-operator,
+.composer-reaction-solver-participant.is-center.is-dissociate-operator {
+  overflow: visible;
+}
+
+.composer-reaction-solver-operator-fan {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.96;
+}
+
+.composer-reaction-solver-operator-fan-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.composer-reaction-solver-operator-fan-path {
+  fill: none;
+  stroke: rgba(153, 211, 255, 0.68);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 7px rgba(82, 152, 255, 0.14));
+}
+
+.composer-reaction-solver-operator-fan-dot,
+.composer-reaction-solver-operator-fan-stem {
+  fill: rgba(18, 28, 48, 0.95);
+  stroke: rgba(128, 182, 243, 0.74);
+  stroke-width: 1.8;
 }
 
 .composer-reaction-solver-transmute-ledger {
@@ -2049,11 +2081,6 @@ body {
 
 .composer-reaction-solver-tree-row.is-disabled {
   opacity: 0.42;
-}
-
-.composer-reaction-solver-tree-row.is-ineligible .composer-reaction-solver-tree-label,
-.composer-reaction-solver-tree-row.is-ineligible .composer-reaction-solver-tree-note {
-  color: rgba(170, 178, 204, 0.46);
 }
 
 .composer-reaction-solver-tree-row.is-collapsed {
@@ -3008,6 +3035,7 @@ body {
     0 10px 28px rgba(0, 0, 0, 0.26),
     0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   transform: translate(-50%, calc(-100% - 14px));
+  pointer-events: auto;
 }
 
 .composer-path-point-pill.is-visible {
@@ -3036,7 +3064,8 @@ body {
   text-align: center;
 }
 
-.composer-path-point-pill-value {
+.composer-path-point-pill-value,
+.composer-path-point-pill-input {
   min-height: 34px;
   padding: 0 10px;
   border-radius: 12px;
@@ -3047,6 +3076,23 @@ body {
   line-height: 34px;
   text-align: center;
   white-space: nowrap;
+}
+
+.composer-path-point-pill-input {
+  width: 100%;
+  outline: none;
+  appearance: textfield;
+}
+
+.composer-path-point-pill-input:focus {
+  border-color: rgba(165, 184, 255, 0.42);
+  box-shadow: 0 0 0 1px rgba(165, 184, 255, 0.18);
+}
+
+.composer-path-point-pill-input::-webkit-outer-spin-button,
+.composer-path-point-pill-input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
 }
 
 .composer-media-overlay {

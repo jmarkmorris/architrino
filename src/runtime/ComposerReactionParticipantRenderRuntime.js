@@ -36,6 +36,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const getAllowedBinaryChoiceIds = options.getAllowedBinaryChoiceIds ?? (() => []);
   const getAnchorAvailability = options.getAnchorAvailability ?? (() => ({ disabled: false, reason: "" }));
   const getBinaryPersonalitySelection = options.getBinaryPersonalitySelection ?? (() => null);
+  const getCenterTransformerGraphicOffsets =
+    options.getCenterTransformerGraphicOffsets ?? (() => []);
   const getDefaultParticipantBaseLabel = options.getDefaultParticipantBaseLabel ?? ((_, label) => label || "?");
   const getIsDraggingParticipant = options.getIsDraggingParticipant ?? (() => false);
   const getParticipantCardLabelLines = options.getParticipantCardLabelLines ?? ((label) => [label]);
@@ -62,6 +64,87 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const startTransmuteDrag = options.startTransmuteDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
+
+  function createSvgElement(name) {
+    return document.createElementNS("http://www.w3.org/2000/svg", name);
+  }
+
+  function syncCenterTransformerOperatorFan(card, participant) {
+    if (!(card instanceof HTMLElement) || !participant) {
+      return;
+    }
+    Array.from(card.querySelectorAll(".composer-reaction-solver-operator-fan")).forEach((fan) =>
+      fan.remove()
+    );
+    if (participant.templateId !== "associate" && participant.templateId !== "dissociate") {
+      return;
+    }
+    const graphicOffsets = getCenterTransformerGraphicOffsets(participant, 4)
+      .filter((offset) => Number.isFinite(offset));
+    if (graphicOffsets.length <= 1) {
+      return;
+    }
+    const fan = document.createElement("div");
+    fan.className = `composer-reaction-solver-operator-fan is-${participant.templateId}`;
+    const fanSvg = createSvgElement("svg");
+    fanSvg.classList.add("composer-reaction-solver-operator-fan-svg");
+    const fanSpanPx = 42;
+    const fanPaddingPx = 12;
+    const fanNodeInsetPx = 8;
+    const minOffset = Math.min(...graphicOffsets);
+    const maxOffset = Math.max(...graphicOffsets);
+    const fanHeightPx = Math.max(24, maxOffset - minOffset + fanPaddingPx * 2);
+    const stemY = fanHeightPx / 2;
+    fan.style.width = `${fanSpanPx}px`;
+    fan.style.height = `${fanHeightPx}px`;
+    fan.style.top = `calc(50% + ${minOffset - fanPaddingPx}px)`;
+    if (participant.templateId === "associate") {
+      fan.style.left = `calc(var(--solver-anchor-size) * -0.5 - ${fanSpanPx - 4}px)`;
+      fan.style.right = "auto";
+    } else {
+      fan.style.right = `calc(var(--solver-anchor-size) * -0.5 - ${fanSpanPx - 4}px)`;
+      fan.style.left = "auto";
+    }
+    fanSvg.setAttribute("viewBox", `0 0 ${fanSpanPx} ${fanHeightPx}`);
+    fanSvg.setAttribute("aria-hidden", "true");
+    const stemX = participant.templateId === "associate"
+      ? fanSpanPx - fanNodeInsetPx
+      : fanNodeInsetPx;
+    const tipX = participant.templateId === "associate"
+      ? fanNodeInsetPx
+      : fanSpanPx - fanNodeInsetPx;
+    graphicOffsets.forEach((offset) => {
+      const tipY = offset - minOffset + fanPaddingPx;
+      const path = createSvgElement("path");
+      const controlPullPx = Math.max(8, fanSpanPx * 0.34);
+      const controlStartX = participant.templateId === "associate"
+        ? stemX - controlPullPx
+        : stemX + controlPullPx;
+      const controlEndX = participant.templateId === "associate"
+        ? tipX + controlPullPx
+        : tipX - controlPullPx;
+      path.setAttribute(
+        "d",
+        `M ${stemX} ${stemY} C ${controlStartX} ${stemY}, ${controlEndX} ${tipY}, ${tipX} ${tipY}`
+      );
+      path.setAttribute("class", "composer-reaction-solver-operator-fan-path");
+      fanSvg.appendChild(path);
+      const dot = createSvgElement("circle");
+      dot.setAttribute("cx", String(tipX));
+      dot.setAttribute("cy", String(tipY));
+      dot.setAttribute("r", "7");
+      dot.setAttribute("class", "composer-reaction-solver-operator-fan-dot");
+      fanSvg.appendChild(dot);
+    });
+    const stem = createSvgElement("circle");
+    stem.setAttribute("cx", String(stemX));
+    stem.setAttribute("cy", String(stemY));
+    stem.setAttribute("r", "7");
+    stem.setAttribute("class", "composer-reaction-solver-operator-fan-stem");
+    fanSvg.appendChild(stem);
+    fan.appendChild(fanSvg);
+    card.appendChild(fan);
+  }
 
   function getCoreBinaryNodes(node) {
     const slotRankByCode = { I: 0, M: 1, O: 2 };
@@ -531,9 +614,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       row.classList.add(`is-${participant.side}`);
       if (anchorAvailability.disabled) {
         row.classList.add("is-disabled");
-        if (getPendingSourceKey() && participant.side === "product") {
-          row.classList.add("is-ineligible");
-        }
         if (anchorAvailability.reason) {
           row.title = anchorAvailability.reason;
         }
@@ -624,11 +704,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     if (isComposite) {
       card.classList.add("is-composite-participant");
     }
-    if (getPendingSourceKey() && participant.side === "product" && rootAnchorAvailability?.disabled) {
-      card.classList.add("is-ineligible");
-      if (rootAnchorAvailability.reason) {
-        card.title = rootAnchorAvailability.reason;
-      }
+    if (participant.side === "product" && rootAnchorAvailability?.reason) {
+      card.title = rootAnchorAvailability.reason;
     }
     const visual = isComposite
       ? createCompositeVisualRail(participant)
@@ -654,6 +731,11 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     card.dataset.participantId = participant.id;
     card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
+    if (participant.templateId === "associate") {
+      card.classList.add("is-associate-operator");
+    } else if (participant.templateId === "dissociate") {
+      card.classList.add("is-dissociate-operator");
+    }
 
     const rootNode = getTransmuteNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
@@ -706,8 +788,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       visual.appendChild(badge);
     });
     if (!ledgerSummary.isBalanced) {
-      card.classList.add("is-ineligible");
-      visual.title = `${participant.label} remains dim until incoming and outgoing ledgers match. Incoming: ${formatLedger(
+      visual.title = `${participant.label} is unresolved until incoming and outgoing ledgers match. Incoming: ${formatLedger(
         ledgerSummary.incomingLedger
       )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
     }
@@ -715,6 +796,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       card.classList.add("is-dragging");
     }
     card.append(inputAnchor, visual, outputAnchor);
+    syncCenterTransformerOperatorFan(card, participant);
     card.addEventListener("pointerdown", (event) => startTransmuteDrag(event, participant.id));
     return card;
   }
@@ -723,5 +805,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     createSideSlotHeader,
     createTransmuteParticipantCard,
     renderParticipantCard,
+    syncCenterTransformerOperatorFan,
   };
 }

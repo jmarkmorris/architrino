@@ -486,6 +486,7 @@ const transmuteSlotEdgePaddingPx = 18;
 const transmuteColumnCount = 3;
 const transmuteColumnEdgePaddingPx = 18;
 const solverRouteAnchorGapPx = 0.25;
+const centerTransformerGraphicConnectionStepPx = 79;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
@@ -597,6 +598,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let createTransmuteParticipantCard = () => document.createElement("article");
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
+  let syncCenterTransformerOperatorFan = () => {};
 
   const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
     canTargetMappingRole,
@@ -625,8 +627,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
         });
         if (!evaluation.allowed) {
           return {
-            disabled: true,
+            disabled: false,
             reason: evaluation.reason,
+            invalid: true,
           };
         }
       }
@@ -641,21 +644,24 @@ export function createComposerReactionSolverUiRuntime(deps) {
         );
         if (!hasLedger(transmuteSummary.incomingLedger)) {
           return {
-            disabled: true,
+            disabled: false,
             reason: "Add conservative reactant inputs to this center transformer first.",
+            invalid: true,
           };
         }
         if (!ledgerFitsWithin(transmuteSummary.incomingLedger, candidateLedger)) {
           return {
-            disabled: true,
+            disabled: false,
             reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
+            invalid: true,
           };
         }
       }
       if (pendingSourceRole === "transmute-output" && role === "transmute-input") {
         return {
-          disabled: true,
+          disabled: false,
           reason: "Center transformer outputs connect to product targets only.",
+          invalid: true,
         };
       }
       return null;
@@ -717,6 +723,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getAllowedBinaryChoiceIds,
     getAnchorAvailability,
     getBinaryPersonalitySelection,
+    getCenterTransformerGraphicOffsets,
     getDefaultParticipantBaseLabel,
     getIsDraggingParticipant: (participantId) => state.dragParticipantId === participantId,
     getParticipantCardLabelLines,
@@ -744,6 +751,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createSideSlotHeader,
     createTransmuteParticipantCard,
     renderParticipantCard,
+    syncCenterTransformerOperatorFan,
   } = participantRenderRuntime);
 
   function findParticipantById(participantId) {
@@ -1885,17 +1893,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
       const eligibleTargetCount = countEligibleTargets();
       if (role === "transmute-output") {
+        setStatus(
+          eligibleTargetCount
+            ? "Transformer output selected. All targets remain available; rule-breaking connections will stay red until fixed."
+            : "Transformer output selected."
+        );
+        return;
+      }
       setStatus(
         eligibleTargetCount
-          ? "Transformer output selected. Conservative product targets remain active; incompatible targets are dimmed."
-          : "Transformer output selected, but no conservative product targets are currently available."
-      );
-      return;
-    }
-      setStatus(
-        eligibleTargetCount
-          ? "Reactant anchor selected. Conservative product and center-transformer targets remain active; incompatible targets are dimmed."
-          : "Reactant anchor selected, but no conservative targets are currently available."
+          ? "Reactant anchor selected. All targets remain available; rule-breaking connections will stay red until fixed."
+          : "Reactant anchor selected."
       );
       return;
     }
@@ -1928,16 +1936,89 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     render();
+    const validation = getMappingValidation(
+      state.mappings.find((mapping) => mapping.id === mappingId) ?? null
+    );
     setStatus(
-      role === "transmute-input"
-        ? "Reactant routed into center transformer."
-        : "Reaction mapping added."
+      validation.valid
+        ? role === "transmute-input"
+          ? "Reactant routed into center transformer."
+          : "Reaction mapping added."
+        : `Connection added but invalid: ${validation.reason}`
     );
   }
 
 
   function getTransmuteCardTop(centerYRatio = 0.5) {
     return `${Math.max(0.08, Math.min(0.92, Number(centerYRatio) || 0.5)) * 100}%`;
+  }
+
+  function getCenterTransformerGraphicOffsets(participant, connectionCount = 4) {
+    if (!participant) {
+      return [];
+    }
+    const count = Math.max(1, Math.round(Number(connectionCount) || 0));
+    const centerIndex = (count - 1) / 2;
+    return Array.from({ length: count }, (_, index) =>
+      (index - centerIndex) * centerTransformerGraphicConnectionStepPx
+    );
+  }
+
+  function getMappingValidation(mapping) {
+    if (!mapping) {
+      return { valid: true, reason: "" };
+    }
+    const sourceContext = getNodeContext(mapping.sourceKey);
+    const targetContext = getNodeContext(mapping.targetKey);
+    if (!sourceContext || !targetContext) {
+      return {
+        valid: false,
+        reason: "Mapping references an unavailable source or target node.",
+      };
+    }
+    if (mapping.sourceRole === "reactant" && mapping.targetRole === "product") {
+      const evaluation = evaluateComposerReactionMappingCandidate({
+        sourceParticipant: sourceContext.participant,
+        sourceNode: sourceContext.node,
+        targetParticipant: targetContext.participant,
+        targetNode: targetContext.node,
+        resolveBinaryChoiceInventory,
+      });
+      return {
+        valid: evaluation.allowed,
+        reason: evaluation.reason,
+      };
+    }
+    if (mapping.sourceRole === "reactant" && mapping.targetRole === "transmute-input") {
+      return {
+        valid: true,
+        reason: "Reactant routed into center transformer.",
+      };
+    }
+    if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {
+      const { participantId: transmuteId } = parseNodeKey(mapping.sourceKey);
+      const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+      if (!hasLedger(transmuteSummary.incomingLedger)) {
+        return {
+          valid: false,
+          reason: "Add conservative reactant inputs to this center transformer first.",
+        };
+      }
+      if (!ledgerFitsWithin(transmuteSummary.incomingLedger, transmuteSummary.outgoingLedger)) {
+        return {
+          valid: false,
+          reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(transmuteSummary.incomingLedger)} available.`,
+        };
+      }
+      return {
+        valid: true,
+        reason: "Center transformer output remains conservative.",
+      };
+    }
+    return {
+      valid: false,
+      reason: "This connection direction breaks the current reaction-mapping rules.",
+    };
   }
 
   function getTransmuteColumnFallbackRatios(requiredCount = transmuteColumnCount) {
@@ -2133,6 +2214,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
     card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
+    syncCenterTransformerOperatorFan(card, participant);
   }
 
   function updateTransmuteDrag(clientY) {
@@ -2239,8 +2321,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (state.pendingSourceKey) {
       mapHint.textContent =
         state.pendingSourceRole === "transmute-output"
-          ? "transformer output selected. Conservative product targets remain active; incompatible targets are dimmed."
-          : "Source anchor selected. Conservative product and center-transformer targets remain active; incompatible targets are dimmed.";
+          ? "Transformer output selected. Rule-breaking connections remain visible in red until fixed."
+          : "Source anchor selected. Rule-breaking connections remain visible in red until fixed.";
       return;
     }
     if (!state.mappings.length) {
@@ -2313,13 +2395,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants
       .filter((participant) => isCompositeParticipant(participant))
       .forEach((participant) => {
-        const rootNode = getParticipantRootNode(participant);
-        const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
-        const isIneligible =
-          !!state.pendingSourceKey &&
-          participant.side === "product" &&
-          !!rootNodeKey &&
-          getAnchorAvailability(participant.side, rootNodeKey).disabled;
         const collector = surface.querySelector(
           `.composer-reaction-solver-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
         );
@@ -2346,9 +2421,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
             `M ${startX} ${startY} C ${controlStartX} ${startY}, ${controlEndX} ${endY}, ${endX} ${endY}`
           );
           path.setAttribute("class", "composer-reaction-solver-composite-link");
-          if (isIneligible) {
-            path.classList.add("is-ineligible");
-          }
           mapSvg.appendChild(path);
         });
       });
@@ -2381,6 +2453,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         bounds
       );
       const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
+      const validation = getMappingValidation(mapping);
       const path = createSvgElement("path");
       path.setAttribute(
         "d",
@@ -2388,6 +2461,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       path.setAttribute("class", "composer-reaction-solver-path");
       path.dataset.mappingId = mapping.id;
+      path.classList.toggle("is-invalid", !validation.valid);
+      if (validation.reason) {
+        const title = createSvgElement("title");
+        title.textContent = validation.reason;
+        path.appendChild(title);
+      }
       path.addEventListener("pointerenter", () => setHoveredMappingIds([mapping.id]));
       path.addEventListener("pointerleave", () => setHoveredMappingIds([]));
       mapSvg.appendChild(path);
