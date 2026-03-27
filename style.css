@@ -1800,6 +1800,7 @@ body {
   gap: 14px;
   align-content: start;
   overflow-y: auto;
+  padding-top: 6px;
   padding-right: 4px;
 }
 

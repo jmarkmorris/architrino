@@ -82,7 +82,9 @@ import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRun
 import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
 import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import {
+  getComposerActiveCameraShot,
   getComposerActiveCameraPathId,
+  resolveComposerShotInterval,
   resolveComposerViewportFramingState,
 } from "./src/runtime/ComposerViewportFramingRuntime.js";
 import { createSceneGraphRuntime } from "./src/runtime/SceneGraphRuntime.js";
@@ -2784,6 +2786,7 @@ function addComposerCameraWaypoint(position = null) {
     position: localPos,
     lookAt: localLookAt,
   });
+  setComposerViewportCameraSource("design");
   composerSelectedCameraWaypointIndex = composerCameraFlightState.waypoints.length - 1;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
@@ -2792,6 +2795,7 @@ function addComposerCameraWaypoint(position = null) {
 
 function clearComposerCameraWaypoints() {
   composerCameraFlightState.waypoints = [];
+  setComposerViewportCameraSource("design");
   composerSelectedCameraWaypointIndex = null;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
@@ -4989,6 +4993,61 @@ function getComposerCameraWaypointDisplayPosition(waypoint) {
   return position.clone().add(towardTarget.normalize().multiplyScalar(shiftDistance));
 }
 
+function getComposerDocumentCameraStateAtTime(documentData, timeSeconds) {
+  if (!documentData || !composerFrameGroup) {
+    return null;
+  }
+  const timeWindow = getComposerSceneTimeWindow(documentData);
+  const activeShot = getComposerActiveCameraShot(documentData, timeSeconds, timeWindow);
+  const activeCameraPathId = getComposerActiveCameraPathId(documentData, timeSeconds, timeWindow);
+  if (!activeCameraPathId) {
+    return null;
+  }
+  const cameraPaths = Array.isArray(documentData?.cameraPaths) ? documentData.cameraPaths : [];
+  const cameraPath = cameraPaths.find((entry) => entry?.id === activeCameraPathId) ?? null;
+  const waypoints = Array.isArray(cameraPath?.waypoints) ? cameraPath.waypoints : [];
+  if (waypoints.length < 2) {
+    return null;
+  }
+  let normalizedT = 0;
+  if (activeShot) {
+    const interval = resolveComposerShotInterval(activeShot, timeWindow);
+    const duration = Math.max(0.000001, interval.end - interval.start);
+    normalizedT = clamp((timeSeconds - interval.start) / duration, 0, 1);
+  } else if (timeWindow.end > timeWindow.start) {
+    normalizedT = clamp((timeSeconds - timeWindow.start) / (timeWindow.end - timeWindow.start), 0, 1);
+  }
+  const localState = sampleComposerCameraWaypointState(waypoints, normalizedT);
+  return {
+    position: composerFrameGroup.localToWorld(localState.position.clone()),
+    lookAt: composerFrameGroup.localToWorld(localState.lookAt.clone()),
+    cameraPathId: activeCameraPathId,
+    shotId: activeShot?.id ?? null,
+    normalizedT,
+  };
+}
+
+function getComposerPreviewCameraStateAtTime(timeSeconds) {
+  if (!composerFrameGroup) {
+    return null;
+  }
+  const waypoints = composerCameraFlightState.waypoints;
+  if (!Array.isArray(waypoints) || waypoints.length < 2) {
+    return null;
+  }
+  const timeWindow = composerCurrentDocument
+    ? getComposerSceneTimeWindow(composerCurrentDocument)
+    : { start: 0, end: 24 };
+  const duration = Math.max(0.000001, timeWindow.end - timeWindow.start);
+  const normalizedT = clamp((timeSeconds - timeWindow.start) / duration, 0, 1);
+  const localState = sampleComposerCameraWaypointState(waypoints, normalizedT);
+  return {
+    position: composerFrameGroup.localToWorld(localState.position.clone()),
+    lookAt: composerFrameGroup.localToWorld(localState.lookAt.clone()),
+    normalizedT,
+  };
+}
+
 function getComposerOrbitBasis(motion) {
   const normal = Array.isArray(motion?.planeNormal)
     ? new THREE.Vector3(
@@ -5615,6 +5674,10 @@ function clearComposerEditorPreviewState() {
   composerEditorPreviewState.renderMotionProgressPlayhead = null;
 }
 
+function setComposerViewportCameraSource(source = "design") {
+  composerViewportModeState.cameraSource = source === "authored" ? "authored" : "design";
+}
+
 function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
   const documentData = options.documentData ?? composerCurrentDocument;
   if (!documentData) {
@@ -5627,6 +5690,7 @@ function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
   if (options.playing !== undefined) {
     composerPlaybackState.playing = !!options.playing;
   }
+  setComposerViewportCameraSource("authored");
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
   updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
 }
@@ -5645,6 +5709,7 @@ function startComposerPlayback(timeSeconds, options = {}) {
   clearComposerEditorPreviewState();
   composerPlaybackState.playing = true;
   composerPlaybackState.lastTickMs = 0;
+  setComposerViewportCameraSource("authored");
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
   updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
 }
@@ -6000,6 +6065,20 @@ function updateComposerAnimatedViewport(timeSeconds) {
     console.error("Composer graphic overlay update failed.", error);
   }
   updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
+
+  if (composerCameraFlightState.preview && composerCamera) {
+    const previewCameraState = getComposerPreviewCameraStateAtTime(timeSeconds);
+    if (previewCameraState) {
+      composerCamera.position.copy(previewCameraState.position);
+      composerCamera.lookAt(previewCameraState.lookAt);
+    }
+  } else if (composerCamera && composerViewportModeState.cameraSource === "authored") {
+    const authoredCameraState = getComposerDocumentCameraStateAtTime(composerCurrentDocument, timeSeconds);
+    if (authoredCameraState) {
+      composerCamera.position.copy(authoredCameraState.position);
+      composerCamera.lookAt(authoredCameraState.lookAt);
+    }
+  }
 }
 
 function addComposerOrbitTrace(center, motion, color) {
@@ -6964,7 +7043,6 @@ function startComposerCameraFlightPreview() {
     return;
   }
   composerCameraFlightState.preview = true;
-  composerCameraFlightState.startTime = performance.now();
   if (composerCamera) {
     composerCameraFlightState.savedPosition.copy(composerCamera.position);
   }
@@ -6991,44 +7069,6 @@ function stopComposerCameraFlightPreview() {
   }
 }
 
-function updateComposerCameraFlightPreview(now) {
-  if (!composerCameraFlightState.preview || !composerCamera) {
-    return;
-  }
-  const waypoints = composerCameraFlightState.waypoints;
-  if (waypoints.length < 2 || !composerFrameGroup) {
-    stopComposerCameraFlightPreview();
-    return;
-  }
-
-  const localPositions = waypoints.map((waypoint) => waypoint.position);
-  const localLookAts = waypoints.map((waypoint) => waypoint.lookAt);
-  const curve = new THREE.CatmullRomCurve3(
-    localPositions,
-    false,
-    "catmullrom",
-    0.5
-  );
-  const lookCurve = new THREE.CatmullRomCurve3(
-    localLookAts,
-    false,
-    "catmullrom",
-    0.5
-  );
-
-  const segmentDuration = 2400;
-  const totalDuration = segmentDuration * (localPositions.length - 1);
-  const elapsed = (now - composerCameraFlightState.startTime) * composerCameraState.speed;
-  const t = ((elapsed % totalDuration) / totalDuration) || 0;
-
-  const localPos = curve.getPointAt(t);
-  const localLookAt = lookCurve.getPointAt(t);
-  const worldPos = composerFrameGroup.localToWorld(localPos.clone());
-  const worldLookAt = composerFrameGroup.localToWorld(localLookAt.clone());
-  composerCamera.position.copy(worldPos);
-  composerCamera.lookAt(worldLookAt);
-}
-
 function renderComposerCanvas() {
   if (!composerRenderer || !composerScene || !composerCamera || !composerOverlay) {
     return;
@@ -7041,7 +7081,6 @@ function renderComposerCanvas() {
     resizeComposerCanvas();
   }
   const now = performance.now();
-  updateComposerCameraFlightPreview(now);
   const playheadSeconds = updateComposerPlaybackState(now);
   updateComposerAnimatedViewport(playheadSeconds);
   updateComposerPathMarkerScales();
@@ -8147,7 +8186,6 @@ const composerCameraFlightState = {
   waypoints: [],
   poiMode: "origin",
   preview: false,
-  startTime: 0,
   savedPosition: new THREE.Vector3(),
   savedTarget: new THREE.Vector3(),
 };
@@ -8479,6 +8517,9 @@ const composerEditorPreviewState = {
   renderMotionTimePlayhead: null,
   renderMotionProgressOverride: null,
   renderMotionProgressPlayhead: null,
+};
+const composerViewportModeState = {
+  cameraSource: "design",
 };
 const composerPlaybackState = {
   playing: false,
