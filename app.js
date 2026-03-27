@@ -10892,10 +10892,10 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
-// Keep the composer header timestamp-only. Do not prepend version/build labels here.
+// The composer header reads generated repo signature metadata. Do not hand-edit header text here.
 const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
   element: composerTitle,
-  lastChangedAt: "2026-03-26T18:23:25-04:00",
+  signatureUrl: "./.tmp/composer-header-signature.json",
 });
 
 appDirector.init();

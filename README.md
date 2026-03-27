@@ -5,6 +5,13 @@ Use a local web server so ES modules load correctly.
 
 ```bash
 cd architrino
+node scripts/watch-composer-header-signature.mjs
+```
+
+In a second terminal:
+
+```bash
+cd architrino
 python3 -m http.server 5173
 ```
 

@@ -479,7 +479,7 @@ function canTargetMappingRole(role = "") {
 }
 
 const transmuteCardHeightPx = 72;
-const transmuteParticipantWidthPx = 192;
+const transmuteParticipantWidthPx = 126;
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
@@ -589,6 +589,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   };
 
   let drawFrameId = 0;
+  let centerLayoutFrameId = 0;
   let applyHoveredRouteState = () => {};
   let createAnchorButton = () => document.createElement("button");
   let createInlineAnchorLane = () => document.createElement("div");
@@ -1442,7 +1443,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const control = document.createElement("div");
     control.className = `composer-reaction-solver-add-control is-${side}`;
     if (side === "center") {
-      control.dataset.centerColumnIndex = String(normalizeTransmuteColumnIndex(options.centerColumnIndex));
+      const resolvedColumnIndex = normalizeTransmuteColumnIndex(options.centerColumnIndex);
+      control.dataset.centerColumnIndex = String(resolvedColumnIndex);
+      control.style.left = getTransmuteCardLeft(resolvedColumnIndex);
     }
     control.appendChild(createColumnAddButton(side, options));
     return control;
@@ -1962,8 +1965,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (count <= 1 || maxCenter - minCenter <= 1) {
       return Array.from({ length: count }, () => 0.5);
     }
-    const step = (maxCenter - minCenter) / (count - 1);
-    return Array.from({ length: count }, (_, index) => (minCenter + step * index) / width);
+    const fullSpreadStep = (maxCenter - minCenter) / (count - 1);
+    const fullSpreadGap = Math.max(0, fullSpreadStep - transmuteParticipantWidthPx);
+    const compressedGap = fullSpreadGap * 0.25;
+    const step = transmuteParticipantWidthPx + compressedGap;
+    const availableClusterStart = Math.max(minCenter, maxCenter - step * (count - 1));
+    const centeredStart = width / 2 - (step * (count - 1)) / 2;
+    const startCenter = Math.max(minCenter, Math.min(centeredStart, availableClusterStart));
+    return Array.from({ length: count }, (_, index) => (startCenter + step * index) / width);
   }
 
   function getTransmuteCardLeft(centerColumnIndex = 1) {
@@ -2328,12 +2337,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
             collector,
             bounds
           );
-          const deltaX = Math.max(28, Math.abs(endX - startX) * 0.55);
-          const direction = endX >= startX ? 1 : -1;
+          const deltaX = endX - startX;
+          const controlStartX = startX + deltaX * 0.42;
+          const controlEndX = startX + deltaX * 0.82;
           const path = createSvgElement("path");
           path.setAttribute(
             "d",
-            `M ${startX} ${startY} C ${startX + deltaX * direction} ${startY}, ${endX - deltaX * 0.6 * direction} ${endY}, ${endX} ${endY}`
+            `M ${startX} ${startY} C ${controlStartX} ${startY}, ${controlEndX} ${endY}, ${endX} ${endY}`
           );
           path.setAttribute("class", "composer-reaction-solver-composite-link");
           if (isIneligible) {
@@ -2392,6 +2402,47 @@ export function createComposerReactionSolverUiRuntime(deps) {
     drawFrameId = requestAnimationFrame(drawMappings);
   }
 
+  function syncCenterLaneLayout() {
+    if (!state.active || !centerColumn) {
+      return false;
+    }
+    const bounds = centerColumn.getBoundingClientRect();
+    if (bounds.width <= 1 || bounds.height <= 1) {
+      return false;
+    }
+
+    Array.from(
+      centerColumn.querySelectorAll(".composer-reaction-solver-add-control.is-center")
+    ).forEach((control, index) => {
+      const resolvedColumnIndex = normalizeTransmuteColumnIndex(
+        control.dataset.centerColumnIndex ?? index
+      );
+      control.style.left = getTransmuteCardLeft(resolvedColumnIndex);
+    });
+
+    state.participants
+      .filter((participant) => participant.side === "center")
+      .forEach((participant) => {
+        syncTransmuteCardPosition(participant.id);
+      });
+
+    scheduleMappingDraw();
+    return true;
+  }
+
+  function scheduleCenterLaneLayout(attemptsRemaining = 2) {
+    if (centerLayoutFrameId) {
+      cancelAnimationFrame(centerLayoutFrameId);
+    }
+    centerLayoutFrameId = requestAnimationFrame(() => {
+      centerLayoutFrameId = 0;
+      const synced = syncCenterLaneLayout();
+      if (!synced && attemptsRemaining > 0) {
+        scheduleCenterLaneLayout(attemptsRemaining - 1);
+      }
+    });
+  }
+
   function render() {
     if (!root || !reactantsColumn || !productsColumn || !centerColumn) {
       return;
@@ -2440,6 +2491,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     updateHint();
     scheduleMappingDraw();
+    scheduleCenterLaneLayout();
   }
 
   function handleSurfaceContextMenu(event) {
@@ -2525,6 +2577,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       window.addEventListener("resize", () => {
         if (state.active) {
           updateMenuPosition();
+          scheduleCenterLaneLayout();
           scheduleMappingDraw();
         }
       });
