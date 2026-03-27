@@ -64,6 +64,7 @@ This single table is the canonical rollup for every direct child of `action-item
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../composer/overview.md) | Composer | — | — | — |
 | — | [`reaction`](../reaction/overview.md) | Reaction design | — | — | — |
+| — | [`cruft-sprawl`](../cruft-sprawl/overview.md) | Cruft and sprawl reduction | — | — | — |
 | — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../viewports/overview.md) | Viewports | — | — | — |
 | — | [`3x3`](../3x3/overview.md) | 3x3 binary-slot matrix | — | — | — |

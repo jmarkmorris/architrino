@@ -44,6 +44,11 @@
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a clean seam so later extraction is straightforward instead of leaving another layer of spaghetti.
 
+## Composer Header Signature
+
+- After any code-changing turn in this workspace, run `node scripts/generate-composer-header-signature.mjs` so the top-left composer header timestamp reflects the latest Codex edit even when the external watcher is not running.
+- Do not treat pure analysis or no-op turns as signature-update events; regenerate only after actual file changes.
+
 ## Commit Audits (Run Every Turn Before Commit)
 
 - Git hooks are configured via `core.hooksPath=.githooks`.

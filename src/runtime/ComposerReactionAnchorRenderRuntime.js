@@ -3,10 +3,10 @@ function getAnchorAriaLabel(anchorRole, nodeLabel) {
     return `Product attach point for ${nodeLabel}`;
   }
   if (anchorRole === "transmute-input") {
-    return `Center transformer input attach point for ${nodeLabel}`;
+    return `Transmute input attach point for ${nodeLabel}`;
   }
   if (anchorRole === "transmute-output") {
-    return `Center transformer output attach point for ${nodeLabel}`;
+    return `Transmute output attach point for ${nodeLabel}`;
   }
   return `Reactant attach point for ${nodeLabel}`;
 }

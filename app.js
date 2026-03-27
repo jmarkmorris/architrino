@@ -10391,7 +10391,7 @@ const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
     composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
     composerOverlay?.classList.toggle("is-reaction-app-mode", !!active);
     if (active) {
-      setComposerStatus("Use the + controls to add reactants, products, or a center transformer.");
+      setComposerStatus("Use the + controls to add reactants, products, or a transmute node.");
     }
   },
 });
