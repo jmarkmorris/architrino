@@ -42,7 +42,7 @@ test("transmute output remains invalid until outgoing ledger exactly matches inc
         "transmute_a::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
-    getTransmuteLedgerSummary: () => ({
+    getOperatorLedgerSummary: () => ({
       incomingLedger: { electrino: 6, positrino: 6 },
       outgoingLedger: { electrino: 0, positrino: 0 },
       isBalanced: false,
@@ -56,7 +56,7 @@ test("transmute output remains invalid until outgoing ledger exactly matches inc
   const validation = rules.getMappingValidation({
     sourceKey: "transmute_a::output",
     targetKey: "noether_core_pro::root",
-    sourceRole: "transmute-output",
+    sourceRole: "operator-output",
     targetRole: "product",
   });
 
@@ -77,7 +77,7 @@ test("pending transmute output target becomes available when the candidate close
         "transmute_b::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
-    getTransmuteLedgerSummary: () => ({
+    getOperatorLedgerSummary: () => ({
       incomingLedger: { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 0, positrino: 0 },
       isBalanced: false,
@@ -90,7 +90,7 @@ test("pending transmute output target becomes available when the candidate close
 
   const availability = rules.evaluatePendingTargetAvailability({
     pendingSourceKey: "transmute_b::output",
-    pendingSourceRole: "transmute-output",
+    pendingSourceRole: "operator-output",
     role: "product",
     sourceContext,
     targetContext,
@@ -112,7 +112,7 @@ test("committed transmute output mapping stays valid when the existing outgoing 
         "transmute_c::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
-    getTransmuteLedgerSummary: () => ({
+    getOperatorLedgerSummary: () => ({
       incomingLedger: { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 3, positrino: 3 },
       isBalanced: true,
@@ -126,7 +126,7 @@ test("committed transmute output mapping stays valid when the existing outgoing 
   const validation = rules.getMappingValidation({
     sourceKey: "transmute_c::output",
     targetKey: "noether_core_pro::root",
-    sourceRole: "transmute-output",
+    sourceRole: "operator-output",
     targetRole: "product",
   });
 
@@ -149,8 +149,8 @@ test("single-source transmute output cannot bypass direct structure compatibilit
         "transmute_d::output": transmuteOutputContext,
         "noether_core_anti::root": targetContext,
       }[nodeKey] ?? null),
-    getTransmuteInputNodeContexts: () => [sourceContext],
-    getTransmuteLedgerSummary: () => ({
+    getOperatorInputNodeContexts: () => [sourceContext],
+    getOperatorLedgerSummary: () => ({
       incomingLedger: { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 3, positrino: 3 },
       incomingCount: 1,
@@ -166,12 +166,12 @@ test("single-source transmute output cannot bypass direct structure compatibilit
   const validation = rules.getMappingValidation({
     sourceKey: "transmute_d::output",
     targetKey: "noether_core_anti::root",
-    sourceRole: "transmute-output",
+    sourceRole: "operator-output",
     targetRole: "product",
   });
 
   assert.equal(validation.valid, false);
-  assert.match(validation.reason, /single-source center output/i);
+  assert.match(validation.reason, /single-source operator output/i);
   assert.match(validation.reason, /cannot map directly/i);
 });
 
@@ -190,8 +190,8 @@ test("multi-source transmute outputs stay ledger-based when no single direct str
         "transmute_e::output": transmuteOutputContext,
         "noether_core_anti::root": targetContext,
       }[nodeKey] ?? null),
-    getTransmuteInputNodeContexts: () => [sourceContext],
-    getTransmuteLedgerSummary: () => ({
+    getOperatorInputNodeContexts: () => [sourceContext],
+    getOperatorLedgerSummary: () => ({
       incomingLedger: { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 3, positrino: 3 },
       incomingCount: 2,
@@ -207,7 +207,7 @@ test("multi-source transmute outputs stay ledger-based when no single direct str
   const validation = rules.getMappingValidation({
     sourceKey: "transmute_e::output",
     targetKey: "noether_core_anti::root",
-    sourceRole: "transmute-output",
+    sourceRole: "operator-output",
     targetRole: "product",
   });
 
@@ -241,4 +241,110 @@ test("direct reactant to product checks still enforce structured conservation ru
 
   assert.equal(validation.valid, false);
   assert.match(validation.reason, /cannot map directly/i);
+});
+
+test("associate input targets stay live during authoring", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = {
+    participant: { id: "associate_a", templateId: "associate" },
+    node: { id: "associate_a::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getOperatorLedgerSummary: (participantId = "") => ({
+      incomingLedger: { electrino: 6, positrino: 6 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: participantId === "associate_a" ? 2 : 0,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const availability = rules.evaluatePendingTargetAvailability({
+    pendingSourceKey: "noether_core_pro::root",
+    pendingSourceRole: "reactant",
+    role: "operator-input",
+    sourceContext,
+    targetContext,
+  });
+
+  assert.equal(availability, null);
+});
+
+test("associate input mapping stays red until exactly two reactants are attached", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = {
+    participant: { id: "associate_b", templateId: "associate" },
+    node: { id: "associate_b::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "noether_core_pro::root": sourceContext,
+        "associate_b::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: () => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: 1,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "noether_core_pro::root",
+    targetKey: "associate_b::root",
+    sourceRole: "reactant",
+    targetRole: "operator-input",
+  });
+
+  assert.equal(validation.valid, false);
+  assert.match(validation.reason, /exactly two reactant inputs/i);
+});
+
+test("associate input mapping returns to normal once two reactants are attached", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = {
+    participant: { id: "associate_c", templateId: "associate" },
+    node: { id: "associate_c::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "noether_core_pro::root": sourceContext,
+        "associate_c::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: () => ({
+      incomingLedger: { electrino: 6, positrino: 6 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: 2,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "noether_core_pro::root",
+    targetKey: "associate_c::root",
+    sourceRole: "reactant",
+    targetRole: "operator-input",
+  });
+
+  assert.equal(validation.valid, true);
+  assert.match(validation.reason, /reactant routed into operator/i);
 });

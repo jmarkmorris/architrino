@@ -36,25 +36,25 @@ test("reaction solver layout applies shared css variables from one source of tru
 test("reaction solver layout applies periodic-table grid spans to visible lane elements", () => {
   const reactantsApplied = new Map();
   const productsApplied = new Map();
-  const centerLeftApplied = new Map();
-  const centerRightApplied = new Map();
+  const operatorLane0Applied = new Map();
+  const operatorLane1Applied = new Map();
   applyReactionSolverSurfaceGridLayout({
     surface: {
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
+        if (selector.includes('data-operator-lane-index="0"')) {
           return {
             style: {
               setProperty(name, value) {
-                centerLeftApplied.set(name, value);
+                operatorLane0Applied.set(name, value);
               },
             },
           };
         }
-        if (selector.includes('data-center-column-index="1"')) {
+        if (selector.includes('data-operator-lane-index="1"')) {
           return {
             style: {
               setProperty(name, value) {
-                centerRightApplied.set(name, value);
+                operatorLane1Applied.set(name, value);
               },
             },
           };
@@ -79,16 +79,16 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
   });
   assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 4");
   assert.equal(productsApplied.get("--solver-products-grid-column"), "13 / span 4");
-  assert.equal(centerLeftApplied.get("--solver-center-left-grid-column"), "5 / span 4");
-  assert.equal(centerRightApplied.get("--solver-center-right-grid-column"), "9 / span 4");
+  assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "5 / span 4");
+  assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "9 / span 4");
 });
 
 test("reaction solver layout derives fallback lane ratios from periodic-table slot spans", () => {
   const ratios = getReactionSurfaceLaneFallbackRatios([
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 1 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ]);
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
@@ -96,28 +96,28 @@ test("reaction solver layout derives fallback lane ratios from periodic-table sl
   );
 });
 
-test("reaction solver layout measures lane centers from explicit lane slots", () => {
+test("reaction solver layout measures operator lane centers from explicit lane slots", () => {
   const laneEntries = [
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 1 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ];
-  const centerLeft = {
+  const operatorLane0 = {
     getBoundingClientRect: () => ({ left: 420, width: 260 }),
   };
-  const centerRight = {
+  const operatorLane1 = {
     getBoundingClientRect: () => ({ left: 840, width: 260 }),
   };
   const ratios = measureReactionSurfaceLaneRatios({
     surface: {
       getBoundingClientRect: () => ({ left: 100, width: 1280 }),
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
-          return centerLeft;
+        if (selector.includes('data-operator-lane-index="0"')) {
+          return operatorLane0;
         }
-        if (selector.includes('data-center-column-index="1"')) {
-          return centerRight;
+        if (selector.includes('data-operator-lane-index="1"')) {
+          return operatorLane1;
         }
         return null;
       },
@@ -138,21 +138,21 @@ test("reaction solver layout measures lane centers from explicit lane slots", ()
 
 test("reaction solver layout measures outer lane centers from fixed periodic lane spans", () => {
   const laneEntries = [
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 1 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ];
   const ratios = measureReactionSurfaceLaneRatios({
     surface: {
       getBoundingClientRect: () => ({ left: 100, width: 1600 }),
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
+        if (selector.includes('data-operator-lane-index="0"')) {
           return {
             getBoundingClientRect: () => ({ left: 500, width: 280 }),
           };
         }
-        if (selector.includes('data-center-column-index="1"')) {
+        if (selector.includes('data-operator-lane-index="1"')) {
           return {
             getBoundingClientRect: () => ({ left: 900, width: 280 }),
           };

@@ -226,7 +226,7 @@ function createPhotonNode(id, options = {}) {
   });
 }
 
-function createCenterTransformerNode(id, species, options = {}) {
+function createOperatorNode(id, species, options = {}) {
   const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "transmute";
   return createStructureNode({
     id,
@@ -238,7 +238,7 @@ function createCenterTransformerNode(id, species, options = {}) {
       source: "authored_override",
     },
     traits: {
-      variant: "center_transformer",
+      variant: "operator_tile",
       allowNonCanonicalChildren: true,
     },
     children: [],
@@ -341,7 +341,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     normalizedTemplateId === "associate" ||
     normalizedTemplateId === "dissociate"
   ) {
-    root = createCenterTransformerNode(structureId, normalizedTemplateId, {
+    root = createOperatorNode(structureId, normalizedTemplateId, {
       label:
         label ||
         (normalizedTemplateId === "l_polar_transform"

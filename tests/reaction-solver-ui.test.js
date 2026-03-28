@@ -2,18 +2,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  REACTION_CENTER_COLUMN_LAYOUT,
-  REACTION_CENTER_TRANSFORMER_COLUMN_COUNT,
-  REACTION_CENTER_TRANSFORMER_ENTRIES,
+  REACTION_OPERATOR_LANE_LAYOUT,
+  REACTION_OPERATOR_LANE_COUNT,
+  REACTION_OPERATOR_ENTRIES,
 } from "../src/runtime/ComposerReactionSolverUiRuntime.js";
 
-test("reaction solver keeps two center transformer lanes available", () => {
-  assert.equal(REACTION_CENTER_TRANSFORMER_COLUMN_COUNT, 2);
+test("reaction solver keeps two operator lanes available", () => {
+  assert.equal(REACTION_OPERATOR_LANE_COUNT, 2);
 });
 
-test("reaction solver center transformer registry includes transmute and polar transforms", () => {
+test("reaction solver operator registry includes transmute and polar transforms", () => {
   assert.deepEqual(
-    REACTION_CENTER_TRANSFORMER_ENTRIES.map((entry) => entry.templateId),
+    REACTION_OPERATOR_ENTRIES.map((entry) => entry.templateId),
     [
       "transmute",
       "l_polar_transform",
@@ -24,16 +24,24 @@ test("reaction solver center transformer registry includes transmute and polar t
   );
 });
 
-test("reaction solver center column layout uses a shared polar lane and an associate lane", () => {
+test("reaction solver operator lane layout uses a shared polar lane and a lane-3 operator picker", () => {
   assert.deepEqual(
-    REACTION_CENTER_COLUMN_LAYOUT.map((entry) => ({
-      columnIndex: entry.columnIndex,
+    REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
+      laneIndex: entry.laneIndex,
       templateId: entry.templateId,
       enabled: entry.enabled,
     })),
     [
-      { columnIndex: 0, templateId: "polar_transform", enabled: true },
-      { columnIndex: 1, templateId: "associate", enabled: true },
+      { laneIndex: 0, templateId: "polarity_transform", enabled: true },
+      { laneIndex: 1, templateId: "operator", enabled: true },
     ]
+  );
+  assert.deepEqual(
+    REACTION_OPERATOR_LANE_LAYOUT[0].pickerEntries.map((entry) => entry.templateId),
+    ["l_polar_transform", "r_polar_transform"]
+  );
+  assert.deepEqual(
+    REACTION_OPERATOR_LANE_LAYOUT[1].pickerEntries.map((entry) => entry.templateId),
+    ["associate", "transmute"]
   );
 });

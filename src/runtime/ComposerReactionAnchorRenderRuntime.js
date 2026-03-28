@@ -2,11 +2,11 @@ function getAnchorAriaLabel(anchorRole, nodeLabel) {
   if (anchorRole === "product") {
     return `Product attach point for ${nodeLabel}`;
   }
-  if (anchorRole === "transmute-input") {
-    return `Transmute input attach point for ${nodeLabel}`;
+  if (anchorRole === "operator-input") {
+    return `Operator input attach point for ${nodeLabel}`;
   }
-  if (anchorRole === "transmute-output") {
-    return `Transmute output attach point for ${nodeLabel}`;
+  if (anchorRole === "operator-output") {
+    return `Operator output attach point for ${nodeLabel}`;
   }
   return `Reactant attach point for ${nodeLabel}`;
 }
@@ -144,7 +144,7 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
     if (
       getPendingSourceKey() &&
       getPendingSourceKey() !== nodeKey &&
-      (anchorRole === "product" || anchorRole === "transmute-input") &&
+      (anchorRole === "product" || anchorRole === "operator-input") &&
       !anchorAvailability.disabled &&
       !anchorAvailability.invalid
     ) {
