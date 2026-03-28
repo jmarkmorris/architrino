@@ -1772,9 +1772,9 @@ body {
 }
 
 .composer-reaction-solver-path.is-route-recent {
-  stroke: rgba(182, 226, 255, 0.9);
-  stroke-width: 2.55;
-  filter: drop-shadow(0 0 7px rgba(108, 180, 255, 0.14));
+  stroke: rgba(170, 221, 255, 0.82);
+  stroke-width: 2.45;
+  filter: drop-shadow(0 0 6px rgba(108, 180, 255, 0.1));
 }
 
 .composer-reaction-solver-path.is-route-highlighted {
@@ -1802,10 +1802,10 @@ body {
 
 .composer-reaction-solver-composite-link {
   fill: none;
-  stroke: rgba(153, 211, 255, 0.7);
-  stroke-width: 2.2;
+  stroke: rgba(153, 211, 255, 0.42);
+  stroke-width: 1.8;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 8px rgba(82, 152, 255, 0.14));
+  filter: drop-shadow(0 0 4px rgba(82, 152, 255, 0.08));
 }
 
 .composer-reaction-solver-empty {
@@ -2571,8 +2571,7 @@ body {
     filter 180ms ease;
 }
 
-.composer-reaction-solver-anchor.composer-reaction-solver-transmute-anchor,
-.composer-reaction-solver-composite-collector {
+.composer-reaction-solver-anchor.composer-reaction-solver-transmute-anchor {
   flex-basis: var(--solver-anchor-size);
   width: var(--solver-anchor-size);
   max-width: var(--solver-anchor-size);
@@ -2584,6 +2583,12 @@ body {
   box-shadow:
     inset 0 0 0 2px rgba(176, 111, 255, 0.18),
     0 0 12px rgba(132, 86, 214, 0.18);
+}
+
+.composer-reaction-solver-composite-collector {
+  border-color: rgba(176, 151, 212, 0.22);
+  background: rgba(34, 22, 50, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(176, 111, 255, 0.08);
 }
 
 .composer-reaction-solver-anchor.is-route-recent {
@@ -2613,19 +2618,19 @@ body {
 }
 
 .composer-reaction-solver-anchor.is-target-ready {
-  border-color: rgba(164, 229, 203, 0.72);
-  background: rgba(20, 52, 46, 0.46);
+  border-color: rgba(164, 229, 203, 0.44);
+  background: rgba(20, 52, 46, 0.18);
   box-shadow:
-    inset 0 0 0 1px rgba(176, 255, 219, 0.1),
-    0 0 6px rgba(84, 220, 162, 0.08);
+    inset 0 0 0 1px rgba(176, 255, 219, 0.06),
+    0 0 4px rgba(84, 220, 162, 0.04);
 }
 
 .composer-reaction-solver-anchor.is-mapped {
-  border-color: rgba(140, 214, 182, 0.56);
-  background: rgba(22, 54, 46, 0.42);
+  border-color: rgba(140, 214, 182, 0.34);
+  background: rgba(22, 54, 46, 0.16);
   box-shadow:
-    inset 0 0 0 1px rgba(176, 255, 219, 0.08),
-    0 0 6px rgba(84, 220, 162, 0.08);
+    inset 0 0 0 1px rgba(176, 255, 219, 0.04),
+    0 0 4px rgba(84, 220, 162, 0.04);
 }
 
 .composer-reaction-solver-anchor.is-route-highlighted {

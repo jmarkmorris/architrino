@@ -77,14 +77,13 @@ const solverTemplateMeta = Object.freeze({
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
-const centerTransformerEntries = Object.freeze([
+export const REACTION_CENTER_TRANSFORMER_ENTRIES = Object.freeze([
   { templateId: "transmute", label: "Transmute" },
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
-const addableCenterTransformerEntries = Object.freeze(
-  centerTransformerEntries.filter((entry) => entry.templateId === "transmute")
-);
+export const REACTION_CENTER_TRANSFORMER_COLUMN_COUNT = 3;
+const centerTransformerEntries = REACTION_CENTER_TRANSFORMER_ENTRIES;
 const centerTransformerTemplateIds = new Set(
   centerTransformerEntries.map((entry) => entry.templateId)
 );
@@ -520,14 +519,14 @@ const transmuteParticipantWidthPx = 126;
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
-const transmuteColumnCount = 1;
+const transmuteColumnCount = REACTION_CENTER_TRANSFORMER_COLUMN_COUNT;
 const transmuteColumnEdgePaddingPx = 18;
 const solverRouteAnchorGapPx = 0.25;
 const centerTransformerGraphicConnectionStepPx = 79;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
-    side === "product" ? "product" : side === "center" ? "transmute node" : "reactant";
+    side === "product" ? "product" : side === "center" ? "center transformer" : "reactant";
   if (!options.capitalized) {
     return label;
   }
@@ -1427,19 +1426,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
       side === "product"
         ? "Add product"
         : side === "center"
-          ? "Add transmute node"
+          ? `Add center transformer in middle column ${centerColumnIndex + 1}`
           : "Add reactant"
     );
-    if (state.menuOpen && state.menuMode === "template-grid-picker" && state.menuSide === side) {
+    if (
+      state.menuOpen &&
+      ((state.menuMode === "template-grid-picker" && state.menuSide === side) ||
+        (side === "center" &&
+          state.menuMode === "center-transform-picker" &&
+          state.menuCenterColumnIndex === centerColumnIndex))
+    ) {
       button.classList.add("is-active");
     }
     button.textContent = "+";
     if (side === "center") {
-      button.addEventListener("click", () =>
-        addCenterTransformerParticipant(
-          addableCenterTransformerEntries[0]?.templateId ?? "transmute",
-          centerColumnIndex
-        )
+      button.addEventListener("click", (event) =>
+        openCenterTransformPicker(centerColumnIndex, event.currentTarget)
       );
     } else {
       button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
@@ -1462,7 +1464,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function createCenterAddControls() {
     const controls = document.createElement("div");
     controls.className = "composer-reaction-solver-center-add-controls";
-    controls.appendChild(createColumnAddControl("center", { centerColumnIndex: 0 }));
+    Array.from({ length: transmuteColumnCount }, (_, columnIndex) => {
+      controls.appendChild(createColumnAddControl("center", { centerColumnIndex: columnIndex }));
+    });
     return controls;
   }
 
@@ -1494,6 +1498,32 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.menuAnchorElement = triggerElement;
     state.menuMode = "template-grid-picker";
     state.menuSide = resolvedSide;
+    state.menuParticipantId = "";
+    state.menuOpen = true;
+    renderMenu();
+  }
+
+  function openCenterTransformPicker(centerColumnIndex = 1, triggerElement = null) {
+    if (!state.active || !menu || !triggerElement) {
+      return;
+    }
+    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
+    if (
+      state.menuOpen &&
+      state.menuMode === "center-transform-picker" &&
+      state.menuCenterColumnIndex === resolvedColumnIndex
+    ) {
+      closeMenu();
+      return;
+    }
+    closeExternalMenus();
+    const bounds = triggerElement.getBoundingClientRect();
+    state.menuClientX = bounds.left + bounds.width / 2;
+    state.menuClientY = bounds.bottom + 10;
+    state.menuAnchorElement = triggerElement;
+    state.menuMode = "center-transform-picker";
+    state.menuSide = "center";
+    state.menuCenterColumnIndex = resolvedColumnIndex;
     state.menuParticipantId = "";
     state.menuOpen = true;
     renderMenu();
@@ -1610,7 +1640,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.pendingSourceRole = "";
     closeMenu();
     render();
-    setStatus(`${participant.label} transmute node added to the reaction solver.`);
+    setStatus(`${participant.label} center transformer added to the reaction solver.`);
   }
 
   function clearReactionCanvas() {
@@ -1747,6 +1777,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
           renderMenu();
         },
       });
+    } else if (state.menuMode === "center-transform-picker") {
+      renderMenuTitle("Add Center Transformer");
+      centerTransformerEntries.forEach((entry) => {
+        renderMenuButton(entry.label, {
+          onClick: () =>
+            addCenterTransformerParticipant(entry.templateId, state.menuCenterColumnIndex),
+        });
+      });
     } else {
       renderMenuTitle("Reaction");
       renderMenuButton("Add reactant", {
@@ -1759,7 +1797,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
-      addableCenterTransformerEntries.forEach((entry) => {
+      centerTransformerEntries.forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
           extraClassNames: ["is-wide", "is-root-tile"],
@@ -1821,7 +1859,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left and right + controls for reactants and products, and the middle + control for a transmute node."
+          ? "Reaction solver opened. Use the left and right + controls for reactants and products, and the three center + controls for transmute, associate, or dissociate nodes."
           : "Reaction solver closed."
       );
     }
@@ -2239,7 +2277,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left and right + controls for reactants and products, and the middle + control for a transmute node.";
+        "Use the left and right + controls for reactants and products, and the three center + controls for transmute, associate, or dissociate nodes.";
       return;
     }
     if (state.pendingSourceKey) {

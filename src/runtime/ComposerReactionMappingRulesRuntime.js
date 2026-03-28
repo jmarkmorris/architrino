@@ -195,12 +195,13 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (!ledgerEvaluation.valid) {
       return ledgerEvaluation;
     }
-    return evaluateTransmuteStructureCompatibility(
+    const compatibilityEvaluation = evaluateTransmuteStructureCompatibility(
       transmuteId,
       transmuteSummary,
       candidateTargetContext,
       { includePendingTarget: true }
     );
+    return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
   }
 
   function getMappingValidation(mapping = null) {
@@ -244,11 +245,12 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       if (!ledgerEvaluation.valid) {
         return ledgerEvaluation;
       }
-      return evaluateTransmuteStructureCompatibility(
+      const compatibilityEvaluation = evaluateTransmuteStructureCompatibility(
         transmuteId,
         transmuteSummary,
         targetContext
       );
+      return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
     }
     return {
       valid: false,

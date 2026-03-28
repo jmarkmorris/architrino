@@ -134,6 +134,87 @@ test("committed transmute output mapping stays valid when the existing outgoing 
   assert.match(validation.reason, /fully conservative/i);
 });
 
+test("single-source transmute output cannot bypass direct structure compatibility", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const targetParticipant = createParticipant("noether_core", "anti");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = createNodeContext(targetParticipant);
+  const transmuteOutputContext = {
+    participant: { id: "transmute_d", templateId: "transmute" },
+    node: { id: "transmute_d/output" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "transmute_d::output": transmuteOutputContext,
+        "noether_core_anti::root": targetContext,
+      }[nodeKey] ?? null),
+    getTransmuteInputNodeContexts: () => [sourceContext],
+    getTransmuteLedgerSummary: () => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 3, positrino: 3 },
+      incomingCount: 1,
+      outgoingCount: 1,
+      isBalanced: true,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "transmute_d::output",
+    targetKey: "noether_core_anti::root",
+    sourceRole: "transmute-output",
+    targetRole: "product",
+  });
+
+  assert.equal(validation.valid, false);
+  assert.match(validation.reason, /single-source transmute output/i);
+  assert.match(validation.reason, /cannot map directly/i);
+});
+
+test("multi-source transmute outputs stay ledger-based when no single direct structure should dominate", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const targetParticipant = createParticipant("noether_core", "anti");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = createNodeContext(targetParticipant);
+  const transmuteOutputContext = {
+    participant: { id: "transmute_e", templateId: "transmute" },
+    node: { id: "transmute_e/output" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "transmute_e::output": transmuteOutputContext,
+        "noether_core_anti::root": targetContext,
+      }[nodeKey] ?? null),
+    getTransmuteInputNodeContexts: () => [sourceContext],
+    getTransmuteLedgerSummary: () => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 3, positrino: 3 },
+      incomingCount: 2,
+      outgoingCount: 1,
+      isBalanced: true,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "transmute_e::output",
+    targetKey: "noether_core_anti::root",
+    sourceRole: "transmute-output",
+    targetRole: "product",
+  });
+
+  assert.equal(validation.valid, true);
+  assert.match(validation.reason, /fully conservative/i);
+});
+
 test("direct reactant to product checks still enforce structured conservation rules", () => {
   const sourceParticipant = createParticipant("noether_core", "pro");
   const targetParticipant = createParticipant("noether_core", "anti");
