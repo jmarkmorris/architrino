@@ -1729,7 +1729,7 @@ The following questions remain open and are active areas of investigation:
  - Implications for matter-antimatter asymmetry (see TOC Ch. 52).
 
 7. **Is baryon number conserved?**
- - Or can protons decay via architrino reassembly at ultra-high energies?
+ - Or can standard `proton decay` channels occur via architrino reassembly at ultra-high energies?
 
 ### Cosmology and Initial Conditions
 

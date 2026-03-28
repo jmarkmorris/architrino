@@ -39,7 +39,7 @@ import {
   applyReactionSolverSurfaceGridLayout,
   getReactionSurfaceLaneFallbackRatios,
   measureReactionSurfaceLaneRatios,
-  REACTION_SOLVER_CENTER_LANE_WIDTH_PX,
+  REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX,
   REACTION_SOLVER_LAYOUT,
 } from "./ComposerReactionSolverLayoutRuntime.js";
 import {
@@ -87,37 +87,51 @@ const solverTemplateMeta = Object.freeze({
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
-export const REACTION_CENTER_TRANSFORMER_ENTRIES = Object.freeze([
+export const REACTION_OPERATOR_ENTRIES = Object.freeze([
   { templateId: "transmute", label: "Transmute" },
   { templateId: "l_polar_transform", label: "L Polar Transform" },
   { templateId: "r_polar_transform", label: "R Polar Transform" },
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
-export const REACTION_CENTER_TRANSFORMER_COLUMN_COUNT = 3;
-const centerTransformerEntries = REACTION_CENTER_TRANSFORMER_ENTRIES;
-export const REACTION_CENTER_COLUMN_LAYOUT = Object.freeze([
+export const REACTION_OPERATOR_LANE_COUNT = 2;
+const operatorEntries = REACTION_OPERATOR_ENTRIES;
+export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
-    columnIndex: 0,
-    templateId: "l_polar_transform",
-    label: "L Polar Transform",
+    laneIndex: 0,
+    templateId: "polarity_transform",
+    label: "Polarity Transform",
+    pickerEntries: Object.freeze([
+      Object.freeze({
+        templateId: "l_polar_transform",
+        label: "Polarity Plus",
+      }),
+      Object.freeze({
+        templateId: "r_polar_transform",
+        label: "Polarity Minus",
+      }),
+    ]),
     enabled: true,
   }),
   Object.freeze({
-    columnIndex: 1,
-    templateId: "transmute",
-    label: "Transmute",
-    enabled: false,
-  }),
-  Object.freeze({
-    columnIndex: 2,
-    templateId: "r_polar_transform",
-    label: "R Polar Transform",
+    laneIndex: 1,
+    templateId: "operator",
+    label: "Operator",
+    pickerEntries: Object.freeze([
+      Object.freeze({
+        templateId: "associate",
+        label: "Associate",
+      }),
+      Object.freeze({
+        templateId: "transmute",
+        label: "Transmute",
+      }),
+    ]),
     enabled: true,
   }),
 ]);
-const centerTransformerTemplateIds = new Set(
-  centerTransformerEntries.map((entry) => entry.templateId)
+const operatorTemplateIds = new Set(
+  operatorEntries.map((entry) => entry.templateId)
 );
 
 const reducedBinaryPersonalityChoiceIds = Object.freeze(["ee", "pe", "pp"]);
@@ -197,8 +211,8 @@ function supportsParticipantPolarity(templateId) {
   return participantPolarityTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
 }
 
-function isCenterTransformerTemplateId(templateId = "") {
-  return centerTransformerTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
+function isOperatorTemplateId(templateId = "") {
+  return operatorTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
 }
 
 function normalizeParticipantPolarity(polarity) {
@@ -314,7 +328,7 @@ function resolveBinaryGlyphPolarity(participant, node = null) {
 }
 
 function buildFallbackHierarchyForTemplate(templateId, label) {
-  if (isCenterTransformerTemplateId(templateId)) {
+  if (isOperatorTemplateId(templateId)) {
     return [
       {
         id: "root",
@@ -520,8 +534,8 @@ function getParticipantRootNode(participant) {
   return Array.isArray(participant?.hierarchy) ? participant.hierarchy[0] ?? null : null;
 }
 
-function getTransmuteNode(participant) {
-  return isCenterTransformerTemplateId(participant?.templateId) ? getParticipantRootNode(participant) : null;
+function getOperatorNode(participant) {
+  return isOperatorTemplateId(participant?.templateId) ? getParticipantRootNode(participant) : null;
 }
 
 function isCompositeParticipant(participant) {
@@ -536,8 +550,8 @@ function isProductCompositeParticipant(participant) {
   return participant?.side === "product" && isCompositeParticipant(participant);
 }
 
-function isTransmuteParticipant(participant) {
-  return participant?.side === "center" && isCenterTransformerTemplateId(participant?.templateId);
+function isOperatorParticipant(participant) {
+  return participant?.side === "operator" && isOperatorTemplateId(participant?.templateId);
 }
 
 function isSingleMappingAnchorRole(role = "") {
@@ -545,29 +559,41 @@ function isSingleMappingAnchorRole(role = "") {
 }
 
 function canStartMappingFromRole(role = "") {
-  return role === "reactant" || role === "transmute-output";
+  return role === "reactant" || role === "operator-output";
 }
 
 function canTargetMappingRole(role = "") {
-  return role === "product" || role === "transmute-input";
+  return role === "product" || role === "operator-input";
 }
 
-const transmuteCardHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
+function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
+}
+
+const operatorCardHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
 const solverTileGapPx = REACTION_SOLVER_LAYOUT.tileGapPx;
-const transmuteParticipantWidthPx = REACTION_SOLVER_CENTER_LANE_WIDTH_PX;
-const transmuteSlotStepPx = REACTION_SOLVER_LAYOUT.transmuteSlotStepPx;
+const operatorTrackWidthPx = REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX;
+const operatorSlotStepPx = REACTION_SOLVER_LAYOUT.operatorSlotStepPx;
 const recentRouteFadeMs = 400;
-const transmuteSlotEdgePaddingPx = REACTION_SOLVER_LAYOUT.transmuteSlotEdgePaddingPx;
-const transmuteColumnCount = REACTION_CENTER_TRANSFORMER_COLUMN_COUNT;
-const transmuteColumnEdgePaddingPx = REACTION_SOLVER_LAYOUT.transmuteColumnEdgePaddingPx;
+const operatorSlotEdgePaddingPx = REACTION_SOLVER_LAYOUT.operatorSlotEdgePaddingPx;
+const operatorLaneCount = REACTION_OPERATOR_LANE_COUNT;
+const operatorLaneEdgePaddingPx = REACTION_SOLVER_LAYOUT.operatorLaneEdgePaddingPx;
 const solverRouteAnchorGapPx = REACTION_SOLVER_LAYOUT.routeAnchorGapPx;
-const centerTransformerGraphicConnectionStepPx =
-  REACTION_SOLVER_LAYOUT.centerTransformerGraphicConnectionStepPx;
+const operatorGraphicConnectionStepPx =
+  REACTION_SOLVER_LAYOUT.operatorGraphicConnectionStepPx;
 const solverAddButtonSizePx = REACTION_SOLVER_LAYOUT.addButtonSizePx;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
-    side === "product" ? "product" : side === "center" ? "center transformer" : "reactant";
+    side === "product" ? "product" : side === "operator" ? "operator" : "reactant";
   if (!options.capitalized) {
     return label;
   }
@@ -578,31 +604,58 @@ function createSvgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
 }
 
-function normalizeTransmuteColumnIndex(columnIndex = 0) {
-  return Math.max(0, Math.min(transmuteColumnCount - 1, Math.round(Number(columnIndex) || 0)));
+function normalizeOperatorLaneIndex(laneIndex = 0) {
+  return Math.max(0, Math.min(operatorLaneCount - 1, Math.round(Number(laneIndex) || 0)));
 }
 
-function getCenterColumnLayoutEntry(columnIndex = 0) {
-  const resolvedColumnIndex = normalizeTransmuteColumnIndex(columnIndex);
+function getOperatorLaneLayoutEntry(laneIndex = 0) {
+  const resolvedLaneIndex = normalizeOperatorLaneIndex(laneIndex);
   return (
-    REACTION_CENTER_COLUMN_LAYOUT.find((entry) => entry.columnIndex === resolvedColumnIndex) ??
-    REACTION_CENTER_COLUMN_LAYOUT[resolvedColumnIndex] ??
+    REACTION_OPERATOR_LANE_LAYOUT.find((entry) => entry.laneIndex === resolvedLaneIndex) ??
+    REACTION_OPERATOR_LANE_LAYOUT[resolvedLaneIndex] ??
     null
   );
 }
 
-function getEnabledCenterColumnLayoutEntries() {
-  return REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled);
+function getEnabledOperatorLaneLayoutEntries() {
+  return REACTION_OPERATOR_LANE_LAYOUT.filter((entry) => entry.enabled);
+}
+
+function getOperatorLanePickerEntries(columnEntry = null) {
+  return Array.isArray(columnEntry?.pickerEntries) ? columnEntry.pickerEntries : [];
+}
+
+function getOperatorRootMenuEntries() {
+  return REACTION_OPERATOR_LANE_LAYOUT.flatMap((entry) => {
+    if (!entry?.enabled) {
+      return [];
+    }
+    const pickerEntries = getOperatorLanePickerEntries(entry);
+    if (pickerEntries.length) {
+      return pickerEntries.map((pickerEntry) => ({
+        laneIndex: entry.laneIndex,
+        templateId: pickerEntry.templateId,
+        label: pickerEntry.label,
+      }));
+    }
+    return [
+      {
+        laneIndex: entry.laneIndex,
+        templateId: entry.templateId,
+        label: entry.label,
+      },
+    ];
+  });
 }
 
 function getReactionSurfaceLaneEntries() {
   return [
-    { side: "reactant", centerColumnIndex: null },
-    ...getEnabledCenterColumnLayoutEntries().map((entry) => ({
-      side: "center",
-      centerColumnIndex: entry.columnIndex,
+    { side: "reactant", operatorLaneIndex: null },
+    ...getEnabledOperatorLaneLayoutEntries().map((entry) => ({
+      side: "operator",
+      operatorLaneIndex: entry.laneIndex,
     })),
-    { side: "product", centerColumnIndex: null },
+    { side: "product", operatorLaneIndex: null },
   ];
 }
 
@@ -669,7 +722,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     productsColumn,
   });
 
-  const centerColumn = root?.querySelector(".composer-reaction-solver-center") ?? null;
+  const operatorLayer = root?.querySelector(".composer-reaction-solver-operator-layer") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
   const sortedTemplateEntries = sortTemplatePickerEntries(templateEntries);
   const addPickerCells = getComposerReactionAddPickerCells();
@@ -682,10 +735,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     mappings: [],
     pendingSourceKey: "",
     pendingSourceRole: "",
+    pendingSourceAnchorInstanceIndex: null,
     menuMode: "root",
     menuSide: "reactant",
     menuParticipantId: "",
-    menuCenterColumnIndex: 1,
+    menuOperatorLaneIndex: 0,
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
@@ -698,19 +752,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
   };
 
   let drawFrameId = 0;
-  let centerLayoutFrameId = 0;
+  let operatorLayoutFrameId = 0;
   let applyHoveredRouteState = () => {};
   let createAnchorButton = () => document.createElement("button");
   let createInlineAnchorLane = () => document.createElement("div");
   let createSideSlotHeader = () => document.createElement("div");
-  let createTransmuteParticipantCard = () => document.createElement("article");
+  let createOperatorParticipantCard = () => document.createElement("article");
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
-  let syncCenterTransformerOperatorFan = () => {};
+  let syncOperatorFan = () => {};
   const mappingRulesRuntime = createComposerReactionMappingRulesRuntime({
     getNodeContext,
-    getTransmuteInputNodeContexts,
-    getTransmuteLedgerSummary,
+    getOperatorInputNodeContexts,
+    getOperatorLedgerSummary,
     parseNodeKey,
     resolveBinaryChoiceInventory,
   });
@@ -746,6 +800,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
     getMappingIdsForAnchor,
+    getPendingSourceAnchorInstanceIndex: () => state.pendingSourceAnchorInstanceIndex,
     getPendingSourceKey: () => state.pendingSourceKey,
     getPendingSourceRole: () => state.pendingSourceRole,
     getRecentMappingIds: () => state.recentMappingIds,
@@ -784,17 +839,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getAllowedBinaryChoiceIds,
     getAnchorAvailability,
     getBinaryPersonalitySelection,
-    getCenterTransformerGraphicOffsets,
+    getOperatorGraphicOffsets,
     getDefaultParticipantBaseLabel,
     getIsDraggingParticipant: (participantId) => state.dragParticipantId === participantId,
     getParticipantCardLabelLines,
     getParticipantCardMeta,
     getParticipantRootNode,
     getPendingSourceKey: () => state.pendingSourceKey,
-    getTransmuteCardLeft,
-    getTransmuteCardTop,
-    getTransmuteLedgerSummary,
-    getTransmuteNode,
+    getOperatorCardLeft,
+    getOperatorCardTop,
+    getOperatorLedgerSummary,
+    getOperatorNode,
     isCompositeParticipant,
     isProductCompositeParticipant,
     isQuarkTemplateId,
@@ -804,15 +859,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     resolveBinaryGlyphPolarity,
     setBinaryPersonalitySelection,
     shouldRenderChildNodes,
-    startTransmuteDrag,
+    startOperatorDrag,
     supportsParticipantPolarity,
     topLevelHierarchyHasRenderMode,
   });
   ({
     createSideSlotHeader,
-    createTransmuteParticipantCard,
+    createOperatorParticipantCard,
     renderParticipantCard,
-    syncCenterTransformerOperatorFan,
+    syncOperatorFan,
   } = participantRenderRuntime);
 
   function findParticipantById(participantId) {
@@ -971,6 +1026,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     };
   }
 
+  function subtractLedgers(leftLedger = null, rightLedger = null) {
+    return {
+      electrino: Math.max(
+        0,
+        Number(leftLedger?.electrino ?? 0) - Number(rightLedger?.electrino ?? 0)
+      ),
+      positrino: Math.max(
+        0,
+        Number(leftLedger?.positrino ?? 0) - Number(rightLedger?.positrino ?? 0)
+      ),
+    };
+  }
+
   function ledgerFitsWithin(limitLedger = null, candidateLedger = null) {
     const limit = createEmptyLedger();
     const candidate = createEmptyLedger();
@@ -1016,44 +1084,117 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function getTransmuteInputNodeContexts(participantId) {
+  function getOperatorInputNodeContexts(participantId) {
     return state.mappings
       .filter((mapping) => {
         const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
-        return targetParticipantId === participantId && mapping.targetRole === "transmute-input";
+        return targetParticipantId === participantId && mapping.targetRole === "operator-input";
       })
       .map((mapping) => getNodeContext(mapping.sourceKey))
       .filter(Boolean);
   }
 
-  function getTransmuteLedgerSummary(participantId) {
-    const incomingMappings = state.mappings.filter((mapping) => {
-      const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
-      return targetParticipantId === participantId && mapping.targetRole === "transmute-input";
-    });
-    const outgoingMappings = state.mappings.filter((mapping) => {
-      const { participantId: sourceParticipantId } = parseNodeKey(mapping.sourceKey);
-      return sourceParticipantId === participantId && mapping.sourceRole === "transmute-output";
-    });
-    const incomingLedger = incomingMappings.reduce(
-      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.sourceKey)),
-      createEmptyLedger()
-    );
-    const outgoingLedger = outgoingMappings.reduce(
-      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.targetKey)),
-      createEmptyLedger()
-    );
-    return {
-      incomingLedger,
-      outgoingLedger,
-      incomingCount: incomingMappings.length,
-      outgoingCount: outgoingMappings.length,
-      isBalanced: hasLedger(incomingLedger) && hasLedger(outgoingLedger) && ledgersMatch(incomingLedger, outgoingLedger),
-    };
+  function getOperatorLedgerSummary(participantId) {
+    const cache = new Map();
+    const activeStack = new Set();
+
+    function resolveOperatorSummary(targetParticipantId) {
+      const normalizedParticipantId = String(targetParticipantId ?? "").trim();
+      if (!normalizedParticipantId) {
+        return {
+          incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
+          outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
+          undischargedLedger: createEmptyLedger(),
+          incomingCount: 0,
+          outgoingCount: 0,
+          isOpen: false,
+          isInvalid: false,
+          isBalanced: false,
+        };
+      }
+      if (cache.has(normalizedParticipantId)) {
+        return cache.get(normalizedParticipantId);
+      }
+      if (activeStack.has(normalizedParticipantId)) {
+        return {
+          incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
+          outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
+          undischargedLedger: createEmptyLedger(),
+          incomingCount: 0,
+          outgoingCount: 0,
+          isOpen: false,
+          isInvalid: false,
+          isBalanced: false,
+        };
+      }
+
+      activeStack.add(normalizedParticipantId);
+      const participant = findParticipantById(normalizedParticipantId);
+      const incomingMappings = state.mappings.filter((mapping) => {
+        const { participantId: mappingTargetParticipantId } = parseNodeKey(mapping.targetKey);
+        return (
+          mappingTargetParticipantId === normalizedParticipantId &&
+          mapping.targetRole === "operator-input"
+        );
+      });
+      const outgoingMappings = state.mappings.filter((mapping) => {
+        const { participantId: mappingSourceParticipantId } = parseNodeKey(mapping.sourceKey);
+        return (
+          mappingSourceParticipantId === normalizedParticipantId &&
+          mapping.sourceRole === "operator-output"
+        );
+      });
+      const incomingLedger = incomingMappings.reduce((ledger, mapping) => {
+        const sourceLedger =
+          mapping.sourceRole === "operator-output"
+            ? resolveOperatorSummary(parseNodeKey(mapping.sourceKey).participantId).outputLedger
+            : getNodeLedger(mapping.sourceKey);
+        return addLedgers(ledger, sourceLedger);
+      }, createEmptyLedger());
+      const outputLedger =
+        participant?.side === "operator" && hasLedger(incomingLedger)
+          ? { ...incomingLedger }
+          : createEmptyLedger();
+      const routedOutgoingLedger = outgoingMappings.reduce((ledger, mapping) => {
+        const mappedLedger =
+          mapping.targetRole === "operator-input"
+            ? outputLedger
+            : getNodeLedger(mapping.targetKey);
+        return addLedgers(ledger, mappedLedger);
+      }, createEmptyLedger());
+      const isInvalid =
+        hasLedger(outputLedger) && !ledgerFitsWithin(outputLedger, routedOutgoingLedger);
+      const isBalanced =
+        hasLedger(outputLedger) &&
+        hasLedger(routedOutgoingLedger) &&
+        ledgersMatch(outputLedger, routedOutgoingLedger);
+      const isOpen = hasLedger(outputLedger) && !isInvalid && !isBalanced;
+      const summary = {
+        incomingLedger,
+        outputLedger,
+        outgoingLedger: routedOutgoingLedger,
+        routedOutgoingLedger,
+        undischargedLedger: subtractLedgers(outputLedger, routedOutgoingLedger),
+        incomingCount: incomingMappings.length,
+        outgoingCount: outgoingMappings.length,
+        isOpen,
+        isInvalid,
+        isBalanced,
+      };
+      activeStack.delete(normalizedParticipantId);
+      cache.set(normalizedParticipantId, summary);
+      return summary;
+    }
+
+    return resolveOperatorSummary(participantId);
   }
 
-  function isTransmuteParticipantBalanced(participantId) {
-    return getTransmuteLedgerSummary(participantId).isBalanced;
+  function isOperatorParticipantBalanced(participantId) {
+    return getOperatorLedgerSummary(participantId).isBalanced;
   }
 
   function removeMappingById(mappingId) {
@@ -1073,6 +1214,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
       state.pendingSourceKey = "";
       state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
     }
     state.hoveredMappingIds = state.hoveredMappingIds.filter((mappingId) =>
       state.mappings.some((mapping) => mapping.id === mappingId)
@@ -1242,7 +1384,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
-  function addOrReplaceMapping(sourceKey, sourceRole, targetKey, targetRole) {
+  function addOrReplaceMapping(
+    sourceKey,
+    sourceRole,
+    targetKey,
+    targetRole,
+    {
+      sourceAnchorInstanceIndex = null,
+      targetAnchorInstanceIndex = null,
+    } = {}
+  ) {
     state.mappings = state.mappings.filter((mapping) => {
       const sourceConflict = isSingleMappingAnchorRole(sourceRole)
         ? nodeKeysConflict(mapping.sourceKey, sourceKey) || nodeKeysConflict(mapping.targetKey, sourceKey)
@@ -1260,6 +1411,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       targetKey,
       sourceRole,
       targetRole,
+      sourceAnchorInstanceIndex,
+      targetAnchorInstanceIndex,
     });
     state.hoveredMappingIds = [];
     return mappingId;
@@ -1271,6 +1424,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     render();
   }
 
@@ -1284,7 +1438,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     let count = 0;
     state.participants
-      .filter((participant) => participant.side === "product" || participant.side === "center")
+      .filter((participant) => participant.side === "product" || participant.side === "operator")
       .forEach((participant) => {
         const visit = (nodes = []) => {
           nodes.forEach((node) => {
@@ -1293,10 +1447,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
               if (!getAnchorAvailability("product", nodeKey).disabled) {
                 count += 1;
               }
-            } else if (participant.side === "center") {
-              const transmuteNode = getTransmuteNode(participant);
-              if (transmuteNode && node.id === transmuteNode.id) {
-                if (!getAnchorAvailability("transmute-input", nodeKey).disabled) {
+            } else if (participant.side === "operator") {
+              const operatorNode = getOperatorNode(participant);
+              if (operatorNode && node.id === operatorNode.id) {
+                if (!getAnchorAvailability("operator-input", nodeKey).disabled) {
                   count += 1;
                 }
               }
@@ -1485,41 +1639,50 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function createColumnAddButton(side, options = {}) {
-    const centerColumnIndex = normalizeTransmuteColumnIndex(options.centerColumnIndex);
-    const centerColumnEntry =
-      side === "center" ? getCenterColumnLayoutEntry(centerColumnIndex) : null;
+    const operatorLaneIndex = normalizeOperatorLaneIndex(options.operatorLaneIndex);
+    const operatorLayerEntry =
+      side === "operator" ? getOperatorLaneLayoutEntry(operatorLaneIndex) : null;
+    const operatorPickerEntries = getOperatorLanePickerEntries(operatorLayerEntry);
     const button = document.createElement("button");
     button.type = "button";
     button.className = "composer-reaction-solver-add-button";
     button.dataset.addSide = side;
-    if (side === "center") {
-      button.dataset.centerColumnIndex = String(centerColumnIndex);
+    if (side === "operator") {
+      button.dataset.operatorLaneIndex = String(operatorLaneIndex);
     }
     button.setAttribute(
       "aria-label",
       side === "product"
         ? "Add product"
-        : side === "center"
-          ? centerColumnEntry?.enabled
-            ? `Add ${centerColumnEntry.label}`
-            : `${centerColumnEntry?.label ?? "Middle transform"} is disabled`
+        : side === "operator"
+          ? operatorLayerEntry?.enabled
+            ? operatorPickerEntries.length
+              ? `Choose ${operatorLayerEntry.label}`
+              : `Add ${operatorLayerEntry.label}`
+            : `${operatorLayerEntry?.label ?? "Operator"} is disabled`
           : "Add reactant"
     );
     if (
       state.menuOpen &&
       ((state.menuMode === "template-grid-picker" && state.menuSide === side) ||
-        (side === "center" &&
-          state.menuMode === "center-transform-picker" &&
-          state.menuCenterColumnIndex === centerColumnIndex))
+        (side === "operator" &&
+          state.menuMode === "operator-picker" &&
+          state.menuOperatorLaneIndex === operatorLaneIndex))
     ) {
       button.classList.add("is-active");
     }
     button.textContent = "+";
-    if (side === "center") {
-      if (centerColumnEntry?.enabled) {
-        button.addEventListener("click", () =>
-          addCenterTransformerParticipant(centerColumnEntry.templateId, centerColumnIndex)
-        );
+    if (side === "operator") {
+      if (operatorLayerEntry?.enabled) {
+        if (operatorPickerEntries.length > 0) {
+          button.addEventListener("click", (event) =>
+            openOperatorPicker(operatorLaneIndex, event.currentTarget)
+          );
+        } else {
+          button.addEventListener("click", () =>
+            addOperatorParticipant(operatorLayerEntry.templateId, operatorLaneIndex)
+          );
+        }
       } else {
         button.disabled = true;
       }
@@ -1529,26 +1692,55 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return button;
   }
 
+  function openOperatorPicker(operatorLaneIndex, triggerElement = null) {
+    if (!state.active || !menu || !triggerElement) {
+      return;
+    }
+    const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
+    const operatorLayerEntry = getOperatorLaneLayoutEntry(resolvedLaneIndex);
+    if (!operatorLayerEntry?.enabled || !getOperatorLanePickerEntries(operatorLayerEntry).length) {
+      return;
+    }
+    if (
+      state.menuOpen &&
+      state.menuMode === "operator-picker" &&
+      state.menuOperatorLaneIndex === resolvedLaneIndex
+    ) {
+      closeMenu();
+      return;
+    }
+    closeExternalMenus();
+    const bounds = triggerElement.getBoundingClientRect();
+    state.menuClientX = bounds.left + bounds.width / 2;
+    state.menuClientY = bounds.bottom + 10;
+    state.menuAnchorElement = triggerElement;
+    state.menuMode = "operator-picker";
+    state.menuOperatorLaneIndex = resolvedLaneIndex;
+    state.menuParticipantId = "";
+    state.menuOpen = true;
+    renderMenu();
+  }
+
   function createColumnAddControl(side, options = {}) {
     const control = document.createElement("div");
     control.className = `composer-reaction-solver-add-control is-${side}`;
-    if (side === "center") {
-      const resolvedColumnIndex = normalizeTransmuteColumnIndex(options.centerColumnIndex);
-      control.dataset.centerColumnIndex = String(resolvedColumnIndex);
-      control.style.left = getTransmuteCardLeft(resolvedColumnIndex);
+    if (side === "operator") {
+      const resolvedLaneIndex = normalizeOperatorLaneIndex(options.operatorLaneIndex);
+      control.dataset.operatorLaneIndex = String(resolvedLaneIndex);
+      control.style.left = getOperatorCardLeft(resolvedLaneIndex);
     }
     control.appendChild(createColumnAddButton(side, options));
     return control;
   }
 
-  function createCenterAddControls() {
+  function createOperatorAddControls() {
     const controls = document.createElement("div");
     const laneEntries = getReactionSurfaceLaneEntries();
     const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
     controls.className = "composer-reaction-solver-surface-add-controls";
     laneEntries.forEach((entry, laneIndex) => {
       const control = createColumnAddControl(entry.side, {
-        centerColumnIndex: entry.centerColumnIndex,
+        operatorLaneIndex: entry.operatorLaneIndex,
       });
       control.dataset.surfaceLaneIndex = String(laneIndex);
       control.style.left = `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
@@ -1639,6 +1831,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
@@ -1665,6 +1858,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
@@ -1675,11 +1869,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function addCenterTransformerParticipant(templateId = "transmute", centerColumnIndex = 1) {
-    const normalizedTemplateId = isCenterTransformerTemplateId(templateId) ? templateId : "transmute";
-    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
+  function addOperatorParticipant(templateId = "transmute", operatorLaneIndex = 1) {
+    const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "transmute";
+    const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
     const participant = createParticipantRecord({
-      side: "center",
+      side: "operator",
       templateId: normalizedTemplateId,
       label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Transmute"),
       hierarchy: buildFallbackHierarchyForTemplate(
@@ -1687,21 +1881,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
         getDefaultParticipantBaseLabel(normalizedTemplateId, "Transmute")
       ),
       extraFields: {
-        centerColumnIndex: resolvedColumnIndex,
-        centerSlotIndex: 0,
-        centerYRatio: 0.5,
+        operatorLaneIndex: resolvedLaneIndex,
+        operatorSlotIndex: 0,
+        operatorYRatio: 0.5,
       },
     });
     state.participants.push(participant);
-    assignTransmuteParticipantToSlot(
+    assignOperatorParticipantToSlot(
       participant,
-      getFirstAvailableTransmuteSlotIndex(participant.id, resolvedColumnIndex)
+      getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
     );
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
-    setStatus(`${participant.label} center transformer added to the reaction solver.`);
+    setStatus(`${participant.label} added to the reaction solver.`);
   }
 
   function clearReactionCanvas() {
@@ -1715,6 +1910,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.mappings = [];
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     state.hoveredMappingIds = [];
     clearAllRecentRouteState();
     closeMenu();
@@ -1744,6 +1940,23 @@ export function createComposerReactionSolverUiRuntime(deps) {
         const meta = getTemplateMeta(entry.template, entry.label);
         itemButton.style.setProperty("--solver-entry-accent", meta.accent);
         itemButton.dataset.shortLabel = meta.shortLabel;
+      });
+      renderMenuButton("Back", {
+        kind: "secondary",
+        onClick: () => {
+          state.menuMode = "root";
+          state.menuParticipantId = "";
+          renderMenu();
+        },
+      });
+    } else if (state.menuMode === "operator-picker") {
+      const operatorLayerEntry = getOperatorLaneLayoutEntry(state.menuOperatorLaneIndex);
+      const pickerEntries = getOperatorLanePickerEntries(operatorLayerEntry);
+      renderMenuTitle(operatorLayerEntry?.label || "Choose operator");
+      pickerEntries.forEach((entry) => {
+        renderMenuButton(entry.label, {
+          onClick: () => addOperatorParticipant(entry.templateId, state.menuOperatorLaneIndex),
+        });
       });
       renderMenuButton("Back", {
         kind: "secondary",
@@ -1850,11 +2063,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
-      REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled).forEach((entry) => {
+      getOperatorRootMenuEntries().forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
           extraClassNames: ["is-wide", "is-root-tile"],
-          onClick: () => addCenterTransformerParticipant(entry.templateId, entry.columnIndex),
+          onClick: () => addOperatorParticipant(entry.templateId, entry.laneIndex),
         });
       });
       renderMenuButton("Clear reaction canvas", {
@@ -1894,6 +2107,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.active = nextActive;
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     closeExternalMenus();
     if (root) {
@@ -1912,7 +2126,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform."
+          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for polarity operators, lane 3 + for associate or transmute, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -1922,12 +2136,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setActive(!state.active);
   }
 
-  function handleAnchorClick(role, nodeKey) {
+  function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
     if (isSingleMappingAnchorRole(role)) {
       const existingMapping = findMappingByNodeKey(nodeKey);
       if (existingMapping) {
         state.pendingSourceKey = "";
         state.pendingSourceRole = "";
+        state.pendingSourceAnchorInstanceIndex = null;
         if (removeMappingById(existingMapping.id)) {
           render();
           setStatus("Removed reaction mapping.");
@@ -1936,7 +2151,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
     }
 
-    const anchorAvailability = getAnchorAvailability(role, nodeKey);
+    const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
     if (anchorAvailability.disabled) {
       if (anchorAvailability.reason) {
         setStatus(anchorAvailability.reason);
@@ -1946,25 +2161,28 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
     if (canStartMappingFromRole(role)) {
       const isClearingPending =
-        state.pendingSourceKey === nodeKey && state.pendingSourceRole === role;
+        state.pendingSourceKey === nodeKey &&
+        state.pendingSourceRole === role &&
+        state.pendingSourceAnchorInstanceIndex === anchorInstanceIndex;
       state.pendingSourceKey = isClearingPending ? "" : nodeKey;
       state.pendingSourceRole = isClearingPending ? "" : role;
+      state.pendingSourceAnchorInstanceIndex = isClearingPending ? null : anchorInstanceIndex;
       setHoveredMappingIds([]);
       render();
       if (!state.pendingSourceKey) {
         setStatus(
-          role === "transmute-output"
-            ? "Transmute output anchor cleared."
+          role === "operator-output"
+            ? "Operator output anchor cleared."
             : "Reactant anchor cleared."
         );
         return;
       }
       const eligibleTargetCount = countEligibleTargets();
-      if (role === "transmute-output") {
+      if (role === "operator-output") {
         setStatus(
           eligibleTargetCount
-            ? "Transformer output selected. All targets remain available; rule-breaking connections will stay red until fixed."
-            : "Transformer output selected."
+            ? "Operator output selected. All targets remain available; rule-breaking connections will stay red until fixed."
+            : "Operator output selected."
         );
         return;
       }
@@ -1977,58 +2195,69 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
 
     if (!state.pendingSourceKey || !state.pendingSourceRole) {
-      setStatus("Choose a reactant or transmute output anchor first.");
+      setStatus("Choose a reactant or operator output anchor first.");
       return;
     }
 
     if (
       state.pendingSourceRole === "reactant" &&
       role !== "product" &&
-      role !== "transmute-input"
+      role !== "operator-input"
     ) {
-      setStatus("Reactant anchors connect to products or to a transmute input.");
+      setStatus("Reactant anchors connect to products or to an operator input.");
       return;
     }
-    if (state.pendingSourceRole === "transmute-output" && role !== "product") {
-      setStatus("Transmute outputs connect to product anchors only.");
+    if (state.pendingSourceRole === "operator-output" && role !== "product" && role !== "operator-input") {
+      setStatus("Operator outputs connect to product anchors or operator inputs.");
       return;
     }
 
+    const sourceRole = state.pendingSourceRole;
     const mappingId = addOrReplaceMapping(
       state.pendingSourceKey,
-      state.pendingSourceRole,
+      sourceRole,
       nodeKey,
-      role
+      role,
+      {
+        sourceAnchorInstanceIndex: state.pendingSourceAnchorInstanceIndex,
+        targetAnchorInstanceIndex: anchorInstanceIndex,
+      }
     );
     markMappingsRecent([mappingId]);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     render();
     const validation = getMappingValidation(
       state.mappings.find((mapping) => mapping.id === mappingId) ?? null
     );
     setStatus(
       validation.valid
-        ? role === "transmute-input"
-          ? "Reactant routed into transmute node."
+        ? role === "operator-input" && sourceRole === "reactant"
+          ? "Reactant routed into operator."
+          : role === "operator-input" && sourceRole === "operator-output"
+            ? "Operator routed into operator."
           : "Reaction mapping added."
         : `Connection added but invalid: ${validation.reason}`
     );
   }
 
 
-  function getTransmuteCardTop(centerYRatio = 0.5) {
-    return `${Math.max(0.08, Math.min(0.92, Number(centerYRatio) || 0.5)) * 100}%`;
+  function getOperatorCardTop(operatorYRatio = 0.5) {
+    return `${Math.max(0.08, Math.min(0.92, Number(operatorYRatio) || 0.5)) * 100}%`;
   }
 
-  function getCenterTransformerGraphicOffsets(participant, connectionCount = 4) {
+  function getOperatorGraphicOffsets(participant, connectionCount = 4) {
     if (!participant) {
       return [];
     }
-    const count = Math.max(1, Math.round(Number(connectionCount) || 0));
+    const count =
+      participant.templateId === "associate" || participant.templateId === "dissociate"
+        ? 2
+        : Math.max(1, Math.round(Number(connectionCount) || 0));
     const centerIndex = (count - 1) / 2;
     return Array.from({ length: count }, (_, index) =>
-      (index - centerIndex) * centerTransformerGraphicConnectionStepPx
+      (index - centerIndex) * operatorGraphicConnectionStepPx
     );
   }
 
@@ -2036,7 +2265,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return mappingRulesRuntime.getMappingValidation(mapping);
   }
 
-  function getTransmuteColumnFallbackRatios(requiredCount = transmuteColumnCount) {
+  function getOperatorLaneFallbackRatios(requiredCount = operatorLaneCount) {
     if (requiredCount <= 1) {
       return [0.5];
     }
@@ -2070,82 +2299,73 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return measuredRatios.slice(0, count);
   }
 
-  function getTransmuteColumnRatios(requiredCount = transmuteColumnCount) {
+  function getOperatorLaneRatios(requiredCount = operatorLaneCount) {
     const visibleLaneEntries = getReactionSurfaceLaneEntries();
     const laneRatios = getReactionSurfaceLaneRatios(visibleLaneEntries.length);
-    const visibleCenterEntries = visibleLaneEntries.filter((entry) => entry.side === "center");
-    const visibleCenterRatios = visibleCenterEntries
+    const visibleOperatorEntries = visibleLaneEntries.filter((entry) => entry.side === "operator");
+    const visibleOperatorRatios = visibleOperatorEntries
       .map((entry) => {
         const laneIndex = visibleLaneEntries.findIndex(
           (laneEntry) =>
-            laneEntry.side === "center" &&
-            normalizeTransmuteColumnIndex(laneEntry.centerColumnIndex) ===
-              normalizeTransmuteColumnIndex(entry.centerColumnIndex)
+            laneEntry.side === "operator" &&
+            normalizeOperatorLaneIndex(laneEntry.operatorLaneIndex) ===
+              normalizeOperatorLaneIndex(entry.operatorLaneIndex)
         );
         return laneRatios[laneIndex];
       })
       .filter((ratio) => Number.isFinite(ratio));
-    if (visibleCenterRatios.length) {
-      return visibleCenterRatios;
+    if (visibleOperatorRatios.length) {
+      return visibleOperatorRatios;
     }
 
     const count = Math.max(1, requiredCount);
-    if (!centerColumn) {
-      return getTransmuteColumnFallbackRatios(count);
+    if (!operatorLayer) {
+      return getOperatorLaneFallbackRatios(count);
     }
-    const bounds = centerColumn.getBoundingClientRect();
+    const bounds = operatorLayer.getBoundingClientRect();
     const width = Math.max(1, bounds.width);
-    const minCenter = transmuteParticipantWidthPx / 2 + transmuteColumnEdgePaddingPx;
+    const minCenter = operatorTrackWidthPx / 2 + operatorLaneEdgePaddingPx;
     const maxCenter = Math.max(
       minCenter,
-      width - transmuteParticipantWidthPx / 2 - transmuteColumnEdgePaddingPx
+      width - operatorTrackWidthPx / 2 - operatorLaneEdgePaddingPx
     );
     if (count <= 1 || maxCenter - minCenter <= 1) {
       return Array.from({ length: count }, () => 0.5);
     }
     const fullSpreadStep = (maxCenter - minCenter) / (count - 1);
-    const fullSpreadGap = Math.max(0, fullSpreadStep - transmuteParticipantWidthPx);
+    const fullSpreadGap = Math.max(0, fullSpreadStep - operatorTrackWidthPx);
     const compressedGap = fullSpreadGap * 0.25;
-    const step = transmuteParticipantWidthPx + compressedGap;
+    const step = operatorTrackWidthPx + compressedGap;
     const availableClusterStart = Math.max(minCenter, maxCenter - step * (count - 1));
     const centeredStart = width / 2 - (step * (count - 1)) / 2;
     const startCenter = Math.max(minCenter, Math.min(centeredStart, availableClusterStart));
     return Array.from({ length: count }, (_, index) => (startCenter + step * index) / width);
   }
 
-  function getTransmuteCardLeft(centerColumnIndex = 1) {
-    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
+  function getOperatorCardLeft(operatorLaneIndex = 1) {
+    const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
     const laneEntries = getReactionSurfaceLaneEntries();
     const laneIndex = laneEntries.findIndex(
       (entry) =>
-        entry.side === "center" &&
-        normalizeTransmuteColumnIndex(entry.centerColumnIndex) === resolvedColumnIndex
+        entry.side === "operator" &&
+        normalizeOperatorLaneIndex(entry.operatorLaneIndex) === resolvedLaneIndex
     );
     const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
     return `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
   }
 
-  function getCenterLaneSlotElement(centerColumnIndex = null) {
-    if (!surface || centerColumnIndex === null || centerColumnIndex === undefined) {
+  function getOperatorLaneSlotElement(operatorLaneIndex = null) {
+    if (!surface || operatorLaneIndex === null || operatorLaneIndex === undefined) {
       return null;
     }
     return surface.querySelector(
-      `.composer-reaction-solver-lane-slot[data-center-column-index="${CSS.escape(String(
-        normalizeTransmuteColumnIndex(centerColumnIndex)
+      `.composer-reaction-solver-lane-slot[data-operator-lane-index="${CSS.escape(String(
+        normalizeOperatorLaneIndex(operatorLaneIndex)
       ))}"]`
     );
   }
 
-  function getCenterLaneWidthPx(centerColumnIndex = null) {
-    const slotElement = getCenterLaneSlotElement(centerColumnIndex);
-    if (!(slotElement instanceof HTMLElement)) {
-      return null;
-    }
-    const bounds = slotElement.getBoundingClientRect();
-    return bounds.width > 1 ? bounds.width : null;
-  }
-
-  function getCenterLaneFallbackSlotRatios(requiredCount = 1) {
+  function getOperatorLaneFallbackSlotRatios(requiredCount = 1) {
     const fallbackCount = Math.max(1, requiredCount);
     const startRatio = 0.28;
     const stepRatio = 0.18;
@@ -2154,14 +2374,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function getTransmuteSlotRatios(requiredCount = 1) {
-    if (!centerColumn) {
-      return getCenterLaneFallbackSlotRatios(requiredCount);
+  function getOperatorSlotRatios(requiredCount = 1) {
+    if (!operatorLayer) {
+      return getOperatorLaneFallbackSlotRatios(requiredCount);
     }
-    const bounds = centerColumn.getBoundingClientRect();
+    const bounds = operatorLayer.getBoundingClientRect();
     const height = Math.max(1, bounds.height);
-    const minCenter = transmuteCardHeightPx / 2 + transmuteSlotEdgePaddingPx;
-    const maxCenter = Math.max(minCenter, height - transmuteCardHeightPx / 2 - transmuteSlotEdgePaddingPx);
+    const minCenter = operatorCardHeightPx / 2 + operatorSlotEdgePaddingPx;
+    const maxCenter = Math.max(minCenter, height - operatorCardHeightPx / 2 - operatorSlotEdgePaddingPx);
 
     const renderedTrackCenters = [
       ...surface.querySelectorAll(
@@ -2185,7 +2405,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       renderedTrackCenters.length > 0
         ? renderedTrackCenters
         : [
-            ...surface.querySelectorAll(".composer-reaction-solver-participant:not(.is-center)"),
+            ...surface.querySelectorAll(".composer-reaction-solver-participant:not(.is-operator)"),
           ]
             .map((element) => {
               const rect = element.getBoundingClientRect();
@@ -2203,9 +2423,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!baseCenters.length) {
       const topAlignedStartCenter = Math.max(
         minCenter,
-        solverAddButtonSizePx + solverTileGapPx + transmuteCardHeightPx / 2
+        solverAddButtonSizePx + solverTileGapPx + operatorCardHeightPx / 2
       );
-      const fallbackStepPx = Math.max(64, transmuteCardHeightPx + solverTileGapPx * 2);
+      const fallbackStepPx = Math.max(64, operatorCardHeightPx + solverTileGapPx * 2);
       return Array.from({ length: Math.max(1, requiredCount) }, (_, index) =>
         Math.min(maxCenter, topAlignedStartCenter + fallbackStepPx * index) / height
       );
@@ -2219,8 +2439,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const derivedStep =
       sortedDeltas.length > 0
         ? sortedDeltas[Math.floor(sortedDeltas.length / 2)]
-        : transmuteSlotStepPx;
-    const slotStep = Math.max(64, derivedStep || transmuteSlotStepPx);
+        : operatorSlotStepPx;
+    const slotStep = Math.max(64, derivedStep || operatorSlotStepPx);
     const centers = [...baseCenters];
 
     while (centers.length < requiredCount) {
@@ -2241,25 +2461,25 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return centers.map((center) => center / height);
   }
 
-  function getOccupiedTransmuteSlotIndexes(excludedParticipantId = "", centerColumnIndex = null) {
+  function getOccupiedOperatorSlotIndexes(excludedParticipantId = "", operatorLaneIndex = null) {
     const normalizedColumnIndex =
-      centerColumnIndex === null ? null : normalizeTransmuteColumnIndex(centerColumnIndex);
+      operatorLaneIndex === null ? null : normalizeOperatorLaneIndex(operatorLaneIndex);
     return new Set(
       state.participants
         .filter(
           (participant) =>
-            isTransmuteParticipant(participant) &&
+            isOperatorParticipant(participant) &&
             String(participant.id) !== String(excludedParticipantId) &&
             (normalizedColumnIndex === null ||
-              normalizeTransmuteColumnIndex(participant.centerColumnIndex) === normalizedColumnIndex)
+              normalizeOperatorLaneIndex(participant.operatorLaneIndex) === normalizedColumnIndex)
         )
-        .map((participant) => Number(participant.centerSlotIndex))
+        .map((participant) => Number(participant.operatorSlotIndex))
         .filter((slotIndex) => Number.isInteger(slotIndex) && slotIndex >= 0)
     );
   }
 
-  function getFirstAvailableTransmuteSlotIndex(excludedParticipantId = "", centerColumnIndex = null) {
-    const occupied = getOccupiedTransmuteSlotIndexes(excludedParticipantId, centerColumnIndex);
+  function getFirstAvailableOperatorSlotIndex(excludedParticipantId = "", operatorLaneIndex = null) {
+    const occupied = getOccupiedOperatorSlotIndexes(excludedParticipantId, operatorLaneIndex);
     let slotIndex = 0;
     while (occupied.has(slotIndex)) {
       slotIndex += 1;
@@ -2267,12 +2487,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return slotIndex;
   }
 
-  function findNearestAvailableTransmuteSlotIndex(
+  function findNearestAvailableOperatorSlotIndex(
     targetIndex,
     excludedParticipantId = "",
-    centerColumnIndex = null
+    operatorLaneIndex = null
   ) {
-    const occupied = getOccupiedTransmuteSlotIndexes(excludedParticipantId, centerColumnIndex);
+    const occupied = getOccupiedOperatorSlotIndexes(excludedParticipantId, operatorLaneIndex);
     const preferredIndex = Math.max(0, Math.round(Number(targetIndex) || 0));
     if (!occupied.has(preferredIndex)) {
       return preferredIndex;
@@ -2287,72 +2507,66 @@ export function createComposerReactionSolverUiRuntime(deps) {
         return upperIndex;
       }
     }
-    return getFirstAvailableTransmuteSlotIndex(excludedParticipantId, centerColumnIndex);
+    return getFirstAvailableOperatorSlotIndex(excludedParticipantId, operatorLaneIndex);
   }
 
-  function assignTransmuteParticipantToSlot(participant, requestedSlotIndex) {
-    if (!participant || !isTransmuteParticipant(participant)) {
+  function assignOperatorParticipantToSlot(participant, requestedSlotIndex) {
+    if (!participant || !isOperatorParticipant(participant)) {
       return;
     }
-    const resolvedColumnIndex = normalizeTransmuteColumnIndex(participant.centerColumnIndex);
-    const resolvedSlotIndex = findNearestAvailableTransmuteSlotIndex(
+    const resolvedLaneIndex = normalizeOperatorLaneIndex(participant.operatorLaneIndex);
+    const resolvedSlotIndex = findNearestAvailableOperatorSlotIndex(
       requestedSlotIndex,
       participant.id,
-      resolvedColumnIndex
+      resolvedLaneIndex
     );
-    const slotRatios = getTransmuteSlotRatios(resolvedSlotIndex + 1);
+    const slotRatios = getOperatorSlotRatios(resolvedSlotIndex + 1);
     const resolvedRatio =
       slotRatios[resolvedSlotIndex] ??
       slotRatios[slotRatios.length - 1] ??
-      getCenterLaneFallbackSlotRatios(resolvedSlotIndex + 1)[resolvedSlotIndex] ??
+      getOperatorLaneFallbackSlotRatios(resolvedSlotIndex + 1)[resolvedSlotIndex] ??
       0.5;
-    participant.centerColumnIndex = resolvedColumnIndex;
-    participant.centerSlotIndex = resolvedSlotIndex;
-    participant.centerYRatio = resolvedRatio;
+    participant.operatorLaneIndex = resolvedLaneIndex;
+    participant.operatorSlotIndex = resolvedSlotIndex;
+    participant.operatorYRatio = resolvedRatio;
   }
 
-  function syncTransmuteCardPosition(participantId) {
+  function syncOperatorCardPosition(participantId) {
     if (!surface) {
       return;
     }
     const participant = findParticipantById(participantId);
     const card = surface.querySelector(
-      `.composer-reaction-solver-participant.is-center[data-participant-id="${CSS.escape(participantId)}"]`
+      `.composer-reaction-solver-participant.is-operator[data-participant-id="${CSS.escape(participantId)}"]`
     );
     if (!participant || !card) {
       return;
     }
-    assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
-    card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
-    card.style.top = getTransmuteCardTop(participant.centerYRatio);
-    const laneWidthPx = getCenterLaneWidthPx(participant.centerColumnIndex);
-    if (laneWidthPx) {
-      card.style.setProperty("--solver-center-lane-width", `${laneWidthPx}px`);
-    } else {
-      card.style.removeProperty("--solver-center-lane-width");
-    }
-    syncCenterTransformerOperatorFan(card, participant);
+    assignOperatorParticipantToSlot(participant, participant.operatorSlotIndex);
+    card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
+    card.style.top = getOperatorCardTop(participant.operatorYRatio);
+    syncOperatorFan(card, participant);
   }
 
-  function updateTransmuteDrag(clientY) {
-    if (!state.dragParticipantId || !centerColumn) {
+  function updateOperatorDrag(clientY) {
+    if (!state.dragParticipantId || !operatorLayer) {
       return;
     }
     const participant = findParticipantById(state.dragParticipantId);
     if (!participant) {
       return;
     }
-    const bounds = centerColumn.getBoundingClientRect();
+    const bounds = operatorLayer.getBoundingClientRect();
     const height = Math.max(1, bounds.height);
     const targetRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
-    const slotRatios = getTransmuteSlotRatios(
+    const slotRatios = getOperatorSlotRatios(
       Math.max(
-        getFirstAvailableTransmuteSlotIndex(participant.id, participant.centerColumnIndex) + 1,
+        getFirstAvailableOperatorSlotIndex(participant.id, participant.operatorLaneIndex) + 1,
         state.participants.filter(
           (entry) =>
-            isTransmuteParticipant(entry) &&
-            normalizeTransmuteColumnIndex(entry.centerColumnIndex) ===
-              normalizeTransmuteColumnIndex(participant.centerColumnIndex)
+            isOperatorParticipant(entry) &&
+            normalizeOperatorLaneIndex(entry.operatorLaneIndex) ===
+              normalizeOperatorLaneIndex(participant.operatorLaneIndex)
         ).length + 2
       )
     );
@@ -2364,32 +2578,32 @@ export function createComposerReactionSolverUiRuntime(deps) {
         ? index
         : bestIndex;
     }, -1);
-    const nextSlotIndex = findNearestAvailableTransmuteSlotIndex(
+    const nextSlotIndex = findNearestAvailableOperatorSlotIndex(
       nearestSlotIndex,
       participant.id,
-      participant.centerColumnIndex
+      participant.operatorLaneIndex
     );
-    const nextRatio = slotRatios[nextSlotIndex] ?? participant.centerYRatio ?? 0.5;
+    const nextRatio = slotRatios[nextSlotIndex] ?? participant.operatorYRatio ?? 0.5;
     if (
-      participant.centerSlotIndex === nextSlotIndex &&
-      Math.abs((participant.centerYRatio ?? 0.5) - nextRatio) < 0.001
+      participant.operatorSlotIndex === nextSlotIndex &&
+      Math.abs((participant.operatorYRatio ?? 0.5) - nextRatio) < 0.001
     ) {
       return;
     }
-    participant.centerSlotIndex = nextSlotIndex;
-    participant.centerYRatio = nextRatio;
-    syncTransmuteCardPosition(participant.id);
+    participant.operatorSlotIndex = nextSlotIndex;
+    participant.operatorYRatio = nextRatio;
+    syncOperatorCardPosition(participant.id);
     scheduleMappingDraw();
   }
 
-  function stopTransmuteDrag() {
+  function stopOperatorDrag() {
     if (!state.dragParticipantId || !surface) {
       state.dragParticipantId = "";
       state.dragPointerId = null;
       return;
     }
     const card = surface.querySelector(
-      `.composer-reaction-solver-participant.is-center[data-participant-id="${CSS.escape(state.dragParticipantId)}"]`
+      `.composer-reaction-solver-participant.is-operator[data-participant-id="${CSS.escape(state.dragParticipantId)}"]`
     );
     if (card) {
       card.classList.remove("is-dragging");
@@ -2398,8 +2612,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.dragPointerId = null;
   }
 
-  function startTransmuteDrag(event, participantId) {
-    if (event.button !== 0 || !centerColumn) {
+  function startOperatorDrag(event, participantId) {
+    if (event.button !== 0 || !operatorLayer) {
       return;
     }
     const target = event.target;
@@ -2419,7 +2633,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         }
       }
     }
-    updateTransmuteDrag(event.clientY);
+    updateOperatorDrag(event.clientY);
     event.preventDefault();
   }
 
@@ -2432,19 +2646,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform.";
+        "Use the left + for reactants, lane 2 + for polarity operators, lane 3 + for associate or transmute, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
       mapHint.textContent =
-        state.pendingSourceRole === "transmute-output"
-          ? "Transformer output selected. Rule-breaking connections remain visible in red until fixed."
+        state.pendingSourceRole === "operator-output"
+          ? "Operator output selected. Rule-breaking connections remain visible in red until fixed."
           : "Source anchor selected. Rule-breaking connections remain visible in red until fixed.";
       return;
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product or transmute anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or operator anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
@@ -2508,6 +2722,46 @@ export function createComposerReactionSolverUiRuntime(deps) {
     };
   }
 
+  function getCompositeBusRouteEndpoints(
+    spanStem,
+    collector,
+    bounds,
+    edgeInset = solverRouteAnchorGapPx
+  ) {
+    if (!(spanStem instanceof Element) || !(collector instanceof Element)) {
+      return getTrimmedRouteEndpoints(spanStem, collector, bounds, edgeInset);
+    }
+    const collectorPoint = getElementCenterWithinSurface(collector, bounds);
+    const stemRect = spanStem.getBoundingClientRect();
+    const stemX = stemRect.left + stemRect.width / 2 - bounds.left;
+    const stemTop = stemRect.top - bounds.top;
+    const stemBottom = stemRect.bottom - bounds.top;
+    const stemPoint = {
+      x: stemX,
+      y: Math.max(stemTop, Math.min(collectorPoint.y, stemBottom)),
+    };
+    const deltaX = collectorPoint.x - stemPoint.x;
+    const deltaY = collectorPoint.y - stemPoint.y;
+    const distance = Math.hypot(deltaX, deltaY);
+    if (distance <= 0.001) {
+      return {
+        startX: stemPoint.x,
+        startY: stemPoint.y,
+        endX: collectorPoint.x,
+        endY: collectorPoint.y,
+      };
+    }
+    const unitX = deltaX / distance;
+    const unitY = deltaY / distance;
+    const collectorRadius = Math.max(0, getAnchorRadiusFromBounds(collector) - edgeInset);
+    return {
+      startX: stemPoint.x,
+      startY: stemPoint.y,
+      endX: collectorPoint.x - unitX * collectorRadius,
+      endY: collectorPoint.y - unitY * collectorRadius,
+    };
+  }
+
   function drawCompositeLinks(bounds) {
     state.participants
       .filter((participant) => isCompositeParticipant(participant))
@@ -2522,7 +2776,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
           `.composer-reaction-solver-composite-span-stem[data-composite-span-participant-id="${CSS.escape(participant.id)}"]`
         );
         if (spanStem) {
-          const { startX, startY, endX, endY } = getTrimmedRouteEndpoints(
+          const { startX, startY, endX, endY } = getCompositeBusRouteEndpoints(
             spanStem,
             collector,
             bounds
@@ -2567,6 +2821,67 @@ export function createComposerReactionSolverUiRuntime(deps) {
       });
   }
 
+  function getRenderedAnchorsForNodeRole(nodeKey, role) {
+    if (!surface) {
+      return [];
+    }
+    return Array.from(
+      surface.querySelectorAll(
+        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(nodeKey)}"][data-anchor-side="${CSS.escape(role)}"]`
+      )
+    ).sort((leftAnchor, rightAnchor) => {
+      const leftIndex = Number(leftAnchor.dataset.anchorInstanceIndex ?? 0);
+      const rightIndex = Number(rightAnchor.dataset.anchorInstanceIndex ?? 0);
+      if (leftIndex !== rightIndex) {
+        return leftIndex - rightIndex;
+      }
+      const leftTop = leftAnchor.getBoundingClientRect().top;
+      const rightTop = rightAnchor.getBoundingClientRect().top;
+      return leftTop - rightTop;
+    });
+  }
+
+  function getRenderedMappingAnchor(mapping, endpoint = "source") {
+    if (!mapping) {
+      return null;
+    }
+    const isSource = endpoint !== "target";
+    const anchorKey = isSource ? mapping.sourceKey : mapping.targetKey;
+    const anchorRole = isSource ? mapping.sourceRole : mapping.targetRole;
+    const anchorInstanceIndex = isSource
+      ? mapping.sourceAnchorInstanceIndex
+      : mapping.targetAnchorInstanceIndex;
+    const anchors = getRenderedAnchorsForNodeRole(anchorKey, anchorRole);
+    if (!anchors.length) {
+      return null;
+    }
+    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+    if (normalizedAnchorInstanceIndex !== null) {
+      const exactAnchor =
+        anchors.find(
+          (anchor) =>
+            normalizeAnchorInstanceIndex(anchor.dataset.anchorInstanceIndex) ===
+            normalizedAnchorInstanceIndex
+        ) ?? null;
+      if (exactAnchor) {
+        return exactAnchor;
+      }
+    }
+    if (anchors.length === 1) {
+      return anchors[0];
+    }
+    const matchingMappings = state.mappings.filter((entry) =>
+      isSource
+        ? entry.sourceKey === anchorKey && entry.sourceRole === anchorRole
+        : entry.targetKey === anchorKey && entry.targetRole === anchorRole
+    );
+    const mappingIndex = matchingMappings.findIndex((entry) => entry.id === mapping.id);
+    if (mappingIndex < 0) {
+      return anchors[0];
+    }
+    return anchors[mappingIndex % anchors.length] ?? anchors[0];
+  }
+
   function drawMappings() {
     drawFrameId = 0;
     if (!state.active || !surface || !mapSvg) {
@@ -2579,12 +2894,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     mapSvg.innerHTML = "";
     drawCompositeLinks(bounds);
     state.mappings.forEach((mapping) => {
-      const sourceAnchor = surface.querySelector(
-        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.sourceKey)}"][data-anchor-side="${CSS.escape(mapping.sourceRole)}"]`
-      );
-      const targetAnchor = surface.querySelector(
-        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(mapping.targetKey)}"][data-anchor-side="${CSS.escape(mapping.targetRole)}"]`
-      );
+      const sourceAnchor = getRenderedMappingAnchor(mapping, "source");
+      const targetAnchor = getRenderedMappingAnchor(mapping, "target");
       if (!sourceAnchor || !targetAnchor) {
         return;
       }
@@ -2622,18 +2933,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     drawFrameId = requestAnimationFrame(drawMappings);
   }
 
-  function syncCenterLaneLayout() {
-    if (!state.active || !centerColumn) {
+  function syncOperatorLaneLayout() {
+    if (!state.active || !operatorLayer) {
       return false;
     }
-    const bounds = centerColumn.getBoundingClientRect();
+    const bounds = operatorLayer.getBoundingClientRect();
     if (bounds.width <= 1 || bounds.height <= 1) {
       return false;
     }
 
     const laneRatios = getReactionSurfaceLaneRatios(getReactionSurfaceLaneEntries().length);
     Array.from(
-      centerColumn.querySelectorAll(
+      operatorLayer.querySelectorAll(
         ".composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control"
       )
     ).forEach((control, index) => {
@@ -2645,9 +2956,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
 
     state.participants
-      .filter((participant) => participant.side === "center")
+      .filter((participant) => participant.side === "operator")
       .forEach((participant) => {
-        syncTransmuteCardPosition(participant.id);
+        syncOperatorCardPosition(participant.id);
       });
 
     scheduleMappingDraw();
@@ -2658,21 +2969,54 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!(columnElement instanceof HTMLElement)) {
       return false;
     }
+    const columnBounds = columnElement.getBoundingClientRect();
+    if (columnBounds.width <= 1 || columnBounds.height <= 1) {
+      return false;
+    }
     const header = columnElement.querySelector(
       `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
     );
     const participants = Array.from(
       columnElement.querySelectorAll(`.composer-reaction-solver-participant.is-${CSS.escape(side)}`)
     );
-    participants.forEach((participantElement) => {
-      if (participantElement instanceof HTMLElement) {
+    const trackGeometries = participants
+      .map((participantElement) => {
+        if (!(participantElement instanceof HTMLElement)) {
+          return null;
+        }
         participantElement.style.setProperty("--solver-track-align-shift", "0px");
+        const trackElement = participantElement.querySelector(
+          ".composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-binary-selector-grid-track"
+        );
+        if (!(trackElement instanceof HTMLElement)) {
+          return null;
+        }
+        const trackBounds = trackElement.getBoundingClientRect();
+        return {
+          start: trackBounds.left - columnBounds.left,
+          width: trackBounds.width,
+        };
+      })
+      .filter(Boolean);
+    if (!trackGeometries.length) {
+      if (header instanceof HTMLElement) {
+        header.style.setProperty("--solver-slot-header-offset", "0px");
       }
-    });
-    if (header instanceof HTMLElement) {
-      header.style.setProperty("--solver-slot-header-offset", "0px");
+      return false;
     }
-    return participants.length > 0 || header instanceof HTMLElement;
+    const sortedStarts = trackGeometries
+      .map((entry) => entry.start)
+      .sort((left, right) => left - right);
+    const targetStart = sortedStarts[Math.floor(sortedStarts.length / 2)] ?? 0;
+    const trackWidth = Math.max(...trackGeometries.map((entry) => entry.width));
+    if (header instanceof HTMLElement) {
+      const headerOffset =
+        side === "product"
+          ? Math.max(0, columnBounds.width - targetStart - trackWidth)
+          : Math.max(0, targetStart);
+      header.style.setProperty("--solver-slot-header-offset", `${headerOffset}px`);
+    }
+    return true;
   }
 
   function syncSideColumnGeometry() {
@@ -2688,15 +3032,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return false;
   }
 
-  function scheduleCenterLaneLayout(attemptsRemaining = 2) {
-    if (centerLayoutFrameId) {
-      cancelAnimationFrame(centerLayoutFrameId);
+  function scheduleOperatorLaneLayout(attemptsRemaining = 2) {
+    if (operatorLayoutFrameId) {
+      cancelAnimationFrame(operatorLayoutFrameId);
     }
-    centerLayoutFrameId = requestAnimationFrame(() => {
-      centerLayoutFrameId = 0;
-      const synced = syncCenterLaneLayout();
+    operatorLayoutFrameId = requestAnimationFrame(() => {
+      operatorLayoutFrameId = 0;
+      const synced = syncOperatorLaneLayout();
       if (!synced && attemptsRemaining > 0) {
-        scheduleCenterLaneLayout(attemptsRemaining - 1);
+        scheduleOperatorLaneLayout(attemptsRemaining - 1);
       }
     });
   }
@@ -2711,13 +3055,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function render() {
-    if (!root || !reactantsColumn || !productsColumn || !centerColumn) {
+    if (!root || !reactantsColumn || !productsColumn || !operatorLayer) {
       return;
     }
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
     reactantsColumn.innerHTML = "";
-    centerColumn.innerHTML = "";
+    operatorLayer.innerHTML = "";
     productsColumn.innerHTML = "";
     if (!state.active) {
       if (mapSvg) {
@@ -2734,8 +3078,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const productParticipants = state.participants.filter(
       (participant) => participant.side === "product"
     );
-    const centerParticipants = state.participants.filter(
-      (participant) => participant.side === "center"
+    const operatorParticipants = state.participants.filter(
+      (participant) => participant.side === "operator"
     );
     if (reactantParticipants.length) {
       reactantsColumn.appendChild(createSideSlotHeader(reactantParticipants, "reactant"));
@@ -2743,21 +3087,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
-    centerColumn.appendChild(createCenterAddControls());
+    operatorLayer.appendChild(createOperatorAddControls());
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader(productParticipants, "product"));
     }
     productParticipants.forEach((participant) => {
       productsColumn.appendChild(renderParticipantCard(participant));
     });
-    centerParticipants.forEach((participant) => {
-      assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
-      centerColumn.appendChild(createTransmuteParticipantCard(participant));
+    operatorParticipants.forEach((participant) => {
+      assignOperatorParticipantToSlot(participant, participant.operatorSlotIndex);
+      operatorLayer.appendChild(createOperatorParticipantCard(participant));
     });
     updateHint();
     scheduleSideColumnGeometry();
     scheduleMappingDraw();
-    scheduleCenterLaneLayout();
+    scheduleOperatorLaneLayout();
   }
 
   function handleSurfaceContextMenu(event) {
@@ -2788,7 +3132,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
       return;
     }
-    updateTransmuteDrag(event.clientY);
+    updateOperatorDrag(event.clientY);
   }
 
   function handleDocumentPointerUp(event) {
@@ -2798,7 +3142,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
       return;
     }
-    stopTransmuteDrag();
+    stopOperatorDrag();
   }
 
   function handleRootKeyDown(event) {
@@ -2848,7 +3192,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         if (state.active) {
           updateMenuPosition();
           scheduleSideColumnGeometry();
-          scheduleCenterLaneLayout();
+          scheduleOperatorLaneLayout();
           scheduleMappingDraw();
         }
       });

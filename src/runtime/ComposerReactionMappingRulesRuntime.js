@@ -82,16 +82,18 @@ function getNodeLedgerFromContext(nodeContext = null, resolveBinaryChoiceInvento
 export function createComposerReactionMappingRulesRuntime(options = {}) {
   const getNodeContext =
     typeof options.getNodeContext === "function" ? options.getNodeContext : () => null;
-  const getTransmuteInputNodeContexts =
-    typeof options.getTransmuteInputNodeContexts === "function"
-      ? options.getTransmuteInputNodeContexts
+  const getOperatorInputNodeContexts =
+    typeof options.getOperatorInputNodeContexts === "function"
+      ? options.getOperatorInputNodeContexts
       : () => [];
-  const getTransmuteLedgerSummary =
-    typeof options.getTransmuteLedgerSummary === "function"
-      ? options.getTransmuteLedgerSummary
+  const getOperatorLedgerSummary =
+    typeof options.getOperatorLedgerSummary === "function"
+      ? options.getOperatorLedgerSummary
       : () => ({
           incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
           outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
           incomingCount: 0,
           outgoingCount: 0,
           isBalanced: false,
@@ -105,46 +107,51 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       ? options.resolveBinaryChoiceInventory
       : () => null;
 
-  function evaluateTransmuteOutputLedger(transmuteSummary = null, outputLedger = null) {
-    const normalizedSummary = transmuteSummary ?? {
+  function evaluateOperatorOutputLedger(operatorSummary = null, outputLedger = null) {
+    const normalizedSummary = operatorSummary ?? {
       incomingLedger: createEmptyLedger(),
+      outputLedger: createEmptyLedger(),
       outgoingLedger: createEmptyLedger(),
+      routedOutgoingLedger: createEmptyLedger(),
       incomingCount: 0,
       outgoingCount: 0,
     };
+    const availableOutputLedger = hasLedger(normalizedSummary.outputLedger)
+      ? normalizedSummary.outputLedger
+      : normalizedSummary.incomingLedger;
     const candidateLedger = normalizeLedger(outputLedger);
-    if (!hasLedger(normalizedSummary.incomingLedger)) {
+    if (!hasLedger(availableOutputLedger)) {
       return {
         valid: false,
-        reason: "Add conservative reactant inputs to this transmute node first.",
+        reason: "Add conservative reactant inputs to this operator first.",
       };
     }
-    if (!ledgerFitsWithin(normalizedSummary.incomingLedger, candidateLedger)) {
+    if (!ledgerFitsWithin(availableOutputLedger, candidateLedger)) {
       return {
         valid: false,
-        reason: `Center transformer output would exceed its incoming ledger: ${formatLedger(normalizedSummary.incomingLedger)} available.`,
+        reason: `Operator output would exceed its available ledger: ${formatLedger(availableOutputLedger)} available.`,
       };
     }
-    if (!ledgersMatch(normalizedSummary.incomingLedger, candidateLedger)) {
-      const remainingLedger = subtractLedgers(normalizedSummary.incomingLedger, candidateLedger);
+    if (!ledgersMatch(availableOutputLedger, candidateLedger)) {
+      const remainingLedger = subtractLedgers(availableOutputLedger, candidateLedger);
       return {
         valid: false,
-        reason: `Center transformer output remains incomplete: ${formatLedger(remainingLedger)} still unmatched.`,
+        reason: `Operator output remains incomplete: ${formatLedger(remainingLedger)} still unmatched.`,
       };
     }
     return {
       valid: true,
-      reason: "Transmute output is fully conservative.",
+      reason: "Operator output is fully conservative.",
     };
   }
 
-  function evaluateTransmuteStructureCompatibility(
-    transmuteId = "",
-    transmuteSummary = null,
+  function evaluateOperatorStructureCompatibility(
+    operatorId = "",
+    operatorSummary = null,
     candidateTargetContext = null,
     { includePendingTarget = false } = {}
   ) {
-    const normalizedSummary = transmuteSummary ?? {
+    const normalizedSummary = operatorSummary ?? {
       incomingCount: 0,
       outgoingCount: 0,
     };
@@ -158,7 +165,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       };
     }
 
-    const [incomingSourceContext] = getTransmuteInputNodeContexts(transmuteId);
+    const [incomingSourceContext] = getOperatorInputNodeContexts(operatorId);
     if (!incomingSourceContext) {
       return {
         valid: true,
@@ -181,27 +188,59 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     return {
       valid: false,
-      reason: `Single-source transmute output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
+      reason: `Single-source operator output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
     };
   }
 
-  function evaluateTransmuteOutputCandidate(transmuteId = "", candidateTargetContext = null) {
-    const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
+  function evaluateOperatorOutputCandidate(operatorId = "", candidateTargetContext = null) {
+    const operatorSummary = getOperatorLedgerSummary(operatorId);
     const candidateLedger = addLedgers(
-      transmuteSummary.outgoingLedger,
+      operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger,
       getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
     );
-    const ledgerEvaluation = evaluateTransmuteOutputLedger(transmuteSummary, candidateLedger);
+    const ledgerEvaluation = evaluateOperatorOutputLedger(operatorSummary, candidateLedger);
     if (!ledgerEvaluation.valid) {
       return ledgerEvaluation;
     }
-    const compatibilityEvaluation = evaluateTransmuteStructureCompatibility(
-      transmuteId,
-      transmuteSummary,
+    const compatibilityEvaluation = evaluateOperatorStructureCompatibility(
+      operatorId,
+      operatorSummary,
       candidateTargetContext,
       { includePendingTarget: true }
     );
     return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
+  }
+
+  function evaluateOperatorInputValidation(targetContext = null) {
+    const targetParticipant = targetContext?.participant ?? null;
+    if (!targetParticipant) {
+      return {
+        valid: false,
+        reason: "Operator input references an unavailable operator.",
+      };
+    }
+    if (targetParticipant.templateId === "associate") {
+      const incomingCount = Math.max(
+        0,
+        Number(getOperatorLedgerSummary(targetParticipant.id)?.incomingCount ?? 0)
+      );
+      if (incomingCount < 2) {
+        return {
+          valid: false,
+          reason: "Associate needs exactly two reactant inputs.",
+        };
+      }
+      if (incomingCount > 2) {
+        return {
+          valid: false,
+          reason: "Associate accepts exactly two reactant inputs.",
+        };
+      }
+    }
+    return {
+      valid: true,
+      reason: "Reactant routed into operator.",
+    };
   }
 
   function getMappingValidation(mapping = null) {
@@ -229,28 +268,50 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
         reason: evaluation.reason,
       };
     }
-    if (mapping.sourceRole === "reactant" && mapping.targetRole === "transmute-input") {
-      return {
-        valid: true,
-        reason: "Reactant routed into transmute node.",
-      };
+    if (mapping.sourceRole === "reactant" && mapping.targetRole === "operator-input") {
+      return evaluateOperatorInputValidation(targetContext);
     }
-    if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {
-      const { participantId: transmuteId } = parseNodeKey(mapping.sourceKey);
-      const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-      const ledgerEvaluation = evaluateTransmuteOutputLedger(
-        transmuteSummary,
-        transmuteSummary.outgoingLedger
+    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "product") {
+      const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
+      const operatorSummary = getOperatorLedgerSummary(operatorId);
+      const ledgerEvaluation = evaluateOperatorOutputLedger(
+        operatorSummary,
+        operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger
       );
       if (!ledgerEvaluation.valid) {
         return ledgerEvaluation;
       }
-      const compatibilityEvaluation = evaluateTransmuteStructureCompatibility(
-        transmuteId,
-        transmuteSummary,
+      const compatibilityEvaluation = evaluateOperatorStructureCompatibility(
+        operatorId,
+        operatorSummary,
         targetContext
       );
       return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
+    }
+    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "operator-input") {
+      const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
+      const operatorSummary = getOperatorLedgerSummary(operatorId);
+      const outputEvaluation = evaluateOperatorOutputLedger(
+        operatorSummary,
+        operatorSummary.outputLedger ?? operatorSummary.outgoingLedger
+      );
+      if (!outputEvaluation.valid) {
+        return outputEvaluation;
+      }
+      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
+      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
+      if (!inputEvaluation.valid) {
+        return inputEvaluation;
+      }
+      return targetOperatorSummary?.isBalanced
+        ? {
+            valid: true,
+            reason: "Operator routed into operator.",
+          }
+        : {
+            valid: false,
+            reason: "Target operator remains unresolved until its downstream mapping is conservative.",
+          };
     }
     return {
       valid: false,
@@ -282,9 +343,12 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       }
       return null;
     }
-    if (pendingSourceRole === "transmute-output" && role === "product") {
-      const { participantId: transmuteId } = parseNodeKey(pendingSourceKey);
-      const evaluation = evaluateTransmuteOutputCandidate(transmuteId, targetContext);
+    if (pendingSourceRole === "reactant" && role === "operator-input") {
+      return null;
+    }
+    if (pendingSourceRole === "operator-output" && role === "product") {
+      const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
+      const evaluation = evaluateOperatorOutputCandidate(operatorId, targetContext);
       if (evaluation.valid) {
         return null;
       }
@@ -294,10 +358,21 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
         invalid: true,
       };
     }
-    if (pendingSourceRole === "transmute-output" && role === "transmute-input") {
+    if (pendingSourceRole === "operator-output" && role === "operator-input") {
+      const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
+      const outputEvaluation = evaluateOperatorOutputCandidate(operatorId, targetContext);
+      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
+      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
+      if (outputEvaluation.valid && inputEvaluation.valid && targetOperatorSummary?.isBalanced) {
+        return null;
+      }
       return {
         disabled: false,
-        reason: "Center transformer outputs connect to product targets only.",
+        reason: !outputEvaluation.valid
+          ? outputEvaluation.reason
+          : !inputEvaluation.valid
+            ? inputEvaluation.reason
+            : "Target operator remains unresolved until its downstream mapping is conservative.",
         invalid: true,
       };
     }

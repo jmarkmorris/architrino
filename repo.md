@@ -20,7 +20,8 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 - Do not push mixed-scope work.
 - Do not delete a branch until its pull request is merged and local `main` matches remote `main`.
 - Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
-- Prefer draft PRs first, then mark ready when the branch is genuinely reviewable.
+- Prefer ready PRs once a branch is genuinely reviewable.
+- Use draft PRs only when the branch is intentionally not ready for real review.
 
 ## Standard End-of-Session Process
 
@@ -90,7 +91,8 @@ git push origin <branch>
 
 ### 6. Open or update a pull request
 
-- Default to a draft PR unless the branch is already ready for review.
+- Default to a ready PR when the branch is coherent enough for real review.
+- Use draft only when the branch is intentionally incomplete and not yet ready for review.
 - The PR body should explain:
   - what changed,
   - why it changed,
@@ -133,10 +135,10 @@ git checkout -b codex/<element-name>
 
 - Follow the end-of-session process above.
 
-### 3. Open the PR as draft
+### 3. Open the PR in ready mode
 
-- Use draft while the branch is still being actively shaped.
-- Mark ready only when the branch is coherent enough for real review.
+- Open the PR in ready mode once the branch is coherent enough for real review.
+- Use draft only when the branch is intentionally incomplete and should not yet enter normal review.
 
 ### 4. Respond to review on the same branch
 
@@ -297,7 +299,7 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 After a healthy wrap-up cycle:
 
 - the completed work is committed and pushed,
-- the PR is open or merged intentionally,
+- the PR is open in ready mode or merged intentionally,
 - local `main` and remote `main` are synchronized after merge,
 - the previous branch has been deleted locally and remotely,
 - and the next branch exists and is published from clean `main`.

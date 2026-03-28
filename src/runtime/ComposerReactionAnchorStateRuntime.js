@@ -13,6 +13,26 @@ function isSameOrAncestorPath(candidatePath, targetPath) {
   return targetPath === candidatePath || targetPath.startsWith(`${candidatePath}/`);
 }
 
+function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
+}
+
+function mappingMatchesAnchorInstance(
+  mappingInstanceIndex,
+  anchorInstanceIndex
+) {
+  return normalizeAnchorInstanceIndex(mappingInstanceIndex) ===
+    normalizeAnchorInstanceIndex(anchorInstanceIndex);
+}
+
 export function buildNodeKey(participantId, nodeId) {
   return `${participantId}::${nodeId}`;
 }
@@ -89,22 +109,37 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
     return "";
   }
 
-  function findMappingsByNodeKey(nodeKey) {
-    return getMappings().filter(
-      (mapping) => mapping.sourceKey === nodeKey || mapping.targetKey === nodeKey
-    );
+  function findMappingsByNodeKey(nodeKey, role = "", anchorInstanceIndex = null) {
+    const normalizedRole = String(role ?? "").trim();
+    return getMappings().filter((mapping) => {
+      const sourceMatches =
+        mapping.sourceKey === nodeKey &&
+        (!normalizedRole || mapping.sourceRole === normalizedRole) &&
+        (!normalizedRole ||
+          mappingMatchesAnchorInstance(mapping.sourceAnchorInstanceIndex, anchorInstanceIndex));
+      const targetMatches =
+        mapping.targetKey === nodeKey &&
+        (!normalizedRole || mapping.targetRole === normalizedRole) &&
+        (!normalizedRole ||
+          mappingMatchesAnchorInstance(mapping.targetAnchorInstanceIndex, anchorInstanceIndex));
+      return sourceMatches || targetMatches;
+    });
   }
 
-  function findMappingByNodeKey(nodeKey) {
-    return findMappingsByNodeKey(nodeKey)[0] ?? null;
+  function findMappingByNodeKey(nodeKey, role = "", anchorInstanceIndex = null) {
+    return findMappingsByNodeKey(nodeKey, role, anchorInstanceIndex)[0] ?? null;
   }
 
-  function getMappingIdsForAnchor(nodeKey, role) {
+  function getMappingIdsForAnchor(nodeKey, role, anchorInstanceIndex = null) {
     return getMappings()
       .filter(
         (mapping) =>
-          (mapping.sourceKey === nodeKey && mapping.sourceRole === role) ||
-          (mapping.targetKey === nodeKey && mapping.targetRole === role)
+          (mapping.sourceKey === nodeKey &&
+            mapping.sourceRole === role &&
+            mappingMatchesAnchorInstance(mapping.sourceAnchorInstanceIndex, anchorInstanceIndex)) ||
+          (mapping.targetKey === nodeKey &&
+            mapping.targetRole === role &&
+            mappingMatchesAnchorInstance(mapping.targetAnchorInstanceIndex, anchorInstanceIndex))
       )
       .map((mapping) => mapping.id);
   }
@@ -116,8 +151,8 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
     });
   }
 
-  function getAnchorAvailability(role, nodeKey) {
-    const existingMappings = findMappingsByNodeKey(nodeKey);
+  function getAnchorAvailability(role, nodeKey, anchorInstanceIndex = null) {
+    const existingMappings = findMappingsByNodeKey(nodeKey, role, anchorInstanceIndex);
     if (existingMappings.length && isSingleMappingAnchorRole(role)) {
       return { disabled: false, reason: "" };
     }
@@ -138,6 +173,7 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
         pendingSourceKey,
         pendingSourceRole: getPendingSourceRole(),
         role,
+        targetAnchorInstanceIndex: normalizeAnchorInstanceIndex(anchorInstanceIndex),
         sourceContext: getNodeContext(pendingSourceKey),
         targetContext: getNodeContext(nodeKey),
       });

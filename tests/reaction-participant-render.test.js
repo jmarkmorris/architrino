@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import {
   getReactionSideSlotHeaderProfile,
@@ -56,5 +57,21 @@ test("side slot header profile derives offset from participant structure", () =>
   assert.equal(
     getReactionSideSlotHeaderProfile(simpleParticipants, "reactant").offset,
     "calc(var(--binary-choice-size) + var(--solver-tile-gap))"
+  );
+});
+
+test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-row-body\s*\{[\s\S]*?gap:\s*var\(--solver-tile-gap\);/
+  );
+});
+
+test("operator tiles expose an open-ledger shell state", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-operator\.is-ledger-open\s+\.composer-reaction-solver-particle\s*\{/
   );
 });

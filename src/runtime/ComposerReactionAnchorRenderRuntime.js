@@ -2,13 +2,25 @@ function getAnchorAriaLabel(anchorRole, nodeLabel) {
   if (anchorRole === "product") {
     return `Product attach point for ${nodeLabel}`;
   }
-  if (anchorRole === "transmute-input") {
-    return `Transmute input attach point for ${nodeLabel}`;
+  if (anchorRole === "operator-input") {
+    return `Operator input attach point for ${nodeLabel}`;
   }
-  if (anchorRole === "transmute-output") {
-    return `Transmute output attach point for ${nodeLabel}`;
+  if (anchorRole === "operator-output") {
+    return `Operator output attach point for ${nodeLabel}`;
   }
   return `Reactant attach point for ${nodeLabel}`;
+}
+
+function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
 }
 
 export function createComposerReactionAnchorRenderRuntime(options = {}) {
@@ -40,6 +52,10 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
     typeof options.getPendingSourceKey === "function" ? options.getPendingSourceKey : () => "";
   const getPendingSourceRole =
     typeof options.getPendingSourceRole === "function" ? options.getPendingSourceRole : () => "";
+  const getPendingSourceAnchorInstanceIndex =
+    typeof options.getPendingSourceAnchorInstanceIndex === "function"
+      ? options.getPendingSourceAnchorInstanceIndex
+      : () => null;
   const handleAnchorClick =
     typeof options.handleAnchorClick === "function" ? options.handleAnchorClick : () => {};
   const shouldSuppressRouteState =
@@ -73,7 +89,10 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
       .forEach((anchor) => {
         const anchorKey = anchor.getAttribute("data-anchor-key") ?? "";
         const anchorRole = anchor.getAttribute("data-anchor-side") ?? "";
-        const mappingIds = getMappingIdsForAnchor(anchorKey, anchorRole);
+        const anchorInstanceIndex = normalizeAnchorInstanceIndex(
+          anchor.getAttribute("data-anchor-instance-index")
+        );
+        const mappingIds = getMappingIdsForAnchor(anchorKey, anchorRole, anchorInstanceIndex);
         const isMapped = mappingIds.length > 0;
         const isHighlighted =
           isMapped && mappingIds.some((mappingId) => hoveredMappingIds.has(mappingId));
@@ -118,33 +137,52 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
   }
 
   function createAnchorButton(participant, node, nodeKey, options = {}) {
-    const { extraClassNames = [], anchorRole = participant.side } = options;
-    const anchorAvailability = getAnchorAvailability(anchorRole, nodeKey);
-    const mappings = findMappingsByNodeKey(nodeKey);
+    const {
+      extraClassNames = [],
+      anchorRole = participant.side,
+      anchorInstanceIndex = null,
+    } = options;
+    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+    const anchorAvailability = getAnchorAvailability(
+      anchorRole,
+      nodeKey,
+      normalizedAnchorInstanceIndex
+    );
+    const mappings = findMappingsByNodeKey(
+      nodeKey,
+      anchorRole,
+      normalizedAnchorInstanceIndex
+    );
     const mapping = isSingleMappingAnchorRole(anchorRole) ? mappings[0] ?? null : null;
     const hasRoleMapping = isSingleMappingAnchorRole(anchorRole)
       ? !!mapping
-      : mappings.some((entry) =>
-          entry.sourceRole === anchorRole || entry.targetRole === anchorRole
-        );
+      : mappings.length > 0;
     const anchor = document.createElement("button");
     anchor.type = "button";
     anchor.className = "composer-reaction-solver-anchor";
     extraClassNames.filter(Boolean).forEach((className) => anchor.classList.add(className));
     anchor.dataset.anchorKey = nodeKey;
     anchor.dataset.anchorSide = anchorRole;
+    if (normalizedAnchorInstanceIndex !== null) {
+      anchor.dataset.anchorInstanceIndex = String(normalizedAnchorInstanceIndex);
+    }
     anchor.setAttribute("aria-label", getAnchorAriaLabel(anchorRole, node.label));
     anchor.disabled = anchorAvailability.disabled;
     if (anchorAvailability.reason) {
       anchor.title = anchorAvailability.reason;
     }
-    if (getPendingSourceKey() === nodeKey && getPendingSourceRole() === anchorRole) {
+    if (
+      getPendingSourceKey() === nodeKey &&
+      getPendingSourceRole() === anchorRole &&
+      normalizeAnchorInstanceIndex(getPendingSourceAnchorInstanceIndex()) ===
+        normalizedAnchorInstanceIndex
+    ) {
       anchor.classList.add("is-pending");
     }
     if (
       getPendingSourceKey() &&
       getPendingSourceKey() !== nodeKey &&
-      (anchorRole === "product" || anchorRole === "transmute-input") &&
+      (anchorRole === "product" || anchorRole === "operator-input") &&
       !anchorAvailability.disabled &&
       !anchorAvailability.invalid
     ) {
@@ -154,12 +192,16 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
       anchor.classList.add("is-mapped");
     }
     anchor.addEventListener("pointerenter", () =>
-      setHoveredMappingIds(getMappingIdsForAnchor(nodeKey, anchorRole))
+      setHoveredMappingIds(
+        getMappingIdsForAnchor(nodeKey, anchorRole, normalizedAnchorInstanceIndex)
+      )
     );
     anchor.addEventListener("pointerleave", () => setHoveredMappingIds([]));
     anchor.addEventListener("click", () => {
-      markMappingsRecent(getMappingIdsForAnchor(nodeKey, anchorRole));
-      handleAnchorClick(anchorRole, nodeKey);
+      markMappingsRecent(
+        getMappingIdsForAnchor(nodeKey, anchorRole, normalizedAnchorInstanceIndex)
+      );
+      handleAnchorClick(anchorRole, nodeKey, normalizedAnchorInstanceIndex);
     });
     return anchor;
   }

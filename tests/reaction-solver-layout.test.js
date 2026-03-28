@@ -36,25 +36,25 @@ test("reaction solver layout applies shared css variables from one source of tru
 test("reaction solver layout applies periodic-table grid spans to visible lane elements", () => {
   const reactantsApplied = new Map();
   const productsApplied = new Map();
-  const centerLeftApplied = new Map();
-  const centerRightApplied = new Map();
+  const operatorLane0Applied = new Map();
+  const operatorLane1Applied = new Map();
   applyReactionSolverSurfaceGridLayout({
     surface: {
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
+        if (selector.includes('data-operator-lane-index="0"')) {
           return {
             style: {
               setProperty(name, value) {
-                centerLeftApplied.set(name, value);
+                operatorLane0Applied.set(name, value);
               },
             },
           };
         }
-        if (selector.includes('data-center-column-index="2"')) {
+        if (selector.includes('data-operator-lane-index="1"')) {
           return {
             style: {
               setProperty(name, value) {
-                centerRightApplied.set(name, value);
+                operatorLane1Applied.set(name, value);
               },
             },
           };
@@ -77,99 +77,99 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
       },
     },
   });
-  assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 5");
-  assert.equal(productsApplied.get("--solver-products-grid-column"), "14 / span 5");
-  assert.equal(centerLeftApplied.get("--solver-center-left-grid-column"), "6 / span 4");
-  assert.equal(centerRightApplied.get("--solver-center-right-grid-column"), "10 / span 4");
+  assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 4");
+  assert.equal(productsApplied.get("--solver-products-grid-column"), "13 / span 4");
+  assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "5 / span 4");
+  assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "9 / span 4");
 });
 
 test("reaction solver layout derives fallback lane ratios from periodic-table slot spans", () => {
   const ratios = getReactionSurfaceLaneFallbackRatios([
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 2 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ]);
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.1389, 0.3889, 0.6111, 0.8611]
+    [0.125, 0.375, 0.625, 0.875]
   );
 });
 
-test("reaction solver layout measures lane centers from explicit lane slots", () => {
+test("reaction solver layout measures operator lane centers from explicit lane slots", () => {
   const laneEntries = [
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 2 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ];
-  const centerLeft = {
-    getBoundingClientRect: () => ({ left: 480, width: 309 }),
+  const operatorLane0 = {
+    getBoundingClientRect: () => ({ left: 420, width: 260 }),
   };
-  const centerRight = {
-    getBoundingClientRect: () => ({ left: 820, width: 309 }),
+  const operatorLane1 = {
+    getBoundingClientRect: () => ({ left: 840, width: 260 }),
   };
   const ratios = measureReactionSurfaceLaneRatios({
     surface: {
-      getBoundingClientRect: () => ({ left: 100, width: 1400 }),
+      getBoundingClientRect: () => ({ left: 100, width: 1280 }),
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
-          return centerLeft;
+        if (selector.includes('data-operator-lane-index="0"')) {
+          return operatorLane0;
         }
-        if (selector.includes('data-center-column-index="2"')) {
-          return centerRight;
+        if (selector.includes('data-operator-lane-index="1"')) {
+          return operatorLane1;
         }
         return null;
       },
     },
     reactantsColumn: {
-      getBoundingClientRect: () => ({ left: 120, width: 340 }),
+      getBoundingClientRect: () => ({ left: 120, width: 260 }),
     },
     productsColumn: {
-      getBoundingClientRect: () => ({ left: 1160, width: 340 }),
+      getBoundingClientRect: () => ({ left: 1220, width: 260 }),
     },
     laneEntries,
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.1357, 0.3818, 0.6246, 0.8786]
+    [0.1172, 0.3516, 0.6797, 0.9766]
   );
 });
 
 test("reaction solver layout measures outer lane centers from fixed periodic lane spans", () => {
   const laneEntries = [
-    { side: "reactant", centerColumnIndex: null },
-    { side: "center", centerColumnIndex: 0 },
-    { side: "center", centerColumnIndex: 2 },
-    { side: "product", centerColumnIndex: null },
+    { side: "reactant", operatorLaneIndex: null },
+    { side: "operator", operatorLaneIndex: 0 },
+    { side: "operator", operatorLaneIndex: 1 },
+    { side: "product", operatorLaneIndex: null },
   ];
   const ratios = measureReactionSurfaceLaneRatios({
     surface: {
-      getBoundingClientRect: () => ({ left: 100, width: 1800 }),
+      getBoundingClientRect: () => ({ left: 100, width: 1600 }),
       querySelector(selector) {
-        if (selector.includes('data-center-column-index="0"')) {
+        if (selector.includes('data-operator-lane-index="0"')) {
           return {
-            getBoundingClientRect: () => ({ left: 760, width: 309 }),
+            getBoundingClientRect: () => ({ left: 500, width: 280 }),
           };
         }
-        if (selector.includes('data-center-column-index="2"')) {
+        if (selector.includes('data-operator-lane-index="1"')) {
           return {
-            getBoundingClientRect: () => ({ left: 1082, width: 309 }),
+            getBoundingClientRect: () => ({ left: 900, width: 280 }),
           };
         }
         return null;
       },
     },
     reactantsColumn: {
-      getBoundingClientRect: () => ({ left: 120, width: 620 }),
+      getBoundingClientRect: () => ({ left: 100, width: 320 }),
     },
     productsColumn: {
-      getBoundingClientRect: () => ({ left: 1260, width: 640 }),
+      getBoundingClientRect: () => ({ left: 1300, width: 320 }),
     },
     laneEntries,
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.1833, 0.4525, 0.6314, 0.8222]
+    [0.1, 0.3375, 0.5875, 0.85]
   );
 });

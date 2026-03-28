@@ -66,22 +66,26 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const getAllowedBinaryChoiceIds = options.getAllowedBinaryChoiceIds ?? (() => []);
   const getAnchorAvailability = options.getAnchorAvailability ?? (() => ({ disabled: false, reason: "" }));
   const getBinaryPersonalitySelection = options.getBinaryPersonalitySelection ?? (() => null);
-  const getCenterTransformerGraphicOffsets =
-    options.getCenterTransformerGraphicOffsets ?? (() => []);
+  const getOperatorGraphicOffsets =
+    options.getOperatorGraphicOffsets ?? (() => []);
   const getDefaultParticipantBaseLabel = options.getDefaultParticipantBaseLabel ?? ((_, label) => label || "?");
   const getIsDraggingParticipant = options.getIsDraggingParticipant ?? (() => false);
   const getParticipantCardLabelLines = options.getParticipantCardLabelLines ?? ((label) => [label]);
   const getParticipantCardMeta = options.getParticipantCardMeta ?? (() => ({ accent: "#b889ff" }));
   const getParticipantRootNode = options.getParticipantRootNode ?? (() => null);
   const getPendingSourceKey = options.getPendingSourceKey ?? (() => "");
-  const getTransmuteCardLeft = options.getTransmuteCardLeft ?? (() => "50%");
-  const getTransmuteCardTop = options.getTransmuteCardTop ?? (() => "50%");
-  const getTransmuteLedgerSummary = options.getTransmuteLedgerSummary ?? (() => ({
+  const getOperatorCardLeft = options.getOperatorCardLeft ?? (() => "50%");
+  const getOperatorCardTop = options.getOperatorCardTop ?? (() => "50%");
+  const getOperatorLedgerSummary = options.getOperatorLedgerSummary ?? (() => ({
     incomingLedger: { electrino: 0, positrino: 0 },
+    outputLedger: { electrino: 0, positrino: 0 },
     outgoingLedger: { electrino: 0, positrino: 0 },
+    undischargedLedger: { electrino: 0, positrino: 0 },
+    isOpen: false,
+    isInvalid: false,
     isBalanced: false,
   }));
-  const getTransmuteNode = options.getTransmuteNode ?? (() => null);
+  const getOperatorNode = options.getOperatorNode ?? (() => null);
   const isCompositeParticipant = options.isCompositeParticipant ?? (() => false);
   const isProductCompositeParticipant = options.isProductCompositeParticipant ?? (() => false);
   const isQuarkTemplateId = options.isQuarkTemplateId ?? (() => false);
@@ -91,7 +95,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const resolveBinaryGlyphPolarity = options.resolveBinaryGlyphPolarity ?? (() => "pro");
   const setBinaryPersonalitySelection = options.setBinaryPersonalitySelection ?? (() => {});
   const shouldRenderChildNodes = options.shouldRenderChildNodes ?? (() => true);
-  const startTransmuteDrag = options.startTransmuteDrag ?? (() => {});
+  const startOperatorDrag = options.startOperatorDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
 
@@ -99,17 +103,17 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return document.createElementNS("http://www.w3.org/2000/svg", name);
   }
 
-  function syncCenterTransformerOperatorFan(card, participant) {
+  function syncOperatorFan(card, participant) {
     if (!(card instanceof HTMLElement) || !participant) {
       return;
     }
     Array.from(card.querySelectorAll(".composer-reaction-solver-operator-fan")).forEach((fan) =>
       fan.remove()
     );
-    if (participant.templateId !== "associate" && participant.templateId !== "dissociate") {
+    if (participant.templateId !== "dissociate") {
       return;
     }
-    const graphicOffsets = getCenterTransformerGraphicOffsets(participant, 4)
+    const graphicOffsets = getOperatorGraphicOffsets(participant, 4)
       .filter((offset) => Number.isFinite(offset));
     if (graphicOffsets.length <= 1) {
       return;
@@ -174,6 +178,53 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     fanSvg.appendChild(stem);
     fan.appendChild(fanSvg);
     card.appendChild(fan);
+  }
+
+  function createAssociateAnchorFrame({
+    participant,
+    rootNode = null,
+    rootNodeKey = "",
+    visual,
+  } = {}) {
+    const frame = document.createElement("div");
+    frame.className = "composer-reaction-solver-associate-anchor-frame";
+    frame.appendChild(visual);
+    if (!rootNode || !rootNodeKey) {
+      return frame;
+    }
+
+    const inputAnchorTop = createAnchorButton(participant, rootNode, rootNodeKey, {
+      anchorRole: "operator-input",
+      anchorInstanceIndex: 0,
+      extraClassNames: [
+        "composer-reaction-solver-operator-anchor",
+        "is-input",
+        "is-associate-input",
+        "is-top",
+      ],
+    });
+    const inputAnchorBottom = createAnchorButton(participant, rootNode, rootNodeKey, {
+      anchorRole: "operator-input",
+      anchorInstanceIndex: 1,
+      extraClassNames: [
+        "composer-reaction-solver-operator-anchor",
+        "is-input",
+        "is-associate-input",
+        "is-bottom",
+      ],
+    });
+    const outputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
+      anchorRole: "operator-output",
+      anchorInstanceIndex: 0,
+      extraClassNames: [
+        "composer-reaction-solver-operator-anchor",
+        "is-output",
+        "is-associate-output",
+      ],
+    });
+
+    frame.append(inputAnchorTop, inputAnchorBottom, outputAnchor);
+    return frame;
   }
 
   function getCoreBinaryNodes(node) {
@@ -266,11 +317,14 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return participant?.templateId === "r_polar_transform" ? 90 : -90;
   }
 
+  function getNeutralOperatorShellAccent() {
+    return "#b889ff";
+  }
+
   function createPolarTransformBinaryTile(participant) {
     const tile = document.createElement("div");
     tile.className = "composer-reaction-solver-particle";
-    const meta = getParticipantCardMeta(participant);
-    tile.style.setProperty("--solver-accent", meta.accent);
+    tile.style.setProperty("--solver-accent", getNeutralOperatorShellAccent());
     tile.appendChild(
       createBinaryGlyph(null, {
         showPersonality: false,
@@ -283,13 +337,15 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createPolarTransformTitleTile(participant) {
-    return createParticipantVisual(
+    const titleTile = createParticipantVisual(
       {
         ...participant,
         label: getPolarTransformTitleLabel(participant),
       },
       ["composer-reaction-solver-polar-transform-title-tile"]
     );
+    titleTile.style.setProperty("--solver-accent", getNeutralOperatorShellAccent());
+    return titleTile;
   }
 
   function createPolarTransformParticipantVisual(participant) {
@@ -809,12 +865,12 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return card;
   }
 
-  function createTransmuteParticipantCard(participant) {
+  function createOperatorParticipantCard(participant) {
     const card = document.createElement("article");
-    card.className = "composer-reaction-solver-participant is-center is-transmute-participant";
+    card.className = "composer-reaction-solver-participant is-operator is-operator-participant";
     card.dataset.participantId = participant.id;
-    card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
-    card.style.top = getTransmuteCardTop(participant.centerYRatio);
+    card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
+    card.style.top = getOperatorCardTop(participant.operatorYRatio);
     if (participant.templateId === "l_polar_transform") {
       card.classList.add("is-l-polar-transform");
     } else if (participant.templateId === "r_polar_transform") {
@@ -826,27 +882,33 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       card.classList.add("is-dissociate-operator");
     }
 
-    const rootNode = getTransmuteNode(participant);
+    const rootNode = getOperatorNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
-    const inputAnchor = rootNode
-      ? createAnchorButton(participant, rootNode, rootNodeKey, {
-          anchorRole: "transmute-input",
-          extraClassNames: ["composer-reaction-solver-transmute-anchor", "is-input"],
-        })
-      : null;
-    const outputAnchor = rootNode
-      ? createAnchorButton(participant, rootNode, rootNodeKey, {
-          anchorRole: "transmute-output",
-          extraClassNames: ["composer-reaction-solver-transmute-anchor", "is-output"],
-        })
-      : null;
+    const ledgerSummary = getOperatorLedgerSummary(participant.id);
     const visual = isPolarTransformParticipant(participant)
       ? createPolarTransformParticipantVisual(participant)
       : createParticipantVisual(participant, [
-          "composer-reaction-solver-transmute-particle",
+          "composer-reaction-solver-operator-tile",
         ]);
+    if (ledgerSummary.isInvalid) {
+      card.classList.add("is-ledger-invalid");
+      visual.classList.add("is-ledger-invalid");
+    } else if (ledgerSummary.isOpen) {
+      card.classList.add("is-ledger-open");
+      visual.classList.add("is-ledger-open");
+    }
+    if (ledgerSummary.isInvalid) {
+      visual.title = `${participant.label} exceeds its available emitted ledger. Available: ${formatLedger(
+        ledgerSummary.outputLedger ?? ledgerSummary.incomingLedger
+      )}. Routed: ${formatLedger(
+        ledgerSummary.routedOutgoingLedger ?? ledgerSummary.outgoingLedger
+      )}.`;
+    } else if (ledgerSummary.isOpen) {
+      visual.title = `${participant.label} ledger remains open. Emitted: ${formatLedger(
+        ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger
+      )}. Still undischarged: ${formatLedger(ledgerSummary.undischargedLedger)}.`;
+    }
     if (!isPolarTransformParticipant(participant)) {
-      const ledgerSummary = getTransmuteLedgerSummary(participant.id);
       [
         {
           className: "is-top-left is-positrino",
@@ -856,7 +918,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         },
         {
           className: "is-top-right is-positrino",
-          count: ledgerSummary.outgoingLedger.positrino,
+          count: (ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger).positrino,
           label: "e+",
           title: "Outgoing positrino count",
         },
@@ -868,36 +930,54 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         },
         {
           className: "is-bottom-right is-electrino",
-          count: ledgerSummary.outgoingLedger.electrino,
+          count: (ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger).electrino,
           label: "e-",
           title: "Outgoing electrino count",
         },
       ].forEach((entry) => {
         const badge = document.createElement("span");
-        badge.className = `composer-reaction-solver-transmute-ledger ${entry.className}`;
+        badge.className = `composer-reaction-solver-operator-ledger ${entry.className}`;
         badge.textContent = `${Number(entry.count ?? 0)} ${entry.label}`;
         badge.title = entry.title;
         visual.appendChild(badge);
       });
-      if (!ledgerSummary.isBalanced) {
-        visual.title = `${participant.label} is unresolved until incoming and outgoing ledgers match. Incoming: ${formatLedger(
-          ledgerSummary.incomingLedger
-        )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
-      }
     }
     if (getIsDraggingParticipant(participant.id)) {
       card.classList.add("is-dragging");
     }
-    card.append(inputAnchor, visual, outputAnchor);
-    syncCenterTransformerOperatorFan(card, participant);
-    card.addEventListener("pointerdown", (event) => startTransmuteDrag(event, participant.id));
+    if (participant.templateId === "associate") {
+      card.append(
+        createAssociateAnchorFrame({
+          participant,
+          rootNode,
+          rootNodeKey,
+          visual,
+        })
+      );
+    } else {
+      const inputAnchor = rootNode
+        ? createAnchorButton(participant, rootNode, rootNodeKey, {
+            anchorRole: "operator-input",
+            extraClassNames: ["composer-reaction-solver-operator-anchor", "is-input"],
+          })
+        : null;
+      const outputAnchor = rootNode
+        ? createAnchorButton(participant, rootNode, rootNodeKey, {
+            anchorRole: "operator-output",
+            extraClassNames: ["composer-reaction-solver-operator-anchor", "is-output"],
+          })
+        : null;
+      card.append(inputAnchor, visual, outputAnchor);
+    }
+    syncOperatorFan(card, participant);
+    card.addEventListener("pointerdown", (event) => startOperatorDrag(event, participant.id));
     return card;
   }
 
   return {
     createSideSlotHeader,
-    createTransmuteParticipantCard,
+    createOperatorParticipantCard,
     renderParticipantCard,
-    syncCenterTransformerOperatorFan,
+    syncOperatorFan,
   };
 }

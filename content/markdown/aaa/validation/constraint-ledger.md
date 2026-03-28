@@ -16,14 +16,14 @@ The purpose of this section is to define the combination of experimental isotrop
 * **Mechanism** – assembly-based clocks/rulers must emerge with proper time $\tau$ rather than absolute time $t$.
 * **Failure Condition** – any detectable preferred-frame orientation above $10^{-17}$ or residual $\delta$ in $L_{moving} = L_{rest} (\gamma^{-1} + \delta)$ that exceeds $10^{-17}$ invalidates the theory.
 
-### The "Ether Wind" Check (Lorentz Contraction Enforcement)
+### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)
 
 This entry frames the requirement that the underlying Noether Core sea affords a dynamical contraction mechanism to assemblies moving through the Void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
 
 * **Constraint** – the Noether Core sea must dynamically enforce the Lorentz contraction of assemblies; otherwise the model is equivalent to an untested preferred frame.
 * **Failure Condition** – without contraction enforced by the Sea, preferred frame effects become measurable and falsify the theory.
 
-### Vacuum Drag
+### Noether-Sea Drag
 
 Here we catalogue how coupling between macroscopic bodies and the Noether Sea can influence orbital dynamics. The constraint ensures any additional dissipation or effective drag remains below the levels already constrained by gravitational-wave-based orbital decay measurements in general relativity.
 

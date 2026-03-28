@@ -367,7 +367,7 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether-core sea is the spacetime medium, and matter assemblies are higher-order organizations within the same constitutive world. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the spacetime medium, and matter assemblies are higher-order organizations within the same constitutive world. This does not recover an older ether by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ### What Would Count As Resolution
 
