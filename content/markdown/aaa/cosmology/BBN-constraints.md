@@ -147,7 +147,7 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. In SMBH-local mappings, $H$ is replaced by effective outflow dilution/velocity-gradient scales (for example $\nabla\cdot\mathbf{v}$).
 
 - **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
-- **Sensitivity checks:** Too slow drives $n\to p$ decay toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
+- **Sensitivity checks:** Too slow drives $n\to p$ weak conversion toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
 - **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$, local stability times, and release-channel geometry) rather than unconstrained outflow phenomenology.
 
 ### 3. Deuterium Survival Goal: Monotonic Quench Window

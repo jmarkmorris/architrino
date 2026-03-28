@@ -203,7 +203,7 @@ interference and oscillatory transition probabilities.
 $$
 |\nu_\alpha\rangle = \sum_i U_{\alpha i} |\nu_i\rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral tri-binary assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies (e.g. in beta decay). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying tri-binary geometry.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral tri-binary assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies (e.g. in `beta reaction` (SM label: `beta decay`)). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying tri-binary geometry.
 
 **What Still Works:** Neutrino Oscillations (PMNS Framework) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.

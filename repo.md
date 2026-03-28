@@ -19,6 +19,7 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 - Do not leave a session with unclear local state.
 - Do not push mixed-scope work.
 - Do not delete a branch until its pull request is merged and local `main` matches remote `main`.
+- Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
 - Prefer draft PRs first, then mark ready when the branch is genuinely reviewable.
 
 ## Standard End-of-Session Process
@@ -115,12 +116,15 @@ This is the normal branch-to-PR path for active implementation work.
 ### 1. Start from an explicit working branch
 
 - If beginning from `main`, create the next `codex/<element-name>` branch in the periodic-table sequence.
+- If beginning from `main`, first fast-forward local `main` to `origin/main` while checked out on `main`.
 - If continuing a live branch with an open PR, remain on that branch.
+- Do not create a new working branch merely because `origin/main` moved. A fetch alone is not enough.
 
 Commands:
 
 ```bash
 git checkout main
+git fetch origin
 git pull origin main --ff-only
 git checkout -b codex/<element-name>
 ```
@@ -143,11 +147,21 @@ git checkout -b codex/<element-name>
 
 Use this process after the PR has been merged successfully.
 
+Precondition:
+
+- Before leaving the just-merged branch, run `git status -sb`.
+- Continue only if the worktree is clean, or if any remaining edits have been intentionally committed or stashed.
+- Do not carry stray edits onto `main` during rollover.
+
 ### 1. Verify the PR is merged
 
 - Confirm the PR merged on GitHub before cleaning up branches.
 
-### 2. Synchronize local `main` to remote `main`
+### 2. Fast-forward local `main` to remote `main`
+
+- `git fetch origin` updates `origin/main`, not local `main`.
+- The synchronization step is complete only after `git merge --ff-only origin/main` succeeds while `main` is checked out.
+- Before deleting the old branch or creating the next one, verify that local `main` and `origin/main` resolve to the same commit.
 
 Commands:
 
@@ -155,9 +169,11 @@ Commands:
 git checkout main
 git fetch origin
 git merge --ff-only origin/main
+git rev-parse --short main
+git rev-parse --short origin/main
 ```
 
-If local `main` has drifted unexpectedly, stop and resolve that deliberately. Do not force-reset as part of the normal process.
+The two printed SHAs must match. If local `main` has drifted unexpectedly, stop and resolve that deliberately. Do not force-reset as part of the normal process.
 
 ### 3. Delete the previous working branch locally
 
@@ -178,6 +194,9 @@ git branch -D codex/<previous-topic>
 ```
 
 ### 4. Delete the previous working branch remotely
+
+- If the remote branch has already been deleted by GitHub or by another operator, treat that as already complete and skip this step.
+- A failure caused only by the remote branch already being absent is benign.
 
 Command:
 
@@ -202,11 +221,18 @@ After the previous PR is merged and the previous branch is retired, start the ne
 ### 1. Create the next branch from current `main`
 
 - Use the next element in the periodic-table sequence.
+- Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
+- Stay on `main` for the synchronization commands, then cut the branch immediately from that checked-out `main`.
 
 Command:
 
 ```bash
+git checkout main
+git fetch origin
+git merge --ff-only origin/main
+git rev-parse --short main
+git rev-parse --short origin/main
 git checkout -b codex/<next-element>
 ```
 
@@ -244,6 +270,8 @@ git push origin codex/hydrogen
 git checkout main
 git fetch origin
 git merge --ff-only origin/main
+git rev-parse --short main
+git rev-parse --short origin/main
 git branch -d codex/hydrogen || git branch -D codex/hydrogen
 git push origin --delete codex/hydrogen
 
@@ -259,6 +287,7 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 - the worktree contains unrelated edits,
 - the required validation commands fail,
 - the PR has not actually merged yet,
+- `git fetch origin` succeeded but local `main` was not actually fast-forwarded and verified,
 - local `main` cannot fast-forward to `origin/main`,
 - the next branch name breaks the periodic-table sequence without an explicit reason,
 - or the next branch would depend on unmerged work that is not meant to stay coupled.

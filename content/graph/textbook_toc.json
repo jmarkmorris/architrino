@@ -218,10 +218,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Aether Sea: Noether Core Occupancy",
+                "title": "The Noether Sea: Noether Core Occupancy",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "The Aether Sea: Noether Core Occupancy",
-                "sectionKey": "the aether sea noether core occupancy",
+                "markdownSection": "The Noether Sea: Noether Core Occupancy",
+                "sectionKey": "the noether sea noether core occupancy",
                 "headingLevel": 2
               }
             ]
@@ -1294,10 +1294,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Physical Substrate: From Vacuum to \"Noether Sea\"",
+                "title": "The Physical Substrate: From Vacuum Language to Noether Sea",
                 "markdownPath": "content/markdown/aaa/dynamics/gauge-structure-emergence.md",
-                "markdownSection": "The Physical Substrate: From Vacuum to \"Noether Sea\"",
-                "sectionKey": "the physical substrate from vacuum to noether sea",
+                "markdownSection": "The Physical Substrate: From Vacuum Language to Noether Sea",
+                "sectionKey": "the physical substrate from vacuum language to noether sea",
                 "headingLevel": 2
               },
               {
@@ -2666,10 +2666,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Higgs Boson ($H$): The Vacuum Breathing Mode",
+                "title": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "The Higgs Boson ($H$): The Vacuum Breathing Mode",
-                "sectionKey": "the higgs boson h the vacuum breathing mode",
+                "markdownSection": "The Higgs Boson ($H$): The Noether-Sea Breathing Mode",
+                "sectionKey": "the higgs boson h the noether sea breathing mode",
                 "headingLevel": 2
               },
               {
@@ -2899,18 +2899,18 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Superfluid Vacuum Hypothesis",
+                "title": "Superfluid Noether-Sea Hypothesis",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Vacuum Hypothesis",
-                "sectionKey": "superfluid vacuum hypothesis",
+                "markdownSection": "Superfluid Noether-Sea Hypothesis",
+                "sectionKey": "superfluid noether sea hypothesis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Superfluid Vacuum",
+                "title": "Superfluid Noether Sea",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Superfluid Vacuum",
-                "sectionKey": "superfluid vacuum",
+                "markdownSection": "Superfluid Noether Sea",
+                "sectionKey": "superfluid noether sea",
                 "headingLevel": 2
               }
             ]

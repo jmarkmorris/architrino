@@ -29,7 +29,7 @@ A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
 *   **Burst vs. Continuous:**
     *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the planar-mode train.
     *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
-*   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the vacuum lattice, allowing propagation at the field speed limit ($v \approx 1$).
+*   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea lattice, allowing propagation at the field speed limit ($v \approx 1$).
 
 ### Interaction Rules: Capture and Release
 *   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The internal binding is overcome, and a "stack" of planar wakes is shed along a tangential vector.
@@ -38,10 +38,10 @@ A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
     *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
-### Environmental Coupling (The Aether)
-*   **Spacetime Aether:** The vacuum is populated by neutral assemblies (Noether Cores).
+### Environmental Coupling (Ambient Noether Sea)
+*   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
-    *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the planar mode **re-couples** transiently with ambient assemblies.
+    *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This drag slows the phase velocity ($v_{phase} < c$).
     *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
@@ -63,7 +63,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
-    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating near the field speed ($v \approx 1$) along its axis before decaying (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether Sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
 *   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
@@ -86,25 +86,25 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 ### Effective Mass Scales
 *   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
 *   **Environment Dependence:**
-    *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (vacuum density).
-    *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the "tethering stiffness" of the vacuum, without invoking new fields.
+    *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (ambient Noether-Sea density).
+    *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the tethering stiffness of the ambient Noether Sea, without invoking new fields.
 
 ---
 
-## The Higgs Boson ($H$): The Vacuum Breathing Mode
+## The Higgs Boson ($H$): The Noether-Sea Breathing Mode
 
-The Higgs is not a propagating assembly *through* the vacuum; it is a resonance *of* the vacuum structure.
+The Higgs is not a propagating assembly *through* the ambient medium; it is a resonance *of* the Noether-Sea structure.
 
 ### Geometric Structure
-*   **The Substrate:** The Noether Sea (vacuum) is a lattice of neutral Tri-Binaries ($1P, 1E$).
-*   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these vacuum units.
+*   **The Substrate:** The Noether Sea is a lattice of neutral Tri-Binaries ($1P, 1E$).
+*   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these Noether-Sea units.
 *   **Spin-0:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
 ### Mass Generation Mechanism
 *   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that do not fit neatly in the lattice interstices.
-*   **The Effect:** They physically displace or distort the surrounding vacuum nodes.
-*   **The Resistance:** This distortion creates a "tension" field—the resistance of the vacuum tri-binaries to compression. We measure this resistance as **Inertial Mass**.
-*   **The Boson:** If you "strike" the vacuum hard enough (e.g., at LHC), you excite this radial ringing mode independently. That resonance is the Higgs Boson ($125$ GeV).
+*   **The Effect:** They physically displace or distort the surrounding Noether-Sea nodes.
+*   **The Resistance:** This distortion creates a tension field, the resistance of the surrounding tri-binaries to compression. We measure this resistance as **Inertial Mass**.
+*   **The Boson:** If you strike the Noether Sea hard enough (e.g., at LHC), you excite this radial ringing mode independently. That resonance is the Higgs Boson ($125$ GeV).
 
 ---
 
@@ -115,7 +115,7 @@ The Higgs is not a propagating assembly *through* the vacuum; it is a resonance 
 | **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Planar-Mode Train | None (Planar/Edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
-| **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
+| **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Lattice Stiffness |
 
 ## Pair production (note)
 
@@ -138,7 +138,7 @@ $$
 $$
 
 Operational closure requirement:
-- corridor assembly/decay must preserve charge and polarity ledgers,
+- corridor association / dissociation must preserve charge and polarity ledgers,
 - weak-basis action must be left-channel selective at leading order,
 - measured rate hierarchies must be reproducible from overlap weights plus kinematics.
 

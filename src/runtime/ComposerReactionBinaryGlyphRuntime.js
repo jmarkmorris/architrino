@@ -27,8 +27,26 @@ export function createComposerReactionBinaryGlyphRuntime(options = {}) {
   const structureChargeTypes =
     options.structureChargeTypes ?? { ELECTRINO: "electrino", POSITRINO: "positrino" };
 
+  function rotatePoint(x, y, centerX, centerY, angleDegrees = 0) {
+    const radians = (Number(angleDegrees) || 0) * (Math.PI / 180);
+    const translatedX = x - centerX;
+    const translatedY = y - centerY;
+    const rotatedX = translatedX * Math.cos(radians) - translatedY * Math.sin(radians);
+    const rotatedY = translatedX * Math.sin(radians) + translatedY * Math.cos(radians);
+    return {
+      x: centerX + rotatedX,
+      y: centerY + rotatedY,
+    };
+  }
+
   function createBinaryGlyph(choice = null, options = {}) {
-    const { showPersonality = true, showBinary = true, polarity = "pro" } = options;
+    const {
+      showPersonality = true,
+      showBinary = true,
+      showOrbitEllipse = showBinary,
+      polarity = "pro",
+      binaryRotationDegrees = 0,
+    } = options;
     const { leftCharge, rightCharge } = getBinaryGlyphPoleCharges(
       structureChargeTypes,
       polarity,
@@ -40,13 +58,15 @@ export function createComposerReactionBinaryGlyphRuntime(options = {}) {
     glyph.setAttribute("aria-hidden", "true");
 
     if (showBinary) {
-      const orbit = createSvgElement("ellipse");
-      orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
-      orbit.setAttribute("cx", "60");
-      orbit.setAttribute("cy", "60");
-      orbit.setAttribute("rx", "38");
-      orbit.setAttribute("ry", "13");
-      glyph.appendChild(orbit);
+      if (showOrbitEllipse) {
+        const orbit = createSvgElement("ellipse");
+        orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
+        orbit.setAttribute("cx", "60");
+        orbit.setAttribute("cy", "60");
+        orbit.setAttribute("rx", "38");
+        orbit.setAttribute("ry", "13");
+        glyph.appendChild(orbit);
+      }
 
       const axis = createSvgElement("line");
       axis.classList.add("composer-reaction-solver-binary-glyph-axis");
@@ -56,17 +76,20 @@ export function createComposerReactionBinaryGlyphRuntime(options = {}) {
       axis.setAttribute("y2", "102");
       glyph.appendChild(axis);
 
+      const leftPolePoint = rotatePoint(22, 60, 60, 60, binaryRotationDegrees);
+      const rightPolePoint = rotatePoint(98, 60, 60, 60, binaryRotationDegrees);
+
       const leftPole = createSvgElement("circle");
       leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", `is-${leftCharge}`);
-      leftPole.setAttribute("cx", "22");
-      leftPole.setAttribute("cy", "60");
+      leftPole.setAttribute("cx", String(leftPolePoint.x));
+      leftPole.setAttribute("cy", String(leftPolePoint.y));
       leftPole.setAttribute("r", "8.5");
       glyph.appendChild(leftPole);
 
       const rightPole = createSvgElement("circle");
       rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", `is-${rightCharge}`);
-      rightPole.setAttribute("cx", "98");
-      rightPole.setAttribute("cy", "60");
+      rightPole.setAttribute("cx", String(rightPolePoint.x));
+      rightPole.setAttribute("cy", String(rightPolePoint.y));
       rightPole.setAttribute("r", "8.5");
       glyph.appendChild(rightPole);
     }

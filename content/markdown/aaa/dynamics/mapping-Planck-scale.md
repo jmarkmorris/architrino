@@ -127,7 +127,7 @@ for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip dela
 > - The kinematic condition $v_{\text{eff}}\to c_f$ is met in the forward sector, **and**
 > - The round-trip phase condition admits a marginally stable, fully aligned solution.
 >
-> Attempts to push beyond this state destabilize the delay loop (e.g., runaway self-hit, decay) rather than producing further stable modes.
+> Attempts to push beyond this state destabilize the delay loop (e.g., runaway self-hit, dissociation) rather than producing further stable modes.
 
 Demonstrating this terminal aligned mode is an **open dynamical problem** for the delay-equation system.
 

@@ -904,7 +904,7 @@ We take architrinos to be **primitive substances**: they exist fundamentally and
 
 - **Discrete**: there is a definite (though potentially infinite) number of them.
 - **Identifiable**: each has a unique worldline through $(t, \mathbf{x})$-space.
-- **Non-created and non-destroyed**: within $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos are not fundamentally created or destroyed. Any apparent birth, annihilation, decay, or transmutation at the assembly level must be understood as reorganization of a persistent architrino set rather than as ontic creation or ontic destruction.
+- **Non-created and non-destroyed**: within $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos are not fundamentally created or destroyed. Any apparent association, dissociation, annihilation, or transmutation at the assembly level must be understood as reorganization of a persistent architrino set rather than as ontic creation or ontic destruction.
 
 All observable entities (particles, atoms, fields, spacetime curvature) are **emergent** from architrino configurations and dynamics (see Section 3 and TOC Ch. 10).
 
@@ -933,7 +933,7 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, many effective conserva
 
 The limitation, however, should remain explicit. Provenance by itself does **not** derive every familiar conservation law. Energy conservation still depends on time-translation invariance and on the form of the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is therefore not a replacement for Noether reasoning. It is the deeper ontological basis that makes microscopic conservation statements sharp, and it explains why effective conserved quantities can often be interpreted as coarse summaries of a persistent identity ledger.
 
-This distinction is important for all of $\mathbb{A}\mathbb{A}\mathbb{A}$. When $\mathbb{A}\mathbb{A}\mathbb{A}$ says that an assembly "changed," "decayed," "reacted," or "reassembled," the fundamental claim is never that anything ontic in $\mathbb{A}\mathbb{A}\mathbb{A}$ blinked out and reappeared. The stronger claim is that the same underlying architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to $\mathbb{A}\mathbb{A}\mathbb{A}$. It is one of the central reasons $\mathbb{A}\mathbb{A}\mathbb{A}$ can support a rigorous conservation story at all.
+This distinction is important for all of $\mathbb{A}\mathbb{A}\mathbb{A}$. When $\mathbb{A}\mathbb{A}\mathbb{A}$ says that an assembly "changed," "dissociated," "reacted," or "re-associated," the fundamental claim is never that anything ontic in $\mathbb{A}\mathbb{A}\mathbb{A}$ blinked out and reappeared. The stronger claim is that the same underlying architrinos persisted through the event and were redistributed into a new assembly pattern. In that sense, provenance is not peripheral to $\mathbb{A}\mathbb{A}\mathbb{A}$. It is one of the central reasons $\mathbb{A}\mathbb{A}\mathbb{A}$ can support a rigorous conservation story at all.
 
 ---
 

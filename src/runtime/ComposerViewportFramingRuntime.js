@@ -1,5 +1,5 @@
 const DEFAULT_FRAMING_PRESET = "medium";
-const DEFAULT_AUTOSCALE_MODE = "manual";
+const DEFAULT_AUTOSCALE_MODE = "keep_required";
 const DEFAULT_ASSEMBLY_POLICY = "optional";
 
 function normalizeAssemblyIdList(value) {
@@ -7,6 +7,42 @@ function normalizeAssemblyIdList(value) {
   return source
     .map((entry) => String(entry ?? "").trim())
     .filter(Boolean);
+}
+
+function toVector3(source) {
+  return {
+    x: Number(source?.x ?? source?.[0] ?? 0) || 0,
+    y: Number(source?.y ?? source?.[1] ?? 0) || 0,
+    z: Number(source?.z ?? source?.[2] ?? 0) || 0,
+  };
+}
+
+function addVec3(a, b) {
+  return { x: a.x + b.x, y: a.y + b.y, z: a.z + b.z };
+}
+
+function subVec3(a, b) {
+  return { x: a.x - b.x, y: a.y - b.y, z: a.z - b.z };
+}
+
+function scaleVec3(vector, scalar) {
+  return {
+    x: vector.x * scalar,
+    y: vector.y * scalar,
+    z: vector.z * scalar,
+  };
+}
+
+function lengthVec3(vector) {
+  return Math.hypot(vector.x, vector.y, vector.z);
+}
+
+function normalizeVec3(vector, fallback = { x: 0, y: 0, z: -1 }) {
+  const magnitude = lengthVec3(vector);
+  if (magnitude <= 0.000001) {
+    return { ...fallback };
+  }
+  return scaleVec3(vector, 1 / magnitude);
 }
 
 export function normalizeComposerViewportFraming(rawFraming) {
@@ -173,6 +209,86 @@ export function resolveComposerViewportFramingState(documentData, timeSeconds, t
     framing,
     requiredAssemblyIds: [...requiredAssemblyIds],
     optionalAssemblyIds: [...optionalAssemblyIds],
+  };
+}
+
+export function getComposerViewportAutoscaleTargetIds(state, allAssemblyIds = []) {
+  const mode = String(state?.framing?.autoscale ?? DEFAULT_AUTOSCALE_MODE)
+    .trim()
+    .toLowerCase();
+  if (mode === "manual" || mode === "off" || mode === "disabled") {
+    return [];
+  }
+
+  const requiredIds = Array.isArray(state?.requiredAssemblyIds) ? state.requiredAssemblyIds.filter(Boolean) : [];
+  if (requiredIds.length) {
+    return [...new Set(requiredIds)];
+  }
+
+  return [];
+}
+
+export function computeComposerViewportAutoscaleCameraState({
+  cameraState,
+  targetSpheres,
+  verticalFovDegrees = 45,
+  aspect = 1,
+  padding = 1.15,
+  onlyExpand = true,
+} = {}) {
+  const sourceTargets = Array.isArray(targetSpheres)
+    ? targetSpheres.filter((target) => Number(target?.radius ?? 0) >= 0)
+    : [];
+  if (!cameraState || sourceTargets.length === 0) {
+    return null;
+  }
+
+  const position = toVector3(cameraState.position);
+  const lookAt = toVector3(cameraState.lookAt);
+  const forward = normalizeVec3(subVec3(lookAt, position));
+
+  const centroid = scaleVec3(
+    sourceTargets.reduce((sum, target) => addVec3(sum, toVector3(target?.center)), { x: 0, y: 0, z: 0 }),
+    1 / sourceTargets.length
+  );
+
+  const combinedRadius = sourceTargets.reduce((maxRadius, target) => {
+    const center = toVector3(target?.center);
+    const radius = Math.max(0, Number(target?.radius ?? 0) || 0);
+    return Math.max(maxRadius, lengthVec3(subVec3(center, centroid)) + radius);
+  }, 0);
+
+  if (!(combinedRadius > 0)) {
+    return {
+      position,
+      lookAt: centroid,
+      targetCenter: centroid,
+      fittedRadius: 0,
+      requiredDistance: lengthVec3(subVec3(lookAt, position)),
+      targetIds: sourceTargets.map((target) => String(target?.id ?? "").trim()).filter(Boolean),
+    };
+  }
+
+  const verticalHalfFov = (Math.max(1, Number(verticalFovDegrees) || 45) * Math.PI) / 360;
+  const safeAspect = Math.max(0.2, Number(aspect) || 1);
+  const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * safeAspect);
+  const limitingHalfFov = Math.max(0.01, Math.min(verticalHalfFov, horizontalHalfFov));
+  const requiredDistance = (combinedRadius * Math.max(1, Number(padding) || 1.15)) / Math.tan(limitingHalfFov);
+  const currentDistance = lengthVec3(subVec3(lookAt, position));
+  const finalDistance =
+    onlyExpand && Number.isFinite(currentDistance) && currentDistance > 0
+      ? Math.max(currentDistance, requiredDistance)
+      : requiredDistance;
+  const nextLookAt = centroid;
+  const nextPosition = subVec3(nextLookAt, scaleVec3(forward, finalDistance));
+
+  return {
+    position: nextPosition,
+    lookAt: nextLookAt,
+    targetCenter: centroid,
+    fittedRadius: combinedRadius,
+    requiredDistance,
+    targetIds: sourceTargets.map((target) => String(target?.id ?? "").trim()).filter(Boolean),
   };
 }
 

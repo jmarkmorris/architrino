@@ -58,7 +58,7 @@ Entanglement in this framework is not a primitive relation between distant syste
 
 ### Correlated Creation: The Shared Causal Past
 
-Consider the production of an entangled pair—for example, a neutral pion decaying into an electron-positron pair, or parametric down-conversion producing correlated photon-like assemblies.
+Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon-like assemblies.
 
 At the absolute time $t_0$ of the creation event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
 

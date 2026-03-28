@@ -183,7 +183,7 @@ export function createPeriodicOverlayRuntime(deps) {
   };
   const hydeViewBoxWidth = 2592;
   const hydeViewBoxHeight = 1944;
-  const hydeHotspotRadiusScale = 1.2;
+  const hydeHotspotRadiusScale = 1.05;
   const svgNamespace = "http://www.w3.org/2000/svg";
   const hydeAtomicCycleOrder = [
     1,

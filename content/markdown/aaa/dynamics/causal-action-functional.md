@@ -129,7 +129,7 @@ Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(
 $$
 is a signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ ties intrinsic chirality/spin to the geometry of the wake rather than an imposed quantum number; changing $Wr_c$ requires tearing the causal locus.
 
-**Topological vs Noether data:** Continuous symmetries (time shifts, rotations) give Noether charges (energy, angular momentum). The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether‑stationary orbit is also topologically locked; decay would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
+**Topological vs Noether data:** Continuous symmetries (time shifts, rotations) give Noether charges (energy, angular momentum). The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether‑stationary orbit is also topologically locked; dissociation would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
 
 **Multi‑component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a complexity measure. Brunnian or highly knotted complements signal strong causal interlocking and higher action density.
 

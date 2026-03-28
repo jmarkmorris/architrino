@@ -1,4 +1,6 @@
-Here is a brainstorming architecture for the **Architrino Provenance Engine (APE)**. Current PDG (Particle Data Group) tables act like chemical equations ($A + B \to C + D$), but they treat particles as irreducible distinct entities. They hide the "stoichiometry of the sub-components." If we build a solver that tracks **Architrino Provenance** (where every single architrino comes from and goes to), we effectively turn high-energy physics into **geometric chemistry**. We stop treating the vacuum as "nothing" and start treating it as a reactant/solvent.
+# PDG Solver Ideas
+
+This brainstorming architecture for the **Architrino Provenance Engine (APE)** starts from a simple premise: current PDG (Particle Data Group) tables act like chemical equations ($A + B \to C + D$), but they treat particles as irreducible distinct entities. They hide the stoichiometry of the sub-components. If we build a solver that tracks **Architrino Provenance** (where every single architrino comes from and goes to), we effectively turn high-energy physics into **geometric chemistry**. We stop treating the Noether Sea as "nothing" and start treating it as a reactant or solvent.
 
 ---
 
@@ -8,7 +10,7 @@ This design note follows the same dominant-channel policy used in reaction chapt
 
 Initial high-priority solver channels:
 
-- Dominant electroweak decays and scatterings with `BR > 1%` in PDG tables for targeted particles.
+- Dominant electroweak reactions and scatterings with `BR > 1%` in PDG tables for targeted particles.
 - Dominant electromagnetic radiation channels in plasma/beam contexts when event-yield contribution exceeds about 1%.
 - Dominant hadronic channels used to close event-level conservation and provenance in reconstruction workflows.
 
@@ -61,7 +63,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 **Phase 2: The "Soup" (The Reaction Intermediate)**
 *   The Solver creates a temporary list of "Free Components":
     *   $N$ Positrinos, $M$ Electrinos (from reactants).
-    *   Plus $K$ Spacetime Assemblies (recruited from the vacuum to balance energy/mass).
+    *   Plus $K$ Spacetime Assemblies (recruited from the Noether Sea to balance energy/mass).
 *   **Crucial Step:** Calculate the **Net Charge** and **Net Momentum** of the soup.
 
 **Phase 3: The Reassembly (Probabilistic Fitting)**
@@ -79,7 +81,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 
 ---
 
-### Case Study: Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
+### Case Study: Neutron Reaction ($n \to p + e^- + \bar{\nu}_e$)
 
 Let's visualize how the APE would solve this.
 
@@ -89,7 +91,7 @@ Let's visualize how the APE would solve this.
 
 **2. The Event:**
 *   A "virtual W boson" event occurs. In APE terms, the Neutron core undergoes a geometric instability.
-*   A Spacetime Assembly (ST) is pulled in from the vacuum.
+*   A Spacetime Assembly (ST) is pulled in from the Noether Sea.
 
 **3. The Provenance Swap:**
 *   **Neutron Core:** Remains mostly intact but shifts configuration (Outer binary adjusts). It sheds a specific negative axial pattern.
@@ -130,7 +132,7 @@ The APE should flag every reaction with a **"Waste Heat"** metric.
 1.  **Database:** A library of "Recipes" (Proton recipe, Electron recipe, Spacetime Assembly recipe).
 2.  **Engine:** A graph-rewriting system that conserves total architrino count (ID by ID).
 3.  **Aether Interface:** An automated mechanism to add/subtract spacetime cores to balance the equation.
-4.  **Visualizer:** A "Sankey Diagram" for sub-atomic particles, showing the flow of matter, the intake of vacuum, and the shedding of dark waste.
+4.  **Visualizer:** A Sankey diagram for sub-atomic particles, showing the flow of matter, the intake of Noether-Sea material, and the shedding of dark waste.
 
 This would be a phenomenal tool for visualizing *why* conservation laws work and *where* the mass comes from.
 
@@ -138,7 +140,7 @@ It could start as a prediction mechanism and as more training data is applied, i
 
 # ARL ideas v1 (essence)
 
-This note summarizes the final state of the brainstorming about the architrino Reaction Language (ARL). It reduces the concept to its core: a GPU-friendly instruction set for deterministic particle reactions with full provenance, plus a physical picture of the vacuum as a real medium.
+This note summarizes the final state of the brainstorming about the architrino Reaction Language (ARL). It reduces the concept to its core: a GPU-friendly instruction set for deterministic particle reactions with full provenance, plus a physical picture of the Noether Sea as a real medium.
 
 ## Core purpose
 ARL is a programming language and execution model for reactions. It replaces Feynman-diagram probabilities with explicit, deterministic transactions on identified constituents (“architrinos”). The goal is to make reactions computable, traceable, and efficient on GPUs.
@@ -146,7 +148,7 @@ ARL is a programming language and execution model for reactions. It replaces Fey
 ## Fundamental premises
 - Matter is built from discrete architrinos (point potentials) assembled into stable structures (fermions, nucleons, etc.).
 - Each architrino has a unique ID so its history can be traced across reactions.
-- The vacuum is not empty. It is a dense lattice of low-energy assemblies (the Noether Sea) that can be “de-stealthed” into active particles when disturbed.
+- The Noether Sea is not empty. It is a dense lattice of low-energy assemblies that can be “de-stealthed” into active particles when disturbed.
 
 ## The essence of the language
 ARL defines:
@@ -161,12 +163,12 @@ The final consensus is that GUIDs must scale to cosmological counts.
 - 256-bit IDs are the minimum viable standard for large-scale simulations.
 - IDs are abstracted behind semantic types so higher precision can be swapped in later.
 
-## The vacuum model (final stance)
+## The Noether-Sea Model (Final Stance)
 The early idea of “creating IDs from a null pool” was rejected as a QFT-like cheat. The revised model:
 - The Noether Sea already exists and is full of pre-existing IDs.
-- Collisions do not create matter from nothing. They **recruit** or **de-stealth** vacuum assemblies.
+- Collisions do not create matter from nothing. They **recruit** or **de-stealth** Noether-Sea assemblies.
 - “Stealth” describes phase-cancelled assemblies that appear empty while storing large internal energy.
-- “Survival of the stealthy” is the selection rule for stable vacuum structure.
+- “Survival of the stealthy” is the selection rule for stable Noether-Sea structure.
 
 ## Instruction set primitives (final list, simplified)
 Topological state changes:
@@ -177,15 +179,15 @@ Topological state changes:
 Transactional reactions:
 - `DOCK(A, B)`: bring assemblies into interaction range.
 - `EXCHANGE(A_sub, B_sub)`: swap constituents; conservation checks enforced.
-- `SPLIT(Parent -> Child1, Child2)`: decay or fission.
+- `SPLIT(Parent -> Child1, Child2)`: dissociation or fission.
 - `MERGE(Parent1, Parent2 -> Child)`: fusion or annihilation.
-- `DE_STEALTH(Region)`: promote vacuum assemblies into active particles.
-- `SCAVENGE(Source, Vacuum)`: recruit vacuum material to satisfy conservation.
+- `DE_STEALTH(Region)`: promote Noether-Sea assemblies into active particles.
+- `SCAVENGE(Source, NoetherSea)`: recruit Noether-Sea material to satisfy conservation.
 
 ## Simulation tiers (final operational model)
 The system uses dynamic level-of-detail based on causal activity:
 1. Micro: exact N-body, full IDs.
-2. Meso: active agents exact; background vacuum as field until disturbed.
+2. Meso: active agents exact; background Noether Sea as field until disturbed.
 3. Macro: bulk statistical properties only.
 
 This avoids renormalization “subtraction” while keeping compute tractable.
@@ -196,10 +198,10 @@ This avoids renormalization “subtraction” while keeping compute tractable.
 - **GPU note**: use compact session IDs for hot loops; resolve full IDs only during transactions.
 
 ## The distilled vision
-ARL is an executable physics language: a transactional, provenance-preserving instruction set where reactions are deterministic topological reconfigurations on a real vacuum lattice, scheduled efficiently on GPUs.
+ARL is an executable physics language: a transactional, provenance-preserving instruction set where reactions are deterministic topological reconfigurations on a real Noether-Sea lattice, scheduled efficiently on GPUs.
 
 The end-state of the brainstorming is a clear direction:
 - Make reactions explicit and auditable.
-- Treat the vacuum as a real medium with IDs, not a null pool.
+- Treat the Noether Sea as a real medium with IDs, not a null pool.
 - Use dynamic precision and LOD to scale from particles to black holes.
 - Keep the language small, clear, and GPU-executable.

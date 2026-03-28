@@ -32,7 +32,7 @@ This is the statement that weak-interaction eigenstates are not aligned with mas
 Interpretation of the angles and phase (with the hierarchical view used in this document):
 - $\theta_{12}$ (Cabibbo angle): dominant mixing between generations 1 and 2.
 - $\theta_{23}$: next-largest mixing between generations 2 and 3.
-- $\delta$: CP-violating phase; it controls interference signs and produces CP-asymmetric decay observables.
+- $\delta$: CP-violating phase; it controls interference signs and produces CP-asymmetric reaction observables.
 - $\theta_{13}$ (small): direct 1↔3 mixing; in the minimal $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction below it is treated as a suppressed composite channel.
 
 Overall physics interpretation: CKM is not an extra force. It is the measurable misalignment between the quark mass basis (set by Yukawa diagonalization) and the weak SU(2) interaction basis. Experimentally, this misalignment sets charged-current transition rates via $\lvert V_{ij}\rvert^2$ and fixes CP-violating interference through rephasing-invariant combinations such as the Jarlskog invariant.
@@ -48,7 +48,7 @@ $$
 $$
 \lvert d^{(w)}_t\rangle=V_{td}\lvert d\rangle+V_{ts}\lvert s\rangle+V_{tb}\lvert b\rangle.
 $$
-The decay/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
+The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at tri-binary (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
@@ -59,10 +59,10 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 - When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
 
-- In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” assembled during a weak interaction:
+- In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” that associates during a weak interaction:
   - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
   - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
-  - It decays/disconnects quickly (lifetime set by corridor instability), matching the short-lived SM W.
+  - It dissociates quickly (lifetime set by corridor instability), matching the short-lived SM W.
   - So: it is a transient, bound excitation of the Noether-Sea medium from reconfiguration of participants’ wakes and axial structure, not from a standing background field.
 
 ## Minimal premises
@@ -73,7 +73,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
-Vacuum sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
+Noether-Sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
@@ -149,8 +149,8 @@ Quantitative target (heuristic): “high” should land near 0.2–1, “medium�
 ### Using CKM in amplitudes (quick examples)
 
 - **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents (Z/γ) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
-- **Beta decay:** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto \lvert V_{ud}\rvert^2$ times nuclear form factors.
-- **Semileptonic $B$ decay:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
+- **Beta reaction (SM label: `beta decay`):** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto \lvert V_{ud}\rvert^2$ times nuclear form factors.
+- **Semileptonic $B$ reaction:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
 - **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
 
 ## CKM geometric-overlap minimal model
@@ -376,7 +376,7 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 | $t$ (I--; 1/5) → $b$ (I--; 4/2) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | P→E swap | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active 2/4, up 1/5); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
 | $e^- (6/0)$ + $e^+ (0/6)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: e 6/0, e+ 0/6 | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active 3/0, 0/3 |
 | $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-Sea absorbs balance ($\bar\nu_e$) |
-| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (beta decay) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
+| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
 | $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 
 Notes:

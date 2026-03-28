@@ -23,6 +23,7 @@ Terminology in this chapter follows [mode-taxonomy.md](../dynamics/mode-taxonomy
 - $\mathcal{S}_*$: effective nucleation threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
+- $\rho_{\mathrm{vac}}$: local Noether-Sea density.
 
 ## Physical Mechanism
 
@@ -87,7 +88,7 @@ with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$
 Interpretation of coefficients in the current draft:
 
 - $A_{\mathrm{tb}}$: normalization for assembly-to-medium coupling strength.
-- $\alpha$: sensitivity exponent to local aether density.
+- $\alpha$: sensitivity exponent to local Noether-Sea density.
 - $\beta$: sensitivity exponent to deceleration magnitude.
 - $\mathcal{S}_*$: effective onset scale for emission-capable wake states.
 
@@ -179,7 +180,7 @@ $$
 \frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi)\right],
 $$
 
-where $\delta_g$ parameterizes local metric/aether corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
+where $\delta_g$ parameterizes local metric/Noether-Sea corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
 
 ## Momentum-Flux Closure at Emission
 
@@ -219,7 +220,7 @@ $$
 \epsilon_\nu^{\mathrm{obs}}(z_{\mathrm{obs}}) = (1+z)^{-4}\,\epsilon_{\nu(1+z)}^{\mathrm{ff}}(z_{\mathrm{em}})\,\mathcal{T}(\nu, z_{\mathrm{em}}\to z_{\mathrm{obs}}),
 $$
 
-with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any aether-specific opacity).
+with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any Noether-Sea-specific opacity).
 
 ## Thermal Equilibrium Assumptions in Evolving Medium
 

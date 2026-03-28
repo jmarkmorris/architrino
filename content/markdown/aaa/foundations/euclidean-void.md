@@ -2,16 +2,16 @@
 
 This chapter defines the ontological status of the Euclidean void and distinguishes it from the populated physical medium often informally called vacuum. Its purpose is to keep the geometric container, the Noether-Sea occupancy, and the effective spacetime medium from collapsing into one ambiguous concept.
 
-## The Aether Sea: Noether Core Occupancy
+## The Noether Sea: Noether Core Occupancy
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals that what we perceive as "Empty Space" is actually a dense lattice of neutral assemblies.
 
 1. **Occupancy Density**: Define $\rho_{nc}$ as the number of Noether cores per unit volume of Euclidean void.
-2. **Aether Composition**: The "Vacuum" consists of Helium-like couplings (2 pro tri-binaries + 2 anti tri-binaries).
-3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of this aether. An $\mathbb{U}_{\text{now}}$ sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the density of the aether sea. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
+2. **Noether-Sea Composition**: The Noether Sea consists of Helium-like couplings (2 pro tri-binaries + 2 anti tri-binaries).
+3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of the Noether Sea. An $\mathbb{U}_{\text{now}}$ sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the local Noether-Sea density. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
 
 
-### Void vs. Vacuum / Medium
+### Void vs. Noether Sea / Medium
 
 We must keep three notions distinct:
 
@@ -20,7 +20,7 @@ We must keep three notions distinct:
    - Coordinate points $(x,y,z)$ are permanent labels; they do not move or curve.  
    - From the $\mathbb{U}_{\text{now}}$ universe-state perspective’s standpoint, the void is an unmoving “stage” on which all architrinos and assemblies play out their dynamics.
 
-2. **Spacetime Medium (“Vacuum”)**  
+2. **Spacetime Medium (historically “vacuum”)**  
    - A physical network of coupled pro/anti Noether cores (tri‑binary assemblies) occupying some subset of the void.  
    - This medium has:
      - A local **density** $\rho_\text{core}(x,t)$,
@@ -29,7 +29,7 @@ We must keep three notions distinct:
    - It is not “nothing”: it is the physical substrate whose collective behavior appears, to physical observers, as spacetime geometry and fields.
 
 3. **Architrino Occupancy**  
-   - At any given $t$, most points of the continuous void are *unoccupied* by architrinos. Architrinos are sparse point entities; the “vacuum” medium is made of structured assemblies, not a continuum of charge.
+   - At any given $t$, most points of the continuous void are *unoccupied* by architrinos. Architrinos are sparse point entities; the medium historically called “vacuum” is made of structured assemblies, not a continuum of charge.
 
 **Fixed event identity:**  
 Because the underlying coordinates are fixed, the event $(x_0,y_0,z_0,t_1)$ and $(x_0,y_0,z_0,t_2)$ are the same spatial location at different times, even if $\rho_\text{core}$ and the local medium state have changed. This allows:
@@ -39,7 +39,7 @@ Because the underlying coordinates are fixed, the event $(x_0,y_0,z_0,t_1)$ and 
 
 We avoid using “vacuum” alone without qualification; we prefer:
 - **Void** for the geometric container,  
-- **Medium** or **spacetime fabric** for the Noether‑core sea,  
+- **Noether Sea** or **spacetime medium** for the Noether‑core sea,  
 - **Occupancy** for local architrino/assembly content.
 
 
@@ -56,5 +56,5 @@ Unlike General Relativity, where coordinates are gauge labels (diffeomorphism in
 
 * **Canonical Chart:** A rigid Cartesian system $\mathcal{C} = \{x, y, z\}$ grounded in the Euclidean Void.
 * **Metric:** Fixed $\delta_{ij}$ (Kronecker delta). $\nabla^2$ is standard and static.
-* **Event Identity:** The point $(x_0, y_0, z_0)$ is the *same* spatial location at all times $t$, regardless of the matter or vacuum density occupying it. This resolves the ambiguity of "returning to the same point" in GR.
-* **Occupancy:** Differentiate between the continuous manifold (Void) and the discrete/sparse population of architrinos (Vacuum/Matter).
+* **Event Identity:** The point $(x_0, y_0, z_0)$ is the *same* spatial location at all times $t$, regardless of the matter or Noether-Sea density occupying it. This resolves the ambiguity of "returning to the same point" in GR.
+* **Occupancy:** Differentiate between the continuous manifold (Void) and the discrete/sparse population of architrinos plus Noether-Sea assemblies.

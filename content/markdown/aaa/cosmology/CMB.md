@@ -60,7 +60,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electroweak symmetry breaks; particle masses emerge via the Higgs mechanism.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Bond to Noether Cores):** Axial architrinos bind to Noether cores, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This bonding process defines the emergent analog of particle masses and electroweak differentiation.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether Cores):** Axial architrinos associate with Noether cores, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation.
 
 ## Quark Epoch ($\sim 10^{-12}$ to $10^{-6}$ s)
 - Time window: $\sim 10^{-12}$ to $10^{-6}$ s.
@@ -78,7 +78,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Quarks confine into hadrons (protons and neutrons), and hadronic matter becomes the dominant form of baryonic energy.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-core assemblies stabilize, binding quark-like structures into hadron analogs. The Noether sea now supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-core assemblies stabilize, associating quark-like structures into hadron analogs. The Noether sea now supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
 
 ## Lepton Epoch (incl. neutrino decoupling) ($\sim 1$ to $\sim 10$ s)
 - Time window: $\sim 1$ to $\sim 10$ s.
@@ -108,7 +108,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Protons and neutrons bind into deuterium, helium, and trace lithium; abundances are set by expansion rate and reaction networks.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Bind):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations bind into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations associate into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
 
 ## Acoustic Peak Seeding (pre-recombination)
 - Time window: late photon epoch prior to recombination.
@@ -121,7 +121,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 ## Recombination ($\sim 3.8\times10^5$ years)
 - Time window: $\sim 3.8\times10^5$ years.
-- Regime: electrons bind to nuclei; scattering drops sharply.
+- Regime: electrons associate with nuclei; scattering drops sharply.
 - Outcome: photons decouple (last scattering) and free-stream.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electrons combine with nuclei; photons decouple, producing the CMB. The last-scattering surface is established.
@@ -160,7 +160,7 @@ Within the same ontology, CMB sourcing can be represented through:
 
 1. SMBH release from horizon-interface recycling sites, including jet-like, diffuse, and initially dark-sector channels accumulated over long history,
 2. medium-relaxation radiation from Noether-sea state transitions,
-3. conversion or decay channels from high-velocity or dark-sector assembly states into photon-like modes.
+3. conversion or dissociation channels from high-velocity or dark-sector assembly states into photon-like modes.
 
 These channels are treated as parts of one shared thermalization and decoupling story; they are not separate ontologies.
 

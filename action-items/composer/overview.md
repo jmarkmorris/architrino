@@ -176,6 +176,73 @@ This shift matters because the composer is not a film editor with Architrino con
 
 ---
 
+## Viewport autoscale and authored framing plan
+
+The composer now needs an explicit viewport-framing model rather than ad hoc zoom behavior.
+
+The key requirement is not simply "fit everything." It is to let the author say which assemblies must remain in the viewport and which assemblies are allowed to leave frame. Those are different teaching choices:
+
+- some scenes should keep the main reactants, products, or a tracked assembly in frame throughout an interval;
+- some scenes should allow byproducts, distant particles, or temporary detours to leave the viewport;
+- and some scenes should hold a fixed observer stance even if that means part of the action drifts off screen.
+
+So autoscale should be treated as an authored framing rule, not a generic camera convenience.
+
+### Authoring model the composer needs
+
+The intended authored model should be:
+
+- assemblies can carry a viewport participation policy such as:
+  - required in frame;
+  - optional;
+  - or later other variants if needed;
+- observer intervals or shot-like spans can override those defaults for the duration of that interval;
+- the active interval then determines:
+  - which assemblies are required to stay visible;
+  - which assemblies are allowed to leave frame;
+  - what framing preset is being used;
+  - and whether autoscale is active or manual.
+
+This gives the author a real vocabulary for framing rather than a hidden zoom algorithm.
+
+### Why this is difficult
+
+Autoscale is not one behavior. Its correct result depends on observer intent.
+
+Important variants include:
+
+- fixed observer position, where scaling may change but the observer stance should not drift;
+- moving observer path, where the viewport may need to follow authored waypoints first and only then apply fit logic;
+- follow-style intervals, where one assembly or reaction center is the anchor and other assemblies may be framed relative to it;
+- and staged reaction handoff, where the initial solve should generate a sensible framing guess but still leave the author in control.
+
+Because of that, the composer should not jump straight to a single "auto zoom" button and hope the semantics work themselves out.
+
+### Current implementation direction
+
+The first modularity step is already underway in code:
+
+- the composer now has a shared viewport-framing runtime that can:
+  - normalize shot/framing intent,
+  - resolve the active shot and active camera path at a given playhead time,
+  - and compute which assemblies are currently required versus optional for framing purposes.
+
+That is the right first step because it gives autoscale and observer framing a reusable home outside the main composition root.
+
+### Planned rollout
+
+The intended rollout should be:
+
+1. keep the current camera behavior stable while the framing model is normalized;
+2. add authored per-assembly framing participation and per-interval framing overrides;
+3. add a first autoscale mode that keeps only the required set in frame;
+4. expose that authored framing state in a compact observer/viewport UI;
+5. use the same framing model during reaction-to-composer handoff so accepted reactions can generate a first-pass observer view and autoscale policy automatically.
+
+The practical design goal is simple: the author should be able to decide what must stay visible, what may leave frame, and whether the observer is fixed, following, or auto-framing around the required set.
+
+---
+
 ## Unifying simplification principle
 
 The strongest simplification available to the composer is already present in the Architrino Assembly Architecture itself.

@@ -191,10 +191,28 @@
       <div id="composer-overlay" aria-hidden="true">
         <div class="composer-header">
           <div class="composer-header-main">
-            <div id="composer-title" class="composer-title">Composer v8 • Loading signature...</div>
+            <div id="composer-title" class="composer-title">Loading signature...</div>
             <div id="composer-status" class="composer-header-status" aria-live="polite"></div>
           </div>
           <div class="composer-actions">
+            <div class="composer-view-toggle" role="group" aria-label="Viewport mode">
+              <button
+                id="composer-view-design-button"
+                type="button"
+                class="composer-view-toggle-button is-active"
+                aria-pressed="true"
+              >
+                Design
+              </button>
+              <button
+                id="composer-view-observer-button"
+                type="button"
+                class="composer-view-toggle-button"
+                aria-pressed="false"
+              >
+                Observer
+              </button>
+            </div>
             <button id="composer-scene-button" type="button" aria-label="Open scene controls">
               Scene
             </button>
@@ -278,7 +296,17 @@
                     id="composer-reaction-solver-reactants"
                     class="composer-reaction-solver-column is-reactants"
                   ></div>
+                  <div
+                    class="composer-reaction-solver-lane-slot is-center-left"
+                    data-center-column-index="0"
+                    aria-hidden="true"
+                  ></div>
                   <div class="composer-reaction-solver-center" aria-hidden="false"></div>
+                  <div
+                    class="composer-reaction-solver-lane-slot is-center-right"
+                    data-center-column-index="2"
+                    aria-hidden="true"
+                  ></div>
                   <div
                     id="composer-reaction-solver-products"
                     class="composer-reaction-solver-column is-products"

@@ -2,6 +2,11 @@
 
 This note collects reaction-specific UI, solver, provenance, schema, and example-scene design material that previously lived inside [composer.md](../composer/overview.md).
 
+Related editorial backlog:
+
+- [Association / Dissociation Conversion Plan](association-dissociation-conversion.md)
+- [PDG Solver Ideas](pdg-solver-ideas.md)
+
 ## Terminology note: reaction, not decay
 
 The composer should prefer `reaction` over `decay` in its authored animation language.

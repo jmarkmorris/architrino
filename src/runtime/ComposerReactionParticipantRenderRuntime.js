@@ -249,6 +249,64 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return visual;
   }
 
+  function isPolarTransformParticipant(participant = null) {
+    return (
+      participant?.templateId === "l_polar_transform" ||
+      participant?.templateId === "r_polar_transform"
+    );
+  }
+
+  function getPolarTransformTitleLabel(participant = null) {
+    return participant?.templateId === "l_polar_transform"
+      ? "Polarity Plus"
+      : "Polarity Minus";
+  }
+
+  function getPolarTransformRotationDegrees(participant = null) {
+    return participant?.templateId === "r_polar_transform" ? 90 : -90;
+  }
+
+  function createPolarTransformBinaryTile(participant) {
+    const tile = document.createElement("div");
+    tile.className = "composer-reaction-solver-particle";
+    const meta = getParticipantCardMeta(participant);
+    tile.style.setProperty("--solver-accent", meta.accent);
+    tile.appendChild(
+      createBinaryGlyph(null, {
+        showPersonality: false,
+        showOrbitEllipse: false,
+        polarity: "pro",
+        binaryRotationDegrees: getPolarTransformRotationDegrees(participant),
+      })
+    );
+    return tile;
+  }
+
+  function createPolarTransformTitleTile(participant) {
+    return createParticipantVisual(
+      {
+        ...participant,
+        label: getPolarTransformTitleLabel(participant),
+      },
+      ["composer-reaction-solver-polar-transform-title-tile"]
+    );
+  }
+
+  function createPolarTransformParticipantVisual(participant) {
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-polar-transform-track";
+    track.appendChild(createPolarTransformTitleTile(participant));
+    Array.from({ length: 3 }, () => createPolarTransformBinaryTile(participant)).forEach((tile) =>
+      track.appendChild(tile)
+    );
+    track.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openParticipantMenuAt(participant.id, event.clientX, event.clientY);
+    });
+    return track;
+  }
+
   function createBareBinaryContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
@@ -559,7 +617,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
 
   function createCompositeVisualRail(participant) {
     const rail = document.createElement("div");
-    rail.className = "composer-reaction-solver-composite-visual-rail";
+    rail.className = `composer-reaction-solver-composite-visual-rail is-${participant.side}`;
 
     const collector = document.createElement("span");
     collector.className = "composer-reaction-solver-anchor composer-reaction-solver-composite-collector";
@@ -757,6 +815,11 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     card.dataset.participantId = participant.id;
     card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
+    if (participant.templateId === "l_polar_transform") {
+      card.classList.add("is-l-polar-transform");
+    } else if (participant.templateId === "r_polar_transform") {
+      card.classList.add("is-r-polar-transform");
+    }
     if (participant.templateId === "associate") {
       card.classList.add("is-associate-operator");
     } else if (participant.templateId === "dissociate") {
@@ -777,46 +840,50 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
           extraClassNames: ["composer-reaction-solver-transmute-anchor", "is-output"],
         })
       : null;
-    const visual = createParticipantVisual(participant, [
-      "composer-reaction-solver-transmute-particle",
-    ]);
-    const ledgerSummary = getTransmuteLedgerSummary(participant.id);
-    [
-      {
-        className: "is-top-left is-positrino",
-        count: ledgerSummary.incomingLedger.positrino,
-        label: "e+",
-        title: "Incoming positrino count",
-      },
-      {
-        className: "is-top-right is-positrino",
-        count: ledgerSummary.outgoingLedger.positrino,
-        label: "e+",
-        title: "Outgoing positrino count",
-      },
-      {
-        className: "is-bottom-left is-electrino",
-        count: ledgerSummary.incomingLedger.electrino,
-        label: "e-",
-        title: "Incoming electrino count",
-      },
-      {
-        className: "is-bottom-right is-electrino",
-        count: ledgerSummary.outgoingLedger.electrino,
-        label: "e-",
-        title: "Outgoing electrino count",
-      },
-    ].forEach((entry) => {
-      const badge = document.createElement("span");
-      badge.className = `composer-reaction-solver-transmute-ledger ${entry.className}`;
-      badge.textContent = `${Number(entry.count ?? 0)} ${entry.label}`;
-      badge.title = entry.title;
-      visual.appendChild(badge);
-    });
-    if (!ledgerSummary.isBalanced) {
-      visual.title = `${participant.label} is unresolved until incoming and outgoing ledgers match. Incoming: ${formatLedger(
-        ledgerSummary.incomingLedger
-      )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
+    const visual = isPolarTransformParticipant(participant)
+      ? createPolarTransformParticipantVisual(participant)
+      : createParticipantVisual(participant, [
+          "composer-reaction-solver-transmute-particle",
+        ]);
+    if (!isPolarTransformParticipant(participant)) {
+      const ledgerSummary = getTransmuteLedgerSummary(participant.id);
+      [
+        {
+          className: "is-top-left is-positrino",
+          count: ledgerSummary.incomingLedger.positrino,
+          label: "e+",
+          title: "Incoming positrino count",
+        },
+        {
+          className: "is-top-right is-positrino",
+          count: ledgerSummary.outgoingLedger.positrino,
+          label: "e+",
+          title: "Outgoing positrino count",
+        },
+        {
+          className: "is-bottom-left is-electrino",
+          count: ledgerSummary.incomingLedger.electrino,
+          label: "e-",
+          title: "Incoming electrino count",
+        },
+        {
+          className: "is-bottom-right is-electrino",
+          count: ledgerSummary.outgoingLedger.electrino,
+          label: "e-",
+          title: "Outgoing electrino count",
+        },
+      ].forEach((entry) => {
+        const badge = document.createElement("span");
+        badge.className = `composer-reaction-solver-transmute-ledger ${entry.className}`;
+        badge.textContent = `${Number(entry.count ?? 0)} ${entry.label}`;
+        badge.title = entry.title;
+        visual.appendChild(badge);
+      });
+      if (!ledgerSummary.isBalanced) {
+        visual.title = `${participant.label} is unresolved until incoming and outgoing ledgers match. Incoming: ${formatLedger(
+          ledgerSummary.incomingLedger
+        )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
+      }
     }
     if (getIsDraggingParticipant(participant.id)) {
       card.classList.add("is-dragging");

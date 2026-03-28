@@ -35,7 +35,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** All stable fermions have all 6 sites filled.
 *   **Function:** This layer interacts with external fields (EM, Weak).
-*   **Binding picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials bind to the Noether core scaffold.
+*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether core scaffold.
 
 ### Why Polar Sites Are Plausible Dwell Regions
 
@@ -458,7 +458,7 @@ This is stronger than the statement "fewer binaries means more mass." The outer 
 - **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding tier is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
 - **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
-- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster decay.
+- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster dissociation.
 
 ---
 
@@ -486,10 +486,10 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Net: $0$.
     *   Total Architrinos: 36.
 
-### Decay Pathways
-*   **Muon Decay ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
-    *   This represents the **regrowth** or **capture** of an Outer Binary by the Muon's Bi-binary core to become an Electron (Tri-binary core), shedding energy (neutrinos).
-    *   *Alternative View:* The Muon core is unstable and breaks down? No, usually decay goes High Mass -> Low Mass. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether Sea to become an Electron. This implies decay is an interaction with the vacuum density.
+### Reaction Pathways
+*   **Muon Reaction ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
+    *   This represents the electron assembly **associating** by acquiring an Outer Binary onto the Muon's Bi-binary core, while neutrino sub-assemblies **dissociate** from the parent weak reaction channel.
+    *   *Alternative View:* The Muon core does not simply break down. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether Sea to become an Electron, while the excess channel content leaves as neutrino dissociation products. This is a heavy-to-light weak reaction with the ambient Noether-Sea density, not an ontic disappearance.
 
 ---
 
@@ -504,7 +504,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the tri-binary Noether core. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
-| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **weak-coupling-triad exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the weak-coupling triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the weak-coupling triad into the particle's "wake" or shield (Interaction blocked). |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **weak-coupling-triad exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the weak-coupling triad into the particle's wake or shield (interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 
@@ -543,7 +543,7 @@ However, there are two nuances we should be aware of, though we don't necessaril
     *   So, we have this covered implicitly.
 
 **Verdict:**
-The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
+The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a dissociation rate (except for Mass, which is a derived energy scale, not a quantum number).
 
 ## Closure Interfaces (Integration Map)
 

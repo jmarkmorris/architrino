@@ -106,7 +106,7 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
 - **Synchrotron emission channel:** curved charged-assembly transport in anisotropic Noether-Sea states crosses planar-mode threshold and nucleates [photon assemblies](../assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity.
-- **Pair channel:** two-photon planar-mode overlap recruits/relocks local substrate content into charged pair assemblies; this recruitment must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
+- **Pair channel:** two-photon planar-mode overlap associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
 ## Observer-Level Closure Checks
@@ -167,7 +167,7 @@ Operationally: compute emissivity and spectra with standard observer-frame equat
 
 This chapter uses the nucleation interpretation (not creation from nothing): pair channels reorganize substrate content into new charged assemblies. In this ontology, each architrino has provenance and identity through path history in absolute time; interaction channels redistribute and relock existing constituents rather than instantiate new substrate entities.
 
-Operationally, pair production is modeled as recruitment of neutral local substrate content (Noether-Sea cores)[^architrino-count] into a charged $e^+e^-$ assembly pair when incident photon energy and geometry satisfy the pair threshold window. The incoming photon energy supplies the separation/binding work required for charged-state lock-in.
+Operationally, pair production is modeled as association of neutral local substrate content (Noether-Sea cores)[^architrino-count] into a charged $e^+e^-$ assembly pair when incident photon energy and geometry satisfy the pair threshold window. The incoming photon energy supplies the separation and association work required for charged-state lock-in.
 
 The bookkeeping requirement is therefore threefold: global architrino conservation, path-history-consistent provenance through reaction channels, and local energy-momentum conservation at the interaction zone.
 
