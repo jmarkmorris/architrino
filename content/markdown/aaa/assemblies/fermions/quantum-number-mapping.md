@@ -35,7 +35,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** All stable fermions have all 6 sites filled.
 *   **Function:** This layer interacts with external fields (EM, Weak).
-*   **Binding picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials bind to the Noether core scaffold.
+*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether core scaffold.
 
 ### Why Polar Sites Are Plausible Dwell Regions
 
@@ -458,7 +458,7 @@ This is stronger than the statement "fewer binaries means more mass." The outer 
 - **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, and one shielding tier is lost, so small perturbations kick the core off its attractor more easily. Lifetime drops.
 - **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny, and almost no outer screening remains for the deepest core energy. Very short-lived.
-- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster decay.
+- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster dissociation.
 
 ---
 
@@ -543,7 +543,7 @@ However, there are two nuances we should be aware of, though we don't necessaril
     *   So, we have this covered implicitly.
 
 **Verdict:**
-The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
+The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a dissociation rate (except for Mass, which is a derived energy scale, not a quantum number).
 
 ## Closure Interfaces (Integration Map)
 

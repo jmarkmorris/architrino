@@ -163,7 +163,7 @@ The matter power spectrum $P(k)$ encodes the transfer function through matter-ra
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid baseline offers two potential handles on current cosmological tensions:
 
-- **$H_0$ tension:** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time decay channel) modify distance-ladder or sound-horizon inference differently from pure CDM, the inferred $H_0$ can shift through one mechanism family.
+- **$H_0$ tension:** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time dissociation channel) modify distance-ladder or sound-horizon inference differently from pure CDM, the inferred $H_0$ can shift through one mechanism family.
 - **$S_8$ tension:** Scale-dependent medium response can suppress late-time growth at $k \sim 0.1$–$1\;h\,\mathrm{Mpc}^{-1}$, lowering $\sigma_8$ relative to early-time inference while leaving pre-decoupling structure largely unchanged.
 
 ## Growth-Module Interface

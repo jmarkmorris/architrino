@@ -128,12 +128,12 @@ In the Architrino framework, these ephemeral particles are **intermediate assemb
 2.  **Kaons** represent the **coupling interface** between different shielding generations (Gen I $\leftrightarrow$ Gen II).
 3.  **Resonances ($\rho, \Delta$)** are **excited rotational/vibrational modes** of the fundamental stable assemblies.
 
-They are "ephemeral" because they are not topological attractors in the vacuum like the proton or electron; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
+They are "ephemeral" because they are not topological attractors in the ambient Noether Sea like the proton or electron; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
 
 ---
 
 ### Lifetime vs. geometry ($\mathbb{A}\mathbb{A}\mathbb{A}$ intuition)
-- **Pions:** Charged $\pi^\pm$ bind geometrically *non-inverse* cores ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices cannot cancel pairwise, so annihilation is forbidden and dissociation must open a weak $W^\pm$ corridor → longer lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation lets the cores annihilate electromagnetically → very short lifetime. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
+- **Pions:** Charged $\pi^\pm$ associate as geometrically *non-inverse* cores ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices cannot cancel pairwise, so annihilation is forbidden and dissociation must open a weak $W^\pm$ corridor → longer lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation lets the cores annihilate electromagnetically → very short lifetime. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
 - **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and CP-violating oscillations.
 - **Delta baryons:** Parallel spins on all three cores raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
 - **Rho mesons:** Spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.

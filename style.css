@@ -1715,17 +1715,19 @@ body {
 .composer-reaction-solver-surface {
   --solver-add-button-size: 42px;
   --solver-top-control-row-height: 64px;
-  --solver-center-column-width: calc(
+  --solver-lane-width: calc(
     (var(--binary-choice-size, 72px) * 4) + (var(--solver-tile-gap, 7px) * 3)
   );
+  --solver-lane-gap: var(--binary-choice-size, 72px);
   position: relative;
   display: grid;
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(var(--solver-center-column-width), 1fr)
-    minmax(var(--solver-center-column-width), 1fr)
+    var(--solver-lane-width)
+    var(--solver-lane-width)
     minmax(0, 1fr);
-  gap: 18px;
+  column-gap: var(--solver-lane-gap);
+  row-gap: 0;
   flex: 1;
   min-height: 0;
   padding: 18px;

@@ -551,6 +551,8 @@ const centerTransformerTileCount = 4;
 const transmuteParticipantWidthPx =
   solverBinaryChoiceSizePx * centerTransformerTileCount +
   solverTileGapPx * (centerTransformerTileCount - 1);
+const solverLaneWidthPx = transmuteParticipantWidthPx;
+const solverLaneGapPx = solverBinaryChoiceSizePx;
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
@@ -2040,8 +2042,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (count <= 1) {
       return [0.5];
     }
-    const minRatio = 0.02;
-    const maxRatio = 0.98;
+    const minRatio = 0.12;
+    const maxRatio = 0.88;
     const step = (maxRatio - minRatio) / (count - 1);
     return Array.from({ length: count }, (_, index) => minRatio + step * index);
   }
@@ -2053,16 +2055,25 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     const bounds = surface.getBoundingClientRect();
     const width = Math.max(1, bounds.width);
-    const minCenter = solverSurfaceLaneEdgePaddingPx + solverAddButtonSizePx / 2;
-    const maxCenter = Math.max(
-      minCenter,
-      width - solverSurfaceLaneEdgePaddingPx - solverAddButtonSizePx / 2
-    );
-    if (count <= 1 || maxCenter - minCenter <= 1) {
-      return Array.from({ length: count }, () => 0.5);
+    if (count <= 1) {
+      return [0.5];
     }
-    const step = (maxCenter - minCenter) / (count - 1);
-    return Array.from({ length: count }, (_, index) => (minCenter + step * index) / width);
+    if (!reactantsColumn || !productsColumn) {
+      return getReactionSurfaceLaneFallbackRatios(count);
+    }
+    const reactantsBounds = reactantsColumn.getBoundingClientRect();
+    const productsBounds = productsColumn.getBoundingClientRect();
+    if (reactantsBounds.width <= 1 || productsBounds.width <= 1) {
+      return getReactionSurfaceLaneFallbackRatios(count);
+    }
+    const reactantCenter = reactantsBounds.left - bounds.left + reactantsBounds.width / 2;
+    const centerLeftCenter =
+      reactantsBounds.right - bounds.left + solverLaneGapPx + solverLaneWidthPx / 2;
+    const centerRightCenter = centerLeftCenter + solverLaneWidthPx + solverLaneGapPx;
+    const productCenter = productsBounds.left - bounds.left + productsBounds.width / 2;
+    return [reactantCenter, centerLeftCenter, centerRightCenter, productCenter].map(
+      (center) => center / width
+    );
   }
 
   function getTransmuteColumnRatios(requiredCount = transmuteColumnCount) {

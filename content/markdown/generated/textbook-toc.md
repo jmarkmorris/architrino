@@ -326,7 +326,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
   - [Electroweak Bosons](../../scenes/assemblies/electroweak_bosons.json)
     - [The Photon (γ): Coaxial Contra-Rotating Stack](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Photon+%28%24%5Cgamma%24%29%3A+Coaxial+Contra-Rotating+Stack)
     - [The Weak Bosons (W±, Z⁰): Transient Recoupling Bundles](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Weak+Bosons+%28%24W%5E%5Cpm%2C+Z%5E0%24%29%3A+Transient+Recoupling+Bundles)
-    - [The Higgs Boson (H): The Vacuum Breathing Mode](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Higgs+Boson+%28%24H%24%29%3A+The+Vacuum+Breathing+Mode)
+    - [The Higgs Boson (H): The Noether-Sea Breathing Mode](../aaa/assemblies/bosons/electroweak-bosons.md?section=The+Higgs+Boson+%28%24H%24%29%3A+The+Noether-Sea+Breathing+Mode)
     - [Summary Table](../aaa/assemblies/bosons/electroweak-bosons.md?section=Summary+Table)
     - [Pair production (note)](../aaa/assemblies/bosons/electroweak-bosons.md?section=Pair+production+%28note%29)
     - [Closure Interface: Corridor Operators for Mixing](../aaa/assemblies/bosons/electroweak-bosons.md?section=Closure+Interface%3A+Corridor+Operators+for+Mixing)

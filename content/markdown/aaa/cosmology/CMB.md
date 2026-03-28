@@ -78,7 +78,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Quarks confine into hadrons (protons and neutrons), and hadronic matter becomes the dominant form of baryonic energy.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-core assemblies stabilize, binding quark-like structures into hadron analogs. The Noether sea now supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-core assemblies stabilize, associating quark-like structures into hadron analogs. The Noether sea now supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
 
 ## Lepton Epoch (incl. neutrino decoupling) ($\sim 1$ to $\sim 10$ s)
 - Time window: $\sim 1$ to $\sim 10$ s.
@@ -121,7 +121,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 ## Recombination ($\sim 3.8\times10^5$ years)
 - Time window: $\sim 3.8\times10^5$ years.
-- Regime: electrons bind to nuclei; scattering drops sharply.
+- Regime: electrons associate with nuclei; scattering drops sharply.
 - Outcome: photons decouple (last scattering) and free-stream.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electrons combine with nuclei; photons decouple, producing the CMB. The last-scattering surface is established.
