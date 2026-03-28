@@ -10463,7 +10463,7 @@ const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
     composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
     composerOverlay?.classList.toggle("is-reaction-app-mode", !!active);
     if (active) {
-      setComposerStatus("Use the left and right + controls for reactants and products, and the three center + controls for transmute, associate, or dissociate nodes.");
+      setComposerStatus("Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform.");
     }
   },
 });

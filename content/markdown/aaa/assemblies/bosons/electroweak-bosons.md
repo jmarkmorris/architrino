@@ -63,7 +63,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
-    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating near the field speed ($v \approx 1$) along its axis before decaying (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether Sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
 *   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
@@ -138,7 +138,7 @@ $$
 $$
 
 Operational closure requirement:
-- corridor assembly/decay must preserve charge and polarity ledgers,
+- corridor association / dissociation must preserve charge and polarity ledgers,
 - weak-basis action must be left-channel selective at leading order,
 - measured rate hierarchies must be reproducible from overlap weights plus kinematics.
 

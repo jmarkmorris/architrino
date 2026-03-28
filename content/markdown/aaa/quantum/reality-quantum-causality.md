@@ -46,7 +46,7 @@ At the emergent level:
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
-  - Nucleus “decays”
+  - Nucleus dissociates
   - Detector “clicks”
 
 Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant boundary (see 3.1.1).
@@ -178,7 +178,7 @@ we get classic deterministic chaos:
   - Tiny differences in distant architrino paths, or in the timing of a stealth assembly’s approach, can flip “transition” vs “no transition.”
   - Any finite-resolution description (like a wavefunction, density matrix, or effective field) is insufficient to predict the exact outcome.
 
-What we call “randomness” in quantum events (decay times, detector clicks, path choices in interference) is, in this view:
+What we call “randomness” in quantum events (dissociation times, detector clicks, path choices in interference) is, in this view:
 
 - The macroscopic imprint of **threshold dynamics in a chaotic, driven system**,
 - Not fundamental stochasticity injected by nature.

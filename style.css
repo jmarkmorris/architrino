@@ -1713,9 +1713,18 @@ body {
 }
 
 .composer-reaction-solver-surface {
+  --solver-add-button-size: 42px;
+  --solver-top-control-row-height: 64px;
+  --solver-center-column-width: calc(
+    (var(--binary-choice-size, 72px) * 4) + (var(--solver-tile-gap, 7px) * 3)
+  );
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(440px, 1.18fr) minmax(0, 1fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(var(--solver-center-column-width), 1fr)
+    minmax(var(--solver-center-column-width), 1fr)
+    minmax(0, 1fr);
   gap: 18px;
   flex: 1;
   min-height: 0;
@@ -1838,11 +1847,16 @@ body {
   gap: 14px;
   align-content: start;
   overflow-y: auto;
-  padding-top: 6px;
+  padding-top: var(--solver-top-control-row-height);
   padding-right: 4px;
 }
 
+.composer-reaction-solver-column.is-reactants {
+  grid-column: 1;
+}
+
 .composer-reaction-solver-column.is-products {
+  grid-column: 4;
   padding-left: 28px;
   padding-right: 0;
 }
@@ -1878,6 +1892,8 @@ body {
 
 .composer-reaction-solver-center {
   position: relative;
+  grid-column: 1 / -1;
+  grid-row: 1;
   min-height: 100%;
   overflow: visible;
   pointer-events: none;
@@ -1901,25 +1917,26 @@ body {
   pointer-events: auto;
 }
 
-.composer-reaction-solver-center-add-controls {
+.composer-reaction-solver-surface-add-controls {
   position: relative;
   width: 100%;
-  min-height: 42px;
-  pointer-events: auto;
+  min-height: var(--solver-top-control-row-height);
+  pointer-events: none;
 }
 
-.composer-reaction-solver-center-add-controls > .composer-reaction-solver-add-control {
+.composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control {
   position: absolute;
   top: 0;
   width: auto;
   transform: translateX(-50%);
+  pointer-events: auto;
 }
 
 .composer-reaction-solver-add-button {
   appearance: none;
   -webkit-appearance: none;
-  width: 42px;
-  height: 42px;
+  width: var(--solver-add-button-size);
+  height: var(--solver-add-button-size);
   border-radius: 999px;
   border: 1px solid rgba(176, 194, 255, 0.26);
   background:
@@ -2080,6 +2097,23 @@ body {
   font-size: 10px;
   line-height: 1.02;
   overflow-wrap: anywhere;
+}
+
+.composer-reaction-solver-polar-transform-track {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--solver-tile-gap);
+  align-items: center;
+  cursor: grab;
+}
+
+.composer-reaction-solver-participant.is-center.is-dragging .composer-reaction-solver-polar-transform-track {
+  cursor: grabbing;
+}
+
+.composer-reaction-solver-polar-transform-title-tile .composer-reaction-solver-particle-label {
+  font-size: 11px;
+  line-height: 1.05;
 }
 
 .composer-reaction-solver-participant.is-center.is-associate-operator,
@@ -2484,11 +2518,10 @@ body {
 }
 
 .composer-reaction-solver-binary-glyph {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .composer-reaction-solver-binary-glyph-orbit {
@@ -3166,9 +3199,7 @@ body {
 .composer-path-point-pill {
   position: absolute;
   display: none;
-  min-width: 560px;
-  max-width: min(56vw, 620px);
-  padding: 6px 8px;
+  padding: 4px 6px;
   border-radius: 12px;
   border: 1px solid rgba(165, 184, 255, 0.24);
   background: rgba(9, 12, 24, 0.92);
@@ -3185,60 +3216,57 @@ body {
 
 .composer-path-point-pill-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(4, max-content);
+  gap: 4px;
 }
 
 .composer-path-point-pill-field {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 56px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(165, 184, 255, 0.2);
+  background: rgba(20, 24, 42, 0.92);
 }
 
 .composer-path-point-pill-label {
-  position: absolute;
-  top: 5px;
-  left: 0;
-  right: 0;
-  font-size: 9px;
-  line-height: 1;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: rgba(232, 238, 255, 0.7);
-  text-align: center;
+  color: #f5f7ff;
   pointer-events: none;
-  z-index: 1;
 }
 
 .composer-path-point-pill-value,
 .composer-path-point-pill-input {
-  min-height: 24px;
-  padding: 10px 10px 4px;
-  border-radius: 12px;
-  border: 1px solid rgba(165, 184, 255, 0.2);
-  background: rgba(20, 24, 42, 0.92);
   color: #f5f7ff;
   font-size: 12px;
   line-height: 1.05;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
 }
 
 .composer-path-point-pill-value {
-  position: relative;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
 }
 
 .composer-path-point-pill-input {
-  position: relative;
-  width: 100%;
+  width: 42px;
+  padding: 0;
+  border: none;
+  background: transparent;
   outline: none;
   appearance: textfield;
 }
 
 .composer-path-point-pill-input:focus {
-  border-color: rgba(165, 184, 255, 0.42);
-  box-shadow: 0 0 0 1px rgba(165, 184, 255, 0.18);
+  color: #ffffff;
 }
 
 .composer-path-point-pill-input::-webkit-outer-spin-button,

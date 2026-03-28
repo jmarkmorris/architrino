@@ -68,6 +68,8 @@ const solverTemplateMeta = Object.freeze({
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   transmute: { shortLabel: "T", accent: "#a259ff" },
+  l_polar_transform: { shortLabel: "LP", accent: "#52a7ff" },
+  r_polar_transform: { shortLabel: "RP", accent: "#ff7f66" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
@@ -79,11 +81,33 @@ const solverTemplateMeta = Object.freeze({
 
 export const REACTION_CENTER_TRANSFORMER_ENTRIES = Object.freeze([
   { templateId: "transmute", label: "Transmute" },
+  { templateId: "l_polar_transform", label: "L Polar Transform" },
+  { templateId: "r_polar_transform", label: "R Polar Transform" },
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
 export const REACTION_CENTER_TRANSFORMER_COLUMN_COUNT = 3;
 const centerTransformerEntries = REACTION_CENTER_TRANSFORMER_ENTRIES;
+export const REACTION_CENTER_COLUMN_LAYOUT = Object.freeze([
+  Object.freeze({
+    columnIndex: 0,
+    templateId: "l_polar_transform",
+    label: "L Polar Transform",
+    enabled: true,
+  }),
+  Object.freeze({
+    columnIndex: 1,
+    templateId: "transmute",
+    label: "Transmute",
+    enabled: false,
+  }),
+  Object.freeze({
+    columnIndex: 2,
+    templateId: "r_polar_transform",
+    label: "R Polar Transform",
+    enabled: true,
+  }),
+]);
 const centerTransformerTemplateIds = new Set(
   centerTransformerEntries.map((entry) => entry.templateId)
 );
@@ -408,6 +432,12 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "transmute") {
     return "Transmute";
   }
+  if (normalizedTemplateId === "l_polar_transform") {
+    return "L Polar Transform";
+  }
+  if (normalizedTemplateId === "r_polar_transform") {
+    return "R Polar Transform";
+  }
   if (normalizedTemplateId === "associate") {
     return "Associate";
   }
@@ -515,7 +545,12 @@ function canTargetMappingRole(role = "") {
 }
 
 const transmuteCardHeightPx = 72;
-const transmuteParticipantWidthPx = 126;
+const solverBinaryChoiceSizePx = 72;
+const solverTileGapPx = 7;
+const centerTransformerTileCount = 4;
+const transmuteParticipantWidthPx =
+  solverBinaryChoiceSizePx * centerTransformerTileCount +
+  solverTileGapPx * (centerTransformerTileCount - 1);
 const transmuteSlotStepPx = 108;
 const recentRouteFadeMs = 400;
 const transmuteSlotEdgePaddingPx = 18;
@@ -523,6 +558,8 @@ const transmuteColumnCount = REACTION_CENTER_TRANSFORMER_COLUMN_COUNT;
 const transmuteColumnEdgePaddingPx = 18;
 const solverRouteAnchorGapPx = 0.25;
 const centerTransformerGraphicConnectionStepPx = 79;
+const solverAddButtonSizePx = 42;
+const solverSurfaceLaneEdgePaddingPx = 18;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
@@ -539,6 +576,30 @@ function createSvgElement(name) {
 
 function normalizeTransmuteColumnIndex(columnIndex = 0) {
   return Math.max(0, Math.min(transmuteColumnCount - 1, Math.round(Number(columnIndex) || 0)));
+}
+
+function getCenterColumnLayoutEntry(columnIndex = 0) {
+  const resolvedColumnIndex = normalizeTransmuteColumnIndex(columnIndex);
+  return (
+    REACTION_CENTER_COLUMN_LAYOUT.find((entry) => entry.columnIndex === resolvedColumnIndex) ??
+    REACTION_CENTER_COLUMN_LAYOUT[resolvedColumnIndex] ??
+    null
+  );
+}
+
+function getEnabledCenterColumnLayoutEntries() {
+  return REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled);
+}
+
+function getReactionSurfaceLaneEntries() {
+  return [
+    { side: "reactant", centerColumnIndex: null },
+    ...getEnabledCenterColumnLayoutEntries().map((entry) => ({
+      side: "center",
+      centerColumnIndex: entry.columnIndex,
+    })),
+    { side: "product", centerColumnIndex: null },
+  ];
 }
 
 function clampMenuPosition(clientX, clientY, menu, boundsElement) {
@@ -1414,6 +1475,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function createColumnAddButton(side, options = {}) {
     const centerColumnIndex = normalizeTransmuteColumnIndex(options.centerColumnIndex);
+    const centerColumnEntry =
+      side === "center" ? getCenterColumnLayoutEntry(centerColumnIndex) : null;
     const button = document.createElement("button");
     button.type = "button";
     button.className = "composer-reaction-solver-add-button";
@@ -1426,7 +1489,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       side === "product"
         ? "Add product"
         : side === "center"
-          ? `Add center transformer in middle column ${centerColumnIndex + 1}`
+          ? centerColumnEntry?.enabled
+            ? `Add ${centerColumnEntry.label}`
+            : `${centerColumnEntry?.label ?? "Middle transform"} is disabled`
           : "Add reactant"
     );
     if (
@@ -1440,9 +1505,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     button.textContent = "+";
     if (side === "center") {
-      button.addEventListener("click", (event) =>
-        openCenterTransformPicker(centerColumnIndex, event.currentTarget)
-      );
+      if (centerColumnEntry?.enabled) {
+        button.addEventListener("click", () =>
+          addCenterTransformerParticipant(centerColumnEntry.templateId, centerColumnIndex)
+        );
+      } else {
+        button.disabled = true;
+      }
     } else {
       button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
     }
@@ -1463,9 +1532,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function createCenterAddControls() {
     const controls = document.createElement("div");
-    controls.className = "composer-reaction-solver-center-add-controls";
-    Array.from({ length: transmuteColumnCount }, (_, columnIndex) => {
-      controls.appendChild(createColumnAddControl("center", { centerColumnIndex: columnIndex }));
+    const laneEntries = getReactionSurfaceLaneEntries();
+    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
+    controls.className = "composer-reaction-solver-surface-add-controls";
+    laneEntries.forEach((entry, laneIndex) => {
+      const control = createColumnAddControl(entry.side, {
+        centerColumnIndex: entry.centerColumnIndex,
+      });
+      control.dataset.surfaceLaneIndex = String(laneIndex);
+      control.style.left = `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
+      controls.appendChild(control);
     });
     return controls;
   }
@@ -1498,32 +1574,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.menuAnchorElement = triggerElement;
     state.menuMode = "template-grid-picker";
     state.menuSide = resolvedSide;
-    state.menuParticipantId = "";
-    state.menuOpen = true;
-    renderMenu();
-  }
-
-  function openCenterTransformPicker(centerColumnIndex = 1, triggerElement = null) {
-    if (!state.active || !menu || !triggerElement) {
-      return;
-    }
-    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
-    if (
-      state.menuOpen &&
-      state.menuMode === "center-transform-picker" &&
-      state.menuCenterColumnIndex === resolvedColumnIndex
-    ) {
-      closeMenu();
-      return;
-    }
-    closeExternalMenus();
-    const bounds = triggerElement.getBoundingClientRect();
-    state.menuClientX = bounds.left + bounds.width / 2;
-    state.menuClientY = bounds.bottom + 10;
-    state.menuAnchorElement = triggerElement;
-    state.menuMode = "center-transform-picker";
-    state.menuSide = "center";
-    state.menuCenterColumnIndex = resolvedColumnIndex;
     state.menuParticipantId = "";
     state.menuOpen = true;
     renderMenu();
@@ -1777,14 +1827,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
           renderMenu();
         },
       });
-    } else if (state.menuMode === "center-transform-picker") {
-      renderMenuTitle("Add Center Transformer");
-      centerTransformerEntries.forEach((entry) => {
-        renderMenuButton(entry.label, {
-          onClick: () =>
-            addCenterTransformerParticipant(entry.templateId, state.menuCenterColumnIndex),
-        });
-      });
     } else {
       renderMenuTitle("Reaction");
       renderMenuButton("Add reactant", {
@@ -1797,11 +1839,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
-      centerTransformerEntries.forEach((entry) => {
+      REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled).forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
           extraClassNames: ["is-wide", "is-root-tile"],
-          onClick: () => addCenterTransformerParticipant(entry.templateId, 1),
+          onClick: () => addCenterTransformerParticipant(entry.templateId, entry.columnIndex),
         });
       });
       renderMenuButton("Clear reaction canvas", {
@@ -1859,7 +1901,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left and right + controls for reactants and products, and the three center + controls for transmute, associate, or dissociate nodes."
+          ? "Reaction solver opened. Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform."
           : "Reaction solver closed."
       );
     }
@@ -1993,7 +2035,55 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Array.from({ length: requiredCount }, (_, index) => minRatio + step * index);
   }
 
+  function getReactionSurfaceLaneFallbackRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
+    const count = Math.max(1, requiredCount);
+    if (count <= 1) {
+      return [0.5];
+    }
+    const minRatio = 0.02;
+    const maxRatio = 0.98;
+    const step = (maxRatio - minRatio) / (count - 1);
+    return Array.from({ length: count }, (_, index) => minRatio + step * index);
+  }
+
+  function getReactionSurfaceLaneRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
+    const count = Math.max(1, requiredCount);
+    if (!surface) {
+      return getReactionSurfaceLaneFallbackRatios(count);
+    }
+    const bounds = surface.getBoundingClientRect();
+    const width = Math.max(1, bounds.width);
+    const minCenter = solverSurfaceLaneEdgePaddingPx + solverAddButtonSizePx / 2;
+    const maxCenter = Math.max(
+      minCenter,
+      width - solverSurfaceLaneEdgePaddingPx - solverAddButtonSizePx / 2
+    );
+    if (count <= 1 || maxCenter - minCenter <= 1) {
+      return Array.from({ length: count }, () => 0.5);
+    }
+    const step = (maxCenter - minCenter) / (count - 1);
+    return Array.from({ length: count }, (_, index) => (minCenter + step * index) / width);
+  }
+
   function getTransmuteColumnRatios(requiredCount = transmuteColumnCount) {
+    const visibleLaneEntries = getReactionSurfaceLaneEntries();
+    const laneRatios = getReactionSurfaceLaneRatios(visibleLaneEntries.length);
+    const visibleCenterEntries = visibleLaneEntries.filter((entry) => entry.side === "center");
+    const visibleCenterRatios = visibleCenterEntries
+      .map((entry) => {
+        const laneIndex = visibleLaneEntries.findIndex(
+          (laneEntry) =>
+            laneEntry.side === "center" &&
+            normalizeTransmuteColumnIndex(laneEntry.centerColumnIndex) ===
+              normalizeTransmuteColumnIndex(entry.centerColumnIndex)
+        );
+        return laneRatios[laneIndex];
+      })
+      .filter((ratio) => Number.isFinite(ratio));
+    if (visibleCenterRatios.length) {
+      return visibleCenterRatios;
+    }
+
     const count = Math.max(1, requiredCount);
     if (!centerColumn) {
       return getTransmuteColumnFallbackRatios(count);
@@ -2019,9 +2109,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getTransmuteCardLeft(centerColumnIndex = 1) {
-    const columnRatios = getTransmuteColumnRatios(transmuteColumnCount);
     const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
-    return `${(columnRatios[resolvedColumnIndex] ?? 0.5) * 100}%`;
+    const laneEntries = getReactionSurfaceLaneEntries();
+    const laneIndex = laneEntries.findIndex(
+      (entry) =>
+        entry.side === "center" &&
+        normalizeTransmuteColumnIndex(entry.centerColumnIndex) === resolvedColumnIndex
+    );
+    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
+    return `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
   }
 
   function getCenterLaneFallbackSlotRatios(requiredCount = 1) {
@@ -2277,7 +2373,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left and right + controls for reactants and products, and the three center + controls for transmute, associate, or dissociate nodes.";
+        "Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -2473,13 +2569,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
+    const laneRatios = getReactionSurfaceLaneRatios(getReactionSurfaceLaneEntries().length);
     Array.from(
-      centerColumn.querySelectorAll(".composer-reaction-solver-add-control.is-center")
+      centerColumn.querySelectorAll(
+        ".composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control"
+      )
     ).forEach((control, index) => {
-      const resolvedColumnIndex = normalizeTransmuteColumnIndex(
-        control.dataset.centerColumnIndex ?? index
+      const resolvedLaneIndex = Math.max(
+        0,
+        Math.round(Number(control.dataset.surfaceLaneIndex) || index)
       );
-      control.style.left = getTransmuteCardLeft(resolvedColumnIndex);
+      control.style.left = `${(laneRatios[resolvedLaneIndex] ?? 0.5) * 100}%`;
     });
 
     state.participants
@@ -2612,7 +2712,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const centerParticipants = state.participants.filter(
       (participant) => participant.side === "center"
     );
-    reactantsColumn.appendChild(createColumnAddControl("reactant"));
     if (reactantParticipants.length) {
       reactantsColumn.appendChild(createSideSlotHeader(reactantParticipants, "reactant"));
     }
@@ -2620,7 +2719,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
     centerColumn.appendChild(createCenterAddControls());
-    productsColumn.appendChild(createColumnAddControl("product"));
     if (productParticipants.length) {
       productsColumn.appendChild(createSideSlotHeader(productParticipants, "product"));
     }
