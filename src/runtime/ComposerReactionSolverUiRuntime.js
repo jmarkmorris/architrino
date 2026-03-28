@@ -36,6 +36,8 @@ import {
 } from "./ComposerReactionParticipantRenderRuntime.js";
 import {
   applyReactionSolverLayoutCssVars,
+  applyReactionSolverSurfaceGridLayout,
+  getReactionSurfaceLaneFallbackRatios,
   measureReactionSurfaceLaneRatios,
   REACTION_SOLVER_CENTER_LANE_WIDTH_PX,
   REACTION_SOLVER_LAYOUT,
@@ -661,6 +663,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
   } = deps;
 
   applyReactionSolverLayoutCssVars(surface);
+  applyReactionSolverSurfaceGridLayout({
+    surface,
+    reactantsColumn,
+    productsColumn,
+  });
 
   const centerColumn = root?.querySelector(".composer-reaction-solver-center") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
@@ -2039,28 +2046,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Array.from({ length: requiredCount }, (_, index) => minRatio + step * index);
   }
 
-  function getReactionSurfaceLaneFallbackRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
-    const count = Math.max(1, requiredCount);
-    if (count <= 1) {
-      return [0.5];
-    }
-    const minRatio = 0.12;
-    const maxRatio = 0.88;
-    const step = (maxRatio - minRatio) / (count - 1);
-    return Array.from({ length: count }, (_, index) => minRatio + step * index);
-  }
-
   function getReactionSurfaceLaneRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
     const count = Math.max(1, requiredCount);
     const laneEntries = getReactionSurfaceLaneEntries();
     if (!surface) {
-      return getReactionSurfaceLaneFallbackRatios(count);
+      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
     }
     if (count <= 1) {
       return [0.5];
     }
     if (!reactantsColumn || !productsColumn) {
-      return getReactionSurfaceLaneFallbackRatios(count);
+      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
     }
     const measuredRatios = measureReactionSurfaceLaneRatios({
       surface,
@@ -2069,7 +2065,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       laneEntries,
     });
     if (!Array.isArray(measuredRatios) || measuredRatios.length !== laneEntries.length) {
-      return getReactionSurfaceLaneFallbackRatios(count);
+      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
     }
     return measuredRatios.slice(0, count);
   }

@@ -83,7 +83,7 @@ at effective level. Nuclear binding must therefore come from the residual strong
 
 ### Sea polarization
 
-Neighboring nucleons polarize the local Noether-core sea. This lowers the total energy when the surrounding medium can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the vacuum participates in nuclear binding.
+Neighboring nucleons polarize the local Noether-core sea. This lowers the total energy when the surrounding medium can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient medium participates in nuclear binding.
 
 ## Shape of the Effective Potential
 

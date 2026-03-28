@@ -27,7 +27,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Operational vs. Fundamental Distinction](../aaa/foundations/bootstrapping-the-absolute-frame.md?section=Operational+vs.+Fundamental+Distinction)
   - [Emergence of Structure](../../scenes/foundations/emergence_of_structure.json)
   - [Euclidean Void](../../scenes/foundations/euclidean_void.json)
-    - [The Aether Sea: Noether Core Occupancy](../aaa/foundations/euclidean-void.md?section=The+Aether+Sea%3A+Noether+Core+Occupancy)
+    - [The Noether Sea: Noether Core Occupancy](../aaa/foundations/euclidean-void.md?section=The+Noether+Sea%3A+Noether+Core+Occupancy)
   - [Foundational Ontology](../../scenes/foundations/foundational_ontology.json)
     - [Purpose and Scope](../aaa/foundations/ontology.md?section=Purpose+and+Scope)
     - [The Substrate (What Exists Fundamentally)](../aaa/foundations/ontology.md?section=The+Substrate+%28What+Exists+Fundamentally%29)

@@ -71,7 +71,7 @@ Standard Model “generations” are interpreted as **excitation states** of the
   - Only [H] assembled.  
   - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
 
-We treat these as **different assembly states**, not decay products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
+We treat these as **different assembly states**, not dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
 
 In this section, color is defined on **Gen‑I** Noether cores; higher generations inherit the same color structure via their remaining axes (H only, or H+M).
 
@@ -301,7 +301,7 @@ $$
 \lesssim
 \exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathrm{eff}}}\right),
 $$
-so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family survives as the low-energy vacuum family.
+so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight.
 
@@ -320,7 +320,7 @@ $$
 and the stability condition $\rho_{II}<1$ holds.
 
 **Failure condition (theory-level, explicit).**  
-The model fails this selection requirement if, over the low-energy vacuum window relevant to nucleons,
+The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
@@ -434,7 +434,7 @@ In tri‑binary geometry:
 At large distances, axis‑dependent multipoles from each regime cancel:
 
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
-- Net color flux to the vacuum is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
+- Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
@@ -447,7 +447,7 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the vacuum tri‑binary medium.  
+- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.  
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:
@@ -487,7 +487,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
   - Up‑type: two P+ axes, one Pm axis.  
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
-- **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the vacuum with linear energy cost per unit length → confinement.
+- **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:
   - Neutrino oscillation modeling,  
   - Proton–neutron mass/moment differences,  

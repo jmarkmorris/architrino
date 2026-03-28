@@ -38,10 +38,10 @@ A photon manifests as a **Phase-Locked Planar-Mode Train** of delayed actions.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
     *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
-### Environmental Coupling (The Aether)
-*   **Spacetime Aether:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
+### Environmental Coupling (Ambient Noether Sea)
+*   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
-    *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the planar mode **re-couples** transiently with ambient assemblies.
+    *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This drag slows the phase velocity ($v_{phase} < c$).
     *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
@@ -115,7 +115,7 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 | **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Planar-Mode Train | None (Planar/Edge-on) |
 | **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
-| **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
+| **Higgs** | Radial Noether-Sea Oscillation | N/A | Local Resonance | Lattice Stiffness |
 
 ## Pair production (note)
 

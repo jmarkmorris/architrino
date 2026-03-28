@@ -218,10 +218,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Aether Sea: Noether Core Occupancy",
+                "title": "The Noether Sea: Noether Core Occupancy",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "The Aether Sea: Noether Core Occupancy",
-                "sectionKey": "the aether sea noether core occupancy",
+                "markdownSection": "The Noether Sea: Noether Core Occupancy",
+                "sectionKey": "the noether sea noether core occupancy",
                 "headingLevel": 2
               }
             ]

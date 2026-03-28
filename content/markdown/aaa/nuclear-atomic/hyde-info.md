@@ -156,17 +156,17 @@ The points below are collected as a framework-internal research program, not as 
 ### 7.2 Assumptions
 
 - The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries carrying six axial architrinos.
-- Electron tri-binaries are assumed to couple to a central nuclear Noether core through local spacetime-aether gradients.
+- Electron tri-binaries are assumed to couple to a central nuclear Noether core through local Noether-Sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ### 7.3 Mechanism and Derivation Sketch
 
 - Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether core, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local aether-pressure gradient drops enough to stabilize an additional shell of precessing tri-binaries.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether-Sea pressure gradient drops enough to stabilize an additional shell of precessing tri-binaries.
 - In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of tri-binary assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron tri-binary displaces local spacetime aether, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
+- Volume-exclusion mechanism: each electron tri-binary displaces the local Noether Sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
-- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by aether-displacement pressure rather than only an abstract occupancy postulate.
+- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether-Sea displacement pressure rather than only an abstract occupancy postulate.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer tri-binaries, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
@@ -174,7 +174,7 @@ The points below are collected as a framework-internal research program, not as 
 ### 7.4 Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Mechanism for the deviation: increasing nuclear mass steepens the local aether-density gradient, geometrically compressing inner-shell tri-binaries and driving middle-binary velocities toward field-speed limits.
+- Mechanism for the deviation: increasing nuclear mass steepens the local Noether-Sea density gradient, geometrically compressing inner-shell tri-binaries and driving middle-binary velocities toward field-speed limits.
 - This inner-shell geometric strain changes the effective shielding potential seen by valence tri-binaries, producing measurable departures from standard relativistic-correction-only trends.
 
 ### 7.5 Failure Modes and Falsification Criteria
@@ -188,7 +188,7 @@ The points below are collected as a framework-internal research program, not as 
 - Translate Hyde’s 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal tri-binaries.
 - Run a first constrained benchmark at the Neon core ($Z=10$) with explicit boundary conditions.
 - Neon boundary setup: an inner phase-locked pair at maximum curvature plus exactly eight outer tri-binaries.
-- Outer-shell success criterion: the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes aether-drag without exclusion-volume intersection.
+- Outer-shell success criterion: the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes medium drag without exclusion-volume intersection.
 - Test whether this eight-body outer geometry is a dynamical attractor, not merely a manually tuned configuration.
 - Extend to higher-$Z$ shells only after Neon stability and node discreteness criteria are met.
 

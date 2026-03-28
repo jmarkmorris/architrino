@@ -51,7 +51,7 @@ This ladder matters because it prevents category drift. Fermions, bosons, and sp
 Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
 
 -   **Matter branch:** Noether cores carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of cores yield the spacetime aether.
+-   **Medium branch:** dense balanced populations of cores yield the Noether Sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
 This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether Sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
