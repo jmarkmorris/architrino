@@ -1599,6 +1599,11 @@ body {
   gap: 4px;
 }
 
+#composer-overlay.is-open:not(.is-reaction-app-mode) #composer-reaction-button,
+#composer-overlay.is-open:not(.is-reaction-app-mode) #composer-docs-button {
+  display: none;
+}
+
 #composer-overlay.is-reaction-app-mode #composer-scene-button,
 #composer-overlay.is-reaction-app-mode #composer-clear-button,
 #composer-overlay.is-reaction-app-mode #composer-save-button,
@@ -1606,8 +1611,9 @@ body {
   display: none;
 }
 
-#composer-overlay.is-reaction-app-mode #composer-reaction-back-button {
-  display: inline-flex;
+#composer-overlay.is-reaction-app-mode #composer-reaction-back-button,
+#composer-overlay.is-reaction-app-mode #composer-docs-button {
+  display: none;
 }
 
 #composer-overlay.is-reaction-app-mode .composer-workspace,

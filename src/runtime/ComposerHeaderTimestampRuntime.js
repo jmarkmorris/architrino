@@ -1,52 +1,10 @@
-function formatComposerHeaderTimestamp(date) {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZoneName: "short",
-  }).formatToParts(date);
-
-  const valueByType = new Map(parts.map((part) => [part.type, part.value]));
-  const weekday = valueByType.get("weekday") ?? "";
-  const month = valueByType.get("month") ?? "";
-  const day = valueByType.get("day") ?? "";
-  const hour = valueByType.get("hour") ?? "";
-  const minute = valueByType.get("minute") ?? "";
-  const timeZoneName = valueByType.get("timeZoneName") ?? "";
-
-  return `${weekday} ${month} ${day} ${hour}:${minute} ${timeZoneName}`.trim();
-}
-
-function resolveComposerHeaderDate(value) {
-  if (value instanceof Date) {
-    return value;
-  }
-  if (typeof value === "string" || typeof value === "number") {
-    return new Date(value);
-  }
-  return null;
-}
-
 function formatComposerHeaderSignature(signature) {
   if (!signature || typeof signature !== "object") {
     return null;
   }
-  const resolvedDate = resolveComposerHeaderDate(signature.generatedAt);
-  const segments = [];
-  if (typeof signature.shortSha === "string" && signature.shortSha.trim()) {
-    segments.push(signature.shortSha.trim());
-  }
-  if (typeof signature.dirty === "boolean") {
-    segments.push(signature.dirty ? "dirty" : "clean");
-  }
-  if (resolvedDate && Number.isFinite(resolvedDate.getTime())) {
-    segments.push(formatComposerHeaderTimestamp(resolvedDate));
-  }
-  return segments.length > 0 ? segments.join(" · ") : null;
+  return typeof signature.shortSha === "string" && signature.shortSha.trim()
+    ? signature.shortSha.trim()
+    : null;
 }
 
 export function createComposerHeaderTimestampRuntime({
@@ -55,7 +13,6 @@ export function createComposerHeaderTimestampRuntime({
   signatureUrl = null,
   refreshIntervalMs = 15000,
 } = {}) {
-  const resolvedDate = resolveComposerHeaderDate(lastChangedAt);
   let refreshIntervalId = null;
   let signaturePollingEnabled = true;
 
@@ -63,9 +20,7 @@ export function createComposerHeaderTimestampRuntime({
     if (!element) {
       return;
     }
-    element.textContent = resolvedDate && Number.isFinite(resolvedDate.getTime())
-      ? formatComposerHeaderTimestamp(resolvedDate)
-      : "signature unavailable";
+    element.textContent = "signature unavailable";
   }
 
   async function refreshSignature() {
