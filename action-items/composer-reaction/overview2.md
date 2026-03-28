@@ -143,7 +143,7 @@ So future UI work should prioritize:
 
 ## Reaction Design
 
-Reaction-specific terminology, UI, solver, provenance, schema, and example-scene notes have moved to [reaction.md](../reaction/overview.md) so this document can stay focused on the broader composer.
+Reaction-specific terminology, UI, solver, provenance, schema, and example-scene notes have moved to [reaction.md](./overview3.md) so this document can stay focused on the broader composer.
 
 ## Observer metaphor and user-facing language
 
@@ -1350,7 +1350,7 @@ This section merges the remaining useful requirements into one set.
 
 ### 9. Reaction requirements
 
-Reaction-specific requirements now live in [reaction.md](../reaction/overview.md) so this document can stay focused on the broader composer architecture.
+Reaction-specific requirements now live in [reaction.md](./overview3.md) so this document can stay focused on the broader composer architecture.
 
 ### 10. View and workflow requirements
 
@@ -2783,7 +2783,7 @@ Guidance:
 
 ### ReactionSpec and TransferSpec
 
-Reaction-specific schema notes for `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` now live in [reaction.md](../reaction/overview.md).
+Reaction-specific schema notes for `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` now live in [reaction.md](./overview3.md).
 
 ---
 
@@ -2895,7 +2895,7 @@ The draft schema above is intended to be able to describe the target scenes disc
 - A translating electron-like assembly is covered by `TimeSpec`, a root `AssemblySpec`, a straight-line `PathSpec`, a `CoreSpec` with internal `architrinos`, and bound `ChargeSpec` entries for the six electrino axial architrinos.
 - A high-velocity Lorentz-oblate flythrough is covered by parent transport motion plus `CoreSpec.deformation` with `type: "lorentz_oblate"` and an axis derived from velocity or path tangent.
 - A curved-path assembly with axial jiggle is covered by spline or point-based `PathSpec` plus local `jiggle` motions on the axial-member specs.
-- Reaction coverage is detailed in [reaction.md](../reaction/overview.md), including `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
+- Reaction coverage is detailed in [reaction.md](./overview3.md), including `ReactionSpec`, `TransferSpec`, and `ProvenanceSpec` on the shared scene timeline.
 - A photon-like paired-core assembly is covered by one parent `AssemblySpec` containing two child flat `CoreSpec` objects, a small authored offset in local transforms, and explicit `binaries` whose motions carry `direction: "cw"` or `direction: "ccw"`.
 - Camera action across any of these scenes is covered by `ViewSpec` plus `CameraPathSpec`, either as explicit waypoints with `position`, `lookAt`, or `orientation`, or as authored follow modes such as trail, lead, flank, or orbit around a moving target assembly.
 - Zoomed-out replacement of a detailed assembly by a simple blue sphere or blue labeled `e` sphere is covered by `LodSpec` on the relevant assembly or library-backed assembly instance.
@@ -3361,7 +3361,7 @@ In any of these scenes, observer path and observer orientation may also change a
 
 ### 5. Reaction with disassembly and reassembly
 
-Reaction-specific example scenes now live in [reaction.md](../reaction/overview.md).
+Reaction-specific example scenes now live in [reaction.md](./overview3.md).
 
 ### 6. Photon-like paired-core assembly
 
@@ -3378,7 +3378,7 @@ Reaction-specific example scenes now live in [reaction.md](../reaction/overview.
 
 These are broader authored-animation families worth carrying in the design now so the model does not trap itself in single-particle flythroughs only.
 
-Reaction-focused future scene families, including PDG-style and atomic reactions, now live in [reaction.md](../reaction/overview.md).
+Reaction-focused future scene families, including PDG-style and atomic reactions, now live in [reaction.md](./overview3.md).
 
 ### Neutrino scenes
 

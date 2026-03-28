@@ -19,7 +19,7 @@
 
 ## Scope
 
-This workstream covers the scene system, composer, reaction app, PDG solver, and later composer enhancements. The detailed architecture references are [composer.md](../composer/overview.md) and [reaction.md](../reaction/overview.md).
+This workstream covers the scene system, composer, reaction app, PDG solver, and later composer enhancements. The detailed architecture references are [composer.md](./overview2.md) and [reaction.md](./overview3.md).
 
 ## Current State
 

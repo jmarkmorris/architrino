@@ -1,10 +1,10 @@
 # Reaction Design
 
-This note collects reaction-specific UI, solver, provenance, schema, and example-scene design material that previously lived inside [composer.md](../composer/overview.md).
+This note collects reaction-specific UI, solver, provenance, schema, and example-scene design material that previously lived inside [composer.md](./overview2.md).
 
 Related editorial backlog:
 
-- [PDG Solver Ideas](pdg-solver-ideas.md)
+- [PDG Solver Ideas](./pdg-solver-ideas.md)
 
 ## Terminology note: reaction, not decay
 

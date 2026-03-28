@@ -136,7 +136,7 @@ Scoring system:
 
 ### 3. Scene system, composer, PDG solver, and remaining composer objectives
 - Value `9`, Cost `4`, ROI `2.25`.
-- The canonical references now live in [composer.md](../composer/overview.md) and [reaction.md](../reaction/overview.md). Treat those notes as the implementation-aware architecture references for the current composer and reaction surfaces rather than repeating the full completed baseline here.
+- The canonical references now live in [composer.md](../composer-reaction/overview2.md) and [reaction.md](../composer-reaction/overview3.md). Treat those notes as the implementation-aware architecture references for the current composer and reaction surfaces rather than repeating the full completed baseline here.
 - Current state, only what matters for the remainder:
   - the composer shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model;
   - the reaction app is now the primary manual provenance surface, and the old `Map On Canvas` bridge should be treated as transitional scaffolding only;

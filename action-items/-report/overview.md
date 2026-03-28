@@ -62,8 +62,8 @@ This single table is the canonical rollup for every direct child of `action-item
 | — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
-| — | [`composer`](../composer/overview.md) | Composer | — | — | — |
-| — | [`reaction`](../reaction/overview.md) | Reaction design | — | — | — |
+| — | [`composer`](../composer-reaction/overview2.md) | Composer | — | — | — |
+| — | [`reaction`](../composer-reaction/overview3.md) | Reaction design | — | — | — |
 | — | [`cruft-sprawl`](../cruft-sprawl/overview.md) | Cruft and sprawl reduction | — | — | — |
 | — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../viewports/overview.md) | Viewports | — | — | — |
