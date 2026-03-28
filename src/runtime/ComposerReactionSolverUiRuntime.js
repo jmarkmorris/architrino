@@ -638,6 +638,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let syncCenterTransformerOperatorFan = () => {};
   const mappingRulesRuntime = createComposerReactionMappingRulesRuntime({
     getNodeContext,
+    getTransmuteInputNodeContexts,
     getTransmuteLedgerSummary,
     parseNodeKey,
     resolveBinaryChoiceInventory,
@@ -944,6 +945,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
+  function getTransmuteInputNodeContexts(participantId) {
+    return state.mappings
+      .filter((mapping) => {
+        const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
+        return targetParticipantId === participantId && mapping.targetRole === "transmute-input";
+      })
+      .map((mapping) => getNodeContext(mapping.sourceKey))
+      .filter(Boolean);
+  }
+
   function getTransmuteLedgerSummary(participantId) {
     const incomingMappings = state.mappings.filter((mapping) => {
       const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
@@ -964,6 +975,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return {
       incomingLedger,
       outgoingLedger,
+      incomingCount: incomingMappings.length,
+      outgoingCount: outgoingMappings.length,
       isBalanced: hasLedger(incomingLedger) && hasLedger(outgoingLedger) && ledgersMatch(incomingLedger, outgoingLedger),
     };
   }

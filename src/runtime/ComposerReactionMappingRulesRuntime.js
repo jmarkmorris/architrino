@@ -82,12 +82,18 @@ function getNodeLedgerFromContext(nodeContext = null, resolveBinaryChoiceInvento
 export function createComposerReactionMappingRulesRuntime(options = {}) {
   const getNodeContext =
     typeof options.getNodeContext === "function" ? options.getNodeContext : () => null;
+  const getTransmuteInputNodeContexts =
+    typeof options.getTransmuteInputNodeContexts === "function"
+      ? options.getTransmuteInputNodeContexts
+      : () => [];
   const getTransmuteLedgerSummary =
     typeof options.getTransmuteLedgerSummary === "function"
       ? options.getTransmuteLedgerSummary
       : () => ({
           incomingLedger: createEmptyLedger(),
           outgoingLedger: createEmptyLedger(),
+          incomingCount: 0,
+          outgoingCount: 0,
           isBalanced: false,
         });
   const parseNodeKey =
@@ -103,6 +109,8 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     const normalizedSummary = transmuteSummary ?? {
       incomingLedger: createEmptyLedger(),
       outgoingLedger: createEmptyLedger(),
+      incomingCount: 0,
+      outgoingCount: 0,
     };
     const candidateLedger = normalizeLedger(outputLedger);
     if (!hasLedger(normalizedSummary.incomingLedger)) {
@@ -130,13 +138,69 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     };
   }
 
+  function evaluateTransmuteStructureCompatibility(
+    transmuteId = "",
+    transmuteSummary = null,
+    candidateTargetContext = null,
+    { includePendingTarget = false } = {}
+  ) {
+    const normalizedSummary = transmuteSummary ?? {
+      incomingCount: 0,
+      outgoingCount: 0,
+    };
+    const incomingCount = Math.max(0, Number(normalizedSummary.incomingCount ?? 0));
+    const outgoingCount = Math.max(0, Number(normalizedSummary.outgoingCount ?? 0));
+    const effectiveOutgoingCount = includePendingTarget ? outgoingCount + 1 : outgoingCount;
+    if (incomingCount !== 1 || effectiveOutgoingCount !== 1 || !candidateTargetContext) {
+      return {
+        valid: true,
+        reason: "",
+      };
+    }
+
+    const [incomingSourceContext] = getTransmuteInputNodeContexts(transmuteId);
+    if (!incomingSourceContext) {
+      return {
+        valid: true,
+        reason: "",
+      };
+    }
+
+    const evaluation = evaluateComposerReactionMappingCandidate({
+      sourceParticipant: incomingSourceContext.participant,
+      sourceNode: incomingSourceContext.node,
+      targetParticipant: candidateTargetContext.participant,
+      targetNode: candidateTargetContext.node,
+      resolveBinaryChoiceInventory,
+    });
+    if (evaluation.allowed) {
+      return {
+        valid: true,
+        reason: "",
+      };
+    }
+    return {
+      valid: false,
+      reason: `Single-source transmute output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
+    };
+  }
+
   function evaluateTransmuteOutputCandidate(transmuteId = "", candidateTargetContext = null) {
     const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
     const candidateLedger = addLedgers(
       transmuteSummary.outgoingLedger,
       getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
     );
-    return evaluateTransmuteOutputLedger(transmuteSummary, candidateLedger);
+    const ledgerEvaluation = evaluateTransmuteOutputLedger(transmuteSummary, candidateLedger);
+    if (!ledgerEvaluation.valid) {
+      return ledgerEvaluation;
+    }
+    return evaluateTransmuteStructureCompatibility(
+      transmuteId,
+      transmuteSummary,
+      candidateTargetContext,
+      { includePendingTarget: true }
+    );
   }
 
   function getMappingValidation(mapping = null) {
@@ -173,9 +237,17 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {
       const { participantId: transmuteId } = parseNodeKey(mapping.sourceKey);
       const transmuteSummary = getTransmuteLedgerSummary(transmuteId);
-      return evaluateTransmuteOutputLedger(
+      const ledgerEvaluation = evaluateTransmuteOutputLedger(
         transmuteSummary,
         transmuteSummary.outgoingLedger
+      );
+      if (!ledgerEvaluation.valid) {
+        return ledgerEvaluation;
+      }
+      return evaluateTransmuteStructureCompatibility(
+        transmuteId,
+        transmuteSummary,
+        targetContext
       );
     }
     return {
