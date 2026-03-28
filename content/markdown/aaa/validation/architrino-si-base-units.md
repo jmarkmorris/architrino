@@ -224,7 +224,7 @@ $$
 
 **Prediction:**
 $$
-k_B \propto m_{\text{aether}} \cdot c_f^2 / (\text{typical thermal velocity})^2
+k_B \propto m_{\text{NS}} \cdot c_f^2 / (\text{typical thermal velocity})^2
 $$
 
 
@@ -283,7 +283,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | $c$ | **Fundamental ≈ $c_f$** | Signal speed in the void; small corrections from the Noether Sea |
 | $h$ | **Derivable** | Outer Binary angular momentum quantization |
 | $e$ | **Fundamental** | $e = 6 \times |e/6|$ (architrino charge) |
-| $k_B$ | **Derivable** | Aether thermal equilibrium + assembly mass |
+| $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
 | $K_{\text{cd}}$ | **Anthropic** | Human biology; not fundamental physics |
 
@@ -297,14 +297,14 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
 1. **Architrino charge** $|e/6|$ (replaces $e$)
 2. **Field speed** $c_f$ (replaces $c$)
 3. **Tri-binary geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
-4. **Noether-Sea assembly mass** $m_{\text{aether}}$ (replaces $k_B$ when combined with $c_f$)
+4. **Noether-Sea assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is derived:**
 - $e = 6 |e/6|$
 - $c = c_f$ (up to small Noether-Sea corrections)
 - $h = 2\pi |e/6| \cdot c_f \cdot r_{\text{outer}}$
-- $k_B = f(m_{\text{aether}}, c_f)$
-- $N_A = f(m_p / m_{\text{aether}})$
+- $k_B = f(m_{\text{NS}}, c_f)$
+- $N_A = f(m_p / m_{\text{NS}})$
 - $\Delta \nu_{\text{Cs}} = f(\text{Cs tri-binary geometry})$
 
 **Result:** We've reduced 7 constants to **3-4 fundamental parameters**, with the rest emergent.
