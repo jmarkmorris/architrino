@@ -2125,6 +2125,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
   }
 
+  function getCenterLaneSlotElement(centerColumnIndex = null) {
+    if (!surface || centerColumnIndex === null || centerColumnIndex === undefined) {
+      return null;
+    }
+    return surface.querySelector(
+      `.composer-reaction-solver-lane-slot[data-center-column-index="${CSS.escape(String(
+        normalizeTransmuteColumnIndex(centerColumnIndex)
+      ))}"]`
+    );
+  }
+
+  function getCenterLaneWidthPx(centerColumnIndex = null) {
+    const slotElement = getCenterLaneSlotElement(centerColumnIndex);
+    if (!(slotElement instanceof HTMLElement)) {
+      return null;
+    }
+    const bounds = slotElement.getBoundingClientRect();
+    return bounds.width > 1 ? bounds.width : null;
+  }
+
   function getCenterLaneFallbackSlotRatios(requiredCount = 1) {
     const fallbackCount = Math.max(1, requiredCount);
     const startRatio = 0.28;
@@ -2305,6 +2325,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     assignTransmuteParticipantToSlot(participant, participant.centerSlotIndex);
     card.style.left = getTransmuteCardLeft(participant.centerColumnIndex);
     card.style.top = getTransmuteCardTop(participant.centerYRatio);
+    const laneWidthPx = getCenterLaneWidthPx(participant.centerColumnIndex);
+    if (laneWidthPx) {
+      card.style.setProperty("--solver-center-lane-width", `${laneWidthPx}px`);
+    } else {
+      card.style.removeProperty("--solver-center-lane-width");
+    }
     syncCenterTransformerOperatorFan(card, participant);
   }
 
@@ -2632,61 +2658,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!(columnElement instanceof HTMLElement)) {
       return false;
     }
-    const columnBounds = columnElement.getBoundingClientRect();
-    if (columnBounds.width <= 1 || columnBounds.height <= 1) {
-      return false;
-    }
     const header = columnElement.querySelector(
       `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
     );
     const participants = Array.from(
       columnElement.querySelectorAll(`.composer-reaction-solver-participant.is-${CSS.escape(side)}`)
     );
-    const trackGeometries = participants
-      .map((participantElement) => {
-        if (!(participantElement instanceof HTMLElement)) {
-          return null;
-        }
-        const trackElement = participantElement.querySelector(
-          ".composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-binary-selector-grid-track"
-        );
-        if (!(trackElement instanceof HTMLElement)) {
-          participantElement.style.setProperty("--solver-track-align-shift", "0px");
-          return null;
-        }
-        const trackBounds = trackElement.getBoundingClientRect();
-        return {
-          participantElement,
-          start: trackBounds.left - columnBounds.left,
-          width: trackBounds.width,
-        };
-      })
-      .filter(Boolean);
-    if (!trackGeometries.length) {
-      if (header instanceof HTMLElement) {
-        header.style.setProperty("--solver-slot-header-offset", "0px");
+    participants.forEach((participantElement) => {
+      if (participantElement instanceof HTMLElement) {
+        participantElement.style.setProperty("--solver-track-align-shift", "0px");
       }
-      return false;
-    }
-    const sortedStarts = trackGeometries
-      .map((entry) => entry.start)
-      .sort((left, right) => left - right);
-    const targetStart = sortedStarts[Math.floor(sortedStarts.length / 2)] ?? 0;
-    trackGeometries.forEach(({ participantElement, start }) => {
-      participantElement.style.setProperty(
-        "--solver-track-align-shift",
-        `${targetStart - start}px`
-      );
     });
     if (header instanceof HTMLElement) {
-      const trackWidth = Math.max(...trackGeometries.map((entry) => entry.width));
-      const headerOffset =
-        side === "product"
-          ? Math.max(0, columnBounds.width - targetStart - trackWidth)
-          : Math.max(0, targetStart);
-      header.style.setProperty("--solver-slot-header-offset", `${headerOffset}px`);
+      header.style.setProperty("--solver-slot-header-offset", "0px");
     }
-    return true;
+    return participants.length > 0 || header instanceof HTMLElement;
   }
 
   function syncSideColumnGeometry() {

@@ -2,7 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  computeComposerViewportAutoscaleCameraState,
   formatComposerViewportFramingSummary,
+  getComposerViewportAutoscaleTargetIds,
   getComposerActiveCameraPathId,
   normalizeComposerCameraShots,
   resolveComposerViewportFramingState,
@@ -25,7 +27,7 @@ test("camera shot normalization upgrades legacy framing strings into authored fr
   assert.equal(shots.length, 1);
   assert.deepEqual(shots[0].framing, {
     preset: "tight",
-    autoscale: "manual",
+    autoscale: "keep_required",
     defaultAssemblyPolicy: "optional",
     requiredAssemblyIds: [],
     optionalAssemblyIds: [],
@@ -101,4 +103,53 @@ test("viewport framing state merges assembly keep-in-view defaults with shot ove
     formatComposerViewportFramingSummary(state),
     "1 required • 2 optional • wide • keep_required"
   );
+});
+
+test("autoscale target ids use required assemblies only and stay inactive without authored targets", () => {
+  assert.deepEqual(
+    getComposerViewportAutoscaleTargetIds(
+      {
+        framing: { autoscale: "keep_required" },
+        requiredAssemblyIds: ["assembly_b"],
+        optionalAssemblyIds: ["assembly_a"],
+      },
+      ["assembly_a", "assembly_b", "assembly_c"]
+    ),
+    ["assembly_b"]
+  );
+
+  assert.deepEqual(
+    getComposerViewportAutoscaleTargetIds(
+      {
+        framing: { autoscale: "keep_required" },
+        requiredAssemblyIds: [],
+        optionalAssemblyIds: ["assembly_a"],
+      },
+      ["assembly_a", "assembly_b", "assembly_c"]
+    ),
+    []
+  );
+});
+
+test("autoscale camera state recenters on the target set and only expands distance when needed", () => {
+  const state = computeComposerViewportAutoscaleCameraState({
+    cameraState: {
+      position: { x: 0, y: 0, z: 5 },
+      lookAt: { x: 0, y: 0, z: 0 },
+    },
+    targetSpheres: [
+      { id: "assembly_a", center: { x: -2, y: 0, z: 0 }, radius: 0.75 },
+      { id: "assembly_b", center: { x: 2, y: 0, z: 0 }, radius: 0.75 },
+    ],
+    verticalFovDegrees: 45,
+    aspect: 1.6,
+  });
+
+  assert.ok(state);
+  assert.deepEqual(state.targetIds.sort(), ["assembly_a", "assembly_b"]);
+  assert.equal(state.lookAt.x, 0);
+  assert.equal(state.lookAt.y, 0);
+  assert.equal(state.lookAt.z, 0);
+  assert.ok(state.requiredDistance > 5);
+  assert.ok(state.position.z > 5);
 });

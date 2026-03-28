@@ -57,6 +57,7 @@ export function createComposerHeaderTimestampRuntime({
 } = {}) {
   const resolvedDate = resolveComposerHeaderDate(lastChangedAt);
   let refreshIntervalId = null;
+  let signaturePollingEnabled = true;
 
   function renderFallback() {
     if (!element) {
@@ -69,6 +70,10 @@ export function createComposerHeaderTimestampRuntime({
 
   async function refreshSignature() {
     if (!element) {
+      return;
+    }
+    if (!signaturePollingEnabled) {
+      renderFallback();
       return;
     }
     if (typeof signatureUrl !== "string" || !signatureUrl.trim()) {
@@ -88,6 +93,11 @@ export function createComposerHeaderTimestampRuntime({
       const formattedSignature = formatComposerHeaderSignature(signature);
       element.textContent = formattedSignature ?? "signature unavailable";
     } catch (_error) {
+      signaturePollingEnabled = false;
+      if (refreshIntervalId !== null) {
+        window.clearInterval(refreshIntervalId);
+        refreshIntervalId = null;
+      }
       renderFallback();
     }
   }

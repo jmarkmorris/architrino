@@ -13,7 +13,7 @@
 
 1. `reaction_manual_workflow` — Finish the reaction app manual workflow and state legibility. Status: `next`. Depends on: none.
 2. `solved_reaction_handoff` — Make accepted reaction solves durable and bridge them into the main composer. Status: `pending`. Depends on: `reaction_manual_workflow`.
-3. `viewport_autoscale_authoring` — Design and implement authored viewport autoscale rules so some assemblies can be marked as required to remain framed while others may leave the viewport. Status: `pending`. Depends on: `solved_reaction_handoff`.
+3. `viewport_autoscale_authoring` — Design and implement authored viewport autoscale rules so some assemblies can be marked as required to remain framed while others may leave the viewport. Status: `active`. Depends on: `solved_reaction_handoff`.
 4. `observer_timeline_model` — Replace observer placeholders with a real authored timeline model. Status: `pending`. Depends on: `viewport_autoscale_authoring`.
 5. `canonical_structure_edits` — Move live composer structure edits onto the shared canonical model. Status: `pending`. Depends on: `observer_timeline_model`.
 
@@ -34,10 +34,49 @@ This workstream covers the scene system, composer, reaction app, PDG solver, and
   - the composer can already read the shared canonical structure bridge in summaries, menus, hover states, and a first viewport-facing badge;
   - the first narrow shared-structure mutation path exists for `Split Group`;
   - but the broader composer-side structural-edit migration is paused while the canvas click paths, menus, and action grammar are being refactored for usability.
-- The composer still lacks authored viewport autoscale semantics:
-  - there is not yet a way to mark which assemblies must remain inside the viewport and which are allowed to exit frame;
-  - any "keep these in view" rule will imply an autoscale operation, not just a fixed camera track;
-  - and autoscale authoring must be designed against camera-position variants, because the correct behavior differs when the observer is fixed, moving, following a target, or participating in a staged reaction handoff.
+- The composer viewport-framing stack now has a shared modular seam:
+  - `ComposerViewportFramingRuntime.js` owns shot/framing normalization, active framing-state resolution, autoscale target selection, and first-pass camera autoscale fitting;
+  - the live authored observer camera now runs through that autoscale path during play/scrub and preview;
+  - and the default framing behavior is now prepared to fit explicitly required assemblies once authored targets exist.
+- Autoscale authoring is still incomplete:
+  - there is not yet a canvas/UI control that lets authors mark an assembly as `required` versus `optional` for observer framing;
+  - there is not yet a shot- or interval-level authoring flow for temporary overrides like "keep A and B in frame only during this beat";
+  - and the current first-pass autoscale preserves authored view direction and adjusts camera distance/centering, but it does not yet expose the semantic choices needed for production scenes.
+
+### `viewport_autoscale_authoring` — Design direction and current implementation seam
+
+Current design direction:
+
+- Every assembly in a designed scene should declare whether it must remain in observer view or may leave frame.
+- That declaration should exist at two levels:
+  - assembly-level default policy:
+    - `required`
+    - `optional`
+  - shot/interval-level framing override:
+    - explicit required assembly ids
+    - explicit optional assembly ids
+- In observer view, authored camera paths should continue to define viewpoint and motion direction, while autoscale adjusts framing so all currently required assemblies remain visible.
+- If no assemblies are explicitly marked required, observer view should keep the authored camera path as-is rather than guessing a fallback target set.
+
+Current implementation status:
+
+- The shared framing runtime is now real and reusable.
+- The live composer already computes active framing state from the current document and playhead.
+- The authored observer camera already runs through a first-pass autoscale fit in both normal observer mode and preview mode.
+- This means the codebase now has the correct modular seam for viewport framing and autoscale reuse, even though the authoring UI is still missing.
+
+Remaining work:
+
+- Add per-assembly authoring controls for viewport participation:
+  - `Required in observer view`
+  - `May leave frame`
+- Add shot/interval authoring controls for temporary framing overrides.
+- Decide how autoscale should interact with different observer semantics:
+  - fixed observer
+  - moving observer path
+  - follow-style observer intervals
+  - solved-reaction handoff into composer staging
+- Add UI feedback so authors can tell which assemblies are currently driving autoscale.
 
 ### `reaction_manual_workflow` — Current implementation and open repair list
 

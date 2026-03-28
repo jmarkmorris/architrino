@@ -82,8 +82,10 @@ import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRun
 import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
 import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import {
+  computeComposerViewportAutoscaleCameraState,
   getComposerActiveCameraShot,
   getComposerActiveCameraPathId,
+  getComposerViewportAutoscaleTargetIds,
   resolveComposerShotInterval,
   resolveComposerViewportFramingState,
 } from "./src/runtime/ComposerViewportFramingRuntime.js";
@@ -5051,6 +5053,80 @@ function getComposerPreviewCameraStateAtTime(timeSeconds) {
   };
 }
 
+function getComposerViewportAutoscaleTargetSpheres(documentData, assemblyCenters, framingState) {
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  if (!assemblies.length || !(assemblyCenters instanceof Map)) {
+    return [];
+  }
+  const assemblyById = new Map(
+    assemblies
+      .map((assembly) => [String(assembly?.id ?? "").trim(), assembly])
+      .filter(([assemblyId]) => !!assemblyId)
+  );
+  const targetIds = getComposerViewportAutoscaleTargetIds(
+    framingState,
+    [...assemblyById.keys()]
+  );
+  return targetIds
+    .map((assemblyId) => {
+      const center = assemblyCenters.get(assemblyId);
+      const assembly = assemblyById.get(assemblyId);
+      if (!(center instanceof THREE.Vector3) || !assembly) {
+        return null;
+      }
+      return {
+        id: assemblyId,
+        center: { x: center.x, y: center.y, z: center.z },
+        radius: Math.max(0.12, getComposerAssemblyGraphicTargetRadius(assembly)),
+      };
+    })
+    .filter(Boolean);
+}
+
+function getComposerAutoscaledCameraState(cameraState, documentData, assemblyCenters, framingState) {
+  if (!cameraState || !composerCamera || !documentData) {
+    return cameraState;
+  }
+  const autoscaleMode = String(framingState?.framing?.autoscale ?? "")
+    .trim()
+    .toLowerCase();
+  const targetSpheres = getComposerViewportAutoscaleTargetSpheres(
+    documentData,
+    assemblyCenters,
+    framingState
+  );
+  if (!targetSpheres.length) {
+    return cameraState;
+  }
+  const autoscaled = computeComposerViewportAutoscaleCameraState({
+    cameraState: {
+      position: cameraState.position,
+      lookAt: cameraState.lookAt,
+    },
+    targetSpheres,
+    verticalFovDegrees: Number(composerCamera.fov ?? 45) || 45,
+    aspect: Math.max(0.2, Number(composerCamera.aspect ?? 1) || 1),
+    onlyExpand: !["fit_required", "fit_all", "always"].includes(autoscaleMode),
+  });
+  if (!autoscaled) {
+    return cameraState;
+  }
+  return {
+    ...cameraState,
+    position: new THREE.Vector3(
+      autoscaled.position.x,
+      autoscaled.position.y,
+      autoscaled.position.z
+    ),
+    lookAt: new THREE.Vector3(
+      autoscaled.lookAt.x,
+      autoscaled.lookAt.y,
+      autoscaled.lookAt.z
+    ),
+    autoscale: autoscaled,
+  };
+}
+
 function getComposerOrbitBasis(motion) {
   const normal = Array.isArray(motion?.planeNormal)
     ? new THREE.Vector3(
@@ -6082,13 +6158,23 @@ function updateComposerAnimatedViewport(timeSeconds) {
   updateComposerViewportMediaOverlays(timeSeconds, composerCurrentDocument);
 
   if (composerCameraFlightState.preview && composerCamera) {
-    const previewCameraState = getComposerPreviewCameraStateAtTime(timeSeconds);
+    const previewCameraState = getComposerAutoscaledCameraState(
+      getComposerPreviewCameraStateAtTime(timeSeconds),
+      composerCurrentDocument,
+      assemblyCenters,
+      composerCurrentViewportFramingState
+    );
     if (previewCameraState) {
       composerCamera.position.copy(previewCameraState.position);
       composerCamera.lookAt(previewCameraState.lookAt);
     }
   } else if (composerCamera && composerViewportModeState.cameraSource === "authored") {
-    const authoredCameraState = getComposerDocumentCameraStateAtTime(composerCurrentDocument, timeSeconds);
+    const authoredCameraState = getComposerAutoscaledCameraState(
+      getComposerDocumentCameraStateAtTime(composerCurrentDocument, timeSeconds),
+      composerCurrentDocument,
+      assemblyCenters,
+      composerCurrentViewportFramingState
+    );
     if (authoredCameraState) {
       composerCamera.position.copy(authoredCameraState.position);
       composerCamera.lookAt(authoredCameraState.lookAt);
