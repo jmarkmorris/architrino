@@ -2032,6 +2032,10 @@ body {
   width: fit-content;
 }
 
+.composer-reaction-solver-participant:not(.is-operator) {
+  cursor: grab;
+}
+
 .composer-reaction-solver-column.is-reactants > .composer-reaction-solver-participant {
   justify-self: end;
 }
@@ -2070,6 +2074,10 @@ body {
 
 .composer-reaction-solver-participant.is-operator.is-dragging {
   z-index: 4;
+}
+
+.composer-reaction-solver-participant:not(.is-operator).is-dragging {
+  cursor: grabbing;
 }
 
 .composer-reaction-solver-participant.is-composite-participant {

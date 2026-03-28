@@ -746,6 +746,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuAnchorElement: null,
     anchorRegistry: new Map(),
     dragParticipantId: "",
+    dragParticipantMode: "",
     dragPointerId: null,
     hoveredMappingIds: [],
     recentMappingIds: [],
@@ -860,6 +861,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setBinaryPersonalitySelection,
     shouldRenderChildNodes,
     startOperatorDrag,
+    startSideParticipantDrag,
     supportsParticipantPolarity,
     topLevelHierarchyHasRenderMode,
   });
@@ -872,6 +874,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
+  }
+
+  function clearDragState() {
+    state.dragParticipantId = "";
+    state.dragParticipantMode = "";
+    state.dragPointerId = null;
   }
 
   function createParticipantRecord({
@@ -1810,6 +1818,38 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants.splice(insertionIndex, 0, participant);
   }
 
+  function reorderSideParticipants(side, orderedParticipantIds = []) {
+    const normalizedSide = side === "product" ? "product" : "reactant";
+    const currentSideParticipants = state.participants.filter(
+      (participant) => participant?.side === normalizedSide
+    );
+    if (currentSideParticipants.length <= 1) {
+      return false;
+    }
+    const participantsById = new Map(
+      currentSideParticipants.map((participant) => [String(participant.id), participant])
+    );
+    const reorderedSideParticipants = orderedParticipantIds
+      .map((participantId) => participantsById.get(String(participantId)) ?? null)
+      .filter(Boolean);
+    if (reorderedSideParticipants.length !== currentSideParticipants.length) {
+      return false;
+    }
+    const currentOrder = currentSideParticipants.map((participant) => String(participant.id));
+    const nextOrder = reorderedSideParticipants.map((participant) => String(participant.id));
+    if (currentOrder.every((participantId, index) => participantId === nextOrder[index])) {
+      return false;
+    }
+    let reorderedIndex = 0;
+    state.participants = state.participants.map((participant) => {
+      if (participant?.side === normalizedSide) {
+        return reorderedSideParticipants[reorderedIndex++] ?? participant;
+      }
+      return participant;
+    });
+    return true;
+  }
+
   function addParticipant(side, templateId, options = {}) {
     const templateEntry =
       templateEntries.find((entry) => entry.template === templateId) ??
@@ -2596,20 +2636,68 @@ export function createComposerReactionSolverUiRuntime(deps) {
     scheduleMappingDraw();
   }
 
-  function stopOperatorDrag() {
+  function updateSideParticipantDrag(clientY) {
+    if (!state.dragParticipantId) {
+      return;
+    }
+    const participant = findParticipantById(state.dragParticipantId);
+    if (!participant || (participant.side !== "reactant" && participant.side !== "product")) {
+      return;
+    }
+    const columnElement = participant.side === "product" ? productsColumn : reactantsColumn;
+    if (!(columnElement instanceof HTMLElement)) {
+      return;
+    }
+    const sideParticipants = state.participants.filter(
+      (entry) => entry?.side === participant.side
+    );
+    if (sideParticipants.length <= 1) {
+      return;
+    }
+    const sideParticipantIds = sideParticipants.map((entry) => String(entry.id));
+    const remainingParticipantIds = sideParticipantIds.filter(
+      (participantId) => participantId !== String(participant.id)
+    );
+    const renderedCards = Array.from(
+      columnElement.querySelectorAll(
+        `.composer-reaction-solver-participant.is-${CSS.escape(participant.side)}`
+      )
+    ).filter(
+      (card) =>
+        card instanceof HTMLElement &&
+        card.dataset.participantId &&
+        card.dataset.participantId !== String(participant.id)
+    );
+    const targetIndex = renderedCards.findIndex((card) => {
+      const bounds = card.getBoundingClientRect();
+      return clientY < bounds.top + bounds.height / 2;
+    });
+    const nextParticipantIds = [...remainingParticipantIds];
+    nextParticipantIds.splice(
+      targetIndex < 0 ? nextParticipantIds.length : targetIndex,
+      0,
+      String(participant.id)
+    );
+    if (!reorderSideParticipants(participant.side, nextParticipantIds)) {
+      return;
+    }
+    render();
+  }
+
+  function stopParticipantDrag() {
     if (!state.dragParticipantId || !surface) {
-      state.dragParticipantId = "";
-      state.dragPointerId = null;
+      clearDragState();
       return;
     }
     const card = surface.querySelector(
-      `.composer-reaction-solver-participant.is-operator[data-participant-id="${CSS.escape(state.dragParticipantId)}"]`
+      `.composer-reaction-solver-participant[data-participant-id="${CSS.escape(
+        state.dragParticipantId
+      )}"]`
     );
     if (card) {
       card.classList.remove("is-dragging");
     }
-    state.dragParticipantId = "";
-    state.dragPointerId = null;
+    clearDragState();
   }
 
   function startOperatorDrag(event, participantId) {
@@ -2621,6 +2709,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     state.dragParticipantId = participantId;
+    state.dragParticipantMode = "operator";
     state.dragPointerId = event.pointerId;
     const card = event.currentTarget;
     if (card instanceof HTMLElement) {
@@ -2634,6 +2723,41 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
     }
     updateOperatorDrag(event.clientY);
+    event.preventDefault();
+  }
+
+  function startSideParticipantDrag(event, participantId) {
+    if (event.button !== 0) {
+      return;
+    }
+    const participant = findParticipantById(participantId);
+    if (!participant || (participant.side !== "reactant" && participant.side !== "product")) {
+      return;
+    }
+    const target = event.target;
+    if (
+      target instanceof Element &&
+      target.closest(
+        ".composer-reaction-solver-anchor, button, input, select, textarea, label"
+      )
+    ) {
+      return;
+    }
+    state.dragParticipantId = participantId;
+    state.dragParticipantMode = "side";
+    state.dragPointerId = event.pointerId;
+    const card = event.currentTarget;
+    if (card instanceof HTMLElement) {
+      card.classList.add("is-dragging");
+      if (typeof card.setPointerCapture === "function") {
+        try {
+          card.setPointerCapture(event.pointerId);
+        } catch (_error) {
+          // Ignore capture failures and continue with document-level dragging.
+        }
+      }
+    }
+    updateSideParticipantDrag(event.clientY);
     event.preventDefault();
   }
 
@@ -3132,6 +3256,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
       return;
     }
+    if (state.dragParticipantMode === "side") {
+      updateSideParticipantDrag(event.clientY);
+      return;
+    }
     updateOperatorDrag(event.clientY);
   }
 
@@ -3142,7 +3270,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (state.dragPointerId !== null && event.pointerId !== state.dragPointerId) {
       return;
     }
-    stopOperatorDrag();
+    stopParticipantDrag();
   }
 
   function handleRootKeyDown(event) {
