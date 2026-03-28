@@ -7,8 +7,8 @@ import {
   REACTION_CENTER_TRANSFORMER_ENTRIES,
 } from "../src/runtime/ComposerReactionSolverUiRuntime.js";
 
-test("reaction solver keeps three center transformer columns available", () => {
-  assert.equal(REACTION_CENTER_TRANSFORMER_COLUMN_COUNT, 3);
+test("reaction solver keeps two center transformer lanes available", () => {
+  assert.equal(REACTION_CENTER_TRANSFORMER_COLUMN_COUNT, 2);
 });
 
 test("reaction solver center transformer registry includes transmute and polar transforms", () => {
@@ -24,7 +24,7 @@ test("reaction solver center transformer registry includes transmute and polar t
   );
 });
 
-test("reaction solver center column layout enables left and right polar transforms while middle stays disabled", () => {
+test("reaction solver center column layout uses a shared polar lane and an associate lane", () => {
   assert.deepEqual(
     REACTION_CENTER_COLUMN_LAYOUT.map((entry) => ({
       columnIndex: entry.columnIndex,
@@ -32,9 +32,8 @@ test("reaction solver center column layout enables left and right polar transfor
       enabled: entry.enabled,
     })),
     [
-      { columnIndex: 0, templateId: "l_polar_transform", enabled: true },
-      { columnIndex: 1, templateId: "transmute", enabled: false },
-      { columnIndex: 2, templateId: "r_polar_transform", enabled: true },
+      { columnIndex: 0, templateId: "polar_transform", enabled: true },
+      { columnIndex: 1, templateId: "associate", enabled: true },
     ]
   );
 });

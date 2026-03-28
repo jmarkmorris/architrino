@@ -171,7 +171,7 @@ test("single-source transmute output cannot bypass direct structure compatibilit
   });
 
   assert.equal(validation.valid, false);
-  assert.match(validation.reason, /single-source transmute output/i);
+  assert.match(validation.reason, /single-source center output/i);
   assert.match(validation.reason, /cannot map directly/i);
 });
 

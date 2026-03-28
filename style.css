@@ -1852,12 +1852,12 @@ body {
 }
 
 .composer-reaction-solver-column.is-reactants {
-  grid-column: var(--solver-reactants-grid-column, 1 / span 5);
+  grid-column: var(--solver-reactants-grid-column, 1 / span 4);
   justify-items: end;
 }
 
 .composer-reaction-solver-column.is-products {
-  grid-column: var(--solver-products-grid-column, 14 / span 5);
+  grid-column: var(--solver-products-grid-column, 13 / span 4);
   padding-left: 0;
   padding-right: 0;
   justify-items: start;
@@ -1871,11 +1871,11 @@ body {
 }
 
 .composer-reaction-solver-lane-slot.is-center-left {
-  grid-column: var(--solver-center-left-grid-column, 6 / span 4);
+  grid-column: var(--solver-center-left-grid-column, 5 / span 4);
 }
 
 .composer-reaction-solver-lane-slot.is-center-right {
-  grid-column: var(--solver-center-right-grid-column, 10 / span 4);
+  grid-column: var(--solver-center-right-grid-column, 9 / span 4);
 }
 
 .composer-reaction-solver-side-slot-header {

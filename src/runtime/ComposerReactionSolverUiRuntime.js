@@ -94,25 +94,29 @@ export const REACTION_CENTER_TRANSFORMER_ENTRIES = Object.freeze([
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
-export const REACTION_CENTER_TRANSFORMER_COLUMN_COUNT = 3;
+export const REACTION_CENTER_TRANSFORMER_COLUMN_COUNT = 2;
 const centerTransformerEntries = REACTION_CENTER_TRANSFORMER_ENTRIES;
 export const REACTION_CENTER_COLUMN_LAYOUT = Object.freeze([
   Object.freeze({
     columnIndex: 0,
-    templateId: "l_polar_transform",
-    label: "L Polar Transform",
+    templateId: "polar_transform",
+    label: "Polarity Transform",
+    pickerEntries: Object.freeze([
+      Object.freeze({
+        templateId: "l_polar_transform",
+        label: "Polarity Plus",
+      }),
+      Object.freeze({
+        templateId: "r_polar_transform",
+        label: "Polarity Minus",
+      }),
+    ]),
     enabled: true,
   }),
   Object.freeze({
     columnIndex: 1,
-    templateId: "transmute",
-    label: "Transmute",
-    enabled: false,
-  }),
-  Object.freeze({
-    columnIndex: 2,
-    templateId: "r_polar_transform",
-    label: "R Polar Transform",
+    templateId: "associate",
+    label: "Associate",
     enabled: true,
   }),
 ]);
@@ -595,6 +599,33 @@ function getEnabledCenterColumnLayoutEntries() {
   return REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled);
 }
 
+function getCenterColumnPickerEntries(columnEntry = null) {
+  return Array.isArray(columnEntry?.pickerEntries) ? columnEntry.pickerEntries : [];
+}
+
+function getCenterRootMenuEntries() {
+  return REACTION_CENTER_COLUMN_LAYOUT.flatMap((entry) => {
+    if (!entry?.enabled) {
+      return [];
+    }
+    const pickerEntries = getCenterColumnPickerEntries(entry);
+    if (pickerEntries.length) {
+      return pickerEntries.map((pickerEntry) => ({
+        columnIndex: entry.columnIndex,
+        templateId: pickerEntry.templateId,
+        label: pickerEntry.label,
+      }));
+    }
+    return [
+      {
+        columnIndex: entry.columnIndex,
+        templateId: entry.templateId,
+        label: entry.label,
+      },
+    ];
+  });
+}
+
 function getReactionSurfaceLaneEntries() {
   return [
     { side: "reactant", centerColumnIndex: null },
@@ -685,7 +716,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menuMode: "root",
     menuSide: "reactant",
     menuParticipantId: "",
-    menuCenterColumnIndex: 1,
+    menuCenterColumnIndex: 0,
     menuOpen: false,
     menuClientX: 0,
     menuClientY: 0,
@@ -1488,6 +1519,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const centerColumnIndex = normalizeTransmuteColumnIndex(options.centerColumnIndex);
     const centerColumnEntry =
       side === "center" ? getCenterColumnLayoutEntry(centerColumnIndex) : null;
+    const centerPickerEntries = getCenterColumnPickerEntries(centerColumnEntry);
     const button = document.createElement("button");
     button.type = "button";
     button.className = "composer-reaction-solver-add-button";
@@ -1501,7 +1533,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
         ? "Add product"
         : side === "center"
           ? centerColumnEntry?.enabled
-            ? `Add ${centerColumnEntry.label}`
+            ? centerPickerEntries.length
+              ? `Choose ${centerColumnEntry.label}`
+              : `Add ${centerColumnEntry.label}`
             : `${centerColumnEntry?.label ?? "Middle transform"} is disabled`
           : "Add reactant"
     );
@@ -1517,9 +1551,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     button.textContent = "+";
     if (side === "center") {
       if (centerColumnEntry?.enabled) {
-        button.addEventListener("click", () =>
-          addCenterTransformerParticipant(centerColumnEntry.templateId, centerColumnIndex)
-        );
+        if (centerPickerEntries.length > 0) {
+          button.addEventListener("click", (event) =>
+            openCenterTransformPicker(centerColumnIndex, event.currentTarget)
+          );
+        } else {
+          button.addEventListener("click", () =>
+            addCenterTransformerParticipant(centerColumnEntry.templateId, centerColumnIndex)
+          );
+        }
       } else {
         button.disabled = true;
       }
@@ -1527,6 +1567,35 @@ export function createComposerReactionSolverUiRuntime(deps) {
       button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
     }
     return button;
+  }
+
+  function openCenterTransformPicker(centerColumnIndex, triggerElement = null) {
+    if (!state.active || !menu || !triggerElement) {
+      return;
+    }
+    const resolvedColumnIndex = normalizeTransmuteColumnIndex(centerColumnIndex);
+    const centerColumnEntry = getCenterColumnLayoutEntry(resolvedColumnIndex);
+    if (!centerColumnEntry?.enabled || !getCenterColumnPickerEntries(centerColumnEntry).length) {
+      return;
+    }
+    if (
+      state.menuOpen &&
+      state.menuMode === "center-transform-picker" &&
+      state.menuCenterColumnIndex === resolvedColumnIndex
+    ) {
+      closeMenu();
+      return;
+    }
+    closeExternalMenus();
+    const bounds = triggerElement.getBoundingClientRect();
+    state.menuClientX = bounds.left + bounds.width / 2;
+    state.menuClientY = bounds.bottom + 10;
+    state.menuAnchorElement = triggerElement;
+    state.menuMode = "center-transform-picker";
+    state.menuCenterColumnIndex = resolvedColumnIndex;
+    state.menuParticipantId = "";
+    state.menuOpen = true;
+    renderMenu();
   }
 
   function createColumnAddControl(side, options = {}) {
@@ -1753,6 +1822,23 @@ export function createComposerReactionSolverUiRuntime(deps) {
           renderMenu();
         },
       });
+    } else if (state.menuMode === "center-transform-picker") {
+      const centerColumnEntry = getCenterColumnLayoutEntry(state.menuCenterColumnIndex);
+      const pickerEntries = getCenterColumnPickerEntries(centerColumnEntry);
+      renderMenuTitle(centerColumnEntry?.label || "Choose center operator");
+      pickerEntries.forEach((entry) => {
+        renderMenuButton(entry.label, {
+          onClick: () => addCenterTransformerParticipant(entry.templateId, state.menuCenterColumnIndex),
+        });
+      });
+      renderMenuButton("Back", {
+        kind: "secondary",
+        onClick: () => {
+          state.menuMode = "root";
+          state.menuParticipantId = "";
+          renderMenu();
+        },
+      });
     } else if (state.menuMode === "template-grid-picker") {
       renderMenuTitle(state.menuSide === "product" ? "Add Product" : "Add Reactant");
       addPickerCells.forEach((pickerCell) => {
@@ -1850,7 +1936,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
-      REACTION_CENTER_COLUMN_LAYOUT.filter((entry) => entry.enabled).forEach((entry) => {
+      getCenterRootMenuEntries().forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
           extraClassNames: ["is-wide", "is-root-tile"],
@@ -1912,7 +1998,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform."
+          ? "Reaction solver opened. Use the left + for reactants, the next + for polarity transforms, the next + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -1954,7 +2040,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       if (!state.pendingSourceKey) {
         setStatus(
           role === "transmute-output"
-            ? "Transmute output anchor cleared."
+            ? "Center output anchor cleared."
             : "Reactant anchor cleared."
         );
         return;
@@ -1977,7 +2063,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
 
     if (!state.pendingSourceKey || !state.pendingSourceRole) {
-      setStatus("Choose a reactant or transmute output anchor first.");
+      setStatus("Choose a reactant or center output anchor first.");
       return;
     }
 
@@ -1990,7 +2076,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     if (state.pendingSourceRole === "transmute-output" && role !== "product") {
-      setStatus("Transmute outputs connect to product anchors only.");
+      setStatus("Center outputs connect to product anchors only.");
       return;
     }
 
@@ -2010,7 +2096,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(
       validation.valid
         ? role === "transmute-input"
-          ? "Reactant routed into transmute node."
+          ? "Reactant routed into center operator."
           : "Reaction mapping added."
         : `Connection added but invalid: ${validation.reason}`
     );
@@ -2025,7 +2111,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant) {
       return [];
     }
-    const count = Math.max(1, Math.round(Number(connectionCount) || 0));
+    const count =
+      participant.templateId === "associate" || participant.templateId === "dissociate"
+        ? 2
+        : Math.max(1, Math.round(Number(connectionCount) || 0));
     const centerIndex = (count - 1) / 2;
     return Array.from({ length: count }, (_, index) =>
       (index - centerIndex) * centerTransformerGraphicConnectionStepPx
@@ -2432,7 +2521,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform.";
+        "Use the left + for reactants, the next + for polarity transforms, the next + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {

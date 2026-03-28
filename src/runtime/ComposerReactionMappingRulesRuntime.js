@@ -116,7 +116,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (!hasLedger(normalizedSummary.incomingLedger)) {
       return {
         valid: false,
-        reason: "Add conservative reactant inputs to this transmute node first.",
+        reason: "Add conservative reactant inputs to this center operator first.",
       };
     }
     if (!ledgerFitsWithin(normalizedSummary.incomingLedger, candidateLedger)) {
@@ -134,7 +134,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     return {
       valid: true,
-      reason: "Transmute output is fully conservative.",
+      reason: "Center output is fully conservative.",
     };
   }
 
@@ -181,7 +181,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     return {
       valid: false,
-      reason: `Single-source transmute output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
+      reason: `Single-source center output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
     };
   }
 
@@ -232,7 +232,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (mapping.sourceRole === "reactant" && mapping.targetRole === "transmute-input") {
       return {
         valid: true,
-        reason: "Reactant routed into transmute node.",
+        reason: "Reactant routed into center operator.",
       };
     }
     if (mapping.sourceRole === "transmute-output" && mapping.targetRole === "product") {

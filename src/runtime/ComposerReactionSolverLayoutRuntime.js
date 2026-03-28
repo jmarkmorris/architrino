@@ -12,31 +12,31 @@ export const REACTION_SOLVER_LAYOUT = Object.freeze({
   transmuteSlotStepPx: 108,
 });
 
-export const REACTION_SOLVER_SURFACE_COLUMN_COUNT = 18;
+export const REACTION_SOLVER_SURFACE_COLUMN_COUNT = 16;
 export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
   Object.freeze({
     side: "reactant",
     centerColumnIndex: null,
     start: 1,
-    span: 5,
-  }),
-  Object.freeze({
-    side: "center",
-    centerColumnIndex: 0,
-    start: 6,
     span: 4,
   }),
   Object.freeze({
     side: "center",
-    centerColumnIndex: 2,
-    start: 10,
+    centerColumnIndex: 0,
+    start: 5,
+    span: 4,
+  }),
+  Object.freeze({
+    side: "center",
+    centerColumnIndex: 1,
+    start: 9,
     span: 4,
   }),
   Object.freeze({
     side: "product",
     centerColumnIndex: null,
-    start: 14,
-    span: 5,
+    start: 13,
+    span: 4,
   }),
 ]);
 
@@ -113,6 +113,17 @@ function getCenterLaneSlotElement(surface, centerColumnIndex) {
   );
 }
 
+function getCenterGridColumnVarName(centerColumnIndex) {
+  const normalizedIndex = Number(centerColumnIndex);
+  if (normalizedIndex === 0) {
+    return "--solver-center-left-grid-column";
+  }
+  if (normalizedIndex === 1) {
+    return "--solver-center-right-grid-column";
+  }
+  return "";
+}
+
 export function applyReactionSolverSurfaceGridLayout({
   surface,
   reactantsColumn,
@@ -136,11 +147,14 @@ export function applyReactionSolverSurfaceGridLayout({
 
   REACTION_SOLVER_SURFACE_SLOT_LAYOUT.filter((entry) => entry.side === "center").forEach((entry) => {
     const slotElement = getCenterLaneSlotElement(surface, entry.centerColumnIndex);
-    if (slotElement?.style && typeof slotElement.style.setProperty === "function") {
+    const centerGridColumnVarName = getCenterGridColumnVarName(entry.centerColumnIndex);
+    if (
+      centerGridColumnVarName &&
+      slotElement?.style &&
+      typeof slotElement.style.setProperty === "function"
+    ) {
       slotElement.style.setProperty(
-        entry.centerColumnIndex === 0
-          ? "--solver-center-left-grid-column"
-          : "--solver-center-right-grid-column",
+        centerGridColumnVarName,
         `${entry.start} / span ${entry.span}`
       );
     }
