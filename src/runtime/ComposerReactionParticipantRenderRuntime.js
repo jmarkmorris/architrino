@@ -617,7 +617,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
 
   function createCompositeVisualRail(participant) {
     const rail = document.createElement("div");
-    rail.className = "composer-reaction-solver-composite-visual-rail";
+    rail.className = `composer-reaction-solver-composite-visual-rail is-${participant.side}`;
 
     const collector = document.createElement("span");
     collector.className = "composer-reaction-solver-anchor composer-reaction-solver-composite-collector";

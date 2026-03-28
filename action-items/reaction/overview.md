@@ -5,6 +5,7 @@ This note collects reaction-specific UI, solver, provenance, schema, and example
 Related editorial backlog:
 
 - [Association / Dissociation Conversion Plan](association-dissociation-conversion.md)
+- [PDG Solver Ideas](pdg-solver-ideas.md)
 
 ## Terminology note: reaction, not decay
 

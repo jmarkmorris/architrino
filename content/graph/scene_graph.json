@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 419,
+      "nodes": 418,
       "edges": 1165,
       "scenes": 290,
       "markdownIndexes": 0,
-      "markdownDocs": 129,
+      "markdownDocs": 128,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2402,12 +2402,6 @@
       "id": "content/markdown/aaa/reactions/pdg-api.md",
       "name": "PDG Python API (pdg package)",
       "path": "content/markdown/aaa/reactions/pdg-api.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "name": "ARL ideas v1 (essence)",
-      "path": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6046,15 +6040,6 @@
       "name": "PDG Python API (pdg package)",
       "path": "content/markdown/aaa/reactions/pdg-api.md",
       "searchTarget": "content/markdown/aaa/reactions/pdg-api.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "name": "ARL ideas v1 (essence)",
-      "path": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
-      "searchTarget": "content/markdown/aaa/reactions/pdg-solver-ideas.md",
       "implicit": false
     },
     {

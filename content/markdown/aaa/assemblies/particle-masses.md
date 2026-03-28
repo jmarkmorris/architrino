@@ -34,7 +34,7 @@ Apparent inertial mass arises from two intertwined effects:
 - **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher Noether-Sea density (e.g., near massive objects), the effective inertia increases.
 
 ### Stability Constraint
-A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would decay, radiating energy and collapsing into the nucleus (classical electron catastrophe).
+A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (classical electron catastrophe).
 
 **Resolution Hypothesis:**
 - Stable configurations (e.g., bound states at specific radii and frequencies) are those where the assembly's internal dynamics are **phase-locked** with the surrounding sea oscillations, creating a resonance that cancels net drag.
@@ -222,7 +222,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 ### Potential Falsifications
 - **If $\zeta E_{\text{internal}} \neq m c^2$:** The shielding hypothesis is wrong.
-- **If drag causes orbital decay in atoms:** The stability condition fails; the model is incompatible with chemistry.
+- **If drag causes orbital collapse in atoms:** The stability condition fails; the model is incompatible with chemistry.
 - **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.
 
 ---

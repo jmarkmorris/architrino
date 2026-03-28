@@ -1,18 +1,18 @@
 # Emergence of U(1)/SU(2)
 
-This chapter is a working emergence map from Noether-Sea substrate language to observer-level electroweak bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how vacuum structure, effective fields, symmetry deformations, and measurement-facing quantities are being interpreted on the dynamics side before exact closure is finished.
+This chapter is a working emergence map from Noether-Sea substrate language to observer-level electroweak bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether-Sea structure, effective fields, symmetry deformations, and measurement-facing quantities are being interpreted on the dynamics side before exact closure is finished.
 
-## The Physical Substrate: From Vacuum to "Noether Sea"
+## The Physical Substrate: From Vacuum Language to Noether Sea
 
 In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In the Architrino Assembly Architecture, we reject this abstraction in favor of a physical definition.
 
 **Definition: The Noether Sea**
-The "vacuum" is not empty space. It is a Euclidean void filled with a dense, permeating medium of coupled, neutral tri-binary assemblies (spacetime assemblies).
+The Noether Sea is not empty space. It is a Euclidean void filled with a dense, permeating medium of coupled, neutral tri-binary assemblies (spacetime assemblies).
 *   **Occupancy:** Non-zero occupancy of pro/anti binaries.
 *   **Net Properties:** Global charge $\sum q = 0$, global spin $\sum S = 0$.
 *   **Substrate:** This medium defines the local permeability $\mu_0$ and permittivity $\epsilon_0$ of space. These are not fundamental constants but derived measures of the medium's "stiffness" (resistance to polarization) and "density."
 
-One useful assembly-level picture is that long-lived vacuum units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, vacuum transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
+One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
 ## The "Field" Illusion
 

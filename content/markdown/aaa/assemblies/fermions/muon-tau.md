@@ -6,7 +6,7 @@ This chapter is a placeholder for the heavier charged lepton excitation states i
 
 ## Current framing
 
-Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the electron while differing in shielding, excitation, and decay-accessible relaxation channels.
+Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the electron while differing in shielding, excitation, and dissociation-accessible relaxation channels.
 
 ## Status
 

@@ -44,6 +44,7 @@
 - If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a clean seam so later extraction is straightforward instead of leaving another layer of spaghetti.
+- Reaction solver lane geometry must have one source of truth. Keep visible lane spacing in the surface grid track model, use dedicated lane-slot elements when runtime code needs lane centers, and do not duplicate lane widths/gaps in both CSS and JS or hide spacing in ad hoc per-column padding.
 
 ## Composer Header Signature
 
