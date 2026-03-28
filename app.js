@@ -3291,6 +3291,9 @@ function applyComposerViewportDisplayState() {
   const showLabels = isComposerViewportDisplayFlagEnabled("showLabels");
   const showHistoryTraces = isComposerViewportDisplayFlagEnabled("showHistoryTraces");
   const showEnvelopes = isComposerViewportDisplayFlagEnabled("showEnvelopes");
+  const isObserverViewActive =
+    composerCameraFlightState.preview || composerViewportModeState.cameraSource === "authored";
+  const showObserverGuidesInViewport = showCameraGuides && !isObserverViewActive;
   if (composerPathLine) {
     composerPathLine.visible = showTransportPath;
   }
@@ -3325,22 +3328,22 @@ function applyComposerViewportDisplayState() {
     });
   });
   if (composerDocumentCameraPathLine) {
-    composerDocumentCameraPathLine.visible = showCameraGuides;
+    composerDocumentCameraPathLine.visible = showObserverGuidesInViewport;
   }
   composerDocumentCameraWaypointMeshes.forEach((mesh) => {
-    mesh.visible = showCameraGuides;
+    mesh.visible = showObserverGuidesInViewport;
   });
   if (composerDocumentCameraShotMesh) {
-    composerDocumentCameraShotMesh.visible = showCameraGuides;
+    composerDocumentCameraShotMesh.visible = showObserverGuidesInViewport;
   }
   if (composerDocumentCameraTargetMesh) {
-    composerDocumentCameraTargetMesh.visible = showCameraGuides;
+    composerDocumentCameraTargetMesh.visible = showObserverGuidesInViewport;
   }
   if (composerDocumentCameraLookLine) {
-    composerDocumentCameraLookLine.visible = showCameraGuides;
+    composerDocumentCameraLookLine.visible = showObserverGuidesInViewport;
   }
   if (composerCameraFlightGroup) {
-    composerCameraFlightGroup.visible = showCameraGuides;
+    composerCameraFlightGroup.visible = showObserverGuidesInViewport;
   }
   composerHistoryTraceLines.forEach((line) => {
     line.visible = showHistoryTraces;
@@ -5676,6 +5679,7 @@ function clearComposerEditorPreviewState() {
 
 function setComposerViewportCameraSource(source = "design") {
   composerViewportModeState.cameraSource = source === "authored" ? "authored" : "design";
+  applyComposerViewportDisplayState();
 }
 
 function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
@@ -7298,6 +7302,7 @@ function onComposerPointerDown(event) {
     );
     const waypointIndex = hitMesh?.index;
     if (Number.isInteger(waypointIndex) && composerCameraFlightState.waypoints[waypointIndex]) {
+      clearComposerSelectedPoint();
       composerDragState.mode = "camera_waypoint";
       composerDragState.cameraWaypointIndex = waypointIndex;
       composerSelectedCameraWaypointIndex = waypointIndex;
@@ -7320,6 +7325,7 @@ function onComposerPointerDown(event) {
   if (event.button === 0 && personalityHits.length) {
     const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
     if (personalityHit?.assemblyId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(personalityHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7331,6 +7337,7 @@ function onComposerPointerDown(event) {
     const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
     const overlay = graphicHit?.overlayId ? getComposerGraphicOverlayDraftById(graphicHit.overlayId) : null;
     if (graphicHit?.draggable && overlay) {
+      clearComposerSelectedPoint();
       composerDragState.mode = "graphic";
       composerDragState.overlayId = overlay.id;
       composerDragState.startX = event.clientX;
@@ -7351,6 +7358,7 @@ function onComposerPointerDown(event) {
   const hits = composerRaycaster.intersectObjects(composerPointMeshes, true);
   const preferredCenterHit = shouldPreferComposerCenterMarker(hits, assemblyHits);
   if (event.button === 0 && preferredCenterHit?.draggable) {
+    clearComposerSelectedPoint();
     if (
       startComposerAssemblyDrag(
         preferredCenterHit.assemblyId,
@@ -7384,6 +7392,7 @@ function onComposerPointerDown(event) {
   if (event.button === 0 && memberHits.length) {
     const memberHit = resolveComposerMemberHandleHit(memberHits[0].object);
     if (memberHit?.draggable) {
+      clearComposerSelectedPoint();
       const liveAssembly = getComposerAssemblyDraftById(memberHit.assemblyId);
       if (!liveAssembly) {
         return;
@@ -7436,6 +7445,7 @@ function onComposerPointerDown(event) {
   if (event.button === 0 && subassemblyHits.length) {
     const subassemblyHit = resolveComposerSubassemblyHandleHit(subassemblyHits[0].object);
     if (subassemblyHit?.draggable) {
+      clearComposerSelectedPoint();
       const liveAssembly = getComposerAssemblyDraftById(subassemblyHit.assemblyId);
       if (!liveAssembly) {
         return;
@@ -7472,6 +7482,7 @@ function onComposerPointerDown(event) {
   if (event.button === 0 && assemblyHits.length) {
     const assemblyHit = resolveComposerAssemblyHit(assemblyHits[0].object);
     if (assemblyHit?.draggable) {
+      clearComposerSelectedPoint();
       if (
         startComposerAssemblyDrag(
           assemblyHit.assemblyId,
@@ -7485,6 +7496,7 @@ function onComposerPointerDown(event) {
     }
   }
   const wantsPan = event.shiftKey;
+  clearComposerSelectedPoint();
   if (composerFrameEditMode && event.button === 0 && !wantsPan) {
     composerDragState.mode = "frame";
     composerDragState.startFrameRot.copy(composerFrameState.rotation);
@@ -7517,6 +7529,7 @@ function onComposerContextMenu(event) {
   if (shellSurfaceHit) {
     const assemblyId = resolveComposerAssemblyIdHit(shellSurfaceHit.object)?.assemblyId ?? null;
     if (assemblyId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7527,6 +7540,7 @@ function onComposerContextMenu(event) {
   if (orbitHits.length) {
     const assemblyId = resolveComposerAssemblyIdHit(orbitHits[0].object)?.assemblyId ?? null;
     if (assemblyId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7537,6 +7551,7 @@ function onComposerContextMenu(event) {
   if (personalityHits.length) {
     const personalityHit = resolveComposerPersonalityHandleHit(personalityHits[0].object);
     if (personalityHit?.assemblyId && personalityHit?.memberId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(personalityHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7553,6 +7568,7 @@ function onComposerContextMenu(event) {
   if (graphicHits.length) {
     const graphicHit = resolveComposerGraphicOverlayHit(graphicHits[0].object);
     if (graphicHit?.overlayId) {
+      clearComposerSelectedPoint();
       event.preventDefault();
       openComposerTimelineMenuAt(event.clientX, event.clientY, {
         graphicId: graphicHit.overlayId,
@@ -7562,6 +7578,7 @@ function onComposerContextMenu(event) {
   }
   const preferredCenterHit = shouldPreferComposerCenterMarker(pointHits, assemblyHits);
   if (preferredCenterHit?.assemblyId) {
+    clearComposerSelectedPoint();
     setComposerSelectedAssembly(preferredCenterHit.assemblyId);
     renderComposerAssemblyEditor();
     renderComposerJsonPreview();
@@ -7571,6 +7588,8 @@ function onComposerContextMenu(event) {
   if (pointHits.length) {
     const pointIndex = resolveComposerIndexedHit(pointHits[0].object, "pointIndex")?.index;
     if (Number.isInteger(pointIndex)) {
+      setComposerSelectedPointIndexState(pointIndex);
+      updateComposerPointMaterials(pointIndex);
       if (pointIndex === 0) {
         const targetAssemblyId = composerPathState.ownerAssemblyId || getComposerSelectedAssemblyIdState();
         const targetAssembly = targetAssemblyId
@@ -7592,6 +7611,7 @@ function onComposerContextMenu(event) {
     const memberHit = resolveComposerMemberHandleHit(memberHits[0].object);
     if (memberHit?.assemblyId && memberHit?.memberId) {
       const liveAssembly = getComposerAssemblyDraftById(memberHit.assemblyId);
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(memberHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7606,6 +7626,7 @@ function onComposerContextMenu(event) {
   if (subassemblyHits.length) {
     const subassemblyHit = resolveComposerSubassemblyHandleHit(subassemblyHits[0].object);
     if (subassemblyHit?.assemblyId && subassemblyHit?.subassemblyId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(subassemblyHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7621,6 +7642,7 @@ function onComposerContextMenu(event) {
   if (assemblyHits.length) {
     const assemblyHit = resolveComposerAssemblyHit(assemblyHits[0].object);
     if (assemblyHit?.assemblyId) {
+      clearComposerSelectedPoint();
       setComposerSelectedAssembly(assemblyHit.assemblyId);
       renderComposerAssemblyEditor();
       renderComposerJsonPreview();
@@ -7628,6 +7650,7 @@ function onComposerContextMenu(event) {
       return;
     }
   }
+  clearComposerSelectedPoint();
   openComposerAssemblyTemplateMenuAt(event);
 }
 
@@ -8320,6 +8343,19 @@ function commitComposerPathPointCoordinateInput(axis, rawValue) {
   updateComposerPathPointInfoPill();
 }
 
+function clearComposerSelectedPoint(options = {}) {
+  const { hidePill = true } = options;
+  const selectedPointIndex = getComposerSelectedPointIndexState();
+  if (selectedPointIndex != null) {
+    setComposerSelectedPointIndexState(null);
+    updateComposerPointMaterials();
+    updateComposerCameraPoiStatus();
+  }
+  if (hidePill) {
+    hideComposerPathPointInfoPill();
+  }
+}
+
 function ensureComposerPathPointInfoPill() {
   if (!composerViewportOverlays) {
     return null;
@@ -8342,7 +8378,7 @@ function ensureComposerPathPointInfoPill() {
     field.className = "composer-path-point-pill-field";
     const label = document.createElement("div");
     label.className = "composer-path-point-pill-label";
-    label.textContent = key;
+    label.textContent = key.toUpperCase();
     let value = null;
     if (key === "t") {
       value = document.createElement("div");
@@ -8355,6 +8391,7 @@ function ensureComposerPathPointInfoPill() {
       value.step = "0.001";
       value.inputMode = "decimal";
       value.className = "composer-path-point-pill-input";
+      value.setAttribute("aria-label", `${key.toUpperCase()} coordinate`);
       value.value = "0";
       value.addEventListener("pointerdown", (event) => {
         event.stopPropagation();
@@ -8476,7 +8513,13 @@ function getComposerPathPointNormalizedTime(pointIndex) {
 
 function updateComposerPathPointInfoPill() {
   const pill = ensureComposerPathPointInfoPill();
-  if (!pill || !composerOverlay?.classList.contains("is-open")) {
+  if (
+    !pill ||
+    !composerOverlay?.classList.contains("is-open") ||
+    composerCameraFlightState.preview ||
+    composerViewportModeState.cameraSource === "authored"
+  ) {
+    hideComposerPathPointInfoPill();
     return;
   }
   const pointIndex = getComposerSelectedPointIndexState();
