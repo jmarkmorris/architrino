@@ -1853,12 +1853,14 @@ body {
 
 .composer-reaction-solver-column.is-reactants {
   grid-column: var(--solver-reactants-grid-column, 1 / span 5);
+  justify-items: end;
 }
 
 .composer-reaction-solver-column.is-products {
   grid-column: var(--solver-products-grid-column, 14 / span 5);
   padding-left: 0;
   padding-right: 0;
+  justify-items: start;
 }
 
 .composer-reaction-solver-lane-slot {
@@ -1877,36 +1879,21 @@ body {
 }
 
 .composer-reaction-solver-side-slot-header {
+  --binary-choice-size: 72px;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, var(--binary-choice-size));
   align-items: center;
-  gap: 0;
-  width: 100%;
+  gap: var(--solver-tile-gap);
+  width: fit-content;
   justify-items: center;
 }
 
-.composer-reaction-solver-side-slot-header.is-reactant > .composer-reaction-solver-side-slot-header-slot:nth-child(1) {
-  grid-column: 3;
+.composer-reaction-solver-side-slot-header.is-reactant {
+  justify-self: end;
 }
 
-.composer-reaction-solver-side-slot-header.is-reactant > .composer-reaction-solver-side-slot-header-slot:nth-child(2) {
-  grid-column: 4;
-}
-
-.composer-reaction-solver-side-slot-header.is-reactant > .composer-reaction-solver-side-slot-header-slot:nth-child(3) {
-  grid-column: 5;
-}
-
-.composer-reaction-solver-side-slot-header.is-product > .composer-reaction-solver-side-slot-header-slot:nth-child(1) {
-  grid-column: 1;
-}
-
-.composer-reaction-solver-side-slot-header.is-product > .composer-reaction-solver-side-slot-header-slot:nth-child(2) {
-  grid-column: 2;
-}
-
-.composer-reaction-solver-side-slot-header.is-product > .composer-reaction-solver-side-slot-header-slot:nth-child(3) {
-  grid-column: 3;
+.composer-reaction-solver-side-slot-header.is-product {
+  justify-self: start;
 }
 
 .composer-reaction-solver-side-slot-header-slot {
@@ -2035,34 +2022,15 @@ body {
   grid-auto-columns: max-content;
   align-items: start;
   gap: var(--solver-tile-gap);
-  width: 100%;
+  width: fit-content;
 }
 
-.composer-reaction-solver-column > .composer-reaction-solver-participant {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-auto-flow: row;
-  grid-auto-columns: auto;
-  gap: 0;
+.composer-reaction-solver-column.is-reactants > .composer-reaction-solver-participant {
+  justify-self: end;
 }
 
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-reactant > .composer-reaction-solver-particle,
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-reactant > .composer-reaction-solver-composite-visual-rail {
-  grid-column: 1;
-  justify-self: center;
-}
-
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-reactant > .composer-reaction-solver-tree {
-  grid-column: 2 / -1;
-}
-
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-product > .composer-reaction-solver-tree {
-  grid-column: 1 / 5;
-}
-
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-product > .composer-reaction-solver-particle,
-.composer-reaction-solver-column > .composer-reaction-solver-participant.is-product > .composer-reaction-solver-composite-visual-rail {
-  grid-column: 5;
-  justify-self: center;
+.composer-reaction-solver-column.is-products > .composer-reaction-solver-participant {
+  justify-self: start;
 }
 
 .composer-reaction-solver-participant.has-noether-core-grid {
@@ -2099,7 +2067,7 @@ body {
 
 .composer-reaction-solver-participant.is-composite-participant {
   align-items: start;
-  gap: 0;
+  gap: var(--solver-composite-column-gap);
 }
 
 .composer-reaction-solver-particle {
@@ -2262,7 +2230,7 @@ body {
 .composer-reaction-solver-tree {
   display: grid;
   gap: 4px;
-  width: 100%;
+  width: fit-content;
   min-width: 0;
   padding: 8px 0;
 }
@@ -2313,21 +2281,15 @@ body {
 }
 
 .composer-reaction-solver-tree-content.is-noether-core-grid {
-  display: block;
   align-items: flex-start;
-  width: 100%;
 }
 
 .composer-reaction-solver-tree-content.is-binary-selector-grid {
-  display: block;
   align-items: flex-start;
-  width: 100%;
 }
 
 .composer-reaction-solver-tree-content.is-higgs-cluster-grid {
-  display: block;
   align-items: flex-start;
-  width: 100%;
 }
 
 .composer-reaction-solver-tree-row.is-binary-selector {
@@ -2353,75 +2315,44 @@ body {
   display: grid;
   min-width: 0;
   gap: 8px;
-  width: 100%;
+  width: fit-content;
 }
 
 .composer-reaction-solver-noether-core-grid-track {
+  --binary-choice-size: 72px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, var(--binary-choice-size));
   gap: var(--solver-tile-gap);
   align-items: start;
-  justify-items: center;
-  width: 100%;
 }
 
 .composer-reaction-solver-noether-core-grid-body {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: inline-flex;
   align-items: center;
-  width: 100%;
-  gap: 0;
-}
-
-.composer-reaction-solver-noether-core-grid-body.is-reactant > .composer-reaction-solver-noether-core-grid-track {
-  grid-column: 2 / span 3;
-}
-
-.composer-reaction-solver-noether-core-grid-body.is-product > .composer-reaction-solver-noether-core-grid-track {
-  grid-column: 1 / span 3;
+  gap: var(--solver-attachment-gap);
 }
 
 .composer-reaction-solver-inline-anchor-lane {
-  position: absolute;
-  top: 50%;
+  display: grid;
+  align-self: start;
   width: var(--solver-anchor-size);
   height: var(--binary-choice-size, 72px);
-  transform: translateY(-50%);
-  display: grid;
   place-items: center;
-}
-
-.composer-reaction-solver-noether-core-grid-body.is-reactant > .composer-reaction-solver-inline-anchor-lane,
-.composer-reaction-solver-binary-selector-grid-body.is-reactant > .composer-reaction-solver-inline-anchor-lane,
-.composer-reaction-solver-composite-row-body.is-reactant > .composer-reaction-solver-composite-row-selector-lane {
-  right: calc(var(--solver-anchor-size) * -0.5);
-}
-
-.composer-reaction-solver-noether-core-grid-body.is-product > .composer-reaction-solver-inline-anchor-lane,
-.composer-reaction-solver-binary-selector-grid-body.is-product > .composer-reaction-solver-inline-anchor-lane,
-.composer-reaction-solver-composite-row-body.is-product > .composer-reaction-solver-composite-row-selector-lane {
-  left: calc(var(--solver-anchor-size) * -0.5);
 }
 
 .composer-reaction-solver-composite-visual-rail {
   position: relative;
-  display: grid;
+  display: inline-flex;
   align-items: center;
   gap: 0;
-  width: 100%;
-  min-width: 0;
-  justify-items: center;
+  width: fit-content;
 }
 
 .composer-reaction-solver-composite-visual-rail::after {
   content: "";
   position: absolute;
   top: 50%;
-  width: max(
-    0px,
-    calc(50% - (var(--binary-choice-size, 72px) * 0.5) - (var(--solver-composite-node-size) * 0.5))
-  );
+  width: calc(var(--solver-composite-column-gap) + (var(--solver-composite-node-size) * 0.5));
   height: 2px;
   transform: translateY(-50%);
   border-radius: 999px;
@@ -2436,11 +2367,11 @@ body {
 }
 
 .composer-reaction-solver-composite-visual-rail.is-reactant::after {
-  left: calc(50% + (var(--binary-choice-size, 72px) * 0.5));
+  left: 100%;
 }
 
 .composer-reaction-solver-composite-visual-rail.is-product::after {
-  right: calc(50% + (var(--binary-choice-size, 72px) * 0.5));
+  right: 100%;
 }
 
 .composer-reaction-solver-binary-selector {
@@ -2454,35 +2385,23 @@ body {
 
 .composer-reaction-solver-binary-selector-grid {
   display: grid;
+  --binary-choice-size: 72px;
   gap: 10px;
   min-width: 0;
-  width: 100%;
+  width: fit-content;
 }
 
 .composer-reaction-solver-binary-selector-grid-track {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
   align-items: start;
-  justify-items: center;
   gap: var(--solver-tile-gap);
-  width: 100%;
 }
 
 .composer-reaction-solver-binary-selector-grid-body {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: inline-flex;
   align-items: flex-start;
-  width: 100%;
-  gap: 0;
-}
-
-.composer-reaction-solver-binary-selector-grid-body.is-reactant > .composer-reaction-solver-binary-selector-grid-track {
-  grid-column: 2 / span 3;
-}
-
-.composer-reaction-solver-binary-selector-grid-body.is-product > .composer-reaction-solver-binary-selector-grid-track {
-  grid-column: 1 / span 3;
+  gap: var(--solver-attachment-gap);
 }
 
 .composer-reaction-solver-binary-selector-column {
@@ -2504,17 +2423,16 @@ body {
 }
 
 .composer-reaction-solver-higgs-cluster-grid {
-  position: relative;
-  display: block;
+  display: inline-flex;
   align-items: stretch;
+  gap: var(--solver-composite-column-gap);
   min-width: 0;
-  width: 100%;
+  width: fit-content;
 }
 
 .composer-reaction-solver-higgs-cluster-grid-rows {
   display: grid;
   gap: 7px;
-  width: 100%;
 }
 
 .composer-reaction-solver-composite-span-rail {
@@ -2567,49 +2485,27 @@ body {
 }
 
 .composer-reaction-solver-higgs-cluster-grid-row {
-  display: block;
+  display: inline-flex;
   align-items: center;
-  width: 100%;
+  gap: 10px;
 }
 
 .composer-reaction-solver-composite-row-body {
-  position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   align-items: center;
-  justify-items: center;
-  gap: 0;
+  gap: var(--solver-composite-column-gap);
   overflow: visible;
-  width: 100%;
+  width: fit-content;
 }
 
 .composer-reaction-solver-composite-row-card {
   margin-top: 0;
 }
 
-.composer-reaction-solver-composite-row-body.is-reactant > .composer-reaction-solver-composite-row-card {
-  grid-column: 1;
-}
-
-.composer-reaction-solver-composite-row-body.is-reactant > .composer-reaction-solver-noether-core-grid-track,
-.composer-reaction-solver-composite-row-body.is-reactant > .composer-reaction-solver-binary-selector-grid-track {
-  grid-column: 2 / span 3;
-}
-
-.composer-reaction-solver-composite-row-body.is-product > .composer-reaction-solver-noether-core-grid-track,
-.composer-reaction-solver-composite-row-body.is-product > .composer-reaction-solver-binary-selector-grid-track {
-  grid-column: 1 / span 3;
-}
-
-.composer-reaction-solver-composite-row-body.is-product > .composer-reaction-solver-composite-row-card {
-  grid-column: 4;
-}
-
 .composer-reaction-solver-composite-row-selector-lane {
-  position: absolute;
-  top: 50%;
   align-self: center;
-  transform: translateY(-50%);
 }
 
 .composer-reaction-solver-binary-selector.is-product {
@@ -2805,13 +2701,11 @@ body {
 }
 
 .composer-reaction-solver-composite-visual-rail.is-reactant .composer-reaction-solver-composite-collector {
-  left: auto;
-  right: calc(var(--solver-composite-node-size) * -0.5);
+  left: calc(100% + var(--solver-composite-column-gap));
 }
 
 .composer-reaction-solver-composite-visual-rail.is-product .composer-reaction-solver-composite-collector {
-  right: auto;
-  left: calc(var(--solver-composite-node-size) * -0.5);
+  right: calc(100% + var(--solver-composite-column-gap));
 }
 
 .composer-reaction-solver-anchor.is-route-recent {
@@ -2883,19 +2777,6 @@ body {
   pointer-events: none;
 }
 
-.composer-reaction-solver-higgs-cluster-grid.is-reactant > .composer-reaction-solver-composite-span-rail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(calc(var(--solver-composite-node-size) * -0.5));
-}
-
-.composer-reaction-solver-higgs-cluster-grid.is-product > .composer-reaction-solver-composite-span-rail {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateX(calc(var(--solver-composite-node-size) * 0.5));
-}
 
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile {
   position: relative;

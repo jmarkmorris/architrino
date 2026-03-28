@@ -5526,18 +5526,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Case Study: Top Quark Decay ($t \\to b + W^+$)",
+                "title": "Case Study: Top-Quark Weak Reaction ($t \\to b + W^+$)",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-                "markdownSection": "Case Study: Top Quark Decay ($t \\to b + W^+$)",
-                "sectionKey": "case study top quark decay t to b w",
+                "markdownSection": "Case Study: Top-Quark Weak Reaction ($t \\to b + W^+$)",
+                "sectionKey": "case study top quark weak reaction t to b w",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Free Neutron Decay",
+                "title": "Free Neutron Beta Reaction",
                 "markdownPath": "content/markdown/aaa/validation/reaction-ledger.md",
-                "markdownSection": "Free Neutron Decay",
-                "sectionKey": "free neutron decay",
+                "markdownSection": "Free Neutron Beta Reaction",
+                "sectionKey": "free neutron beta reaction",
                 "headingLevel": 2
               }
             ]
