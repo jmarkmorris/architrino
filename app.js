@@ -166,6 +166,8 @@ const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const composerOverlay = document.getElementById("composer-overlay");
 const composerTitle = document.getElementById("composer-title");
+const composerViewDesignButton = document.getElementById("composer-view-design-button");
+const composerViewObserverButton = document.getElementById("composer-view-observer-button");
 const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
@@ -2786,7 +2788,6 @@ function addComposerCameraWaypoint(position = null) {
     position: localPos,
     lookAt: localLookAt,
   });
-  setComposerViewportCameraSource("design");
   composerSelectedCameraWaypointIndex = composerCameraFlightState.waypoints.length - 1;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
@@ -2795,7 +2796,6 @@ function addComposerCameraWaypoint(position = null) {
 
 function clearComposerCameraWaypoints() {
   composerCameraFlightState.waypoints = [];
-  setComposerViewportCameraSource("design");
   composerSelectedCameraWaypointIndex = null;
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
@@ -5677,8 +5677,21 @@ function clearComposerEditorPreviewState() {
   composerEditorPreviewState.renderMotionProgressPlayhead = null;
 }
 
+function updateComposerViewportModeButtons() {
+  const isObserver = composerViewportModeState.cameraSource === "authored";
+  if (composerViewDesignButton) {
+    composerViewDesignButton.classList.toggle("is-active", !isObserver);
+    composerViewDesignButton.setAttribute("aria-pressed", isObserver ? "false" : "true");
+  }
+  if (composerViewObserverButton) {
+    composerViewObserverButton.classList.toggle("is-active", isObserver);
+    composerViewObserverButton.setAttribute("aria-pressed", isObserver ? "true" : "false");
+  }
+}
+
 function setComposerViewportCameraSource(source = "design") {
   composerViewportModeState.cameraSource = source === "authored" ? "authored" : "design";
+  updateComposerViewportModeButtons();
   applyComposerViewportDisplayState();
 }
 
@@ -5694,7 +5707,6 @@ function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
   if (options.playing !== undefined) {
     composerPlaybackState.playing = !!options.playing;
   }
-  setComposerViewportCameraSource("authored");
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
   updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
 }
@@ -5713,7 +5725,6 @@ function startComposerPlayback(timeSeconds, options = {}) {
   clearComposerEditorPreviewState();
   composerPlaybackState.playing = true;
   composerPlaybackState.lastTickMs = 0;
-  setComposerViewportCameraSource("authored");
   updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
   updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
 }
@@ -10613,6 +10624,8 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   composerDocsButton,
   composerExitButton,
   composerPreviewButton,
+  composerViewDesignButton,
+  composerViewObserverButton,
   composerReactionBackButton,
   composerExportButton,
   composerLibrarySaveButton,
@@ -10657,6 +10670,7 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   clearComposerCameraWaypoints,
   stopComposerCameraFlightPreview,
   startComposerCameraFlightPreview,
+  setComposerViewportCameraSource,
   applyComposerFrameScaleInput,
   applyComposerCameraSpeedInput,
   applyComposerCameraRadiusInput,
@@ -11080,6 +11094,7 @@ scenePanelUiRuntime.wireListeners();
 composerControlsUiRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
 composerHeaderTimestampRuntime.init();
+updateComposerViewportModeButtons();
 window.addEventListener("keydown", (event) => {
   if (
     event.code === "Space" &&

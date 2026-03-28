@@ -1001,6 +1001,44 @@ body {
   flex-wrap: wrap;
 }
 
+.composer-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 170, 220, 0.24);
+  background: rgba(15, 18, 32, 0.82);
+}
+
+.composer-view-toggle-button {
+  height: 24px;
+  min-width: 72px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(245, 247, 255, 0.74);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.composer-view-toggle-button:hover,
+.composer-view-toggle-button:focus-visible {
+  color: rgba(245, 247, 255, 0.92);
+}
+
+.composer-view-toggle-button.is-active {
+  background: linear-gradient(135deg, rgba(30, 52, 94, 0.94), rgba(56, 90, 152, 0.9));
+  color: #f9fcff;
+  box-shadow: inset 0 0 0 1px rgba(176, 219, 255, 0.14);
+}
+
 #composer-scene-button,
 #composer-clear-button,
 #composer-save-button,

@@ -5,6 +5,8 @@ export function createComposerControlsUiRuntime(deps) {
     composerDocsButton,
     composerExitButton,
     composerPreviewButton,
+    composerViewDesignButton,
+    composerViewObserverButton,
     composerReactionBackButton,
     composerExportButton,
     composerLibrarySaveButton,
@@ -49,6 +51,7 @@ export function createComposerControlsUiRuntime(deps) {
     clearComposerCameraWaypoints,
     stopComposerCameraFlightPreview,
     startComposerCameraFlightPreview,
+    setComposerViewportCameraSource,
     applyComposerFrameScaleInput,
     applyComposerCameraSpeedInput,
     applyComposerCameraRadiusInput,
@@ -107,6 +110,24 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerPreviewButton) {
       composerPreviewButton.addEventListener("click", () => {
         composerUiRuntime.openComposerPreview(isTransitionActive());
+      });
+    }
+
+    if (composerViewDesignButton) {
+      composerViewDesignButton.addEventListener("click", () => {
+        if (composerCameraFlightState.preview) {
+          stopComposerCameraFlightPreview();
+        }
+        setComposerViewportCameraSource("design");
+      });
+    }
+
+    if (composerViewObserverButton) {
+      composerViewObserverButton.addEventListener("click", () => {
+        if (composerCameraFlightState.preview) {
+          stopComposerCameraFlightPreview();
+        }
+        setComposerViewportCameraSource("authored");
       });
     }
 
