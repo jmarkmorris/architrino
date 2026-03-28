@@ -96,6 +96,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const setBinaryPersonalitySelection = options.setBinaryPersonalitySelection ?? (() => {});
   const shouldRenderChildNodes = options.shouldRenderChildNodes ?? (() => true);
   const startOperatorDrag = options.startOperatorDrag ?? (() => {});
+  const startSideParticipantDrag = options.startSideParticipantDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
 
@@ -820,6 +821,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
     card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    card.dataset.participantId = participant.id;
     const rootNode = getParticipantRootNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const topLevelRenderMode = participant?.hierarchy?.[0]?.renderMode ?? "";
@@ -862,6 +864,12 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     }).forEach((section) => {
       card.appendChild(section === "visual" ? visual : hierarchy);
     });
+    if (getIsDraggingParticipant(participant.id)) {
+      card.classList.add("is-dragging");
+    }
+    card.addEventListener("pointerdown", (event) =>
+      startSideParticipantDrag(event, participant.id)
+    );
     return card;
   }
 

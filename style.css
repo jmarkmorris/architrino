@@ -1599,6 +1599,11 @@ body {
   gap: 4px;
 }
 
+#composer-overlay.is-open:not(.is-reaction-app-mode) #composer-reaction-button,
+#composer-overlay.is-open:not(.is-reaction-app-mode) #composer-docs-button {
+  display: none;
+}
+
 #composer-overlay.is-reaction-app-mode #composer-scene-button,
 #composer-overlay.is-reaction-app-mode #composer-clear-button,
 #composer-overlay.is-reaction-app-mode #composer-save-button,
@@ -1606,8 +1611,9 @@ body {
   display: none;
 }
 
-#composer-overlay.is-reaction-app-mode #composer-reaction-back-button {
-  display: inline-flex;
+#composer-overlay.is-reaction-app-mode #composer-reaction-back-button,
+#composer-overlay.is-reaction-app-mode #composer-docs-button {
+  display: none;
 }
 
 #composer-overlay.is-reaction-app-mode .composer-workspace,
@@ -1945,7 +1951,7 @@ body {
 
 .composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control {
   position: absolute;
-  top: 0;
+  top: -4px;
   width: auto;
   transform: translateX(-50%);
   pointer-events: auto;
@@ -1962,7 +1968,7 @@ body {
     radial-gradient(circle at 30% 28%, rgba(96, 140, 226, 0.26), rgba(18, 26, 44, 0.94) 58%),
     rgba(18, 26, 44, 0.94);
   color: rgba(244, 247, 255, 0.96);
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 500;
   display: grid;
@@ -2026,6 +2032,10 @@ body {
   width: fit-content;
 }
 
+.composer-reaction-solver-participant:not(.is-operator) {
+  cursor: grab;
+}
+
 .composer-reaction-solver-column.is-reactants > .composer-reaction-solver-participant {
   justify-self: end;
 }
@@ -2064,6 +2074,10 @@ body {
 
 .composer-reaction-solver-participant.is-operator.is-dragging {
   z-index: 4;
+}
+
+.composer-reaction-solver-participant:not(.is-operator).is-dragging {
+  cursor: grabbing;
 }
 
 .composer-reaction-solver-participant.is-composite-participant {
@@ -2340,14 +2354,17 @@ body {
 
 .composer-reaction-solver-tree-content.is-noether-core-grid {
   align-items: flex-start;
+  padding-inline-start: 0;
 }
 
 .composer-reaction-solver-tree-content.is-binary-selector-grid {
   align-items: flex-start;
+  padding-inline-start: 0;
 }
 
 .composer-reaction-solver-tree-content.is-higgs-cluster-grid {
   align-items: flex-start;
+  padding-inline-start: 0;
 }
 
 .composer-reaction-solver-tree-row.is-binary-selector {
