@@ -91,7 +91,9 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       ? options.getOperatorLedgerSummary
       : () => ({
           incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
           outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
           incomingCount: 0,
           outgoingCount: 0,
           isBalanced: false,
@@ -108,25 +110,30 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
   function evaluateOperatorOutputLedger(operatorSummary = null, outputLedger = null) {
     const normalizedSummary = operatorSummary ?? {
       incomingLedger: createEmptyLedger(),
+      outputLedger: createEmptyLedger(),
       outgoingLedger: createEmptyLedger(),
+      routedOutgoingLedger: createEmptyLedger(),
       incomingCount: 0,
       outgoingCount: 0,
     };
+    const availableOutputLedger = hasLedger(normalizedSummary.outputLedger)
+      ? normalizedSummary.outputLedger
+      : normalizedSummary.incomingLedger;
     const candidateLedger = normalizeLedger(outputLedger);
-    if (!hasLedger(normalizedSummary.incomingLedger)) {
+    if (!hasLedger(availableOutputLedger)) {
       return {
         valid: false,
         reason: "Add conservative reactant inputs to this operator first.",
       };
     }
-    if (!ledgerFitsWithin(normalizedSummary.incomingLedger, candidateLedger)) {
+    if (!ledgerFitsWithin(availableOutputLedger, candidateLedger)) {
       return {
         valid: false,
-        reason: `Operator output would exceed its incoming ledger: ${formatLedger(normalizedSummary.incomingLedger)} available.`,
+        reason: `Operator output would exceed its available ledger: ${formatLedger(availableOutputLedger)} available.`,
       };
     }
-    if (!ledgersMatch(normalizedSummary.incomingLedger, candidateLedger)) {
-      const remainingLedger = subtractLedgers(normalizedSummary.incomingLedger, candidateLedger);
+    if (!ledgersMatch(availableOutputLedger, candidateLedger)) {
+      const remainingLedger = subtractLedgers(availableOutputLedger, candidateLedger);
       return {
         valid: false,
         reason: `Operator output remains incomplete: ${formatLedger(remainingLedger)} still unmatched.`,
@@ -188,7 +195,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
   function evaluateOperatorOutputCandidate(operatorId = "", candidateTargetContext = null) {
     const operatorSummary = getOperatorLedgerSummary(operatorId);
     const candidateLedger = addLedgers(
-      operatorSummary.outgoingLedger,
+      operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger,
       getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
     );
     const ledgerEvaluation = evaluateOperatorOutputLedger(operatorSummary, candidateLedger);
@@ -269,7 +276,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       const operatorSummary = getOperatorLedgerSummary(operatorId);
       const ledgerEvaluation = evaluateOperatorOutputLedger(
         operatorSummary,
-        operatorSummary.outgoingLedger
+        operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger
       );
       if (!ledgerEvaluation.valid) {
         return ledgerEvaluation;
@@ -280,6 +287,31 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
         targetContext
       );
       return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
+    }
+    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "operator-input") {
+      const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
+      const operatorSummary = getOperatorLedgerSummary(operatorId);
+      const outputEvaluation = evaluateOperatorOutputLedger(
+        operatorSummary,
+        operatorSummary.outputLedger ?? operatorSummary.outgoingLedger
+      );
+      if (!outputEvaluation.valid) {
+        return outputEvaluation;
+      }
+      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
+      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
+      if (!inputEvaluation.valid) {
+        return inputEvaluation;
+      }
+      return targetOperatorSummary?.isBalanced
+        ? {
+            valid: true,
+            reason: "Operator routed into operator.",
+          }
+        : {
+            valid: false,
+            reason: "Target operator remains unresolved until its downstream mapping is conservative.",
+          };
     }
     return {
       valid: false,
@@ -327,9 +359,20 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       };
     }
     if (pendingSourceRole === "operator-output" && role === "operator-input") {
+      const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
+      const outputEvaluation = evaluateOperatorOutputCandidate(operatorId, targetContext);
+      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
+      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
+      if (outputEvaluation.valid && inputEvaluation.valid && targetOperatorSummary?.isBalanced) {
+        return null;
+      }
       return {
         disabled: false,
-        reason: "Operator outputs connect to product targets only.",
+        reason: !outputEvaluation.valid
+          ? outputEvaluation.reason
+          : !inputEvaluation.valid
+            ? inputEvaluation.reason
+            : "Target operator remains unresolved until its downstream mapping is conservative.",
         invalid: true,
       };
     }

@@ -2133,6 +2133,22 @@ body {
   overflow-wrap: anywhere;
 }
 
+.composer-reaction-solver-participant.is-operator.is-ledger-open .composer-reaction-solver-particle {
+  border-color: color-mix(in srgb, #f2cf78 74%, rgba(255, 255, 255, 0.16));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px color-mix(in srgb, #f2cf78 24%, transparent),
+    0 0 18px color-mix(in srgb, #f2cf78 14%, transparent);
+}
+
+.composer-reaction-solver-participant.is-operator.is-ledger-invalid .composer-reaction-solver-particle {
+  border-color: color-mix(in srgb, #ff6b6b 78%, rgba(255, 255, 255, 0.18));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px color-mix(in srgb, #ff6b6b 28%, transparent),
+    0 0 18px color-mix(in srgb, #ff6b6b 18%, transparent);
+}
+
 .composer-reaction-solver-polar-transform-track {
   display: grid;
   grid-template-columns: repeat(4, var(--binary-choice-size, 72px));

@@ -275,6 +275,79 @@ test("associate input targets stay live during authoring", () => {
   assert.equal(availability, null);
 });
 
+test("operator outputs can target operator inputs and stay red until conservative", () => {
+  const targetContext = {
+    participant: { id: "associate_operator", templateId: "associate" },
+    node: { id: "associate_operator::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getOperatorLedgerSummary: (participantId = "") => ({
+      incomingLedger:
+        participantId === "polarity_plus"
+          ? { electrino: 0, positrino: 0 }
+          : { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: participantId === "associate_operator" ? 1 : 0,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const availability = rules.evaluatePendingTargetAvailability({
+    pendingSourceKey: "polarity_plus::output",
+    pendingSourceRole: "operator-output",
+    role: "operator-input",
+    targetContext,
+  });
+
+  assert.equal(availability?.disabled, false);
+  assert.equal(availability?.invalid, true);
+  assert.match(availability?.reason ?? "", /operator|associate/i);
+});
+
+test("committed operator output to operator input can become valid once conservative", () => {
+  const sourceContext = {
+    participant: { id: "polarity_plus", templateId: "l_polar_transform" },
+    node: { id: "polarity_plus::output" },
+  };
+  const targetContext = {
+    participant: { id: "associate_operator", templateId: "associate" },
+    node: { id: "associate_operator::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "polarity_plus::output": sourceContext,
+        "associate_operator::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: (participantId = "") => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 3, positrino: 3 },
+      incomingCount: participantId === "associate_operator" ? 2 : 1,
+      outgoingCount: 1,
+      isBalanced: true,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "polarity_plus::output",
+    targetKey: "associate_operator::root",
+    sourceRole: "operator-output",
+    targetRole: "operator-input",
+  });
+
+  assert.equal(validation.valid, true);
+  assert.match(validation.reason, /operator routed into operator/i);
+});
+
 test("associate input mapping stays red until exactly two reactants are attached", () => {
   const sourceParticipant = createParticipant("noether_core", "pro");
   const sourceContext = createNodeContext(sourceParticipant);

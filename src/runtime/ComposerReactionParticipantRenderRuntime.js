@@ -78,7 +78,11 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const getOperatorCardTop = options.getOperatorCardTop ?? (() => "50%");
   const getOperatorLedgerSummary = options.getOperatorLedgerSummary ?? (() => ({
     incomingLedger: { electrino: 0, positrino: 0 },
+    outputLedger: { electrino: 0, positrino: 0 },
     outgoingLedger: { electrino: 0, positrino: 0 },
+    undischargedLedger: { electrino: 0, positrino: 0 },
+    isOpen: false,
+    isInvalid: false,
     isBalanced: false,
   }));
   const getOperatorNode = options.getOperatorNode ?? (() => null);
@@ -191,6 +195,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
 
     const inputAnchorTop = createAnchorButton(participant, rootNode, rootNodeKey, {
       anchorRole: "operator-input",
+      anchorInstanceIndex: 0,
       extraClassNames: [
         "composer-reaction-solver-operator-anchor",
         "is-input",
@@ -198,10 +203,9 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         "is-top",
       ],
     });
-    inputAnchorTop.dataset.anchorInstanceIndex = "0";
-
     const inputAnchorBottom = createAnchorButton(participant, rootNode, rootNodeKey, {
       anchorRole: "operator-input",
+      anchorInstanceIndex: 1,
       extraClassNames: [
         "composer-reaction-solver-operator-anchor",
         "is-input",
@@ -209,17 +213,15 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         "is-bottom",
       ],
     });
-    inputAnchorBottom.dataset.anchorInstanceIndex = "1";
-
     const outputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
       anchorRole: "operator-output",
+      anchorInstanceIndex: 0,
       extraClassNames: [
         "composer-reaction-solver-operator-anchor",
         "is-output",
         "is-associate-output",
       ],
     });
-    outputAnchor.dataset.anchorInstanceIndex = "0";
 
     frame.append(inputAnchorTop, inputAnchorBottom, outputAnchor);
     return frame;
@@ -315,11 +317,14 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return participant?.templateId === "r_polar_transform" ? 90 : -90;
   }
 
+  function getNeutralOperatorShellAccent() {
+    return "#b889ff";
+  }
+
   function createPolarTransformBinaryTile(participant) {
     const tile = document.createElement("div");
     tile.className = "composer-reaction-solver-particle";
-    const meta = getParticipantCardMeta(participant);
-    tile.style.setProperty("--solver-accent", meta.accent);
+    tile.style.setProperty("--solver-accent", getNeutralOperatorShellAccent());
     tile.appendChild(
       createBinaryGlyph(null, {
         showPersonality: false,
@@ -332,13 +337,15 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createPolarTransformTitleTile(participant) {
-    return createParticipantVisual(
+    const titleTile = createParticipantVisual(
       {
         ...participant,
         label: getPolarTransformTitleLabel(participant),
       },
       ["composer-reaction-solver-polar-transform-title-tile"]
     );
+    titleTile.style.setProperty("--solver-accent", getNeutralOperatorShellAccent());
+    return titleTile;
   }
 
   function createPolarTransformParticipantVisual(participant) {
@@ -877,13 +884,31 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
 
     const rootNode = getOperatorNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
+    const ledgerSummary = getOperatorLedgerSummary(participant.id);
     const visual = isPolarTransformParticipant(participant)
       ? createPolarTransformParticipantVisual(participant)
       : createParticipantVisual(participant, [
           "composer-reaction-solver-operator-tile",
         ]);
+    if (ledgerSummary.isInvalid) {
+      card.classList.add("is-ledger-invalid");
+      visual.classList.add("is-ledger-invalid");
+    } else if (ledgerSummary.isOpen) {
+      card.classList.add("is-ledger-open");
+      visual.classList.add("is-ledger-open");
+    }
+    if (ledgerSummary.isInvalid) {
+      visual.title = `${participant.label} exceeds its available emitted ledger. Available: ${formatLedger(
+        ledgerSummary.outputLedger ?? ledgerSummary.incomingLedger
+      )}. Routed: ${formatLedger(
+        ledgerSummary.routedOutgoingLedger ?? ledgerSummary.outgoingLedger
+      )}.`;
+    } else if (ledgerSummary.isOpen) {
+      visual.title = `${participant.label} ledger remains open. Emitted: ${formatLedger(
+        ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger
+      )}. Still undischarged: ${formatLedger(ledgerSummary.undischargedLedger)}.`;
+    }
     if (!isPolarTransformParticipant(participant)) {
-      const ledgerSummary = getOperatorLedgerSummary(participant.id);
       [
         {
           className: "is-top-left is-positrino",
@@ -893,7 +918,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         },
         {
           className: "is-top-right is-positrino",
-          count: ledgerSummary.outgoingLedger.positrino,
+          count: (ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger).positrino,
           label: "e+",
           title: "Outgoing positrino count",
         },
@@ -905,7 +930,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         },
         {
           className: "is-bottom-right is-electrino",
-          count: ledgerSummary.outgoingLedger.electrino,
+          count: (ledgerSummary.outputLedger ?? ledgerSummary.outgoingLedger).electrino,
           label: "e-",
           title: "Outgoing electrino count",
         },
@@ -916,11 +941,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         badge.title = entry.title;
         visual.appendChild(badge);
       });
-      if (!ledgerSummary.isBalanced) {
-        visual.title = `${participant.label} is unresolved until incoming and outgoing ledgers match. Incoming: ${formatLedger(
-          ledgerSummary.incomingLedger
-        )}. Outgoing: ${formatLedger(ledgerSummary.outgoingLedger)}.`;
-      }
     }
     if (getIsDraggingParticipant(participant.id)) {
       card.classList.add("is-dragging");

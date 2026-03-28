@@ -62,3 +62,35 @@ test("recent-route state is pruned and faded through the runtime callbacks", () 
   assert.deepEqual(recentMappingIds, []);
   assert.equal(changeCount, 2);
 });
+
+test("anchor mapping ids can target distinct operator input instances on the same node", () => {
+  const runtime = createComposerReactionAnchorStateRuntime({
+    getMappings: () => [
+      {
+        id: "m_top",
+        sourceKey: "p1::out",
+        sourceRole: "reactant",
+        targetKey: "associate::root",
+        targetRole: "operator-input",
+        targetAnchorInstanceIndex: 0,
+      },
+      {
+        id: "m_bottom",
+        sourceKey: "p2::out",
+        sourceRole: "reactant",
+        targetKey: "associate::root",
+        targetRole: "operator-input",
+        targetAnchorInstanceIndex: 1,
+      },
+    ],
+  });
+
+  assert.deepEqual(
+    runtime.getMappingIdsForAnchor("associate::root", "operator-input", 0),
+    ["m_top"]
+  );
+  assert.deepEqual(
+    runtime.getMappingIdsForAnchor("associate::root", "operator-input", 1),
+    ["m_bottom"]
+  );
+});

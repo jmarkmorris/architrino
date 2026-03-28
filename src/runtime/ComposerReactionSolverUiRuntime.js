@@ -566,6 +566,18 @@ function canTargetMappingRole(role = "") {
   return role === "product" || role === "operator-input";
 }
 
+function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
+}
+
 const operatorCardHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
 const solverTileGapPx = REACTION_SOLVER_LAYOUT.tileGapPx;
 const operatorTrackWidthPx = REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX;
@@ -723,6 +735,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     mappings: [],
     pendingSourceKey: "",
     pendingSourceRole: "",
+    pendingSourceAnchorInstanceIndex: null,
     menuMode: "root",
     menuSide: "reactant",
     menuParticipantId: "",
@@ -787,6 +800,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
     getMappingIdsForAnchor,
+    getPendingSourceAnchorInstanceIndex: () => state.pendingSourceAnchorInstanceIndex,
     getPendingSourceKey: () => state.pendingSourceKey,
     getPendingSourceRole: () => state.pendingSourceRole,
     getRecentMappingIds: () => state.recentMappingIds,
@@ -1012,6 +1026,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     };
   }
 
+  function subtractLedgers(leftLedger = null, rightLedger = null) {
+    return {
+      electrino: Math.max(
+        0,
+        Number(leftLedger?.electrino ?? 0) - Number(rightLedger?.electrino ?? 0)
+      ),
+      positrino: Math.max(
+        0,
+        Number(leftLedger?.positrino ?? 0) - Number(rightLedger?.positrino ?? 0)
+      ),
+    };
+  }
+
   function ledgerFitsWithin(limitLedger = null, candidateLedger = null) {
     const limit = createEmptyLedger();
     const candidate = createEmptyLedger();
@@ -1068,29 +1095,102 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getOperatorLedgerSummary(participantId) {
-    const incomingMappings = state.mappings.filter((mapping) => {
-      const { participantId: targetParticipantId } = parseNodeKey(mapping.targetKey);
-      return targetParticipantId === participantId && mapping.targetRole === "operator-input";
-    });
-    const outgoingMappings = state.mappings.filter((mapping) => {
-      const { participantId: sourceParticipantId } = parseNodeKey(mapping.sourceKey);
-      return sourceParticipantId === participantId && mapping.sourceRole === "operator-output";
-    });
-    const incomingLedger = incomingMappings.reduce(
-      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.sourceKey)),
-      createEmptyLedger()
-    );
-    const outgoingLedger = outgoingMappings.reduce(
-      (ledger, mapping) => addLedgers(ledger, getNodeLedger(mapping.targetKey)),
-      createEmptyLedger()
-    );
-    return {
-      incomingLedger,
-      outgoingLedger,
-      incomingCount: incomingMappings.length,
-      outgoingCount: outgoingMappings.length,
-      isBalanced: hasLedger(incomingLedger) && hasLedger(outgoingLedger) && ledgersMatch(incomingLedger, outgoingLedger),
-    };
+    const cache = new Map();
+    const activeStack = new Set();
+
+    function resolveOperatorSummary(targetParticipantId) {
+      const normalizedParticipantId = String(targetParticipantId ?? "").trim();
+      if (!normalizedParticipantId) {
+        return {
+          incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
+          outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
+          undischargedLedger: createEmptyLedger(),
+          incomingCount: 0,
+          outgoingCount: 0,
+          isOpen: false,
+          isInvalid: false,
+          isBalanced: false,
+        };
+      }
+      if (cache.has(normalizedParticipantId)) {
+        return cache.get(normalizedParticipantId);
+      }
+      if (activeStack.has(normalizedParticipantId)) {
+        return {
+          incomingLedger: createEmptyLedger(),
+          outputLedger: createEmptyLedger(),
+          outgoingLedger: createEmptyLedger(),
+          routedOutgoingLedger: createEmptyLedger(),
+          undischargedLedger: createEmptyLedger(),
+          incomingCount: 0,
+          outgoingCount: 0,
+          isOpen: false,
+          isInvalid: false,
+          isBalanced: false,
+        };
+      }
+
+      activeStack.add(normalizedParticipantId);
+      const participant = findParticipantById(normalizedParticipantId);
+      const incomingMappings = state.mappings.filter((mapping) => {
+        const { participantId: mappingTargetParticipantId } = parseNodeKey(mapping.targetKey);
+        return (
+          mappingTargetParticipantId === normalizedParticipantId &&
+          mapping.targetRole === "operator-input"
+        );
+      });
+      const outgoingMappings = state.mappings.filter((mapping) => {
+        const { participantId: mappingSourceParticipantId } = parseNodeKey(mapping.sourceKey);
+        return (
+          mappingSourceParticipantId === normalizedParticipantId &&
+          mapping.sourceRole === "operator-output"
+        );
+      });
+      const incomingLedger = incomingMappings.reduce((ledger, mapping) => {
+        const sourceLedger =
+          mapping.sourceRole === "operator-output"
+            ? resolveOperatorSummary(parseNodeKey(mapping.sourceKey).participantId).outputLedger
+            : getNodeLedger(mapping.sourceKey);
+        return addLedgers(ledger, sourceLedger);
+      }, createEmptyLedger());
+      const outputLedger =
+        participant?.side === "operator" && hasLedger(incomingLedger)
+          ? { ...incomingLedger }
+          : createEmptyLedger();
+      const routedOutgoingLedger = outgoingMappings.reduce((ledger, mapping) => {
+        const mappedLedger =
+          mapping.targetRole === "operator-input"
+            ? outputLedger
+            : getNodeLedger(mapping.targetKey);
+        return addLedgers(ledger, mappedLedger);
+      }, createEmptyLedger());
+      const isInvalid =
+        hasLedger(outputLedger) && !ledgerFitsWithin(outputLedger, routedOutgoingLedger);
+      const isBalanced =
+        hasLedger(outputLedger) &&
+        hasLedger(routedOutgoingLedger) &&
+        ledgersMatch(outputLedger, routedOutgoingLedger);
+      const isOpen = hasLedger(outputLedger) && !isInvalid && !isBalanced;
+      const summary = {
+        incomingLedger,
+        outputLedger,
+        outgoingLedger: routedOutgoingLedger,
+        routedOutgoingLedger,
+        undischargedLedger: subtractLedgers(outputLedger, routedOutgoingLedger),
+        incomingCount: incomingMappings.length,
+        outgoingCount: outgoingMappings.length,
+        isOpen,
+        isInvalid,
+        isBalanced,
+      };
+      activeStack.delete(normalizedParticipantId);
+      cache.set(normalizedParticipantId, summary);
+      return summary;
+    }
+
+    return resolveOperatorSummary(participantId);
   }
 
   function isOperatorParticipantBalanced(participantId) {
@@ -1114,6 +1214,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (parseNodeKey(state.pendingSourceKey).participantId === participantId) {
       state.pendingSourceKey = "";
       state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
     }
     state.hoveredMappingIds = state.hoveredMappingIds.filter((mappingId) =>
       state.mappings.some((mapping) => mapping.id === mappingId)
@@ -1283,7 +1384,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
-  function addOrReplaceMapping(sourceKey, sourceRole, targetKey, targetRole) {
+  function addOrReplaceMapping(
+    sourceKey,
+    sourceRole,
+    targetKey,
+    targetRole,
+    {
+      sourceAnchorInstanceIndex = null,
+      targetAnchorInstanceIndex = null,
+    } = {}
+  ) {
     state.mappings = state.mappings.filter((mapping) => {
       const sourceConflict = isSingleMappingAnchorRole(sourceRole)
         ? nodeKeysConflict(mapping.sourceKey, sourceKey) || nodeKeysConflict(mapping.targetKey, sourceKey)
@@ -1301,6 +1411,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       targetKey,
       sourceRole,
       targetRole,
+      sourceAnchorInstanceIndex,
+      targetAnchorInstanceIndex,
     });
     state.hoveredMappingIds = [];
     return mappingId;
@@ -1312,6 +1424,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     render();
   }
 
@@ -1718,6 +1831,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     });
     insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
@@ -1744,6 +1858,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     insertParticipantAtTopOfSide(participant);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
@@ -1778,6 +1893,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
     setStatus(`${participant.label} added to the reaction solver.`);
@@ -1794,6 +1910,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.mappings = [];
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     state.hoveredMappingIds = [];
     clearAllRecentRouteState();
     closeMenu();
@@ -1990,6 +2107,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.active = nextActive;
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     closeExternalMenus();
     if (root) {
@@ -2018,12 +2136,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setActive(!state.active);
   }
 
-  function handleAnchorClick(role, nodeKey) {
+  function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
     if (isSingleMappingAnchorRole(role)) {
       const existingMapping = findMappingByNodeKey(nodeKey);
       if (existingMapping) {
         state.pendingSourceKey = "";
         state.pendingSourceRole = "";
+        state.pendingSourceAnchorInstanceIndex = null;
         if (removeMappingById(existingMapping.id)) {
           render();
           setStatus("Removed reaction mapping.");
@@ -2032,7 +2151,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
     }
 
-    const anchorAvailability = getAnchorAvailability(role, nodeKey);
+    const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
     if (anchorAvailability.disabled) {
       if (anchorAvailability.reason) {
         setStatus(anchorAvailability.reason);
@@ -2042,9 +2161,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
     if (canStartMappingFromRole(role)) {
       const isClearingPending =
-        state.pendingSourceKey === nodeKey && state.pendingSourceRole === role;
+        state.pendingSourceKey === nodeKey &&
+        state.pendingSourceRole === role &&
+        state.pendingSourceAnchorInstanceIndex === anchorInstanceIndex;
       state.pendingSourceKey = isClearingPending ? "" : nodeKey;
       state.pendingSourceRole = isClearingPending ? "" : role;
+      state.pendingSourceAnchorInstanceIndex = isClearingPending ? null : anchorInstanceIndex;
       setHoveredMappingIds([]);
       render();
       if (!state.pendingSourceKey) {
@@ -2085,28 +2207,36 @@ export function createComposerReactionSolverUiRuntime(deps) {
       setStatus("Reactant anchors connect to products or to an operator input.");
       return;
     }
-    if (state.pendingSourceRole === "operator-output" && role !== "product") {
-      setStatus("Operator outputs connect to product anchors only.");
+    if (state.pendingSourceRole === "operator-output" && role !== "product" && role !== "operator-input") {
+      setStatus("Operator outputs connect to product anchors or operator inputs.");
       return;
     }
 
+    const sourceRole = state.pendingSourceRole;
     const mappingId = addOrReplaceMapping(
       state.pendingSourceKey,
-      state.pendingSourceRole,
+      sourceRole,
       nodeKey,
-      role
+      role,
+      {
+        sourceAnchorInstanceIndex: state.pendingSourceAnchorInstanceIndex,
+        targetAnchorInstanceIndex: anchorInstanceIndex,
+      }
     );
     markMappingsRecent([mappingId]);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
     render();
     const validation = getMappingValidation(
       state.mappings.find((mapping) => mapping.id === mappingId) ?? null
     );
     setStatus(
       validation.valid
-        ? role === "operator-input"
+        ? role === "operator-input" && sourceRole === "reactant"
           ? "Reactant routed into operator."
+          : role === "operator-input" && sourceRole === "operator-output"
+            ? "Operator routed into operator."
           : "Reaction mapping added."
         : `Connection added but invalid: ${validation.reason}`
     );
@@ -2718,9 +2848,24 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const isSource = endpoint !== "target";
     const anchorKey = isSource ? mapping.sourceKey : mapping.targetKey;
     const anchorRole = isSource ? mapping.sourceRole : mapping.targetRole;
+    const anchorInstanceIndex = isSource
+      ? mapping.sourceAnchorInstanceIndex
+      : mapping.targetAnchorInstanceIndex;
     const anchors = getRenderedAnchorsForNodeRole(anchorKey, anchorRole);
     if (!anchors.length) {
       return null;
+    }
+    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+    if (normalizedAnchorInstanceIndex !== null) {
+      const exactAnchor =
+        anchors.find(
+          (anchor) =>
+            normalizeAnchorInstanceIndex(anchor.dataset.anchorInstanceIndex) ===
+            normalizedAnchorInstanceIndex
+        ) ?? null;
+      if (exactAnchor) {
+        return exactAnchor;
+      }
     }
     if (anchors.length === 1) {
       return anchors[0];
