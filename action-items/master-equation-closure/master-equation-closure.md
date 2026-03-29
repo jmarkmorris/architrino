@@ -36,3 +36,20 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../cont
 
 - Circular closure: higher-winding asymptotics, full circular self-force asymptotics, bare-kernel MCB no-go or existence, then non-circular periodic closure.
 - Spiral closure: variable-pitch or other non-circular ansatz, self-branch Frenet decomposition, radial-turning conditions, and comparison against the circular obstruction.
+
+## Related Action Items
+
+- [breather-proof](../breather-proof/breather-proof.md)
+- [mass-map](../mass-map/mass-map.md)
+- [dyadic-lock](../dyadic-lock/dyadic-lock.md)
+- [quantum-closure](../quantum-closure/quantum-closure.md)
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
+
+## Related AAA Notes
+
+- [master-equation](../../content/markdown/aaa/dynamics/master-equation.md)
+- [lorentz-kinematics](../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
+- [emergent-metric](../../content/markdown/aaa/spacetime/emergent-metric.md)
+- [proper-time-and-time-dilation](../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+- [quantum-summary](../../content/markdown/aaa/quantum/quantum-summary.md)

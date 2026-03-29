@@ -27,3 +27,18 @@ Convert the current cosmology story from narrative strength to equation-level cl
 - Distance-ladder calibration
 
 The goal is to expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each component.
+
+## Related Action Items
+
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
+- [simulations](../simulations/simulations.md)
+
+## Related AAA Notes
+
+- [cosmology-ontology](../../content/markdown/aaa/cosmology/cosmology-ontology.md)
+- [CMB](../../content/markdown/aaa/cosmology/CMB.md)
+- [BBN-constraints](../../content/markdown/aaa/cosmology/BBN-constraints.md)
+- [structure-formation](../../content/markdown/aaa/cosmology/structure-formation.md)
+- [hubble-s8-tensions](../../content/markdown/aaa/cosmology/hubble-s8-tensions.md)

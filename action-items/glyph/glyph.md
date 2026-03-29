@@ -528,3 +528,17 @@ Natural follow-on work from this note would be:
 - a composer-side glyph editor surface;
 - a canonical library of reference assemblies for the first binary vocabulary;
 - and a separate follow-on note that reopens whole-quark color only after the 3x3x3 and axis-basis relation is closed.
+
+## Related Action Items
+
+- [3x3](../3x3/3x3.md)
+- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [viewports](../viewports/viewports.md)
+
+## Related AAA Notes
+
+- [quarks](../../content/markdown/aaa/assemblies/fermions/quarks.md)
+- [color-charge-su3](../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)

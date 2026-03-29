@@ -1880,11 +1880,11 @@ body {
 }
 
 .composer-reaction-solver-lane-slot.is-operator-left {
-  grid-column: var(--solver-operator-lane-0-grid-column, 5 / span 4);
+  grid-column: var(--solver-operator-lane-0-grid-column, 4 / span 4);
 }
 
 .composer-reaction-solver-lane-slot.is-operator-right {
-  grid-column: var(--solver-operator-lane-1-grid-column, 9 / span 4);
+  grid-column: var(--solver-operator-lane-1-grid-column, 10 / span 4);
 }
 
 .composer-reaction-solver-side-slot-header {
@@ -2224,16 +2224,8 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-top,
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-top {
-  top: calc(50% - (var(--solver-anchor-size) * 0.52));
-}
-
-.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-bottom,
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-bottom {
-  top: calc(50% + (var(--solver-anchor-size) * 0.52));
-}
-
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input,
 .composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-output,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-output {
   top: 50%;
@@ -2244,14 +2236,9 @@ body {
   top: 50%;
 }
 
-.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-top,
-.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-top {
-  top: calc(50% - (var(--solver-anchor-size) * 0.52));
-}
-
-.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-bottom,
-.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-bottom {
-  top: calc(50% + (var(--solver-anchor-size) * 0.52));
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output {
+  top: 50%;
 }
 
 .composer-reaction-solver-operator-fan {

@@ -67,14 +67,14 @@ test("higgs cluster descriptor tree expands to four alternating core rows", () =
   );
 });
 
-test("transmute descriptor tree produces a single transmute tile", () => {
+test("associate descriptor tree produces a single operator tile", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("transmute", "pro", "Transmute")
+    createStructure("associate", "pro", "Associate")
   );
   const [root] = descriptorTree;
 
-  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
-  assert.equal(root.label, "Transmute");
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE);
+  assert.equal(root.label, "Associate");
   assert.equal(root.children.length, 0);
 });
 
@@ -84,7 +84,7 @@ test("dissociate descriptor tree produces a single operator tile", () => {
   );
   const [root] = descriptorTree;
 
-  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE);
   assert.equal(root.label, "Dissociate");
   assert.equal(root.children.length, 0);
 });

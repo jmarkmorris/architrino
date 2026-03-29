@@ -141,8 +141,8 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
   });
   assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 4");
   assert.equal(productsApplied.get("--solver-products-grid-column"), "13 / span 4");
-  assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "5 / span 4");
-  assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "9 / span 4");
+  assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "4 / span 4");
+  assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "10 / span 4");
 });
 
 test("reaction solver layout derives fallback lane ratios from periodic-table slot spans", () => {
@@ -154,7 +154,7 @@ test("reaction solver layout derives fallback lane ratios from periodic-table sl
   ]);
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.125, 0.375, 0.625, 0.875]
+    [0.125, 0.3125, 0.6875, 0.875]
   );
 });
 

@@ -351,3 +351,17 @@ In practice that means:
 - keep rule logic in shared runtimes;
 - keep lane geometry derived from the explicit layout model;
 - and avoid duplicating mapping semantics in CSS, DOM heuristics, or ad hoc menu code.
+
+## Related Action Items
+
+- [composer-reaction](./composer-reaction.md)
+- [composer](./composer.md)
+- [pdg-solver](./pdg-solver.md)
+- [viewports](../viewports/viewports.md)
+
+## Related AAA Notes
+
+- [pdg-api](../../content/markdown/aaa/reactions/pdg-api.md)
+- [reaction-ledger](../../content/markdown/aaa/validation/reaction-ledger.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)

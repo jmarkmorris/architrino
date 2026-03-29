@@ -101,3 +101,10 @@ This single table is the canonical rollup for every direct child of `action-item
 
 - What is the smallest assembly that can make a decision?
 - Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will.
+
+## Related AAA Notes
+
+- [closure-scorecard](../../content/markdown/aaa/validation/closure-scorecard.md)
+- [failure-criteria](../../content/markdown/aaa/validation/failure-criteria.md)
+- [software-architecture-and-maintenance](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
+- [research-notebook](../../content/markdown/aaa/archie/research-notebook.md)

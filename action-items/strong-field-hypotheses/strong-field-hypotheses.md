@@ -24,3 +24,17 @@ This is a watchlist workstream. It exists to keep strong-field and tri-binary id
 - The event horizon may have rough radial depth rather than being a clean sphere.
 - There may be a brief neck to planar motion before returning to 3D motion.
 - The `4:2:1` model idea should be preserved even if it turns out to be wrong.
+
+## Related Action Items
+
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)
+- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
+- [dynamo-team-insights](../dynamo-team-insights/dynamo-team-insights.md)
+
+## Related AAA Notes
+
+- [black-holes](../../content/markdown/aaa/spacetime/black-holes.md)
+- [singularity-resolution](../../content/markdown/aaa/spacetime/singularity-resolution.md)
+- [tri-binary-dynamics](../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
+- [spacetime-assemblies](../../content/markdown/aaa/spacetime/spacetime-assemblies.md)

@@ -11,18 +11,17 @@ test("reaction solver keeps two operator lanes available", () => {
   assert.equal(REACTION_OPERATOR_LANE_COUNT, 2);
 });
 
-test("reaction solver operator registry includes only the remaining solver operators", () => {
+test("reaction solver operator registry includes only associate and dissociate", () => {
   assert.deepEqual(
     REACTION_OPERATOR_ENTRIES.map((entry) => entry.templateId),
     [
-      "transmute",
       "associate",
       "dissociate",
     ]
   );
 });
 
-test("reaction solver operator lane layout assigns dissociate to lane 2 and associate/transmute to lane 3", () => {
+test("reaction solver operator lane layout assigns dissociate to lane 2 and associate to lane 3", () => {
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
       laneIndex: entry.laneIndex,
@@ -40,6 +39,6 @@ test("reaction solver operator lane layout assigns dissociate to lane 2 and asso
   );
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT[1].pickerEntries.map((entry) => entry.templateId),
-    ["associate", "transmute"]
+    ["associate"]
   );
 });

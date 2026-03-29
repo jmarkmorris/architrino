@@ -36,3 +36,17 @@ This workstream tracks high-priority cases where the repo shows duplicate implem
 - Should a scene behavior be declared in metadata instead of inferred from scene ids or filesystem paths?
 - Does a Markdown note really need to exist as its own document, or should it be merged into a stronger canonical reference?
 - Is a supposedly temporary bridge, fallback, or placeholder now functioning as legacy architecture?
+
+## Related Action Items
+
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [composer](../composer-reaction/composer.md)
+- [reaction](../composer-reaction/reaction.md)
+- [viewports](../viewports/viewports.md)
+- [codex](../codex/codex.md)
+
+## Related AAA Notes
+
+- [software-architecture-and-maintenance](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)

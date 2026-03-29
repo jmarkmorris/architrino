@@ -179,3 +179,16 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 | $4\ \text{Hz}$ | $2\ \text{Hz}$ | $1\ \text{Hz}$ | $\dfrac{\beta(4\,\text{Hz})\,c_f}{8\pi}$ | $\dfrac{c_f}{4\pi}$ | $\dfrac{\beta(1\,\text{Hz})\,c_f}{2\pi}$ | $\beta(4\,\text{Hz})\,c_f$ | $c_f$ | $\beta(1\,\text{Hz})\,c_f$ |
 | $4f$ | $2f$ | $f$ | $\dfrac{\beta(4f)\,c_f}{8\pi f}$ | $\dfrac{c_f}{4\pi f}$ | $\dfrac{\beta(f)\,c_f}{2\pi f}$ | $\beta(4f)\,c_f$ | $c_f$ | $\beta(f)\,c_f$ |
 | $4f_P$ | $2f_P$ | $f_P$ | $\dfrac{\beta(4f_P)\,c_f}{8\pi f_P}$ | $\dfrac{c_f}{4\pi f_P}$ | $\dfrac{c_f}{2\pi f_P} = \dfrac{\ell_P}{2\pi}$ | $\beta(4f_P)\,c_f$ | $c_f$ | $c_f$ |
+
+## Related Action Items
+
+- [dyadic-lock](../dyadic-lock/dyadic-lock.md)
+- [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
+- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
+
+## Related AAA Notes
+
+- [dyadic-resonance-lock](../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
+- [tri-binary-dynamics](../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
+- [black-holes](../../content/markdown/aaa/spacetime/black-holes.md)
+- [cosmology-ontology](../../content/markdown/aaa/cosmology/cosmology-ontology.md)

@@ -20,7 +20,6 @@ closed form equations?
     - is this a constant?
     - how has the superposition changed the radiation from the three binaries independently
 
-
 every H change is a result of work. 
     - the work on transfter of an h to the core must do all of the following
         - increase the translation velocity
@@ -206,3 +205,16 @@ Turning this structural mapping into a quantitative effective metric requires fi
 **Step 5. Strong-field and cosmological limits.** Check that the $(\xi, \lambda)$ co-termination at the Planck alignment state reproduces horizon thermodynamics (area scaling, temperature) at least qualitatively. Verify that the cosmological relaxation of $R_\perp(t)$ and $\xi(t)$ yields an effective Friedmann equation consistent with observed expansion history, BBN, and CMB acoustic peak positions.
 
 The combined shape-plus-scale deformation is the structural feature that distinguishes this framework from a simple "gravity as refraction in a medium" story. The scale change introduces an additional degree of freedom that standard optical-metric analogies do not carry, and it is this extra channel that must ultimately account for the full richness of GR phenomenology - or fail in a clean, identifiable way.
+
+## Related Action Items
+
+- [viewports](../viewports/viewports.md)
+- [simulations](../simulations/simulations.md)
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+
+## Related AAA Notes
+
+- [lorentz-kinematics](../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
+- [proper-time-and-time-dilation](../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+- [emergent-metric](../../content/markdown/aaa/spacetime/emergent-metric.md)
+- [tri-binary-dynamics](../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)

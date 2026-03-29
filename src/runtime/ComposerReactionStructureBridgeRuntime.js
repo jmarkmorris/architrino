@@ -227,7 +227,7 @@ function createPhotonNode(id, options = {}) {
 }
 
 function createOperatorNode(id, species, options = {}) {
-  const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "transmute";
+  const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "operator";
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.COMPOSITE,
@@ -335,7 +335,6 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       occupiedSlots,
     });
   } else if (
-    normalizedTemplateId === "transmute" ||
     normalizedTemplateId === "associate" ||
     normalizedTemplateId === "dissociate"
   ) {
@@ -346,7 +345,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
           ? "Associate"
           : normalizedTemplateId === "dissociate"
             ? "Dissociate"
-            : "Transmute"),
+            : "Operator"),
     });
   } else if (normalizedTemplateId === "fermion_gen1") {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {

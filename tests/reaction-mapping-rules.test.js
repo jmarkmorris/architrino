@@ -29,17 +29,17 @@ function createNodeContext(participant) {
   };
 }
 
-test("transmute output remains invalid until outgoing ledger exactly matches incoming", () => {
+test("associate output remains invalid until outgoing ledger exactly matches incoming", () => {
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "transmute_a", templateId: "transmute" },
-    node: { id: "transmute_a/output" },
+    participant: { id: "associate_a", templateId: "associate" },
+    node: { id: "associate_a/output" },
   };
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_a::output": sourceContext,
+        "associate_a::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: () => ({
@@ -54,7 +54,7 @@ test("transmute output remains invalid until outgoing ledger exactly matches inc
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_a::output",
+    sourceKey: "associate_a::output",
     targetKey: "noether_core_pro::root",
     sourceRole: "operator-output",
     targetRole: "product",
@@ -64,17 +64,17 @@ test("transmute output remains invalid until outgoing ledger exactly matches inc
   assert.match(validation.reason, /remains incomplete/i);
 });
 
-test("pending transmute output target becomes available when the candidate closes the ledger exactly", () => {
+test("pending associate output target becomes available when the candidate closes the ledger exactly", () => {
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "transmute_b", templateId: "transmute" },
-    node: { id: "transmute_b/output" },
+    participant: { id: "associate_b", templateId: "associate" },
+    node: { id: "associate_b/output" },
   };
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_b::output": sourceContext,
+        "associate_b::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: () => ({
@@ -89,7 +89,7 @@ test("pending transmute output target becomes available when the candidate close
   });
 
   const availability = rules.evaluatePendingTargetAvailability({
-    pendingSourceKey: "transmute_b::output",
+    pendingSourceKey: "associate_b::output",
     pendingSourceRole: "operator-output",
     role: "product",
     sourceContext,
@@ -99,17 +99,17 @@ test("pending transmute output target becomes available when the candidate close
   assert.equal(availability, null);
 });
 
-test("committed transmute output mapping stays valid when the existing outgoing ledger is already balanced", () => {
+test("committed associate output mapping stays valid when the existing outgoing ledger is already balanced", () => {
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "transmute_c", templateId: "transmute" },
-    node: { id: "transmute_c/output" },
+    participant: { id: "associate_c", templateId: "associate" },
+    node: { id: "associate_c/output" },
   };
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_c::output": sourceContext,
+        "associate_c::output": sourceContext,
         "noether_core_pro::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: () => ({
@@ -124,7 +124,7 @@ test("committed transmute output mapping stays valid when the existing outgoing 
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_c::output",
+    sourceKey: "associate_c::output",
     targetKey: "noether_core_pro::root",
     sourceRole: "operator-output",
     targetRole: "product",
@@ -134,19 +134,19 @@ test("committed transmute output mapping stays valid when the existing outgoing 
   assert.match(validation.reason, /fully conservative/i);
 });
 
-test("single-source transmute output cannot bypass direct structure compatibility", () => {
+test("single-source associate output cannot bypass direct structure compatibility", () => {
   const sourceParticipant = createParticipant("noether_core", "pro");
   const targetParticipant = createParticipant("noether_core", "anti");
   const sourceContext = createNodeContext(sourceParticipant);
   const targetContext = createNodeContext(targetParticipant);
-  const transmuteOutputContext = {
-    participant: { id: "transmute_d", templateId: "transmute" },
-    node: { id: "transmute_d/output" },
+  const associateOutputContext = {
+    participant: { id: "associate_d", templateId: "associate" },
+    node: { id: "associate_d/output" },
   };
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_d::output": transmuteOutputContext,
+        "associate_d::output": associateOutputContext,
         "noether_core_anti::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorInputNodeContexts: () => [sourceContext],
@@ -164,7 +164,7 @@ test("single-source transmute output cannot bypass direct structure compatibilit
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_d::output",
+    sourceKey: "associate_d::output",
     targetKey: "noether_core_anti::root",
     sourceRole: "operator-output",
     targetRole: "product",
@@ -175,19 +175,19 @@ test("single-source transmute output cannot bypass direct structure compatibilit
   assert.match(validation.reason, /cannot map directly/i);
 });
 
-test("multi-source transmute outputs stay ledger-based when no single direct structure should dominate", () => {
+test("multi-source associate outputs stay ledger-based when no single direct structure should dominate", () => {
   const sourceParticipant = createParticipant("noether_core", "pro");
   const targetParticipant = createParticipant("noether_core", "anti");
   const sourceContext = createNodeContext(sourceParticipant);
   const targetContext = createNodeContext(targetParticipant);
-  const transmuteOutputContext = {
-    participant: { id: "transmute_e", templateId: "transmute" },
-    node: { id: "transmute_e/output" },
+  const associateOutputContext = {
+    participant: { id: "associate_e", templateId: "associate" },
+    node: { id: "associate_e/output" },
   };
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_e::output": transmuteOutputContext,
+        "associate_e::output": associateOutputContext,
         "noether_core_anti::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorInputNodeContexts: () => [sourceContext],
@@ -205,7 +205,7 @@ test("multi-source transmute outputs stay ledger-based when no single direct str
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_e::output",
+    sourceKey: "associate_e::output",
     targetKey: "noether_core_anti::root",
     sourceRole: "operator-output",
     targetRole: "product",
@@ -283,7 +283,7 @@ test("operator outputs can target operator inputs and stay red until conservativ
   const rules = createComposerReactionMappingRulesRuntime({
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger:
-        participantId === "transmute_operator"
+        participantId === "associate_source"
           ? { electrino: 0, positrino: 0 }
           : { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 0, positrino: 0 },
@@ -298,7 +298,7 @@ test("operator outputs can target operator inputs and stay red until conservativ
   });
 
   const availability = rules.evaluatePendingTargetAvailability({
-    pendingSourceKey: "transmute_operator::output",
+    pendingSourceKey: "associate_source::output",
     pendingSourceRole: "operator-output",
     role: "operator-input",
     targetContext,
@@ -311,8 +311,8 @@ test("operator outputs can target operator inputs and stay red until conservativ
 
 test("committed operator output to operator input can become valid once conservative", () => {
   const sourceContext = {
-    participant: { id: "transmute_operator", templateId: "transmute" },
-    node: { id: "transmute_operator::output" },
+    participant: { id: "associate_source", templateId: "associate" },
+    node: { id: "associate_source::output" },
   };
   const targetContext = {
     participant: { id: "associate_operator", templateId: "associate" },
@@ -321,7 +321,7 @@ test("committed operator output to operator input can become valid once conserva
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "transmute_operator::output": sourceContext,
+        "associate_source::output": sourceContext,
         "associate_operator::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: (participantId = "") => ({
@@ -338,7 +338,7 @@ test("committed operator output to operator input can become valid once conserva
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "transmute_operator::output",
+    sourceKey: "associate_source::output",
     targetKey: "associate_operator::root",
     sourceRole: "operator-output",
     targetRole: "operator-input",
@@ -459,7 +459,7 @@ test("dissociate input mapping stays red until exactly one reactant is attached"
   assert.match(validation.reason, /exactly one reactant input/i);
 });
 
-test("dissociate output anchors validate against their own charge ledger", () => {
+test("dissociate output uses a single shared output ledger", () => {
   const targetContext = {
     participant: { id: "associate_sink", templateId: "associate" },
     node: { id: "associate_sink::root" },
@@ -474,15 +474,13 @@ test("dissociate output anchors validate against their own charge ledger", () =>
       incomingLedger: { electrino: 3, positrino: 3 },
       outputLedger: { electrino: 3, positrino: 3 },
       outputLedgerByAnchorInstance: {
-        0: { electrino: 0, positrino: 3 },
-        1: { electrino: 3, positrino: 0 },
+        0: { electrino: 3, positrino: 3 },
       },
       routedOutgoingLedger: { electrino: 0, positrino: 0 },
       routedOutgoingLedgerByAnchorInstance:
         participantId === "dissociate_op"
           ? {
-              0: { electrino: 0, positrino: 3 },
-              1: { electrino: 0, positrino: 1 },
+              0: { electrino: 3, positrino: 3 },
             }
           : {},
       incomingCount: participantId === "associate_sink" ? 2 : 1,
@@ -497,23 +495,14 @@ test("dissociate output anchors validate against their own charge ledger", () =>
     },
   });
 
-  const topValidation = rules.getMappingValidation({
+  const validation = rules.getMappingValidation({
     sourceKey: "dissociate_op::root",
     targetKey: "associate_sink::root",
     sourceRole: "operator-output",
     targetRole: "operator-input",
     sourceAnchorInstanceIndex: 0,
   });
-  const bottomValidation = rules.getMappingValidation({
-    sourceKey: "dissociate_op::root",
-    targetKey: "associate_sink::root",
-    sourceRole: "operator-output",
-    targetRole: "operator-input",
-    sourceAnchorInstanceIndex: 1,
-  });
 
-  assert.equal(topValidation.valid, true);
-  assert.match(topValidation.reason, /operator routed into operator/i);
-  assert.equal(bottomValidation.valid, false);
-  assert.match(bottomValidation.reason, /would exceed|incomplete/i);
+  assert.equal(validation.valid, true);
+  assert.match(validation.reason, /operator routed into operator/i);
 });

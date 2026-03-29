@@ -76,7 +76,6 @@ const solverTemplateMeta = Object.freeze({
   photon: { shortLabel: "Ph", accent: "#a259ff" },
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
-  transmute: { shortLabel: "T", accent: "#a259ff" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
@@ -87,7 +86,6 @@ const solverTemplateMeta = Object.freeze({
 });
 
 export const REACTION_OPERATOR_ENTRIES = Object.freeze([
-  { templateId: "transmute", label: "Transmute" },
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
@@ -114,10 +112,6 @@ export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
       Object.freeze({
         templateId: "associate",
         label: "Associate",
-      }),
-      Object.freeze({
-        templateId: "transmute",
-        label: "Transmute",
       }),
     ]),
     enabled: true,
@@ -325,8 +319,8 @@ function buildFallbackHierarchyForTemplate(templateId, label) {
     return [
       {
         id: "root",
-        label: String(label ?? "").trim() || getDefaultParticipantBaseLabel(templateId, "Transformer"),
-        renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
+        label: String(label ?? "").trim() || getDefaultParticipantBaseLabel(templateId, "Operator"),
+        renderMode: REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE,
         children: [],
       },
     ];
@@ -443,9 +437,6 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "photon") {
     return "Photon";
-  }
-  if (normalizedTemplateId === "transmute") {
-    return "Transmute";
   }
   if (normalizedTemplateId === "associate") {
     return "Associate";
@@ -1076,26 +1067,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function getOperatorOutputLedgerForAnchor(participantOrId, operatorSummary = null, anchorInstanceIndex = null) {
-    const participant =
-      typeof participantOrId === "string" ? findParticipantById(participantOrId) : participantOrId;
-    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex) ?? 0;
     const baseLedger = hasLedger(operatorSummary?.outputLedger)
       ? operatorSummary.outputLedger
       : operatorSummary?.incomingLedger;
-    if (String(participant?.templateId ?? "").trim().toLowerCase() === "dissociate") {
-      if (normalizedAnchorInstanceIndex === 0) {
-        return {
-          electrino: 0,
-          positrino: Number(baseLedger?.positrino ?? 0),
-        };
-      }
-      if (normalizedAnchorInstanceIndex === 1) {
-        return {
-          electrino: Number(baseLedger?.electrino ?? 0),
-          positrino: 0,
-        };
-      }
-    }
     return {
       electrino: Number(baseLedger?.electrino ?? 0),
       positrino: Number(baseLedger?.positrino ?? 0),
@@ -1188,13 +1162,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const outputLedgerByAnchorInstance = {
         0: getOperatorOutputLedgerForAnchor(participant, { incomingLedger, outputLedger }, 0),
       };
-      if (String(participant?.templateId ?? "").trim().toLowerCase() === "dissociate") {
-        outputLedgerByAnchorInstance[1] = getOperatorOutputLedgerForAnchor(
-          participant,
-          { incomingLedger, outputLedger },
-          1
-        );
-      }
       const routedOutgoingLedgerByAnchorInstance = {};
       const routedOutgoingLedger = outgoingMappings.reduce((ledger, mapping) => {
         const sourceAnchorInstanceIndex =
@@ -1946,16 +1913,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function addOperatorParticipant(templateId = "transmute", operatorLaneIndex = 1) {
-    const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "transmute";
+  function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+    const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "associate";
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
     const participant = createParticipantRecord({
       side: "operator",
       templateId: normalizedTemplateId,
-      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Transmute"),
+      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate"),
       hierarchy: buildFallbackHierarchyForTemplate(
         normalizedTemplateId,
-        getDefaultParticipantBaseLabel(normalizedTemplateId, "Transmute")
+        getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate")
       ),
       extraFields: {
         operatorLaneIndex: resolvedLaneIndex,
@@ -2203,7 +2170,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate or transmute, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2807,7 +2774,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate or transmute, and the right + for products.";
+        "Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {

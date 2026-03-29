@@ -24,3 +24,17 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 - Add definitions, governing equations, closure targets, and falsification gates to empty or thin chapters.
 - Recover useful material from WordPress or old presentations only where it saves real time.
 - Deepen the current drafted philosophy/history chapters in ranked order.
+
+## Related Action Items
+
+- [breather-proof](../breather-proof/breather-proof.md)
+- [mass-map](../mass-map/mass-map.md)
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+
+## Related AAA Notes
+
+- [textbook-file-structure](../../content/markdown/aaa/archie/textbook-file-structure.md)
+- [academic-style-guide](../../content/markdown/aaa/archie/academic-style-guide.md)
+- [mathematics-style-guide](../../content/markdown/aaa/archie/mathematics-style-guide.md)
+- [mathematics-terminology](../../content/markdown/aaa/archie/mathematics-terminology.md)

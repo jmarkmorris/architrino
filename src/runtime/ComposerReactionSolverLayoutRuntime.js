@@ -33,13 +33,13 @@ export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
   Object.freeze({
     side: "operator",
     operatorLaneIndex: 0,
-    start: 5,
+    start: 4,
     span: 4,
   }),
   Object.freeze({
     side: "operator",
     operatorLaneIndex: 1,
-    start: 9,
+    start: 10,
     span: 4,
   }),
   Object.freeze({

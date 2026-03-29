@@ -256,7 +256,6 @@ trust machine verification
 
 At that point the social gatekeeping of journals becomes less important than **formal correctness certificates**.
 
-
 As for the math, this proof mainly sits in:
 
 dynamical systems
@@ -274,7 +273,6 @@ because the equations come from a delayed interaction law with singular kernels 
 
 nonlinear analysis
 because most of the work is sharp comparison inequalities, singular-term control, and nonlinear root geometry.
-
 
 Short answer: **yes, but difficulty varies sharply across those areas**. The decisive factor is not the field name but **how much of the required machinery already exists in Lean’s libraries**. Where the library is mature, an LLM can often translate a proof. Where the infrastructure is missing, most of the work becomes building the formal framework first.
 
@@ -468,3 +466,15 @@ Once that framework exists, the rest becomes much more tractable for formal veri
 ---
 
 If you're interested, there is another emerging development that matters for work like yours: **AI-driven proof search directly inside Lean**. That approach lets the system discover proof steps rather than merely translating them. It is beginning to change how new mathematics might be explored and verified.
+
+## Related Action Items
+
+- [breather-proof](../breather-proof/breather-proof.md)
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+
+## Related AAA Notes
+
+- [master-equation-breather](../../content/markdown/aaa/dynamics/master-equation-breather.md)
+- [master-equation](../../content/markdown/aaa/dynamics/master-equation.md)
+- [failure-criteria](../../content/markdown/aaa/validation/failure-criteria.md)

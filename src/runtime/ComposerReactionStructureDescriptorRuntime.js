@@ -17,7 +17,7 @@ export const REACTION_STRUCTURE_RENDER_MODES = Object.freeze({
   NOETHER_CORE_GRID: "noether-core-grid",
   HIGGS_CLUSTER_GRID: "higgs-cluster-grid",
   ASSEMBLY_CLUSTER_GRID: "assembly-cluster-grid",
-  TRANSMUTE_TILE: "transmute-tile",
+  OPERATOR_TILE: "operator-tile",
 });
 
 const REACTION_STRUCTURE_TRACK_SLOT_CODES = Object.freeze({
@@ -263,11 +263,7 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
     return buildCoreAssemblyDescriptorTree(structureRoot, "Photon");
   }
 
-  if (
-    normalizedSpecies === "transmute" ||
-    normalizedSpecies === "associate" ||
-    normalizedSpecies === "dissociate"
-  ) {
+  if (normalizedSpecies === "associate" || normalizedSpecies === "dissociate") {
     return [{
       id: String(structureRoot?.id ?? "root"),
       label:
@@ -275,12 +271,10 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
           structureRoot?.label ??
             (normalizedSpecies === "associate"
               ? "Associate"
-              : normalizedSpecies === "dissociate"
-                ? "Dissociate"
-                : "Transmute")
+              : "Dissociate")
         ).trim() ||
-        "Transmute",
-      renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
+        "Operator",
+      renderMode: REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE,
       children: [],
     }];
   }
@@ -364,7 +358,6 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
   if (
     structureRoot.kind === STRUCTURE_KINDS.COMPOSITE &&
     (
-      String(structureRoot?.species ?? "").trim() === "transmute" ||
       String(structureRoot?.species ?? "").trim() === "associate" ||
       String(structureRoot?.species ?? "").trim() === "dissociate"
     )
@@ -377,12 +370,10 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
           structureRoot?.label ??
             (normalizedSpecies === "associate"
               ? "Associate"
-              : normalizedSpecies === "dissociate"
-                ? "Dissociate"
-                : "Transmute")
+              : "Dissociate")
         ).trim() ||
-        "Transmute",
-      renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
+        "Operator",
+      renderMode: REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE,
       children: [],
     }];
   }

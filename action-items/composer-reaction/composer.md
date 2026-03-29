@@ -240,3 +240,17 @@ That means:
 - reaction solving belongs upstream;
 - observer framing and autoscale belong here;
 - and the handoff between them should be explicit JSON rather than ad hoc shared UI state.
+
+## Related Action Items
+
+- [composer-reaction](./composer-reaction.md)
+- [reaction](./reaction.md)
+- [pdg-solver](./pdg-solver.md)
+- [viewports](../viewports/viewports.md)
+- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+
+## Related AAA Notes
+
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)
+- [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)

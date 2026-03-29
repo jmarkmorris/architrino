@@ -218,7 +218,7 @@ test("composite and standalone track rows share the same inline track-body helpe
   );
 });
 
-test("dissociate operator uses a one-input two-output branch frame", () => {
+test("branch operators use single centered input and output attachments", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -246,11 +246,11 @@ test("dissociate operator uses a one-input two-output branch frame", () => {
   );
   assert.match(
     runtimeSource,
-    /"is-dissociate-output",[\s\S]*?"is-top",[\s\S]*?"is-positrino-output"/
+    /"is-dissociate-output"/
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
-    /"is-dissociate-output",[\s\S]*?"is-bottom",[\s\S]*?"is-electrino-output"/
+    /"is-dissociate-output",[\s\S]*?"is-top"|\"is-dissociate-output\",[\s\S]*?\"is-bottom"/
   );
   assert.match(
     styleSheet,
@@ -259,5 +259,13 @@ test("dissociate operator uses a one-input two-output branch frame", () => {
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*\(var\(--solver-anchor-size\)\s*\*\s*0\.5\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-associate-input,\s*[\s\S]*?top:\s*50%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-branch-anchor-frame\.is-dissociate\s*>\s*\.composer-reaction-solver-anchor\.is-dissociate-output,\s*[\s\S]*?top:\s*50%;/
   );
 });

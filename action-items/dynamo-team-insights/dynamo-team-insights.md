@@ -221,3 +221,17 @@ The mathematical challenge is to rigorously connect these scales:
 - **Micro → Meso**: stability analysis, attractor classification, topological protection
 - **Meso → Macro**: statistical mechanics, coarse-graining, continuum limits
 - **Macro feedback**: effective metric influences microdynamics via gravitational coupling
+
+## Related Action Items
+
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [mass-map](../mass-map/mass-map.md)
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [quantum-closure](../quantum-closure/quantum-closure.md)
+
+## Related AAA Notes
+
+- [ontology](../../content/markdown/aaa/foundations/ontology.md)
+- [emergence](../../content/markdown/aaa/foundations/emergence.md)
+- [master-equation](../../content/markdown/aaa/dynamics/master-equation.md)
+- [tri-binary-dynamics](../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)

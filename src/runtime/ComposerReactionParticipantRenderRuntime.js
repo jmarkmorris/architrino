@@ -141,7 +141,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
           "is-dissociate-input",
         ],
       });
-      const outputAnchorTop = createAnchorButton(participant, rootNode, rootNodeKey, {
+      const outputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
         anchorRole: "operator-output",
         anchorInstanceIndex: 0,
         extraClassNames: [
@@ -149,27 +149,13 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
           "is-output",
           "is-branch-right-attachment",
           "is-dissociate-output",
-          "is-top",
-          "is-positrino-output",
         ],
       });
-      const outputAnchorBottom = createAnchorButton(participant, rootNode, rootNodeKey, {
-        anchorRole: "operator-output",
-        anchorInstanceIndex: 1,
-        extraClassNames: [
-          "composer-reaction-solver-operator-anchor",
-          "is-output",
-          "is-branch-right-attachment",
-          "is-dissociate-output",
-          "is-bottom",
-          "is-electrino-output",
-        ],
-      });
-      frame.append(inputAnchor, outputAnchorTop, outputAnchorBottom);
+      frame.append(inputAnchor, outputAnchor);
       return frame;
     }
 
-    const inputAnchorTop = createAnchorButton(participant, rootNode, rootNodeKey, {
+    const inputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
       anchorRole: "operator-input",
       anchorInstanceIndex: 0,
       extraClassNames: [
@@ -177,18 +163,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         "is-input",
         "is-branch-left-attachment",
         "is-associate-input",
-        "is-top",
-      ],
-    });
-    const inputAnchorBottom = createAnchorButton(participant, rootNode, rootNodeKey, {
-      anchorRole: "operator-input",
-      anchorInstanceIndex: 1,
-      extraClassNames: [
-        "composer-reaction-solver-operator-anchor",
-        "is-input",
-        "is-branch-left-attachment",
-        "is-associate-input",
-        "is-bottom",
       ],
     });
     const outputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
@@ -202,7 +176,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       ],
     });
 
-    frame.append(inputAnchorTop, inputAnchorBottom, outputAnchor);
+    frame.append(inputAnchor, outputAnchor);
     return frame;
   }
 

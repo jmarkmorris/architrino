@@ -65,3 +65,19 @@ The immediate goal is not to make the PDG solver visually rich first. The immedi
 - define the reaction flow JSON contract;
 - use that contract as the bridge from PDG ingest into reaction solving;
 - and use the same contract again as the bridge from solved reactions into composer animation.
+
+## Related Action Items
+
+- [composer](./composer.md)
+- [reaction](./reaction.md)
+- [pdg-solver](./pdg-solver.md)
+- [viewports](../viewports/viewports.md)
+- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+
+## Related AAA Notes
+
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)
+- [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)
+- [pdg-api](../../content/markdown/aaa/reactions/pdg-api.md)
+- [reaction-ledger](../../content/markdown/aaa/validation/reaction-ledger.md)
