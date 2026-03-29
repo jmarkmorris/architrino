@@ -1913,6 +1913,11 @@ body {
   margin-left: var(--solver-slot-header-offset, 0px);
 }
 
+.composer-reaction-solver-side-slot-header.is-center {
+  justify-self: center;
+  margin-left: var(--solver-slot-header-offset, 0px);
+}
+
 .composer-reaction-solver-side-slot-header-slot {
   display: block;
   width: 100%;

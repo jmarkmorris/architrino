@@ -1,5 +1,8 @@
 import { getBinaryPersonalityChoice } from "./ComposerReactionBinarySelectionRuntime.js";
-import { getReactionParticipantTrackHeaderInsetCss } from "./ComposerReactionSolverLayoutRuntime.js";
+import {
+  getReactionParticipantTrackHeaderInsetCss,
+  getReactionParticipantTrackStartOffsetPx,
+} from "./ComposerReactionSolverLayoutRuntime.js";
 import {
   getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
@@ -19,8 +22,21 @@ function getParticipantTrackHeaderOffset(participant = null) {
   return getReactionParticipantTrackHeaderInsetCss(rootNode.renderMode);
 }
 
+function getParticipantTrackCenterOffset(participant = null) {
+  const rootNode = Array.isArray(participant?.hierarchy) ? participant.hierarchy[0] : null;
+  if (!rootNode) {
+    return "0px";
+  }
+  return `${getReactionParticipantTrackStartOffsetPx(rootNode.renderMode) / 2}px`;
+}
+
 export function getReactionSideSlotHeaderProfile(participants = [], side = "reactant") {
-  const normalizedSide = side === "product" ? "product" : "reactant";
+  const normalizedSide =
+    side === "product"
+      ? "product"
+      : side === "center"
+        ? "center"
+        : "reactant";
   const inlineParticipants = (Array.isArray(participants) ? participants : []).filter((participant) =>
     isReactionStructureInlineAnchorRenderMode(participant?.hierarchy?.[0]?.renderMode ?? "")
   );
@@ -33,7 +49,10 @@ export function getReactionSideSlotHeaderProfile(participants = [], side = "reac
   return {
     side: normalizedSide,
     slotCodes: getRenderedSlotCodesForSide(normalizedSide),
-    offset: getParticipantTrackHeaderOffset(referenceParticipant),
+    offset:
+      normalizedSide === "center"
+        ? getParticipantTrackCenterOffset(referenceParticipant)
+        : getParticipantTrackHeaderOffset(referenceParticipant),
   };
 }
 

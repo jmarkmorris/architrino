@@ -49,6 +49,10 @@ test("side slot header profile derives offset from participant structure", () =>
     side: "reactant",
     hierarchy: [{ renderMode: "binary-selector-grid" }],
   }];
+  const centerParticipants = [{
+    side: "reactant",
+    hierarchy: [{ renderMode: "binary-selector-grid" }],
+  }];
   assert.deepEqual(getReactionSideSlotHeaderProfile([], "reactant").slotCodes, ["I", "M", "O"]);
   assert.equal(
     getReactionSideSlotHeaderProfile(compositeParticipants, "reactant").offset,
@@ -57,6 +61,10 @@ test("side slot header profile derives offset from participant structure", () =>
   assert.equal(
     getReactionSideSlotHeaderProfile(simpleParticipants, "reactant").offset,
     "19px"
+  );
+  assert.equal(
+    getReactionSideSlotHeaderProfile(centerParticipants, "center").offset,
+    "39.5px"
   );
 });
 
@@ -81,6 +89,21 @@ test("center assembly lane uses the shared surface grid column and centered part
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-column\.is-center-assemblies\s*>\s*\.composer-reaction-solver-participant\s*\{[\s\S]*?justify-self:\s*center;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-side-slot-header\.is-center\s*\{[\s\S]*?justify-self:\s*center;[\s\S]*?margin-left:\s*var\(--solver-slot-header-offset,\s*0px\);/
+  );
+});
+
+test("center assembly lane reserves the same slot-header row as the side columns", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /if \(centerAssemblyParticipants\.length\) \{\s*centerAssembliesColumn\.appendChild\(\s*createSideSlotHeader\(centerAssemblyParticipants,\s*"center"\)\s*\);\s*\}/
   );
 });
 

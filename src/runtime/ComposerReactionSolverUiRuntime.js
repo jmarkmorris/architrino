@@ -3339,6 +3339,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
     });
+    if (centerAssemblyParticipants.length) {
+      centerAssembliesColumn.appendChild(
+        createSideSlotHeader(centerAssemblyParticipants, "center")
+      );
+    }
     centerAssemblyParticipants.forEach((participant) => {
       centerAssembliesColumn.appendChild(renderParticipantCard(participant));
     });
