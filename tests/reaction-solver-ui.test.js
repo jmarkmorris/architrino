@@ -11,20 +11,18 @@ test("reaction solver keeps two operator lanes available", () => {
   assert.equal(REACTION_OPERATOR_LANE_COUNT, 2);
 });
 
-test("reaction solver operator registry includes transmute and polar transforms", () => {
+test("reaction solver operator registry includes only the remaining solver operators", () => {
   assert.deepEqual(
     REACTION_OPERATOR_ENTRIES.map((entry) => entry.templateId),
     [
       "transmute",
-      "l_polar_transform",
-      "r_polar_transform",
       "associate",
       "dissociate",
     ]
   );
 });
 
-test("reaction solver operator lane layout uses a shared polar lane and a lane-3 operator picker", () => {
+test("reaction solver operator lane layout assigns dissociate to lane 2 and associate/transmute to lane 3", () => {
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
       laneIndex: entry.laneIndex,
@@ -32,13 +30,13 @@ test("reaction solver operator lane layout uses a shared polar lane and a lane-3
       enabled: entry.enabled,
     })),
     [
-      { laneIndex: 0, templateId: "polarity_transform", enabled: true },
+      { laneIndex: 0, templateId: "assembly", enabled: true },
       { laneIndex: 1, templateId: "operator", enabled: true },
     ]
   );
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT[0].pickerEntries.map((entry) => entry.templateId),
-    ["l_polar_transform", "r_polar_transform"]
+    ["dissociate"]
   );
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT[1].pickerEntries.map((entry) => entry.templateId),

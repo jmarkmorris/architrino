@@ -283,7 +283,7 @@ test("operator outputs can target operator inputs and stay red until conservativ
   const rules = createComposerReactionMappingRulesRuntime({
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger:
-        participantId === "polarity_plus"
+        participantId === "transmute_operator"
           ? { electrino: 0, positrino: 0 }
           : { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 0, positrino: 0 },
@@ -298,7 +298,7 @@ test("operator outputs can target operator inputs and stay red until conservativ
   });
 
   const availability = rules.evaluatePendingTargetAvailability({
-    pendingSourceKey: "polarity_plus::output",
+    pendingSourceKey: "transmute_operator::output",
     pendingSourceRole: "operator-output",
     role: "operator-input",
     targetContext,
@@ -311,8 +311,8 @@ test("operator outputs can target operator inputs and stay red until conservativ
 
 test("committed operator output to operator input can become valid once conservative", () => {
   const sourceContext = {
-    participant: { id: "polarity_plus", templateId: "l_polar_transform" },
-    node: { id: "polarity_plus::output" },
+    participant: { id: "transmute_operator", templateId: "transmute" },
+    node: { id: "transmute_operator::output" },
   };
   const targetContext = {
     participant: { id: "associate_operator", templateId: "associate" },
@@ -321,7 +321,7 @@ test("committed operator output to operator input can become valid once conserva
   const rules = createComposerReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "polarity_plus::output": sourceContext,
+        "transmute_operator::output": sourceContext,
         "associate_operator::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: (participantId = "") => ({
@@ -338,7 +338,7 @@ test("committed operator output to operator input can become valid once conserva
   });
 
   const validation = rules.getMappingValidation({
-    sourceKey: "polarity_plus::output",
+    sourceKey: "transmute_operator::output",
     targetKey: "associate_operator::root",
     sourceRole: "operator-output",
     targetRole: "operator-input",
@@ -420,4 +420,100 @@ test("associate input mapping returns to normal once two reactants are attached"
 
   assert.equal(validation.valid, true);
   assert.match(validation.reason, /reactant routed into operator/i);
+});
+
+test("dissociate input mapping stays red until exactly one reactant is attached", () => {
+  const sourceParticipant = createParticipant("noether_core", "pro");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = {
+    participant: { id: "dissociate_a", templateId: "dissociate" },
+    node: { id: "dissociate_a::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "noether_core_pro::root": sourceContext,
+        "dissociate_a::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: () => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: 0,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "noether_core_pro::root",
+    targetKey: "dissociate_a::root",
+    sourceRole: "reactant",
+    targetRole: "operator-input",
+  });
+
+  assert.equal(validation.valid, false);
+  assert.match(validation.reason, /exactly one reactant input/i);
+});
+
+test("dissociate output anchors validate against their own charge ledger", () => {
+  const targetContext = {
+    participant: { id: "associate_sink", templateId: "associate" },
+    node: { id: "associate_sink::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "dissociate_op::root": { participant: { id: "dissociate_op", templateId: "dissociate" }, node: { id: "dissociate_op::root" } },
+        "associate_sink::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: (participantId = "") => ({
+      incomingLedger: { electrino: 3, positrino: 3 },
+      outputLedger: { electrino: 3, positrino: 3 },
+      outputLedgerByAnchorInstance: {
+        0: { electrino: 0, positrino: 3 },
+        1: { electrino: 3, positrino: 0 },
+      },
+      routedOutgoingLedger: { electrino: 0, positrino: 0 },
+      routedOutgoingLedgerByAnchorInstance:
+        participantId === "dissociate_op"
+          ? {
+              0: { electrino: 0, positrino: 3 },
+              1: { electrino: 0, positrino: 1 },
+            }
+          : {},
+      incomingCount: participantId === "associate_sink" ? 2 : 1,
+      outgoingCount: 1,
+      isBalanced: participantId === "associate_sink",
+    }),
+    getOperatorOutputLedger: (_participantId = "", anchorInstanceIndex = null, operatorSummary = null) =>
+      operatorSummary?.outputLedgerByAnchorInstance?.[anchorInstanceIndex ?? 0] ?? operatorSummary?.outputLedger,
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const topValidation = rules.getMappingValidation({
+    sourceKey: "dissociate_op::root",
+    targetKey: "associate_sink::root",
+    sourceRole: "operator-output",
+    targetRole: "operator-input",
+    sourceAnchorInstanceIndex: 0,
+  });
+  const bottomValidation = rules.getMappingValidation({
+    sourceKey: "dissociate_op::root",
+    targetKey: "associate_sink::root",
+    sourceRole: "operator-output",
+    targetRole: "operator-input",
+    sourceAnchorInstanceIndex: 1,
+  });
+
+  assert.equal(topValidation.valid, true);
+  assert.match(topValidation.reason, /operator routed into operator/i);
+  assert.equal(bottomValidation.valid, false);
+  assert.match(bottomValidation.reason, /would exceed|incomplete/i);
 });

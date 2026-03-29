@@ -77,8 +77,6 @@ const solverTemplateMeta = Object.freeze({
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   transmute: { shortLabel: "T", accent: "#a259ff" },
-  l_polar_transform: { shortLabel: "LP", accent: "#52a7ff" },
-  r_polar_transform: { shortLabel: "RP", accent: "#ff7f66" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
@@ -90,8 +88,6 @@ const solverTemplateMeta = Object.freeze({
 
 export const REACTION_OPERATOR_ENTRIES = Object.freeze([
   { templateId: "transmute", label: "Transmute" },
-  { templateId: "l_polar_transform", label: "L Polar Transform" },
-  { templateId: "r_polar_transform", label: "R Polar Transform" },
   { templateId: "associate", label: "Associate" },
   { templateId: "dissociate", label: "Dissociate" },
 ]);
@@ -100,16 +96,12 @@ const operatorEntries = REACTION_OPERATOR_ENTRIES;
 export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
     laneIndex: 0,
-    templateId: "polarity_transform",
-    label: "Polarity Transform",
+    templateId: "assembly",
+    label: "Assembly",
     pickerEntries: Object.freeze([
       Object.freeze({
-        templateId: "l_polar_transform",
-        label: "Polarity Plus",
-      }),
-      Object.freeze({
-        templateId: "r_polar_transform",
-        label: "Polarity Minus",
+        templateId: "dissociate",
+        label: "Dissociate",
       }),
     ]),
     enabled: true,
@@ -455,12 +447,6 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "transmute") {
     return "Transmute";
   }
-  if (normalizedTemplateId === "l_polar_transform") {
-    return "L Polar Transform";
-  }
-  if (normalizedTemplateId === "r_polar_transform") {
-    return "R Polar Transform";
-  }
   if (normalizedTemplateId === "associate") {
     return "Associate";
   }
@@ -768,6 +754,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getNodeContext,
     getOperatorInputNodeContexts,
     getOperatorLedgerSummary,
+    getOperatorOutputLedger: (participantId, anchorInstanceIndex, operatorSummary) =>
+      getOperatorOutputLedgerForAnchor(participantId, operatorSummary, anchorInstanceIndex),
     parseNodeKey,
     resolveBinaryChoiceInventory,
   });
@@ -778,6 +766,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getNodeContext,
     getRecentMappingIds: () => state.recentMappingIds,
     getPendingSourceKey: () => state.pendingSourceKey,
+    getPendingSourceAnchorInstanceIndex: () => state.pendingSourceAnchorInstanceIndex,
     getPendingSourceRole: () => state.pendingSourceRole,
     isSingleMappingAnchorRole,
     onRecentStateChange: () => applyHoveredRouteState(),
@@ -1086,6 +1075,33 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return parts.join(" + ") || "empty ledger";
   }
 
+  function getOperatorOutputLedgerForAnchor(participantOrId, operatorSummary = null, anchorInstanceIndex = null) {
+    const participant =
+      typeof participantOrId === "string" ? findParticipantById(participantOrId) : participantOrId;
+    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex) ?? 0;
+    const baseLedger = hasLedger(operatorSummary?.outputLedger)
+      ? operatorSummary.outputLedger
+      : operatorSummary?.incomingLedger;
+    if (String(participant?.templateId ?? "").trim().toLowerCase() === "dissociate") {
+      if (normalizedAnchorInstanceIndex === 0) {
+        return {
+          electrino: 0,
+          positrino: Number(baseLedger?.positrino ?? 0),
+        };
+      }
+      if (normalizedAnchorInstanceIndex === 1) {
+        return {
+          electrino: Number(baseLedger?.electrino ?? 0),
+          positrino: 0,
+        };
+      }
+    }
+    return {
+      electrino: Number(baseLedger?.electrino ?? 0),
+      positrino: Number(baseLedger?.positrino ?? 0),
+    };
+  }
+
   function getNodeLedger(nodeKey) {
     const context = getNodeContext(nodeKey);
     return mappingRulesRuntime.getNodeLedgerFromContext(
@@ -1169,11 +1185,28 @@ export function createComposerReactionSolverUiRuntime(deps) {
         participant?.side === "operator" && hasLedger(incomingLedger)
           ? { ...incomingLedger }
           : createEmptyLedger();
+      const outputLedgerByAnchorInstance = {
+        0: getOperatorOutputLedgerForAnchor(participant, { incomingLedger, outputLedger }, 0),
+      };
+      if (String(participant?.templateId ?? "").trim().toLowerCase() === "dissociate") {
+        outputLedgerByAnchorInstance[1] = getOperatorOutputLedgerForAnchor(
+          participant,
+          { incomingLedger, outputLedger },
+          1
+        );
+      }
+      const routedOutgoingLedgerByAnchorInstance = {};
       const routedOutgoingLedger = outgoingMappings.reduce((ledger, mapping) => {
+        const sourceAnchorInstanceIndex =
+          normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ?? 0;
         const mappedLedger =
           mapping.targetRole === "operator-input"
-            ? outputLedger
+            ? (outputLedgerByAnchorInstance[sourceAnchorInstanceIndex] ?? outputLedger)
             : getNodeLedger(mapping.targetKey);
+        routedOutgoingLedgerByAnchorInstance[sourceAnchorInstanceIndex] = addLedgers(
+          routedOutgoingLedgerByAnchorInstance[sourceAnchorInstanceIndex] ?? createEmptyLedger(),
+          mappedLedger
+        );
         return addLedgers(ledger, mappedLedger);
       }, createEmptyLedger());
       const isInvalid =
@@ -1186,8 +1219,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       const summary = {
         incomingLedger,
         outputLedger,
+        outputLedgerByAnchorInstance,
         outgoingLedger: routedOutgoingLedger,
         routedOutgoingLedger,
+        routedOutgoingLedgerByAnchorInstance,
         undischargedLedger: subtractLedgers(outputLedger, routedOutgoingLedger),
         incomingCount: incomingMappings.length,
         outgoingCount: outgoingMappings.length,
@@ -2168,7 +2203,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for polarity operators, lane 3 + for associate or transmute, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate or transmute, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2772,7 +2807,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, lane 2 + for polarity operators, lane 3 + for associate or transmute, and the right + for products.";
+        "Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate or transmute, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {

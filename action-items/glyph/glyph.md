@@ -427,7 +427,7 @@ At present:
 - the whole-quark color story is still under active theoretical revision;
 - and the current SVG prototype should therefore stop short of claiming a settled quark-color encoding.
 
-The reason is structural. The open 3x3x3 bookkeeping problem in [3x3.md](../3x3/overview.md) has not yet been reconciled cleanly with the canonical axis-based quark-color picture in [quarks.md](../../content/markdown/aaa/assemblies/fermions/quarks.md). Until that bridge is explicit, a quark-color picker would look more final than the theory currently warrants.
+The reason is structural. The open 3x3x3 bookkeeping problem in [3x3.md](../3x3/3x3.md) has not yet been reconciled cleanly with the canonical axis-based quark-color picture in [quarks.md](../../content/markdown/aaa/assemblies/fermions/quarks.md). Until that bridge is explicit, a quark-color picker would look more final than the theory currently warrants.
 
 So this note should treat:
 

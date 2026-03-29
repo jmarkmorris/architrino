@@ -2170,25 +2170,6 @@ body {
     0 0 18px color-mix(in srgb, #ff6b6b 18%, transparent);
 }
 
-.composer-reaction-solver-polar-transform-track {
-  display: grid;
-  grid-template-columns: repeat(4, var(--binary-choice-size, 72px));
-  gap: var(--solver-tile-gap);
-  align-items: center;
-  justify-items: center;
-  width: fit-content;
-  cursor: grab;
-}
-
-.composer-reaction-solver-participant.is-operator.is-dragging .composer-reaction-solver-polar-transform-track {
-  cursor: grabbing;
-}
-
-.composer-reaction-solver-polar-transform-title-tile .composer-reaction-solver-particle-label {
-  font-size: 11px;
-  line-height: 1.05;
-}
-
 .composer-reaction-solver-participant.is-operator.is-associate-operator,
 .composer-reaction-solver-participant.is-operator.is-dissociate-operator {
   overflow: visible;
@@ -2199,39 +2180,78 @@ body {
   justify-items: center;
 }
 
+.composer-reaction-solver-participant.is-operator.is-dissociate-operator {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.composer-reaction-solver-branch-anchor-frame,
 .composer-reaction-solver-associate-anchor-frame {
   position: relative;
   justify-self: center;
+  display: grid;
+  grid-template-columns:
+    var(--solver-anchor-size)
+    var(--binary-choice-size, 72px)
+    var(--solver-anchor-size);
+  align-items: center;
+  width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
+  min-width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
+}
+
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-operator-tile,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-operator-tile {
+  grid-column: 2;
   width: var(--binary-choice-size, 72px);
   min-width: var(--binary-choice-size, 72px);
 }
 
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-operator-tile {
-  width: 100%;
-  min-width: 100%;
-}
-
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.composer-reaction-solver-operator-anchor,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.composer-reaction-solver-operator-anchor {
   position: absolute;
   z-index: 2;
 }
 
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment {
+  left: calc(var(--solver-anchor-size) * 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment {
+  left: calc(100% - (var(--solver-anchor-size) * 0.5));
+  transform: translate(-50%, -50%);
+}
+
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-top,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-top {
-  left: 0;
   top: calc(50% - (var(--solver-anchor-size) * 0.52));
-  transform: translate(-50%, -50%);
 }
 
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-bottom,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-bottom {
-  left: 0;
   top: calc(50% + (var(--solver-anchor-size) * 0.52));
-  transform: translate(-50%, -50%);
 }
 
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-output,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-output {
-  left: 100%;
   top: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-input,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-input {
+  top: 50%;
+}
+
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-top,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-top {
+  top: calc(50% - (var(--solver-anchor-size) * 0.52));
+}
+
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-bottom,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output.is-bottom {
+  top: calc(50% + (var(--solver-anchor-size) * 0.52));
 }
 
 .composer-reaction-solver-operator-fan {

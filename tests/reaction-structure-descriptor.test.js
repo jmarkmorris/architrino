@@ -78,14 +78,14 @@ test("transmute descriptor tree produces a single transmute tile", () => {
   assert.equal(root.children.length, 0);
 });
 
-test("polar transform descriptor tree produces a single transform tile", () => {
+test("dissociate descriptor tree produces a single operator tile", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("l_polar_transform", "pro", "L Polar Transform")
+    createStructure("dissociate", "pro", "Dissociate")
   );
   const [root] = descriptorTree;
 
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
-  assert.equal(root.label, "L Polar Transform");
+  assert.equal(root.label, "Dissociate");
   assert.equal(root.children.length, 0);
 });
 

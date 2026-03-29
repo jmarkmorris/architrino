@@ -265,8 +265,6 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
 
   if (
     normalizedSpecies === "transmute" ||
-    normalizedSpecies === "l_polar_transform" ||
-    normalizedSpecies === "r_polar_transform" ||
     normalizedSpecies === "associate" ||
     normalizedSpecies === "dissociate"
   ) {
@@ -275,16 +273,11 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
       label:
         String(
           structureRoot?.label ??
-            (normalizedSpecies === "l_polar_transform"
-              ? "L Polar Transform"
-              : normalizedSpecies === "r_polar_transform"
-                ? "R Polar Transform"
-                :
             (normalizedSpecies === "associate"
               ? "Associate"
               : normalizedSpecies === "dissociate"
                 ? "Dissociate"
-                : "Transmute"))
+                : "Transmute")
         ).trim() ||
         "Transmute",
       renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,
@@ -372,8 +365,6 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     structureRoot.kind === STRUCTURE_KINDS.COMPOSITE &&
     (
       String(structureRoot?.species ?? "").trim() === "transmute" ||
-      String(structureRoot?.species ?? "").trim() === "l_polar_transform" ||
-      String(structureRoot?.species ?? "").trim() === "r_polar_transform" ||
       String(structureRoot?.species ?? "").trim() === "associate" ||
       String(structureRoot?.species ?? "").trim() === "dissociate"
     )
@@ -384,16 +375,11 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
       label:
         String(
           structureRoot?.label ??
-            (normalizedSpecies === "l_polar_transform"
-              ? "L Polar Transform"
-              : normalizedSpecies === "r_polar_transform"
-                ? "R Polar Transform"
-                :
             (normalizedSpecies === "associate"
               ? "Associate"
               : normalizedSpecies === "dissociate"
                 ? "Dissociate"
-                : "Transmute"))
+                : "Transmute")
         ).trim() ||
         "Transmute",
       renderMode: REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE,

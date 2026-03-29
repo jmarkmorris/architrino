@@ -336,24 +336,17 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     });
   } else if (
     normalizedTemplateId === "transmute" ||
-    normalizedTemplateId === "l_polar_transform" ||
-    normalizedTemplateId === "r_polar_transform" ||
     normalizedTemplateId === "associate" ||
     normalizedTemplateId === "dissociate"
   ) {
     root = createOperatorNode(structureId, normalizedTemplateId, {
       label:
         label ||
-        (normalizedTemplateId === "l_polar_transform"
-          ? "L Polar Transform"
-          : normalizedTemplateId === "r_polar_transform"
-            ? "R Polar Transform"
-            :
         (normalizedTemplateId === "associate"
           ? "Associate"
           : normalizedTemplateId === "dissociate"
             ? "Dissociate"
-            : "Transmute")),
+            : "Transmute"),
     });
   } else if (normalizedTemplateId === "fermion_gen1") {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {

@@ -217,3 +217,47 @@ test("composite and standalone track rows share the same inline track-body helpe
     /createInlineTrackBody\(participant,\s*rowNode,\s*rowNodeKey,\s*track,\s*\{[\s\S]*?composer-reaction-solver-composite-row-track-body/
   );
 });
+
+test("dissociate operator uses a one-input two-output branch frame", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /participant\.templateId === "associate" \|\| participant\.templateId === "dissociate"/
+  );
+  assert.match(
+    runtimeSource,
+    /composer-reaction-solver-branch-anchor-frame/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-branch-left-attachment"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-branch-right-attachment"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-dissociate-input"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-dissociate-output",[\s\S]*?"is-top",[\s\S]*?"is-positrino-output"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-dissociate-output",[\s\S]*?"is-bottom",[\s\S]*?"is-electrino-output"/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*calc\(var\(--solver-anchor-size\)\s*\*\s*0\.5\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*\(var\(--solver-anchor-size\)\s*\*\s*0\.5\)\);/
+  );
+});

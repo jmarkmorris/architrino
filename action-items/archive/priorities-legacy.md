@@ -305,7 +305,7 @@ Scoring system:
   - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
   - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 - Immediate next move:
-  1. Use [dyadic-resonance-lock.md](../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](../phenomenological-heuristics/overview.md) as the scratch/archive notebook.
+  1. Use [dyadic-resonance-lock.md](../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics.md](../phenomenological-heuristics/phenomenological-heuristics.md) as the scratch/archive notebook.
   2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
   3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
   4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
