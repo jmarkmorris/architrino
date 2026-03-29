@@ -6,6 +6,8 @@
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
+It is the catalog companion to [Theory Mapping](theory-mapping.md), [Crisis in Physics](crisis-in-physics.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), [Parameter Ledger](../validation/parameter-ledger.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
