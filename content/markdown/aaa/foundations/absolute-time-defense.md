@@ -1,8 +1,8 @@
 # Absolute Time Defense
 
-This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact global time variable used by the master equation from the derived clock time experienced by physical assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
+This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact global time variable used by the [master equation](../dynamics/master-equation.md) from the derived clock time experienced by physical assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
 
-The opening establishes the core absolute-time claims. The later sections then connect those claims to universe-state description, proper time, and the deterministic flow of the full microstate.
+The opening establishes the core absolute-time claims. The later sections then connect those claims to universe-state description, proper time, and the deterministic flow of the full microstate. It is the argumentative companion to [Foundational Ontology](./ontology.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ## The Case for Absolute Time ($t$)
 

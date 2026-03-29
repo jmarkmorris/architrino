@@ -1,6 +1,6 @@
 # Dark Matter in the Architrino Assembly Architecture
 
-This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside the architrino ontology. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same Euclidean-void and Noether-Sea framework as the rest of the theory.
+This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside the architrino ontology. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same [Euclidean-void](../foundations/euclidean-void.md) and [Noether-Sea](../spacetime/spacetime-assemblies.md) framework as the rest of the theory.
 
 The opening establishes the ontology and the criteria for what counts as dark in this setting. The later sections compare candidate substrates, summarize the current hybrid working baseline, and connect the picture to cosmological growth and observational interfaces.
 
@@ -143,7 +143,7 @@ $$
 \Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25.
 $$
 
-Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the CMB power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
+Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](./CMB.md) power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
 
 ### Post-Decoupling Growth
 
@@ -175,7 +175,7 @@ In the modular cosmology architecture, this chapter connects to other modules th
 - **Input from [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
 - **Input from [BBN-constraints.md](./BBN-constraints.md):** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
-All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules.
+All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules. The cosmology-level framing for those shared interfaces lives in [Cosmology Ontology](./cosmology-ontology.md).
 
 ## Summary
 

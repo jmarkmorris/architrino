@@ -1,14 +1,15 @@
 # Gluons and the Strong Force: Geometric Origins
 
 **Scope:** Definition of color charge, gluon structure, and confinement.
+This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../../dynamics/gauge-symmetries.md).
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet.
+In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
 
 ### The Tri-Binary Substrate
 
-The Euclidean void is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
+The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
 
 A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
@@ -104,7 +105,7 @@ Quarks are confined because an open color corridor stores energy in the surround
 
 ### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each.
+A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Transient Hadrons: Mesons and Δ Resonances](../mesons/mesons.md).
 
 1. Red: H-exceptional
 2. Green: M-exceptional

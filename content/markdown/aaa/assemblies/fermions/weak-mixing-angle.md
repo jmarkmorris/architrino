@@ -1,6 +1,6 @@
 # Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit.
+This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Emergence of U(1)/SU(2)](../../dynamics/gauge-structure-emergence.md).
 
 ## Purpose
 
@@ -30,7 +30,7 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The Noether core is the neutral tri-binary scaffold. It defines:
+The [Noether core](../noether-core.md) is the neutral tri-binary scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -49,7 +49,7 @@ $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
 $$
 
-For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide.
+For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
 
 The geometric object of interest is therefore the relative rotation
 $$
@@ -64,7 +64,7 @@ This note proposes that physically stable fermion assemblies use only a restrict
 
 ## Electron Limit: Zero Misalignment
 
-The electron provides the clean reference case.
+The [electron](./electron.md) provides the clean reference case.
 
 In the Generation-I electron, the axial layer is $6E$. At coarse-grained level:
 
@@ -110,7 +110,7 @@ $$
 $$
 in the core basis, so the axial frame rotates to a nearby but distinct orientation.
 
-The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**.
+The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](./weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
 ---
 
