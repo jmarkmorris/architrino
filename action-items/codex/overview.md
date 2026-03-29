@@ -3,10 +3,9 @@
 
 - In the next repo-process follow-up branch/PR, update `repo.md` guidance so the standard PR flow goes beyond draft creation and explicitly marks the PR `ready for review` when the work is genuinely reviewable.
 
-## api vs. plan usage instructions.
+## API vs. plan usage instructions.
 
 The Codex CLI does **not** expose a clean “mode switch”. Let’s strip this down to what actually works in practice.
-I do not know how the codex app works. I think it uses my plan.
 
 There are **only two real selectors**:
 
@@ -77,6 +76,6 @@ Now:
 
 * No API key
 * Using subscription
-* 5.3 access works
+
 
 ---

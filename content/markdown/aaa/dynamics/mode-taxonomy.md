@@ -2,6 +2,8 @@
 
 This chapter defines the controlled vocabulary for reaction-level assembly transitions. It is the canonical terminology source for `reactions/*.md`.
 
+For concrete channel applications of this vocabulary, see [Bremsstrahlung](../reactions/bremsstrahlung.md), [Synchrotron](../reactions/synchrotron.md), [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Electron](../assemblies/fermions/electron.md), and [Neutrinos](../assemblies/fermions/neutrinos.md).
+
 ## Scope
 
 The goal is consistency, not new phenomenology. Standard observer-level reaction equations remain unchanged unless a chapter explicitly derives a deviation.
@@ -240,3 +242,10 @@ Each reaction chapter should include three short blocks:
   - explicit frame/timing conventions.
 
 If these are not maintained, standard QED/SM transport language is authoritative for that regime.
+
+## Related Chapters
+
+- [Gauge Structure Emergence](gauge-structure-emergence.md)
+- [Effective Lagrangian](effective-lagrangian.md)
+- [Bremsstrahlung](../reactions/bremsstrahlung.md)
+- [Synchrotron](../reactions/synchrotron.md)

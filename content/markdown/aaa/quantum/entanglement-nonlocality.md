@@ -2,6 +2,8 @@
 
 This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers.
 
+It forms a tight cluster with [Bell Theorem](bell-theorem.md), [Measurement Ontology](measurement-ontology.md), [Wavefunction Ontology](wavefunction-ontology.md), [Superposition Mechanism](superposition-mechanism.md), and [Pilot-Wave Character](pilot-wave-character.md).
+
 ---
 
 ## Traditional Quantum Mechanical View
@@ -208,3 +210,5 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - Simulate a minimal correlated-pair creation event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
 - Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like creation event from the conservation constraints and verify that it reproduces $P(a, b | \hat{m}_A, \hat{m}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
+
+The philosophy-facing framing of this problem lives in [Crisis in Physics](../philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.

@@ -8,7 +8,7 @@ The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals that what we pe
 
 1. **Occupancy Density**: Define $\rho_{nc}$ as the number of Noether cores per unit volume of Euclidean void.
 2. **Noether-Sea Composition**: The Noether Sea consists of Helium-like couplings (2 pro tri-binaries + 2 anti tri-binaries).
-3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of the Noether Sea. An $\mathbb{U}_{\text{now}}$ sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the local Noether-Sea density. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
+3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of the Noether Sea. An $\mathbb{U}_{\text{now}}$ sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the local Noether-Sea density. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box, as developed further in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 
 ### Void vs. Noether Sea / Medium

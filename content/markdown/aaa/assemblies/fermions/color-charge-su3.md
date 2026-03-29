@@ -1,6 +1,6 @@
 # Color Charge and SU(3)
 
-This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and tri-binary scaffold geometry are meant to fit together before the full topological confinement derivation is closed.
+This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and tri-binary scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
 ---
 
@@ -8,7 +8,7 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ### Tri‑binary scaffold (the “Noether core”)
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem.
+Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Nested Binaries and the Noether Core](../noether-core.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -133,7 +133,7 @@ and permutations. Charge check:
 
 These patterns differ by **axis‑level axial contrast** and thus by internal energy/coupling; they are natural candidates for **neutrino mass eigenstates**. All remain colorless because H, M, and L are either identical or do not participate in the quark‑like axis‑exceptionality mechanism.
 
-Working picture (to be detailed in the neutrino section):
+Working picture (to be detailed in the [neutrino section](./neutrinos.md)):
 
 - Different allowed neutral patterns → distinct Noether‑core configurations.  
 - Neutrino oscillation arises from **slow precession / wobble** that cycles which internal neutral pattern is “aligned” with the weak‑interaction channel, without ever introducing axis‑exceptionality.

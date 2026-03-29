@@ -15,7 +15,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of Noether cores connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../noether-core.md) connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
@@ -25,7 +25,7 @@ The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic resp
 
 **Confinement as topological shear (nonlinear elasticity lens)**
 * **Topological definition:** A lone color charge is a monopole defect in the Noether lattice, inducing a shear field that diverges if unscreened. Mesons (dipoles) and baryons (tripoles) are closed configurations where the shear of each core is canceled by the geometry of the others. The “flux tube” is the locus of maximal lattice shear connecting these cores—a line defect, not a separate object.
-* **Color exchange as shear waves:** Gluons are the propagated redistributions of this shear along the defect; the lens preserves SU(3) bookkeeping while framing it as lattice response.
+* **Color exchange as shear waves:** [Gluons](../bosons/gluons.md) are the propagated redistributions of this shear along the defect; the lens preserves SU(3) bookkeeping while framing it as lattice response.
 
 ---
 
@@ -60,7 +60,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 Kaons are the lightest mesons containing a **strange quark** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **Generation II core** (Bi-binary, $s$).
+A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **Generation II core** (Bi-binary, $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../fermions/weak-mixing-ckm.md).
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
 *   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\text{$\mathbb{A}\mathbb{A}\mathbb{A}$}}$):** The Gen I core presents a tri-binary boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen II core presents a bi-binary boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. The induced torsion breaks reflection symmetry along the tube: unlike the pion (net $\int \tau\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\text{$\mathbb{A}\mathbb{A}\mathbb{A}$}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
@@ -99,7 +99,7 @@ If the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or 
 These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which necessitated the introduction of the **Color** quantum number to satisfy Pauli Exclusion. They are Spin-3/2.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2).
+A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md).
 
 *   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), they must occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is the geometric definition of the RGB color singlet state.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.

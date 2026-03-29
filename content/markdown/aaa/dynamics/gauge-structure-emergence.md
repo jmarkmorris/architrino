@@ -7,7 +7,7 @@ This chapter is a working emergence map from Noether-Sea substrate language to o
 In standard QFT, the vacuum is a complex state of harmonic oscillators with zero point energy. In the Architrino Assembly Architecture, we reject this abstraction in favor of a physical definition.
 
 **Definition: The Noether Sea**
-The Noether Sea is not empty space. It is a Euclidean void filled with a dense, permeating medium of coupled, neutral tri-binary assemblies (spacetime assemblies).
+The Noether Sea is not empty space. It is a [Euclidean void](../foundations/euclidean-void.md) filled with a dense, permeating medium of coupled, neutral tri-binary assemblies ([spacetime assemblies](../spacetime/spacetime-assemblies.md)).
 *   **Occupancy:** Non-zero occupancy of pro/anti binaries.
 *   **Net Properties:** Global charge $\sum q = 0$, global spin $\sum S = 0$.
 *   **Substrate:** This medium defines the local permeability $\mu_0$ and permittivity $\epsilon_0$ of space. These are not fundamental constants but derived measures of the medium's "stiffness" (resistance to polarization) and "density."
@@ -44,7 +44,7 @@ The oft lamented"God Particle" narrative is replaced by a hydrodynamic analog.
 *   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
 *   **Mass as Drag:** A fermion (ellipsoidal assembly) moving through the Noether Sea couples to it.
     *   Massless particles (photons) propagate *as* vibrations of the sea (phonons).
-    *   Massive particles (electrons) physically disrupt the local order, experiencing an inertial "drag." This drag coefficient is what we call "mass."
+    *   Massive particles (electrons) physically disrupt the local order, experiencing an inertial "drag." This drag coefficient is what we call "mass"; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
 
 ## Resolving the Unruh Ambiguity
 
@@ -136,6 +136,8 @@ $$
 +O(R_L^4),
 $$
 where $R_L$ is the outer-binary scale.
+
+For the formal closure layer beneath this working map, see [Gauge Symmetries](./gauge-symmetries.md) and [Effective Lagrangian](./effective-lagrangian.md).
 
 ### Parameter Dictionary (Substrate -> Electroweak)
 

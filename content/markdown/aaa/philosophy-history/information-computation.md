@@ -6,11 +6,15 @@
 
 This document maps the information-theoretic and computational concepts that shape modern attempts to interpret physics, ontology, and explanation.
 
+It complements [Philosophy of Science](philosophy-of-science.md), [Crisis in Physics](crisis-in-physics.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md), and [Theory Mapping](theory-mapping.md).
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether information and computation are fundamental or whether they are derived descriptions of physical organization and update structure.
 
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
 The current architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
+
+At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
 This layer needs one standard coverage template so subjects are treated systematically rather than as slogans.
 

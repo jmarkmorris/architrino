@@ -2,6 +2,8 @@
 
 This document studies resonance lock for the nested Outer, Middle, and Inner binaries. The goal is to identify the relationship between frequency, tangential speed, and radius under a regime where the middle binary is pinned at the field speed and the three rings form an exact integer phase-locked cycle.
 
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](mapping-Planck-scale.md), and [Noether Core](../assemblies/noether-core.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
+
 We work with branch labels $k\in\{O,M,I\}$.
 
 ## Status and Assumptions
@@ -231,3 +233,5 @@ $$
 $$
 
 That identity may help characterize a radiative-stealth phase arrangement of an already-formed lock, but it should not be confused with the frequency-selection assumptions above.
+
+For neighboring closure problems, see [Planar Bridge Closure](planar-bridge-closure.md) and [Horizon Chirality](horizon-chirality.md).

@@ -6,6 +6,8 @@
 
 **Purpose:** Survey how major religious traditions conceptualize foundational ontology, cosmic origin, temporal structure, and end-state claims, providing disciplined comparison context for scientific cosmologies and for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+This comparative map pairs naturally with [Cosmology Ontology](../cosmology/cosmology-ontology.md), [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md), and [Philosophy of Science](philosophy-of-science.md).
+
 **Scope:** Judaism, Christianity, Islam, Hinduism, Buddhism, and Daoism, organized by civilizational family and then by tradition-level treatment.
 
 **Disclaimer:** This chapter is a comparative map rather than an exhaustive theological history. Each tradition contains multiple schools, internal debates, and historical shifts. Terms such as creator, substance, origin, and end-state are cross-tradition approximations and should be read as analytical labels rather than exact doctrinal equivalents.

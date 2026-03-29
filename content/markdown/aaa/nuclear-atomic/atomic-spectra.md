@@ -2,6 +2,8 @@
 
 This chapter records the working $\mathbb{A}\mathbb{A}\mathbb{A}$ picture of atomic spectra as resonance structure in the Noether Sea rather than as a purely abstract orbital postulate. The immediate goal is to identify which spectral constants and redshift effects should be read as medium-sensitive resonance data.
 
+It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](../assemblies/fermions/electron.md), [Condensed Matter](condensed-matter.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), since the spectral shifts proposed here depend on both local assembly structure and the effective clock/rate layer.
+
 The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation.
 
 ## Atomic Orbitals as Lattice Resonances
@@ -15,3 +17,5 @@ The note is still exploratory, so the opening should be read as a compact progra
 
 * **Rydberg Constant:** Likely a function of the Noether-Sea density $\rho_{nc}$.
 * **Redshift:** Check if gravitational redshift can be derived as a shift in atomic spectra due to higher Noether-Sea density near massive bodies (lattice-shift).
+
+For the medium-level gravitational side of that program, see [Emergent Metric](../spacetime/emergent-metric.md) and [Black Holes](../spacetime/black-holes.md).

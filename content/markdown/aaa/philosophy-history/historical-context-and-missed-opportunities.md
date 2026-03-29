@@ -8,6 +8,8 @@ This chapter asks a counterfactual question:
 
 Which historical moments brought physics close to a $\mathbb{A}\mathbb{A}\mathbb{A}$-like ontology, and which dominant interpretations diverted the field away from that path?
 
+Companion maps for this chapter are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Crisis in Physics](crisis-in-physics.md), [Major Thinkers](major-thinkers.md), and [Philosophy of Science](philosophy-of-science.md).
+
 Here, a "near miss" means all three conditions were present:
 
 1. The empirical signal was real and high-value.

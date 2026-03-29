@@ -1,6 +1,6 @@
 # CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology
 
-This document combines the CMB origin timeline and prediction layer in one place, with parallel interpretation language for standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This document combines the CMB origin timeline and prediction layer in one place, with parallel interpretation language for standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. It sits on top of [Cosmology Ontology](./cosmology-ontology.md) and shares interfaces with [Expansion Mechanism](./expansion-mechanism.md), [BBN Constraints](./BBN-constraints.md), and [Dark Matter](./dark-matter.md).
 
 ## Core Idea
 
@@ -60,7 +60,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electroweak symmetry breaks; particle masses emerge via the Higgs mechanism.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether Cores):** Axial architrinos associate with Noether cores, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether Cores):** Axial architrinos associate with Noether cores, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md).
 
 ## Quark Epoch ($\sim 10^{-12}$ to $10^{-6}$ s)
 - Time window: $\sim 10^{-12}$ to $10^{-6}$ s.
@@ -90,7 +90,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether Cores with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether cores carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether Cores with Neutral Axial Layers):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether Cores with Neutral Axial Layers):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
@@ -108,7 +108,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is concep
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Protons and neutrons bind into deuterium, helium, and trace lithium; abundances are set by expansion rate and reaction networks.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations associate into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations associate into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea; this is the same light-element window developed in [BBN Constraints](./BBN-constraints.md).
 
 ## Acoustic Peak Seeding (pre-recombination)
 - Time window: late photon epoch prior to recombination.

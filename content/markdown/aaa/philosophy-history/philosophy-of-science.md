@@ -6,6 +6,8 @@
 
 This document maps the methodological and epistemic schools that govern how science interprets theory, evidence, explanation, realism, and theory change.
 
+The closest companion maps are [Crisis in Physics](crisis-in-physics.md), [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Information / Computation](information-computation.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not side commentary. It bears directly on core questions:
 
 - what counts as ontology rather than inference,
@@ -217,6 +219,8 @@ The long-term relevance of falsificationism is as a **permanent governance princ
 ### Overview
 
 **Subject:** Paradigms and Scientific Revolutions. **Short Name:** Kuhnian Paradigms. The core question is whether science develops only through cumulative refinement or also through shifts in the background framework that defines legitimate problems, standards, and concepts. The central claim is that mature sciences periodically reorganize themselves through paradigm change, not merely through the addition of new results.
+
+For the concrete architrino-side governance layer that this methodological discussion is meant to discipline, see [Failure Criteria](../validation/failure-criteria.md) and [Parameter Ledger](../validation/parameter-ledger.md).
 
 This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because a substrate-first architecture would not simply append a new model to current physics. It would alter which entities count as fundamental, how effective theories are positioned, and what counts as explanatory closure.
 

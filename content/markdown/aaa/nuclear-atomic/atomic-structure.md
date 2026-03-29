@@ -2,6 +2,8 @@
 
 This chapter sketches the assembly-level picture of atomic structure inside a dense Noether-Sea medium. Its purpose is to connect nucleons, residual nuclear binding, and orbital resonance ideas into one substrate-level frame before the quantitative closure work is finished.
 
+Its natural companion notes are [Nucleon Structure](nucleon-structure.md), [Nuclear Binding](nuclear-binding.md), [Electron](../assemblies/fermions/electron.md), [Atomic Spectra](atomic-spectra.md), and [Condensed Matter](condensed-matter.md).
+
 The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter.
 
 ## Multi-Body Assembly Structure
@@ -23,3 +25,5 @@ The note remains provisional. It should be read as a compact orientation to the 
 
 * **Binding Energy:** Nucleons are defects/excitations in the dense Noether core medium. Binding energy involves pressure from the surrounding Noether Sea.
 * **Noether-Sea Density:** Use the $\mathbb{U}_{\text{now}}$ universe-state perspective to map local Noether-Sea density; this affects binding constants.
+
+For the underlying assembly carrier of this medium, see [Noether Core](../assemblies/noether-core.md).

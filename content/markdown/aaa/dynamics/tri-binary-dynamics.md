@@ -2,6 +2,8 @@
 
 This chapter develops a working draft of tri-binary dynamics by extending the two-body delay system to a coupled three-binary core. The focus is the geometric response at high group velocity and under strong gravitational gradients, along with the diagnostic quantities used to assess stability and alignment.
 
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](mapping-Planck-scale.md), [Noether Core](../assemblies/noether-core.md), and [Emergent Metric](../spacetime/emergent-metric.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and effective geometric bridge.
+
 ## Working Hypotheses
 
 1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
@@ -251,3 +253,5 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
 In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. The ontological substrate is the Euclidean void plus a dense Noether Sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
+
+For the strong-field continuation of that story, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](horizon-chirality.md).

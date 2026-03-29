@@ -2,6 +2,8 @@
 
 This chapter collects the observer-level and simulation-level checks that the framework must pass if it is to retain an absolute frame without contradicting established data. Its purpose is to translate foundational claims into concrete validation tasks: null tests, atomic comparisons, and frame-proxy checks.
 
+It should be used with [Failure Criteria](failure-criteria.md), [Constraint Ledger](constraint-ledger.md), [No-Go Theorems](no-go-theorems.md), [Detecting the Absolute Frame](../foundations/detecting-the-absolute-frame.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+
 The note is therefore a gatekeeping document. It should tell the reader what has to be reproduced, what mechanism is being claimed, and where falsification would occur.
 
 ## Validation Protocols: Proving the Absolute Frame

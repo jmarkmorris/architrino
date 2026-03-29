@@ -1,6 +1,6 @@
 # Spacetime Assemblies
 
-This note summarizes a working hypothesis used across the spacetime branch of the model: spacetime is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules.
+This note summarizes a working hypothesis used across the spacetime branch of the model: spacetime is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the medium-level continuation of [Euclidean Void](../foundations/euclidean-void.md) and [Nested Binaries and the Noether Core](../assemblies/noether-core.md).
 
 ## Pro/Anti Noether Core Basis
 
@@ -52,7 +52,7 @@ Instead, the model uses the helium-like picture as a design intuition for why a 
 
 If the local medium is assembled from balanced pro/anti core populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
 
-- weak-field behavior tracks smooth perturbations in normalized density $n$,
+- weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](./emergent-metric.md),
 - strong-field behavior tracks approach to alignment and saturation limits,
 - wave channels track propagating phase disturbances through the coupled lattice.
 

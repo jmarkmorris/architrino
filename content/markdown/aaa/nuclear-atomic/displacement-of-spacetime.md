@@ -1,5 +1,7 @@
 # Visualizing Volumes and Exclusion in the Universe
 
+This chapter complements [Condensed Matter](condensed-matter.md), [Molecular Geometry](molecular-geometry.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Gravitational Waves](../spacetime/gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper medium-level propagation.
+
 When chemists talk about the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron cloud — the “hard sphere” a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 
 | Molecule    | Formula | VdW Volume (Å³) |
@@ -85,8 +87,11 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
   * X-rays probe deep into flesh but are stopped by bone.
   * Gamma rays cut through meters of concrete.
 * **Neutrinos**: Pass almost completely unhindered; light-years of lead would be needed to stop them.
+  Compare [Neutrinos](../assemblies/fermions/neutrinos.md) for the assembly-level channel picture.
 * **Dark matter candidates**: If WIMPs or axions exist, they would also pass through matter as though it weren’t there.
+  Compare [Dark Matter](../cosmology/dark-matter.md) for the cosmological inference side.
 * **Gravitons (hypothetical)**: like photons, but for gravity — unhindered.
+  Compare [Gravitational Waves](../spacetime/gravitational-waves.md) for the effective propagation layer.
 * **Spacetime itself**: Not excluded. Matter curves spacetime, but doesn’t block it. (mathematical, non-physical interpretation)
 
 ---
@@ -95,6 +100,8 @@ Think of maximally packed van der Waals volumes as a **molecular fortress**. Ord
 
 - Background: the mathematical arena in this project is absolute timespace (one global time × Euclidean 3-space). It is fixed, non-dynamical, and does not curve.
 - Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether-Sea implementation layer, or in bridge prose a spacetime-medium layer, not a separate field inventory). Their microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
+
+This is the same implementation layer developed in [Emergent Metric](../spacetime/emergent-metric.md) and [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
 
 ## Big Picture
 

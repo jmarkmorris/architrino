@@ -6,6 +6,8 @@ This chapter explains how a usable coordinate frame is constructed from intrinsi
 
 Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, we now face the practical challenge of constructing a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0."
 
+The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate scaffold is in place.
+
 The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** Architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any observer bothers to label the axes.
 
 What follows is the systematic procedure by which a $\mathbb{U}_{\text{now}}$ universe-state perspective can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
@@ -218,3 +220,5 @@ We cannot directly measure the concentric wake geometry or identify an absolutel
 - **Relative velocities** via Doppler shifts and aberration
 
 The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, emergent Lorentz symmetry ensures we cannot detect the absolute frame operationally, but the frame remains the ontological bedrock beneath the effective geometry.
+
+For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

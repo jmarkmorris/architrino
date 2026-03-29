@@ -1,12 +1,12 @@
 # Expansion Mechanism
 
-This chapter explains how cosmological expansion language is translated into a fixed-void ontology. Its purpose is to replace geometric container expansion with medium evolution, clock-rate comparison, and effective scale-factor bookkeeping while preserving contact with the standard observational vocabulary.
+This chapter explains how cosmological expansion language is translated into a fixed-void ontology. Its purpose is to replace geometric container expansion with medium evolution, clock-rate comparison, and effective scale-factor bookkeeping while preserving contact with the standard observational vocabulary. It is the main cosmology bridge from [Cosmology Ontology](./cosmology-ontology.md) to [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Dark Energy](./dark-energy.md).
 
 The sections below move from the core idea to redshift, photon propagation, dark-energy language, tension interfaces, and the effective Friedmann comparison layer.
 
 ## Core Idea
 
-The Euclidean void does not expand. What evolves is the Noether sea and the state of assemblies moving through it.
+The [Euclidean void](../foundations/euclidean-void.md) does not expand. What evolves is the Noether sea and the state of assemblies moving through it.
 
 ## Effective Scale Factor in a Fixed Void
 
@@ -34,7 +34,7 @@ These are effective parameterizations of medium state, not independent geometric
 
 Cosmological redshift is treated as cumulative propagation through a changing medium plus clock-rate mismatch between emitter and observer environments.
 
-Use the proper-time map:
+Use the proper-time map from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md):
 
 $$
 \frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry}\right).

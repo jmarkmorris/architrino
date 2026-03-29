@@ -2,6 +2,8 @@
 
 This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. **Status:** (1) self-hit makes the dynamics non-Markovian (path-history dependent), and (2) stability/attractor claims are conjectural unless explicitly established.
 
+It is the foundational precursor to [Tri-Binary Dynamics](tri-binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Core](../assemblies/noether-core.md).
+
 ## The Spiral Orbiting Binary and the Contraction Phase
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite polarity: an electrino and a positrino. With polarities $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the wake-speed symmetry point.
