@@ -20,3 +20,15 @@ Keep productization, big-picture outlook writing, and future-technology packagin
 ## Rule
 
 Preserve the ideas, but do not let them outrank the derivation spine. Product-facing surfaces and future-tech narrative can return only after the mathematical core is compressed and stable.
+
+## Related Action Items
+
+- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
+
+## Related AAA Notes
+
+- [github-presence-and-community](../../content/markdown/aaa/archie/github-presence-and-community.md)
+- [support-architrino-research](../../content/markdown/aaa/archie/support-architrino-research.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)

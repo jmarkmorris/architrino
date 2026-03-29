@@ -248,3 +248,17 @@ Standard tooling gives us the baseline:
 - shared selection.
 
 The Architrino-specific improvement is to make the observer itself frame-aware, assembly-aware, and reveal-aware. That is the path to an observation tool that feels less like a bolted-on film editor and more like a natural extension of the assembly architecture itself.
+
+## Related Action Items
+
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [composer](../composer-reaction/composer.md)
+- [reaction](../composer-reaction/reaction.md)
+- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+- [ellipsoid](../ellipsoid/ellipsoid.md)
+
+## Related AAA Notes
+
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)

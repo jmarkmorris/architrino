@@ -214,3 +214,15 @@ It should not become a second reaction app and it should not become a second com
 - disciplined handoff into the reaction app;
 - disciplined handoff from solved flow into the composer;
 - and preservation of the deeper provenance-oriented architecture that motivated it in the first place.
+
+## Related Action Items
+
+- [composer-reaction](./composer-reaction.md)
+- [reaction](./reaction.md)
+- [composer](./composer.md)
+
+## Related AAA Notes
+
+- [pdg-api](../../content/markdown/aaa/reactions/pdg-api.md)
+- [reaction-ledger](../../content/markdown/aaa/validation/reaction-ledger.md)
+- [validation-protocols](../../content/markdown/aaa/validation/validation-protocols.md)

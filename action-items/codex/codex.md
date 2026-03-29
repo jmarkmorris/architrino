@@ -77,5 +77,16 @@ Now:
 * No API key
 * Using subscription
 
-
 ---
+
+## Related Action Items
+
+- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+
+## Related AAA Notes
+
+- [software-architecture-and-maintenance](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)

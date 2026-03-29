@@ -44,3 +44,17 @@ This document captures the integration strategy for porting the sim2 physics gen
 * Update `architrino/README.md`, `vision` docs, and any release notes to describe the new simulator architecture and generator.
 * Ensure `npm`/`yarn` build pipeline copies over worker scripts (if separate files) and `sim2` scenes.
 * Add tests or manual checklists verifying the worker runs in browsers of interest and that generated scenes load correctly.
+
+## Related Action Items
+
+- [simulations](../simulations/simulations.md)
+- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+- [viewports](../viewports/viewports.md)
+
+## Related AAA Notes
+
+- [run-protocols](../../content/markdown/aaa/validation/simulations/run-protocols.md)
+- [architrino](../../content/markdown/aaa/validation/simulations/architrino.md)
+- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)

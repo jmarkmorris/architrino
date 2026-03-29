@@ -25,3 +25,19 @@ Lock the simulation and numerics side tightly enough to support the analytic clo
 - Lock history resolution and binary / tri-binary stability numerically.
 - Publish convergence plots and provenance logs.
 - Validate the Planck mapping numerically against the master equation.
+
+## Related Action Items
+
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [mass-map](../mass-map/mass-map.md)
+- [dyadic-lock](../dyadic-lock/dyadic-lock.md)
+- [quantum-closure](../quantum-closure/quantum-closure.md)
+- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+
+## Related AAA Notes
+
+- [run-protocols](../../content/markdown/aaa/validation/simulations/run-protocols.md)
+- [convergence-tests](../../content/markdown/aaa/validation/simulations/convergence-tests.md)
+- [synthetic-observables](../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
+- [well-posedness-and-regularization](../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
+- [mapping-Planck-scale](../../content/markdown/aaa/dynamics/mapping-Planck-scale.md)

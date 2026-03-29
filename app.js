@@ -8134,7 +8134,7 @@ const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "action-items/composer/overview.md";
+  "action-items/composer-reaction/composer.md";
 
 function isComposerOverlaySceneId(sceneId = "") {
   return (

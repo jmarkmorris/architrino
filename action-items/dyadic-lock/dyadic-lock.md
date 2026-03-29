@@ -30,3 +30,15 @@ Treat [dyadic-resonance-lock.md](../../content/markdown/aaa/dynamics/dyadic-reso
 - Whether the dynamics select `s=2`.
 - Whether common-speed and self-similar assumptions hold outside the near-horizon regime.
 - Whether a reduced phase-amplitude or causal-work functional contracts toward the dyadic fixed point.
+
+## Related Action Items
+
+- [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)
+- [simulations](../simulations/simulations.md)
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+
+## Related AAA Notes
+
+- [dyadic-resonance-lock](../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
+- [binary-dynamics](../../content/markdown/aaa/dynamics/binary-dynamics.md)
+- [mode-taxonomy](../../content/markdown/aaa/dynamics/mode-taxonomy.md)

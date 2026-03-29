@@ -16,7 +16,7 @@
 - Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
 - For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `action-items`.
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow `content/markdown/aaa/archie/software-architecture-and-maintenance.md`.
-- For the live backlog of known cruft and sprawl reduction work, see `action-items/cruft-sprawl/overview.md`.
+- For the live backlog of known cruft and sprawl reduction work, see `action-items/cruft-sprawl/cruft-sprawl.md`.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:
@@ -38,6 +38,7 @@
 ## SWE Architecture and Modularity
 
 - Prefer small, single-purpose modules over extending large coordinator files.
+- Always inspect the relevant code paths and rendered structure before proposing or applying a fix; do not guess from symptoms or screenshots alone when the implementation can be examined directly.
 - Treat `app.js` and similarly large entrypoint/runtime files as composition roots and wiring layers, not as the long-term home for new feature logic.
 - When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes as thin wiring only.
 - Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.

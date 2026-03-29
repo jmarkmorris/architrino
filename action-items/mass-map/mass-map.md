@@ -30,3 +30,17 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 - Solve the exact 6-body non-Markovian tri-binary equations or locate robust attractors.
 - Derive `R_{\text{min}}`, radii ratios, frequency structure, binding scales, and leakage factors directly from the delayed kernel.
 - Test the first map against electron / muon / tau or hadron constraints.
+
+## Related Action Items
+
+- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [simulations](../simulations/simulations.md)
+- [3x3](../3x3/3x3.md)
+
+## Related AAA Notes
+
+- [parameter-ledger](../../content/markdown/aaa/validation/parameter-ledger.md)
+- [noether-core](../../content/markdown/aaa/assemblies/noether-core.md)
+- [particle-masses](../../content/markdown/aaa/assemblies/particle-masses.md)
+- [architrino-si-base-units](../../content/markdown/aaa/validation/architrino-si-base-units.md)

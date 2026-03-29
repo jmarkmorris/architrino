@@ -36,3 +36,16 @@ Treat [collinear-breather.md](../../content/markdown/aaa/dynamics/collinear-brea
 - Read the seed-side through Schauder packages in [master-equation-breather.md](../../content/markdown/aaa/dynamics/master-equation-breather.md) treating the architecture as frozen.
 - Do not add fresh theorem layers unless a real proof-breaking defect is discovered.
 - Start with seed-side and early branch-regularity lemmas because they feed the rest of the DAG.
+
+## Related Action Items
+
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+- [simulations](../simulations/simulations.md)
+- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+
+## Related AAA Notes
+
+- [collinear-breather](../../content/markdown/aaa/dynamics/collinear-breather.md)
+- [master-equation-breather](../../content/markdown/aaa/dynamics/master-equation-breather.md)
+- [planar-bridge-closure](../../content/markdown/aaa/dynamics/planar-bridge-closure.md)
+- [master-equation](../../content/markdown/aaa/dynamics/master-equation.md)

@@ -42,6 +42,42 @@ test("trimmed electron keeps three tiles but marks the stripped slot as binary-f
   assert.deepEqual(root.children.map((child) => child.hasBinary), [true, true, false]);
 });
 
+test("Z boson descriptor tree keeps the tri-binary particle row without a neutrino label", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("z_boson", "pro", "Z Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "z_boson");
+  assert.equal(root.label, "Z Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
+test("W- boson descriptor tree uses the standard tri-binary particle row", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("w_minus_boson", "pro", "W- Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "w_minus_boson");
+  assert.equal(root.label, "W- Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
+test("W+ boson descriptor tree uses the standard tri-binary particle row", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("w_plus_boson", "pro", "W+ Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "w_plus_boson");
+  assert.equal(root.label, "W+ Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
 test("proton descriptor tree expands to up/down/up quark rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(createStructure("proton", "pro", "Proton"));
   const [root] = descriptorTree;
@@ -67,25 +103,25 @@ test("higgs cluster descriptor tree expands to four alternating core rows", () =
   );
 });
 
-test("transmute descriptor tree produces a single transmute tile", () => {
+test("associate descriptor tree produces a single operator tile", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("transmute", "pro", "Transmute")
+    createStructure("associate", "pro", "Associate")
   );
   const [root] = descriptorTree;
 
-  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
-  assert.equal(root.label, "Transmute");
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE);
+  assert.equal(root.label, "Associate");
   assert.equal(root.children.length, 0);
 });
 
-test("polar transform descriptor tree produces a single transform tile", () => {
+test("dissociate descriptor tree produces a single operator tile", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("l_polar_transform", "pro", "L Polar Transform")
+    createStructure("dissociate", "pro", "Dissociate")
   );
   const [root] = descriptorTree;
 
-  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.TRANSMUTE_TILE);
-  assert.equal(root.label, "L Polar Transform");
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.OPERATOR_TILE);
+  assert.equal(root.label, "Dissociate");
   assert.equal(root.children.length, 0);
 });
 

@@ -1642,8 +1642,13 @@ body {
 .composer-reaction-solver {
   --solver-attachment-gap: 3px;
   --solver-anchor-size: 16px;
-  --solver-composite-node-size: calc(var(--solver-anchor-size) * 0.5);
-  --solver-composite-column-gap: calc(var(--solver-attachment-gap) * 0.4);
+  --solver-composite-node-size: 6px;
+  --solver-composite-node-center: calc(var(--solver-composite-node-size) * 0.5);
+  --solver-composite-connector-lane: var(--solver-tile-gap, 7px);
+  --solver-composite-node-inset: calc(
+    (var(--solver-composite-connector-lane) - var(--solver-composite-node-size)) * 0.5
+  );
+  --solver-composite-participant-gap: 0px;
   position: absolute;
   inset: 0;
   z-index: 5;
@@ -1845,11 +1850,10 @@ body {
 }
 
 .composer-reaction-solver-column {
-  --solver-tile-gap: 7px;
   z-index: 2;
   grid-row: 1;
   display: grid;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
   align-content: start;
   overflow-y: auto;
   padding-top: calc(var(--solver-top-control-row-height) - 4px);
@@ -1859,6 +1863,15 @@ body {
 .composer-reaction-solver-column.is-reactants {
   grid-column: var(--solver-reactants-grid-column, 1 / span 4);
   justify-items: end;
+}
+
+.composer-reaction-solver-column.is-center-assemblies {
+  grid-column: var(--solver-center-assemblies-grid-column, 7 / span 4);
+  grid-template-rows: auto;
+  grid-auto-rows: var(--binary-choice-size, 72px);
+  padding-left: 0;
+  padding-right: 0;
+  justify-items: center;
 }
 
 .composer-reaction-solver-column.is-products {
@@ -1876,17 +1889,16 @@ body {
 }
 
 .composer-reaction-solver-lane-slot.is-operator-left {
-  grid-column: var(--solver-operator-lane-0-grid-column, 5 / span 4);
+  grid-column: var(--solver-operator-lane-0-grid-column, 4 / span 4);
 }
 
 .composer-reaction-solver-lane-slot.is-operator-right {
-  grid-column: var(--solver-operator-lane-1-grid-column, 9 / span 4);
+  grid-column: var(--solver-operator-lane-1-grid-column, 10 / span 4);
 }
 
 .composer-reaction-solver-side-slot-header {
-  --binary-choice-size: 72px;
   display: grid;
-  grid-template-columns: repeat(3, var(--binary-choice-size));
+  grid-template-columns: repeat(3, var(--binary-choice-size, 72px));
   align-items: center;
   gap: var(--solver-tile-gap);
   width: fit-content;
@@ -1894,13 +1906,18 @@ body {
 }
 
 .composer-reaction-solver-side-slot-header.is-reactant {
+  justify-self: end;
+  margin-right: var(--solver-slot-header-offset, 0px);
+}
+
+.composer-reaction-solver-side-slot-header.is-product {
   justify-self: start;
   margin-left: var(--solver-slot-header-offset, 0px);
 }
 
-.composer-reaction-solver-side-slot-header.is-product {
-  justify-self: end;
-  margin-right: var(--solver-slot-header-offset, 0px);
+.composer-reaction-solver-side-slot-header.is-center {
+  justify-self: center;
+  margin-left: var(--solver-slot-header-offset, 0px);
 }
 
 .composer-reaction-solver-side-slot-header-slot {
@@ -2044,6 +2061,10 @@ body {
   justify-self: start;
 }
 
+.composer-reaction-solver-column.is-center-assemblies > .composer-reaction-solver-participant {
+  justify-self: center;
+}
+
 .composer-reaction-solver-participant.has-noether-core-grid {
   align-items: start;
 }
@@ -2081,8 +2102,10 @@ body {
 }
 
 .composer-reaction-solver-participant.is-composite-participant {
+  position: relative;
   align-items: start;
-  gap: var(--solver-composite-column-gap);
+  gap: var(--solver-composite-participant-gap, 0px);
+  overflow: visible;
 }
 
 .composer-reaction-solver-particle {
@@ -2090,7 +2113,9 @@ body {
   box-sizing: border-box;
   width: var(--binary-choice-size, 72px);
   min-width: var(--binary-choice-size, 72px);
+  max-width: var(--binary-choice-size, 72px);
   height: var(--binary-choice-size, 72px);
+  min-height: var(--binary-choice-size, 72px);
   padding: 8px 6px;
   border-radius: 16px;
   border: 2px solid color-mix(in srgb, var(--solver-accent) 62%, rgba(255, 255, 255, 0.14));
@@ -2163,25 +2188,6 @@ body {
     0 0 18px color-mix(in srgb, #ff6b6b 18%, transparent);
 }
 
-.composer-reaction-solver-polar-transform-track {
-  display: grid;
-  grid-template-columns: repeat(4, var(--binary-choice-size, 72px));
-  gap: var(--solver-tile-gap);
-  align-items: center;
-  justify-items: center;
-  width: fit-content;
-  cursor: grab;
-}
-
-.composer-reaction-solver-participant.is-operator.is-dragging .composer-reaction-solver-polar-transform-track {
-  cursor: grabbing;
-}
-
-.composer-reaction-solver-polar-transform-title-tile .composer-reaction-solver-particle-label {
-  font-size: 11px;
-  line-height: 1.05;
-}
-
 .composer-reaction-solver-participant.is-operator.is-associate-operator,
 .composer-reaction-solver-participant.is-operator.is-dissociate-operator {
   overflow: visible;
@@ -2192,39 +2198,65 @@ body {
   justify-items: center;
 }
 
+.composer-reaction-solver-participant.is-operator.is-dissociate-operator {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.composer-reaction-solver-branch-anchor-frame,
 .composer-reaction-solver-associate-anchor-frame {
   position: relative;
   justify-self: center;
+  display: grid;
+  grid-template-columns:
+    var(--solver-anchor-size)
+    var(--binary-choice-size, 72px)
+    var(--solver-anchor-size);
+  align-items: center;
+  width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
+  min-width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
+}
+
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-operator-tile,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-operator-tile {
+  grid-column: 2;
   width: var(--binary-choice-size, 72px);
   min-width: var(--binary-choice-size, 72px);
 }
 
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-operator-tile {
-  width: 100%;
-  min-width: 100%;
-}
-
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.composer-reaction-solver-operator-anchor,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.composer-reaction-solver-operator-anchor {
   position: absolute;
   z-index: 2;
 }
 
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-top {
-  left: 0;
-  top: calc(50% - (var(--solver-anchor-size) * 0.52));
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment {
+  left: calc(var(--solver-anchor-size) * 0.5);
   transform: translate(-50%, -50%);
 }
 
-.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input.is-bottom {
-  left: 0;
-  top: calc(50% + (var(--solver-anchor-size) * 0.52));
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment {
+  left: calc(100% - (var(--solver-anchor-size) * 0.5));
   transform: translate(-50%, -50%);
 }
 
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-input,
+.composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-input,
+.composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-associate-output,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-associate-output {
-  left: 100%;
   top: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-input,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-input {
+  top: 50%;
+}
+
+.composer-reaction-solver-branch-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output,
+.composer-reaction-solver-associate-anchor-frame.is-dissociate > .composer-reaction-solver-anchor.is-dissociate-output {
+  top: 50%;
 }
 
 .composer-reaction-solver-operator-fan {
@@ -2347,7 +2379,7 @@ body {
 .composer-reaction-solver-tree-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
   min-width: 0;
   padding-inline-start: calc(var(--solver-depth, 0) * 4ch);
 }
@@ -2389,22 +2421,26 @@ body {
 .composer-reaction-solver-noether-core-grid {
   display: grid;
   min-width: 0;
-  gap: 8px;
+  gap: var(--solver-small-gap, 7px);
   width: fit-content;
 }
 
 .composer-reaction-solver-noether-core-grid-track {
-  --binary-choice-size: 72px;
   display: grid;
-  grid-template-columns: repeat(3, var(--binary-choice-size));
+  grid-template-columns: repeat(3, var(--binary-choice-size, 72px));
   gap: var(--solver-tile-gap);
   align-items: start;
 }
 
-.composer-reaction-solver-noether-core-grid-body {
+.composer-reaction-solver-inline-track-body,
+.composer-reaction-solver-noether-core-grid-body,
+.composer-reaction-solver-binary-selector-grid-body,
+.composer-reaction-solver-composite-row-track-body {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--solver-attachment-gap);
+  min-width: 0;
+  width: fit-content;
 }
 
 .composer-reaction-solver-inline-anchor-lane {
@@ -2416,31 +2452,22 @@ body {
 }
 
 .composer-reaction-solver-composite-visual-rail {
-  position: relative;
+  position: absolute;
   display: inline-flex;
   align-items: center;
   gap: 0;
   width: fit-content;
-}
-
-.composer-reaction-solver-composite-visual-rail::after {
-  content: "";
-  position: absolute;
   top: 50%;
-  width: calc(var(--solver-composite-column-gap) + (var(--solver-composite-node-size) * 0.5));
-  height: 2px;
   transform: translateY(-50%);
-  border-radius: 999px;
-  background: rgba(153, 211, 255, 0.46);
-  pointer-events: none;
+  z-index: 2;
 }
 
-.composer-reaction-solver-composite-visual-rail.is-reactant::after {
-  left: 100%;
+.composer-reaction-solver-participant.is-composite-participant.is-reactant > .composer-reaction-solver-composite-visual-rail {
+  right: calc(100% + var(--solver-tile-gap, 7px));
 }
 
-.composer-reaction-solver-composite-visual-rail.is-product::after {
-  right: 100%;
+.composer-reaction-solver-participant.is-composite-participant.is-product > .composer-reaction-solver-composite-visual-rail {
+  left: calc(100% + var(--solver-tile-gap, 7px));
 }
 
 .composer-reaction-solver-binary-selector {
@@ -2454,30 +2481,23 @@ body {
 
 .composer-reaction-solver-binary-selector-grid {
   display: grid;
-  --binary-choice-size: 72px;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
   min-width: 0;
   width: fit-content;
 }
 
 .composer-reaction-solver-binary-selector-grid-track {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size)));
+  grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size, 72px)));
   align-items: start;
   gap: var(--solver-tile-gap);
-}
-
-.composer-reaction-solver-binary-selector-grid-body {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: var(--solver-attachment-gap);
 }
 
 .composer-reaction-solver-binary-selector-column {
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
 }
 
 .composer-reaction-solver-binary-selector-column.is-placeholder {
@@ -2488,36 +2508,49 @@ body {
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
 }
 
 .composer-reaction-solver-higgs-cluster-grid {
+  position: relative;
   display: inline-flex;
   align-items: stretch;
-  gap: var(--solver-composite-column-gap);
+  gap: 0;
   min-width: 0;
   width: fit-content;
 }
 
 .composer-reaction-solver-higgs-cluster-grid-rows {
+  position: relative;
   display: grid;
-  gap: 7px;
+  gap: var(--solver-tile-gap, 7px);
+  z-index: 1;
 }
 
 .composer-reaction-solver-composite-span-rail {
-  position: relative;
+  position: absolute;
   display: grid;
   grid-auto-rows: var(--binary-choice-size, 72px);
   align-content: start;
-  gap: 7px;
-  width: var(--solver-composite-node-size);
+  gap: var(--solver-tile-gap, 7px);
+  width: var(--solver-composite-connector-lane);
+  inset-block: 0;
+  z-index: 2;
+}
+
+.composer-reaction-solver-higgs-cluster-grid.is-reactant > .composer-reaction-solver-composite-span-rail {
+  right: calc(100% + var(--solver-composite-node-inset));
+}
+
+.composer-reaction-solver-higgs-cluster-grid.is-product > .composer-reaction-solver-composite-span-rail {
+  left: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-composite-span-stem {
   position: absolute;
   top: calc(var(--binary-choice-size, 72px) * 0.5);
   bottom: calc(var(--binary-choice-size, 72px) * 0.5);
-  left: 50%;
+  left: calc(var(--solver-composite-node-inset, 0.5px) + var(--solver-composite-node-center, 3px));
   width: 2px;
   transform: translateX(-50%);
   border-radius: 999px;
@@ -2528,12 +2561,13 @@ body {
 .composer-reaction-solver-composite-span-slot {
   position: relative;
   display: grid;
-  width: var(--solver-composite-node-size);
+  width: var(--solver-composite-connector-lane);
   height: var(--binary-choice-size, 72px);
   place-items: center;
   z-index: 1;
 }
 
+.composer-reaction-solver-composite-connector-dot,
 .composer-reaction-solver-composite-span-node {
   width: var(--solver-composite-node-size);
   height: var(--solver-composite-node-size);
@@ -2549,17 +2583,16 @@ body {
 .composer-reaction-solver-higgs-cluster-grid-row {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
 }
 
 .composer-reaction-solver-composite-row-body {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  align-items: center;
+  display: inline-flex;
+  align-items: flex-start;
   gap: var(--solver-tile-gap);
   overflow: visible;
   width: fit-content;
+  min-width: 0;
 }
 
 .composer-reaction-solver-composite-row-card {
@@ -2586,18 +2619,21 @@ body {
 
 .composer-reaction-solver-binary-choices {
   display: grid;
-  grid-template-columns: repeat(var(--binary-choice-columns, 3), var(--binary-choice-size));
+  grid-template-columns: repeat(var(--binary-choice-columns, 3), var(--binary-choice-size, 72px));
   align-items: center;
-  gap: 10px;
+  gap: var(--solver-stack-gap, 10px);
   min-width: 0;
 }
 
 .composer-reaction-solver-binary-choice {
   -webkit-appearance: none;
   appearance: none;
+  box-sizing: border-box;
   position: relative;
-  width: var(--binary-choice-size);
-  height: var(--binary-choice-size);
+  width: var(--binary-choice-size, 72px);
+  min-width: var(--binary-choice-size, 72px);
+  max-width: var(--binary-choice-size, 72px);
+  height: var(--binary-choice-size, 72px);
   padding: 0;
   border-radius: 16px;
   border: 2px solid color-mix(in srgb, var(--binary-choice-accent) 74%, rgba(255, 255, 255, 0.14));
@@ -2754,20 +2790,14 @@ body {
   min-height: var(--solver-composite-node-size);
   min-width: var(--solver-composite-node-size);
   transform: translateY(-50%);
-  border: none;
-  border-radius: 999px;
-  background: rgba(56, 40, 88, 0.9);
-  box-shadow:
-    0 0 0 1px rgba(168, 122, 238, 0.18),
-    0 0 10px rgba(124, 88, 196, 0.1);
 }
 
 .composer-reaction-solver-composite-visual-rail.is-reactant .composer-reaction-solver-composite-collector {
-  left: calc(100% + var(--solver-composite-column-gap));
+  left: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-composite-visual-rail.is-product .composer-reaction-solver-composite-collector {
-  right: calc(100% + var(--solver-composite-column-gap));
+  right: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-anchor.is-route-recent {
@@ -2906,11 +2936,10 @@ body {
 }
 
 .composer-reaction-solver-menu[data-menu-mode="template-grid-picker"] {
-  --binary-choice-size: 72px;
   min-width: auto;
   max-width: min(664px, calc(100vw - 32px));
-  grid-template-columns: repeat(7, var(--binary-choice-size));
-  gap: 14px;
+  grid-template-columns: repeat(7, var(--binary-choice-size, 72px));
+  gap: var(--solver-tile-gap, 7px);
   padding: 14px;
 }
 

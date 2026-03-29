@@ -58,6 +58,18 @@ function hasLedger(ledger = null) {
   return normalized.electrino > 0 || normalized.positrino > 0;
 }
 
+function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
+}
+
 function formatLedger(ledger = null) {
   const normalized = normalizeLedger(ledger);
   const parts = [];
@@ -98,6 +110,13 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
           outgoingCount: 0,
           isBalanced: false,
         });
+  const getOperatorOutputLedger =
+    typeof options.getOperatorOutputLedger === "function"
+      ? options.getOperatorOutputLedger
+      : (_participantId, _anchorInstanceIndex, operatorSummary) =>
+          hasLedger(operatorSummary?.outputLedger)
+            ? normalizeLedger(operatorSummary.outputLedger)
+            : normalizeLedger(operatorSummary?.incomingLedger);
   const parseNodeKey =
     typeof options.parseNodeKey === "function"
       ? options.parseNodeKey
@@ -107,7 +126,11 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       ? options.resolveBinaryChoiceInventory
       : () => null;
 
-  function evaluateOperatorOutputLedger(operatorSummary = null, outputLedger = null) {
+  function evaluateOperatorOutputLedger(
+    operatorSummary = null,
+    outputLedger = null,
+    availableOutputLedgerOverride = null
+  ) {
     const normalizedSummary = operatorSummary ?? {
       incomingLedger: createEmptyLedger(),
       outputLedger: createEmptyLedger(),
@@ -116,9 +139,11 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       incomingCount: 0,
       outgoingCount: 0,
     };
-    const availableOutputLedger = hasLedger(normalizedSummary.outputLedger)
-      ? normalizedSummary.outputLedger
-      : normalizedSummary.incomingLedger;
+    const availableOutputLedger = hasLedger(availableOutputLedgerOverride)
+      ? normalizeLedger(availableOutputLedgerOverride)
+      : hasLedger(normalizedSummary.outputLedger)
+        ? normalizedSummary.outputLedger
+        : normalizedSummary.incomingLedger;
     const candidateLedger = normalizeLedger(outputLedger);
     if (!hasLedger(availableOutputLedger)) {
       return {
@@ -192,13 +217,35 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     };
   }
 
-  function evaluateOperatorOutputCandidate(operatorId = "", candidateTargetContext = null) {
+  function evaluateOperatorOutputCandidate(
+    operatorId = "",
+    candidateTargetContext = null,
+    sourceAnchorInstanceIndex = null
+  ) {
     const operatorSummary = getOperatorLedgerSummary(operatorId);
+    const normalizedSourceAnchorInstanceIndex = normalizeAnchorInstanceIndex(
+      sourceAnchorInstanceIndex
+    );
+    const selectedOutputLedger = getOperatorOutputLedger(
+      operatorId,
+      normalizedSourceAnchorInstanceIndex,
+      operatorSummary
+    );
+    const routedOutgoingLedgerByAnchorInstance =
+      operatorSummary?.routedOutgoingLedgerByAnchorInstance ?? {};
+    const currentAnchorOutgoingLedger =
+      routedOutgoingLedgerByAnchorInstance[
+        String(normalizedSourceAnchorInstanceIndex ?? 0)
+      ] ?? createEmptyLedger();
     const candidateLedger = addLedgers(
-      operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger,
+      currentAnchorOutgoingLedger,
       getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
     );
-    const ledgerEvaluation = evaluateOperatorOutputLedger(operatorSummary, candidateLedger);
+    const ledgerEvaluation = evaluateOperatorOutputLedger(
+      operatorSummary,
+      candidateLedger,
+      selectedOutputLedger
+    );
     if (!ledgerEvaluation.valid) {
       return ledgerEvaluation;
     }
@@ -234,6 +281,24 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
         return {
           valid: false,
           reason: "Associate accepts exactly two reactant inputs.",
+        };
+      }
+    }
+    if (targetParticipant.templateId === "dissociate") {
+      const incomingCount = Math.max(
+        0,
+        Number(getOperatorLedgerSummary(targetParticipant.id)?.incomingCount ?? 0)
+      );
+      if (incomingCount < 1) {
+        return {
+          valid: false,
+          reason: "Dissociate needs exactly one reactant input.",
+        };
+      }
+      if (incomingCount > 1) {
+        return {
+          valid: false,
+          reason: "Dissociate accepts exactly one reactant input.",
         };
       }
     }
@@ -274,9 +339,17 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (mapping.sourceRole === "operator-output" && mapping.targetRole === "product") {
       const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
       const operatorSummary = getOperatorLedgerSummary(operatorId);
+      const selectedOutputLedger = getOperatorOutputLedger(
+        operatorId,
+        mapping.sourceAnchorInstanceIndex,
+        operatorSummary
+      );
       const ledgerEvaluation = evaluateOperatorOutputLedger(
         operatorSummary,
-        operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger
+        operatorSummary?.routedOutgoingLedgerByAnchorInstance?.[
+          String(normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ?? 0)
+        ] ?? operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger,
+        selectedOutputLedger
       );
       if (!ledgerEvaluation.valid) {
         return ledgerEvaluation;
@@ -291,9 +364,17 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     if (mapping.sourceRole === "operator-output" && mapping.targetRole === "operator-input") {
       const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
       const operatorSummary = getOperatorLedgerSummary(operatorId);
+      const selectedOutputLedger = getOperatorOutputLedger(
+        operatorId,
+        mapping.sourceAnchorInstanceIndex,
+        operatorSummary
+      );
       const outputEvaluation = evaluateOperatorOutputLedger(
         operatorSummary,
-        operatorSummary.outputLedger ?? operatorSummary.outgoingLedger
+        operatorSummary?.routedOutgoingLedgerByAnchorInstance?.[
+          String(normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ?? 0)
+        ] ?? operatorSummary.outputLedger ?? operatorSummary.outgoingLedger,
+        selectedOutputLedger
       );
       if (!outputEvaluation.valid) {
         return outputEvaluation;
@@ -322,6 +403,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
   function resolvePendingTargetAvailability({
     pendingSourceKey,
     pendingSourceRole,
+    pendingSourceAnchorInstanceIndex = null,
     role,
     sourceContext,
     targetContext,
@@ -348,7 +430,11 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     if (pendingSourceRole === "operator-output" && role === "product") {
       const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
-      const evaluation = evaluateOperatorOutputCandidate(operatorId, targetContext);
+      const evaluation = evaluateOperatorOutputCandidate(
+        operatorId,
+        targetContext,
+        pendingSourceAnchorInstanceIndex
+      );
       if (evaluation.valid) {
         return null;
       }
@@ -360,7 +446,11 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
     }
     if (pendingSourceRole === "operator-output" && role === "operator-input") {
       const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
-      const outputEvaluation = evaluateOperatorOutputCandidate(operatorId, targetContext);
+      const outputEvaluation = evaluateOperatorOutputCandidate(
+        operatorId,
+        targetContext,
+        pendingSourceAnchorInstanceIndex
+      );
       const inputEvaluation = evaluateOperatorInputValidation(targetContext);
       const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
       if (outputEvaluation.valid && inputEvaluation.valid && targetOperatorSummary?.isBalanced) {

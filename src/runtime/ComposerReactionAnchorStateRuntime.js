@@ -81,6 +81,10 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
     typeof options.getPendingSourceKey === "function" ? options.getPendingSourceKey : () => "";
   const getPendingSourceRole =
     typeof options.getPendingSourceRole === "function" ? options.getPendingSourceRole : () => "";
+  const getPendingSourceAnchorInstanceIndex =
+    typeof options.getPendingSourceAnchorInstanceIndex === "function"
+      ? options.getPendingSourceAnchorInstanceIndex
+      : () => null;
   const getNodeContext =
     typeof options.getNodeContext === "function" ? options.getNodeContext : () => null;
   const resolvePendingTargetAvailability =
@@ -172,6 +176,7 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
         nodeKey,
         pendingSourceKey,
         pendingSourceRole: getPendingSourceRole(),
+        pendingSourceAnchorInstanceIndex: getPendingSourceAnchorInstanceIndex(),
         role,
         targetAnchorInstanceIndex: normalizeAnchorInstanceIndex(anchorInstanceIndex),
         sourceContext: getNodeContext(pendingSourceKey),

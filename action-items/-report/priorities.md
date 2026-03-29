@@ -1,6 +1,6 @@
 # Action-Items Report
 
-This file is the canonical control surface for `action-items`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream `overview.md`, not in the filesystem names.
+This file is the canonical control surface for `action-items`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
 
 The full pre-split monolith is preserved at [archive/priorities-legacy.md](../archive/priorities-legacy.md).
 
@@ -17,7 +17,7 @@ The full pre-split monolith is preserved at [archive/priorities-legacy.md](../ar
 
 ## Workstream Overview Structure
 
-Each active workstream `overview.md` should use the same front-matter order before any local theory or product notes:
+Each active workstream `<slug>.md` file should use the same front-matter order before any local theory or product notes:
 
 1. `## Workstream Metadata`
 2. `## Task Queue`
@@ -46,33 +46,33 @@ This single table is the canonical rollup for every direct child of `action-item
 
 | Rank | Slug | Title | Value | Cost | ROI |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | [`breather-proof`](../breather-proof/overview.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
-| 2 | [`mass-map`](../mass-map/overview.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | [`composer-reaction`](../composer-reaction/overview.md) | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
-| 4 | [`master-equation-closure`](../master-equation-closure/overview.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
-| 5 | [`dyadic-lock`](../dyadic-lock/overview.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
-| 6 | [`standard-model-closure`](../standard-model-closure/overview.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
-| 7 | [`simulations`](../simulations/overview.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
-| 8 | [`strong-field-closure`](../strong-field-closure/overview.md) | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
-| 9 | [`strong-field-hypotheses`](../strong-field-hypotheses/overview.md) | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 10 | [`chapter-authoring`](../chapter-authoring/overview.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
-| 11 | [`quantum-closure`](../quantum-closure/overview.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
-| 12 | [`cosmology-closure`](../cosmology-closure/overview.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 13 | [`deferred-outlook`](../deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
-| — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
+| 1 | [`breather-proof`](../breather-proof/breather-proof.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
+| 2 | [`mass-map`](../mass-map/mass-map.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
+| 3 | [`composer-reaction`](../composer-reaction/composer-reaction.md) | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 4 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
+| 5 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 6 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
+| 7 | [`simulations`](../simulations/simulations.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 8 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md) | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
+| 9 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
+| 10 | [`chapter-authoring`](../chapter-authoring/chapter-authoring.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 11 | [`quantum-closure`](../quantum-closure/quantum-closure.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
+| 12 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
+| 13 | [`deferred-outlook`](../deferred-outlook/deferred-outlook.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
+| — | [`-report`](./priorities.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../composer-reaction/composer.md) | Composer | — | — | — |
 | — | [`reaction`](../composer-reaction/reaction.md) | Reaction app | — | — | — |
 | — | [`pdg-solver`](../composer-reaction/pdg-solver.md) | PDG solver | — | — | — |
-| — | [`cruft-sprawl`](../cruft-sprawl/overview.md) | Cruft and sprawl reduction | — | — | — |
-| — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
-| — | [`viewports`](../viewports/overview.md) | Viewports | — | — | — |
-| — | [`3x3`](../3x3/overview.md) | 3x3 binary-slot matrix | — | — | — |
-| — | [`ellipsoid`](../ellipsoid/overview.md) | Ellipsoid app idea | — | — | — |
-| — | [`phenomenological-heuristics`](../phenomenological-heuristics/overview.md) | Dyadic resonance lock archive | — | — | — |
-| — | [`dynamo-team-insights`](../dynamo-team-insights/overview.md) | Consolidated geometry and dynamics observations | — | — | — |
-| — | [`codex`](../codex/overview.md) | Codex operator notes | — | — | — |
+| — | [`cruft-sprawl`](../cruft-sprawl/cruft-sprawl.md) | Cruft and sprawl reduction | — | — | — |
+| — | [`glyph`](../glyph/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
+| — | [`viewports`](../viewports/viewports.md) | Viewports | — | — | — |
+| — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
+| — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |
+| — | [`phenomenological-heuristics`](../phenomenological-heuristics/phenomenological-heuristics.md) | Dyadic resonance lock archive | — | — | — |
+| — | [`dynamo-team-insights`](../dynamo-team-insights/dynamo-team-insights.md) | Consolidated geometry and dynamics observations | — | — | — |
+| — | [`codex`](../codex/codex.md) | Codex operator notes | — | — | — |
 
 ## Current Focus
 
@@ -101,3 +101,10 @@ This single table is the canonical rollup for every direct child of `action-item
 
 - What is the smallest assembly that can make a decision?
 - Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will.
+
+## Related AAA Notes
+
+- [closure-scorecard](../../content/markdown/aaa/validation/closure-scorecard.md)
+- [failure-criteria](../../content/markdown/aaa/validation/failure-criteria.md)
+- [software-architecture-and-maintenance](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
+- [research-notebook](../../content/markdown/aaa/archie/research-notebook.md)

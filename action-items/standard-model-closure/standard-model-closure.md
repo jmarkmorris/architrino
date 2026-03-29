@@ -26,3 +26,18 @@ The quark catalog and basic `SU(3)\times SU(2)\times U(1)` bookkeeping are in pl
 - Derive CKM / PMNS data from explicit overlap integrals rather than fit knobs.
 - Derive confinement behavior from topological or strain energetics.
 - Work the chirality crisis hard enough to test weak `V-A` closure.
+
+## Related Action Items
+
+- [mass-map](../mass-map/mass-map.md)
+- [3x3](../3x3/3x3.md)
+- [glyph](../glyph/glyph.md)
+- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
+
+## Related AAA Notes
+
+- [quarks](../../content/markdown/aaa/assemblies/fermions/quarks.md)
+- [quantum-number-mapping](../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
+- [color-charge-su3](../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
+- [weak-mixing-ckm](../../content/markdown/aaa/assemblies/fermions/weak-mixing-ckm.md)
+- [electroweak-bosons](../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md)

@@ -149,6 +149,48 @@ function createQuarkNode(id, family, label, options = {}) {
   return createFamilyParticleNode(id, family, label, options);
 }
 
+function createZBosonNode(id, options = {}) {
+  const { label = "Z Boson", occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species: "z_boson",
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
+      source: "authored_override",
+    },
+    children: [
+      createNoetherCoreNode(`${id}/core`, {
+        label: `${label} core`,
+        polarity: "pro",
+        occupiedSlots,
+      }),
+    ],
+  });
+}
+
+function createWBosonNode(id, species, label, options = {}) {
+  const { occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species,
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
+      source: "authored_override",
+    },
+    children: [
+      createNoetherCoreNode(`${id}/core`, {
+        label: `${label} core`,
+        polarity: "pro",
+        occupiedSlots,
+      }),
+    ],
+  });
+}
+
 function createBaryonNode(id, species, quarkFamilies, options = {}) {
   const { label = species } = options;
   return createStructureNode({
@@ -227,7 +269,7 @@ function createPhotonNode(id, options = {}) {
 }
 
 function createOperatorNode(id, species, options = {}) {
-  const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "transmute";
+  const normalizedSpecies = String(species ?? "").trim().toLowerCase() || "operator";
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.COMPOSITE,
@@ -281,6 +323,19 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       label || "Electron",
       { polarity, occupiedSlots }
     );
+  } else if (normalizedTemplateId === "w_minus_boson") {
+    root = createWBosonNode(structureId, "w_minus_boson", label || "W- Boson", {
+      occupiedSlots,
+    });
+  } else if (normalizedTemplateId === "w_plus_boson") {
+    root = createWBosonNode(structureId, "w_plus_boson", label || "W+ Boson", {
+      occupiedSlots,
+    });
+  } else if (normalizedTemplateId === "z_boson") {
+    root = createZBosonNode(structureId, {
+      label: label || "Z Boson",
+      occupiedSlots,
+    });
   } else if (normalizedTemplateId === "neutrino") {
     root = createFamilyParticleNode(
       structureId,
@@ -335,25 +390,17 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       occupiedSlots,
     });
   } else if (
-    normalizedTemplateId === "transmute" ||
-    normalizedTemplateId === "l_polar_transform" ||
-    normalizedTemplateId === "r_polar_transform" ||
     normalizedTemplateId === "associate" ||
     normalizedTemplateId === "dissociate"
   ) {
     root = createOperatorNode(structureId, normalizedTemplateId, {
       label:
         label ||
-        (normalizedTemplateId === "l_polar_transform"
-          ? "L Polar Transform"
-          : normalizedTemplateId === "r_polar_transform"
-            ? "R Polar Transform"
-            :
         (normalizedTemplateId === "associate"
           ? "Associate"
           : normalizedTemplateId === "dissociate"
             ? "Dissociate"
-            : "Transmute")),
+            : "Operator"),
     });
   } else if (normalizedTemplateId === "fermion_gen1") {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {
