@@ -1644,9 +1644,9 @@ body {
   --solver-anchor-size: 16px;
   --solver-composite-node-size: 6px;
   --solver-composite-node-center: calc(var(--solver-composite-node-size) * 0.5);
-  --solver-composite-connector-lane: var(--solver-tile-gap, 7px);
+  --solver-composite-connector-span: var(--solver-tile-gap, 7px);
   --solver-composite-node-inset: calc(
-    (var(--solver-composite-connector-lane) - var(--solver-composite-node-size)) * 0.5
+    (var(--solver-composite-connector-span) - var(--solver-composite-node-size)) * 0.5
   );
   --solver-composite-participant-gap: 0px;
   position: absolute;
@@ -1729,11 +1729,11 @@ body {
   --solver-add-button-size: 42px;
   --solver-top-control-row-height: 42px;
   --solver-small-gap: 7px;
-  --solver-lane-gap: calc(var(--binary-choice-size, 72px) / 16);
+  --solver-surface-column-gap: calc(var(--binary-choice-size, 72px) / 16);
   position: relative;
   display: grid;
-  grid-template-columns: repeat(var(--solver-surface-column-count, 18), minmax(0, 1fr));
-  column-gap: var(--solver-lane-gap);
+  grid-template-columns: repeat(var(--solver-surface-column-count, 16), minmax(0, 1fr));
+  column-gap: var(--solver-surface-column-gap);
   row-gap: 0;
   flex: 1;
   min-height: 0;
@@ -1842,7 +1842,7 @@ body {
 }
 
 .composer-reaction-solver-column,
-.composer-reaction-solver-lane-slot,
+.composer-reaction-solver-column-group-slot,
 .composer-reaction-solver-operator-layer {
   position: relative;
   min-width: 0;
@@ -1881,18 +1881,18 @@ body {
   justify-items: start;
 }
 
-.composer-reaction-solver-lane-slot {
+.composer-reaction-solver-column-group-slot {
   grid-row: 1;
   min-height: 1px;
   visibility: hidden;
   pointer-events: none;
 }
 
-.composer-reaction-solver-lane-slot.is-operator-left {
+.composer-reaction-solver-column-group-slot.is-operator-left {
   grid-column: var(--solver-operator-lane-0-grid-column, 4 / span 4);
 }
 
-.composer-reaction-solver-lane-slot.is-operator-right {
+.composer-reaction-solver-column-group-slot.is-operator-right {
   grid-column: var(--solver-operator-lane-1-grid-column, 10 / span 4);
 }
 
@@ -2443,7 +2443,7 @@ body {
   width: fit-content;
 }
 
-.composer-reaction-solver-inline-anchor-lane {
+.composer-reaction-solver-inline-anchor-slot {
   display: grid;
   align-self: start;
   width: var(--solver-anchor-size);
@@ -2533,7 +2533,7 @@ body {
   grid-auto-rows: var(--binary-choice-size, 72px);
   align-content: start;
   gap: var(--solver-tile-gap, 7px);
-  width: var(--solver-composite-connector-lane);
+  width: var(--solver-composite-connector-span);
   inset-block: 0;
   z-index: 2;
 }
@@ -2561,7 +2561,7 @@ body {
 .composer-reaction-solver-composite-span-slot {
   position: relative;
   display: grid;
-  width: var(--solver-composite-connector-lane);
+  width: var(--solver-composite-connector-span);
   height: var(--binary-choice-size, 72px);
   place-items: center;
   z-index: 1;
@@ -2599,7 +2599,7 @@ body {
   margin-top: 0;
 }
 
-.composer-reaction-solver-composite-row-selector-lane {
+.composer-reaction-solver-composite-row-selector-slot {
   align-self: center;
 }
 
@@ -4137,7 +4137,7 @@ body {
     display: none;
   }
 
-  .composer-reaction-solver-lane-slot {
+  .composer-reaction-solver-column-group-slot {
     display: none;
   }
 

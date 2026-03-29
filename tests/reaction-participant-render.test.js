@@ -80,7 +80,7 @@ test("side slot headers align from the track-side edge, not the outer participan
   );
 });
 
-test("center assembly lane uses the shared surface grid column and centered participant alignment", () => {
+test("center assembly column group uses the shared surface grid column and centered participant alignment", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -100,7 +100,7 @@ test("center assembly lane uses the shared surface grid column and centered part
   );
 });
 
-test("center assembly lane reserves the same slot-header row as the side columns", () => {
+test("center assembly column group reserves the same slot-header row as the side columns", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -173,7 +173,7 @@ test("solver particle tiles are locked to a single shared size", () => {
   );
 });
 
-test("composite participants collapse the outer gap into a single connector lane", () => {
+test("composite participants collapse the outer gap into a single connector span", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -237,7 +237,7 @@ test("template picker grid uses the shared canvas tile gap", () => {
   );
 });
 
-test("composite span stem uses the shared centered connector lane geometry", () => {
+test("composite span stem uses the shared centered connector span geometry", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -245,7 +245,7 @@ test("composite span stem uses the shared centered connector lane geometry", () 
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-lane\);/
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-span\);/
   );
 });
 

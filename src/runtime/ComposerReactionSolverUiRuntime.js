@@ -38,8 +38,8 @@ import {
 import {
   applyReactionSolverLayoutCssVars,
   applyReactionSolverSurfaceGridLayout,
-  getReactionSurfaceLaneFallbackRatios,
-  measureReactionSurfaceLaneRatios,
+  getReactionSurfaceColumnGroupFallbackRatios,
+  measureReactionSurfaceColumnGroupRatios,
   REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX,
   REACTION_SOLVER_LAYOUT,
 } from "./ComposerReactionSolverLayoutRuntime.js";
@@ -693,7 +693,7 @@ function getOperatorRootMenuEntries() {
   });
 }
 
-function getReactionSurfaceLaneEntries() {
+function getReactionSurfaceColumnGroupEntries() {
   const enabledOperatorLaneEntries = getEnabledOperatorLaneLayoutEntries();
   const leftOperatorLaneEntry =
     enabledOperatorLaneEntries.find((entry) => entry.laneIndex === 0) ?? null;
@@ -812,7 +812,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let operatorLayoutFrameId = 0;
   let applyHoveredRouteState = () => {};
   let createAnchorButton = () => document.createElement("button");
-  let createInlineAnchorLane = () => document.createElement("div");
+  let createInlineAnchorSlot = () => document.createElement("div");
   let createSideSlotHeader = () => document.createElement("div");
   let createOperatorParticipantCard = () => document.createElement("article");
   let renderParticipantCard = () => document.createElement("article");
@@ -877,7 +877,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   ({
     applyHoveredRouteState,
     createAnchorButton,
-    createInlineAnchorLane,
+    createInlineAnchorSlot,
     setHoveredMappingIds,
   } = anchorRenderRuntime);
   const binaryGlyphRuntime = createComposerReactionBinaryGlyphRuntime({
@@ -891,7 +891,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     countDescendants,
     createAnchorButton,
     createBinaryGlyph,
-    createInlineAnchorLane,
+    createInlineAnchorSlot,
     cycleQuarkBinaryPreset,
     findMappingByNodeKey,
     formatLedger,
@@ -1850,15 +1850,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function createOperatorAddControls() {
     const controls = document.createElement("div");
-    const laneEntries = getReactionSurfaceLaneEntries();
-    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(columnGroupEntries.length);
     controls.className = "composer-reaction-solver-surface-add-controls";
-    laneEntries.forEach((entry, laneIndex) => {
+    columnGroupEntries.forEach((entry, columnGroupIndex) => {
       const control = createColumnAddControl(entry.side, {
         operatorLaneIndex: entry.operatorLaneIndex,
       });
-      control.dataset.surfaceLaneIndex = String(laneIndex);
-      control.style.left = `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
+      control.dataset.surfaceColumnGroupIndex = String(columnGroupIndex);
+      control.style.left = `${(columnGroupRatios[columnGroupIndex] ?? 0.5) * 100}%`;
       controls.appendChild(control);
     });
     return controls;
@@ -2455,7 +2455,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2604,44 +2604,50 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Array.from({ length: requiredCount }, (_, index) => minRatio + step * index);
   }
 
-  function getReactionSurfaceLaneRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
+  function getReactionSurfaceColumnGroupRatios(
+    requiredCount = getReactionSurfaceColumnGroupEntries().length
+  ) {
     const count = Math.max(1, requiredCount);
-    const laneEntries = getReactionSurfaceLaneEntries();
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
     if (!surface) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
     if (count <= 1) {
       return [0.5];
     }
     if (!reactantsColumn || !centerAssembliesColumn || !productsColumn) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
-    const measuredRatios = measureReactionSurfaceLaneRatios({
+    const measuredRatios = measureReactionSurfaceColumnGroupRatios({
       surface,
       reactantsColumn,
       centerAssembliesColumn,
       productsColumn,
-      laneEntries,
+      columnGroupEntries,
     });
-    if (!Array.isArray(measuredRatios) || measuredRatios.length !== laneEntries.length) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+    if (!Array.isArray(measuredRatios) || measuredRatios.length !== columnGroupEntries.length) {
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
     return measuredRatios.slice(0, count);
   }
 
   function getOperatorLaneRatios(requiredCount = operatorLaneCount) {
-    const visibleLaneEntries = getReactionSurfaceLaneEntries();
-    const laneRatios = getReactionSurfaceLaneRatios(visibleLaneEntries.length);
-    const visibleOperatorEntries = visibleLaneEntries.filter((entry) => entry.side === "operator");
+    const visibleColumnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(
+      visibleColumnGroupEntries.length
+    );
+    const visibleOperatorEntries = visibleColumnGroupEntries.filter(
+      (entry) => entry.side === "operator"
+    );
     const visibleOperatorRatios = visibleOperatorEntries
       .map((entry) => {
-        const laneIndex = visibleLaneEntries.findIndex(
-          (laneEntry) =>
-            laneEntry.side === "operator" &&
-            normalizeOperatorLaneIndex(laneEntry.operatorLaneIndex) ===
+        const columnGroupIndex = visibleColumnGroupEntries.findIndex(
+          (columnGroupEntry) =>
+            columnGroupEntry.side === "operator" &&
+            normalizeOperatorLaneIndex(columnGroupEntry.operatorLaneIndex) ===
               normalizeOperatorLaneIndex(entry.operatorLaneIndex)
         );
-        return laneRatios[laneIndex];
+        return columnGroupRatios[columnGroupIndex];
       })
       .filter((ratio) => Number.isFinite(ratio));
     if (visibleOperatorRatios.length) {
@@ -2674,14 +2680,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function getOperatorCardLeft(operatorLaneIndex = 1) {
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
-    const laneEntries = getReactionSurfaceLaneEntries();
-    const laneIndex = laneEntries.findIndex(
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupIndex = columnGroupEntries.findIndex(
       (entry) =>
         entry.side === "operator" &&
         normalizeOperatorLaneIndex(entry.operatorLaneIndex) === resolvedLaneIndex
     );
-    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
-    return `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(columnGroupEntries.length);
+    return `${(columnGroupRatios[columnGroupIndex] ?? 0.5) * 100}%`;
   }
 
   function getOperatorLaneSlotElement(operatorLaneIndex = null) {
@@ -2689,7 +2695,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return null;
     }
     return surface.querySelector(
-      `.composer-reaction-solver-lane-slot[data-operator-lane-index="${CSS.escape(String(
+      `.composer-reaction-solver-column-group-slot[data-operator-lane-index="${CSS.escape(String(
         normalizeOperatorLaneIndex(operatorLaneIndex)
       ))}"]`
     );
@@ -3082,7 +3088,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
+        "Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -3367,17 +3373,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
-    const laneRatios = getReactionSurfaceLaneRatios(getReactionSurfaceLaneEntries().length);
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(
+      getReactionSurfaceColumnGroupEntries().length
+    );
     Array.from(
       operatorLayer.querySelectorAll(
         ".composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control"
       )
     ).forEach((control, index) => {
-      const resolvedLaneIndex = Math.max(
+      const resolvedColumnGroupIndex = Math.max(
         0,
-        Math.round(Number(control.dataset.surfaceLaneIndex) || index)
+        Math.round(Number(control.dataset.surfaceColumnGroupIndex) || index)
       );
-      control.style.left = `${(laneRatios[resolvedLaneIndex] ?? 0.5) * 100}%`;
+      control.style.left = `${(columnGroupRatios[resolvedColumnGroupIndex] ?? 0.5) * 100}%`;
     });
 
     state.participants

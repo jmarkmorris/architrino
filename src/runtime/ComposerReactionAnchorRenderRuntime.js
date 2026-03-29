@@ -206,17 +206,17 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
     return anchor;
   }
 
-  function createInlineAnchorLane(participant, node, nodeKey) {
-    const lane = document.createElement("div");
-    lane.className = `composer-reaction-solver-inline-anchor-lane is-${participant.side}`;
-    lane.appendChild(createAnchorButton(participant, node, nodeKey));
-    return lane;
+  function createInlineAnchorSlot(participant, node, nodeKey) {
+    const slot = document.createElement("div");
+    slot.className = `composer-reaction-solver-inline-anchor-slot is-${participant.side}`;
+    slot.appendChild(createAnchorButton(participant, node, nodeKey));
+    return slot;
   }
 
   return {
     applyHoveredRouteState,
     createAnchorButton,
-    createInlineAnchorLane,
+    createInlineAnchorSlot,
     setHoveredMappingIds,
   };
 }

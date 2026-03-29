@@ -23,7 +23,7 @@ test("reaction solver operator registry includes only associate and dissociate",
   );
 });
 
-test("reaction solver operator lane layout assigns dissociate to lane 2 and associate to lane 3", () => {
+test("reaction solver operator layout assigns dissociate to the inner-left group and associate to the inner-right group", () => {
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
       laneIndex: entry.laneIndex,
