@@ -170,6 +170,27 @@ function createZBosonNode(id, options = {}) {
   });
 }
 
+function createWBosonNode(id, species, label, options = {}) {
+  const { occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species,
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
+      source: "authored_override",
+    },
+    children: [
+      createNoetherCoreNode(`${id}/core`, {
+        label: `${label} core`,
+        polarity: "pro",
+        occupiedSlots,
+      }),
+    ],
+  });
+}
+
 function createBaryonNode(id, species, quarkFamilies, options = {}) {
   const { label = species } = options;
   return createStructureNode({
@@ -302,6 +323,14 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       label || "Electron",
       { polarity, occupiedSlots }
     );
+  } else if (normalizedTemplateId === "w_minus_boson") {
+    root = createWBosonNode(structureId, "w_minus_boson", label || "W- Boson", {
+      occupiedSlots,
+    });
+  } else if (normalizedTemplateId === "w_plus_boson") {
+    root = createWBosonNode(structureId, "w_plus_boson", label || "W+ Boson", {
+      occupiedSlots,
+    });
   } else if (normalizedTemplateId === "z_boson") {
     root = createZBosonNode(structureId, {
       label: label || "Z Boson",

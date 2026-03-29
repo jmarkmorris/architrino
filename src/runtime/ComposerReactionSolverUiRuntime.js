@@ -78,6 +78,8 @@ const solverTemplateMeta = Object.freeze({
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
+  w_minus_boson: { shortLabel: "W-", accent: "#2d8cff" },
+  w_plus_boson: { shortLabel: "W+", accent: "#ff5a4a" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   z_boson: { shortLabel: "Z", accent: "#a259ff" },
@@ -93,8 +95,12 @@ export const REACTION_OPERATOR_ENTRIES = Object.freeze([
 export const REACTION_OPERATOR_LANE_COUNT = 2;
 export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   Object.freeze({
-    templateId: "electron",
-    label: "Electron",
+    templateId: "w_minus_boson",
+    label: "W- Boson",
+  }),
+  Object.freeze({
+    templateId: "w_plus_boson",
+    label: "W+ Boson",
   }),
   Object.freeze({
     templateId: "z_boson",
@@ -154,6 +160,8 @@ const templatePickerOrder = Object.freeze([
   "higgs_cluster",
   "photon",
   "neutron",
+  "w_minus_boson",
+  "w_plus_boson",
   "neutrino",
   "z_boson",
   "noether_core",
@@ -455,6 +463,12 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "electron") {
     return "Electron";
+  }
+  if (normalizedTemplateId === "w_minus_boson") {
+    return "W- Boson";
+  }
+  if (normalizedTemplateId === "w_plus_boson") {
+    return "W+ Boson";
   }
   if (normalizedTemplateId === "neutrino") {
     return "Neutrino";
@@ -2000,18 +2014,23 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function addCenterAssemblyParticipant(templateId = "electron") {
-    const normalizedTemplateId =
-      String(templateId ?? "").trim().toLowerCase() === "z_boson" ? "z_boson" : "electron";
+  function addCenterAssemblyParticipant(templateId = "w_minus_boson") {
+    const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+    const resolvedTemplateId =
+      normalizedTemplateId === "w_plus_boson" ||
+      normalizedTemplateId === "z_boson"
+        ? normalizedTemplateId
+        : "w_minus_boson";
     const participant = createParticipantRecord({
       side: "reactant",
-      templateId: normalizedTemplateId,
-      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Assembly"),
+      templateId: resolvedTemplateId,
+      label: getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly"),
       hierarchy: buildFallbackHierarchyForTemplate(
-        normalizedTemplateId,
-        getDefaultParticipantBaseLabel(normalizedTemplateId, "Assembly")
+        resolvedTemplateId,
+        getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly")
       ),
       extraFields: {
+        polarity: "pro",
         surfaceColumn: "center-assembly",
       },
     });
@@ -2303,7 +2322,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the middle + for electron or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2916,7 +2935,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the middle + for electron or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
+        "Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {

@@ -45,14 +45,14 @@ test("reaction solver operator lane layout assigns dissociate to lane 2 and asso
   );
 });
 
-test("reaction solver center assembly lane exposes electron and Z boson", () => {
+test("reaction solver center assembly lane exposes W-, W+, and Z bosons", () => {
   assert.deepEqual(
     REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => entry.templateId),
-    ["electron", "z_boson"]
+    ["w_minus_boson", "w_plus_boson", "z_boson"]
   );
 });
 
-test("Z boson is not treated as a polarity-toggling template", () => {
+test("W and Z bosons are not treated as polarity-toggling templates", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -61,5 +61,7 @@ test("Z boson is not treated as a polarity-toggling template", () => {
   const setEnd = runtimeSource.indexOf("]);", setStart);
   const polaritySetSource = runtimeSource.slice(setStart, setEnd);
   assert.ok(setStart >= 0 && setEnd > setStart);
+  assert.equal(polaritySetSource.includes('"w_minus_boson"'), false);
+  assert.equal(polaritySetSource.includes('"w_plus_boson"'), false);
   assert.equal(polaritySetSource.includes('"z_boson"'), false);
 });

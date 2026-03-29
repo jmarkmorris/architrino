@@ -56,6 +56,39 @@ test("anti up quark defaults are inverted from the pro preset", () => {
   });
 });
 
+test("W- boson defaults all three binary tiles to electrino pairs", () => {
+  const participant = createParticipant("w_minus_boson", "pro");
+  const selections = selectionRuntime.getInitialParticipantBinarySelections(participant);
+
+  assert.deepEqual(selections, {
+    "w_minus_boson_pro/inner": "ee",
+    "w_minus_boson_pro/middle": "ee",
+    "w_minus_boson_pro/outer": "ee",
+  });
+});
+
+test("W+ boson defaults all three binary tiles to positrino pairs", () => {
+  const participant = createParticipant("w_plus_boson", "pro");
+  const selections = selectionRuntime.getInitialParticipantBinarySelections(participant);
+
+  assert.deepEqual(selections, {
+    "w_plus_boson_pro/inner": "pp",
+    "w_plus_boson_pro/middle": "pp",
+    "w_plus_boson_pro/outer": "pp",
+  });
+});
+
+test("Z boson defaults all three binary tiles to positrino-electrino pairs", () => {
+  const participant = createParticipant("z_boson", "pro");
+  const selections = selectionRuntime.getInitialParticipantBinarySelections(participant);
+
+  assert.deepEqual(selections, {
+    "z_boson_pro/inner": "pe",
+    "z_boson_pro/middle": "pe",
+    "z_boson_pro/outer": "pe",
+  });
+});
+
 test("quark assignment search preserves only valid charge-count patterns", () => {
   const participant = createParticipant("down_quark", "pro");
   const assignments = selectionRuntime.enumerateValidBinarySelectionAssignments(participant);

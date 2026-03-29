@@ -46,7 +46,31 @@ const binarySelectorTemplateRules = Object.freeze({
       O: "ee",
     }),
   }),
+  w_minus_boson: Object.freeze({
+    visibleChoiceIds: Object.freeze(["ee"]),
+    defaultBySlot: Object.freeze({
+      I: "ee",
+      M: "ee",
+      O: "ee",
+    }),
+  }),
+  w_plus_boson: Object.freeze({
+    visibleChoiceIds: Object.freeze(["pp"]),
+    defaultBySlot: Object.freeze({
+      I: "pp",
+      M: "pp",
+      O: "pp",
+    }),
+  }),
   neutrino: Object.freeze({
+    visibleChoiceIds: Object.freeze(["pe"]),
+    defaultBySlot: Object.freeze({
+      I: "pe",
+      M: "pe",
+      O: "pe",
+    }),
+  }),
+  z_boson: Object.freeze({
     visibleChoiceIds: Object.freeze(["pe"]),
     defaultBySlot: Object.freeze({
       I: "pe",

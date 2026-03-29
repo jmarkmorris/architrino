@@ -48,6 +48,12 @@ export function createComposerReactionParticipantMutationRuntime(options = {}) {
     if (structureSpecies === "photon") {
       return "photon";
     }
+    if (structureSpecies === "w_minus_boson") {
+      return "w_minus_boson";
+    }
+    if (structureSpecies === "w_plus_boson") {
+      return "w_plus_boson";
+    }
     if (structureSpecies === "z_boson") {
       return "z_boson";
     }

@@ -105,6 +105,16 @@ function getCanonicalNoetherCoreLabel(polarity = "") {
 }
 
 function getBinarySelectorTemplateId(structureRoot = null) {
+  const species = String(structureRoot?.species ?? "").trim().toLowerCase();
+  if (species === "w_minus_boson") {
+    return "w_minus_boson";
+  }
+  if (species === "w_plus_boson") {
+    return "w_plus_boson";
+  }
+  if (species === "z_boson") {
+    return "z_boson";
+  }
   const family = String(structureRoot?.classification?.family ?? "").trim();
   if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
     return "electron";
@@ -193,6 +203,31 @@ function buildZBosonDescriptorTree(structureRoot) {
     id: String(structureRoot?.id ?? "root"),
     label: String(structureRoot?.label ?? "Z Boson").trim() || "Z Boson",
     templateId: "z_boson",
+    renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
+    layoutRole: "track-row",
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+      createBinarySlotDescriptor(
+        `${structureRoot?.id ?? "root"}/${slotName}`,
+        `${slotName} binary with personality`,
+        getSlotCode(slotName),
+        { hasBinary: binaryPresence[slotName] }
+      )
+    ),
+    traits: {
+      occupancy,
+      binaryPresence,
+    },
+  }];
+}
+
+function buildWBosonDescriptorTree(structureRoot, templateId, fallbackLabel) {
+  const coreNode = getPrimaryNoetherCore(structureRoot);
+  const occupancy = getNoetherCoreSlotOccupancy(coreNode);
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+  return [{
+    id: String(structureRoot?.id ?? "root"),
+    label: String(structureRoot?.label ?? fallbackLabel).trim() || fallbackLabel,
+    templateId,
     renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
     layoutRole: "track-row",
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
@@ -368,6 +403,12 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
   if (structureRoot.kind === STRUCTURE_KINDS.PARTICLE) {
     const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
     const family = String(structureRoot?.classification?.family ?? "").trim();
+    if (normalizedSpecies === "w_minus_boson") {
+      return buildWBosonDescriptorTree(structureRoot, "w_minus_boson", "W- Boson");
+    }
+    if (normalizedSpecies === "w_plus_boson") {
+      return buildWBosonDescriptorTree(structureRoot, "w_plus_boson", "W+ Boson");
+    }
     if (normalizedSpecies === "z_boson") {
       return buildZBosonDescriptorTree(structureRoot);
     }

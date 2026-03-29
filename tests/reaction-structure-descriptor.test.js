@@ -54,6 +54,30 @@ test("Z boson descriptor tree keeps the tri-binary particle row without a neutri
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
+test("W- boson descriptor tree uses the standard tri-binary particle row", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("w_minus_boson", "pro", "W- Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "w_minus_boson");
+  assert.equal(root.label, "W- Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
+test("W+ boson descriptor tree uses the standard tri-binary particle row", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("w_plus_boson", "pro", "W+ Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "w_plus_boson");
+  assert.equal(root.label, "W+ Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
 test("proton descriptor tree expands to up/down/up quark rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(createStructure("proton", "pro", "Proton"));
   const [root] = descriptorTree;
