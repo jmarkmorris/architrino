@@ -1865,6 +1865,13 @@ body {
   justify-items: end;
 }
 
+.composer-reaction-solver-column.is-center-assemblies {
+  grid-column: var(--solver-center-assemblies-grid-column, 7 / span 4);
+  padding-left: 0;
+  padding-right: 0;
+  justify-items: center;
+}
+
 .composer-reaction-solver-column.is-products {
   grid-column: var(--solver-products-grid-column, 13 / span 4);
   padding-left: 0;
@@ -2045,6 +2052,10 @@ body {
 
 .composer-reaction-solver-column.is-products > .composer-reaction-solver-participant {
   justify-self: start;
+}
+
+.composer-reaction-solver-column.is-center-assemblies > .composer-reaction-solver-participant {
+  justify-self: center;
 }
 
 .composer-reaction-solver-participant.has-noether-core-grid {

@@ -185,6 +185,31 @@ function buildFamilyParticleDescriptorTree(structureRoot) {
   }];
 }
 
+function buildZBosonDescriptorTree(structureRoot) {
+  const coreNode = getPrimaryNoetherCore(structureRoot);
+  const occupancy = getNoetherCoreSlotOccupancy(coreNode);
+  const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
+  return [{
+    id: String(structureRoot?.id ?? "root"),
+    label: String(structureRoot?.label ?? "Z Boson").trim() || "Z Boson",
+    templateId: "z_boson",
+    renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
+    layoutRole: "track-row",
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+      createBinarySlotDescriptor(
+        `${structureRoot?.id ?? "root"}/${slotName}`,
+        `${slotName} binary with personality`,
+        getSlotCode(slotName),
+        { hasBinary: binaryPresence[slotName] }
+      )
+    ),
+    traits: {
+      occupancy,
+      binaryPresence,
+    },
+  }];
+}
+
 function getQuarkDescriptorLabel(family = "") {
   return family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "Up quark" : "Down quark";
 }
@@ -341,7 +366,11 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     return buildNoetherCoreDescriptorTree(structureRoot);
   }
   if (structureRoot.kind === STRUCTURE_KINDS.PARTICLE) {
+    const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
     const family = String(structureRoot?.classification?.family ?? "").trim();
+    if (normalizedSpecies === "z_boson") {
+      return buildZBosonDescriptorTree(structureRoot);
+    }
     if (
       family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON ||
       family === STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO ||

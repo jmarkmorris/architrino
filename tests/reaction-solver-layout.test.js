@@ -97,6 +97,7 @@ test("reaction solver layout derives explicit track-start offsets for standalone
 
 test("reaction solver layout applies periodic-table grid spans to visible lane elements", () => {
   const reactantsApplied = new Map();
+  const centerApplied = new Map();
   const productsApplied = new Map();
   const operatorLane0Applied = new Map();
   const operatorLane1Applied = new Map();
@@ -131,6 +132,13 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
         },
       },
     },
+    centerAssembliesColumn: {
+      style: {
+        setProperty(name, value) {
+          centerApplied.set(name, value);
+        },
+      },
+    },
     productsColumn: {
       style: {
         setProperty(name, value) {
@@ -140,6 +148,7 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
     },
   });
   assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 4");
+  assert.equal(centerApplied.get("--solver-center-assemblies-grid-column"), "7 / span 4");
   assert.equal(productsApplied.get("--solver-products-grid-column"), "13 / span 4");
   assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "4 / span 4");
   assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "10 / span 4");
@@ -149,12 +158,13 @@ test("reaction solver layout derives fallback lane ratios from periodic-table sl
   const ratios = getReactionSurfaceLaneFallbackRatios([
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
+    { side: "center", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 1 },
     { side: "product", operatorLaneIndex: null },
   ]);
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.125, 0.3125, 0.6875, 0.875]
+    [0.125, 0.3125, 0.5, 0.6875, 0.875]
   );
 });
 
@@ -162,11 +172,15 @@ test("reaction solver layout measures operator lane centers from explicit lane s
   const laneEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
+    { side: "center", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 1 },
     { side: "product", operatorLaneIndex: null },
   ];
   const operatorLane0 = {
     getBoundingClientRect: () => ({ left: 420, width: 260 }),
+  };
+  const centerLane = {
+    getBoundingClientRect: () => ({ left: 650, width: 260 }),
   };
   const operatorLane1 = {
     getBoundingClientRect: () => ({ left: 840, width: 260 }),
@@ -187,6 +201,7 @@ test("reaction solver layout measures operator lane centers from explicit lane s
     reactantsColumn: {
       getBoundingClientRect: () => ({ left: 120, width: 260 }),
     },
+    centerAssembliesColumn: centerLane,
     productsColumn: {
       getBoundingClientRect: () => ({ left: 1220, width: 260 }),
     },
@@ -194,7 +209,7 @@ test("reaction solver layout measures operator lane centers from explicit lane s
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.1172, 0.3516, 0.6797, 0.9766]
+    [0.1172, 0.3516, 0.5313, 0.6797, 0.9766]
   );
 });
 
@@ -202,6 +217,7 @@ test("reaction solver layout measures outer lane centers from fixed periodic lan
   const laneEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
+    { side: "center", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 1 },
     { side: "product", operatorLaneIndex: null },
   ];
@@ -225,6 +241,9 @@ test("reaction solver layout measures outer lane centers from fixed periodic lan
     reactantsColumn: {
       getBoundingClientRect: () => ({ left: 100, width: 320 }),
     },
+    centerAssembliesColumn: {
+      getBoundingClientRect: () => ({ left: 700, width: 280 }),
+    },
     productsColumn: {
       getBoundingClientRect: () => ({ left: 1300, width: 320 }),
     },
@@ -232,6 +251,6 @@ test("reaction solver layout measures outer lane centers from fixed periodic lan
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
-    [0.1, 0.3375, 0.5875, 0.85]
+    [0.1, 0.3375, 0.4625, 0.5875, 0.85]
   );
 });

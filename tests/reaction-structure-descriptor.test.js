@@ -42,6 +42,18 @@ test("trimmed electron keeps three tiles but marks the stripped slot as binary-f
   assert.deepEqual(root.children.map((child) => child.hasBinary), [true, true, false]);
 });
 
+test("Z boson descriptor tree keeps the tri-binary particle row without a neutrino label", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("z_boson", "pro", "Z Boson")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "z_boson");
+  assert.equal(root.label, "Z Boson");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+});
+
 test("proton descriptor tree expands to up/down/up quark rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(createStructure("proton", "pro", "Proton"));
   const [root] = descriptorTree;

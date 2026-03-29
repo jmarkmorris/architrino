@@ -149,6 +149,27 @@ function createQuarkNode(id, family, label, options = {}) {
   return createFamilyParticleNode(id, family, label, options);
 }
 
+function createZBosonNode(id, options = {}) {
+  const { label = "Z Boson", occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species: "z_boson",
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
+      source: "authored_override",
+    },
+    children: [
+      createNoetherCoreNode(`${id}/core`, {
+        label: `${label} core`,
+        polarity: "pro",
+        occupiedSlots,
+      }),
+    ],
+  });
+}
+
 function createBaryonNode(id, species, quarkFamilies, options = {}) {
   const { label = species } = options;
   return createStructureNode({
@@ -281,6 +302,11 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       label || "Electron",
       { polarity, occupiedSlots }
     );
+  } else if (normalizedTemplateId === "z_boson") {
+    root = createZBosonNode(structureId, {
+      label: label || "Z Boson",
+      occupiedSlots,
+    });
   } else if (normalizedTemplateId === "neutrino") {
     root = createFamilyParticleNode(
       structureId,

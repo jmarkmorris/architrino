@@ -37,6 +37,12 @@ export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
     span: 4,
   }),
   Object.freeze({
+    side: "center",
+    operatorLaneIndex: null,
+    start: 7,
+    span: 4,
+  }),
+  Object.freeze({
     side: "operator",
     operatorLaneIndex: 1,
     start: 10,
@@ -200,7 +206,10 @@ function getOperatorLaneSlotElement(surface, operatorLaneIndex) {
   );
 }
 
-function getOperatorGridColumnVarName(operatorLaneIndex) {
+function getLaneGridColumnVarName(side, operatorLaneIndex = null) {
+  if (side === "center") {
+    return "--solver-center-assemblies-grid-column";
+  }
   const normalizedIndex = Number(operatorLaneIndex);
   if (normalizedIndex === 0) {
     return "--solver-operator-lane-0-grid-column";
@@ -214,6 +223,7 @@ function getOperatorGridColumnVarName(operatorLaneIndex) {
 export function applyReactionSolverSurfaceGridLayout({
   surface,
   reactantsColumn,
+  centerAssembliesColumn,
   productsColumn,
 }) {
   const reactantEntry = getReactionSolverSurfaceSlotLayoutEntry("reactant");
@@ -221,6 +231,18 @@ export function applyReactionSolverSurfaceGridLayout({
     reactantsColumn.style.setProperty(
       "--solver-reactants-grid-column",
       `${reactantEntry.start} / span ${reactantEntry.span}`
+    );
+  }
+
+  const centerEntry = getReactionSolverSurfaceSlotLayoutEntry("center");
+  if (
+    centerAssembliesColumn?.style &&
+    centerEntry &&
+    typeof centerAssembliesColumn.style.setProperty === "function"
+  ) {
+    centerAssembliesColumn.style.setProperty(
+      "--solver-center-assemblies-grid-column",
+      `${centerEntry.start} / span ${centerEntry.span}`
     );
   }
 
@@ -234,7 +256,10 @@ export function applyReactionSolverSurfaceGridLayout({
 
   REACTION_SOLVER_SURFACE_SLOT_LAYOUT.filter((entry) => entry.side === "operator").forEach((entry) => {
     const slotElement = getOperatorLaneSlotElement(surface, entry.operatorLaneIndex);
-    const operatorGridColumnVarName = getOperatorGridColumnVarName(entry.operatorLaneIndex);
+    const operatorGridColumnVarName = getLaneGridColumnVarName(
+      entry.side,
+      entry.operatorLaneIndex
+    );
     if (
       operatorGridColumnVarName &&
       slotElement?.style &&
@@ -251,11 +276,15 @@ export function applyReactionSolverSurfaceGridLayout({
 function getReactionSurfaceLaneElement({
   surface,
   reactantsColumn,
+  centerAssembliesColumn,
   productsColumn,
   laneEntry,
 }) {
   if (laneEntry?.side === "reactant") {
     return reactantsColumn ?? null;
+  }
+  if (laneEntry?.side === "center") {
+    return centerAssembliesColumn ?? null;
   }
   if (laneEntry?.side === "product") {
     return productsColumn ?? null;
@@ -285,6 +314,7 @@ export function getReactionSurfaceLaneFallbackRatios(laneEntries = []) {
 export function measureReactionSurfaceLaneRatios({
   surface,
   reactantsColumn,
+  centerAssembliesColumn,
   productsColumn,
   laneEntries = [],
 }) {
@@ -301,6 +331,7 @@ export function measureReactionSurfaceLaneRatios({
     const laneElement = getReactionSurfaceLaneElement({
       surface,
       reactantsColumn,
+      centerAssembliesColumn,
       productsColumn,
       laneEntry,
     });

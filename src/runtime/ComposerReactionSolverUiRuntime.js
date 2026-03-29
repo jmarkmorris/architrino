@@ -80,6 +80,7 @@ const solverTemplateMeta = Object.freeze({
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
+  z_boson: { shortLabel: "Z", accent: "#a259ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -90,6 +91,16 @@ export const REACTION_OPERATOR_ENTRIES = Object.freeze([
   { templateId: "dissociate", label: "Dissociate" },
 ]);
 export const REACTION_OPERATOR_LANE_COUNT = 2;
+export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
+  Object.freeze({
+    templateId: "electron",
+    label: "Electron",
+  }),
+  Object.freeze({
+    templateId: "z_boson",
+    label: "Z Boson",
+  }),
+]);
 const operatorEntries = REACTION_OPERATOR_ENTRIES;
 export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
@@ -144,10 +155,26 @@ const templatePickerOrder = Object.freeze([
   "photon",
   "neutron",
   "neutrino",
+  "z_boson",
   "noether_core",
   "down_quark",
   "electron",
 ]);
+
+function ensureCenterAssembliesColumn(surface) {
+  if (!(surface instanceof HTMLElement)) {
+    return null;
+  }
+  const existingColumn =
+    surface.querySelector(".composer-reaction-solver-column.is-center-assemblies") ?? null;
+  if (existingColumn instanceof HTMLElement) {
+    return existingColumn;
+  }
+  const column = document.createElement("div");
+  column.className = "composer-reaction-solver-column is-center-assemblies";
+  surface.appendChild(column);
+  return column;
+}
 
 function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const entries = [];
@@ -432,6 +459,9 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "neutrino") {
     return "Neutrino";
   }
+  if (normalizedTemplateId === "z_boson") {
+    return "Z Boson";
+  }
   if (normalizedTemplateId === "proton") {
     return "Proton";
   }
@@ -532,6 +562,20 @@ function isOperatorParticipant(participant) {
   return participant?.side === "operator" && isOperatorTemplateId(participant?.templateId);
 }
 
+function isCenterAssemblyParticipant(participant) {
+  return participant?.side === "reactant" && participant?.surfaceColumn === "center-assembly";
+}
+
+function getParticipantCollectionKey(participant = null) {
+  if (isCenterAssemblyParticipant(participant)) {
+    return "center-assembly";
+  }
+  if (isOperatorParticipant(participant)) {
+    return `operator:${normalizeOperatorLaneIndex(participant.operatorLaneIndex)}`;
+  }
+  return participant?.side === "product" ? "product" : "reactant";
+}
+
 function isSingleMappingAnchorRole(role = "") {
   return role === "reactant" || role === "product";
 }
@@ -571,7 +615,13 @@ const solverAddButtonSizePx = REACTION_SOLVER_LAYOUT.addButtonSizePx;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
-    side === "product" ? "product" : side === "operator" ? "operator" : "reactant";
+    side === "product"
+      ? "product"
+      : side === "operator"
+        ? "operator"
+        : side === "center"
+          ? "assembly"
+          : "reactant";
   if (!options.capitalized) {
     return label;
   }
@@ -627,12 +677,20 @@ function getOperatorRootMenuEntries() {
 }
 
 function getReactionSurfaceLaneEntries() {
+  const enabledOperatorLaneEntries = getEnabledOperatorLaneLayoutEntries();
+  const leftOperatorLaneEntry =
+    enabledOperatorLaneEntries.find((entry) => entry.laneIndex === 0) ?? null;
+  const rightOperatorLaneEntry =
+    enabledOperatorLaneEntries.find((entry) => entry.laneIndex === 1) ?? null;
   return [
     { side: "reactant", operatorLaneIndex: null },
-    ...getEnabledOperatorLaneLayoutEntries().map((entry) => ({
-      side: "operator",
-      operatorLaneIndex: entry.laneIndex,
-    })),
+    ...(leftOperatorLaneEntry
+      ? [{ side: "operator", operatorLaneIndex: leftOperatorLaneEntry.laneIndex }]
+      : []),
+    { side: "center", operatorLaneIndex: null },
+    ...(rightOperatorLaneEntry
+      ? [{ side: "operator", operatorLaneIndex: rightOperatorLaneEntry.laneIndex }]
+      : []),
     { side: "product", operatorLaneIndex: null },
   ];
 }
@@ -693,11 +751,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     storageKey = "",
   } = deps;
 
+  const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
   applyReactionSolverLayoutCssVars(root);
   applyReactionSolverLayoutCssVars(surface);
   applyReactionSolverSurfaceGridLayout({
     surface,
     reactantsColumn,
+    centerAssembliesColumn,
     productsColumn,
   });
 
@@ -1666,6 +1726,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       "aria-label",
       side === "product"
         ? "Add product"
+        : side === "center"
+          ? "Add center assembly"
         : side === "operator"
           ? operatorLayerEntry?.enabled
             ? operatorPickerEntries.length
@@ -1677,6 +1739,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (
       state.menuOpen &&
       ((state.menuMode === "template-grid-picker" && state.menuSide === side) ||
+        (side === "center" && state.menuMode === "center-assembly-picker") ||
         (side === "operator" &&
           state.menuMode === "operator-picker" &&
           state.menuOperatorLaneIndex === operatorLaneIndex))
@@ -1698,6 +1761,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
       } else {
         button.disabled = true;
       }
+    } else if (side === "center") {
+      button.addEventListener("click", (event) =>
+        openCenterAssemblyPicker(event.currentTarget)
+      );
     } else {
       button.addEventListener("click", (event) => openTemplateGridPicker(side, event.currentTarget));
     }
@@ -1728,6 +1795,25 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.menuAnchorElement = triggerElement;
     state.menuMode = "operator-picker";
     state.menuOperatorLaneIndex = resolvedLaneIndex;
+    state.menuParticipantId = "";
+    state.menuOpen = true;
+    renderMenu();
+  }
+
+  function openCenterAssemblyPicker(triggerElement = null) {
+    if (!state.active || !menu || !triggerElement) {
+      return;
+    }
+    if (state.menuOpen && state.menuMode === "center-assembly-picker") {
+      closeMenu();
+      return;
+    }
+    closeExternalMenus();
+    const bounds = triggerElement.getBoundingClientRect();
+    state.menuClientX = bounds.left + bounds.width / 2;
+    state.menuClientY = bounds.bottom + 10;
+    state.menuAnchorElement = triggerElement;
+    state.menuMode = "center-assembly-picker";
     state.menuParticipantId = "";
     state.menuOpen = true;
     renderMenu();
@@ -1808,12 +1894,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     renderMenu();
   }
 
-  function insertParticipantAtTopOfSide(participant) {
+  function insertParticipantAtTopOfCollection(participant) {
     if (!participant) {
       return;
     }
+    const targetCollectionKey = getParticipantCollectionKey(participant);
     const insertionIndex = state.participants.findIndex(
-      (entry) => String(entry?.side ?? "") === String(participant.side ?? "")
+      (entry) => getParticipantCollectionKey(entry) === targetCollectionKey
     );
     if (insertionIndex < 0) {
       state.participants.push(participant);
@@ -1873,7 +1960,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         polarity: options.initialPolarity ?? templateEntry.initialPolarity ?? "",
       },
     });
-    insertParticipantAtTopOfSide(participant);
+    insertParticipantAtTopOfCollection(participant);
     state.pendingSourceKey = "";
     state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
@@ -1899,7 +1986,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
           polarity,
         }),
     });
-    insertParticipantAtTopOfSide(participant);
+    insertParticipantAtTopOfCollection(participant);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     state.pendingSourceAnchorInstanceIndex = null;
@@ -1911,6 +1998,30 @@ export function createComposerReactionSolverUiRuntime(deps) {
         compositeModeLabel ? ` in ${compositeModeLabel.toLowerCase()} mode` : ""
       }.`
     );
+  }
+
+  function addCenterAssemblyParticipant(templateId = "electron") {
+    const normalizedTemplateId =
+      String(templateId ?? "").trim().toLowerCase() === "z_boson" ? "z_boson" : "electron";
+    const participant = createParticipantRecord({
+      side: "reactant",
+      templateId: normalizedTemplateId,
+      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Assembly"),
+      hierarchy: buildFallbackHierarchyForTemplate(
+        normalizedTemplateId,
+        getDefaultParticipantBaseLabel(normalizedTemplateId, "Assembly")
+      ),
+      extraFields: {
+        surfaceColumn: "center-assembly",
+      },
+    });
+    insertParticipantAtTopOfCollection(participant);
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    closeMenu();
+    render();
+    setStatus(`Center assembly ${participant.label} added to the reaction solver.`);
   }
 
   function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
@@ -2000,6 +2111,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
       pickerEntries.forEach((entry) => {
         renderMenuButton(entry.label, {
           onClick: () => addOperatorParticipant(entry.templateId, state.menuOperatorLaneIndex),
+        });
+      });
+      renderMenuButton("Back", {
+        kind: "secondary",
+        onClick: () => {
+          state.menuMode = "root";
+          state.menuParticipantId = "";
+          renderMenu();
+        },
+      });
+    } else if (state.menuMode === "center-assembly-picker") {
+      renderMenuTitle("Add Assembly");
+      REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.forEach((entry) => {
+        renderMenuButton(entry.label, {
+          onClick: () => addCenterAssemblyParticipant(entry.templateId),
         });
       });
       renderMenuButton("Back", {
@@ -2107,6 +2233,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
         extraClassNames: ["is-root-tile"],
         onClick: () => openTemplatePicker("product"),
       });
+      REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.forEach((entry) => {
+        renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
+          lines: ["Add", entry.label],
+          extraClassNames: ["is-wide", "is-root-tile"],
+          onClick: () => addCenterAssemblyParticipant(entry.templateId),
+        });
+      });
       getOperatorRootMenuEntries().forEach((entry) => {
         renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
           lines: ["Add", entry.label],
@@ -2170,7 +2303,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the middle + for electron or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2328,12 +2461,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (count <= 1) {
       return [0.5];
     }
-    if (!reactantsColumn || !productsColumn) {
+    if (!reactantsColumn || !centerAssembliesColumn || !productsColumn) {
       return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
     }
     const measuredRatios = measureReactionSurfaceLaneRatios({
       surface,
       reactantsColumn,
+      centerAssembliesColumn,
       productsColumn,
       laneEntries,
     });
@@ -2645,7 +2779,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const participant = findParticipantById(state.dragParticipantId);
-    if (!participant || (participant.side !== "reactant" && participant.side !== "product")) {
+    if (
+      !participant ||
+      isCenterAssemblyParticipant(participant) ||
+      (participant.side !== "reactant" && participant.side !== "product")
+    ) {
       return;
     }
     const columnElement = participant.side === "product" ? productsColumn : reactantsColumn;
@@ -2735,7 +2873,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const participant = findParticipantById(participantId);
-    if (!participant || (participant.side !== "reactant" && participant.side !== "product")) {
+    if (
+      !participant ||
+      isCenterAssemblyParticipant(participant) ||
+      (participant.side !== "reactant" && participant.side !== "product")
+    ) {
       return;
     }
     const target = event.target;
@@ -2774,7 +2916,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
+        "Use the left + for reactants, the middle + for electron or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -3090,7 +3232,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
     );
     const sideParticipants = state.participants.filter(
-      (participant) => participant?.side === side
+      (participant) =>
+        participant?.side === side && (side !== "reactant" || !isCenterAssemblyParticipant(participant))
     );
     if (!sideParticipants.length) {
       if (header instanceof HTMLElement) {
@@ -3141,12 +3284,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function render() {
-    if (!root || !reactantsColumn || !productsColumn || !operatorLayer) {
+    if (!root || !reactantsColumn || !centerAssembliesColumn || !productsColumn || !operatorLayer) {
       return;
     }
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
     reactantsColumn.innerHTML = "";
+    centerAssembliesColumn.innerHTML = "";
     operatorLayer.innerHTML = "";
     productsColumn.innerHTML = "";
     if (!state.active) {
@@ -3159,7 +3303,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     rebuildAnchorRegistry();
     const reactantParticipants = state.participants.filter(
-      (participant) => participant.side === "reactant"
+      (participant) => participant.side === "reactant" && !isCenterAssemblyParticipant(participant)
+    );
+    const centerAssemblyParticipants = state.participants.filter((participant) =>
+      isCenterAssemblyParticipant(participant)
     );
     const productParticipants = state.participants.filter(
       (participant) => participant.side === "product"
@@ -3172,6 +3319,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     reactantParticipants.forEach((participant) => {
       reactantsColumn.appendChild(renderParticipantCard(participant));
+    });
+    centerAssemblyParticipants.forEach((participant) => {
+      centerAssembliesColumn.appendChild(renderParticipantCard(participant));
     });
     operatorLayer.appendChild(createOperatorAddControls());
     if (productParticipants.length) {

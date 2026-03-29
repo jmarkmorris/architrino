@@ -72,6 +72,18 @@ test("side slot headers align from the track-side edge, not the outer participan
   );
 });
 
+test("center assembly lane uses the shared surface grid column and centered participant alignment", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-column\.is-center-assemblies\s*\{[\s\S]*?grid-column:\s*var\(--solver-center-assemblies-grid-column,\s*7 \/ span 4\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-column\.is-center-assemblies\s*>\s*\.composer-reaction-solver-participant\s*\{[\s\S]*?justify-self:\s*center;/
+  );
+});
+
 test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
@@ -82,6 +94,20 @@ test("composite assembly rows use the standard tile gap between the title tile a
     styleSheet,
     /\.composer-reaction-solver-inline-track-body,\s*[\s\S]*?\.composer-reaction-solver-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--solver-attachment-gap\);/
   );
+});
+
+test("Z boson uses the standard tri-binary grid renderer instead of a custom center-column fallback", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const descriptorSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionStructureDescriptorRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(descriptorSource, /templateId:\s*"z_boson"/);
+  assert.match(descriptorSource, /label:\s*String\(structureRoot\?\.label \?\? "Z Boson"\)/);
+  assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
 test("operator tiles expose an open-ledger shell state", () => {
