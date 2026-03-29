@@ -55,11 +55,11 @@ This single table is the canonical rollup for every direct child of `action-item
 | 7 | [`simulations`](../simulations/overview.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
 | 8 | [`strong-field-closure`](../strong-field-closure/overview.md) | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
 | 9 | [`strong-field-hypotheses`](../strong-field-hypotheses/overview.md) | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 10 | [`chapter-authoring`](../chapter-authoring/overview.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 10 | [`chapter-authoring`](action-items/chapter-authoring/overview.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
 | 11 | [`quantum-closure`](../quantum-closure/overview.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
 | 12 | [`cosmology-closure`](../cosmology-closure/overview.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 13 | [`deferred-outlook`](../deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
-| — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
+| 13 | [`deferred-outlook`](action-items/deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
+| — | [`-report`](action-items/-report/Overview.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../composer-reaction/composer.md) | Composer | — | — | — |
@@ -67,12 +67,12 @@ This single table is the canonical rollup for every direct child of `action-item
 | — | [`pdg-solver`](../composer-reaction/pdg-solver.md) | PDG solver | — | — | — |
 | — | [`cruft-sprawl`](../cruft-sprawl/overview.md) | Cruft and sprawl reduction | — | — | — |
 | — | [`glyph`](../glyph/overview.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
-| — | [`viewports`](../viewports/overview.md) | Viewports | — | — | — |
-| — | [`3x3`](../3x3/overview.md) | 3x3 binary-slot matrix | — | — | — |
+| — | [`viewports`](action-items/viewports/overview.md) | Viewports | — | — | — |
+| — | [`3x3`](action-items/3x3/overview.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/overview.md) | Ellipsoid app idea | — | — | — |
 | — | [`phenomenological-heuristics`](../phenomenological-heuristics/overview.md) | Dyadic resonance lock archive | — | — | — |
 | — | [`dynamo-team-insights`](../dynamo-team-insights/overview.md) | Consolidated geometry and dynamics observations | — | — | — |
-| — | [`codex`](../codex/overview.md) | Codex operator notes | — | — | — |
+| — | [`codex`](action-items/codex/overview.md) | Codex operator notes | — | — | — |
 
 ## Current Focus
 

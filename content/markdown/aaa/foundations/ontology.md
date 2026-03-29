@@ -8,12 +8,12 @@ This chapter is the bedrock ontology note for $\mathbb{A}\mathbb{A}\mathbb{A}$. 
 
 This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what is operational. It defines:
 
-1. **The Substrate** (absolute time, Euclidean space, and their product structure)
+1. **The Substrate** ([absolute time](./absolute-time-defense.md), [Euclidean void](./euclidean-void.md), and their product structure)
 2. **The Fundamental Entity** (architrino: point transmitter/receiver of potential)
-3. **The Physical Medium** (Noether Sea / spacetime medium: assembly lattice)
-4. **The Observer Framework** (Absolute vs Physical observers; ontic vs epistemic)
+3. **The Physical Medium** ([Noether Sea / spacetime medium](../spacetime/spacetime-assemblies.md): assembly lattice)
+4. **The Observer Framework** (Absolute vs Physical observers; ontic vs epistemic; see also [proper-time and time dilation](../spacetime/proper-time-and-time-dilation.md))
 5. **Terminology Discipline** (locked definitions to prevent semantic drift)
-6. **Parameter Ledger** (fundamental postulates vs derived quantities)
+6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
 
 All subsequent dynamical laws, assembly mappings, and emergent phenomena are **built upon** these foundations. Any contradiction or ambiguity here propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
 

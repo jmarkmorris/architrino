@@ -7,7 +7,7 @@
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the spacetime medium composed of neutral tri-binary assemblies).
+In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the [spacetime medium](../spacetime/spacetime-assemblies.md) composed of neutral tri-binary assemblies).
 
 **Mass is coupling to Noether-Sea assemblies.**
 
@@ -17,7 +17,7 @@ Apparent inertial mass arises from two intertwined effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the Noether core creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Shielding:** The pro/anti structure of the [Noether core](./noether-core.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, it only "sees" this shielded fraction:
   $$
   m_{\text{apparent}} \propto \zeta \, E_{\text{internal}}.
@@ -59,6 +59,8 @@ In the architrino framework:
 - Mass is **not a coupling constant** ($y_f$ Yukawa couplings) but a **geometric property** (shielding factor $\zeta$ + drag coefficient).
 - The 125 GeV "Higgs Boson" is reinterpreted as a **radial breathing mode** of the sea lattice, not the source of mass itself (see).
 
+For the electroweak medium interpretation behind this replacement, see [Emergence of U(1)/SU(2)](../dynamics/gauge-structure-emergence.md).
+
 ## Speculative Charged-Lepton Benchmark: Koide
 
 The charged-lepton mass triplet is unusual enough that it is worth recording one explicit benchmark, while keeping the status clear: this is **speculative** and should not be presented as a derivation.
@@ -90,8 +92,8 @@ The reason is that quark inertial mass is not just bare core exposure. Quarks ca
 
 So the working distinction is:
 
-- **charged leptons:** closest available probe of the bare shielding ladder,
-- **quarks:** shielding ladder plus strong-sector contamination.
+- **charged leptons:** closest available probe of the bare shielding ladder; see [Electron](./fermions/electron.md),
+- **quarks:** shielding ladder plus strong-sector contamination; see [Quarks](./fermions/quarks.md).
 
 That means a Koide-like benchmark, if it is useful at all, belongs first to the charged leptons. Failure of quarks to lie on the same mass-root surface should be treated as expected in the present ontology, not as an immediate contradiction.
 

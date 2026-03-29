@@ -10,7 +10,7 @@ This nesting creates a hierarchical structure, like a set of Russian dolls. Each
 
 ### The Noether Core: A Triply Nested Binary
 
-A particularly important and stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core**.
+A particularly important and stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
 
 -   **Why Three?** The stability of a triply nested structure is related to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. A system of three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation.
 
@@ -32,7 +32,7 @@ The broader assembly program suggests reading the nested-binary family as a natu
 -   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II core tier.
 -   **Tri-binary / Noether core:** the fully shielded three-tier core, corresponding to the Generation-I core tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine.
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](./particle-masses.md) and the charged-lepton story beginning with [Electron](./fermions/electron.md).
 
 ### Tri-Binary Alignment and Planck-Scale Framing
 
@@ -40,7 +40,7 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../dynamics/mapping-Planck-scale.md).
 
 ### The Foundation for Fermions
 
