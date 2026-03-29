@@ -65,3 +65,60 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
   assert.equal(polaritySetSource.includes('"w_plus_boson"'), false);
   assert.equal(polaritySetSource.includes('"z_boson"'), false);
 });
+
+test("center assemblies use their own reorder collection during side-column dragging", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /const collectionKey = getParticipantCollectionKey\(participant\);/
+  );
+  assert.match(
+    runtimeSource,
+    /collectionKey === "center-assembly"\s*\?\s*centerAssembliesColumn/
+  );
+  assert.match(
+    runtimeSource,
+    /reorderParticipantCollection\(collectionKey,\s*nextParticipantIds\)/
+  );
+});
+
+test("center assembly header geometry is resynced with the other lane columns", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /const centerSynced = syncSideColumnTrackAlignment\(centerAssembliesColumn,\s*"center"\);/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(reactantsSynced \|\| centerSynced \|\| productsSynced\) \{/
+  );
+});
+
+test("center assemblies snap to explicit canvas rows so they can occupy empty grid lines", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.canvasRowIndex = 0;/
+  );
+  assert.match(
+    runtimeSource,
+    /function placeParticipantOnCanvasGrid\(collectionKey,\s*participantId,\s*targetRowIndex = 0\)/
+  );
+  assert.match(
+    runtimeSource,
+    /entry\.canvasRowIndex = getParticipantCanvasRowIndex\(entry\) \+ 1;/
+  );
+  assert.match(
+    runtimeSource,
+    /getCanvasGridTargetRowIndex\(columnElement,\s*"center",\s*clientY\)/
+  );
+});

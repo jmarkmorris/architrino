@@ -626,6 +626,9 @@ const solverRouteAnchorGapPx = REACTION_SOLVER_LAYOUT.routeAnchorGapPx;
 const operatorGraphicConnectionStepPx =
   REACTION_SOLVER_LAYOUT.operatorGraphicConnectionStepPx;
 const solverAddButtonSizePx = REACTION_SOLVER_LAYOUT.addButtonSizePx;
+const solverCanvasRowHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
+const solverCanvasRowStepPx =
+  REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.contentStackGapPx;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
@@ -1913,6 +1916,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const targetCollectionKey = getParticipantCollectionKey(participant);
+    if (targetCollectionKey === "center-assembly") {
+      ensureCollectionCanvasRows(targetCollectionKey);
+      state.participants.forEach((entry) => {
+        if (getParticipantCollectionKey(entry) === targetCollectionKey) {
+          entry.canvasRowIndex = Math.max(0, Math.round(Number(entry.canvasRowIndex) || 0) + 1);
+        }
+      });
+      participant.canvasRowIndex = 0;
+    }
     const insertionIndex = state.participants.findIndex(
       (entry) => getParticipantCollectionKey(entry) === targetCollectionKey
     );
@@ -1923,32 +1935,153 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants.splice(insertionIndex, 0, participant);
   }
 
-  function reorderSideParticipants(side, orderedParticipantIds = []) {
-    const normalizedSide = side === "product" ? "product" : "reactant";
-    const currentSideParticipants = state.participants.filter(
-      (participant) => participant?.side === normalizedSide
+  function getParticipantCanvasRowIndex(participant, fallbackIndex = 0) {
+    const normalizedRowIndex = Math.round(Number(participant?.canvasRowIndex));
+    return Number.isFinite(normalizedRowIndex) && normalizedRowIndex >= 0
+      ? normalizedRowIndex
+      : fallbackIndex;
+  }
+
+  function getCollectionParticipants(collectionKey) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    return state.participants.filter(
+      (participant) => getParticipantCollectionKey(participant) === normalizedCollectionKey
     );
-    if (currentSideParticipants.length <= 1) {
+  }
+
+  function ensureCollectionCanvasRows(collectionKey) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    if (normalizedCollectionKey !== "center-assembly") {
+      return getCollectionParticipants(normalizedCollectionKey);
+    }
+    const collectionParticipants = getCollectionParticipants(normalizedCollectionKey);
+    const usedRowIndices = new Set();
+    let nextFreeRowIndex = 0;
+    collectionParticipants.forEach((participant, index) => {
+      const preferredRowIndex = getParticipantCanvasRowIndex(participant, index);
+      if (!usedRowIndices.has(preferredRowIndex)) {
+        participant.canvasRowIndex = preferredRowIndex;
+        usedRowIndices.add(preferredRowIndex);
+        nextFreeRowIndex = Math.max(nextFreeRowIndex, preferredRowIndex + 1);
+        return;
+      }
+      while (usedRowIndices.has(nextFreeRowIndex)) {
+        nextFreeRowIndex += 1;
+      }
+      participant.canvasRowIndex = nextFreeRowIndex;
+      usedRowIndices.add(nextFreeRowIndex);
+      nextFreeRowIndex += 1;
+    });
+    return collectionParticipants;
+  }
+
+  function getCollectionParticipantsForRender(collectionKey) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    if (normalizedCollectionKey === "center-assembly") {
+      const collectionParticipants = ensureCollectionCanvasRows(normalizedCollectionKey);
+      return [...collectionParticipants].sort((left, right) => {
+        const leftRowIndex = getParticipantCanvasRowIndex(left);
+        const rightRowIndex = getParticipantCanvasRowIndex(right);
+        if (leftRowIndex !== rightRowIndex) {
+          return leftRowIndex - rightRowIndex;
+        }
+        return collectionParticipants.indexOf(left) - collectionParticipants.indexOf(right);
+      });
+    }
+    return getCollectionParticipants(normalizedCollectionKey);
+  }
+
+  function placeParticipantOnCanvasGrid(collectionKey, participantId, targetRowIndex = 0) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    if (normalizedCollectionKey !== "center-assembly") {
+      return false;
+    }
+    const collectionParticipants = ensureCollectionCanvasRows(normalizedCollectionKey);
+    const participant = collectionParticipants.find(
+      (entry) => String(entry.id) === String(participantId)
+    );
+    if (!participant) {
+      return false;
+    }
+    const resolvedRowIndex = Math.max(0, Math.round(Number(targetRowIndex) || 0));
+    const nextOccupant = collectionParticipants.find(
+      (entry) =>
+        entry !== participant &&
+        getParticipantCanvasRowIndex(entry) === resolvedRowIndex
+    );
+    if (!nextOccupant && getParticipantCanvasRowIndex(participant) === resolvedRowIndex) {
+      return false;
+    }
+    if (nextOccupant) {
+      collectionParticipants
+        .filter(
+          (entry) =>
+            entry !== participant &&
+            getParticipantCanvasRowIndex(entry) >= resolvedRowIndex
+        )
+        .sort(
+          (left, right) => getParticipantCanvasRowIndex(right) - getParticipantCanvasRowIndex(left)
+        )
+        .forEach((entry) => {
+          entry.canvasRowIndex = getParticipantCanvasRowIndex(entry) + 1;
+        });
+    }
+    participant.canvasRowIndex = resolvedRowIndex;
+    return true;
+  }
+
+  function getCanvasGridTargetRowIndex(columnElement, side, clientY) {
+    if (!(columnElement instanceof HTMLElement)) {
+      return 0;
+    }
+    const header = columnElement.querySelector(
+      `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
+    );
+    const columnBounds = columnElement.getBoundingClientRect();
+    const headerBounds =
+      header instanceof HTMLElement ? header.getBoundingClientRect() : null;
+    const gridStartY = headerBounds
+      ? headerBounds.bottom + REACTION_SOLVER_LAYOUT.contentStackGapPx
+      : columnBounds.top;
+    const availableHeight = Math.max(0, columnBounds.bottom - gridStartY);
+    const maxVisibleRowIndex = Math.max(
+      0,
+      Math.floor(
+        Math.max(0, availableHeight - solverCanvasRowHeightPx / 2) / solverCanvasRowStepPx
+      )
+    );
+    const targetRowIndex = Math.round(
+      (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
+    );
+    return Math.max(0, Math.min(maxVisibleRowIndex, targetRowIndex));
+  }
+
+  function reorderParticipantCollection(collectionKey, orderedParticipantIds = []) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    const currentCollectionParticipants = state.participants.filter(
+      (participant) => getParticipantCollectionKey(participant) === normalizedCollectionKey
+    );
+    if (currentCollectionParticipants.length <= 1) {
       return false;
     }
     const participantsById = new Map(
-      currentSideParticipants.map((participant) => [String(participant.id), participant])
+      currentCollectionParticipants.map((participant) => [String(participant.id), participant])
     );
-    const reorderedSideParticipants = orderedParticipantIds
+    const reorderedParticipants = orderedParticipantIds
       .map((participantId) => participantsById.get(String(participantId)) ?? null)
       .filter(Boolean);
-    if (reorderedSideParticipants.length !== currentSideParticipants.length) {
+    if (reorderedParticipants.length !== currentCollectionParticipants.length) {
       return false;
     }
-    const currentOrder = currentSideParticipants.map((participant) => String(participant.id));
-    const nextOrder = reorderedSideParticipants.map((participant) => String(participant.id));
+    const currentOrder = currentCollectionParticipants.map((participant) => String(participant.id));
+    const nextOrder = reorderedParticipants.map((participant) => String(participant.id));
     if (currentOrder.every((participantId, index) => participantId === nextOrder[index])) {
       return false;
     }
     let reorderedIndex = 0;
     state.participants = state.participants.map((participant) => {
-      if (participant?.side === normalizedSide) {
-        return reorderedSideParticipants[reorderedIndex++] ?? participant;
+      if (getParticipantCollectionKey(participant) === normalizedCollectionKey) {
+        return reorderedParticipants[reorderedIndex++] ?? participant;
       }
       return participant;
     });
@@ -2800,34 +2933,49 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const participant = findParticipantById(state.dragParticipantId);
     if (
       !participant ||
-      isCenterAssemblyParticipant(participant) ||
       (participant.side !== "reactant" && participant.side !== "product")
     ) {
       return;
     }
-    const columnElement = participant.side === "product" ? productsColumn : reactantsColumn;
+    const collectionKey = getParticipantCollectionKey(participant);
+    const columnElement =
+      collectionKey === "center-assembly"
+        ? centerAssembliesColumn
+        : participant.side === "product"
+          ? productsColumn
+          : reactantsColumn;
     if (!(columnElement instanceof HTMLElement)) {
       return;
     }
-    const sideParticipants = state.participants.filter(
-      (entry) => entry?.side === participant.side
-    );
-    if (sideParticipants.length <= 1) {
+    if (collectionKey === "center-assembly") {
+      if (!placeParticipantOnCanvasGrid(
+        collectionKey,
+        participant.id,
+        getCanvasGridTargetRowIndex(columnElement, "center", clientY)
+      )) {
+        return;
+      }
+      render();
       return;
     }
-    const sideParticipantIds = sideParticipants.map((entry) => String(entry.id));
-    const remainingParticipantIds = sideParticipantIds.filter(
+    const collectionParticipants = state.participants.filter(
+      (entry) => getParticipantCollectionKey(entry) === collectionKey
+    );
+    if (collectionParticipants.length <= 1) {
+      return;
+    }
+    const collectionParticipantIds = collectionParticipants.map((entry) => String(entry.id));
+    const remainingParticipantIds = collectionParticipantIds.filter(
       (participantId) => participantId !== String(participant.id)
     );
     const renderedCards = Array.from(
-      columnElement.querySelectorAll(
-        `.composer-reaction-solver-participant.is-${CSS.escape(participant.side)}`
-      )
+      columnElement.querySelectorAll(".composer-reaction-solver-participant[data-participant-id]")
     ).filter(
       (card) =>
         card instanceof HTMLElement &&
         card.dataset.participantId &&
-        card.dataset.participantId !== String(participant.id)
+        card.dataset.participantId !== String(participant.id) &&
+        remainingParticipantIds.includes(String(card.dataset.participantId))
     );
     const targetIndex = renderedCards.findIndex((card) => {
       const bounds = card.getBoundingClientRect();
@@ -2839,7 +2987,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       0,
       String(participant.id)
     );
-    if (!reorderSideParticipants(participant.side, nextParticipantIds)) {
+    if (!reorderParticipantCollection(collectionKey, nextParticipantIds)) {
       return;
     }
     render();
@@ -2894,7 +3042,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const participant = findParticipantById(participantId);
     if (
       !participant ||
-      isCenterAssemblyParticipant(participant) ||
       (participant.side !== "reactant" && participant.side !== "product")
     ) {
       return;
@@ -3251,8 +3398,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
     );
     const sideParticipants = state.participants.filter(
-      (participant) =>
-        participant?.side === side && (side !== "reactant" || !isCenterAssemblyParticipant(participant))
+      (participant) => {
+        if (side === "center") {
+          return isCenterAssemblyParticipant(participant);
+        }
+        if (side === "reactant") {
+          return participant?.side === "reactant" && !isCenterAssemblyParticipant(participant);
+        }
+        return participant?.side === side;
+      }
     );
     if (!sideParticipants.length) {
       if (header instanceof HTMLElement) {
@@ -3268,12 +3422,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function syncSideColumnGeometry() {
-    if (!state.active || !reactantsColumn || !productsColumn) {
+    if (!state.active || !reactantsColumn || !centerAssembliesColumn || !productsColumn) {
       return false;
     }
     const reactantsSynced = syncSideColumnTrackAlignment(reactantsColumn, "reactant");
+    const centerSynced = syncSideColumnTrackAlignment(centerAssembliesColumn, "center");
     const productsSynced = syncSideColumnTrackAlignment(productsColumn, "product");
-    if (reactantsSynced || productsSynced) {
+    if (reactantsSynced || centerSynced || productsSynced) {
       scheduleMappingDraw();
       return true;
     }
@@ -3324,9 +3479,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const reactantParticipants = state.participants.filter(
       (participant) => participant.side === "reactant" && !isCenterAssemblyParticipant(participant)
     );
-    const centerAssemblyParticipants = state.participants.filter((participant) =>
-      isCenterAssemblyParticipant(participant)
-    );
+    const centerAssemblyParticipants = getCollectionParticipantsForRender("center-assembly");
     const productParticipants = state.participants.filter(
       (participant) => participant.side === "product"
     );
@@ -3345,7 +3498,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
     }
     centerAssemblyParticipants.forEach((participant) => {
-      centerAssembliesColumn.appendChild(renderParticipantCard(participant));
+      const card = renderParticipantCard(participant);
+      card.style.gridRow = String(getParticipantCanvasRowIndex(participant) + 2);
+      centerAssembliesColumn.appendChild(card);
     });
     operatorLayer.appendChild(createOperatorAddControls());
     if (productParticipants.length) {

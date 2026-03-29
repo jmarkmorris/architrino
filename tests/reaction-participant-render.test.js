@@ -88,6 +88,10 @@ test("center assembly lane uses the shared surface grid column and centered part
   );
   assert.match(
     styleSheet,
+    /\.composer-reaction-solver-column\.is-center-assemblies\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+  assert.match(
+    styleSheet,
     /\.composer-reaction-solver-column\.is-center-assemblies\s*>\s*\.composer-reaction-solver-participant\s*\{[\s\S]*?justify-self:\s*center;/
   );
   assert.match(
@@ -104,6 +108,10 @@ test("center assembly lane reserves the same slot-header row as the side columns
   assert.match(
     runtimeSource,
     /if \(centerAssemblyParticipants\.length\) \{\s*centerAssembliesColumn\.appendChild\(\s*createSideSlotHeader\(centerAssemblyParticipants,\s*"center"\)\s*\);\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /card\.style\.gridRow = String\(getParticipantCanvasRowIndex\(participant\) \+ 2\);/
   );
 });
 

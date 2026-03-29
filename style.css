@@ -1867,6 +1867,8 @@ body {
 
 .composer-reaction-solver-column.is-center-assemblies {
   grid-column: var(--solver-center-assemblies-grid-column, 7 / span 4);
+  grid-template-rows: auto;
+  grid-auto-rows: var(--binary-choice-size, 72px);
   padding-left: 0;
   padding-right: 0;
   justify-items: center;
