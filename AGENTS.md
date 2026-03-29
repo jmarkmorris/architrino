@@ -38,6 +38,7 @@
 ## SWE Architecture and Modularity
 
 - Prefer small, single-purpose modules over extending large coordinator files.
+- Always inspect the relevant code paths and rendered structure before proposing or applying a fix; do not guess from symptoms or screenshots alone when the implementation can be examined directly.
 - Treat `app.js` and similarly large entrypoint/runtime files as composition roots and wiring layers, not as the long-term home for new feature logic.
 - When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes as thin wiring only.
 - Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.

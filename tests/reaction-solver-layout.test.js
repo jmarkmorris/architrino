@@ -4,8 +4,12 @@ import assert from "node:assert/strict";
 import {
   applyReactionSolverLayoutCssVars,
   applyReactionSolverSurfaceGridLayout,
+  getReactionParticipantTrackStartOffsetCss,
+  getReactionParticipantTrackStartOffsetPx,
+  REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX,
   getReactionSurfaceLaneFallbackRatios,
   measureReactionSurfaceLaneRatios,
+  REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX,
   REACTION_SOLVER_SURFACE_COLUMN_COUNT,
   REACTION_SOLVER_LAYOUT,
 } from "../src/runtime/ComposerReactionSolverLayoutRuntime.js";
@@ -24,12 +28,55 @@ test("reaction solver layout applies shared css variables from one source of tru
     `${REACTION_SOLVER_LAYOUT.laneGapPx}px`
   );
   assert.equal(
+    applied.get("--solver-attachment-gap"),
+    `${REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
+  );
+  assert.equal(
+    applied.get("--solver-anchor-size"),
+    `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+  );
+  assert.equal(
+    applied.get("--solver-composite-node-size"),
+    `${REACTION_SOLVER_LAYOUT.compositeNodeSizePx}px`
+  );
+  assert.equal(
+    applied.get("--solver-composite-node-center"),
+    `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
+  );
+  assert.equal(
+    applied.get("--solver-composite-column-gap"),
+    `${REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX}px`
+  );
+  assert.equal(
+    applied.get("--solver-composite-participant-gap"),
+    `${REACTION_SOLVER_LAYOUT.compositeParticipantGapPx}px`
+  );
+  assert.equal(
+    applied.get("--solver-stack-gap"),
+    `${REACTION_SOLVER_LAYOUT.contentStackGapPx}px`
+  );
+  assert.equal(
     applied.get("--solver-top-control-row-height"),
     `${REACTION_SOLVER_LAYOUT.topControlRowHeightPx}px`
   );
   assert.equal(
     applied.get("--solver-surface-column-count"),
     String(REACTION_SOLVER_SURFACE_COLUMN_COUNT)
+  );
+});
+
+test("reaction solver layout derives explicit track-start offsets for standalone and composite grids", () => {
+  assert.equal(
+    getReactionParticipantTrackStartOffsetPx("binary-selector-grid"),
+    REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx
+  );
+  assert.equal(
+    getReactionParticipantTrackStartOffsetPx("assembly-cluster-grid"),
+    REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx
+  );
+  assert.equal(
+    getReactionParticipantTrackStartOffsetCss("assembly-cluster-grid"),
+    `${REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx}px`
   );
 });
 

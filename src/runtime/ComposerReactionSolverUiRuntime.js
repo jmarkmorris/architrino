@@ -33,6 +33,7 @@ import {
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import {
   createComposerReactionParticipantRenderRuntime,
+  getReactionSideSlotHeaderProfile,
 } from "./ComposerReactionParticipantRenderRuntime.js";
 import {
   applyReactionSolverLayoutCssVars,
@@ -715,6 +716,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     storageKey = "",
   } = deps;
 
+  applyReactionSolverLayoutCssVars(root);
   applyReactionSolverLayoutCssVars(surface);
   applyReactionSolverSurfaceGridLayout({
     surface,
@@ -2886,6 +2888,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     };
   }
 
+  function createCompositeBusPath({ startX, startY, endX, endY }) {
+    const path = createSvgElement("path");
+    path.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
+    path.setAttribute("class", "composer-reaction-solver-composite-link");
+    return path;
+  }
+
   function drawCompositeLinks(bounds) {
     state.participants
       .filter((participant) => isCompositeParticipant(participant))
@@ -2908,16 +2917,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
           if (Math.abs(endX - startX) < 0.5 && Math.abs(endY - startY) < 0.5) {
             return;
           }
-          const deltaX = endX - startX;
-          const controlStartX = startX + deltaX * 0.42;
-          const controlEndX = startX + deltaX * 0.82;
-          const path = createSvgElement("path");
-          path.setAttribute(
-            "d",
-            `M ${startX} ${startY} C ${controlStartX} ${startY}, ${controlEndX} ${endY}, ${endX} ${endY}`
-          );
-          path.setAttribute("class", "composer-reaction-solver-composite-link");
-          mapSvg.appendChild(path);
+          mapSvg.appendChild(createCompositeBusPath({ startX, startY, endX, endY }));
           return;
         }
         const sourceAnchors = Array.from(
@@ -2931,16 +2931,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
             collector,
             bounds
           );
-          const deltaX = endX - startX;
-          const controlStartX = startX + deltaX * 0.42;
-          const controlEndX = startX + deltaX * 0.82;
-          const path = createSvgElement("path");
-          path.setAttribute(
-            "d",
-            `M ${startX} ${startY} C ${controlStartX} ${startY}, ${controlEndX} ${endY}, ${endX} ${endY}`
-          );
-          path.setAttribute("class", "composer-reaction-solver-composite-link");
-          mapSvg.appendChild(path);
+          mapSvg.appendChild(createCompositeBusPath({ startX, startY, endX, endY }));
         });
       });
   }
@@ -3093,52 +3084,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!(columnElement instanceof HTMLElement)) {
       return false;
     }
-    const columnBounds = columnElement.getBoundingClientRect();
-    if (columnBounds.width <= 1 || columnBounds.height <= 1) {
-      return false;
-    }
     const header = columnElement.querySelector(
       `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
     );
-    const participants = Array.from(
-      columnElement.querySelectorAll(`.composer-reaction-solver-participant.is-${CSS.escape(side)}`)
+    const sideParticipants = state.participants.filter(
+      (participant) => participant?.side === side
     );
-    const trackGeometries = participants
-      .map((participantElement) => {
-        if (!(participantElement instanceof HTMLElement)) {
-          return null;
-        }
-        participantElement.style.setProperty("--solver-track-align-shift", "0px");
-        const trackElement = participantElement.querySelector(
-          ".composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-binary-selector-grid-track"
-        );
-        if (!(trackElement instanceof HTMLElement)) {
-          return null;
-        }
-        const trackBounds = trackElement.getBoundingClientRect();
-        return {
-          start: trackBounds.left - columnBounds.left,
-          width: trackBounds.width,
-        };
-      })
-      .filter(Boolean);
-    if (!trackGeometries.length) {
+    if (!sideParticipants.length) {
       if (header instanceof HTMLElement) {
         header.style.setProperty("--solver-slot-header-offset", "0px");
       }
       return false;
     }
-    const sortedStarts = trackGeometries
-      .map((entry) => entry.start)
-      .sort((left, right) => left - right);
-    const targetStart = sortedStarts[Math.floor(sortedStarts.length / 2)] ?? 0;
-    const trackWidth = Math.max(...trackGeometries.map((entry) => entry.width));
     if (header instanceof HTMLElement) {
-      const headerOffset =
-        side === "product"
-          ? Math.max(0, columnBounds.width - targetStart - trackWidth)
-          : Math.max(0, targetStart);
-      header.style.setProperty("--solver-slot-header-offset", `${headerOffset}px`);
+      const profile = getReactionSideSlotHeaderProfile(sideParticipants, side);
+      header.style.setProperty("--solver-slot-header-offset", profile.offset);
     }
     return true;
   }

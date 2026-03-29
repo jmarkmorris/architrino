@@ -1,6 +1,16 @@
+import {
+  isReactionStructureCompositeGridRenderMode,
+  isReactionStructureInlineAnchorRenderMode,
+} from "./ComposerReactionStructureDescriptorRuntime.js";
+
 export const REACTION_SOLVER_LAYOUT = Object.freeze({
   addButtonSizePx: 36,
+  attachmentGapPx: 3,
+  anchorSizePx: 16,
   binaryChoiceSizePx: 72,
+  compositeNodeSizePx: Math.round(16 * 0.35),
+  compositeParticipantGapPx: 0,
+  contentStackGapPx: 10,
   operatorGraphicConnectionStepPx: 79,
   operatorTileCount: 4,
   laneGapPx: 72 / 16,
@@ -43,6 +53,24 @@ export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
 export const REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX =
   REACTION_SOLVER_LAYOUT.binaryChoiceSizePx * REACTION_SOLVER_LAYOUT.operatorTileCount +
   REACTION_SOLVER_LAYOUT.tileGapPx * (REACTION_SOLVER_LAYOUT.operatorTileCount - 1);
+export const REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX =
+  REACTION_SOLVER_LAYOUT.tileGapPx - REACTION_SOLVER_LAYOUT.compositeNodeSizePx;
+export const REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX =
+  REACTION_SOLVER_LAYOUT.compositeNodeSizePx / 2;
+
+export function getReactionParticipantTrackStartOffsetPx(renderMode = "") {
+  if (isReactionStructureCompositeGridRenderMode(renderMode)) {
+    return REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx;
+  }
+  if (isReactionStructureInlineAnchorRenderMode(renderMode)) {
+    return REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx;
+  }
+  return 0;
+}
+
+export function getReactionParticipantTrackStartOffsetCss(renderMode = "") {
+  return `${getReactionParticipantTrackStartOffsetPx(renderMode)}px`;
+}
 
 function setReactionSolverLayoutVar(surface, name, value) {
   if (!surface?.style || typeof surface.style.setProperty !== "function") {
@@ -76,6 +104,41 @@ export function applyReactionSolverLayoutCssVars(surface) {
     surface,
     "--solver-small-gap",
     `${REACTION_SOLVER_LAYOUT.tileGapPx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-attachment-gap",
+    `${REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-anchor-size",
+    `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-composite-node-size",
+    `${REACTION_SOLVER_LAYOUT.compositeNodeSizePx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-composite-node-center",
+    `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-composite-column-gap",
+    `${REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-composite-participant-gap",
+    `${REACTION_SOLVER_LAYOUT.compositeParticipantGapPx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-stack-gap",
+    `${REACTION_SOLVER_LAYOUT.contentStackGapPx}px`
   );
   setReactionSolverLayoutVar(
     surface,

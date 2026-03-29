@@ -1,4 +1,5 @@
 import { getBinaryPersonalityChoice } from "./ComposerReactionBinarySelectionRuntime.js";
+import { getReactionParticipantTrackStartOffsetCss } from "./ComposerReactionSolverLayoutRuntime.js";
 import {
   getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
@@ -15,13 +16,7 @@ function getParticipantTrackHeaderOffset(participant = null) {
   if (!rootNode) {
     return "0px";
   }
-  if (isReactionStructureCompositeGridRenderMode(rootNode.renderMode)) {
-    return "calc((var(--binary-choice-size) * 2) + (var(--solver-anchor-size) * 2) + var(--solver-tile-gap) + (var(--solver-attachment-gap) * 3))";
-  }
-  if (isReactionStructureInlineAnchorRenderMode(rootNode.renderMode)) {
-    return "calc(var(--binary-choice-size) + var(--solver-tile-gap))";
-  }
-  return "0px";
+  return getReactionParticipantTrackStartOffsetCss(rootNode.renderMode);
 }
 
 export function getReactionSideSlotHeaderProfile(participants = [], side = "reactant") {
@@ -453,7 +448,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   function createBinarySelectorGridTrack(participant, node) {
     const track = document.createElement("div");
     track.className = "composer-reaction-solver-binary-selector-grid-track";
-    track.style.setProperty("--binary-choice-size", "72px");
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       const column = document.createElement("div");
@@ -501,7 +495,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   function createQuarkPresetRowTrack(participant, node) {
     const track = document.createElement("div");
     track.className = "composer-reaction-solver-binary-selector-grid-track";
-    track.style.setProperty("--binary-choice-size", "72px");
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       if (!childNode) {
