@@ -59,7 +59,7 @@ This single table is the canonical rollup for every direct child of `action-item
 | 11 | [`quantum-closure`](../quantum-closure/overview.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
 | 12 | [`cosmology-closure`](../cosmology-closure/overview.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
 | 13 | [`deferred-outlook`](../deferred-outlook/overview.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
-| — | [`-report`](./Overview.md) | Action-items report control surface | — | — | — |
+| — | [`-report`](./overview.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../composer-reaction/composer.md) | Composer | — | — | — |
