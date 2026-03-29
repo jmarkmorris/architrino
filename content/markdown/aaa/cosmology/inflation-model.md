@@ -1,6 +1,6 @@
 # Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed.
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), and the strong-field pages [Black Holes](../spacetime/black-holes.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../dynamics/mapping-Planck-scale.md).
 
 ## Core Idea
 
@@ -10,7 +10,7 @@ The early rapid-expansion phase is modeled as an emergent high-curvature regime 
 
 Inflation-like behavior is treated as a local or regional process (especially in SMBH-core and jet-linked high-curvature environments), not as a one-time global expansion of the Euclidean container.
 
-Under long-lived recycling assumptions, this implies a continuously operating population of inflation-like regions rather than a unique early-universe episode.
+Under long-lived recycling assumptions, this implies a continuously operating population of inflation-like regions rather than a unique early-universe episode. The CMB-facing chronology mapping for that claim is summarized in [CMB](./CMB.md).
 
 ## Cyclical vs Recycling Clarification
 

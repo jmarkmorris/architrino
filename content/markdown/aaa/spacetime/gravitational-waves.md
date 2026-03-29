@@ -1,10 +1,11 @@
 # Gravitational Waves
 
-This chapter provides a minimal theorem-backed chain from the emergent-metric weak-field map to testable gravitational-wave observables.
+This chapter provides a minimal theorem-backed chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./gr-phenomenology.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [emergent-metric](./emergent-metric.md)
 - PPN closure and refractive weak field: [ppn-parameters](./ppn-parameters.md)
+- Phenomenology summary: [gr-phenomenology](./gr-phenomenology.md)
 
 ## Weak-Field Setup
 

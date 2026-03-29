@@ -6,6 +6,8 @@ This chapter isolates the operational problem of identifying absolute rest insid
 
 This chapter isolates the conceptual question that has to be answered before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes. The detection criterion is the **concentricity of causal wakes** emitted by a stationary architrino.
 
+This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Bootstrapping a Coordinate Frame](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate scaffold. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+
 ## The Fundamental Challenge
 
 The architrino theory posits an **Euclidean 3D void** and **absolute time** as the fundamental substrate. However, these are not pre-labeled with coordinates. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "t = 0."
@@ -166,4 +168,4 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - The theory can identify a preferred rest condition from intrinsic physics alone
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 
-The next chapter uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
+The next chapter, [Bootstrapping a Coordinate Frame](bootstrapping-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 125,
-      "sections": 852
+      "sections": 854
     }
   },
   "tocRoot": {
@@ -2056,6 +2056,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/mode-taxonomy.md",
                 "markdownSection": "Mapping Discipline",
                 "sectionKey": "mapping discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/dynamics/mode-taxonomy.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -5390,6 +5398,14 @@
                 "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
                 "markdownSection": "Current framing",
                 "sectionKey": "current framing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/validation/no-go-theorems.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               },
               {

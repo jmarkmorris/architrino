@@ -1,6 +1,6 @@
 # Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
+This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Transient Hadrons: Mesons and Δ Resonances](../assemblies/mesons/mesons.md).
 
 ## Purpose
 
@@ -51,7 +51,7 @@ $$
 
 ## Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a color-closed tri-core braid.
+The nucleon is not three independent quarks sitting side by side. It is a color-closed tri-core braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$

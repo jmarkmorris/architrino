@@ -6,6 +6,8 @@
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
+Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
 This document should map the main crisis-axes rather than collapse them into one slogan. The point is to separate:
@@ -14,6 +16,8 @@ This document should map the main crisis-axes rather than collapse them into one
 - where effective success hardened into ontology,
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
+
+Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](../quantum/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../dynamics/gauge-structure-emergence.md).
 
 This document also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
 
