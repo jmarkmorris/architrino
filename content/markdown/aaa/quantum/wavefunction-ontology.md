@@ -2,6 +2,8 @@
 
 This chapter states what the wavefunction is and is not within the framework. Its purpose is to relocate $\psi$ from fundamental ontic field status to an effective epistemic description while still explaining why standard quantum formalism remains operationally useful.
 
+Its nearest companion notes are [Superposition Mechanism](superposition-mechanism.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](collapse-problem.md), [Entanglement and Nonlocality](entanglement-nonlocality.md), and [Pilot-Wave Character](pilot-wave-character.md).
+
 ## Purpose and Scope
 
 This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within the Architrino Assembly Architecture. It maps the standard quantum formalism—traditionally treated as axiomatic—to the deterministic, non-Markovian dynamics of the architrino Master Equation. 
@@ -87,3 +89,5 @@ $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
 Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).
+
+For the broader methodology of not mistaking successful formal control for settled ontology, compare [Crisis in Physics](../philosophy-history/crisis-in-physics.md).

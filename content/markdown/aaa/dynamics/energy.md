@@ -2,6 +2,8 @@
 
 In this model, all energy is fundamentally tied to architrinos and the causal wakes they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone wake substance or vacuum energy independent of architrinos and their assemblies. A **wake** is the causal-isochron imprint of an architrino's emissions; motion affects the geometry, not the existence, of the wake. `Wake` is the architrino-native description of what appears as a field at the effective level.
 
+This chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Noether Core](../assemblies/noether-core.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with wake speed $c_f=1$.
 
 Crucially, `spacetime` in this framework belongs to the effective level, not the ontological one. The underlying substrate is a **dense sea of scalable high-energy tri-binary assemblies** occupying the Euclidean void. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the Noether Sea through which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea control how energy, inertia, and effective geometry appear at larger scales.
@@ -218,6 +220,8 @@ $$m_{\text{inertial}}(A) \equiv \frac{|\mathbf{F}_{\text{ext}}|}{|\mathbf{a}_{\t
 Because the external field couples mainly to the **apparent energy**, not the full internal storm, we expect:
 
 $$m_{\text{inertial}}(A) \approx \alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},$$
+
+which is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md).
 
 with $\alpha$ fixed to $1$ by a reference assembly (e.g., electron) in the regime where effective Lorentz kinematics hold.
 

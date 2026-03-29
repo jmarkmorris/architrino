@@ -2,6 +2,8 @@
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
+Its closest companions are [Tri-Binary Dynamics](tri-binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Horizon Chirality](horizon-chirality.md), [Black Holes](../spacetime/black-holes.md), and [Effective Lagrangian](effective-lagrangian.md).
+
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, effective-field framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
 ## Thesis
@@ -215,6 +217,8 @@ In the Planck alignment state:
 > - Multiple such disks can stack/occupy similar states without the 3D exclusion volume of wobbling gyroscopes, yielding Spin-1-like, boson-like stacking behavior.
 
 Again, this SU(2) -> U(1) reduction is a **geometric hypothesis**, not yet a fully proven group-theoretic derivation.
+
+For the particle-level interpretation of aligned versus precessing assembly behavior, compare [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md).
 
 ---
 

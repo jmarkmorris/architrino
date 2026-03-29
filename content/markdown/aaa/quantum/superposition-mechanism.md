@@ -2,6 +2,8 @@
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
+It should be read alongside [Wavefunction Ontology](wavefunction-ontology.md), [Measurement Ontology](measurement-ontology.md), [Collapse Problem](collapse-problem.md), and [Pilot-Wave Character](pilot-wave-character.md).
+
 ### Traditional Quantum Mechanical View
 
 In standard quantum mechanics, a physical system can exist simultaneously in multiple mutually exclusive states. This is mathematically formalized by the superposition principle, where the state vector $|\psi\rangle$ is a linear combination of orthogonal basis states $|n\rangle$:
@@ -57,3 +59,5 @@ Closure requirement:
 - no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
 
 Primary synthesis location: [quantum/pilot-wave-character.md](./pilot-wave-character.md).
+
+For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](entanglement-nonlocality.md).
