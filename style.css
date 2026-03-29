@@ -1644,7 +1644,10 @@ body {
   --solver-anchor-size: 16px;
   --solver-composite-node-size: 6px;
   --solver-composite-node-center: calc(var(--solver-composite-node-size) * 0.5);
-  --solver-composite-column-gap: calc(var(--solver-tile-gap, 7px) - var(--solver-composite-node-size));
+  --solver-composite-connector-lane: var(--solver-tile-gap, 7px);
+  --solver-composite-node-inset: calc(
+    (var(--solver-composite-connector-lane) - var(--solver-composite-node-size)) * 0.5
+  );
   --solver-composite-participant-gap: 0px;
   position: absolute;
   inset: 0;
@@ -1894,13 +1897,13 @@ body {
 }
 
 .composer-reaction-solver-side-slot-header.is-reactant {
-  justify-self: start;
-  margin-left: var(--solver-slot-header-offset, 0px);
+  justify-self: end;
+  margin-right: var(--solver-slot-header-offset, 0px);
 }
 
 .composer-reaction-solver-side-slot-header.is-product {
-  justify-self: end;
-  margin-right: var(--solver-slot-header-offset, 0px);
+  justify-self: start;
+  margin-left: var(--solver-slot-header-offset, 0px);
 }
 
 .composer-reaction-solver-side-slot-header-slot {
@@ -2092,7 +2095,9 @@ body {
   box-sizing: border-box;
   width: var(--binary-choice-size, 72px);
   min-width: var(--binary-choice-size, 72px);
+  max-width: var(--binary-choice-size, 72px);
   height: var(--binary-choice-size, 72px);
+  min-height: var(--binary-choice-size, 72px);
   padding: 8px 6px;
   border-radius: 16px;
   border: 2px solid color-mix(in srgb, var(--solver-accent) 62%, rgba(255, 255, 255, 0.14));
@@ -2402,10 +2407,15 @@ body {
   align-items: start;
 }
 
-.composer-reaction-solver-noether-core-grid-body {
+.composer-reaction-solver-inline-track-body,
+.composer-reaction-solver-noether-core-grid-body,
+.composer-reaction-solver-binary-selector-grid-body,
+.composer-reaction-solver-composite-row-track-body {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--solver-attachment-gap);
+  min-width: 0;
+  width: fit-content;
 }
 
 .composer-reaction-solver-inline-anchor-lane {
@@ -2424,7 +2434,7 @@ body {
   width: fit-content;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 0;
+  z-index: 2;
 }
 
 .composer-reaction-solver-participant.is-composite-participant.is-reactant > .composer-reaction-solver-composite-visual-rail {
@@ -2433,26 +2443,6 @@ body {
 
 .composer-reaction-solver-participant.is-composite-participant.is-product > .composer-reaction-solver-composite-visual-rail {
   left: calc(100% + var(--solver-tile-gap, 7px));
-}
-
-.composer-reaction-solver-composite-visual-rail::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: calc(var(--solver-composite-column-gap) + (var(--solver-composite-node-size) * 0.5));
-  height: 2px;
-  transform: translateY(-50%);
-  border-radius: 999px;
-  background: rgba(153, 211, 255, 0.46);
-  pointer-events: none;
-}
-
-.composer-reaction-solver-composite-visual-rail.is-reactant::after {
-  left: 100%;
-}
-
-.composer-reaction-solver-composite-visual-rail.is-product::after {
-  right: 100%;
 }
 
 .composer-reaction-solver-binary-selector {
@@ -2476,12 +2466,6 @@ body {
   grid-template-columns: repeat(3, minmax(0, var(--binary-choice-size, 72px)));
   align-items: start;
   gap: var(--solver-tile-gap);
-}
-
-.composer-reaction-solver-binary-selector-grid-body {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: var(--solver-attachment-gap);
 }
 
 .composer-reaction-solver-binary-selector-column {
@@ -2524,24 +2508,24 @@ body {
   grid-auto-rows: var(--binary-choice-size, 72px);
   align-content: start;
   gap: var(--solver-tile-gap, 7px);
-  width: var(--solver-composite-node-size);
+  width: var(--solver-composite-connector-lane);
   inset-block: 0;
-  z-index: 0;
+  z-index: 2;
 }
 
 .composer-reaction-solver-higgs-cluster-grid.is-reactant > .composer-reaction-solver-composite-span-rail {
-  right: calc(100% + var(--solver-composite-column-gap));
+  right: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-higgs-cluster-grid.is-product > .composer-reaction-solver-composite-span-rail {
-  left: calc(100% + var(--solver-composite-column-gap));
+  left: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-composite-span-stem {
   position: absolute;
   top: calc(var(--binary-choice-size, 72px) * 0.5);
   bottom: calc(var(--binary-choice-size, 72px) * 0.5);
-  left: var(--solver-composite-node-center, 3px);
+  left: calc(var(--solver-composite-node-inset, 0.5px) + var(--solver-composite-node-center, 3px));
   width: 2px;
   transform: translateX(-50%);
   border-radius: 999px;
@@ -2552,12 +2536,13 @@ body {
 .composer-reaction-solver-composite-span-slot {
   position: relative;
   display: grid;
-  width: var(--solver-composite-node-size);
+  width: var(--solver-composite-connector-lane);
   height: var(--binary-choice-size, 72px);
   place-items: center;
   z-index: 1;
 }
 
+.composer-reaction-solver-composite-connector-dot,
 .composer-reaction-solver-composite-span-node {
   width: var(--solver-composite-node-size);
   height: var(--solver-composite-node-size);
@@ -2577,13 +2562,12 @@ body {
 }
 
 .composer-reaction-solver-composite-row-body {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  align-items: center;
+  display: inline-flex;
+  align-items: flex-start;
   gap: var(--solver-tile-gap);
   overflow: visible;
   width: fit-content;
+  min-width: 0;
 }
 
 .composer-reaction-solver-composite-row-card {
@@ -2781,20 +2765,14 @@ body {
   min-height: var(--solver-composite-node-size);
   min-width: var(--solver-composite-node-size);
   transform: translateY(-50%);
-  border: none;
-  border-radius: 999px;
-  background: rgba(56, 40, 88, 0.9);
-  box-shadow:
-    0 0 0 1px rgba(168, 122, 238, 0.18),
-    0 0 10px rgba(124, 88, 196, 0.1);
 }
 
 .composer-reaction-solver-composite-visual-rail.is-reactant .composer-reaction-solver-composite-collector {
-  left: calc(100% + var(--solver-composite-column-gap));
+  left: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-composite-visual-rail.is-product .composer-reaction-solver-composite-collector {
-  right: calc(100% + var(--solver-composite-column-gap));
+  right: calc(100% + var(--solver-composite-node-inset));
 }
 
 .composer-reaction-solver-anchor.is-route-recent {

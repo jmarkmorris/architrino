@@ -1,5 +1,5 @@
 import { getBinaryPersonalityChoice } from "./ComposerReactionBinarySelectionRuntime.js";
-import { getReactionParticipantTrackStartOffsetCss } from "./ComposerReactionSolverLayoutRuntime.js";
+import { getReactionParticipantTrackHeaderInsetCss } from "./ComposerReactionSolverLayoutRuntime.js";
 import {
   getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
@@ -16,7 +16,7 @@ function getParticipantTrackHeaderOffset(participant = null) {
   if (!rootNode) {
     return "0px";
   }
-  return getReactionParticipantTrackStartOffsetCss(rootNode.renderMode);
+  return getReactionParticipantTrackHeaderInsetCss(rootNode.renderMode);
 }
 
 export function getReactionSideSlotHeaderProfile(participants = [], side = "reactant") {
@@ -434,15 +434,29 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
     const { tiles } = createNoetherCoreGridSections(participant, node);
-    const body = document.createElement("div");
-    body.className = `composer-reaction-solver-noether-core-grid-body is-${participant.side}`;
-    if (participant.side === "product") {
-      body.append(createInlineAnchorLane(participant, node, nodeKey), tiles);
-    } else {
-      body.append(tiles, createInlineAnchorLane(participant, node, nodeKey));
-    }
+    const body = createInlineTrackBody(participant, node, nodeKey, tiles, {
+      className: "composer-reaction-solver-noether-core-grid-body",
+    });
     wrapper.appendChild(body);
     return wrapper;
+  }
+
+  function createInlineTrackBody(participant, node, nodeKey, track, options = {}) {
+    const body = document.createElement("div");
+    body.className = `composer-reaction-solver-inline-track-body is-${participant.side}`;
+    if (options.className) {
+      body.classList.add(options.className);
+    }
+    const selectorLane = createInlineAnchorLane(participant, node, nodeKey);
+    if (options.selectorLaneClassName) {
+      selectorLane.classList.add(options.selectorLaneClassName);
+    }
+    if (participant.side === "product") {
+      body.append(selectorLane, track);
+    } else {
+      body.append(track, selectorLane);
+    }
+    return body;
   }
 
   function createBinarySelectorGridTrack(participant, node) {
@@ -526,13 +540,9 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
     const track = createQuarkPresetRowTrack(participant, node);
-    const body = document.createElement("div");
-    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
-    if (participant.side === "product") {
-      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
-    } else {
-      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
-    }
+    const body = createInlineTrackBody(participant, node, nodeKey, track, {
+      className: "composer-reaction-solver-binary-selector-grid-body",
+    });
     wrapper.appendChild(body);
     return wrapper;
   }
@@ -545,13 +555,9 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
     const track = createBinarySelectorGridTrack(participant, node);
-    const body = document.createElement("div");
-    body.className = `composer-reaction-solver-binary-selector-grid-body is-${participant.side}`;
-    if (participant.side === "product") {
-      body.append(createInlineAnchorLane(participant, node, nodeKey), track);
-    } else {
-      body.append(track, createInlineAnchorLane(participant, node, nodeKey));
-    }
+    const body = createInlineTrackBody(participant, node, nodeKey, track, {
+      className: "composer-reaction-solver-binary-selector-grid-body",
+    });
     wrapper.appendChild(body);
     return wrapper;
   }
@@ -614,12 +620,14 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     body.className = `composer-reaction-solver-composite-row-body is-${participant.side}`;
     const card = createCompositeAssemblyRowCard(participant, rowNode);
     const track = createCompositeAssemblyRowTrack(participant, rowNode);
-    const selectorLane = createInlineAnchorLane(participant, rowNode, rowNodeKey);
-    selectorLane.classList.add("composer-reaction-solver-composite-row-selector-lane");
+    const trackBody = createInlineTrackBody(participant, rowNode, rowNodeKey, track, {
+      className: "composer-reaction-solver-composite-row-track-body",
+      selectorLaneClassName: "composer-reaction-solver-composite-row-selector-lane",
+    });
     if (participant.side === "product") {
-      body.append(selectorLane, track, card);
+      body.append(trackBody, card);
     } else {
-      body.append(card, track, selectorLane);
+      body.append(card, trackBody);
     }
     return body;
   }
@@ -635,7 +643,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       const slot = document.createElement("div");
       slot.className = "composer-reaction-solver-composite-span-slot";
       const node = document.createElement("span");
-      node.className = "composer-reaction-solver-composite-span-node";
+      node.className =
+        "composer-reaction-solver-composite-span-node composer-reaction-solver-composite-connector-dot";
       node.setAttribute("aria-hidden", "true");
       slot.appendChild(node);
       rail.appendChild(slot);
@@ -670,7 +679,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     rail.className = `composer-reaction-solver-composite-visual-rail is-${participant.side}`;
 
     const collector = document.createElement("span");
-    collector.className = "composer-reaction-solver-anchor composer-reaction-solver-composite-collector";
+    collector.className =
+      "composer-reaction-solver-composite-collector composer-reaction-solver-composite-connector-dot";
     collector.dataset.compositeCollectorId = participant.id;
     collector.setAttribute("aria-hidden", "true");
 

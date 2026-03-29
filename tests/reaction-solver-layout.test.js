@@ -4,12 +4,15 @@ import assert from "node:assert/strict";
 import {
   applyReactionSolverLayoutCssVars,
   applyReactionSolverSurfaceGridLayout,
+  getReactionParticipantTrackHeaderInsetCss,
+  getReactionParticipantTrackHeaderInsetPx,
   getReactionParticipantTrackStartOffsetCss,
   getReactionParticipantTrackStartOffsetPx,
+  REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX,
   REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX,
+  REACTION_SOLVER_COMPOSITE_NODE_INSET_PX,
   getReactionSurfaceLaneFallbackRatios,
   measureReactionSurfaceLaneRatios,
-  REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX,
   REACTION_SOLVER_SURFACE_COLUMN_COUNT,
   REACTION_SOLVER_LAYOUT,
 } from "../src/runtime/ComposerReactionSolverLayoutRuntime.js";
@@ -44,8 +47,12 @@ test("reaction solver layout applies shared css variables from one source of tru
     `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-column-gap"),
-    `${REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX}px`
+    applied.get("--solver-composite-connector-lane"),
+    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX}px`
+  );
+  assert.equal(
+    applied.get("--solver-composite-node-inset"),
+    `${REACTION_SOLVER_COMPOSITE_NODE_INSET_PX}px`
   );
   assert.equal(
     applied.get("--solver-composite-participant-gap"),
@@ -77,6 +84,14 @@ test("reaction solver layout derives explicit track-start offsets for standalone
   assert.equal(
     getReactionParticipantTrackStartOffsetCss("assembly-cluster-grid"),
     `${REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx}px`
+  );
+  assert.equal(
+    getReactionParticipantTrackHeaderInsetPx("binary-selector-grid"),
+    REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx
+  );
+  assert.equal(
+    getReactionParticipantTrackHeaderInsetCss("assembly-cluster-grid"),
+    `${REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
   );
 });
 

@@ -52,11 +52,23 @@ test("side slot header profile derives offset from participant structure", () =>
   assert.deepEqual(getReactionSideSlotHeaderProfile([], "reactant").slotCodes, ["I", "M", "O"]);
   assert.equal(
     getReactionSideSlotHeaderProfile(compositeParticipants, "reactant").offset,
-    "79px"
+    "19px"
   );
   assert.equal(
     getReactionSideSlotHeaderProfile(simpleParticipants, "reactant").offset,
-    "79px"
+    "19px"
+  );
+});
+
+test("side slot headers align from the track-side edge, not the outer participant edge", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-side-slot-header\.is-reactant\s*\{[\s\S]*?justify-self:\s*end;[\s\S]*?margin-right:\s*var\(--solver-slot-header-offset,\s*0px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-side-slot-header\.is-product\s*\{[\s\S]*?justify-self:\s*start;[\s\S]*?margin-left:\s*var\(--solver-slot-header-offset,\s*0px\);/
   );
 });
 
@@ -65,6 +77,10 @@ test("composite assembly rows use the standard tile gap between the title tile a
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-composite-row-body\s*\{[\s\S]*?gap:\s*var\(--solver-tile-gap\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-inline-track-body,\s*[\s\S]*?\.composer-reaction-solver-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--solver-attachment-gap\);/
   );
 });
 
@@ -84,6 +100,22 @@ test("binary choice tiles use a shared border-box sizing model", () => {
   );
 });
 
+test("solver particle tiles are locked to a single shared size", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-particle\s*\{[\s\S]*?width:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-particle\s*\{[\s\S]*?max-width:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-particle\s*\{[\s\S]*?min-height:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+});
+
 test("composite participants collapse the outer gap into a single connector lane", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
@@ -96,11 +128,47 @@ test("composite participant connector rails are removed from the row flow", () =
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-visual-rail\s*\{[\s\S]*?position:\s*absolute;/
+    /\.composer-reaction-solver-composite-visual-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?position:\s*absolute;/
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
+  );
+  assert.doesNotMatch(
+    styleSheet,
+    /\.composer-reaction-solver-composite-visual-rail::after\s*\{/
+  );
+});
+
+test("composite collector uses the shared centered connector inset", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-visual-rail\.is-reactant\s+\.composer-reaction-solver-composite-collector\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--solver-composite-node-inset\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--solver-composite-node-inset\)\);/
+  );
+});
+
+test("composite collector and span rail use the same connector dot type", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /composer-reaction-solver-composite-collector composer-reaction-solver-composite-connector-dot/
+  );
+  assert.match(
+    runtimeSource,
+    /composer-reaction-solver-composite-span-node composer-reaction-solver-composite-connector-dot/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-connector-dot,\s*\.composer-reaction-solver-composite-span-node\s*\{/
   );
 });
 
@@ -112,11 +180,15 @@ test("template picker grid uses the shared canvas tile gap", () => {
   );
 });
 
-test("composite span stem uses the shared snapped node center", () => {
+test("composite span stem uses the shared centered connector lane geometry", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-stem\s*\{[\s\S]*?left:\s*var\(--solver-composite-node-center,\s*3px\);/
+    /\.composer-reaction-solver-composite-span-stem\s*\{[\s\S]*?left:\s*calc\(var\(--solver-composite-node-inset,\s*0\.5px\)\s*\+\s*var\(--solver-composite-node-center,\s*3px\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-lane\);/
   );
 });
 
@@ -128,5 +200,20 @@ test("composite connector path uses a direct line segment", () => {
   assert.match(
     runtimeSource,
     /path\.setAttribute\("d",\s*`M \$\{startX\} \$\{startY\} L \$\{endX\} \$\{endY\}`\);/
+  );
+});
+
+test("composite and standalone track rows share the same inline track-body helper", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /createInlineTrackBody\(participant,\s*node,\s*nodeKey,\s*tiles,\s*\{[\s\S]*?composer-reaction-solver-noether-core-grid-body/
+  );
+  assert.match(
+    runtimeSource,
+    /createInlineTrackBody\(participant,\s*rowNode,\s*rowNodeKey,\s*track,\s*\{[\s\S]*?composer-reaction-solver-composite-row-track-body/
   );
 });

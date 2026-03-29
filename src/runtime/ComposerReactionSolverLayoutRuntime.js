@@ -53,10 +53,15 @@ export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
 export const REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX =
   REACTION_SOLVER_LAYOUT.binaryChoiceSizePx * REACTION_SOLVER_LAYOUT.operatorTileCount +
   REACTION_SOLVER_LAYOUT.tileGapPx * (REACTION_SOLVER_LAYOUT.operatorTileCount - 1);
-export const REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX =
-  REACTION_SOLVER_LAYOUT.tileGapPx - REACTION_SOLVER_LAYOUT.compositeNodeSizePx;
+export const REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX = REACTION_SOLVER_LAYOUT.tileGapPx;
+export const REACTION_SOLVER_COMPOSITE_NODE_INSET_PX = Math.max(
+  0,
+  (REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX - REACTION_SOLVER_LAYOUT.compositeNodeSizePx) / 2
+);
 export const REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX =
   REACTION_SOLVER_LAYOUT.compositeNodeSizePx / 2;
+export const REACTION_SOLVER_TRACK_HEADER_INSET_PX =
+  REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx;
 
 export function getReactionParticipantTrackStartOffsetPx(renderMode = "") {
   if (isReactionStructureCompositeGridRenderMode(renderMode)) {
@@ -70,6 +75,20 @@ export function getReactionParticipantTrackStartOffsetPx(renderMode = "") {
 
 export function getReactionParticipantTrackStartOffsetCss(renderMode = "") {
   return `${getReactionParticipantTrackStartOffsetPx(renderMode)}px`;
+}
+
+export function getReactionParticipantTrackHeaderInsetPx(renderMode = "") {
+  if (isReactionStructureCompositeGridRenderMode(renderMode)) {
+    return REACTION_SOLVER_TRACK_HEADER_INSET_PX;
+  }
+  if (isReactionStructureInlineAnchorRenderMode(renderMode)) {
+    return REACTION_SOLVER_TRACK_HEADER_INSET_PX;
+  }
+  return 0;
+}
+
+export function getReactionParticipantTrackHeaderInsetCss(renderMode = "") {
+  return `${getReactionParticipantTrackHeaderInsetPx(renderMode)}px`;
 }
 
 function setReactionSolverLayoutVar(surface, name, value) {
@@ -127,8 +146,13 @@ export function applyReactionSolverLayoutCssVars(surface) {
   );
   setReactionSolverLayoutVar(
     surface,
-    "--solver-composite-column-gap",
-    `${REACTION_SOLVER_COMPOSITE_COLUMN_GAP_PX}px`
+    "--solver-composite-connector-lane",
+    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-composite-node-inset",
+    `${REACTION_SOLVER_COMPOSITE_NODE_INSET_PX}px`
   );
   setReactionSolverLayoutVar(
     surface,
