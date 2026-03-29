@@ -122,3 +122,42 @@ test("center assemblies snap to explicit canvas rows so they can occupy empty gr
     /getCanvasGridTargetRowIndex\(columnElement,\s*"center",\s*clientY\)/
   );
 });
+
+test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function getReactionSurfaceGridStartOffsetPx\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function getRenderedSurfaceRowCenterOffsetsPx\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function getOperatorLayerTopOffsetPx\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function getOperatorGridTargetRowIndex\(clientY\)/
+  );
+  assert.match(
+    runtimeSource,
+    /\.composer-reaction-solver-column > \.composer-reaction-solver-participant > \.composer-reaction-solver-particle/
+  );
+  assert.match(
+    runtimeSource,
+    /getReactionSurfaceGridStartOffsetPx\(\) - getOperatorLayerTopOffsetPx\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.operatorSlotIndex = resolvedSlotIndex;/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /operatorYRatio/
+  );
+});

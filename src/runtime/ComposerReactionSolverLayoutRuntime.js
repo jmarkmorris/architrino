@@ -4,7 +4,7 @@ import {
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 
 export const REACTION_SOLVER_LAYOUT = Object.freeze({
-  addButtonSizePx: 36,
+  addButtonSizePx: 32,
   attachmentGapPx: 3,
   anchorSizePx: 16,
   binaryChoiceSizePx: 72,

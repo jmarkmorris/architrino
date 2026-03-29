@@ -1726,7 +1726,7 @@ body {
 }
 
 .composer-reaction-solver-surface {
-  --solver-add-button-size: 42px;
+  --solver-add-button-size: 32px;
   --solver-top-control-row-height: 42px;
   --solver-small-gap: 7px;
   --solver-surface-column-gap: calc(var(--binary-choice-size, 72px) / 16);
@@ -1959,7 +1959,8 @@ body {
 }
 
 .composer-reaction-solver-surface-add-controls {
-  position: relative;
+  position: absolute;
+  inset: 0 0 auto 0;
   z-index: 4;
   width: 100%;
   min-height: var(--solver-top-control-row-height);
@@ -2079,10 +2080,10 @@ body {
 
 .composer-reaction-solver-participant.is-operator {
   position: absolute;
+  align-items: center;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  align-items: center;
   width: fit-content;
   min-width: 0;
   grid-template-columns: var(--solver-anchor-size) max-content var(--solver-anchor-size);

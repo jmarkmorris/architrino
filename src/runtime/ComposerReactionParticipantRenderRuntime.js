@@ -794,7 +794,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     card.className = "composer-reaction-solver-participant is-operator is-operator-participant";
     card.dataset.participantId = participant.id;
     card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
-    card.style.top = getOperatorCardTop(participant.operatorYRatio);
+    card.style.top = getOperatorCardTop(participant.operatorSlotIndex);
     if (participant.templateId === "associate") {
       card.classList.add("is-associate-operator");
     } else if (participant.templateId === "dissociate") {

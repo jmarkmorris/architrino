@@ -149,6 +149,34 @@ test("operator tiles expose an open-ledger shell state", () => {
   );
 });
 
+test("operator tiles use explicit lane and row center positioning from the shared surface geometry", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /card\.style\.left = getOperatorCardLeft\(participant\.operatorLaneIndex\);/
+  );
+  assert.match(
+    runtimeSource,
+    /card\.style\.top = getOperatorCardTop\(participant\.operatorSlotIndex\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-operator\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?transform:\s*translate\(-50%,\s*-50%\);/
+  );
+});
+
+test("surface add controls remain pinned to the top overlay above the operator grid", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-surface-add-controls\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?inset:\s*0 0 auto 0;/
+  );
+});
+
 test("binary choice tiles use a shared border-box sizing model", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

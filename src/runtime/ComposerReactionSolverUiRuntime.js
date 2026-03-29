@@ -2190,7 +2190,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       extraFields: {
         operatorLaneIndex: resolvedLaneIndex,
         operatorSlotIndex: 0,
-        operatorYRatio: 0.5,
       },
     });
     state.participants.push(participant);
@@ -2572,8 +2571,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
 
-  function getOperatorCardTop(operatorYRatio = 0.5) {
-    return `${Math.max(0.08, Math.min(0.92, Number(operatorYRatio) || 0.5)) * 100}%`;
+  function getOperatorCardTop(operatorSlotIndex = 0) {
+    const resolvedSlotIndex = Math.max(0, Math.round(Number(operatorSlotIndex) || 0));
+    return `${getReactionSurfaceRowCenterPx(resolvedSlotIndex)}px`;
   }
 
   function getOperatorGraphicOffsets(participant, connectionCount = 4) {
@@ -2701,100 +2701,114 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function getOperatorLaneFallbackSlotRatios(requiredCount = 1) {
-    const fallbackCount = Math.max(1, requiredCount);
-    const startRatio = 0.28;
-    const stepRatio = 0.18;
-    return Array.from({ length: fallbackCount }, (_, index) =>
-      Math.max(0.08, Math.min(0.92, startRatio + index * stepRatio))
-    );
+  function getReactionSurfaceGridStartOffsetPx() {
+    if (!surface || typeof surface.getBoundingClientRect !== "function") {
+      return solverCanvasRowHeightPx / 2;
+    }
+    const surfaceBounds = surface.getBoundingClientRect();
+    const headerBottomOffsets = [
+      ...surface.querySelectorAll(".composer-reaction-solver-side-slot-header"),
+    ]
+      .filter((element) => element instanceof HTMLElement)
+      .map((element) => element.getBoundingClientRect())
+      .filter((bounds) => bounds.height > 0)
+      .map((bounds) => bounds.bottom - surfaceBounds.top);
+    if (headerBottomOffsets.length) {
+      return Math.max(...headerBottomOffsets) + REACTION_SOLVER_LAYOUT.contentStackGapPx;
+    }
+    return REACTION_SOLVER_LAYOUT.topControlRowHeightPx - 4;
   }
 
-  function getOperatorSlotRatios(requiredCount = 1) {
+  function getOperatorLayerTopOffsetPx() {
+    if (
+      !surface ||
+      !operatorLayer ||
+      typeof surface.getBoundingClientRect !== "function" ||
+      typeof operatorLayer.getBoundingClientRect !== "function"
+    ) {
+      return 0;
+    }
+    return operatorLayer.getBoundingClientRect().top - surface.getBoundingClientRect().top;
+  }
+
+  function getRenderedSurfaceRowCenterOffsetsPx() {
+    if (
+      !surface ||
+      !operatorLayer ||
+      typeof surface.getBoundingClientRect !== "function" ||
+      typeof operatorLayer.getBoundingClientRect !== "function"
+    ) {
+      return [];
+    }
+    const operatorLayerBounds = operatorLayer.getBoundingClientRect();
+    const selector =
+      ".composer-reaction-solver-column > .composer-reaction-solver-participant > .composer-reaction-solver-particle";
+    const centers = [...surface.querySelectorAll(selector)]
+      .filter((element) => element instanceof HTMLElement)
+      .map((element) => element.getBoundingClientRect())
+      .filter((bounds) => bounds.width > 0 && bounds.height > 0)
+      .map((bounds) => bounds.top + bounds.height / 2 - operatorLayerBounds.top)
+      .sort((left, right) => left - right);
+    return centers.reduce((uniqueCenters, center) => {
+      if (
+        !uniqueCenters.length ||
+        Math.abs(uniqueCenters[uniqueCenters.length - 1] - center) > solverCanvasRowHeightPx * 0.35
+      ) {
+        uniqueCenters.push(center);
+      }
+      return uniqueCenters;
+    }, []);
+  }
+
+  function getReactionSurfaceRowCenterPx(rowIndex = 0) {
+    const resolvedRowIndex = Math.max(0, Math.round(Number(rowIndex) || 0));
+    const renderedCenters = getRenderedSurfaceRowCenterOffsetsPx();
+    if (renderedCenters[resolvedRowIndex] !== undefined) {
+      return renderedCenters[resolvedRowIndex];
+    }
+    const fallbackCenterPx =
+      (getReactionSurfaceGridStartOffsetPx() - getOperatorLayerTopOffsetPx()) +
+      solverCanvasRowHeightPx / 2 +
+      resolvedRowIndex * solverCanvasRowStepPx;
+    if (!renderedCenters.length) {
+      return fallbackCenterPx;
+    }
+    const lastRenderedCenter = renderedCenters[renderedCenters.length - 1];
+    return lastRenderedCenter + (resolvedRowIndex - (renderedCenters.length - 1)) * solverCanvasRowStepPx;
+  }
+
+  function getOperatorGridTargetRowIndex(clientY) {
     if (!operatorLayer) {
-      return getOperatorLaneFallbackSlotRatios(requiredCount);
+      return 0;
     }
     const bounds = operatorLayer.getBoundingClientRect();
-    const height = Math.max(1, bounds.height);
-    const minCenter = operatorCardHeightPx / 2 + operatorSlotEdgePaddingPx;
-    const maxCenter = Math.max(minCenter, height - operatorCardHeightPx / 2 - operatorSlotEdgePaddingPx);
-
-    const renderedTrackCenters = [
-      ...surface.querySelectorAll(
-        ".composer-reaction-solver-column .composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-column .composer-reaction-solver-binary-selector-grid-track"
-      ),
-    ]
-      .map((element) => {
-        const rect = element.getBoundingClientRect();
-        return rect.top + rect.height / 2 - bounds.top;
-      })
-      .filter((value) => Number.isFinite(value))
-      .sort((left, right) => left - right)
-      .reduce((centers, value) => {
-        if (!centers.length || Math.abs(centers[centers.length - 1] - value) > 8) {
-          centers.push(Math.max(minCenter, Math.min(maxCenter, value)));
+    const targetOffsetPx = clientY - bounds.top;
+    const renderedCenters = getRenderedSurfaceRowCenterOffsetsPx();
+    if (renderedCenters.length) {
+      const nearestRenderedIndex = renderedCenters.reduce((bestIndex, center, index) => {
+        if (bestIndex < 0) {
+          return index;
         }
-        return centers;
-      }, []);
-
-    const baseCenters =
-      renderedTrackCenters.length > 0
-        ? renderedTrackCenters
-        : [
-            ...surface.querySelectorAll(".composer-reaction-solver-participant:not(.is-operator)"),
-          ]
-            .map((element) => {
-              const rect = element.getBoundingClientRect();
-              return rect.top + rect.height / 2 - bounds.top;
-            })
-            .filter((value) => Number.isFinite(value))
-            .sort((left, right) => left - right)
-            .reduce((centers, value) => {
-              if (!centers.length || Math.abs(centers[centers.length - 1] - value) > 16) {
-                centers.push(Math.max(minCenter, Math.min(maxCenter, value)));
-              }
-              return centers;
-            }, []);
-
-    if (!baseCenters.length) {
-      const topAlignedStartCenter = Math.max(
-        minCenter,
-        solverAddButtonSizePx + solverTileGapPx + operatorCardHeightPx / 2
-      );
-      const fallbackStepPx = Math.max(64, operatorCardHeightPx + solverTileGapPx * 2);
-      return Array.from({ length: Math.max(1, requiredCount) }, (_, index) =>
-        Math.min(maxCenter, topAlignedStartCenter + fallbackStepPx * index) / height
-      );
-    }
-
-    const deltas = [];
-    for (let index = 1; index < baseCenters.length; index += 1) {
-      deltas.push(baseCenters[index] - baseCenters[index - 1]);
-    }
-    const sortedDeltas = deltas.filter((value) => value > 0).sort((left, right) => left - right);
-    const derivedStep =
-      sortedDeltas.length > 0
-        ? sortedDeltas[Math.floor(sortedDeltas.length / 2)]
-        : operatorSlotStepPx;
-    const slotStep = Math.max(64, derivedStep || operatorSlotStepPx);
-    const centers = [...baseCenters];
-
-    while (centers.length < requiredCount) {
-      const nextCenter = centers[centers.length - 1] + slotStep;
-      if (nextCenter > maxCenter + 0.5) {
-        break;
+        return Math.abs(center - targetOffsetPx) < Math.abs(renderedCenters[bestIndex] - targetOffsetPx)
+          ? index
+          : bestIndex;
+      }, -1);
+      if (nearestRenderedIndex >= 0) {
+        return nearestRenderedIndex;
       }
-      centers.push(nextCenter);
     }
-    while (centers.length < requiredCount) {
-      const previousCenter = centers[0] - slotStep;
-      if (previousCenter < minCenter - 0.5) {
-        break;
-      }
-      centers.unshift(previousCenter);
-    }
-
-    return centers.map((center) => center / height);
+    const gridStartY = bounds.top + getReactionSurfaceGridStartOffsetPx();
+    const availableHeight = Math.max(0, bounds.bottom - gridStartY);
+    const maxVisibleRowIndex = Math.max(
+      0,
+      Math.floor(
+        Math.max(0, availableHeight - solverCanvasRowHeightPx / 2) / solverCanvasRowStepPx
+      )
+    );
+    const targetRowIndex = Math.round(
+      (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
+    );
+    return Math.max(0, Math.min(maxVisibleRowIndex, targetRowIndex));
   }
 
   function getOccupiedOperatorSlotIndexes(excludedParticipantId = "", operatorLaneIndex = null) {
@@ -2856,15 +2870,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.id,
       resolvedLaneIndex
     );
-    const slotRatios = getOperatorSlotRatios(resolvedSlotIndex + 1);
-    const resolvedRatio =
-      slotRatios[resolvedSlotIndex] ??
-      slotRatios[slotRatios.length - 1] ??
-      getOperatorLaneFallbackSlotRatios(resolvedSlotIndex + 1)[resolvedSlotIndex] ??
-      0.5;
     participant.operatorLaneIndex = resolvedLaneIndex;
     participant.operatorSlotIndex = resolvedSlotIndex;
-    participant.operatorYRatio = resolvedRatio;
   }
 
   function syncOperatorCardPosition(participantId) {
@@ -2880,7 +2887,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     assignOperatorParticipantToSlot(participant, participant.operatorSlotIndex);
     card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
-    card.style.top = getOperatorCardTop(participant.operatorYRatio);
+    card.style.top = getOperatorCardTop(participant.operatorSlotIndex);
     syncOperatorFan(card, participant);
   }
 
@@ -2892,42 +2899,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant) {
       return;
     }
-    const bounds = operatorLayer.getBoundingClientRect();
-    const height = Math.max(1, bounds.height);
-    const targetRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
-    const slotRatios = getOperatorSlotRatios(
-      Math.max(
-        getFirstAvailableOperatorSlotIndex(participant.id, participant.operatorLaneIndex) + 1,
-        state.participants.filter(
-          (entry) =>
-            isOperatorParticipant(entry) &&
-            normalizeOperatorLaneIndex(entry.operatorLaneIndex) ===
-              normalizeOperatorLaneIndex(participant.operatorLaneIndex)
-        ).length + 2
-      )
-    );
-    const nearestSlotIndex = slotRatios.reduce((bestIndex, ratio, index) => {
-      if (bestIndex < 0) {
-        return index;
-      }
-      return Math.abs(ratio - targetRatio) < Math.abs(slotRatios[bestIndex] - targetRatio)
-        ? index
-        : bestIndex;
-    }, -1);
+    const targetSlotIndex = getOperatorGridTargetRowIndex(clientY);
     const nextSlotIndex = findNearestAvailableOperatorSlotIndex(
-      nearestSlotIndex,
+      targetSlotIndex,
       participant.id,
       participant.operatorLaneIndex
     );
-    const nextRatio = slotRatios[nextSlotIndex] ?? participant.operatorYRatio ?? 0.5;
-    if (
-      participant.operatorSlotIndex === nextSlotIndex &&
-      Math.abs((participant.operatorYRatio ?? 0.5) - nextRatio) < 0.001
-    ) {
+    if (participant.operatorSlotIndex === nextSlotIndex) {
       return;
     }
     participant.operatorSlotIndex = nextSlotIndex;
-    participant.operatorYRatio = nextRatio;
     syncOperatorCardPosition(participant.id);
     scheduleMappingDraw();
   }
@@ -3372,7 +3353,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (bounds.width <= 1 || bounds.height <= 1) {
       return false;
     }
-
     const columnGroupRatios = getReactionSurfaceColumnGroupRatios(
       getReactionSurfaceColumnGroupEntries().length
     );
