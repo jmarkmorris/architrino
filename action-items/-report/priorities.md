@@ -59,6 +59,7 @@ This single table is the canonical rollup for every direct child of `action-item
 | 11 | [`quantum-closure`](../quantum-closure/quantum-closure.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
 | 12 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
 | 13 | [`deferred-outlook`](../deferred-outlook/deferred-outlook.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
+| 14 | [`planar-bridge-closure`](../planar-bridge-closure/planar-bridge-closure.md) | First planar delayed-bridge closure and tame return map | 6 | 5 | 1.20 |
 | — | [`-report`](./priorities.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
@@ -80,6 +81,7 @@ This single table is the canonical rollup for every direct child of `action-item
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
 - Workstream `composer-reaction`: finish the reaction app manual workflow and bridge solved reactions back into the main composer.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
+- Workstream `planar-bridge-closure`: isolate the first planar delayed bridge strongly enough to support cone control, bounded fold transit, radial turnaround, and a tame return map.
 
 ## Top Cross-Workstream Next Actions
 
