@@ -166,6 +166,29 @@ test("solver surface rows are shared across all five column groups and capped to
   );
 });
 
+test("dissociation preserves the original participant row block instead of restacking at the top", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures = \[\],\s*extraFieldsByIndex = \(\) => \(\{\}\)\s*\)/
+  );
+  assert.match(
+    runtimeSource,
+    /const baseRowIndex = getParticipantSurfaceRowIndex\(participant\);/
+  );
+  assert.match(
+    runtimeSource,
+    /surfaceRowIndex:\s*normalizeSurfaceRowStartIndex\(baseRowIndex \+ index,\s*1,\s*baseRowIndex \+ index\)/
+  );
+  assert.match(
+    runtimeSource,
+    /const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures,/
+  );
+});
+
 test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),

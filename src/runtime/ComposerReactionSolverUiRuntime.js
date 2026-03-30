@@ -1346,10 +1346,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
     const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
       participant,
       childStructures,
-      createParticipantRecord,
       (childStructure, index) => ({
         splitGroupId,
         splitOriginTemplateId: "higgs_cluster",
@@ -1392,10 +1391,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
     const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
       participant,
       childStructures,
-      createParticipantRecord,
       (_childStructure, index) => ({
         splitGroupId,
         splitOriginTemplateId: participant.templateId,
@@ -1947,6 +1945,28 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.operatorSlotIndex = resolvedRowIndex;
     }
     return resolvedRowIndex;
+  }
+
+  function buildSplitParticipantsPreservingSurfaceRows(
+    participant,
+    childStructures = [],
+    extraFieldsByIndex = () => ({})
+  ) {
+    const baseRowIndex = getParticipantSurfaceRowIndex(participant);
+    const inheritedSurfaceColumn =
+      typeof participant?.surfaceColumn === "string" && participant.surfaceColumn
+        ? participant.surfaceColumn
+        : "";
+    return buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      createParticipantRecord,
+      (childStructure, index) => ({
+        ...extraFieldsByIndex(childStructure, index),
+        ...(inheritedSurfaceColumn ? { surfaceColumn: inheritedSurfaceColumn } : {}),
+        surfaceRowIndex: normalizeSurfaceRowStartIndex(baseRowIndex + index, 1, baseRowIndex + index),
+      })
+    );
   }
 
   function getCollectionParticipants(collectionKey) {
