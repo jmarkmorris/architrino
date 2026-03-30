@@ -2525,7 +2525,7 @@ body {
 .composer-reaction-solver-higgs-cluster-grid-rows {
   position: relative;
   display: grid;
-  gap: var(--solver-tile-gap, 7px);
+  gap: var(--solver-stack-gap, 10px);
   z-index: 1;
 }
 
@@ -2534,7 +2534,7 @@ body {
   display: grid;
   grid-auto-rows: var(--binary-choice-size, 72px);
   align-content: start;
-  gap: var(--solver-tile-gap, 7px);
+  gap: var(--solver-stack-gap, 10px);
   width: var(--solver-composite-connector-span);
   inset-block: 0;
   z-index: 2;

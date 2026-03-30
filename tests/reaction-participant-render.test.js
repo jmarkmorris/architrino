@@ -125,6 +125,14 @@ test("composite assembly rows use the standard tile gap between the title tile a
     styleSheet,
     /\.composer-reaction-solver-inline-track-body,\s*[\s\S]*?\.composer-reaction-solver-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--solver-attachment-gap\);/
   );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+  );
 });
 
 test("Z boson uses the standard tri-binary grid renderer instead of a custom center-column fallback", () => {
