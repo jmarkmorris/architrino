@@ -2234,13 +2234,13 @@ body {
 
 .composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-left-attachment {
-  left: calc(var(--solver-anchor-size) * 0.5);
+  left: var(--solver-anchor-center-offset, 8px);
   transform: translate(-50%, -50%);
 }
 
 .composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment,
 .composer-reaction-solver-associate-anchor-frame > .composer-reaction-solver-anchor.is-branch-right-attachment {
-  left: calc(100% - (var(--solver-anchor-size) * 0.5));
+  left: calc(100% - var(--solver-anchor-center-offset, 8px));
   transform: translate(-50%, -50%);
 }
 
@@ -2366,8 +2366,14 @@ body {
   justify-self: end;
 }
 
+.composer-reaction-solver-tree-row.is-reactant > .composer-reaction-solver-anchor {
+  position: relative;
+  left: calc(var(--solver-anchor-attachment-offset, 3px) * -1);
+}
+
 .composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
-  transform: none;
+  position: relative;
+  left: var(--solver-anchor-attachment-offset, 3px);
 }
 
 .composer-reaction-solver-tree-row.is-disabled {
@@ -2451,6 +2457,16 @@ body {
   width: var(--solver-anchor-size);
   height: var(--binary-choice-size, 72px);
   place-items: center;
+}
+
+.composer-reaction-solver-inline-anchor-slot.is-reactant > .composer-reaction-solver-anchor {
+  position: relative;
+  left: calc(var(--solver-anchor-attachment-offset, 3px) * -1);
+}
+
+.composer-reaction-solver-inline-anchor-slot.is-product > .composer-reaction-solver-anchor {
+  position: relative;
+  left: var(--solver-anchor-attachment-offset, 3px);
 }
 
 .composer-reaction-solver-composite-visual-rail {
@@ -4150,10 +4166,6 @@ body {
 
   .composer-reaction-solver-column.is-products {
     padding-left: 0;
-  }
-
-  .composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
-    transform: none;
   }
 
   .composer-reaction-solver-binary-selector-grid {

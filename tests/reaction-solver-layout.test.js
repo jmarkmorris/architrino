@@ -11,6 +11,8 @@ import {
   REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX,
   REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX,
   REACTION_SOLVER_COMPOSITE_NODE_INSET_PX,
+  REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX,
+  REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX,
   getReactionSurfaceColumnGroupFallbackRatios,
   measureReactionSurfaceColumnGroupRatios,
   REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT,
@@ -38,6 +40,14 @@ test("reaction solver layout applies shared css variables from one source of tru
   assert.equal(
     applied.get("--solver-anchor-size"),
     `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+  );
+  assert.equal(
+    applied.get("--solver-anchor-center-offset"),
+    `${REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX}px`
+  );
+  assert.equal(
+    applied.get("--solver-anchor-attachment-offset"),
+    `${REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX}px`
   );
   assert.equal(
     applied.get("--solver-composite-node-size"),

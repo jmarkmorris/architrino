@@ -135,6 +135,26 @@ test("composite assembly rows use the standard tile gap between the title tile a
   );
 });
 
+test("side anchors use the shared attachment offset so connectors abut tile edges", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-inline-anchor-slot\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-inline-anchor-slot\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
+  );
+});
+
 test("Z boson uses the standard tri-binary grid renderer instead of a custom center-column fallback", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
@@ -371,11 +391,11 @@ test("branch operators use single centered input and output attachments", () => 
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*calc\(var\(--solver-anchor-size\)\s*\*\s*0\.5\);/
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*var\(--solver-anchor-center-offset,\s*8px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*\(var\(--solver-anchor-size\)\s*\*\s*0\.5\)\);/
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--solver-anchor-center-offset,\s*8px\)\);/
   );
   assert.match(
     styleSheet,
