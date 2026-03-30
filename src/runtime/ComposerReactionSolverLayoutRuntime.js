@@ -68,6 +68,10 @@ export const REACTION_SOLVER_COMPOSITE_NODE_INSET_PX = Math.max(
 );
 export const REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX =
   REACTION_SOLVER_LAYOUT.compositeNodeSizePx / 2;
+export const REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX =
+  REACTION_SOLVER_LAYOUT.anchorSizePx / 2;
+export const REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX =
+  REACTION_SOLVER_LAYOUT.attachmentGapPx;
 export const REACTION_SOLVER_TRACK_HEADER_INSET_PX =
   REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx;
 
@@ -141,6 +145,16 @@ export function applyReactionSolverLayoutCssVars(surface) {
     surface,
     "--solver-anchor-size",
     `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-anchor-center-offset",
+    `${REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX}px`
+  );
+  setReactionSolverLayoutVar(
+    surface,
+    "--solver-anchor-attachment-offset",
+    `${REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX}px`
   );
   setReactionSolverLayoutVar(
     surface,

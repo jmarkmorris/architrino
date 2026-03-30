@@ -115,6 +115,39 @@ test("center assembly column group reserves the same slot-header row as the side
   );
 });
 
+test("center bosons expose a left-side input attachment frame", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const solverRuntimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /function createCenterAssemblyInputFrame\(/
+  );
+  assert.match(
+    runtimeSource,
+    /anchorRole:\s*"operator-input"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-center-assembly-input"/
+  );
+  assert.match(
+    runtimeSource,
+    /isCenterAssemblyParticipant\(participant\)\s*\?\s*createCenterAssemblyInputFrame\(\s*[\s\S]*?content,\s*\}\)\s*:\s*content/
+  );
+  assert.match(solverRuntimeSource, /isCenterAssemblyParticipant,/);
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-center-assembly-frame\s*>\s*\.composer-reaction-solver-anchor\.is-center-assembly-input\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-size,\s*16px\)\s*\*\s*-1\);[\s\S]*?top:\s*50%;/
+  );
+});
+
 test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
@@ -132,6 +165,26 @@ test("composite assembly rows use the standard tile gap between the title tile a
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+  );
+});
+
+test("side anchors use the shared attachment offset so connectors abut tile edges", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-inline-anchor-slot\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-inline-anchor-slot\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
   );
 });
 
@@ -371,11 +424,11 @@ test("branch operators use single centered input and output attachments", () => 
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*calc\(var\(--solver-anchor-size\)\s*\*\s*0\.5\);/
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*var\(--solver-anchor-center-offset,\s*8px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*\(var\(--solver-anchor-size\)\s*\*\s*0\.5\)\);/
+    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--solver-anchor-center-offset,\s*8px\)\);/
   );
   assert.match(
     styleSheet,

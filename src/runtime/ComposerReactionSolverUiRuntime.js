@@ -155,21 +155,6 @@ const participantPolarityTemplateIds = new Set([
   "fermion_gen1",
 ]);
 
-const templatePickerOrder = Object.freeze([
-  "proton",
-  "up_quark",
-  "higgs_cluster",
-  "photon",
-  "neutron",
-  "w_minus_boson",
-  "w_plus_boson",
-  "neutrino",
-  "z_boson",
-  "noether_core",
-  "down_quark",
-  "electron",
-]);
-
 function ensureCenterAssembliesColumn(surface) {
   if (!(surface instanceof HTMLElement)) {
     return null;
@@ -213,21 +198,6 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
     });
   });
   return entries;
-}
-
-function sortTemplatePickerEntries(entries = []) {
-  return [...entries].sort((left, right) => {
-    const leftTemplate = String(left?.template ?? "").trim().toLowerCase();
-    const rightTemplate = String(right?.template ?? "").trim().toLowerCase();
-    const leftIndex = templatePickerOrder.indexOf(leftTemplate);
-    const rightIndex = templatePickerOrder.indexOf(rightTemplate);
-    const leftRank = leftIndex >= 0 ? leftIndex : Number.MAX_SAFE_INTEGER;
-    const rightRank = rightIndex >= 0 ? rightIndex : Number.MAX_SAFE_INTEGER;
-    if (leftRank !== rightRank) {
-      return leftRank - rightRank;
-    }
-    return String(left?.label ?? "").localeCompare(String(right?.label ?? ""));
-  });
 }
 
 function supportsParticipantPolarity(templateId) {
@@ -672,29 +642,6 @@ function getOperatorLanePickerEntries(columnEntry = null) {
   return Array.isArray(columnEntry?.pickerEntries) ? columnEntry.pickerEntries : [];
 }
 
-function getOperatorRootMenuEntries() {
-  return REACTION_OPERATOR_LANE_LAYOUT.flatMap((entry) => {
-    if (!entry?.enabled) {
-      return [];
-    }
-    const pickerEntries = getOperatorLanePickerEntries(entry);
-    if (pickerEntries.length) {
-      return pickerEntries.map((pickerEntry) => ({
-        laneIndex: entry.laneIndex,
-        templateId: pickerEntry.templateId,
-        label: pickerEntry.label,
-      }));
-    }
-    return [
-      {
-        laneIndex: entry.laneIndex,
-        templateId: entry.templateId,
-        label: entry.label,
-      },
-    ];
-  });
-}
-
 function getReactionSurfaceColumnGroupEntries() {
   const enabledOperatorLaneEntries = getEnabledOperatorLaneLayoutEntries();
   const leftOperatorLaneEntry =
@@ -761,6 +708,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState,
     mapSvg,
     menu,
+    clearButton = null,
+    solveButton = null,
     templateMenuRows = [],
     extraTemplateEntries = [],
     setStatus = () => {},
@@ -782,7 +731,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   const operatorLayer = root?.querySelector(".composer-reaction-solver-operator-layer") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
-  const sortedTemplateEntries = sortTemplatePickerEntries(templateEntries);
   const addPickerCells = getComposerReactionAddPickerCells();
   const state = {
     active: false,
@@ -794,7 +742,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     pendingSourceKey: "",
     pendingSourceRole: "",
     pendingSourceAnchorInstanceIndex: null,
-    menuMode: "root",
+    menuMode: "",
     menuSide: "reactant",
     menuParticipantId: "",
     menuOperatorLaneIndex: 0,
@@ -904,6 +852,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getOperatorGraphicOffsets,
     getDefaultParticipantBaseLabel,
     getIsDraggingParticipant: (participantId) => state.dragParticipantId === participantId,
+    isCenterAssemblyParticipant,
     getParticipantCardLabelLines,
     getParticipantCardMeta,
     getParticipantRootNode,
@@ -1332,6 +1281,31 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function clearReactionSolverCanvas() {
+    const hasCanvasState =
+      state.participants.length > 0 ||
+      state.mappings.length > 0 ||
+      !!state.pendingSourceKey ||
+      !!state.pendingSourceRole;
+    if (!hasCanvasState) {
+      render();
+      setStatus("Reaction canvas is already clear.");
+      return false;
+    }
+    clearDragState();
+    state.participants = [];
+    state.mappings = [];
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    clearAllRecentRouteState();
+    closeMenu();
+    render();
+    setStatus("Reaction canvas cleared.");
+    return true;
+  }
+
   function setParticipantPolarity(participantId, nextPolarity) {
     const participant = findParticipantById(participantId);
     if (!participant || !supportsParticipantPolarity(participant.templateId)) {
@@ -1400,10 +1374,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
     const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
       participant,
       childStructures,
-      createParticipantRecord,
       (childStructure, index) => ({
         splitGroupId,
         splitOriginTemplateId: "higgs_cluster",
@@ -1446,10 +1419,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
     const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
     const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsFromChildStructures(
+    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
       participant,
       childStructures,
-      createParticipantRecord,
       (_childStructure, index) => ({
         splitGroupId,
         splitOriginTemplateId: participant.templateId,
@@ -1636,11 +1608,30 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!menu) {
       return;
     }
+    state.menuMode = "";
+    state.menuParticipantId = "";
     state.menuOpen = false;
     state.menuAnchorElement = null;
     menu.hidden = true;
     menu.setAttribute("aria-hidden", "true");
     menu.innerHTML = "";
+  }
+
+  function syncHeaderActionButtons() {
+    const canClear =
+      state.active &&
+      (state.participants.length > 0 ||
+        state.mappings.length > 0 ||
+        !!state.pendingSourceKey ||
+        !!state.pendingSourceRole);
+    if (clearButton instanceof HTMLButtonElement) {
+      clearButton.disabled = !canClear;
+      clearButton.setAttribute("aria-disabled", canClear ? "false" : "true");
+    }
+    if (solveButton instanceof HTMLButtonElement) {
+      solveButton.disabled = !state.active;
+      solveButton.setAttribute("aria-disabled", state.active ? "false" : "true");
+    }
   }
 
   function updateMenuPosition() {
@@ -1867,13 +1858,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return controls;
   }
 
-  function openTemplatePicker(side) {
-    state.menuMode = "template-picker";
-    state.menuSide = side === "product" ? "product" : "reactant";
-    state.menuParticipantId = "";
-    renderMenu();
-  }
-
   function openTemplateGridPicker(side, triggerElement = null) {
     if (!state.active || !menu || !triggerElement) {
       return;
@@ -2006,6 +1990,28 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.operatorSlotIndex = resolvedRowIndex;
     }
     return resolvedRowIndex;
+  }
+
+  function buildSplitParticipantsPreservingSurfaceRows(
+    participant,
+    childStructures = [],
+    extraFieldsByIndex = () => ({})
+  ) {
+    const baseRowIndex = getParticipantSurfaceRowIndex(participant);
+    const inheritedSurfaceColumn =
+      typeof participant?.surfaceColumn === "string" && participant.surfaceColumn
+        ? participant.surfaceColumn
+        : "";
+    return buildSplitParticipantsFromChildStructures(
+      participant,
+      childStructures,
+      createParticipantRecord,
+      (childStructure, index) => ({
+        ...extraFieldsByIndex(childStructure, index),
+        ...(inheritedSurfaceColumn ? { surfaceColumn: inheritedSurfaceColumn } : {}),
+        surfaceRowIndex: normalizeSurfaceRowStartIndex(baseRowIndex + index, 1, baseRowIndex + index),
+      })
+    );
   }
 
   function getCollectionParticipants(collectionKey) {
@@ -2337,25 +2343,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(`${participant.label} added to the reaction solver.`);
   }
 
-  function clearReactionCanvas() {
-    if (!state.participants.length && !state.mappings.length && !state.pendingSourceKey) {
-      closeMenu();
-      render();
-      setStatus("Reaction canvas is already clear.");
-      return;
-    }
-    state.participants = [];
-    state.mappings = [];
-    state.pendingSourceKey = "";
-    state.pendingSourceRole = "";
-    state.pendingSourceAnchorInstanceIndex = null;
-    state.hoveredMappingIds = [];
-    clearAllRecentRouteState();
-    closeMenu();
-    render();
-    setStatus("Reaction canvas cleared.");
-  }
-
   function renderMenu() {
     if (!menu) {
       return;
@@ -2364,30 +2351,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menu.setAttribute("aria-hidden", "false");
     menu.innerHTML = "";
     menu.dataset.menuMode = state.menuMode;
-    if (state.menuMode === "template-picker") {
-      renderMenuTitle(
-        state.menuSide === "product" ? "Choose product" : "Choose reactant"
-      );
-      sortedTemplateEntries.forEach((entry) => {
-        const itemButton = renderMenuButton(entry.label, {
-          onClick: () =>
-            addParticipant(state.menuSide, entry.template, {
-              initialPolarity: entry.initialPolarity,
-            }),
-        });
-        const meta = getTemplateMeta(entry.template, entry.label);
-        itemButton.style.setProperty("--solver-entry-accent", meta.accent);
-        itemButton.dataset.shortLabel = meta.shortLabel;
-      });
-      renderMenuButton("Back", {
-        kind: "secondary",
-        onClick: () => {
-          state.menuMode = "root";
-          state.menuParticipantId = "";
-          renderMenu();
-        },
-      });
-    } else if (state.menuMode === "operator-picker") {
+    if (state.menuMode === "operator-picker") {
       const operatorLayerEntry = getOperatorLaneLayoutEntry(state.menuOperatorLaneIndex);
       const pickerEntries = getOperatorLanePickerEntries(operatorLayerEntry);
       renderMenuTitle(operatorLayerEntry?.label || "Choose operator");
@@ -2396,13 +2360,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
           onClick: () => addOperatorParticipant(entry.templateId, state.menuOperatorLaneIndex),
         });
       });
-      renderMenuButton("Back", {
+      renderMenuButton("Close", {
         kind: "secondary",
-        onClick: () => {
-          state.menuMode = "root";
-          state.menuParticipantId = "";
-          renderMenu();
-        },
+        onClick: () => closeMenu(),
       });
     } else if (state.menuMode === "center-assembly-picker") {
       renderMenuTitle("Add Assembly");
@@ -2411,13 +2371,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
           onClick: () => addCenterAssemblyParticipant(entry.templateId),
         });
       });
-      renderMenuButton("Back", {
+      renderMenuButton("Close", {
         kind: "secondary",
-        onClick: () => {
-          state.menuMode = "root";
-          state.menuParticipantId = "";
-          renderMenu();
-        },
+        onClick: () => closeMenu(),
       });
     } else if (state.menuMode === "template-grid-picker") {
       renderMenuTitle(state.menuSide === "product" ? "Add Product" : "Add Reactant");
@@ -2449,9 +2405,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     } else if (state.menuMode === "participant-actions") {
       const participant = findParticipantById(state.menuParticipantId);
       if (!participant) {
-        state.menuMode = "root";
-        state.menuParticipantId = "";
-        renderMenu();
+        closeMenu();
         return;
       }
       renderMenuTitle(participant.label);
@@ -2496,66 +2450,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
           onClick: () => removeParticipantById(participant.id),
         }
       );
-      renderMenuButton("Back", {
+      renderMenuButton("Close", {
         kind: "secondary",
-        onClick: () => {
-          state.menuMode = "root";
-          state.menuParticipantId = "";
-          renderMenu();
-        },
+        onClick: () => closeMenu(),
       });
     } else {
-      renderMenuTitle("Reaction");
-      renderMenuButton("Add reactant", {
-        lines: ["Add", "Reactant"],
-        extraClassNames: ["is-root-tile"],
-        onClick: () => openTemplatePicker("reactant"),
-      });
-      renderMenuButton("Add product", {
-        lines: ["Add", "Product"],
-        extraClassNames: ["is-root-tile"],
-        onClick: () => openTemplatePicker("product"),
-      });
-      REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.forEach((entry) => {
-        renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
-          lines: ["Add", entry.label],
-          extraClassNames: ["is-wide", "is-root-tile"],
-          onClick: () => addCenterAssemblyParticipant(entry.templateId),
-        });
-      });
-      getOperatorRootMenuEntries().forEach((entry) => {
-        renderMenuButton(`Add ${entry.label.toLowerCase()}`, {
-          lines: ["Add", entry.label],
-          extraClassNames: ["is-wide", "is-root-tile"],
-          onClick: () => addOperatorParticipant(entry.templateId, entry.laneIndex),
-        });
-      });
-      renderMenuButton("Clear reaction canvas", {
-        kind: "secondary",
-        extraClassNames: ["is-wide"],
-        disabled: !state.participants.length && !state.mappings.length && !state.pendingSourceKey,
-        onClick: () => clearReactionCanvas(),
-      });
-      renderMenuButton("Auto solve (not yet implemented)", {
-        disabled: true,
-        extraClassNames: ["is-wide"],
-      });
-    }
-    updateMenuPosition();
-  }
-
-  function openMenuAt(clientX, clientY) {
-    if (!state.active || !menu) {
+      closeMenu();
       return;
     }
-    closeExternalMenus();
-    state.menuClientX = clientX;
-    state.menuClientY = clientY;
-    state.menuAnchorElement = null;
-    state.menuMode = "root";
-    state.menuParticipantId = "";
-    state.menuOpen = true;
-    renderMenu();
+    updateMenuPosition();
   }
 
   function setActive(nextValue, options = {}) {
@@ -3452,6 +3355,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!root || !reactantsColumn || !centerAssembliesColumn || !productsColumn || !operatorLayer) {
       return;
     }
+    syncHeaderActionButtons();
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
     reactantsColumn.innerHTML = "";
@@ -3517,17 +3421,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     scheduleOperatorLaneLayout();
   }
 
-  function handleSurfaceContextMenu(event) {
-    if (!state.active) {
-      return;
-    }
-    event.preventDefault();
-    if (menu?.contains(event.target) || event.target instanceof Element && event.target.closest(".composer-reaction-solver-anchor")) {
-      return;
-    }
-    openMenuAt(event.clientX, event.clientY);
-  }
-
   function handleDocumentPointerDown(event) {
     if (!state.active || !state.menuOpen || !menu) {
       return;
@@ -3586,7 +3479,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (root && !root.dataset.solverBound) {
       root.dataset.solverBound = "true";
-      root.addEventListener("contextmenu", handleSurfaceContextMenu);
       root.addEventListener("keydown", handleRootKeyDown);
       root.addEventListener(
         "scroll",
@@ -3598,6 +3490,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
         },
         true
       );
+    }
+    if (clearButton instanceof HTMLButtonElement && !clearButton.dataset.solverBound) {
+      clearButton.dataset.solverBound = "true";
+      clearButton.addEventListener("click", () => {
+        clearReactionSolverCanvas();
+      });
+    }
+    if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.solverBound) {
+      solveButton.dataset.solverBound = "true";
+      solveButton.addEventListener("click", () => {
+        setStatus("Solve is not wired up yet.");
+      });
     }
     if (!document.body.dataset.composerReactionSolverDocumentBound) {
       document.body.dataset.composerReactionSolverDocumentBound = "true";
@@ -3624,6 +3528,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   return {
     isActive: () => state.active,
+    clearCanvas: clearReactionSolverCanvas,
     setActive,
     toggleActive,
     closeMenu,

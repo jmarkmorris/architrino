@@ -52,6 +52,64 @@ test("reaction solver center assembly lane exposes W-, W+, and Z bosons", () => 
   );
 });
 
+test("reaction solver no longer exposes a canvas right-click root menu", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /root\.addEventListener\("contextmenu",/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function handleSurfaceContextMenu\(event\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function openMenuAt\(clientX,\s*clientY\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Auto solve \(not yet implemented\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Clear reaction canvas/
+  );
+});
+
+test("reaction solver exposes clear and solve actions in the composer header and keeps them runtime-owned", () => {
+  const htmlSource = readFileSync(
+    new URL("../index.html", import.meta.url),
+    "utf8"
+  );
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    htmlSource,
+    /id="composer-reaction-clear-button"/
+  );
+  assert.match(
+    htmlSource,
+    /id="composer-reaction-solve-button"/
+  );
+  assert.match(
+    runtimeSource,
+    /function clearReactionSolverCanvas\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionSolverCanvas\(\);/s
+  );
+  assert.match(
+    runtimeSource,
+    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*setStatus\("Solve is not wired up yet\."\);/s
+  );
+});
+
 test("W and Z bosons are not treated as polarity-toggling templates", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
@@ -132,6 +190,29 @@ test("solver surface rows are shared across all five column groups and capped to
   assert.match(
     runtimeSource,
     /const maxStartRowIndex = Math\.max\(0,\s*solverSurfaceMaxRowIndex - resolvedRowSpan \+ 1\);/
+  );
+});
+
+test("dissociation preserves the original participant row block instead of restacking at the top", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures = \[\],\s*extraFieldsByIndex = \(\) => \(\{\}\)\s*\)/
+  );
+  assert.match(
+    runtimeSource,
+    /const baseRowIndex = getParticipantSurfaceRowIndex\(participant\);/
+  );
+  assert.match(
+    runtimeSource,
+    /surfaceRowIndex:\s*normalizeSurfaceRowStartIndex\(baseRowIndex \+ index,\s*1,\s*baseRowIndex \+ index\)/
+  );
+  assert.match(
+    runtimeSource,
+    /const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures,/
   );
 });
 

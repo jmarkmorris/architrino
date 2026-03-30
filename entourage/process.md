@@ -1,8 +1,5 @@
 
-
-ChatGPT 5.3 codex medium:
-
-• I found the active OG set; I’ll now pull their role summaries so I can assign a best-in-class drafting pipeline rather than a generic one.
+Best-in-class drafting pipeline rather than a generic one.
 
 • Best strategy is a hybrid, not full baton and not full-group free-for-all.
 
