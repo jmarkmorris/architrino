@@ -32,6 +32,25 @@ Its job is to build reactant-to-product scenarios that preserve provenance and m
 4. Add an explicit accept / commit path that hands a solved reaction flow into the composer.
 5. Keep lane geometry, anchor semantics, and conservation rules centralized so the reaction app stays maintainable as the operator set grows.
 
+## Manual Workflow Gaps
+
+Keep the current left / center / right hierarchy solver as the near-term baseline rather than jumping immediately to full free placement.
+
+The live UI still needs:
+
+- explicit `Transmute` incoming and outgoing ledgers;
+- self-explanatory balanced versus unbalanced center tiles;
+- stronger visual distinction between source, target, mapped, and ineligible anchor roles;
+- and better path tracing through hover, selection, endpoint emphasis, or temporary dimming of unrelated mappings.
+
+## Composite Depiction And Surface Grammar
+
+- Preserve seam-side composite cards.
+- Keep split behavior reversible through re-add rather than hidden state.
+- Keep internal composite join lines visually subordinate to the main mapping lines.
+- Clean up the right-click grammar and top-bar guidance so the reaction app can be learned from the surface itself.
+- Keep the old straight transfer-drafting bridge only as compatibility scaffolding while the dedicated reaction app becomes the primary workflow.
+
 ## Terminology Note: Reaction, Not Decay
 
 The authored language should prefer `reaction` over `decay`.
@@ -242,6 +261,14 @@ The current `Transmute` rule is:
 - and the tile should remain dim until incoming and outgoing ledgers match exactly.
 
 Those rules should keep moving toward a centralized rule registry rather than remaining scattered through UI conditionals.
+
+## Regression Coverage Still Needed
+
+Extend the current automated solver coverage beyond the present baseline so it also protects:
+
+- `Transmute` UI semantics and overflow blocking;
+- timeline / reaction handoff assumptions;
+- and the remaining visual and manual regression points that still need refresh-and-audit checking.
 
 ## Wildcard Spacetime Participants
 

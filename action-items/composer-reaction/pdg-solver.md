@@ -35,6 +35,17 @@ So the PDG solver is currently a planned app boundary, not a running app.
 4. Feed that normalized schema into the reaction app so it can generate conservative reaction flow JSON rather than leaving the composer to interpret raw PDG channels.
 5. Return solved reaction flow data plus first-pass observer hints to the composer.
 
+## Follow-On After The Manual Baseline Is Solid
+
+Once the manual reaction workflow is genuinely stable, the PDG solver can expand into:
+
+- ranked candidate proposals;
+- pin, forbid, and rerun-on-remainder controls;
+- provenance summaries and diagram exports;
+- external API use where it sharpens solving rather than distracting from the manual baseline;
+- possible MadGraph-assisted channel work;
+- and scene-builder or API-mode handoff once the stored reaction payload is stable.
+
 ## APE Architectural Stance
 
 The older brainstorming name for this layer was the **Architrino Provenance Engine (APE)**.

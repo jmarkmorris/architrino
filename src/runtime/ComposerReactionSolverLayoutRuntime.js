@@ -24,6 +24,7 @@ export const REACTION_SOLVER_LAYOUT = Object.freeze({
 
 export const REACTION_SOLVER_SURFACE_COLUMN_COUNT = 16;
 export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT = 5;
+export const REACTION_SOLVER_SURFACE_ROW_COUNT = 11;
 export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
   Object.freeze({
     side: "reactant",

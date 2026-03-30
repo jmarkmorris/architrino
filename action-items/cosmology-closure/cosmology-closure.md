@@ -18,6 +18,13 @@
 
 Convert the current cosmology story from narrative strength to equation-level closure by building a predictive transfer-function pipeline.
 
+## Closure Goal
+
+- Turn the current CMB and tri-binary cosmology story into a predictive transfer-function pipeline.
+- Build the pipeline so removing one foundation assumption does not collapse the whole stack.
+- Expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each observable component.
+- Use the result for direct CMB, `H_0`, and `S_8` comparison rather than narrative analogy.
+
 ## Main Interfaces
 
 - Background expansion

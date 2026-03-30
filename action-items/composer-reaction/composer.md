@@ -35,6 +35,20 @@ The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb
 4. Continue moving live structure edits onto the shared canonical structure runtimes instead of keeping bespoke composer-only logic.
 5. Keep the composer as a composition root only; new reaction-handoff logic should live in focused runtimes, not in one growing top-level file.
 
+## Timeline Model Gap
+
+Observer-path controls already exist, but true authored observer intervals still do not.
+
+The next authored timeline model should:
+
+- turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
+- define one concrete observer object model shared across the design view, observer path, and any future synchronized inset;
+- finish the placeholder editorial items, especially `Audio`, observer transitions, and framing behavior;
+- improve timeline zoom and local navigation so short spans remain editable inside long scenes;
+- and improve media-asset entry beyond typed paths where practical.
+
+Visible observer-language cleanup should keep moving forward even if some runtime internals remain transitional until the object model stabilizes.
+
 ## Relation To The Existing Scene System
 
 The composer should not replace the current explicit scene network. It should add a new authored special scene type within it.
@@ -230,6 +244,34 @@ The composer-side intake contract should be strong enough to receive:
 - and any supporting labels or overlays needed to explain the reaction.
 
 The composer should not be asked to solve the reaction again. It should receive a solved flow and focus on staging, observer behavior, explanation, and playback.
+
+## Canonical Structure Follow-On
+
+The shared canonical-structure bridge is now the only valid direction of travel.
+
+That means:
+
+- extend the existing read path into more viewport and editor surfaces instead of leaving it as isolated summaries and badges;
+- move at least one real composer mutation path onto shared structure transforms, likely regroup / group-split or another narrow hierarchy edit;
+- make parent and child nesting read as local structure rather than grouped ids alone;
+- add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
+- decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
+- add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into free architrinos;
+- keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
+- make scale changes legible in-scene, including when a structure, inset, or derived view is shown at a different scale;
+- support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
+- animate deeper structural behaviors directly from the architrino picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-polarity-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
+- make momentum constraints legible in the structure model, especially the angular and linear momentum relations that maintain relative plane angles;
+- and add notation and display conventions that distinguish apparent energy from total energy.
+
+## Composer Guardrails
+
+- Keep the composer visual, canvas-first, and light on persistent text authoring.
+- Manage assembly-specific actions from the assembly center control point where practical.
+- Keep path markers directly draggable.
+- Keep the left panel shrinking toward scene-level control only.
+- Avoid reintroducing large persistent inspector-style editing.
+- Preserve consistent look and feel as the UI gets richer.
 
 ## Development Constraint
 

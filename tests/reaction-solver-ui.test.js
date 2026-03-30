@@ -66,22 +66,22 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
   assert.equal(polaritySetSource.includes('"z_boson"'), false);
 });
 
-test("center assemblies use their own reorder collection during side-column dragging", () => {
+test("side-column dragging places participants on explicit shared surface rows instead of collection order", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /const collectionKey = getParticipantCollectionKey\(participant\);/
+    /function placeParticipantOnSurfaceGrid\(collectionKey,\s*participantId,\s*targetRowIndex = 0\)/
   );
   assert.match(
     runtimeSource,
-    /collectionKey === "center-assembly"\s*\?\s*centerAssembliesColumn/
+    /findNearestAvailableCollectionRowIndex\(/
   );
   assert.match(
     runtimeSource,
-    /reorderParticipantCollection\(collectionKey,\s*nextParticipantIds\)/
+    /placeParticipantOnSurfaceGrid\(\s*collectionKey,\s*participant\.id,/
   );
 });
 
@@ -100,26 +100,26 @@ test("center assembly header geometry is resynced with the other lane columns", 
   );
 });
 
-test("center assemblies snap to explicit canvas rows so they can occupy empty grid lines", () => {
+test("solver surface rows are shared across all five column groups and capped to the first eleven rows", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /participant\.canvasRowIndex = 0;/
+    /const solverSurfaceMaxRowIndex = REACTION_SOLVER_SURFACE_ROW_COUNT - 1;/
   );
   assert.match(
     runtimeSource,
-    /function placeParticipantOnCanvasGrid\(collectionKey,\s*participantId,\s*targetRowIndex = 0\)/
+    /function getParticipantSurfaceRowIndex\(participant,\s*fallbackIndex = 0\)/
   );
   assert.match(
     runtimeSource,
-    /entry\.canvasRowIndex = getParticipantCanvasRowIndex\(entry\) \+ 1;/
+    /function setParticipantSurfaceRowIndex\(participant,\s*rowIndex\)/
   );
   assert.match(
     runtimeSource,
-    /getCanvasGridTargetRowIndex\(columnElement,\s*"center",\s*clientY\)/
+    /Math\.min\(solverSurfaceMaxRowIndex,\s*normalizedRowIndex\)/
   );
 });
 
@@ -134,11 +134,7 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
   );
   assert.match(
     runtimeSource,
-    /function getRenderedSurfaceRowCenterOffsetsPx\(\)/
-  );
-  assert.match(
-    runtimeSource,
-    /function getOperatorLayerTopOffsetPx\(\)/
+    /function getReactionSurfaceRowCenterPx\(rowIndex = 0\)/
   );
   assert.match(
     runtimeSource,
@@ -146,15 +142,15 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
   );
   assert.match(
     runtimeSource,
-    /\.composer-reaction-solver-column > \.composer-reaction-solver-participant > \.composer-reaction-solver-particle/
+    /solverCanvasRowHeightPx \/ 2 \+\s*resolvedRowIndex \* solverCanvasRowStepPx/
   );
   assert.match(
     runtimeSource,
-    /getReactionSurfaceGridStartOffsetPx\(\) - getOperatorLayerTopOffsetPx\(\)/
+    /setParticipantSurfaceRowIndex\(participant,\s*resolvedSlotIndex\);/
   );
   assert.match(
     runtimeSource,
-    /participant\.operatorSlotIndex = resolvedSlotIndex;/
+    /setParticipantSurfaceRowIndex\(participant,\s*resolvedSlotIndex\);/
   );
   assert.doesNotMatch(
     runtimeSource,

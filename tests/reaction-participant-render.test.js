@@ -88,7 +88,7 @@ test("center assembly column group uses the shared surface grid column and cente
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\.is-center-assemblies\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
@@ -111,7 +111,7 @@ test("center assembly column group reserves the same slot-header row as the side
   );
   assert.match(
     runtimeSource,
-    /card\.style\.gridRow = String\(getParticipantCanvasRowIndex\(participant\) \+ 2\);/
+    /card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
   );
 });
 
@@ -166,6 +166,26 @@ test("operator tiles use explicit lane and row center positioning from the share
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-participant\.is-operator\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?transform:\s*translate\(-50%,\s*-50%\);/
+  );
+});
+
+test("reactant and product participants also render on explicit surface grid rows", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /reactantParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
+  );
+  assert.match(
+    runtimeSource,
+    /productParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
   );
 });
 
