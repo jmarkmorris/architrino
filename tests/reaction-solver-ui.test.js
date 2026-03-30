@@ -23,7 +23,7 @@ test("reaction solver operator registry includes only associate and dissociate",
   );
 });
 
-test("reaction solver operator lane layout assigns dissociate to lane 2 and associate to lane 3", () => {
+test("reaction solver operator layout assigns dissociate to the inner-left group and associate to the inner-right group", () => {
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
       laneIndex: entry.laneIndex,
@@ -66,22 +66,22 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
   assert.equal(polaritySetSource.includes('"z_boson"'), false);
 });
 
-test("center assemblies use their own reorder collection during side-column dragging", () => {
+test("side-column dragging places participants on explicit shared surface rows instead of collection order", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /const collectionKey = getParticipantCollectionKey\(participant\);/
+    /function placeParticipantOnSurfaceGrid\(collectionKey,\s*participantId,\s*targetRowIndex = 0\)/
   );
   assert.match(
     runtimeSource,
-    /collectionKey === "center-assembly"\s*\?\s*centerAssembliesColumn/
+    /findNearestAvailableCollectionRowIndex\(/
   );
   assert.match(
     runtimeSource,
-    /reorderParticipantCollection\(collectionKey,\s*nextParticipantIds\)/
+    /placeParticipantOnSurfaceGrid\(\s*collectionKey,\s*participant\.id,/
   );
 });
 
@@ -100,25 +100,91 @@ test("center assembly header geometry is resynced with the other lane columns", 
   );
 });
 
-test("center assemblies snap to explicit canvas rows so they can occupy empty grid lines", () => {
+test("solver surface rows are shared across all five column groups and capped to the first eleven rows", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /participant\.canvasRowIndex = 0;/
+    /const solverSurfaceMaxRowIndex = REACTION_SOLVER_SURFACE_ROW_COUNT - 1;/
   );
   assert.match(
     runtimeSource,
-    /function placeParticipantOnCanvasGrid\(collectionKey,\s*participantId,\s*targetRowIndex = 0\)/
+    /function getParticipantSurfaceRowIndex\(participant,\s*fallbackIndex = 0\)/
   );
   assert.match(
     runtimeSource,
-    /entry\.canvasRowIndex = getParticipantCanvasRowIndex\(entry\) \+ 1;/
+    /function getParticipantSurfaceRowSpan\(participant\)/
   );
   assert.match(
     runtimeSource,
-    /getCanvasGridTargetRowIndex\(columnElement,\s*"center",\s*clientY\)/
+    /function setParticipantSurfaceRowIndex\(participant,\s*rowIndex\)/
+  );
+  assert.match(
+    runtimeSource,
+    /Math\.min\(solverSurfaceMaxRowIndex,\s*normalizedRowIndex\)/
+  );
+  assert.match(
+    runtimeSource,
+    /markOccupiedSurfaceRowRange\(/
+  );
+  assert.match(
+    runtimeSource,
+    /const maxStartRowIndex = Math\.max\(0,\s*solverSurfaceMaxRowIndex - resolvedRowSpan \+ 1\);/
+  );
+});
+
+test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function getReactionSurfaceGridStartOffsetPx\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function getReactionSurfaceRowCenterPx\(rowIndex = 0\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function getOperatorGridTargetRowIndex\(clientY\)/
+  );
+  assert.match(
+    runtimeSource,
+    /solverCanvasRowHeightPx \/ 2 \+\s*resolvedRowIndex \* solverCanvasRowStepPx/
+  );
+  assert.match(
+    runtimeSource,
+    /setParticipantSurfaceRowIndex\(participant,\s*resolvedSlotIndex\);/
+  );
+  assert.match(
+    runtimeSource,
+    /setParticipantSurfaceRowIndex\(participant,\s*resolvedSlotIndex\);/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /operatorYRatio/
+  );
+});
+
+test("only drawn paths remove existing reaction mappings on click", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex = null\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /const removedCount = removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex\);/
+  );
+  assert.match(
+    runtimeSource,
+    /path\.addEventListener\("click",\s*\(\) => \{\s*if \(!removeMappingById\(mapping\.id\)\) \{\s*return;\s*\}\s*render\(\);\s*setStatus\("Removed reaction mapping\."\);/
   );
 });

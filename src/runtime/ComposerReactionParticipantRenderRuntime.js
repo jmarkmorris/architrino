@@ -72,7 +72,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const countDescendants = options.countDescendants ?? (() => 0);
   const createAnchorButton = options.createAnchorButton;
   const createBinaryGlyph = options.createBinaryGlyph;
-  const createInlineAnchorLane = options.createInlineAnchorLane;
+  const createInlineAnchorSlot = options.createInlineAnchorSlot;
   const cycleQuarkBinaryPreset = options.cycleQuarkBinaryPreset ?? (() => {});
   const findMappingByNodeKey = options.findMappingByNodeKey ?? (() => null);
   const formatLedger = options.formatLedger ?? (() => "");
@@ -360,14 +360,14 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     if (options.className) {
       body.classList.add(options.className);
     }
-    const selectorLane = createInlineAnchorLane(participant, node, nodeKey);
+    const selectorSlot = createInlineAnchorSlot(participant, node, nodeKey);
     if (options.selectorLaneClassName) {
-      selectorLane.classList.add(options.selectorLaneClassName);
+      selectorSlot.classList.add(options.selectorLaneClassName);
     }
     if (participant.side === "product") {
-      body.append(selectorLane, track);
+      body.append(selectorSlot, track);
     } else {
-      body.append(track, selectorLane);
+      body.append(track, selectorSlot);
     }
     return body;
   }
@@ -535,7 +535,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     const track = createCompositeAssemblyRowTrack(participant, rowNode);
     const trackBody = createInlineTrackBody(participant, rowNode, rowNodeKey, track, {
       className: "composer-reaction-solver-composite-row-track-body",
-      selectorLaneClassName: "composer-reaction-solver-composite-row-selector-lane",
+      selectorLaneClassName: "composer-reaction-solver-composite-row-selector-slot",
     });
     if (participant.side === "product") {
       body.append(trackBody, card);
@@ -794,7 +794,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     card.className = "composer-reaction-solver-participant is-operator is-operator-participant";
     card.dataset.participantId = participant.id;
     card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
-    card.style.top = getOperatorCardTop(participant.operatorYRatio);
+    card.style.top = getOperatorCardTop(participant.operatorSlotIndex);
     if (participant.templateId === "associate") {
       card.classList.add("is-associate-operator");
     } else if (participant.templateId === "dissociate") {

@@ -80,7 +80,7 @@ test("side slot headers align from the track-side edge, not the outer participan
   );
 });
 
-test("center assembly lane uses the shared surface grid column and centered participant alignment", () => {
+test("center assembly column group uses the shared surface grid column and centered participant alignment", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -88,7 +88,7 @@ test("center assembly lane uses the shared surface grid column and centered part
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\.is-center-assemblies\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
@@ -100,7 +100,7 @@ test("center assembly lane uses the shared surface grid column and centered part
   );
 });
 
-test("center assembly lane reserves the same slot-header row as the side columns", () => {
+test("center assembly column group reserves the same slot-header row as the side columns", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -111,7 +111,7 @@ test("center assembly lane reserves the same slot-header row as the side columns
   );
   assert.match(
     runtimeSource,
-    /card\.style\.gridRow = String\(getParticipantCanvasRowIndex\(participant\) \+ 2\);/
+    /card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
   );
 });
 
@@ -124,6 +124,14 @@ test("composite assembly rows use the standard tile gap between the title tile a
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-inline-track-body,\s*[\s\S]*?\.composer-reaction-solver-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--solver-attachment-gap\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
   );
 });
 
@@ -146,6 +154,58 @@ test("operator tiles expose an open-ledger shell state", () => {
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-participant\.is-operator\.is-ledger-open\s+\.composer-reaction-solver-particle\s*\{/
+  );
+});
+
+test("operator tiles use explicit lane and row center positioning from the shared surface geometry", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /card\.style\.left = getOperatorCardLeft\(participant\.operatorLaneIndex\);/
+  );
+  assert.match(
+    runtimeSource,
+    /card\.style\.top = getOperatorCardTop\(participant\.operatorSlotIndex\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-operator\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?transform:\s*translate\(-50%,\s*-50%\);/
+  );
+});
+
+test("reactant and product participants also render on explicit surface grid rows", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /reactantParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
+  );
+  assert.match(
+    runtimeSource,
+    /productParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant:not\(\.is-operator\)\s*\{[\s\S]*?align-self:\s*start;/
+  );
+});
+
+test("surface add controls remain pinned to the top overlay above the operator grid", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-surface-add-controls\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?inset:\s*0 0 auto 0;/
   );
 });
 
@@ -173,7 +233,7 @@ test("solver particle tiles are locked to a single shared size", () => {
   );
 });
 
-test("composite participants collapse the outer gap into a single connector lane", () => {
+test("composite participants collapse the outer gap into a single connector span", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -237,7 +297,7 @@ test("template picker grid uses the shared canvas tile gap", () => {
   );
 });
 
-test("composite span stem uses the shared centered connector lane geometry", () => {
+test("composite span stem uses the shared centered connector span geometry", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -245,7 +305,7 @@ test("composite span stem uses the shared centered connector lane geometry", () 
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-lane\);/
+    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-span\);/
   );
 });
 

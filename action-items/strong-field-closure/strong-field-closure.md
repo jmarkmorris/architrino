@@ -19,6 +19,15 @@
 
 The main black-hole and strong-field chapter architecture is already in place. The remaining work is narrow and quantitative rather than exploratory.
 
+## Current Architecture
+
+- The core chapter architecture is already in place across:
+  - [black-holes](../../content/markdown/aaa/spacetime/black-holes.md);
+  - [singularity-resolution](../../content/markdown/aaa/spacetime/singularity-resolution.md);
+  - the aligned cosmology chapters;
+  - and the equivalence-principle rewrite in `tri-binary-dynamics.md`.
+- The actual priority here is now narrow and quantitative rather than architectural.
+
 ## Quantitative Targets
 
 - Derive a stronger observer-level strong-field prediction set.

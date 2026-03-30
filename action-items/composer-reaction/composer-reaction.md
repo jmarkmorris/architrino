@@ -37,34 +37,106 @@ The intended pipeline is:
 
 ## Current State
 
-### Composer app
+- The canonical implementation-aware references now live in [composer.md](./composer.md), [reaction.md](./reaction.md), and [pdg-solver.md](./pdg-solver.md). This rollup should summarize the remainder, not duplicate those notes in full.
+- The composer shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model.
+- The reaction app is now the primary manual provenance surface, and the old `Map On Canvas` bridge should be treated as transitional scaffolding only.
+- The first shared canonical-structure bridge already exists in the composer as a read-only integration path, but it does not yet drive live structure mutations.
+- Observer-path controls exist, but true authored observer intervals still do not.
+- `Audio` remains placeholder-only.
 
-- The composer is already a real app surface rather than a mockup.
-- It can build scene documents, preview them, export JSON, save to browser-local library storage, and download repo-ready JSON files.
-- It already has a real observer-framing runtime, but the full authoring UI for required versus optional viewport participation is still incomplete.
-- It does not yet accept solved reaction flow JSON from the reaction app.
+## Ordered Objectives
 
-### Reaction app
+1. Finish the reaction app as a genuinely usable manual provenance tool.
+2. Bridge solved reactions back into the main composer as staged animated results.
+3. Replace observer and editorial placeholders with a real authored timeline model.
+4. Move composer-side structural editing and visualization onto the shared canonical structure model.
 
-- The reaction app already exists as the current manual provenance surface.
-- It is lane-based and conservative: reactants on the left, products on the right, operator lanes in the middle.
-- It already supports manual mapping, split-aware structure rendering, and operator-driven reaction editing.
-- It does not yet export a settled reaction flow JSON contract for durable handoff into the composer.
+## Priority 1: Reaction App Manual Workflow
 
-### PDG solver app
+- Keep the current left / center / right hierarchy solver as the near-term reaction-authoring baseline rather than jumping immediately to free placement.
+- Improve state legibility inside the existing reaction app:
+  - show explicit `Transmute` incoming and outgoing ledgers;
+  - make balanced versus unbalanced center tiles self-explanatory;
+  - make source, target, mapped, and ineligible anchor roles more visually distinct;
+  - and make path tracing easier through hover, selection, endpoint emphasis, or temporary dimming of unrelated mappings.
+- Keep refining composite depiction:
+  - preserve seam-side composite cards;
+  - keep split behavior reversible through re-add rather than hidden state;
+  - and keep internal composite join lines visually subordinate to the main mapping lines.
+- Clean up the right-click grammar and top-bar guidance so the reaction app can be learned from the surface itself.
+- Extend the current automated solver coverage so it also protects:
+  - `Transmute` UI semantics and overflow blocking;
+  - timeline / reaction handoff assumptions;
+  - and the remaining visual and manual regression points that still need refresh-and-audit checking.
+- Keep the old straight transfer-drafting bridge only as compatibility scaffolding while the dedicated reaction app becomes the clear primary workflow.
 
-- The PDG solver does not yet exist as a real runtime or scene in the web app.
-- Its current state is architectural planning plus the PDG API reference note in `content/markdown/aaa/reactions/pdg-api.md`.
-- The intended role is to fetch PDG reaction/channel data, normalize it, and seed the reaction app with the relevant reactants, products, energy, and channel metadata.
+## Priority 2: Bridge Solved Reactions Back Into The Composer
 
-## Near-Term Direction
+- Convert an accepted reaction solve into durable reaction data rather than leaving it trapped in temporary solver UI state.
+- Feed solved participants, mappings, and provenance into the shared reaction item on the timeline.
+- Define the first concrete handoff from hierarchy mappings to staged motion grammar such as `detach`, `flight`, and `reassemble`.
+- Make accepted mapping geometry become the starting point for observer-facing spline refinement rather than a disposable diagnostic overlay.
+- Keep the normal composer responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
 
-The immediate goal is not to make the PDG solver visually rich first. The immediate goal is to make the pipeline coherent:
+## Priority 3: Replace Observer And Editorial Placeholders
 
-- finish the manual reaction app workflow;
-- define the reaction flow JSON contract;
-- use that contract as the bridge from PDG ingest into reaction solving;
-- and use the same contract again as the bridge from solved reactions into composer animation.
+- Turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior.
+- Define the first concrete observer object model for the design view, the observer path, and any future synchronized inset.
+- Finish the placeholder editorial items, especially `Audio`, observer transitions, and framing behavior.
+- Improve timeline zoom and local navigation so short spans remain editable in long scenes.
+- Improve media-asset entry beyond typed paths where practical.
+- Continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
+
+## Priority 4: Move Composer Structure Onto The Shared Canonical Model
+
+- Keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc composer-only assembly helpers.
+- Extend the first composer-side visual path that already reads canonical structure into more viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges.
+- Move at least one actual composer mutation path onto shared structure transforms, likely regroup / group-split or another narrow hierarchy edit.
+- Make parent and child nesting read as local structure rather than grouped ids alone.
+- Add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists.
+- Decide how anti-Noether cores and similar theory-facing structures should be depicted and edited.
+- Add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into free architrinos.
+- Keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps.
+- Make scale changes legible in-scene, including when a structure, inset, or derived view is shown at a different scale.
+- Support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures.
+- Animate deeper structural behaviors directly from the architrino picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-polarity-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations.
+- Make momentum constraints legible in the structure model, especially the angular and linear momentum relations that maintain relative plane angles.
+- Add notation and display conventions that distinguish apparent energy from total energy.
+
+## Active But Below The Main Four
+
+- PDG solver and reaction-app follow-on after the manual workflow is genuinely solid:
+  - ranked candidate proposals;
+  - pin / forbid / rerun-on-remainder controls;
+  - provenance summaries and diagram exports;
+  - external API use where it sharpens solving rather than distracting from the manual baseline;
+  - possible MadGraph-assisted channel work;
+  - and scene-builder / API-mode handoff once the stored reaction payload is stable.
+- Composer architecture follow-on:
+  - retire the remaining raw timing / reaction text bridges once structured authoring can replace them cleanly;
+  - close the gap between the current preview bridge and the dedicated `Scene-Composed-Animation` runtime path.
+- History traces and exclusion envelopes:
+  - improve UI authoring for `historyTraces`;
+  - refine rendering and controls for path-history traces with window and fade semantics;
+  - improve UI authoring and editing for `envelopes`;
+  - and connect those displays more explicitly to the delayed and path-history model rather than treating them as generic effects.
+- Workspace and persistence cleanup:
+  - keep the central viewport dominant;
+  - do not reintroduce large persistent assembly-detail panels;
+  - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity;
+  - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the higher priorities.
+
+## Guardrails
+
+- Keep the composer visual, canvas-first, and light on persistent text authoring.
+- Manage assembly-specific controls from the assembly center where practical.
+- Keep path markers directly draggable.
+- Make timeline items more authorable, not more abstract.
+- Prefer `observer` language over `camera` language in the user-facing design.
+- Keep the left panel gone as a visible authoring surface.
+- Preserve a consistent look and feel as the UI gets richer.
+- Avoid reintroducing large persistent inspector-style editing.
+- Do not make unrelated changes.
 
 ## Related Action Items
 

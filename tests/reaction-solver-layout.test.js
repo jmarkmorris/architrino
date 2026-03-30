@@ -8,11 +8,12 @@ import {
   getReactionParticipantTrackHeaderInsetPx,
   getReactionParticipantTrackStartOffsetCss,
   getReactionParticipantTrackStartOffsetPx,
-  REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX,
+  REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX,
   REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX,
   REACTION_SOLVER_COMPOSITE_NODE_INSET_PX,
-  getReactionSurfaceLaneFallbackRatios,
-  measureReactionSurfaceLaneRatios,
+  getReactionSurfaceColumnGroupFallbackRatios,
+  measureReactionSurfaceColumnGroupRatios,
+  REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT,
   REACTION_SOLVER_SURFACE_COLUMN_COUNT,
   REACTION_SOLVER_LAYOUT,
 } from "../src/runtime/ComposerReactionSolverLayoutRuntime.js";
@@ -27,8 +28,8 @@ test("reaction solver layout applies shared css variables from one source of tru
     },
   });
   assert.equal(
-    applied.get("--solver-lane-gap"),
-    `${REACTION_SOLVER_LAYOUT.laneGapPx}px`
+    applied.get("--solver-surface-column-gap"),
+    `${REACTION_SOLVER_LAYOUT.surfaceColumnGapPx}px`
   );
   assert.equal(
     applied.get("--solver-attachment-gap"),
@@ -47,8 +48,8 @@ test("reaction solver layout applies shared css variables from one source of tru
     `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-connector-lane"),
-    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX}px`
+    applied.get("--solver-composite-connector-span"),
+    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX}px`
   );
   assert.equal(
     applied.get("--solver-composite-node-inset"),
@@ -70,6 +71,7 @@ test("reaction solver layout applies shared css variables from one source of tru
     applied.get("--solver-surface-column-count"),
     String(REACTION_SOLVER_SURFACE_COLUMN_COUNT)
   );
+  assert.equal(REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT, 5);
 });
 
 test("reaction solver layout derives explicit track-start offsets for standalone and composite grids", () => {
@@ -154,8 +156,8 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
   assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "10 / span 4");
 });
 
-test("reaction solver layout derives fallback lane ratios from periodic-table slot spans", () => {
-  const ratios = getReactionSurfaceLaneFallbackRatios([
+test("reaction solver layout derives fallback column-group ratios from periodic-table slot spans", () => {
+  const ratios = getReactionSurfaceColumnGroupFallbackRatios([
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
     { side: "center", operatorLaneIndex: null },
@@ -168,8 +170,8 @@ test("reaction solver layout derives fallback lane ratios from periodic-table sl
   );
 });
 
-test("reaction solver layout measures operator lane centers from explicit lane slots", () => {
-  const laneEntries = [
+test("reaction solver layout measures operator column-group centers from explicit group slots", () => {
+  const columnGroupEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
     { side: "center", operatorLaneIndex: null },
@@ -185,7 +187,7 @@ test("reaction solver layout measures operator lane centers from explicit lane s
   const operatorLane1 = {
     getBoundingClientRect: () => ({ left: 840, width: 260 }),
   };
-  const ratios = measureReactionSurfaceLaneRatios({
+  const ratios = measureReactionSurfaceColumnGroupRatios({
     surface: {
       getBoundingClientRect: () => ({ left: 100, width: 1280 }),
       querySelector(selector) {
@@ -205,7 +207,7 @@ test("reaction solver layout measures operator lane centers from explicit lane s
     productsColumn: {
       getBoundingClientRect: () => ({ left: 1220, width: 260 }),
     },
-    laneEntries,
+    columnGroupEntries,
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),
@@ -213,15 +215,15 @@ test("reaction solver layout measures operator lane centers from explicit lane s
   );
 });
 
-test("reaction solver layout measures outer lane centers from fixed periodic lane spans", () => {
-  const laneEntries = [
+test("reaction solver layout measures outer column-group centers from fixed periodic grid spans", () => {
+  const columnGroupEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
     { side: "center", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 1 },
     { side: "product", operatorLaneIndex: null },
   ];
-  const ratios = measureReactionSurfaceLaneRatios({
+  const ratios = measureReactionSurfaceColumnGroupRatios({
     surface: {
       getBoundingClientRect: () => ({ left: 100, width: 1600 }),
       querySelector(selector) {
@@ -247,7 +249,7 @@ test("reaction solver layout measures outer lane centers from fixed periodic lan
     productsColumn: {
       getBoundingClientRect: () => ({ left: 1300, width: 320 }),
     },
-    laneEntries,
+    columnGroupEntries,
   });
   assert.deepEqual(
     ratios.map((ratio) => Number(ratio.toFixed(4))),

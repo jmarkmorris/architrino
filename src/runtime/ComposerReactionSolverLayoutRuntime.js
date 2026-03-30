@@ -4,7 +4,7 @@ import {
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 
 export const REACTION_SOLVER_LAYOUT = Object.freeze({
-  addButtonSizePx: 36,
+  addButtonSizePx: 32,
   attachmentGapPx: 3,
   anchorSizePx: 16,
   binaryChoiceSizePx: 72,
@@ -13,7 +13,7 @@ export const REACTION_SOLVER_LAYOUT = Object.freeze({
   contentStackGapPx: 10,
   operatorGraphicConnectionStepPx: 79,
   operatorTileCount: 4,
-  laneGapPx: 72 / 16,
+  surfaceColumnGapPx: 72 / 16,
   routeAnchorGapPx: 0.25,
   tileGapPx: 7,
   topControlRowHeightPx: 38,
@@ -23,7 +23,9 @@ export const REACTION_SOLVER_LAYOUT = Object.freeze({
 });
 
 export const REACTION_SOLVER_SURFACE_COLUMN_COUNT = 16;
-export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
+export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT = 5;
+export const REACTION_SOLVER_SURFACE_ROW_COUNT = 11;
+export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
   Object.freeze({
     side: "reactant",
     operatorLaneIndex: null,
@@ -59,10 +61,10 @@ export const REACTION_SOLVER_SURFACE_SLOT_LAYOUT = Object.freeze([
 export const REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX =
   REACTION_SOLVER_LAYOUT.binaryChoiceSizePx * REACTION_SOLVER_LAYOUT.operatorTileCount +
   REACTION_SOLVER_LAYOUT.tileGapPx * (REACTION_SOLVER_LAYOUT.operatorTileCount - 1);
-export const REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX = REACTION_SOLVER_LAYOUT.tileGapPx;
+export const REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX = REACTION_SOLVER_LAYOUT.tileGapPx;
 export const REACTION_SOLVER_COMPOSITE_NODE_INSET_PX = Math.max(
   0,
-  (REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX - REACTION_SOLVER_LAYOUT.compositeNodeSizePx) / 2
+  (REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX - REACTION_SOLVER_LAYOUT.compositeNodeSizePx) / 2
 );
 export const REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX =
   REACTION_SOLVER_LAYOUT.compositeNodeSizePx / 2;
@@ -122,8 +124,8 @@ export function applyReactionSolverLayoutCssVars(surface) {
   );
   setReactionSolverLayoutVar(
     surface,
-    "--solver-lane-gap",
-    `${REACTION_SOLVER_LAYOUT.laneGapPx}px`
+    "--solver-surface-column-gap",
+    `${REACTION_SOLVER_LAYOUT.surfaceColumnGapPx}px`
   );
   setReactionSolverLayoutVar(
     surface,
@@ -152,8 +154,8 @@ export function applyReactionSolverLayoutCssVars(surface) {
   );
   setReactionSolverLayoutVar(
     surface,
-    "--solver-composite-connector-lane",
-    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_LANE_PX}px`
+    "--solver-composite-connector-span",
+    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX}px`
   );
   setReactionSolverLayoutVar(
     surface,
@@ -182,9 +184,9 @@ export function applyReactionSolverLayoutCssVars(surface) {
   );
 }
 
-function getReactionSolverSurfaceSlotLayoutEntry(side, operatorLaneIndex = null) {
+function getReactionSolverSurfaceColumnGroupLayoutEntry(side, operatorLaneIndex = null) {
   return (
-    REACTION_SOLVER_SURFACE_SLOT_LAYOUT.find(
+    REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT.find(
       (entry) =>
         entry.side === side &&
         entry.operatorLaneIndex ===
@@ -201,7 +203,7 @@ function getOperatorLaneSlotElement(surface, operatorLaneIndex) {
   }
   return (
     surface.querySelector(
-      `.composer-reaction-solver-lane-slot[data-operator-lane-index="${String(operatorLaneIndex)}"]`
+      `.composer-reaction-solver-column-group-slot[data-operator-lane-index="${String(operatorLaneIndex)}"]`
     ) ?? null
   );
 }
@@ -226,7 +228,7 @@ export function applyReactionSolverSurfaceGridLayout({
   centerAssembliesColumn,
   productsColumn,
 }) {
-  const reactantEntry = getReactionSolverSurfaceSlotLayoutEntry("reactant");
+  const reactantEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("reactant");
   if (reactantsColumn?.style && reactantEntry && typeof reactantsColumn.style.setProperty === "function") {
     reactantsColumn.style.setProperty(
       "--solver-reactants-grid-column",
@@ -234,7 +236,7 @@ export function applyReactionSolverSurfaceGridLayout({
     );
   }
 
-  const centerEntry = getReactionSolverSurfaceSlotLayoutEntry("center");
+  const centerEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("center");
   if (
     centerAssembliesColumn?.style &&
     centerEntry &&
@@ -246,7 +248,7 @@ export function applyReactionSolverSurfaceGridLayout({
     );
   }
 
-  const productEntry = getReactionSolverSurfaceSlotLayoutEntry("product");
+  const productEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("product");
   if (productsColumn?.style && productEntry && typeof productsColumn.style.setProperty === "function") {
     productsColumn.style.setProperty(
       "--solver-products-grid-column",
@@ -254,7 +256,7 @@ export function applyReactionSolverSurfaceGridLayout({
     );
   }
 
-  REACTION_SOLVER_SURFACE_SLOT_LAYOUT.filter((entry) => entry.side === "operator").forEach((entry) => {
+  REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT.filter((entry) => entry.side === "operator").forEach((entry) => {
     const slotElement = getOperatorLaneSlotElement(surface, entry.operatorLaneIndex);
     const operatorGridColumnVarName = getLaneGridColumnVarName(
       entry.side,
@@ -273,7 +275,7 @@ export function applyReactionSolverSurfaceGridLayout({
   });
 }
 
-function getReactionSurfaceLaneElement({
+function getReactionSurfaceColumnGroupElement({
   surface,
   reactantsColumn,
   centerAssembliesColumn,
@@ -295,14 +297,14 @@ function getReactionSurfaceLaneElement({
   return null;
 }
 
-export function getReactionSurfaceLaneFallbackRatios(laneEntries = []) {
-  if (!Array.isArray(laneEntries) || !laneEntries.length) {
+export function getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries = []) {
+  if (!Array.isArray(columnGroupEntries) || !columnGroupEntries.length) {
     return [0.5];
   }
-  return laneEntries.map((laneEntry) => {
-    const layoutEntry = getReactionSolverSurfaceSlotLayoutEntry(
-      laneEntry?.side,
-      laneEntry?.operatorLaneIndex ?? null
+  return columnGroupEntries.map((columnGroupEntry) => {
+    const layoutEntry = getReactionSolverSurfaceColumnGroupLayoutEntry(
+      columnGroupEntry?.side,
+      columnGroupEntry?.operatorLaneIndex ?? null
     );
     if (!layoutEntry) {
       return 0.5;
@@ -311,12 +313,12 @@ export function getReactionSurfaceLaneFallbackRatios(laneEntries = []) {
   });
 }
 
-export function measureReactionSurfaceLaneRatios({
+export function measureReactionSurfaceColumnGroupRatios({
   surface,
   reactantsColumn,
   centerAssembliesColumn,
   productsColumn,
-  laneEntries = [],
+  columnGroupEntries = [],
 }) {
   if (!surface || typeof surface.getBoundingClientRect !== "function") {
     return null;
@@ -327,13 +329,13 @@ export function measureReactionSurfaceLaneRatios({
     return null;
   }
   const ratios = [];
-  for (const laneEntry of laneEntries) {
-    const laneElement = getReactionSurfaceLaneElement({
+  for (const columnGroupEntry of columnGroupEntries) {
+    const laneElement = getReactionSurfaceColumnGroupElement({
       surface,
       reactantsColumn,
       centerAssembliesColumn,
       productsColumn,
-      laneEntry,
+      laneEntry: columnGroupEntry,
     });
     if (!laneElement || typeof laneElement.getBoundingClientRect !== "function") {
       return null;

@@ -38,10 +38,11 @@ import {
 import {
   applyReactionSolverLayoutCssVars,
   applyReactionSolverSurfaceGridLayout,
-  getReactionSurfaceLaneFallbackRatios,
-  measureReactionSurfaceLaneRatios,
+  getReactionSurfaceColumnGroupFallbackRatios,
+  measureReactionSurfaceColumnGroupRatios,
   REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX,
   REACTION_SOLVER_LAYOUT,
+  REACTION_SOLVER_SURFACE_ROW_COUNT,
 } from "./ComposerReactionSolverLayoutRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
@@ -629,6 +630,7 @@ const solverAddButtonSizePx = REACTION_SOLVER_LAYOUT.addButtonSizePx;
 const solverCanvasRowHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
 const solverCanvasRowStepPx =
   REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.contentStackGapPx;
+const solverSurfaceMaxRowIndex = REACTION_SOLVER_SURFACE_ROW_COUNT - 1;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
@@ -693,7 +695,7 @@ function getOperatorRootMenuEntries() {
   });
 }
 
-function getReactionSurfaceLaneEntries() {
+function getReactionSurfaceColumnGroupEntries() {
   const enabledOperatorLaneEntries = getEnabledOperatorLaneLayoutEntries();
   const leftOperatorLaneEntry =
     enabledOperatorLaneEntries.find((entry) => entry.laneIndex === 0) ?? null;
@@ -812,7 +814,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let operatorLayoutFrameId = 0;
   let applyHoveredRouteState = () => {};
   let createAnchorButton = () => document.createElement("button");
-  let createInlineAnchorLane = () => document.createElement("div");
+  let createInlineAnchorSlot = () => document.createElement("div");
   let createSideSlotHeader = () => document.createElement("div");
   let createOperatorParticipantCard = () => document.createElement("article");
   let renderParticipantCard = () => document.createElement("article");
@@ -877,7 +879,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   ({
     applyHoveredRouteState,
     createAnchorButton,
-    createInlineAnchorLane,
+    createInlineAnchorSlot,
     setHoveredMappingIds,
   } = anchorRenderRuntime);
   const binaryGlyphRuntime = createComposerReactionBinaryGlyphRuntime({
@@ -891,7 +893,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     countDescendants,
     createAnchorButton,
     createBinaryGlyph,
-    createInlineAnchorLane,
+    createInlineAnchorSlot,
     cycleQuarkBinaryPreset,
     findMappingByNodeKey,
     formatLedger,
@@ -1289,6 +1291,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function removeMappingById(mappingId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
+    state.hoveredMappingIds = state.hoveredMappingIds.filter((entry) => entry !== mappingId);
     pruneRecentRouteState();
     return beforeCount !== state.mappings.length;
   }
@@ -1850,15 +1853,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function createOperatorAddControls() {
     const controls = document.createElement("div");
-    const laneEntries = getReactionSurfaceLaneEntries();
-    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(columnGroupEntries.length);
     controls.className = "composer-reaction-solver-surface-add-controls";
-    laneEntries.forEach((entry, laneIndex) => {
+    columnGroupEntries.forEach((entry, columnGroupIndex) => {
       const control = createColumnAddControl(entry.side, {
         operatorLaneIndex: entry.operatorLaneIndex,
       });
-      control.dataset.surfaceLaneIndex = String(laneIndex);
-      control.style.left = `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
+      control.dataset.surfaceColumnGroupIndex = String(columnGroupIndex);
+      control.style.left = `${(columnGroupRatios[columnGroupIndex] ?? 0.5) * 100}%`;
       controls.appendChild(control);
     });
     return controls;
@@ -1916,30 +1919,93 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     const targetCollectionKey = getParticipantCollectionKey(participant);
-    if (targetCollectionKey === "center-assembly") {
-      ensureCollectionCanvasRows(targetCollectionKey);
-      state.participants.forEach((entry) => {
-        if (getParticipantCollectionKey(entry) === targetCollectionKey) {
-          entry.canvasRowIndex = Math.max(0, Math.round(Number(entry.canvasRowIndex) || 0) + 1);
-        }
-      });
-      participant.canvasRowIndex = 0;
-    }
     const insertionIndex = state.participants.findIndex(
       (entry) => getParticipantCollectionKey(entry) === targetCollectionKey
     );
     if (insertionIndex < 0) {
       state.participants.push(participant);
-      return;
+    } else {
+      state.participants.splice(insertionIndex, 0, participant);
     }
-    state.participants.splice(insertionIndex, 0, participant);
+    setParticipantSurfaceRowIndex(
+      participant,
+      getFirstAvailableCollectionRowIndex(
+        targetCollectionKey,
+        participant.id,
+        getParticipantSurfaceRowSpan(participant)
+      )
+    );
+    ensureCollectionSurfaceRows(targetCollectionKey);
   }
 
-  function getParticipantCanvasRowIndex(participant, fallbackIndex = 0) {
-    const normalizedRowIndex = Math.round(Number(participant?.canvasRowIndex));
-    return Number.isFinite(normalizedRowIndex) && normalizedRowIndex >= 0
-      ? normalizedRowIndex
-      : fallbackIndex;
+  function normalizeSurfaceRowIndex(rowIndex, fallbackIndex = 0) {
+    const normalizedRowIndex = Math.round(Number(rowIndex));
+    const resolvedFallbackIndex = Math.max(
+      0,
+      Math.min(solverSurfaceMaxRowIndex, Math.round(Number(fallbackIndex) || 0))
+    );
+    return Number.isFinite(normalizedRowIndex)
+      ? Math.max(0, Math.min(solverSurfaceMaxRowIndex, normalizedRowIndex))
+      : resolvedFallbackIndex;
+  }
+
+  function normalizeSurfaceRowSpan(rowSpan, fallbackSpan = 1) {
+    const normalizedRowSpan = Math.round(Number(rowSpan));
+    const resolvedFallbackSpan = Math.max(
+      1,
+      Math.min(REACTION_SOLVER_SURFACE_ROW_COUNT, Math.round(Number(fallbackSpan) || 1))
+    );
+    return Number.isFinite(normalizedRowSpan)
+      ? Math.max(1, Math.min(REACTION_SOLVER_SURFACE_ROW_COUNT, normalizedRowSpan))
+      : resolvedFallbackSpan;
+  }
+
+  function normalizeSurfaceRowStartIndex(rowIndex, rowSpan = 1, fallbackIndex = 0) {
+    const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
+    const maxStartRowIndex = Math.max(0, solverSurfaceMaxRowIndex - resolvedRowSpan + 1);
+    const normalizedRowIndex = Math.round(Number(rowIndex));
+    const resolvedFallbackIndex = Math.max(
+      0,
+      Math.min(maxStartRowIndex, Math.round(Number(fallbackIndex) || 0))
+    );
+    return Number.isFinite(normalizedRowIndex)
+      ? Math.max(0, Math.min(maxStartRowIndex, normalizedRowIndex))
+      : resolvedFallbackIndex;
+  }
+
+  function getParticipantSurfaceRowSpan(participant) {
+    if (!participant || isOperatorParticipant(participant) || !isCompositeParticipant(participant)) {
+      return 1;
+    }
+    const rootNode = getParticipantRootNode(participant);
+    return normalizeSurfaceRowSpan(Array.isArray(rootNode?.children) ? rootNode.children.length : 1);
+  }
+
+  function getParticipantSurfaceRowIndex(participant, fallbackIndex = 0) {
+    const legacyRowIndex = isOperatorParticipant(participant)
+      ? participant?.operatorSlotIndex
+      : participant?.canvasRowIndex;
+    return normalizeSurfaceRowStartIndex(
+      participant?.surfaceRowIndex ?? legacyRowIndex,
+      getParticipantSurfaceRowSpan(participant),
+      fallbackIndex
+    );
+  }
+
+  function setParticipantSurfaceRowIndex(participant, rowIndex) {
+    if (!participant) {
+      return 0;
+    }
+    const resolvedRowIndex = normalizeSurfaceRowStartIndex(
+      rowIndex,
+      getParticipantSurfaceRowSpan(participant)
+    );
+    participant.surfaceRowIndex = resolvedRowIndex;
+    participant.canvasRowIndex = resolvedRowIndex;
+    if (isOperatorParticipant(participant)) {
+      participant.operatorSlotIndex = resolvedRowIndex;
+    }
+    return resolvedRowIndex;
   }
 
   function getCollectionParticipants(collectionKey) {
@@ -1949,84 +2015,156 @@ export function createComposerReactionSolverUiRuntime(deps) {
     );
   }
 
-  function ensureCollectionCanvasRows(collectionKey) {
-    const normalizedCollectionKey = String(collectionKey ?? "").trim();
-    if (normalizedCollectionKey !== "center-assembly") {
-      return getCollectionParticipants(normalizedCollectionKey);
+  function canOccupySurfaceRowRange(occupiedRowIndexes, rowIndex, rowSpan = 1) {
+    const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
+    const resolvedRowIndex = normalizeSurfaceRowStartIndex(rowIndex, resolvedRowSpan);
+    for (let offset = 0; offset < resolvedRowSpan; offset += 1) {
+      if (occupiedRowIndexes.has(resolvedRowIndex + offset)) {
+        return false;
+      }
     }
+    return true;
+  }
+
+  function markOccupiedSurfaceRowRange(occupiedRowIndexes, rowIndex, rowSpan = 1) {
+    const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
+    const resolvedRowIndex = normalizeSurfaceRowStartIndex(rowIndex, resolvedRowSpan);
+    for (let offset = 0; offset < resolvedRowSpan; offset += 1) {
+      occupiedRowIndexes.add(resolvedRowIndex + offset);
+    }
+  }
+
+  function getFirstAvailableRowIndexFromOccupied(occupiedRowIndexes, fallbackIndex = 0, rowSpan = 1) {
+    const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
+    const maxStartRowIndex = Math.max(0, solverSurfaceMaxRowIndex - resolvedRowSpan + 1);
+    for (let rowIndex = 0; rowIndex <= maxStartRowIndex; rowIndex += 1) {
+      if (canOccupySurfaceRowRange(occupiedRowIndexes, rowIndex, resolvedRowSpan)) {
+        return rowIndex;
+      }
+    }
+    return normalizeSurfaceRowStartIndex(fallbackIndex, resolvedRowSpan);
+  }
+
+  function findNearestAvailableRowIndexFromOccupied(
+    occupiedRowIndexes,
+    targetRowIndex = 0,
+    rowSpan = 1
+  ) {
+    const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
+    const preferredRowIndex = normalizeSurfaceRowStartIndex(targetRowIndex, resolvedRowSpan);
+    if (canOccupySurfaceRowRange(occupiedRowIndexes, preferredRowIndex, resolvedRowSpan)) {
+      return preferredRowIndex;
+    }
+    for (let distance = 1; distance <= REACTION_SOLVER_SURFACE_ROW_COUNT; distance += 1) {
+      const lowerRowIndex = preferredRowIndex - distance;
+      const upperRowIndex = preferredRowIndex + distance;
+      if (
+        lowerRowIndex >= 0 &&
+        canOccupySurfaceRowRange(occupiedRowIndexes, lowerRowIndex, resolvedRowSpan)
+      ) {
+        return lowerRowIndex;
+      }
+      if (
+        upperRowIndex <= solverSurfaceMaxRowIndex &&
+        canOccupySurfaceRowRange(occupiedRowIndexes, upperRowIndex, resolvedRowSpan)
+      ) {
+        return upperRowIndex;
+      }
+    }
+    return preferredRowIndex;
+  }
+
+  function getOccupiedCollectionRowIndexes(collectionKey, excludedParticipantId = "") {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
+    const occupiedRowIndexes = new Set();
+    getCollectionParticipants(normalizedCollectionKey)
+      .filter((participant) => String(participant.id) !== String(excludedParticipantId))
+      .forEach((participant, index) => {
+        markOccupiedSurfaceRowRange(
+          occupiedRowIndexes,
+          getParticipantSurfaceRowIndex(participant, index),
+          getParticipantSurfaceRowSpan(participant)
+        );
+      });
+    return occupiedRowIndexes;
+  }
+
+  function getFirstAvailableCollectionRowIndex(
+    collectionKey,
+    excludedParticipantId = "",
+    rowSpan = 1
+  ) {
+    return getFirstAvailableRowIndexFromOccupied(
+      getOccupiedCollectionRowIndexes(collectionKey, excludedParticipantId),
+      0,
+      rowSpan
+    );
+  }
+
+  function findNearestAvailableCollectionRowIndex(
+    collectionKey,
+    targetRowIndex = 0,
+    excludedParticipantId = "",
+    rowSpan = 1
+  ) {
+    return findNearestAvailableRowIndexFromOccupied(
+      getOccupiedCollectionRowIndexes(collectionKey, excludedParticipantId),
+      targetRowIndex,
+      rowSpan
+    );
+  }
+
+  function ensureCollectionSurfaceRows(collectionKey) {
+    const normalizedCollectionKey = String(collectionKey ?? "").trim();
     const collectionParticipants = getCollectionParticipants(normalizedCollectionKey);
-    const usedRowIndices = new Set();
-    let nextFreeRowIndex = 0;
+    const usedRowIndexes = new Set();
     collectionParticipants.forEach((participant, index) => {
-      const preferredRowIndex = getParticipantCanvasRowIndex(participant, index);
-      if (!usedRowIndices.has(preferredRowIndex)) {
-        participant.canvasRowIndex = preferredRowIndex;
-        usedRowIndices.add(preferredRowIndex);
-        nextFreeRowIndex = Math.max(nextFreeRowIndex, preferredRowIndex + 1);
-        return;
-      }
-      while (usedRowIndices.has(nextFreeRowIndex)) {
-        nextFreeRowIndex += 1;
-      }
-      participant.canvasRowIndex = nextFreeRowIndex;
-      usedRowIndices.add(nextFreeRowIndex);
-      nextFreeRowIndex += 1;
+      const rowSpan = getParticipantSurfaceRowSpan(participant);
+      const preferredRowIndex = getParticipantSurfaceRowIndex(participant, index);
+      const resolvedRowIndex = findNearestAvailableRowIndexFromOccupied(
+        usedRowIndexes,
+        preferredRowIndex,
+        rowSpan
+      );
+      setParticipantSurfaceRowIndex(participant, resolvedRowIndex);
+      markOccupiedSurfaceRowRange(usedRowIndexes, resolvedRowIndex, rowSpan);
     });
     return collectionParticipants;
   }
 
   function getCollectionParticipantsForRender(collectionKey) {
     const normalizedCollectionKey = String(collectionKey ?? "").trim();
-    if (normalizedCollectionKey === "center-assembly") {
-      const collectionParticipants = ensureCollectionCanvasRows(normalizedCollectionKey);
-      return [...collectionParticipants].sort((left, right) => {
-        const leftRowIndex = getParticipantCanvasRowIndex(left);
-        const rightRowIndex = getParticipantCanvasRowIndex(right);
-        if (leftRowIndex !== rightRowIndex) {
-          return leftRowIndex - rightRowIndex;
-        }
-        return collectionParticipants.indexOf(left) - collectionParticipants.indexOf(right);
-      });
-    }
-    return getCollectionParticipants(normalizedCollectionKey);
+    const collectionParticipants = ensureCollectionSurfaceRows(normalizedCollectionKey);
+    return [...collectionParticipants].sort((left, right) => {
+      const leftRowIndex = getParticipantSurfaceRowIndex(left);
+      const rightRowIndex = getParticipantSurfaceRowIndex(right);
+      if (leftRowIndex !== rightRowIndex) {
+        return leftRowIndex - rightRowIndex;
+      }
+      return collectionParticipants.indexOf(left) - collectionParticipants.indexOf(right);
+    });
   }
 
-  function placeParticipantOnCanvasGrid(collectionKey, participantId, targetRowIndex = 0) {
+  function placeParticipantOnSurfaceGrid(collectionKey, participantId, targetRowIndex = 0) {
     const normalizedCollectionKey = String(collectionKey ?? "").trim();
-    if (normalizedCollectionKey !== "center-assembly") {
-      return false;
-    }
-    const collectionParticipants = ensureCollectionCanvasRows(normalizedCollectionKey);
+    const collectionParticipants = ensureCollectionSurfaceRows(normalizedCollectionKey);
     const participant = collectionParticipants.find(
       (entry) => String(entry.id) === String(participantId)
     );
     if (!participant) {
       return false;
     }
-    const resolvedRowIndex = Math.max(0, Math.round(Number(targetRowIndex) || 0));
-    const nextOccupant = collectionParticipants.find(
-      (entry) =>
-        entry !== participant &&
-        getParticipantCanvasRowIndex(entry) === resolvedRowIndex
+    const rowSpan = getParticipantSurfaceRowSpan(participant);
+    const resolvedRowIndex = findNearestAvailableCollectionRowIndex(
+      normalizedCollectionKey,
+      targetRowIndex,
+      participant.id,
+      rowSpan
     );
-    if (!nextOccupant && getParticipantCanvasRowIndex(participant) === resolvedRowIndex) {
+    if (getParticipantSurfaceRowIndex(participant) === resolvedRowIndex) {
       return false;
     }
-    if (nextOccupant) {
-      collectionParticipants
-        .filter(
-          (entry) =>
-            entry !== participant &&
-            getParticipantCanvasRowIndex(entry) >= resolvedRowIndex
-        )
-        .sort(
-          (left, right) => getParticipantCanvasRowIndex(right) - getParticipantCanvasRowIndex(left)
-        )
-        .forEach((entry) => {
-          entry.canvasRowIndex = getParticipantCanvasRowIndex(entry) + 1;
-        });
-    }
-    participant.canvasRowIndex = resolvedRowIndex;
+    setParticipantSurfaceRowIndex(participant, resolvedRowIndex);
     return true;
   }
 
@@ -2043,17 +2181,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const gridStartY = headerBounds
       ? headerBounds.bottom + REACTION_SOLVER_LAYOUT.contentStackGapPx
       : columnBounds.top;
-    const availableHeight = Math.max(0, columnBounds.bottom - gridStartY);
-    const maxVisibleRowIndex = Math.max(
-      0,
-      Math.floor(
-        Math.max(0, availableHeight - solverCanvasRowHeightPx / 2) / solverCanvasRowStepPx
-      )
-    );
     const targetRowIndex = Math.round(
       (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
     );
-    return Math.max(0, Math.min(maxVisibleRowIndex, targetRowIndex));
+    return normalizeSurfaceRowIndex(targetRowIndex);
   }
 
   function reorderParticipantCollection(collectionKey, orderedParticipantIds = []) {
@@ -2190,7 +2321,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       extraFields: {
         operatorLaneIndex: resolvedLaneIndex,
         operatorSlotIndex: 0,
-        operatorYRatio: 0.5,
+        surfaceRowIndex: 0,
       },
     });
     state.participants.push(participant);
@@ -2455,7 +2586,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -2466,20 +2597,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
-    if (isSingleMappingAnchorRole(role)) {
-      const existingMapping = findMappingByNodeKey(nodeKey);
-      if (existingMapping) {
-        state.pendingSourceKey = "";
-        state.pendingSourceRole = "";
-        state.pendingSourceAnchorInstanceIndex = null;
-        if (removeMappingById(existingMapping.id)) {
-          render();
-          setStatus("Removed reaction mapping.");
-        }
-        return;
-      }
-    }
-
     const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
     if (anchorAvailability.disabled) {
       if (anchorAvailability.reason) {
@@ -2572,8 +2689,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
 
-  function getOperatorCardTop(operatorYRatio = 0.5) {
-    return `${Math.max(0.08, Math.min(0.92, Number(operatorYRatio) || 0.5)) * 100}%`;
+  function getOperatorCardTop(operatorSlotIndex = 0) {
+    return `${getReactionSurfaceRowCenterPx(operatorSlotIndex)}px`;
   }
 
   function getOperatorGraphicOffsets(participant, connectionCount = 4) {
@@ -2604,44 +2721,50 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Array.from({ length: requiredCount }, (_, index) => minRatio + step * index);
   }
 
-  function getReactionSurfaceLaneRatios(requiredCount = getReactionSurfaceLaneEntries().length) {
+  function getReactionSurfaceColumnGroupRatios(
+    requiredCount = getReactionSurfaceColumnGroupEntries().length
+  ) {
     const count = Math.max(1, requiredCount);
-    const laneEntries = getReactionSurfaceLaneEntries();
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
     if (!surface) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
     if (count <= 1) {
       return [0.5];
     }
     if (!reactantsColumn || !centerAssembliesColumn || !productsColumn) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
-    const measuredRatios = measureReactionSurfaceLaneRatios({
+    const measuredRatios = measureReactionSurfaceColumnGroupRatios({
       surface,
       reactantsColumn,
       centerAssembliesColumn,
       productsColumn,
-      laneEntries,
+      columnGroupEntries,
     });
-    if (!Array.isArray(measuredRatios) || measuredRatios.length !== laneEntries.length) {
-      return getReactionSurfaceLaneFallbackRatios(laneEntries).slice(0, count);
+    if (!Array.isArray(measuredRatios) || measuredRatios.length !== columnGroupEntries.length) {
+      return getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries).slice(0, count);
     }
     return measuredRatios.slice(0, count);
   }
 
   function getOperatorLaneRatios(requiredCount = operatorLaneCount) {
-    const visibleLaneEntries = getReactionSurfaceLaneEntries();
-    const laneRatios = getReactionSurfaceLaneRatios(visibleLaneEntries.length);
-    const visibleOperatorEntries = visibleLaneEntries.filter((entry) => entry.side === "operator");
+    const visibleColumnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(
+      visibleColumnGroupEntries.length
+    );
+    const visibleOperatorEntries = visibleColumnGroupEntries.filter(
+      (entry) => entry.side === "operator"
+    );
     const visibleOperatorRatios = visibleOperatorEntries
       .map((entry) => {
-        const laneIndex = visibleLaneEntries.findIndex(
-          (laneEntry) =>
-            laneEntry.side === "operator" &&
-            normalizeOperatorLaneIndex(laneEntry.operatorLaneIndex) ===
+        const columnGroupIndex = visibleColumnGroupEntries.findIndex(
+          (columnGroupEntry) =>
+            columnGroupEntry.side === "operator" &&
+            normalizeOperatorLaneIndex(columnGroupEntry.operatorLaneIndex) ===
               normalizeOperatorLaneIndex(entry.operatorLaneIndex)
         );
-        return laneRatios[laneIndex];
+        return columnGroupRatios[columnGroupIndex];
       })
       .filter((ratio) => Number.isFinite(ratio));
     if (visibleOperatorRatios.length) {
@@ -2674,14 +2797,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   function getOperatorCardLeft(operatorLaneIndex = 1) {
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
-    const laneEntries = getReactionSurfaceLaneEntries();
-    const laneIndex = laneEntries.findIndex(
+    const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
+    const columnGroupIndex = columnGroupEntries.findIndex(
       (entry) =>
         entry.side === "operator" &&
         normalizeOperatorLaneIndex(entry.operatorLaneIndex) === resolvedLaneIndex
     );
-    const laneRatios = getReactionSurfaceLaneRatios(laneEntries.length);
-    return `${(laneRatios[laneIndex] ?? 0.5) * 100}%`;
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(columnGroupEntries.length);
+    return `${(columnGroupRatios[columnGroupIndex] ?? 0.5) * 100}%`;
   }
 
   function getOperatorLaneSlotElement(operatorLaneIndex = null) {
@@ -2689,132 +2812,71 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return null;
     }
     return surface.querySelector(
-      `.composer-reaction-solver-lane-slot[data-operator-lane-index="${CSS.escape(String(
+      `.composer-reaction-solver-column-group-slot[data-operator-lane-index="${CSS.escape(String(
         normalizeOperatorLaneIndex(operatorLaneIndex)
       ))}"]`
     );
   }
 
-  function getOperatorLaneFallbackSlotRatios(requiredCount = 1) {
-    const fallbackCount = Math.max(1, requiredCount);
-    const startRatio = 0.28;
-    const stepRatio = 0.18;
-    return Array.from({ length: fallbackCount }, (_, index) =>
-      Math.max(0.08, Math.min(0.92, startRatio + index * stepRatio))
+  function getReactionSurfaceGridStartOffsetPx() {
+    if (!surface || typeof surface.getBoundingClientRect !== "function") {
+      return solverCanvasRowHeightPx / 2;
+    }
+    const surfaceBounds = surface.getBoundingClientRect();
+    const headerBottomOffsets = [
+      ...surface.querySelectorAll(".composer-reaction-solver-side-slot-header"),
+    ]
+      .filter((element) => element instanceof HTMLElement)
+      .map((element) => element.getBoundingClientRect())
+      .filter((bounds) => bounds.height > 0)
+      .map((bounds) => bounds.bottom - surfaceBounds.top);
+    if (headerBottomOffsets.length) {
+      return Math.max(...headerBottomOffsets) + REACTION_SOLVER_LAYOUT.contentStackGapPx;
+    }
+    return REACTION_SOLVER_LAYOUT.topControlRowHeightPx - 4;
+  }
+
+  function getReactionSurfaceRowCenterPx(rowIndex = 0) {
+    const resolvedRowIndex = normalizeSurfaceRowIndex(rowIndex);
+    const operatorLayerOffsetPx =
+      !surface ||
+      !operatorLayer ||
+      typeof surface.getBoundingClientRect !== "function" ||
+      typeof operatorLayer.getBoundingClientRect !== "function"
+        ? 0
+        : operatorLayer.getBoundingClientRect().top - surface.getBoundingClientRect().top;
+    return (
+      getReactionSurfaceGridStartOffsetPx() -
+      operatorLayerOffsetPx +
+      solverCanvasRowHeightPx / 2 +
+      resolvedRowIndex * solverCanvasRowStepPx
     );
   }
 
-  function getOperatorSlotRatios(requiredCount = 1) {
+  function getOperatorGridTargetRowIndex(clientY) {
     if (!operatorLayer) {
-      return getOperatorLaneFallbackSlotRatios(requiredCount);
+      return 0;
     }
     const bounds = operatorLayer.getBoundingClientRect();
-    const height = Math.max(1, bounds.height);
-    const minCenter = operatorCardHeightPx / 2 + operatorSlotEdgePaddingPx;
-    const maxCenter = Math.max(minCenter, height - operatorCardHeightPx / 2 - operatorSlotEdgePaddingPx);
-
-    const renderedTrackCenters = [
-      ...surface.querySelectorAll(
-        ".composer-reaction-solver-column .composer-reaction-solver-noether-core-grid-track, .composer-reaction-solver-column .composer-reaction-solver-binary-selector-grid-track"
-      ),
-    ]
-      .map((element) => {
-        const rect = element.getBoundingClientRect();
-        return rect.top + rect.height / 2 - bounds.top;
-      })
-      .filter((value) => Number.isFinite(value))
-      .sort((left, right) => left - right)
-      .reduce((centers, value) => {
-        if (!centers.length || Math.abs(centers[centers.length - 1] - value) > 8) {
-          centers.push(Math.max(minCenter, Math.min(maxCenter, value)));
-        }
-        return centers;
-      }, []);
-
-    const baseCenters =
-      renderedTrackCenters.length > 0
-        ? renderedTrackCenters
-        : [
-            ...surface.querySelectorAll(".composer-reaction-solver-participant:not(.is-operator)"),
-          ]
-            .map((element) => {
-              const rect = element.getBoundingClientRect();
-              return rect.top + rect.height / 2 - bounds.top;
-            })
-            .filter((value) => Number.isFinite(value))
-            .sort((left, right) => left - right)
-            .reduce((centers, value) => {
-              if (!centers.length || Math.abs(centers[centers.length - 1] - value) > 16) {
-                centers.push(Math.max(minCenter, Math.min(maxCenter, value)));
-              }
-              return centers;
-            }, []);
-
-    if (!baseCenters.length) {
-      const topAlignedStartCenter = Math.max(
-        minCenter,
-        solverAddButtonSizePx + solverTileGapPx + operatorCardHeightPx / 2
-      );
-      const fallbackStepPx = Math.max(64, operatorCardHeightPx + solverTileGapPx * 2);
-      return Array.from({ length: Math.max(1, requiredCount) }, (_, index) =>
-        Math.min(maxCenter, topAlignedStartCenter + fallbackStepPx * index) / height
-      );
-    }
-
-    const deltas = [];
-    for (let index = 1; index < baseCenters.length; index += 1) {
-      deltas.push(baseCenters[index] - baseCenters[index - 1]);
-    }
-    const sortedDeltas = deltas.filter((value) => value > 0).sort((left, right) => left - right);
-    const derivedStep =
-      sortedDeltas.length > 0
-        ? sortedDeltas[Math.floor(sortedDeltas.length / 2)]
-        : operatorSlotStepPx;
-    const slotStep = Math.max(64, derivedStep || operatorSlotStepPx);
-    const centers = [...baseCenters];
-
-    while (centers.length < requiredCount) {
-      const nextCenter = centers[centers.length - 1] + slotStep;
-      if (nextCenter > maxCenter + 0.5) {
-        break;
-      }
-      centers.push(nextCenter);
-    }
-    while (centers.length < requiredCount) {
-      const previousCenter = centers[0] - slotStep;
-      if (previousCenter < minCenter - 0.5) {
-        break;
-      }
-      centers.unshift(previousCenter);
-    }
-
-    return centers.map((center) => center / height);
+    const gridStartY = bounds.top + getReactionSurfaceGridStartOffsetPx();
+    const targetRowIndex = Math.round(
+      (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
+    );
+    return normalizeSurfaceRowIndex(targetRowIndex);
   }
 
   function getOccupiedOperatorSlotIndexes(excludedParticipantId = "", operatorLaneIndex = null) {
-    const normalizedColumnIndex =
-      operatorLaneIndex === null ? null : normalizeOperatorLaneIndex(operatorLaneIndex);
-    return new Set(
-      state.participants
-        .filter(
-          (participant) =>
-            isOperatorParticipant(participant) &&
-            String(participant.id) !== String(excludedParticipantId) &&
-            (normalizedColumnIndex === null ||
-              normalizeOperatorLaneIndex(participant.operatorLaneIndex) === normalizedColumnIndex)
-        )
-        .map((participant) => Number(participant.operatorSlotIndex))
-        .filter((slotIndex) => Number.isInteger(slotIndex) && slotIndex >= 0)
+    return getOccupiedCollectionRowIndexes(
+      `operator:${normalizeOperatorLaneIndex(operatorLaneIndex)}`,
+      excludedParticipantId
     );
   }
 
   function getFirstAvailableOperatorSlotIndex(excludedParticipantId = "", operatorLaneIndex = null) {
-    const occupied = getOccupiedOperatorSlotIndexes(excludedParticipantId, operatorLaneIndex);
-    let slotIndex = 0;
-    while (occupied.has(slotIndex)) {
-      slotIndex += 1;
-    }
-    return slotIndex;
+    return getFirstAvailableCollectionRowIndex(
+      `operator:${normalizeOperatorLaneIndex(operatorLaneIndex)}`,
+      excludedParticipantId
+    );
   }
 
   function findNearestAvailableOperatorSlotIndex(
@@ -2822,22 +2884,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     excludedParticipantId = "",
     operatorLaneIndex = null
   ) {
-    const occupied = getOccupiedOperatorSlotIndexes(excludedParticipantId, operatorLaneIndex);
-    const preferredIndex = Math.max(0, Math.round(Number(targetIndex) || 0));
-    if (!occupied.has(preferredIndex)) {
-      return preferredIndex;
-    }
-    for (let distance = 1; distance < 64; distance += 1) {
-      const lowerIndex = preferredIndex - distance;
-      const upperIndex = preferredIndex + distance;
-      if (lowerIndex >= 0 && !occupied.has(lowerIndex)) {
-        return lowerIndex;
-      }
-      if (!occupied.has(upperIndex)) {
-        return upperIndex;
-      }
-    }
-    return getFirstAvailableOperatorSlotIndex(excludedParticipantId, operatorLaneIndex);
+    return findNearestAvailableCollectionRowIndex(
+      `operator:${normalizeOperatorLaneIndex(operatorLaneIndex)}`,
+      targetIndex,
+      excludedParticipantId
+    );
   }
 
   function assignOperatorParticipantToSlot(participant, requestedSlotIndex) {
@@ -2850,15 +2901,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant.id,
       resolvedLaneIndex
     );
-    const slotRatios = getOperatorSlotRatios(resolvedSlotIndex + 1);
-    const resolvedRatio =
-      slotRatios[resolvedSlotIndex] ??
-      slotRatios[slotRatios.length - 1] ??
-      getOperatorLaneFallbackSlotRatios(resolvedSlotIndex + 1)[resolvedSlotIndex] ??
-      0.5;
     participant.operatorLaneIndex = resolvedLaneIndex;
-    participant.operatorSlotIndex = resolvedSlotIndex;
-    participant.operatorYRatio = resolvedRatio;
+    setParticipantSurfaceRowIndex(participant, resolvedSlotIndex);
   }
 
   function syncOperatorCardPosition(participantId) {
@@ -2874,7 +2918,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     assignOperatorParticipantToSlot(participant, participant.operatorSlotIndex);
     card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
-    card.style.top = getOperatorCardTop(participant.operatorYRatio);
+    card.style.top = getOperatorCardTop(participant.operatorSlotIndex);
     syncOperatorFan(card, participant);
   }
 
@@ -2886,42 +2930,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant) {
       return;
     }
-    const bounds = operatorLayer.getBoundingClientRect();
-    const height = Math.max(1, bounds.height);
-    const targetRatio = Math.max(0.08, Math.min(0.92, (clientY - bounds.top) / height));
-    const slotRatios = getOperatorSlotRatios(
-      Math.max(
-        getFirstAvailableOperatorSlotIndex(participant.id, participant.operatorLaneIndex) + 1,
-        state.participants.filter(
-          (entry) =>
-            isOperatorParticipant(entry) &&
-            normalizeOperatorLaneIndex(entry.operatorLaneIndex) ===
-              normalizeOperatorLaneIndex(participant.operatorLaneIndex)
-        ).length + 2
-      )
-    );
-    const nearestSlotIndex = slotRatios.reduce((bestIndex, ratio, index) => {
-      if (bestIndex < 0) {
-        return index;
-      }
-      return Math.abs(ratio - targetRatio) < Math.abs(slotRatios[bestIndex] - targetRatio)
-        ? index
-        : bestIndex;
-    }, -1);
+    const targetSlotIndex = getOperatorGridTargetRowIndex(clientY);
     const nextSlotIndex = findNearestAvailableOperatorSlotIndex(
-      nearestSlotIndex,
+      targetSlotIndex,
       participant.id,
       participant.operatorLaneIndex
     );
-    const nextRatio = slotRatios[nextSlotIndex] ?? participant.operatorYRatio ?? 0.5;
-    if (
-      participant.operatorSlotIndex === nextSlotIndex &&
-      Math.abs((participant.operatorYRatio ?? 0.5) - nextRatio) < 0.001
-    ) {
+    if (participant.operatorSlotIndex === nextSlotIndex) {
       return;
     }
-    participant.operatorSlotIndex = nextSlotIndex;
-    participant.operatorYRatio = nextRatio;
+    setParticipantSurfaceRowIndex(participant, nextSlotIndex);
     syncOperatorCardPosition(participant.id);
     scheduleMappingDraw();
   }
@@ -2947,47 +2965,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!(columnElement instanceof HTMLElement)) {
       return;
     }
-    if (collectionKey === "center-assembly") {
-      if (!placeParticipantOnCanvasGrid(
-        collectionKey,
-        participant.id,
-        getCanvasGridTargetRowIndex(columnElement, "center", clientY)
-      )) {
-        return;
-      }
-      render();
-      return;
-    }
-    const collectionParticipants = state.participants.filter(
-      (entry) => getParticipantCollectionKey(entry) === collectionKey
-    );
-    if (collectionParticipants.length <= 1) {
-      return;
-    }
-    const collectionParticipantIds = collectionParticipants.map((entry) => String(entry.id));
-    const remainingParticipantIds = collectionParticipantIds.filter(
-      (participantId) => participantId !== String(participant.id)
-    );
-    const renderedCards = Array.from(
-      columnElement.querySelectorAll(".composer-reaction-solver-participant[data-participant-id]")
-    ).filter(
-      (card) =>
-        card instanceof HTMLElement &&
-        card.dataset.participantId &&
-        card.dataset.participantId !== String(participant.id) &&
-        remainingParticipantIds.includes(String(card.dataset.participantId))
-    );
-    const targetIndex = renderedCards.findIndex((card) => {
-      const bounds = card.getBoundingClientRect();
-      return clientY < bounds.top + bounds.height / 2;
-    });
-    const nextParticipantIds = [...remainingParticipantIds];
-    nextParticipantIds.splice(
-      targetIndex < 0 ? nextParticipantIds.length : targetIndex,
-      0,
-      String(participant.id)
-    );
-    if (!reorderParticipantCollection(collectionKey, nextParticipantIds)) {
+    const targetSide = collectionKey === "center-assembly" ? "center" : participant.side;
+    if (!placeParticipantOnSurfaceGrid(
+      collectionKey,
+      participant.id,
+      getCanvasGridTargetRowIndex(columnElement, targetSide, clientY)
+    )) {
       return;
     }
     render();
@@ -3082,7 +3065,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the middle + for W-, W+, or Z boson assemblies, lane 2 + for dissociate, lane 3 + for associate, and the right + for products.";
+        "Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -3346,6 +3329,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
       path.addEventListener("pointerenter", () => setHoveredMappingIds([mapping.id]));
       path.addEventListener("pointerleave", () => setHoveredMappingIds([]));
+      path.addEventListener("click", () => {
+        if (!removeMappingById(mapping.id)) {
+          return;
+        }
+        render();
+        setStatus("Removed reaction mapping.");
+      });
       mapSvg.appendChild(path);
     });
     applyHoveredRouteState();
@@ -3366,18 +3356,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (bounds.width <= 1 || bounds.height <= 1) {
       return false;
     }
-
-    const laneRatios = getReactionSurfaceLaneRatios(getReactionSurfaceLaneEntries().length);
+    const columnGroupRatios = getReactionSurfaceColumnGroupRatios(
+      getReactionSurfaceColumnGroupEntries().length
+    );
     Array.from(
       operatorLayer.querySelectorAll(
         ".composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control"
       )
     ).forEach((control, index) => {
-      const resolvedLaneIndex = Math.max(
+      const resolvedColumnGroupIndex = Math.max(
         0,
-        Math.round(Number(control.dataset.surfaceLaneIndex) || index)
+        Math.round(Number(control.dataset.surfaceColumnGroupIndex) || index)
       );
-      control.style.left = `${(laneRatios[resolvedLaneIndex] ?? 0.5) * 100}%`;
+      control.style.left = `${(columnGroupRatios[resolvedColumnGroupIndex] ?? 0.5) * 100}%`;
     });
 
     state.participants
@@ -3476,21 +3467,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return;
     }
     rebuildAnchorRegistry();
-    const reactantParticipants = state.participants.filter(
-      (participant) => participant.side === "reactant" && !isCenterAssemblyParticipant(participant)
-    );
+    const reactantParticipants = getCollectionParticipantsForRender("reactant");
     const centerAssemblyParticipants = getCollectionParticipantsForRender("center-assembly");
-    const productParticipants = state.participants.filter(
-      (participant) => participant.side === "product"
-    );
-    const operatorParticipants = state.participants.filter(
-      (participant) => participant.side === "operator"
-    );
+    const productParticipants = getCollectionParticipantsForRender("product");
+    const operatorParticipants = state.participants
+      .filter((participant) => participant.side === "operator")
+      .sort((left, right) => {
+        const leftLaneIndex = normalizeOperatorLaneIndex(left.operatorLaneIndex);
+        const rightLaneIndex = normalizeOperatorLaneIndex(right.operatorLaneIndex);
+        if (leftLaneIndex !== rightLaneIndex) {
+          return leftLaneIndex - rightLaneIndex;
+        }
+        return getParticipantSurfaceRowIndex(left) - getParticipantSurfaceRowIndex(right);
+      });
     if (reactantParticipants.length) {
       reactantsColumn.appendChild(createSideSlotHeader(reactantParticipants, "reactant"));
     }
     reactantParticipants.forEach((participant) => {
-      reactantsColumn.appendChild(renderParticipantCard(participant));
+      const card = renderParticipantCard(participant);
+      card.style.gridRow = `${getParticipantSurfaceRowIndex(participant) + 2} / span ${getParticipantSurfaceRowSpan(participant)}`;
+      reactantsColumn.appendChild(card);
     });
     if (centerAssemblyParticipants.length) {
       centerAssembliesColumn.appendChild(
@@ -3499,7 +3495,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     centerAssemblyParticipants.forEach((participant) => {
       const card = renderParticipantCard(participant);
-      card.style.gridRow = String(getParticipantCanvasRowIndex(participant) + 2);
+      card.style.gridRow = `${getParticipantSurfaceRowIndex(participant) + 2} / span ${getParticipantSurfaceRowSpan(participant)}`;
       centerAssembliesColumn.appendChild(card);
     });
     operatorLayer.appendChild(createOperatorAddControls());
@@ -3507,7 +3503,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
       productsColumn.appendChild(createSideSlotHeader(productParticipants, "product"));
     }
     productParticipants.forEach((participant) => {
-      productsColumn.appendChild(renderParticipantCard(participant));
+      const card = renderParticipantCard(participant);
+      card.style.gridRow = `${getParticipantSurfaceRowIndex(participant) + 2} / span ${getParticipantSurfaceRowSpan(participant)}`;
+      productsColumn.appendChild(card);
     });
     operatorParticipants.forEach((participant) => {
       assignOperatorParticipantToSlot(participant, participant.operatorSlotIndex);
