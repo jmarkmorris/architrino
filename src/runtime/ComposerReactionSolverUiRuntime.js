@@ -1296,30 +1296,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return beforeCount !== state.mappings.length;
   }
 
-  function removeMappingsForAnchor(nodeKey, role, anchorInstanceIndex = null) {
-    const mappingIds = getMappingIdsForAnchor(nodeKey, role, anchorInstanceIndex);
-    if (!mappingIds.length) {
-      return 0;
-    }
-    let removedCount = 0;
-    mappingIds.forEach((mappingId) => {
-      if (removeMappingById(mappingId)) {
-        removedCount += 1;
-      }
-    });
-    if (
-      state.pendingSourceKey === nodeKey &&
-      state.pendingSourceRole === role &&
-      normalizeAnchorInstanceIndex(state.pendingSourceAnchorInstanceIndex) ===
-        normalizeAnchorInstanceIndex(anchorInstanceIndex)
-    ) {
-      state.pendingSourceKey = "";
-      state.pendingSourceRole = "";
-      state.pendingSourceAnchorInstanceIndex = null;
-    }
-    return removedCount;
-  }
-
   function removeMappingsForParticipant(participantId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => {
@@ -2621,15 +2597,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
-    const removedCount = removeMappingsForAnchor(nodeKey, role, anchorInstanceIndex);
-    if (removedCount > 0) {
-      render();
-      setStatus(
-        `Removed ${removedCount} reaction mapping${removedCount === 1 ? "" : "s"}.`
-      );
-      return;
-    }
-
     const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
     if (anchorAvailability.disabled) {
       if (anchorAvailability.reason) {

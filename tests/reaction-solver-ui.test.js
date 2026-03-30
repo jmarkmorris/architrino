@@ -170,16 +170,16 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
   );
 });
 
-test("mapped anchors and drawn paths both remove existing reaction mappings on click", () => {
+test("only drawn paths remove existing reaction mappings on click", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex = null\)/
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /const removedCount = removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex\);/
   );
