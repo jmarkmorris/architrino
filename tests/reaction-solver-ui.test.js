@@ -115,11 +115,23 @@ test("solver surface rows are shared across all five column groups and capped to
   );
   assert.match(
     runtimeSource,
+    /function getParticipantSurfaceRowSpan\(participant\)/
+  );
+  assert.match(
+    runtimeSource,
     /function setParticipantSurfaceRowIndex\(participant,\s*rowIndex\)/
   );
   assert.match(
     runtimeSource,
     /Math\.min\(solverSurfaceMaxRowIndex,\s*normalizedRowIndex\)/
+  );
+  assert.match(
+    runtimeSource,
+    /markOccupiedSurfaceRowRange\(/
+  );
+  assert.match(
+    runtimeSource,
+    /const maxStartRowIndex = Math\.max\(0,\s*solverSurfaceMaxRowIndex - resolvedRowSpan \+ 1\);/
   );
 });
 

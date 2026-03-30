@@ -111,7 +111,7 @@ test("center assembly column group reserves the same slot-header row as the side
   );
   assert.match(
     runtimeSource,
-    /card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
+    /card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
   );
 });
 
@@ -177,15 +177,19 @@ test("reactant and product participants also render on explicit surface grid row
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /reactantParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
+    /reactantParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
   );
   assert.match(
     runtimeSource,
-    /productParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = String\(getParticipantSurfaceRowIndex\(participant\) \+ 2\);/
+    /productParticipants\.forEach\(\(participant\) => \{\s*const card = renderParticipantCard\(participant\);\s*card\.style\.gridRow = `\$\{getParticipantSurfaceRowIndex\(participant\) \+ 2\} \/ span \$\{getParticipantSurfaceRowSpan\(participant\)\}`;/
   );
   assert.match(
     styleSheet,
     /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant:not\(\.is-operator\)\s*\{[\s\S]*?align-self:\s*start;/
   );
 });
 

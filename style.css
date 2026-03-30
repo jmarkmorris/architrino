@@ -2051,6 +2051,7 @@ body {
 }
 
 .composer-reaction-solver-participant:not(.is-operator) {
+  align-self: start;
   cursor: grab;
 }
 
