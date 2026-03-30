@@ -35,8 +35,6 @@ This bucket includes:
 - Try to sell the `neoclassical.ai` domain.
 - Make a new subreddit named `architrino`.
 - Rename the blog.
-- Understand OpenAI billing and use whatever OpenAI credits are available.
-- Keep the monthly entourage-support budget visible.
 - Remember the convenience-hardware note about a Mac mini when the `M5` cycle arrives.
 
 ## Related Action Items

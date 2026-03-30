@@ -52,6 +52,37 @@ test("reaction solver center assembly lane exposes W-, W+, and Z bosons", () => 
   );
 });
 
+test("reaction solver no longer exposes a canvas right-click root menu", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /root\.addEventListener\("contextmenu",/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function handleSurfaceContextMenu\(event\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function openMenuAt\(clientX,\s*clientY\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function clearReactionCanvas\(\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Auto solve \(not yet implemented\)/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Clear reaction canvas/
+  );
+});
+
 test("W and Z bosons are not treated as polarity-toggling templates", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
