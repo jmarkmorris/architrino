@@ -22,6 +22,8 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 - Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
 - Prefer ready PRs once a branch is genuinely reviewable.
 - Use draft PRs only when the branch is intentionally not ready for real review.
+- If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
+- In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
 
 ## Standard End-of-Session Process
 
@@ -182,6 +184,8 @@ The two printed SHAs must match. If local `main` has drifted unexpectedly, stop 
 - Delete the just-merged branch only after `main` is synchronized.
 - Try `git branch -d` first.
 - If Git refuses because the branch is not seen as fully merged into local `main`, but the PR is confirmed merged and local `main` is synchronized with `origin/main`, use `git branch -D` to finish cleanup.
+- If the local deletion command fails for any other reason, stop here. Do not continue to remote branch deletion until the local failure is understood.
+- In sandboxed environments, local branch deletion may need escalation because Git must write a lockfile under `.git/refs/heads/`.
 
 Command:
 
@@ -199,6 +203,7 @@ git branch -D codex/<previous-topic>
 
 - If the remote branch has already been deleted by GitHub or by another operator, treat that as already complete and skip this step.
 - A failure caused only by the remote branch already being absent is benign.
+- Run this step only after the local branch-deletion step has either succeeded or been intentionally skipped as already complete.
 
 Command:
 
@@ -226,6 +231,8 @@ After the previous PR is merged and the previous branch is retired, start the ne
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
 - Stay on `main` for the synchronization commands, then cut the branch immediately from that checked-out `main`.
+- If branch creation fails, stop before attempting any push.
+- In sandboxed environments, branch creation may also require escalation if Git cannot write the new local ref.
 
 Command:
 
