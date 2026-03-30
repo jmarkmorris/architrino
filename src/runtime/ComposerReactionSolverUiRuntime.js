@@ -708,6 +708,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState,
     mapSvg,
     menu,
+    clearButton = null,
+    solveButton = null,
     templateMenuRows = [],
     extraTemplateEntries = [],
     setStatus = () => {},
@@ -850,6 +852,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getOperatorGraphicOffsets,
     getDefaultParticipantBaseLabel,
     getIsDraggingParticipant: (participantId) => state.dragParticipantId === participantId,
+    isCenterAssemblyParticipant,
     getParticipantCardLabelLines,
     getParticipantCardMeta,
     getParticipantRootNode,
@@ -1278,6 +1281,31 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function clearReactionSolverCanvas() {
+    const hasCanvasState =
+      state.participants.length > 0 ||
+      state.mappings.length > 0 ||
+      !!state.pendingSourceKey ||
+      !!state.pendingSourceRole;
+    if (!hasCanvasState) {
+      render();
+      setStatus("Reaction canvas is already clear.");
+      return false;
+    }
+    clearDragState();
+    state.participants = [];
+    state.mappings = [];
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    clearAllRecentRouteState();
+    closeMenu();
+    render();
+    setStatus("Reaction canvas cleared.");
+    return true;
+  }
+
   function setParticipantPolarity(participantId, nextPolarity) {
     const participant = findParticipantById(participantId);
     if (!participant || !supportsParticipantPolarity(participant.templateId)) {
@@ -1587,6 +1615,23 @@ export function createComposerReactionSolverUiRuntime(deps) {
     menu.hidden = true;
     menu.setAttribute("aria-hidden", "true");
     menu.innerHTML = "";
+  }
+
+  function syncHeaderActionButtons() {
+    const canClear =
+      state.active &&
+      (state.participants.length > 0 ||
+        state.mappings.length > 0 ||
+        !!state.pendingSourceKey ||
+        !!state.pendingSourceRole);
+    if (clearButton instanceof HTMLButtonElement) {
+      clearButton.disabled = !canClear;
+      clearButton.setAttribute("aria-disabled", canClear ? "false" : "true");
+    }
+    if (solveButton instanceof HTMLButtonElement) {
+      solveButton.disabled = !state.active;
+      solveButton.setAttribute("aria-disabled", state.active ? "false" : "true");
+    }
   }
 
   function updateMenuPosition() {
@@ -3310,6 +3355,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!root || !reactantsColumn || !centerAssembliesColumn || !productsColumn || !operatorLayer) {
       return;
     }
+    syncHeaderActionButtons();
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
     reactantsColumn.innerHTML = "";
@@ -3445,6 +3491,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
         true
       );
     }
+    if (clearButton instanceof HTMLButtonElement && !clearButton.dataset.solverBound) {
+      clearButton.dataset.solverBound = "true";
+      clearButton.addEventListener("click", () => {
+        clearReactionSolverCanvas();
+      });
+    }
+    if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.solverBound) {
+      solveButton.dataset.solverBound = "true";
+      solveButton.addEventListener("click", () => {
+        setStatus("Solve is not wired up yet.");
+      });
+    }
     if (!document.body.dataset.composerReactionSolverDocumentBound) {
       document.body.dataset.composerReactionSolverDocumentBound = "true";
       document.addEventListener("pointerdown", handleDocumentPointerDown, true);
@@ -3470,6 +3528,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   return {
     isActive: () => state.active,
+    clearCanvas: clearReactionSolverCanvas,
     setActive,
     toggleActive,
     closeMenu,

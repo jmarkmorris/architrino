@@ -115,6 +115,39 @@ test("center assembly column group reserves the same slot-header row as the side
   );
 });
 
+test("center bosons expose a left-side input attachment frame", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const solverRuntimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /function createCenterAssemblyInputFrame\(/
+  );
+  assert.match(
+    runtimeSource,
+    /anchorRole:\s*"operator-input"/
+  );
+  assert.match(
+    runtimeSource,
+    /"is-center-assembly-input"/
+  );
+  assert.match(
+    runtimeSource,
+    /isCenterAssemblyParticipant\(participant\)\s*\?\s*createCenterAssemblyInputFrame\(\s*[\s\S]*?content,\s*\}\)\s*:\s*content/
+  );
+  assert.match(solverRuntimeSource, /isCenterAssemblyParticipant,/);
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-center-assembly-frame\s*>\s*\.composer-reaction-solver-anchor\.is-center-assembly-input\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-size,\s*16px\)\s*\*\s*-1\);[\s\S]*?top:\s*50%;/
+  );
+});
+
 test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

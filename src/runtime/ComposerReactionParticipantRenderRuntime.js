@@ -101,6 +101,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   }));
   const getOperatorNode = options.getOperatorNode ?? (() => null);
   const isCompositeParticipant = options.isCompositeParticipant ?? (() => false);
+  const isCenterAssemblyParticipant = options.isCenterAssemblyParticipant ?? (() => false);
   const isProductCompositeParticipant = options.isProductCompositeParticipant ?? (() => false);
   const isQuarkTemplateId = options.isQuarkTemplateId ?? (() => false);
   const isReactantCompositeParticipant = options.isReactantCompositeParticipant ?? (() => false);
@@ -196,6 +197,31 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     });
 
     frame.append(inputAnchor, outputAnchor);
+    return frame;
+  }
+
+  function createCenterAssemblyInputFrame({
+    participant,
+    rootNode = null,
+    rootNodeKey = "",
+    content,
+  } = {}) {
+    const frame = document.createElement("div");
+    frame.className = "composer-reaction-solver-center-assembly-frame";
+    if (content) {
+      frame.appendChild(content);
+    }
+    if (!rootNode || !rootNodeKey) {
+      return frame;
+    }
+    const inputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
+      anchorRole: "operator-input",
+      extraClassNames: [
+        "composer-reaction-solver-operator-anchor",
+        "is-center-assembly-input",
+      ],
+    });
+    frame.appendChild(inputAnchor);
     return frame;
   }
 
@@ -773,13 +799,25 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
     renderParticipantTreeRows(hierarchy, participant, participant.hierarchy, 0);
 
+    const content = document.createElement("div");
+    content.className = "composer-reaction-solver-participant-content";
     getReactionParticipantCardSectionOrder({
       side: participant.side,
       isReactantComposite,
       isProductComposite,
     }).forEach((section) => {
-      card.appendChild(section === "visual" ? visual : hierarchy);
+      content.appendChild(section === "visual" ? visual : hierarchy);
     });
+    card.appendChild(
+      isCenterAssemblyParticipant(participant)
+        ? createCenterAssemblyInputFrame({
+            participant,
+            rootNode,
+            rootNodeKey,
+            content,
+          })
+        : content
+    );
     if (getIsDraggingParticipant(participant.id)) {
       card.classList.add("is-dragging");
     }

@@ -176,6 +176,8 @@ const composerSaveButton = document.getElementById("composer-save-button");
 const composerReactionButton = document.getElementById("composer-reaction-button");
 const composerReactionBackButton = document.getElementById("composer-reaction-back-button");
 const composerDocsButton = document.getElementById("composer-docs-button");
+const composerReactionClearButton = document.getElementById("composer-reaction-clear-button");
+const composerReactionSolveButton = document.getElementById("composer-reaction-solve-button");
 const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
   ? Array.from(composerOverlay.querySelectorAll(".composer-tab"))
@@ -10538,6 +10540,8 @@ const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
   emptyState: composerReactionSolverEmpty,
   mapSvg: composerReactionSolverSvg,
   menu: composerReactionSolverMenu,
+  clearButton: composerReactionClearButton,
+  solveButton: composerReactionSolveButton,
   templateMenuRows: composerAssemblyTemplateMenuRows,
   setStatus: setComposerStatus,
   closeExternalMenus: () => {

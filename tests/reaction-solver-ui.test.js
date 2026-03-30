@@ -71,15 +71,42 @@ test("reaction solver no longer exposes a canvas right-click root menu", () => {
   );
   assert.doesNotMatch(
     runtimeSource,
-    /function clearReactionCanvas\(\)/
-  );
-  assert.doesNotMatch(
-    runtimeSource,
     /Auto solve \(not yet implemented\)/
   );
   assert.doesNotMatch(
     runtimeSource,
     /Clear reaction canvas/
+  );
+});
+
+test("reaction solver exposes clear and solve actions in the composer header and keeps them runtime-owned", () => {
+  const htmlSource = readFileSync(
+    new URL("../index.html", import.meta.url),
+    "utf8"
+  );
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    htmlSource,
+    /id="composer-reaction-clear-button"/
+  );
+  assert.match(
+    htmlSource,
+    /id="composer-reaction-solve-button"/
+  );
+  assert.match(
+    runtimeSource,
+    /function clearReactionSolverCanvas\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionSolverCanvas\(\);/s
+  );
+  assert.match(
+    runtimeSource,
+    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*setStatus\("Solve is not wired up yet\."\);/s
   );
 });
 

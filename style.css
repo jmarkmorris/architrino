@@ -1042,6 +1042,8 @@ body {
 #composer-scene-button,
 #composer-clear-button,
 #composer-save-button,
+#composer-reaction-clear-button,
+#composer-reaction-solve-button,
 #composer-reaction-back-button,
 #composer-docs-button {
   display: inline-flex;
@@ -1082,8 +1084,15 @@ body {
 
 #composer-scene-button,
 #composer-clear-button,
-#composer-save-button {
+#composer-save-button,
+#composer-reaction-clear-button,
+#composer-reaction-solve-button {
   padding: 0 12px;
+}
+
+#composer-reaction-clear-button,
+#composer-reaction-solve-button {
+  display: none;
 }
 
 #composer-reaction-back-button {
@@ -1109,6 +1118,10 @@ body {
 #composer-clear-button:focus-visible,
 #composer-save-button:hover,
 #composer-save-button:focus-visible,
+#composer-reaction-clear-button:hover,
+#composer-reaction-clear-button:focus-visible,
+#composer-reaction-solve-button:hover,
+#composer-reaction-solve-button:focus-visible,
 #composer-reaction-button:hover,
 #composer-reaction-button:focus-visible,
 #composer-docs-button:hover,
@@ -1611,9 +1624,20 @@ body {
   display: none;
 }
 
+#composer-overlay.is-reaction-app-mode #composer-reaction-clear-button,
+#composer-overlay.is-reaction-app-mode #composer-reaction-solve-button {
+  display: inline-flex;
+}
+
 #composer-overlay.is-reaction-app-mode #composer-reaction-back-button,
 #composer-overlay.is-reaction-app-mode #composer-docs-button {
   display: none;
+}
+
+#composer-reaction-clear-button:disabled,
+#composer-reaction-solve-button:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
 #composer-overlay.is-reaction-app-mode .composer-workspace,
@@ -2050,6 +2074,15 @@ body {
   width: fit-content;
 }
 
+.composer-reaction-solver-participant-content {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: start;
+  gap: var(--solver-tile-gap);
+  width: fit-content;
+}
+
 .composer-reaction-solver-participant:not(.is-operator) {
   align-self: start;
   cursor: grab;
@@ -2108,6 +2141,10 @@ body {
   align-items: start;
   gap: var(--solver-composite-participant-gap, 0px);
   overflow: visible;
+}
+
+.composer-reaction-solver-participant.is-composite-participant > .composer-reaction-solver-participant-content {
+  gap: var(--solver-composite-participant-gap, 0px);
 }
 
 .composer-reaction-solver-particle {
@@ -2217,6 +2254,20 @@ body {
   align-items: center;
   width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
   min-width: calc(var(--binary-choice-size, 72px) + (var(--solver-anchor-size) * 2));
+}
+
+.composer-reaction-solver-center-assembly-frame {
+  position: relative;
+  width: fit-content;
+  overflow: visible;
+}
+
+.composer-reaction-solver-center-assembly-frame > .composer-reaction-solver-anchor.is-center-assembly-input {
+  position: absolute;
+  left: calc(var(--solver-anchor-size, 16px) * -1);
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 2;
 }
 
 .composer-reaction-solver-branch-anchor-frame > .composer-reaction-solver-operator-tile,
