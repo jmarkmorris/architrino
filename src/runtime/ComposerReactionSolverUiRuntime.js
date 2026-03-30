@@ -1291,8 +1291,33 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function removeMappingById(mappingId) {
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
+    state.hoveredMappingIds = state.hoveredMappingIds.filter((entry) => entry !== mappingId);
     pruneRecentRouteState();
     return beforeCount !== state.mappings.length;
+  }
+
+  function removeMappingsForAnchor(nodeKey, role, anchorInstanceIndex = null) {
+    const mappingIds = getMappingIdsForAnchor(nodeKey, role, anchorInstanceIndex);
+    if (!mappingIds.length) {
+      return 0;
+    }
+    let removedCount = 0;
+    mappingIds.forEach((mappingId) => {
+      if (removeMappingById(mappingId)) {
+        removedCount += 1;
+      }
+    });
+    if (
+      state.pendingSourceKey === nodeKey &&
+      state.pendingSourceRole === role &&
+      normalizeAnchorInstanceIndex(state.pendingSourceAnchorInstanceIndex) ===
+        normalizeAnchorInstanceIndex(anchorInstanceIndex)
+    ) {
+      state.pendingSourceKey = "";
+      state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
+    }
+    return removedCount;
   }
 
   function removeMappingsForParticipant(participantId) {
@@ -2596,18 +2621,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
-    if (isSingleMappingAnchorRole(role)) {
-      const existingMapping = findMappingByNodeKey(nodeKey);
-      if (existingMapping) {
-        state.pendingSourceKey = "";
-        state.pendingSourceRole = "";
-        state.pendingSourceAnchorInstanceIndex = null;
-        if (removeMappingById(existingMapping.id)) {
-          render();
-          setStatus("Removed reaction mapping.");
-        }
-        return;
-      }
+    const removedCount = removeMappingsForAnchor(nodeKey, role, anchorInstanceIndex);
+    if (removedCount > 0) {
+      render();
+      setStatus(
+        `Removed ${removedCount} reaction mapping${removedCount === 1 ? "" : "s"}.`
+      );
+      return;
     }
 
     const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
@@ -3342,6 +3362,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
       }
       path.addEventListener("pointerenter", () => setHoveredMappingIds([mapping.id]));
       path.addEventListener("pointerleave", () => setHoveredMappingIds([]));
+      path.addEventListener("click", () => {
+        if (!removeMappingById(mapping.id)) {
+          return;
+        }
+        render();
+        setStatus("Removed reaction mapping.");
+      });
       mapSvg.appendChild(path);
     });
     applyHoveredRouteState();
