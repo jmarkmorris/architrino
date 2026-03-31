@@ -15,11 +15,16 @@ function normalizeParticipantPolarity(polarity) {
   return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
 }
 
+function stripLeadingParticipantPolarity(label = "") {
+  return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
+}
+
 function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") {
   if (!supportsParticipantPolarity(templateId)) {
     return baseLabel;
   }
-  return `${normalizeParticipantPolarity(polarity)} ${baseLabel}`;
+  const cleanedBaseLabel = stripLeadingParticipantPolarity(baseLabel) || "?";
+  return `${normalizeParticipantPolarity(polarity) === "anti" ? "Anti" : "Pro"} ${cleanedBaseLabel}`;
 }
 
 const mutationRuntime = createComposerReactionParticipantMutationRuntime({
@@ -58,7 +63,7 @@ test("generation trim reclassifies electron to muon then tau", () => {
   mutationRuntime.refreshParticipantFromStructure(participant, muonStructure, {
     preserveBinarySelections: true,
   });
-  assert.equal(participant.label, "pro Muon");
+  assert.equal(participant.label, "Pro Muon");
 
   const secondTrim = mutationRuntime.getNextParticipantGenerationTrimAction(participant);
   assert.equal(secondTrim?.slotName, "middle");
@@ -68,11 +73,11 @@ test("generation trim reclassifies electron to muon then tau", () => {
   mutationRuntime.refreshParticipantFromStructure(participant, tauStructure, {
     preserveBinarySelections: true,
   });
-  assert.equal(participant.label, "pro Tau");
+  assert.equal(participant.label, "Pro Tau");
 });
 
 test("split helper derives proton children as up/down/up", () => {
-  const participant = createParticipant("proton", "Proton", "pro");
+  const participant = createParticipant("proton", "Pro Proton", "pro");
   const children = mutationRuntime.buildSplitParticipantsFromChildStructures(
     participant,
     participant.structure.children,
@@ -91,7 +96,7 @@ test("split helper derives proton children as up/down/up", () => {
 });
 
 test("refresh from structure preserves full quark labels for participant titles", () => {
-  const participant = createParticipant("down_quark", "Down Quark", "pro");
+  const participant = createParticipant("down_quark", "Pro Down Quark", "pro");
   const refreshedStructure = buildReactionParticipantStructure("down_quark", {
     id: "down_quark_refresh",
     polarity: "pro",
@@ -101,8 +106,8 @@ test("refresh from structure preserves full quark labels for participant titles"
     preserveBinarySelections: true,
   });
 
-  assert.equal(participant.baseLabel, "Down Quark");
-  assert.equal(participant.label, "pro Down Quark");
+  assert.equal(participant.baseLabel, "Pro Down Quark");
+  assert.equal(participant.label, "Pro Down Quark");
 });
 
 test("split helper derives photon children as pro and anti Noether cores", () => {

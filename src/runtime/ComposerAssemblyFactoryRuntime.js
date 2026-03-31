@@ -57,7 +57,7 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("electron");
       return buildDraft({
         id,
-        name: "Electron",
+        name: "Pro Electron",
         role: "electron",
         sceneRole,
         position: normalizedPosition,
@@ -100,7 +100,7 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("fermion");
       return buildDraft({
         id,
-        name: "Gen I Fermion",
+        name: "Pro Gen I Fermion",
         role: "fermion_gen1",
         sceneRole,
         position: normalizedPosition,
@@ -122,7 +122,7 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("down_quark");
       return buildDraft({
         id,
-        name: "Down Quark",
+        name: "Pro Down Quark",
         role: "down_quark",
         sceneRole,
         position: normalizedPosition,
@@ -144,7 +144,7 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("up_quark");
       return buildDraft({
         id,
-        name: "Up Quark",
+        name: "Pro Up Quark",
         role: "up_quark",
         sceneRole,
         position: normalizedPosition,
@@ -162,7 +162,7 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("noether_core");
       return buildDraft({
         id,
-        name: "Noether Core",
+        name: "Pro Noether Core",
         role: "assembly",
         sceneRole,
         position: normalizedPosition,

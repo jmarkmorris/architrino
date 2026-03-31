@@ -11,8 +11,14 @@ import { validateStructureTree } from "../domain/structure/StructureValidation.j
 
 function formatNoetherCoreLabel(polarity = "pro") {
   return String(polarity ?? "").trim().toLowerCase() === "anti"
-    ? "Anti Noether core"
-    : "Pro Noether core";
+    ? "Anti Noether Core"
+    : "Pro Noether Core";
+}
+
+function formatPolarityQualifiedLabel(baseLabel = "", polarity = "pro") {
+  return `${
+    String(polarity ?? "").trim().toLowerCase() === "anti" ? "Anti" : "Pro"
+  } ${String(baseLabel ?? "").trim()}`.trim();
 }
 
 function createArchitrinoNode(id, charge, role, label) {
@@ -96,7 +102,7 @@ function createNoetherCoreSlotNode(id, slotName, { occupied = true } = {}) {
 
 function createNoetherCoreNode(id, options = {}) {
   const {
-    label = "Noether core",
+    label = formatNoetherCoreLabel(options.polarity ?? "pro"),
     polarity = "pro",
     occupiedSlots = STRUCTURE_SLOT_ORDER,
   } = options;
@@ -137,7 +143,7 @@ function createFamilyParticleNode(id, family, label, options = {}) {
     },
     children: [
       createNoetherCoreNode(`${id}/core`, {
-        label: `${label} core`,
+        label: `${label} Core`,
         polarity,
         occupiedSlots,
       }),
@@ -162,7 +168,7 @@ function createZBosonNode(id, options = {}) {
     },
     children: [
       createNoetherCoreNode(`${id}/core`, {
-        label: `${label} core`,
+        label: `${label} Core`,
         polarity: "pro",
         occupiedSlots,
       }),
@@ -183,7 +189,7 @@ function createWBosonNode(id, species, label, options = {}) {
     },
     children: [
       createNoetherCoreNode(`${id}/core`, {
-        label: `${label} core`,
+        label: `${label} Core`,
         polarity: "pro",
         occupiedSlots,
       }),
@@ -206,7 +212,9 @@ function createBaryonNode(id, species, quarkFamilies, options = {}) {
       createQuarkNode(
         `${id}/quark_${index + 1}`,
         family,
-        family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "Up quark" : "Down quark"
+        family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK
+          ? formatPolarityQualifiedLabel("Up Quark", "pro")
+          : formatPolarityQualifiedLabel("Down Quark", "pro")
       )
     ),
   });
@@ -320,7 +328,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
-      label || "Electron",
+      label || formatPolarityQualifiedLabel("Electron", polarity),
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "w_minus_boson") {
@@ -340,21 +348,21 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
-      label || "Neutrino",
+      label || formatPolarityQualifiedLabel("Neutrino", polarity),
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "up_quark") {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-      label || "Up quark",
+      label || formatPolarityQualifiedLabel("Up Quark", polarity),
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "down_quark") {
     root = createFamilyParticleNode(
       structureId,
       STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-      label || "Down quark",
+      label || formatPolarityQualifiedLabel("Down Quark", polarity),
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "proton") {
@@ -366,7 +374,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
         STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
         STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
       ],
-      { label: label || "Proton" }
+      { label: label || "Pro Proton" }
     );
   } else if (normalizedTemplateId === "neutron") {
     root = createBaryonNode(
@@ -377,7 +385,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
         STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
         STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
       ],
-      { label: label || "Neutron" }
+      { label: label || "Pro Neutron" }
     );
   } else if (normalizedTemplateId === "higgs_cluster") {
     root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });
@@ -385,7 +393,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     root = createPhotonNode(structureId, { label: label || "Photon" });
   } else if (normalizedTemplateId === "noether_core") {
     root = createNoetherCoreNode(structureId, {
-      label: label || `${polarity} Noether core`,
+      label: label || formatNoetherCoreLabel(polarity),
       polarity,
       occupiedSlots,
     });

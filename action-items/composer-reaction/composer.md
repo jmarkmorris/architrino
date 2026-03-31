@@ -24,15 +24,15 @@ The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb
 - User-facing language has started shifting toward `Observer`, but the underlying document path still uses `cameraPaths` and `cameraShots`.
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - The first-pass autoscale behavior already exists in code, but the UI for authoring framing intent is still missing.
-- A shared canonical-structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer does not yet ingest solved reaction flow JSON from the reaction app.
+- A canonical structure bridge exists inside the current composer implementation, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
+- The composer does not yet ingest solved reaction flow JSON from the Reaction app boundary.
 
 ## Current Priorities
 
 1. Add a real solved-reaction intake path so the composer can consume reaction flow JSON and instantiate staged reaction scenes from it.
 2. Finish authored viewport framing and autoscale UI around required versus optional assemblies and shot-level overrides.
 3. Replace the placeholder observer timeline path with a real authored observer-interval model.
-4. Continue moving live structure edits onto the shared canonical structure runtimes instead of keeping bespoke composer-only logic.
+4. Continue moving live structure edits onto the canonical structure model and transforms instead of keeping bespoke composer-only logic.
 5. Keep the composer as a composition root only; new reaction-handoff logic should live in focused runtimes, not in one growing top-level file.
 
 ## Timeline Model Gap
@@ -245,9 +245,15 @@ The composer-side intake contract should be strong enough to receive:
 
 The composer should not be asked to solve the reaction again. It should receive a solved flow and focus on staging, observer behavior, explanation, and playback.
 
+The detailed separation rule is:
+
+- Composer consumes a versioned Reaction-owned handoff document;
+- Composer translates that document into Composer-owned scene state;
+- and Composer does not execute Reaction runtime code to do that work.
+
 ## Canonical Structure Follow-On
 
-The shared canonical-structure bridge is now the only valid direction of travel.
+The canonical-structure bridge is now the only valid direction of travel.
 
 That means:
 
@@ -288,6 +294,8 @@ That means:
 - [composer-reaction](./composer-reaction.md)
 - [reaction](./reaction.md)
 - [pdg-solver](./pdg-solver.md)
+- [independence](./independence.md)
+- [swe](./swe.md)
 - [viewports](../viewports/viewports.md)
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
 

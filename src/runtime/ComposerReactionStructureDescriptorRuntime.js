@@ -94,14 +94,14 @@ function getSlotCode(slotName = "") {
 
 function getBinarySelectorGroupLabel(structureRoot = null) {
   const polarity = String(getStructureTrait(structureRoot, "polarity", "")).trim().toLowerCase();
-  const prefix = polarity === "anti" ? "anti" : "pro";
-  return `${prefix} Noether core`;
+  const prefix = polarity === "anti" ? "Anti" : "Pro";
+  return `${prefix} Noether Core`;
 }
 
 function getCanonicalNoetherCoreLabel(polarity = "") {
   return String(polarity ?? "").trim().toLowerCase() === "anti"
-    ? "Anti Noether core"
-    : "Pro Noether core";
+    ? "Anti Noether Core"
+    : "Pro Noether Core";
 }
 
 function getBinarySelectorTemplateId(structureRoot = null) {
@@ -142,7 +142,7 @@ function getPrimaryNoetherCore(node = null) {
 }
 
 function buildNoetherCoreDescriptorTree(coreNode) {
-  const coreLabel = String(coreNode?.label ?? "Noether core").trim() || "Noether core";
+  const coreLabel = String(coreNode?.label ?? "Noether Core").trim() || "Noether Core";
   const polarity = String(getStructureTrait(coreNode, "polarity", "")).trim().toLowerCase();
   const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
   return [{

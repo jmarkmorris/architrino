@@ -181,10 +181,10 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const seen = new Set();
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
-    { template: "neutron", label: "Neutron" },
-    { template: "proton", label: "Proton" },
+    { template: "neutron", label: "Pro Neutron" },
+    { template: "proton", label: "Pro Proton" },
     { template: "photon", label: "Photon" },
-    { template: "neutrino", label: "Neutrino", initialPolarity: "pro" },
+    { template: "neutrino", label: "Pro Neutrino", initialPolarity: "pro" },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
@@ -266,7 +266,7 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
   if (!supportsParticipantPolarity(templateId)) {
     return cleanedBaseLabel;
   }
-  return `${normalizeParticipantPolarity(polarity)} ${cleanedBaseLabel}`;
+  return `${normalizeParticipantPolarity(polarity) === "anti" ? "Anti" : "Pro"} ${cleanedBaseLabel}`;
 }
 
 function buildParticipantStructure(
@@ -305,7 +305,7 @@ function syncParticipantHierarchyForPolarity(participant) {
   if (!topNode) {
     return;
   }
-  topNode.label = `${polarity} Noether core`;
+  topNode.label = `${polarity === "anti" ? "Anti" : "Pro"} Noether Core`;
   topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
 }
 
@@ -436,16 +436,16 @@ function getParticipantCompositeModeLabel(participant) {
 function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
   if (normalizedTemplateId === "noether_core") {
-    return "Noether core";
+    return "Pro Noether Core";
   }
   if (normalizedTemplateId === "up_quark") {
-    return "Up Quark";
+    return "Pro Up Quark";
   }
   if (normalizedTemplateId === "down_quark") {
-    return "Down Quark";
+    return "Pro Down Quark";
   }
   if (normalizedTemplateId === "electron") {
-    return "Electron";
+    return "Pro Electron";
   }
   if (normalizedTemplateId === "w_minus_boson") {
     return "W- Boson";
@@ -454,13 +454,13 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
     return "W+ Boson";
   }
   if (normalizedTemplateId === "neutrino") {
-    return "Neutrino";
+    return "Pro Neutrino";
   }
   if (normalizedTemplateId === "z_boson") {
     return "Z Boson";
   }
   if (normalizedTemplateId === "proton") {
-    return "Proton";
+    return "Pro Proton";
   }
   if (normalizedTemplateId === "photon") {
     return "Photon";
@@ -472,7 +472,7 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
     return "Dissociate";
   }
   if (normalizedTemplateId === "neutron") {
-    return "Neutron";
+    return "Pro Neutron";
   }
   if (normalizedTemplateId === "higgs_cluster") {
     return "Higgs cluster";

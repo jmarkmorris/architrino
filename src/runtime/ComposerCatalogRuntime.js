@@ -4,15 +4,15 @@ export const composerSceneRoleOptions = [
 
 export const composerAssemblyTemplateMenuRows = [
   [
-    { template: "noether_core", label: "Noether Core" },
+    { template: "noether_core", label: "Pro Noether Core" },
     { template: "higgs_cluster", label: "Higgs Cluster" },
   ],
   [
-    { template: "electron", label: "Electron" },
+    { template: "electron", label: "Pro Electron" },
   ],
   [
-    { template: "down_quark", label: "Down Quark" },
-    { template: "up_quark", label: "Up Quark" },
+    { template: "down_quark", label: "Pro Down Quark" },
+    { template: "up_quark", label: "Pro Up Quark" },
   ],
 ];
 
@@ -31,18 +31,18 @@ export const composerTimelineAddTypeIds = new Set(
 );
 
 export const generationTransitions = {
-  electron: { nextScene: "content/scenes/standard-model-particles/muon.json", nextLabel: "Muon" },
-  muon: { nextScene: "content/scenes/standard-model-particles/tau.json", nextLabel: "Tau" },
+  electron: { nextScene: "content/scenes/standard-model-particles/muon.json", nextLabel: "Pro Muon" },
+  muon: { nextScene: "content/scenes/standard-model-particles/tau.json", nextLabel: "Pro Tau" },
   neutrino: {
     nextScene: "content/scenes/standard-model-particles/muon_neutrino.json",
-    nextLabel: "Muon Neutrino",
+    nextLabel: "Pro Muon Neutrino",
   },
   muon_neutrino: {
     nextScene: "content/scenes/standard-model-particles/tau_neutrino.json",
-    nextLabel: "Tau Neutrino",
+    nextLabel: "Pro Tau Neutrino",
   },
-  up_quark: { nextScene: "content/scenes/standard-model-particles/charm.json", nextLabel: "Charm" },
-  charm: { nextScene: "content/scenes/standard-model-particles/top.json", nextLabel: "Top" },
-  down_quark: { nextScene: "content/scenes/standard-model-particles/strange.json", nextLabel: "Strange" },
-  strange: { nextScene: "content/scenes/standard-model-particles/bottom.json", nextLabel: "Bottom" },
+  up_quark: { nextScene: "content/scenes/standard-model-particles/charm.json", nextLabel: "Pro Charm Quark" },
+  charm: { nextScene: "content/scenes/standard-model-particles/top.json", nextLabel: "Pro Top Quark" },
+  down_quark: { nextScene: "content/scenes/standard-model-particles/strange.json", nextLabel: "Pro Strange Quark" },
+  strange: { nextScene: "content/scenes/standard-model-particles/bottom.json", nextLabel: "Pro Bottom Quark" },
 };
