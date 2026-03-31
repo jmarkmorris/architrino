@@ -81,11 +81,13 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
 The present solver already supports:
 
 - direct root matches for identical conservative standalone participants;
+- direct standalone reuse for slot-based fermions such as `Neutrino -> Neutrino`;
 - full composite carry-through for identical composites;
 - direct fragment-to-root mapping from a composite child into a standalone product;
 - `Associate`-based composite reassembly for composite products such as `u + u + d -> proton`;
 - `Associate`-based composite reassembly from mixed fragment and standalone inputs such as `Neutron + Up Quark -> Proton`;
 - `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
+- primitive `Associate` construction for standalone fermions from `Noether core + Free Architrinos`, such as `Pro Noether core + Free Architrinos -> Pro Neutrino`;
 - `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
 - center `W-`, `W+`, and `Z` assemblies as supported solve sources for conservative standalone products such as electron and neutrino roots;
 - candidate selection that prefers stronger whole-product solutions over weaker fragment-plus-partial residue;
@@ -111,8 +113,9 @@ Important current limits:
 - boson decay and broader weak-boson-mediated construction are not implemented yet;
 - the solver does not yet evaluate plans that introduce a new boson as an intermediate participant during the main search;
 - future boson support should not become a parallel planning language alongside primitive charge-routing;
-- the planner can now mark a composite as dissociated in a selected plan and can insert explicit `Dissociate` operators for `Noether core` inputs that feed `Associate` solves;
-- broader `Dissociate`-driven charge routing is still not implemented beyond those current `Associate` input paths;
+- the planner can now mark a composite as dissociated in a selected plan when the chosen solve consumes internal rows;
+- the solver does not yet insert explicit `Dissociate` operators as part of the selected solve plan;
+- broader `Dissociate`-driven charge routing through generated `Noether core` and `Free Architrinos` intermediates is still not implemented;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;
 - there is no dedicated proposal-review app or reaction-flow export path yet.
@@ -153,7 +156,7 @@ Row placement must continue to use the explicit shared surface-grid model. Do no
 
 The current product direction is narrower than the old note implied.
 
-The major missing feature is broader dissociate-driven charge routing and dissociate-then-associate planning beyond the currently implemented `Associate` input wrapping, but only through the dissociated-composite model the reaction app already uses.
+The major missing feature is broader dissociate-driven charge routing and dissociate-then-associate planning through the dissociated-composite model the reaction app already uses.
 
 The required behavior is narrower and more concrete than "only use internal rows when the composite was already manually marked dissociated."
 
@@ -194,7 +197,7 @@ The next work should stay phase-by-phase and test-backed.
 Recommended order:
 
 1. take any newly reported solve bug first and add a targeted test for it;
-2. extend the new explicit `Dissociate` plan step from `Associate` input wrapping into broader charge-routing plans from `Noether core` sources;
+2. extend primitive charge-routing beyond the current `Associate` families so solve can reason through authored or generated `Dissociate`, `Noether core`, and `Free Architrinos` paths;
 3. only after that, define exact boson-signature recognizers over those primitive charge routes;
 4. only after that, consider optional boson collapse or substitution for readability and authored convenience rather than as first-pass planner search;
 5. only after that, expand into PDG-ingest-specific planning work.
@@ -208,7 +211,7 @@ Good near-term additions:
 - explicit plan-level representation of composite dissociation when a chosen solve needs composite internals, while preserving manual dissociated-composite state and current auto-dissociation behavior;
 - better handling of leftover fragments and residue reporting;
 - direct center-boson mapping coverage for the current supported product cases should remain stable;
-- explicit `Dissociate`-driven charge-routing plans from `Noether core` sources beyond the currently implemented `Associate` input wrapping;
+- explicit `Dissociate`-driven charge-routing plans from `Noether core` and fermion sources into `Free Architrinos`, `Associate`, and downstream products;
 - exact boson-signature recognition built on top of those dissociated charge routes rather than on special-case direct decay logic;
 - and optional boson collapse/substitution built on top of primitive solved plans rather than as a separate first-pass search space.
 
