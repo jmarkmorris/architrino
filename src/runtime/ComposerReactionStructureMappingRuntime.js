@@ -321,6 +321,12 @@ export function classifyComposerReactionNode(participant = null, node = null, op
   if (renderMode === "binary-bare") {
     return classifyBareBinaryNode(node);
   }
+  if (
+    renderMode === "binary-selector-grid" &&
+    normalizeText(node?.templateId) === "free_architrinos"
+  ) {
+    return classifyAggregateHierarchyNode(participant, node, options);
+  }
   if (renderMode === "binary-selector-grid" && structureNode) {
     return classifyBinarySelectorGroupNode(
       participant,

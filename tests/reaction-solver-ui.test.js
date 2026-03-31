@@ -45,10 +45,29 @@ test("reaction solver operator layout assigns dissociate to the inner-left group
   );
 });
 
-test("reaction solver center assembly lane exposes W-, W+, and Z bosons", () => {
+test("reaction solver center assembly lane exposes Noether core, weak bosons, and Free Architrinos", () => {
   assert.deepEqual(
     REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => entry.templateId),
-    ["w_minus_boson", "w_plus_boson", "z_boson"]
+    ["noether_core", "w_minus_boson", "w_plus_boson", "z_boson", "free_architrinos"]
+  );
+});
+
+test("center-column Noether core title click toggles polarity directly", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const renderSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function handleParticipantVisualClick\(participant,\s*event\)\s*\{[\s\S]*?participant\.templateId !== "noether_core"[\s\S]*?participant\.surfaceColumn !== "center-assembly"[\s\S]*?setParticipantPolarity\(/s
+  );
+  assert.match(
+    renderSource,
+    /visual\.addEventListener\("click",\s*\(event\)\s*=>\s*\{[\s\S]*?handleParticipantVisualClick\(participant,\s*event\)/s
   );
 });
 
@@ -130,7 +149,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /Solve v1 only supports reactants, products, center bosons, and existing operators on the canvas\./
+    /Solve v1 only supports reactants, products, center assemblies, and existing operators on the canvas\./
   );
   assert.doesNotMatch(
     runtimeSource,

@@ -217,6 +217,27 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
+test("free architrinos reuse the grid layout but render personality-only tiles with no binary orbit or axis", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const descriptorSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionStructureDescriptorRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(descriptorSource, /templateId:\s*"free_architrinos"/);
+  assert.match(runtimeSource, /function createFreeArchitrinosGridTrack\(/);
+  assert.match(
+    runtimeSource,
+    /String\(node\?\.templateId \?\? participant\?\.templateId \?\? ""\)\.trim\(\)\.toLowerCase\(\) === "free_architrinos"/
+  );
+  assert.match(
+    runtimeSource,
+    /createBinaryGlyph\(selectedChoice,\s*\{[\s\S]*?showBinary:\s*false,/s
+  );
+});
+
 test("operator tiles expose an open-ledger state", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

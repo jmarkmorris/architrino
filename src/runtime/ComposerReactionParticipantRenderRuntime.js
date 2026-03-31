@@ -74,6 +74,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const createBinaryGlyph = options.createBinaryGlyph;
   const createInlineAnchorSlot = options.createInlineAnchorSlot;
   const cycleQuarkBinaryPreset = options.cycleQuarkBinaryPreset ?? (() => {});
+  const cycleFreeArchitrinoPreset = options.cycleFreeArchitrinoPreset ?? (() => {});
   const findMappingByNodeKey = options.findMappingByNodeKey ?? (() => null);
   const formatLedger = options.formatLedger ?? (() => "");
   const formatParticipantLabel = options.formatParticipantLabel ?? ((label) => label);
@@ -104,6 +105,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const isQuarkTemplateId = options.isQuarkTemplateId ?? (() => false);
   const isReactantCompositeParticipant = options.isReactantCompositeParticipant ?? (() => false);
   const openParticipantMenuAt = options.openParticipantMenuAt ?? (() => {});
+  const handleParticipantVisualClick = options.handleParticipantVisualClick ?? (() => false);
   const reducedBinaryPersonalityChoiceIds = options.reducedBinaryPersonalityChoiceIds ?? [];
   const resolveBinaryGlyphPolarity = options.resolveBinaryGlyphPolarity ?? (() => "pro");
   const setBinaryPersonalitySelection = options.setBinaryPersonalitySelection ?? (() => {});
@@ -271,6 +273,12 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       visualLabel.appendChild(lineElement);
     });
     visual.appendChild(visualLabel);
+    visual.addEventListener("click", (event) => {
+      if (handleParticipantVisualClick(participant, event)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
     visual.addEventListener("contextmenu", (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -467,7 +475,53 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return wrapper;
   }
 
+  function createFreeArchitrinosGridTrack(participant, node) {
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
+    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
+      if (!childNode) {
+        track.appendChild(createBinaryChoicePlaceholder());
+        return;
+      }
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.dataset.choiceId = selectedChoice.id;
+      button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
+      button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
+      button.title = `${childNode.label}: ${selectedChoice.label}`;
+      button.appendChild(
+        createBinaryGlyph(selectedChoice, {
+          showBinary: false,
+          polarity: glyphPolarity,
+        })
+      );
+      button.addEventListener("click", () =>
+        cycleFreeArchitrinoPreset(participant.id, childNode.id)
+      );
+      track.appendChild(button);
+    });
+    return track;
+  }
+
+  function createFreeArchitrinosGridContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const track = createFreeArchitrinosGridTrack(participant, node);
+    const body = createInlineTrackBody(participant, node, nodeKey, track, {
+      className: "composer-reaction-solver-binary-selector-grid-body",
+    });
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
   function createBinarySelectorGridContent(participant, node) {
+    if (String(node?.templateId ?? participant?.templateId ?? "").trim().toLowerCase() === "free_architrinos") {
+      return createFreeArchitrinosGridContent(participant, node);
+    }
     if (isQuarkTemplateId(node.templateId ?? participant.templateId)) {
       return createQuarkPresetRowContent(participant, node);
     }

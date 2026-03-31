@@ -90,6 +90,7 @@ const solverTemplateMeta = Object.freeze({
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   z_boson: { shortLabel: "Z", accent: "#a259ff" },
+  free_architrinos: { shortLabel: "FA", accent: "#7db2ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -102,6 +103,10 @@ export const REACTION_OPERATOR_ENTRIES = Object.freeze([
 export const REACTION_OPERATOR_LANE_COUNT = 2;
 export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   Object.freeze({
+    templateId: "noether_core",
+    label: "Noether Core",
+  }),
+  Object.freeze({
     templateId: "w_minus_boson",
     label: "W- Boson",
   }),
@@ -112,6 +117,10 @@ export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   Object.freeze({
     templateId: "z_boson",
     label: "Z Boson",
+  }),
+  Object.freeze({
+    templateId: "free_architrinos",
+    label: "Free Architrinos",
   }),
 ]);
 const operatorEntries = REACTION_OPERATOR_ENTRIES;
@@ -458,6 +467,9 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "z_boson") {
     return "Z Boson";
+  }
+  if (normalizedTemplateId === "free_architrinos") {
+    return "Free Architrinos";
   }
   if (normalizedTemplateId === "proton") {
     return "Pro Proton";
@@ -855,6 +867,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createBinaryGlyph,
     createInlineAnchorSlot,
     cycleQuarkBinaryPreset,
+    cycleFreeArchitrinoPreset,
     findMappingByNodeKey,
     formatLedger,
     formatParticipantLabel,
@@ -878,6 +891,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     isQuarkTemplateId,
     isReactantCompositeParticipant,
     openParticipantMenuAt,
+    handleParticipantVisualClick,
     reducedBinaryPersonalityChoiceIds,
     resolveBinaryGlyphPolarity,
     setBinaryPersonalitySelection,
@@ -1354,7 +1368,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (solveState.hasUnsupportedParticipants) {
       setStatus(
-        "Solve v1 only supports reactants, products, center bosons, and existing operators on the canvas."
+        "Solve v1 only supports reactants, products, center assemblies, and existing operators on the canvas."
       );
       return false;
     }
@@ -1735,6 +1749,75 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     participant.binarySelections = nextSelections;
     render();
+  }
+
+  function cycleFreeArchitrinoPreset(participantId, nodeId) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !nodeId) {
+      return;
+    }
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
+    if (!groupNode || String(groupNode.templateId ?? "").trim().toLowerCase() !== "free_architrinos") {
+      return;
+    }
+    const nodes = getBinarySelectorNodes(participant, groupNode);
+    const clickedNode = nodes.find((node) => node.id === nodeId);
+    if (!clickedNode) {
+      return;
+    }
+    const currentSelections = getResolvedBinarySelectionMap(participant, groupNode);
+    const validAssignments = enumerateValidBinarySelectionAssignments(participant, groupNode);
+    if (!validAssignments.length) {
+      return;
+    }
+
+    const choiceCycle = getBinarySelectorRuleForParticipant({
+      ...participant,
+      templateId: groupNode.templateId,
+    }).visibleChoiceIds
+      .filter((choiceId) =>
+        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
+      );
+    if (!choiceCycle.length) {
+      return;
+    }
+    const currentChoiceId = currentSelections[clickedNode.id];
+    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
+    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
+    const candidateAssignments = validAssignments.filter(
+      (assignment) =>
+        assignment[clickedNode.id] === nextChoiceId &&
+        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+    );
+    const nextSelections = pickBestBinaryAssignmentCandidate({
+      participant,
+      groupNode,
+      assignments: candidateAssignments,
+      currentSelections,
+      pinnedNodeId: clickedNode.id,
+    });
+    if (!nextSelections) {
+      return;
+    }
+    participant.binarySelections = nextSelections;
+    render();
+  }
+
+  function handleParticipantVisualClick(participant, event) {
+    if (
+      !participant ||
+      participant.templateId !== "noether_core" ||
+      participant.surfaceColumn !== "center-assembly"
+    ) {
+      return false;
+    }
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    setParticipantPolarity(
+      participant.id,
+      participant.polarity === "anti" ? "pro" : "anti"
+    );
+    return true;
   }
 
   function closeMenu() {
@@ -2420,8 +2503,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function addCenterAssemblyParticipant(templateId = "w_minus_boson") {
     const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
     const resolvedTemplateId =
+      normalizedTemplateId === "noether_core" ||
       normalizedTemplateId === "w_plus_boson" ||
-      normalizedTemplateId === "z_boson"
+      normalizedTemplateId === "z_boson" ||
+      normalizedTemplateId === "free_architrinos"
         ? normalizedTemplateId
         : "w_minus_boson";
     const participant = createParticipantRecord({
@@ -2633,7 +2718,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -3112,7 +3197,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products.";
+        "Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
