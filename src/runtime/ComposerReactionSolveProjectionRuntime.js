@@ -61,6 +61,7 @@ export function applyComposerReactionSolvePlan(options = {}) {
         render: false,
         announce: false,
         operatorSlotIndex: addition.operatorSlotIndex ?? null,
+        isSolveGenerated: true,
       }
     );
     if (!participant) {

@@ -353,7 +353,7 @@ test("dissociated composite shells keep the title tile and render it with a dott
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /if \(participant\?\.\isDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
+    /if \(participant\?\.isDissociatedShell \|\| participant\?\.isAutoDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
   );
   assert.match(
     styleSheet,

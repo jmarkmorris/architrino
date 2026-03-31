@@ -55,6 +55,7 @@ test("solve projection creates operator participants and resolves deferred mappi
         templateId,
         operatorLaneIndex,
         operatorSlotIndex: options.operatorSlotIndex ?? null,
+        isSolveGenerated: options.isSolveGenerated ?? false,
         hierarchy: [{ id: `operator_${createdOperators.length + 1}_root` }],
       };
       createdOperators.push(participant);
@@ -85,6 +86,7 @@ test("solve projection creates operator participants and resolves deferred mappi
   assert.equal(createdOperators.length, 1);
   assert.equal(result.addedParticipants.length, 1);
   assert.equal(createdOperators[0].operatorSlotIndex, 3);
+  assert.equal(createdOperators[0].isSolveGenerated, true);
   assert.deepEqual(result.appliedMappingIds, ["mapping_1", "mapping_2"]);
   assert.deepEqual(appliedMappings, [
     {

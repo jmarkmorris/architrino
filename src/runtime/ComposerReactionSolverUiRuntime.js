@@ -1295,7 +1295,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       setStatus("Open the reaction solver before running solve.");
       return false;
     }
-    const solveState = buildComposerReactionSolveState({
+    let solveState = buildComposerReactionSolveState({
       participants: state.participants,
       mappings: state.mappings,
       buildNodeKey,
@@ -1313,6 +1313,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
       );
       return false;
     }
+    resetSolveDerivedArtifacts();
+    solveState = buildComposerReactionSolveState({
+      participants: state.participants,
+      mappings: state.mappings,
+      buildNodeKey,
+      getParticipantRootNode,
+      isCenterAssemblyParticipant,
+      isOperatorParticipant,
+    });
 
     const plan = buildComposerReactionSolvePlan({
       solveState,
@@ -1356,6 +1365,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
       } remain unresolved.`
     );
     return true;
+  }
+
+  function resetSolveDerivedArtifacts() {
+    state.participants = state.participants.filter(
+      (participant) => !(participant?.side === "operator" && participant?.isSolveGenerated)
+    );
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedShell) {
+        participant.isAutoDissociatedShell = false;
+      }
+    });
+    state.mappings = [];
+    state.hoveredMappingIds = [];
+    clearAllRecentRouteState();
   }
 
   function setParticipantPolarity(participantId, nextPolarity) {
@@ -1431,6 +1454,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
     participant.isDissociatedShell = true;
+    participant.isAutoDissociatedShell = false;
     closeMenu();
     render();
     setStatus(
@@ -1468,6 +1492,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
     participant.isDissociatedShell = true;
+    participant.isAutoDissociatedShell = false;
     closeMenu();
     render();
     setStatus(
@@ -1489,10 +1514,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
       return false;
     }
-    if (participant.isDissociatedShell) {
+    if (participant.isDissociatedShell || participant.isAutoDissociatedShell) {
       return false;
     }
-    participant.isDissociatedShell = true;
+    participant.isAutoDissociatedShell = true;
     return true;
   }
 
@@ -2381,6 +2406,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         operatorLaneIndex: resolvedLaneIndex,
         operatorSlotIndex: 0,
         surfaceRowIndex: 0,
+        isSolveGenerated: Boolean(options?.isSolveGenerated),
       },
     });
     state.participants.push(participant);

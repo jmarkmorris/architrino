@@ -118,6 +118,10 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /resetSolveDerivedArtifacts\(\);/
+  );
+  assert.match(
+    runtimeSource,
     /const laidOutPlan = applyComposerReactionSolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
   );
   assert.match(
@@ -306,11 +310,34 @@ test("mapping from a composite reactant child auto-marks the composite shell as 
   );
   assert.match(
     runtimeSource,
-    /participant\.isDissociatedShell = true;/
+    /participant\.isAutoDissociatedShell = true;/
   );
   assert.match(
     runtimeSource,
     /markCompositeReactantShellDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
+  );
+});
+
+test("solve resets only solver-generated operators and auto dissociation before rebuilding mappings", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function resetSolveDerivedArtifacts\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.participants = state\.participants\.filter\(\s*\(participant\) => !\(participant\?\.side === "operator" && participant\?\.isSolveGenerated\)\s*\);/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\?\.isAutoDissociatedShell\) \{\s*participant\.isAutoDissociatedShell = false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.mappings = \[\];/
   );
 });
 
