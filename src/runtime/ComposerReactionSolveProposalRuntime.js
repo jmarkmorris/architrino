@@ -1,4 +1,5 @@
 import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionStructureMappingRuntime.js";
+import { buildBestCompositeChildMatchPlan } from "./ComposerReactionSolveMatchRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -65,6 +66,18 @@ function scoreCompositeCarryThroughCandidate(candidate = null) {
   );
 }
 
+function scorePartialCompositeCandidate(candidate = null) {
+  if (!candidate) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  return (
+    2000 +
+    getParticipantIdentityScore(candidate.sourceParticipant, candidate.targetParticipant) +
+    candidate.mappings.length * 100 +
+    Number(candidate.pairScoreTotal ?? 0)
+  );
+}
+
 function compareSolveCandidates(left = null, right = null) {
   const scoreDelta = Number(right?.score ?? 0) - Number(left?.score ?? 0);
   if (scoreDelta !== 0) {
@@ -126,6 +139,8 @@ function createDirectRootCandidate(
       {
         sourceParticipant: reactantEntry.participant,
         targetParticipant: productEntry.participant,
+        sourceNode: reactantEntry.rootNode,
+        targetNode: productEntry.rootNode,
         sourceKey: reactantEntry.rootNodeKey,
         targetKey: productEntry.rootNodeKey,
         sourceRole: "reactant",
@@ -147,54 +162,19 @@ function createCompositeCarryThroughCandidate(
 ) {
   const sourceParticipant = reactantEntry?.participant ?? null;
   const targetParticipant = productEntry?.participant ?? null;
-  const sourceRootNode = reactantEntry?.rootNode ?? null;
-  const targetRootNode = productEntry?.rootNode ?? null;
-  if (!sourceParticipant || !targetParticipant || !sourceRootNode || !targetRootNode) {
+  if (!participantsShareDirectIdentity(sourceParticipant, targetParticipant)) {
     return null;
   }
-  if (sourceParticipant.templateId !== targetParticipant.templateId) {
+  const childMatchPlan = buildBestCompositeChildMatchPlan({
+    sourceParticipant,
+    targetParticipant,
+    sourceRootNode: reactantEntry?.rootNode ?? null,
+    targetRootNode: productEntry?.rootNode ?? null,
+    resolveBinaryChoiceInventory,
+    buildNodeKey,
+  });
+  if (!childMatchPlan?.sourceFullyMatched || !childMatchPlan?.targetFullyMatched) {
     return null;
-  }
-  if (
-    normalizeText(sourceParticipant.polarity) !== normalizeText(targetParticipant.polarity)
-  ) {
-    return null;
-  }
-  const sourceChildren = Array.isArray(sourceRootNode.children) ? sourceRootNode.children : [];
-  const targetChildren = Array.isArray(targetRootNode.children) ? targetRootNode.children : [];
-  if (!sourceChildren.length || sourceChildren.length !== targetChildren.length) {
-    return null;
-  }
-  if (typeof buildNodeKey !== "function") {
-    return null;
-  }
-
-  const mappings = [];
-  for (let index = 0; index < sourceChildren.length; index += 1) {
-    const sourceNode = sourceChildren[index];
-    const targetNode = targetChildren[index];
-    if (!sourceNode?.id || !targetNode?.id) {
-      return null;
-    }
-    const evaluation = evaluateComposerReactionMappingCandidate({
-      sourceParticipant,
-      sourceNode,
-      targetParticipant,
-      targetNode,
-      resolveBinaryChoiceInventory,
-    });
-    if (!evaluation.allowed) {
-      return null;
-    }
-    mappings.push({
-      sourceParticipant,
-      targetParticipant,
-      sourceKey: buildNodeKey(sourceParticipant.id, sourceNode.id),
-      targetKey: buildNodeKey(targetParticipant.id, targetNode.id),
-      sourceRole: "reactant",
-      targetRole: "product",
-      evaluation,
-    });
   }
 
   const candidate = {
@@ -202,9 +182,46 @@ function createCompositeCarryThroughCandidate(
     sourceParticipant,
     targetParticipant,
     productResolutionKind: "composite",
-    mappings,
+    mappings: childMatchPlan.mappings,
+    pairScoreTotal: childMatchPlan.pairScoreTotal,
   };
   candidate.score = scoreCompositeCarryThroughCandidate(candidate);
+  return candidate;
+}
+
+function createPartialCompositeCandidate(
+  reactantEntry,
+  productEntry,
+  resolveBinaryChoiceInventory = null,
+  buildNodeKey = null
+) {
+  const sourceParticipant = reactantEntry?.participant ?? null;
+  const targetParticipant = productEntry?.participant ?? null;
+  const childMatchPlan = buildBestCompositeChildMatchPlan({
+    sourceParticipant,
+    targetParticipant,
+    sourceRootNode: reactantEntry?.rootNode ?? null,
+    targetRootNode: productEntry?.rootNode ?? null,
+    resolveBinaryChoiceInventory,
+    buildNodeKey,
+  });
+  if (!childMatchPlan?.mappings?.length) {
+    return null;
+  }
+  if (childMatchPlan.sourceFullyMatched && childMatchPlan.targetFullyMatched) {
+    return null;
+  }
+  const candidate = {
+    type: "partial-composite-direct",
+    sourceParticipant,
+    targetParticipant,
+    productResolutionKind: "partial-composite",
+    mappings: childMatchPlan.mappings,
+    pairScoreTotal: childMatchPlan.pairScoreTotal,
+    matchedSourceNodeIds: childMatchPlan.matchedSourceNodeIds,
+    matchedTargetNodeIds: childMatchPlan.matchedTargetNodeIds,
+  };
+  candidate.score = scorePartialCompositeCandidate(candidate);
   return candidate;
 }
 
@@ -215,12 +232,16 @@ function formatCount(count = 0, singular = "", plural = `${singular}s`) {
 export function describeComposerReactionSolvePlan(plan = {}) {
   const directProductCount = Number(plan.directProductCount ?? 0);
   const compositeProductCount = Number(plan.compositeProductCount ?? 0);
+  const partialCompositeProductCount = Number(plan.partialCompositeProductCount ?? 0);
   const parts = [];
   if (directProductCount > 0) {
     parts.push(formatCount(directProductCount, "direct product"));
   }
   if (compositeProductCount > 0) {
     parts.push(formatCount(compositeProductCount, "composite product"));
+  }
+  if (partialCompositeProductCount > 0) {
+    parts.push(formatCount(partialCompositeProductCount, "partial composite product"));
   }
   if (!parts.length) {
     return "0 products";
@@ -240,6 +261,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
     typeof options.buildNodeKey === "function" ? options.buildNodeKey : null;
 
   const candidates = [];
+  const partialCandidates = [];
   reactants.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const compositeCandidate = createCompositeCarryThroughCandidate(
@@ -259,11 +281,22 @@ export function buildComposerReactionSolvePlan(options = {}) {
       );
       if (directCandidate) {
         candidates.push(directCandidate);
+        return;
+      }
+      const partialCompositeCandidate = createPartialCompositeCandidate(
+        reactantEntry,
+        productEntry,
+        resolveBinaryChoiceInventory,
+        buildNodeKey
+      );
+      if (partialCompositeCandidate) {
+        partialCandidates.push(partialCompositeCandidate);
       }
     });
   });
 
   const selectedCandidates = [];
+  const selectedPartialCandidates = [];
   const selectedMappings = [];
   const usedReactantIds = new Set();
   const usedProductIds = new Set();
@@ -281,10 +314,30 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedCandidates.push(candidate);
     selectedMappings.push(...candidate.mappings);
   });
+  const partialReactantIds = new Set();
+  const partialProductIds = new Set();
+  partialCandidates.sort(compareSolveCandidates).forEach((candidate) => {
+    const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
+    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
+    if (!sourceParticipantId || !targetParticipantId) {
+      return;
+    }
+    if (usedReactantIds.has(sourceParticipantId) || usedProductIds.has(targetParticipantId)) {
+      return;
+    }
+    if (partialReactantIds.has(sourceParticipantId) || partialProductIds.has(targetParticipantId)) {
+      return;
+    }
+    partialReactantIds.add(sourceParticipantId);
+    partialProductIds.add(targetParticipantId);
+    selectedPartialCandidates.push(candidate);
+    selectedMappings.push(...candidate.mappings);
+  });
 
   return {
     mode: "direct-v1",
     selectedCandidates,
+    selectedPartialCandidates,
     selectedMappings,
     directProductCount: selectedCandidates.filter(
       (candidate) => candidate.productResolutionKind === "direct"
@@ -292,6 +345,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
     compositeProductCount: selectedCandidates.filter(
       (candidate) => candidate.productResolutionKind === "composite"
     ).length,
+    partialCompositeProductCount: selectedPartialCandidates.length,
     matchedReactantCount: usedReactantIds.size,
     matchedProductCount: usedProductIds.size,
     unresolvedReactants: reactants.filter(

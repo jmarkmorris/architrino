@@ -11,6 +11,9 @@ import {
   createComposerReactionBinaryGlyphRuntime,
 } from "./ComposerReactionBinaryGlyphRuntime.js";
 import {
+  createComposerReactionBinaryInventoryRuntime,
+} from "./ComposerReactionBinaryInventoryRuntime.js";
+import {
   buildNodeKey,
   createComposerReactionAnchorStateRuntime,
   nodeKeysConflict,
@@ -60,15 +63,11 @@ import {
   shouldRenderReactionStructureDescriptorChildren,
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 import {
-  getNoetherCoreSlotBinaryPresence,
-} from "../domain/structure/StructureClassification.js";
-import {
   cloneStructureNode,
   getStructureNodeChildren,
   getStructureTrait,
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_CLASSIFICATION_FAMILIES,
-  STRUCTURE_KINDS,
 } from "../domain/structure/StructureSchema.js";
 import { findStructureNodeById } from "../domain/structure/StructureTraversal.js";
 import {
@@ -233,6 +232,12 @@ const {
 } = createComposerReactionBinarySelectionRuntime({
   supportsParticipantPolarity,
   normalizeParticipantPolarity,
+});
+
+const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
+  getBinaryChoiceInventory,
+  getResolvedBinarySelectionMap,
+  resolveBinarySelectorGroup,
 });
 
 const {
@@ -975,34 +980,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return existingContext;
     }
     return rebuildAnchorRegistry().get(nodeKey) ?? null;
-  }
-
-  function resolveBinaryChoiceInventory(participant, node, groupNode = null) {
-    const choice = getBinaryPersonalitySelection(participant, node, groupNode);
-    const baseInventory = getBinaryChoiceInventory(choice?.id);
-    const slotName = String(node?.slotName ?? "").trim().toLowerCase() || ({
-      I: "inner",
-      M: "middle",
-      O: "outer",
-    }[String(node?.slotCode ?? "").trim().toUpperCase()] ?? "");
-    const groupRecord = resolveBinarySelectorGroup(participant, groupNode ?? node);
-    const structureNode = participant?.structure && groupRecord?.id
-      ? findStructureNodeById(participant.structure, groupRecord.id)
-      : null;
-    const coreNode =
-      structureNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
-        ? structureNode
-        : getStructureNodeChildren(structureNode).find(
-            (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
-          ) ?? null;
-    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
-    if (!slotName || binaryPresence[slotName] !== false) {
-      return baseInventory;
-    }
-    return {
-      electrino: Math.max(0, Number(baseInventory.electrino ?? 0) - 1),
-      positrino: Math.max(0, Number(baseInventory.positrino ?? 0) - 1),
-    };
   }
 
   function createAnchorContext(participant, node) {

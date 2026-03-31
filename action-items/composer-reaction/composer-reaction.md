@@ -153,3 +153,56 @@ The intended pipeline is:
 - [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)
 - [pdg-api](../../content/markdown/aaa/reactions/pdg-api.md)
 - [reaction-ledger](../../content/markdown/aaa/validation/reaction-ledger.md)
+
+
+
+Temporary location of swe issues
+
+ComposerReactionSolverUiRuntime.js is too large because it is not one module anymore. It is a whole subsystem collapsed into one closure.
+
+The concrete SWE problems are:
+
+Too many responsibilities in one file.
+ComposerReactionSolverUiRuntime.js (line 705) creates the runtime, but inside that same scope it also owns:
+
+solve orchestration at ComposerReactionSolverUiRuntime.js (line 1314)
+participant mutation and splitting at ComposerReactionSolverUiRuntime.js (line 1374) and ComposerReactionSolverUiRuntime.js (line 1430)
+menu and picker UI at ComposerReactionSolverUiRuntime.js (line 1672) through ComposerReactionSolverUiRuntime.js (line 2411)
+surface grid placement at ComposerReactionSolverUiRuntime.js (line 1990) through ComposerReactionSolverUiRuntime.js (line 2242)
+route drawing at ComposerReactionSolverUiRuntime.js (line 3054) through ComposerReactionSolverUiRuntime.js (line 3319)
+DOM event wiring at ComposerReactionSolverUiRuntime.js (line 3538)
+Hidden coupling through shared closure state.
+Nearly every nested function reads or mutates shared state, menu state, drag state, DOM refs, and registries. That means a “small” change in solve behavior can break layout, menu behavior, drag behavior, or mapping rendering without any explicit interface boundary.
+
+Low testability.
+The more logic that only exists as nested functions inside one factory, the harder it is to test behavior directly. That is why several tests in this area are source-regex tests instead of focused behavioral tests. Extracted modules like ComposerReactionSolveProposalRuntime.js are much easier to verify.
+
+Regression risk from unrelated edits.
+The composite-title regression is exactly the kind of bug this structure invites: a UI wrapper change in one area affected composite placement in another because DOM shape, selector assumptions, render order, and layout logic are all entangled.
+
+Poor change locality.
+If you touch this file for any meaningful feature, you are editing a file that also contains solve logic, row assignment, SVG routing, menu UI, binary selection handling, and event plumbing. That increases merge conflicts and makes review harder because the diff context is huge.
+
+Mixed abstraction levels.
+The file jumps constantly between high-level orchestration and low-level pixel math. For example, solve orchestration at ComposerReactionSolverUiRuntime.js (line 1314) lives in the same module as anchor radius math at ComposerReactionSolverUiRuntime.js (line 3062). That makes the module hard to reason about because there is no stable conceptual layer.
+
+Interfaces are implicit instead of explicit.
+There is no clean contract saying “this module owns surface-row placement” or “this module owns menu state.” Instead, ownership is discovered by reading hundreds of lines of nested helpers.
+
+What I would call the main extraction targets next are:
+
+ComposerReactionSurfaceGridRuntime
+Own row occupancy, placement, and side-column geometry.
+
+ComposerReactionMenuRuntime
+Own picker/menu state and menu rendering.
+
+ComposerReactionRouteRenderRuntime
+Own route endpoint calculation and SVG path drawing.
+
+ComposerReactionParticipantInteractionRuntime
+Own drag, click, and mapping gesture handling.
+
+keep ComposerReactionSolverUiRuntime.js as composition/wiring only
+
+So the core problem is not “big file bad” in the abstract. It is that this file has become the place where unrelated concerns meet without stable seams, which raises regression risk and slows every future solver change.

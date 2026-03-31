@@ -6,8 +6,31 @@ import {
   buildComposerReactionSolvePlan,
   describeComposerReactionSolvePlan,
 } from "../src/runtime/ComposerReactionSolveProposalRuntime.js";
+import { createComposerReactionBinaryInventoryRuntime } from "../src/runtime/ComposerReactionBinaryInventoryRuntime.js";
+import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
 import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+
+const supportsParticipantPolarity = (templateId) =>
+  new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(
+    String(templateId ?? "").trim().toLowerCase()
+  );
+const normalizeParticipantPolarity = (polarity) =>
+  String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+const {
+  getBinaryChoiceInventory,
+  getInitialParticipantBinarySelections,
+  getResolvedBinarySelectionMap,
+  resolveBinarySelectorGroup,
+} = createComposerReactionBinarySelectionRuntime({
+  supportsParticipantPolarity,
+  normalizeParticipantPolarity,
+});
+const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
+  getBinaryChoiceInventory,
+  getResolvedBinarySelectionMap,
+  resolveBinarySelectorGroup,
+});
 
 function createParticipant({ id, side, templateId, polarity = "pro", label = templateId }) {
   const structure = buildReactionParticipantStructure(templateId, {
@@ -15,7 +38,7 @@ function createParticipant({ id, side, templateId, polarity = "pro", label = tem
     label,
     polarity,
   });
-  return {
+  const participant = {
     id,
     side,
     templateId,
@@ -25,6 +48,8 @@ function createParticipant({ id, side, templateId, polarity = "pro", label = tem
     structure: structure.root,
     hierarchy: buildReactionStructureDescriptorTree(structure.root),
   };
+  participant.binarySelections = getInitialParticipantBinarySelections(participant);
+  return participant;
 }
 
 function buildSolveState(participants) {
@@ -32,35 +57,6 @@ function buildSolveState(participants) {
     participants,
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
   });
-}
-
-function resolveCompositeBinaryChoiceInventory(participant = null, node = null) {
-  const nodeId = String(node?.id ?? "");
-  const templateId = String(participant?.templateId ?? "");
-  let quarkKind = "";
-  if (templateId === "neutron") {
-    if (nodeId.includes("/quark_1/") || nodeId.includes("/quark_3/")) {
-      quarkKind = "down";
-    }
-    if (nodeId.includes("/quark_2/")) {
-      quarkKind = "up";
-    }
-  }
-  if (templateId === "proton") {
-    if (nodeId.includes("/quark_1/") || nodeId.includes("/quark_3/")) {
-      quarkKind = "up";
-    }
-    if (nodeId.includes("/quark_2/")) {
-      quarkKind = "down";
-    }
-  }
-  if (quarkKind === "up") {
-    return { positrino: 1 };
-  }
-  if (quarkKind === "down") {
-    return { electrino: 1 };
-  }
-  return null;
 }
 
 test("direct-root plan maps exact conservative root-level provenance pairs", () => {
@@ -162,7 +158,7 @@ test("solve plan maps identical composite participants through their top-level c
   const plan = buildComposerReactionSolvePlan({
     solveState: buildSolveState(participants),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
-    resolveBinaryChoiceInventory: resolveCompositeBinaryChoiceInventory,
+    resolveBinaryChoiceInventory,
   });
 
   assert.equal(plan.directProductCount, 0);
@@ -190,6 +186,49 @@ test("solve plan maps identical composite participants through their top-level c
   );
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan preserves direct constituent rows across neutron-to-proton carry-through", () => {
+  const reactantNeutron = createParticipant({
+    id: "reactant_neutron",
+    side: "reactant",
+    templateId: "neutron",
+    label: "Neutron",
+  });
+  const productProton = createParticipant({
+    id: "product_proton",
+    side: "product",
+    templateId: "proton",
+    label: "Proton",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([reactantNeutron, productProton]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.compositeProductCount, 0);
+  assert.equal(plan.partialCompositeProductCount, 1);
+  assert.equal(plan.selectedCandidates.length, 0);
+  assert.equal(plan.selectedPartialCandidates.length, 1);
+  assert.equal(plan.selectedMappings.length, 2);
+  assert.equal(describeComposerReactionSolvePlan(plan), "1 partial composite product");
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceParticipant.templateId,
+      mapping.sourceNode.templateId,
+      mapping.targetParticipant.templateId,
+      mapping.targetNode.templateId,
+    ]),
+    [
+      ["neutron", "down_quark", "proton", "down_quark"],
+      ["neutron", "up_quark", "proton", "up_quark"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 1);
+  assert.equal(plan.unresolvedProducts.length, 1);
 });
 
 test("solve plan leaves unsupported product matches unresolved", () => {
