@@ -7,7 +7,11 @@ function getCandidateType(candidate = null) {
 }
 
 function isAssociateCandidateType(candidateType = "") {
-  return candidateType === "associate-photon" || candidateType === "associate-composite";
+  return (
+    candidateType === "associate-photon" ||
+    candidateType === "associate-composite" ||
+    candidateType === "associate-standalone"
+  );
 }
 
 function buildCandidateIdentity(candidate = null) {
@@ -42,6 +46,7 @@ function getCandidateFamily(candidate = null) {
       return "selectedPartialCandidates";
     case "associate-photon":
     case "associate-composite":
+    case "associate-standalone":
       return "selectedAssociateCandidates";
     case "product-child-direct":
       return "selectedProductChildCandidates";

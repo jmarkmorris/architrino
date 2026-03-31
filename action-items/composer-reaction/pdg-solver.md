@@ -107,9 +107,10 @@ Important current limits:
 
 - the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
 - composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
-- center bosons currently map directly to their products as conservative source-side entries;
+- center bosons currently map directly to their products as conservative source-side entries when the user has already placed them on the canvas;
 - boson decay and broader weak-boson-mediated construction are not implemented yet;
-- the solver does not yet evaluate plans that introduce a new boson as an intermediate participant;
+- the solver does not yet evaluate plans that introduce a new boson as an intermediate participant during the main search;
+- future boson support should not become a parallel planning language alongside primitive charge-routing;
 - the planner can now mark a composite as dissociated in a selected plan and can insert explicit `Dissociate` operators for `Noether core` inputs that feed `Associate` solves;
 - broader `Dissociate`-driven charge routing is still not implemented beyond those current `Associate` input paths;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
@@ -158,7 +159,20 @@ The required behavior is narrower and more concrete than "only use internal rows
 
 The solver must still be able to dissociate a composite as part of a valid solve when that is what the reaction requires. A key current example is `Higgs Cluster -> Photon + Photon`: the solver must auto-dissociate the composite Higgs in order to route its internal Noether-core rows through two `Associate` operators.
 
-The next boson-related target is different from simple direct boson mapping. The solver should eventually be able to evaluate plans that introduce a boson as an intermediate participant, but the intended path is usually narrower than generic boson synthesis. In the expected pattern, the solver first uses `Dissociate` on a `Noether core`, then routes the resulting personality charges onward into one or more destinations such as a boson product or an `Associate` operator input.
+The next boson-related target is different from simple direct boson mapping. The solver should eventually be able to evaluate plans that correspond to a boson-like intermediate, but the intended path should stay primitive-first rather than boson-first.
+
+The preferred pattern is:
+
+- the planner reasons directly in the primitive language of `Dissociate`, `Noether core`, `Free Architrinos`, `Associate`, direct mappings, and dissociated-composite access;
+- if a selected primitive plan contains an exact recognizable subgraph equivalent to `W-`, `W+`, or `Z`, that subgraph may later be collapsed into a boson-shaped authored or rendered convenience object;
+- authored bosons that the user already placed on the canvas remain valid conservative source-side participants;
+- but automatic solving should not initially widen the search space by freely choosing between primitive charge routing and synthetic boson insertion at every branch.
+
+In other words, the intended solver order is:
+
+- solve in the primitive AAA charge-routing language first;
+- then optionally recognize and collapse exact primitive patterns into boson assemblies for readability or authoring convenience;
+- rather than making bosons first-class planner atoms before the primitive routing model is complete.
 
 So the intended rule is:
 
@@ -167,6 +181,7 @@ So the intended rule is:
 - when feeding into a composite product such as `Proton` or `Neutron`, the solver should use `Associate` unless it is directly carrying the same composite from reactant to product;
 - direct mapping into child rows of a composite product is valid only as part of that same-composite carry-through case, not as the general way to build the composite;
 - future boson-construction work should prefer explicit `Dissociate`-driven charge routing from `Noether core` sources over ad hoc boson-specific shortcuts;
+- future boson support should be modeled as an exact derived shorthand over primitive solved subgraphs whenever possible, not as a second independent planning vocabulary;
 - future planner work should represent that auto-dissociation explicitly as part of the chosen plan rather than treating every composite as permanently dissociated;
 - and dissociation should still not become a generic free-floating planner operation that duplicates the current UI grammar.
 
@@ -180,8 +195,9 @@ Recommended order:
 
 1. take any newly reported solve bug first and add a targeted test for it;
 2. extend the new explicit `Dissociate` plan step from `Associate` input wrapping into broader charge-routing plans from `Noether core` sources;
-3. only after that, evaluate plans that introduce a boson as an intermediate participant through those dissociated charge routes;
-4. only after that, expand into PDG-ingest-specific planning work.
+3. only after that, define exact boson-signature recognizers over those primitive charge routes;
+4. only after that, consider optional boson collapse or substitution for readability and authored convenience rather than as first-pass planner search;
+5. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
 
@@ -193,7 +209,8 @@ Good near-term additions:
 - better handling of leftover fragments and residue reporting;
 - direct center-boson mapping coverage for the current supported product cases should remain stable;
 - explicit `Dissociate`-driven charge-routing plans from `Noether core` sources beyond the currently implemented `Associate` input wrapping;
-- and boson-introduction planning built on top of those dissociated charge routes rather than on special-case direct decay logic.
+- exact boson-signature recognition built on top of those dissociated charge routes rather than on special-case direct decay logic;
+- and optional boson collapse/substitution built on top of primitive solved plans rather than as a separate first-pass search space.
 
 ## PDG-Specific Work That Still Does Not Exist
 

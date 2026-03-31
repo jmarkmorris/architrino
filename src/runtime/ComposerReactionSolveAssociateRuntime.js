@@ -58,6 +58,14 @@ function isNoetherCoreReactant(entry = null) {
   );
 }
 
+function isFreeArchitrinosReactant(entry = null) {
+  return (
+    String(entry?.sourceNode?.templateId ?? entry?.rootNode?.templateId ?? entry?.participant?.templateId ?? "")
+      .trim()
+      .toLowerCase() === "free_architrinos"
+  );
+}
+
 function isPhotonProduct(entry = null) {
   return String(entry?.participant?.templateId ?? "").trim().toLowerCase() === "photon";
 }
@@ -73,6 +81,36 @@ function isCompositeAssociateProduct(entry = null) {
     Array.isArray(entry.rootNode.children) &&
     entry.rootNode.children.some((childNode) => childNode?.id && childNode?.templateId)
   );
+}
+
+function isStandaloneAssociateProduct(entry = null) {
+  return (
+    !!entry?.participant &&
+    !!entry?.rootNode &&
+    !isPhotonProduct(entry) &&
+    !isCompositeAssociateProduct(entry)
+  );
+}
+
+function getLedgerFromInventory(inventory = null) {
+  const normalizedInventory = normalizeInventory(inventory);
+  return {
+    electrino: normalizedInventory.electrino,
+    positrino: normalizedInventory.positrino,
+  };
+}
+
+function ledgersEqual(leftInventory = null, rightInventory = null) {
+  const leftLedger = getLedgerFromInventory(leftInventory);
+  const rightLedger = getLedgerFromInventory(rightInventory);
+  return (
+    leftLedger.electrino === rightLedger.electrino &&
+    leftLedger.positrino === rightLedger.positrino
+  );
+}
+
+function isSameSourceParticipant(leftEntry = null, rightEntry = null) {
+  return String(leftEntry?.participant?.id ?? "") === String(rightEntry?.participant?.id ?? "");
 }
 
 function haveOppositeCorePolarities(leftEntry = null, rightEntry = null) {
@@ -165,6 +203,17 @@ function scoreAssociateCompositeCandidate(candidate = null) {
   return (
     3200 +
     Number(candidate.matchedTargetNodeCount ?? 0) * 100 +
+    Number(candidate.pairScoreTotal ?? 0) +
+    Number(candidate.operatorCount ?? 0) * -50
+  );
+}
+
+function scoreAssociateStandaloneCandidate(candidate = null) {
+  if (!candidate) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  return (
+    2600 +
     Number(candidate.pairScoreTotal ?? 0) +
     Number(candidate.operatorCount ?? 0) * -50
   );
@@ -506,4 +555,156 @@ export function createAssociateCompositeCandidate(options = {}) {
   };
   candidate.score = scoreAssociateCompositeCandidate(candidate);
   return candidate;
+}
+
+export function createAssociateStandaloneCandidate(options = {}) {
+  const sourceEntries = Array.isArray(options.sourceEntries) ? options.sourceEntries.filter(Boolean) : [];
+  const productEntry = options.productEntry ?? null;
+  const resolveBinaryChoiceInventory =
+    typeof options.resolveBinaryChoiceInventory === "function"
+      ? options.resolveBinaryChoiceInventory
+      : null;
+  if (!isStandaloneAssociateProduct(productEntry) || sourceEntries.length < 2) {
+    return null;
+  }
+
+  const productSpec = classifyComposerReactionNode(productEntry.participant, productEntry.rootNode, {
+    resolveBinaryChoiceInventory,
+  });
+  if (!productSpec?.hasInventory) {
+    return null;
+  }
+
+  const noetherCoreEntries = sourceEntries.filter(isNoetherCoreReactant);
+  const freeArchitrinoEntries = sourceEntries.filter(isFreeArchitrinosReactant);
+  if (!noetherCoreEntries.length || !freeArchitrinoEntries.length) {
+    return null;
+  }
+
+  let bestCandidate = null;
+  noetherCoreEntries.forEach((coreEntry) => {
+    freeArchitrinoEntries.forEach((freeEntry) => {
+      if (isSameSourceParticipant(coreEntry, freeEntry)) {
+        return;
+      }
+      const coreSourceNode = coreEntry?.sourceNode ?? coreEntry?.rootNode ?? null;
+      const freeSourceNode = freeEntry?.sourceNode ?? freeEntry?.rootNode ?? null;
+      if (!coreSourceNode?.id || !freeSourceNode?.id) {
+        return;
+      }
+      const coreSpec = classifyComposerReactionNode(coreEntry.participant, coreSourceNode, {
+        resolveBinaryChoiceInventory,
+      });
+      const freeSpec = classifyComposerReactionNode(freeEntry.participant, freeSourceNode, {
+        resolveBinaryChoiceInventory,
+      });
+      if (!coreSpec?.hasInventory || !freeSpec?.hasInventory) {
+        return;
+      }
+      const corePolarity = normalizeText(
+        coreSourceNode?.polarity ?? coreEntry?.participant?.polarity ?? ""
+      );
+      const targetPolarity = normalizeText(productEntry?.participant?.polarity ?? "");
+      if (targetPolarity && corePolarity && corePolarity !== targetPolarity) {
+        return;
+      }
+      const combinedInventory = addInventories(coreSpec.inventory, freeSpec.inventory);
+      if (!ledgersEqual(combinedInventory, productSpec.inventory)) {
+        return;
+      }
+      const operatorRef = [
+        "associate",
+        String(coreEntry?.participant?.id ?? ""),
+        String(coreSourceNode.id ?? ""),
+        String(freeEntry?.participant?.id ?? ""),
+        String(freeSourceNode.id ?? ""),
+        String(productEntry?.participant?.id ?? ""),
+      ].join(":");
+      const pairScoreTotal =
+        scoreAssociatePair(coreSourceNode, productEntry.rootNode, {
+          provenanceMode: coreSpec.provenanceMode,
+        }) +
+        scoreAssociatePair(freeSourceNode, productEntry.rootNode, {
+          provenanceMode: freeSpec.provenanceMode,
+        });
+      const candidate = {
+        type: "associate-standalone",
+        sourceParticipant: coreEntry.participant,
+        sourceParticipants: [coreEntry.participant, freeEntry.participant],
+        sourceEntries: [coreEntry, freeEntry].sort(compareAssociateSourceEntries),
+        targetParticipant: productEntry.participant,
+        productResolutionKind: "associated",
+        operatorCount: 1,
+        pairScoreTotal,
+        matchedTargetNodeCount: 1,
+        participantAdditions: [
+          {
+            ref: operatorRef,
+            kind: "operator",
+            templateId: "associate",
+            operatorLaneIndex: 1,
+          },
+        ],
+        mappings: [
+          {
+            sourceParticipant: coreEntry.participant,
+            sourceNode: coreSourceNode,
+            sourceEndpoint: {
+              participant: coreEntry.participant,
+              node: coreSourceNode,
+              role: "reactant",
+            },
+            targetEndpoint: {
+              participantRef: operatorRef,
+              role: "operator-input",
+              anchorInstanceIndex: 0,
+            },
+          },
+          {
+            sourceParticipant: freeEntry.participant,
+            sourceNode: freeSourceNode,
+            sourceEndpoint: {
+              participant: freeEntry.participant,
+              node: freeSourceNode,
+              role: "reactant",
+            },
+            targetEndpoint: {
+              participantRef: operatorRef,
+              role: "operator-input",
+              anchorInstanceIndex: 0,
+            },
+          },
+          {
+            targetParticipant: productEntry.participant,
+            targetNode: productEntry.rootNode,
+            sourceEndpoint: {
+              participantRef: operatorRef,
+              role: "operator-output",
+              anchorInstanceIndex: 0,
+            },
+            targetEndpoint: {
+              participant: productEntry.participant,
+              node: productEntry.rootNode,
+              role: "product",
+            },
+          },
+        ],
+      };
+      candidate.score = scoreAssociateStandaloneCandidate(candidate);
+      if (
+        !bestCandidate ||
+        Number(candidate.pairScoreTotal ?? 0) > Number(bestCandidate.pairScoreTotal ?? 0) ||
+        (
+          Number(candidate.pairScoreTotal ?? 0) === Number(bestCandidate.pairScoreTotal ?? 0) &&
+          compareText(
+            candidate.sourceEntries.map(createSourceEntryIdentity).join("|"),
+            bestCandidate.sourceEntries.map(createSourceEntryIdentity).join("|")
+          ) < 0
+        )
+      ) {
+        bestCandidate = candidate;
+      }
+    });
+  });
+  return bestCandidate;
 }

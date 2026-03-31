@@ -52,6 +52,20 @@ function createParticipant({ id, side, templateId, polarity = "pro", label = tem
   return participant;
 }
 
+function setParticipantBinarySelectionsBySlotCode(participant, selectionsBySlotCode = {}) {
+  const rootNode = participant?.hierarchy?.[0] ?? null;
+  const slotNodes = Array.isArray(rootNode?.children) ? rootNode.children : [];
+  slotNodes.forEach((slotNode) => {
+    const slotCode = String(slotNode?.slotCode ?? "").trim().toUpperCase();
+    const choiceId = selectionsBySlotCode[slotCode];
+    if (!choiceId) {
+      return;
+    }
+    participant.binarySelections[slotNode.id] = choiceId;
+  });
+  return participant;
+}
+
 function buildSolveState(participants) {
   return buildComposerReactionSolveState({
     participants,
@@ -464,6 +478,131 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
   );
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan can use associate to build a standalone neutrino from Noether core and Free Architrinos", () => {
+  const centerNoetherCore = {
+    ...createParticipant({
+      id: "center_noether_core",
+      side: "reactant",
+      templateId: "noether_core",
+      polarity: "pro",
+      label: "Pro Noether Core",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  const centerFreeArchitrinos = {
+    ...createParticipant({
+      id: "center_free_architrinos",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  setParticipantBinarySelectionsBySlotCode(centerFreeArchitrinos, {
+    I: "pe",
+    M: "pe",
+    O: "pe",
+  });
+  const productNeutrino = createParticipant({
+    id: "product_neutrino",
+    side: "product",
+    templateId: "neutrino",
+    polarity: "pro",
+    label: "Pro Neutrino",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([
+      centerNoetherCore,
+      centerFreeArchitrinos,
+      productNeutrino,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedAssociateCandidates[0]?.type, "associate-standalone");
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+    ]),
+    [
+      ["reactant", "operator-input", null],
+      ["reactant", "operator-input", null],
+      ["operator-output", "product", "neutrino"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan still prefers direct standalone reuse over associative primitive reconstruction", () => {
+  const reactantNeutrino = createParticipant({
+    id: "reactant_neutrino",
+    side: "reactant",
+    templateId: "neutrino",
+    polarity: "pro",
+    label: "Pro Neutrino",
+  });
+  const centerNoetherCore = {
+    ...createParticipant({
+      id: "center_noether_core_direct",
+      side: "reactant",
+      templateId: "noether_core",
+      polarity: "pro",
+      label: "Pro Noether Core",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  const centerFreeArchitrinos = {
+    ...createParticipant({
+      id: "center_free_architrinos_direct",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  setParticipantBinarySelectionsBySlotCode(centerFreeArchitrinos, {
+    I: "pe",
+    M: "pe",
+    O: "pe",
+  });
+  const productNeutrino = createParticipant({
+    id: "product_neutrino_direct",
+    side: "product",
+    templateId: "neutrino",
+    polarity: "pro",
+    label: "Pro Neutrino",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([
+      reactantNeutrino,
+      centerNoetherCore,
+      centerFreeArchitrinos,
+      productNeutrino,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 1);
+  assert.equal(plan.compositeProductCount, 0);
+  assert.equal(plan.associatedProductCount, 0);
+  assert.equal(plan.selectedCandidates.length, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 0);
+  assert.equal(plan.selectedCandidates[0]?.type, "direct-root");
+  assert.equal(plan.selectedMappings.length, 1);
+  assert.equal(plan.selectedMappings[0]?.targetParticipant?.templateId, "neutrino");
 });
 
 test("solve plan can consume Higgs-cluster noether-core rows into two associated photons", () => {

@@ -2,6 +2,7 @@ import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionStru
 import {
   createAssociateCompositeCandidate,
   createAssociatePhotonCandidate,
+  createAssociateStandaloneCandidate,
 } from "./ComposerReactionSolveAssociateRuntime.js";
 import { buildBestCompositeChildMatchPlan } from "./ComposerReactionSolveMatchRuntime.js";
 import { selectBestComposerReactionSolveCandidates } from "./ComposerReactionSolveSelectionRuntime.js";
@@ -198,6 +199,12 @@ function createCompositeCarryThroughCandidate(
   const sourceParticipant = reactantEntry?.participant ?? null;
   const targetParticipant = productEntry?.participant ?? null;
   if (!participantsShareDirectIdentity(sourceParticipant, targetParticipant)) {
+    return null;
+  }
+  if (
+    !entryHasTopLevelConstituentChildren(reactantEntry) ||
+    !entryHasTopLevelConstituentChildren(productEntry)
+  ) {
     return null;
   }
   const childMatchPlan = buildBestCompositeChildMatchPlan({
@@ -560,6 +567,17 @@ function collectAssociateSourceEntries(reactants = [], buildNodeKey = null) {
       });
       return;
     }
+    if (normalizeText(rootNode.templateId) === "free_architrinos" && reactantEntry.rootNodeKey) {
+      entries.push({
+        participant,
+        rootNode,
+        sourceNode: rootNode,
+        sourceNodeKey: reactantEntry.rootNodeKey,
+        sourceFragmentKey: reactantEntry.rootNodeKey,
+        consumesWholeParticipant: true,
+      });
+      return;
+    }
     const topLevelChildren = Array.isArray(rootNode.children) ? rootNode.children : [];
     topLevelChildren.forEach((childNode) => {
       if (normalizeText(childNode?.templateId) !== "noether_core" || !childNode?.id) {
@@ -795,6 +813,15 @@ export function buildComposerReactionSolvePlan(options = {}) {
         participantsShareDirectIdentity(reactantEntry?.participant, productEntry?.participant)
       )
     ) {
+      return;
+    }
+    const standaloneAssociateCandidate = createAssociateStandaloneCandidate({
+      sourceEntries: associateSourceEntries,
+      productEntry,
+      resolveBinaryChoiceInventory,
+    });
+    if (standaloneAssociateCandidate) {
+      associateCandidates.push(standaloneAssociateCandidate);
       return;
     }
     const associateCandidate = createAssociateCompositeCandidate({
