@@ -2,315 +2,207 @@
 
 ## Purpose
 
-The PDG solver is the planned ingest-and-proposal app for the reaction pipeline.
+The PDG solver is the planned channel-ingest and proposal layer that should feed the reaction app, not replace it.
 
 Its job is to:
 
-1. receive manually entered reactant/product entries or read PDG api reaction/channel data and related metadata;
-2. normalize that data into a stable app-side schema;
-3. build a candidate provenance plan from that normalized channel;
-4. project the accepted plan into the reaction app;
-5. return the resulting reaction flow JSON to the composer for animation.
+1. ingest published channel data and related metadata;
+2. normalize that input into the same abstract reaction-solve model the reaction app can already use;
+3. generate and rank candidate provenance plans;
+4. project the selected plan into the reaction app for inspection, correction, and later handoff;
+5. eventually return a durable reaction payload for the composer.
 
-This is the bridge between published reaction data and the internal reaction-authoring model. The selected implementation approach is the `Concrete Solver Architecture` described below.
+The key architectural point is that the planner should own solving, while the reaction app should own rendering, inspection, manual override, and validation.
 
 ## Current State
 
-- There is no dedicated PDG solver runtime in `src/runtime/` yet.
-- There is no dedicated PDG solver scene under `content/scenes/archie/` yet.
-- The current repo state is planning and reference material:
-  - this note;
-  - and `content/markdown/aaa/reactions/pdg-api.md`, which records the intended official PDG data path.
-- The current intended data source is the PDG Python package `pdg` with its local SQLite workflow, not an ad hoc scrape.
-- No fetch pipeline, normalization layer, proposal engine, reaction-app projection layer, or composer handoff is implemented yet.
+The repository now has a real reaction-app solver seam. The old description of this note as "planning only" is no longer accurate.
 
-So the PDG solver is currently a planned app boundary, not a running app.
+What exists now:
 
-## Immediate Direction
+- a dedicated abstract solve-state builder in `src/runtime/ComposerReactionSolveStateRuntime.js`;
+- a proposal builder in `src/runtime/ComposerReactionSolveProposalRuntime.js`;
+- composite child matching in `src/runtime/ComposerReactionSolveMatchRuntime.js`;
+- associate-specific candidate construction in `src/runtime/ComposerReactionSolveAssociateRuntime.js`;
+- operator placement in `src/runtime/ComposerReactionSolveLayoutRuntime.js`;
+- plan projection back into live participants and mappings in `src/runtime/ComposerReactionSolveProjectionRuntime.js`;
+- and the current reaction-app wiring in `src/runtime/ComposerReactionSolverUiRuntime.js`.
 
-We are using the `Concrete Solver Architecture` below as the actual implementation approach.
+Current regression coverage already exists in:
 
-That means the solver work will proceed as:
+- `tests/reaction-solve-state.test.js`;
+- `tests/reaction-solve-proposal.test.js`;
+- `tests/reaction-solve-layout.test.js`;
+- `tests/reaction-solve-projection.test.js`;
+- and `tests/reaction-solver-ui.test.js`.
 
-1. ingest and normalize PDG channels into an abstract solve state;
-2. generate candidate provenance plans on that state;
-3. score those plans with conservation- and provenance-aware costs;
-4. project the selected plan into the existing reaction app;
-5. and only then return reaction flow JSON to the composer.
+So the near-term job is not "invent a solver from scratch." It is to extend the existing abstract-solve architecture without collapsing new logic back into the UI runtime.
 
-So we are not treating the solver as a loose sequence of special-case canvas passes. The planner owns the reasoning; the reaction app owns rendering and validation.
+## Current Solver Architecture
+
+The implemented solve flow is already the right basic shape:
+
+1. build an abstract solve state from current participants and mappings;
+2. generate candidate mappings and operator insertions on that state;
+3. apply row-placement heuristics using the shared surface-grid model;
+4. project the chosen plan back into reaction-app participants and mappings.
+
+That architecture is the right precursor for PDG ingest. A future PDG-facing layer should feed this abstract-solve path, not invent a separate canvas-only solver.
+
+### Present Solve Pipeline
+
+- `ComposerReactionSolveStateRuntime`
+  - separates reactants, products, operators, and center assemblies;
+  - allows existing center-lane operators during solve;
+  - blocks solve when center bosons are present.
+- `ComposerReactionSolveProposalRuntime`
+  - builds the current greedy solve plan;
+  - prefers direct reuse, then fragment and associate construction, then partial composite reuse;
+  - reports unresolved reactants and products explicitly.
+- `ComposerReactionSolveLayoutRuntime`
+  - places inserted operators from explicit surface-row centers;
+  - uses the shared periodic-table-style surface grid as the source of truth.
+- `ComposerReactionSolveProjectionRuntime`
+  - creates solve-generated operators;
+  - resolves deferred endpoints;
+  - and materializes mappings back into the live reaction UI.
+- `ComposerReactionSolverUiRuntime`
+  - triggers solve;
+  - removes only solve-generated operators before rerunning solve;
+  - clears auto-dissociation markers before rebuilding;
+  - and keeps manual operators and manual shell dissociation intact.
+
+## Current Solver Capabilities
+
+The present solver already supports:
+
+- direct root matches for identical conservative standalone participants;
+- full composite carry-through for identical composites;
+- partial composite carry-through such as `Neutron -> Proton`;
+- direct fragment-to-root mapping from a composite child into a standalone product;
+- `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
+- `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
+- repeated `Solve` from a clean auto-solve baseline without duplicating solve-generated operators;
+- automatic reactant-shell dissociation marking when internal rows are mapped;
+- and persistent manual right-click shell dissociation.
+
+Related current UI and naming constraints:
+
+- quark labels are normalized to full labels such as `Pro Down Quark` and `Anti Up Quark`;
+- `Gluon` has been removed from the reaction add picker;
+- and the solver continues to use the canonical shared surface-grid model for placement.
+
+## Current Limits
+
+The current solver is still intentionally narrow.
+
+Important current limits:
+
+- plan selection is still greedy, so local choices can still produce avoidable crossings or weaker global matches;
+- the current candidate library is centered on direct reuse, fragment reuse, partial composite reuse, and `Associate` photon construction;
+- center bosons are manual-only and still block solve instead of participating in planning;
+- there is no dissociate-then-associate planner yet;
+- there is no PDG ingest pipeline yet;
+- there is no dedicated proposal-review app or reaction-flow export path yet.
 
 ## Architectural Stance
 
-The motivating premise remains that published channel data is not enough by itself. The missing layer is sub-component provenance: where structure is preserved, where it is broken, where it is reassociated, and where substrate recruitment is genuinely required. The solver therefore needs to reason over constituent provenance rather than treat the reaction app as a manual diagrammer for already-solved channels.
-
-## Concrete Solver Architecture
-
-The solver should use a small proposal engine with four layers:
-
-1. ingest and normalize a channel into a stable abstract reaction state;
-2. generate one or more candidate provenance plans on that abstract state;
-3. score those plans for conservation, provenance reuse, operator count, and residue;
-4. project the accepted plan into the existing reaction-app participants, operators, and mappings.
-
-So the reaction UI remains the renderer and validator of a candidate solve, not the place where the solver's core reasoning lives.
-
-### Core Design Principle
-
-Treat `associate`, `dissociate`, `W-`, `W+`, and `Z` as reusable operation types, not as one-off pass-specific hacks.
-
-That lets:
-
-- direct neutron-to-proton quark carry-through;
-- Higgs-cluster core pairing into photons;
-- neutrino-oriented dissociate/reassociate cases;
-- and weak-boson-mediated electron or positron formation
-
-all be represented as different candidate constructions in one planning model.
-
-### Solver State
-
-The abstract solve state should contain:
-
-- `channel`
-  - normalized reactants;
-  - normalized products;
-  - energy or threshold context;
-  - metadata from PDG.
-- `available_fragments`
-  - the currently usable constituent fragments, subassemblies, or whole assemblies;
-  - each with provenance tags back to reactants or recruited substrate.
-- `claimed_fragments`
-  - fragments already committed to a candidate construction.
-- `unsatisfied_products`
-  - products not yet explained by the current plan.
-- `operators`
-  - candidate or committed operator nodes such as `associate`, `dissociate`, `w_minus_boson`, `w_plus_boson`, `z_boson`.
-- `mappings`
-  - abstract source-to-target provenance edges, independent of UI placement.
-- `ledger_state`
-  - electrino and positrino closure;
-  - any other coarse closure metrics used in the reaction app.
-- `residue`
-  - unmatched fragments, unresolved waste, or substrate debt.
-- `explanation`
-  - a structured list of why each operation was chosen.
+Keep the following constraints explicit.
 
-### Operation Types
+### 1. Keep solver reasoning out of the UI runtime
 
-The first implementation should define a small operation registry rather than one giant solver function.
+`ComposerReactionSolverUiRuntime.js` is still too large and should remain a composition root, not the long-term home for new solve logic.
 
-Initial operation families:
+New domain logic should continue to land in focused runtimes such as:
 
-- `map_direct`
-  - map an existing reactant fragment or subassembly directly to a product-compatible target.
-- `dissociate`
-  - split a composite participant into child fragments while preserving provenance.
-- `associate`
-  - combine two compatible fragments into a product or intermediate assembly.
-- `emit_w_minus`
-  - create or route a `W-` intermediate when it is the cheapest valid way to satisfy an electron-like branch.
-- `emit_w_plus`
-  - create or route a `W+` intermediate when it is the cheapest valid way to satisfy a positron-like branch.
-- `emit_z`
-  - create or route a `Z` intermediate when it is needed for neutrino or photon-related branches.
-- `recruit_substrate`
-  - explicitly recruit from the spacetime bath when a channel cannot be honestly closed from visible reactants alone.
-- `dump_residue`
-  - explicitly mark unresolved leftover structure or waste instead of hiding it.
+- solve state;
+- candidate generation;
+- operator-specific construction;
+- projection;
+- and layout heuristics.
 
-Each operation should declare:
+### 2. Keep the abstract solve state as the planner boundary
 
-- required inputs;
-- produced outputs;
-- provenance effect;
-- ledger effect;
-- cost;
-- and a human-readable explanation string.
+The solver should continue to reason over:
 
-### Solve Strategy
+- abstract participant entries;
+- source and target nodes;
+- candidate mappings;
+- operator insertions;
+- and unresolved residue.
 
-The first production solver should use a bounded product-driven planner rather than a rigid forward-only pass list.
+The planner should not depend on DOM shape, menu state, or incidental render structure.
 
-Recommended sequence:
+### 3. Keep the shared surface grid canonical
 
-1. `Peel obvious provenance`
-   - lock direct subtree or fragment matches first;
-   - prioritize cases where reactant structure can persist into a product with minimal change.
-2. `Satisfy remaining products`
-   - for each unmatched product, generate a short ranked list of candidate construction plans;
-   - for example direct reuse, associate from two fragments, dissociate then reassociate, or weak-boson-mediated construction.
-3. `Close ledger`
-   - once product structure is mostly explained, add or validate operator outputs so electrino and positrino closure is explicit;
-   - if exact closure fails, keep the solve honest and report residue or substrate recruitment.
-4. `Project to reaction UI`
-   - convert the chosen abstract plan into participants, operators, and mappings that the current reaction app can render and validate.
+Row placement must continue to use the explicit shared surface-grid model. Do not reintroduce duplicate lane geometry in CSS and JS or infer centers from ad hoc rendered offsets.
 
-This sequence keeps the solver centered on product satisfaction and conservation rather than on UI lane choreography.
+### 4. Do not model generic planner-side dissociation for composite particles
 
-### Why This Is Better Than Literal Passes
+The current product direction is narrower than the old note implied.
 
-A strict pass list such as:
+The major missing feature is dissociate-then-associate planning, but only through the shell model the reaction app already uses:
 
-1. direct mapping;
-2. associate;
-3. dissociate then associate;
-4. weak-boson cases;
-5. ledger cleanup
+- composite right-click dissociation is existing UI shell state;
+- automatic shell dissociation already exists for mapped internal reactant rows;
+- solver planning should learn to consume that shell state;
+- but dissociation should not become a generic free-floating planner operation that duplicates the current UI grammar.
 
-is useful as a first intuition, but it should become a ranking heuristic rather than the literal architecture.
+## Next Recommended Work
 
-Otherwise:
+The next work should stay phase-by-phase and test-backed.
 
-- an early greedy choice can block a better later solve;
-- neutrino and photon cases become brittle special cases;
-- and the solver becomes difficult to extend without rewriting the whole pass order.
+Recommended order:
 
-In the recommended design, those same ideas survive as ranked candidate builders:
+1. take any newly reported solve bug first and add a targeted regression test for it;
+2. improve solve-plan selection where current greedy choices are poor;
+3. improve operator-layout heuristics where crossings or weak placements remain;
+4. add dissociated-shell-aware planning for dissociate-then-associate scenarios through existing shell state;
+5. only after that, expand into weak-boson and PDG-ingest-specific planning work.
 
-- direct provenance reuse remains the cheapest move;
-- associate-based reconstruction remains an operation family;
-- dissociate-plus-reassociate remains another operation family;
-- and weak-boson motifs remain explicit constructors for electron, positron, photon, or neutrino-related branches.
+## Near-Term Capability Targets
 
-### Candidate Scoring
+The next solver expansions should be framed as focused candidate families with regression tests, not as one giant pass.
 
-Each candidate plan should be scored with a transparent cost model.
+Good near-term additions:
 
-Lower cost should favor:
+- better global ranking among competing direct, fragment, partial-composite, and associate candidates;
+- shell-aware dissociate-then-associate planning that respects existing manual or auto shell state;
+- better handling of leftover fragments and residue reporting;
+- improved operator placement when multiple candidates compete for the same lane region;
+- and later, explicit weak-boson-mediated construction for the cases the user actually wants to support.
 
-- exact structural provenance reuse;
-- fewer operators;
-- fewer dissociation steps;
-- fewer recruited substrate fragments;
-- exact electrino and positrino closure;
-- and less unresolved residue.
+## PDG-Specific Work That Still Does Not Exist
 
-Higher cost should apply to:
+The following is still future work:
 
-- avoidable weak-boson insertion;
-- unnecessary structure breakage;
-- unexplained leftovers;
-- or plans that only close by excessive substrate recruitment.
+- official PDG channel ingest around the intended `pdg` package path;
+- channel normalization into the abstract solve-state schema;
+- a PDG-facing proposal-review surface or app boundary;
+- stored candidate alternatives and review controls such as pin or forbid;
+- and handoff of accepted solved reactions into a durable composer payload.
 
-The scoring model should stay simple enough that the solver can explain itself in plain language.
-
-### Relationship To The Existing Reaction App
-
-The current reaction app already has strong seams that the solver should reuse:
-
-- structure classification and compatibility checks already live in shared runtimes;
-- mapping validity and operator-ledger checks already exist;
-- the reaction UI already knows how to render participants, operators, mappings, and unresolved red paths.
-
-So the PDG solver should not duplicate those rules.
-
-Instead it should:
-
-- generate candidate participants and abstract mappings;
-- materialize them into the reaction-app schema;
-- let the existing mapping and ledger runtimes score or reject the result;
-- and then return either a solved flow or an honest partially solved proposal with unresolved residue.
-
-### First Concrete Product Constructors
-
-The first candidate-construction library should cover a small, explicit set of motifs:
-
-- `direct carry-through`
-  - for cases like neutron to proton constituent reuse.
-- `core-pair association`
-  - for cases like opposite-polarity core pairing into a photon.
-- `dissociate then polarity-preserving reassociation`
-  - for cases where one composite fragment is retained and another is reopened to satisfy neutrino-style products.
-- `weak-electron branch`
-  - if an unmatched product is an electron, try a `W-`-mediated branch before falling back to residue.
-- `weak-positron branch`
-  - if an unmatched product is a positron, try a `W+`-mediated branch before falling back to residue.
-- `z-mediated neutral branch`
-  - use `Z` as a candidate constructor for photon or neutrino-related outcomes where the ledger and structure rules allow it.
-
-Those should be implemented as candidate generators, not one-off global passes.
-
-## Implementation Plan
-
-### Phase 1: Abstract Solve State And Operation Registry
-
-- create a dedicated PDG solver runtime boundary under `src/runtime/`;
-- define the normalized solver input schema;
-- define the abstract solve-state shape;
-- and implement an operation registry with cost and explanation metadata.
-
-Deliverable:
-
-- a solver core that can run without the DOM or reaction UI.
-
-### Phase 2: Channel Normalization
-
-- ingest PDG channel data from the official `pdg` package path;
-- normalize reactants, products, source references, and context into a stable schema;
-- and translate that schema into initial abstract fragments and target products.
-
-Deliverable:
-
-- reproducible normalized channel payloads that can be snapshot-tested.
-
-### Phase 3: Proposal Engine
-
-- implement direct provenance matching first;
-- add product-driven candidate generation for unmatched products;
-- add bounded search or beam search over a small number of alternatives;
-- and attach explanations to each candidate decision.
-
-Deliverable:
-
-- ranked candidate plans over abstract state, independent of rendering.
-
-### Phase 4: Reaction-App Projection
-
-- project the best candidate plan into reaction-app participants, operators, and mappings;
-- run that projection through the existing mapping-rule and ledger validators;
-- and return a solved flow, partially solved flow, or unresolved residue summary.
-
-Deliverable:
-
-- reaction flow JSON that the current reaction app can already inspect and render.
-
-### Phase 5: Initial Channel Coverage
-
-Prioritize:
-
-1. neutron beta decay and close relatives;
-2. photon and neutral-current toy channels that exercise `associate` and `Z`;
-3. electron and positron branches that require `W-` or `W+`;
-4. Higgs-cluster wildcard or substrate-assisted closure cases.
-
-Deliverable:
-
-- a narrow but honest channel set with explicit provenance output and regression tests.
-
-### Phase 6: UI Integration And Review Tools
-
-- add a dedicated PDG solver scene once the core planner works;
-- show best candidate plus a small number of alternatives;
-- allow pin, forbid, and rerun-on-remainder controls later;
-- and keep final acceptance or editing in the reaction app and composer.
-
-Deliverable:
-
-- proposal review rather than opaque black-box autosolve.
+When that work begins, it should reuse the existing reaction solver seam instead of creating a parallel solver architecture.
 
 ## Suggested File Boundaries
 
-To keep the codebase modular, the first solver implementation should aim for boundaries like:
+Current file boundaries that should remain the basis for extension:
 
-- `PdgChannelNormalizeRuntime.js`
-- `PdgSolveStateRuntime.js`
-- `PdgSolveOperationRegistryRuntime.js`
-- `PdgSolveCandidateRuntime.js`
-- `PdgSolveScoringRuntime.js`
-- `PdgReactionProjectionRuntime.js`
+- `ComposerReactionSolveStateRuntime.js`
+- `ComposerReactionSolveProposalRuntime.js`
+- `ComposerReactionSolveMatchRuntime.js`
+- `ComposerReactionSolveAssociateRuntime.js`
+- `ComposerReactionSolveProjectionRuntime.js`
+- `ComposerReactionSolveLayoutRuntime.js`
 
-The existing reaction mapping, structure, and ledger runtimes should remain shared dependencies rather than being copied into PDG-specific files.
+Likely next extraction targets from the current UI runtime:
+
+- a surface-grid placement runtime;
+- a menu and picker runtime;
+- a route-render runtime;
+- and a participant-interaction runtime.
+
+The goal is to keep `ComposerReactionSolverUiRuntime.js` as thin wiring over those seams.
 
 ## Related Action Items
 
