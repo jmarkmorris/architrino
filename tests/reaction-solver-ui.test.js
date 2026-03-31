@@ -275,6 +275,37 @@ test("composite right-click dissociation marks the existing shell instead of rep
   );
 });
 
+test("mapping from a composite reactant child auto-marks the composite shell as dissociated", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function markCompositeReactantShellDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(role !== "reactant" \|\| !nodeKey\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(!participant \|\| participant\.side !== "reactant" \|\| !isCompositeParticipant\(participant\)\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(!rootNode\?\.id \|\| String\(rootNode\.id\) === String\(nodeId \?\? ""\)\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.isDissociatedShell = true;/
+  );
+  assert.match(
+    runtimeSource,
+    /markCompositeReactantShellDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
+  );
+});
+
 test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),

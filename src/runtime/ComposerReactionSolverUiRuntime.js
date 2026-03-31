@@ -1476,6 +1476,26 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function markCompositeReactantShellDissociatedForNodeKey(nodeKey, role = "") {
+    if (role !== "reactant" || !nodeKey) {
+      return false;
+    }
+    const { participantId, nodeId } = parseNodeKey(nodeKey);
+    const participant = findParticipantById(participantId);
+    if (!participant || participant.side !== "reactant" || !isCompositeParticipant(participant)) {
+      return false;
+    }
+    const rootNode = getParticipantRootNode(participant);
+    if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
+      return false;
+    }
+    if (participant.isDissociatedShell) {
+      return false;
+    }
+    participant.isDissociatedShell = true;
+    return true;
+  }
+
   function addOrReplaceMapping(
     sourceKey,
     sourceRole,
@@ -1506,6 +1526,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       sourceAnchorInstanceIndex,
       targetAnchorInstanceIndex,
     });
+    markCompositeReactantShellDissociatedForNodeKey(sourceKey, sourceRole);
     state.hoveredMappingIds = [];
     return mappingId;
   }
