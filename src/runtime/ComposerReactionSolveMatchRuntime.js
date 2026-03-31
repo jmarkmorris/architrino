@@ -66,6 +66,12 @@ export function buildBestCompositeChildMatchPlan(options = {}) {
       : null;
   const buildNodeKey =
     typeof options.buildNodeKey === "function" ? options.buildNodeKey : null;
+  const excludedSourceNodeIds = new Set(
+    Array.isArray(options.excludedSourceNodeIds) ? options.excludedSourceNodeIds.map((nodeId) => String(nodeId ?? "")) : []
+  );
+  const excludedTargetNodeIds = new Set(
+    Array.isArray(options.excludedTargetNodeIds) ? options.excludedTargetNodeIds.map((nodeId) => String(nodeId ?? "")) : []
+  );
   if (!sourceParticipant || !targetParticipant || !sourceRootNode || !targetRootNode || !buildNodeKey) {
     return null;
   }
@@ -123,11 +129,21 @@ export function buildBestCompositeChildMatchPlan(options = {}) {
       return;
     }
 
+    const sourceNode = sourceChildren[sourceIndex] ?? null;
+    if (excludedSourceNodeIds.has(String(sourceNode?.id ?? ""))) {
+      visit(sourceIndex + 1, currentMappings, usedTargetIndexes, pairScoreTotal);
+      return;
+    }
+
     visit(sourceIndex + 1, currentMappings, usedTargetIndexes, pairScoreTotal);
 
     const pairEntries = pairMatrix[sourceIndex] ?? [];
     pairEntries.forEach((pairEntry) => {
-      if (!pairEntry || usedTargetIndexes.has(pairEntry.targetIndex)) {
+      if (
+        !pairEntry ||
+        usedTargetIndexes.has(pairEntry.targetIndex) ||
+        excludedTargetNodeIds.has(String(pairEntry?.targetNode?.id ?? ""))
+      ) {
         return;
       }
       usedTargetIndexes.add(pairEntry.targetIndex);
