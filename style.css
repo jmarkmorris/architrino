@@ -2976,8 +2976,12 @@ body {
 }
 
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:disabled {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(28, 34, 48, 0.8);
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-mapped:disabled {

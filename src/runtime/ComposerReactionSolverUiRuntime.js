@@ -3267,8 +3267,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
         targetAnchor,
         bounds
       );
-      const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
       const validation = getMappingValidation(mapping);
+      const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
       const path = createSvgElement("path");
       path.setAttribute(
         "d",

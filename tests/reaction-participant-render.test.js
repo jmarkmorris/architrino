@@ -148,10 +148,14 @@ test("center bosons expose a left-side input attachment frame", () => {
   );
 });
 
-test("mapped noether-core tiles keep the mapped styling even when their anchors are disabled", () => {
+test("disabled noether-core tiles keep their static tile styling instead of dark disabled chrome", () => {
   const cssSource = readFileSync(
     new URL("../style.css", import.meta.url),
     "utf8"
+  );
+  assert.match(
+    cssSource,
+    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile:disabled\s*\{[\s\S]*?opacity:\s*1;[\s\S]*?background:\s*rgba\(12,\s*16,\s*30,\s*0\.9\);[\s\S]*?box-shadow:\s*[\s\S]*?0 0 0 1px rgba\(255,\s*255,\s*255,\s*0\.02\);/
   );
   assert.match(
     cssSource,
