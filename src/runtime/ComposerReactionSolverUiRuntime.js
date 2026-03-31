@@ -26,7 +26,10 @@ import {
   getComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
 import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
-import { buildComposerReactionDirectRootPlan } from "./ComposerReactionSolveProposalRuntime.js";
+import {
+  buildComposerReactionSolvePlan,
+  describeComposerReactionSolvePlan,
+} from "./ComposerReactionSolveProposalRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -1332,12 +1335,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
-    const plan = buildComposerReactionDirectRootPlan({
+    const plan = buildComposerReactionSolvePlan({
       solveState,
+      buildNodeKey,
       resolveBinaryChoiceInventory,
     });
     if (!plan.selectedMappings.length) {
-      setStatus("Solve v1 could not find any direct conservative reactant-to-product matches.");
+      setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
       return false;
     }
 
@@ -1358,9 +1362,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const unresolvedProductCount = plan.unresolvedProducts.length;
     const unresolvedReactantCount = plan.unresolvedReactants.length;
     setStatus(
-      `Solve v1 mapped ${plan.selectedMappings.length} direct product${
-        plan.selectedMappings.length === 1 ? "" : "s"
-      }. ${unresolvedProductCount} product${unresolvedProductCount === 1 ? "" : "s"} and ${unresolvedReactantCount} reactant${
+      `Solve v1 mapped ${describeComposerReactionSolvePlan(plan)}. ${unresolvedProductCount} product${
+        unresolvedProductCount === 1 ? "" : "s"
+      } and ${unresolvedReactantCount} reactant${
         unresolvedReactantCount === 1 ? "" : "s"
       } remain unresolved.`
     );

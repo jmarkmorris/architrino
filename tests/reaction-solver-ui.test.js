@@ -112,6 +112,14 @@ test("reaction solver exposes clear and solve actions in the composer header and
     runtimeSource,
     /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionSolverCanvas\(\);/s
   );
+  assert.match(
+    runtimeSource,
+    /buildComposerReactionSolvePlan\(\{\s*solveState,\s*buildNodeKey,\s*resolveBinaryChoiceInventory,/s
+  );
+  assert.match(
+    runtimeSource,
+    /describeComposerReactionSolvePlan\(plan\)/
+  );
 });
 
 test("W and Z bosons are not treated as polarity-toggling templates", () => {
