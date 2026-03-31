@@ -50,6 +50,16 @@ function haveOppositeCorePolarities(leftEntry = null, rightEntry = null) {
   );
 }
 
+function getProductPhotonChildByPolarity(productEntry = null, polarity = "") {
+  const normalizedPolarity = String(polarity ?? "").trim().toLowerCase();
+  const childNodes = Array.isArray(productEntry?.rootNode?.children) ? productEntry.rootNode.children : [];
+  return (
+    childNodes.find(
+      (childNode) => String(childNode?.polarity ?? "").trim().toLowerCase() === normalizedPolarity
+    ) ?? null
+  );
+}
+
 function scoreAssociatePhotonCandidate(candidate = null) {
   if (!candidate) {
     return Number.NEGATIVE_INFINITY;
@@ -93,6 +103,11 @@ export function createAssociatePhotonCandidate(options = {}) {
     return null;
   }
   if (!inventoriesEqual(addInventories(leftSpec.inventory, rightSpec.inventory), productSpec.inventory)) {
+    return null;
+  }
+  const proTargetNode = getProductPhotonChildByPolarity(productEntry, "pro");
+  const antiTargetNode = getProductPhotonChildByPolarity(productEntry, "anti");
+  if (!proTargetNode?.id || !antiTargetNode?.id) {
     return null;
   }
 
@@ -142,7 +157,7 @@ export function createAssociatePhotonCandidate(options = {}) {
       },
       {
         targetParticipant: productEntry.participant,
-        targetNode: productEntry.rootNode,
+        targetNode: proTargetNode,
         sourceEndpoint: {
           participantRef: operatorRef,
           role: "operator-output",
@@ -150,7 +165,21 @@ export function createAssociatePhotonCandidate(options = {}) {
         },
         targetEndpoint: {
           participant: productEntry.participant,
-          node: productEntry.rootNode,
+          node: proTargetNode,
+          role: "product",
+        },
+      },
+      {
+        targetParticipant: productEntry.participant,
+        targetNode: antiTargetNode,
+        sourceEndpoint: {
+          participantRef: operatorRef,
+          role: "operator-output",
+          anchorInstanceIndex: 0,
+        },
+        targetEndpoint: {
+          participant: productEntry.participant,
+          node: antiTargetNode,
           role: "product",
         },
       },

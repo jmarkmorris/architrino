@@ -148,6 +148,17 @@ test("center bosons expose a left-side input attachment frame", () => {
   );
 });
 
+test("mapped noether-core tiles keep the mapped styling even when their anchors are disabled", () => {
+  const cssSource = readFileSync(
+    new URL("../style.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    cssSource,
+    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile\.is-mapped:disabled\s*\{[\s\S]*?background:\s*color-mix\(in srgb,\s*rgba\(24,\s*92,\s*64,\s*0\.32\)\s*18%,\s*rgba\(12,\s*16,\s*30,\s*0\.94\)\);/
+  );
+});
+
 test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

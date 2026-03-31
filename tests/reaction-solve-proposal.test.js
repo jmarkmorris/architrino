@@ -268,17 +268,19 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
     templateId: "associate",
     operatorLaneIndex: 1,
   });
-  assert.equal(plan.selectedMappings.length, 3);
+  assert.equal(plan.selectedMappings.length, 4);
   assert.equal(describeComposerReactionSolvePlan(plan), "1 associated product");
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
       mapping.sourceEndpoint?.role ?? null,
       mapping.targetEndpoint?.role ?? null,
+      mapping.targetNode?.polarity ?? null,
     ]),
     [
-      ["reactant", "operator-input"],
-      ["reactant", "operator-input"],
-      ["operator-output", "product"],
+      ["reactant", "operator-input", null],
+      ["reactant", "operator-input", null],
+      ["operator-output", "product", "pro"],
+      ["operator-output", "product", "anti"],
     ]
   );
   assert.equal(plan.unresolvedReactants.length, 0);

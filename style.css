@@ -2980,6 +2980,11 @@ body {
   background: rgba(28, 34, 48, 0.8);
 }
 
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-mapped:disabled {
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
+  background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
+}
+
 .composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-tree {
   padding-block: 0;
 }
