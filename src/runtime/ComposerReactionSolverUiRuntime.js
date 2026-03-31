@@ -905,8 +905,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createSideSlotHeader,
     createOperatorParticipantCard,
     renderParticipantCard,
-    syncOperatorFan,
   } = participantRenderRuntime);
+  if (typeof participantRenderRuntime.syncOperatorFan === "function") {
+    syncOperatorFan = participantRenderRuntime.syncOperatorFan;
+  }
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;

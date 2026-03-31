@@ -71,6 +71,17 @@ test("center-column Noether core title click toggles polarity directly", () => {
   );
 });
 
+test("operator fan sync remains optional in the participant render runtime", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /if \(typeof participantRenderRuntime\.syncOperatorFan === "function"\) \{\s*syncOperatorFan = participantRenderRuntime\.syncOperatorFan;\s*\}/
+  );
+});
+
 test("reaction solver no longer exposes a canvas right-click root menu", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
