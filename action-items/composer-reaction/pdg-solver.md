@@ -109,7 +109,9 @@ Important current limits:
 - composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
 - center bosons currently map directly to their products as conservative source-side entries;
 - boson decay and broader weak-boson-mediated construction are not implemented yet;
-- the planner still does not model dissociation explicitly as a first-class solve step;
+- the solver does not yet evaluate plans that introduce a new boson as an intermediate participant;
+- the planner can now mark a composite as dissociated in a selected plan and can insert explicit `Dissociate` operators for `Noether core` inputs that feed `Associate` solves;
+- broader `Dissociate`-driven charge routing is still not implemented beyond those current `Associate` input paths;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;
 - there is no dedicated proposal-review app or reaction-flow export path yet.
@@ -150,11 +152,13 @@ Row placement must continue to use the explicit shared surface-grid model. Do no
 
 The current product direction is narrower than the old note implied.
 
-The major missing feature is dissociate-then-associate planning, but only through the dissociated-composite model the reaction app already uses.
+The major missing feature is broader dissociate-driven charge routing and dissociate-then-associate planning beyond the currently implemented `Associate` input wrapping, but only through the dissociated-composite model the reaction app already uses.
 
 The required behavior is narrower and more concrete than "only use internal rows when the composite was already manually marked dissociated."
 
 The solver must still be able to dissociate a composite as part of a valid solve when that is what the reaction requires. A key current example is `Higgs Cluster -> Photon + Photon`: the solver must auto-dissociate the composite Higgs in order to route its internal Noether-core rows through two `Associate` operators.
+
+The next boson-related target is different from simple direct boson mapping. The solver should eventually be able to evaluate plans that introduce a boson as an intermediate participant, but the intended path is usually narrower than generic boson synthesis. In the expected pattern, the solver first uses `Dissociate` on a `Noether core`, then routes the resulting personality charges onward into one or more destinations such as a boson product or an `Associate` operator input.
 
 So the intended rule is:
 
@@ -162,6 +166,7 @@ So the intended rule is:
 - solver-created internal-row mappings may still auto-dissociate a composite when the selected plan requires it;
 - when feeding into a composite product such as `Proton` or `Neutron`, the solver should use `Associate` unless it is directly carrying the same composite from reactant to product;
 - direct mapping into child rows of a composite product is valid only as part of that same-composite carry-through case, not as the general way to build the composite;
+- future boson-construction work should prefer explicit `Dissociate`-driven charge routing from `Noether core` sources over ad hoc boson-specific shortcuts;
 - future planner work should represent that auto-dissociation explicitly as part of the chosen plan rather than treating every composite as permanently dissociated;
 - and dissociation should still not become a generic free-floating planner operation that duplicates the current UI grammar.
 
@@ -174,8 +179,8 @@ The next work should stay phase-by-phase and test-backed.
 Recommended order:
 
 1. take any newly reported solve bug first and add a targeted test for it;
-2. make dissociate-then-associate planning explicit in the solve model without breaking required auto-dissociation cases such as `Higgs Cluster -> Photon + Photon`;
-3. keep center bosons on the current direct-mapping path and defer explicit boson-decay planning until it is actually needed;
+2. extend the new explicit `Dissociate` plan step from `Associate` input wrapping into broader charge-routing plans from `Noether core` sources;
+3. only after that, evaluate plans that introduce a boson as an intermediate participant through those dissociated charge routes;
 4. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
@@ -187,7 +192,8 @@ Good near-term additions:
 - explicit plan-level representation of composite dissociation when a chosen solve needs composite internals, while preserving manual dissociated-composite state and current auto-dissociation behavior;
 - better handling of leftover fragments and residue reporting;
 - direct center-boson mapping coverage for the current supported product cases should remain stable;
-- and explicit boson-decay planning should stay out of scope until the user asks for it.
+- explicit `Dissociate`-driven charge-routing plans from `Noether core` sources beyond the currently implemented `Associate` input wrapping;
+- and boson-introduction planning built on top of those dissociated charge routes rather than on special-case direct decay logic.
 
 ## PDG-Specific Work That Still Does Not Exist
 
