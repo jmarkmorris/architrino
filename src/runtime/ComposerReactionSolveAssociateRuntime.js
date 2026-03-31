@@ -69,7 +69,10 @@ function isCompositeAssociateProduct(entry = null) {
   if (isPhotonProduct(entry)) {
     return false;
   }
-  return Array.isArray(entry.rootNode.children) && entry.rootNode.children.filter(Boolean).length > 0;
+  return (
+    Array.isArray(entry.rootNode.children) &&
+    entry.rootNode.children.some((childNode) => childNode?.id && childNode?.templateId)
+  );
 }
 
 function haveOppositeCorePolarities(leftEntry = null, rightEntry = null) {

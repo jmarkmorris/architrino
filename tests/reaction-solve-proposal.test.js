@@ -56,6 +56,7 @@ function buildSolveState(participants) {
   return buildComposerReactionSolveState({
     participants,
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    isCenterAssemblyParticipant: (participant) => participant?.surfaceColumn === "center-assembly",
   });
 }
 
@@ -596,4 +597,80 @@ test("solve plan leaves unsupported product matches unresolved", () => {
   assert.equal(plan.selectedMappings.length, 0);
   assert.equal(plan.unresolvedReactants.length, 1);
   assert.equal(plan.unresolvedProducts.length, 1);
+});
+
+test("solve plan can route a center W- boson into an electron product", () => {
+  const centerWBoson = createParticipant({
+    id: "center_w_minus",
+    side: "reactant",
+    templateId: "w_minus_boson",
+    label: "W- Boson",
+  });
+  centerWBoson.surfaceColumn = "center-assembly";
+  const productElectron = createParticipant({
+    id: "product_electron",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([centerWBoson, productElectron]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 1);
+  assert.equal(plan.selectedCandidates.length, 1);
+  assert.equal(plan.selectedCandidates[0]?.type, "center-root-direct");
+  assert.equal(plan.selectedMappings.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceParticipant.templateId,
+      mapping.targetParticipant.templateId,
+      mapping.sourceRole,
+      mapping.targetRole,
+    ]),
+    [["w_minus_boson", "electron", "reactant", "product"]]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan can route a center Z boson into a neutrino product", () => {
+  const centerZBoson = createParticipant({
+    id: "center_z",
+    side: "reactant",
+    templateId: "z_boson",
+    label: "Z Boson",
+  });
+  centerZBoson.surfaceColumn = "center-assembly";
+  const productNeutrino = createParticipant({
+    id: "product_neutrino",
+    side: "product",
+    templateId: "neutrino",
+    polarity: "pro",
+    label: "Neutrino",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([centerZBoson, productNeutrino]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 1);
+  assert.equal(plan.selectedCandidates.length, 1);
+  assert.equal(plan.selectedCandidates[0]?.type, "center-root-direct");
+  assert.equal(plan.selectedMappings.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceParticipant.templateId,
+      mapping.targetParticipant.templateId,
+    ]),
+    [["z_boson", "neutrino"]]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
 });

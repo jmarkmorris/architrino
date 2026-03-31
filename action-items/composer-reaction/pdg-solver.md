@@ -57,7 +57,7 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
 - `ComposerReactionSolveStateRuntime`
   - separates reactants, products, operators, and center assemblies;
   - allows existing center-lane operators during solve;
-  - blocks solve when center bosons are present.
+  - now treats center bosons as supported source-side participants instead of immediate blockers.
 - `ComposerReactionSolveProposalRuntime`
   - builds the current solve plan over explicit candidate families;
   - now uses dedicated candidate selection instead of the older family-by-family greedy pick order;
@@ -87,6 +87,7 @@ The present solver already supports:
 - `Associate`-based composite reassembly from mixed fragment and standalone inputs such as `Neutron + Up Quark -> Proton`;
 - `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
 - `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
+- center `W-`, `W+`, and `Z` assemblies as supported solve sources for conservative standalone products such as electron and neutrino roots;
 - candidate selection that prefers stronger whole-product solutions over weaker fragment-plus-partial residue;
 - repeated `Solve` from a clean auto-solve baseline without duplicating solve-generated operators;
 - automatic reactant composite dissociation marking when internal rows are mapped;
@@ -106,7 +107,7 @@ Important current limits:
 
 - the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
 - composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
-- center bosons are manual-only and still block solve instead of participating in planning;
+- center bosons now participate as supported source-side entries, but explicit weak-boson-mediated construction is still narrow;
 - the planner still does not model dissociation explicitly as a first-class solve step;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;

@@ -60,6 +60,23 @@ function scoreDirectRootCandidate(candidate = null) {
   return score;
 }
 
+function scoreCenterRootCandidate(candidate = null) {
+  if (!candidate) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  let score = 2400;
+  if (candidate.evaluation?.provenanceMode === "direct") {
+    score += 25;
+  }
+  if (
+    normalizeText(candidate.evaluation?.sourceSpec?.kind) ===
+    normalizeText(candidate.evaluation?.targetSpec?.kind)
+  ) {
+    score += 10;
+  }
+  return score;
+}
+
 function scoreCompositeCarryThroughCandidate(candidate = null) {
   if (!candidate) {
     return Number.NEGATIVE_INFINITY;
@@ -204,6 +221,69 @@ function createCompositeCarryThroughCandidate(
     pairScoreTotal: childMatchPlan.pairScoreTotal,
   };
   candidate.score = scoreCompositeCarryThroughCandidate(candidate);
+  return candidate;
+}
+
+function entryHasTopLevelConstituentChildren(entry = null) {
+  const rootNode = entry?.rootNode ?? null;
+  const topLevelChildren = Array.isArray(rootNode?.children)
+    ? rootNode.children.filter((childNode) => childNode && childNode.templateId)
+    : [];
+  return topLevelChildren.length > 0;
+}
+
+function createCenterRootCandidate(
+  sourceEntry,
+  productEntry,
+  resolveBinaryChoiceInventory = null
+) {
+  const sourceParticipant = sourceEntry?.participant ?? null;
+  const sourceNode = sourceEntry?.rootNode ?? null;
+  const targetParticipant = productEntry?.participant ?? null;
+  const targetNode = productEntry?.rootNode ?? null;
+  if (
+    !sourceEntry?.isCenterAssembly ||
+    !sourceParticipant ||
+    !sourceNode ||
+    !targetParticipant ||
+    !targetNode ||
+    entryHasTopLevelConstituentChildren(productEntry)
+  ) {
+    return null;
+  }
+  const evaluation = evaluateComposerReactionMappingCandidate({
+    sourceParticipant,
+    sourceNode,
+    targetParticipant,
+    targetNode,
+    resolveBinaryChoiceInventory,
+  });
+  if (!evaluation.allowed) {
+    return null;
+  }
+  const candidate = {
+    type: "center-root-direct",
+    sourceParticipant,
+    sourceNode,
+    targetParticipant,
+    targetNode,
+    productResolutionKind: "direct",
+    mappings: [
+      {
+        sourceParticipant,
+        sourceNode,
+        targetParticipant,
+        targetNode,
+        sourceKey: sourceEntry.rootNodeKey,
+        targetKey: productEntry.rootNodeKey,
+        sourceRole: "reactant",
+        targetRole: "product",
+        evaluation,
+      },
+    ],
+    evaluation,
+  };
+  candidate.score = scoreCenterRootCandidate(candidate);
   return candidate;
 }
 
@@ -594,6 +674,7 @@ export function describeComposerReactionSolvePlan(plan = {}) {
 export function buildComposerReactionSolvePlan(options = {}) {
   const solveState = options.solveState ?? {};
   const reactants = Array.isArray(solveState.reactants) ? solveState.reactants : [];
+  const centerAssemblies = Array.isArray(solveState.centerAssemblies) ? solveState.centerAssemblies : [];
   const products = Array.isArray(solveState.products) ? solveState.products : [];
   const resolveBinaryChoiceInventory =
     typeof options.resolveBinaryChoiceInventory === "function"
@@ -606,14 +687,15 @@ export function buildComposerReactionSolvePlan(options = {}) {
   const fragmentCandidates = [];
   const associateCandidates = [];
   const productChildCandidates = [];
-  const associateSourceEntries = collectAssociateSourceEntries(reactants, buildNodeKey);
-  const compositeChildSourceEntries = collectCompositeChildSourceEntries(reactants, buildNodeKey);
-  const standaloneRootSourceEntries = collectStandaloneRootSourceEntries(reactants);
+  const sourceEntries = [...reactants, ...centerAssemblies];
+  const associateSourceEntries = collectAssociateSourceEntries(sourceEntries, buildNodeKey);
+  const compositeChildSourceEntries = collectCompositeChildSourceEntries(sourceEntries, buildNodeKey);
+  const standaloneRootSourceEntries = collectStandaloneRootSourceEntries(sourceEntries);
   const associateCompositeSourceEntries = [
     ...standaloneRootSourceEntries,
     ...compositeChildSourceEntries,
   ];
-  reactants.forEach((reactantEntry) => {
+  sourceEntries.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const compositeCandidate = createCompositeCarryThroughCandidate(
         reactantEntry,
@@ -632,6 +714,15 @@ export function buildComposerReactionSolvePlan(options = {}) {
       );
       if (directCandidate) {
         candidates.push(directCandidate);
+        return;
+      }
+      const centerCandidate = createCenterRootCandidate(
+        reactantEntry,
+        productEntry,
+        resolveBinaryChoiceInventory
+      );
+      if (centerCandidate) {
+        candidates.push(centerCandidate);
         return;
       }
     });
