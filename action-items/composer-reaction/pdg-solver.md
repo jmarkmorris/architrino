@@ -107,7 +107,8 @@ Important current limits:
 
 - the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
 - composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
-- center bosons now participate as supported source-side entries, but explicit weak-boson-mediated construction is still narrow;
+- center bosons currently map directly to their products as conservative source-side entries;
+- boson decay and broader weak-boson-mediated construction are not implemented yet;
 - the planner still does not model dissociation explicitly as a first-class solve step;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;
@@ -174,7 +175,7 @@ Recommended order:
 
 1. take any newly reported solve bug first and add a targeted test for it;
 2. make dissociate-then-associate planning explicit in the solve model without breaking required auto-dissociation cases such as `Higgs Cluster -> Photon + Photon`;
-3. add weak-boson and center-column planning so `W-`, `W+`, and `Z` bosons can participate in solve instead of hard-blocking it;
+3. keep center bosons on the current direct-mapping path and defer explicit boson-decay planning until it is actually needed;
 4. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
@@ -185,8 +186,8 @@ Good near-term additions:
 
 - explicit plan-level representation of composite dissociation when a chosen solve needs composite internals, while preserving manual dissociated-composite state and current auto-dissociation behavior;
 - better handling of leftover fragments and residue reporting;
-- explicit weak-boson-mediated construction for the cases the user actually wants to support;
-- and center-column solve support for existing `W-`, `W+`, and `Z` boson assemblies.
+- direct center-boson mapping coverage for the current supported product cases should remain stable;
+- and explicit boson-decay planning should stay out of scope until the user asks for it.
 
 ## PDG-Specific Work That Still Does Not Exist
 
