@@ -1424,28 +1424,17 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
-    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
-      participant,
-      childStructures,
-      (childStructure, index) => ({
-        splitGroupId,
-        splitOriginTemplateId: "higgs_cluster",
-        splitOriginRole: inferParticipantPolarityFromStructure(childStructure),
-        splitOriginIndex: index,
-      })
-    );
-    if (!replacementParticipants.length) {
+    if (participant.isDissociatedShell) {
+      setStatus(
+        `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster is already marked dissociated.`
+      );
       return false;
     }
-
-    state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    removeMappingsForParticipant(participantId);
+    participant.isDissociatedShell = true;
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster dissociated into four Noether core assemblies.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster marked dissociated.`
     );
     return true;
   }
@@ -1469,33 +1458,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const participantIndex = state.participants.findIndex(
       (entry) => String(entry?.id ?? "") === participantId
     );
-    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
-      participant,
-      childStructures,
-      (_childStructure, index) => ({
-        splitGroupId,
-        splitOriginTemplateId: participant.templateId,
-        splitOriginIndex: index,
-      })
-    );
-    if (!replacementParticipants.length) {
+    if (participantIndex < 0) {
       return false;
     }
-
-    state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    removeMappingsForParticipant(participantId);
+    if (participant.isDissociatedShell) {
+      setStatus(
+        `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} is already marked dissociated.`
+      );
+      return false;
+    }
+    participant.isDissociatedShell = true;
     closeMenu();
     render();
-    const dissociationSummary =
-      participant.templateId === "photon"
-        ? "dissociated into pro and anti Noether core assemblies."
-        : participant.templateId === "higgs_cluster"
-          ? "dissociated into four Noether core assemblies."
-          : "dissociated into constituent quarks.";
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${dissociationSummary}`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} marked dissociated.`
     );
     return true;
   }

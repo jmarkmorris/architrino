@@ -345,6 +345,22 @@ test("composite title rail side anchoring survives the nested participant-conten
   );
 });
 
+test("dissociated composite shells keep the title tile and render it with a dotted border", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /if \(participant\?\.\isDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-shell[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
+  );
+});
+
 test("composite collector uses the shared centered connector inset", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

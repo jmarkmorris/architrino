@@ -229,7 +229,7 @@ test("solver surface rows are shared across all five column groups and capped to
   );
 });
 
-test("dissociation preserves the original participant row block instead of restacking at the top", () => {
+test("split row helper preserves the original participant row block instead of restacking at the top", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -246,9 +246,32 @@ test("dissociation preserves the original participant row block instead of resta
     runtimeSource,
     /surfaceRowIndex:\s*normalizeSurfaceRowStartIndex\(baseRowIndex \+ index,\s*1,\s*baseRowIndex \+ index\)/
   );
+});
+
+test("composite right-click dissociation marks the existing shell instead of replacing it with split participants", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
   assert.match(
     runtimeSource,
-    /const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures,/
+    /function splitHiggsParticipantById\(participantId\)/
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.isDissociatedShell = true;/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /state\.participants\.splice\(participantIndex,\s*1,\s*\.\.\.replacementParticipants\);/
+  );
+  assert.match(
+    runtimeSource,
+    /Higgs cluster marked dissociated\./
+  );
+  assert.match(
+    runtimeSource,
+    /`\$\{participant\.side === "reactant" \? "Reactant" : "Product"\} \$\{participant\.label\} marked dissociated\.`/
   );
 });
 
