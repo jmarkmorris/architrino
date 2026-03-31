@@ -21,12 +21,12 @@ const displayLabelsBySpecies = Object.freeze({
   electron_neutrino: "Neutrino",
   muon_neutrino: "Muon Neutrino",
   tau_neutrino: "Tau Neutrino",
-  up_quark: "Up",
-  charm_quark: "Charm",
-  top_quark: "Top",
-  down_quark: "Down",
-  strange_quark: "Strange",
-  bottom_quark: "Bottom",
+  up_quark: "Up Quark",
+  charm_quark: "Charm Quark",
+  top_quark: "Top Quark",
+  down_quark: "Down Quark",
+  strange_quark: "Strange Quark",
+  bottom_quark: "Bottom Quark",
 });
 
 function humanizeStructureId(value = "") {
