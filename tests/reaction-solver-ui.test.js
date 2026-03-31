@@ -398,3 +398,57 @@ test("only drawn paths remove existing reaction mappings on click", () => {
     /path\.addEventListener\("click",\s*\(\) => \{\s*if \(!removeMappingById\(mapping\.id\)\) \{\s*return;\s*\}\s*render\(\);\s*setStatus\("Removed reaction mapping\."\);/
   );
 });
+
+test("removing a reactant or product clears the reaction mappings", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function clearReactionMappings\(\) \{/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.mappings = \[];/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\.side === "reactant" \|\| participant\.side === "product"\) \{\s*clearReactionMappings\(\);/
+  );
+});
+
+test("route endpoints use fixed left and right tangents for solver connectors", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function getFixedAnchorAttachmentPoint\(element,\s*bounds,\s*edgeInset = solverRouteAnchorGapPx\) \{/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(anchorRole === "reactant" \|\| anchorRole === "operator-output"\) \{\s*return \{\s*x: center\.x \+ radius,\s*y: center\.y,\s*\};/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(anchorRole === "product" \|\| anchorRole === "operator-input"\) \{\s*return \{\s*x: center\.x - radius,\s*y: center\.y,\s*\};/
+  );
+  assert.match(
+    runtimeSource,
+    /const sourcePoint =\s*getFixedAnchorAttachmentPoint\(sourceElement,\s*bounds,\s*edgeInset\) \?\?\s*getElementCenterWithinSurface\(sourceElement,\s*bounds\);/
+  );
+  assert.match(
+    runtimeSource,
+    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /startX: sourcePoint\.x \+ unitX \* sourceRadius/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /endX: targetPoint\.x - unitX \* targetRadius/
+  );
+});

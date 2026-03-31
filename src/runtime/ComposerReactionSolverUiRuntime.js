@@ -1248,6 +1248,21 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return beforeCount !== state.mappings.length;
   }
 
+  function clearReactionMappings() {
+    if (!state.mappings.length && !state.hoveredMappingIds.length) {
+      if (!state.pendingSourceKey) {
+        return false;
+      }
+    }
+    state.mappings = [];
+    state.hoveredMappingIds = [];
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    clearAllRecentRouteState();
+    return true;
+  }
+
   function removeParticipantById(participantId) {
     const participant = findParticipantById(participantId);
     if (!participant) {
@@ -1256,7 +1271,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants = state.participants.filter(
       (entry) => String(entry?.id ?? "") !== participantId
     );
-    removeMappingsForParticipant(participantId);
+    if (participant.side === "reactant" || participant.side === "product") {
+      clearReactionMappings();
+    } else {
+      removeMappingsForParticipant(participantId);
+    }
     closeMenu();
     render();
     setStatus(
@@ -3087,14 +3106,40 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Math.max(0, Math.min(rect.width, rect.height) / 2);
   }
 
+  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = solverRouteAnchorGapPx) {
+    if (!(element instanceof Element)) {
+      return null;
+    }
+    const anchorRole = String(element.getAttribute("data-anchor-side") ?? "").trim();
+    const center = getElementCenterWithinSurface(element, bounds);
+    const radius = Math.max(0, getAnchorRadiusFromBounds(element) - edgeInset);
+    if (anchorRole === "reactant" || anchorRole === "operator-output") {
+      return {
+        x: center.x + radius,
+        y: center.y,
+      };
+    }
+    if (anchorRole === "product" || anchorRole === "operator-input") {
+      return {
+        x: center.x - radius,
+        y: center.y,
+      };
+    }
+    return null;
+  }
+
   function getTrimmedRouteEndpoints(
     sourceElement,
     targetElement,
     bounds,
     edgeInset = solverRouteAnchorGapPx
   ) {
-    const sourcePoint = getElementCenterWithinSurface(sourceElement, bounds);
-    const targetPoint = getElementCenterWithinSurface(targetElement, bounds);
+    const sourcePoint =
+      getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
+      getElementCenterWithinSurface(sourceElement, bounds);
+    const targetPoint =
+      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset) ??
+      getElementCenterWithinSurface(targetElement, bounds);
     const deltaX = targetPoint.x - sourcePoint.x;
     const deltaY = targetPoint.y - sourcePoint.y;
     const distance = Math.hypot(deltaX, deltaY);
@@ -3106,26 +3151,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
         endY: targetPoint.y,
       };
     }
-    const unitX = deltaX / distance;
-    const unitY = deltaY / distance;
-    const sourceRadius = Math.max(0, getAnchorRadiusFromBounds(sourceElement) - edgeInset);
-    const targetRadius = Math.max(0, getAnchorRadiusFromBounds(targetElement) - edgeInset);
-    const totalInset = sourceRadius + targetRadius;
-    if (totalInset >= distance) {
-      const midpointX = (sourcePoint.x + targetPoint.x) / 2;
-      const midpointY = (sourcePoint.y + targetPoint.y) / 2;
-      return {
-        startX: midpointX,
-        startY: midpointY,
-        endX: midpointX,
-        endY: midpointY,
-      };
-    }
     return {
-      startX: sourcePoint.x + unitX * sourceRadius,
-      startY: sourcePoint.y + unitY * sourceRadius,
-      endX: targetPoint.x - unitX * targetRadius,
-      endY: targetPoint.y - unitY * targetRadius,
+      startX: sourcePoint.x,
+      startY: sourcePoint.y,
+      endX: targetPoint.x,
+      endY: targetPoint.y,
     };
   }
 

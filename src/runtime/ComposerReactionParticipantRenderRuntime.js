@@ -80,8 +80,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const getAllowedBinaryChoiceIds = options.getAllowedBinaryChoiceIds ?? (() => []);
   const getAnchorAvailability = options.getAnchorAvailability ?? (() => ({ disabled: false, reason: "" }));
   const getBinaryPersonalitySelection = options.getBinaryPersonalitySelection ?? (() => null);
-  const getOperatorGraphicOffsets =
-    options.getOperatorGraphicOffsets ?? (() => []);
   const getDefaultParticipantBaseLabel = options.getDefaultParticipantBaseLabel ?? ((_, label) => label || "?");
   const getIsDraggingParticipant = options.getIsDraggingParticipant ?? (() => false);
   const getParticipantCardLabelLines = options.getParticipantCardLabelLines ?? ((label) => [label]);
@@ -114,23 +112,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const startSideParticipantDrag = options.startSideParticipantDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
-
-  function createSvgElement(name) {
-    return document.createElementNS("http://www.w3.org/2000/svg", name);
-  }
-
-  function syncOperatorFan(card, participant) {
-    if (!(card instanceof HTMLElement) || !participant) {
-      return;
-    }
-    Array.from(card.querySelectorAll(".composer-reaction-solver-operator-fan")).forEach((fan) =>
-      fan.remove()
-    );
-    if (participant.templateId !== "dissociate") {
-      return;
-    }
-    return;
-  }
 
   function createBranchAnchorFrame({
     participant,
@@ -925,7 +906,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         : null;
       card.append(inputAnchor, visual, outputAnchor);
     }
-    syncOperatorFan(card, participant);
     card.addEventListener("pointerdown", (event) => startOperatorDrag(event, participant.id));
     return card;
   }
@@ -934,6 +914,5 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     createSideSlotHeader,
     createOperatorParticipantCard,
     renderParticipantCard,
-    syncOperatorFan,
   };
 }
