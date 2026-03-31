@@ -85,31 +85,60 @@ function resolveConnectedRowIndex(mapping = null, operatorRef = "", entryMap = n
   return null;
 }
 
+function getRowCenter(rowIndexes = []) {
+  const resolvedRows = rowIndexes.filter((rowIndex) => Number.isFinite(rowIndex));
+  if (!resolvedRows.length) {
+    return null;
+  }
+  return resolvedRows.reduce((sum, rowIndex) => sum + rowIndex, 0) / resolvedRows.length;
+}
+
 function buildOperatorPlacementRequest(addition = null, plan = {}, entryMap = new Map()) {
   const operatorRef = String(addition?.ref ?? "");
   if (!operatorRef) {
     return null;
   }
-  const connectedRowIndexes = (Array.isArray(plan?.selectedMappings) ? plan.selectedMappings : [])
-    .map((mapping) => resolveConnectedRowIndex(mapping, operatorRef, entryMap))
-    .filter((rowIndex) => Number.isFinite(rowIndex));
+  const sourceRowIndexes = [];
+  const targetRowIndexes = [];
+  (Array.isArray(plan?.selectedMappings) ? plan.selectedMappings : []).forEach((mapping) => {
+    const resolvedRowIndex = resolveConnectedRowIndex(mapping, operatorRef, entryMap);
+    if (!Number.isFinite(resolvedRowIndex)) {
+      return;
+    }
+    if (String(mapping?.targetEndpoint?.participantRef ?? "") === operatorRef) {
+      sourceRowIndexes.push(resolvedRowIndex);
+      return;
+    }
+    if (String(mapping?.sourceEndpoint?.participantRef ?? "") === operatorRef) {
+      targetRowIndexes.push(resolvedRowIndex);
+    }
+  });
+  const connectedRowIndexes = [...sourceRowIndexes, ...targetRowIndexes];
   if (!connectedRowIndexes.length) {
     return {
       ...addition,
       operatorSlotIndex: 0,
       connectedRowIndexes: [],
+      sourceRowIndexes: [],
+      targetRowIndexes: [],
       rowSpan: 0,
       targetRowIndex: 0,
     };
   }
   const minRowIndex = Math.min(...connectedRowIndexes);
   const maxRowIndex = Math.max(...connectedRowIndexes);
-  const targetRowIndex = normalizeSurfaceRowIndex(
-    connectedRowIndexes.reduce((sum, rowIndex) => sum + rowIndex, 0) / connectedRowIndexes.length
-  );
+  const sourceCenter = getRowCenter(sourceRowIndexes);
+  const targetCenter = getRowCenter(targetRowIndexes);
+  const preferredCenter =
+    String(addition?.templateId ?? "") === "associate" && Number.isFinite(targetCenter)
+      ? targetCenter
+      : targetCenter ?? sourceCenter ?? getRowCenter(connectedRowIndexes) ?? 0;
+  const targetRowIndex = normalizeSurfaceRowIndex(preferredCenter);
   return {
     ...addition,
     connectedRowIndexes,
+    sourceRowIndexes,
+    targetRowIndexes,
     rowSpan: maxRowIndex - minRowIndex,
     targetRowIndex,
   };
