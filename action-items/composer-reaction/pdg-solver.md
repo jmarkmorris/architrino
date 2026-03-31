@@ -108,6 +108,12 @@ The current solver is still intentionally narrow.
 Important current limits:
 
 - the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
+- `Associate` is not a generic many-input / many-output transform;
+- `Associate` is specifically the gather-and-assemble operator that consumes multiple source-side parts and produces exactly one assembled output, whether that output is a single-row assembly or a composite assembly;
+- the solver must not use `Associate` as a generic weak-reaction junction, generic handoff hub, or arbitrary transform shim just to make a channel solve;
+- the operator set is fixed by the reaction app and must not be widened ad hoc by solver work;
+- the current fixed solver operator set is `Associate` and `Dissociate`;
+- center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported source-side participants, not solver-defined operators;
 - composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
 - center bosons currently map directly to their products as conservative source-side entries when the user has already placed them on the canvas;
 - boson decay and broader weak-boson-mediated construction are not implemented yet;
@@ -167,6 +173,10 @@ The next boson-related target is different from simple direct boson mapping. The
 The preferred pattern is:
 
 - the planner reasons directly in the primitive language of `Dissociate`, `Noether core`, `Free Architrinos`, `Associate`, direct mappings, and dissociated-composite access;
+- within that primitive language, `Associate` keeps its narrow assembly semantics:
+  - many inputs may be gathered into one output assembly;
+  - that one output may be a standalone assembly or a composite assembly;
+  - but `Associate` must not be treated as a generic many-output routing or transform node;
 - if a selected primitive plan contains an exact recognizable subgraph equivalent to `W-`, `W+`, or `Z`, that subgraph may later be collapsed into a boson-shaped authored or rendered convenience object;
 - authored bosons that the user already placed on the canvas remain valid conservative source-side participants;
 - but automatic solving should not initially widen the search space by freely choosing between primitive charge routing and synthetic boson insertion at every branch.
