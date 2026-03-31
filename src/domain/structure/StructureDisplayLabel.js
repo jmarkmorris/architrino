@@ -7,7 +7,6 @@ import { STRUCTURE_KINDS } from "./StructureSchema.js";
 const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
   inner: "Uni Binary",
   inner_middle: "Bi Binary",
-  inner_middle_outer: "Tri Binary",
 });
 
 const displayLabelsBySpecies = Object.freeze({
@@ -42,6 +41,11 @@ function humanizeStructureId(value = "") {
     .join(" ");
 }
 
+function formatNoetherCoreDisplayLabel(structureRoot = null) {
+  const polarity = String(structureRoot?.traits?.polarity ?? "").trim().toLowerCase();
+  return polarity === "anti" ? "Anti Noether Core" : "Pro Noether Core";
+}
+
 export function resolveStructureDisplayLabel(structureRoot = null) {
   if (!structureRoot) {
     return "";
@@ -49,6 +53,9 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
 
   if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_CORE) {
     const binaryPresenceKey = getNoetherCoreBinaryPresenceKey(structureRoot);
+    if (binaryPresenceKey === "inner_middle_outer") {
+      return formatNoetherCoreDisplayLabel(structureRoot);
+    }
     if (noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
       return noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey];
     }

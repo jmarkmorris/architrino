@@ -47,7 +47,7 @@ export const composerReactionAddPickerColumns = Object.freeze([
       }),
       createPickerEntry({
         id: "tri_binary",
-        label: "Tri Binary",
+        label: "Pro Noether Core",
         templateId: "noether_core",
         occupiedCount: 3,
       }),

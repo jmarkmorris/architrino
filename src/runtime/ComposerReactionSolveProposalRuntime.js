@@ -1,4 +1,5 @@
 import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionStructureMappingRuntime.js";
+import { createAssociatePhotonCandidate } from "./ComposerReactionSolveAssociateRuntime.js";
 import { buildBestCompositeChildMatchPlan } from "./ComposerReactionSolveMatchRuntime.js";
 
 function normalizeText(value = "") {
@@ -233,6 +234,7 @@ export function describeComposerReactionSolvePlan(plan = {}) {
   const directProductCount = Number(plan.directProductCount ?? 0);
   const compositeProductCount = Number(plan.compositeProductCount ?? 0);
   const partialCompositeProductCount = Number(plan.partialCompositeProductCount ?? 0);
+  const associatedProductCount = Number(plan.associatedProductCount ?? 0);
   const parts = [];
   if (directProductCount > 0) {
     parts.push(formatCount(directProductCount, "direct product"));
@@ -242,6 +244,9 @@ export function describeComposerReactionSolvePlan(plan = {}) {
   }
   if (partialCompositeProductCount > 0) {
     parts.push(formatCount(partialCompositeProductCount, "partial composite product"));
+  }
+  if (associatedProductCount > 0) {
+    parts.push(formatCount(associatedProductCount, "associated product"));
   }
   if (!parts.length) {
     return "0 products";
@@ -262,6 +267,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
 
   const candidates = [];
   const partialCandidates = [];
+  const associateCandidates = [];
   reactants.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const compositeCandidate = createCompositeCarryThroughCandidate(
@@ -294,10 +300,27 @@ export function buildComposerReactionSolvePlan(options = {}) {
       }
     });
   });
+  for (let leftIndex = 0; leftIndex < reactants.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < reactants.length; rightIndex += 1) {
+      products.forEach((productEntry) => {
+        const associateCandidate = createAssociatePhotonCandidate({
+          leftReactantEntry: reactants[leftIndex],
+          rightReactantEntry: reactants[rightIndex],
+          productEntry,
+          resolveBinaryChoiceInventory,
+        });
+        if (associateCandidate) {
+          associateCandidates.push(associateCandidate);
+        }
+      });
+    }
+  }
 
   const selectedCandidates = [];
   const selectedPartialCandidates = [];
+  const selectedAssociateCandidates = [];
   const selectedMappings = [];
+  const participantAdditions = [];
   const usedReactantIds = new Set();
   const usedProductIds = new Set();
   candidates.sort(compareSolveCandidates).forEach((candidate) => {
@@ -333,12 +356,38 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedPartialCandidates.push(candidate);
     selectedMappings.push(...candidate.mappings);
   });
+  associateCandidates.sort(compareSolveCandidates).forEach((candidate) => {
+    const sourceParticipantIds = (candidate?.sourceParticipants ?? []).map((participant) =>
+      String(participant?.id ?? "")
+    );
+    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
+    if (!targetParticipantId || sourceParticipantIds.some((participantId) => !participantId)) {
+      return;
+    }
+    if (
+      sourceParticipantIds.some(
+        (participantId) =>
+          usedReactantIds.has(participantId) || partialReactantIds.has(participantId)
+      ) ||
+      usedProductIds.has(targetParticipantId) ||
+      partialProductIds.has(targetParticipantId)
+    ) {
+      return;
+    }
+    sourceParticipantIds.forEach((participantId) => usedReactantIds.add(participantId));
+    usedProductIds.add(targetParticipantId);
+    selectedAssociateCandidates.push(candidate);
+    participantAdditions.push(...(candidate.participantAdditions ?? []));
+    selectedMappings.push(...candidate.mappings);
+  });
 
   return {
     mode: "direct-v1",
     selectedCandidates,
     selectedPartialCandidates,
+    selectedAssociateCandidates,
     selectedMappings,
+    participantAdditions,
     directProductCount: selectedCandidates.filter(
       (candidate) => candidate.productResolutionKind === "direct"
     ).length,
@@ -346,6 +395,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
       (candidate) => candidate.productResolutionKind === "composite"
     ).length,
     partialCompositeProductCount: selectedPartialCandidates.length,
+    associatedProductCount: selectedAssociateCandidates.length,
     matchedReactantCount: usedReactantIds.size,
     matchedProductCount: usedProductIds.size,
     unresolvedReactants: reactants.filter(

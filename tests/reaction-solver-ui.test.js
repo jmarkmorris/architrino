@@ -122,6 +122,18 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /applyComposerReactionSolvePlan\(\{/
+  );
+  assert.match(
+    runtimeSource,
+    /function createOperatorParticipant\(templateId = "associate", operatorLaneIndex = 1\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function addOrReplaceMapping\(\s*sourceKey,\s*sourceRole,\s*targetKey,\s*targetRole,\s*\{\s*sourceAnchorInstanceIndex = null,\s*targetAnchorInstanceIndex = null,\s*\} = \{\}\s*\)/
+  );
+  assert.match(
+    runtimeSource,
     /createComposerReactionBinaryInventoryRuntime\(\{/
   );
   assert.doesNotMatch(

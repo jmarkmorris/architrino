@@ -33,6 +33,7 @@ import {
   buildComposerReactionSolvePlan,
   describeComposerReactionSolvePlan,
 } from "./ComposerReactionSolveProposalRuntime.js";
+import { applyComposerReactionSolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -1330,9 +1331,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.hoveredMappingIds = [];
     state.mappings = [];
     clearAllRecentRouteState();
-    const appliedMappingIds = plan.selectedMappings.map((mapping) =>
-      addOrReplaceMapping(mapping.sourceKey, mapping.sourceRole, mapping.targetKey, mapping.targetRole)
-    );
+    const { appliedMappingIds } = applyComposerReactionSolvePlan({
+      plan,
+      createOperatorParticipant,
+      getParticipantRootNode,
+      buildNodeKey,
+      addOrReplaceMapping,
+    });
     markMappingsRecent(appliedMappingIds);
     render();
 
@@ -2355,7 +2360,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(`Center assembly ${participant.label} added to the reaction solver.`);
   }
 
-  function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+  function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
     const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "associate";
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
     const participant = createParticipantRecord({
@@ -2377,6 +2382,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       participant,
       getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
     );
+    return participant;
+  }
+
+  function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+    const participant = createOperatorParticipant(templateId, operatorLaneIndex);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     state.pendingSourceAnchorInstanceIndex = null;
