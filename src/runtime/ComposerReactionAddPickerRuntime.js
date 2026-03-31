@@ -35,13 +35,13 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "uni_binary",
-        label: "Uni Binary",
+        label: "Pro Uni Binary",
         templateId: "noether_core",
         occupiedCount: 1,
       }),
       createPickerEntry({
         id: "bi_binary",
-        label: "Bi Binary",
+        label: "Pro Bi Binary",
         templateId: "noether_core",
         occupiedCount: 2,
       }),
@@ -58,19 +58,19 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "bottom",
-        label: "Bottom",
+        label: "Pro Bottom Quark",
         templateId: "down_quark",
         occupiedCount: 1,
       }),
       createPickerEntry({
         id: "strange",
-        label: "Strange",
+        label: "Pro Strange Quark",
         templateId: "down_quark",
         occupiedCount: 2,
       }),
       createPickerEntry({
         id: "down",
-        label: "Down",
+        label: "Pro Down Quark",
         templateId: "down_quark",
         occupiedCount: 3,
       }),
@@ -81,19 +81,19 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "top",
-        label: "Top",
+        label: "Pro Top Quark",
         templateId: "up_quark",
         occupiedCount: 1,
       }),
       createPickerEntry({
         id: "charm",
-        label: "Charm",
+        label: "Pro Charm Quark",
         templateId: "up_quark",
         occupiedCount: 2,
       }),
       createPickerEntry({
         id: "up",
-        label: "Up",
+        label: "Pro Up Quark",
         templateId: "up_quark",
         occupiedCount: 3,
       }),
@@ -104,19 +104,19 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "tau",
-        label: "Tau",
+        label: "Pro Tau",
         templateId: "electron",
         occupiedCount: 1,
       }),
       createPickerEntry({
         id: "muon",
-        label: "Muon",
+        label: "Pro Muon",
         templateId: "electron",
         occupiedCount: 2,
       }),
       createPickerEntry({
         id: "electron",
-        label: "Electron",
+        label: "Pro Electron",
         templateId: "electron",
         occupiedCount: 3,
       }),
@@ -127,19 +127,19 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "tau_neutrino",
-        label: "Tau Neutrino",
+        label: "Pro Tau Neutrino",
         templateId: "neutrino",
         occupiedCount: 1,
       }),
       createPickerEntry({
         id: "muon_neutrino",
-        label: "Muon Neutrino",
+        label: "Pro Muon Neutrino",
         templateId: "neutrino",
         occupiedCount: 2,
       }),
       createPickerEntry({
         id: "neutrino",
-        label: "Neutrino",
+        label: "Pro Neutrino",
         templateId: "neutrino",
         occupiedCount: 3,
       }),
@@ -170,12 +170,12 @@ export const composerReactionAddPickerColumns = Object.freeze([
     entries: Object.freeze([
       createPickerEntry({
         id: "proton",
-        label: "Proton",
+        label: "Pro Proton",
         templateId: "proton",
       }),
       createPickerEntry({
         id: "neutron",
-        label: "Neutron",
+        label: "Pro Neutron",
         templateId: "neutron",
       }),
       createPickerEntry({

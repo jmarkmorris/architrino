@@ -29,8 +29,25 @@ test("reaction add picker uses full quark labels", () => {
 
   assert.ok(downCell);
   assert.ok(upCell);
-  assert.equal(downCell.label, "Down Quark");
-  assert.equal(upCell.label, "Up Quark");
+  assert.equal(downCell.label, "Pro Down Quark");
+  assert.equal(upCell.label, "Pro Up Quark");
+});
+
+test("reaction add picker prefixes pro labels for reduced binary cores and baryons", () => {
+  const pickerCells = getComposerReactionAddPickerCells();
+  const uniBinaryCell = pickerCells.find((cell) => cell.id === "uni_binary");
+  const biBinaryCell = pickerCells.find((cell) => cell.id === "bi_binary");
+  const protonCell = pickerCells.find((cell) => cell.id === "proton");
+  const neutronCell = pickerCells.find((cell) => cell.id === "neutron");
+
+  assert.ok(uniBinaryCell);
+  assert.ok(biBinaryCell);
+  assert.ok(protonCell);
+  assert.ok(neutronCell);
+  assert.equal(uniBinaryCell.label, "Pro Uni Binary");
+  assert.equal(biBinaryCell.label, "Pro Bi Binary");
+  assert.equal(protonCell.label, "Pro Proton");
+  assert.equal(neutronCell.label, "Pro Neutron");
 });
 
 test("full pro and anti noether cores resolve as Noether-core labels instead of Tri Binary", () => {
@@ -57,6 +74,24 @@ test("structure display labels keep full quark names", () => {
     polarity: "pro",
   }).root;
 
-  assert.equal(resolveStructureDisplayLabel(downQuark), "Down Quark");
-  assert.equal(resolveStructureDisplayLabel(upQuark), "Up Quark");
+  assert.equal(resolveStructureDisplayLabel(downQuark), "Pro Down Quark");
+  assert.equal(resolveStructureDisplayLabel(upQuark), "Pro Up Quark");
+});
+
+test("structure display labels prefix pro for baryons and reduced binary cores", () => {
+  const proton = buildReactionParticipantStructure("proton", {
+    id: "proton_pro",
+  }).root;
+  const neutron = buildReactionParticipantStructure("neutron", {
+    id: "neutron_pro",
+  }).root;
+  const uniBinaryCore = buildReactionParticipantStructure("noether_core", {
+    id: "uni_binary_pro",
+    polarity: "pro",
+    occupiedSlots: ["inner"],
+  }).root;
+
+  assert.equal(resolveStructureDisplayLabel(proton), "Pro Proton");
+  assert.equal(resolveStructureDisplayLabel(neutron), "Pro Neutron");
+  assert.equal(resolveStructureDisplayLabel(uniBinaryCore), "Pro Uni Binary");
 });

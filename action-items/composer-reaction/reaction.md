@@ -8,7 +8,8 @@ Its job is to build reactant-to-product scenarios that preserve provenance and m
 
 ## Current State
 
-- The web app already has a dedicated `Reaction Designer` scene and a first-class reaction-solver runtime.
+- The repository already has a dedicated `Reaction Designer` scene and a first-class reaction-solver runtime.
+- The current deployment is still partially embedded in the Composer-side shell, but that coupling is transitional rather than the target architecture.
 - The current manual workflow is lane-based:
   - reactants on the left;
   - products on the right;
@@ -16,7 +17,7 @@ Its job is to build reactant-to-product scenarios that preserve provenance and m
 - The current root add flow visibly supports reactants, products, polarity transforms, associate, and transmute operators.
 - The operator registry also includes dissociate handling, but the full user-facing grammar for dissociate / associate / transmute still needs to be unified and cleaned up.
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
-- Conservation and validity checks now run through shared mapping-rule runtimes instead of being scattered through UI conditionals.
+- Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering have already been extracted into dedicated runtimes with local automated tests.
 - The reaction app is real enough to do manual provenance work now, but it still has important gaps:
   - no auto solve;
@@ -72,14 +73,16 @@ These terms should mean different jobs rather than overlapping synonyms.
 
 That is why `transfer` should remain a useful document-model term even if the user-facing UI increasingly presents mapping arrows, reaction corridors, and stage editing rather than raw transfer ids.
 
-## Reaction Canvas Target Inside The Composer
+## Current Embedded Solver And Downstream Composer Target
 
-The blank reaction canvas is still the right target for final authored reaction choreography inside the normal composer, even though reaction solving and provenance bookkeeping now live in a dedicated solver mode.
+The current repository still exposes a Reaction-solving surface through the same web-app shell as Composer.
+
+That is present implementation state, not the long-term boundary.
 
 Current implemented behavior:
 
 - reactions exist as true timeline spans with labels and stage rows;
-- an active reaction can open a dedicated solver surface from the composer header;
+- an active reaction can currently open a dedicated solver surface from the composer header;
 - the solver is a structured 2D hierarchy canvas rather than a free-placement scene canvas;
 - blank-space right-click on that solver surface offers `Add Reactant`, `Add Product`, `Add Transmute`, `Clear reaction canvas`, and a disabled `Auto solve`;
 - reactants render in a left column, products render in a right column, and the mapping field lives between them;
@@ -91,16 +94,16 @@ Current implemented behavior:
 - product-side hierarchy display mirrors to `O M I` while canonical slot order remains `inner, middle, outer`;
 - and the solver is no longer one mostly monolithic UI file.
 
-That is enough to make manual reaction solving real, but it is not yet the final reaction-authoring model. The current implemented solver is intentionally constrained: hierarchy-first, lane-based, and manual.
+That is enough to make manual reaction solving real, but it is not the final app boundary. The current implemented solver is intentionally constrained: hierarchy-first, lane-based, manual, and still partly coupled to Composer deployment.
 
-The longer-range canvas target is still:
+The downstream Composer target is still:
 
-- reactants and products can be placed anywhere on the reaction canvas;
-- placement should be author-controlled rather than forced into left/right stacks;
-- the user should be able to arrange assemblies to emulate a Feynman diagram when that is clearest;
-- and the canvas should remain sparse enough that most reactions with six or fewer total reactants/products stay legible.
+- an accepted reaction flow hands off into Composer as explicit staged motion and provenance data;
+- Composer then owns final placement, staging, observer work, and explanatory overlays;
+- the imported arrangement should be author-refinable rather than frozen;
+- and the final choreography surface can still support sparse diagram-like layouts when that is clearest.
 
-That should now be understood as the downstream choreography target, not as a description of the currently implemented solver.
+That should be understood as the downstream choreography target, not as a claim that the Reaction app should remain embedded inside Composer.
 
 ## Core Interaction Model
 
@@ -162,17 +165,17 @@ This keeps the authoring language visual and local to the object being edited.
 
 ## Reaction Solver Screen For PDG-Style Channels
 
-PDG-style channels deserve a separate reaction-solver screen that shares components with the composer while serving a different job.
+PDG-style channels deserve a separate reaction-solver screen while serving a different job from Composer.
 
-That distinction matters because the solver is not primarily an animation surface. Its first task is to close provenance: what persists, what is recruited, what is shed, and what returns to spacetime. Only after that bookkeeping is legible should the result be handed off into the normal composer for final path shaping, staging, observer work, and explanatory overlays.
+That distinction matters because the solver is not primarily an animation surface. Its first task is to close provenance: what persists, what is recruited, what is shed, and what returns to spacetime. Only after that bookkeeping is legible should the result be handed off into Composer for final path shaping, staging, observer work, and explanatory overlays.
 
 The likely architecture is:
 
 - the solver is a separate screen or mode specialized for reaction solving rather than scene staging;
-- it reuses common assembly rendering, constituent reveal, hierarchy inspection, selection, highlighting, and mapping-path components;
+- it may share contract vocabulary, schema fixtures, and visual language with Composer, but not Composer runtime code;
 - it accepts a set of authored reactants and products, or a named reaction channel template;
 - it produces one or more candidate provenance mappings;
-- and the accepted result is fed back into the normal composer as reaction participants, transfer-like mappings, and a starting visual layout that the author can then refine.
+- and the accepted result is fed into Composer through a versioned handoff document as reaction participants, transfer-like mappings, and a starting visual layout that the author can then refine.
 
 ### Hierarchy-First Solver Interaction
 
@@ -286,7 +289,7 @@ Separately, the implemented `Transmute` tile should be treated as a reaction-log
 
 ## Relation To The Composer
 
-The solver should feed the normal composer rather than replace it.
+The Reaction app should feed Composer rather than replace it.
 
 An accepted solver result should become:
 
@@ -299,6 +302,7 @@ This keeps one important separation clear:
 
 - the reaction app answers what maps to what and what spacetime contributed;
 - the composer answers how that mapping is staged, viewed, timed, and explained.
+- the connection between them should be a versioned JSON handoff, not shared live UI state.
 
 ## Required Output Contract
 
@@ -320,7 +324,7 @@ Purpose:
 - connect time, participants, and path geometry;
 - remain explicit enough for export, validation, and replay.
 
-Draft shape:
+Draft direction:
 
 ```js
 ReactionSpec {
@@ -335,6 +339,10 @@ ReactionSpec {
   outputs?: Array<{ toScene?: string }>
 }
 ```
+
+This note uses `ReactionSpec` only as a draft sketch.
+
+The formal cross-app contract should converge on the versioned handoff described in [independence](./independence.md), with Reaction owning the export shape and Composer consuming it through import adapters.
 
 Possible provenance fields include:
 
@@ -375,7 +383,7 @@ The reaction app should continue moving toward one source of truth for conservat
 
 In practice that means:
 
-- keep rule logic in shared runtimes;
+- keep rule logic in dedicated reaction-owned runtimes;
 - keep lane geometry derived from the explicit layout model;
 - and avoid duplicating mapping semantics in CSS, DOM heuristics, or ad hoc menu code.
 
@@ -384,6 +392,8 @@ In practice that means:
 - [composer-reaction](./composer-reaction.md)
 - [composer](./composer.md)
 - [pdg-solver](./pdg-solver.md)
+- [independence](./independence.md)
+- [swe](./swe.md)
 - [viewports](../viewports/viewports.md)
 
 ## Related AAA Notes

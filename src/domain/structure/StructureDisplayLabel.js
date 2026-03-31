@@ -2,7 +2,7 @@ import {
   deriveStructureClassification,
   getNoetherCoreBinaryPresenceKey,
 } from "./StructureClassification.js";
-import { STRUCTURE_KINDS } from "./StructureSchema.js";
+import { getStructureTrait, STRUCTURE_KINDS } from "./StructureSchema.js";
 
 const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
   inner: "Uni Binary",
@@ -29,6 +29,27 @@ const displayLabelsBySpecies = Object.freeze({
   bottom_quark: "Bottom Quark",
 });
 
+const polarityQualifiedSpecies = new Set([
+  "noether_core",
+  "electron",
+  "muon",
+  "tau",
+  "electron_neutrino",
+  "muon_neutrino",
+  "tau_neutrino",
+  "up_quark",
+  "charm_quark",
+  "top_quark",
+  "down_quark",
+  "strange_quark",
+  "bottom_quark",
+]);
+
+const alwaysProSpecies = new Set([
+  "proton",
+  "neutron",
+]);
+
 function humanizeStructureId(value = "") {
   const normalized = String(value ?? "").trim().toLowerCase();
   if (!normalized) {
@@ -46,6 +67,11 @@ function formatNoetherCoreDisplayLabel(structureRoot = null) {
   return polarity === "anti" ? "Anti Noether Core" : "Pro Noether Core";
 }
 
+function formatPolarityQualifiedLabel(baseLabel = "", polarity = "") {
+  const prefix = String(polarity ?? "").trim().toLowerCase() === "anti" ? "Anti" : "Pro";
+  return `${prefix} ${String(baseLabel ?? "").trim()}`.trim();
+}
+
 export function resolveStructureDisplayLabel(structureRoot = null) {
   if (!structureRoot) {
     return "";
@@ -57,7 +83,10 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
       return formatNoetherCoreDisplayLabel(structureRoot);
     }
     if (noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
-      return noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey];
+      return formatPolarityQualifiedLabel(
+        noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey],
+        structureRoot?.traits?.polarity
+      );
     }
   }
 
@@ -68,7 +97,14 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
   const normalizedSpecies = String(derivedSpecies ?? "").trim().toLowerCase();
 
   if (displayLabelsBySpecies[normalizedSpecies]) {
-    return displayLabelsBySpecies[normalizedSpecies];
+    const baseLabel = displayLabelsBySpecies[normalizedSpecies];
+    if (polarityQualifiedSpecies.has(normalizedSpecies)) {
+      return formatPolarityQualifiedLabel(baseLabel, getStructureTrait(structureRoot, "polarity", ""));
+    }
+    if (alwaysProSpecies.has(normalizedSpecies)) {
+      return `Pro ${baseLabel}`;
+    }
+    return baseLabel;
   }
 
   const fallbackLabel = String(structureRoot?.label ?? structureRoot?.species ?? "").trim();

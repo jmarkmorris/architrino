@@ -14,6 +14,8 @@ Its job is to:
 
 The key architectural point is that the planner should own solving, while the reaction app should own rendering, inspection, manual override, and validation.
 
+The PDG-facing layer should not depend on Composer runtime code. Downstream Composer work should happen only after Reaction exports a durable handoff payload.
+
 ## Current State
 
 The repository now has a real reaction-app solver seam. The old description of this note as "planning only" is no longer accurate.
@@ -184,6 +186,8 @@ The following is still future work:
 
 When that work begins, it should reuse the existing reaction solver seam instead of creating a parallel solver architecture.
 
+If the PDG-facing layer becomes its own app or service, it should talk to Reaction through a normalized seed or proposal contract rather than through shared UI runtime code.
+
 ## Suggested File Boundaries
 
 Current file boundaries that should remain the basis for extension:
@@ -209,6 +213,8 @@ The goal is to keep `ComposerReactionSolverUiRuntime.js` as thin wiring over tho
 - [composer-reaction](./composer-reaction.md)
 - [reaction](./reaction.md)
 - [composer](./composer.md)
+- [independence](./independence.md)
+- [swe](./swe.md)
 
 ## Related AAA Notes
 
