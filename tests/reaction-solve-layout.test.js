@@ -253,3 +253,123 @@ test("solve layout anchors associate operators on their product-side row centers
     [4, 6]
   );
 });
+
+test("solve layout preserves source-side vertical order when multiple associates share one target row center", () => {
+  const reactantMid = createEntry({
+    participantId: "reactant_mid",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    surfaceRowIndex: 6,
+    rootId: "reactant_mid_root",
+    childIds: ["reactant_mid_pro", "reactant_mid_anti"],
+  });
+  const reactantLow = createEntry({
+    participantId: "reactant_low",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    surfaceRowIndex: 8,
+    rootId: "reactant_low_root",
+    childIds: ["reactant_low_pro", "reactant_low_anti"],
+  });
+  const productPhotonA = createEntry({
+    participantId: "product_photon_a",
+    side: "product",
+    templateId: "photon",
+    surfaceRowIndex: 3,
+    rootId: "product_photon_a_root",
+    childIds: ["product_photon_a_pro", "product_photon_a_anti"],
+  });
+  const productPhotonB = createEntry({
+    participantId: "product_photon_b",
+    side: "product",
+    templateId: "photon",
+    surfaceRowIndex: 3,
+    rootId: "product_photon_b_root",
+    childIds: ["product_photon_b_pro", "product_photon_b_anti"],
+  });
+
+  const laidOutPlan = applyComposerReactionSolveLayout({
+    solveState: {
+      reactants: [reactantMid, reactantLow],
+      products: [productPhotonA, productPhotonB],
+      operators: [],
+      centerAssemblies: [],
+    },
+    plan: {
+      participantAdditions: [
+        {
+          ref: "associate:a_mid",
+          kind: "operator",
+          templateId: "associate",
+          operatorLaneIndex: 1,
+        },
+        {
+          ref: "associate:b_low",
+          kind: "operator",
+          templateId: "associate",
+          operatorLaneIndex: 1,
+        },
+      ],
+      selectedMappings: [
+        {
+          sourceParticipant: reactantMid.participant,
+          sourceNode: reactantMid.rootNode.children[0],
+          sourceEndpoint: { participant: reactantMid.participant, node: reactantMid.rootNode.children[0], role: "reactant" },
+          targetEndpoint: { participantRef: "associate:a_mid", role: "operator-input", anchorInstanceIndex: 0 },
+        },
+        {
+          sourceParticipant: reactantMid.participant,
+          sourceNode: reactantMid.rootNode.children[1],
+          sourceEndpoint: { participant: reactantMid.participant, node: reactantMid.rootNode.children[1], role: "reactant" },
+          targetEndpoint: { participantRef: "associate:a_mid", role: "operator-input", anchorInstanceIndex: 0 },
+        },
+        {
+          sourceEndpoint: { participantRef: "associate:a_mid", role: "operator-output", anchorInstanceIndex: 0 },
+          targetParticipant: productPhotonA.participant,
+          targetNode: productPhotonA.rootNode.children[0],
+          targetEndpoint: { participant: productPhotonA.participant, node: productPhotonA.rootNode.children[0], role: "product" },
+        },
+        {
+          sourceEndpoint: { participantRef: "associate:a_mid", role: "operator-output", anchorInstanceIndex: 0 },
+          targetParticipant: productPhotonA.participant,
+          targetNode: productPhotonA.rootNode.children[1],
+          targetEndpoint: { participant: productPhotonA.participant, node: productPhotonA.rootNode.children[1], role: "product" },
+        },
+        {
+          sourceParticipant: reactantLow.participant,
+          sourceNode: reactantLow.rootNode.children[0],
+          sourceEndpoint: { participant: reactantLow.participant, node: reactantLow.rootNode.children[0], role: "reactant" },
+          targetEndpoint: { participantRef: "associate:b_low", role: "operator-input", anchorInstanceIndex: 0 },
+        },
+        {
+          sourceParticipant: reactantLow.participant,
+          sourceNode: reactantLow.rootNode.children[1],
+          sourceEndpoint: { participant: reactantLow.participant, node: reactantLow.rootNode.children[1], role: "reactant" },
+          targetEndpoint: { participantRef: "associate:b_low", role: "operator-input", anchorInstanceIndex: 0 },
+        },
+        {
+          sourceEndpoint: { participantRef: "associate:b_low", role: "operator-output", anchorInstanceIndex: 0 },
+          targetParticipant: productPhotonB.participant,
+          targetNode: productPhotonB.rootNode.children[0],
+          targetEndpoint: { participant: productPhotonB.participant, node: productPhotonB.rootNode.children[0], role: "product" },
+        },
+        {
+          sourceEndpoint: { participantRef: "associate:b_low", role: "operator-output", anchorInstanceIndex: 0 },
+          targetParticipant: productPhotonB.participant,
+          targetNode: productPhotonB.rootNode.children[1],
+          targetEndpoint: { participant: productPhotonB.participant, node: productPhotonB.rootNode.children[1], role: "product" },
+        },
+      ],
+    },
+  });
+
+  assert.deepEqual(
+    Object.fromEntries(
+      laidOutPlan.participantAdditions.map((entry) => [entry.ref, entry.operatorSlotIndex])
+    ),
+    {
+      "associate:a_mid": 4,
+      "associate:b_low": 5,
+    }
+  );
+});

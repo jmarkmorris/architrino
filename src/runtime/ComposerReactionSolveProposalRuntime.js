@@ -775,11 +775,13 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedMappings.push(...(candidate?.mappings ?? []));
   });
 
-  const claimedPartialProductIdSet = new Set(
-    Array.from(claimedPartialProductIds).map((participantId) => String(participantId ?? ""))
+  const productChildAllowedParticipantIds = new Set(
+    products
+      .map((entry) => String(entry?.participant?.id ?? ""))
+      .filter((participantId) => participantId && !usedProductIds.has(participantId))
   );
   const compositeChildTargetEntries = collectCompositeChildTargetEntries(products, buildNodeKey, {
-    allowedParticipantIds: claimedPartialProductIdSet,
+    allowedParticipantIds: productChildAllowedParticipantIds,
   });
   standaloneRootSourceEntries.forEach((sourceEntry) => {
     compositeChildTargetEntries.forEach((targetEntry) => {

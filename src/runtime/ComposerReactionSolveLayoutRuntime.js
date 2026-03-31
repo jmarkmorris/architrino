@@ -134,13 +134,20 @@ function buildOperatorPlacementRequest(addition = null, plan = {}, entryMap = ne
       ? targetCenter
       : targetCenter ?? sourceCenter ?? getRowCenter(connectedRowIndexes) ?? 0;
   const targetRowIndex = normalizeSurfaceRowIndex(preferredCenter);
+  const sourceToTargetDirection =
+    Number.isFinite(sourceCenter) && Number.isFinite(targetCenter)
+      ? Math.sign(Number(sourceCenter) - Number(targetCenter))
+      : 0;
   return {
     ...addition,
     connectedRowIndexes,
     sourceRowIndexes,
     targetRowIndexes,
+    sourceCenter,
+    targetCenter,
     rowSpan: maxRowIndex - minRowIndex,
     targetRowIndex,
+    sourceToTargetDirection,
   };
 }
 
@@ -153,23 +160,40 @@ function compareOperatorPlacementRequests(left = null, right = null) {
   if (targetDelta !== 0) {
     return targetDelta;
   }
+  const sourceCenterDelta = Number(left?.sourceCenter ?? 0) - Number(right?.sourceCenter ?? 0);
+  if (sourceCenterDelta !== 0) {
+    return sourceCenterDelta;
+  }
   return String(left?.ref ?? "").localeCompare(String(right?.ref ?? ""));
 }
 
-function findNearestAvailableRowIndex(targetRowIndex = 0, occupiedRowIndexes = new Set()) {
+function findNearestAvailableRowIndex(
+  targetRowIndex = 0,
+  occupiedRowIndexes = new Set(),
+  directionBias = 0
+) {
   const resolvedTargetRowIndex = normalizeSurfaceRowIndex(targetRowIndex);
   for (let distance = 0; distance < REACTION_SOLVER_SURFACE_ROW_COUNT; distance += 1) {
-    const upwardCandidate = resolvedTargetRowIndex - distance;
-    if (upwardCandidate >= 0 && !occupiedRowIndexes.has(upwardCandidate)) {
-      return upwardCandidate;
+    if (distance === 0) {
+      if (!occupiedRowIndexes.has(resolvedTargetRowIndex)) {
+        return resolvedTargetRowIndex;
+      }
+      continue;
     }
+    const upwardCandidate = resolvedTargetRowIndex - distance;
     const downwardCandidate = resolvedTargetRowIndex + distance;
-    if (
-      distance > 0 &&
-      downwardCandidate < REACTION_SOLVER_SURFACE_ROW_COUNT &&
-      !occupiedRowIndexes.has(downwardCandidate)
-    ) {
-      return downwardCandidate;
+    const orderedCandidates =
+      directionBias > 0
+        ? [downwardCandidate, upwardCandidate]
+        : [upwardCandidate, downwardCandidate];
+    for (const candidate of orderedCandidates) {
+      if (
+        candidate >= 0 &&
+        candidate < REACTION_SOLVER_SURFACE_ROW_COUNT &&
+        !occupiedRowIndexes.has(candidate)
+      ) {
+        return candidate;
+      }
     }
   }
   return resolvedTargetRowIndex;
@@ -203,7 +227,8 @@ export function applyComposerReactionSolveLayout(options = {}) {
       const occupiedRows = occupiedRowsByLane.get(laneIndex) ?? new Set();
       const operatorSlotIndex = findNearestAvailableRowIndex(
         request.targetRowIndex,
-        occupiedRows
+        occupiedRows,
+        request.sourceToTargetDirection
       );
       occupiedRows.add(operatorSlotIndex);
       occupiedRowsByLane.set(laneIndex, occupiedRows);

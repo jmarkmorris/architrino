@@ -347,6 +347,65 @@ test("solve plan can map a standalone up-quark reactant into the remaining proto
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
+test("solve plan can build a proton directly from standalone up and down quark reactants", () => {
+  const reactantUpQuarkA = createParticipant({
+    id: "reactant_up_quark_a",
+    side: "reactant",
+    templateId: "up_quark",
+    polarity: "pro",
+    label: "Up Quark A",
+  });
+  const reactantUpQuarkB = createParticipant({
+    id: "reactant_up_quark_b",
+    side: "reactant",
+    templateId: "up_quark",
+    polarity: "pro",
+    label: "Up Quark B",
+  });
+  const reactantDownQuark = createParticipant({
+    id: "reactant_down_quark",
+    side: "reactant",
+    templateId: "down_quark",
+    polarity: "pro",
+    label: "Down Quark",
+  });
+  const productProton = createParticipant({
+    id: "product_proton",
+    side: "product",
+    templateId: "proton",
+    label: "Proton",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([
+      reactantUpQuarkA,
+      reactantUpQuarkB,
+      reactantDownQuark,
+      productProton,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.selectedProductChildCandidates.length, 3);
+  assert.equal(plan.selectedMappings.length, 3);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceParticipant.templateId,
+      mapping.sourceNode.templateId,
+      mapping.targetParticipant.templateId,
+      mapping.targetNode.templateId,
+    ]),
+    [
+      ["down_quark", "down_quark", "proton", "down_quark"],
+      ["up_quark", "up_quark", "proton", "up_quark"],
+      ["up_quark", "up_quark", "proton", "up_quark"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
 test("solve plan inserts an associate operator for pro and anti Noether cores forming a photon", () => {
   const reactantProCore = createParticipant({
     id: "reactant_pro_core",
