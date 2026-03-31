@@ -1263,6 +1263,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function clearReactionWorkspaceParticipants() {
+    const beforeCount = state.participants.length;
+    state.participants = state.participants.filter(
+      (participant) => participant?.side === "reactant" || participant?.side === "product"
+    );
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
+      }
+    });
+    clearReactionMappings();
+    return beforeCount !== state.participants.length;
+  }
+
   function removeParticipantById(participantId) {
     const participant = findParticipantById(participantId);
     if (!participant) {
@@ -1272,7 +1286,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       (entry) => String(entry?.id ?? "") !== participantId
     );
     if (participant.side === "reactant" || participant.side === "product") {
-      clearReactionMappings();
+      clearReactionWorkspaceParticipants();
     } else {
       removeMappingsForParticipant(participantId);
     }

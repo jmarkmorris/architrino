@@ -399,22 +399,30 @@ test("only drawn paths remove existing reaction mappings on click", () => {
   );
 });
 
-test("removing a reactant or product clears the reaction mappings", () => {
+test("removing a reactant or product clears mappings and removes operators plus center bosons", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /function clearReactionMappings\(\) \{/
+    /function clearReactionWorkspaceParticipants\(\) \{/
   );
   assert.match(
     runtimeSource,
-    /state\.mappings = \[];/
+    /state\.participants = state\.participants\.filter\(\s*\(participant\) => participant\?\.side === "reactant" \|\| participant\?\.side === "product"\s*\);/
   );
   assert.match(
     runtimeSource,
-    /if \(participant\.side === "reactant" \|\| participant\.side === "product"\) \{\s*clearReactionMappings\(\);/
+    /if \(participant\?\.isAutoDissociatedComposite\) \{\s*participant\.isAutoDissociatedComposite = false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /clearReactionMappings\(\);/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\.side === "reactant" \|\| participant\.side === "product"\) \{\s*clearReactionWorkspaceParticipants\(\);/
   );
 });
 
