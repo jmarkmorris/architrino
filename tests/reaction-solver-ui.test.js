@@ -146,6 +146,10 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /markParticipantAutoDissociated,/
+  );
+  assert.match(
+    runtimeSource,
     /function createOperatorParticipant\(templateId = "associate", operatorLaneIndex = 1,\s*options = \{\}\)/
   );
   assert.match(
@@ -315,6 +319,10 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
   assert.match(
     runtimeSource,
     /participant\.isAutoDissociatedComposite = true;/
+  );
+  assert.match(
+    runtimeSource,
+    /function markParticipantAutoDissociated\(participantOrId = null\) \{/
   );
   assert.match(
     runtimeSource,

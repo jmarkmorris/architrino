@@ -34,6 +34,9 @@ export function applyComposerReactionSolvePlan(options = {}) {
   const participantAdditions = Array.isArray(plan.participantAdditions)
     ? plan.participantAdditions
     : [];
+  const dissociatedCompositeParticipants = Array.isArray(plan.dissociatedCompositeParticipants)
+    ? plan.dissociatedCompositeParticipants.filter(Boolean)
+    : [];
   const selectedMappings = Array.isArray(plan.selectedMappings) ? plan.selectedMappings : [];
   const createOperatorParticipant =
     typeof options.createOperatorParticipant === "function"
@@ -47,6 +50,10 @@ export function applyComposerReactionSolvePlan(options = {}) {
     typeof options.buildNodeKey === "function" ? options.buildNodeKey : null;
   const addOrReplaceMapping =
     typeof options.addOrReplaceMapping === "function" ? options.addOrReplaceMapping : null;
+  const markParticipantAutoDissociated =
+    typeof options.markParticipantAutoDissociated === "function"
+      ? options.markParticipantAutoDissociated
+      : null;
 
   const addedParticipantMap = new Map();
   const addedParticipants = [];
@@ -72,6 +79,25 @@ export function applyComposerReactionSolvePlan(options = {}) {
       addedParticipantMap.set(ref, participant);
     }
     addedParticipants.push(participant);
+  });
+
+  const markedDissociatedParticipantIds = [];
+  dissociatedCompositeParticipants.forEach((participant) => {
+    if (!participant?.id) {
+      return;
+    }
+    const wasMarked = markParticipantAutoDissociated
+      ? markParticipantAutoDissociated(participant)
+      : (() => {
+          if (participant.isDissociatedComposite || participant.isAutoDissociatedComposite) {
+            return false;
+          }
+          participant.isAutoDissociatedComposite = true;
+          return true;
+        })();
+    if (wasMarked) {
+      markedDissociatedParticipantIds.push(String(participant.id));
+    }
   });
 
   const appliedMappingIds = [];
@@ -117,5 +143,6 @@ export function applyComposerReactionSolvePlan(options = {}) {
   return {
     addedParticipants,
     appliedMappingIds,
+    markedDissociatedParticipantIds,
   };
 }

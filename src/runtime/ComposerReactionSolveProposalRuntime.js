@@ -607,6 +607,41 @@ function getParticipantMatchedTargetNodeIds(selectedMappings = [], participantId
   return matchedNodeIds;
 }
 
+function collectPlanDissociatedCompositeParticipants(reactants = [], selectedMappings = []) {
+  const compositeReactantsById = new Map();
+  reactants.forEach((entry) => {
+    const participant = entry?.participant ?? null;
+    const rootNode = entry?.rootNode ?? null;
+    const topLevelChildren = Array.isArray(rootNode?.children)
+      ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
+      : [];
+    if (!participant?.id || !rootNode?.id || !topLevelChildren.length) {
+      return;
+    }
+    compositeReactantsById.set(String(participant.id), {
+      participant,
+      rootNodeId: String(rootNode.id),
+    });
+  });
+
+  const seenParticipantIds = new Set();
+  const dissociatedCompositeParticipants = [];
+  selectedMappings.forEach((mapping) => {
+    const participantId = String(mapping?.sourceParticipant?.id ?? "");
+    const sourceNodeId = String(mapping?.sourceNode?.id ?? "");
+    if (!participantId || !sourceNodeId || seenParticipantIds.has(participantId)) {
+      return;
+    }
+    const compositeEntry = compositeReactantsById.get(participantId) ?? null;
+    if (!compositeEntry || sourceNodeId === compositeEntry.rootNodeId) {
+      return;
+    }
+    seenParticipantIds.add(participantId);
+    dissociatedCompositeParticipants.push(compositeEntry.participant);
+  });
+  return dissociatedCompositeParticipants;
+}
+
 function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
   const participantId = String(entry?.participant?.id ?? "");
   if (!participantId) {
@@ -933,6 +968,11 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedMappings.push(...(candidate?.mappings ?? []));
   });
 
+  const dissociatedCompositeParticipants = collectPlanDissociatedCompositeParticipants(
+    reactants,
+    selectedMappings
+  );
+
   return {
     mode: "direct-v1",
     selectedCandidates,
@@ -942,6 +982,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedProductChildCandidates,
     selectedMappings,
     participantAdditions,
+    dissociatedCompositeParticipants,
     directProductCount:
       selectedFragmentCandidates.length +
       selectedCandidates.filter(

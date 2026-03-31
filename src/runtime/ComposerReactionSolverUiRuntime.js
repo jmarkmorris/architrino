@@ -1395,6 +1395,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       createOperatorParticipant,
       getParticipantRootNode,
       buildNodeKey,
+      markParticipantAutoDissociated,
       addOrReplaceMapping,
     });
     markMappingsRecent(appliedMappingIds);
@@ -1561,6 +1562,15 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     const rootNode = getParticipantRootNode(participant);
     if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
+      return false;
+    }
+    return markParticipantAutoDissociated(participant);
+  }
+
+  function markParticipantAutoDissociated(participantOrId = null) {
+    const participant =
+      typeof participantOrId === "string" ? findParticipantById(participantOrId) : participantOrId;
+    if (!participant || participant.side !== "reactant" || !isCompositeParticipant(participant)) {
       return false;
     }
     if (participant.isDissociatedComposite || participant.isAutoDissociatedComposite) {

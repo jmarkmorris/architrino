@@ -496,6 +496,10 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
   assert.equal(plan.partialCompositeProductCount, 0);
   assert.equal(plan.selectedAssociateCandidates.length, 2);
   assert.equal(plan.participantAdditions.length, 2);
+  assert.deepEqual(
+    plan.dissociatedCompositeParticipants.map((participant) => participant.id),
+    ["reactant_higgs"]
+  );
   assert.equal(plan.selectedMappings.length, 8);
   assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
   assert.deepEqual(
@@ -561,6 +565,10 @@ test("solve plan prefers two full associate photons over fragment-plus-partial r
   assert.equal(plan.partialCompositeProductCount, 0);
   assert.equal(plan.selectedFragmentCandidates.length, 0);
   assert.equal(plan.selectedAssociateCandidates.length, 2);
+  assert.deepEqual(
+    plan.dissociatedCompositeParticipants.map((participant) => participant.id),
+    ["reactant_higgs"]
+  );
   assert.equal(plan.selectedMappings.length, 8);
   assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
   assert.deepEqual(
