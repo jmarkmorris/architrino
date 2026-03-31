@@ -2177,7 +2177,7 @@ body {
     0 0 18px color-mix(in srgb, var(--solver-anti-fill-accent) 18%, transparent);
 }
 
-.composer-reaction-solver-participant.is-composite-participant.is-dissociated-shell
+.composer-reaction-solver-participant.is-composite-participant.is-dissociated-composite
   .composer-reaction-solver-composite-visual-rail
   .composer-reaction-solver-particle {
   border-style: dotted;

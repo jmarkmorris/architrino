@@ -24,6 +24,7 @@ What exists now:
 
 - a dedicated abstract solve-state builder in `src/runtime/ComposerReactionSolveStateRuntime.js`;
 - a proposal builder in `src/runtime/ComposerReactionSolveProposalRuntime.js`;
+- a candidate-selection runtime in `src/runtime/ComposerReactionSolveSelectionRuntime.js`;
 - composite child matching in `src/runtime/ComposerReactionSolveMatchRuntime.js`;
 - associate-specific candidate construction in `src/runtime/ComposerReactionSolveAssociateRuntime.js`;
 - operator placement in `src/runtime/ComposerReactionSolveLayoutRuntime.js`;
@@ -58,11 +59,12 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
   - allows existing center-lane operators during solve;
   - blocks solve when center bosons are present.
 - `ComposerReactionSolveProposalRuntime`
-  - builds the current greedy solve plan;
-  - prefers direct reuse, then fragment and associate construction, then partial composite reuse;
+  - builds the current solve plan over explicit candidate families;
+  - now uses dedicated candidate selection instead of the older family-by-family greedy pick order;
   - reports unresolved reactants and products explicitly.
 - `ComposerReactionSolveLayoutRuntime`
   - places inserted operators from explicit surface-row centers;
+  - includes current row-bias heuristics to preserve stronger vertical ordering when operators compete for the same lane region;
   - uses the shared periodic-table-style surface grid as the source of truth.
 - `ComposerReactionSolveProjectionRuntime`
   - creates solve-generated operators;
@@ -72,7 +74,7 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
   - triggers solve;
   - removes only solve-generated operators before rerunning solve;
   - clears auto-dissociation markers before rebuilding;
-  - and keeps manual operators and manual shell dissociation intact.
+  - and keeps manual operators and manual dissociated-composite state intact.
 
 ## Current Solver Capabilities
 
@@ -82,11 +84,13 @@ The present solver already supports:
 - full composite carry-through for identical composites;
 - partial composite carry-through such as `Neutron -> Proton`;
 - direct fragment-to-root mapping from a composite child into a standalone product;
+- standalone-quark mapping into composite baryon product rows such as `u + u + d -> proton`;
 - `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
 - `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
+- candidate selection that prefers stronger whole-product solutions over weaker fragment-plus-partial residue;
 - repeated `Solve` from a clean auto-solve baseline without duplicating solve-generated operators;
-- automatic reactant-shell dissociation marking when internal rows are mapped;
-- and persistent manual right-click shell dissociation.
+- automatic reactant composite dissociation marking when internal rows are mapped;
+- and persistent manual right-click dissociated-composite state.
 
 Related current UI and naming constraints:
 
@@ -100,10 +104,10 @@ The current solver is still intentionally narrow.
 
 Important current limits:
 
-- plan selection is still greedy, so local choices can still produce avoidable crossings or weaker global matches;
 - the current candidate library is centered on direct reuse, fragment reuse, partial composite reuse, and `Associate` photon construction;
 - center bosons are manual-only and still block solve instead of participating in planning;
-- there is no dissociate-then-associate planner yet;
+- the planner still does not model dissociation explicitly as a first-class solve step;
+- solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;
 - there is no dedicated proposal-review app or reaction-flow export path yet.
 
@@ -143,12 +147,20 @@ Row placement must continue to use the explicit shared surface-grid model. Do no
 
 The current product direction is narrower than the old note implied.
 
-The major missing feature is dissociate-then-associate planning, but only through the shell model the reaction app already uses:
+The major missing feature is dissociate-then-associate planning, but only through the dissociated-composite model the reaction app already uses.
 
-- composite right-click dissociation is existing UI shell state;
-- automatic shell dissociation already exists for mapped internal reactant rows;
-- solver planning should learn to consume that shell state;
-- but dissociation should not become a generic free-floating planner operation that duplicates the current UI grammar.
+The required behavior is narrower and more concrete than "only use internal rows when the composite was already manually marked dissociated."
+
+The solver must still be able to dissociate a composite as part of a valid solve when that is what the reaction requires. A key current example is `Higgs Cluster -> Photon + Photon`: the solver must auto-dissociate the composite Higgs in order to route its internal Noether-core rows through two `Associate` operators.
+
+So the intended rule is:
+
+- manual dissociated-composite state remains valid authored state;
+- solver-created internal-row mappings may still auto-dissociate a composite when the selected plan requires it;
+- future planner work should represent that auto-dissociation explicitly as part of the chosen plan rather than treating every composite as permanently dissociated;
+- and dissociation should still not become a generic free-floating planner operation that duplicates the current UI grammar.
+
+What should be avoided is the wrong interpretation that associate planning may consume composite internals only when the composite was already manually or previously marked dissociated before solve. That would break required current behavior.
 
 ## Next Recommended Work
 
@@ -157,10 +169,9 @@ The next work should stay phase-by-phase and test-backed.
 Recommended order:
 
 1. take any newly reported solve bug first and add a targeted regression test for it;
-2. improve solve-plan selection where current greedy choices are poor;
-3. improve operator-layout heuristics where crossings or weak placements remain;
-4. add dissociated-shell-aware planning for dissociate-then-associate scenarios through existing shell state;
-5. only after that, expand into weak-boson and PDG-ingest-specific planning work.
+2. make dissociate-then-associate planning explicit in the solve model without breaking required auto-dissociation cases such as `Higgs Cluster -> Photon + Photon`;
+3. add weak-boson and center-column planning so `W-`, `W+`, and `Z` bosons can participate in solve instead of hard-blocking it;
+4. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
 
@@ -168,11 +179,10 @@ The next solver expansions should be framed as focused candidate families with r
 
 Good near-term additions:
 
-- better global ranking among competing direct, fragment, partial-composite, and associate candidates;
-- shell-aware dissociate-then-associate planning that respects existing manual or auto shell state;
+- explicit plan-level representation of composite dissociation when a chosen solve needs composite internals, while preserving manual dissociated-composite state and current auto-dissociation behavior;
 - better handling of leftover fragments and residue reporting;
-- improved operator placement when multiple candidates compete for the same lane region;
-- and later, explicit weak-boson-mediated construction for the cases the user actually wants to support.
+- explicit weak-boson-mediated construction for the cases the user actually wants to support;
+- and center-column solve support for existing `W-`, `W+`, and `Z` boson assemblies.
 
 ## PDG-Specific Work That Still Does Not Exist
 
@@ -194,6 +204,7 @@ Current file boundaries that should remain the basis for extension:
 
 - `ComposerReactionSolveStateRuntime.js`
 - `ComposerReactionSolveProposalRuntime.js`
+- `ComposerReactionSolveSelectionRuntime.js`
 - `ComposerReactionSolveMatchRuntime.js`
 - `ComposerReactionSolveAssociateRuntime.js`
 - `ComposerReactionSolveProjectionRuntime.js`

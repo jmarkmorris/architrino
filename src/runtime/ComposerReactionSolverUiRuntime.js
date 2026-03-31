@@ -1372,8 +1372,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       (participant) => !(participant?.side === "operator" && participant?.isSolveGenerated)
     );
     state.participants.forEach((participant) => {
-      if (participant?.isAutoDissociatedShell) {
-        participant.isAutoDissociatedShell = false;
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
       }
     });
     state.mappings = [];
@@ -1447,14 +1447,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
-    if (participant.isDissociatedShell) {
+    if (participant.isDissociatedComposite) {
       setStatus(
         `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster is already marked dissociated.`
       );
       return false;
     }
-    participant.isDissociatedShell = true;
-    participant.isAutoDissociatedShell = false;
+    participant.isDissociatedComposite = true;
+    participant.isAutoDissociatedComposite = false;
     closeMenu();
     render();
     setStatus(
@@ -1485,14 +1485,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (participantIndex < 0) {
       return false;
     }
-    if (participant.isDissociatedShell) {
+    if (participant.isDissociatedComposite) {
       setStatus(
         `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} is already marked dissociated.`
       );
       return false;
     }
-    participant.isDissociatedShell = true;
-    participant.isAutoDissociatedShell = false;
+    participant.isDissociatedComposite = true;
+    participant.isAutoDissociatedComposite = false;
     closeMenu();
     render();
     setStatus(
@@ -1501,7 +1501,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
-  function markCompositeReactantShellDissociatedForNodeKey(nodeKey, role = "") {
+  function markCompositeReactantDissociatedForNodeKey(nodeKey, role = "") {
     if (role !== "reactant" || !nodeKey) {
       return false;
     }
@@ -1514,10 +1514,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
       return false;
     }
-    if (participant.isDissociatedShell || participant.isAutoDissociatedShell) {
+    if (participant.isDissociatedComposite || participant.isAutoDissociatedComposite) {
       return false;
     }
-    participant.isAutoDissociatedShell = true;
+    participant.isAutoDissociatedComposite = true;
     return true;
   }
 
@@ -1551,7 +1551,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       sourceAnchorInstanceIndex,
       targetAnchorInstanceIndex,
     });
-    markCompositeReactantShellDissociatedForNodeKey(sourceKey, sourceRole);
+    markCompositeReactantDissociatedForNodeKey(sourceKey, sourceRole);
     state.hoveredMappingIds = [];
     return mappingId;
   }

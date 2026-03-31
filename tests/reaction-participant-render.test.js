@@ -217,7 +217,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
-test("operator tiles expose an open-ledger shell state", () => {
+test("operator tiles expose an open-ledger state", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -345,7 +345,7 @@ test("composite title rail side anchoring survives the nested participant-conten
   );
 });
 
-test("dissociated composite shells keep the title tile and render it with a dotted border", () => {
+test("dissociated composites keep the title tile and render it with a dotted border", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -353,11 +353,11 @@ test("dissociated composite shells keep the title tile and render it with a dott
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /if \(participant\?\.isDissociatedShell \|\| participant\?\.isAutoDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
+    /if \(participant\?\.isDissociatedComposite \|\| participant\?\.isAutoDissociatedComposite\) \{\s*card\.classList\.add\("is-dissociated-composite"\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-shell[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
+    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
   );
 });
 

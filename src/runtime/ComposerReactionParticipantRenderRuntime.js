@@ -788,8 +788,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     if (isComposite) {
       card.classList.add("is-composite-participant");
     }
-    if (participant?.isDissociatedShell || participant?.isAutoDissociatedShell) {
-      card.classList.add("is-dissociated-shell");
+    if (participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite) {
+      card.classList.add("is-dissociated-composite");
     }
     if (participant.side === "product" && rootAnchorAvailability?.reason) {
       card.title = rootAnchorAvailability.reason;

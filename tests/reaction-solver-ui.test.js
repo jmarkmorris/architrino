@@ -260,7 +260,7 @@ test("split row helper preserves the original participant row block instead of r
   );
 });
 
-test("composite right-click dissociation marks the existing shell instead of replacing it with split participants", () => {
+test("composite right-click dissociation marks the existing composite instead of replacing it with split participants", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -271,7 +271,7 @@ test("composite right-click dissociation marks the existing shell instead of rep
   );
   assert.match(
     runtimeSource,
-    /participant\.isDissociatedShell = true;/
+    /participant\.isDissociatedComposite = true;/
   );
   assert.doesNotMatch(
     runtimeSource,
@@ -287,14 +287,14 @@ test("composite right-click dissociation marks the existing shell instead of rep
   );
 });
 
-test("mapping from a composite reactant child auto-marks the composite shell as dissociated", () => {
+test("mapping from a composite reactant child auto-marks the composite as dissociated", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /function markCompositeReactantShellDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
+    /function markCompositeReactantDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
   );
   assert.match(
     runtimeSource,
@@ -310,11 +310,11 @@ test("mapping from a composite reactant child auto-marks the composite shell as 
   );
   assert.match(
     runtimeSource,
-    /participant\.isAutoDissociatedShell = true;/
+    /participant\.isAutoDissociatedComposite = true;/
   );
   assert.match(
     runtimeSource,
-    /markCompositeReactantShellDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
+    /markCompositeReactantDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
   );
 });
 
@@ -333,7 +333,7 @@ test("solve resets only solver-generated operators and auto dissociation before 
   );
   assert.match(
     runtimeSource,
-    /if \(participant\?\.isAutoDissociatedShell\) \{\s*participant\.isAutoDissociatedShell = false;\s*\}/
+    /if \(participant\?\.isAutoDissociatedComposite\) \{\s*participant\.isAutoDissociatedComposite = false;\s*\}/
   );
   assert.match(
     runtimeSource,
