@@ -278,7 +278,10 @@ function classifyNoetherCoreGridNode(node = null, structureNode = null) {
 }
 
 function isFullTriBinaryCoreSpec(spec = null) {
-  return Number(spec?.binarySlotCount ?? 0) === 3;
+  return (
+    Number(spec?.binarySlotCount ?? 0) === 3 &&
+    spec?.provenanceMode === "direct"
+  );
 }
 
 function classifyAggregateHierarchyNode(participant = null, node = null, options = {}) {

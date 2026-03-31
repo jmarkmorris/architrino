@@ -638,6 +638,46 @@ test("solve plan can route a center W- boson into an electron product", () => {
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
+test("solve plan can route a center W+ boson into an anti-electron product", () => {
+  const centerWPlusBoson = createParticipant({
+    id: "center_w_plus",
+    side: "reactant",
+    templateId: "w_plus_boson",
+    label: "W+ Boson",
+  });
+  centerWPlusBoson.surfaceColumn = "center-assembly";
+  const productAntiElectron = createParticipant({
+    id: "product_anti_electron",
+    side: "product",
+    templateId: "electron",
+    polarity: "anti",
+    label: "Anti Electron",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([centerWPlusBoson, productAntiElectron]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 1);
+  assert.equal(plan.selectedCandidates.length, 1);
+  assert.equal(plan.selectedCandidates[0]?.type, "center-root-direct");
+  assert.equal(plan.selectedMappings.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceParticipant.templateId,
+      mapping.targetParticipant.templateId,
+      mapping.targetParticipant.polarity,
+      mapping.sourceRole,
+      mapping.targetRole,
+    ]),
+    [["w_plus_boson", "electron", "anti", "reactant", "product"]]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
 test("solve plan can route a center Z boson into a neutrino product", () => {
   const centerZBoson = createParticipant({
     id: "center_z",

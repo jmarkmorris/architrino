@@ -460,3 +460,26 @@ test("route endpoints use fixed left and right tangents for solver connectors", 
     /endX: targetPoint\.x - unitX \* targetRadius/
   );
 });
+
+test("changing reactant or product polarity clears mappings and operators", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function clearReactionOperatorsAndMappings\(\) \{/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.participants = state\.participants\.filter\(\(participant\) => participant\?\.side !== "operator"\);/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\.side === "reactant" \|\| participant\.side === "product"\) \{\s*clearReactionOperatorsAndMappings\(\);/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /if \(participant\.side === "reactant" \|\| participant\.side === "product"\) \{\s*removeMappingsForParticipant\(participantId\);/
+  );
+});

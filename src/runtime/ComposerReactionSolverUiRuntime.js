@@ -1277,6 +1277,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return beforeCount !== state.participants.length;
   }
 
+  function clearReactionOperatorsAndMappings() {
+    const beforeCount = state.participants.length;
+    state.participants = state.participants.filter((participant) => participant?.side !== "operator");
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
+      }
+    });
+    const removedMappings = clearReactionMappings();
+    return beforeCount !== state.participants.length || removedMappings;
+  }
+
   function removeParticipantById(participantId) {
     const participant = findParticipantById(participantId);
     if (!participant) {
@@ -1426,7 +1438,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const currentSelections = getResolvedBinarySelectionMap(participant);
     participant.polarity = resolvedPolarity;
     syncParticipantHierarchyForPolarity(participant);
-    removeMappingsForParticipant(participantId);
+    if (participant.side === "reactant" || participant.side === "product") {
+      clearReactionOperatorsAndMappings();
+    } else {
+      removeMappingsForParticipant(participantId);
+    }
     participant.binarySelections = Object.fromEntries(
       Object.entries(currentSelections).map(([nodeId, choiceId]) => [
         nodeId,
