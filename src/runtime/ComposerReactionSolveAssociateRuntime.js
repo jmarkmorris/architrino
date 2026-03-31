@@ -34,7 +34,11 @@ function inventoriesEqual(left = null, right = null) {
 }
 
 function isNoetherCoreReactant(entry = null) {
-  return String(entry?.participant?.templateId ?? "").trim().toLowerCase() === "noether_core";
+  return (
+    String(entry?.sourceNode?.templateId ?? entry?.rootNode?.templateId ?? entry?.participant?.templateId ?? "")
+      .trim()
+      .toLowerCase() === "noether_core"
+  );
 }
 
 function isPhotonProduct(entry = null) {
@@ -42,8 +46,16 @@ function isPhotonProduct(entry = null) {
 }
 
 function haveOppositeCorePolarities(leftEntry = null, rightEntry = null) {
-  const leftPolarity = String(leftEntry?.participant?.polarity ?? "").trim().toLowerCase();
-  const rightPolarity = String(rightEntry?.participant?.polarity ?? "").trim().toLowerCase();
+  const leftPolarity = String(
+    leftEntry?.sourceNode?.polarity ?? leftEntry?.rootNode?.polarity ?? leftEntry?.participant?.polarity ?? ""
+  )
+    .trim()
+    .toLowerCase();
+  const rightPolarity = String(
+    rightEntry?.sourceNode?.polarity ?? rightEntry?.rootNode?.polarity ?? rightEntry?.participant?.polarity ?? ""
+  )
+    .trim()
+    .toLowerCase();
   return (
     (leftPolarity === "pro" && rightPolarity === "anti") ||
     (leftPolarity === "anti" && rightPolarity === "pro")
@@ -86,12 +98,12 @@ export function createAssociatePhotonCandidate(options = {}) {
 
   const leftSpec = classifyComposerReactionNode(
     leftReactantEntry.participant,
-    leftReactantEntry.rootNode,
+    leftReactantEntry.sourceNode ?? leftReactantEntry.rootNode,
     { resolveBinaryChoiceInventory }
   );
   const rightSpec = classifyComposerReactionNode(
     rightReactantEntry.participant,
-    rightReactantEntry.rootNode,
+    rightReactantEntry.sourceNode ?? rightReactantEntry.rootNode,
     { resolveBinaryChoiceInventory }
   );
   const productSpec = classifyComposerReactionNode(
@@ -111,10 +123,17 @@ export function createAssociatePhotonCandidate(options = {}) {
     return null;
   }
 
-  const operatorRef = `associate:${leftReactantEntry.participant.id}:${rightReactantEntry.participant.id}:${productEntry.participant.id}`;
+  const leftSourceNode = leftReactantEntry.sourceNode ?? leftReactantEntry.rootNode ?? null;
+  const rightSourceNode = rightReactantEntry.sourceNode ?? rightReactantEntry.rootNode ?? null;
+  if (!leftSourceNode?.id || !rightSourceNode?.id) {
+    return null;
+  }
+  const operatorRef = `associate:${leftReactantEntry.participant.id}:${leftSourceNode.id}:${rightReactantEntry.participant.id}:${rightSourceNode.id}:${productEntry.participant.id}`;
   const candidate = {
     type: "associate-photon",
+    sourceParticipant: leftReactantEntry.participant,
     sourceParticipants: [leftReactantEntry.participant, rightReactantEntry.participant],
+    sourceEntries: [leftReactantEntry, rightReactantEntry],
     targetParticipant: productEntry.participant,
     productResolutionKind: "associated",
     operatorCount: 1,
@@ -129,10 +148,10 @@ export function createAssociatePhotonCandidate(options = {}) {
     mappings: [
       {
         sourceParticipant: leftReactantEntry.participant,
-        sourceNode: leftReactantEntry.rootNode,
+        sourceNode: leftSourceNode,
         sourceEndpoint: {
           participant: leftReactantEntry.participant,
-          node: leftReactantEntry.rootNode,
+          node: leftSourceNode,
           role: "reactant",
         },
         targetEndpoint: {
@@ -143,10 +162,10 @@ export function createAssociatePhotonCandidate(options = {}) {
       },
       {
         sourceParticipant: rightReactantEntry.participant,
-        sourceNode: rightReactantEntry.rootNode,
+        sourceNode: rightSourceNode,
         sourceEndpoint: {
           participant: rightReactantEntry.participant,
-          node: rightReactantEntry.rootNode,
+          node: rightSourceNode,
           role: "reactant",
         },
         targetEndpoint: {

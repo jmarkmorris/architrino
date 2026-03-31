@@ -230,6 +230,115 @@ function formatCount(count = 0, singular = "", plural = `${singular}s`) {
   return `${count} ${count === 1 ? singular : plural}`;
 }
 
+function collectAssociateSourceEntries(reactants = [], buildNodeKey = null) {
+  if (typeof buildNodeKey !== "function") {
+    return [];
+  }
+  const entries = [];
+  reactants.forEach((reactantEntry) => {
+    const participant = reactantEntry?.participant ?? null;
+    const rootNode = reactantEntry?.rootNode ?? null;
+    if (!participant || !rootNode) {
+      return;
+    }
+    if (normalizeText(rootNode.templateId) === "noether_core" && reactantEntry.rootNodeKey) {
+      entries.push({
+        participant,
+        rootNode,
+        sourceNode: rootNode,
+        sourceNodeKey: reactantEntry.rootNodeKey,
+        sourceFragmentKey: reactantEntry.rootNodeKey,
+        consumesWholeParticipant: true,
+      });
+      return;
+    }
+    const topLevelChildren = Array.isArray(rootNode.children) ? rootNode.children : [];
+    topLevelChildren.forEach((childNode) => {
+      if (normalizeText(childNode?.templateId) !== "noether_core" || !childNode?.id) {
+        return;
+      }
+      const sourceNodeKey = buildNodeKey(participant.id, childNode.id);
+      entries.push({
+        participant,
+        rootNode,
+        sourceNode: childNode,
+        sourceNodeKey,
+        sourceFragmentKey: sourceNodeKey,
+        consumesWholeParticipant: false,
+      });
+    });
+  });
+  return entries;
+}
+
+function getParticipantMatchedSourceNodeIds(selectedMappings = [], participantId = "") {
+  const matchedNodeIds = new Set();
+  selectedMappings.forEach((mapping) => {
+    if (String(mapping?.sourceParticipant?.id ?? "") !== participantId) {
+      return;
+    }
+    const sourceNodeId = String(mapping?.sourceNode?.id ?? "");
+    if (sourceNodeId) {
+      matchedNodeIds.add(sourceNodeId);
+    }
+  });
+  return matchedNodeIds;
+}
+
+function getParticipantMatchedTargetNodeIds(selectedMappings = [], participantId = "") {
+  const matchedNodeIds = new Set();
+  selectedMappings.forEach((mapping) => {
+    if (String(mapping?.targetParticipant?.id ?? "") !== participantId) {
+      return;
+    }
+    const targetNodeId = String(mapping?.targetNode?.id ?? "");
+    if (targetNodeId) {
+      matchedNodeIds.add(targetNodeId);
+    }
+  });
+  return matchedNodeIds;
+}
+
+function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
+  const participantId = String(entry?.participant?.id ?? "");
+  if (!participantId) {
+    return false;
+  }
+  if (usedReactantIds.has(participantId)) {
+    return true;
+  }
+  const rootNode = entry?.rootNode ?? null;
+  if (!rootNode?.id) {
+    return false;
+  }
+  const matchedNodeIds = getParticipantMatchedSourceNodeIds(selectedMappings, participantId);
+  const topLevelChildren = Array.isArray(rootNode.children) ? rootNode.children.filter(Boolean) : [];
+  if (!topLevelChildren.length) {
+    return matchedNodeIds.has(rootNode.id);
+  }
+  return topLevelChildren.every((childNode) => matchedNodeIds.has(String(childNode?.id ?? "")));
+}
+
+function isProductEntryResolved(entry = null, usedProductIds = new Set(), selectedMappings = []) {
+  const participantId = String(entry?.participant?.id ?? "");
+  if (!participantId) {
+    return false;
+  }
+  if (usedProductIds.has(participantId)) {
+    return true;
+  }
+  const rootNode = entry?.rootNode ?? null;
+  if (!rootNode?.id) {
+    return false;
+  }
+  const matchedNodeIds = getParticipantMatchedTargetNodeIds(selectedMappings, participantId);
+  const topLevelChildren = Array.isArray(rootNode.children) ? rootNode.children.filter(Boolean) : [];
+  if (!topLevelChildren.length) {
+    return matchedNodeIds.has(rootNode.id);
+  }
+  return topLevelChildren.every((childNode) => matchedNodeIds.has(String(childNode?.id ?? "")));
+}
+
 export function describeComposerReactionSolvePlan(plan = {}) {
   const directProductCount = Number(plan.directProductCount ?? 0);
   const compositeProductCount = Number(plan.compositeProductCount ?? 0);
@@ -268,6 +377,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
   const candidates = [];
   const partialCandidates = [];
   const associateCandidates = [];
+  const associateSourceEntries = collectAssociateSourceEntries(reactants, buildNodeKey);
   reactants.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const compositeCandidate = createCompositeCarryThroughCandidate(
@@ -300,12 +410,12 @@ export function buildComposerReactionSolvePlan(options = {}) {
       }
     });
   });
-  for (let leftIndex = 0; leftIndex < reactants.length; leftIndex += 1) {
-    for (let rightIndex = leftIndex + 1; rightIndex < reactants.length; rightIndex += 1) {
+  for (let leftIndex = 0; leftIndex < associateSourceEntries.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < associateSourceEntries.length; rightIndex += 1) {
       products.forEach((productEntry) => {
         const associateCandidate = createAssociatePhotonCandidate({
-          leftReactantEntry: reactants[leftIndex],
-          rightReactantEntry: reactants[rightIndex],
+          leftReactantEntry: associateSourceEntries[leftIndex],
+          rightReactantEntry: associateSourceEntries[rightIndex],
           productEntry,
           resolveBinaryChoiceInventory,
         });
@@ -323,6 +433,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
   const participantAdditions = [];
   const usedReactantIds = new Set();
   const usedProductIds = new Set();
+  const usedReactantSourceFragmentKeys = new Set();
   candidates.sort(compareSolveCandidates).forEach((candidate) => {
     const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
     const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
@@ -335,6 +446,42 @@ export function buildComposerReactionSolvePlan(options = {}) {
     usedReactantIds.add(sourceParticipantId);
     usedProductIds.add(targetParticipantId);
     selectedCandidates.push(candidate);
+    selectedMappings.push(...candidate.mappings);
+  });
+  associateCandidates.sort(compareSolveCandidates).forEach((candidate) => {
+    const sourceEntries = Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [];
+    const sourceParticipantIds = sourceEntries.map((entry) =>
+      String(entry?.participant?.id ?? "")
+    );
+    const sourceFragmentKeys = sourceEntries.map((entry) =>
+      String(entry?.sourceFragmentKey ?? entry?.sourceNodeKey ?? "")
+    );
+    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
+    if (
+      !targetParticipantId ||
+      sourceParticipantIds.some((participantId) => !participantId) ||
+      sourceFragmentKeys.some((fragmentKey) => !fragmentKey)
+    ) {
+      return;
+    }
+    if (
+      sourceParticipantIds.some(
+        (participantId) => usedReactantIds.has(participantId)
+      ) ||
+      sourceFragmentKeys.some((fragmentKey) => usedReactantSourceFragmentKeys.has(fragmentKey)) ||
+      usedProductIds.has(targetParticipantId)
+    ) {
+      return;
+    }
+    sourceFragmentKeys.forEach((fragmentKey) => usedReactantSourceFragmentKeys.add(fragmentKey));
+    sourceEntries.forEach((entry) => {
+      if (entry?.consumesWholeParticipant) {
+        usedReactantIds.add(String(entry?.participant?.id ?? ""));
+      }
+    });
+    usedProductIds.add(targetParticipantId);
+    selectedAssociateCandidates.push(candidate);
+    participantAdditions.push(...(candidate.participantAdditions ?? []));
     selectedMappings.push(...candidate.mappings);
   });
   const partialReactantIds = new Set();
@@ -356,30 +503,6 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedPartialCandidates.push(candidate);
     selectedMappings.push(...candidate.mappings);
   });
-  associateCandidates.sort(compareSolveCandidates).forEach((candidate) => {
-    const sourceParticipantIds = (candidate?.sourceParticipants ?? []).map((participant) =>
-      String(participant?.id ?? "")
-    );
-    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
-    if (!targetParticipantId || sourceParticipantIds.some((participantId) => !participantId)) {
-      return;
-    }
-    if (
-      sourceParticipantIds.some(
-        (participantId) =>
-          usedReactantIds.has(participantId) || partialReactantIds.has(participantId)
-      ) ||
-      usedProductIds.has(targetParticipantId) ||
-      partialProductIds.has(targetParticipantId)
-    ) {
-      return;
-    }
-    sourceParticipantIds.forEach((participantId) => usedReactantIds.add(participantId));
-    usedProductIds.add(targetParticipantId);
-    selectedAssociateCandidates.push(candidate);
-    participantAdditions.push(...(candidate.participantAdditions ?? []));
-    selectedMappings.push(...candidate.mappings);
-  });
 
   return {
     mode: "direct-v1",
@@ -399,10 +522,10 @@ export function buildComposerReactionSolvePlan(options = {}) {
     matchedReactantCount: usedReactantIds.size,
     matchedProductCount: usedProductIds.size,
     unresolvedReactants: reactants.filter(
-      (entry) => !usedReactantIds.has(String(entry?.participant?.id ?? ""))
+      (entry) => !isReactantEntryResolved(entry, usedReactantIds, selectedMappings)
     ),
     unresolvedProducts: products.filter(
-      (entry) => !usedProductIds.has(String(entry?.participant?.id ?? ""))
+      (entry) => !isProductEntryResolved(entry, usedProductIds, selectedMappings)
     ),
   };
 }

@@ -118,7 +118,11 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /describeComposerReactionSolvePlan\(plan\)/
+    /const laidOutPlan = applyComposerReactionSolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
+  );
+  assert.match(
+    runtimeSource,
+    /describeComposerReactionSolvePlan\(laidOutPlan\)/
   );
   assert.match(
     runtimeSource,
@@ -126,7 +130,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /function createOperatorParticipant\(templateId = "associate", operatorLaneIndex = 1\)/
+    /function createOperatorParticipant\(templateId = "associate", operatorLaneIndex = 1,\s*options = \{\}\)/
   );
   assert.match(
     runtimeSource,

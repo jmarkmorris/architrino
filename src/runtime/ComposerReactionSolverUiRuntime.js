@@ -33,6 +33,7 @@ import {
   buildComposerReactionSolvePlan,
   describeComposerReactionSolvePlan,
 } from "./ComposerReactionSolveProposalRuntime.js";
+import { applyComposerReactionSolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
 import { applyComposerReactionSolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
 import {
   getReactionCompositeModeLabel,
@@ -1318,7 +1319,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
       buildNodeKey,
       resolveBinaryChoiceInventory,
     });
-    if (!plan.selectedMappings.length) {
+    const laidOutPlan = applyComposerReactionSolveLayout({
+      plan,
+      solveState,
+    });
+    if (!laidOutPlan.selectedMappings.length) {
       setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
       return false;
     }
@@ -1332,7 +1337,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.mappings = [];
     clearAllRecentRouteState();
     const { appliedMappingIds } = applyComposerReactionSolvePlan({
-      plan,
+      plan: laidOutPlan,
       createOperatorParticipant,
       getParticipantRootNode,
       buildNodeKey,
@@ -1341,10 +1346,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     markMappingsRecent(appliedMappingIds);
     render();
 
-    const unresolvedProductCount = plan.unresolvedProducts.length;
-    const unresolvedReactantCount = plan.unresolvedReactants.length;
+    const unresolvedProductCount = laidOutPlan.unresolvedProducts.length;
+    const unresolvedReactantCount = laidOutPlan.unresolvedReactants.length;
     setStatus(
-      `Solve v1 mapped ${describeComposerReactionSolvePlan(plan)}. ${unresolvedProductCount} product${
+      `Solve v1 mapped ${describeComposerReactionSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
         unresolvedProductCount === 1 ? "" : "s"
       } and ${unresolvedReactantCount} reactant${
         unresolvedReactantCount === 1 ? "" : "s"
@@ -2360,9 +2365,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(`Center assembly ${participant.label} added to the reaction solver.`);
   }
 
-  function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+  function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1, options = {}) {
     const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "associate";
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
+    const requestedOperatorSlotIndex =
+      options?.operatorSlotIndex === null || options?.operatorSlotIndex === undefined
+        ? null
+        : Math.round(Number(options.operatorSlotIndex) || 0);
     const participant = createParticipantRecord({
       side: "operator",
       templateId: normalizedTemplateId,
@@ -2380,7 +2389,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants.push(participant);
     assignOperatorParticipantToSlot(
       participant,
-      getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
+      requestedOperatorSlotIndex ??
+        getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
     );
     return participant;
   }

@@ -57,7 +57,11 @@ export function applyComposerReactionSolvePlan(options = {}) {
     const participant = createOperatorParticipant(
       addition.templateId,
       addition.operatorLaneIndex,
-      { render: false, announce: false }
+      {
+        render: false,
+        announce: false,
+        operatorSlotIndex: addition.operatorSlotIndex ?? null,
+      }
     );
     if (!participant) {
       return;

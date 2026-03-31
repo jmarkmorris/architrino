@@ -20,6 +20,7 @@ test("solve projection creates operator participants and resolves deferred mappi
           kind: "operator",
           templateId: "associate",
           operatorLaneIndex: 1,
+          operatorSlotIndex: 3,
         },
       ],
       selectedMappings: [
@@ -48,11 +49,12 @@ test("solve projection creates operator participants and resolves deferred mappi
         },
       ],
     },
-    createOperatorParticipant: (templateId, operatorLaneIndex) => {
+    createOperatorParticipant: (templateId, operatorLaneIndex, options = {}) => {
       const participant = {
         id: `operator_${createdOperators.length + 1}`,
         templateId,
         operatorLaneIndex,
+        operatorSlotIndex: options.operatorSlotIndex ?? null,
         hierarchy: [{ id: `operator_${createdOperators.length + 1}_root` }],
       };
       createdOperators.push(participant);
@@ -82,6 +84,7 @@ test("solve projection creates operator participants and resolves deferred mappi
 
   assert.equal(createdOperators.length, 1);
   assert.equal(result.addedParticipants.length, 1);
+  assert.equal(createdOperators[0].operatorSlotIndex, 3);
   assert.deepEqual(result.appliedMappingIds, ["mapping_1", "mapping_2"]);
   assert.deepEqual(appliedMappings, [
     {

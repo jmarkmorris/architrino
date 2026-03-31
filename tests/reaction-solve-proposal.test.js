@@ -262,12 +262,13 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
   assert.equal(plan.associatedProductCount, 1);
   assert.equal(plan.selectedAssociateCandidates.length, 1);
   assert.equal(plan.participantAdditions.length, 1);
-  assert.deepEqual(plan.participantAdditions[0], {
-    ref: "associate:reactant_pro_core:reactant_anti_core:product_photon",
-    kind: "operator",
-    templateId: "associate",
-    operatorLaneIndex: 1,
-  });
+  assert.equal(plan.participantAdditions[0]?.kind, "operator");
+  assert.equal(plan.participantAdditions[0]?.templateId, "associate");
+  assert.equal(plan.participantAdditions[0]?.operatorLaneIndex, 1);
+  assert.match(
+    String(plan.participantAdditions[0]?.ref ?? ""),
+    /^associate:reactant_pro_core:[^:]+:reactant_anti_core:[^:]+:product_photon$/
+  );
   assert.equal(plan.selectedMappings.length, 4);
   assert.equal(describeComposerReactionSolvePlan(plan), "1 associated product");
   assert.deepEqual(
@@ -281,6 +282,58 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
       ["reactant", "operator-input", null],
       ["operator-output", "product", "pro"],
       ["operator-output", "product", "anti"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan can consume Higgs-cluster noether-core rows into two associated photons", () => {
+  const reactantHiggs = createParticipant({
+    id: "reactant_higgs",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    label: "Higgs Cluster",
+  });
+  const productPhotonA = createParticipant({
+    id: "product_photon_a",
+    side: "product",
+    templateId: "photon",
+    label: "Photon",
+  });
+  const productPhotonB = createParticipant({
+    id: "product_photon_b",
+    side: "product",
+    templateId: "photon",
+    label: "Photon",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([reactantHiggs, productPhotonA, productPhotonB]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 2);
+  assert.equal(plan.partialCompositeProductCount, 0);
+  assert.equal(plan.selectedAssociateCandidates.length, 2);
+  assert.equal(plan.participantAdditions.length, 2);
+  assert.equal(plan.selectedMappings.length, 8);
+  assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+    ]),
+    [
+      ["reactant", "operator-input"],
+      ["reactant", "operator-input"],
+      ["operator-output", "product"],
+      ["operator-output", "product"],
+      ["reactant", "operator-input"],
+      ["reactant", "operator-input"],
+      ["operator-output", "product"],
+      ["operator-output", "product"],
     ]
   );
   assert.equal(plan.unresolvedReactants.length, 0);
