@@ -148,22 +148,33 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
       .map((mapping) => mapping.id);
   }
 
-  function getConflictingMappings(nodeKey, role) {
+  function getConflictingMappings(nodeKey, role, anchorInstanceIndex = null) {
     return getMappings().filter((mapping) => {
       const mappedKey = getMappedKeyForRole(mapping, role);
-      return mappedKey ? nodeKeysConflict(mappedKey, nodeKey) : false;
+      return isSingleMappingAnchorRole({
+        role,
+        nodeKey,
+        anchorInstanceIndex,
+      }) && mappedKey
+        ? nodeKeysConflict(mappedKey, nodeKey)
+        : false;
     });
   }
 
   function getAnchorAvailability(role, nodeKey, anchorInstanceIndex = null) {
     const existingMappings = findMappingsByNodeKey(nodeKey, role, anchorInstanceIndex);
-    if (existingMappings.length && isSingleMappingAnchorRole(role)) {
+    if (
+      existingMappings.length &&
+      isSingleMappingAnchorRole({ role, nodeKey, anchorInstanceIndex })
+    ) {
       return { disabled: false, reason: "" };
     }
-    const hasConflict = isSingleMappingAnchorRole(role) && getConflictingMappings(nodeKey, role).some((mapping) => {
-      const mappedKey = getMappedKeyForRole(mapping, role);
-      return mappedKey && mappedKey !== nodeKey;
-    });
+    const hasConflict =
+      isSingleMappingAnchorRole({ role, nodeKey, anchorInstanceIndex }) &&
+      getConflictingMappings(nodeKey, role, anchorInstanceIndex).some((mapping) => {
+        const mappedKey = getMappedKeyForRole(mapping, role);
+        return mappedKey && mappedKey !== nodeKey;
+      });
     if (hasConflict) {
       return {
         disabled: true,

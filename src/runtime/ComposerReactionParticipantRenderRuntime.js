@@ -259,6 +259,9 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
     extraClassNames.filter(Boolean).forEach((className) => visual.classList.add(className));
+    if (participant?.templateId === "free_architrinos") {
+      visual.classList.add("is-free-architrinos");
+    }
     if (participant.polarity === "anti") {
       visual.classList.add("is-anti-polarity");
     }
@@ -314,6 +317,27 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       wrapper.append(slot, choices);
     }
     return wrapper;
+  }
+
+  function createTreeRowAnchor(participant, node, nodeKey) {
+    if (
+      participant?.side === "reactant" &&
+      participant?.templateId === "free_architrinos" &&
+      String(node?.id ?? "") === String(getParticipantRootNode(participant)?.id ?? "")
+    ) {
+      const anchorSet = document.createElement("div");
+      anchorSet.className = "composer-reaction-solver-anchor-set is-reactant is-free-architrinos-root";
+      [0, 1, 2].forEach((anchorInstanceIndex) => {
+        anchorSet.appendChild(
+          createAnchorButton(participant, node, nodeKey, {
+            anchorRole: "reactant",
+            anchorInstanceIndex,
+          })
+        );
+      });
+      return anchorSet;
+    }
+    return createAnchorButton(participant, node, nodeKey);
   }
 
   function createNoetherCoreGridSections(participant, node, options = {}) {
@@ -749,7 +773,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       if (usesInlineAnchor) {
         row.classList.add("is-inline-anchor");
       }
-      const anchor = usesInlineAnchor ? null : createAnchorButton(participant, node, nodeKey);
+      const anchor = usesInlineAnchor ? null : createTreeRowAnchor(participant, node, nodeKey);
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {

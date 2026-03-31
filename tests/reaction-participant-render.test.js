@@ -238,6 +238,30 @@ test("free architrinos reuse the grid layout but render personality-only tiles w
   );
 });
 
+test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /participant\?\.side === "reactant"[\s\S]*?participant\?\.templateId === "free_architrinos"[\s\S]*?\[0,\s*1,\s*2\]\.forEach\(\(anchorInstanceIndex\) =>/
+  );
+  assert.match(
+    runtimeSource,
+    /anchorRole:\s*"reactant",[\s\S]*?anchorInstanceIndex/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-particle\.is-free-architrinos\s+\.composer-reaction-solver-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
+  );
+});
+
 test("operator tiles expose an open-ledger state", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(

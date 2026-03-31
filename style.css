@@ -2193,6 +2193,13 @@ body {
   color: rgba(244, 247, 255, 0.88);
 }
 
+.composer-reaction-solver-particle.is-free-architrinos .composer-reaction-solver-particle-label {
+  font-size: 10px;
+  line-height: 1.05;
+  justify-items: center;
+  text-align: center;
+}
+
 .composer-reaction-solver-particle-label-line {
   display: block;
 }
@@ -2398,6 +2405,20 @@ body {
 .composer-reaction-solver-tree-row.is-reactant > .composer-reaction-solver-anchor {
   position: relative;
   left: calc(var(--solver-anchor-attachment-offset, 3px) * -1);
+}
+
+.composer-reaction-solver-tree-row.is-reactant > .composer-reaction-solver-anchor-set {
+  position: relative;
+  left: calc(var(--solver-anchor-attachment-offset, 3px) * -1);
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.composer-reaction-solver-tree-row.is-reactant
+  > .composer-reaction-solver-anchor-set
+  > .composer-reaction-solver-anchor {
+  position: static;
 }
 
 .composer-reaction-solver-tree-row.is-product > .composer-reaction-solver-anchor {
