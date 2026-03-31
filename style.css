@@ -2531,11 +2531,11 @@ body {
   z-index: 2;
 }
 
-.composer-reaction-solver-participant.is-composite-participant.is-reactant > .composer-reaction-solver-composite-visual-rail {
+.composer-reaction-solver-participant.is-composite-participant .composer-reaction-solver-composite-visual-rail.is-reactant {
   right: calc(100% + var(--solver-tile-gap, 7px));
 }
 
-.composer-reaction-solver-participant.is-composite-participant.is-product > .composer-reaction-solver-composite-visual-rail {
+.composer-reaction-solver-participant.is-composite-participant .composer-reaction-solver-composite-visual-rail.is-product {
   left: calc(100% + var(--solver-tile-gap, 7px));
 }
 

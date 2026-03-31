@@ -25,6 +25,8 @@ import {
   buildReactionParticipantStructureForPickerCell,
   getComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
+import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
+import { buildComposerReactionDirectRootPlan } from "./ComposerReactionSolveProposalRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -1303,6 +1305,65 @@ export function createComposerReactionSolverUiRuntime(deps) {
     closeMenu();
     render();
     setStatus("Reaction canvas cleared.");
+    return true;
+  }
+
+  function solveReactionSolverCanvas() {
+    if (!state.active) {
+      setStatus("Open the reaction solver before running solve.");
+      return false;
+    }
+    const solveState = buildComposerReactionSolveState({
+      participants: state.participants,
+      mappings: state.mappings,
+      buildNodeKey,
+      getParticipantRootNode,
+      isCenterAssemblyParticipant,
+      isOperatorParticipant,
+    });
+    if (!solveState.hasReactants || !solveState.hasProducts) {
+      setStatus("Solve needs at least one reactant and one product.");
+      return false;
+    }
+    if (solveState.hasUnsupportedParticipants) {
+      setStatus(
+        "Solve v1 only supports reactants and products on the canvas. Remove center bosons or operators first."
+      );
+      return false;
+    }
+
+    const plan = buildComposerReactionDirectRootPlan({
+      solveState,
+      resolveBinaryChoiceInventory,
+    });
+    if (!plan.selectedMappings.length) {
+      setStatus("Solve v1 could not find any direct conservative reactant-to-product matches.");
+      return false;
+    }
+
+    clearDragState();
+    closeMenu();
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    state.mappings = [];
+    clearAllRecentRouteState();
+    const appliedMappingIds = plan.selectedMappings.map((mapping) =>
+      addOrReplaceMapping(mapping.sourceKey, mapping.sourceRole, mapping.targetKey, mapping.targetRole)
+    );
+    markMappingsRecent(appliedMappingIds);
+    render();
+
+    const unresolvedProductCount = plan.unresolvedProducts.length;
+    const unresolvedReactantCount = plan.unresolvedReactants.length;
+    setStatus(
+      `Solve v1 mapped ${plan.selectedMappings.length} direct product${
+        plan.selectedMappings.length === 1 ? "" : "s"
+      }. ${unresolvedProductCount} product${unresolvedProductCount === 1 ? "" : "s"} and ${unresolvedReactantCount} reactant${
+        unresolvedReactantCount === 1 ? "" : "s"
+      } remain unresolved.`
+    );
     return true;
   }
 
@@ -3500,7 +3561,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.solverBound) {
       solveButton.dataset.solverBound = "true";
       solveButton.addEventListener("click", () => {
-        setStatus("Solve is not wired up yet.");
+        solveReactionSolverCanvas();
       });
     }
     if (!document.body.dataset.composerReactionSolverDocumentBound) {
@@ -3529,6 +3590,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionSolverCanvas,
+    solveCanvas: solveReactionSolverCanvas,
     setActive,
     toggleActive,
     closeMenu,

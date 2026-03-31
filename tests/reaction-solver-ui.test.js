@@ -102,11 +102,15 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /function solveReactionSolverCanvas\(\)/
+  );
+  assert.match(
+    runtimeSource,
     /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionSolverCanvas\(\);/s
   );
   assert.match(
     runtimeSource,
-    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*setStatus\("Solve is not wired up yet\."\);/s
+    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionSolverCanvas\(\);/s
   );
 });
 

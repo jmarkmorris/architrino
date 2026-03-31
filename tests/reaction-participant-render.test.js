@@ -310,6 +310,26 @@ test("composite participant connector rails are removed from the row flow", () =
   );
 });
 
+test("composite title rail side anchoring survives the nested participant-content wrapper", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /content\.className = "composer-reaction-solver-participant-content";/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-reactant\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-product\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+  );
+});
+
 test("composite collector uses the shared centered connector inset", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
