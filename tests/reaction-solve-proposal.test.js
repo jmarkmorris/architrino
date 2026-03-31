@@ -456,6 +456,62 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
+test("solve plan prefers two full associate photons over fragment-plus-partial residue", () => {
+  const reactantHiggs = createParticipant({
+    id: "reactant_higgs",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    label: "Higgs Cluster",
+  });
+  const productPhotonA = createParticipant({
+    id: "product_photon_a",
+    side: "product",
+    templateId: "photon",
+    label: "Photon A",
+  });
+  const productPhotonB = createParticipant({
+    id: "product_photon_b",
+    side: "product",
+    templateId: "photon",
+    label: "Photon B",
+  });
+  const productCore = createParticipant({
+    id: "product_core",
+    side: "product",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Pro Noether core",
+  });
+
+  const plan = buildComposerReactionSolvePlan({
+    solveState: buildSolveState([
+      reactantHiggs,
+      productPhotonA,
+      productPhotonB,
+      productCore,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 2);
+  assert.equal(plan.partialCompositeProductCount, 0);
+  assert.equal(plan.selectedFragmentCandidates.length, 0);
+  assert.equal(plan.selectedAssociateCandidates.length, 2);
+  assert.equal(plan.selectedMappings.length, 8);
+  assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
+  assert.deepEqual(
+    plan.selectedAssociateCandidates.map((candidate) => candidate.targetParticipant.id),
+    ["product_photon_a", "product_photon_b"]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.deepEqual(
+    plan.unresolvedProducts.map((entry) => entry.participant.id),
+    ["product_core"]
+  );
+});
+
 test("solve plan leaves unsupported product matches unresolved", () => {
   const reactantCore = createParticipant({
     id: "reactant_core",
