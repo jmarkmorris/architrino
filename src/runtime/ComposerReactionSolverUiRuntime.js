@@ -11,6 +11,9 @@ import {
   createComposerReactionBinaryGlyphRuntime,
 } from "./ComposerReactionBinaryGlyphRuntime.js";
 import {
+  createComposerReactionBinaryInventoryRuntime,
+} from "./ComposerReactionBinaryInventoryRuntime.js";
+import {
   buildNodeKey,
   createComposerReactionAnchorStateRuntime,
   nodeKeysConflict,
@@ -25,6 +28,13 @@ import {
   buildReactionParticipantStructureForPickerCell,
   getComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
+import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
+import {
+  buildComposerReactionSolvePlan,
+  describeComposerReactionSolvePlan,
+} from "./ComposerReactionSolveProposalRuntime.js";
+import { applyComposerReactionSolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
+import { applyComposerReactionSolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -55,15 +65,11 @@ import {
   shouldRenderReactionStructureDescriptorChildren,
 } from "./ComposerReactionStructureDescriptorRuntime.js";
 import {
-  getNoetherCoreSlotBinaryPresence,
-} from "../domain/structure/StructureClassification.js";
-import {
   cloneStructureNode,
   getStructureNodeChildren,
   getStructureTrait,
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_CLASSIFICATION_FAMILIES,
-  STRUCTURE_KINDS,
 } from "../domain/structure/StructureSchema.js";
 import { findStructureNodeById } from "../domain/structure/StructureTraversal.js";
 import {
@@ -228,6 +234,12 @@ const {
 } = createComposerReactionBinarySelectionRuntime({
   supportsParticipantPolarity,
   normalizeParticipantPolarity,
+});
+
+const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
+  getBinaryChoiceInventory,
+  getResolvedBinarySelectionMap,
+  resolveBinarySelectorGroup,
 });
 
 const {
@@ -972,34 +984,6 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return rebuildAnchorRegistry().get(nodeKey) ?? null;
   }
 
-  function resolveBinaryChoiceInventory(participant, node, groupNode = null) {
-    const choice = getBinaryPersonalitySelection(participant, node, groupNode);
-    const baseInventory = getBinaryChoiceInventory(choice?.id);
-    const slotName = String(node?.slotName ?? "").trim().toLowerCase() || ({
-      I: "inner",
-      M: "middle",
-      O: "outer",
-    }[String(node?.slotCode ?? "").trim().toUpperCase()] ?? "");
-    const groupRecord = resolveBinarySelectorGroup(participant, groupNode ?? node);
-    const structureNode = participant?.structure && groupRecord?.id
-      ? findStructureNodeById(participant.structure, groupRecord.id)
-      : null;
-    const coreNode =
-      structureNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
-        ? structureNode
-        : getStructureNodeChildren(structureNode).find(
-            (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
-          ) ?? null;
-    const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
-    if (!slotName || binaryPresence[slotName] !== false) {
-      return baseInventory;
-    }
-    return {
-      electrino: Math.max(0, Number(baseInventory.electrino ?? 0) - 1),
-      positrino: Math.max(0, Number(baseInventory.positrino ?? 0) - 1),
-    };
-  }
-
   function createAnchorContext(participant, node) {
     if (!participant || !node?.id) {
       return null;
@@ -1306,6 +1290,97 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
+  function solveReactionSolverCanvas() {
+    if (!state.active) {
+      setStatus("Open the reaction solver before running solve.");
+      return false;
+    }
+    let solveState = buildComposerReactionSolveState({
+      participants: state.participants,
+      mappings: state.mappings,
+      buildNodeKey,
+      getParticipantRootNode,
+      isCenterAssemblyParticipant,
+      isOperatorParticipant,
+    });
+    if (!solveState.hasReactants || !solveState.hasProducts) {
+      setStatus("Solve needs at least one reactant and one product.");
+      return false;
+    }
+    if (solveState.hasUnsupportedParticipants) {
+      setStatus(
+        "Solve v1 only supports reactants, products, and existing operators on the canvas. Remove center bosons first."
+      );
+      return false;
+    }
+    resetSolveDerivedArtifacts();
+    solveState = buildComposerReactionSolveState({
+      participants: state.participants,
+      mappings: state.mappings,
+      buildNodeKey,
+      getParticipantRootNode,
+      isCenterAssemblyParticipant,
+      isOperatorParticipant,
+    });
+
+    const plan = buildComposerReactionSolvePlan({
+      solveState,
+      buildNodeKey,
+      resolveBinaryChoiceInventory,
+    });
+    const laidOutPlan = applyComposerReactionSolveLayout({
+      plan,
+      solveState,
+    });
+    if (!laidOutPlan.selectedMappings.length) {
+      setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
+      return false;
+    }
+
+    clearDragState();
+    closeMenu();
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    state.mappings = [];
+    clearAllRecentRouteState();
+    const { appliedMappingIds } = applyComposerReactionSolvePlan({
+      plan: laidOutPlan,
+      createOperatorParticipant,
+      getParticipantRootNode,
+      buildNodeKey,
+      addOrReplaceMapping,
+    });
+    markMappingsRecent(appliedMappingIds);
+    render();
+
+    const unresolvedProductCount = laidOutPlan.unresolvedProducts.length;
+    const unresolvedReactantCount = laidOutPlan.unresolvedReactants.length;
+    setStatus(
+      `Solve v1 mapped ${describeComposerReactionSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
+        unresolvedProductCount === 1 ? "" : "s"
+      } and ${unresolvedReactantCount} reactant${
+        unresolvedReactantCount === 1 ? "" : "s"
+      } remain unresolved.`
+    );
+    return true;
+  }
+
+  function resetSolveDerivedArtifacts() {
+    state.participants = state.participants.filter(
+      (participant) => !(participant?.side === "operator" && participant?.isSolveGenerated)
+    );
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedShell) {
+        participant.isAutoDissociatedShell = false;
+      }
+    });
+    state.mappings = [];
+    state.hoveredMappingIds = [];
+    clearAllRecentRouteState();
+  }
+
   function setParticipantPolarity(participantId, nextPolarity) {
     const participant = findParticipantById(participantId);
     if (!participant || !supportsParticipantPolarity(participant.templateId)) {
@@ -1372,28 +1447,18 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
 
-    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
-      participant,
-      childStructures,
-      (childStructure, index) => ({
-        splitGroupId,
-        splitOriginTemplateId: "higgs_cluster",
-        splitOriginRole: inferParticipantPolarityFromStructure(childStructure),
-        splitOriginIndex: index,
-      })
-    );
-    if (!replacementParticipants.length) {
+    if (participant.isDissociatedShell) {
+      setStatus(
+        `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster is already marked dissociated.`
+      );
       return false;
     }
-
-    state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    removeMappingsForParticipant(participantId);
+    participant.isDissociatedShell = true;
+    participant.isAutoDissociatedShell = false;
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster dissociated into four Noether core assemblies.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster marked dissociated.`
     );
     return true;
   }
@@ -1417,34 +1482,42 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const participantIndex = state.participants.findIndex(
       (entry) => String(entry?.id ?? "") === participantId
     );
-    const splitGroupId = `solver_split_group_${state.nextSplitGroupId++}`;
-    const childStructures = getStructureNodeChildren(participant.structure);
-    const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows(
-      participant,
-      childStructures,
-      (_childStructure, index) => ({
-        splitGroupId,
-        splitOriginTemplateId: participant.templateId,
-        splitOriginIndex: index,
-      })
-    );
-    if (!replacementParticipants.length) {
+    if (participantIndex < 0) {
       return false;
     }
-
-    state.participants.splice(participantIndex, 1, ...replacementParticipants);
-    removeMappingsForParticipant(participantId);
+    if (participant.isDissociatedShell) {
+      setStatus(
+        `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} is already marked dissociated.`
+      );
+      return false;
+    }
+    participant.isDissociatedShell = true;
+    participant.isAutoDissociatedShell = false;
     closeMenu();
     render();
-    const dissociationSummary =
-      participant.templateId === "photon"
-        ? "dissociated into pro and anti Noether core assemblies."
-        : participant.templateId === "higgs_cluster"
-          ? "dissociated into four Noether core assemblies."
-          : "dissociated into constituent quarks.";
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} ${dissociationSummary}`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} marked dissociated.`
     );
+    return true;
+  }
+
+  function markCompositeReactantShellDissociatedForNodeKey(nodeKey, role = "") {
+    if (role !== "reactant" || !nodeKey) {
+      return false;
+    }
+    const { participantId, nodeId } = parseNodeKey(nodeKey);
+    const participant = findParticipantById(participantId);
+    if (!participant || participant.side !== "reactant" || !isCompositeParticipant(participant)) {
+      return false;
+    }
+    const rootNode = getParticipantRootNode(participant);
+    if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
+      return false;
+    }
+    if (participant.isDissociatedShell || participant.isAutoDissociatedShell) {
+      return false;
+    }
+    participant.isAutoDissociatedShell = true;
     return true;
   }
 
@@ -1478,6 +1551,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       sourceAnchorInstanceIndex,
       targetAnchorInstanceIndex,
     });
+    markCompositeReactantShellDissociatedForNodeKey(sourceKey, sourceRole);
     state.hoveredMappingIds = [];
     return mappingId;
   }
@@ -2313,9 +2387,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     setStatus(`Center assembly ${participant.label} added to the reaction solver.`);
   }
 
-  function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+  function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1, options = {}) {
     const normalizedTemplateId = isOperatorTemplateId(templateId) ? templateId : "associate";
     const resolvedLaneIndex = normalizeOperatorLaneIndex(operatorLaneIndex);
+    const requestedOperatorSlotIndex =
+      options?.operatorSlotIndex === null || options?.operatorSlotIndex === undefined
+        ? null
+        : Math.round(Number(options.operatorSlotIndex) || 0);
     const participant = createParticipantRecord({
       side: "operator",
       templateId: normalizedTemplateId,
@@ -2328,13 +2406,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
         operatorLaneIndex: resolvedLaneIndex,
         operatorSlotIndex: 0,
         surfaceRowIndex: 0,
+        isSolveGenerated: Boolean(options?.isSolveGenerated),
       },
     });
     state.participants.push(participant);
     assignOperatorParticipantToSlot(
       participant,
-      getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
+      requestedOperatorSlotIndex ??
+        getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
     );
+    return participant;
+  }
+
+  function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {
+    const participant = createOperatorParticipant(templateId, operatorLaneIndex);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
     state.pendingSourceAnchorInstanceIndex = null;
@@ -3215,8 +3300,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
         targetAnchor,
         bounds
       );
-      const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
       const validation = getMappingValidation(mapping);
+      const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
       const path = createSvgElement("path");
       path.setAttribute(
         "d",
@@ -3500,7 +3585,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.solverBound) {
       solveButton.dataset.solverBound = "true";
       solveButton.addEventListener("click", () => {
-        setStatus("Solve is not wired up yet.");
+        solveReactionSolverCanvas();
       });
     }
     if (!document.body.dataset.composerReactionSolverDocumentBound) {
@@ -3529,6 +3614,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionSolverCanvas,
+    solveCanvas: solveReactionSolverCanvas,
     setActive,
     toggleActive,
     closeMenu,

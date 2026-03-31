@@ -2177,6 +2177,12 @@ body {
     0 0 18px color-mix(in srgb, var(--solver-anti-fill-accent) 18%, transparent);
 }
 
+.composer-reaction-solver-participant.is-composite-participant.is-dissociated-shell
+  .composer-reaction-solver-composite-visual-rail
+  .composer-reaction-solver-particle {
+  border-style: dotted;
+}
+
 .composer-reaction-solver-particle-label {
   display: grid;
   justify-items: center;
@@ -2531,11 +2537,11 @@ body {
   z-index: 2;
 }
 
-.composer-reaction-solver-participant.is-composite-participant.is-reactant > .composer-reaction-solver-composite-visual-rail {
+.composer-reaction-solver-participant.is-composite-participant .composer-reaction-solver-composite-visual-rail.is-reactant {
   right: calc(100% + var(--solver-tile-gap, 7px));
 }
 
-.composer-reaction-solver-participant.is-composite-participant.is-product > .composer-reaction-solver-composite-visual-rail {
+.composer-reaction-solver-participant.is-composite-participant .composer-reaction-solver-composite-visual-rail.is-product {
   left: calc(100% + var(--solver-tile-gap, 7px));
 }
 
@@ -2976,8 +2982,17 @@ body {
 }
 
 .composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile:disabled {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(28, 34, 48, 0.8);
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
+  background: rgba(12, 16, 30, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.composer-reaction-solver-anchor.composer-reaction-solver-noether-core-grid-tile.is-mapped:disabled {
+  border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
+  background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
 }
 
 .composer-reaction-solver-participant.has-inline-field-header .composer-reaction-solver-tree {

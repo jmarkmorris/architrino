@@ -90,6 +90,21 @@ test("split helper derives proton children as up/down/up", () => {
   );
 });
 
+test("refresh from structure preserves full quark labels for participant titles", () => {
+  const participant = createParticipant("down_quark", "Down Quark", "pro");
+  const refreshedStructure = buildReactionParticipantStructure("down_quark", {
+    id: "down_quark_refresh",
+    polarity: "pro",
+  });
+
+  mutationRuntime.refreshParticipantFromStructure(participant, refreshedStructure.root, {
+    preserveBinarySelections: true,
+  });
+
+  assert.equal(participant.baseLabel, "Down Quark");
+  assert.equal(participant.label, "pro Down Quark");
+});
+
 test("split helper derives photon children as pro and anti Noether cores", () => {
   const participant = createParticipant("photon", "Photon", "pro");
   const children = mutationRuntime.buildSplitParticipantsFromChildStructures(

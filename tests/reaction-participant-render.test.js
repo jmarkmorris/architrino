@@ -148,6 +148,21 @@ test("center bosons expose a left-side input attachment frame", () => {
   );
 });
 
+test("disabled noether-core tiles keep their static tile styling instead of dark disabled chrome", () => {
+  const cssSource = readFileSync(
+    new URL("../style.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    cssSource,
+    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile:disabled\s*\{[\s\S]*?opacity:\s*1;[\s\S]*?background:\s*rgba\(12,\s*16,\s*30,\s*0\.9\);[\s\S]*?box-shadow:\s*[\s\S]*?0 0 0 1px rgba\(255,\s*255,\s*255,\s*0\.02\);/
+  );
+  assert.match(
+    cssSource,
+    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile\.is-mapped:disabled\s*\{[\s\S]*?background:\s*color-mix\(in srgb,\s*rgba\(24,\s*92,\s*64,\s*0\.32\)\s*18%,\s*rgba\(12,\s*16,\s*30,\s*0\.94\)\);/
+  );
+});
+
 test("composite assembly rows use the standard tile gap between the title tile and binary track", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
@@ -307,6 +322,42 @@ test("composite participant connector rails are removed from the row flow", () =
   assert.doesNotMatch(
     styleSheet,
     /\.composer-reaction-solver-composite-visual-rail::after\s*\{/
+  );
+});
+
+test("composite title rail side anchoring survives the nested participant-content wrapper", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /content\.className = "composer-reaction-solver-participant-content";/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-reactant\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-product\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+  );
+});
+
+test("dissociated composite shells keep the title tile and render it with a dotted border", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /if \(participant\?\.isDissociatedShell \|\| participant\?\.isAutoDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-shell[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
   );
 });
 

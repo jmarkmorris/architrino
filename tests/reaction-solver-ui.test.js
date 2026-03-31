@@ -102,11 +102,59 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /function solveReactionSolverCanvas\(\)/
+  );
+  assert.match(
+    runtimeSource,
     /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionSolverCanvas\(\);/s
   );
   assert.match(
     runtimeSource,
-    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*setStatus\("Solve is not wired up yet\."\);/s
+    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionSolverCanvas\(\);/s
+  );
+  assert.match(
+    runtimeSource,
+    /buildComposerReactionSolvePlan\(\{\s*solveState,\s*buildNodeKey,\s*resolveBinaryChoiceInventory,/s
+  );
+  assert.match(
+    runtimeSource,
+    /resetSolveDerivedArtifacts\(\);/
+  );
+  assert.match(
+    runtimeSource,
+    /const laidOutPlan = applyComposerReactionSolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
+  );
+  assert.match(
+    runtimeSource,
+    /describeComposerReactionSolvePlan\(laidOutPlan\)/
+  );
+  assert.match(
+    runtimeSource,
+    /Solve v1 only supports reactants, products, and existing operators on the canvas\. Remove center bosons first\./
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Remove center bosons or operators first\./
+  );
+  assert.match(
+    runtimeSource,
+    /applyComposerReactionSolvePlan\(\{/
+  );
+  assert.match(
+    runtimeSource,
+    /function createOperatorParticipant\(templateId = "associate", operatorLaneIndex = 1,\s*options = \{\}\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function addOrReplaceMapping\(\s*sourceKey,\s*sourceRole,\s*targetKey,\s*targetRole,\s*\{\s*sourceAnchorInstanceIndex = null,\s*targetAnchorInstanceIndex = null,\s*\} = \{\}\s*\)/
+  );
+  assert.match(
+    runtimeSource,
+    /createComposerReactionBinaryInventoryRuntime\(\{/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /function resolveBinaryChoiceInventory\(participant,\s*node,\s*groupNode = null\)/
   );
 });
 
@@ -193,7 +241,7 @@ test("solver surface rows are shared across all five column groups and capped to
   );
 });
 
-test("dissociation preserves the original participant row block instead of restacking at the top", () => {
+test("split row helper preserves the original participant row block instead of restacking at the top", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
@@ -210,9 +258,86 @@ test("dissociation preserves the original participant row block instead of resta
     runtimeSource,
     /surfaceRowIndex:\s*normalizeSurfaceRowStartIndex\(baseRowIndex \+ index,\s*1,\s*baseRowIndex \+ index\)/
   );
+});
+
+test("composite right-click dissociation marks the existing shell instead of replacing it with split participants", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
   assert.match(
     runtimeSource,
-    /const replacementParticipants = buildSplitParticipantsPreservingSurfaceRows\(\s*participant,\s*childStructures,/
+    /function splitHiggsParticipantById\(participantId\)/
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.isDissociatedShell = true;/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /state\.participants\.splice\(participantIndex,\s*1,\s*\.\.\.replacementParticipants\);/
+  );
+  assert.match(
+    runtimeSource,
+    /Higgs cluster marked dissociated\./
+  );
+  assert.match(
+    runtimeSource,
+    /`\$\{participant\.side === "reactant" \? "Reactant" : "Product"\} \$\{participant\.label\} marked dissociated\.`/
+  );
+});
+
+test("mapping from a composite reactant child auto-marks the composite shell as dissociated", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function markCompositeReactantShellDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(role !== "reactant" \|\| !nodeKey\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(!participant \|\| participant\.side !== "reactant" \|\| !isCompositeParticipant\(participant\)\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(!rootNode\?\.id \|\| String\(rootNode\.id\) === String\(nodeId \?\? ""\)\) \{\s*return false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /participant\.isAutoDissociatedShell = true;/
+  );
+  assert.match(
+    runtimeSource,
+    /markCompositeReactantShellDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
+  );
+});
+
+test("solve resets only solver-generated operators and auto dissociation before rebuilding mappings", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function resetSolveDerivedArtifacts\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.participants = state\.participants\.filter\(\s*\(participant\) => !\(participant\?\.side === "operator" && participant\?\.isSolveGenerated\)\s*\);/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\?\.isAutoDissociatedShell\) \{\s*participant\.isAutoDissociatedShell = false;\s*\}/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.mappings = \[\];/
   );
 });
 

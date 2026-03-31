@@ -7,7 +7,6 @@ import { STRUCTURE_KINDS } from "./StructureSchema.js";
 const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
   inner: "Uni Binary",
   inner_middle: "Bi Binary",
-  inner_middle_outer: "Tri Binary",
 });
 
 const displayLabelsBySpecies = Object.freeze({
@@ -22,12 +21,12 @@ const displayLabelsBySpecies = Object.freeze({
   electron_neutrino: "Neutrino",
   muon_neutrino: "Muon Neutrino",
   tau_neutrino: "Tau Neutrino",
-  up_quark: "Up",
-  charm_quark: "Charm",
-  top_quark: "Top",
-  down_quark: "Down",
-  strange_quark: "Strange",
-  bottom_quark: "Bottom",
+  up_quark: "Up Quark",
+  charm_quark: "Charm Quark",
+  top_quark: "Top Quark",
+  down_quark: "Down Quark",
+  strange_quark: "Strange Quark",
+  bottom_quark: "Bottom Quark",
 });
 
 function humanizeStructureId(value = "") {
@@ -42,6 +41,11 @@ function humanizeStructureId(value = "") {
     .join(" ");
 }
 
+function formatNoetherCoreDisplayLabel(structureRoot = null) {
+  const polarity = String(structureRoot?.traits?.polarity ?? "").trim().toLowerCase();
+  return polarity === "anti" ? "Anti Noether Core" : "Pro Noether Core";
+}
+
 export function resolveStructureDisplayLabel(structureRoot = null) {
   if (!structureRoot) {
     return "";
@@ -49,6 +53,9 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
 
   if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_CORE) {
     const binaryPresenceKey = getNoetherCoreBinaryPresenceKey(structureRoot);
+    if (binaryPresenceKey === "inner_middle_outer") {
+      return formatNoetherCoreDisplayLabel(structureRoot);
+    }
     if (noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
       return noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey];
     }
