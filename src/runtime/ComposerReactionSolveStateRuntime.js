@@ -62,9 +62,7 @@ export function buildComposerReactionSolveState(options = {}) {
   });
 
   state.hasUnsupportedParticipants =
-    state.centerAssemblies.length > 0 ||
-    state.operators.length > 0 ||
-    state.unsupported.length > 0;
+    state.centerAssemblies.length > 0 || state.unsupported.length > 0;
   state.hasReactants = state.reactants.length > 0;
   state.hasProducts = state.products.length > 0;
   return state;

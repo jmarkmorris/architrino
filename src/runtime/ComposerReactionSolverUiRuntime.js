@@ -1309,7 +1309,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (solveState.hasUnsupportedParticipants) {
       setStatus(
-        "Solve v1 only supports reactants and products on the canvas. Remove center bosons or operators first."
+        "Solve v1 only supports reactants, products, and existing operators on the canvas. Remove center bosons first."
       );
       return false;
     }

@@ -126,6 +126,14 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
+    /Solve v1 only supports reactants, products, and existing operators on the canvas\. Remove center bosons first\./
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /Remove center bosons or operators first\./
+  );
+  assert.match(
+    runtimeSource,
     /applyComposerReactionSolvePlan\(\{/
   );
   assert.match(
