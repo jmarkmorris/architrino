@@ -275,6 +275,43 @@ test("associate input targets stay live during authoring", () => {
   assert.equal(availability, null);
 });
 
+test("associate can accept more than two reactant inputs for composite reassembly", () => {
+  const sourceParticipant = createParticipant("up_quark", "pro");
+  const sourceContext = createNodeContext(sourceParticipant);
+  const targetContext = {
+    participant: { id: "associate_multi", templateId: "associate" },
+    node: { id: "associate_multi::root" },
+  };
+  const rules = createComposerReactionMappingRulesRuntime({
+    getNodeContext: (nodeKey) =>
+      ({
+        "up_quark_pro::root": sourceContext,
+        "associate_multi::root": targetContext,
+      }[nodeKey] ?? null),
+    getOperatorLedgerSummary: (participantId = "") => ({
+      incomingLedger: { electrino: 9, positrino: 6 },
+      outgoingLedger: { electrino: 0, positrino: 0 },
+      incomingCount: participantId === "associate_multi" ? 3 : 0,
+      outgoingCount: 0,
+      isBalanced: false,
+    }),
+    parseNodeKey: (nodeKey = "") => {
+      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
+      return { participantId, nodeId };
+    },
+  });
+
+  const validation = rules.getMappingValidation({
+    sourceKey: "up_quark_pro::root",
+    targetKey: "associate_multi::root",
+    sourceRole: "reactant",
+    targetRole: "operator-input",
+  });
+
+  assert.equal(validation.valid, true);
+  assert.match(validation.reason, /reactant routed into operator/i);
+});
+
 test("operator outputs can target operator inputs and stay red until conservative", () => {
   const targetContext = {
     participant: { id: "associate_operator", templateId: "associate" },
@@ -382,7 +419,7 @@ test("associate input mapping stays red until exactly two reactants are attached
   });
 
   assert.equal(validation.valid, false);
-  assert.match(validation.reason, /exactly two reactant inputs/i);
+  assert.match(validation.reason, /at least two reactant inputs/i);
 });
 
 test("associate input mapping returns to normal once two reactants are attached", () => {

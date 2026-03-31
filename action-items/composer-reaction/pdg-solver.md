@@ -31,7 +31,7 @@ What exists now:
 - plan projection back into live participants and mappings in `src/runtime/ComposerReactionSolveProjectionRuntime.js`;
 - and the current reaction-app wiring in `src/runtime/ComposerReactionSolverUiRuntime.js`.
 
-Current regression coverage already exists in:
+Current test coverage already exists in:
 
 - `tests/reaction-solve-state.test.js`;
 - `tests/reaction-solve-proposal.test.js`;
@@ -82,9 +82,9 @@ The present solver already supports:
 
 - direct root matches for identical conservative standalone participants;
 - full composite carry-through for identical composites;
-- partial composite carry-through such as `Neutron -> Proton`;
 - direct fragment-to-root mapping from a composite child into a standalone product;
-- standalone-quark mapping into composite baryon product rows such as `u + u + d -> proton`;
+- `Associate`-based composite reassembly for composite products such as `u + u + d -> proton`;
+- `Associate`-based composite reassembly from mixed fragment and standalone inputs such as `Neutron + Up Quark -> Proton`;
 - `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
 - `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
 - candidate selection that prefers stronger whole-product solutions over weaker fragment-plus-partial residue;
@@ -104,7 +104,8 @@ The current solver is still intentionally narrow.
 
 Important current limits:
 
-- the current candidate library is centered on direct reuse, fragment reuse, partial composite reuse, and `Associate` photon construction;
+- the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
+- composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
 - center bosons are manual-only and still block solve instead of participating in planning;
 - the planner still does not model dissociation explicitly as a first-class solve step;
 - solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
@@ -157,6 +158,8 @@ So the intended rule is:
 
 - manual dissociated-composite state remains valid authored state;
 - solver-created internal-row mappings may still auto-dissociate a composite when the selected plan requires it;
+- when feeding into a composite product such as `Proton` or `Neutron`, the solver should use `Associate` unless it is directly carrying the same composite from reactant to product;
+- direct mapping into child rows of a composite product is valid only as part of that same-composite carry-through case, not as the general way to build the composite;
 - future planner work should represent that auto-dissociation explicitly as part of the chosen plan rather than treating every composite as permanently dissociated;
 - and dissociation should still not become a generic free-floating planner operation that duplicates the current UI grammar.
 
@@ -168,14 +171,14 @@ The next work should stay phase-by-phase and test-backed.
 
 Recommended order:
 
-1. take any newly reported solve bug first and add a targeted regression test for it;
+1. take any newly reported solve bug first and add a targeted test for it;
 2. make dissociate-then-associate planning explicit in the solve model without breaking required auto-dissociation cases such as `Higgs Cluster -> Photon + Photon`;
 3. add weak-boson and center-column planning so `W-`, `W+`, and `Z` bosons can participate in solve instead of hard-blocking it;
 4. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
 
-The next solver expansions should be framed as focused candidate families with regression tests, not as one giant pass.
+The next solver expansions should be framed as focused candidate families with tests, not as one giant pass.
 
 Good near-term additions:
 

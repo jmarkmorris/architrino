@@ -6,6 +6,10 @@ function getCandidateType(candidate = null) {
   return String(candidate?.type ?? "").trim().toLowerCase();
 }
 
+function isAssociateCandidateType(candidateType = "") {
+  return candidateType === "associate-photon" || candidateType === "associate-composite";
+}
+
 function buildCandidateIdentity(candidate = null) {
   if (!candidate) {
     return "";
@@ -37,6 +41,7 @@ function getCandidateFamily(candidate = null) {
     case "partial-composite-direct":
       return "selectedPartialCandidates";
     case "associate-photon":
+    case "associate-composite":
       return "selectedAssociateCandidates";
     case "product-child-direct":
       return "selectedProductChildCandidates";
@@ -47,7 +52,7 @@ function getCandidateFamily(candidate = null) {
 
 function getCandidateWholeReactantIds(candidate = null) {
   const candidateType = getCandidateType(candidate);
-  if (candidateType === "associate-photon") {
+  if (isAssociateCandidateType(candidateType)) {
     return (Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [])
       .filter((entry) => entry?.consumesWholeParticipant)
       .map((entry) => String(entry?.participant?.id ?? ""))
@@ -82,7 +87,7 @@ function getCandidatePartialProductIds(candidate = null) {
 
 function getCandidateSourceFragmentKeys(candidate = null) {
   const candidateType = getCandidateType(candidate);
-  if (candidateType === "associate-photon") {
+  if (isAssociateCandidateType(candidateType)) {
     return (Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [])
       .map((entry) => String(entry?.sourceFragmentKey ?? entry?.sourceNodeKey ?? ""))
       .filter(Boolean);

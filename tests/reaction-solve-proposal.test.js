@@ -188,7 +188,7 @@ test("solve plan maps identical composite participants through their top-level c
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
-test("solve plan preserves direct constituent rows across neutron-to-proton carry-through", () => {
+test("solve plan leaves neutron-to-proton unresolved when no exact associate reassembly exists", () => {
   const reactantNeutron = createParticipant({
     id: "reactant_neutron",
     side: "reactant",
@@ -210,28 +210,18 @@ test("solve plan preserves direct constituent rows across neutron-to-proton carr
 
   assert.equal(plan.directProductCount, 0);
   assert.equal(plan.compositeProductCount, 0);
-  assert.equal(plan.partialCompositeProductCount, 1);
+  assert.equal(plan.associatedProductCount, 0);
+  assert.equal(plan.partialCompositeProductCount, 0);
   assert.equal(plan.selectedCandidates.length, 0);
-  assert.equal(plan.selectedPartialCandidates.length, 1);
-  assert.equal(plan.selectedMappings.length, 2);
-  assert.equal(describeComposerReactionSolvePlan(plan), "1 partial composite product");
-  assert.deepEqual(
-    plan.selectedMappings.map((mapping) => [
-      mapping.sourceParticipant.templateId,
-      mapping.sourceNode.templateId,
-      mapping.targetParticipant.templateId,
-      mapping.targetNode.templateId,
-    ]),
-    [
-      ["neutron", "down_quark", "proton", "down_quark"],
-      ["neutron", "up_quark", "proton", "up_quark"],
-    ]
-  );
+  assert.equal(plan.selectedAssociateCandidates.length, 0);
+  assert.equal(plan.selectedPartialCandidates.length, 0);
+  assert.equal(plan.selectedMappings.length, 0);
+  assert.equal(describeComposerReactionSolvePlan(plan), "0 products");
   assert.equal(plan.unresolvedReactants.length, 1);
   assert.equal(plan.unresolvedProducts.length, 1);
 });
 
-test("solve plan can map a remaining neutron down-quark row to a standalone down-quark product", () => {
+test("solve plan can still map a neutron down-quark row to a standalone down-quark product while leaving proton unresolved", () => {
   const reactantNeutron = createParticipant({
     id: "reactant_neutron",
     side: "reactant",
@@ -259,10 +249,12 @@ test("solve plan can map a remaining neutron down-quark row to a standalone down
   });
 
   assert.equal(plan.directProductCount, 1);
-  assert.equal(plan.partialCompositeProductCount, 1);
+  assert.equal(plan.associatedProductCount, 0);
+  assert.equal(plan.partialCompositeProductCount, 0);
   assert.equal(plan.selectedFragmentCandidates.length, 1);
-  assert.equal(plan.selectedPartialCandidates.length, 1);
-  assert.equal(plan.selectedMappings.length, 3);
+  assert.equal(plan.selectedAssociateCandidates.length, 0);
+  assert.equal(plan.selectedPartialCandidates.length, 0);
+  assert.equal(plan.selectedMappings.length, 1);
   assert.equal(
     plan.selectedFragmentCandidates[0]?.targetParticipant?.templateId,
     "down_quark"
@@ -274,17 +266,13 @@ test("solve plan can map a remaining neutron down-quark row to a standalone down
       mapping.targetParticipant.templateId,
       mapping.targetNode.templateId,
     ]),
-    [
-      ["neutron", "down_quark", "down_quark", "down_quark"],
-      ["neutron", "down_quark", "proton", "down_quark"],
-      ["neutron", "up_quark", "proton", "up_quark"],
-    ]
+    [["neutron", "down_quark", "down_quark", "down_quark"]]
   );
-  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedReactants.length, 1);
   assert.equal(plan.unresolvedProducts.length, 1);
 });
 
-test("solve plan can map a standalone up-quark reactant into the remaining proton child row", () => {
+test("solve plan uses associate to assemble a proton from neutron fragments plus a standalone up quark", () => {
   const reactantNeutron = createParticipant({
     id: "reactant_neutron",
     side: "reactant",
@@ -324,30 +312,36 @@ test("solve plan can map a standalone up-quark reactant into the remaining proto
   });
 
   assert.equal(plan.directProductCount, 1);
-  assert.equal(plan.partialCompositeProductCount, 1);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.partialCompositeProductCount, 0);
   assert.equal(plan.selectedFragmentCandidates.length, 1);
-  assert.equal(plan.selectedPartialCandidates.length, 1);
-  assert.equal(plan.selectedProductChildCandidates.length, 1);
-  assert.equal(plan.selectedMappings.length, 4);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedPartialCandidates.length, 0);
+  assert.equal(plan.selectedProductChildCandidates.length, 0);
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.equal(plan.selectedMappings.length, 7);
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
-      mapping.sourceParticipant.templateId,
-      mapping.sourceNode.templateId,
-      mapping.targetParticipant.templateId,
-      mapping.targetNode.templateId,
+      mapping.sourceEndpoint?.role ?? mapping.sourceRole ?? null,
+      mapping.targetEndpoint?.role ?? mapping.targetRole ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+      mapping.targetNode?.templateId ?? null,
     ]),
     [
-      ["neutron", "down_quark", "down_quark", "down_quark"],
-      ["neutron", "down_quark", "proton", "down_quark"],
-      ["neutron", "up_quark", "proton", "up_quark"],
-      ["up_quark", "up_quark", "proton", "up_quark"],
+      ["reactant", "product", "down_quark", "down_quark"],
+      ["reactant", "operator-input", null, null],
+      ["reactant", "operator-input", null, null],
+      ["reactant", "operator-input", null, null],
+      ["operator-output", "product", "proton", "down_quark"],
+      ["operator-output", "product", "proton", "up_quark"],
+      ["operator-output", "product", "proton", "up_quark"],
     ]
   );
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
-test("solve plan can build a proton directly from standalone up and down quark reactants", () => {
+test("solve plan uses associate to build a proton from standalone up and down quark reactants", () => {
   const reactantUpQuarkA = createParticipant({
     id: "reactant_up_quark_a",
     side: "reactant",
@@ -387,21 +381,29 @@ test("solve plan can build a proton directly from standalone up and down quark r
     resolveBinaryChoiceInventory,
   });
 
-  assert.equal(plan.selectedProductChildCandidates.length, 3);
-  assert.equal(plan.selectedMappings.length, 3);
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedProductChildCandidates.length, 0);
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.equal(plan.selectedMappings.length, 6);
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
-      mapping.sourceParticipant.templateId,
-      mapping.sourceNode.templateId,
-      mapping.targetParticipant.templateId,
-      mapping.targetNode.templateId,
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+      mapping.targetNode?.templateId ?? null,
     ]),
     [
-      ["down_quark", "down_quark", "proton", "down_quark"],
-      ["up_quark", "up_quark", "proton", "up_quark"],
-      ["up_quark", "up_quark", "proton", "up_quark"],
+      ["reactant", "operator-input", null, null],
+      ["reactant", "operator-input", null, null],
+      ["reactant", "operator-input", null, null],
+      ["operator-output", "product", "proton", "down_quark"],
+      ["operator-output", "product", "proton", "up_quark"],
+      ["operator-output", "product", "proton", "up_quark"],
     ]
   );
+  assert.equal(describeComposerReactionSolvePlan(plan), "1 associated product");
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
 });
