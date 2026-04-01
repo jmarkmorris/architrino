@@ -1,5 +1,9 @@
 import { createComposerReactionSolverUiRuntime } from "../../runtime/ComposerReactionSolverUiRuntime.js";
 import { createReactionAnchorStateRuntime } from "./ReactionAnchorStateRuntime.js";
+import {
+  buildReactionParticipantStructureFromPickerCell,
+  getReactionAddPickerCells,
+} from "./ReactionAddPickerRuntime.js";
 import { createReactionAnchorRenderRuntime } from "./ReactionAnchorRenderRuntime.js";
 import { createReactionBinaryInventoryRuntime } from "./ReactionBinaryInventoryRuntime.js";
 import { createReactionBinaryGlyphRuntime } from "./ReactionBinaryGlyphRuntime.js";
@@ -25,6 +29,9 @@ export function createReactionSolverUiRuntime(deps = {}) {
     createBinarySelectionRuntime: createReactionBinarySelectionRuntime,
     createBinaryInventoryRuntime: createReactionBinaryInventoryRuntime,
     createParticipantMutationRuntime: createReactionParticipantMutationRuntime,
+    buildReactionParticipantStructureForPickerCell:
+      buildReactionParticipantStructureFromPickerCell,
+    getReactionAddPickerCells,
     createMappingRulesRuntime: createReactionMappingRulesRuntime,
     createAnchorStateRuntime: createReactionAnchorStateRuntime,
   });

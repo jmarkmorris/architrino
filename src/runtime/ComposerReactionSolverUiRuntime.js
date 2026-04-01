@@ -25,8 +25,8 @@ import {
   invertBinaryChoiceId,
 } from "./ComposerReactionBinarySelectionRuntime.js";
 import {
-  buildReactionParticipantStructureForPickerCell,
-  getComposerReactionAddPickerCells,
+  buildReactionParticipantStructureForPickerCell as defaultBuildReactionParticipantStructureForPickerCell,
+  getComposerReactionAddPickerCells as defaultGetComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
 import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
 import {
@@ -743,6 +743,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createBinarySelectionRuntime = defaultCreateBinarySelectionRuntime,
     createBinaryInventoryRuntime = defaultCreateBinaryInventoryRuntime,
     createParticipantMutationRuntime = defaultCreateParticipantMutationRuntime,
+    buildReactionParticipantStructureForPickerCell =
+      defaultBuildReactionParticipantStructureForPickerCell,
+    getReactionAddPickerCells = defaultGetComposerReactionAddPickerCells,
     createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
   } = deps;
@@ -798,7 +801,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   const operatorLayer = root?.querySelector(".composer-reaction-solver-operator-layer") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
-  const addPickerCells = getComposerReactionAddPickerCells();
+  const addPickerCells = getReactionAddPickerCells();
   const state = {
     active: false,
     nextParticipantId: 1,
