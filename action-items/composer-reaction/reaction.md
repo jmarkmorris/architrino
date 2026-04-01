@@ -265,17 +265,18 @@ Status: `pending`
 
 Goal:
 
-- finish moving app-owned Reaction implementations behind Reaction-named files and delete the old compatibility layers once callers migrate.
+- move app-owned Reaction ownership behind Reaction-named modules first, while treating legacy compatibility layers as temporary migration scaffolding rather than immediate deletion targets.
 
 Why it matters:
 
-- wrapper-backed compatibility files still blur ownership and keep cruft alive inside the Reaction app surface.
+- the app-facing `src/apps/reaction/` surface already exists, but many files there are still thin wrappers over legacy `ComposerReaction...` implementations, which means ownership is clearer than before but not yet canonical.
 
 Next steps:
 
-- move clearly app-owned implementation into the Reaction-named files;
-- leave old `ComposerReaction...` paths only as temporary re-exports while callers move;
-- and then delete the legacy paths once one canonical implementation remains.
+- move clearly app-owned implementation into the Reaction-named files one seam at a time;
+- keep legacy `ComposerReaction...` paths as temporary re-exports or wrappers while import sites migrate;
+- prefer starting with wrapper-thin app seams where the ownership is already obvious;
+- and only treat deletion as the last phase after canonical ownership is stable.
 
 Current wrapper-backed app files:
 
@@ -296,17 +297,18 @@ Status: `pending`
 
 Goal:
 
-- finish moving Reaction-domain solver and structure support code out of legacy `ComposerReaction...` naming.
+- finish the second phase of the migration by moving remaining Reaction-domain solver and structure support code out of legacy `ComposerReaction...` naming once the app-owned seams become canonical.
 
 Why it matters:
 
-- these names are now mostly historical residue and make the Reaction-side module tree harder to read and maintain.
+- most of the remaining `ComposerReaction...` files are no longer just naming residue; they are still the implementation roots behind the wrapper-backed Reaction app modules, so this phase has to follow the ownership move rather than pretending the wrappers can disappear first.
 
 Next steps:
 
-- move truly Reaction-specific files to `src/apps/reaction/` or another clearly Reaction-owned domain/runtime area;
+- after the app-facing Reaction modules own the implementation, move truly Reaction-specific files to `src/apps/reaction/` or another clearly Reaction-owned area;
 - promote only truly generic pieces to neutral non-Composer/non-Reaction modules;
-- and delete obsolete legacy variants once one canonical home remains.
+- convert old legacy files into temporary re-exports during the rename wave instead of mixing rename and behavioral change in one step;
+- and delete obsolete legacy variants only after imports have flipped and one canonical home remains.
 
 Legacy files still to disposition:
 
@@ -340,7 +342,6 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
-
 
 
 
