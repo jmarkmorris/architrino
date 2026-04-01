@@ -39,7 +39,6 @@ The Reaction app should not stage the final authored animation.
 
 Today, the repository still contains transitional coupling:
 
-- the current `Reaction Designer` is still embedded in the same web-app shell as Composer;
 - some runtime seams are better than before, especially in the reaction solver;
 - but the app boundary is not yet enforced the way [independence](./independence.md) requires.
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The composer is the final animation surface in this workstream.
+The composer is an animation surface for visualizing architrino assemblies.
 
 Its job is to take a solved reaction flow and turn it into an authored scene with:
 
