@@ -13,7 +13,7 @@
 
 The Reaction app is the conservative reaction-authoring surface.
 
-Its job is to build reactant-to-product scenarios that preserve provenance and make dissociate, associate, transmute, handoff, and reassembly structure legible.
+Its job is to build reactant-to-product scenarios that preserve provenance and make dissociate, associate, handoff, and reassembly structure legible.
 
 It owns:
 
@@ -33,8 +33,8 @@ It does not own:
 - The repository already has a dedicated `Reaction Designer` scene and a first-class reaction-solver runtime.
 - The current deployment is still partially embedded in the Composer-side shell, but that coupling is transitional rather than the target architecture.
 - The live manual workflow is lane-based, with reactants on the left, products on the right, and operator lanes between them.
-- The current add flow visibly supports reactants, products, polarity transforms, associate, and transmute operators.
-- The operator registry also includes dissociate handling, but the full user-facing grammar for dissociate, associate, and transmute still needs to read as one coherent system.
+- The current add flow visibly supports reactants, products, polarity transforms, dissociate, associate, and center-assembly additions.
+- The operator registry includes dissociate and associate handling, but the full user-facing grammar still needs to read as one coherent system.
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
@@ -78,11 +78,11 @@ Current intended interaction model:
 - the app shows explicit attachment points on hierarchy rows;
 - mappings are authored from a valid source anchor to a valid destination anchor;
 - a mapping is a visible authored corridor rather than just an annotation;
-- and center-lane operators such as `Transmute` can act as conservative junctions where the reaction requires them.
+- and center assemblies plus operator lanes can act as conservative junctions where the reaction requires them.
 
 The live UI should continue becoming more self-explanatory through:
 
-- explicit incoming and outgoing ledgers for `Transmute`;
+- clearer operator and assembly state where conservation or commitment matters;
 - clearer balanced versus unbalanced center tiles;
 - stronger visual distinction among source, target, mapped, and ineligible anchors;
 - better path tracing through hover, emphasis, or dimming of unrelated paths;
@@ -98,7 +98,7 @@ Core rules:
 - mappings should be allowed only when source and target conserve the same `electrino` and `positrino` inventory for the modeled unit;
 - accepted mappings should carry provenance even when the app or solver must infer leaf-level detail to keep the ledger honest;
 - invalid targets should deactivate rather than allowing invalid mappings to be drawn;
-- and a `Transmute` tile should remain conservative only while outgoing ledger stays within accumulated incoming ledger.
+- and operator or assembly behavior should remain conservative under the same mapping and inventory rules as the rest of the surface.
 
 The authored corridor is not just a diagram line. It is the visible claim of continuity through the reaction interval.
 
@@ -183,11 +183,11 @@ Why it matters:
 
 Next steps:
 
-- make `Transmute` ledgers and balance state self-explanatory;
+- make operator and center-assembly state self-explanatory;
 - improve anchor-role legibility and path tracing;
 - and keep learning the app possible from the visible surface grammar.
 
-### 2. Unify Dissociate, Associate, And Transmute As One Grammar
+### 2. Unify Dissociate And Associate As One Grammar
 
 Status: `active`
 
@@ -342,7 +342,6 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
-
 
 
 
