@@ -127,6 +127,13 @@ import {
   isStandaloneComposerAppMode,
   navigateStandaloneComposerHome,
 } from "./src/apps/composer/ComposerAppModeRuntime.js";
+import {
+  COMPOSER_LIBRARY_STORAGE_KEY as composerLibraryStorageKey,
+  COMPOSER_MEDIA_ASSET_DIRECTORIES as composerMediaAssetDirectories,
+  COMPOSER_SUPPORTED_MEDIA_EXTENSIONS as composerSupportedMediaExtensions,
+  DEFAULT_COMPOSER_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
+  getComposerDomElements,
+} from "./src/apps/composer/ComposerDomRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -173,124 +180,84 @@ const elementNavUpButton = document.getElementById("element-nav-up");
 const elementNavDownButton = document.getElementById("element-nav-down");
 const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
-const composerOverlay = document.getElementById("composer-overlay");
-const composerTitle = document.getElementById("composer-title");
-const composerViewDesignButton = document.getElementById("composer-view-design-button");
-const composerViewObserverButton = document.getElementById("composer-view-observer-button");
-const composerSceneButton = document.getElementById("composer-scene-button");
-const composerClearButton = document.getElementById("composer-clear-button");
-const composerSaveButton = document.getElementById("composer-save-button");
-const composerReactionBackButton = document.getElementById("composer-reaction-back-button");
-const composerDocsButton = document.getElementById("composer-docs-button");
-const composerExitButton = document.getElementById("composer-exit-button");
-const composerTabs = composerOverlay
-  ? Array.from(composerOverlay.querySelectorAll(".composer-tab"))
-  : [];
-const composerPanels = composerOverlay
-  ? Array.from(composerOverlay.querySelectorAll(".composer-panel"))
-  : [];
-const composerSceneIdInput = document.getElementById("composer-scene-id");
-const composerSceneNameInput = document.getElementById("composer-scene-name");
-const composerAssemblyList = document.getElementById("composer-assembly-list");
-const composerAssemblyDetail = document.getElementById("composer-assembly-detail");
-const composerAssemblyAddButton = document.getElementById("composer-assembly-add");
-const composerPreviewButton = document.getElementById("composer-preview-button");
-const composerExportButton = document.getElementById("composer-export-button");
-const composerLibrarySaveButton = document.getElementById("composer-library-save");
-const composerRepoSaveButton = document.getElementById("composer-repo-save-button");
-const composerLibrarySelect = document.getElementById("composer-library-select");
-const composerLibraryLoadButton = document.getElementById("composer-library-load");
-const composerLibraryDeleteButton = document.getElementById("composer-library-delete");
-const composerLibraryStatus = document.getElementById("composer-library-status");
-const composerPlayToggleButton = document.getElementById("composer-play-toggle");
-const composerPlayResetButton = document.getElementById("composer-play-reset");
-const composerMarkerPrevButton = document.getElementById("composer-marker-prev");
-const composerMarkerNextButton = document.getElementById("composer-marker-next");
-const composerMarkerJumpSelect = document.getElementById("composer-marker-jump");
-const composerPlayheadScrubInput = document.getElementById("composer-playhead-scrub");
-const composerStatus = document.getElementById("composer-status");
-const composerJsonPreview = document.getElementById("composer-json-preview");
-const composerCanvas = document.getElementById("composer-canvas");
-const composerCanvasWrap = composerCanvas?.parentElement ?? null;
-const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
-const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
-const composerHudLabelsToggle = document.getElementById("composer-hud-labels-toggle");
-const composerHudPathsToggle = document.getElementById("composer-hud-paths-toggle");
-const composerHudHistoryToggle = document.getElementById("composer-hud-history-toggle");
-const composerHudEnvelopesToggle = document.getElementById("composer-hud-envelopes-toggle");
-const composerHudObserverToggle = document.getElementById("composer-hud-observer-toggle");
-const composerHudViewportToggleBindings = [
-  {
-    button: composerHudLabelsToggle,
-    key: "showLabels",
-    label: "Observer Labels",
-  },
-  {
-    button: composerHudPathsToggle,
-    key: "showTransportPath",
-    label: "Transport Paths",
-  },
-  {
-    button: composerHudHistoryToggle,
-    key: "showHistoryTraces",
-    label: "History Traces",
-  },
-  {
-    button: composerHudEnvelopesToggle,
-    key: "showEnvelopes",
-    label: "Envelopes",
-  },
-  {
-    button: composerHudObserverToggle,
-    key: "showCameraGuides",
-    label: "Observer Guides",
-  },
-];
-const composerPathModeSelect = document.getElementById("composer-path-mode");
-const composerPathResetButton = document.getElementById("composer-path-reset");
-const composerFrameResetButton = document.getElementById("composer-frame-reset");
-const composerFrameScaleInput = document.getElementById("composer-frame-scale");
-const composerFrameScaleLabel = document.getElementById("composer-frame-scale-label");
-const composerCameraSpeedInput = document.getElementById("composer-camera-speed");
-const composerCameraSpeedLabel = document.getElementById("composer-camera-speed-label");
-const composerCameraRadiusInput = document.getElementById("composer-camera-radius");
-const composerCameraRadiusLabel = document.getElementById("composer-camera-radius-label");
-const composerCameraResetButton = document.getElementById("composer-camera-reset");
-const composerCameraPoiSelect = document.getElementById("composer-camera-poi");
-const composerCameraWaypointAdd = document.getElementById("composer-camera-waypoint-add");
-const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
-const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
-const composerCameraPoiStatus = document.getElementById("composer-camera-poi-status");
-const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
-const composerSceneDurationInput = document.getElementById("composer-scene-duration");
-const composerSceneLoopInput = document.getElementById("composer-scene-loop");
-const composerMarkerListInput = document.getElementById("composer-marker-list");
-const composerPauseListInput = document.getElementById("composer-pause-list");
-const composerWarpListInput = document.getElementById("composer-warp-list");
-const composerTransferListInput = document.getElementById("composer-transfer-list");
-const composerMarkerStatus = document.getElementById("composer-marker-status");
-const composerPauseStatus = document.getElementById("composer-pause-status");
-const composerWarpStatus = document.getElementById("composer-warp-status");
-const composerTransferStatus = document.getElementById("composer-transfer-status");
-const composerTimelineSummary = document.getElementById("composer-timeline-summary");
-const composerTimelineActive = document.getElementById("composer-timeline-active");
-const composerTimelineTrack = document.getElementById("composer-timeline-track");
-const composerTimelineWarps = document.getElementById("composer-timeline-warps");
-const composerTimelinePauses = document.getElementById("composer-timeline-pauses");
-const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
-const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
-const composerLibraryStorageKey = "architrino.composer.library.v1";
-const composerMediaAssetDirectories = {
-  image: "content/assets/composer/images/",
-  video: "content/assets/composer/video/",
-  audio: "content/assets/composer/audio/",
-};
-const composerSupportedMediaExtensions = {
-  image: ["jpg", "jpeg", "png", "svg"],
-  video: ["mp4", "mov"],
-  audio: ["mp3"],
-};
-const defaultRootLayoutMarginPx = { x: 160, y: 140 };
+const {
+  composerOverlay,
+  composerTitle,
+  composerViewDesignButton,
+  composerViewObserverButton,
+  composerSceneButton,
+  composerClearButton,
+  composerSaveButton,
+  composerReactionBackButton,
+  composerDocsButton,
+  composerExitButton,
+  composerTabs,
+  composerPanels,
+  composerSceneIdInput,
+  composerSceneNameInput,
+  composerAssemblyList,
+  composerAssemblyDetail,
+  composerAssemblyAddButton,
+  composerPreviewButton,
+  composerExportButton,
+  composerLibrarySaveButton,
+  composerRepoSaveButton,
+  composerLibrarySelect,
+  composerLibraryLoadButton,
+  composerLibraryDeleteButton,
+  composerLibraryStatus,
+  composerPlayToggleButton,
+  composerPlayResetButton,
+  composerMarkerPrevButton,
+  composerMarkerNextButton,
+  composerMarkerJumpSelect,
+  composerPlayheadScrubInput,
+  composerStatus,
+  composerJsonPreview,
+  composerCanvas,
+  composerCanvasWrap,
+  composerViewportOverlays,
+  composerAssemblyMenu,
+  composerHudLabelsToggle,
+  composerHudPathsToggle,
+  composerHudHistoryToggle,
+  composerHudEnvelopesToggle,
+  composerHudObserverToggle,
+  composerHudViewportToggleBindings,
+  composerPathModeSelect,
+  composerPathResetButton,
+  composerFrameResetButton,
+  composerFrameScaleInput,
+  composerFrameScaleLabel,
+  composerCameraSpeedInput,
+  composerCameraSpeedLabel,
+  composerCameraRadiusInput,
+  composerCameraRadiusLabel,
+  composerCameraResetButton,
+  composerCameraPoiSelect,
+  composerCameraWaypointAdd,
+  composerCameraWaypointClear,
+  composerCameraWaypointCount,
+  composerCameraPoiStatus,
+  composerCameraFlightToggle,
+  composerSceneDurationInput,
+  composerSceneLoopInput,
+  composerMarkerListInput,
+  composerPauseListInput,
+  composerWarpListInput,
+  composerTransferListInput,
+  composerMarkerStatus,
+  composerPauseStatus,
+  composerWarpStatus,
+  composerTransferStatus,
+  composerTimelineSummary,
+  composerTimelineActive,
+  composerTimelineTrack,
+  composerTimelineWarps,
+  composerTimelinePauses,
+  composerTimelineMarkers,
+  composerTimelinePlayhead,
+} = getComposerDomElements(document);
 let zoomToastTimeoutId = null;
 let zoomToastDismissedForSession = false;
 const periodicTableDataPath = "content/scenes/chemistry/periodic_table.json";
