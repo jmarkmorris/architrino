@@ -38,8 +38,8 @@ It does not own:
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
-- The canonical implementation for the wrapper-thin Reaction helper and solver runtimes now lives under `src/apps/reaction/`, while legacy `ComposerReaction...` paths act only as temporary compatibility shims.
-- The remaining Reaction-domain solver, structure, and layout support files now also have canonical Reaction-named homes under `src/apps/reaction/`, leaving the old `ComposerReaction...` files as migration shims rather than implementation roots.
+- The canonical implementation for Reaction helper, solver, structure, and layout runtimes now lives under `src/apps/reaction/`.
+- The old `ComposerReaction...` runtime files are no longer part of the Reaction implementation surface.
 - The Reaction app is already useful for manual provenance work, but it still lacks a production-hardened accept-and-export path downstream.
 
 ## Design
@@ -279,4 +279,3 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
-

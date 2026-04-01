@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createComposerReactionBinaryInventoryRuntime } from "../src/runtime/ComposerReactionBinaryInventoryRuntime.js";
-import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
+import { createReactionBinaryInventoryRuntime } from "../src/apps/reaction/ReactionBinaryInventoryRuntime.js";
+import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 import { clearNoetherCoreSlotOccupant } from "../src/domain/structure/StructureTransforms.js";
@@ -13,11 +13,11 @@ const supportsParticipantPolarity = (templateId) =>
   );
 const normalizeParticipantPolarity = (polarity) =>
   String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
-const binarySelectionRuntime = createComposerReactionBinarySelectionRuntime({
+const binarySelectionRuntime = createReactionBinarySelectionRuntime({
   supportsParticipantPolarity,
   normalizeParticipantPolarity,
 });
-const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
+const { resolveBinaryChoiceInventory } = createReactionBinaryInventoryRuntime({
   getBinaryChoiceInventory: binarySelectionRuntime.getBinaryChoiceInventory,
   getResolvedBinarySelectionMap: binarySelectionRuntime.getResolvedBinarySelectionMap,
   resolveBinarySelectorGroup: binarySelectionRuntime.resolveBinarySelectorGroup,

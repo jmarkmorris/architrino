@@ -2,9 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createComposerReactionBinaryGlyphRuntime,
+  createReactionBinaryGlyphRuntime,
   getBinaryGlyphPoleCharges,
-} from "../src/runtime/ComposerReactionBinaryGlyphRuntime.js";
+} from "../src/apps/reaction/ReactionBinaryGlyphRuntime.js";
 
 const STRUCTURE_CHARGE_TYPES = {
   ELECTRINO: "electrino",
@@ -47,7 +47,7 @@ test("rotated bare binary glyph can hide the orbit ellipse and move poles into a
     };
   }
 
-  const runtime = createComposerReactionBinaryGlyphRuntime({
+  const runtime = createReactionBinaryGlyphRuntime({
     createSvgElement: (name) => {
       const element = createMockSvgElement(name);
       element.classList.owner = element;

@@ -2,9 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createComposerReactionAnchorStateRuntime,
+  createReactionAnchorStateRuntime,
   nodeKeysConflict,
-} from "../src/runtime/ComposerReactionAnchorStateRuntime.js";
+} from "../src/apps/reaction/ReactionAnchorStateRuntime.js";
 
 test("node key conflicts detect ancestor and descendant anchors within one participant", () => {
   assert.equal(nodeKeysConflict("p1::root", "p1::root/inner"), true);
@@ -13,7 +13,7 @@ test("node key conflicts detect ancestor and descendant anchors within one parti
 });
 
 test("anchor availability blocks conflicting single-role mappings", () => {
-  const runtime = createComposerReactionAnchorStateRuntime({
+  const runtime = createReactionAnchorStateRuntime({
     getMappings: () => [
       {
         id: "m1",
@@ -38,7 +38,7 @@ test("recent-route state is pruned and faded through the runtime callbacks", () 
   const mappings = [{ id: "m1" }];
   let changeCount = 0;
 
-  const runtime = createComposerReactionAnchorStateRuntime({
+  const runtime = createReactionAnchorStateRuntime({
     getMappings: () => mappings,
     getRecentMappingIds: () => recentMappingIds,
     setRecentMappingIds: (nextIds) => {
@@ -64,7 +64,7 @@ test("recent-route state is pruned and faded through the runtime callbacks", () 
 });
 
 test("anchor mapping ids can target distinct operator input instances on the same node", () => {
-  const runtime = createComposerReactionAnchorStateRuntime({
+  const runtime = createReactionAnchorStateRuntime({
     getMappings: () => [
       {
         id: "m_top",

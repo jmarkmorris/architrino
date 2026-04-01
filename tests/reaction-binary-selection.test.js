@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
+import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 
 function supportsParticipantPolarity(templateId) {
@@ -14,7 +14,7 @@ function normalizeParticipantPolarity(polarity) {
   return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
 }
 
-const selectionRuntime = createComposerReactionBinarySelectionRuntime({
+const selectionRuntime = createReactionBinarySelectionRuntime({
   supportsParticipantPolarity,
   normalizeParticipantPolarity,
 });
