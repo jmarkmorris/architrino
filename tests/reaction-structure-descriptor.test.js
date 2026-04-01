@@ -78,6 +78,19 @@ test("W+ boson descriptor tree uses the standard tri-binary particle row", () =>
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
+test("free architrinos descriptor tree uses a tri-slot grid with personality-only tiles", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("free_architrinos", "pro", "Free Architrinos")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
+  assert.equal(root.templateId, "free_architrinos");
+  assert.equal(root.label, "Free Architrinos");
+  assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
+  assert.deepEqual(root.children.map((child) => child.hasBinary), [false, false, false]);
+});
+
 test("proton descriptor tree expands to up/down/up quark rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(createStructure("proton", "pro", "Proton"));
   const [root] = descriptorTree;

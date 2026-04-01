@@ -74,14 +74,13 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const createBinaryGlyph = options.createBinaryGlyph;
   const createInlineAnchorSlot = options.createInlineAnchorSlot;
   const cycleQuarkBinaryPreset = options.cycleQuarkBinaryPreset ?? (() => {});
+  const cycleFreeArchitrinoPreset = options.cycleFreeArchitrinoPreset ?? (() => {});
   const findMappingByNodeKey = options.findMappingByNodeKey ?? (() => null);
   const formatLedger = options.formatLedger ?? (() => "");
   const formatParticipantLabel = options.formatParticipantLabel ?? ((label) => label);
   const getAllowedBinaryChoiceIds = options.getAllowedBinaryChoiceIds ?? (() => []);
   const getAnchorAvailability = options.getAnchorAvailability ?? (() => ({ disabled: false, reason: "" }));
   const getBinaryPersonalitySelection = options.getBinaryPersonalitySelection ?? (() => null);
-  const getOperatorGraphicOffsets =
-    options.getOperatorGraphicOffsets ?? (() => []);
   const getDefaultParticipantBaseLabel = options.getDefaultParticipantBaseLabel ?? ((_, label) => label || "?");
   const getIsDraggingParticipant = options.getIsDraggingParticipant ?? (() => false);
   const getParticipantCardLabelLines = options.getParticipantCardLabelLines ?? ((label) => [label]);
@@ -106,6 +105,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const isQuarkTemplateId = options.isQuarkTemplateId ?? (() => false);
   const isReactantCompositeParticipant = options.isReactantCompositeParticipant ?? (() => false);
   const openParticipantMenuAt = options.openParticipantMenuAt ?? (() => {});
+  const handleParticipantVisualClick = options.handleParticipantVisualClick ?? (() => false);
   const reducedBinaryPersonalityChoiceIds = options.reducedBinaryPersonalityChoiceIds ?? [];
   const resolveBinaryGlyphPolarity = options.resolveBinaryGlyphPolarity ?? (() => "pro");
   const setBinaryPersonalitySelection = options.setBinaryPersonalitySelection ?? (() => {});
@@ -114,23 +114,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
   const startSideParticipantDrag = options.startSideParticipantDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
-
-  function createSvgElement(name) {
-    return document.createElementNS("http://www.w3.org/2000/svg", name);
-  }
-
-  function syncOperatorFan(card, participant) {
-    if (!(card instanceof HTMLElement) || !participant) {
-      return;
-    }
-    Array.from(card.querySelectorAll(".composer-reaction-solver-operator-fan")).forEach((fan) =>
-      fan.remove()
-    );
-    if (participant.templateId !== "dissociate") {
-      return;
-    }
-    return;
-  }
 
   function createBranchAnchorFrame({
     participant,
@@ -276,6 +259,9 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     const visual = document.createElement("div");
     visual.className = "composer-reaction-solver-particle";
     extraClassNames.filter(Boolean).forEach((className) => visual.classList.add(className));
+    if (participant?.templateId === "free_architrinos") {
+      visual.classList.add("is-free-architrinos");
+    }
     if (participant.polarity === "anti") {
       visual.classList.add("is-anti-polarity");
     }
@@ -290,6 +276,12 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       visualLabel.appendChild(lineElement);
     });
     visual.appendChild(visualLabel);
+    visual.addEventListener("click", (event) => {
+      if (handleParticipantVisualClick(participant, event)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
     visual.addEventListener("contextmenu", (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -325,6 +317,27 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       wrapper.append(slot, choices);
     }
     return wrapper;
+  }
+
+  function createTreeRowAnchor(participant, node, nodeKey) {
+    if (
+      participant?.side === "reactant" &&
+      participant?.templateId === "free_architrinos" &&
+      String(node?.id ?? "") === String(getParticipantRootNode(participant)?.id ?? "")
+    ) {
+      const anchorSet = document.createElement("div");
+      anchorSet.className = "composer-reaction-solver-anchor-set is-reactant is-free-architrinos-root";
+      [0, 1, 2].forEach((anchorInstanceIndex) => {
+        anchorSet.appendChild(
+          createAnchorButton(participant, node, nodeKey, {
+            anchorRole: "reactant",
+            anchorInstanceIndex,
+          })
+        );
+      });
+      return anchorSet;
+    }
+    return createAnchorButton(participant, node, nodeKey);
   }
 
   function createNoetherCoreGridSections(participant, node, options = {}) {
@@ -486,7 +499,53 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     return wrapper;
   }
 
+  function createFreeArchitrinosGridTrack(participant, node) {
+    const track = document.createElement("div");
+    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
+    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
+      if (!childNode) {
+        track.appendChild(createBinaryChoicePlaceholder());
+        return;
+      }
+      const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.dataset.choiceId = selectedChoice.id;
+      button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
+      button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
+      button.title = `${childNode.label}: ${selectedChoice.label}`;
+      button.appendChild(
+        createBinaryGlyph(selectedChoice, {
+          showBinary: false,
+          polarity: glyphPolarity,
+        })
+      );
+      button.addEventListener("click", () =>
+        cycleFreeArchitrinoPreset(participant.id, childNode.id)
+      );
+      track.appendChild(button);
+    });
+    return track;
+  }
+
+  function createFreeArchitrinosGridContent(participant, node) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    const nodeKey = buildNodeKey(participant.id, node.id);
+    const track = createFreeArchitrinosGridTrack(participant, node);
+    const body = createInlineTrackBody(participant, node, nodeKey, track, {
+      className: "composer-reaction-solver-binary-selector-grid-body",
+    });
+    wrapper.appendChild(body);
+    return wrapper;
+  }
+
   function createBinarySelectorGridContent(participant, node) {
+    if (String(node?.templateId ?? participant?.templateId ?? "").trim().toLowerCase() === "free_architrinos") {
+      return createFreeArchitrinosGridContent(participant, node);
+    }
     if (isQuarkTemplateId(node.templateId ?? participant.templateId)) {
       return createQuarkPresetRowContent(participant, node);
     }
@@ -714,7 +773,7 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
       if (usesInlineAnchor) {
         row.classList.add("is-inline-anchor");
       }
-      const anchor = usesInlineAnchor ? null : createAnchorButton(participant, node, nodeKey);
+      const anchor = usesInlineAnchor ? null : createTreeRowAnchor(participant, node, nodeKey);
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {
@@ -788,8 +847,8 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     if (isComposite) {
       card.classList.add("is-composite-participant");
     }
-    if (participant?.isDissociatedShell || participant?.isAutoDissociatedShell) {
-      card.classList.add("is-dissociated-shell");
+    if (participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite) {
+      card.classList.add("is-dissociated-composite");
     }
     if (participant.side === "product" && rootAnchorAvailability?.reason) {
       card.title = rootAnchorAvailability.reason;
@@ -925,7 +984,6 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
         : null;
       card.append(inputAnchor, visual, outputAnchor);
     }
-    syncOperatorFan(card, participant);
     card.addEventListener("pointerdown", (event) => startOperatorDrag(event, participant.id));
     return card;
   }
@@ -934,6 +992,5 @@ export function createComposerReactionParticipantRenderRuntime(options = {}) {
     createSideSlotHeader,
     createOperatorParticipantCard,
     renderParticipantCard,
-    syncOperatorFan,
   };
 }

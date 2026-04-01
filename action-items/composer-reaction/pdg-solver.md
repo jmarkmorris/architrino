@@ -24,13 +24,14 @@ What exists now:
 
 - a dedicated abstract solve-state builder in `src/runtime/ComposerReactionSolveStateRuntime.js`;
 - a proposal builder in `src/runtime/ComposerReactionSolveProposalRuntime.js`;
+- a candidate-selection runtime in `src/runtime/ComposerReactionSolveSelectionRuntime.js`;
 - composite child matching in `src/runtime/ComposerReactionSolveMatchRuntime.js`;
 - associate-specific candidate construction in `src/runtime/ComposerReactionSolveAssociateRuntime.js`;
 - operator placement in `src/runtime/ComposerReactionSolveLayoutRuntime.js`;
 - plan projection back into live participants and mappings in `src/runtime/ComposerReactionSolveProjectionRuntime.js`;
 - and the current reaction-app wiring in `src/runtime/ComposerReactionSolverUiRuntime.js`.
 
-Current regression coverage already exists in:
+Current test coverage already exists in:
 
 - `tests/reaction-solve-state.test.js`;
 - `tests/reaction-solve-proposal.test.js`;
@@ -56,13 +57,14 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
 - `ComposerReactionSolveStateRuntime`
   - separates reactants, products, operators, and center assemblies;
   - allows existing center-lane operators during solve;
-  - blocks solve when center bosons are present.
+  - now treats center bosons as supported source-side participants instead of immediate blockers.
 - `ComposerReactionSolveProposalRuntime`
-  - builds the current greedy solve plan;
-  - prefers direct reuse, then fragment and associate construction, then partial composite reuse;
+  - builds the current solve plan over explicit candidate families;
+  - now uses dedicated candidate selection instead of the older family-by-family greedy pick order;
   - reports unresolved reactants and products explicitly.
 - `ComposerReactionSolveLayoutRuntime`
   - places inserted operators from explicit surface-row centers;
+  - includes current row-bias heuristics to preserve stronger vertical ordering when operators compete for the same lane region;
   - uses the shared periodic-table-style surface grid as the source of truth.
 - `ComposerReactionSolveProjectionRuntime`
   - creates solve-generated operators;
@@ -72,21 +74,26 @@ That architecture is the right precursor for PDG ingest. A future PDG-facing lay
   - triggers solve;
   - removes only solve-generated operators before rerunning solve;
   - clears auto-dissociation markers before rebuilding;
-  - and keeps manual operators and manual shell dissociation intact.
+  - and keeps manual operators and manual dissociated-composite state intact.
 
 ## Current Solver Capabilities
 
 The present solver already supports:
 
 - direct root matches for identical conservative standalone participants;
+- direct standalone reuse for slot-based fermions such as `Neutrino -> Neutrino`;
 - full composite carry-through for identical composites;
-- partial composite carry-through such as `Neutron -> Proton`;
 - direct fragment-to-root mapping from a composite child into a standalone product;
+- `Associate`-based composite reassembly for composite products such as `u + u + d -> proton`;
+- `Associate`-based composite reassembly from mixed fragment and standalone inputs such as `Neutron + Up Quark -> Proton`;
 - `Associate` construction for opposite-polarity Noether-core inputs forming a photon;
+- primitive `Associate` construction for standalone fermions from `Noether core + Free Architrinos`, such as `Pro Noether core + Free Architrinos -> Pro Neutrino`;
 - `Higgs Cluster -> Photon + Photon` using two `Associate` operators;
+- center `W-`, `W+`, and `Z` assemblies as supported solve sources for conservative standalone products such as electron and neutrino roots;
+- candidate selection that prefers stronger whole-product solutions over weaker fragment-plus-partial residue;
 - repeated `Solve` from a clean auto-solve baseline without duplicating solve-generated operators;
-- automatic reactant-shell dissociation marking when internal rows are mapped;
-- and persistent manual right-click shell dissociation.
+- automatic reactant composite dissociation marking when internal rows are mapped;
+- and persistent manual right-click dissociated-composite state.
 
 Related current UI and naming constraints:
 
@@ -100,10 +107,22 @@ The current solver is still intentionally narrow.
 
 Important current limits:
 
-- plan selection is still greedy, so local choices can still produce avoidable crossings or weaker global matches;
-- the current candidate library is centered on direct reuse, fragment reuse, partial composite reuse, and `Associate` photon construction;
-- center bosons are manual-only and still block solve instead of participating in planning;
-- there is no dissociate-then-associate planner yet;
+- the current candidate library is centered on direct reuse, fragment reuse, and `Associate`-based reassembly;
+- `Associate` is not a generic many-input / many-output transform;
+- `Associate` is specifically the gather-and-assemble operator that consumes multiple source-side parts and produces exactly one assembled output, whether that output is a single-row assembly or a composite assembly;
+- the solver must not use `Associate` as a generic weak-reaction junction, generic handoff hub, or arbitrary transform shim just to make a channel solve;
+- the operator set is fixed by the reaction app and must not be widened ad hoc by solver work;
+- the current fixed solver operator set is `Associate` and `Dissociate`;
+- center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported source-side participants, not solver-defined operators;
+- composite products should not be treated as if their child rows are themselves the final product, except when directly carrying the same composite from reactant to product;
+- center bosons currently map directly to their products as conservative source-side entries when the user has already placed them on the canvas;
+- boson decay and broader weak-boson-mediated construction are not implemented yet;
+- the solver does not yet evaluate plans that introduce a new boson as an intermediate participant during the main search;
+- future boson support should not become a parallel planning language alongside primitive charge-routing;
+- the planner can now mark a composite as dissociated in a selected plan when the chosen solve consumes internal rows;
+- the solver does not yet insert explicit `Dissociate` operators as part of the selected solve plan;
+- broader `Dissociate`-driven charge routing through generated `Noether core` and `Free Architrinos` intermediates is still not implemented;
+- solver handling of dissociated composite reactants still needs to be made more explicit and deliberate in the planning model;
 - there is no PDG ingest pipeline yet;
 - there is no dedicated proposal-review app or reaction-flow export path yet.
 
@@ -143,12 +162,43 @@ Row placement must continue to use the explicit shared surface-grid model. Do no
 
 The current product direction is narrower than the old note implied.
 
-The major missing feature is dissociate-then-associate planning, but only through the shell model the reaction app already uses:
+The major missing feature is broader dissociate-driven charge routing and dissociate-then-associate planning through the dissociated-composite model the reaction app already uses.
 
-- composite right-click dissociation is existing UI shell state;
-- automatic shell dissociation already exists for mapped internal reactant rows;
-- solver planning should learn to consume that shell state;
-- but dissociation should not become a generic free-floating planner operation that duplicates the current UI grammar.
+The required behavior is narrower and more concrete than "only use internal rows when the composite was already manually marked dissociated."
+
+The solver must still be able to dissociate a composite as part of a valid solve when that is what the reaction requires. A key current example is `Higgs Cluster -> Photon + Photon`: the solver must auto-dissociate the composite Higgs in order to route its internal Noether-core rows through two `Associate` operators.
+
+The next boson-related target is different from simple direct boson mapping. The solver should eventually be able to evaluate plans that correspond to a boson-like intermediate, but the intended path should stay primitive-first rather than boson-first.
+
+The preferred pattern is:
+
+- the planner reasons directly in the primitive language of `Dissociate`, `Noether core`, `Free Architrinos`, `Associate`, direct mappings, and dissociated-composite access;
+- within that primitive language, `Associate` keeps its narrow assembly semantics:
+  - many inputs may be gathered into one output assembly;
+  - that one output may be a standalone assembly or a composite assembly;
+  - but `Associate` must not be treated as a generic many-output routing or transform node;
+- if a selected primitive plan contains an exact recognizable subgraph equivalent to `W-`, `W+`, or `Z`, that subgraph may later be collapsed into a boson-shaped authored or rendered convenience object;
+- authored bosons that the user already placed on the canvas remain valid conservative source-side participants;
+- but automatic solving should not initially widen the search space by freely choosing between primitive charge routing and synthetic boson insertion at every branch.
+
+In other words, the intended solver order is:
+
+- solve in the primitive AAA charge-routing language first;
+- then optionally recognize and collapse exact primitive patterns into boson assemblies for readability or authoring convenience;
+- rather than making bosons first-class planner atoms before the primitive routing model is complete.
+
+So the intended rule is:
+
+- manual dissociated-composite state remains valid authored state;
+- solver-created internal-row mappings may still auto-dissociate a composite when the selected plan requires it;
+- when feeding into a composite product such as `Proton` or `Neutron`, the solver should use `Associate` unless it is directly carrying the same composite from reactant to product;
+- direct mapping into child rows of a composite product is valid only as part of that same-composite carry-through case, not as the general way to build the composite;
+- future boson-construction work should prefer explicit `Dissociate`-driven charge routing from `Noether core` sources over ad hoc boson-specific shortcuts;
+- future boson support should be modeled as an exact derived shorthand over primitive solved subgraphs whenever possible, not as a second independent planning vocabulary;
+- future planner work should represent that auto-dissociation explicitly as part of the chosen plan rather than treating every composite as permanently dissociated;
+- and dissociation should still not become a generic free-floating planner operation that duplicates the current UI grammar.
+
+What should be avoided is the wrong interpretation that associate planning may consume composite internals only when the composite was already manually or previously marked dissociated before solve. That would break required current behavior.
 
 ## Next Recommended Work
 
@@ -156,23 +206,24 @@ The next work should stay phase-by-phase and test-backed.
 
 Recommended order:
 
-1. take any newly reported solve bug first and add a targeted regression test for it;
-2. improve solve-plan selection where current greedy choices are poor;
-3. improve operator-layout heuristics where crossings or weak placements remain;
-4. add dissociated-shell-aware planning for dissociate-then-associate scenarios through existing shell state;
-5. only after that, expand into weak-boson and PDG-ingest-specific planning work.
+1. take any newly reported solve bug first and add a targeted test for it;
+2. extend primitive charge-routing beyond the current `Associate` families so solve can reason through authored or generated `Dissociate`, `Noether core`, and `Free Architrinos` paths;
+3. only after that, define exact boson-signature recognizers over those primitive charge routes;
+4. only after that, consider optional boson collapse or substitution for readability and authored convenience rather than as first-pass planner search;
+5. only after that, expand into PDG-ingest-specific planning work.
 
 ## Near-Term Capability Targets
 
-The next solver expansions should be framed as focused candidate families with regression tests, not as one giant pass.
+The next solver expansions should be framed as focused candidate families with tests, not as one giant pass.
 
 Good near-term additions:
 
-- better global ranking among competing direct, fragment, partial-composite, and associate candidates;
-- shell-aware dissociate-then-associate planning that respects existing manual or auto shell state;
+- explicit plan-level representation of composite dissociation when a chosen solve needs composite internals, while preserving manual dissociated-composite state and current auto-dissociation behavior;
 - better handling of leftover fragments and residue reporting;
-- improved operator placement when multiple candidates compete for the same lane region;
-- and later, explicit weak-boson-mediated construction for the cases the user actually wants to support.
+- direct center-boson mapping coverage for the current supported product cases should remain stable;
+- explicit `Dissociate`-driven charge-routing plans from `Noether core` and fermion sources into `Free Architrinos`, `Associate`, and downstream products;
+- exact boson-signature recognition built on top of those dissociated charge routes rather than on special-case direct decay logic;
+- and optional boson collapse/substitution built on top of primitive solved plans rather than as a separate first-pass search space.
 
 ## PDG-Specific Work That Still Does Not Exist
 
@@ -194,6 +245,7 @@ Current file boundaries that should remain the basis for extension:
 
 - `ComposerReactionSolveStateRuntime.js`
 - `ComposerReactionSolveProposalRuntime.js`
+- `ComposerReactionSolveSelectionRuntime.js`
 - `ComposerReactionSolveMatchRuntime.js`
 - `ComposerReactionSolveAssociateRuntime.js`
 - `ComposerReactionSolveProjectionRuntime.js`

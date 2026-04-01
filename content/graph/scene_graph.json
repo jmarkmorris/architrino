@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 418,
+      "nodes": 419,
       "edges": 1165,
       "scenes": 290,
       "markdownIndexes": 0,
-      "markdownDocs": 128,
+      "markdownDocs": 129,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1970,6 +1970,12 @@
       "id": "content/markdown/aaa/archie/textbook-file-structure.md",
       "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/ui-guidelines.md",
+      "name": "UI Guidelines",
+      "path": "content/markdown/aaa/archie/ui-guidelines.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5392,6 +5398,15 @@
       "name": "Textbook File Structure",
       "path": "content/markdown/aaa/archie/textbook-file-structure.md",
       "searchTarget": "content/markdown/aaa/archie/textbook-file-structure.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ui-guidelines.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/ui-guidelines.md",
+      "name": "UI Guidelines",
+      "path": "content/markdown/aaa/archie/ui-guidelines.md",
+      "searchTarget": "content/markdown/aaa/archie/ui-guidelines.md",
       "implicit": false
     },
     {

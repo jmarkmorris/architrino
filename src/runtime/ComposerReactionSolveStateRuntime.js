@@ -41,12 +41,16 @@ export function buildComposerReactionSolveState(options = {}) {
       rootNode,
       rootNodeKey:
         participant?.id && rootNode?.id ? buildNodeKey(participant.id, rootNode.id) : "",
+      isCenterAssembly: false,
+      isOperator: false,
     };
     if (isOperatorParticipant(participant)) {
+      entry.isOperator = true;
       state.operators.push(entry);
       return;
     }
     if (isCenterAssemblyParticipant(participant)) {
+      entry.isCenterAssembly = true;
       state.centerAssemblies.push(entry);
       return;
     }
@@ -62,8 +66,8 @@ export function buildComposerReactionSolveState(options = {}) {
   });
 
   state.hasUnsupportedParticipants =
-    state.centerAssemblies.length > 0 || state.unsupported.length > 0;
-  state.hasReactants = state.reactants.length > 0;
+    state.unsupported.length > 0;
+  state.hasReactants = state.reactants.length + state.centerAssemblies.length > 0;
   state.hasProducts = state.products.length > 0;
   return state;
 }

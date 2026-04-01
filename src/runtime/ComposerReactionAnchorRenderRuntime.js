@@ -153,8 +153,18 @@ export function createComposerReactionAnchorRenderRuntime(options = {}) {
       anchorRole,
       normalizedAnchorInstanceIndex
     );
-    const mapping = isSingleMappingAnchorRole(anchorRole) ? mappings[0] ?? null : null;
-    const hasRoleMapping = isSingleMappingAnchorRole(anchorRole)
+    const mapping = isSingleMappingAnchorRole({
+      role: anchorRole,
+      nodeKey,
+      anchorInstanceIndex: normalizedAnchorInstanceIndex,
+    })
+      ? mappings[0] ?? null
+      : null;
+    const hasRoleMapping = isSingleMappingAnchorRole({
+      role: anchorRole,
+      nodeKey,
+      anchorInstanceIndex: normalizedAnchorInstanceIndex,
+    })
       ? !!mapping
       : mappings.length > 0;
     const anchor = document.createElement("button");

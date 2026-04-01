@@ -278,7 +278,10 @@ function classifyNoetherCoreGridNode(node = null, structureNode = null) {
 }
 
 function isFullTriBinaryCoreSpec(spec = null) {
-  return Number(spec?.binarySlotCount ?? 0) === 3;
+  return (
+    Number(spec?.binarySlotCount ?? 0) === 3 &&
+    spec?.provenanceMode === "direct"
+  );
 }
 
 function classifyAggregateHierarchyNode(participant = null, node = null, options = {}) {
@@ -317,6 +320,12 @@ export function classifyComposerReactionNode(participant = null, node = null, op
   }
   if (renderMode === "binary-bare") {
     return classifyBareBinaryNode(node);
+  }
+  if (
+    renderMode === "binary-selector-grid" &&
+    normalizeText(node?.templateId) === "free_architrinos"
+  ) {
+    return classifyAggregateHierarchyNode(participant, node, options);
   }
   if (renderMode === "binary-selector-grid" && structureNode) {
     return classifyBinarySelectorGroupNode(

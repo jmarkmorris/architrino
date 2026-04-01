@@ -127,6 +127,29 @@ function createNoetherCoreNode(id, options = {}) {
   });
 }
 
+function createFreeArchitrinosNode(id, options = {}) {
+  const {
+    label = "Free Architrinos",
+    occupiedSlots = STRUCTURE_SLOT_ORDER,
+  } = options;
+  const occupiedSet = new Set(
+    (Array.isArray(occupiedSlots) ? occupiedSlots : STRUCTURE_SLOT_ORDER).map((slotName) =>
+      String(slotName ?? "").trim()
+    )
+  );
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species: "free_architrinos",
+    label,
+    children: STRUCTURE_SLOT_ORDER.map((slotName) =>
+      createNoetherCoreSlotNode(`${id}/${slotName}_slot`, slotName, {
+        occupied: occupiedSet.has(slotName),
+      })
+    ),
+  });
+}
+
 function createFamilyParticleNode(id, family, label, options = {}) {
   const { polarity = "pro", occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
   return createStructureNode({
@@ -395,6 +418,11 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
     root = createNoetherCoreNode(structureId, {
       label: label || formatNoetherCoreLabel(polarity),
       polarity,
+      occupiedSlots,
+    });
+  } else if (normalizedTemplateId === "free_architrinos") {
+    root = createFreeArchitrinosNode(structureId, {
+      label: label || "Free Architrinos",
       occupiedSlots,
     });
   } else if (

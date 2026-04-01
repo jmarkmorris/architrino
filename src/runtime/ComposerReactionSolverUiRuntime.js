@@ -70,6 +70,7 @@ import {
   getStructureTrait,
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_CLASSIFICATION_FAMILIES,
+  STRUCTURE_KINDS,
 } from "../domain/structure/StructureSchema.js";
 import { findStructureNodeById } from "../domain/structure/StructureTraversal.js";
 import {
@@ -90,6 +91,7 @@ const solverTemplateMeta = Object.freeze({
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   z_boson: { shortLabel: "Z", accent: "#a259ff" },
+  free_architrinos: { shortLabel: "FA", accent: "#7db2ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
@@ -102,6 +104,10 @@ export const REACTION_OPERATOR_ENTRIES = Object.freeze([
 export const REACTION_OPERATOR_LANE_COUNT = 2;
 export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   Object.freeze({
+    templateId: "noether_core",
+    label: "Noether Core",
+  }),
+  Object.freeze({
     templateId: "w_minus_boson",
     label: "W- Boson",
   }),
@@ -112,6 +118,10 @@ export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   Object.freeze({
     templateId: "z_boson",
     label: "Z Boson",
+  }),
+  Object.freeze({
+    templateId: "free_architrinos",
+    label: "Free Architrinos",
   }),
 ]);
 const operatorEntries = REACTION_OPERATOR_ENTRIES;
@@ -151,6 +161,12 @@ const binarySlotRankByCode = Object.freeze({
   M: 1,
   O: 2,
 });
+const dissociableFermionFamilies = new Set([
+  STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
+  STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
+  STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+  STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+]);
 
 const participantPolarityTemplateIds = new Set([
   "noether_core",
@@ -160,6 +176,13 @@ const participantPolarityTemplateIds = new Set([
   "up_quark",
   "fermion_gen1",
 ]);
+
+function cloneSerializableValue(value) {
+  if (typeof globalThis.structuredClone === "function") {
+    return globalThis.structuredClone(value);
+  }
+  return JSON.parse(JSON.stringify(value));
+}
 
 function ensureCenterAssembliesColumn(surface) {
   if (!(surface instanceof HTMLElement)) {
@@ -459,6 +482,9 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "z_boson") {
     return "Z Boson";
   }
+  if (normalizedTemplateId === "free_architrinos") {
+    return "Free Architrinos";
+  }
   if (normalizedTemplateId === "proton") {
     return "Pro Proton";
   }
@@ -574,7 +600,11 @@ function getParticipantCollectionKey(participant = null) {
 }
 
 function isSingleMappingAnchorRole(role = "") {
-  return role === "reactant" || role === "product";
+  const normalizedRole =
+    typeof role === "object" && role !== null
+      ? String(role.role ?? "").trim()
+      : String(role ?? "").trim();
+  return normalizedRole === "reactant" || normalizedRole === "product";
 }
 
 function canStartMappingFromRole(role = "") {
@@ -583,6 +613,20 @@ function canStartMappingFromRole(role = "") {
 
 function canTargetMappingRole(role = "") {
   return role === "product" || role === "operator-input";
+}
+
+function getSlotNameFromCode(slotCode = "") {
+  const normalizedSlotCode = String(slotCode ?? "").trim().toUpperCase();
+  if (normalizedSlotCode === "I") {
+    return "inner";
+  }
+  if (normalizedSlotCode === "M") {
+    return "middle";
+  }
+  if (normalizedSlotCode === "O") {
+    return "outer";
+  }
+  return "";
 }
 
 function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
@@ -798,7 +842,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getPendingSourceKey: () => state.pendingSourceKey,
     getPendingSourceAnchorInstanceIndex: () => state.pendingSourceAnchorInstanceIndex,
     getPendingSourceRole: () => state.pendingSourceRole,
-    isSingleMappingAnchorRole,
+    isSingleMappingAnchorRole: isSingleMappingAnchorRoleForNode,
     onRecentStateChange: () => applyHoveredRouteState(),
     recentRouteFadeMs,
     resolvePendingTargetAvailability: (payload) =>
@@ -827,7 +871,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getPendingSourceRole: () => state.pendingSourceRole,
     getRecentMappingIds: () => state.recentMappingIds,
     handleAnchorClick,
-    isSingleMappingAnchorRole,
+    isSingleMappingAnchorRole: isSingleMappingAnchorRoleForNode,
     mapSvg,
     markMappingsRecent,
     shouldSuppressRouteState: () => !!state.pendingSourceKey,
@@ -855,6 +899,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createBinaryGlyph,
     createInlineAnchorSlot,
     cycleQuarkBinaryPreset,
+    cycleFreeArchitrinoPreset,
     findMappingByNodeKey,
     formatLedger,
     formatParticipantLabel,
@@ -878,6 +923,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     isQuarkTemplateId,
     isReactantCompositeParticipant,
     openParticipantMenuAt,
+    handleParticipantVisualClick,
     reducedBinaryPersonalityChoiceIds,
     resolveBinaryGlyphPolarity,
     setBinaryPersonalitySelection,
@@ -891,8 +937,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createSideSlotHeader,
     createOperatorParticipantCard,
     renderParticipantCard,
-    syncOperatorFan,
   } = participantRenderRuntime);
+  if (typeof participantRenderRuntime.syncOperatorFan === "function") {
+    syncOperatorFan = participantRenderRuntime.syncOperatorFan;
+  }
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
@@ -982,6 +1030,27 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return existingContext;
     }
     return rebuildAnchorRegistry().get(nodeKey) ?? null;
+  }
+
+  function isSingleMappingAnchorRoleForNode(role = "") {
+    const normalizedRole =
+      typeof role === "object" && role !== null
+        ? String(role.role ?? "").trim()
+        : String(role ?? "").trim();
+    const nodeKey =
+      typeof role === "object" && role !== null ? String(role.nodeKey ?? "").trim() : "";
+    if (normalizedRole === "product") {
+      return true;
+    }
+    if (normalizedRole !== "reactant") {
+      return false;
+    }
+    const nodeContext = nodeKey ? getNodeContext(nodeKey) : null;
+    const rootNode = nodeContext?.participant ? getParticipantRootNode(nodeContext.participant) : null;
+    const isFreeArchitrinosRoot =
+      nodeContext?.participant?.templateId === "free_architrinos" &&
+      String(nodeContext?.node?.id ?? "") === String(rootNode?.id ?? "");
+    return !isFreeArchitrinosRoot;
   }
 
   function createAnchorContext(participant, node) {
@@ -1222,10 +1291,20 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function removeMappingById(mappingId) {
+    const removedMapping =
+      state.mappings.find((mapping) => String(mapping.id) === String(mappingId)) ?? null;
     const beforeCount = state.mappings.length;
     state.mappings = state.mappings.filter((mapping) => mapping.id !== mappingId);
     state.hoveredMappingIds = state.hoveredMappingIds.filter((entry) => entry !== mappingId);
     pruneRecentRouteState();
+    const targetParticipantId = parseNodeKey(removedMapping?.targetKey).participantId;
+    if (
+      removedMapping?.sourceRole === "reactant" &&
+      removedMapping?.targetRole === "operator-input" &&
+      findParticipantById(targetParticipantId)?.templateId === "dissociate"
+    ) {
+      syncAutoGeneratedDissociateAssembliesForOperator(targetParticipantId);
+    }
     return beforeCount !== state.mappings.length;
   }
 
@@ -1248,6 +1327,48 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return beforeCount !== state.mappings.length;
   }
 
+  function clearReactionMappings() {
+    if (!state.mappings.length && !state.hoveredMappingIds.length) {
+      if (!state.pendingSourceKey) {
+        return false;
+      }
+    }
+    state.mappings = [];
+    state.hoveredMappingIds = [];
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    clearAllRecentRouteState();
+    clearAutoGeneratedDissociateAssemblies();
+    return true;
+  }
+
+  function clearReactionWorkspaceParticipants() {
+    const beforeCount = state.participants.length;
+    state.participants = state.participants.filter(
+      (participant) => participant?.side === "reactant" || participant?.side === "product"
+    );
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
+      }
+    });
+    clearReactionMappings();
+    return beforeCount !== state.participants.length;
+  }
+
+  function clearReactionOperatorsAndMappings() {
+    const beforeCount = state.participants.length;
+    state.participants = state.participants.filter((participant) => participant?.side !== "operator");
+    state.participants.forEach((participant) => {
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
+      }
+    });
+    const removedMappings = clearReactionMappings();
+    return beforeCount !== state.participants.length || removedMappings;
+  }
+
   function removeParticipantById(participantId) {
     const participant = findParticipantById(participantId);
     if (!participant) {
@@ -1256,7 +1377,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.participants = state.participants.filter(
       (entry) => String(entry?.id ?? "") !== participantId
     );
-    removeMappingsForParticipant(participantId);
+    if (participant.side === "reactant" || participant.side === "product") {
+      clearReactionWorkspaceParticipants();
+    } else {
+      if (participant.templateId === "dissociate") {
+        removeAutoGeneratedDissociateAssemblies(participant.id);
+      }
+      removeMappingsForParticipant(participantId);
+    }
     closeMenu();
     render();
     setStatus(
@@ -1309,7 +1437,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     if (solveState.hasUnsupportedParticipants) {
       setStatus(
-        "Solve v1 only supports reactants, products, and existing operators on the canvas. Remove center bosons first."
+        "Solve v1 only supports reactants, products, center assemblies, and existing operators on the canvas."
       );
       return false;
     }
@@ -1350,6 +1478,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       createOperatorParticipant,
       getParticipantRootNode,
       buildNodeKey,
+      markParticipantAutoDissociated,
       addOrReplaceMapping,
     });
     markMappingsRecent(appliedMappingIds);
@@ -1372,8 +1501,8 @@ export function createComposerReactionSolverUiRuntime(deps) {
       (participant) => !(participant?.side === "operator" && participant?.isSolveGenerated)
     );
     state.participants.forEach((participant) => {
-      if (participant?.isAutoDissociatedShell) {
-        participant.isAutoDissociatedShell = false;
+      if (participant?.isAutoDissociatedComposite) {
+        participant.isAutoDissociatedComposite = false;
       }
     });
     state.mappings = [];
@@ -1393,7 +1522,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const currentSelections = getResolvedBinarySelectionMap(participant);
     participant.polarity = resolvedPolarity;
     syncParticipantHierarchyForPolarity(participant);
-    removeMappingsForParticipant(participantId);
+    if (participant.side === "reactant" || participant.side === "product") {
+      clearReactionOperatorsAndMappings();
+    } else {
+      removeMappingsForParticipant(participantId);
+    }
     participant.binarySelections = Object.fromEntries(
       Object.entries(currentSelections).map(([nodeId, choiceId]) => [
         nodeId,
@@ -1446,15 +1579,19 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!participant || participant.templateId !== "higgs_cluster") {
       return false;
     }
+    if (participant.side !== "reactant") {
+      setStatus("Only reactant composites can be marked dissociated.");
+      return false;
+    }
 
-    if (participant.isDissociatedShell) {
+    if (participant.isDissociatedComposite) {
       setStatus(
         `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster is already marked dissociated.`
       );
       return false;
     }
-    participant.isDissociatedShell = true;
-    participant.isAutoDissociatedShell = false;
+    participant.isDissociatedComposite = true;
+    participant.isAutoDissociatedComposite = false;
     closeMenu();
     render();
     setStatus(
@@ -1466,6 +1603,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   function splitCompositeParticipantById(participantId) {
     const participant = findParticipantById(participantId);
     if (!participant) {
+      return false;
+    }
+    if (participant.side !== "reactant") {
+      setStatus("Only reactant composites can be marked dissociated.");
       return false;
     }
     if (participant.templateId === "higgs_cluster") {
@@ -1485,14 +1626,14 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (participantIndex < 0) {
       return false;
     }
-    if (participant.isDissociatedShell) {
+    if (participant.isDissociatedComposite) {
       setStatus(
         `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} is already marked dissociated.`
       );
       return false;
     }
-    participant.isDissociatedShell = true;
-    participant.isAutoDissociatedShell = false;
+    participant.isDissociatedComposite = true;
+    participant.isAutoDissociatedComposite = false;
     closeMenu();
     render();
     setStatus(
@@ -1501,7 +1642,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return true;
   }
 
-  function markCompositeReactantShellDissociatedForNodeKey(nodeKey, role = "") {
+  function markCompositeReactantDissociatedForNodeKey(nodeKey, role = "") {
     if (role !== "reactant" || !nodeKey) {
       return false;
     }
@@ -1514,10 +1655,267 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (!rootNode?.id || String(rootNode.id) === String(nodeId ?? "")) {
       return false;
     }
-    if (participant.isDissociatedShell || participant.isAutoDissociatedShell) {
+    return markParticipantAutoDissociated(participant);
+  }
+
+  function markParticipantAutoDissociated(participantOrId = null) {
+    const participant =
+      typeof participantOrId === "string" ? findParticipantById(participantOrId) : participantOrId;
+    if (!participant || participant.side !== "reactant" || !isCompositeParticipant(participant)) {
       return false;
     }
-    participant.isAutoDissociatedShell = true;
+    if (participant.isDissociatedComposite || participant.isAutoDissociatedComposite) {
+      return false;
+    }
+    participant.isAutoDissociatedComposite = true;
+    return true;
+  }
+
+  function getPrimaryNoetherCoreForDissociation(structureNode = null) {
+    if (!structureNode) {
+      return null;
+    }
+    if (structureNode.kind === STRUCTURE_KINDS.NOETHER_CORE) {
+      return structureNode;
+    }
+    return (
+      getStructureNodeChildren(structureNode).find(
+        (childNode) => childNode?.kind === STRUCTURE_KINDS.NOETHER_CORE
+      ) ?? null
+    );
+  }
+
+  function getOccupiedSlotNamesFromCoreNode(coreNode = null) {
+    if (!coreNode) {
+      return [];
+    }
+    return getStructureNodeChildren(coreNode)
+      .map((slotNode) => String(getStructureTrait(slotNode, "slot", "")).trim().toLowerCase())
+      .filter((slotName) => slotName === "inner" || slotName === "middle" || slotName === "outer")
+      .filter((slotName, index, slotNames) => slotNames.indexOf(slotName) === index)
+      .filter((slotName) => {
+        const slotNode = getStructureNodeChildren(coreNode).find(
+          (childNode) => String(getStructureTrait(childNode, "slot", "")).trim().toLowerCase() === slotName
+        );
+        return getStructureNodeChildren(slotNode).length > 0;
+      });
+  }
+
+  function getOccupiedSlotNamesFromDescriptorNode(node = null) {
+    return (Array.isArray(node?.children) ? node.children : [])
+      .filter((childNode) => childNode?.slotCode && childNode?.hasBinary !== false)
+      .map((childNode) => getSlotNameFromCode(childNode.slotCode))
+      .filter(Boolean);
+  }
+
+  function getBinarySelectionsBySlotCode(participant, groupNode = null) {
+    const slotNodes = getBinarySelectorNodes(participant, groupNode);
+    if (!slotNodes.length) {
+      return {};
+    }
+    const resolvedSelections = getResolvedBinarySelectionMap(participant, groupNode);
+    return Object.fromEntries(
+      slotNodes.map((slotNode) => [String(slotNode?.slotCode ?? "").trim().toUpperCase(), resolvedSelections[slotNode.id]])
+    );
+  }
+
+  function applyBinarySelectionsBySlotCode(participant, selectionsBySlotCode = {}) {
+    const groupNode = getParticipantBinarySelectorGroups(participant)[0] ?? null;
+    const slotNodes = getBinarySelectorNodes(participant, groupNode);
+    if (!groupNode || !slotNodes.length) {
+      return;
+    }
+    const nextSelections = { ...participant.binarySelections };
+    slotNodes.forEach((slotNode) => {
+      const slotCode = String(slotNode?.slotCode ?? "").trim().toUpperCase();
+      const choiceId = selectionsBySlotCode[slotCode];
+      if (!choiceId) {
+        return;
+      }
+      nextSelections[slotNode.id] = choiceId;
+    });
+    participant.binarySelections = nextSelections;
+  }
+
+  function buildAutoGeneratedDissociateAssemblies(sourceKey = "") {
+    const sourceContext = getNodeContext(sourceKey);
+    if (!sourceContext?.participant || !sourceContext?.node || !sourceContext?.structureNode) {
+      return [];
+    }
+    const sourceGroupNode =
+      getParticipantBinarySelectorGroups(sourceContext.participant).find(
+        (groupNode) =>
+          String(groupNode?.id ?? "") === String(sourceContext.node?.id ?? "") ||
+          (Array.isArray(groupNode?.slotNodes) &&
+            groupNode.slotNodes.some(
+              (slotNode) => String(slotNode?.id ?? "") === String(sourceContext.node?.id ?? "")
+            ))
+      ) ?? sourceContext.node;
+    const sourceCoreNode = getPrimaryNoetherCoreForDissociation(sourceContext.structureNode);
+    const occupiedSlots =
+      getOccupiedSlotNamesFromDescriptorNode(sourceGroupNode).length > 0
+        ? getOccupiedSlotNamesFromDescriptorNode(sourceGroupNode)
+        : getOccupiedSlotNamesFromCoreNode(sourceCoreNode);
+    if (sourceContext.structureNode.kind === STRUCTURE_KINDS.NOETHER_CORE) {
+      return [{
+        templateId: "free_architrinos",
+        occupiedSlots,
+      }];
+    }
+    const family = String(sourceContext.structureNode?.classification?.family ?? "").trim();
+    if (!dissociableFermionFamilies.has(family)) {
+      return [];
+    }
+    return [
+      {
+        templateId: "noether_core",
+        polarity: inferParticipantPolarityFromStructure(sourceContext.structureNode),
+        occupiedSlots,
+      },
+      {
+        templateId: "free_architrinos",
+        occupiedSlots,
+        binarySelectionsBySlotCode: getBinarySelectionsBySlotCode(
+          sourceContext.participant,
+          sourceGroupNode
+        ),
+      },
+    ];
+  }
+
+  function removeAutoGeneratedDissociateAssemblies(operatorId = "") {
+    const autoGeneratedParticipantIds = state.participants
+      .filter(
+        (participant) =>
+          participant?.autoGeneratedByDissociateParticipantId &&
+          String(participant.autoGeneratedByDissociateParticipantId) === String(operatorId)
+      )
+      .map((participant) => String(participant.id));
+    if (!autoGeneratedParticipantIds.length) {
+      return false;
+    }
+    const autoGeneratedParticipantIdSet = new Set(autoGeneratedParticipantIds);
+    state.participants = state.participants.filter(
+      (participant) => !autoGeneratedParticipantIdSet.has(String(participant?.id ?? ""))
+    );
+    state.mappings = state.mappings.filter((mapping) => {
+      const sourceParticipantId = parseNodeKey(mapping.sourceKey).participantId;
+      const targetParticipantId = parseNodeKey(mapping.targetKey).participantId;
+      return (
+        !autoGeneratedParticipantIdSet.has(String(sourceParticipantId)) &&
+        !autoGeneratedParticipantIdSet.has(String(targetParticipantId))
+      );
+    });
+    if (autoGeneratedParticipantIdSet.has(parseNodeKey(state.pendingSourceKey).participantId)) {
+      state.pendingSourceKey = "";
+      state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
+    }
+    state.hoveredMappingIds = state.hoveredMappingIds.filter((mappingId) =>
+      state.mappings.some((mapping) => mapping.id === mappingId)
+    );
+    pruneRecentRouteState();
+    return true;
+  }
+
+  function clearAutoGeneratedDissociateAssemblies() {
+    const operatorIds = [
+      ...new Set(
+        state.participants
+          .filter((participant) => participant?.autoGeneratedByDissociateParticipantId)
+          .map((participant) => String(participant.autoGeneratedByDissociateParticipantId))
+          .filter(Boolean)
+      ),
+    ];
+    let removedAny = false;
+    operatorIds.forEach((operatorId) => {
+      if (removeAutoGeneratedDissociateAssemblies(operatorId)) {
+        removedAny = true;
+      }
+    });
+    return removedAny;
+  }
+
+  function createCenterAssemblyParticipantRecord(templateId = "w_minus_boson", options = {}) {
+    const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+    const resolvedTemplateId =
+      normalizedTemplateId === "noether_core" ||
+      normalizedTemplateId === "w_plus_boson" ||
+      normalizedTemplateId === "z_boson" ||
+      normalizedTemplateId === "free_architrinos"
+        ? normalizedTemplateId
+        : "w_minus_boson";
+    return createParticipantRecord({
+      side: "reactant",
+      templateId: resolvedTemplateId,
+      label:
+        options.label ?? getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly"),
+      hierarchy: buildFallbackHierarchyForTemplate(
+        resolvedTemplateId,
+        options.label ?? getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly")
+      ),
+      structureOptions: options.structureOptions ?? null,
+      extraFields: {
+        polarity: options.initialPolarity ?? "pro",
+        surfaceColumn: "center-assembly",
+        ...options.extraFields,
+      },
+    });
+  }
+
+  function syncAutoGeneratedDissociateAssembliesForOperator(operatorId = "") {
+    const operator = findParticipantById(operatorId);
+    if (!operator || operator.side !== "operator" || operator.templateId !== "dissociate") {
+      return false;
+    }
+    removeAutoGeneratedDissociateAssemblies(operatorId);
+    const dissociateInputMappings = state.mappings.filter((mapping) => {
+      if (mapping.sourceRole !== "reactant" || mapping.targetRole !== "operator-input") {
+        return false;
+      }
+      return String(parseNodeKey(mapping.targetKey).participantId) === String(operatorId);
+    });
+    if (dissociateInputMappings.length !== 1) {
+      return false;
+    }
+    const sourceMapping = dissociateInputMappings[0];
+    const autoGeneratedEntries = buildAutoGeneratedDissociateAssemblies(sourceMapping.sourceKey);
+    if (!autoGeneratedEntries.length) {
+      return false;
+    }
+    const operatorNode = getOperatorNode(operator);
+    const baseSurfaceRowIndex = getParticipantSurfaceRowIndex(
+      operator,
+      Number(operator.operatorSlotIndex ?? 0)
+    );
+    autoGeneratedEntries.forEach((entry, index) => {
+      const participant = createCenterAssemblyParticipantRecord(entry.templateId, {
+        initialPolarity: entry.polarity ?? "pro",
+        structureOptions: {
+          occupiedSlots: entry.occupiedSlots,
+        },
+        extraFields: {
+          autoGeneratedByDissociateParticipantId: operator.id,
+          isAutoGeneratedDissociateAssembly: true,
+        },
+      });
+      insertParticipantAtTopOfCollection(participant);
+      placeParticipantOnSurfaceGrid("center-assembly", participant.id, baseSurfaceRowIndex + index);
+      applyBinarySelectionsBySlotCode(participant, entry.binarySelectionsBySlotCode);
+      const participantRootNode = getParticipantRootNode(participant);
+      if (!operatorNode?.id || !participantRootNode?.id) {
+        return;
+      }
+      addOrReplaceMapping(
+        buildNodeKey(operator.id, operatorNode.id),
+        "operator-output",
+        buildNodeKey(participant.id, participantRootNode.id),
+        "operator-input",
+        {
+          syncAutoGeneratedDissociateAssemblies: false,
+        }
+      );
+    });
     return true;
   }
 
@@ -1529,13 +1927,22 @@ export function createComposerReactionSolverUiRuntime(deps) {
     {
       sourceAnchorInstanceIndex = null,
       targetAnchorInstanceIndex = null,
+      syncAutoGeneratedDissociateAssemblies: shouldSyncAutoGeneratedDissociateAssemblies = true,
     } = {}
   ) {
     state.mappings = state.mappings.filter((mapping) => {
-      const sourceConflict = isSingleMappingAnchorRole(sourceRole)
+      const sourceConflict = isSingleMappingAnchorRoleForNode({
+        role: sourceRole,
+        nodeKey: sourceKey,
+        anchorInstanceIndex: sourceAnchorInstanceIndex,
+      })
         ? nodeKeysConflict(mapping.sourceKey, sourceKey) || nodeKeysConflict(mapping.targetKey, sourceKey)
         : false;
-      const targetConflict = isSingleMappingAnchorRole(targetRole)
+      const targetConflict = isSingleMappingAnchorRoleForNode({
+        role: targetRole,
+        nodeKey: targetKey,
+        anchorInstanceIndex: targetAnchorInstanceIndex,
+      })
         ? nodeKeysConflict(mapping.sourceKey, targetKey) || nodeKeysConflict(mapping.targetKey, targetKey)
         : false;
       return !(sourceConflict || targetConflict);
@@ -1551,7 +1958,16 @@ export function createComposerReactionSolverUiRuntime(deps) {
       sourceAnchorInstanceIndex,
       targetAnchorInstanceIndex,
     });
-    markCompositeReactantShellDissociatedForNodeKey(sourceKey, sourceRole);
+    markCompositeReactantDissociatedForNodeKey(sourceKey, sourceRole);
+    const targetParticipantId = parseNodeKey(targetKey).participantId;
+    if (
+      shouldSyncAutoGeneratedDissociateAssemblies &&
+      sourceRole === "reactant" &&
+      targetRole === "operator-input" &&
+      findParticipantById(targetParticipantId)?.templateId === "dissociate"
+    ) {
+      syncAutoGeneratedDissociateAssembliesForOperator(targetParticipantId);
+    }
     state.hoveredMappingIds = [];
     return mappingId;
   }
@@ -1676,6 +2092,75 @@ export function createComposerReactionSolverUiRuntime(deps) {
     }
     participant.binarySelections = nextSelections;
     render();
+  }
+
+  function cycleFreeArchitrinoPreset(participantId, nodeId) {
+    const participant = findParticipantById(participantId);
+    if (!participant || !nodeId) {
+      return;
+    }
+    const groupNode = resolveBinarySelectorGroup(participant, nodeId);
+    if (!groupNode || String(groupNode.templateId ?? "").trim().toLowerCase() !== "free_architrinos") {
+      return;
+    }
+    const nodes = getBinarySelectorNodes(participant, groupNode);
+    const clickedNode = nodes.find((node) => node.id === nodeId);
+    if (!clickedNode) {
+      return;
+    }
+    const currentSelections = getResolvedBinarySelectionMap(participant, groupNode);
+    const validAssignments = enumerateValidBinarySelectionAssignments(participant, groupNode);
+    if (!validAssignments.length) {
+      return;
+    }
+
+    const choiceCycle = getBinarySelectorRuleForParticipant({
+      ...participant,
+      templateId: groupNode.templateId,
+    }).visibleChoiceIds
+      .filter((choiceId) =>
+        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
+      );
+    if (!choiceCycle.length) {
+      return;
+    }
+    const currentChoiceId = currentSelections[clickedNode.id];
+    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
+    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
+    const candidateAssignments = validAssignments.filter(
+      (assignment) =>
+        assignment[clickedNode.id] === nextChoiceId &&
+        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+    );
+    const nextSelections = pickBestBinaryAssignmentCandidate({
+      participant,
+      groupNode,
+      assignments: candidateAssignments,
+      currentSelections,
+      pinnedNodeId: clickedNode.id,
+    });
+    if (!nextSelections) {
+      return;
+    }
+    participant.binarySelections = nextSelections;
+    render();
+  }
+
+  function handleParticipantVisualClick(participant, event) {
+    if (
+      !participant ||
+      participant.templateId !== "noether_core" ||
+      participant.surfaceColumn !== "center-assembly"
+    ) {
+      return false;
+    }
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    setParticipantPolarity(
+      participant.id,
+      participant.polarity === "anti" ? "pro" : "anti"
+    );
+    return true;
   }
 
   function closeMenu() {
@@ -2359,25 +2844,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   }
 
   function addCenterAssemblyParticipant(templateId = "w_minus_boson") {
-    const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
-    const resolvedTemplateId =
-      normalizedTemplateId === "w_plus_boson" ||
-      normalizedTemplateId === "z_boson"
-        ? normalizedTemplateId
-        : "w_minus_boson";
-    const participant = createParticipantRecord({
-      side: "reactant",
-      templateId: resolvedTemplateId,
-      label: getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly"),
-      hierarchy: buildFallbackHierarchyForTemplate(
-        resolvedTemplateId,
-        getDefaultParticipantBaseLabel(resolvedTemplateId, "Assembly")
-      ),
-      extraFields: {
-        polarity: "pro",
-        surfaceColumn: "center-assembly",
-      },
-    });
+    const participant = createCenterAssemblyParticipantRecord(templateId);
     insertParticipantAtTopOfCollection(participant);
     state.pendingSourceKey = "";
     state.pendingSourceRole = "";
@@ -2502,10 +2969,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
         });
       }
       if (
-        participant.templateId === "higgs_cluster" ||
-        participant.templateId === "photon" ||
-        participant.templateId === "neutron" ||
-        participant.templateId === "proton"
+        participant.side === "reactant" &&
+        (
+          participant.templateId === "higgs_cluster" ||
+          participant.templateId === "photon" ||
+          participant.templateId === "neutron" ||
+          participant.templateId === "proton"
+        )
       ) {
         renderMenuButton("Dissociate", {
           onClick: () => splitCompositeParticipantById(participant.id),
@@ -2574,7 +3044,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products."
+          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products."
           : "Reaction solver closed."
       );
     }
@@ -3053,7 +3523,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products.";
+        "Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
@@ -3087,14 +3557,40 @@ export function createComposerReactionSolverUiRuntime(deps) {
     return Math.max(0, Math.min(rect.width, rect.height) / 2);
   }
 
+  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = solverRouteAnchorGapPx) {
+    if (!(element instanceof Element)) {
+      return null;
+    }
+    const anchorRole = String(element.getAttribute("data-anchor-side") ?? "").trim();
+    const center = getElementCenterWithinSurface(element, bounds);
+    const radius = Math.max(0, getAnchorRadiusFromBounds(element) - edgeInset);
+    if (anchorRole === "reactant" || anchorRole === "operator-output") {
+      return {
+        x: center.x + radius,
+        y: center.y,
+      };
+    }
+    if (anchorRole === "product" || anchorRole === "operator-input") {
+      return {
+        x: center.x - radius,
+        y: center.y,
+      };
+    }
+    return null;
+  }
+
   function getTrimmedRouteEndpoints(
     sourceElement,
     targetElement,
     bounds,
     edgeInset = solverRouteAnchorGapPx
   ) {
-    const sourcePoint = getElementCenterWithinSurface(sourceElement, bounds);
-    const targetPoint = getElementCenterWithinSurface(targetElement, bounds);
+    const sourcePoint =
+      getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
+      getElementCenterWithinSurface(sourceElement, bounds);
+    const targetPoint =
+      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset) ??
+      getElementCenterWithinSurface(targetElement, bounds);
     const deltaX = targetPoint.x - sourcePoint.x;
     const deltaY = targetPoint.y - sourcePoint.y;
     const distance = Math.hypot(deltaX, deltaY);
@@ -3106,26 +3602,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
         endY: targetPoint.y,
       };
     }
-    const unitX = deltaX / distance;
-    const unitY = deltaY / distance;
-    const sourceRadius = Math.max(0, getAnchorRadiusFromBounds(sourceElement) - edgeInset);
-    const targetRadius = Math.max(0, getAnchorRadiusFromBounds(targetElement) - edgeInset);
-    const totalInset = sourceRadius + targetRadius;
-    if (totalInset >= distance) {
-      const midpointX = (sourcePoint.x + targetPoint.x) / 2;
-      const midpointY = (sourcePoint.y + targetPoint.y) / 2;
-      return {
-        startX: midpointX,
-        startY: midpointY,
-        endX: midpointX,
-        endY: midpointY,
-      };
-    }
     return {
-      startX: sourcePoint.x + unitX * sourceRadius,
-      startY: sourcePoint.y + unitY * sourceRadius,
-      endX: targetPoint.x - unitX * targetRadius,
-      endY: targetPoint.y - unitY * targetRadius,
+      startX: sourcePoint.x,
+      startY: sourcePoint.y,
+      endX: targetPoint.x,
+      endY: targetPoint.y,
     };
   }
 
@@ -3614,6 +4095,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionSolverCanvas,
+    getSnapshot: () => ({
+      participants: cloneSerializableValue(state.participants),
+      mappings: cloneSerializableValue(state.mappings),
+    }),
     solveCanvas: solveReactionSolverCanvas,
     setActive,
     toggleActive,
