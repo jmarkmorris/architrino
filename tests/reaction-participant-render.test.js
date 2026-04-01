@@ -6,7 +6,7 @@ import {
   getReactionSideSlotHeaderProfile,
   getReactionParticipantCardSectionOrder,
   getRenderedSlotCodesForSide,
-} from "../src/runtime/ComposerReactionParticipantRenderRuntime.js";
+} from "../src/apps/reaction/ReactionParticipantRenderRuntime.js";
 
 test("render slot codes mirror on product side only", () => {
   assert.deepEqual(getRenderedSlotCodesForSide("reactant"), ["I", "M", "O"]);
@@ -102,7 +102,7 @@ test("center assembly column group uses the shared surface grid column and cente
 
 test("center assembly column group reserves the same slot-header row as the side columns", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -117,11 +117,11 @@ test("center assembly column group reserves the same slot-header row as the side
 
 test("center bosons expose a left-side input attachment frame", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const solverRuntimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -205,7 +205,7 @@ test("side anchors use the shared attachment offset so connectors abut tile edge
 
 test("Z boson uses the standard tri-binary grid renderer instead of a custom center-column fallback", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const descriptorSource = readFileSync(
@@ -219,7 +219,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
 
 test("free architrinos reuse the grid layout but render personality-only tiles with no binary orbit or axis", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const descriptorSource = readFileSync(
@@ -240,7 +240,7 @@ test("free architrinos reuse the grid layout but render personality-only tiles w
 
 test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -272,7 +272,7 @@ test("operator tiles expose an open-ledger state", () => {
 
 test("operator tiles use explicit lane and row center positioning from the shared surface geometry", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -292,7 +292,7 @@ test("operator tiles use explicit lane and row center positioning from the share
 
 test("reactant and product participants also render on explicit surface grid rows", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -372,7 +372,7 @@ test("composite participant connector rails are removed from the row flow", () =
 
 test("composite title rail side anchoring survives the nested participant-content wrapper", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -392,7 +392,7 @@ test("composite title rail side anchoring survives the nested participant-conten
 
 test("dissociated composites keep the title tile and render it with a dotted border", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -420,7 +420,7 @@ test("composite collector uses the shared centered connector inset", () => {
 
 test("composite collector and span rail use the same connector dot type", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -460,7 +460,7 @@ test("composite span stem uses the shared centered connector span geometry", () 
 
 test("composite connector path uses a direct line segment", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -471,7 +471,7 @@ test("composite connector path uses a direct line segment", () => {
 
 test("composite and standalone track rows share the same inline track-body helper", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -486,7 +486,7 @@ test("composite and standalone track rows share the same inline track-body helpe
 
 test("branch operators use single centered input and output attachments", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");

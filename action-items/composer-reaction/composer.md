@@ -47,7 +47,7 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer does not yet ingest a production-hardened solved reaction handoff from Reaction.
+- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a first-pass staged reaction scene from it.
 
 ## Design
 
@@ -202,25 +202,7 @@ The Composer-side intake should be strong enough to receive:
 
 ## Priorities
 
-### 1. Add Production Handoff Intake From Reaction
-
-Status: `next`
-
-Goal:
-
-- let Composer consume a real solved-reaction handoff and instantiate staged reaction scenes from it.
-
-Why it matters:
-
-- Composer is downstream of Reaction and cannot become the final explanatory surface until that import path is real.
-
-Next steps:
-
-- consume the Reaction-owned handoff through a Composer-owned import adapter;
-- translate imported flow into Composer scene state;
-- and keep the handoff explicit rather than routing through shared runtime behavior.
-
-### 2. Finish Authored Framing And Autoscale UI
+### 1. Finish Authored Framing And Autoscale UI
 
 Status: `active`
 
@@ -238,7 +220,7 @@ Next steps:
 - keep autoscale focused on the required set rather than "everything";
 - and preserve author control over framing intent.
 
-### 3. Replace Placeholder Observer Timeline Blocks
+### 2. Replace Placeholder Observer Timeline Blocks
 
 Status: `pending`
 
@@ -256,7 +238,7 @@ Next steps:
 - finish observer transitions and framing behavior;
 - and keep visible observer-language cleanup moving forward.
 
-### 4. Move More Editing Onto Canonical Structure Transforms
+### 3. Move More Editing Onto Canonical Structure Transforms
 
 Status: `pending`
 
@@ -274,7 +256,7 @@ Next steps:
 - extend structure summaries into more viewport/editor surfaces;
 - and keep scale and nesting behavior legible in-scene.
 
-### 5. Keep New Composer Logic Out Of The Composition Root
+### 4. Keep New Composer Logic Out Of The Composition Root
 
 Status: `pending`
 
@@ -292,7 +274,7 @@ Next steps:
 - keep the composition root thin;
 - and use [app-architecture](./app-architecture.md) for the cross-cutting enforcement standard.
 
-### 6. Retire Remaining Composer State And Authoring Logic From `app.js`
+### 5. Retire Remaining Composer State And Authoring Logic From `app.js`
 
 Status: `pending`
 
@@ -311,7 +293,7 @@ Next steps:
 - move view-mode/display-flag helpers into a Composer viewport-display runtime;
 - and move assembly identity/label helpers into a Composer assembly-label runtime or merge them into existing assembly helpers.
 
-### 7. Extract Composer Viewport Geometry, Assets, And Authoring Modules
+### 6. Extract Composer Viewport Geometry, Assets, And Authoring Modules
 
 Status: `pending`
 

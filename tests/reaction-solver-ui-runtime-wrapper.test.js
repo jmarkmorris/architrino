@@ -31,11 +31,11 @@ test("reaction solver ui runtime injects the reaction-owned solve pipeline", () 
     "utf8"
   );
 
-  assert.match(runtimeSource, /buildSolveState:\s*buildReactionSolveState/);
-  assert.match(runtimeSource, /buildSolvePlan:\s*buildReactionSolvePlan/);
-  assert.match(runtimeSource, /describeSolvePlan:\s*describeReactionSolvePlan/);
-  assert.match(runtimeSource, /applySolveLayout:\s*applyReactionSolveLayout/);
-  assert.match(runtimeSource, /applySolvePlan:\s*applyReactionSolvePlan/);
+  assert.match(runtimeSource, /buildReactionSolveState as defaultBuildSolveState/);
+  assert.match(runtimeSource, /buildReactionSolvePlan as defaultBuildSolvePlan/);
+  assert.match(runtimeSource, /describeReactionSolvePlan as defaultDescribeSolvePlan/);
+  assert.match(runtimeSource, /applyReactionSolveLayout as defaultApplySolveLayout/);
+  assert.match(runtimeSource, /applyReactionSolvePlan as defaultApplySolvePlan/);
 });
 
 test("reaction solve-state, layout, and projection modules now own their implementations", () => {

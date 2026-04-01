@@ -38,6 +38,7 @@ It does not own:
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
+- The canonical implementation for the wrapper-thin Reaction helper and solver runtimes now lives under `src/apps/reaction/`, while legacy `ComposerReaction...` paths act only as temporary compatibility shims.
 - The Reaction app is already useful for manual provenance work, but it still lacks a production-hardened accept-and-export path downstream.
 
 ## Design
@@ -259,39 +260,7 @@ Next steps:
 - keep Reaction-side review and correction explicit;
 - and continue reducing transitional Composer-shell coupling as the standalone app boundary hardens.
 
-### 6. Retire Reaction Compatibility Layers
-
-Status: `pending`
-
-Goal:
-
-- move app-owned Reaction ownership behind Reaction-named modules first, while treating legacy compatibility layers as temporary migration scaffolding rather than immediate deletion targets.
-
-Why it matters:
-
-- the app-facing `src/apps/reaction/` surface already exists, but many files there are still thin wrappers over legacy `ComposerReaction...` implementations, which means ownership is clearer than before but not yet canonical.
-
-Next steps:
-
-- move clearly app-owned implementation into the Reaction-named files one seam at a time;
-- keep legacy `ComposerReaction...` paths as temporary re-exports or wrappers while import sites migrate;
-- prefer starting with wrapper-thin app seams where the ownership is already obvious;
-- and only treat deletion as the last phase after canonical ownership is stable.
-
-Current wrapper-backed app files:
-
-- `ReactionAnchorRenderRuntime.js`
-- `ReactionBinaryGlyphRuntime.js`
-- `ReactionAnchorStateRuntime.js`
-- `ReactionBinaryInventoryRuntime.js`
-- `ReactionBinarySelectionRuntime.js`
-- `ReactionParticipantRenderRuntime.js`
-- `ReactionParticipantMutationRuntime.js`
-- `ReactionMappingRulesRuntime.js`
-- `ReactionAddPickerRuntime.js`
-- `ReactionSolverUiRuntime.js`
-
-### 7. Rename Remaining Legacy Reaction Solver And Support Files
+### 6. Rename Remaining Legacy Reaction Solver And Support Files
 
 Status: `pending`
 
@@ -324,7 +293,7 @@ Legacy files still to disposition:
 - `ComposerReactionStructureMappingRuntime.js`
 - `ComposerReactionRulesRuntime.js`
 
-### 8. Harden Reaction Export And Contract Ownership
+### 7. Harden Reaction Export And Contract Ownership
 
 Status: `pending`
 
@@ -342,6 +311,5 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
-
 
 
