@@ -1176,10 +1176,10 @@ body {
 
 .reaction-app-title {
   margin: 0;
-  font-size: clamp(20px, 2.1vw, 28px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  font-weight: 600;
+  font-size: clamp(15px, 1.45vw, 20px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 500;
 }
 
 .reaction-app-status {
