@@ -353,7 +353,7 @@ function prependSelectionProfile(profile = null, result = createEmptySelectionRe
   };
 }
 
-export function selectBestComposerReactionSolveCandidates(candidates = []) {
+export function selectBestReactionSolveCandidates(candidates = []) {
   const profiles = candidates.map((candidate) => getCandidateProfile(candidate)).sort(compareCandidateProfiles);
   const memo = new Map();
 

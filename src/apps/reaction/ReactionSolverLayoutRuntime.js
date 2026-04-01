@@ -1,7 +1,7 @@
 import {
   isReactionStructureCompositeGridRenderMode,
   isReactionStructureInlineAnchorRenderMode,
-} from "./ComposerReactionStructureDescriptorRuntime.js";
+} from "./ReactionStructureDescriptorRuntime.js";
 
 export const REACTION_SOLVER_LAYOUT = Object.freeze({
   addButtonSizePx: 32,

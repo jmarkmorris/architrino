@@ -1,4 +1,4 @@
-import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionStructureMappingRuntime.js";
+import { evaluateReactionMappingCandidate } from "./ReactionStructureMappingRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -86,7 +86,7 @@ export function buildBestCompositeChildMatchPlan(options = {}) {
       if (!sourceNode?.id || !targetNode?.id) {
         return null;
       }
-      const evaluation = evaluateComposerReactionMappingCandidate({
+      const evaluation = evaluateReactionMappingCandidate({
         sourceParticipant,
         sourceNode,
         targetParticipant,

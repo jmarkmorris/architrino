@@ -1,7 +1,7 @@
 import {
   getNoetherCoreSlotBinaryPresence,
   getNoetherCoreSlotOccupancy,
-} from "../domain/structure/StructureClassification.js";
+} from "../../domain/structure/StructureClassification.js";
 import {
   getStructureNodeChildren,
   getStructureTrait,
@@ -9,8 +9,11 @@ import {
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_KINDS,
   STRUCTURE_SLOT_ORDER,
-} from "../domain/structure/StructureSchema.js";
-import { findStructureNodeById, walkStructure } from "../domain/structure/StructureTraversal.js";
+} from "../../domain/structure/StructureSchema.js";
+import {
+  findStructureNodeById,
+  walkStructure,
+} from "../../domain/structure/StructureTraversal.js";
 
 const reactionInventoryKeys = Object.freeze(["proCore", "antiCore", "electrino", "positrino"]);
 const reactionLedgerKeys = Object.freeze(["electrino", "positrino"]);
@@ -286,7 +289,7 @@ function isFullTriBinaryCoreSpec(spec = null) {
 
 function classifyAggregateHierarchyNode(participant = null, node = null, options = {}) {
   const childSpecs = (Array.isArray(node?.children) ? node.children : [])
-    .map((childNode) => classifyComposerReactionNode(participant, childNode, options))
+    .map((childNode) => classifyReactionNode(participant, childNode, options))
     .filter(Boolean);
   const inventory = childSpecs.reduce(
     (sum, childSpec) => addInventories(sum, childSpec.inventory),
@@ -303,7 +306,7 @@ function classifyAggregateHierarchyNode(participant = null, node = null, options
   };
 }
 
-export function classifyComposerReactionNode(participant = null, node = null, options = {}) {
+export function classifyReactionNode(participant = null, node = null, options = {}) {
   const resolveBinaryChoiceInventory =
     typeof options.resolveBinaryChoiceInventory === "function"
       ? options.resolveBinaryChoiceInventory
@@ -347,7 +350,7 @@ export function classifyComposerReactionNode(participant = null, node = null, op
   return fallbackClassify ? fallbackClassify(participant, node) : null;
 }
 
-export function evaluateComposerReactionMappingCandidate({
+export function evaluateReactionMappingCandidate({
   sourceParticipant = null,
   sourceNode = null,
   targetParticipant = null,
@@ -355,11 +358,11 @@ export function evaluateComposerReactionMappingCandidate({
   resolveBinaryChoiceInventory = null,
   fallbackClassify = null,
 } = {}) {
-  const sourceSpec = classifyComposerReactionNode(sourceParticipant, sourceNode, {
+  const sourceSpec = classifyReactionNode(sourceParticipant, sourceNode, {
     resolveBinaryChoiceInventory,
     fallbackClassify,
   });
-  const targetSpec = classifyComposerReactionNode(targetParticipant, targetNode, {
+  const targetSpec = classifyReactionNode(targetParticipant, targetNode, {
     resolveBinaryChoiceInventory,
     fallbackClassify,
   });

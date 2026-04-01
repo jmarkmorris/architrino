@@ -7,7 +7,7 @@ import {
   REACTION_OPERATOR_LANE_LAYOUT,
   REACTION_OPERATOR_LANE_COUNT,
   REACTION_OPERATOR_ENTRIES,
-} from "../src/runtime/ComposerReactionSolverUiRuntime.js";
+} from "../src/apps/reaction/ReactionSolverUiRuntime.js";
 
 test("reaction solver keeps two operator lanes available", () => {
   assert.equal(REACTION_OPERATOR_LANE_COUNT, 2);
@@ -54,11 +54,11 @@ test("reaction solver center assembly lane exposes Noether core, weak bosons, an
 
 test("center-column Noether core title click toggles polarity directly", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   const renderSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -73,7 +73,7 @@ test("center-column Noether core title click toggles polarity directly", () => {
 
 test("operator fan sync remains optional in the participant render runtime", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -84,7 +84,7 @@ test("operator fan sync remains optional in the participant render runtime", () 
 
 test("reaction solver no longer exposes a canvas right-click root menu", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.doesNotMatch(
@@ -109,22 +109,22 @@ test("reaction solver no longer exposes a canvas right-click root menu", () => {
   );
 });
 
-test("reaction solver exposes clear and solve actions in the composer header and keeps them runtime-owned", () => {
-  const htmlSource = readFileSync(
-    new URL("../index.html", import.meta.url),
+test("reaction solver exposes clear and solve actions in the reaction app shell and keeps them runtime-owned", () => {
+  const reactionMainSource = readFileSync(
+    new URL("../src/apps/reaction/main.js", import.meta.url),
     "utf8"
   );
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
-    htmlSource,
-    /id="composer-reaction-clear-button"/
+    reactionMainSource,
+    /document\.getElementById\("reaction-clear-button"\)/
   );
   assert.match(
-    htmlSource,
-    /id="composer-reaction-solve-button"/
+    reactionMainSource,
+    /document\.getElementById\("reaction-solve-button"\)/
   );
   assert.match(
     runtimeSource,
@@ -144,7 +144,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /buildComposerReactionSolvePlan\(\{\s*solveState,\s*buildNodeKey,\s*resolveBinaryChoiceInventory,/s
+    /buildSolvePlan\(\{\s*solveState,\s*buildNodeKey,\s*resolveBinaryChoiceInventory,/s
   );
   assert.match(
     runtimeSource,
@@ -152,11 +152,11 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /const laidOutPlan = applyComposerReactionSolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
+    /const laidOutPlan = applySolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
   );
   assert.match(
     runtimeSource,
-    /describeComposerReactionSolvePlan\(laidOutPlan\)/
+    /describeSolvePlan\(laidOutPlan\)/
   );
   assert.match(
     runtimeSource,
@@ -172,7 +172,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /applyComposerReactionSolvePlan\(\{/
+    /applySolvePlan\(\{/
   );
   assert.match(
     runtimeSource,
@@ -188,7 +188,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
   );
   assert.match(
     runtimeSource,
-    /createComposerReactionBinaryInventoryRuntime\(\{/
+    /createBinaryInventoryRuntime\(\{/
   );
   assert.doesNotMatch(
     runtimeSource,
@@ -198,7 +198,7 @@ test("reaction solver exposes clear and solve actions in the composer header and
 
 test("W and Z bosons are not treated as polarity-toggling templates", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   const setStart = runtimeSource.indexOf("const participantPolarityTemplateIds = new Set([");
@@ -212,7 +212,7 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
 
 test("side-column dragging places participants on explicit shared surface rows instead of collection order", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -231,7 +231,7 @@ test("side-column dragging places participants on explicit shared surface rows i
 
 test("center assembly header geometry is resynced with the other lane columns", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -246,7 +246,7 @@ test("center assembly header geometry is resynced with the other lane columns", 
 
 test("solver surface rows are shared across all five column groups and capped to the first eleven rows", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -281,7 +281,7 @@ test("solver surface rows are shared across all five column groups and capped to
 
 test("split row helper preserves the original participant row block instead of restacking at the top", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -300,7 +300,7 @@ test("split row helper preserves the original participant row block instead of r
 
 test("composite right-click dissociation marks the existing composite instead of replacing it with split participants", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -331,7 +331,7 @@ test("composite right-click dissociation marks the existing composite instead of
 
 test("mapping from a composite reactant child auto-marks the composite as dissociated", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -366,7 +366,7 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
 
 test("solve resets only solver-generated operators and auto dissociation before rebuilding mappings", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -389,7 +389,7 @@ test("solve resets only solver-generated operators and auto dissociation before 
 
 test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -424,7 +424,7 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
 
 test("only drawn paths remove existing reaction mappings on click", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.doesNotMatch(
@@ -443,7 +443,7 @@ test("only drawn paths remove existing reaction mappings on click", () => {
 
 test("removing a reactant or product clears mappings and removes operators plus center bosons", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -470,7 +470,7 @@ test("removing a reactant or product clears mappings and removes operators plus 
 
 test("route endpoints use fixed left and right tangents for solver connectors", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -505,7 +505,7 @@ test("route endpoints use fixed left and right tangents for solver connectors", 
 
 test("changing reactant or product polarity clears mappings and operators", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -528,7 +528,7 @@ test("changing reactant or product polarity clears mappings and operators", () =
 
 test("participant menu exposes dissociate only for reactant composites", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -539,7 +539,7 @@ test("participant menu exposes dissociate only for reactant composites", () => {
 
 test("reactant to dissociate mappings auto-create center assemblies from the source node", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(

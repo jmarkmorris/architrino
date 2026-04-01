@@ -6,10 +6,10 @@ import {
   buildReactionSolvePlan,
   describeReactionSolvePlan,
 } from "../src/apps/reaction/ReactionSolveProposalRuntime.js";
-import { createComposerReactionBinaryInventoryRuntime } from "../src/runtime/ComposerReactionBinaryInventoryRuntime.js";
-import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+import { createReactionBinaryInventoryRuntime } from "../src/apps/reaction/ReactionBinaryInventoryRuntime.js";
+import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 const supportsParticipantPolarity = (templateId) =>
   new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(
@@ -22,11 +22,11 @@ const {
   getInitialParticipantBinarySelections,
   getResolvedBinarySelectionMap,
   resolveBinarySelectorGroup,
-} = createComposerReactionBinarySelectionRuntime({
+} = createReactionBinarySelectionRuntime({
   supportsParticipantPolarity,
   normalizeParticipantPolarity,
 });
-const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
+const { resolveBinaryChoiceInventory } = createReactionBinaryInventoryRuntime({
   getBinaryChoiceInventory,
   getResolvedBinarySelectionMap,
   resolveBinarySelectorGroup,

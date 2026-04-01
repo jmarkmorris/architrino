@@ -1,4 +1,4 @@
 export {
   findReactionBinarySelectorGroup,
   getReactionBinarySelectorGroups,
-} from "./ComposerReactionStructureDescriptorRuntime.js";
+} from "./ReactionStructureDescriptorRuntime.js";

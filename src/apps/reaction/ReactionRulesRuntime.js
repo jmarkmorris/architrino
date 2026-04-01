@@ -1,4 +1,4 @@
-export const composerReactionRuleRegistry = Object.freeze([
+export const reactionRuleRegistry = Object.freeze([
   {
     id: "inventory-conservation",
     category: "core",
@@ -126,7 +126,7 @@ function formatInventory(inventory = null) {
   return parts.join(" + ") || "empty inventory";
 }
 
-export function classifyComposerReactionNode(participant = null, node = null) {
+export function classifyReactionNode(participant = null, node = null) {
   const templateId = normalizeText(participant?.templateId);
   const nodeId = String(node?.id ?? "").trim();
   const label = String(node?.label ?? "").trim();
@@ -143,14 +143,14 @@ export function classifyComposerReactionNode(participant = null, node = null) {
   };
 }
 
-export function evaluateComposerReactionMappingCandidate({
+export function evaluateReactionMappingCandidate({
   sourceParticipant = null,
   sourceNode = null,
   targetParticipant = null,
   targetNode = null,
 } = {}) {
-  const sourceSpec = classifyComposerReactionNode(sourceParticipant, sourceNode);
-  const targetSpec = classifyComposerReactionNode(targetParticipant, targetNode);
+  const sourceSpec = classifyReactionNode(sourceParticipant, sourceNode);
+  const targetSpec = classifyReactionNode(targetParticipant, targetNode);
 
   if (!sourceSpec || !targetSpec || !sourceSpec.hasInventory || !targetSpec.hasInventory) {
     return {

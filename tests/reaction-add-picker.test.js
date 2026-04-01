@@ -1,12 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { getComposerReactionAddPickerCells } from "../src/runtime/ComposerReactionAddPickerRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
+import { getReactionAddPickerCells } from "../src/apps/reaction/ReactionAddPickerRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { resolveStructureDisplayLabel } from "../src/domain/structure/StructureDisplayLabel.js";
 
 test("full noether-core picker cell is labeled Pro Noether Core", () => {
-  const triBinaryCell = getComposerReactionAddPickerCells().find((cell) => cell.id === "tri_binary");
+  const triBinaryCell = getReactionAddPickerCells().find((cell) => cell.id === "tri_binary");
 
   assert.ok(triBinaryCell);
   assert.equal(triBinaryCell.templateId, "noether_core");
@@ -14,7 +14,7 @@ test("full noether-core picker cell is labeled Pro Noether Core", () => {
 });
 
 test("reaction add picker no longer exposes gluon", () => {
-  const pickerCells = getComposerReactionAddPickerCells();
+  const pickerCells = getReactionAddPickerCells();
 
   assert.equal(
     pickerCells.some((cell) => String(cell.templateId ?? "").trim().toLowerCase() === "gluon"),
@@ -23,7 +23,7 @@ test("reaction add picker no longer exposes gluon", () => {
 });
 
 test("reaction add picker uses full quark labels", () => {
-  const pickerCells = getComposerReactionAddPickerCells();
+  const pickerCells = getReactionAddPickerCells();
   const downCell = pickerCells.find((cell) => cell.id === "down");
   const upCell = pickerCells.find((cell) => cell.id === "up");
 
@@ -34,7 +34,7 @@ test("reaction add picker uses full quark labels", () => {
 });
 
 test("reaction add picker prefixes pro labels for reduced binary cores and baryons", () => {
-  const pickerCells = getComposerReactionAddPickerCells();
+  const pickerCells = getReactionAddPickerCells();
   const uniBinaryCell = pickerCells.find((cell) => cell.id === "uni_binary");
   const biBinaryCell = pickerCells.find((cell) => cell.id === "bi_binary");
   const protonCell = pickerCells.find((cell) => cell.id === "proton");

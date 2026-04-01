@@ -1,4 +1,4 @@
-import { classifyStructureTree } from "../domain/structure/StructureClassification.js";
+import { classifyStructureTree } from "../../domain/structure/StructureClassification.js";
 import {
   createStructureNode,
   STRUCTURE_ARCHITRINO_ROLES,
@@ -6,8 +6,8 @@ import {
   STRUCTURE_CLASSIFICATION_FAMILIES,
   STRUCTURE_KINDS,
   STRUCTURE_SLOT_ORDER,
-} from "../domain/structure/StructureSchema.js";
-import { validateStructureTree } from "../domain/structure/StructureValidation.js";
+} from "../../domain/structure/StructureSchema.js";
+import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
 
 function formatNoetherCoreLabel(polarity = "pro") {
   return String(polarity ?? "").trim().toLowerCase() === "anti"

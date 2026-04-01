@@ -1,14 +1,14 @@
 import {
   getNoetherCoreSlotBinaryPresence,
   getNoetherCoreSlotOccupancy,
-} from "../domain/structure/StructureClassification.js";
+} from "../../domain/structure/StructureClassification.js";
 import {
   getStructureNodeChildren,
   getStructureTrait,
   STRUCTURE_CLASSIFICATION_FAMILIES,
   STRUCTURE_KINDS,
   STRUCTURE_SLOT_ORDER,
-} from "../domain/structure/StructureSchema.js";
+} from "../../domain/structure/StructureSchema.js";
 
 export const REACTION_STRUCTURE_RENDER_MODES = Object.freeze({
   BINARY_SELECTOR: "binary-selector",

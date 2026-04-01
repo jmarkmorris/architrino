@@ -1,4 +1,5 @@
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
+import { navigateStandaloneReactionHome } from "./ReactionAppModeRuntime.js";
 import { createReactionSolverUiRuntime } from "./ReactionSolverUiRuntime.js";
 import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
@@ -17,6 +18,7 @@ export function createReactionAppRuntime(deps) {
     menu = null,
     clearButton = null,
     solveButton = null,
+    exitButton = null,
   } = deps;
 
   function setStatus(message = "") {
@@ -24,6 +26,10 @@ export function createReactionAppRuntime(deps) {
       return;
     }
     statusElement.textContent = String(message ?? "").trim();
+  }
+
+  function exitReactionApp() {
+    return navigateStandaloneReactionHome(globalThis.window?.location);
   }
 
   const solverRuntime = createReactionSolverUiRuntime({
@@ -53,6 +59,11 @@ export function createReactionAppRuntime(deps) {
   });
 
   function init() {
+    if (exitButton instanceof HTMLButtonElement) {
+      exitButton.addEventListener("click", () => {
+        exitReactionApp();
+      });
+    }
     solverRuntime.setActive(true, { persist: false, announce: false });
     setStatus(
       "Reaction app ready. Use the left and right + controls to author a manual solve."
@@ -62,6 +73,7 @@ export function createReactionAppRuntime(deps) {
   return {
     init,
     setStatus,
+    exitReactionApp,
     solverRuntime,
     exportReactionFlowDocument: exportRuntime.exportDocument,
   };

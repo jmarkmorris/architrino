@@ -1,4 +1,4 @@
-import { REACTION_SOLVER_SURFACE_ROW_COUNT } from "../../runtime/ComposerReactionSolverLayoutRuntime.js";
+import { REACTION_SOLVER_SURFACE_ROW_COUNT } from "./ReactionSolverLayoutRuntime.js";
 
 function normalizeSurfaceRowIndex(rowIndex = 0) {
   const normalizedRowIndex = Math.round(Number(rowIndex) || 0);

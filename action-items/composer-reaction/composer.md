@@ -1,18 +1,40 @@
 # Composer
 
+## LLM Instructions
+
+- Keep `Priorities` ordered as the current work queue, with the most important active item first.
+- Keep `Design` descriptive and stable; move task-shaped material into `Priorities`.
+- Keep Composer focused on staging, observer work, overlays, playback, and scene output.
+- Do not restate solver internals or PDG-ingest plans here except where Composer must interface with them.
+- Keep cross-app handoff details brief here and prefer the contract-owning document when it exists.
+- Keep cross-cutting app-boundary and modularity doctrine in [app-architecture](./app-architecture.md); keep only Composer-specific seams and boundaries here.
+
 ## Purpose
 
-The composer is the final animation surface in this workstream.
+The composer is the animation authoring surface for visualizing architrino assemblies.
 
-Its job is to take a solved reaction flow and turn it into an authored scene with:
+Its job is to turn solved reaction flow and authored scene material into a staged scene with:
 
 - assemblies and paths;
-- staged reaction timing;
-- observer flybys;
+- reaction timing;
+- observer motion and framing;
 - overlays and supporting media;
-- and autoscale rules that keep the required assemblies in view.
+- playback behavior;
+- and repo-ready scene output.
 
-The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is the authoring layer for explicit assembly geometry, transport paths, reaction choreography, explanatory overlays, and observer motion on one shared timeline.
+It owns:
+
+- spatial staging and choreography;
+- observer-facing framing and autoscale behavior;
+- explanatory overlays and media presentation;
+- scene editing, preview, persistence, and export;
+- and the final authored visual language of the composed scene.
+
+It does not own:
+
+- low-level reaction solving;
+- PDG channel ingest;
+- or live cross-app runtime behavior with Reaction.
 
 ## Current State
 
@@ -20,86 +42,67 @@ The composer is not just a scene-layout utility. In $\mathbb{A}\mathbb{A}\mathbb
 - It can build a canonical scene document, generate preview scene data, export JSON, save browser-local drafts, and download repo-ready scene JSON.
 - The main runtime already exposes scene-tree, path, orbit, preview, and export-style workflows through the composer overlay.
 - The timeline already supports pause, warp, image, video, and graphic items.
-- `Audio` and `Observer` are already present in the add menu, but those paths are still placeholder authoring blocks rather than fully implemented timeline objects.
+- `Audio` and `Observer` already appear in the add menu, but those paths are still placeholder authoring blocks rather than fully implemented timeline objects.
 - User-facing language has started shifting toward `Observer`, but the underlying document path still uses `cameraPaths` and `cameraShots`.
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
-- The first-pass autoscale behavior already exists in code, but the UI for authoring framing intent is still missing.
-- A canonical structure bridge exists inside the current composer implementation, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer does not yet ingest solved reaction flow JSON from the Reaction app boundary.
+- A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
+- A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
+- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a first-pass staged reaction scene from it.
 
-## Current Priorities
+## Design
 
-1. Add a real solved-reaction intake path so the composer can consume reaction flow JSON and instantiate staged reaction scenes from it.
-2. Finish authored viewport framing and autoscale UI around required versus optional assemblies and shot-level overrides.
-3. Replace the placeholder observer timeline path with a real authored observer-interval model.
-4. Continue moving live structure edits onto the canonical structure model and transforms instead of keeping bespoke composer-only logic.
-5. Keep the composer as a composition root only; new reaction-handoff logic should live in focused runtimes, not in one growing top-level file.
+### Role In The Scene System
 
-## Timeline Model Gap
+The composer should not replace the current explicit scene network. It should add an authored composed-scene type within it.
 
-Observer-path controls already exist, but true authored observer intervals still do not.
+That means:
 
-The next authored timeline model should:
+- higher-level collection or index scenes can still point to composed scenes;
+- opening a composed scene should enter a dedicated composed-animation runtime rather than a markdown reader;
+- composed scenes should remain part of the normal scene network and manifest pipeline;
+- and their content should be driven by authored animation data rather than by the normal scene-plus-markdown contract alone.
 
-- turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
-- define one concrete observer object model shared across the design view, observer path, and any future synchronized inset;
-- finish the placeholder editorial items, especially `Audio`, observer transitions, and framing behavior;
-- improve timeline zoom and local navigation so short spans remain editable inside long scenes;
-- and improve media-asset entry beyond typed paths where practical.
-
-Visible observer-language cleanup should keep moving forward even if some runtime internals remain transitional until the object model stabilizes.
-
-## Relation To The Existing Scene System
-
-The composer should not replace the current explicit scene network. It should add a new authored special scene type within it.
-
-The intended runtime pattern is:
-
-- a higher-level collection or index scene can still show selectable spheres or nodes;
-- one of those nodes can point to a composed animation scene;
-- opening that node should switch into a dedicated composed-animation runtime rather than into a markdown reader scene;
-- and the composed animation scene should then render authored assemblies, paths, reactions, and playback controls.
-
-Important consequences:
-
-- these scenes are authored scene files, not markdown leaves;
-- they should not assume that the primary interaction target is `markdownPath`;
-- they belong in the explicit scene network and should remain searchable and navigable through the same manifest pipeline;
-- and their internal content should be driven by authored animation data rather than by the normal scene-plus-markdown contract alone.
-
-## Product Stance
+### Authoring Stance
 
 The composer should remain an overlay editor controlling a live 3D viewport.
 
-The right move is not to invent a different metaphor. It is to formalize and deepen the one that is already emerging:
+The intended authoring grammar is:
 
 - the live canvas is the primary authoring surface;
-- persistent side panels should shrink toward scene-level controls only;
-- assembly-specific authoring should happen from the assembly center handle and nearby canvas interactions;
-- path-specific authoring should happen from path points or empty-canvas context menus while keeping path points directly draggable;
-- the central viewport remains the live visual truth;
-- export/import remains canonical JSON;
-- and transport and playback controls should stay compact and timeline-adjacent rather than spread across redundant bars.
+- assembly-specific actions happen from the assembly itself where practical;
+- path-specific authoring happens from path points or local canvas interactions;
+- persistent side panels should keep shrinking toward scene-level control only;
+- transport and playback controls should stay compact and timeline-adjacent;
+- and import/export should remain canonical JSON rather than ad hoc UI state.
 
-Current UI doctrine:
+The composer should stay visual and canvas-first rather than turning back into a large inspector-driven tool.
 
-- keep the composer visual and canvas-first;
-- manage assembly-specific actions from the assembly itself;
-- keep the left panel shrinking toward scene-level control only;
-- do not reintroduce large persistent text forms unless there is no workable canvas-first alternative;
-- and treat context menus as part of the intended authoring grammar, not as optional convenience.
+### Observer And Framing Model
 
-## Media And Overlay Boundaries
+The composer should speak in observer language rather than camera language at the author-facing layer.
 
-The composer should keep imported reference media on a deliberately narrow support boundary.
+The target model is:
 
-For the current webapp phase, the preferred support boundary is:
+- the central viewport is the live observer view;
+- a shot is an observer interval with teaching intent;
+- observer intervals can carry framing intent and synchronized observer-path behavior;
+- assemblies can be marked `required` or `optional` for viewport participation;
+- interval-level framing overrides can refine those defaults;
+- and autoscale should respond to authored framing intent rather than just "fit everything."
+
+The implementation may still use camera objects internally, but the author-facing model should consistently present observer behavior.
+
+### Media And Overlay Boundary
+
+The current narrow media boundary should remain explicit.
+
+Supported formats for this phase:
 
 - images: `jpg`, `jpeg`, `png`, `svg`;
 - video: `mp4`, `mov`;
 - audio: `mp3`.
 
-The current design should explicitly not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass. The point is a small legible authoring contract, not a generic ingest tool.
+The current implementation should not broaden into `webp`, `webm`, `aac`, or `m4a` during this pass.
 
 Imported media should live in:
 
@@ -107,89 +110,16 @@ Imported media should live in:
 - `content/assets/composer/video/`
 - `content/assets/composer/audio/`
 
-For the first implementation, image and video should be true viewport overlays:
+For the current design:
 
-- fixed to screen space rather than embedded in scene space;
-- visible only during their authored timeline span;
-- directly draggable and resizable in observer view;
-- and not themselves part of the assembly animation grammar.
+- image and video are viewport overlays rather than scene-space geometry;
+- overlays are visible only during their authored timeline spans;
+- overlays are directly draggable and resizable in observer view;
+- and explanatory overlays should extend the current small language of callout text, leader lines, and attachment to assemblies or path points.
 
-The current explanatory overlay baseline should remain:
+### Visual Grammar
 
-- a short text callout;
-- a straight leader line;
-- attachment to an assembly or path point;
-- timeline-span authoring with the shared minimum duration;
-- direct placement in the viewport;
-- and shell-contact behavior for assembly targets.
-
-Future overlay types should extend that language rather than replacing it with unrelated graphic conventions.
-
-## Observer Metaphor And User-Facing Language
-
-Current state:
-
-- the runtime already supports waypoint-based observer motion, POI selection, radius/speed controls, and timeline-adjacent playback in the main viewport;
-- the add menu already says `Observer` rather than `Camera`;
-- but the authored observer interval is still a placeholder path in the timeline menu, and the underlying document/runtime model still uses `camera` fields internally.
-
-So this remains the target language and model for the next pass.
-
-The composer should stop presenting itself as a camera tool. What matters in the authored scene is what the observer sees:
-
-- the central viewport is the live observer view;
-- a shot is an observer interval with a teaching purpose;
-- a motion guide is an observer path, not a camera path, in the author-facing UI;
-- focus, follow, framing, and reveal should all be described as observer behavior;
-- and menus, timeline items, footer hints, and docs should reinforce the observer metaphor consistently.
-
-The implementation may still use camera objects internally. That is a runtime concern, not the author’s mental model.
-
-## Viewport Autoscale And Authored Framing Plan
-
-The composer now needs an explicit viewport-framing model rather than ad hoc zoom behavior.
-
-The key requirement is not simply "fit everything." It is to let the author say which assemblies must remain in the viewport and which assemblies are allowed to leave frame. Those are different teaching choices.
-
-The intended authored model should be:
-
-- assemblies can carry a viewport participation policy such as `required` or `optional`;
-- observer intervals or shot-like spans can override those defaults;
-- the active interval determines which assemblies are required, which may leave frame, what framing preset is being used, and whether autoscale is active or manual.
-
-This is difficult because autoscale is not one behavior. Its correct result depends on observer intent:
-
-- fixed observer position;
-- moving observer path;
-- follow-style intervals;
-- and staged reaction handoff where the initial solve should generate a sensible framing guess without taking control away from the author.
-
-The first modularity step is already underway in code:
-
-- the composer now has a shared viewport-framing runtime that can normalize shot/framing intent;
-- resolve the active shot and active camera path at a given playhead time;
-- and compute which assemblies are currently required versus optional for framing purposes.
-
-Planned rollout:
-
-1. keep the current camera behavior stable while the framing model is normalized;
-2. add authored per-assembly framing participation and per-interval framing overrides;
-3. add a first autoscale mode that keeps only the required set in frame;
-4. expose that authored framing state in a compact observer/viewport UI;
-5. use the same framing model during reaction-to-composer handoff so accepted reactions can generate a first-pass observer view and autoscale policy automatically.
-
-## Unifying Simplification Principle
-
-The strongest simplification available to the composer is already present in the Architrino Assembly Architecture itself.
-
-At the lowest useful level, the scene is made from:
-
-- spheres;
-- paths that encode position and velocity;
-- orbit or shell traces where motion is structured or repeating;
-- and a small number of quiet explanatory overlays attached to that geometry.
-
-Everything larger is built from that lower level. This means the composer should not behave like a generic media tool that happens to render Architrino scenes. It should behave like a unified authoring instrument whose geometry, staging, semantic zoom, and explanatory overlays are all consequences of one core visual grammar.
+The composer should behave like a unified authoring instrument built from the core architrino visual grammar rather than like a generic media editor.
 
 The canonical rendered primitive set should remain small:
 
@@ -200,16 +130,14 @@ The canonical rendered primitive set should remain small:
 - callout leader;
 - text label.
 
-The preferred reveal sequence is:
+Preferred reveal order:
 
 1. sphere-like proxy at coarse scale;
 2. reveal path when motion matters;
 3. reveal orbit or shell trace when repeated structure matters;
 4. reveal constituent spheres and local paths when constitution matters.
 
-The preferred hide sequence is the reverse.
-
-Recommended viewport rendering stack:
+Preferred viewport rendering stack:
 
 1. background field;
 2. path and orbit traces;
@@ -218,84 +146,221 @@ Recommended viewport rendering stack:
 5. callout leaders;
 6. text labels.
 
-## Workspace And Modularity Direction
+### Structure Editing Direction
 
-The composer should not be treated as one flat editing surface. It needs a small number of semantic design levels so authors can move between corpus navigation, explanation design, spatial staging, and internal constituent modeling without losing orientation.
+The canonical-structure bridge is the right direction of travel for deeper Composer editing.
 
-The implementation should keep the existing document core and shell seams, and concentrate new work in focused module families:
+That means:
 
-- native runtime player;
-- assembly and constituent engine;
-- reaction and provenance handoff engine;
-- history and envelope engine;
-- camera and editorial engine;
-- validation and persistence engine.
+- extend the existing read path into more viewport and editor surfaces;
+- move real mutation paths onto shared structure transforms rather than bespoke composer-only logic;
+- make parent and child nesting read as local structure rather than grouped ids alone;
+- keep free architrinos as outputs of structure-changing edits rather than top-level add-menu stamps;
+- and continue expanding richer structure depiction only after the canonical edit path is in place.
 
-Good ticket grain is one runtime behavior or one semantic family at a time. Bad ticket grain is vague work such as "finish composer."
+## Interfaces
 
-## Required Handoff From The Reaction Pipeline
+### Inputs
 
-The composer-side intake contract should be strong enough to receive:
+- authored scene documents and local drafts;
+- assembly, path, and timing data authored directly in Composer;
+- imported reaction-flow handoff data from Reaction;
+- and referenced media assets for overlays and editorial material.
+
+### Outputs
+
+- canonical composed scene documents;
+- preview scene data and browser-local drafts;
+- repo-ready scene JSON exports;
+- and authored observer/framing/overlay state suitable for playback and publication.
+
+### Upstream And Downstream Boundaries
+
+Composer should consume a versioned Reaction-owned handoff document and translate it into Composer-owned scene state.
+
+Composer should not:
+
+- solve the reaction again;
+- import Reaction runtime code to perform the handoff;
+- or depend on shared live UI state across the Composer/Reaction boundary.
+
+The Composer-side intake should be strong enough to receive:
 
 - participant identities and roles;
 - solved mapping corridors or equivalent provenance paths;
-- staged timing such as dissociate, transit, and associate / reassembly intervals;
-- observer hints such as initial framing targets or recommended flyby anchors;
-- and any supporting labels or overlays needed to explain the reaction.
+- stage timing such as dissociate, transit, and associate / reassembly intervals;
+- observer hints such as initial framing targets or flyby anchors;
+- and labels or overlays needed to explain the reaction.
 
-The composer should not be asked to solve the reaction again. It should receive a solved flow and focus on staging, observer behavior, explanation, and playback.
+### Neighboring Components
 
-The detailed separation rule is:
+- [reaction](./reaction.md) owns the conservative authoring workflow that feeds Composer.
+- [solver](./solver.md) owns Reaction-side solve logic and should remain upstream.
+- [pdg-ingest](./pdg-ingest.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
+- [app-architecture](./app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
+- [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
 
-- Composer consumes a versioned Reaction-owned handoff document;
-- Composer translates that document into Composer-owned scene state;
-- and Composer does not execute Reaction runtime code to do that work.
+## Priorities
 
-## Canonical Structure Follow-On
+### 1. Finish Authored Framing And Autoscale UI
 
-The canonical-structure bridge is now the only valid direction of travel.
+Status: `active`
 
-That means:
+Goal:
 
-- extend the existing read path into more viewport and editor surfaces instead of leaving it as isolated summaries and badges;
-- move at least one real composer mutation path onto shared structure transforms, likely regroup / group-split or another narrow hierarchy edit;
-- make parent and child nesting read as local structure rather than grouped ids alone;
-- add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
-- decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
-- add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into free architrinos;
-- keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
-- make scale changes legible in-scene, including when a structure, inset, or derived view is shown at a different scale;
-- support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
-- animate deeper structural behaviors directly from the architrino picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-polarity-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;
-- make momentum constraints legible in the structure model, especially the angular and linear momentum relations that maintain relative plane angles;
-- and add notation and display conventions that distinguish apparent energy from total energy.
+- finish the authored viewport-framing model around required versus optional assemblies and interval-level overrides.
 
-## Composer Guardrails
+Why it matters:
 
-- Keep the composer visual, canvas-first, and light on persistent text authoring.
-- Manage assembly-specific actions from the assembly center control point where practical.
-- Keep path markers directly draggable.
-- Keep the left panel shrinking toward scene-level control only.
-- Avoid reintroducing large persistent inspector-style editing.
-- Preserve consistent look and feel as the UI gets richer.
+- observer framing is one of Composer's core teaching surfaces, and the runtime groundwork already exists.
 
-## Development Constraint
+Next steps:
 
-The composer should remain the final explanatory instrument, not the place where low-level conservation solving gets reinvented.
+- expose authored framing state in a compact observer/viewport UI;
+- keep autoscale focused on the required set rather than "everything";
+- and preserve author control over framing intent.
 
-That means:
+### 2. Replace Placeholder Observer Timeline Blocks
 
-- reaction solving belongs upstream;
-- observer framing and autoscale belong here;
-- and the handoff between them should be explicit JSON rather than ad hoc shared UI state.
+Status: `pending`
+
+Goal:
+
+- turn `Observer` into a true timeline item with authored spans, observer-path behavior, and framing intent.
+
+Why it matters:
+
+- the author-facing observer model is ahead of the actual timeline object model.
+
+Next steps:
+
+- define one concrete observer object model shared across the design view and observer path;
+- finish observer transitions and framing behavior;
+- and keep visible observer-language cleanup moving forward.
+
+### 3. Move More Editing Onto Canonical Structure Transforms
+
+Status: `pending`
+
+Goal:
+
+- keep migrating real editing paths onto the canonical structure model rather than composer-only mutations.
+
+Why it matters:
+
+- deeper Composer editing becomes more coherent and maintainable when structure reads and mutations share one model.
+
+Next steps:
+
+- move at least one additional real mutation path onto shared transforms;
+- extend structure summaries into more viewport/editor surfaces;
+- and keep scale and nesting behavior legible in-scene.
+
+### 4. Keep New Composer Logic Out Of The Composition Root
+
+Status: `pending`
+
+Goal:
+
+- keep new reaction-import, observer, and editorial logic in focused Composer runtimes rather than a growing coordinator.
+
+Why it matters:
+
+- Composer still carries too much structural debt in large top-level wiring paths.
+
+Next steps:
+
+- keep import logic, framing logic, and editorial behavior in focused modules;
+- keep the composition root thin;
+- and use [app-architecture](./app-architecture.md) for the cross-cutting enforcement standard.
+
+### 5. Retire Remaining Composer State And Authoring Logic From `app.js`
+
+Status: `pending`
+
+Goal:
+
+- move the remaining Composer draft, selection, transfer, and authoring helpers out of `app.js` and into Composer-owned runtimes.
+
+Why it matters:
+
+- Composer still depends too much on a shared composition root for app-owned state and authoring behavior.
+
+Next steps:
+
+- move draft/state/selection helpers into a Composer draft-state runtime and collapse direct store wrappers into the existing store facade;
+- move transfer/path authoring helpers into a Composer authoring-state runtime;
+- move view-mode/display-flag helpers into a Composer viewport-display runtime;
+- and move assembly identity/label helpers into a Composer assembly-label runtime or merge them into existing assembly helpers.
+
+### 6. Extract Composer Viewport Geometry, Assets, And Authoring Modules
+
+Status: `pending`
+
+Goal:
+
+- continue extracting Composer-owned geometry, asset, observer-path, and inspector logic into focused modules.
+
+Why it matters:
+
+- these behaviors are clearly Composer-owned, but too many of them are still grouped together in broad legacy surfaces.
+
+Next steps:
+
+- move orbit/member/anchor math into a Composer structure-geometry runtime;
+- move texture and sprite builders into a Composer render-assets runtime;
+- move camera/path authoring into a Composer camera-path runtime;
+- and move assembly editor and inspector behavior into a Composer assembly-inspector runtime.
+
+### 8. Split The Remaining Composer Canvas, Playback, And Interaction Stack
+
+Status: `pending`
+
+Goal:
+
+- break the remaining large Composer viewport stack into explicit runtime families instead of one broad canvas-heavy surface.
+
+Why it matters:
+
+- viewport render, playback, menus, media overlays, and pointer interaction are still a major concentration of Composer structural debt.
+
+Next steps:
+
+- move canvas/menu behavior into a Composer canvas-menu shell runtime;
+- move canvas bootstrap into a Composer canvas-bootstrap runtime;
+- split the document/viewport render pipeline into viewport-render and playback/timeline runtimes;
+- move viewport visuals and media overlays into a Composer viewport-visuals runtime;
+- move pointer handling into a Composer pointer-interaction runtime;
+- move the path-point info pill into a Composer viewport-overlay-pill runtime;
+- keep scene glue thin until the end;
+- and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
+
+### 9. Harden The Composer Side Of `reaction-flow/v1`
+
+Status: `pending`
+
+Goal:
+
+- make the Composer side of the Reaction handoff production-hardened around the single intended bridge.
+
+Why it matters:
+
+- the Reaction export to Composer import path is still provisional, and Composer should consume it without importing Reaction runtime code.
+
+Next steps:
+
+- keep `reaction-flow/v1` as the only intended import bridge;
+- build the real Composer import adapter against that contract;
+- add golden Composer import tests before deleting transitional scaffolding;
+- and keep import behavior data-first rather than runtime-coupled.
 
 ## Related Action Items
 
 - [composer-reaction](./composer-reaction.md)
 - [reaction](./reaction.md)
-- [pdg-solver](./pdg-solver.md)
-- [independence](./independence.md)
-- [swe](./swe.md)
+- [solver](./solver.md)
+- [pdg-ingest](./pdg-ingest.md)
+- [app-architecture](./app-architecture.md)
 - [viewports](../viewports/viewports.md)
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
 

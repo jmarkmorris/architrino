@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createComposerReactionParticipantMutationRuntime } from "../src/runtime/ComposerReactionParticipantMutationRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+import { createReactionParticipantMutationRuntime } from "../src/apps/reaction/ReactionParticipantMutationRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 function supportsParticipantPolarity(templateId) {
   return new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark"]).has(
@@ -27,7 +27,7 @@ function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") 
   return `${normalizeParticipantPolarity(polarity) === "anti" ? "Anti" : "Pro"} ${cleanedBaseLabel}`;
 }
 
-const mutationRuntime = createComposerReactionParticipantMutationRuntime({
+const mutationRuntime = createReactionParticipantMutationRuntime({
   supportsParticipantPolarity,
   formatParticipantLabel,
   buildParticipantHierarchy: (structureRoot) => buildReactionStructureDescriptorTree(structureRoot),

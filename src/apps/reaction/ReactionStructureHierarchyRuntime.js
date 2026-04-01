@@ -9,4 +9,4 @@ export {
   REACTION_STRUCTURE_RENDER_MODES,
   walkReactionStructureDescriptorTree,
   shouldRenderReactionStructureDescriptorChildren,
-} from "./ComposerReactionStructureDescriptorRuntime.js";
+} from "./ReactionStructureDescriptorRuntime.js";

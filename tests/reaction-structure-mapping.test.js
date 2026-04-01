@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { evaluateComposerReactionMappingCandidate } from "../src/runtime/ComposerReactionStructureMappingRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+import { evaluateReactionMappingCandidate } from "../src/apps/reaction/ReactionStructureMappingRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 import { clearNoetherCoreSlotOccupant } from "../src/domain/structure/StructureTransforms.js";
 
 function createParticipant(templateId, polarity = "pro", overrideStructure = null) {
@@ -29,7 +29,7 @@ test("full tri-binary pro and anti Noether cores cannot map directly", () => {
   const sourceNode = sourceParticipant.hierarchy[0];
   const targetNode = targetParticipant.hierarchy[0];
 
-  const result = evaluateComposerReactionMappingCandidate({
+  const result = evaluateReactionMappingCandidate({
     sourceParticipant,
     sourceNode,
     targetParticipant,
@@ -65,7 +65,7 @@ test("gen II opposite-polarity Noether cores are allowed when conservative", () 
   const sourceNode = sourceParticipant.hierarchy[0];
   const targetNode = targetParticipant.hierarchy[0];
 
-  const result = evaluateComposerReactionMappingCandidate({
+  const result = evaluateReactionMappingCandidate({
     sourceParticipant,
     sourceNode,
     targetParticipant,

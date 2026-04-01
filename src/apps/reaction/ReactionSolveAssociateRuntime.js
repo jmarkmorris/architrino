@@ -1,7 +1,7 @@
 import {
-  classifyComposerReactionNode,
-  evaluateComposerReactionMappingCandidate,
-} from "./ComposerReactionStructureMappingRuntime.js";
+  classifyReactionNode,
+  evaluateReactionMappingCandidate,
+} from "./ReactionStructureMappingRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -236,17 +236,17 @@ export function createAssociatePhotonCandidate(options = {}) {
     return null;
   }
 
-  const leftSpec = classifyComposerReactionNode(
+  const leftSpec = classifyReactionNode(
     leftReactantEntry.participant,
     leftReactantEntry.sourceNode ?? leftReactantEntry.rootNode,
     { resolveBinaryChoiceInventory }
   );
-  const rightSpec = classifyComposerReactionNode(
+  const rightSpec = classifyReactionNode(
     rightReactantEntry.participant,
     rightReactantEntry.sourceNode ?? rightReactantEntry.rootNode,
     { resolveBinaryChoiceInventory }
   );
-  const productSpec = classifyComposerReactionNode(
+  const productSpec = classifyReactionNode(
     productEntry.participant,
     productEntry.rootNode,
     { resolveBinaryChoiceInventory }
@@ -359,7 +359,7 @@ export function createAssociateCompositeCandidate(options = {}) {
     return null;
   }
 
-  const productSpec = classifyComposerReactionNode(productEntry.participant, productEntry.rootNode, {
+  const productSpec = classifyReactionNode(productEntry.participant, productEntry.rootNode, {
     resolveBinaryChoiceInventory,
   });
   if (!productSpec?.hasInventory) {
@@ -379,7 +379,7 @@ export function createAssociateCompositeCandidate(options = {}) {
         if (!sourceParticipant || !sourceNode?.id) {
           return null;
         }
-        const evaluation = evaluateComposerReactionMappingCandidate({
+        const evaluation = evaluateReactionMappingCandidate({
           sourceParticipant,
           sourceNode,
           targetParticipant: productEntry.participant,
@@ -459,7 +459,7 @@ export function createAssociateCompositeCandidate(options = {}) {
       if (usedSourceIndexes.has(assignment.sourceIndex)) {
         return;
       }
-      const sourceSpec = classifyComposerReactionNode(
+      const sourceSpec = classifyReactionNode(
         assignment.sourceParticipant,
         assignment.sourceNode,
         { resolveBinaryChoiceInventory }
@@ -568,7 +568,7 @@ export function createAssociateStandaloneCandidate(options = {}) {
     return null;
   }
 
-  const productSpec = classifyComposerReactionNode(productEntry.participant, productEntry.rootNode, {
+  const productSpec = classifyReactionNode(productEntry.participant, productEntry.rootNode, {
     resolveBinaryChoiceInventory,
   });
   if (!productSpec?.hasInventory) {
@@ -592,10 +592,10 @@ export function createAssociateStandaloneCandidate(options = {}) {
       if (!coreSourceNode?.id || !freeSourceNode?.id) {
         return;
       }
-      const coreSpec = classifyComposerReactionNode(coreEntry.participant, coreSourceNode, {
+      const coreSpec = classifyReactionNode(coreEntry.participant, coreSourceNode, {
         resolveBinaryChoiceInventory,
       });
-      const freeSpec = classifyComposerReactionNode(freeEntry.participant, freeSourceNode, {
+      const freeSpec = classifyReactionNode(freeEntry.participant, freeSourceNode, {
         resolveBinaryChoiceInventory,
       });
       if (!coreSpec?.hasInventory || !freeSpec?.hasInventory) {

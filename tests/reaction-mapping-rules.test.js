@@ -2,10 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createComposerReactionMappingRulesRuntime,
-} from "../src/runtime/ComposerReactionMappingRulesRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+  createReactionMappingRulesRuntime,
+} from "../src/apps/reaction/ReactionMappingRulesRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 function createParticipant(templateId, polarity = "pro") {
   const structure = buildReactionParticipantStructure(templateId, {
@@ -36,7 +36,7 @@ test("associate output remains invalid until outgoing ledger exactly matches inc
     participant: { id: "associate_a", templateId: "associate" },
     node: { id: "associate_a/output" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_a::output": sourceContext,
@@ -71,7 +71,7 @@ test("pending associate output target becomes available when the candidate close
     participant: { id: "associate_b", templateId: "associate" },
     node: { id: "associate_b/output" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_b::output": sourceContext,
@@ -106,7 +106,7 @@ test("committed associate output mapping stays valid when the existing outgoing 
     participant: { id: "associate_c", templateId: "associate" },
     node: { id: "associate_c/output" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_c::output": sourceContext,
@@ -143,7 +143,7 @@ test("single-source associate output cannot bypass direct structure compatibilit
     participant: { id: "associate_d", templateId: "associate" },
     node: { id: "associate_d/output" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_d::output": associateOutputContext,
@@ -184,7 +184,7 @@ test("multi-source associate outputs stay ledger-based when no single direct str
     participant: { id: "associate_e", templateId: "associate" },
     node: { id: "associate_e/output" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_e::output": associateOutputContext,
@@ -220,7 +220,7 @@ test("direct reactant to product checks still enforce structured conservation ru
   const targetParticipant = createParticipant("noether_core", "anti");
   const sourceContext = createNodeContext(sourceParticipant);
   const targetContext = createNodeContext(targetParticipant);
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "noether_core_pro::root": sourceContext,
@@ -250,7 +250,7 @@ test("associate input targets stay live during authoring", () => {
     participant: { id: "associate_a", templateId: "associate" },
     node: { id: "associate_a::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger: { electrino: 6, positrino: 6 },
       outgoingLedger: { electrino: 0, positrino: 0 },
@@ -282,7 +282,7 @@ test("associate can accept more than two reactant inputs for composite reassembl
     participant: { id: "associate_multi", templateId: "associate" },
     node: { id: "associate_multi::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "up_quark_pro::root": sourceContext,
@@ -317,7 +317,7 @@ test("operator outputs can target operator inputs and stay red until conservativ
     participant: { id: "associate_operator", templateId: "associate" },
     node: { id: "associate_operator::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger:
         participantId === "associate_source"
@@ -355,7 +355,7 @@ test("committed operator output to operator input can become valid once conserva
     participant: { id: "associate_operator", templateId: "associate" },
     node: { id: "associate_operator::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_source::output": sourceContext,
@@ -392,7 +392,7 @@ test("associate input mapping stays red until exactly two reactants are attached
     participant: { id: "associate_b", templateId: "associate" },
     node: { id: "associate_b::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "noether_core_pro::root": sourceContext,
@@ -429,7 +429,7 @@ test("associate input mapping returns to normal once two reactants are attached"
     participant: { id: "associate_c", templateId: "associate" },
     node: { id: "associate_c::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "noether_core_pro::root": sourceContext,
@@ -466,7 +466,7 @@ test("dissociate input mapping stays red until exactly one reactant is attached"
     participant: { id: "dissociate_a", templateId: "dissociate" },
     node: { id: "dissociate_a::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "noether_core_pro::root": sourceContext,
@@ -501,7 +501,7 @@ test("dissociate output uses a single shared output ledger", () => {
     participant: { id: "associate_sink", templateId: "associate" },
     node: { id: "associate_sink::root" },
   };
-  const rules = createComposerReactionMappingRulesRuntime({
+  const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "dissociate_op::root": { participant: { id: "dissociate_op", templateId: "dissociate" }, node: { id: "dissociate_op::root" } },
