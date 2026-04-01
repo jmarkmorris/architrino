@@ -1,11 +1,11 @@
-import { evaluateComposerReactionMappingCandidate } from "../../runtime/ComposerReactionStructureMappingRuntime.js";
+import { evaluateReactionMappingCandidate } from "./ReactionStructureMappingRuntime.js";
 import {
   createAssociateCompositeCandidate,
   createAssociatePhotonCandidate,
   createAssociateStandaloneCandidate,
-} from "../../runtime/ComposerReactionSolveAssociateRuntime.js";
-import { buildBestCompositeChildMatchPlan } from "../../runtime/ComposerReactionSolveMatchRuntime.js";
-import { selectBestComposerReactionSolveCandidates } from "../../runtime/ComposerReactionSolveSelectionRuntime.js";
+} from "./ReactionSolveAssociateRuntime.js";
+import { buildBestCompositeChildMatchPlan } from "./ReactionSolveMatchRuntime.js";
+import { selectBestReactionSolveCandidates } from "./ReactionSolveSelectionRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -156,7 +156,7 @@ function createDirectRootCandidate(
   if (!reactantEntry.rootNodeKey || !productEntry.rootNodeKey) {
     return null;
   }
-  const evaluation = evaluateComposerReactionMappingCandidate({
+  const evaluation = evaluateReactionMappingCandidate({
     sourceParticipant: reactantEntry.participant,
     sourceNode: reactantEntry.rootNode,
     targetParticipant: productEntry.participant,
@@ -258,7 +258,7 @@ function createCenterRootCandidate(
   ) {
     return null;
   }
-  const evaluation = evaluateComposerReactionMappingCandidate({
+  const evaluation = evaluateReactionMappingCandidate({
     sourceParticipant,
     sourceNode,
     targetParticipant,
@@ -443,7 +443,7 @@ function createFragmentRootCandidate(
   ) {
     return null;
   }
-  const evaluation = evaluateComposerReactionMappingCandidate({
+  const evaluation = evaluateReactionMappingCandidate({
     sourceParticipant,
     sourceNode,
     targetParticipant,
@@ -502,7 +502,7 @@ function createProductChildCandidate(
   ) {
     return null;
   }
-  const evaluation = evaluateComposerReactionMappingCandidate({
+  const evaluation = evaluateReactionMappingCandidate({
     sourceParticipant,
     sourceNode,
     targetParticipant,
@@ -837,7 +837,7 @@ export function buildReactionSolvePlan(options = {}) {
   const selectedCandidates = [];
   const selectedMappings = [];
   const participantAdditions = [];
-  const selectedBaseCandidateSet = selectBestComposerReactionSolveCandidates([
+  const selectedBaseCandidateSet = selectBestReactionSolveCandidates([
     ...candidates,
     ...fragmentCandidates,
     ...associateCandidates,
@@ -932,7 +932,7 @@ export function buildReactionSolvePlan(options = {}) {
     });
   });
 
-  const selectedPartialSet = selectBestComposerReactionSolveCandidates(
+  const selectedPartialSet = selectBestReactionSolveCandidates(
     partialCandidates.filter(
       (candidate) =>
         !(candidate?.sourceFragmentKeys ?? []).some((fragmentKey) =>
@@ -966,7 +966,7 @@ export function buildReactionSolvePlan(options = {}) {
       })
       .filter(Boolean)
   );
-  const selectedProductChildSet = selectBestComposerReactionSolveCandidates(
+  const selectedProductChildSet = selectBestReactionSolveCandidates(
     productChildCandidates.filter((candidate) => {
       const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
       const sourceFragmentKey = String(candidate?.sourceFragmentKey ?? "");

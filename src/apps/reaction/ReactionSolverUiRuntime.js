@@ -39,8 +39,8 @@ import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
   supportsReactionCompositeModes,
-} from "../../runtime/ComposerReactionCompositeModeRuntime.js";
-import { buildReactionParticipantStructure } from "../../runtime/ComposerReactionStructureBridgeRuntime.js";
+} from "./ReactionCompositeModeRuntime.js";
+import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import {
   createReactionParticipantRenderRuntime as defaultCreateParticipantRenderRuntime,
   getReactionSideSlotHeaderProfile,
@@ -53,7 +53,7 @@ import {
   REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX,
   REACTION_SOLVER_LAYOUT,
   REACTION_SOLVER_SURFACE_ROW_COUNT,
-} from "../../runtime/ComposerReactionSolverLayoutRuntime.js";
+} from "./ReactionSolverLayoutRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -63,7 +63,7 @@ import {
   supportsReactionStructureDescriptorTree,
   walkReactionStructureDescriptorTree,
   shouldRenderReactionStructureDescriptorChildren,
-} from "../../runtime/ComposerReactionStructureDescriptorRuntime.js";
+} from "./ReactionStructureDescriptorRuntime.js";
 import {
   cloneStructureNode,
   getStructureNodeChildren,

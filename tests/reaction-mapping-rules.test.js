@@ -4,8 +4,8 @@ import assert from "node:assert/strict";
 import {
   createComposerReactionMappingRulesRuntime,
 } from "../src/runtime/ComposerReactionMappingRulesRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 function createParticipant(templateId, polarity = "pro") {
   const structure = buildReactionParticipantStructure(templateId, {

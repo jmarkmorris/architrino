@@ -5,8 +5,8 @@ import {
   buildReactionStructureDescriptorTree,
   REACTION_STRUCTURE_RENDER_MODES,
   supportsReactionStructureDescriptorTree,
-} from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
+} from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { clearNoetherCoreSlotOccupant } from "../src/domain/structure/StructureTransforms.js";
 
 function createStructure(templateId, polarity = "pro", label = templateId) {

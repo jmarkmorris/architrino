@@ -2,13 +2,13 @@ import { getBinaryPersonalityChoice } from "./ReactionBinarySelectionRuntime.js"
 import {
   getReactionParticipantTrackHeaderInsetCss,
   getReactionParticipantTrackStartOffsetPx,
-} from "../../runtime/ComposerReactionSolverLayoutRuntime.js";
+} from "./ReactionSolverLayoutRuntime.js";
 import {
   getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
   isReactionStructureInlineAnchorRenderMode,
   REACTION_STRUCTURE_RENDER_MODES,
-} from "../../runtime/ComposerReactionStructureDescriptorRuntime.js";
+} from "./ReactionStructureDescriptorRuntime.js";
 
 export function getRenderedSlotCodesForSide(side) {
   return getReactionStructureTrackSlotCodes(side);

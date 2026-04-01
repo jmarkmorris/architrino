@@ -8,8 +8,8 @@ import {
 } from "../src/apps/reaction/ReactionSolveProposalRuntime.js";
 import { createComposerReactionBinaryInventoryRuntime } from "../src/runtime/ComposerReactionBinaryInventoryRuntime.js";
 import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/runtime/ComposerReactionStructureDescriptorRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 const supportsParticipantPolarity = (templateId) =>
   new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(

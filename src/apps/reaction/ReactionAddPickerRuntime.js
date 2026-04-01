@@ -1,6 +1,6 @@
 import { STRUCTURE_SLOT_ORDER } from "../../domain/structure/StructureSchema.js";
 import { resolveStructureDisplayLabel } from "../../domain/structure/StructureDisplayLabel.js";
-import { buildReactionParticipantStructure } from "../../runtime/ComposerReactionStructureBridgeRuntime.js";
+import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 
 function getOccupiedSlots(count = 0) {
   const normalizedCount = Math.max(

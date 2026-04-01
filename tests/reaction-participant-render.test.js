@@ -209,7 +209,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
     "utf8"
   );
   const descriptorSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionStructureDescriptorRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionStructureDescriptorRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(descriptorSource, /templateId:\s*"z_boson"/);
@@ -223,7 +223,7 @@ test("free architrinos reuse the grid layout but render personality-only tiles w
     "utf8"
   );
   const descriptorSource = readFileSync(
-    new URL("../src/runtime/ComposerReactionStructureDescriptorRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionStructureDescriptorRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(descriptorSource, /templateId:\s*"free_architrinos"/);

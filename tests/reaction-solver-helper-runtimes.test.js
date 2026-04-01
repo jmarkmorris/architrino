@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
 import { createReactionBinaryInventoryRuntime } from "../src/apps/reaction/ReactionBinaryInventoryRuntime.js";
 import { createReactionParticipantMutationRuntime } from "../src/apps/reaction/ReactionParticipantMutationRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 
 function supportsParticipantPolarity(templateId) {
   return new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark"]).has(

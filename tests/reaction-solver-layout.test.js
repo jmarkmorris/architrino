@@ -18,7 +18,7 @@ import {
   REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT,
   REACTION_SOLVER_SURFACE_COLUMN_COUNT,
   REACTION_SOLVER_LAYOUT,
-} from "../src/runtime/ComposerReactionSolverLayoutRuntime.js";
+} from "../src/apps/reaction/ReactionSolverLayoutRuntime.js";
 
 test("reaction solver layout applies shared css variables from one source of truth", () => {
   const applied = new Map();

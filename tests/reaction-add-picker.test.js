@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { getComposerReactionAddPickerCells } from "../src/runtime/ComposerReactionAddPickerRuntime.js";
-import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { resolveStructureDisplayLabel } from "../src/domain/structure/StructureDisplayLabel.js";
 
 test("full noether-core picker cell is labeled Pro Noether Core", () => {

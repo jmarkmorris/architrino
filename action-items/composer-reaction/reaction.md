@@ -39,6 +39,7 @@ It does not own:
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
 - The canonical implementation for the wrapper-thin Reaction helper and solver runtimes now lives under `src/apps/reaction/`, while legacy `ComposerReaction...` paths act only as temporary compatibility shims.
+- The remaining Reaction-domain solver, structure, and layout support files now also have canonical Reaction-named homes under `src/apps/reaction/`, leaving the old `ComposerReaction...` files as migration shims rather than implementation roots.
 - The Reaction app is already useful for manual provenance work, but it still lacks a production-hardened accept-and-export path downstream.
 
 ## Design
@@ -260,40 +261,7 @@ Next steps:
 - keep Reaction-side review and correction explicit;
 - and continue reducing transitional Composer-shell coupling as the standalone app boundary hardens.
 
-### 6. Rename Remaining Legacy Reaction Solver And Support Files
-
-Status: `pending`
-
-Goal:
-
-- finish the second phase of the migration by moving remaining Reaction-domain solver and structure support code out of legacy `ComposerReaction...` naming once the app-owned seams become canonical.
-
-Why it matters:
-
-- most of the remaining `ComposerReaction...` files are no longer just naming residue; they are still the implementation roots behind the wrapper-backed Reaction app modules, so this phase has to follow the ownership move rather than pretending the wrappers can disappear first.
-
-Next steps:
-
-- after the app-facing Reaction modules own the implementation, move truly Reaction-specific files to `src/apps/reaction/` or another clearly Reaction-owned area;
-- promote only truly generic pieces to neutral non-Composer/non-Reaction modules;
-- convert old legacy files into temporary re-exports during the rename wave instead of mixing rename and behavioral change in one step;
-- and delete obsolete legacy variants only after imports have flipped and one canonical home remains.
-
-Legacy files still to disposition:
-
-- `ComposerReactionSolveAssociateRuntime.js`
-- `ComposerReactionSolveMatchRuntime.js`
-- `ComposerReactionSolveSelectionRuntime.js`
-- `ComposerReactionSolverLayoutRuntime.js`
-- `ComposerReactionCompositeModeRuntime.js`
-- `ComposerReactionStructureBridgeRuntime.js`
-- `ComposerReactionStructureDescriptorRuntime.js`
-- `ComposerReactionStructureSelectionRuntime.js`
-- `ComposerReactionStructureHierarchyRuntime.js`
-- `ComposerReactionStructureMappingRuntime.js`
-- `ComposerReactionRulesRuntime.js`
-
-### 7. Harden Reaction Export And Contract Ownership
+### 6. Harden Reaction Export And Contract Ownership
 
 Status: `pending`
 
@@ -311,5 +279,4 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
-
 

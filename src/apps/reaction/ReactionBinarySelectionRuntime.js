@@ -1,7 +1,7 @@
 import {
   findReactionBinarySelectorGroup,
   getReactionBinarySelectorGroups,
-} from "../../runtime/ComposerReactionStructureSelectionRuntime.js";
+} from "./ReactionStructureSelectionRuntime.js";
 
 const binaryPersonalityChoices = Object.freeze([
   { id: "ee", label: "e/e", top: "electrino", bottom: "electrino", accent: "#2f6fff" },

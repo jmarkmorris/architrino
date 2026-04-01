@@ -1,7 +1,7 @@
 import {
-  classifyComposerReactionNode,
-  evaluateComposerReactionMappingCandidate,
-} from "../../runtime/ComposerReactionStructureMappingRuntime.js";
+  classifyReactionNode,
+  evaluateReactionMappingCandidate,
+} from "./ReactionStructureMappingRuntime.js";
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 
 function createEmptyLedger() {
@@ -85,7 +85,7 @@ function formatLedger(ledger = null) {
 
 function getNodeLedgerFromContext(nodeContext = null, resolveBinaryChoiceInventory) {
   const spec = nodeContext
-    ? classifyComposerReactionNode(nodeContext.participant, nodeContext.node, {
+    ? classifyReactionNode(nodeContext.participant, nodeContext.node, {
         resolveBinaryChoiceInventory,
       })
     : null;
@@ -199,7 +199,7 @@ export function createReactionMappingRulesRuntime(options = {}) {
       };
     }
 
-    const evaluation = evaluateComposerReactionMappingCandidate({
+    const evaluation = evaluateReactionMappingCandidate({
       sourceParticipant: incomingSourceContext.participant,
       sourceNode: incomingSourceContext.node,
       targetParticipant: candidateTargetContext.participant,
@@ -316,7 +316,7 @@ export function createReactionMappingRulesRuntime(options = {}) {
       };
     }
     if (mapping.sourceRole === "reactant" && mapping.targetRole === "product") {
-      const evaluation = evaluateComposerReactionMappingCandidate({
+      const evaluation = evaluateReactionMappingCandidate({
         sourceParticipant: sourceContext.participant,
         sourceNode: sourceContext.node,
         targetParticipant: targetContext.participant,
@@ -404,7 +404,7 @@ export function createReactionMappingRulesRuntime(options = {}) {
     targetContext,
   } = {}) {
     if (pendingSourceRole === "reactant" && role === "product") {
-      const evaluation = evaluateComposerReactionMappingCandidate({
+      const evaluation = evaluateReactionMappingCandidate({
         sourceParticipant: sourceContext?.participant,
         sourceNode: sourceContext?.node,
         targetParticipant: targetContext?.participant,
