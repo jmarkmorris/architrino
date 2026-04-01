@@ -5,14 +5,8 @@ import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
 import {
-  buildComposerPreviewSceneData,
-  createComposerSceneDocument,
-} from "./src/runtime/Composer2SceneDocumentRuntime.js";
-import {
   clampComposerTimelineSpan,
   COMPOSER_TIMELINE_MIN_DURATION_SECONDS as composerTimelineMinDurationSeconds,
-  formatComposerPauseList,
-  formatComposerWarpList,
   getComposerSceneTimeWindow,
   getComposerTimelineFraction,
   getComposerTimelineTimeAtClientX as getComposerTimelineTimeAtClientXRuntime,
@@ -114,7 +108,6 @@ import {
   navigateStandaloneComposerHome,
 } from "./src/apps/composer/ComposerAppModeRuntime.js";
 import {
-  COMPOSER_LIBRARY_STORAGE_KEY as composerLibraryStorageKey,
   COMPOSER_MEDIA_ASSET_DIRECTORIES as composerMediaAssetDirectories,
   COMPOSER_SUPPORTED_MEDIA_EXTENSIONS as composerSupportedMediaExtensions,
   DEFAULT_COMPOSER_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
@@ -154,6 +147,7 @@ import {
 } from "./src/apps/composer/ComposerAuthoringHelpersRuntime.js";
 import { createComposerAssemblyAuthoringRuntime } from "./src/apps/composer/ComposerAssemblyAuthoringRuntime.js";
 import { createComposerTimelineOverlayRuntime } from "./src/apps/composer/ComposerTimelineOverlayRuntime.js";
+import { createComposerDocumentWorkspaceRuntime } from "./src/apps/composer/ComposerDocumentWorkspaceRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -2869,417 +2863,6 @@ function addBuiltInComposerAssembly(templateId, position, options = {}) {
   setComposerSelectedAssembly(nextAssembly.id);
   renderComposerAssemblyEditor();
   renderComposerJsonPreview();
-}
-
-function readComposerFormState() {
-  const rawId = composerSceneIdInput?.value ?? "composer_scene";
-  const id = sanitizeComposerId(rawId);
-  if (composerSceneIdInput && composerSceneIdInput.value !== id) {
-    composerSceneIdInput.value = id;
-  }
-  const rawName = composerSceneNameInput?.value ?? "";
-  const name = rawName.trim() || "Composer Scene";
-  ensureComposerAssemblyDrafts();
-  const transferListRaw = getComposerTransferListRaw();
-  const transferHasInput = transferListRaw.trim().length > 0;
-  const transferParse = parseComposerTransfers(transferListRaw);
-  return {
-    id,
-    name,
-    assembliesDraft: getComposerAssemblyDraftsState().map((draft, index) =>
-      normalizeComposerAssemblyDraft(draft, index)
-    ),
-    transfers: transferParse.entries,
-    transferListRaw,
-    diagnostics: {
-      transferHasInput,
-      transferErrorLines: transferParse.errors,
-    },
-  };
-}
-
-function readComposerDraftState() {
-  persistComposerPathStateToSelectedAssembly();
-  const state = readComposerFormState();
-  const timing = readComposerTimingState();
-  const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
-  const pathPoints = normalizeComposerAssemblyPathPoints(primaryAssembly?.pathPoints);
-  const cameraWaypoints = composerCameraFlightState.waypoints.map((waypoint) => ({
-    position: [
-      Number(waypoint.position.x.toFixed(3)),
-      Number(waypoint.position.y.toFixed(3)),
-      Number(waypoint.position.z.toFixed(3)),
-    ],
-    lookAt: [
-      Number(waypoint.lookAt.x.toFixed(3)),
-      Number(waypoint.lookAt.y.toFixed(3)),
-      Number(waypoint.lookAt.z.toFixed(3)),
-    ],
-  }));
-  return {
-    ...state,
-    ...timing,
-    transfers: state.transfers,
-    reactions: [],
-    overlays: normalizeComposerGraphicOverlayList(
-      getComposerGraphicOverlayDraftsState(),
-      Number(timing?.time?.end ?? 24) || 24
-    ),
-    markerListRaw: composerMarkerListInput?.value ?? "",
-    pauseListRaw: composerPauseListInput?.value ?? "",
-    warpListRaw: composerWarpListInput?.value ?? "",
-    transferListRaw: getComposerTransferListRaw(),
-    diagnostics: {
-      ...(timing.diagnostics ?? {}),
-      ...(state.diagnostics ?? {}),
-    },
-    pathPoints,
-    pathInterpolate: primaryAssembly?.pathInterpolate ?? composerPathState.interpolate,
-    pathClosed: !!primaryAssembly?.pathClosed,
-    frameRotation: [
-      Number(composerFrameState.rotation.x.toFixed(4)),
-      Number(composerFrameState.rotation.y.toFixed(4)),
-      Number(composerFrameState.rotation.z.toFixed(4)),
-    ],
-    frameScale: Number(composerFrameState.scale.toFixed(4)),
-    cameraSpeed: Number(composerCameraState.speed.toFixed(4)),
-    cameraRadius: Number(composerCameraOrbitState.radius.toFixed(4)),
-    cameraOrbit: {
-      theta: Number(composerCameraOrbitState.theta.toFixed(4)),
-      phi: Number(composerCameraOrbitState.phi.toFixed(4)),
-    },
-    cameraPoiMode: composerCameraFlightState.poiMode,
-    selectedPointIndex: Number.isInteger(getComposerSelectedPointIndexState())
-      ? getComposerSelectedPointIndexState()
-      : null,
-    cameraWaypoints,
-  };
-}
-
-function getComposerLibraryEntries() {
-  try {
-    const raw = window.localStorage.getItem(composerLibraryStorageKey);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (_error) {
-    return [];
-  }
-}
-
-function writeComposerLibraryEntries(entries) {
-  try {
-    window.localStorage.setItem(composerLibraryStorageKey, JSON.stringify(entries));
-    return true;
-  } catch (_error) {
-    return false;
-  }
-}
-
-function getComposerSortedLibraryEntries() {
-  return getComposerLibraryEntries().sort((left, right) => {
-    const leftTime = Date.parse(left?.updatedAt ?? "") || 0;
-    const rightTime = Date.parse(right?.updatedAt ?? "") || 0;
-    return rightTime - leftTime;
-  });
-}
-
-function refreshComposerLibraryUi(selectedId = null) {
-  const entries = getComposerSortedLibraryEntries();
-
-  if (composerLibrarySelect) {
-    composerLibrarySelect.innerHTML = "";
-    if (!entries.length) {
-      const option = document.createElement("option");
-      option.value = "";
-      option.textContent = "No saved scenes";
-      composerLibrarySelect.appendChild(option);
-      composerLibrarySelect.value = "";
-    } else {
-      entries.forEach((entry) => {
-        const option = document.createElement("option");
-        option.value = entry.id;
-        option.textContent = entry.name || entry.id;
-        composerLibrarySelect.appendChild(option);
-      });
-      const preferredId = selectedId || composerLibrarySelect.value || entries[0].id;
-      composerLibrarySelect.value = entries.some((entry) => entry.id === preferredId)
-        ? preferredId
-        : entries[0].id;
-    }
-    composerLibrarySelect.disabled = !entries.length;
-  }
-
-  if (composerLibraryLoadButton) {
-    composerLibraryLoadButton.disabled = !entries.length;
-  }
-  if (composerLibraryDeleteButton) {
-    composerLibraryDeleteButton.disabled = !entries.length;
-  }
-  if (composerLibraryStatus) {
-    composerLibraryStatus.textContent = entries.length
-      ? `${entries.length} saved scene${entries.length === 1 ? "" : "s"} in this browser. Export JSON to place one in the repo.`
-      : "Library storage is browser-local for now. Save keeps drafts in this browser only.";
-  }
-}
-
-function applyComposerDraftState(draftState = {}) {
-  if (composerSceneIdInput) {
-    composerSceneIdInput.value = sanitizeComposerId(draftState.id || "composer_scene");
-  }
-  if (composerSceneNameInput) {
-    composerSceneNameInput.value = (draftState.name || "Composer Scene").trim() || "Composer Scene";
-  }
-  setComposerAssemblyDraftsState(
-    Array.isArray(draftState.assembliesDraft) && draftState.assembliesDraft.length
-      ? draftState.assembliesDraft.map((draft, index) => normalizeComposerAssemblyDraft(draft, index))
-      : []
-  );
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  if (
-    Array.isArray(draftState.pathPoints) &&
-    draftState.pathPoints.length &&
-    !assemblyDrafts.some((assembly) => Array.isArray(assembly?.pathPoints) && assembly.pathPoints.length)
-  ) {
-    updateComposerAssemblyDraftByIdState(assemblyDrafts[0]?.id, (assembly) => ({
-      ...assembly,
-      pathPoints: normalizeComposerAssemblyPathPoints(draftState.pathPoints),
-      pathInterpolate: draftState.pathInterpolate === "polyline" ? "polyline" : "spline",
-      pathClosed: !!draftState.pathClosed,
-    }));
-  }
-  validateComposerSelectedAssemblyId();
-  renderComposerAssemblyEditor();
-
-  const duration = Math.max(1, Number(draftState?.time?.end ?? draftState?.time?.duration ?? 24) || 24);
-  if (composerSceneDurationInput) {
-    composerSceneDurationInput.value = String(duration);
-  }
-  if (composerSceneLoopInput) {
-    composerSceneLoopInput.checked = !!draftState?.time?.loop;
-  }
-  if (composerMarkerListInput) {
-    composerMarkerListInput.value = "";
-  }
-  if (composerPauseListInput) {
-    composerPauseListInput.value =
-      typeof draftState.pauseListRaw === "string"
-        ? draftState.pauseListRaw
-        : formatComposerPauseList(draftState.pauses);
-  }
-  if (composerWarpListInput) {
-    composerWarpListInput.value =
-      typeof draftState.warpListRaw === "string"
-        ? draftState.warpListRaw
-        : formatComposerWarpList(draftState.timeWarps);
-  }
-  if (composerTransferListInput) {
-    composerTransferListInput.value =
-      typeof draftState.transferListRaw === "string"
-        ? draftState.transferListRaw
-        : formatComposerTransferList(draftState.transfers);
-  }
-  setComposerTransferListRawStateValue(
-    typeof draftState.transferListRaw === "string"
-      ? draftState.transferListRaw
-      : formatComposerTransferList(draftState.transfers)
-  );
-  setComposerGraphicOverlayDraftsState(
-    normalizeComposerGraphicOverlayList(
-      draftState.overlays,
-      duration
-    )
-  );
-
-  setComposerSelectedAssembly(getComposerSelectedAssemblyIdState(), {
-    persistCurrentPath: false,
-  });
-  setComposerSelectedPointIndexState(
-    Number.isInteger(draftState.selectedPointIndex) &&
-    draftState.selectedPointIndex >= 0 &&
-    draftState.selectedPointIndex < composerPathState.points.length
-      ? draftState.selectedPointIndex
-      : null
-  );
-  rebuildComposerControlPoints();
-  updateComposerPathGeometry();
-  updateComposerPointMaterials();
-
-  const frameRotation = Array.isArray(draftState.frameRotation) ? draftState.frameRotation : [0, 0, 0];
-  composerFrameState.rotation.set(
-    Number(frameRotation[0] ?? 0) || 0,
-    Number(frameRotation[1] ?? 0) || 0,
-    Number(frameRotation[2] ?? 0) || 0,
-    "YXZ"
-  );
-  composerFrameState.scale = Math.max(0.01, Number(draftState.frameScale ?? 1) || 1);
-  if (composerFrameScaleInput) {
-    composerFrameScaleInput.value = Math.log10(composerFrameState.scale).toFixed(2);
-  }
-  if (composerFrameScaleLabel) {
-    composerFrameScaleLabel.textContent = formatScaleLabel(composerFrameState.scale);
-  }
-  updateComposerFrame();
-
-  composerCameraState.speed = Math.max(0.01, Number(draftState.cameraSpeed ?? 1) || 1);
-  if (composerCameraSpeedInput) {
-    composerCameraSpeedInput.value = Math.log10(composerCameraState.speed).toFixed(2);
-  }
-  if (composerCameraSpeedLabel) {
-    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
-  }
-  composerCameraOrbitState.radius = Math.max(
-    composerCameraOrbitState.minDistance,
-    Number(draftState.cameraRadius ?? composerCameraOrbitState.radius ?? 1) || 1
-  );
-  composerCameraOrbitState.theta = Number(draftState?.cameraOrbit?.theta ?? composerCameraOrbitState.theta) || 0;
-  composerCameraOrbitState.phi = clamp(
-    Number(draftState?.cameraOrbit?.phi ?? composerCameraOrbitState.phi) || Math.PI / 2,
-    0.05,
-    Math.PI - 0.05
-  );
-  syncComposerCameraRadiusInput();
-
-  composerCameraFlightState.poiMode = draftState.cameraPoiMode === "selected" ? "selected" : "origin";
-  if (composerCameraPoiSelect) {
-    composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
-  }
-  composerCameraFlightState.waypoints = Array.isArray(draftState.cameraWaypoints)
-    ? draftState.cameraWaypoints.map((waypoint) => ({
-        position: vectorFromTriplet(waypoint?.position),
-        lookAt: vectorFromTriplet(waypoint?.lookAt),
-      }))
-    : [];
-  stopComposerCameraFlightPreview();
-  updateComposerCameraFlightDisplay();
-  updateComposerWaypointCount();
-  updateComposerCameraPoiStatus();
-  updateComposerCamera();
-}
-
-function saveComposerSceneToLibrary() {
-  const draftState = readComposerDraftState();
-  const sceneDocument = buildComposerDocumentData(draftState);
-  const entries = getComposerLibraryEntries().filter((entry) => entry?.id !== draftState.id);
-  entries.push({
-    id: draftState.id,
-    name: draftState.name,
-    updatedAt: new Date().toISOString(),
-    draftState,
-    sceneDocument,
-  });
-  if (!writeComposerLibraryEntries(entries)) {
-    setComposerStatus("Library save failed. Browser storage is unavailable.");
-    refreshComposerLibraryUi();
-    return;
-  }
-  refreshComposerLibraryUi(draftState.id);
-  setComposerStatus(`Saved ${draftState.name} to the browser library.`);
-}
-
-function loadComposerSceneFromLibrary(sceneId = composerLibrarySelect?.value) {
-  const entry = getComposerLibraryEntries().find((candidate) => candidate?.id === sceneId);
-  if (!entry?.draftState) {
-    setComposerStatus("Select a saved scene to load.");
-    refreshComposerLibraryUi();
-    return;
-  }
-  applyComposerDraftState(entry.draftState);
-  refreshComposerLibraryUi(entry.id);
-  renderComposerJsonPreview();
-  setComposerStatus(`Loaded ${entry.name || entry.id} from the browser library.`);
-}
-
-function clearComposerScene() {
-  const confirmed = globalThis.window?.confirm?.(
-    "Clear the current composer scene and reset it to a blank canvas?"
-  );
-  if (confirmed === false) {
-    return;
-  }
-  const nextId = sanitizeComposerId(composerSceneIdInput?.value ?? "composer_scene");
-  const nextName = String(composerSceneNameInput?.value ?? "Composer Scene").trim() || "Composer Scene";
-  applyComposerDraftState({
-    id: nextId,
-    name: nextName,
-    assembliesDraft: [],
-    time: {
-      timeBase: "seconds",
-      start: 0,
-      end: 24,
-      playbackRate: 1,
-      loop: false,
-    },
-    pauses: [],
-    timeWarps: [],
-    transfers: [],
-    reactions: [],
-    overlays: [],
-    cameraWaypoints: [],
-    transferListRaw: "",
-    pauseListRaw: "",
-    warpListRaw: "",
-    markerListRaw: "",
-    selectedPointIndex: null,
-    diagnostics: {},
-  });
-  renderComposerJsonPreview();
-  setComposerStatus(`Cleared ${nextName}.`);
-}
-
-function deleteComposerSceneFromLibrary(sceneId = composerLibrarySelect?.value) {
-  if (!sceneId) {
-    setComposerStatus("Select a saved scene to delete.");
-    refreshComposerLibraryUi();
-    return;
-  }
-  const entries = getComposerLibraryEntries();
-  const nextEntries = entries.filter((entry) => entry?.id !== sceneId);
-  if (nextEntries.length === entries.length) {
-    refreshComposerLibraryUi();
-    return;
-  }
-  if (!writeComposerLibraryEntries(nextEntries)) {
-    setComposerStatus("Library delete failed. Browser storage is unavailable.");
-    refreshComposerLibraryUi(sceneId);
-    return;
-  }
-  refreshComposerLibraryUi();
-  setComposerStatus(`Deleted ${sceneId} from the browser library.`);
-}
-
-function buildComposerDocumentData(draftState, options = {}) {
-  return createComposerSceneDocument(draftState, options);
-}
-
-function buildComposerPreviewData(documentData, options = {}) {
-  return buildComposerPreviewSceneData(documentData, {
-    palette: composerPalette,
-    ...options,
-  });
-}
-
-function renderComposerJsonPreview() {
-  persistComposerPathStateToSelectedAssembly();
-  const draftState = readComposerDraftState();
-  const documentData = buildComposerDocumentData(draftState);
-  try {
-    updateComposerViewportFromDocument(documentData);
-  } catch (error) {
-    composerCurrentDocument = documentData;
-    console.error("Composer preview render failed.", error);
-    try {
-      renderComposerTimeline(documentData);
-      updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
-    } catch (timelineError) {
-      console.error("Composer timeline fallback failed.", timelineError);
-    }
-  }
-  updateComposerTimingDiagnostics(documentData, draftState.diagnostics);
-  refreshComposerLibraryUi();
-  setComposerStatus(formatComposerTimingStatus(documentData, draftState.diagnostics));
-  if (composerJsonPreview) {
-    composerJsonPreview.textContent = JSON.stringify(documentData, null, 2);
-  }
 }
 
 function setComposerStatus(message) {
@@ -7524,6 +7107,107 @@ const composerPlaybackState = {
   playheadSeconds: 0,
   lastTickMs: 0,
 };
+
+const composerDocumentWorkspaceRuntime = createComposerDocumentWorkspaceRuntime({
+  documentLike: document,
+  storage: globalThis.window?.localStorage ?? null,
+  storageKey: "architrino.composer.library.v1",
+  dom: {
+    sceneIdInput: composerSceneIdInput,
+    sceneNameInput: composerSceneNameInput,
+    sceneDurationInput: composerSceneDurationInput,
+    sceneLoopInput: composerSceneLoopInput,
+    markerListInput: composerMarkerListInput,
+    pauseListInput: composerPauseListInput,
+    warpListInput: composerWarpListInput,
+    transferListInput: composerTransferListInput,
+    librarySelect: composerLibrarySelect,
+    libraryLoadButton: composerLibraryLoadButton,
+    libraryDeleteButton: composerLibraryDeleteButton,
+    libraryStatus: composerLibraryStatus,
+    jsonPreview: composerJsonPreview,
+    frameScaleInput: composerFrameScaleInput,
+    frameScaleLabel: composerFrameScaleLabel,
+    cameraSpeedInput: composerCameraSpeedInput,
+    cameraSpeedLabel: composerCameraSpeedLabel,
+    cameraPoiSelect: composerCameraPoiSelect,
+  },
+  state: {
+    pathState: composerPathState,
+    frameState: composerFrameState,
+    cameraState: composerCameraState,
+    cameraOrbitState: composerCameraOrbitState,
+    cameraFlightState: composerCameraFlightState,
+    playbackState: composerPlaybackState,
+    palette: composerPalette,
+  },
+  helpers: {
+    sanitizeSceneId: sanitizeComposerId,
+    normalizeAssemblyDraft: normalizeComposerAssemblyDraft,
+    normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
+    formatTransferList: formatComposerTransferList,
+    normalizeGraphicOverlayList: normalizeComposerGraphicOverlayList,
+    parseTransfers: parseComposerTransfers,
+    readTimingState: readComposerTimingState,
+    updateTimingDiagnostics: updateComposerTimingDiagnostics,
+    formatTimingStatus: formatComposerTimingStatus,
+    formatScaleLabel,
+    clampFn: clamp,
+    vectorFromTriplet,
+    getTransferListRaw: getComposerTransferListRaw,
+  },
+  operations: {
+    ensureAssemblyDrafts: ensureComposerAssemblyDrafts,
+    persistPathStateToSelectedAssembly: persistComposerPathStateToSelectedAssembly,
+    renderAssemblyEditor: renderComposerAssemblyEditor,
+    validateSelectedAssemblyId: validateComposerSelectedAssemblyId,
+    setSelectedAssembly: setComposerSelectedAssembly,
+    rebuildControlPoints: rebuildComposerControlPoints,
+    updatePathGeometry: updateComposerPathGeometry,
+    updatePointMaterials: updateComposerPointMaterials,
+    updateFrame: updateComposerFrame,
+    syncCameraRadiusInput: syncComposerCameraRadiusInput,
+    stopCameraFlightPreview: stopComposerCameraFlightPreview,
+    updateCameraFlightDisplay: updateComposerCameraFlightDisplay,
+    updateWaypointCount: updateComposerWaypointCount,
+    updateCameraPoiStatus: updateComposerCameraPoiStatus,
+    updateCamera: updateComposerCamera,
+    updateViewportFromDocument: updateComposerViewportFromDocument,
+    renderTimeline: renderComposerTimeline,
+    updateTimelinePlayhead: updateComposerTimelinePlayhead,
+    setStatus: setComposerStatus,
+  },
+  accessors: {
+    getAssemblyDraftsState: getComposerAssemblyDraftsState,
+    setAssemblyDraftsState: setComposerAssemblyDraftsState,
+    updateAssemblyDraftByIdState: updateComposerAssemblyDraftByIdState,
+    getGraphicOverlayDraftsState: getComposerGraphicOverlayDraftsState,
+    setGraphicOverlayDraftsState: setComposerGraphicOverlayDraftsState,
+    getSelectedPointIndexState: getComposerSelectedPointIndexState,
+    setSelectedPointIndexState: setComposerSelectedPointIndexState,
+    getSelectedAssemblyIdState: getComposerSelectedAssemblyIdState,
+    setTransferListRawStateValue: setComposerTransferListRawStateValue,
+    setCurrentDocument: (documentData) => {
+      composerCurrentDocument = documentData;
+    },
+  },
+});
+
+const {
+  readComposerDraftState,
+  getComposerLibraryEntries,
+  writeComposerLibraryEntries,
+  getComposerSortedLibraryEntries,
+  refreshComposerLibraryUi,
+  applyComposerDraftState,
+  buildComposerDocumentData,
+  buildComposerPreviewData,
+  saveComposerSceneToLibrary,
+  loadComposerSceneFromLibrary,
+  clearComposerScene,
+  deleteComposerSceneFromLibrary,
+  renderComposerJsonPreview,
+} = composerDocumentWorkspaceRuntime;
 
 const levels = new Map();
 const navigationStack = [];

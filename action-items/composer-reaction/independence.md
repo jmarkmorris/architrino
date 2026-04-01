@@ -2,45 +2,37 @@
 
 ## Direction
 
-Composer and Reaction should be separate applications in the same repo.
+Composer and Reaction should be separate app runtimes in one repo.
 
-They may share:
+Allowed sharing:
+- repo/build/deploy tooling
+- versioned schemas and fixtures
+- truly generic infrastructure with no app semantics
 
-- repo location;
-- build and deploy tooling;
-- versioned schemas and fixtures;
-- and truly generic infrastructure with no app semantics.
+Not allowed:
+- live cross-app runtime logic
+- app-specific stores or overlay state
+- direct runtime imports across the app boundary
+- any cross-app coupling except explicit JSON contracts
 
-They may not share:
-
-- live app runtime logic;
-- app-specific stores or overlay state;
-- direct runtime imports across the app boundary;
-- or any cross-app coupling except explicit JSON contracts.
-
-The intended boundary is:
-
-- main webapp = launcher/discovery surface;
-- Composer = separate app runtime;
-- Reaction = separate app runtime;
-- cross-app exchange = versioned JSON only.
+Boundary:
+- main webapp = launcher/discovery surface
+- Composer = standalone app runtime
+- Reaction = standalone app runtime
+- cross-app exchange = versioned JSON only
 
 ## Current Status
 
-The separation is real, but not complete.
-
-Already done:
-
+Done:
 - `composer.html` and `reaction.html` exist as separate entrypoints;
 - the main webapp launches those entrypoints from the scene network;
 - `reaction_designer` no longer runs as a Composer overlay mode;
 - boundary schemas, fixtures, and a boundary-check script are in place;
 - Reaction now owns its standalone app shell, template catalog, export seam, and much of its solver composition under `src/apps/reaction/`;
-- Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under real Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
-- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, default draft/id scaffolding, assembly-list normalization helpers, pure authoring helpers, assembly authoring logic, and timing/overlay integration helpers under `src/apps/composer/`.
+- Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
+- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, default draft/id scaffolding, assembly-list normalization helpers, pure authoring helpers, assembly authoring logic, timing/overlay integration helpers, and draft/library/preview workspace logic under `src/apps/composer/`.
 
-Still remaining:
-
+Left:
 - Reaction still has legacy `ComposerReaction...` naming and compatibility layers that should be retired;
 - Composer still depends too much on `app.js` as a shared composition root;
 - the Reaction export -> Composer import workflow is still provisional rather than production-hardened;
@@ -48,62 +40,21 @@ Still remaining:
 
 ## Remaining Work
 
-### 1. Finish Reaction Ownership
-
-Remaining target:
-
-- move the remaining clearly Reaction-owned runtime modules out of legacy `ComposerReaction...` identity;
-- eliminate wrapper/scaffold layers once the underlying module has a real Reaction-owned home;
-- leave old names only as temporary compatibility re-exports while callers are migrated;
-- refresh the provisional `ReactionFlowDocument` shape against current solver behavior.
-
-### 2. Finish Composer Ownership
-
-Remaining target:
-
-- keep moving Composer-specific runtime behavior out of `app.js`;
-- give Composer a cleaner standalone composition root with less dependence on the old shared shell;
-- remove transitional mixed naming where Composer still carries Reaction-era naming or assumptions.
-
-### 3. Harden The Contract
-
-Remaining target:
-
-- finalize `reaction-flow/v1` around current solver semantics;
-- add the Composer import adapter for that contract;
-- add import/export golden tests;
-- confirm Composer can consume the handoff without executing Reaction runtime code.
-
-### 4. Remove Transitional Coupling
-
-Remaining target:
-
-- remove obsolete shared scene-mode and overlay assumptions;
-- remove remaining compatibility scaffolding once callers have been migrated;
-- leave the contract boundary as the only intentional connection.
-
-## Near-Term Order
-
-From the current repo state, the best remaining order is:
-
-1. finish the larger Reaction-owned rename/move pass, starting with the remaining solve/proposal layer;
-2. keep shrinking Composer runtime ownership inside `app.js`;
-3. then harden the JSON handoff against current real app behavior;
-4. then delete transitional compatibility code.
+1. finish the remaining Reaction rename/move pass and retire `ComposerReaction...` compatibility layers.
+2. keep shrinking Composer-only runtime behavior out of `app.js`.
+3. harden the real `reaction-flow/v1` export/import path against current app behavior.
+4. remove transitional compatibility scaffolding so the contract is the only intentional connection.
 
 ## Enforcement
 
-This boundary should stay mechanically enforced.
-
 Keep:
-
 - forbidden cross-import checks;
 - contract fixture validation;
 - Reaction export tests;
 - Composer import tests;
 - and smoke tests proving each app boots independently.
-  
-##Audit
+
+## Audit
 
 - review that reaction doesn't mention composer in file names or code where it doesn't make sense and vice versa
 - review modularity
@@ -114,17 +65,13 @@ Keep:
 
 ## Post-Independence Disposition
 
-After the separation work is complete, revisit these smaller UX fixes:
-
 1. add an `Exit` button to the standalone Reaction app, matching Composer;
 2. fix product-side `Neutron` and `Proton` title tiles on the Reaction page so they include the `Pro` prefix consistently.
 3. flatten the Composer canvas framing so the canvas uses the full available area and does not pick up redundant nested frames around the timeline/canvas surface.
 
 ## Non-Goal
 
-This does not require two repos.
-
-One repo is fine. The goal is independent app runtimes with a versioned contract boundary.
+This does not require two repos. One repo is fine. The goal is independent app runtimes with a versioned contract boundary.
 
 ## Related Action Items
 
