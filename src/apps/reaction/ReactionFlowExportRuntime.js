@@ -1,4 +1,4 @@
-import { parseNodeKey } from "../../runtime/ComposerReactionAnchorStateRuntime.js";
+import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_STAGE_ID = "stage_manual_authoring";
@@ -50,7 +50,7 @@ function buildOperatorTags(participant = {}) {
 }
 
 function buildEndpoint(nodeKey = "") {
-  const { participantId = "", nodeId = "" } = parseNodeKey(nodeKey);
+  const { participantId = "", nodeId = "" } = parseReactionNodeKey(nodeKey);
   return {
     participantId: String(participantId ?? "").trim(),
     anchorId: String(nodeId ?? "").trim() || "root",
@@ -60,7 +60,7 @@ function buildEndpoint(nodeKey = "") {
 function getOperatorInputEndpoints(operatorId = "", mappings = []) {
   return mappings
     .filter((mapping) => {
-      const { participantId } = parseNodeKey(mapping?.targetKey);
+      const { participantId } = parseReactionNodeKey(mapping?.targetKey);
       return (
         String(participantId ?? "") === String(operatorId ?? "") &&
         String(mapping?.targetRole ?? "") === "operator-input"
@@ -73,7 +73,7 @@ function getOperatorInputEndpoints(operatorId = "", mappings = []) {
 function getOperatorOutputEndpoints(operatorId = "", mappings = []) {
   return mappings
     .filter((mapping) => {
-      const { participantId } = parseNodeKey(mapping?.sourceKey);
+      const { participantId } = parseReactionNodeKey(mapping?.sourceKey);
       return (
         String(participantId ?? "") === String(operatorId ?? "") &&
         String(mapping?.sourceRole ?? "") === "operator-output"
@@ -84,11 +84,11 @@ function getOperatorOutputEndpoints(operatorId = "", mappings = []) {
 }
 
 function buildViaOperatorId(mapping = {}, operatorIds = new Set()) {
-  const targetParticipantId = String(parseNodeKey(mapping?.targetKey).participantId ?? "").trim();
+  const targetParticipantId = String(parseReactionNodeKey(mapping?.targetKey).participantId ?? "").trim();
   if (String(mapping?.targetRole ?? "") === "operator-input" && operatorIds.has(targetParticipantId)) {
     return targetParticipantId;
   }
-  const sourceParticipantId = String(parseNodeKey(mapping?.sourceKey).participantId ?? "").trim();
+  const sourceParticipantId = String(parseReactionNodeKey(mapping?.sourceKey).participantId ?? "").trim();
   if (String(mapping?.sourceRole ?? "") === "operator-output" && operatorIds.has(sourceParticipantId)) {
     return sourceParticipantId;
   }

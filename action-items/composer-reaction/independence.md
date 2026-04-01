@@ -287,6 +287,7 @@ Completed work inside Phase 3 so far:
 
 - the standalone Reaction app no longer depends on `ComposerCatalogRuntime.js` for its picker rows;
 - the standalone Reaction app now imports a Reaction-local solver wrapper from `src/apps/reaction/`;
+- the standalone Reaction export path now owns its node-key parsing locally under `src/apps/reaction/`;
 - and Reaction now exposes a local `ReactionFlowDocument` export API under `src/apps/reaction/ReactionFlowExportRuntime.js`.
 
 ### Phase 4. Move Composer Into Its Own Tree
