@@ -6,8 +6,10 @@ This document defines the standard repo process for ending a work session, publi
 
 The active branch series for this repo is currently the periodic table sequence.
 
-- Working branches should therefore use `codex/<element-name>`.
+- Working branches should therefore use `codex/<element-name>` by default.
+- If a short topic suffix materially improves clarity, use `codex/<element-name>-<topic>`.
 - Advance the sequence one element at a time.
+- Keep the element prefix canonical even when using a topic suffix.
 - Do not invent an unrelated branch name unless there is an explicit reason to step outside the element sequence.
 - After `codex/hydrogen`, the next standard branch is `codex/helium`, then `codex/lithium`, and so on.
 
@@ -163,7 +165,7 @@ This is the normal branch-to-PR path for active implementation work.
 
 ### 1. Start from an explicit working branch
 
-- If beginning from `main`, create the next `codex/<element-name>` branch in the periodic-table sequence.
+- If beginning from `main`, create the next `codex/<element-name>` or `codex/<element-name>-<topic>` branch in the periodic-table sequence.
 - If beginning from `main`, first fast-forward local `main` to `origin/main` while checked out on `main`.
 - If continuing a live branch with an open PR, remain on that branch.
 - Do not create a new working branch merely because `origin/main` moved. A fetch alone is not enough.
@@ -173,7 +175,7 @@ Commands:
 ```bash
 git checkout main
 git fetch origin
-git pull origin main --ff-only
+git merge --ff-only origin/main
 git checkout -b codex/<element-name>
 ```
 
@@ -237,6 +239,11 @@ This check should happen even if you believe you are "just updating the PR," bec
 ### 5. Open the PR in ready mode
 
 - Open the PR in ready mode once the branch is coherent enough for real review.
+- The minimum bar for a ready PR is:
+  - the required validation commands passed;
+  - the branch tip intended for review is committed and pushed;
+  - the worktree is clean;
+  - and the diff represents one logically complete reviewable unit.
 - Use draft only when the branch is intentionally incomplete and should not yet enter normal review.
 
 Commands:
@@ -301,6 +308,7 @@ Interpretation:
 - Do this check before deleting the branch locally or remotely.
 - If the branch contains commits authored after the PR merge time, those commits were not part of the merged PR and must be recovered onto a fresh branch before cleanup continues.
 - If needed, preserve the branch tip under a recovery branch name before any deletion.
+- This check intentionally uses the PR's `mergedAt` time rather than `origin/main..HEAD`, because squash merges or rebased merge strategies can make already-merged branch commits appear unmerged by ancestry.
 
 Suggested checks:
 
@@ -391,6 +399,7 @@ After the previous PR is merged and the previous branch is retired, start the ne
 ### 1. Create the next branch from current `main`
 
 - Use the next element in the periodic-table sequence.
+- An optional `-<topic>` suffix is allowed when it materially improves clarity, but the element prefix should still advance in order.
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
 - Stay on `main` for the synchronization commands, then cut the branch immediately from that checked-out `main`.
