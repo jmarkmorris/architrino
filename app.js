@@ -11,14 +11,11 @@ import {
 import {
   clampComposerTimelineSpan,
   COMPOSER_TIMELINE_MIN_DURATION_SECONDS as composerTimelineMinDurationSeconds,
-  findComposerTimelineOverlap as findComposerTimelineOverlapRuntime,
   formatComposerPauseList,
   formatComposerWarpList,
   getComposerSceneTimeWindow,
-  getComposerTimelineAuthoringItems as getComposerTimelineAuthoringItemsRuntime,
   getComposerTimelineFraction,
   getComposerTimelineTimeAtClientX as getComposerTimelineTimeAtClientXRuntime,
-  parseComposerTimingLines,
 } from "./src/runtime/ComposerTimelineRuntime.js";
 import {
   composerAssemblyTemplateMenuRows,
@@ -27,22 +24,11 @@ import {
   generationTransitions,
 } from "./src/runtime/ComposerCatalogRuntime.js";
 import {
-  decodeComposerGraphicTargetValue as decodeComposerGraphicTargetValueRuntime,
   encodeComposerGraphicTargetValue,
-  getComposerGraphicDefaultTarget as getComposerGraphicDefaultTargetRuntime,
   getComposerGraphicOverlayLabel,
-  getComposerGraphicOverlayDraftIndexById as getComposerGraphicOverlayDraftIndexByIdRuntime,
-  getComposerGraphicTargetEntries as getComposerGraphicTargetEntriesRuntime,
-  getComposerGraphicTimelineOverlays as getComposerGraphicTimelineOverlaysRuntime,
   getComposerMediaDefaultRect,
   getComposerMediaOverlayLabel,
   getComposerOverlayKind,
-  getComposerViewportMediaTimelineOverlays as getComposerViewportMediaTimelineOverlaysRuntime,
-  getNextComposerGraphicOverlayId as getNextComposerGraphicOverlayIdRuntime,
-  normalizeComposerGraphicOverlayDraft as normalizeComposerGraphicOverlayDraftRuntime,
-  normalizeComposerGraphicOverlayList as normalizeComposerGraphicOverlayListRuntime,
-  normalizeComposerMediaRect as normalizeComposerMediaRectRuntime,
-  sanitizeComposerMediaSource as sanitizeComposerMediaSourceRuntime,
 } from "./src/runtime/ComposerOverlayRuntime.js";
 import {
   buildComposerJsonPreviewMenu,
@@ -167,6 +153,7 @@ import {
   sanitizeComposerGraphicTarget,
 } from "./src/apps/composer/ComposerAuthoringHelpersRuntime.js";
 import { createComposerAssemblyAuthoringRuntime } from "./src/apps/composer/ComposerAssemblyAuthoringRuntime.js";
+import { createComposerTimelineOverlayRuntime } from "./src/apps/composer/ComposerTimelineOverlayRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -509,236 +496,6 @@ function ensureComposerAssemblyDrafts() {
   );
 }
 
-function normalizeComposerTransferEndpoint(rawEndpoint) {
-  if (!rawEndpoint) {
-    return null;
-  }
-  if (typeof rawEndpoint === "object") {
-    const assemblyId = sanitizeComposerEntityId(rawEndpoint.assemblyId, "");
-    const memberId = sanitizeComposerEntityId(rawEndpoint.memberId, "");
-    return assemblyId && memberId ? { assemblyId, memberId } : null;
-  }
-  const match = String(rawEndpoint)
-    .trim()
-    .match(/^([a-zA-Z0-9_-]+)[.:/]([a-zA-Z0-9_-]+)$/);
-  if (!match) {
-    return null;
-  }
-  const assemblyId = sanitizeComposerEntityId(match[1], "");
-  const memberId = sanitizeComposerEntityId(match[2], "");
-  return assemblyId && memberId ? { assemblyId, memberId } : null;
-}
-
-function parseComposerTransfers(rawText) {
-  return parseComposerTimingLines(rawText, (line, lineNumber) => {
-    const [mappingPart, rawTimePart] = line.split("@").map((part) => part.trim());
-    const mappingMatch = mappingPart.match(/^(.+?)\s*->\s*(.+)$/);
-    if (!mappingMatch) {
-      return null;
-    }
-    const source = normalizeComposerTransferEndpoint(mappingMatch[1]);
-    const target = normalizeComposerTransferEndpoint(mappingMatch[2]);
-    if (!source || !target) {
-      return null;
-    }
-    let t = null;
-    if (rawTimePart) {
-      const parsedTime = Number(rawTimePart);
-      if (!Number.isFinite(parsedTime)) {
-        return null;
-      }
-      t = Number(parsedTime.toFixed(3));
-    }
-    return {
-      id: `transfer_authored_${lineNumber}`,
-      source,
-      target,
-      t,
-    };
-  });
-}
-
-function getComposerTimelineAuthoringItems(documentData = composerCurrentDocument) {
-  return getComposerTimelineAuthoringItemsRuntime(documentData, {
-    getGraphicLabel: getComposerGraphicOverlayLabel,
-    getMediaLabel: getComposerMediaOverlayLabel,
-  });
-}
-
-function findComposerTimelineOverlap(candidate, options = {}) {
-  return findComposerTimelineOverlapRuntime(candidate, {
-    ...options,
-    getGraphicLabel: getComposerGraphicOverlayLabel,
-    getMediaLabel: getComposerMediaOverlayLabel,
-  });
-}
-
-function reportComposerTimelineOverlap(conflict) {
-  if (!conflict) {
-    return;
-  }
-  setComposerStatus(
-    `Timeline items may not overlap. ${conflict.label} already occupies ${formatComposerTimeLabel(conflict.start)}-${formatComposerTimeLabel(conflict.end)}.`
-  );
-}
-
-function getComposerGraphicEnd(marker, sceneDuration = null) {
-  const start = Number(marker?.t ?? 0);
-  const explicitEnd = Number(marker?.end);
-  const end = Number.isFinite(explicitEnd) ? explicitEnd : start;
-  if (!Number.isFinite(sceneDuration)) {
-    return end;
-  }
-  return clamp(end, start, Number(sceneDuration));
-}
-
-function getComposerGraphicDefaultTarget() {
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  return getComposerGraphicDefaultTargetRuntime({
-    selectedAssemblyId: sanitizeComposerEntityId(getComposerSelectedAssemblyIdState(), ""),
-    fallbackAssemblyId: sanitizeComposerEntityId(assemblyDrafts[0]?.id, ""),
-    selectedPointIndex: getComposerSelectedPointIndexState(),
-  });
-}
-
-function decodeComposerGraphicTargetValue(rawValue) {
-  return decodeComposerGraphicTargetValueRuntime(rawValue, {
-    sanitizeTarget: (target) => sanitizeComposerGraphicTarget(target),
-  });
-}
-
-function getComposerGraphicTargetEntries() {
-  return getComposerGraphicTargetEntriesRuntime({
-    assemblyDrafts: getComposerAssemblyDraftsState(),
-    getAssemblyLetter: getComposerAssemblyLetter,
-    normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
-  });
-}
-
-function normalizeComposerMediaRect(rawRect, kind = "image") {
-  return normalizeComposerMediaRectRuntime(rawRect, kind, {
-    clampFn: clamp,
-  });
-}
-
-function sanitizeComposerMediaSource(rawSource, kind = "image") {
-  return sanitizeComposerMediaSourceRuntime(rawSource, kind, {
-    supportedExtensions: composerSupportedMediaExtensions,
-  });
-}
-
-function normalizeComposerGraphicOverlayDraft(overlay = {}, index = 0, duration = 24) {
-  const normalized = normalizeComposerGraphicOverlayDraftRuntime(overlay, index, duration, {
-    clampFn: clamp,
-    clampTimelineSpan: clampComposerTimelineSpan,
-    minDurationSeconds: composerTimelineMinDurationSeconds,
-    getDefaultTarget: () => getComposerGraphicDefaultTarget(),
-    sanitizeTarget: (target, fallbackAssemblyId = "") =>
-      sanitizeComposerGraphicTarget(target, fallbackAssemblyId),
-    mediaAssetDirectories: composerMediaAssetDirectories,
-    supportedMediaExtensions: composerSupportedMediaExtensions,
-  });
-  return {
-    ...normalized,
-    id: sanitizeComposerEntityId(normalized?.id, `overlay_${index + 1}`),
-  };
-}
-
-function normalizeComposerGraphicOverlayList(overlays = [], duration = 24) {
-  return normalizeComposerGraphicOverlayListRuntime(overlays, duration, {
-    clampFn: clamp,
-    clampTimelineSpan: clampComposerTimelineSpan,
-    minDurationSeconds: composerTimelineMinDurationSeconds,
-    getDefaultTarget: () => getComposerGraphicDefaultTarget(),
-    sanitizeTarget: (target, fallbackAssemblyId = "") =>
-      sanitizeComposerGraphicTarget(target, fallbackAssemblyId),
-    mediaAssetDirectories: composerMediaAssetDirectories,
-    supportedMediaExtensions: composerSupportedMediaExtensions,
-  }).map((overlay, index) => ({
-    ...overlay,
-    id: sanitizeComposerEntityId(overlay?.id, `overlay_${index + 1}`),
-  }));
-}
-
-function getComposerGraphicOverlayDraftIndexById(overlayId) {
-  return getComposerGraphicOverlayDraftIndexByIdRuntime(getComposerGraphicOverlayDraftsState(), overlayId);
-}
-
-function getComposerGraphicOverlayDraftById(overlayId) {
-  const index = getComposerGraphicOverlayDraftIndexById(overlayId);
-  const overlayDrafts = getComposerGraphicOverlayDraftsState();
-  return index >= 0 ? overlayDrafts[index] : null;
-}
-
-function getNextComposerGraphicOverlayId() {
-  return getNextComposerGraphicOverlayIdRuntime(getComposerGraphicOverlayDraftsState());
-}
-
-function getComposerGraphicTimelineOverlays(documentData = composerCurrentDocument) {
-  return getComposerGraphicTimelineOverlaysRuntime(documentData);
-}
-
-function getComposerViewportMediaTimelineOverlays(documentData = composerCurrentDocument) {
-  return getComposerViewportMediaTimelineOverlaysRuntime(documentData);
-}
-
-function isComposerTimeWithinSpan(timeSeconds, startSeconds, endSeconds, epsilon = 0.001) {
-  const time = Number(timeSeconds);
-  const start = Number(startSeconds);
-  const end = Number(endSeconds);
-  if (!Number.isFinite(time) || !Number.isFinite(start) || !Number.isFinite(end)) {
-    return false;
-  }
-  return time >= start - epsilon && time <= end + epsilon;
-}
-
-function resolveComposerGraphicTargetPosition(target, assemblyCenters = new Map(), documentData = composerCurrentDocument) {
-  if (!target) {
-    return null;
-  }
-  if (target.type === "assembly") {
-    return assemblyCenters.get(target.assemblyId)?.clone?.() ?? null;
-  }
-  if (target.type === "path_point") {
-    const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
-    const path = paths.find((entry) => entry?.metadata?.ownerAssemblyId === target.assemblyId);
-    const point = Array.isArray(path?.payload?.points)
-      ? path.payload.points[Math.max(0, Number(target.pointIndex ?? 0) || 0)]
-      : null;
-    return point ? vectorFromTriplet(point) : null;
-  }
-  return null;
-}
-
-function getComposerAssemblyGraphicTargetRadius(assembly) {
-  if (!assembly) {
-    return 0;
-  }
-  const shellRadii = Array.isArray(assembly?.core?.shells)
-    ? assembly.core.shells
-        .map((shell) => Number(shell?.radius ?? 0) || 0)
-        .filter((radius) => radius > 0)
-    : [];
-  if (shellRadii.length) {
-    return Math.max(...shellRadii);
-  }
-
-  if (isComposerBareArchitrinoAssembly(assembly)) {
-    return 0.052;
-  }
-
-  const members = normalizeComposerMemberList(assembly?.members);
-  const baseRadius = 0.17 + Math.min(members.length, 8) * 0.018;
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
-  const childRadius = subassemblies.reduce((maxRadius, child) => {
-    const childPosition = vectorFromTriplet(child?.position ?? child?.transform?.position ?? [0, 0, 0]);
-    const childMembers = Array.isArray(child?.members) ? child.members : [];
-    const radius = 0.11 + Math.min(childMembers.length, 6) * 0.016;
-    return Math.max(maxRadius, childPosition.length() + radius);
-  }, 0);
-  return Math.max(baseRadius, childRadius);
-}
-
 function updateComposerHudViewportToggleState() {
   composerHudViewportToggleBindings.forEach(({ button, key, label }) => {
     if (!button) {
@@ -993,6 +750,67 @@ function setComposerTransferListRaw(value = "") {
     composerTransferListInput.value = getComposerTransferListRawStateValue();
   }
 }
+
+const composerTimelineOverlayRuntime = createComposerTimelineOverlayRuntime({
+  clampFn: clamp,
+  minDurationSeconds: composerTimelineMinDurationSeconds,
+  sanitizeEntityId: sanitizeComposerEntityId,
+  sanitizeTarget: sanitizeComposerGraphicTarget,
+  getAssemblyDrafts: getComposerAssemblyDraftsState,
+  getSelectedAssemblyId: getComposerSelectedAssemblyIdState,
+  getSelectedPointIndex: getComposerSelectedPointIndexState,
+  getGraphicOverlayDrafts: getComposerGraphicOverlayDraftsState,
+  getCurrentDocument: () => composerCurrentDocument,
+  getAssemblyLetter: getComposerAssemblyLetter,
+  normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
+  normalizeMemberList: normalizeComposerMemberList,
+  normalizeSubassemblyList: normalizeComposerSubassemblyList,
+  vectorFromTriplet,
+  isBareArchitrinoAssembly: isComposerBareArchitrinoAssembly,
+  readNumberInput,
+  formatTimeLabel: formatComposerTimeLabel,
+  setStatus: setComposerStatus,
+  mediaAssetDirectories: composerMediaAssetDirectories,
+  supportedMediaExtensions: composerSupportedMediaExtensions,
+  dom: {
+    sceneDurationInput: composerSceneDurationInput,
+    sceneLoopInput: composerSceneLoopInput,
+    markerListInput: composerMarkerListInput,
+    pauseListInput: composerPauseListInput,
+    warpListInput: composerWarpListInput,
+    transferListInput: composerTransferListInput,
+    markerStatus: composerMarkerStatus,
+    pauseStatus: composerPauseStatus,
+    warpStatus: composerWarpStatus,
+    transferStatus: composerTransferStatus,
+  },
+});
+
+const {
+  parseComposerTransfers,
+  getComposerTimelineAuthoringItems,
+  findComposerTimelineOverlap,
+  reportComposerTimelineOverlap,
+  getComposerGraphicEnd,
+  getComposerGraphicDefaultTarget,
+  decodeComposerGraphicTargetValue,
+  getComposerGraphicTargetEntries,
+  normalizeComposerMediaRect,
+  sanitizeComposerMediaSource,
+  normalizeComposerGraphicOverlayDraft,
+  normalizeComposerGraphicOverlayList,
+  getComposerGraphicOverlayDraftIndexById,
+  getComposerGraphicOverlayDraftById,
+  getNextComposerGraphicOverlayId,
+  getComposerGraphicTimelineOverlays,
+  getComposerViewportMediaTimelineOverlays,
+  isComposerTimeWithinSpan,
+  resolveComposerGraphicTargetPosition,
+  getComposerAssemblyGraphicTargetRadius,
+  formatComposerTimingStatus,
+  updateComposerTimingDiagnostics,
+  readComposerTimingState,
+} = composerTimelineOverlayRuntime;
 
 function persistComposerPathStateToAssembly(assemblyId) {
   if (!getComposerAssemblyDraftById(assemblyId)) {
@@ -3076,206 +2894,6 @@ function readComposerFormState() {
     diagnostics: {
       transferHasInput,
       transferErrorLines: transferParse.errors,
-    },
-  };
-}
-
-function formatComposerTimingStatus(documentData, diagnostics = {}) {
-  const pauseCount = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses.length : 0;
-  const warpCount = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps.length : 0;
-  const parts = [
-    `${pauseCount} pause${pauseCount === 1 ? "" : "s"}`,
-    `${warpCount} warp${warpCount === 1 ? "" : "s"}`,
-  ];
-  const timingErrors = Array.isArray(diagnostics?.timingErrors) ? diagnostics.timingErrors : [];
-  if (!timingErrors.length) {
-    return `Timing OK: ${parts.join(" • ")}`;
-  }
-  const grouped = timingErrors.reduce((accumulator, entry) => {
-    const existing = accumulator.get(entry.kind) ?? [];
-    existing.push(entry.line);
-    accumulator.set(entry.kind, existing);
-    return accumulator;
-  }, new Map());
-  const detail = [...grouped.entries()]
-    .map(([kind, lines]) => `${kind} line${lines.length === 1 ? "" : "s"} ${lines.join(", ")}`)
-    .join("; ");
-  return `Timing OK: ${parts.join(" • ")}. Ignored invalid ${detail}.`;
-}
-
-function formatComposerInlineTimingStatus(kind, diagnostics = {}, parsedCount = 0) {
-  const invalidLines = Array.isArray(diagnostics?.[`${kind}ErrorLines`])
-    ? diagnostics[`${kind}ErrorLines`]
-    : [];
-  const hasInput = !!diagnostics?.[`${kind}HasInput`];
-  const label =
-    kind === "marker" ? "timeline note" : kind === "pause" ? "pause" : "warp";
-  if (!hasInput) {
-    if (kind === "marker") {
-      return {
-        text: "No timeline notes authored.",
-        invalid: false,
-      };
-    }
-    return {
-      text: `No ${label}s authored.`,
-      invalid: false,
-    };
-  }
-  if (invalidLines.length) {
-    return {
-      text: `Parsed ${parsedCount} ${label}${parsedCount === 1 ? "" : "s"}. Ignored invalid line${
-        invalidLines.length === 1 ? "" : "s"
-      } ${invalidLines.join(", ")}.`,
-      invalid: true,
-    };
-  }
-  return {
-    text: `Parsed ${parsedCount} ${label}${parsedCount === 1 ? "" : "s"}.`,
-    invalid: false,
-  };
-}
-
-function updateComposerTimingDiagnostics(documentData, diagnostics = {}) {
-  const graphics = getComposerGraphicTimelineOverlays(documentData);
-  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
-  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const transfers = Array.isArray(documentData?.transfers) ? documentData.transfers : [];
-
-  const markerCount = diagnostics?.markerHasInput ? markers.length : 0;
-  const pauseCount = diagnostics?.pauseHasInput ? pauses.length : 0;
-  const warpCount = diagnostics?.warpHasInput ? timeWarps.length : 0;
-
-  const markerStatus = formatComposerInlineTimingStatus("marker", diagnostics, markerCount);
-  const pauseStatus = formatComposerInlineTimingStatus("pause", diagnostics, pauseCount);
-  const warpStatus = formatComposerInlineTimingStatus("warp", diagnostics, warpCount);
-  const transferErrors = Array.isArray(diagnostics?.transferErrorLines) ? diagnostics.transferErrorLines : [];
-  const transferHasInput = !!diagnostics?.transferHasInput;
-  const transferStatus = !transferHasInput
-    ? { text: "No transfers authored.", invalid: false }
-    : transferErrors.length
-      ? {
-          text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}. Ignored invalid line${
-            transferErrors.length === 1 ? "" : "s"
-          } ${transferErrors.join(", ")}.`,
-          invalid: true,
-        }
-      : {
-          text: `Parsed ${transfers.length} transfer${transfers.length === 1 ? "" : "s"}.`,
-          invalid: false,
-        };
-
-  if (composerMarkerStatus) {
-    composerMarkerStatus.textContent = markerStatus.text;
-    composerMarkerStatus.classList.toggle("is-invalid", markerStatus.invalid);
-  }
-  if (composerPauseStatus) {
-    composerPauseStatus.textContent = pauseStatus.text;
-    composerPauseStatus.classList.toggle("is-invalid", pauseStatus.invalid);
-  }
-  if (composerWarpStatus) {
-    composerWarpStatus.textContent = warpStatus.text;
-    composerWarpStatus.classList.toggle("is-invalid", warpStatus.invalid);
-  }
-  if (composerTransferStatus) {
-    composerTransferStatus.textContent = transferStatus.text;
-    composerTransferStatus.classList.toggle("is-invalid", transferStatus.invalid);
-  }
-
-  if (composerMarkerListInput) {
-    composerMarkerListInput.classList.toggle("is-invalid", markerStatus.invalid);
-  }
-  if (composerPauseListInput) {
-    composerPauseListInput.classList.toggle("is-invalid", pauseStatus.invalid);
-  }
-  if (composerWarpListInput) {
-    composerWarpListInput.classList.toggle("is-invalid", warpStatus.invalid);
-  }
-  if (composerTransferListInput) {
-    composerTransferListInput.classList.toggle("is-invalid", transferStatus.invalid);
-  }
-}
-
-function readComposerTimingState() {
-  const durationRaw = readNumberInput(composerSceneDurationInput, 24);
-  const duration = Math.max(1, Number(durationRaw.toFixed(3)));
-  if (composerSceneDurationInput) {
-    composerSceneDurationInput.value = String(duration);
-  }
-  const markers = [];
-  const markerHasInput = false;
-  const markerParse = {
-    errors: [],
-  };
-  const pauseListRaw = composerPauseListInput?.value ?? "";
-  const pauseHasInput = pauseListRaw.trim().length > 0;
-  const pauseParse = parseComposerTimingLines(pauseListRaw, (line, lineNumber) => {
-    const parts = line.split(",").map((part) => part.trim());
-    if (parts.length !== 2) {
-      return null;
-    }
-    const [rawStart, rawDuration] = parts.map((part) => Number(part));
-    if (!Number.isFinite(rawStart) || !Number.isFinite(rawDuration) || rawDuration <= 0) {
-      return null;
-    }
-    const span = clampComposerTimelineSpan(rawStart, rawStart + rawDuration, duration);
-    return {
-      id: `pause_authored_${lineNumber}`,
-      start: span.start,
-      duration: span.span,
-    };
-  });
-  const pauses = [...pauseParse.entries].sort((left, right) => left.start - right.start);
-
-  const warpListRaw = composerWarpListInput?.value ?? "";
-  const warpHasInput = warpListRaw.trim().length > 0;
-  const warpParse = parseComposerTimingLines(warpListRaw, (line, lineNumber) => {
-    const parts = line.split(",").map((part) => part.trim());
-    if (parts.length !== 3) {
-      return null;
-    }
-    const [rawStart, rawEnd, rawRate] = parts.map((part) => Number(part));
-    if (
-      !Number.isFinite(rawStart) ||
-      !Number.isFinite(rawEnd) ||
-      !Number.isFinite(rawRate) ||
-      rawRate <= 0
-    ) {
-      return null;
-    }
-    const span = clampComposerTimelineSpan(rawStart, rawEnd, duration);
-    return {
-      id: `warp_authored_${lineNumber}`,
-      start: span.start,
-      end: span.end,
-      rate: Number(rawRate.toFixed(3)),
-    };
-  });
-  const timeWarps = [...warpParse.entries].sort((left, right) => left.start - right.start);
-
-  return {
-    time: {
-      timeBase: "seconds",
-      start: 0,
-      end: duration,
-      playbackRate: 1,
-      loop: !!composerSceneLoopInput?.checked,
-    },
-    markers,
-    pauses,
-    timeWarps,
-    diagnostics: {
-      markerHasInput,
-      pauseHasInput,
-      warpHasInput,
-      markerErrorLines: markerParse.errors,
-      pauseErrorLines: pauseParse.errors,
-      warpErrorLines: warpParse.errors,
-      timingErrors: [
-        ...markerParse.errors.map((line) => ({ kind: "graphic", line })),
-        ...pauseParse.errors.map((line) => ({ kind: "pause", line })),
-        ...warpParse.errors.map((line) => ({ kind: "warp", line })),
-      ],
     },
   };
 }
