@@ -1160,26 +1160,18 @@ body {
 }
 
 .reaction-app-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
+  display: grid;
+  gap: 8px;
   padding: 18px 22px 14px;
   border-bottom: 1px solid rgba(160, 170, 220, 0.16);
   background: linear-gradient(180deg, rgba(8, 12, 24, 0.96), rgba(9, 14, 28, 0.9));
 }
 
-.reaction-app-header-copy {
-  display: grid;
-  gap: 5px;
-}
-
-.reaction-app-kicker {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(223, 231, 255, 0.72);
+.reaction-app-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
 }
 
 .reaction-app-title {
@@ -1190,9 +1182,10 @@ body {
 }
 
 .reaction-app-status {
-  min-height: 1.3em;
+  min-height: 1.35em;
   font-size: 13px;
-  color: rgba(225, 232, 255, 0.84);
+  color: rgba(225, 232, 255, 0.88);
+  line-height: 1.35;
 }
 
 .reaction-app-actions {
@@ -1232,7 +1225,7 @@ body {
   flex: 1;
   min-height: 0;
   display: flex;
-  padding: 18px 22px 22px;
+  padding: 16px 22px 22px;
 }
 
 .reaction-app-main .composer-reaction-solver {
@@ -1242,35 +1235,32 @@ body {
   display: flex;
   flex: 1;
   min-height: 0;
-  padding: 16px;
-  border: 1px solid rgba(160, 170, 220, 0.16);
-  border-radius: 18px;
-  box-shadow: 0 24px 80px rgba(2, 6, 16, 0.34);
-}
-
-.reaction-app-main .composer-reaction-solver-topbar {
-  padding-bottom: 4px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
 }
 
 .reaction-app-main .composer-reaction-solver-surface {
   flex: 1;
   min-height: 580px;
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
 }
 
 @media (max-width: 900px) {
   .reaction-app-header {
+    padding: 16px 14px 12px;
+  }
+
+  .reaction-app-title-row {
     flex-direction: column;
     align-items: stretch;
   }
 
   .reaction-app-main {
     padding: 14px;
-  }
-
-  .reaction-app-main .composer-reaction-solver {
-    padding: 12px;
   }
 
   .reaction-app-main .composer-reaction-solver-surface {

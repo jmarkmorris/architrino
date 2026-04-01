@@ -6,7 +6,7 @@ const reactionAppRuntime = createReactionAppRuntime({
   surface: document.getElementById("reaction-solver-surface"),
   reactantsColumn: document.getElementById("reaction-solver-reactants"),
   productsColumn: document.getElementById("reaction-solver-products"),
-  mapHint: document.getElementById("reaction-solver-hint"),
+  mapHint: document.getElementById("reaction-status"),
   emptyState: document.getElementById("reaction-solver-empty"),
   mapSvg: document.getElementById("reaction-solver-svg"),
   menu: document.getElementById("reaction-solver-menu"),

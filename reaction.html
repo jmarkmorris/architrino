@@ -12,30 +12,29 @@
   <body class="reaction-app-page">
     <div class="reaction-app-shell">
       <header class="reaction-app-header">
-        <div class="reaction-app-header-copy">
-          <div class="reaction-app-kicker">Standalone App</div>
+        <div class="reaction-app-title-row">
           <h1 class="reaction-app-title">Reaction Designer</h1>
-          <div id="reaction-status" class="reaction-app-status" aria-live="polite"></div>
+          <div class="reaction-app-actions">
+            <a class="reaction-app-link" href="./index.html">Navigator</a>
+            <button
+              id="reaction-clear-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Clear the reaction canvas"
+            >
+              Clear
+            </button>
+            <button
+              id="reaction-solve-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Run the reaction solver"
+            >
+              Solve
+            </button>
+          </div>
         </div>
-        <div class="reaction-app-actions">
-          <a class="reaction-app-link" href="./index.html">Navigator</a>
-          <button
-            id="reaction-clear-button"
-            class="reaction-app-action"
-            type="button"
-            aria-label="Clear the reaction canvas"
-          >
-            Clear
-          </button>
-          <button
-            id="reaction-solve-button"
-            class="reaction-app-action"
-            type="button"
-            aria-label="Run the reaction solver"
-          >
-            Solve
-          </button>
-        </div>
+        <div id="reaction-status" class="reaction-app-status" aria-live="polite"></div>
       </header>
       <main class="reaction-app-main">
         <section
@@ -44,22 +43,6 @@
           aria-hidden="false"
           tabindex="0"
         >
-          <div class="composer-reaction-solver-topbar">
-            <div class="composer-reaction-solver-topbar-copy">
-              <div class="composer-reaction-solver-kicker">Reaction App</div>
-              <div class="composer-reaction-solver-subtitle">
-                Manual hierarchy-first reaction mapping.
-              </div>
-            </div>
-            <div
-              id="reaction-solver-hint"
-              class="composer-reaction-solver-hint"
-            >
-              Use the left + for reactants, the inner-left + for dissociate, the center + for
-              Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for
-              associate, and the right + for products.
-            </div>
-          </div>
           <div
             id="reaction-solver-surface"
             class="composer-reaction-solver-surface"
