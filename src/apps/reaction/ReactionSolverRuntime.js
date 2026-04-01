@@ -1,4 +1,5 @@
 import { createComposerReactionSolverUiRuntime } from "../../runtime/ComposerReactionSolverUiRuntime.js";
+import { createReactionAnchorStateRuntime } from "./ReactionAnchorStateRuntime.js";
 import {
   buildReactionNodeKey,
   parseReactionNodeKey,
@@ -11,6 +12,7 @@ export function createReactionSolverRuntime(deps = {}) {
     buildNodeKey: buildReactionNodeKey,
     parseNodeKey: parseReactionNodeKey,
     nodeKeysConflict: reactionNodeKeysConflict,
+    createAnchorStateRuntime: createReactionAnchorStateRuntime,
   });
 
   return {

@@ -289,6 +289,7 @@ Completed work inside Phase 3 so far:
 - the standalone Reaction app now imports a Reaction-local solver wrapper from `src/apps/reaction/`;
 - the standalone Reaction export path now owns its node-key parsing locally under `src/apps/reaction/`;
 - the standalone Reaction solver path now injects its node-key semantics from `src/apps/reaction/` instead of hard-coding the legacy anchor-state helpers;
+- the standalone Reaction solver path now composes anchor-state behavior through a Reaction-local wrapper under `src/apps/reaction/`;
 - and Reaction now exposes a local `ReactionFlowDocument` export API under `src/apps/reaction/ReactionFlowExportRuntime.js`.
 
 ### Phase 4. Move Composer Into Its Own Tree

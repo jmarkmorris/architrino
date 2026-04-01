@@ -15,7 +15,7 @@ import {
 } from "./ComposerReactionBinaryInventoryRuntime.js";
 import {
   buildNodeKey as defaultBuildNodeKey,
-  createComposerReactionAnchorStateRuntime,
+  createComposerReactionAnchorStateRuntime as defaultCreateAnchorStateRuntime,
   nodeKeysConflict as defaultNodeKeysConflict,
   parseNodeKey as defaultParseNodeKey,
 } from "./ComposerReactionAnchorStateRuntime.js";
@@ -776,6 +776,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     buildNodeKey = defaultBuildNodeKey,
     parseNodeKey = defaultParseNodeKey,
     nodeKeysConflict = defaultNodeKeysConflict,
+    createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
   } = deps;
 
   const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
@@ -837,7 +838,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     resolveBinaryChoiceInventory,
   });
 
-  const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
+  const anchorStateRuntime = createAnchorStateRuntime({
     canTargetMappingRole,
     getMappings: () => state.mappings,
     getNodeContext,
@@ -847,6 +848,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getPendingSourceRole: () => state.pendingSourceRole,
     isSingleMappingAnchorRole: isSingleMappingAnchorRoleForNode,
     onRecentStateChange: () => applyHoveredRouteState(),
+    nodeKeysConflict,
     recentRouteFadeMs,
     resolvePendingTargetAvailability: (payload) =>
       mappingRulesRuntime.evaluatePendingTargetAvailability(payload),
