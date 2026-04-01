@@ -5,10 +5,10 @@ import {
   createComposerReactionParticipantMutationRuntime as defaultCreateParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
 import {
-  createComposerReactionAnchorRenderRuntime,
+  createComposerReactionAnchorRenderRuntime as defaultCreateAnchorRenderRuntime,
 } from "./ComposerReactionAnchorRenderRuntime.js";
 import {
-  createComposerReactionBinaryGlyphRuntime,
+  createComposerReactionBinaryGlyphRuntime as defaultCreateBinaryGlyphRuntime,
 } from "./ComposerReactionBinaryGlyphRuntime.js";
 import {
   createComposerReactionBinaryInventoryRuntime as defaultCreateBinaryInventoryRuntime,
@@ -42,7 +42,7 @@ import {
 } from "./ComposerReactionCompositeModeRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import {
-  createComposerReactionParticipantRenderRuntime,
+  createComposerReactionParticipantRenderRuntime as defaultCreateParticipantRenderRuntime,
   getReactionSideSlotHeaderProfile,
 } from "./ComposerReactionParticipantRenderRuntime.js";
 import {
@@ -737,6 +737,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     buildNodeKey = defaultBuildNodeKey,
     parseNodeKey = defaultParseNodeKey,
     nodeKeysConflict = defaultNodeKeysConflict,
+    createAnchorRenderRuntime = defaultCreateAnchorRenderRuntime,
+    createBinaryGlyphRuntime = defaultCreateBinaryGlyphRuntime,
+    createParticipantRenderRuntime = defaultCreateParticipantRenderRuntime,
     createBinarySelectionRuntime = defaultCreateBinarySelectionRuntime,
     createBinaryInventoryRuntime = defaultCreateBinaryInventoryRuntime,
     createParticipantMutationRuntime = defaultCreateParticipantMutationRuntime,
@@ -870,7 +873,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     markMappingsRecent,
     pruneRecentRouteState,
   } = anchorStateRuntime;
-  const anchorRenderRuntime = createComposerReactionAnchorRenderRuntime({
+  const anchorRenderRuntime = createAnchorRenderRuntime({
     findMappingsByNodeKey,
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
@@ -895,13 +898,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createInlineAnchorSlot,
     setHoveredMappingIds,
   } = anchorRenderRuntime);
-  const binaryGlyphRuntime = createComposerReactionBinaryGlyphRuntime({
+  const binaryGlyphRuntime = createBinaryGlyphRuntime({
     createSvgElement,
     normalizeParticipantPolarity,
     structureChargeTypes: STRUCTURE_CHARGE_TYPES,
   });
   const { createBinaryGlyph } = binaryGlyphRuntime;
-  const participantRenderRuntime = createComposerReactionParticipantRenderRuntime({
+  const participantRenderRuntime = createParticipantRenderRuntime({
     buildNodeKey,
     countDescendants,
     createAnchorButton,
