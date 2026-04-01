@@ -37,7 +37,7 @@ Already done:
 - boundary schemas, fixtures, and a boundary-check script are in place;
 - Reaction now owns its standalone app shell, template catalog, export seam, and much of its solver composition under `src/apps/reaction/`;
 - Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under real Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
-- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, and page-shell DOM lookup under `src/apps/composer/`.
+- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, and default draft/id scaffolding under `src/apps/composer/`.
 
 Still remaining:
 
