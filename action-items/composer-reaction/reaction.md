@@ -341,35 +341,7 @@ Next steps:
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
 
-### 9. Finish Standalone Reaction Polish After The Split
 
-Status: `pending`
 
-Goal:
 
-- complete the small standalone-Reaction follow-through items that still read as split-era leftovers.
 
-Why it matters:
-
-- small unresolved shell and labeling issues make the standalone app feel less complete than the architecture now intends.
-
-Next steps:
-
-- fix product-side `Neutron` and `Proton` title tiles so they include the `Pro` prefix consistently;
-- and keep post-split cleanup moving as part of normal Reaction delivery rather than leaving it as orphaned follow-up work.
-
-## Related Action Items
-
-- [composer-reaction](./composer-reaction.md)
-- [composer](./composer.md)
-- [solver](./solver.md)
-- [pdg-ingest](./pdg-ingest.md)
-- [app-architecture](./app-architecture.md)
-- [viewports](../viewports/viewports.md)
-
-## Related AAA Notes
-
-- [pdg-api](../../content/markdown/aaa/reactions/pdg-api.md)
-- [reaction-ledger](../../content/markdown/aaa/validation/reaction-ledger.md)
-- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../content/markdown/aaa/archie/scene-taxonomy.md)

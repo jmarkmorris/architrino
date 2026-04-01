@@ -241,11 +241,19 @@ function normalizeParticipantPolarity(polarity) {
   return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
 }
 
+function shouldPreserveLeadingPolarityLabel(templateId = "") {
+  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  return normalizedTemplateId === "proton" || normalizedTemplateId === "neutron";
+}
+
 function stripLeadingParticipantPolarity(label = "") {
   return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
 }
 
 function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") {
+  if (shouldPreserveLeadingPolarityLabel(templateId)) {
+    return String(baseLabel ?? "").trim() || "?";
+  }
   const cleanedBaseLabel = stripLeadingParticipantPolarity(baseLabel) || "?";
   if (!supportsParticipantPolarity(templateId)) {
     return cleanedBaseLabel;
@@ -465,6 +473,14 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
     return "Higgs cluster";
   }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
+}
+
+function normalizeParticipantBaseLabel(label = "", templateId = "") {
+  const trimmedLabel = String(label ?? "").trim();
+  if (shouldPreserveLeadingPolarityLabel(templateId)) {
+    return getDefaultParticipantBaseLabel(templateId, trimmedLabel);
+  }
+  return stripLeadingParticipantPolarity(trimmedLabel);
 }
 
 function getParticipantCardLabelLines(label = "", participant = null) {
@@ -989,7 +1005,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
         )
       : "";
     const participantId = `solver_participant_${state.nextParticipantId++}`;
-    const pendingBaseLabel = stripLeadingParticipantPolarity(String(label ?? "").trim());
+    const pendingBaseLabel = normalizeParticipantBaseLabel(label, resolvedTemplateId);
     const factoryStructure =
       !structure && typeof structureFactory === "function"
         ? structureFactory({
@@ -1000,8 +1016,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
           })
         : null;
     const sourceStructure = structure ?? factoryStructure;
-    const resolvedBaseLabel = stripLeadingParticipantPolarity(
-      pendingBaseLabel || inferParticipantBaseLabelFromStructure(sourceStructure?.root ?? sourceStructure)
+    const resolvedBaseLabel = normalizeParticipantBaseLabel(
+      pendingBaseLabel || inferParticipantBaseLabelFromStructure(sourceStructure?.root ?? sourceStructure),
+      resolvedTemplateId
     );
     const participant = {
       id: participantId,
