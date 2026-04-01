@@ -1,6 +1,9 @@
 import { createComposerReactionSolverUiRuntime } from "../../runtime/ComposerReactionSolverUiRuntime.js";
 import { createReactionAnchorStateRuntime } from "./ReactionAnchorStateRuntime.js";
+import { createReactionBinaryInventoryRuntime } from "./ReactionBinaryInventoryRuntime.js";
+import { createReactionBinarySelectionRuntime } from "./ReactionBinarySelectionRuntime.js";
 import { createReactionMappingRulesRuntime } from "./ReactionMappingRulesRuntime.js";
+import { createReactionParticipantMutationRuntime } from "./ReactionParticipantMutationRuntime.js";
 import {
   buildReactionNodeKey,
   parseReactionNodeKey,
@@ -13,6 +16,9 @@ export function createReactionSolverRuntime(deps = {}) {
     buildNodeKey: buildReactionNodeKey,
     parseNodeKey: parseReactionNodeKey,
     nodeKeysConflict: reactionNodeKeysConflict,
+    createBinarySelectionRuntime: createReactionBinarySelectionRuntime,
+    createBinaryInventoryRuntime: createReactionBinaryInventoryRuntime,
+    createParticipantMutationRuntime: createReactionParticipantMutationRuntime,
     createMappingRulesRuntime: createReactionMappingRulesRuntime,
     createAnchorStateRuntime: createReactionAnchorStateRuntime,
   });

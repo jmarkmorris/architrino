@@ -2,7 +2,7 @@ import {
   createComposerReactionMappingRulesRuntime as defaultCreateMappingRulesRuntime,
 } from "./ComposerReactionMappingRulesRuntime.js";
 import {
-  createComposerReactionParticipantMutationRuntime,
+  createComposerReactionParticipantMutationRuntime as defaultCreateParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
 import {
   createComposerReactionAnchorRenderRuntime,
@@ -11,7 +11,7 @@ import {
   createComposerReactionBinaryGlyphRuntime,
 } from "./ComposerReactionBinaryGlyphRuntime.js";
 import {
-  createComposerReactionBinaryInventoryRuntime,
+  createComposerReactionBinaryInventoryRuntime as defaultCreateBinaryInventoryRuntime,
 } from "./ComposerReactionBinaryInventoryRuntime.js";
 import {
   buildNodeKey as defaultBuildNodeKey,
@@ -20,7 +20,7 @@ import {
   parseNodeKey as defaultParseNodeKey,
 } from "./ComposerReactionAnchorStateRuntime.js";
 import {
-  createComposerReactionBinarySelectionRuntime,
+  createComposerReactionBinarySelectionRuntime as defaultCreateBinarySelectionRuntime,
   getBinaryPersonalityChoice,
   invertBinaryChoiceId,
 } from "./ComposerReactionBinarySelectionRuntime.js";
@@ -240,45 +240,6 @@ function isOperatorTemplateId(templateId = "") {
 function normalizeParticipantPolarity(polarity) {
   return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
 }
-
-const {
-  binaryAssignmentsMatch,
-  getAllowedBinaryChoiceIds,
-  getBinaryChoiceInventory,
-  getBinarySelectorRuleForParticipant,
-  getBinarySelectorNodes,
-  getInitialParticipantBinarySelections,
-  getParticipantBinarySelectorGroups,
-  getResolvedBinarySelectionMap,
-  findBestBinarySelectionAssignment,
-  enumerateValidBinarySelectionAssignments,
-  pickBestBinaryAssignmentCandidate,
-  resolveBinarySelectorGroup,
-} = createComposerReactionBinarySelectionRuntime({
-  supportsParticipantPolarity,
-  normalizeParticipantPolarity,
-});
-
-const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
-  getBinaryChoiceInventory,
-  getResolvedBinarySelectionMap,
-  resolveBinarySelectorGroup,
-});
-
-const {
-  buildSplitParticipantsFromChildStructures,
-  getNextParticipantGenerationTrimAction,
-  inferParticipantBaseLabelFromStructure,
-  inferParticipantPolarityFromStructure,
-  inferTemplateIdFromStructure,
-  refreshParticipantFromStructure,
-  trimParticipantGenerationStructure,
-} = createComposerReactionParticipantMutationRuntime({
-  supportsParticipantPolarity,
-  formatParticipantLabel,
-  buildParticipantHierarchy,
-  getInitialParticipantBinarySelections,
-});
 
 function stripLeadingParticipantPolarity(label = "") {
   return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
@@ -776,9 +737,51 @@ export function createComposerReactionSolverUiRuntime(deps) {
     buildNodeKey = defaultBuildNodeKey,
     parseNodeKey = defaultParseNodeKey,
     nodeKeysConflict = defaultNodeKeysConflict,
+    createBinarySelectionRuntime = defaultCreateBinarySelectionRuntime,
+    createBinaryInventoryRuntime = defaultCreateBinaryInventoryRuntime,
+    createParticipantMutationRuntime = defaultCreateParticipantMutationRuntime,
     createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
   } = deps;
+
+  const {
+    binaryAssignmentsMatch,
+    getAllowedBinaryChoiceIds,
+    getBinaryChoiceInventory,
+    getBinarySelectorRuleForParticipant,
+    getBinarySelectorNodes,
+    getInitialParticipantBinarySelections,
+    getParticipantBinarySelectorGroups,
+    getResolvedBinarySelectionMap,
+    findBestBinarySelectionAssignment,
+    enumerateValidBinarySelectionAssignments,
+    pickBestBinaryAssignmentCandidate,
+    resolveBinarySelectorGroup,
+  } = createBinarySelectionRuntime({
+    supportsParticipantPolarity,
+    normalizeParticipantPolarity,
+  });
+
+  const { resolveBinaryChoiceInventory } = createBinaryInventoryRuntime({
+    getBinaryChoiceInventory,
+    getResolvedBinarySelectionMap,
+    resolveBinarySelectorGroup,
+  });
+
+  const {
+    buildSplitParticipantsFromChildStructures,
+    getNextParticipantGenerationTrimAction,
+    inferParticipantBaseLabelFromStructure,
+    inferParticipantPolarityFromStructure,
+    inferTemplateIdFromStructure,
+    refreshParticipantFromStructure,
+    trimParticipantGenerationStructure,
+  } = createParticipantMutationRuntime({
+    supportsParticipantPolarity,
+    formatParticipantLabel,
+    buildParticipantHierarchy,
+    getInitialParticipantBinarySelections,
+  });
 
   const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
   applyReactionSolverLayoutCssVars(root);
