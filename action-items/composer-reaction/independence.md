@@ -243,7 +243,7 @@ Bad:
 
 ## Migration Plan
 
-### Phase 1. Freeze The Boundary
+### Completed: Phase 1. Freeze The Boundary
 
 Create the design boundary before moving code.
 
@@ -258,7 +258,13 @@ Acceptance criteria:
 
 - no new direct dependencies are added across the future app boundary.
 
-### Phase 2. Separate App Entrypoints
+Completed work:
+
+- versioned contract schemas now live under `src/contracts/`;
+- contract example fixtures now live under `content/contracts/examples/`;
+- a boundary-check script and tests now enforce the future app seam mechanically.
+
+### Completed: Phase 2. Separate App Entrypoints
 
 Create separate bootstraps and roots.
 
@@ -273,6 +279,12 @@ Acceptance criteria:
 
 - opening Composer does not boot Reaction code;
 - opening Reaction does not boot Composer code.
+
+Completed work:
+
+- `composer.html` and `reaction.html` now exist as separate entrypoints;
+- the main webapp now launches those app pages from the existing scene network;
+- and `reaction_designer` is no longer implemented as a Composer overlay mode.
 
 ### Phase 3. Move Reaction Into Its Own Tree
 
@@ -290,6 +302,13 @@ Acceptance criteria:
 
 - Reaction has no imports from Composer app modules.
 
+Current remaining cuts inside Phase 3:
+
+1. move Reaction-owned template and picker catalog decisions out of Composer-owned runtime catalogs;
+2. add a Reaction-local export boundary instead of treating the solver page as UI-only;
+3. continue pulling Reaction-specific composition and state ownership under `src/apps/reaction/`.
+4. remove legacy `Composer...` naming from Reaction-owned files and source text as those modules move under the Reaction app tree.
+
 ### Phase 4. Move Composer Into Its Own Tree
 
 Move all Composer-specific runtime ownership under `src/apps/composer/`.
@@ -304,6 +323,13 @@ Deliverables:
 Acceptance criteria:
 
 - Composer has no imports from Reaction app modules.
+
+Current remaining cuts inside Phase 4:
+
+1. move Composer page bootstrap off the legacy shared app shell;
+2. give Composer its own local app composition root and editor-store wiring under `src/apps/composer/`;
+3. retire the remaining legacy path where Composer boot is still mediated by the old top-level runtime.
+4. remove legacy `Reaction...` naming from Composer-owned files and source text where Composer still carries transitional mixed naming.
 
 ### Phase 5. Introduce The Handoff Contract
 
@@ -374,6 +400,14 @@ The first changes should be structural, not behavioral:
 5. then start deleting shared runtime dependencies.
 
 That order matters because it creates a stable seam before large code motion begins.
+
+## Immediate Next Cuts
+
+From the current repository state, the next useful order is:
+
+1. finish Reaction-local catalog ownership so the standalone Reaction app stops importing Composer-owned runtime catalog choices;
+2. continue moving Reaction-local composition and export ownership under `src/apps/reaction/`;
+3. then continue the same extraction for Composer under `src/apps/composer/`.
 
 ## Non-Goal
 

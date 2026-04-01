@@ -11065,6 +11065,19 @@ async function init() {
   if (!initialScene) {
     return;
   }
+  const standaloneInitialHref = resolveStandaloneAppHrefForScene(
+    initialScene.config?.sceneId,
+    globalThis.window?.location?.href
+  );
+  if (standaloneInitialHref && typeof globalThis.window?.location?.href === "string") {
+    const currentUrl = new URL(globalThis.window.location.href);
+    const targetUrl = new URL(standaloneInitialHref);
+    if (currentUrl.pathname !== targetUrl.pathname) {
+      targetUrl.hash = currentUrl.hash;
+      globalThis.window.location.assign(targetUrl.href);
+      return;
+    }
+  }
   const initialScenePath = initialScene.scenePath;
   currentLevel = buildLevel(initialScenePath);
   worldGroup.add(currentLevel.group);

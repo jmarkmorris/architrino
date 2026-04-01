@@ -1,5 +1,5 @@
-import { composerAssemblyTemplateMenuRows } from "../../runtime/ComposerCatalogRuntime.js";
 import { createComposerReactionSolverUiRuntime } from "../../runtime/ComposerReactionSolverUiRuntime.js";
+import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
 const reactionSolverStorageKey = "architrino.reaction.active";
 
@@ -36,7 +36,7 @@ export function createReactionAppRuntime(deps) {
     menu,
     clearButton,
     solveButton,
-    templateMenuRows: composerAssemblyTemplateMenuRows,
+    templateMenuRows: reactionAssemblyTemplateMenuRows,
     setStatus,
     closeExternalMenus: () => {},
     storage: globalThis.window?.sessionStorage ?? null,
