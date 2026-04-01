@@ -150,7 +150,16 @@ for (const match of source.matchAll(runtimeStartRegex)) {
     }
     const shorthandMatch = trimmed.match(/^([A-Za-z_$][\w$]*)\s*,?$/);
     const keyedMatch = trimmed.match(/^([A-Za-z_$][\w$]*)\s*:\s*([A-Za-z_$][\w$]*)\s*,?$/);
-    const referencedName = shorthandMatch ? shorthandMatch[1] : keyedMatch ? keyedMatch[2] : null;
+    const arrowWrapperMatch = trimmed.match(
+      /^([A-Za-z_$][\w$]*)\s*:\s*\([^)]*\)\s*=>\s*([A-Za-z_$][\w$]*)\(.*\)\s*,?$/
+    );
+    const referencedName = shorthandMatch
+      ? shorthandMatch[1]
+      : keyedMatch
+        ? keyedMatch[2]
+        : arrowWrapperMatch
+          ? arrowWrapperMatch[2]
+          : null;
     if (!referencedName) {
       return;
     }
@@ -163,6 +172,26 @@ for (const match of source.matchAll(runtimeStartRegex)) {
       (declaration.kind === "import" ||
         declaration.kind === "function" ||
         declaration.line < lineNumber);
+    if (arrowWrapperMatch) {
+      const wrapperDeclaration = declarations.get(referencedName);
+      const wrapperAvailable = !!wrapperDeclaration;
+      if (!wrapperAvailable) {
+        issues.push({
+          line: lineNumber,
+          name: referencedName,
+          source: trimmed,
+        });
+        return;
+      }
+      if (arrowWrapperMatch[1] === arrowWrapperMatch[2]) {
+        issues.push({
+          line: lineNumber,
+          name: referencedName,
+          source: trimmed,
+        });
+      }
+      return;
+    }
     if (!isAvailable) {
       issues.push({
         line: lineNumber,

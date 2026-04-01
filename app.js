@@ -146,14 +146,18 @@ import {
   sanitizeComposerGraphicTarget,
 } from "./src/apps/composer/ComposerAuthoringHelpersRuntime.js";
 import { createComposerAssemblyAuthoringRuntime } from "./src/apps/composer/ComposerAssemblyAuthoringRuntime.js";
+import { createComposerAssemblyInspectorRuntime } from "./src/apps/composer/ComposerAssemblyInspectorRuntime.js";
 import { createComposerAssemblyLabelRuntime } from "./src/apps/composer/ComposerAssemblyLabelRuntime.js";
 import { createComposerAuthoringStateRuntime } from "./src/apps/composer/ComposerAuthoringStateRuntime.js";
+import { createComposerCameraPathRuntime } from "./src/apps/composer/ComposerCameraPathRuntime.js";
 import { createComposerDraftStateRuntime } from "./src/apps/composer/ComposerDraftStateRuntime.js";
+import { createComposerPointerHitRuntime } from "./src/apps/composer/ComposerPointerHitRuntime.js";
 import { createComposerRenderAssetsRuntime } from "./src/apps/composer/ComposerRenderAssetsRuntime.js";
 import { createComposerStructureGeometryRuntime } from "./src/apps/composer/ComposerStructureGeometryRuntime.js";
 import { createComposerTimelineOverlayRuntime } from "./src/apps/composer/ComposerTimelineOverlayRuntime.js";
 import { createComposerDocumentWorkspaceRuntime } from "./src/apps/composer/ComposerDocumentWorkspaceRuntime.js";
 import { createComposerViewportDisplayRuntime } from "./src/apps/composer/ComposerViewportDisplayRuntime.js";
+import { createComposerViewportOverlayPillRuntime } from "./src/apps/composer/ComposerViewportOverlayPillRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -503,6 +507,154 @@ const {
   sampleComposerCurvePoints,
   getComposerAutoscaledCameraState,
 } = composerStructureGeometryRuntime;
+const composerCameraPathRuntime = createComposerCameraPathRuntime({
+  THREE,
+  clampFn: clamp,
+  formatScaleLabel,
+  vectorFromTriplet,
+  createDefaultPathPoints: createComposerDefaultPathPoints,
+  getSelectedAssembly: getComposerSelectedAssembly,
+  getSelectedAssemblyLetter: getComposerSelectedAssemblyLetter,
+  getSelectedPointIndexState: getComposerSelectedPointIndexState,
+  setSelectedPointIndexState: setComposerSelectedPointIndexState,
+  getPathState: () => composerPathState,
+  mutatePathStateState: mutateComposerPathStateState,
+  persistPathStateToSelectedAssembly: () => persistComposerPathStateToSelectedAssembly(),
+  rebuildControlPoints: () => rebuildComposerControlPoints(),
+  updatePathGeometry: () => updateComposerPathGeometry(),
+  getCameraFlightState: () => composerCameraFlightState,
+  getCameraWaypointMeshes: () => composerCameraWaypointMeshes,
+  getCamera: () => composerCamera,
+  getCanvas: () => composerCanvas,
+  getBackgroundPathMarkers: () => composerBackgroundPathMarkers,
+  getPointMeshes: () => composerPointMeshes,
+  getPointMaterial: () => composerPointMaterial,
+  getPointMaterialActive: () => composerPointMaterialActive,
+  updatePointLabelSprite: (...args) => updateComposerPointLabelSprite(...args),
+  updateCameraWaypointLabelSprite: (...args) =>
+    updateComposerCameraWaypointLabelSprite(...args),
+  getCameraOrbitState: () => composerCameraOrbitState,
+  getCameraState: () => composerCameraState,
+  updateCamera: () => updateComposerCamera(),
+  getFrameGroup: () => composerFrameGroup,
+  getSelectedCameraWaypointIndex: () => composerSelectedCameraWaypointIndex,
+  setSelectedCameraWaypointIndex: (value) => {
+    composerSelectedCameraWaypointIndex = value;
+  },
+  updateCameraFlightDisplay: () => updateComposerCameraFlightDisplay(),
+  renderJsonPreview: () => renderComposerJsonPreview(),
+  getFrameState: () => composerFrameState,
+  dom: {
+    frameScaleInput: composerFrameScaleInput,
+    frameScaleLabel: composerFrameScaleLabel,
+    cameraSpeedInput: composerCameraSpeedInput,
+    cameraSpeedLabel: composerCameraSpeedLabel,
+    cameraRadiusInput: composerCameraRadiusInput,
+    cameraRadiusLabel: composerCameraRadiusLabel,
+    cameraPoiStatus: composerCameraPoiStatus,
+    cameraWaypointCount: composerCameraWaypointCount,
+    cameraFlightToggle: composerCameraFlightToggle,
+    pathModeSelect: composerPathModeSelect,
+  },
+});
+const {
+  setComposerFrameDefaults,
+  setComposerCameraDefaults,
+  updateComposerWaypointCount,
+  updateComposerCameraWaypointMaterials,
+  updateComposerCameraPoiStatus,
+  getComposerOrbitTargetWorld,
+  updateComposerOrbitFromPosition,
+  syncComposerCameraRadiusInput,
+  applyComposerCameraRadiusInput,
+  addComposerCameraWaypoint,
+  clearComposerCameraWaypoints,
+  resetComposerPathPoints,
+  addComposerPathPoint,
+  updateComposerPointMaterials,
+  updateComposerPathMarkerScales,
+  sampleComposerCameraWaypointState,
+  getComposerCameraWaypointDisplayPosition,
+  startComposerCameraFlightPreview,
+  stopComposerCameraFlightPreview,
+} = composerCameraPathRuntime;
+const composerViewportOverlayPillRuntime = createComposerViewportOverlayPillRuntime({
+  THREE,
+  documentLike: document,
+  HTMLInputElementCtor: globalThis.HTMLInputElement,
+  clampFn: clamp,
+  samplePath: sampleComposerPath,
+  formatTimeLabel: formatComposerTimeLabel,
+  getPlaybackTimeForMotionProgress: (...args) =>
+    getComposerPlaybackTimeForMotionProgress(...args),
+  getViewportOverlays: () => composerViewportOverlays,
+  getCanvasWrap: () => composerCanvasWrap,
+  getCamera: () => composerCamera,
+  getFrameGroup: () => composerFrameGroup,
+  getOverlay: () => composerOverlay,
+  getCameraFlightState: () => composerCameraFlightState,
+  getViewportModeState: () => composerViewportModeState,
+  getSelectedPointIndexState: getComposerSelectedPointIndexState,
+  setSelectedPointIndexState: setComposerSelectedPointIndexState,
+  getPathState: () => composerPathState,
+  getPointMeshes: () => composerPointMeshes,
+  updatePointMaterials: (...args) => updateComposerPointMaterials(...args),
+  updateCameraPoiStatus: () => updateComposerCameraPoiStatus(),
+  updatePathPointAtState: updateComposerPathPointAtState,
+  updatePathGeometry: () => updateComposerPathGeometry(),
+  renderJsonPreview: () => renderComposerJsonPreview(),
+  getCurrentDocument: () => composerCurrentDocument,
+});
+const {
+  clearComposerSelectedPoint,
+  hideComposerPathPointInfoPill,
+  updateComposerPathPointInfoPill,
+} = composerViewportOverlayPillRuntime;
+const composerPointerHitRuntime = createComposerPointerHitRuntime({
+  getCanvas: () => composerCanvas,
+});
+const {
+  resolveComposerIndexedHit,
+  getComposerPointerNdc,
+  resolveComposerAssemblyHit,
+  resolveComposerMemberHandleHit,
+  resolveComposerSubassemblyHandleHit,
+  resolveComposerGraphicOverlayHit,
+  resolveComposerPersonalityHandleHit,
+  resolveComposerAssemblyIdHit,
+  findComposerShellSurfaceHit,
+  findComposerCenterMarkerIntersection,
+  shouldPreferComposerCenterMarker,
+} = composerPointerHitRuntime;
+const composerAssemblyInspectorRuntime = createComposerAssemblyInspectorRuntime({
+  documentLike: document,
+  getAssemblyListElement: () => composerAssemblyList,
+  getAssemblyDetailElement: () => composerAssemblyDetail,
+  validateSelectedAssemblyId: validateComposerSelectedAssemblyId,
+  ensureAssemblyDrafts: ensureComposerAssemblyDrafts,
+  getAssemblyDraftsState: getComposerAssemblyDraftsState,
+  getSelectedAssemblyIdState: getComposerSelectedAssemblyIdState,
+  getSelectedAssembly: getComposerSelectedAssembly,
+  setSelectedAssembly: (...args) => setComposerSelectedAssembly(...args),
+  renderJsonPreview: () => renderComposerJsonPreview(),
+  openAssemblyPropertiesMenuAt: (...args) => openComposerAssemblyPropertiesMenuAt(...args),
+  mutatePathStateState: mutateComposerPathStateState,
+  setSelectedPointIndexState: setComposerSelectedPointIndexState,
+  rebuildControlPoints: () => rebuildComposerControlPoints(),
+  updatePathGeometry: () => updateComposerPathGeometry(),
+  loadPathStateFromSelectedAssembly: () => loadComposerPathStateFromSelectedAssembly(),
+  buildAssemblyStructure: buildComposerAssemblyStructure,
+  summarizeAssemblyStructure: summarizeComposerAssemblyStructure,
+  formatAssemblyStructureSummary: formatComposerAssemblyStructureSummary,
+  getAssemblyDraftById: getComposerAssemblyDraftById,
+  showHoverTooltip,
+  hideHoverTooltip,
+});
+const {
+  renderComposerAssemblyEditor,
+  updateComposerAssemblyHoverTooltip,
+  clearComposerAssemblyHoverTooltipState,
+} = composerAssemblyInspectorRuntime;
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -842,21 +994,6 @@ function disposeComposerMarkerHandle(mesh, labelKey = "pointLabelSprite") {
   }
 }
 
-function resolveComposerIndexedHit(object, key) {
-  let current = object;
-  while (current) {
-    const value = current.userData?.[key];
-    if (Number.isInteger(value)) {
-      return {
-        object: current,
-        index: value,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
 function formatScaleLabel(value) {
   const normalized = Number.isFinite(value) ? value : 1;
   if (normalized >= 1000 || normalized <= 0.001) {
@@ -905,403 +1042,6 @@ function formatComposerNumericInputValue(value, step = null) {
   return normalized.toFixed(precision);
 }
 
-function setComposerFrameDefaults() {
-  if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
-  composerFrameState.rotation.set(0, 0, 0);
-  composerFrameState.scale = 1;
-  if (composerFrameScaleLabel) {
-    composerFrameScaleLabel.textContent = formatScaleLabel(1);
-  }
-}
-
-function setComposerCameraDefaults() {
-  composerCameraState.position.set(0, 2.6, 6.5);
-  composerCameraState.speed = 1;
-  if (composerCameraSpeedInput) composerCameraSpeedInput.value = "0";
-  if (composerCameraSpeedLabel) {
-    composerCameraSpeedLabel.textContent = formatScaleLabel(1);
-  }
-  updateComposerOrbitFromPosition(composerCameraState.position);
-  syncComposerCameraRadiusInput();
-}
-
-function updateComposerWaypointCount() {
-  if (composerCameraWaypointCount) {
-    composerCameraWaypointCount.textContent = `Observer points: ${composerCameraFlightState.waypoints.length}`;
-  }
-  if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.disabled =
-      composerCameraFlightState.waypoints.length < 2;
-  }
-}
-
-function updateComposerCameraWaypointMaterials(activeIndex = null) {
-  composerCameraWaypointMeshes.forEach((mesh, index) => {
-    if (!mesh?.material) {
-      return;
-    }
-    const isActive = index === activeIndex;
-    mesh.material.opacity = isActive ? 1 : 0.95;
-    mesh.material.color.setHex(isActive ? 0xcfffe8 : 0x7fe7cb);
-    const labelSprite = mesh.userData?.labelSprite;
-    if (labelSprite) {
-      updateComposerCameraWaypointLabelSprite(labelSprite, "🎥", isActive);
-    }
-  });
-}
-
-function updateComposerCameraPoiStatus() {
-  if (!composerCameraPoiStatus) {
-    return;
-  }
-  const selectedPointIndex = getComposerSelectedPointIndexState();
-  const selectedPoint =
-    selectedPointIndex != null ? composerPathState.points[selectedPointIndex] : null;
-  if (composerCameraFlightState.poiMode === "selected") {
-    if (selectedPoint) {
-      composerCameraPoiStatus.textContent = `Selected point: ${selectedPointIndex + 1} (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
-      composerCameraPoiStatus.classList.remove("is-warning");
-    } else {
-      composerCameraPoiStatus.textContent = "Selected point: none. Click a path point in the canvas to target it.";
-      composerCameraPoiStatus.classList.add("is-warning");
-    }
-    return;
-  }
-  if (selectedPoint) {
-    composerCameraPoiStatus.textContent = `Observer target: local origin. Selected point ${selectedPointIndex + 1} is available if you switch modes.`;
-  } else {
-    composerCameraPoiStatus.textContent = "Observer target: local origin.";
-  }
-  composerCameraPoiStatus.classList.remove("is-warning");
-}
-
-function getComposerOrbitTargetWorld() {
-  if (!composerFrameGroup) {
-    return new THREE.Vector3(0, 0, 0);
-  }
-  return composerFrameGroup.localToWorld(new THREE.Vector3(0, 0, 0));
-}
-
-function updateComposerOrbitFromPosition(position) {
-  const target = getComposerOrbitTargetWorld();
-  const offset = position.clone().sub(target);
-  const radius = Math.max(composerCameraOrbitState.minDistance, offset.length());
-  const theta = Math.atan2(offset.x, offset.z);
-  const phi = Math.acos(clamp(offset.y / radius, -1, 1));
-  composerCameraOrbitState.radius = radius;
-  composerCameraOrbitState.theta = theta;
-  composerCameraOrbitState.phi = phi;
-}
-
-function syncComposerCameraRadiusInput() {
-  if (!composerCameraRadiusInput) {
-    return;
-  }
-  const radius = Math.max(composerCameraOrbitState.minDistance, composerCameraOrbitState.radius);
-  const exp = Math.log10(radius);
-  composerCameraRadiusInput.value = exp.toFixed(2);
-  if (composerCameraRadiusLabel) {
-    composerCameraRadiusLabel.textContent = formatScaleLabel(radius);
-  }
-}
-
-function applyComposerCameraRadiusInput() {
-  if (!composerCameraRadiusInput) {
-    return;
-  }
-  const exp = readNumberInput(composerCameraRadiusInput, Math.log10(composerCameraOrbitState.radius || 1));
-  composerCameraOrbitState.radius = Math.pow(10, exp);
-  if (composerCameraRadiusLabel) {
-    composerCameraRadiusLabel.textContent = formatScaleLabel(composerCameraOrbitState.radius);
-  }
-  updateComposerCamera();
-}
-
-function getComposerPoiLocal() {
-  const selectedPointIndex = getComposerSelectedPointIndexState();
-  if (
-    composerCameraFlightState.poiMode === "selected" &&
-    selectedPointIndex != null &&
-    composerPathState.points[selectedPointIndex]
-  ) {
-    return composerPathState.points[selectedPointIndex].clone();
-  }
-  return new THREE.Vector3(0, 0, 0);
-}
-
-function addComposerCameraWaypoint(position = null) {
-  if (!composerFrameGroup) {
-    return;
-  }
-  const localPos = Array.isArray(position)
-    ? vectorFromTriplet(position)
-    : position instanceof THREE.Vector3
-      ? position.clone()
-      : composerCamera
-        ? composerFrameGroup.worldToLocal(composerCamera.position.clone())
-        : new THREE.Vector3();
-  const localLookAt = getComposerPoiLocal();
-  composerCameraFlightState.waypoints.push({
-    position: localPos,
-    lookAt: localLookAt,
-  });
-  composerSelectedCameraWaypointIndex = composerCameraFlightState.waypoints.length - 1;
-  updateComposerCameraFlightDisplay();
-  updateComposerWaypointCount();
-  renderComposerJsonPreview();
-}
-
-function clearComposerCameraWaypoints() {
-  composerCameraFlightState.waypoints = [];
-  composerSelectedCameraWaypointIndex = null;
-  updateComposerCameraFlightDisplay();
-  updateComposerWaypointCount();
-  stopComposerCameraFlightPreview();
-  renderComposerJsonPreview();
-}
-
-function resetComposerPathPoints() {
-  const selectedAssembly = getComposerSelectedAssembly();
-  if (!selectedAssembly) {
-    mutateComposerPathStateState((pathState) => {
-      pathState.points = [];
-      pathState.ownerAssemblyId = null;
-    });
-    setComposerSelectedPointIndexState(null);
-    rebuildComposerControlPoints();
-    updateComposerPathGeometry();
-    return;
-  }
-  const anchor = Array.isArray(selectedAssembly?.position) ? selectedAssembly.position : [0, 0, 0];
-  mutateComposerPathStateState((pathState) => {
-    pathState.points = createComposerDefaultPathPoints(anchor).map((point) => vectorFromTriplet(point));
-    pathState.interpolate = composerPathModeSelect?.value || "spline";
-    pathState.closed = false;
-  });
-  setComposerSelectedPointIndexState(null);
-  updateComposerCameraPoiStatus();
-  persistComposerPathStateToSelectedAssembly();
-  rebuildComposerControlPoints();
-  updateComposerPathGeometry();
-}
-
-function addComposerPathPoint(position = null, options = {}) {
-  const selectedAssembly = getComposerSelectedAssembly();
-  if (!selectedAssembly) {
-    return;
-  }
-  const nextPoint = Array.isArray(position)
-    ? vectorFromTriplet(position)
-    : position instanceof THREE.Vector3
-      ? position.clone()
-      : new THREE.Vector3();
-  const insertAfterIndex = Number.isInteger(options.insertAfterIndex) ? options.insertAfterIndex : null;
-  mutateComposerPathStateState((pathState) => {
-    if (!pathState.points.length) {
-      pathState.points = [nextPoint];
-      return;
-    }
-    if (insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= pathState.points.length) {
-      pathState.points.push(nextPoint);
-    } else {
-      pathState.points.splice(insertAfterIndex + 1, 0, nextPoint);
-    }
-  });
-  setComposerSelectedPointIndexState(
-    insertAfterIndex == null || insertAfterIndex < 0 || insertAfterIndex >= composerPathState.points.length - 1
-      ? composerPathState.points.length - 1
-      : insertAfterIndex + 1
-  );
-  persistComposerPathStateToSelectedAssembly();
-  rebuildComposerControlPoints();
-  updateComposerPathGeometry();
-}
-
-function updateComposerPointMaterials(activeIndex = null) {
-  const pathLabelPrefix = getComposerSelectedAssemblyLetter();
-  const selectedPointIndex = getComposerSelectedPointIndexState();
-  composerPointMeshes.forEach((mesh, index) => {
-    const isActive = index === activeIndex || index === selectedPointIndex;
-    mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
-    const labelSprite = mesh.userData.pointLabelSprite;
-    if (labelSprite) {
-      updateComposerPointLabelSprite(labelSprite, pathLabelPrefix, isActive);
-    }
-  });
-  updateComposerCameraPoiStatus();
-}
-
-function updateComposerPathMarkerScales() {
-  if (!composerCamera || !composerCanvas) {
-    return;
-  }
-  const viewportHeight = Math.max(1, composerCanvas.clientHeight || composerCanvas.height || 1);
-  const fovRadians = THREE.MathUtils.degToRad(Number(composerCamera.fov ?? 50) || 50);
-  const pointRadius = 0.085;
-  const targetPixelRadius = 12;
-  const markers = [
-    ...composerBackgroundPathMarkers,
-    ...composerPointMeshes,
-  ];
-  markers.forEach((marker) => {
-    if (!marker?.parent) {
-      return;
-    }
-    const worldPosition = marker.getWorldPosition(new THREE.Vector3());
-    const distance = Math.max(0.001, composerCamera.position.distanceTo(worldPosition));
-    const worldUnitsPerPixel = (2 * Math.tan(fovRadians * 0.5) * distance) / viewportHeight;
-    const scale = Math.max(0.25, (targetPixelRadius * worldUnitsPerPixel) / pointRadius);
-    marker.scale.setScalar(scale);
-  });
-}
-
-function renderComposerAssemblyEditor() {
-  validateComposerSelectedAssemblyId();
-  if (!composerAssemblyList || !composerAssemblyDetail) {
-    return;
-  }
-  ensureComposerAssemblyDrafts();
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  const selectedAssemblyId = getComposerSelectedAssemblyIdState();
-  composerAssemblyList.innerHTML = "";
-  composerAssemblyDetail.innerHTML = "";
-
-  assemblyDrafts.forEach((assembly, index) => {
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "composer-assembly-chip";
-    if (assembly.id === selectedAssemblyId) {
-      chip.classList.add("is-active");
-    }
-
-    const number = document.createElement("span");
-    number.className = "composer-assembly-chip-number";
-    number.textContent = String(index + 1);
-
-    const name = document.createElement("span");
-    name.className = "composer-assembly-chip-name";
-    name.textContent = assembly.name.trim() || assembly.id || `Assembly ${index + 1}`;
-
-    chip.appendChild(number);
-    chip.appendChild(name);
-
-    chip.addEventListener("click", () => {
-      setComposerSelectedAssembly(assembly.id);
-      renderComposerAssemblyEditor();
-      renderComposerJsonPreview();
-    });
-    chip.addEventListener("contextmenu", (event) => {
-      event.preventDefault();
-      setComposerSelectedAssembly(assembly.id);
-      renderComposerAssemblyEditor();
-      renderComposerJsonPreview();
-      openComposerAssemblyPropertiesMenuAt(event.clientX, event.clientY, assembly.id);
-    });
-    composerAssemblyList.appendChild(chip);
-  });
-
-  if (!assemblyDrafts.length) {
-    const detailCard = document.createElement("div");
-    detailCard.className = "composer-assembly-advanced";
-    const body = document.createElement("div");
-    body.className = "composer-assembly-advanced-body";
-    const title = document.createElement("div");
-    title.className = "composer-assembly-advanced-meta";
-    title.textContent = "Blank Scene";
-    body.appendChild(title);
-    const hint = document.createElement("div");
-    hint.className = "composer-field-note";
-    hint.textContent = "Use right-click on the canvas to add assemblies.";
-    body.appendChild(hint);
-    const panelHint = document.createElement("div");
-    panelHint.className = "composer-field-note";
-    panelHint.textContent =
-      "The scene starts empty. Add assemblies from the canvas instead of relying on a starter object.";
-    body.appendChild(panelHint);
-    detailCard.appendChild(body);
-    composerAssemblyDetail.appendChild(detailCard);
-    mutateComposerPathStateState((pathState) => {
-      pathState.ownerAssemblyId = null;
-      pathState.points = [];
-    });
-    setComposerSelectedPointIndexState(null);
-    rebuildComposerControlPoints();
-    updateComposerPathGeometry();
-    return;
-  }
-
-  const selectedIndex = assemblyDrafts.findIndex((assembly) => assembly?.id === selectedAssemblyId);
-  const selectedAssembly = selectedIndex >= 0 ? assemblyDrafts[selectedIndex] : null;
-  if (!selectedAssembly) {
-    return;
-  }
-  loadComposerPathStateFromSelectedAssembly();
-  const detailCard = document.createElement("div");
-  detailCard.className = "composer-assembly-advanced";
-
-  const body = document.createElement("div");
-  body.className = "composer-assembly-advanced-body";
-
-  const meta = document.createElement("div");
-  meta.className = "composer-assembly-advanced-meta";
-  meta.textContent = `${selectedAssembly.name.trim() || selectedAssembly.id} - ${selectedAssembly.id}`;
-  body.appendChild(meta);
-
-  const memberCount = Array.isArray(selectedAssembly?.members) ? selectedAssembly.members.length : 0;
-  const structureSummary = document.createElement("div");
-  structureSummary.className = "composer-assembly-summary";
-  const subassemblyCount = Array.isArray(selectedAssembly.subassemblies)
-    ? selectedAssembly.subassemblies.length
-    : 0;
-  structureSummary.textContent = `${memberCount} member${
-    memberCount === 1 ? "" : "s"
-  } • ${subassemblyCount} subassembl${subassemblyCount === 1 ? "y" : "ies"}`;
-  body.appendChild(structureSummary);
-
-  try {
-    const canonicalStructure = buildComposerAssemblyStructure(selectedAssembly);
-    const canonicalSummary = summarizeComposerAssemblyStructure(
-      canonicalStructure.root,
-      canonicalStructure.validation
-    );
-
-    const canonicalSummaryLabel = document.createElement("div");
-    canonicalSummaryLabel.className = "composer-assembly-summary";
-    canonicalSummaryLabel.textContent = `Canonical bridge: ${formatComposerAssemblyStructureSummary(canonicalSummary)}`;
-    body.appendChild(canonicalSummaryLabel);
-
-    const canonicalValidationNote = document.createElement("div");
-    canonicalValidationNote.className = "composer-field-note";
-    canonicalValidationNote.textContent = canonicalSummary.valid
-      ? "Canonical structure bridge is valid for this assembly."
-      : `Canonical structure bridge has ${canonicalSummary.errorCount} validation issue${
-          canonicalSummary.errorCount === 1 ? "" : "s"
-        }. This is read-only for now and does not affect canvas editing.`;
-    body.appendChild(canonicalValidationNote);
-  } catch (_error) {
-    const canonicalValidationNote = document.createElement("div");
-    canonicalValidationNote.className = "composer-field-note";
-    canonicalValidationNote.textContent =
-      "Canonical structure bridge is temporarily unavailable for this assembly. Canvas editing is unaffected.";
-    body.appendChild(canonicalValidationNote);
-  }
-
-  const hint = document.createElement("div");
-  hint.className = "composer-field-note";
-  hint.textContent =
-    "Use right-click on the canvas to add assemblies. Once one exists, drag the center to move it, drag member dots to place members, drag subassembly halos to place groups, and right-click handles for actions.";
-  body.appendChild(hint);
-
-  const panelHint = document.createElement("div");
-  panelHint.className = "composer-field-note";
-  panelHint.textContent =
-    "This panel stays scene-level and lightweight. Assembly structure now lives on the canvas and the assembly center-handle menu.";
-  body.appendChild(panelHint);
-
-  detailCard.appendChild(body);
-  composerAssemblyDetail.appendChild(detailCard);
-}
-
 const composerAssemblyAuthoringRuntime = createComposerAssemblyAuthoringRuntime({
   getComposerAssemblyDraftById,
   updateComposerAssemblyDraftByIdState,
@@ -1329,68 +1069,6 @@ const {
   setComposerSubassemblyPosition,
   splitComposerAssemblyGroup,
 } = composerAssemblyAuthoringRuntime;
-
-function getComposerAssemblyCanonicalBridgeSummary(assembly = null) {
-  if (!assembly?.id) {
-    return null;
-  }
-  try {
-    const canonicalStructure = buildComposerAssemblyStructure(assembly);
-    const canonicalSummary = summarizeComposerAssemblyStructure(
-      canonicalStructure.root,
-      canonicalStructure.validation
-    );
-    return canonicalSummary;
-  } catch (_error) {
-    return null;
-  }
-}
-
-function createComposerAssemblyStructureTooltipContent(assembly = null) {
-  if (!assembly?.id) {
-    return null;
-  }
-  const canonicalSummary = getComposerAssemblyCanonicalBridgeSummary(assembly);
-  if (!canonicalSummary) {
-    return null;
-  }
-  const content = document.createElement("div");
-  const title = document.createElement("div");
-  title.textContent = assembly.name?.trim() || assembly.id;
-  content.appendChild(title);
-
-  const summary = document.createElement("div");
-  summary.textContent = formatComposerAssemblyStructureSummary(canonicalSummary);
-  content.appendChild(summary);
-
-  const validation = document.createElement("div");
-  validation.textContent = canonicalSummary.valid
-    ? "Canonical bridge valid"
-    : `${canonicalSummary.errorCount} validation issue${
-        canonicalSummary.errorCount === 1 ? "" : "s"
-      }`;
-  content.appendChild(validation);
-  return content;
-}
-
-function updateComposerAssemblyHoverTooltip(assemblyId, event) {
-  if (!assemblyId || !event) {
-    composerHoveredStructureTooltipAssemblyId = "";
-    composerHoveredStructureTooltipContent = null;
-    hideHoverTooltip();
-    return;
-  }
-  if (composerHoveredStructureTooltipAssemblyId !== assemblyId || !composerHoveredStructureTooltipContent) {
-    const assembly = getComposerAssemblyDraftById(assemblyId);
-    composerHoveredStructureTooltipContent = createComposerAssemblyStructureTooltipContent(assembly);
-    composerHoveredStructureTooltipAssemblyId = composerHoveredStructureTooltipContent ? assemblyId : "";
-  }
-  if (!composerHoveredStructureTooltipContent) {
-    hideHoverTooltip();
-    return;
-  }
-  showHoverTooltip(composerHoveredStructureTooltipContent, event.clientX, event.clientY);
-}
 
 function getComposerCanvasLocalPointFromEvent(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster || !composerFrameGroup) {
@@ -2512,43 +2190,6 @@ function clearComposerViewportVisuals() {
     composerDocumentCameraLookLine.material?.dispose?.();
     composerDocumentCameraLookLine = null;
   }
-}
-
-function sampleComposerCameraWaypointState(waypoints, normalizedT) {
-  const source = Array.isArray(waypoints) ? waypoints : [];
-  if (!source.length) {
-    return {
-      position: new THREE.Vector3(),
-      lookAt: new THREE.Vector3(),
-    };
-  }
-  if (source.length === 1) {
-    return {
-      position: vectorFromTriplet(source[0]?.position),
-      lookAt: vectorFromTriplet(source[0]?.lookAt),
-    };
-  }
-  const positions = source.map((waypoint) => vectorFromTriplet(waypoint?.position));
-  const lookAts = source.map((waypoint) => vectorFromTriplet(waypoint?.lookAt));
-  const curve = new THREE.CatmullRomCurve3(positions, false, "catmullrom", 0.5);
-  const lookCurve = new THREE.CatmullRomCurve3(lookAts, false, "catmullrom", 0.5);
-  const t = clamp(normalizedT, 0, 1);
-  return {
-    position: curve.getPointAt(t),
-    lookAt: lookCurve.getPointAt(t),
-  };
-}
-
-function getComposerCameraWaypointDisplayPosition(waypoint) {
-  const position = vectorFromTriplet(waypoint?.position);
-  const lookAt = vectorFromTriplet(waypoint?.lookAt);
-  const towardTarget = lookAt.clone().sub(position);
-  const distance = towardTarget.length();
-  if (distance <= 0.001) {
-    return position;
-  }
-  const shiftDistance = Math.min(0.6, distance * 0.18);
-  return position.clone().add(towardTarget.normalize().multiplyScalar(shiftDistance));
 }
 
 function getComposerDocumentCameraStateAtTime(documentData, timeSeconds) {
@@ -4841,40 +4482,6 @@ function updateComposerCameraFlightDisplay() {
   applyComposerViewportDisplayState();
 }
 
-function startComposerCameraFlightPreview() {
-  if (composerCameraFlightState.preview) {
-    return;
-  }
-  if (composerCameraFlightState.waypoints.length < 2) {
-    return;
-  }
-  composerCameraFlightState.preview = true;
-  if (composerCamera) {
-    composerCameraFlightState.savedPosition.copy(composerCamera.position);
-  }
-  if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Stop Observer Path";
-    composerCameraFlightToggle.classList.add("is-active");
-  }
-}
-
-function stopComposerCameraFlightPreview() {
-  if (!composerCameraFlightState.preview) {
-    return;
-  }
-  composerCameraFlightState.preview = false;
-  if (composerCamera) {
-    composerCamera.position.copy(composerCameraFlightState.savedPosition);
-    updateComposerOrbitFromPosition(composerCamera.position);
-    syncComposerCameraRadiusInput();
-    updateComposerCamera();
-  }
-  if (composerCameraFlightToggle) {
-    composerCameraFlightToggle.textContent = "Preview Observer Path";
-    composerCameraFlightToggle.classList.remove("is-active");
-  }
-}
-
 function renderComposerCanvas() {
   if (!composerRenderer || !composerScene || !composerCamera || !composerOverlay) {
     return;
@@ -4893,145 +4500,6 @@ function renderComposerCanvas() {
   updateComposerPathPointInfoPill();
   updateComposerTimelinePlayhead(playheadSeconds, composerCurrentDocument);
   composerRenderer.render(composerScene, composerCamera);
-}
-
-function getComposerPointerNdc(event) {
-  const rect = composerCanvas.getBoundingClientRect();
-  const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-  const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-  return { x, y };
-}
-
-function resolveComposerAssemblyHit(object) {
-  let current = object;
-  while (current) {
-    const assemblyIndex = current.userData?.assemblyIndex;
-    const assemblyId = current.userData?.assemblyId;
-    if (Number.isInteger(assemblyIndex) && assemblyId) {
-      return {
-        assemblyIndex,
-        assemblyId,
-        draggable: current.userData?.draggable !== false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function resolveComposerMemberHandleHit(object) {
-  let current = object;
-  while (current) {
-    const assemblyId = current.userData?.assemblyId;
-    const memberId = current.userData?.memberId;
-    if (assemblyId && memberId) {
-      return {
-        assemblyId,
-        memberId,
-        subassemblyId: current.userData?.subassemblyId ?? "",
-        draggable: current.userData?.draggable !== false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function resolveComposerSubassemblyHandleHit(object) {
-  let current = object;
-  while (current) {
-    const assemblyId = current.userData?.assemblyId;
-    const subassemblyId = current.userData?.subassemblyId;
-    if (assemblyId && subassemblyId) {
-      return {
-        assemblyId,
-        subassemblyId,
-        draggable: current.userData?.draggable !== false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function resolveComposerGraphicOverlayHit(object) {
-  let current = object;
-  while (current) {
-    const overlayId = current.userData?.overlayId;
-    if (overlayId && current.userData?.isComposerGraphicHandle) {
-      return {
-        overlayId,
-        draggable: current.userData?.draggable !== false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function resolveComposerPersonalityHandleHit(object) {
-  let current = object;
-  while (current) {
-    const assemblyId = current.userData?.assemblyId;
-    const memberId = current.userData?.memberId;
-    if (assemblyId && memberId && current.userData?.isComposerPersonalityHandle) {
-      return {
-        assemblyId,
-        memberId,
-        draggable: false,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function resolveComposerAssemblyIdHit(object) {
-  let current = object;
-  while (current) {
-    const assemblyId = current.userData?.assemblyId;
-    if (assemblyId) {
-      return {
-        assemblyId,
-        object: current,
-      };
-    }
-    current = current.parent ?? null;
-  }
-  return null;
-}
-
-function findComposerShellSurfaceHit(hits = []) {
-  return (Array.isArray(hits) ? hits : []).find(
-    (hit) => hit?.object && !hit.object.userData?.isComposerShellGuide
-  ) ?? null;
-}
-
-function findComposerCenterMarkerIntersection(hits = []) {
-  for (const hit of Array.isArray(hits) ? hits : []) {
-    const assemblyHit = resolveComposerAssemblyHit(hit?.object);
-    if (assemblyHit?.object?.userData?.isAssemblyCenterMarker) {
-      return {
-        ...assemblyHit,
-        distance: Number(hit.distance ?? 0),
-      };
-    }
-  }
-  return null;
-}
-
-function shouldPreferComposerCenterMarker(pointHits = [], assemblyHits = []) {
-  const centerHit = findComposerCenterMarkerIntersection(assemblyHits);
-  if (!centerHit) {
-    return null;
-  }
-  const nearestPointDistance = Number(pointHits?.[0]?.distance ?? Number.POSITIVE_INFINITY);
-  return centerHit.distance <= nearestPointDistance + 0.12 ? centerHit : null;
 }
 
 function startComposerAssemblyDrag(assemblyId, assemblyIndex, worldPoint, event) {
@@ -5525,8 +4993,7 @@ function onComposerPointerMove(event) {
     return;
   }
   hideHoverTooltip();
-  composerHoveredStructureTooltipAssemblyId = "";
-  composerHoveredStructureTooltipContent = null;
+  clearComposerAssemblyHoverTooltipState();
   const dx = event.clientX - composerDragState.startX;
   const dy = event.clientY - composerDragState.startY;
   if (composerDragState.mode === "point") {
@@ -5715,8 +5182,7 @@ function onComposerPointerMove(event) {
 
 function onComposerPointerUp(event) {
   hideHoverTooltip();
-  composerHoveredStructureTooltipAssemblyId = "";
-  composerHoveredStructureTooltipContent = null;
+  clearComposerAssemblyHoverTooltipState();
   if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
     updateComposerPointMaterials();
   }
@@ -6069,265 +5535,6 @@ let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentViewportFramingState = null;
-let composerPathPointInfoPill = null;
-
-function formatComposerCoordinatePillValue(value) {
-  const normalized = Number(value);
-  if (!Number.isFinite(normalized)) {
-    return "0";
-  }
-  const fixed = normalized.toFixed(3);
-  return fixed.replace(/\.?0+$/, "");
-}
-
-function syncComposerPathPointInfoPillCoordinateInputs(point, { force = false } = {}) {
-  if (!composerPathPointInfoPill?.inputs || !(point instanceof THREE.Vector3)) {
-    return;
-  }
-  ["x", "y", "z"].forEach((axis) => {
-    const input = composerPathPointInfoPill.inputs[axis];
-    if (!(input instanceof HTMLInputElement)) {
-      return;
-    }
-    if (!force && document.activeElement === input) {
-      return;
-    }
-    input.value = formatComposerCoordinatePillValue(point[axis]);
-  });
-}
-
-function commitComposerPathPointCoordinateInput(axis, rawValue) {
-  if (!["x", "y", "z"].includes(axis)) {
-    return;
-  }
-  const pointIndex = getComposerSelectedPointIndexState();
-  if (
-    !Number.isInteger(pointIndex) ||
-    pointIndex < 0 ||
-    pointIndex >= composerPathState.points.length
-  ) {
-    return;
-  }
-  const nextValue = Number(rawValue);
-  if (!Number.isFinite(nextValue)) {
-    return;
-  }
-  updateComposerPathPointAtState(pointIndex, (point) => {
-    point[axis] = nextValue;
-  });
-  if (composerPointMeshes[pointIndex]) {
-    composerPointMeshes[pointIndex].position.copy(composerPathState.points[pointIndex]);
-  }
-  updateComposerPathGeometry();
-  renderComposerJsonPreview();
-  updateComposerPathPointInfoPill();
-}
-
-function clearComposerSelectedPoint(options = {}) {
-  const { hidePill = true } = options;
-  const selectedPointIndex = getComposerSelectedPointIndexState();
-  if (selectedPointIndex != null) {
-    setComposerSelectedPointIndexState(null);
-    updateComposerPointMaterials();
-    updateComposerCameraPoiStatus();
-  }
-  if (hidePill) {
-    hideComposerPathPointInfoPill();
-  }
-}
-
-function ensureComposerPathPointInfoPill() {
-  if (!composerViewportOverlays) {
-    return null;
-  }
-  if (composerPathPointInfoPill?.element?.isConnected) {
-    return composerPathPointInfoPill;
-  }
-  const element = document.createElement("div");
-  element.className = "composer-path-point-pill";
-  element.setAttribute("aria-hidden", "true");
-
-  const grid = document.createElement("div");
-  grid.className = "composer-path-point-pill-grid";
-  element.appendChild(grid);
-
-  const inputs = {};
-  let timeValue = null;
-  ["t", "x", "y", "z"].forEach((key) => {
-    const field = document.createElement("div");
-    field.className = "composer-path-point-pill-field";
-    const label = document.createElement("div");
-    label.className = "composer-path-point-pill-label";
-    label.textContent = key.toUpperCase();
-    let value = null;
-    if (key === "t") {
-      value = document.createElement("div");
-      value.className = "composer-path-point-pill-value";
-      value.textContent = "0";
-      timeValue = value;
-    } else {
-      value = document.createElement("input");
-      value.type = "number";
-      value.step = "0.001";
-      value.inputMode = "decimal";
-      value.className = "composer-path-point-pill-input";
-      value.setAttribute("aria-label", `${key.toUpperCase()} coordinate`);
-      value.value = "0";
-      value.addEventListener("pointerdown", (event) => {
-        event.stopPropagation();
-      });
-      value.addEventListener("click", (event) => {
-        event.stopPropagation();
-      });
-      value.addEventListener("keydown", (event) => {
-        event.stopPropagation();
-        if (event.key === "Enter") {
-          value.blur();
-        }
-      });
-      value.addEventListener("input", () => {
-        commitComposerPathPointCoordinateInput(key, value.value);
-      });
-      value.addEventListener("blur", () => {
-        const pointIndex = getComposerSelectedPointIndexState();
-        const point =
-          Number.isInteger(pointIndex) && pointIndex >= 0
-            ? composerPathState.points[pointIndex] ?? null
-            : null;
-        if (!point) {
-          value.value = "0";
-          return;
-        }
-        if (!Number.isFinite(Number(value.value))) {
-          value.value = formatComposerCoordinatePillValue(point[key]);
-          return;
-        }
-        value.value = formatComposerCoordinatePillValue(point[key]);
-      });
-      inputs[key] = value;
-    }
-    field.append(label, value);
-    grid.appendChild(field);
-  });
-
-  composerViewportOverlays.appendChild(element);
-  composerPathPointInfoPill = { element, inputs, timeValue };
-  return composerPathPointInfoPill;
-}
-
-function hideComposerPathPointInfoPill() {
-  const pill = composerPathPointInfoPill?.element;
-  if (!pill) {
-    return;
-  }
-  pill.classList.remove("is-visible");
-  pill.setAttribute("aria-hidden", "true");
-}
-
-function projectComposerLocalPointToViewport(localPoint) {
-  if (
-    !composerCanvasWrap ||
-    !composerCamera ||
-    !composerFrameGroup ||
-    !(localPoint instanceof THREE.Vector3)
-  ) {
-    return null;
-  }
-  const worldPoint = composerFrameGroup.localToWorld(localPoint.clone());
-  const projected = worldPoint.project(composerCamera);
-  if (projected.z < -1 || projected.z > 1) {
-    return null;
-  }
-  const rect = composerCanvasWrap.getBoundingClientRect();
-  return {
-    x: ((projected.x + 1) * 0.5) * rect.width,
-    y: ((1 - projected.y) * 0.5) * rect.height,
-  };
-}
-
-function getComposerPathPointNormalizedTime(pointIndex) {
-  if (
-    !Number.isInteger(pointIndex) ||
-    pointIndex < 0 ||
-    pointIndex >= composerPathState.points.length
-  ) {
-    return 0;
-  }
-  if (composerPathState.points.length <= 1) {
-    return 0;
-  }
-  const target = composerPathState.points[pointIndex];
-  const sampledPoints = sampleComposerPath(
-    composerPathState.points,
-    composerPathState.interpolate ?? "spline",
-    !!composerPathState.closed
-  );
-  if (sampledPoints.length <= 1) {
-    return 0;
-  }
-
-  let bestIndex = 0;
-  let bestDistanceSq = Infinity;
-  sampledPoints.forEach((sample, sampleIndex) => {
-    const distanceSq = sample.distanceToSquared(target);
-    if (distanceSq < bestDistanceSq) {
-      bestDistanceSq = distanceSq;
-      bestIndex = sampleIndex;
-    }
-  });
-
-  let totalLength = 0;
-  let lengthToBest = 0;
-  for (let index = 1; index < sampledPoints.length; index += 1) {
-    const segmentLength = sampledPoints[index].distanceTo(sampledPoints[index - 1]);
-    totalLength += segmentLength;
-    if (index <= bestIndex) {
-      lengthToBest += segmentLength;
-    }
-  }
-  if (totalLength <= 0.000001) {
-    return 0;
-  }
-  return clamp(lengthToBest / totalLength, 0, 1);
-}
-
-function updateComposerPathPointInfoPill() {
-  const pill = ensureComposerPathPointInfoPill();
-  if (
-    !pill ||
-    !composerOverlay?.classList.contains("is-open") ||
-    composerCameraFlightState.preview ||
-    composerViewportModeState.cameraSource === "authored"
-  ) {
-    hideComposerPathPointInfoPill();
-    return;
-  }
-  const pointIndex = getComposerSelectedPointIndexState();
-  const point =
-    Number.isInteger(pointIndex) && pointIndex >= 0 ? composerPathState.points[pointIndex] ?? null : null;
-  if (!point) {
-    hideComposerPathPointInfoPill();
-    return;
-  }
-  const projected = projectComposerLocalPointToViewport(point);
-  if (!projected) {
-    hideComposerPathPointInfoPill();
-    return;
-  }
-  const normalizedT = getComposerPathPointNormalizedTime(pointIndex);
-  const absoluteTime = composerCurrentDocument
-    ? getComposerPlaybackTimeForMotionProgress(composerCurrentDocument, normalizedT)
-    : 0;
-
-  if (pill.timeValue) {
-    pill.timeValue.textContent = formatComposerTimeLabel(absoluteTime);
-  }
-  syncComposerPathPointInfoPillCoordinateInputs(point);
-  pill.element.style.left = `${projected.x}px`;
-  pill.element.style.top = `${projected.y}px`;
-  pill.element.classList.add("is-visible");
-  pill.element.setAttribute("aria-hidden", "false");
-}
 const composerEditorPreviewState = {
   renderMotionTimeOverride: null,
   renderMotionTimePlayhead: null,
@@ -6658,8 +5865,6 @@ const detailFieldOrder = [
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
 let hoverTooltipVisible = false;
-let composerHoveredStructureTooltipAssemblyId = "";
-let composerHoveredStructureTooltipContent = null;
 const periodicCategoryColors = {
   "alkali metal": "#d24d57",
   "alkaline earth metal": "#e67e22",

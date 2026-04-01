@@ -160,12 +160,13 @@ Current placement and projection rules are:
 
 ### Solver Boundaries
 
-The solver is an internal Reaction component.
+The current implementation lives inside the Reaction app, but the long-term solver architecture should be split into a headless planning core plus app-side adapters.
 
 It should:
 
 - feed the Reaction app's manual review and correction workflow;
 - preserve provenance and conservation as first-order constraints;
+- expose explicit, versioned solver inputs and outputs rather than depending on UI state;
 - remain independent of Composer runtime code;
 - and remain reusable by future PDG ingest or other seed layers.
 
@@ -244,6 +245,98 @@ The planner should reason in the primitive language of:
 
 If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability. The solver should not become boson-first before primitive charge-routing is complete.
 
+### Rearchitecture Direction
+
+The next solver architecture should separate four concerns that are still too entangled today:
+
+- input normalization into a solver-owned abstract request;
+- headless search, scoring, and plan construction;
+- app-side projection of a selected plan into live Reaction state;
+- and downstream export or import adapters for other tools.
+
+The browser should not remain the only place where solving can happen. The current JavaScript planner is a useful working reference and a good source of tests and behavior inventory, but the main search engine should move toward a headless core that can be profiled, exercised from fixtures, and run without the Reaction UI.
+
+### External Solver Core
+
+The intended rebuilt solver core is an external command-line tool, likely implemented in Python.
+
+That core should own:
+
+- normalized solve-request parsing;
+- conservative candidate generation and search;
+- scoring, ranking, and residue accounting;
+- and emission of an explicit solve result that app runtimes can consume.
+
+It should not own:
+
+- DOM-driven geometry;
+- Reaction menu state or interaction state;
+- Composer staging or observer behavior;
+- or hidden assumptions about one specific app shell.
+
+Python is the right current direction because the main pressure is on correctness, robustness, testability, and speed of solver iteration rather than browser-local coupling. The important architectural point is the headless executable boundary, not Python for its own sake.
+
+### Invocation Modes
+
+The external solver should support two input modes:
+
+- structured JSON for full-fidelity solving, regression fixtures, and app integration;
+- and a compact command-line shorthand for quick experiments and batch runs.
+
+The compact shorthand should stay intentionally short. The intended shape is:
+
+- `--r [PNeuctdsbhHVWZ...]`
+- `--p [PNeuctdsbhHVWZ...]`
+
+Those concise reactant and product strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
+
+Current best read of the intended compact particle alphabet:
+
+| Code | Intended particle | Notes |
+| --- | --- | --- |
+| `P` | proton | aligns with existing `Pro Proton` support |
+| `N` | neutron | aligns with existing `Pro Neutron` support |
+| `e` | electron | aligns with existing `Pro Electron` support |
+| `u` | up quark | first-generation up-type quark |
+| `c` | charm quark | second-generation up-type quark |
+| `t` | top quark | third-generation up-type quark |
+| `d` | down quark | first-generation down-type quark |
+| `s` | strange quark | second-generation down-type quark |
+| `b` | bottom quark | third-generation down-type quark |
+| `V` | neutrino | likely ASCII stand-in for `\nu` |
+| `H` | Higgs cluster | the most natural uppercase `H` reading |
+| `h` | photon | likely the `h\nu` mnemonic rather than a second Higgs code |
+| `W` | `W` boson family | sign probably needs a later polarity or suffix convention such as `W+` / `W-` |
+| `Z` | `Z` boson | direct match |
+
+This alphabet appears to describe particle-level shorthand rather than every internal solver assembly. In particular, `Noether core` and `Free Architrinos` are solver-relevant assemblies today, but they do not fit cleanly into the current one-letter sketch and should be treated as out of scope for this first compact notation unless separate codes are reserved for them.
+
+### Result And Integration Contract
+
+The rebuilt solver should return explicit structured output rather than mutating app state directly.
+
+That output should be rich enough to carry:
+
+- solved participants and participant roles;
+- selected mappings and provenance claims;
+- explicit operator insertions and placements or placement hints;
+- unresolved residue and ambiguity reporting;
+- and enough staged structure to feed Reaction review and later downstream export.
+
+The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
+
+### Direct Composer Path
+
+The external solver should eventually make a fast path possible in which a headless solve can feed Composer without first opening the Reaction UI.
+
+That path is useful for rapid iteration and batch generation, but it should still respect the app boundary:
+
+- solve outside Composer;
+- hand off through explicit structured data;
+- and keep Composer focused on staging rather than on replanning the reaction.
+
+Even with a direct Composer path, the Reaction app still matters. It remains the natural review and correction surface for provenance, and it remains the likely source of reaction-app imagery or other visual artifacts that Composer can reuse in final animation products.
+
 ### Geometry And Modularity
 
 The shared surface grid must remain the source of truth for solver placement.
@@ -258,7 +351,7 @@ The long-term target is for the solver UI runtime to become composition and wiri
 
 ### File Boundaries
 
-The current solver file boundaries should remain the basis for extension:
+On the browser side, the current solver file boundaries should remain the basis for extension during the transition:
 
 - `ReactionSolveStateRuntime.js`
 - `ReactionSolveProposalRuntime.js`
@@ -268,7 +361,23 @@ The current solver file boundaries should remain the basis for extension:
 - `ReactionSolveProjectionRuntime.js`
 - `ReactionSolveLayoutRuntime.js`
 
-Likely next extraction targets from the current UI runtime:
+Those runtimes should increasingly act as:
+
+- the reference implementation for current behavior;
+- the projection and layout adapters for Reaction;
+- and the bridge layer to a future external solver contract.
+
+Likely durable boundaries in the rearchitected system are:
+
+- a normalized solve-request schema;
+- a compact-notation parser for command-line use;
+- a headless external solve core;
+- a structured solve-result schema;
+- a Reaction projection adapter;
+- a Reaction surface-grid placement adapter;
+- and an export or import adapter for downstream Composer flow.
+
+Likely next extraction targets from the current UI runtime remain:
 
 - a surface-grid placement runtime;
 - a menu and picker runtime;
@@ -280,6 +389,8 @@ Likely next extraction targets from the current UI runtime:
 ### Inputs
 
 - authored Reaction participants;
+- normalized headless solve requests;
+- compact reactant and product shorthand for command-line solving;
 - current authored mappings and manual operator placements;
 - current dissociated-composite state;
 - and future normalized seeds from PDG ingest or other upstream sources.
@@ -288,6 +399,7 @@ Likely next extraction targets from the current UI runtime:
 
 - selected conservative mappings;
 - solve-generated operator placements;
+- structured solve results suitable for app adapters;
 - projected live Reaction-side participants and mappings;
 - unresolved residue reporting;
 - and, downstream of Reaction, material that can later feed the Reaction-owned handoff document.
@@ -402,14 +514,6 @@ Next steps:
 
 ### 6. Solver Rearchitecture
 
-Issues:
-- the solver is too slow
-- the solver logic is not entirely correct
-- the logic was evolved into, so it is not robust
-- we need to have a fast solver.
-- what language?  python with command line input and json input.
-- we need a short way to specify the reactants and products
-    - --r [PNeuctdsbhHVWZ...]
-    - --p [PNeuctdsbhHVWZ...]
+Objective:
 
-The python solver will make it possible to skip the reaction app and go to composer directly.  However, the general plan is to use the images from the reaction app as part of the animation products by the composer.
+- rearchitect the solver around a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.

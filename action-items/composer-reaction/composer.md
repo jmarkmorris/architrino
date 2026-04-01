@@ -316,17 +316,18 @@ Progress update:
 
 - Composer render-asset builders for textures, sprites, and overlay text now live in a dedicated Composer render-assets runtime rather than inlined inside `app.js`.
 - Composer orbit/member/anchor math, member-anchor state, path/base-position sampling, and autoscale geometry helpers now live in a dedicated Composer structure-geometry runtime rather than inlined inside `app.js`.
-- The remaining work in this item is still substantial, but it is now more clearly concentrated in the camera-path and assembly-inspector seams.
+- Composer camera/path authoring now lives in a dedicated camera-path runtime, and assembly editor plus hover-inspector behavior now live in a dedicated assembly-inspector runtime rather than inlined inside `app.js`.
+- The remaining work in this item is now mostly the broader canvas/playback/interaction stack rather than the already-separated geometry, asset, camera-path, and inspector seams.
 
 Next steps:
 
-- move camera/path authoring into a Composer camera-path runtime;
-- move assembly editor and inspector behavior into a Composer assembly-inspector runtime;
+- keep those new camera-path and inspector seams stable while the remaining viewport stack moves out;
+- start item 7 extractions with the path-point info pill and related overlay helpers;
 - and keep `app.js` changes to wiring only as those focused runtimes land.
 
 ### 7. Split The Remaining Composer Canvas, Playback, And Interaction Stack
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -335,6 +336,12 @@ Goal:
 Why it matters:
 
 - viewport render, playback, menus, media overlays, and pointer interaction are still a major concentration of Composer structural debt.
+
+Progress update:
+
+- The path-point info pill now lives in a dedicated Composer viewport-overlay-pill runtime rather than inlined inside `app.js`.
+- Composer pointer-hit resolution now lives in a dedicated Composer pointer-hit runtime rather than inlined inside `app.js`.
+- The remaining work in this item is still the larger canvas, playback, media-overlay, and pointer stack, but the first overlay-specific seam is now in place.
 
 Next steps:
 
