@@ -141,6 +141,31 @@ import {
   sanitizeComposerEntityId,
   sanitizeComposerId,
 } from "./src/apps/composer/ComposerDraftScaffoldRuntime.js";
+import {
+  formatComposerMemberList,
+  formatComposerSubassemblyList,
+  getComposerMemberId,
+  getComposerMemberPosition,
+  getComposerMemberState,
+  getComposerSubassemblyId,
+  isComposerPersonalityMember,
+  normalizeComposerMemberList,
+  normalizeComposerMemberPosition,
+  normalizeComposerSubassemblyList,
+  parseComposerMemberEntry,
+  pruneComposerSubassemblyList,
+  roundComposerTriplet,
+} from "./src/apps/composer/ComposerAssemblyListRuntime.js";
+import {
+  createComposerGenIFermionPersonalityMembers,
+  createComposerPersonalityMembers,
+  describeComposerTransferProvenance,
+  formatComposerTransferEndpointLabel,
+  formatComposerTransferList,
+  getComposerBuiltInPersonalityStates,
+  getComposerGraphicDefaultOffset,
+  sanitizeComposerGraphicTarget,
+} from "./src/apps/composer/ComposerAuthoringHelpersRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -412,19 +437,6 @@ function normalizeVelocity(value) {
   return [0, 0, 0];
 }
 
-function normalizeComposerMemberPosition(rawPosition) {
-  if (!Array.isArray(rawPosition) || rawPosition.length < 3) {
-    return null;
-  }
-  const x = Number(rawPosition[0]);
-  const y = Number(rawPosition[1]);
-  const z = Number(rawPosition[2]);
-  if (![x, y, z].every(Number.isFinite)) {
-    return null;
-  }
-  return [x, y, z];
-}
-
 function normalizeComposerPathPoint(rawPoint) {
   if (rawPoint instanceof THREE.Vector3) {
     return [
@@ -454,107 +466,6 @@ function normalizeComposerAssemblyPathPoints(rawPoints) {
   return source
     .map((point) => normalizeComposerPathPoint(point))
     .filter(Boolean);
-}
-
-function parseComposerMemberEntry(rawMember, index = 0) {
-  if (rawMember && typeof rawMember === "object" && !Array.isArray(rawMember)) {
-    const id = sanitizeComposerEntityId(rawMember.id || rawMember.name, `member_${index + 1}`);
-    const position = normalizeComposerMemberPosition(rawMember.position);
-    const nextMember = {
-      id,
-    };
-    if (position) {
-      nextMember.position = position;
-    }
-    if (rawMember.state != null) {
-      nextMember.state = String(rawMember.state).trim().toLowerCase();
-    }
-    if (rawMember.slotKind != null) {
-      nextMember.slotKind = String(rawMember.slotKind).trim().toLowerCase();
-    }
-    if (rawMember.slotIndex != null && Number.isFinite(Number(rawMember.slotIndex))) {
-      nextMember.slotIndex = Math.max(0, Math.round(Number(rawMember.slotIndex)));
-    }
-    return nextMember;
-  }
-  const source = String(rawMember ?? "").trim();
-  if (!source) {
-    return null;
-  }
-  const match = source.match(/^(.+?)(?:\s*@\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+))?$/);
-  if (!match) {
-    return null;
-  }
-  const id = sanitizeComposerEntityId(match[1], `member_${index + 1}`);
-  if (!id) {
-    return null;
-  }
-  if (match[2] == null) {
-    return { id };
-  }
-  const position = [Number(match[2]), Number(match[3]), Number(match[4])];
-  if (!position.every(Number.isFinite)) {
-    return { id };
-  }
-  return { id, position };
-}
-
-function normalizeComposerMemberList(rawMembers) {
-  if (Array.isArray(rawMembers)) {
-    return rawMembers
-      .map((member, index) => parseComposerMemberEntry(member, index))
-      .filter(Boolean);
-  }
-  if (typeof rawMembers === "string") {
-    return rawMembers
-      .split(/\n/)
-      .map((member, index) => parseComposerMemberEntry(member, index))
-      .filter(Boolean);
-  }
-  return [];
-}
-
-function getComposerMemberId(member, index = 0) {
-  if (member && typeof member === "object" && !Array.isArray(member)) {
-    return sanitizeComposerEntityId(member.id, `member_${index + 1}`);
-  }
-  return sanitizeComposerEntityId(member, `member_${index + 1}`);
-}
-
-function getComposerMemberPosition(member) {
-  if (member && typeof member === "object" && !Array.isArray(member)) {
-    return normalizeComposerMemberPosition(member.position);
-  }
-  return null;
-}
-
-function getComposerMemberState(member) {
-  if (member && typeof member === "object" && !Array.isArray(member)) {
-    const state = String(member.state ?? "").trim().toLowerCase();
-    if (state === "electrino" || state === "positrino" || state === "unset") {
-      return state;
-    }
-  }
-  return "";
-}
-
-function isComposerPersonalityMember(member) {
-  return (
-    !!member &&
-    typeof member === "object" &&
-    !Array.isArray(member) &&
-    String(member.slotKind ?? "").trim().toLowerCase() === "personality"
-  );
-}
-
-function formatComposerMemberList(members = []) {
-  return members
-    .map((member, index) => {
-      const id = getComposerMemberId(member, index);
-      const position = getComposerMemberPosition(member);
-      return position ? `${id} @ ${position[0]}, ${position[1]}, ${position[2]}` : id;
-    })
-    .join("\n");
 }
 
 function getNextComposerAssemblyMemberId(assembly, kind = "member") {
@@ -638,77 +549,6 @@ function addComposerAssemblyMemberByKind(assembly, kind = "member") {
   return true;
 }
 
-function parseComposerSubassemblyEntry(rawEntry, index = 0) {
-  if (rawEntry && typeof rawEntry === "object" && !Array.isArray(rawEntry)) {
-    const id = sanitizeComposerEntityId(rawEntry.id || rawEntry.name, `subassembly_${index + 1}`);
-    const position = normalizeComposerMemberPosition(rawEntry.position) ?? [0, 0, 0];
-    const members = Array.isArray(rawEntry.members)
-      ? rawEntry.members.map((memberId, memberIndex) => getComposerMemberId(memberId, memberIndex)).filter(Boolean)
-      : [];
-    return { id, position, members };
-  }
-  const source = String(rawEntry ?? "").trim();
-  if (!source) {
-    return null;
-  }
-  const match = source.match(
-    /^(.+?)\s*@\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*,\s*(-?\d*\.?\d+)\s*:\s*(.+)$/
-  );
-  if (!match) {
-    return null;
-  }
-  const id = sanitizeComposerEntityId(match[1], `subassembly_${index + 1}`);
-  const position = [Number(match[2]), Number(match[3]), Number(match[4])];
-  const members = match[5]
-    .split(",")
-    .map((memberId, memberIndex) => getComposerMemberId(memberId.trim(), memberIndex))
-    .filter(Boolean);
-  if (!position.every(Number.isFinite) || !members.length) {
-    return null;
-  }
-  return { id, position, members: [...new Set(members)] };
-}
-
-function normalizeComposerSubassemblyList(rawSubassemblies) {
-  if (Array.isArray(rawSubassemblies)) {
-    return rawSubassemblies
-      .map((entry, index) => parseComposerSubassemblyEntry(entry, index))
-      .filter(Boolean);
-  }
-  if (typeof rawSubassemblies === "string") {
-    return rawSubassemblies
-      .split(/\n/)
-      .map((entry, index) => parseComposerSubassemblyEntry(entry, index))
-      .filter(Boolean);
-  }
-  return [];
-}
-
-function formatComposerSubassemblyList(subassemblies = []) {
-  return subassemblies
-    .map((entry, index) => {
-      const parsed = parseComposerSubassemblyEntry(entry, index);
-      if (!parsed) {
-        return null;
-      }
-      return `${parsed.id} @ ${parsed.position[0]}, ${parsed.position[1]}, ${parsed.position[2]}: ${parsed.members.join(", ")}`;
-    })
-    .filter(Boolean)
-    .join("\n");
-}
-
-function roundComposerTriplet(values = []) {
-  return [
-    Number(Number(values[0] ?? 0).toFixed(3)),
-    Number(Number(values[1] ?? 0).toFixed(3)),
-    Number(Number(values[2] ?? 0).toFixed(3)),
-  ];
-}
-
-function getComposerSubassemblyId(entry, index = 0) {
-  return sanitizeComposerEntityId(entry?.id ?? entry?.name, `subassembly_${index + 1}`);
-}
-
 function getNextComposerSubassemblyId(assembly) {
   const existingIds = new Set(
     normalizeComposerSubassemblyList(assembly?.subassemblies).map((entry, index) =>
@@ -722,12 +562,6 @@ function getNextComposerSubassemblyId(assembly) {
     candidate = `subassembly_${suffix}`;
   }
   return candidate;
-}
-
-function pruneComposerSubassemblyList(subassemblies = []) {
-  return normalizeComposerSubassemblyList(subassemblies).filter(
-    (entry) => Array.isArray(entry?.members) && entry.members.length
-  );
 }
 
 function getComposerAssemblySubassemblyIndex(assembly, subassemblyId) {
@@ -1107,34 +941,6 @@ function parseComposerTransfers(rawText) {
   });
 }
 
-function formatComposerTransferList(transfers = []) {
-  return transfers
-    .map((transfer) => {
-      const source = `${transfer?.source?.assemblyId ?? ""}.${transfer?.source?.memberId ?? ""}`;
-      const target = `${transfer?.target?.assemblyId ?? ""}.${transfer?.target?.memberId ?? ""}`;
-      const suffix = Number.isFinite(Number(transfer?.t)) ? ` @ ${Number(transfer.t)}` : "";
-      return `${source} -> ${target}${suffix}`;
-    })
-    .join("\n");
-}
-
-function formatComposerTransferEndpointLabel(endpoint) {
-  const assemblyId = String(endpoint?.assemblyId ?? "").trim();
-  const memberId = String(endpoint?.memberId ?? "").trim();
-  if (!assemblyId || !memberId) {
-    return "unknown";
-  }
-  return `${assemblyId}.${memberId}`;
-}
-
-function describeComposerTransferProvenance(transfer, refLabel = "") {
-  if (!transfer) {
-    return null;
-  }
-  const prefix = refLabel ? `${refLabel}: ` : "";
-  return `${prefix}${formatComposerTransferEndpointLabel(transfer.source)} -> ${formatComposerTransferEndpointLabel(transfer.target)}`;
-}
-
 function getComposerTimelineAuthoringItems(documentData = composerCurrentDocument) {
   return getComposerTimelineAuthoringItemsRuntime(documentData, {
     getGraphicLabel: getComposerGraphicOverlayLabel,
@@ -1169,23 +975,6 @@ function getComposerGraphicEnd(marker, sceneDuration = null) {
   return clamp(end, start, Number(sceneDuration));
 }
 
-function sanitizeComposerGraphicTarget(rawTarget, fallbackAssemblyId = "") {
-  if (!rawTarget || typeof rawTarget !== "object") {
-    return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
-  }
-  const type = String(rawTarget.type ?? "").trim().toLowerCase();
-  if (type === "assembly") {
-    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
-    return assemblyId ? { type: "assembly", assemblyId } : null;
-  }
-  if (type === "path_point") {
-    const assemblyId = sanitizeComposerEntityId(rawTarget.assemblyId, "");
-    const pointIndex = Math.max(0, Math.round(Number(rawTarget.pointIndex ?? 0) || 0));
-    return assemblyId ? { type: "path_point", assemblyId, pointIndex } : null;
-  }
-  return fallbackAssemblyId ? { type: "assembly", assemblyId: fallbackAssemblyId } : null;
-}
-
 function getComposerGraphicDefaultTarget() {
   const assemblyDrafts = getComposerAssemblyDraftsState();
   return getComposerGraphicDefaultTargetRuntime({
@@ -1207,58 +996,6 @@ function getComposerGraphicTargetEntries() {
     getAssemblyLetter: getComposerAssemblyLetter,
     normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
   });
-}
-
-function getComposerGraphicDefaultOffset(size = 0.42) {
-  const radius = Math.max(0.18, Number(size) || 0.42);
-  return [
-    Number((radius * 1.45).toFixed(3)),
-    Number((radius * 1.08).toFixed(3)),
-    0,
-  ];
-}
-
-function createComposerPersonalityMembers(states = []) {
-  return Array.from({ length: 6 }, (_, index) => ({
-    id: `personality_${index + 1}`,
-    slotKind: "personality",
-    slotIndex: index,
-    state: (() => {
-      const state = String(states[index] ?? "unset").trim().toLowerCase();
-      return state === "electrino" || state === "positrino" ? state : "unset";
-    })(),
-  }));
-}
-
-function createComposerGenIFermionPersonalityMembers() {
-  return createComposerPersonalityMembers();
-}
-
-function getComposerBuiltInPersonalityStates(templateId) {
-  if (templateId === "electron") {
-    return Array.from({ length: 6 }, () => "electrino");
-  }
-  if (templateId === "up_quark") {
-    return [
-      "positrino",
-      "electrino",
-      "positrino",
-      "positrino",
-      "positrino",
-      "positrino",
-    ];
-  }
-  if (templateId === "down_quark") {
-    return [
-      "positrino",
-      "positrino",
-      "electrino",
-      "electrino",
-      "electrino",
-      "electrino",
-    ];
-  }
-  return [];
 }
 
 function normalizeComposerMediaRect(rawRect, kind = "image") {

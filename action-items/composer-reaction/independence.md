@@ -37,7 +37,7 @@ Already done:
 - boundary schemas, fixtures, and a boundary-check script are in place;
 - Reaction now owns its standalone app shell, template catalog, export seam, and much of its solver composition under `src/apps/reaction/`;
 - Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under real Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
-- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, and default draft/id scaffolding under `src/apps/composer/`.
+- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, default draft/id scaffolding, assembly-list normalization helpers, and pure authoring helpers under `src/apps/composer/`.
 
 Still remaining:
 
@@ -118,6 +118,7 @@ After the separation work is complete, revisit these smaller UX fixes:
 
 1. add an `Exit` button to the standalone Reaction app, matching Composer;
 2. fix product-side `Neutron` and `Proton` title tiles on the Reaction page so they include the `Pro` prefix consistently.
+3. flatten the Composer canvas framing so the canvas uses the full available area and does not pick up redundant nested frames around the timeline/canvas surface.
 
 ## Non-Goal
 
