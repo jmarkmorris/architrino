@@ -120,6 +120,14 @@ import {
   isStandardModelScene,
 } from "./src/services/SceneCapabilitiesService.js";
 import { resolveStandaloneAppHrefForScene } from "./src/apps/navigator/StandaloneAppLaunchRuntime.js";
+import {
+  COMPOSER_SCENE_PATH,
+  STANDALONE_COMPOSER_NAVIGATOR_HREF,
+  getComposerAppMode,
+  getComposerInitialScenePath,
+  isStandaloneComposerAppMode,
+  navigateStandaloneComposerHome,
+} from "./src/apps/composer/ComposerAppModeRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -8117,16 +8125,16 @@ const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
-const composerScenePath = "content/scenes/archie/composer.json";
+const composerScenePath = COMPOSER_SCENE_PATH;
 const composerSceneId = "composer";
 const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "action-items/composer-reaction/composer.md";
-const appMode = String(globalThis.window?.__ARCHITRINO_APP_MODE__ ?? "").trim().toLowerCase();
-const isStandaloneComposerApp = appMode === "composer";
-const standaloneNavigatorHref = "./index.html";
+const appMode = getComposerAppMode(globalThis.window);
+const isStandaloneComposerApp = isStandaloneComposerAppMode(appMode);
+const standaloneNavigatorHref = STANDALONE_COMPOSER_NAVIGATOR_HREF;
 
 function isComposerOverlaySceneId(sceneId = "") {
   return sceneId === composerSceneId || sceneId === composerPreviewSceneId;
@@ -9320,8 +9328,10 @@ async function resetToRootScene(options = {}) {
   if (transitionState.active) {
     return;
   }
-  if (isStandaloneComposerApp) {
-    globalThis.window?.location?.assign(standaloneNavigatorHref);
+  if (
+    isStandaloneComposerApp &&
+    navigateStandaloneComposerHome(globalThis.window?.location, standaloneNavigatorHref)
+  ) {
     return;
   }
   recordBrowserBackHistory(options);
@@ -10744,8 +10754,10 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
     jumpToScene(composerScenePath, { mode: "instant" });
   },
   exitComposer: () => {
-    if (isStandaloneComposerApp) {
-      globalThis.window?.location?.assign(standaloneNavigatorHref);
+    if (
+      isStandaloneComposerApp &&
+      navigateStandaloneComposerHome(globalThis.window?.location, standaloneNavigatorHref)
+    ) {
       return;
     }
     if (browserBackStack.length > 0) {
@@ -11061,7 +11073,10 @@ async function init() {
   closeDetailPanel();
   const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
   const requestedInitialScenePath = isStandaloneComposerApp
-    ? requestedSceneState.scenePath || composerScenePath
+    ? getComposerInitialScenePath({
+        requestedScenePath: requestedSceneState.scenePath,
+        rootScenePath,
+      })
     : requestedSceneState.scenePath || rootScenePath;
   const initialScene = await sceneBootstrapService.resolveInitialScene(
     requestedInitialScenePath

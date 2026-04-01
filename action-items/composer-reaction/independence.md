@@ -355,6 +355,12 @@ Current remaining cuts inside Phase 4:
 3. retire the remaining legacy path where Composer boot is still mediated by the old top-level runtime.
 4. remove legacy `Reaction...` naming from Composer-owned files and source text where Composer still carries transitional mixed naming.
 
+Completed work inside Phase 4 so far:
+
+- standalone Composer app-mode policy now lives under `src/apps/composer/` instead of being hard-coded only inside `app.js`;
+- Composer standalone boot and return-to-main-webapp behavior now use Composer-local app-mode helpers;
+- and the remaining Composer coupling is now more clearly concentrated in runtime composition rather than launch policy.
+
 ### Phase 5. Introduce The Handoff Contract
 
 Make the cross-app exchange real.

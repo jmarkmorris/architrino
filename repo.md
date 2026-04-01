@@ -1,5 +1,7 @@
 # Repo Process
 
+TODO: automate this with Codex skills once I find them. If you want the strongest protection, the next step is automation.
+
 This document defines the standard repo process for ending a work session, publishing a pull request, cleaning up the previous branch in the branch series, and preparing the next branch.
 
 ## Branch Naming Convention
