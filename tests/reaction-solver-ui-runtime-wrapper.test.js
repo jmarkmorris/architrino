@@ -37,3 +37,22 @@ test("reaction solver ui runtime injects the reaction-owned solve pipeline", () 
   assert.match(runtimeSource, /applySolveLayout:\s*applyReactionSolveLayout/);
   assert.match(runtimeSource, /applySolvePlan:\s*applyReactionSolvePlan/);
 });
+
+test("reaction solve-state, layout, and projection modules now own their implementations", () => {
+  const solveStateSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolveStateRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const solveLayoutSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolveLayoutRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const solveProjectionSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolveProjectionRuntime.js", import.meta.url),
+    "utf8"
+  );
+
+  assert.doesNotMatch(solveStateSource, /ComposerReactionSolveStateRuntime/);
+  assert.doesNotMatch(solveLayoutSource, /ComposerReactionSolveLayoutRuntime/);
+  assert.doesNotMatch(solveProjectionSource, /ComposerReactionSolveProjectionRuntime/);
+});
