@@ -355,7 +355,6 @@ Why it matters:
 
 Next steps:
 
-- add an `Exit` button to the standalone Reaction app, matching Composer;
 - fix product-side `Neutron` and `Proton` title tiles so they include the `Pro` prefix consistently;
 - and keep post-split cleanup moving as part of normal Reaction delivery rather than leaving it as orphaned follow-up work.
 

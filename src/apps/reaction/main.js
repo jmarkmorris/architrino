@@ -12,6 +12,7 @@ const reactionAppRuntime = createReactionAppRuntime({
   menu: document.getElementById("reaction-solver-menu"),
   clearButton: document.getElementById("reaction-clear-button"),
   solveButton: document.getElementById("reaction-solve-button"),
+  exitButton: document.getElementById("reaction-exit-button"),
 });
 
 reactionAppRuntime.init();
