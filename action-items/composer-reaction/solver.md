@@ -399,3 +399,17 @@ Next steps:
 - keep the abstract solve state as the planner boundary;
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
+
+### 6. Solver Rearchitecture
+
+Issues:
+- the solver is too slow
+- the solver logic is not entirely correct
+- the logic was evolved into, so it is not robust
+- we need to have a fast solver.
+- what language?  python with command line input and json input.
+- we need a short way to specify the reactants and products
+    - --r [PNeuctdsbhHVWZ...]
+    - --p [PNeuctdsbhHVWZ...]
+
+The python solver will make it possible to skip the reaction app and go to composer directly.  However, the general plan is to use the images from the reaction app as part of the animation products by the composer.

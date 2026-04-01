@@ -315,11 +315,11 @@ Why it matters:
 Progress update:
 
 - Composer render-asset builders for textures, sprites, and overlay text now live in a dedicated Composer render-assets runtime rather than inlined inside `app.js`.
-- The remaining work in this item is still substantial, but it is now more clearly concentrated in the structure-geometry, camera-path, and assembly-inspector seams.
+- Composer orbit/member/anchor math, member-anchor state, path/base-position sampling, and autoscale geometry helpers now live in a dedicated Composer structure-geometry runtime rather than inlined inside `app.js`.
+- The remaining work in this item is still substantial, but it is now more clearly concentrated in the camera-path and assembly-inspector seams.
 
 Next steps:
 
-- move orbit/member/anchor math into a Composer structure-geometry runtime;
 - move camera/path authoring into a Composer camera-path runtime;
 - move assembly editor and inspector behavior into a Composer assembly-inspector runtime;
 - and keep `app.js` changes to wiring only as those focused runtimes land.
