@@ -1176,9 +1176,10 @@ body {
 
 .reaction-app-title {
   margin: 0;
-  font-size: clamp(24px, 3vw, 34px);
+  font-size: clamp(20px, 2.1vw, 28px);
   line-height: 1.05;
   letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
 .reaction-app-status {
@@ -1225,7 +1226,7 @@ body {
   flex: 1;
   min-height: 0;
   display: flex;
-  padding: 16px 22px 22px;
+  padding: 0;
 }
 
 .reaction-app-main .composer-reaction-solver {
@@ -1245,8 +1246,10 @@ body {
 .reaction-app-main .composer-reaction-solver-surface {
   flex: 1;
   min-height: 580px;
-  border-radius: 18px;
+  border-radius: 0;
   overflow: hidden;
+  border: none;
+  box-shadow: none;
 }
 
 @media (max-width: 900px) {
@@ -1260,7 +1263,7 @@ body {
   }
 
   .reaction-app-main {
-    padding: 14px;
+    padding: 0;
   }
 
   .reaction-app-main .composer-reaction-solver-surface {
