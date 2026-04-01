@@ -287,6 +287,7 @@ Completed work inside Phase 3 so far:
 
 - the standalone Reaction app no longer depends on `ComposerCatalogRuntime.js` for its picker rows;
 - the standalone Reaction app now imports a Reaction-local solver wrapper from `src/apps/reaction/`;
+- the standalone Reaction app now boots through a Reaction-named solver UI module under `src/apps/reaction/ReactionSolverUiRuntime.js` instead of treating the legacy `ComposerReaction...` solver file as its primary identity;
 - the standalone Reaction export path now owns its node-key parsing locally under `src/apps/reaction/`;
 - the standalone Reaction solver path now injects its node-key semantics from `src/apps/reaction/` instead of hard-coding the legacy anchor-state helpers;
 - the standalone Reaction solver path now composes anchor-state behavior through a Reaction-local wrapper under `src/apps/reaction/`;
