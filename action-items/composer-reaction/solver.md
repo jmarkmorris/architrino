@@ -38,14 +38,14 @@ It does not own:
 
 Current implementation inventory:
 
-- `src/runtime/ComposerReactionSolveStateRuntime.js`
-- `src/runtime/ComposerReactionSolveProposalRuntime.js`
-- `src/runtime/ComposerReactionSolveSelectionRuntime.js`
-- `src/runtime/ComposerReactionSolveMatchRuntime.js`
-- `src/runtime/ComposerReactionSolveAssociateRuntime.js`
-- `src/runtime/ComposerReactionSolveLayoutRuntime.js`
-- `src/runtime/ComposerReactionSolveProjectionRuntime.js`
-- `src/runtime/ComposerReactionSolverUiRuntime.js`
+- `src/apps/reaction/ReactionSolveStateRuntime.js`
+- `src/apps/reaction/ReactionSolveProposalRuntime.js`
+- `src/apps/reaction/ReactionSolveSelectionRuntime.js`
+- `src/apps/reaction/ReactionSolveMatchRuntime.js`
+- `src/apps/reaction/ReactionSolveAssociateRuntime.js`
+- `src/apps/reaction/ReactionSolveLayoutRuntime.js`
+- `src/apps/reaction/ReactionSolveProjectionRuntime.js`
+- `src/apps/reaction/ReactionSolverUiRuntime.js`
 
 Current test coverage inventory:
 
@@ -115,7 +115,7 @@ The current selection order inside the solver is also explicit:
 
 All current candidate families share one conservative gate unless noted otherwise:
 
-- any direct mapping candidate must pass `evaluateComposerReactionMappingCandidate`;
+- any direct mapping candidate must pass `evaluateReactionMappingCandidate`;
 - that gate currently requires known source and target inventories;
 - it currently requires equal `electrino` / `positrino` ledger on both sides;
 - and it forbids direct mapping between full tri-binary `Pro Noether Core` and `Anti Noether Core`.
@@ -260,13 +260,13 @@ The long-term target is for the solver UI runtime to become composition and wiri
 
 The current solver file boundaries should remain the basis for extension:
 
-- `ComposerReactionSolveStateRuntime.js`
-- `ComposerReactionSolveProposalRuntime.js`
-- `ComposerReactionSolveSelectionRuntime.js`
-- `ComposerReactionSolveMatchRuntime.js`
-- `ComposerReactionSolveAssociateRuntime.js`
-- `ComposerReactionSolveProjectionRuntime.js`
-- `ComposerReactionSolveLayoutRuntime.js`
+- `ReactionSolveStateRuntime.js`
+- `ReactionSolveProposalRuntime.js`
+- `ReactionSolveSelectionRuntime.js`
+- `ReactionSolveMatchRuntime.js`
+- `ReactionSolveAssociateRuntime.js`
+- `ReactionSolveProjectionRuntime.js`
+- `ReactionSolveLayoutRuntime.js`
 
 Likely next extraction targets from the current UI runtime:
 
@@ -308,7 +308,7 @@ Status: `active`
 
 Goal:
 
-- keep `ComposerReactionSolverUiRuntime.js` moving toward composition-only wiring.
+- keep `ReactionSolverUiRuntime.js` moving toward composition-only wiring.
 
 Why it matters:
 

@@ -31,7 +31,7 @@ It does not own:
 ## Current State
 
 - The repository already has a dedicated `Reaction Designer` scene and a first-class reaction-solver runtime.
-- The current deployment is still partially embedded in the Composer-side shell, but that coupling is transitional rather than the target architecture.
+- The current deployment already has a dedicated Reaction entrypoint, though some launcher-era shared-root cleanup still remains.
 - The live manual workflow is lane-based, with reactants on the left, products on the right, and operator lanes between them.
 - The current add flow visibly supports reactants, products, polarity transforms, dissociate, associate, and center-assembly additions.
 - The operator registry includes dissociate and associate handling, but the full user-facing grammar still needs to read as one coherent system.
@@ -39,7 +39,6 @@ It does not own:
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
 - The canonical implementation for Reaction helper, solver, structure, and layout runtimes now lives under `src/apps/reaction/`.
-- The old `ComposerReaction...` runtime files are no longer part of the Reaction implementation surface.
 - The Reaction app is already useful for manual provenance work, but it still lacks a production-hardened accept-and-export path downstream.
 
 ## Design
@@ -113,7 +112,7 @@ The intended surface grammar is:
 - preserve seam-side composite cards;
 - keep split behavior reversible through re-add rather than hidden state;
 - keep internal composite join lines visually subordinate to main mapping lines;
-- and keep older transfer-drafting bridges only as compatibility scaffolding while the dedicated Reaction workflow becomes primary.
+- and keep any non-primary transfer affordances visually subordinate to the dedicated Reaction mapping workflow.
 
 The app also needs a legible way to represent special coarse participants such as spacetime-like recruitment and return, but those should remain explicit app semantics rather than getting buried as implicit solver behavior.
 
@@ -166,7 +165,6 @@ Reaction should not:
 - [solver](./solver.md) owns the Reaction-side solve engine and algorithmic constraints.
 - [pdg-ingest](./pdg-ingest.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
 - [composer](./composer.md) is the downstream staging and explanation surface.
-- [app-architecture](./app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
@@ -249,17 +247,17 @@ Status: `pending`
 
 Goal:
 
-- keep Reaction, not legacy compatibility scaffolding, as the primary place where conservative provenance is authored and reviewed.
+- keep Reaction, not downstream or launcher-era surfaces, as the primary place where conservative provenance is authored and reviewed.
 
 Why it matters:
 
-- the clearer this ownership becomes, the easier it is to keep upstream and downstream boundaries honest.
+- the clearer this ownership becomes, the easier it is to keep upstream and downstream boundaries honest without provenance work drifting back into older surfaces.
 
 Next steps:
 
-- keep older transfer-drafting bridges only as temporary compatibility scaffolding;
 - keep Reaction-side review and correction explicit;
-- and continue reducing transitional Composer-shell coupling as the standalone app boundary hardens.
+- keep provenance authoring out of downstream Composer tooling;
+- and continue reducing launcher-era coupling as the standalone app boundary hardens.
 
 ### 6. Harden Reaction Export And Contract Ownership
 

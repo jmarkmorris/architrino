@@ -20,7 +20,7 @@
 ## Current Cross-Doc Queue
 
 1. [reaction](./reaction.md): finish the manual provenance workflow and keep Reaction as the primary conservative authoring surface.
-2. [reaction](./reaction.md) and [composer](./composer.md): define and harden the `reaction-flow/v1` handoff contract, export/import adapters, and import/export tests.
-3. [composer](./composer.md): build the production Reaction handoff intake and imported observer/framing workflow.
-4. [pdg-ingest](./pdg-ingest.md): define the PDG seed boundary and upstream ingest/review path once the handoff shape is stable.
-5. [app-architecture](./app-architecture.md), [reaction](./reaction.md), and [composer](./composer.md): keep app-boundary hardening and modularity cleanup moving in parallel with feature work.
+2. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest as Reaction export hardens and Composer stays data-first downstream.
+3. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working Reaction handoff intake.
+4. [pdg-ingest](./pdg-ingest.md): define the PDG seed boundary and upstream ingest/review path once the Reaction export shape is stable.
+5. [app-architecture](./app-architecture.md), [reaction](./reaction.md), and [composer](./composer.md): keep shrinking shared roots such as `app.js` and oversized app coordinators while protecting the explicit app boundary.

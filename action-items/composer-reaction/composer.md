@@ -47,7 +47,8 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a first-pass staged reaction scene from it.
+- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
+- The `reaction-flow/v1` intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
 
 ## Design
 
@@ -270,7 +271,7 @@ Why it matters:
 
 Next steps:
 
-- keep import logic, framing logic, and editorial behavior in focused modules;
+- keep framing logic, editorial behavior, and any remaining handoff-adjacent logic in focused modules;
 - keep the composition root thin;
 - and use [app-architecture](./app-architecture.md) for the cross-cutting enforcement standard.
 
@@ -312,7 +313,7 @@ Next steps:
 - move camera/path authoring into a Composer camera-path runtime;
 - and move assembly editor and inspector behavior into a Composer assembly-inspector runtime.
 
-### 8. Split The Remaining Composer Canvas, Playback, And Interaction Stack
+### 7. Split The Remaining Composer Canvas, Playback, And Interaction Stack
 
 Status: `pending`
 
@@ -334,25 +335,6 @@ Next steps:
 - move the path-point info pill into a Composer viewport-overlay-pill runtime;
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
-
-### 9. Harden The Composer Side Of `reaction-flow/v1`
-
-Status: `pending`
-
-Goal:
-
-- make the Composer side of the Reaction handoff production-hardened around the single intended bridge.
-
-Why it matters:
-
-- the Reaction export to Composer import path is still provisional, and Composer should consume it without importing Reaction runtime code.
-
-Next steps:
-
-- keep `reaction-flow/v1` as the only intended import bridge;
-- build the real Composer import adapter against that contract;
-- add golden Composer import tests before deleting transitional scaffolding;
-- and keep import behavior data-first rather than runtime-coupled.
 
 ## Related Action Items
 

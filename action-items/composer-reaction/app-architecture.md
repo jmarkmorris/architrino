@@ -33,7 +33,7 @@ It does not own:
 - The main web app already launches those entrypoints from the scene network rather than treating everything as one runtime mode.
 - Reaction now owns a meaningful standalone app shell and much of its app-specific composition.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
-- The Composer/Reaction boundary is clearer than before, but transitional coupling and legacy compatibility layers still remain.
+- The Composer/Reaction boundary is clearer than before; the main remaining structural debt is concentrated in oversized shared roots and broad coordinator files.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
@@ -114,7 +114,7 @@ The architecture should keep moving toward:
 - explicit ownership of state, layout, rendering, interaction, import/export, validation, and persistence;
 - and local module families under each app tree rather than app logic living in generic coordinators.
 
-This applies especially to large shared-root hotspots such as `app.js` and to large collapsed subsystem files such as `ComposerReactionSolverUiRuntime.js`.
+This applies especially to large shared-root hotspots such as `app.js` and to large collapsed subsystem files such as `ReactionSolverUiRuntime.js`.
 
 ### One Source Of Truth
 
@@ -262,7 +262,7 @@ Next steps:
 
 - keep new app logic out of `app.js`;
 - keep app-specific imports local to app trees;
-- and continue retiring legacy naming and compatibility layers where ownership is already clear.
+- and keep ownership obvious in canonical app-owned modules as new work lands.
 
 ### 4. Shrink Large Composition Roots And Collapsed Subsystems
 
@@ -279,7 +279,7 @@ Why it matters:
 Next steps:
 
 - keep `app.js` as wiring rather than behavior;
-- keep shrinking `ComposerReactionSolverUiRuntime.js` toward composition-only wiring;
+- keep shrinking `ReactionSolverUiRuntime.js` toward composition-only wiring;
 - and split remaining large subsystems by responsibility rather than by accidental grouping.
 
 ### 5. Add Enforcement That Prevents Architectural Backsliding
