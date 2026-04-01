@@ -274,13 +274,7 @@ export function createComposerReactionMappingRulesRuntime(options = {}) {
       if (incomingCount < 2) {
         return {
           valid: false,
-          reason: "Associate needs exactly two reactant inputs.",
-        };
-      }
-      if (incomingCount > 2) {
-        return {
-          valid: false,
-          reason: "Associate accepts exactly two reactant inputs.",
+          reason: "Associate needs at least two reactant inputs.",
         };
       }
     }

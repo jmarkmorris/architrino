@@ -223,41 +223,12 @@
               Library
             </button>
             <button
-              id="composer-reaction-button"
-              type="button"
-              aria-label="Open reaction solver"
-              aria-pressed="false"
-            >
-              Reaction
-            </button>
-            <button
-              id="composer-reaction-back-button"
-              type="button"
-              aria-label="Return to composer canvas"
-            >
-              Composer
-            </button>
-            <button
               id="composer-docs-button"
               type="button"
               aria-label="Open Composer docs"
             >
               <span class="composer-docs-icon" aria-hidden="true">📚</span>
               <span>Composer Docs</span>
-            </button>
-            <button
-              id="composer-reaction-clear-button"
-              type="button"
-              aria-label="Clear the reaction canvas"
-            >
-              Clear
-            </button>
-            <button
-              id="composer-reaction-solve-button"
-              type="button"
-              aria-label="Run the reaction solver"
-            >
-              Solve
             </button>
             <button id="composer-exit-button" type="button" aria-label="Exit composer">
               Exit
@@ -270,69 +241,6 @@
               <canvas id="composer-canvas"></canvas>
               <div id="composer-viewport-overlays" class="composer-viewport-overlays" aria-hidden="true"></div>
               <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
-              <section
-                id="composer-reaction-solver"
-                class="composer-reaction-solver"
-                aria-hidden="true"
-                tabindex="0"
-              >
-                <div class="composer-reaction-solver-topbar">
-                  <div class="composer-reaction-solver-topbar-copy">
-                    <div class="composer-reaction-solver-kicker">Reaction Solver Prototype</div>
-                    <div class="composer-reaction-solver-subtitle">
-                      Manual hierarchy-first reaction mapping.
-                    </div>
-                  </div>
-                  <div
-                    id="composer-reaction-solver-hint"
-                    class="composer-reaction-solver-hint"
-                  >
-                    Use the left + for reactants, the inner-left + for dissociate, the center + for W-, W+, or Z boson assemblies, the inner-right + for associate, and the right + for products.
-                  </div>
-                </div>
-                <div
-                  id="composer-reaction-solver-surface"
-                  class="composer-reaction-solver-surface"
-                >
-                  <svg
-                    id="composer-reaction-solver-svg"
-                    class="composer-reaction-solver-svg"
-                    aria-hidden="true"
-                  ></svg>
-                  <div
-                    id="composer-reaction-solver-empty"
-                    class="composer-reaction-solver-empty"
-                    aria-hidden="false"
-                  >
-                    Use the + controls to start a manual reaction solve.
-                  </div>
-                  <div
-                    id="composer-reaction-solver-reactants"
-                    class="composer-reaction-solver-column is-reactants"
-                  ></div>
-                  <div
-                    class="composer-reaction-solver-column-group-slot is-operator-left"
-                    data-operator-lane-index="0"
-                    aria-hidden="true"
-                  ></div>
-                  <div class="composer-reaction-solver-operator-layer" aria-hidden="false"></div>
-                  <div
-                    class="composer-reaction-solver-column-group-slot is-operator-right"
-                    data-operator-lane-index="1"
-                    aria-hidden="true"
-                  ></div>
-                  <div
-                    id="composer-reaction-solver-products"
-                    class="composer-reaction-solver-column is-products"
-                  ></div>
-                </div>
-                <div
-                  id="composer-reaction-solver-menu"
-                  class="composer-reaction-solver-menu"
-                  hidden
-                  aria-hidden="true"
-                ></div>
-              </section>
               <div class="composer-timeline-overlay">
                 <div class="composer-timeline-toolbar">
                   <div class="composer-timeline-transport">

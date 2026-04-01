@@ -1,6 +1,11 @@
 import { evaluateComposerReactionMappingCandidate } from "./ComposerReactionStructureMappingRuntime.js";
-import { createAssociatePhotonCandidate } from "./ComposerReactionSolveAssociateRuntime.js";
+import {
+  createAssociateCompositeCandidate,
+  createAssociatePhotonCandidate,
+  createAssociateStandaloneCandidate,
+} from "./ComposerReactionSolveAssociateRuntime.js";
 import { buildBestCompositeChildMatchPlan } from "./ComposerReactionSolveMatchRuntime.js";
+import { selectBestComposerReactionSolveCandidates } from "./ComposerReactionSolveSelectionRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim().toLowerCase();
@@ -44,6 +49,23 @@ function scoreDirectRootCandidate(candidate = null) {
     candidate.sourceParticipant,
     candidate.targetParticipant
   );
+  if (candidate.evaluation?.provenanceMode === "direct") {
+    score += 25;
+  }
+  if (
+    normalizeText(candidate.evaluation?.sourceSpec?.kind) ===
+    normalizeText(candidate.evaluation?.targetSpec?.kind)
+  ) {
+    score += 10;
+  }
+  return score;
+}
+
+function scoreCenterRootCandidate(candidate = null) {
+  if (!candidate) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  let score = 2400;
   if (candidate.evaluation?.provenanceMode === "direct") {
     score += 25;
   }
@@ -118,32 +140,6 @@ function scoreProductChildCandidate(candidate = null) {
   return score;
 }
 
-function compareSolveCandidates(left = null, right = null) {
-  const scoreDelta = Number(right?.score ?? 0) - Number(left?.score ?? 0);
-  if (scoreDelta !== 0) {
-    return scoreDelta;
-  }
-  const sourceTemplateDelta = compareText(
-    left?.sourceParticipant?.templateId,
-    right?.sourceParticipant?.templateId
-  );
-  if (sourceTemplateDelta !== 0) {
-    return sourceTemplateDelta;
-  }
-  const targetTemplateDelta = compareText(
-    left?.targetParticipant?.templateId,
-    right?.targetParticipant?.templateId
-  );
-  if (targetTemplateDelta !== 0) {
-    return targetTemplateDelta;
-  }
-  const sourceIdDelta = compareText(left?.sourceParticipant?.id, right?.sourceParticipant?.id);
-  if (sourceIdDelta !== 0) {
-    return sourceIdDelta;
-  }
-  return compareText(left?.targetParticipant?.id, right?.targetParticipant?.id);
-}
-
 function createDirectRootCandidate(
   reactantEntry,
   productEntry,
@@ -205,6 +201,12 @@ function createCompositeCarryThroughCandidate(
   if (!participantsShareDirectIdentity(sourceParticipant, targetParticipant)) {
     return null;
   }
+  if (
+    !entryHasTopLevelConstituentChildren(reactantEntry) ||
+    !entryHasTopLevelConstituentChildren(productEntry)
+  ) {
+    return null;
+  }
   const childMatchPlan = buildBestCompositeChildMatchPlan({
     sourceParticipant,
     targetParticipant,
@@ -229,6 +231,69 @@ function createCompositeCarryThroughCandidate(
   return candidate;
 }
 
+function entryHasTopLevelConstituentChildren(entry = null) {
+  const rootNode = entry?.rootNode ?? null;
+  const topLevelChildren = Array.isArray(rootNode?.children)
+    ? rootNode.children.filter((childNode) => childNode && childNode.templateId)
+    : [];
+  return topLevelChildren.length > 0;
+}
+
+function createCenterRootCandidate(
+  sourceEntry,
+  productEntry,
+  resolveBinaryChoiceInventory = null
+) {
+  const sourceParticipant = sourceEntry?.participant ?? null;
+  const sourceNode = sourceEntry?.rootNode ?? null;
+  const targetParticipant = productEntry?.participant ?? null;
+  const targetNode = productEntry?.rootNode ?? null;
+  if (
+    !sourceEntry?.isCenterAssembly ||
+    !sourceParticipant ||
+    !sourceNode ||
+    !targetParticipant ||
+    !targetNode ||
+    entryHasTopLevelConstituentChildren(productEntry)
+  ) {
+    return null;
+  }
+  const evaluation = evaluateComposerReactionMappingCandidate({
+    sourceParticipant,
+    sourceNode,
+    targetParticipant,
+    targetNode,
+    resolveBinaryChoiceInventory,
+  });
+  if (!evaluation.allowed) {
+    return null;
+  }
+  const candidate = {
+    type: "center-root-direct",
+    sourceParticipant,
+    sourceNode,
+    targetParticipant,
+    targetNode,
+    productResolutionKind: "direct",
+    mappings: [
+      {
+        sourceParticipant,
+        sourceNode,
+        targetParticipant,
+        targetNode,
+        sourceKey: sourceEntry.rootNodeKey,
+        targetKey: productEntry.rootNodeKey,
+        sourceRole: "reactant",
+        targetRole: "product",
+        evaluation,
+      },
+    ],
+    evaluation,
+  };
+  candidate.score = scoreCenterRootCandidate(candidate);
+  return candidate;
+}
+
 function createPartialCompositeCandidate(
   reactantEntry,
   productEntry,
@@ -238,6 +303,9 @@ function createPartialCompositeCandidate(
 ) {
   const sourceParticipant = reactantEntry?.participant ?? null;
   const targetParticipant = productEntry?.participant ?? null;
+  if (!participantsShareDirectIdentity(sourceParticipant, targetParticipant)) {
+    return null;
+  }
   const childMatchPlan = buildBestCompositeChildMatchPlan({
     sourceParticipant,
     targetParticipant,
@@ -499,6 +567,17 @@ function collectAssociateSourceEntries(reactants = [], buildNodeKey = null) {
       });
       return;
     }
+    if (normalizeText(rootNode.templateId) === "free_architrinos" && reactantEntry.rootNodeKey) {
+      entries.push({
+        participant,
+        rootNode,
+        sourceNode: rootNode,
+        sourceNodeKey: reactantEntry.rootNodeKey,
+        sourceFragmentKey: reactantEntry.rootNodeKey,
+        consumesWholeParticipant: true,
+      });
+      return;
+    }
     const topLevelChildren = Array.isArray(rootNode.children) ? rootNode.children : [];
     topLevelChildren.forEach((childNode) => {
       if (normalizeText(childNode?.templateId) !== "noether_core" || !childNode?.id) {
@@ -544,6 +623,41 @@ function getParticipantMatchedTargetNodeIds(selectedMappings = [], participantId
     }
   });
   return matchedNodeIds;
+}
+
+function collectPlanDissociatedCompositeParticipants(reactants = [], selectedMappings = []) {
+  const compositeReactantsById = new Map();
+  reactants.forEach((entry) => {
+    const participant = entry?.participant ?? null;
+    const rootNode = entry?.rootNode ?? null;
+    const topLevelChildren = Array.isArray(rootNode?.children)
+      ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
+      : [];
+    if (!participant?.id || !rootNode?.id || !topLevelChildren.length) {
+      return;
+    }
+    compositeReactantsById.set(String(participant.id), {
+      participant,
+      rootNodeId: String(rootNode.id),
+    });
+  });
+
+  const seenParticipantIds = new Set();
+  const dissociatedCompositeParticipants = [];
+  selectedMappings.forEach((mapping) => {
+    const participantId = String(mapping?.sourceParticipant?.id ?? "");
+    const sourceNodeId = String(mapping?.sourceNode?.id ?? "");
+    if (!participantId || !sourceNodeId || seenParticipantIds.has(participantId)) {
+      return;
+    }
+    const compositeEntry = compositeReactantsById.get(participantId) ?? null;
+    if (!compositeEntry || sourceNodeId === compositeEntry.rootNodeId) {
+      return;
+    }
+    seenParticipantIds.add(participantId);
+    dissociatedCompositeParticipants.push(compositeEntry.participant);
+  });
+  return dissociatedCompositeParticipants;
 }
 
 function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
@@ -613,6 +727,7 @@ export function describeComposerReactionSolvePlan(plan = {}) {
 export function buildComposerReactionSolvePlan(options = {}) {
   const solveState = options.solveState ?? {};
   const reactants = Array.isArray(solveState.reactants) ? solveState.reactants : [];
+  const centerAssemblies = Array.isArray(solveState.centerAssemblies) ? solveState.centerAssemblies : [];
   const products = Array.isArray(solveState.products) ? solveState.products : [];
   const resolveBinaryChoiceInventory =
     typeof options.resolveBinaryChoiceInventory === "function"
@@ -625,10 +740,15 @@ export function buildComposerReactionSolvePlan(options = {}) {
   const fragmentCandidates = [];
   const associateCandidates = [];
   const productChildCandidates = [];
-  const associateSourceEntries = collectAssociateSourceEntries(reactants, buildNodeKey);
-  const compositeChildSourceEntries = collectCompositeChildSourceEntries(reactants, buildNodeKey);
-  const standaloneRootSourceEntries = collectStandaloneRootSourceEntries(reactants);
-  reactants.forEach((reactantEntry) => {
+  const sourceEntries = [...reactants, ...centerAssemblies];
+  const associateSourceEntries = collectAssociateSourceEntries(sourceEntries, buildNodeKey);
+  const compositeChildSourceEntries = collectCompositeChildSourceEntries(sourceEntries, buildNodeKey);
+  const standaloneRootSourceEntries = collectStandaloneRootSourceEntries(sourceEntries);
+  const associateCompositeSourceEntries = [
+    ...standaloneRootSourceEntries,
+    ...compositeChildSourceEntries,
+  ];
+  sourceEntries.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const compositeCandidate = createCompositeCarryThroughCandidate(
         reactantEntry,
@@ -647,6 +767,15 @@ export function buildComposerReactionSolvePlan(options = {}) {
       );
       if (directCandidate) {
         candidates.push(directCandidate);
+        return;
+      }
+      const centerCandidate = createCenterRootCandidate(
+        reactantEntry,
+        productEntry,
+        resolveBinaryChoiceInventory
+      );
+      if (centerCandidate) {
+        candidates.push(centerCandidate);
         return;
       }
     });
@@ -678,87 +807,105 @@ export function buildComposerReactionSolvePlan(options = {}) {
       });
     }
   }
+  products.forEach((productEntry) => {
+    if (
+      reactants.some((reactantEntry) =>
+        participantsShareDirectIdentity(reactantEntry?.participant, productEntry?.participant)
+      )
+    ) {
+      return;
+    }
+    const standaloneAssociateCandidate = createAssociateStandaloneCandidate({
+      sourceEntries: associateSourceEntries,
+      productEntry,
+      resolveBinaryChoiceInventory,
+    });
+    if (standaloneAssociateCandidate) {
+      associateCandidates.push(standaloneAssociateCandidate);
+      return;
+    }
+    const associateCandidate = createAssociateCompositeCandidate({
+      sourceEntries: associateCompositeSourceEntries,
+      productEntry,
+      resolveBinaryChoiceInventory,
+    });
+    if (associateCandidate) {
+      associateCandidates.push(associateCandidate);
+    }
+  });
 
   const selectedCandidates = [];
-  const selectedFragmentCandidates = [];
-  const selectedPartialCandidates = [];
-  const selectedAssociateCandidates = [];
-  const selectedProductChildCandidates = [];
   const selectedMappings = [];
   const participantAdditions = [];
-  const usedReactantIds = new Set();
-  const usedProductIds = new Set();
-  const usedReactantSourceFragmentKeys = new Set();
-  const claimedPartialProductIds = new Set();
-  candidates.sort(compareSolveCandidates).forEach((candidate) => {
-    const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
-    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
-    if (!sourceParticipantId || !targetParticipantId) {
-      return;
-    }
-    if (usedReactantIds.has(sourceParticipantId) || usedProductIds.has(targetParticipantId)) {
-      return;
-    }
-    usedReactantIds.add(sourceParticipantId);
-    usedProductIds.add(targetParticipantId);
-    selectedCandidates.push(candidate);
-    selectedMappings.push(...candidate.mappings);
+  const selectedBaseCandidateSet = selectBestComposerReactionSolveCandidates([
+    ...candidates,
+    ...fragmentCandidates,
+    ...associateCandidates,
+  ]);
+  const selectedFragmentCandidates = Array.isArray(
+    selectedBaseCandidateSet.selectedFragmentCandidates
+  )
+    ? selectedBaseCandidateSet.selectedFragmentCandidates
+    : [];
+  const selectedAssociateCandidates = Array.isArray(
+    selectedBaseCandidateSet.selectedAssociateCandidates
+  )
+    ? selectedBaseCandidateSet.selectedAssociateCandidates
+    : [];
+  selectedCandidates.push(
+    ...(
+      Array.isArray(selectedBaseCandidateSet.selectedCandidates)
+        ? selectedBaseCandidateSet.selectedCandidates
+        : []
+    )
+  );
+  [
+    ...selectedCandidates,
+    ...selectedFragmentCandidates,
+    ...selectedAssociateCandidates,
+  ].forEach((candidate) => {
+    selectedMappings.push(...(candidate?.mappings ?? []));
+    participantAdditions.push(...(candidate?.participantAdditions ?? []));
   });
-  fragmentCandidates.sort(compareSolveCandidates).forEach((candidate) => {
-    const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
-    const sourceFragmentKey = String(candidate?.sourceFragmentKey ?? "");
-    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
-    if (!sourceParticipantId || !sourceFragmentKey || !targetParticipantId) {
-      return;
-    }
-    if (
-      usedReactantIds.has(sourceParticipantId) ||
-      usedReactantSourceFragmentKeys.has(sourceFragmentKey) ||
-      usedProductIds.has(targetParticipantId)
-    ) {
-      return;
-    }
-    usedReactantSourceFragmentKeys.add(sourceFragmentKey);
-    usedProductIds.add(targetParticipantId);
-    selectedFragmentCandidates.push(candidate);
-    selectedMappings.push(...candidate.mappings);
-  });
-  associateCandidates.sort(compareSolveCandidates).forEach((candidate) => {
-    const sourceEntries = Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [];
-    const sourceParticipantIds = sourceEntries.map((entry) =>
-      String(entry?.participant?.id ?? "")
-    );
-    const sourceFragmentKeys = sourceEntries.map((entry) =>
-      String(entry?.sourceFragmentKey ?? entry?.sourceNodeKey ?? "")
-    );
-    const targetParticipantId = String(candidate?.targetParticipant?.id ?? "");
-    if (
-      !targetParticipantId ||
-      sourceParticipantIds.some((participantId) => !participantId) ||
-      sourceFragmentKeys.some((fragmentKey) => !fragmentKey)
-    ) {
-      return;
-    }
-    if (
-      sourceParticipantIds.some(
-        (participantId) => usedReactantIds.has(participantId)
-      ) ||
-      sourceFragmentKeys.some((fragmentKey) => usedReactantSourceFragmentKeys.has(fragmentKey)) ||
-      usedProductIds.has(targetParticipantId)
-    ) {
-      return;
-    }
-    sourceFragmentKeys.forEach((fragmentKey) => usedReactantSourceFragmentKeys.add(fragmentKey));
-    sourceEntries.forEach((entry) => {
+
+  const usedReactantIds = new Set(
+    selectedCandidates
+      .map((candidate) => String(candidate?.sourceParticipant?.id ?? ""))
+      .filter(Boolean)
+  );
+  const usedProductIds = new Set(
+    [
+      ...selectedCandidates,
+      ...selectedFragmentCandidates,
+      ...selectedAssociateCandidates,
+    ]
+      .map((candidate) => String(candidate?.targetParticipant?.id ?? ""))
+      .filter(Boolean)
+  );
+  selectedAssociateCandidates.forEach((candidate) => {
+    (Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : []).forEach((entry) => {
       if (entry?.consumesWholeParticipant) {
         usedReactantIds.add(String(entry?.participant?.id ?? ""));
       }
     });
-    usedProductIds.add(targetParticipantId);
-    selectedAssociateCandidates.push(candidate);
-    participantAdditions.push(...(candidate.participantAdditions ?? []));
-    selectedMappings.push(...candidate.mappings);
   });
+  const usedReactantSourceFragmentKeys = new Set(
+    [
+      ...selectedFragmentCandidates.flatMap((candidate) => candidate?.sourceFragmentKey ?? []),
+      ...selectedAssociateCandidates.flatMap((candidate) =>
+        Array.isArray(candidate?.sourceEntries)
+          ? candidate.sourceEntries.map(
+              (entry) => entry?.sourceFragmentKey ?? entry?.sourceNodeKey ?? ""
+            )
+          : []
+      ),
+    ]
+      .flat()
+      .map((fragmentKey) => String(fragmentKey ?? ""))
+      .filter(Boolean)
+  );
+
+  const partialCandidates = [];
   reactants.forEach((reactantEntry) => {
     products.forEach((productEntry) => {
       const sourceParticipantId = String(reactantEntry?.participant?.id ?? "");
@@ -768,58 +915,46 @@ export function buildComposerReactionSolvePlan(options = {}) {
       }
       if (
         usedReactantIds.has(sourceParticipantId) ||
-        usedProductIds.has(targetParticipantId) ||
-        claimedPartialProductIds.has(targetParticipantId)
+        usedProductIds.has(targetParticipantId)
       ) {
         return;
       }
-      const excludedSourceNodeIds = Array.from(usedReactantSourceFragmentKeys)
-        .filter((fragmentKey) => fragmentKey.startsWith(`${sourceParticipantId}:`))
-        .map((fragmentKey) => fragmentKey.slice(sourceParticipantId.length + 1))
-        .filter(Boolean);
       const candidate = createPartialCompositeCandidate(
         reactantEntry,
         productEntry,
         resolveBinaryChoiceInventory,
-        buildNodeKey,
-        { excludedSourceNodeIds }
+        buildNodeKey
       );
       if (!candidate) {
         return;
       }
-      if (
-        (candidate.sourceFragmentKeys ?? []).some((fragmentKey) =>
+      partialCandidates.push(candidate);
+    });
+  });
+
+  const selectedPartialSet = selectBestComposerReactionSolveCandidates(
+    partialCandidates.filter(
+      (candidate) =>
+        !(candidate?.sourceFragmentKeys ?? []).some((fragmentKey) =>
           usedReactantSourceFragmentKeys.has(String(fragmentKey ?? ""))
         )
-      ) {
-        return;
-      }
-      (candidate.sourceFragmentKeys ?? []).forEach((fragmentKey) =>
-        usedReactantSourceFragmentKeys.add(String(fragmentKey ?? ""))
-      );
-      selectedPartialCandidates.push(candidate);
-      claimedPartialProductIds.add(targetParticipantId);
-      selectedMappings.push(...candidate.mappings);
-    });
-  });
-  const claimedPartialProductIdSet = new Set(
-    Array.from(claimedPartialProductIds).map((participantId) => String(participantId ?? ""))
+    )
   );
-  const compositeChildTargetEntries = collectCompositeChildTargetEntries(products, buildNodeKey, {
-    allowedParticipantIds: claimedPartialProductIdSet,
+  const selectedPartialCandidates = Array.isArray(selectedPartialSet.selectedPartialCandidates)
+    ? selectedPartialSet.selectedPartialCandidates
+    : [];
+  const claimedPartialProductIds = new Set(
+    selectedPartialCandidates
+      .map((candidate) => String(candidate?.targetParticipant?.id ?? ""))
+      .filter(Boolean)
+  );
+  selectedPartialCandidates.forEach((candidate) => {
+    (candidate?.sourceFragmentKeys ?? []).forEach((fragmentKey) =>
+      usedReactantSourceFragmentKeys.add(String(fragmentKey ?? ""))
+    );
+    selectedMappings.push(...(candidate?.mappings ?? []));
   });
-  standaloneRootSourceEntries.forEach((sourceEntry) => {
-    compositeChildTargetEntries.forEach((targetEntry) => {
-      const productChildCandidate = createProductChildCandidate(
-        sourceEntry,
-        targetEntry,
-        resolveBinaryChoiceInventory
-      );
-      if (productChildCandidate) {
-        productChildCandidates.push(productChildCandidate);
-      }
-    });
-  });
+
   const usedProductTargetFragmentKeys = new Set(
     selectedMappings
       .map((mapping) => {
@@ -831,28 +966,39 @@ export function buildComposerReactionSolvePlan(options = {}) {
       })
       .filter(Boolean)
   );
-  productChildCandidates.sort(compareSolveCandidates).forEach((candidate) => {
-    const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
-    const sourceFragmentKey = String(candidate?.sourceFragmentKey ?? "");
-    const targetFragmentKey = String(candidate?.targetFragmentKey ?? "");
-    if (!sourceParticipantId || !sourceFragmentKey || !targetFragmentKey) {
-      return;
+  const selectedProductChildSet = selectBestComposerReactionSolveCandidates(
+    productChildCandidates.filter((candidate) => {
+      const sourceParticipantId = String(candidate?.sourceParticipant?.id ?? "");
+      const sourceFragmentKey = String(candidate?.sourceFragmentKey ?? "");
+      const targetFragmentKey = String(candidate?.targetFragmentKey ?? "");
+      if (!sourceParticipantId || !sourceFragmentKey || !targetFragmentKey) {
+        return false;
+      }
+      return (
+        !usedReactantIds.has(sourceParticipantId) &&
+        !usedReactantSourceFragmentKeys.has(sourceFragmentKey) &&
+        !usedProductTargetFragmentKeys.has(targetFragmentKey)
+      );
+    })
+  );
+  const selectedProductChildCandidates = Array.isArray(
+    selectedProductChildSet.selectedProductChildCandidates
+  )
+    ? selectedProductChildSet.selectedProductChildCandidates
+    : [];
+  selectedProductChildCandidates.forEach((candidate) => {
+    if (candidate?.consumesWholeParticipant) {
+      usedReactantIds.add(String(candidate?.sourceParticipant?.id ?? ""));
     }
-    if (
-      usedReactantIds.has(sourceParticipantId) ||
-      usedReactantSourceFragmentKeys.has(sourceFragmentKey) ||
-      usedProductTargetFragmentKeys.has(targetFragmentKey)
-    ) {
-      return;
-    }
-    if (candidate.consumesWholeParticipant) {
-      usedReactantIds.add(sourceParticipantId);
-    }
-    usedReactantSourceFragmentKeys.add(sourceFragmentKey);
-    usedProductTargetFragmentKeys.add(targetFragmentKey);
-    selectedProductChildCandidates.push(candidate);
-    selectedMappings.push(...candidate.mappings);
+    usedReactantSourceFragmentKeys.add(String(candidate?.sourceFragmentKey ?? ""));
+    usedProductTargetFragmentKeys.add(String(candidate?.targetFragmentKey ?? ""));
+    selectedMappings.push(...(candidate?.mappings ?? []));
   });
+
+  const dissociatedCompositeParticipants = collectPlanDissociatedCompositeParticipants(
+    reactants,
+    selectedMappings
+  );
 
   return {
     mode: "direct-v1",
@@ -863,6 +1009,7 @@ export function buildComposerReactionSolvePlan(options = {}) {
     selectedProductChildCandidates,
     selectedMappings,
     participantAdditions,
+    dissociatedCompositeParticipants,
     directProductCount:
       selectedFragmentCandidates.length +
       selectedCandidates.filter(

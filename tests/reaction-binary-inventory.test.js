@@ -84,3 +84,18 @@ test("binary inventory runtime subtracts the hidden binary pair for trimmed slot
     positrino: 0,
   });
 });
+
+test("free architrinos resolve personality-only inventory without a Noether core wrapper", () => {
+  const participant = createParticipant({
+    id: "free_architrinos_a",
+    templateId: "free_architrinos",
+    label: "Free Architrinos",
+  });
+  const innerNode = participant.hierarchy[0].children[0];
+
+  assert.equal(innerNode.hasBinary, false);
+  assert.deepEqual(resolveBinaryChoiceInventory(participant, innerNode), {
+    electrino: 1,
+    positrino: 1,
+  });
+});

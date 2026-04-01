@@ -79,7 +79,6 @@ import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
-import { createComposerReactionSolverUiRuntime } from "./src/runtime/ComposerReactionSolverUiRuntime.js";
 import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import {
   computeComposerViewportAutoscaleCameraState,
@@ -120,6 +119,7 @@ import {
   isHydePeriodicTableScene,
   isStandardModelScene,
 } from "./src/services/SceneCapabilitiesService.js";
+import { resolveStandaloneAppHrefForScene } from "./src/apps/navigator/StandaloneAppLaunchRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -173,11 +173,8 @@ const composerViewObserverButton = document.getElementById("composer-view-observ
 const composerSceneButton = document.getElementById("composer-scene-button");
 const composerClearButton = document.getElementById("composer-clear-button");
 const composerSaveButton = document.getElementById("composer-save-button");
-const composerReactionButton = document.getElementById("composer-reaction-button");
 const composerReactionBackButton = document.getElementById("composer-reaction-back-button");
 const composerDocsButton = document.getElementById("composer-docs-button");
-const composerReactionClearButton = document.getElementById("composer-reaction-clear-button");
-const composerReactionSolveButton = document.getElementById("composer-reaction-solve-button");
 const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
   ? Array.from(composerOverlay.querySelectorAll(".composer-tab"))
@@ -210,14 +207,6 @@ const composerCanvas = document.getElementById("composer-canvas");
 const composerCanvasWrap = composerCanvas?.parentElement ?? null;
 const composerViewportOverlays = document.getElementById("composer-viewport-overlays");
 const composerAssemblyMenu = document.getElementById("composer-assembly-menu");
-const composerReactionSolver = document.getElementById("composer-reaction-solver");
-const composerReactionSolverSurface = document.getElementById("composer-reaction-solver-surface");
-const composerReactionSolverReactants = document.getElementById("composer-reaction-solver-reactants");
-const composerReactionSolverProducts = document.getElementById("composer-reaction-solver-products");
-const composerReactionSolverHint = document.getElementById("composer-reaction-solver-hint");
-const composerReactionSolverEmpty = document.getElementById("composer-reaction-solver-empty");
-const composerReactionSolverSvg = document.getElementById("composer-reaction-solver-svg");
-const composerReactionSolverMenu = document.getElementById("composer-reaction-solver-menu");
 const composerHudLabelsToggle = document.getElementById("composer-hud-labels-toggle");
 const composerHudPathsToggle = document.getElementById("composer-hud-paths-toggle");
 const composerHudHistoryToggle = document.getElementById("composer-hud-history-toggle");
@@ -284,7 +273,6 @@ const composerTimelinePauses = document.getElementById("composer-timeline-pauses
 const composerTimelineMarkers = document.getElementById("composer-timeline-markers");
 const composerTimelinePlayhead = document.getElementById("composer-timeline-playhead");
 const composerLibraryStorageKey = "architrino.composer.library.v1";
-const composerReactionSolverStorageKey = "architrino.composer.reactionSolver.active";
 const composerMediaAssetDirectories = {
   image: "content/assets/composer/images/",
   video: "content/assets/composer/video/",
@@ -8130,24 +8118,22 @@ const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
 const composerScenePath = "content/scenes/archie/composer.json";
-const reactionScenePath = "content/scenes/archie/reaction_designer.json";
 const composerSceneId = "composer";
 const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "action-items/composer-reaction/composer.md";
+const appMode = String(globalThis.window?.__ARCHITRINO_APP_MODE__ ?? "").trim().toLowerCase();
+const isStandaloneComposerApp = appMode === "composer";
+const standaloneNavigatorHref = "./index.html";
 
 function isComposerOverlaySceneId(sceneId = "") {
-  return (
-    sceneId === composerSceneId ||
-    sceneId === reactionSceneId ||
-    sceneId === composerPreviewSceneId
-  );
+  return sceneId === composerSceneId || sceneId === composerPreviewSceneId;
 }
 
 function shouldHideLevelForComposerOverlayScene(sceneId = "") {
-  return sceneId === composerSceneId || sceneId === reactionSceneId;
+  return sceneId === composerSceneId;
 }
 const markdownDocBadgeCharacterThreshold = 512;
 const markdownOpenCharacterThreshold = 512;
@@ -9334,6 +9320,10 @@ async function resetToRootScene(options = {}) {
   if (transitionState.active) {
     return;
   }
+  if (isStandaloneComposerApp) {
+    globalThis.window?.location?.assign(standaloneNavigatorHref);
+    return;
+  }
   recordBrowserBackHistory(options);
   const config = await sceneBootstrapService.loadSceneConfig(rootScenePath);
   if (!config) {
@@ -9369,9 +9359,6 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
-  if (scenePath !== currentLevel?.id) {
-    recordBrowserBackHistory(options);
-  }
   const preservedWorldPosition = worldGroup.position.clone();
   const preservedLevelPosition = currentLevel
     ? currentLevel.group.position.clone()
@@ -9389,6 +9376,17 @@ async function jumpToScene(scenePath, options = {}) {
   const config = await sceneBootstrapService.ensureSceneReady(scenePath);
   if (!config) {
     return;
+  }
+  const standaloneAppHref = resolveStandaloneAppHrefForScene(
+    config?.sceneId,
+    globalThis.window?.location?.href
+  );
+  if (standaloneAppHref) {
+    globalThis.window?.location?.assign(standaloneAppHref);
+    return;
+  }
+  if (scenePath !== currentLevel?.id) {
+    recordBrowserBackHistory(options);
   }
   const forceInstantComposerEntry = isComposerOverlaySceneId(config?.sceneId);
   const shouldHideLevelForComposer = shouldHideLevelForComposerOverlayScene(config?.sceneId);
@@ -10231,7 +10229,11 @@ async function startLevelTransitionFromNode(targetNode) {
     return;
   }
 
-  if (isComposerOverlaySceneId(config.sceneId)) {
+  const standaloneAppHref = resolveStandaloneAppHrefForScene(
+    config.sceneId,
+    globalThis.window?.location?.href
+  );
+  if (isComposerOverlaySceneId(config.sceneId) || standaloneAppHref) {
     closeDetailPanel();
     hideHoverTooltip();
     markdownRuntime.hideMarkdownPanel();
@@ -10510,7 +10512,6 @@ const composerUiRuntime = createComposerUiRuntime({
   composerTabs,
   composerPanels,
   composerSceneId,
-  reactionSceneId,
   composerPreviewSceneId,
   composerPreviewScenePath,
   composerDocsPath,
@@ -10527,34 +10528,6 @@ const composerUiRuntime = createComposerUiRuntime({
   setComposerStatus,
   setComposerNeedsResize: (value) => {
     composerNeedsResize = value;
-  },
-});
-
-const composerReactionSolverUiRuntime = createComposerReactionSolverUiRuntime({
-  toggleButton: composerReactionButton,
-  root: composerReactionSolver,
-  surface: composerReactionSolverSurface,
-  reactantsColumn: composerReactionSolverReactants,
-  productsColumn: composerReactionSolverProducts,
-  mapHint: composerReactionSolverHint,
-  emptyState: composerReactionSolverEmpty,
-  mapSvg: composerReactionSolverSvg,
-  menu: composerReactionSolverMenu,
-  clearButton: composerReactionClearButton,
-  solveButton: composerReactionSolveButton,
-  templateMenuRows: composerAssemblyTemplateMenuRows,
-  setStatus: setComposerStatus,
-  closeExternalMenus: () => {
-    closeComposerAssemblyMenu();
-  },
-  storage: globalThis.window?.sessionStorage ?? null,
-  storageKey: composerReactionSolverStorageKey,
-  onActiveChange: (active) => {
-    composerCanvasWrap?.classList.toggle("is-reaction-solver-mode", !!active);
-    composerOverlay?.classList.toggle("is-reaction-app-mode", !!active);
-    if (active) {
-      setComposerStatus("Use the left and right + controls for reactants and products. The left center + adds L Polar Transform, the middle transform is disabled, and the right center + adds R Polar Transform.");
-    }
   },
 });
 
@@ -10589,17 +10562,6 @@ const elementNavigationRuntime = createElementNavigationRuntime({
   isEditingTextInput,
 });
 
-function syncComposerReactionSceneState() {
-  const sceneId = currentLevel?.sceneId ?? "";
-  if (sceneId === reactionSceneId) {
-    composerReactionSolverUiRuntime.setActive(true, { persist: false, announce: false });
-    return;
-  }
-  if (!isComposerOverlaySceneId(sceneId)) {
-    composerReactionSolverUiRuntime.setActive(false, { persist: false, announce: false });
-  }
-}
-
 function updateSceneLabel() {
   sceneStateHashService.syncSceneHash(currentLevel?.id ?? null);
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
@@ -10613,7 +10575,6 @@ function updateSceneLabel() {
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
   composerUiRuntime.updateComposerOverlay(currentLevel);
-  syncComposerReactionSceneState();
   periodicOverlayRuntime.updatePeriodicOverlay();
   periodicOverlayRuntime.updateElementLegend();
   periodicOverlayRuntime.updateElementInfoPanel();
@@ -10780,14 +10741,13 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
   deleteComposerSceneFromLibrary,
   isTransitionActive: () => transitionState.active,
   exitReactionApp: () => {
-    if (currentLevel?.sceneId === reactionSceneId) {
-      composerReactionSolverUiRuntime.setActive(false, { persist: false, announce: false });
-      jumpToScene(composerScenePath, { mode: "instant" });
-      return;
-    }
-    composerReactionSolverUiRuntime.setActive(false);
+    jumpToScene(composerScenePath, { mode: "instant" });
   },
   exitComposer: () => {
+    if (isStandaloneComposerApp) {
+      globalThis.window?.location?.assign(standaloneNavigatorHref);
+      return;
+    }
     if (browserBackStack.length > 0) {
       navUpButton?.click();
       return;
@@ -11100,11 +11060,27 @@ function onResize() {
 async function init() {
   closeDetailPanel();
   const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
+  const requestedInitialScenePath = isStandaloneComposerApp
+    ? requestedSceneState.scenePath || composerScenePath
+    : requestedSceneState.scenePath || rootScenePath;
   const initialScene = await sceneBootstrapService.resolveInitialScene(
-    requestedSceneState.scenePath || rootScenePath
+    requestedInitialScenePath
   );
   if (!initialScene) {
     return;
+  }
+  const standaloneInitialHref = resolveStandaloneAppHrefForScene(
+    initialScene.config?.sceneId,
+    globalThis.window?.location?.href
+  );
+  if (standaloneInitialHref && typeof globalThis.window?.location?.href === "string") {
+    const currentUrl = new URL(globalThis.window.location.href);
+    const targetUrl = new URL(standaloneInitialHref);
+    if (currentUrl.pathname !== targetUrl.pathname) {
+      targetUrl.hash = currentUrl.hash;
+      globalThis.window.location.assign(targetUrl.href);
+      return;
+    }
   }
   const initialScenePath = initialScene.scenePath;
   currentLevel = buildLevel(initialScenePath);

@@ -1,0 +1,189 @@
+{
+  "schema": "reaction-flow/v1",
+  "reactionId": "free_neutron_beta_001",
+  "title": "Free Neutron Beta Reaction",
+  "participants": [
+    {
+      "id": "reactant_neutron",
+      "side": "reactant",
+      "label": "Neutron",
+      "structureKey": "neutron",
+      "provenanceId": "prov_neutron",
+      "tags": ["incoming", "composite"],
+      "layout": {
+        "column": "left",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_proton",
+      "side": "product",
+      "label": "Proton",
+      "structureKey": "proton",
+      "provenanceId": "prov_proton",
+      "tags": ["outgoing", "composite"],
+      "layout": {
+        "column": "right",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_electron",
+      "side": "product",
+      "label": "Electron",
+      "structureKey": "electron",
+      "provenanceId": "prov_electron",
+      "tags": ["outgoing", "lepton"],
+      "layout": {
+        "column": "right",
+        "row": 1
+      }
+    },
+    {
+      "id": "product_antineutrino",
+      "side": "product",
+      "label": "Electron Antineutrino",
+      "structureKey": "anti_neutrino",
+      "provenanceId": "prov_antineutrino",
+      "tags": ["outgoing", "lepton"],
+      "layout": {
+        "column": "right",
+        "row": 2
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "op_transmute_1",
+      "type": "transmute",
+      "label": "Weak Handoff",
+      "stageId": "stage_handoff",
+      "inputs": [
+        {
+          "participantId": "reactant_neutron",
+          "anchorId": "neutron_root"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_proton",
+          "anchorId": "proton_root"
+        },
+        {
+          "participantId": "product_electron",
+          "anchorId": "electron_root"
+        },
+        {
+          "participantId": "product_antineutrino",
+          "anchorId": "antineutrino_root"
+        }
+      ],
+      "tags": ["manual", "weak-reaction"]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_remainder_to_proton",
+      "from": {
+        "participantId": "reactant_neutron",
+        "anchorId": "neutron_remainder"
+      },
+      "to": {
+        "participantId": "product_proton",
+        "anchorId": "proton_remainder"
+      },
+      "viaOperatorId": "op_transmute_1",
+      "stageId": "stage_handoff",
+      "conservedLedger": {
+        "electrinoCount": 4,
+        "positrinoCount": 5
+      }
+    },
+    {
+      "id": "map_emitted_electron",
+      "from": {
+        "participantId": "reactant_neutron",
+        "anchorId": "emission_corridor"
+      },
+      "to": {
+        "participantId": "product_electron",
+        "anchorId": "electron_root"
+      },
+      "viaOperatorId": "op_transmute_1",
+      "stageId": "stage_handoff",
+      "conservedLedger": {
+        "electrinoCount": 1,
+        "positrinoCount": 2
+      }
+    },
+    {
+      "id": "map_emitted_antineutrino",
+      "from": {
+        "participantId": "reactant_neutron",
+        "anchorId": "emission_corridor"
+      },
+      "to": {
+        "participantId": "product_antineutrino",
+        "anchorId": "antineutrino_root"
+      },
+      "viaOperatorId": "op_transmute_1",
+      "stageId": "stage_handoff",
+      "conservedLedger": {
+        "electrinoCount": 0,
+        "positrinoCount": 1
+      }
+    }
+  ],
+  "stages": [
+    {
+      "id": "stage_setup",
+      "label": "Incoming Assemblies",
+      "order": 0,
+      "timing": {
+        "startMs": 0,
+        "endMs": 500
+      }
+    },
+    {
+      "id": "stage_handoff",
+      "label": "Weak Handoff",
+      "order": 1,
+      "timing": {
+        "startMs": 500,
+        "endMs": 1100
+      }
+    },
+    {
+      "id": "stage_reassembly",
+      "label": "Product Stabilization",
+      "order": 2,
+      "timing": {
+        "startMs": 1100,
+        "endMs": 1600
+      }
+    }
+  ],
+  "provenance": {
+    "sourceDocumentIds": ["reaction_manual_fixture_free_neutron_beta"],
+    "participantIds": [
+      "reactant_neutron",
+      "product_proton",
+      "product_electron",
+      "product_antineutrino"
+    ],
+    "mappingIds": [
+      "map_remainder_to_proton",
+      "map_emitted_electron",
+      "map_emitted_antineutrino"
+    ]
+  },
+  "hints": {
+    "initialFramingTargets": [
+      "reactant_neutron",
+      "product_proton",
+      "product_electron"
+    ],
+    "semanticTags": ["beta-reaction", "manual-authoring"],
+    "suggestedSceneId": "free_neutron_beta_scene"
+  }
+}

@@ -217,7 +217,52 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
-test("operator tiles expose an open-ledger shell state", () => {
+test("free architrinos reuse the grid layout but render personality-only tiles with no binary orbit or axis", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const descriptorSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionStructureDescriptorRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(descriptorSource, /templateId:\s*"free_architrinos"/);
+  assert.match(runtimeSource, /function createFreeArchitrinosGridTrack\(/);
+  assert.match(
+    runtimeSource,
+    /String\(node\?\.templateId \?\? participant\?\.templateId \?\? ""\)\.trim\(\)\.toLowerCase\(\) === "free_architrinos"/
+  );
+  assert.match(
+    runtimeSource,
+    /createBinaryGlyph\(selectedChoice,\s*\{[\s\S]*?showBinary:\s*false,/s
+  );
+});
+
+test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /participant\?\.side === "reactant"[\s\S]*?participant\?\.templateId === "free_architrinos"[\s\S]*?\[0,\s*1,\s*2\]\.forEach\(\(anchorInstanceIndex\) =>/
+  );
+  assert.match(
+    runtimeSource,
+    /anchorRole:\s*"reactant",[\s\S]*?anchorInstanceIndex/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-particle\.is-free-architrinos\s+\.composer-reaction-solver-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
+  );
+});
+
+test("operator tiles expose an open-ledger state", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
@@ -345,7 +390,7 @@ test("composite title rail side anchoring survives the nested participant-conten
   );
 });
 
-test("dissociated composite shells keep the title tile and render it with a dotted border", () => {
+test("dissociated composites keep the title tile and render it with a dotted border", () => {
   const runtimeSource = readFileSync(
     new URL("../src/runtime/ComposerReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -353,11 +398,11 @@ test("dissociated composite shells keep the title tile and render it with a dott
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /if \(participant\?\.isDissociatedShell \|\| participant\?\.isAutoDissociatedShell\) \{\s*card\.classList\.add\("is-dissociated-shell"\);/
+    /if \(participant\?\.isDissociatedComposite \|\| participant\?\.isAutoDissociatedComposite\) \{\s*card\.classList\.add\("is-dissociated-composite"\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-shell[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
+    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
   );
 });
 

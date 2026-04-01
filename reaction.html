@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>architrino reaction</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="reaction-app-page">
+    <div class="reaction-app-shell">
+      <header class="reaction-app-header">
+        <div class="reaction-app-title-row">
+          <h1 class="reaction-app-title">Reaction Designer and Solver</h1>
+          <div class="reaction-app-actions">
+            <a class="reaction-app-link" href="./index.html">Navigator</a>
+            <button
+              id="reaction-clear-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Clear the reaction canvas"
+            >
+              Clear
+            </button>
+            <button
+              id="reaction-solve-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Run the reaction solver"
+            >
+              Solve
+            </button>
+          </div>
+        </div>
+        <div id="reaction-status" class="reaction-app-status" aria-live="polite"></div>
+      </header>
+      <main class="reaction-app-main">
+        <section
+          id="reaction-solver"
+          class="composer-reaction-solver"
+          aria-hidden="false"
+          tabindex="0"
+        >
+          <div
+            id="reaction-solver-surface"
+            class="composer-reaction-solver-surface"
+          >
+            <svg
+              id="reaction-solver-svg"
+              class="composer-reaction-solver-svg"
+              aria-hidden="true"
+            ></svg>
+            <div
+              id="reaction-solver-empty"
+              class="composer-reaction-solver-empty"
+              aria-hidden="false"
+            >
+              Use the + controls to start a manual reaction solve.
+            </div>
+            <div
+              id="reaction-solver-reactants"
+              class="composer-reaction-solver-column is-reactants"
+            ></div>
+            <div
+              class="composer-reaction-solver-column-group-slot is-operator-left"
+              data-operator-lane-index="0"
+              aria-hidden="true"
+            ></div>
+            <div class="composer-reaction-solver-operator-layer" aria-hidden="false"></div>
+            <div
+              class="composer-reaction-solver-column-group-slot is-operator-right"
+              data-operator-lane-index="1"
+              aria-hidden="true"
+            ></div>
+            <div
+              id="reaction-solver-products"
+              class="composer-reaction-solver-column is-products"
+            ></div>
+          </div>
+          <div
+            id="reaction-solver-menu"
+            class="composer-reaction-solver-menu"
+            hidden
+            aria-hidden="true"
+          ></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./src/apps/reaction/main.js"></script>
+  </body>
+</html>

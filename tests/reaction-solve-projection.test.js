@@ -113,3 +113,30 @@ test("solve projection creates operator participants and resolves deferred mappi
     },
   ]);
 });
+
+test("solve projection marks explicit dissociated composites before applying mappings", () => {
+  const reactantHiggs = {
+    id: "reactant_higgs",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    isAutoDissociatedComposite: false,
+    hierarchy: [{ id: "reactant_higgs_root" }],
+  };
+  const markedParticipants = [];
+
+  const result = applyComposerReactionSolvePlan({
+    plan: {
+      dissociatedCompositeParticipants: [reactantHiggs],
+      selectedMappings: [],
+    },
+    markParticipantAutoDissociated: (participant) => {
+      participant.isAutoDissociatedComposite = true;
+      markedParticipants.push(participant.id);
+      return true;
+    },
+  });
+
+  assert.deepEqual(markedParticipants, ["reactant_higgs"]);
+  assert.deepEqual(result.markedDissociatedParticipantIds, ["reactant_higgs"]);
+  assert.equal(reactantHiggs.isAutoDissociatedComposite, true);
+});

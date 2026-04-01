@@ -17,6 +17,43 @@ Product direction belongs in [composer](./composer.md), [reaction](./reaction.md
 
 App-separation policy belongs in [independence](./independence.md).
 
+## Current Direction
+
+The current engineering direction should be treated as explicit unless superseded by a later architecture note.
+
+- keep the main webapp as the launcher and discovery surface;
+- launch `Composer` and `Reaction Designer` from that surface as separate routes or pages;
+- keep Composer and Reaction as separate app runtimes in one repo;
+- use explicit JSON contracts for cross-app handoff;
+- allow shared code only for narrow platform or contract concerns;
+- and do not let the apps share live app logic.
+
+This direction is not about inventing three unrelated products. The main webapp remains the sphere-based entry surface. The important change is that opening Composer or Reaction should leave that launcher runtime and enter the selected app's own runtime.
+
+The strongest practical reason for this direction is change isolation. If Composer and Reaction continue to run inside one shared runtime, a bug or refactor in one tool can still leak into the other through shared boot order, shared state, shared DOM, shared imports, or a large shared composition root.
+
+So the preferred boundary is:
+
+- one repo;
+- one main discovery webapp;
+- one Composer runtime;
+- one Reaction runtime;
+- and one explicit JSON contract boundary between Composer and Reaction.
+
+Shared code should stay narrow:
+
+- generic platform or shell infrastructure;
+- static data;
+- schemas and contracts;
+- and other truly app-neutral utilities.
+
+Shared code should not include:
+
+- app-specific state stores;
+- app-specific UI behavior;
+- app-specific catalogs that affect behavior;
+- or direct cross-app imports.
+
 ## Current Engineering Situation
 
 The codebase has improved, but the main engineering risks are still clear:

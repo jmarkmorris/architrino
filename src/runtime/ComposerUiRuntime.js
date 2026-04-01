@@ -5,7 +5,6 @@ export function createComposerUiRuntime(deps) {
     composerTabs,
     composerPanels,
     composerSceneId,
-    reactionSceneId,
     composerPreviewSceneId,
     composerPreviewScenePath,
     composerDocsPath,
@@ -58,8 +57,7 @@ export function createComposerUiRuntime(deps) {
     const isComposerScene =
       currentLevel?.sceneId === composerSceneId ||
       currentLevel?.sceneId === composerPreviewSceneId;
-    const isReactionScene = currentLevel?.sceneId === reactionSceneId;
-    const isOverlayScene = isComposerScene || isReactionScene;
+    const isOverlayScene = isComposerScene;
     composerOverlay.classList.toggle("is-open", !!isOverlayScene);
     composerOverlay.setAttribute("aria-hidden", isOverlayScene ? "false" : "true");
     composerOverlay.inert = !isOverlayScene;
