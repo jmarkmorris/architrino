@@ -1,6 +1,7 @@
 import { createComposerUiRuntime } from "../../runtime/ComposerUiRuntime.js";
 import { createComposerControlsUiRuntime } from "../../runtime/ComposerControlsUiRuntime.js";
 import { createComposerEditorStore } from "../../runtime/ComposerStoreRuntime.js";
+import { createComposerEditorStoreFacade } from "./ComposerEditorStoreFacadeRuntime.js";
 
 const defaultComposerPanelEntries = Object.freeze([
   ["composer_tree", "tree"],
@@ -32,6 +33,7 @@ export function createComposerAppStore(options = {}) {
     palette,
     editorStore,
     pathState: editorStore.getPathState(),
+    storeFacade: createComposerEditorStoreFacade(editorStore),
   };
 }
 

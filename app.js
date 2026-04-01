@@ -1603,87 +1603,87 @@ function getComposerSelectedAssembly() {
 }
 
 function getComposerAssemblyDraftsState() {
-  return composerEditorStore.getAssemblyDrafts();
+  return composerEditorStoreFacade.getComposerAssemblyDraftsState();
 }
 
 function getComposerGraphicOverlayDraftsState() {
-  return composerEditorStore.getGraphicOverlayDrafts();
+  return composerEditorStoreFacade.getComposerGraphicOverlayDraftsState();
 }
 
 function getComposerSelectedPointIndexState() {
-  return composerEditorStore.getSelectedPointIndex();
+  return composerEditorStoreFacade.getComposerSelectedPointIndexState();
 }
 
 function getComposerSelectedAssemblyIdState() {
-  return composerEditorStore.getSelectedAssemblyId();
+  return composerEditorStoreFacade.getComposerSelectedAssemblyIdState();
 }
 
 function getComposerPendingTransferSourceState() {
-  return composerEditorStore.getPendingTransferSource();
+  return composerEditorStoreFacade.getComposerPendingTransferSourceState();
 }
 
 function getComposerTransferListRawStateValue() {
-  return composerEditorStore.getTransferListRawState();
+  return composerEditorStoreFacade.getComposerTransferListRawStateValue();
 }
 
 function setComposerAssemblyDraftsState(nextValue) {
-  return composerEditorStore.setAssemblyDrafts(nextValue);
+  return composerEditorStoreFacade.setComposerAssemblyDraftsState(nextValue);
 }
 
 function appendComposerAssemblyDraftState(draft) {
-  return composerEditorStore.appendAssemblyDraft(draft);
+  return composerEditorStoreFacade.appendComposerAssemblyDraftState(draft);
 }
 
 function removeComposerAssemblyDraftByIdState(assemblyId) {
-  return composerEditorStore.removeAssemblyDraftById(assemblyId);
+  return composerEditorStoreFacade.removeComposerAssemblyDraftByIdState(assemblyId);
 }
 
 function updateComposerAssemblyDraftByIdState(assemblyId, updater) {
-  return composerEditorStore.updateAssemblyDraftById(assemblyId, updater);
+  return composerEditorStoreFacade.updateComposerAssemblyDraftByIdState(assemblyId, updater);
 }
 
 function setComposerGraphicOverlayDraftsState(nextValue) {
-  return composerEditorStore.setGraphicOverlayDrafts(nextValue);
+  return composerEditorStoreFacade.setComposerGraphicOverlayDraftsState(nextValue);
 }
 
 function upsertComposerGraphicOverlayDraftState(overlayDraft) {
-  return composerEditorStore.upsertGraphicOverlayDraft(overlayDraft);
+  return composerEditorStoreFacade.upsertComposerGraphicOverlayDraftState(overlayDraft);
 }
 
 function removeComposerGraphicOverlayDraftByIdState(overlayId) {
-  return composerEditorStore.removeGraphicOverlayDraftById(overlayId);
+  return composerEditorStoreFacade.removeComposerGraphicOverlayDraftByIdState(overlayId);
 }
 
 function updateComposerGraphicOverlayDraftByIdState(overlayId, updater) {
-  return composerEditorStore.updateGraphicOverlayDraftById(overlayId, updater);
+  return composerEditorStoreFacade.updateComposerGraphicOverlayDraftByIdState(overlayId, updater);
 }
 
 function setComposerSelectedPointIndexState(nextValue) {
-  return composerEditorStore.setSelectedPointIndex(nextValue);
+  return composerEditorStoreFacade.setComposerSelectedPointIndexState(nextValue);
 }
 
 function setComposerSelectedAssemblyIdState(nextValue) {
-  return composerEditorStore.setSelectedAssemblyId(nextValue);
+  return composerEditorStoreFacade.setComposerSelectedAssemblyIdState(nextValue);
 }
 
 function setComposerPendingTransferSourceState(nextValue) {
-  return composerEditorStore.setPendingTransferSource(nextValue);
+  return composerEditorStoreFacade.setComposerPendingTransferSourceState(nextValue);
 }
 
 function clearComposerPendingTransferSourceState() {
-  return composerEditorStore.clearPendingTransferSource();
+  return composerEditorStoreFacade.clearComposerPendingTransferSourceState();
 }
 
 function setComposerTransferListRawStateValue(nextValue) {
-  return composerEditorStore.setTransferListRawState(nextValue);
+  return composerEditorStoreFacade.setComposerTransferListRawStateValue(nextValue);
 }
 
 function updateComposerPathPointAtState(index, updater) {
-  return composerEditorStore.updatePathPointAt(index, updater);
+  return composerEditorStoreFacade.updateComposerPathPointAtState(index, updater);
 }
 
 function mutateComposerPathStateState(mutator) {
-  return composerEditorStore.mutatePathState(mutator);
+  return composerEditorStoreFacade.mutateComposerPathStateState(mutator);
 }
 
 function isComposerBareArchitrinoAssembly(assembly) {
@@ -1758,7 +1758,7 @@ function getComposerSelectedAssemblyLetter() {
 }
 
 function getComposerTransferListRaw() {
-  return composerTransferListInput?.value ?? composerEditorStore.getTransferListRawState() ?? "";
+  return composerTransferListInput?.value ?? getComposerTransferListRawStateValue() ?? "";
 }
 
 function setComposerTransferListRaw(value = "") {
@@ -8267,6 +8267,7 @@ const {
   palette: composerPalette,
   editorStore: composerEditorStore,
   pathState: composerPathState,
+  storeFacade: composerEditorStoreFacade,
 } = createComposerAppStore({
   palette: defaultAutoMarkdownPalette,
 });

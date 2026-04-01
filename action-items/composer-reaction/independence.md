@@ -305,6 +305,7 @@ Completed work inside Phase 4 so far:
 - standalone Composer app-mode policy now lives under `src/apps/composer/` instead of being hard-coded only inside `app.js`;
 - Composer standalone boot and return-to-main-webapp behavior now use Composer-local app-mode helpers;
 - Composer app-specific runtime assembly now lives behind `src/apps/composer/ComposerAppRuntime.js`;
+- Composer editor-store access now flows through a Composer-local facade under `src/apps/composer/` instead of `app.js` calling the store directly everywhere;
 - and the remaining Composer coupling is now more clearly concentrated in runtime composition rather than launch policy.
 
 ### Phase 5. Introduce The Handoff Contract
