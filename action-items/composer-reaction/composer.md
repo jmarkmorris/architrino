@@ -277,7 +277,7 @@ Next steps:
 
 ### 5. Retire Remaining Composer State And Authoring Logic From `app.js`
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -287,16 +287,22 @@ Why it matters:
 
 - Composer still depends too much on a shared composition root for app-owned state and authoring behavior.
 
+Progress update:
+
+- Composer draft-state, authoring-state, viewport-display, and assembly-label runtimes now exist under `src/apps/composer/`, and the matching helper blocks have been removed from `app.js`.
+- The remaining Composer debt in `app.js` is still large, but it is concentrated rather than evenly spread: about 205 Composer-named routines remain, totaling about 6.4k LOC, with the top 20 routines accounting for about 2.8k LOC.
+- Current estimate: about 5.0k-5.8k LOC still look worth extracting into Composer-owned runtimes, while about 0.6k-1.4k LOC likely remain acceptable as thin composition-root glue after the larger migrations land.
+
 Next steps:
 
-- move draft/state/selection helpers into a Composer draft-state runtime and collapse direct store wrappers into the existing store facade;
-- move transfer/path authoring helpers into a Composer authoring-state runtime;
-- move view-mode/display-flag helpers into a Composer viewport-display runtime;
-- and move assembly identity/label helpers into a Composer assembly-label runtime or merge them into existing assembly helpers.
+- keep the new state/authoring runtimes stable and avoid reintroducing direct store wrappers into `app.js`;
+- treat items 6 and 7 as batch extractions rather than one helper at a time;
+- prioritize the largest remaining seams first so each pass removes hundreds of lines instead of dozens;
+- and leave only thin launch, wiring, and cross-runtime glue in `app.js` once the larger Composer-owned families have moved.
 
 ### 6. Extract Composer Viewport Geometry, Assets, And Authoring Modules
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -306,12 +312,17 @@ Why it matters:
 
 - these behaviors are clearly Composer-owned, but too many of them are still grouped together in broad legacy surfaces.
 
+Progress update:
+
+- Composer render-asset builders for textures, sprites, and overlay text now live in a dedicated Composer render-assets runtime rather than inlined inside `app.js`.
+- The remaining work in this item is still substantial, but it is now more clearly concentrated in the structure-geometry, camera-path, and assembly-inspector seams.
+
 Next steps:
 
 - move orbit/member/anchor math into a Composer structure-geometry runtime;
-- move texture and sprite builders into a Composer render-assets runtime;
 - move camera/path authoring into a Composer camera-path runtime;
-- and move assembly editor and inspector behavior into a Composer assembly-inspector runtime.
+- move assembly editor and inspector behavior into a Composer assembly-inspector runtime;
+- and keep `app.js` changes to wiring only as those focused runtimes land.
 
 ### 7. Split The Remaining Composer Canvas, Playback, And Interaction Stack
 
