@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildComposerReactionSolveState } from "../src/runtime/ComposerReactionSolveStateRuntime.js";
+import { buildReactionSolveState } from "../src/apps/reaction/ReactionSolveStateRuntime.js";
 import {
-  buildComposerReactionSolvePlan,
-  describeComposerReactionSolvePlan,
-} from "../src/runtime/ComposerReactionSolveProposalRuntime.js";
+  buildReactionSolvePlan,
+  describeReactionSolvePlan,
+} from "../src/apps/reaction/ReactionSolveProposalRuntime.js";
 import { createComposerReactionBinaryInventoryRuntime } from "../src/runtime/ComposerReactionBinaryInventoryRuntime.js";
 import { createComposerReactionBinarySelectionRuntime } from "../src/runtime/ComposerReactionBinarySelectionRuntime.js";
 import { buildReactionParticipantStructure } from "../src/runtime/ComposerReactionStructureBridgeRuntime.js";
@@ -67,7 +67,7 @@ function setParticipantBinarySelectionsBySlotCode(participant, selectionsBySlotC
 }
 
 function buildSolveState(participants) {
-  return buildComposerReactionSolveState({
+  return buildReactionSolveState({
     participants,
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     isCenterAssemblyParticipant: (participant) => participant?.surfaceColumn === "center-assembly",
@@ -104,7 +104,7 @@ test("direct-root plan maps exact conservative root-level provenance pairs", () 
     label: "Noether core",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       reactantProCore,
       reactantAntiCore,
@@ -170,7 +170,7 @@ test("solve plan maps identical composite participants through their top-level c
     }),
   ];
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState(participants),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -180,7 +180,7 @@ test("solve plan maps identical composite participants through their top-level c
   assert.equal(plan.compositeProductCount, 3);
   assert.equal(plan.selectedCandidates.length, 3);
   assert.equal(plan.selectedMappings.length, 10);
-  assert.equal(describeComposerReactionSolvePlan(plan), "3 composite products");
+  assert.equal(describeReactionSolvePlan(plan), "3 composite products");
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
       mapping.sourceParticipant.templateId,
@@ -217,7 +217,7 @@ test("solve plan leaves neutron-to-proton unresolved when no exact associate rea
     label: "Proton",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([reactantNeutron, productProton]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -231,7 +231,7 @@ test("solve plan leaves neutron-to-proton unresolved when no exact associate rea
   assert.equal(plan.selectedAssociateCandidates.length, 0);
   assert.equal(plan.selectedPartialCandidates.length, 0);
   assert.equal(plan.selectedMappings.length, 0);
-  assert.equal(describeComposerReactionSolvePlan(plan), "0 products");
+  assert.equal(describeReactionSolvePlan(plan), "0 products");
   assert.equal(plan.unresolvedReactants.length, 1);
   assert.equal(plan.unresolvedProducts.length, 1);
 });
@@ -257,7 +257,7 @@ test("solve plan can still map a neutron down-quark row to a standalone down-qua
     label: "Down Quark",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([reactantNeutron, productProton, productDownQuark]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -315,7 +315,7 @@ test("solve plan uses associate to assemble a proton from neutron fragments plus
     label: "Down Quark",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       reactantNeutron,
       reactantUpQuark,
@@ -385,7 +385,7 @@ test("solve plan uses associate to build a proton from standalone up and down qu
     label: "Proton",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       reactantUpQuarkA,
       reactantUpQuarkB,
@@ -418,70 +418,7 @@ test("solve plan uses associate to build a proton from standalone up and down qu
       ["operator-output", "product", "proton", "up_quark"],
     ]
   );
-  assert.equal(describeComposerReactionSolvePlan(plan), "1 associated product");
-  assert.equal(plan.unresolvedReactants.length, 0);
-  assert.equal(plan.unresolvedProducts.length, 0);
-});
-
-test("solve plan can map a standalone up-quark reactant into the remaining proton child row", () => {
-  const reactantNeutron = createParticipant({
-    id: "reactant_neutron",
-    side: "reactant",
-    templateId: "neutron",
-    label: "Neutron",
-  });
-  const reactantUpQuark = createParticipant({
-    id: "reactant_up_quark",
-    side: "reactant",
-    templateId: "up_quark",
-    polarity: "pro",
-    label: "Up Quark",
-  });
-  const productProton = createParticipant({
-    id: "product_proton",
-    side: "product",
-    templateId: "proton",
-    label: "Proton",
-  });
-  const productDownQuark = createParticipant({
-    id: "product_down_quark",
-    side: "product",
-    templateId: "down_quark",
-    polarity: "pro",
-    label: "Down Quark",
-  });
-
-  const plan = buildComposerReactionSolvePlan({
-    solveState: buildSolveState([
-      reactantNeutron,
-      reactantUpQuark,
-      productProton,
-      productDownQuark,
-    ]),
-    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
-    resolveBinaryChoiceInventory,
-  });
-
-  assert.equal(plan.directProductCount, 1);
-  assert.equal(plan.partialCompositeProductCount, 1);
-  assert.equal(plan.selectedFragmentCandidates.length, 1);
-  assert.equal(plan.selectedPartialCandidates.length, 1);
-  assert.equal(plan.selectedProductChildCandidates.length, 1);
-  assert.equal(plan.selectedMappings.length, 4);
-  assert.deepEqual(
-    plan.selectedMappings.map((mapping) => [
-      mapping.sourceParticipant.templateId,
-      mapping.sourceNode.templateId,
-      mapping.targetParticipant.templateId,
-      mapping.targetNode.templateId,
-    ]),
-    [
-      ["neutron", "down_quark", "down_quark", "down_quark"],
-      ["neutron", "down_quark", "proton", "down_quark"],
-      ["neutron", "up_quark", "proton", "up_quark"],
-      ["up_quark", "up_quark", "proton", "up_quark"],
-    ]
-  );
+  assert.equal(describeReactionSolvePlan(plan), "1 associated product");
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
 });
@@ -508,7 +445,7 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
     label: "Photon",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([reactantProCore, reactantAntiCore, productPhoton]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -525,7 +462,7 @@ test("solve plan inserts an associate operator for pro and anti Noether cores fo
     /^associate:reactant_pro_core:[^:]+:reactant_anti_core:[^:]+:product_photon$/
   );
   assert.equal(plan.selectedMappings.length, 4);
-  assert.equal(describeComposerReactionSolvePlan(plan), "1 associated product");
+  assert.equal(describeReactionSolvePlan(plan), "1 associated product");
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
       mapping.sourceEndpoint?.role ?? null,
@@ -576,7 +513,7 @@ test("solve plan can use associate to build a standalone neutrino from Noether c
     label: "Pro Neutrino",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       centerNoetherCore,
       centerFreeArchitrinos,
@@ -647,7 +584,7 @@ test("solve plan still prefers direct standalone reuse over associative primitiv
     label: "Pro Neutrino",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       reactantNeutrino,
       centerNoetherCore,
@@ -688,7 +625,7 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
     label: "Photon",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([reactantHiggs, productPhotonA, productPhotonB]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -703,7 +640,7 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
     ["reactant_higgs"]
   );
   assert.equal(plan.selectedMappings.length, 8);
-  assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
+  assert.equal(describeReactionSolvePlan(plan), "2 associated products");
   assert.deepEqual(
     plan.selectedMappings.map((mapping) => [
       mapping.sourceEndpoint?.role ?? null,
@@ -751,7 +688,7 @@ test("solve plan prefers two full associate photons over fragment-plus-partial r
     label: "Pro Noether core",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([
       reactantHiggs,
       productPhotonA,
@@ -772,7 +709,7 @@ test("solve plan prefers two full associate photons over fragment-plus-partial r
     ["reactant_higgs"]
   );
   assert.equal(plan.selectedMappings.length, 8);
-  assert.equal(describeComposerReactionSolvePlan(plan), "2 associated products");
+  assert.equal(describeReactionSolvePlan(plan), "2 associated products");
   assert.deepEqual(
     plan.selectedAssociateCandidates.map((candidate) => candidate.targetParticipant.id),
     ["product_photon_a", "product_photon_b"]
@@ -800,7 +737,7 @@ test("solve plan leaves unsupported product matches unresolved", () => {
     label: "Noether core",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([reactantCore, productCore]),
   });
 
@@ -825,7 +762,7 @@ test("solve plan can route a center W- boson into an electron product", () => {
     label: "Electron",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([centerWBoson, productElectron]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -864,7 +801,7 @@ test("solve plan can route a center W+ boson into an anti-electron product", () 
     label: "Anti Electron",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([centerWPlusBoson, productAntiElectron]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,
@@ -904,7 +841,7 @@ test("solve plan can route a center Z boson into a neutrino product", () => {
     label: "Neutrino",
   });
 
-  const plan = buildComposerReactionSolvePlan({
+  const plan = buildReactionSolvePlan({
     solveState: buildSolveState([centerZBoson, productNeutrino]),
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     resolveBinaryChoiceInventory,

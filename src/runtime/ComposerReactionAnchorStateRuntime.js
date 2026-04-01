@@ -54,6 +54,8 @@ export function nodeKeysConflict(leftKey, rightKey) {
 }
 
 export function createComposerReactionAnchorStateRuntime(options = {}) {
+  const nodeKeysConflictFn =
+    typeof options.nodeKeysConflict === "function" ? options.nodeKeysConflict : nodeKeysConflict;
   const getMappings =
     typeof options.getMappings === "function" ? options.getMappings : () => [];
   const getRecentMappingIds =
@@ -156,7 +158,7 @@ export function createComposerReactionAnchorStateRuntime(options = {}) {
         nodeKey,
         anchorInstanceIndex,
       }) && mappedKey
-        ? nodeKeysConflict(mappedKey, nodeKey)
+        ? nodeKeysConflictFn(mappedKey, nodeKey)
         : false;
     });
   }

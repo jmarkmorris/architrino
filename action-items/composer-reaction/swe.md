@@ -219,6 +219,27 @@ For this workstream, a good change should improve at least one of these:
 
 A change that adds user-visible capability but worsens those dimensions needs a very good reason.
 
+## Current App Assessment
+
+Current snapshot assessment of the code as it exists now:
+
+| Factor | Composer | Reaction |
+| --- | --- | --- |
+| best practice coding principles | `Mixed`. Direction is improving, with many focused runtimes now under `src/apps/composer/`, but too much app behavior still lives in `app.js`, so composition-root discipline is not yet fully achieved. | `Mixed to good`. The app entry/runtime split is real and many solver modules now have Reaction-owned homes, but important legacy `ComposerReaction...` files still remain and blur ownership. |
+| no spaghetti | `Weak to mixed`. The worst remaining risk is still the large Composer subsystem embedded in `app.js`; there is real structure now, but control flow and state are still too entangled in one place. | `Mixed`. Better than Composer because the app tree is smaller and clearer, but `ComposerReactionSolverUiRuntime.js` is still a large collapsed subsystem and remains a spaghetti hotspot. |
+| no cruft | `Mixed`. Recent extractions reduced some cruft, but there is still transition scaffolding, duplicate seams, and naming residue from the move out of `app.js`. | `Weak to mixed`. The remaining compatibility exports and legacy `ComposerReaction...` naming are explicit cruft until the rename/move pass is finished. |
+| modularity | `Mixed and improving`. There are now clear Composer modules for app mode, store facade, DOM, draft scaffolding, assembly authoring, timing/overlay, and document workspace, but the remaining viewport/render/input stack is still too concentrated in `app.js`. | `Mixed to good`. Reaction has a clearer app boundary and more solver-specific runtimes under `src/apps/reaction/`, but modularity is still held back by the large legacy solver UI core and supporting legacy runtime cluster. |
+| performant | `Unknown to mixed`. Nothing in the current structure suggests catastrophic performance by itself, but the large shared runtime and heavy canvas/render paths make performance work harder to reason about and optimize locally. | `Mixed`. The solver has dedicated layout and render logic and good geometry tests, but the large legacy UI runtime still makes performance behavior harder to isolate and tune confidently. |
+| easily readable by LLM | `Weak to mixed`. Small Composer runtimes are readable, but `app.js` is still large enough that local reasoning is expensive and error-prone for both humans and LLMs. | `Mixed`. The small Reaction app files are easy to read, but readability drops sharply around `ComposerReactionSolverUiRuntime.js` and the remaining legacy runtime cluster. |
+| testable by LLM automated tests | `Mixed to good`. Composer now has good focused tests around extracted runtimes, but the biggest remaining canvas/render/input behavior still leans on broad integration through `app.js`. | `Good`. Reaction has strong automated coverage around solve state, proposal logic, layout, rendering rules, mapping rules, export, and boundary behavior, even though some implementation ownership is still transitional. |
+
+The practical summary is:
+
+- Composer is currently the weaker app from an SWE-structure point of view because too much of its live runtime is still concentrated in `app.js`.
+- Reaction is currently the weaker app from a cruft point of view because too many legacy `ComposerReaction...` compatibility layers still remain.
+- Reaction is ahead on automated behavioral test coverage.
+- Composer is improving fastest in modularity, but it still has the larger structural debt burden.
+
 ## Related Action Items
 
 - [composer-reaction](./composer-reaction.md)

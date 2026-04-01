@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { applyComposerReactionSolveLayout } from "../src/runtime/ComposerReactionSolveLayoutRuntime.js";
+import { applyReactionSolveLayout } from "../src/apps/reaction/ReactionSolveLayoutRuntime.js";
 
 function createEntry({
   participantId,
@@ -61,7 +61,7 @@ test("solve layout places inserted operators near the midpoint of their connecte
     childIds: ["product_photon_b_pro", "product_photon_b_anti"],
   });
 
-  const laidOutPlan = applyComposerReactionSolveLayout({
+  const laidOutPlan = applyReactionSolveLayout({
     solveState: {
       reactants: [reactantHiggs],
       products: [productPhotonA, productPhotonB],
@@ -173,7 +173,7 @@ test("solve layout anchors associate operators on their product-side row centers
     childIds: ["product_photon_b_pro", "product_photon_b_anti"],
   });
 
-  const laidOutPlan = applyComposerReactionSolveLayout({
+  const laidOutPlan = applyReactionSolveLayout({
     solveState: {
       reactants: [reactantHiggs],
       products: [productPhotonA, productPhotonB],
@@ -288,7 +288,7 @@ test("solve layout preserves source-side vertical order when multiple associates
     childIds: ["product_photon_b_pro", "product_photon_b_anti"],
   });
 
-  const laidOutPlan = applyComposerReactionSolveLayout({
+  const laidOutPlan = applyReactionSolveLayout({
     solveState: {
       reactants: [reactantMid, reactantLow],
       products: [productPhotonA, productPhotonB],

@@ -1,13 +1,5 @@
-import { createComposerReactionSolverUiRuntime } from "../../runtime/ComposerReactionSolverUiRuntime.js";
+import { createReactionSolverUiRuntime } from "./ReactionSolverUiRuntime.js";
 
 export function createReactionSolverRuntime(deps = {}) {
-  const solverRuntime = createComposerReactionSolverUiRuntime(deps);
-
-  return {
-    ...solverRuntime,
-    getSnapshot:
-      typeof solverRuntime.getSnapshot === "function"
-        ? solverRuntime.getSnapshot
-        : () => ({ participants: [], mappings: [] }),
-  };
+  return createReactionSolverUiRuntime(deps);
 }

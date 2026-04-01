@@ -1,456 +1,488 @@
 # Composer / Reaction Independence
 
-## Decision
+## Direction
 
-Composer and Reaction should become separate applications that live in the same repo but do not execute each other's runtime code.
+Composer and Reaction should be separate app runtimes in one repo.
 
-If they talk to each other, they should do so through one of these arm's-length boundaries:
+Allowed sharing:
+- repo/build/deploy tooling
+- versioned schemas and fixtures
+- truly generic infrastructure with no app semantics
 
-- versioned JSON documents;
-- explicit import/export APIs;
-- or later, explicit HTTP or `postMessage` interfaces built on the same versioned contract.
+Not allowed:
+- live cross-app runtime logic
+- app-specific stores or overlay state
+- direct runtime imports across the app boundary
+- any cross-app coupling except explicit JSON contracts
 
-The stability rule is simple:
-
-- internal changes inside Composer must not affect Reaction;
-- internal changes inside Reaction must not affect Composer;
-- only contract changes are allowed to create cross-app impact.
-
-## Why This Separation Matters
-
-The current implementation couples the two apps too tightly:
-
-- the `Reaction Designer` scene is currently just a mode inside the Composer overlay;
-- the same DOM shell hosts both tools;
-- the same top-level runtime decides when one turns into the other;
-- and some lower-level catalogs and structure code are shared directly at runtime.
-
-That makes unrelated edits risky. A UI or behavior change intended for one tool can leak into the other because the real boundary is implicit instead of contractual.
-
-The new architecture should make the boundary explicit and enforceable.
+Boundary:
+- main webapp = launcher/discovery surface
+- Composer = standalone app runtime
+- Reaction = standalone app runtime
+- cross-app exchange = versioned JSON only
 
 ## Current Status
 
-The separation is real, but not finished.
-
-Already true in the repo today:
-
-- the main webapp now acts as the launcher/discovery surface for `Composer` and `Reaction Designer`;
-- `composer.html` and `reaction.html` are separate app entrypoints;
+Done:
+- `composer.html` and `reaction.html` exist as separate entrypoints;
+- the main webapp launches those entrypoints from the scene network;
 - `reaction_designer` no longer runs as a Composer overlay mode;
-- the standalone Reaction app now owns its template picker catalog under `src/apps/reaction/`;
-- and the standalone Reaction app now has a local `ReactionFlowDocument` export seam instead of being UI-only.
-
-Still not true yet:
-
-- Reaction still depends on legacy `ComposerReaction...` runtime modules under `src/runtime/`;
-- Composer standalone boot is still mediated by the old shared `app.js` shell;
-- and the full Reaction export -> Composer import workflow is still provisional rather than production-hardened.
-
-## Architectural Rule
-
-Composer and Reaction may share repository location, build tooling, and deployment pipeline, but they may not share live app logic.
-
-That means:
-
-- no direct imports from Composer runtime modules into Reaction runtime modules;
-- no direct imports from Reaction runtime modules into Composer runtime modules;
-- no shared overlay state;
-- no scene jump that "turns one app into the other";
-- no shared business-logic helper that both apps execute in-process;
-- no shared UI component library for app-specific authoring behavior;
-- no shared template catalog in executable JS if that catalog affects app behavior.
-
-Allowed shared artifacts are deliberately narrow:
-
-- static JSON schemas;
-- static example documents and golden fixtures;
-- API documentation;
-- lint/build rules that enforce the boundary;
-- and truly generic platform infrastructure with no app semantics.
-
-If a behavior is part of Composer semantics or Reaction semantics, each app should own its own implementation.
-
-## Preferred Target Architecture
-
-Use three app surfaces:
-
-1. a navigator app for the scene network;
-2. a Composer app;
-3. a Reaction app.
-
-The navigator can still expose `Composer` and `Reaction Designer` as discoverable nodes, but those nodes should launch separate app entrypoints rather than toggle a shared overlay mode.
-
-Preferred structure:
-
-```text
-src/apps/navigator/
-src/apps/composer/
-src/apps/reaction/
-src/contracts/
-content/contracts/examples/
-```
-
-Preferred entrypoints:
-
-```text
-composer.html
-reaction.html
-```
-
-or equivalent separate bundle entry files if the build system prefers route-based entrypoints.
-
-The important part is not the file naming. The important part is separate bootstraps, separate roots, and separate dependency graphs.
-
-## Contract-First Boundary
-
-The boundary between Reaction and Composer should be a versioned handoff document.
-
-Reaction owns:
-
-- authoring reactants, products, operators, mappings, provenance, and staged reaction intent;
-- exporting a canonical `ReactionFlowDocument`;
-- validating that exported document against a versioned schema.
-
-Composer owns:
-
-- importing a `ReactionFlowDocument`;
-- translating that document into Composer's own authored scene model;
-- storing Composer-native scene data;
-- and rendering or editing the resulting animation scene.
-
-Reaction should not emit Composer's internal scene JSON directly.
-
-Composer should interpret the handoff contract and build its own internal representation from it.
-
-That preserves independence because the apps exchange facts, not executable behavior.
-
-## Required Contracts
-
-### 1. `ReactionFlowDocument`
-
-This is the main export from Reaction.
-
-It should contain:
-
-- document version;
-- reaction metadata;
-- participant definitions;
-- operator definitions;
-- mapping ledger;
-- staged timing or stage ordering;
-- provenance ids;
-- optional layout hints;
-- and optional semantic tags for Composer import policy.
-
-Example shape:
-
-```json
-{
-  "schema": "reaction-flow/v1",
-  "reactionId": "beta_decay_001",
-  "title": "Free Neutron Beta Reaction",
-  "participants": [],
-  "operators": [],
-  "mappings": [],
-  "stages": [],
-  "provenance": {},
-  "hints": {}
-}
-```
-
-### 2. `ComposerImportResult`
-
-Composer should expose an import boundary that returns a deterministic result.
-
-It should report:
-
-- imported scene id;
-- warnings;
-- rejected features;
-- fallback behaviors used;
-- and contract version consumed.
-
-Example shape:
-
-```json
-{
-  "schema": "composer-import-result/v1",
-  "sourceSchema": "reaction-flow/v1",
-  "sceneId": "beta_decay_scene",
-  "warnings": [],
-  "fallbacks": []
-}
-```
-
-### 3. Static Schema Files
-
-Put schemas in a neutral contract location such as:
-
-```text
-src/contracts/reaction-flow/v1/schema.json
-src/contracts/composer-import-result/v1/schema.json
-```
-
-These schema files are data, not runtime logic.
-
-Each app should validate with its own local validation path rather than importing shared business logic from the other app.
-
-## Ownership Model
-
-Composer owns:
-
-- scene-tree editing;
-- path and observer authoring;
-- overlays, media, timing, and export;
-- Composer scene JSON;
-- Composer-native template handling;
-- Composer-native structure editing.
-
-Reaction owns:
-
-- reaction participants and operators;
-- mapping grammar and conservation rules;
-- solver behavior;
-- provenance ledgers;
-- reaction-specific structure interpretation;
-- Reaction flow JSON export.
-
-Contract ownership:
-
-- shared only at the schema and example-document level;
-- versioned explicitly;
-- reviewed as an API boundary, not as internal refactor noise.
-
-## What Must Be Removed From The Current Design
-
-The following coupling patterns should be eliminated:
-
-- `reaction_designer` being treated as a Composer overlay scene;
-- Reaction controls living inside the Composer overlay shell;
-- direct scene jumps between Composer mode and Reaction mode as if they were one app;
-- direct runtime sharing such as template-menu rows and app-specific authoring helpers;
-- direct reuse of app-specific structure bridges across both apps.
-
-If both apps need the same conceptual particle or structure facts, move those facts into static versioned data and let each app interpret that data independently.
-
-Do not keep one implementation and let both apps execute it.
-
-## Design Rule For Shared Facts
-
-There are some facts that may reasonably need one canonical source:
-
-- schema definitions;
-- static particle-template data;
-- static enum-like vocabularies;
-- fixture documents.
-
-If those facts are shared, they should be shared as static data only.
-
-Good:
-
-- `particle-template-catalog.v1.json`
-- `reaction-flow/v1/schema.json`
-- `fixtures/reaction/free_neutron_beta.v1.json`
-
-Bad:
-
-- `ComposerCatalogRuntime.js` imported by both apps
-- `ComposerAssemblyStructureBridgeRuntime.js` imported by both apps
-- one app calling the other's mapper, solver, renderer, or importer directly
-
-## Migration Plan
-
-### Completed: Phase 1. Freeze The Boundary
-
-Create the design boundary before moving code.
-
-Deliverables:
-
-- this architecture decision documented;
-- versioned JSON schema location created;
-- contract examples added;
-- lint rule that forbids cross-imports between `src/apps/composer` and `src/apps/reaction`.
-
-Acceptance criteria:
-
-- no new direct dependencies are added across the future app boundary.
-
-Completed work:
-
-- versioned contract schemas now live under `src/contracts/`;
-- contract example fixtures now live under `content/contracts/examples/`;
-- a boundary-check script and tests now enforce the future app seam mechanically.
-
-### Completed: Phase 2. Separate App Entrypoints
-
-Create separate bootstraps and roots.
-
-Deliverables:
-
-- Composer app entrypoint;
-- Reaction app entrypoint;
-- navigator launch path to each app;
-- removal of shared overlay-mode routing as the primary implementation.
-
-Acceptance criteria:
-
-- opening Composer does not boot Reaction code;
-- opening Reaction does not boot Composer code.
-
-Completed work:
-
-- `composer.html` and `reaction.html` now exist as separate entrypoints;
-- the main webapp now launches those app pages from the existing scene network;
-- and `reaction_designer` is no longer implemented as a Composer overlay mode.
-
-### Phase 3. Move Reaction Into Its Own Tree
-
-Move all Reaction-specific runtime ownership under `src/apps/reaction/`.
-
-Deliverables:
-
-- reaction shell;
-- reaction state store;
-- reaction solver UI composition root;
-- reaction export API;
-- reaction-local template catalog or reaction-local interpretation of shared static data.
-
-Acceptance criteria:
-
-- Reaction has no imports from Composer app modules.
-
-Current remaining cuts inside Phase 3:
-
-1. continue pulling Reaction-specific composition and state ownership under `src/apps/reaction/` instead of leaving it in legacy `src/runtime/ComposerReaction...` modules;
-2. keep shrinking the standalone Reaction dependency on legacy `ComposerReaction...` files until the app tree owns its runtime stack end to end;
-3. remove legacy `Composer...` naming from Reaction-owned files and source text as those modules move under the Reaction app tree;
-4. refresh the provisional Reaction export shape against the current solver semantics before treating it as the final Composer handoff.
-
-Completed work inside Phase 3 so far:
-
-- the standalone Reaction app no longer depends on `ComposerCatalogRuntime.js` for its picker rows;
-- the standalone Reaction app now imports a Reaction-local solver wrapper from `src/apps/reaction/`;
-- and Reaction now exposes a local `ReactionFlowDocument` export API under `src/apps/reaction/ReactionFlowExportRuntime.js`.
-
-### Phase 4. Move Composer Into Its Own Tree
-
-Move all Composer-specific runtime ownership under `src/apps/composer/`.
-
-Deliverables:
-
-- composer shell;
-- composer editor store;
-- composer scene import path;
-- composer-local template catalog or composer-local interpretation of shared static data.
-
-Acceptance criteria:
-
-- Composer has no imports from Reaction app modules.
-
-Current remaining cuts inside Phase 4:
-
-1. move Composer page bootstrap off the legacy shared app shell;
-2. give Composer its own local app composition root and editor-store wiring under `src/apps/composer/`;
-3. retire the remaining legacy path where Composer boot is still mediated by the old top-level runtime.
-4. remove legacy `Reaction...` naming from Composer-owned files and source text where Composer still carries transitional mixed naming.
-
-### Phase 5. Introduce The Handoff Contract
-
-Make the cross-app exchange real.
-
-Deliverables:
-
-- `ReactionFlowDocument` export from Reaction;
-- Composer import adapter for `reaction-flow/v1`;
-- import report output;
-- golden test fixtures for import/export.
-
-Acceptance criteria:
-
-- Reaction can export a valid handoff file;
-- Composer can import it without executing Reaction code.
-
-### Phase 6. Remove Transitional Coupling
-
-Delete the old in-process bridge.
-
-Deliverables:
-
-- remove shared overlay toggling;
-- remove direct scene-mode switching that pretends the apps are one tool;
-- remove cross-app imports;
-- retire obsolete compatibility scaffolding.
-
-Acceptance criteria:
-
-- the only remaining connection is the explicit contract boundary.
-
-## Stability Policy
-
-After separation, changes should be classified like this:
-
-- internal Composer change: no Reaction review needed unless contract behavior changes;
-- internal Reaction change: no Composer review needed unless contract behavior changes;
-- contract change: requires explicit version review and compatibility decision.
-
-Preferred contract policy:
-
-- additive backward-compatible changes may stay in the same major version;
-- breaking changes require a new contract version such as `reaction-flow/v2`;
-- Composer should keep importers for older stable versions as long as practical.
-
-## Test And Enforcement Plan
-
-The boundary should be enforced mechanically, not just socially.
-
-Required checks:
-
-- lint rule for forbidden cross-imports;
+- boundary schemas, fixtures, and a boundary-check script are in place;
+- Reaction now owns its standalone app shell, template catalog, export seam, and much of its solver composition under `src/apps/reaction/`;
+- Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
+- Composer now owns standalone app-mode policy, app composition, editor-store facade layers, page-shell DOM lookup, default draft/id scaffolding, assembly-list normalization helpers, pure authoring helpers, assembly authoring logic, timing/overlay integration helpers, and draft/library/preview workspace logic under `src/apps/composer/`.
+
+Left:
+- Reaction still has legacy `ComposerReaction...` naming and compatibility layers that should be retired;
+- Composer still depends too much on `app.js` as a shared composition root;
+- the Reaction export -> Composer import workflow is still provisional rather than production-hardened;
+- and some transitional compatibility code remains in place on both sides.
+
+## Disposition Map
+
+### Composer: remaining `app.js` routines
+
+1. Draft/state/selection helpers.
+Disposition: move into a Composer draft-state runtime and collapse direct store wrappers into the existing store facade.
+
+Routines:
+- `normalizeComposerPathPoint`
+- `normalizeComposerAssemblyPathPoints`
+- `normalizeComposerAssemblyDraft`
+- `ensureComposerAssemblyDrafts`
+- `getComposerSelectedAssembly`
+- `getComposerAssemblyDraftsState`
+- `getComposerGraphicOverlayDraftsState`
+- `getComposerSelectedPointIndexState`
+- `getComposerSelectedAssemblyIdState`
+- `getComposerPendingTransferSourceState`
+- `getComposerTransferListRawStateValue`
+- `setComposerAssemblyDraftsState`
+- `appendComposerAssemblyDraftState`
+- `removeComposerAssemblyDraftByIdState`
+- `updateComposerAssemblyDraftByIdState`
+- `setComposerGraphicOverlayDraftsState`
+- `upsertComposerGraphicOverlayDraftState`
+- `removeComposerGraphicOverlayDraftByIdState`
+- `updateComposerGraphicOverlayDraftByIdState`
+- `setComposerSelectedPointIndexState`
+- `setComposerSelectedAssemblyIdState`
+- `setComposerPendingTransferSourceState`
+- `clearComposerPendingTransferSourceState`
+- `setComposerTransferListRawStateValue`
+- `updateComposerPathPointAtState`
+- `mutateComposerPathStateState`
+- `persistComposerPathStateToAssembly`
+- `validateComposerSelectedAssemblyId`
+- `setComposerSelectedAssembly`
+- `loadComposerPathStateFromSelectedAssembly`
+- `persistComposerPathStateToSelectedAssembly`
+
+2. Transfer/path authoring helpers.
+Disposition: move into a Composer authoring-state runtime.
+
+Routines:
+- `appendComposerAuthoringLine`
+- `replaceComposerAuthoringLineById`
+- `setComposerSceneDurationValue`
+- `setComposerSceneLoopValue`
+- `appendComposerTransferLine`
+- `getComposerParsedTransferEntries`
+- `getComposerAssemblyMemberIds`
+- `promptComposerAssemblyMemberId`
+- `clearComposerPendingTransfer`
+- `startComposerTransferFromAssembly`
+- `completeComposerTransferToAssembly`
+
+3. View-mode/display-flag helpers.
+Disposition: move into a Composer viewport-display runtime.
+
+Routines:
+- `updateComposerHudViewportToggleState`
+- `isComposerViewportDisplayFlagEnabled`
+- `setComposerViewportDisplayFlag`
+- `toggleComposerViewportDisplayFlag`
+- `normalizeComposerTimelineAddType`
+- `getComposerTimelineEditKindTitle`
+
+4. Assembly identity/label helpers.
+Disposition: move into a Composer assembly-label runtime or merge into the existing assembly/runtime helpers.
+
+Routines:
+- `isComposerBareArchitrinoAssembly`
+- `normalizeComposerAssemblySceneRole`
+- `getComposerAssemblySceneRoleLabel`
+- `getComposerAssemblySceneRoleGlyph`
+- `getComposerAssemblySceneRoleColor`
+- `getComposerAssemblyViewportLabel`
+- `getComposerAssemblyLetter`
+- `getComposerPrimaryPathAssemblyLetter`
+- `getComposerSelectedAssemblyLetter`
+- `getComposerTransferListRaw`
+- `setComposerTransferListRaw`
+
+5. Orbit/member/anchor math helpers.
+Disposition: move into a Composer structure-geometry runtime.
+
+Routines:
+- `resolveComposerGraphicTargetContactPosition`
+- `getComposerMemberColor`
+- `getComposerProxyMemberOffset`
+- `setComposerMemberAnchor`
+- `getComposerOrbitOffsetAtTime`
+- `resolveComposerMemberAnchorPosition`
+- `resolveComposerTransferEndpointPosition`
+- `findComposerCoreMemberId`
+- `getComposerPersonalityMembers`
+- `getComposerPersonalityRingRadius`
+- `getComposerObserverPlaneBasisInFrame`
+- `getComposerPersonalitySlotLocalOffset`
+
+6. Texture/sprite/render-asset builders.
+Disposition: move into a Composer render-assets runtime.
+
+Routines:
+- `createComposerLozengeTexture`
+- `createComposerPointLabelTexture`
+- `createComposerMemberLabelTexture`
+- `wrapComposerOverlayText`
+- `createComposerGraphicOverlayTextTexture`
+- `createComposerGraphicOverlayTextSprite`
+- `updateComposerGraphicOverlayTextSprite`
+- `updateComposerPointLabelSprite`
+- `createComposerPointLabelSprite`
+- `createComposerCameraWaypointLabelTexture`
+- `updateComposerCameraWaypointLabelSprite`
+- `createComposerCameraWaypointLabelSprite`
+- `createComposerMemberLabelSprite`
+- `createComposerAssemblyBadgeTexture`
+- `createComposerAssemblyBadgeSprite`
+- `createComposerChildBadgeSprite`
+- `setComposerTransportButtonIcon`
+- `createComposerMarkerHitProxy`
+- `disposeComposerMarkerHandle`
+- `resolveComposerIndexedHit`
+
+7. Camera/path authoring runtime.
+Disposition: move into a Composer camera-path runtime.
+
+Routines:
+- `getComposerEffectiveFrameScale`
+- `formatComposerTimeLabel`
+- `formatComposerTimeInputValue`
+- `getComposerNumericInputPrecision`
+- `formatComposerNumericInputValue`
+- `setComposerFrameDefaults`
+- `setComposerCameraDefaults`
+- `updateComposerWaypointCount`
+- `updateComposerCameraWaypointMaterials`
+- `updateComposerCameraPoiStatus`
+- `getComposerOrbitTargetWorld`
+- `updateComposerOrbitFromPosition`
+- `syncComposerCameraRadiusInput`
+- `applyComposerCameraRadiusInput`
+- `getComposerPoiLocal`
+- `addComposerCameraWaypoint`
+- `clearComposerCameraWaypoints`
+- `resetComposerPathPoints`
+- `addComposerPathPoint`
+- `updateComposerPointMaterials`
+- `updateComposerPathMarkerScales`
+
+8. Assembly editor/inspector runtime.
+Disposition: move into a Composer assembly-inspector runtime.
+
+Routines:
+- `renderComposerAssemblyEditor`
+- `getComposerAssemblyDraftIndexById`
+- `getComposerAssemblyDraftById`
+- `getComposerAssemblyCanonicalBridgeSummary`
+- `createComposerAssemblyStructureTooltipContent`
+- `updateComposerAssemblyHoverTooltip`
+- `getComposerAssemblyWorldCenterById`
+- `shiftComposerPointTriplets`
+- `rebaseComposerAssemblyParentFrame`
+- `getComposerCanvasLocalPointFromEvent`
+
+9. Canvas/menu runtime.
+Disposition: move into the existing canvas-menu runtime or a new Composer canvas-menu-shell runtime.
+
+Routines:
+- `closeComposerAssemblyMenu`
+- `resetComposerAssemblyMenu`
+- `getComposerPathOwnerAssemblyId`
+- `clearComposerBackgroundPathLines`
+- `rebuildComposerPathDisplayFromDocument`
+- `applyComposerViewportDisplayState`
+- `positionComposerAssemblyMenu`
+- `getComposerMenuAnchorClientPosition`
+- `appendComposerMenuRangeControl`
+- `appendComposerMenuSectionHeader`
+- `appendComposerMenuButtonRow`
+- `appendComposerMenuField`
+- `appendComposerMenuSelectField`
+- `appendComposerMenuBlock`
+- `appendComposerMenuNote`
+- `openComposerMemberMenuAt`
+- `openComposerPersonalitySlotMenuAt`
+- `openComposerSubassemblyMenuAt`
+- `openComposerAssemblyTemplateMenuAt`
+- `openComposerAssemblyPropertiesMenuAt`
+- `getNextComposerAssemblyId`
+- `createBuiltInComposerAssemblyDraft`
+- `addBuiltInComposerAssembly`
+
+10. Canvas bootstrap/runtime.
+Disposition: move into a Composer canvas-bootstrap runtime.
+
+Routines:
+- `setComposerStatus`
+- `initComposerCanvas`
+- `resizeComposerCanvas`
+- `updateComposerFrame`
+- `applyComposerFrameScaleInput`
+- `updateComposerCamera`
+- `applyComposerCameraSpeedInput`
+- `rebuildComposerControlPoints`
+- `sampleComposerPath`
+- `updateComposerPathGeometry`
+- `clearComposerViewportVisuals`
+
+11. Document/viewport render pipeline.
+Disposition: split into Composer viewport-render runtime and Composer playback/timeline runtime.
+
+Routines:
+- `computeComposerAssemblyBasePosition`
+- `sampleComposerPointAt`
+- `sampleComposerCurvePoints`
+- `sampleComposerCameraWaypointState`
+- `getComposerCameraWaypointDisplayPosition`
+- `getComposerDocumentCameraStateAtTime`
+- `getComposerPreviewCameraStateAtTime`
+- `getComposerViewportAutoscaleTargetSpheres`
+- `getComposerAutoscaledCameraState`
+- `getComposerOrbitBasis`
+- `getComposerPlaybackRateAtTime`
+- `getComposerMotionRateAtTime`
+- `getComposerIntegratedMotionTime`
+- `getComposerTotalMotionDuration`
+- `getComposerMotionProgress`
+- `getComposerPlaybackTimeForMotionTime`
+- `getComposerPlaybackTimeForMotionProgress`
+- `clearComposerTimelineLayer`
+- `createComposerTimelineBand`
+- `createComposerTimelineMarker`
+- `openComposerTimelineSummaryMenuAt`
+- `applyComposerSceneIdentityDraft`
+- `openComposerSceneMenuAt`
+- `openComposerJsonPreviewMenuAt`
+- `openComposerLibraryMenuAt`
+- `getComposerTimelineTimeAtClientX`
+- `openComposerTimelineMenuAt`
+- `removeComposerPathPoint`
+- `openComposerPathPointMenuAt`
+- `describeComposerTimelineState`
+- `getComposerSortedMarkers`
+- `syncComposerMarkerNavigation`
+- `renderComposerTimeline`
+- `updateComposerTimelinePlayhead`
+- `clearComposerEditorPreviewState`
+- `updateComposerViewportModeButtons`
+- `setComposerViewportCameraSource`
+- `setComposerPlaybackPlayhead`
+- `startComposerPlayback`
+- `toggleComposerPlayback`
+- `restartComposerPlayback`
+- `jumpToComposerMarker`
+- `jumpComposerMarkerByOffset`
+- `scrubComposerPlayback`
+- `updateComposerPlaybackState`
+- `updateComposerAnimatedViewport`
+
+12. Viewport visuals/media/document-camera runtime.
+Disposition: move into a Composer viewport-visuals runtime.
+
+Routines:
+- `addComposerOrbitTrace`
+- `addComposerAxisGuide`
+- `addComposerShell`
+- `addComposerEnvelope`
+- `addComposerHistoryTrace`
+- `addComposerOrbitParticle`
+- `addComposerTransferLine`
+- `addComposerGraphicOverlayVisual`
+- `updateComposerGraphicOverlayVisuals`
+- `setComposerViewportMediaOverlayFrame`
+- `clearComposerViewportMediaOverlays`
+- `createComposerViewportMediaOverlayElement`
+- `syncComposerViewportMediaOverlays`
+- `updateComposerViewportMediaOverlays`
+- `addComposerAssemblyProxy`
+- `addComposerDocumentCameraVisuals`
+- `updateComposerViewportFromDocument`
+- `updateComposerCameraFlightDisplay`
+- `startComposerCameraFlightPreview`
+- `stopComposerCameraFlightPreview`
+- `renderComposerCanvas`
+
+13. Pointer/input runtime.
+Disposition: move into a Composer pointer-interaction runtime.
+
+Routines:
+- `getComposerPointerNdc`
+- `resolveComposerAssemblyHit`
+- `resolveComposerMemberHandleHit`
+- `resolveComposerSubassemblyHandleHit`
+- `resolveComposerGraphicOverlayHit`
+- `resolveComposerPersonalityHandleHit`
+- `resolveComposerAssemblyIdHit`
+- `findComposerShellSurfaceHit`
+- `findComposerCenterMarkerIntersection`
+- `shouldPreferComposerCenterMarker`
+- `startComposerAssemblyDrag`
+- `onComposerPointerDown`
+- `onComposerContextMenu`
+- `onComposerTimelineContextMenu`
+- `onComposerTimelineSummaryContextMenu`
+- `onComposerTimelineClick`
+- `resolveComposerHoverAssemblyId`
+- `onComposerPointerMove`
+- `onComposerPointerUp`
+- `onComposerWheel`
+
+14. Path-point info pill runtime.
+Disposition: move into a Composer viewport-overlay-pill runtime.
+
+Routines:
+- `formatComposerCoordinatePillValue`
+- `syncComposerPathPointInfoPillCoordinateInputs`
+- `commitComposerPathPointCoordinateInput`
+- `clearComposerSelectedPoint`
+- `ensureComposerPathPointInfoPill`
+- `hideComposerPathPointInfoPill`
+- `projectComposerLocalPointToViewport`
+- `getComposerPathPointNormalizedTime`
+- `updateComposerPathPointInfoPill`
+
+15. Thin Composer scene glue.
+Disposition: keep thin until the end, then either keep as launch/config glue or move into a Composer shell runtime.
+
+Routines:
+- `isComposerOverlaySceneId`
+- `shouldHideLevelForComposerOverlayScene`
+
+### Reaction: remaining legacy surface
+
+1. Rename remaining wrapper-backed Reaction helpers and delete compatibility layers once callers move.
+
+Current wrapper-backed app files:
+- `ReactionAnchorRenderRuntime.js`
+- `ReactionBinaryGlyphRuntime.js`
+- `ReactionAnchorStateRuntime.js`
+- `ReactionBinaryInventoryRuntime.js`
+- `ReactionBinarySelectionRuntime.js`
+- `ReactionParticipantRenderRuntime.js`
+- `ReactionParticipantMutationRuntime.js`
+- `ReactionMappingRulesRuntime.js`
+- `ReactionAddPickerRuntime.js`
+- `ReactionSolverUiRuntime.js`
+
+Disposition:
+- move implementation into the Reaction-named file when clearly app-owned;
+- leave the old `ComposerReaction...` file as a temporary compatibility re-export only;
+- then delete the old path after all callers migrate.
+
+2. Rename remaining Reaction-domain solver/support files still living only under legacy names.
+
+Legacy files still to disposition:
+- `ComposerReactionSolveAssociateRuntime.js`
+- `ComposerReactionSolveMatchRuntime.js`
+- `ComposerReactionSolveSelectionRuntime.js`
+- `ComposerReactionSolverLayoutRuntime.js`
+- `ComposerReactionCompositeModeRuntime.js`
+- `ComposerReactionStructureBridgeRuntime.js`
+- `ComposerReactionStructureDescriptorRuntime.js`
+- `ComposerReactionStructureSelectionRuntime.js`
+- `ComposerReactionStructureHierarchyRuntime.js`
+- `ComposerReactionStructureMappingRuntime.js`
+- `ComposerReactionRulesRuntime.js`
+
+Disposition:
+- if truly Reaction-specific, move to `src/apps/reaction/` or a neutral Reaction domain/runtime area;
+- if truly generic, promote to a neutral non-Composer/non-Reaction module;
+- delete duplicate or obsolete legacy variants once one canonical implementation remains.
+
+### Contract work
+
+Disposition:
+- keep `reaction-flow/v1` as the only intended bridge;
+- refresh the schema against current solver output;
+- build a real Composer import adapter that consumes the document without importing Reaction runtime code;
+- add golden import/export tests before deleting the transitional contract scaffolding.
+
+## Automation Assessment
+
+Yes, this can be automated in part, but not fully and not safely as a blind codemod.
+
+Worth automating now:
+1. inventory generation.
+Disposition: add a repo script that lists every Composer/Reaction routine still living in `app.js` or legacy `ComposerReaction...` files, grouped by cluster and line range.
+
+2. dependency mapping.
+Disposition: add a script that records which globals/functions each Composer routine references so extractions stop failing on missing names like `updateCameraFlightDisplay`.
+
+3. extraction scaffolding.
+Disposition: add a codemod/helper script that can generate a target runtime file, build the import/export skeleton, and replace the old block with a destructured runtime binding.
+
+4. compatibility-export generation.
+Disposition: generate temporary re-export files automatically when a legacy `ComposerReaction...` file is moved to a canonical Reaction path.
+
+5. audit enforcement.
+Disposition: add checks that fail when:
+- a moved routine still exists in both old and new homes with divergent logic;
+- a Reaction app file imports a Composer-named runtime directly;
+- a Composer app file imports a Reaction runtime directly;
+- or `app.js` grows its Composer function count instead of shrinking it.
+
+Not safe to automate blindly:
+- stateful render and pointer-interaction extractions;
+- anything that mixes Composer globals with main-webapp globals;
+- renames where there are same-name main-app functions such as `updateCamera`;
+- final deletion of compatibility shims before all callers are proven migrated.
+
+Practical recommendation:
+1. automate inventory and dependency reports first;
+2. automate wrapper/re-export generation second;
+3. keep the actual runtime extraction itself supervised, one cluster at a time;
+4. use the generated report to make each remaining turn larger and less error-prone.
+
+## Enforcement
+
+Keep:
+- forbidden cross-import checks;
 - contract fixture validation;
-- Reaction export golden tests;
-- Composer import golden tests;
-- compatibility tests that prove Composer imports old stable Reaction documents;
-- smoke tests proving each app can boot without the other bundle loaded.
+- Reaction export tests;
+- Composer import tests;
+- and smoke tests proving each app boots independently.
 
-## Recommended First Cuts
+## Audit
 
-The first changes should be structural, not behavioral:
+- review that reaction doesn't mention composer in file names or code where it doesn't make sense and vice versa
+- review modularity
+- review wrappers
+- review scaffolding
+- look for dead code
+- look for spaghetti code due to how we got here
 
-1. create `src/apps/composer/` and `src/apps/reaction/`;
-2. move current app-specific boot logic into separate entry modules;
-3. define `reaction-flow/v1` schema and one or two golden example files;
-4. replace direct handoff assumptions with explicit export/import seams;
-5. then start deleting shared runtime dependencies.
+## Post-Independence Disposition
 
-That order matters because it creates a stable seam before large code motion begins.
-
-## Immediate Next Cuts
-
-From the current repository state, the next useful order is:
-
-1. move more of the standalone Reaction runtime stack behind `src/apps/reaction/` ownership instead of `src/runtime/ComposerReaction...`;
-2. then continue the same extraction for Composer under `src/apps/composer/`;
-3. then harden the JSON handoff against the current solver/editor behavior.
+1. add an `Exit` button to the standalone Reaction app, matching Composer;
+2. fix product-side `Neutron` and `Proton` title tiles on the Reaction page so they include the `Pro` prefix consistently.
+3. flatten the Composer canvas framing so the canvas uses the full available area and does not pick up redundant nested frames around the timeline/canvas surface.
 
 ## Non-Goal
 
-This separation does not require two repos.
-
-One repo is fine.
-
-The goal is two independent app runtimes with a versioned contract between them, not organizational theater.
-
-## Bottom Line
-
-Composer and Reaction should stop behaving like two modes of one tool.
-
-They should behave like two separate authoring systems with different responsibilities:
-
-- Reaction produces a canonical reaction-flow document.
-- Composer consumes that document and builds a Composer scene from it.
-
-They may live beside each other in the repo, but they should only touch through stable contracts.
+This does not require two repos. One repo is fine. The goal is independent app runtimes with a versioned contract boundary.
 
 ## Related Action Items
 

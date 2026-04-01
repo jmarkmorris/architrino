@@ -1,40 +1,40 @@
 import {
-  createComposerReactionMappingRulesRuntime,
+  createComposerReactionMappingRulesRuntime as defaultCreateMappingRulesRuntime,
 } from "./ComposerReactionMappingRulesRuntime.js";
 import {
-  createComposerReactionParticipantMutationRuntime,
+  createComposerReactionParticipantMutationRuntime as defaultCreateParticipantMutationRuntime,
 } from "./ComposerReactionParticipantMutationRuntime.js";
 import {
-  createComposerReactionAnchorRenderRuntime,
+  createComposerReactionAnchorRenderRuntime as defaultCreateAnchorRenderRuntime,
 } from "./ComposerReactionAnchorRenderRuntime.js";
 import {
-  createComposerReactionBinaryGlyphRuntime,
+  createComposerReactionBinaryGlyphRuntime as defaultCreateBinaryGlyphRuntime,
 } from "./ComposerReactionBinaryGlyphRuntime.js";
 import {
-  createComposerReactionBinaryInventoryRuntime,
+  createComposerReactionBinaryInventoryRuntime as defaultCreateBinaryInventoryRuntime,
 } from "./ComposerReactionBinaryInventoryRuntime.js";
 import {
-  buildNodeKey,
-  createComposerReactionAnchorStateRuntime,
-  nodeKeysConflict,
-  parseNodeKey,
+  buildNodeKey as defaultBuildNodeKey,
+  createComposerReactionAnchorStateRuntime as defaultCreateAnchorStateRuntime,
+  nodeKeysConflict as defaultNodeKeysConflict,
+  parseNodeKey as defaultParseNodeKey,
 } from "./ComposerReactionAnchorStateRuntime.js";
 import {
-  createComposerReactionBinarySelectionRuntime,
+  createComposerReactionBinarySelectionRuntime as defaultCreateBinarySelectionRuntime,
   getBinaryPersonalityChoice,
   invertBinaryChoiceId,
 } from "./ComposerReactionBinarySelectionRuntime.js";
 import {
-  buildReactionParticipantStructureForPickerCell,
-  getComposerReactionAddPickerCells,
+  buildReactionParticipantStructureForPickerCell as defaultBuildReactionParticipantStructureForPickerCell,
+  getComposerReactionAddPickerCells as defaultGetComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
-import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
+import { buildComposerReactionSolveState as defaultBuildSolveState } from "./ComposerReactionSolveStateRuntime.js";
 import {
-  buildComposerReactionSolvePlan,
-  describeComposerReactionSolvePlan,
+  buildComposerReactionSolvePlan as defaultBuildSolvePlan,
+  describeComposerReactionSolvePlan as defaultDescribeSolvePlan,
 } from "./ComposerReactionSolveProposalRuntime.js";
-import { applyComposerReactionSolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
-import { applyComposerReactionSolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
+import { applyComposerReactionSolveLayout as defaultApplySolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
+import { applyComposerReactionSolvePlan as defaultApplySolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -42,7 +42,7 @@ import {
 } from "./ComposerReactionCompositeModeRuntime.js";
 import { buildReactionParticipantStructure } from "./ComposerReactionStructureBridgeRuntime.js";
 import {
-  createComposerReactionParticipantRenderRuntime,
+  createComposerReactionParticipantRenderRuntime as defaultCreateParticipantRenderRuntime,
   getReactionSideSlotHeaderProfile,
 } from "./ComposerReactionParticipantRenderRuntime.js";
 import {
@@ -240,45 +240,6 @@ function isOperatorTemplateId(templateId = "") {
 function normalizeParticipantPolarity(polarity) {
   return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
 }
-
-const {
-  binaryAssignmentsMatch,
-  getAllowedBinaryChoiceIds,
-  getBinaryChoiceInventory,
-  getBinarySelectorRuleForParticipant,
-  getBinarySelectorNodes,
-  getInitialParticipantBinarySelections,
-  getParticipantBinarySelectorGroups,
-  getResolvedBinarySelectionMap,
-  findBestBinarySelectionAssignment,
-  enumerateValidBinarySelectionAssignments,
-  pickBestBinaryAssignmentCandidate,
-  resolveBinarySelectorGroup,
-} = createComposerReactionBinarySelectionRuntime({
-  supportsParticipantPolarity,
-  normalizeParticipantPolarity,
-});
-
-const { resolveBinaryChoiceInventory } = createComposerReactionBinaryInventoryRuntime({
-  getBinaryChoiceInventory,
-  getResolvedBinarySelectionMap,
-  resolveBinarySelectorGroup,
-});
-
-const {
-  buildSplitParticipantsFromChildStructures,
-  getNextParticipantGenerationTrimAction,
-  inferParticipantBaseLabelFromStructure,
-  inferParticipantPolarityFromStructure,
-  inferTemplateIdFromStructure,
-  refreshParticipantFromStructure,
-  trimParticipantGenerationStructure,
-} = createComposerReactionParticipantMutationRuntime({
-  supportsParticipantPolarity,
-  formatParticipantLabel,
-  buildParticipantHierarchy,
-  getInitialParticipantBinarySelections,
-});
 
 function stripLeadingParticipantPolarity(label = "") {
   return String(label ?? "").trim().replace(/^(pro|anti)\s+/i, "") || String(label ?? "").trim();
@@ -773,7 +734,65 @@ export function createComposerReactionSolverUiRuntime(deps) {
     onActiveChange = () => {},
     storage = null,
     storageKey = "",
+    buildNodeKey = defaultBuildNodeKey,
+    parseNodeKey = defaultParseNodeKey,
+    nodeKeysConflict = defaultNodeKeysConflict,
+    createAnchorRenderRuntime = defaultCreateAnchorRenderRuntime,
+    createBinaryGlyphRuntime = defaultCreateBinaryGlyphRuntime,
+    createParticipantRenderRuntime = defaultCreateParticipantRenderRuntime,
+    createBinarySelectionRuntime = defaultCreateBinarySelectionRuntime,
+    createBinaryInventoryRuntime = defaultCreateBinaryInventoryRuntime,
+    createParticipantMutationRuntime = defaultCreateParticipantMutationRuntime,
+    buildReactionParticipantStructureForPickerCell =
+      defaultBuildReactionParticipantStructureForPickerCell,
+    getReactionAddPickerCells = defaultGetComposerReactionAddPickerCells,
+    createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
+    createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
+    buildSolveState = defaultBuildSolveState,
+    buildSolvePlan = defaultBuildSolvePlan,
+    describeSolvePlan = defaultDescribeSolvePlan,
+    applySolveLayout = defaultApplySolveLayout,
+    applySolvePlan = defaultApplySolvePlan,
   } = deps;
+
+  const {
+    binaryAssignmentsMatch,
+    getAllowedBinaryChoiceIds,
+    getBinaryChoiceInventory,
+    getBinarySelectorRuleForParticipant,
+    getBinarySelectorNodes,
+    getInitialParticipantBinarySelections,
+    getParticipantBinarySelectorGroups,
+    getResolvedBinarySelectionMap,
+    findBestBinarySelectionAssignment,
+    enumerateValidBinarySelectionAssignments,
+    pickBestBinaryAssignmentCandidate,
+    resolveBinarySelectorGroup,
+  } = createBinarySelectionRuntime({
+    supportsParticipantPolarity,
+    normalizeParticipantPolarity,
+  });
+
+  const { resolveBinaryChoiceInventory } = createBinaryInventoryRuntime({
+    getBinaryChoiceInventory,
+    getResolvedBinarySelectionMap,
+    resolveBinarySelectorGroup,
+  });
+
+  const {
+    buildSplitParticipantsFromChildStructures,
+    getNextParticipantGenerationTrimAction,
+    inferParticipantBaseLabelFromStructure,
+    inferParticipantPolarityFromStructure,
+    inferTemplateIdFromStructure,
+    refreshParticipantFromStructure,
+    trimParticipantGenerationStructure,
+  } = createParticipantMutationRuntime({
+    supportsParticipantPolarity,
+    formatParticipantLabel,
+    buildParticipantHierarchy,
+    getInitialParticipantBinarySelections,
+  });
 
   const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
   applyReactionSolverLayoutCssVars(root);
@@ -787,7 +806,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
 
   const operatorLayer = root?.querySelector(".composer-reaction-solver-operator-layer") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
-  const addPickerCells = getComposerReactionAddPickerCells();
+  const addPickerCells = getReactionAddPickerCells();
   const state = {
     active: false,
     nextParticipantId: 1,
@@ -824,7 +843,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
   let syncOperatorFan = () => {};
-  const mappingRulesRuntime = createComposerReactionMappingRulesRuntime({
+  const mappingRulesRuntime = createMappingRulesRuntime({
     getNodeContext,
     getOperatorInputNodeContexts,
     getOperatorLedgerSummary,
@@ -834,7 +853,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     resolveBinaryChoiceInventory,
   });
 
-  const anchorStateRuntime = createComposerReactionAnchorStateRuntime({
+  const anchorStateRuntime = createAnchorStateRuntime({
     canTargetMappingRole,
     getMappings: () => state.mappings,
     getNodeContext,
@@ -844,6 +863,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getPendingSourceRole: () => state.pendingSourceRole,
     isSingleMappingAnchorRole: isSingleMappingAnchorRoleForNode,
     onRecentStateChange: () => applyHoveredRouteState(),
+    nodeKeysConflict,
     recentRouteFadeMs,
     resolvePendingTargetAvailability: (payload) =>
       mappingRulesRuntime.evaluatePendingTargetAvailability(payload),
@@ -861,7 +881,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     markMappingsRecent,
     pruneRecentRouteState,
   } = anchorStateRuntime;
-  const anchorRenderRuntime = createComposerReactionAnchorRenderRuntime({
+  const anchorRenderRuntime = createAnchorRenderRuntime({
     findMappingsByNodeKey,
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
@@ -886,13 +906,13 @@ export function createComposerReactionSolverUiRuntime(deps) {
     createInlineAnchorSlot,
     setHoveredMappingIds,
   } = anchorRenderRuntime);
-  const binaryGlyphRuntime = createComposerReactionBinaryGlyphRuntime({
+  const binaryGlyphRuntime = createBinaryGlyphRuntime({
     createSvgElement,
     normalizeParticipantPolarity,
     structureChargeTypes: STRUCTURE_CHARGE_TYPES,
   });
   const { createBinaryGlyph } = binaryGlyphRuntime;
-  const participantRenderRuntime = createComposerReactionParticipantRenderRuntime({
+  const participantRenderRuntime = createParticipantRenderRuntime({
     buildNodeKey,
     countDescendants,
     createAnchorButton,
@@ -1423,7 +1443,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       setStatus("Open the reaction solver before running solve.");
       return false;
     }
-    let solveState = buildComposerReactionSolveState({
+    let solveState = buildSolveState({
       participants: state.participants,
       mappings: state.mappings,
       buildNodeKey,
@@ -1442,7 +1462,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
     resetSolveDerivedArtifacts();
-    solveState = buildComposerReactionSolveState({
+    solveState = buildSolveState({
       participants: state.participants,
       mappings: state.mappings,
       buildNodeKey,
@@ -1451,12 +1471,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       isOperatorParticipant,
     });
 
-    const plan = buildComposerReactionSolvePlan({
+    const plan = buildSolvePlan({
       solveState,
       buildNodeKey,
       resolveBinaryChoiceInventory,
     });
-    const laidOutPlan = applyComposerReactionSolveLayout({
+    const laidOutPlan = applySolveLayout({
       plan,
       solveState,
     });
@@ -1473,7 +1493,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.hoveredMappingIds = [];
     state.mappings = [];
     clearAllRecentRouteState();
-    const { appliedMappingIds } = applyComposerReactionSolvePlan({
+    const { appliedMappingIds } = applySolvePlan({
       plan: laidOutPlan,
       createOperatorParticipant,
       getParticipantRootNode,
@@ -1487,7 +1507,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const unresolvedProductCount = laidOutPlan.unresolvedProducts.length;
     const unresolvedReactantCount = laidOutPlan.unresolvedReactants.length;
     setStatus(
-      `Solve v1 mapped ${describeComposerReactionSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
+      `Solve v1 mapped ${describeSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
         unresolvedProductCount === 1 ? "" : "s"
       } and ${unresolvedReactantCount} reactant${
         unresolvedReactantCount === 1 ? "" : "s"

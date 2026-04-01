@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { applyComposerReactionSolvePlan } from "../src/runtime/ComposerReactionSolveProjectionRuntime.js";
+import { applyReactionSolvePlan } from "../src/apps/reaction/ReactionSolveProjectionRuntime.js";
 
 test("solve projection creates operator participants and resolves deferred mapping endpoints", () => {
   const productParticipant = {
@@ -12,7 +12,7 @@ test("solve projection creates operator participants and resolves deferred mappi
   const createdOperators = [];
   const appliedMappings = [];
 
-  const result = applyComposerReactionSolvePlan({
+  const result = applyReactionSolvePlan({
     plan: {
       participantAdditions: [
         {
@@ -124,7 +124,7 @@ test("solve projection marks explicit dissociated composites before applying map
   };
   const markedParticipants = [];
 
-  const result = applyComposerReactionSolvePlan({
+  const result = applyReactionSolvePlan({
     plan: {
       dissociatedCompositeParticipants: [reactantHiggs],
       selectedMappings: [],

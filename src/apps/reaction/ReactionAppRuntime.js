@@ -1,5 +1,5 @@
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
-import { createReactionSolverRuntime } from "./ReactionSolverRuntime.js";
+import { createReactionSolverUiRuntime } from "./ReactionSolverUiRuntime.js";
 import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
 const reactionSolverStorageKey = "architrino.reaction.active";
@@ -26,7 +26,7 @@ export function createReactionAppRuntime(deps) {
     statusElement.textContent = String(message ?? "").trim();
   }
 
-  const solverRuntime = createReactionSolverRuntime({
+  const solverRuntime = createReactionSolverUiRuntime({
     root,
     surface,
     reactantsColumn,
