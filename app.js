@@ -146,8 +146,12 @@ import {
   sanitizeComposerGraphicTarget,
 } from "./src/apps/composer/ComposerAuthoringHelpersRuntime.js";
 import { createComposerAssemblyAuthoringRuntime } from "./src/apps/composer/ComposerAssemblyAuthoringRuntime.js";
+import { createComposerAssemblyLabelRuntime } from "./src/apps/composer/ComposerAssemblyLabelRuntime.js";
+import { createComposerAuthoringStateRuntime } from "./src/apps/composer/ComposerAuthoringStateRuntime.js";
+import { createComposerDraftStateRuntime } from "./src/apps/composer/ComposerDraftStateRuntime.js";
 import { createComposerTimelineOverlayRuntime } from "./src/apps/composer/ComposerTimelineOverlayRuntime.js";
 import { createComposerDocumentWorkspaceRuntime } from "./src/apps/composer/ComposerDocumentWorkspaceRuntime.js";
+import { createComposerViewportDisplayRuntime } from "./src/apps/composer/ComposerViewportDisplayRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -378,6 +382,71 @@ const defaultAutoMarkdownPaletteName = "legacy";
 const defaultSphereColorSchemeName = "jewel";
 const defaultAutoMarkdownPalette =
   autoMarkdownPalettes[defaultAutoMarkdownPaletteName] ?? autoMarkdownPalettes.legacy;
+let composerCurrentDocument = null;
+const {
+  panelMap: composerPanelMap,
+  palette: composerPalette,
+  pathState: composerPathState,
+  storeFacade: composerEditorStoreFacade,
+} = createComposerAppStore({
+  palette: defaultAutoMarkdownPalette,
+});
+const composerDraftStateRuntime = createComposerDraftStateRuntime({
+  storeFacade: composerEditorStoreFacade,
+  normalizeAssemblyDraft: normalizeComposerAssemblyDraft,
+});
+const {
+  getAssemblyDraftsState: getComposerAssemblyDraftsState,
+  getGraphicOverlayDraftsState: getComposerGraphicOverlayDraftsState,
+  getSelectedPointIndexState: getComposerSelectedPointIndexState,
+  getSelectedAssemblyIdState: getComposerSelectedAssemblyIdState,
+  getPendingTransferSourceState: getComposerPendingTransferSourceState,
+  setAssemblyDraftsState: setComposerAssemblyDraftsState,
+  appendAssemblyDraftState: appendComposerAssemblyDraftState,
+  updateAssemblyDraftByIdState: updateComposerAssemblyDraftByIdState,
+  setGraphicOverlayDraftsState: setComposerGraphicOverlayDraftsState,
+  upsertGraphicOverlayDraftState: upsertComposerGraphicOverlayDraftState,
+  removeGraphicOverlayDraftByIdState: removeComposerGraphicOverlayDraftByIdState,
+  updateGraphicOverlayDraftByIdState: updateComposerGraphicOverlayDraftByIdState,
+  setSelectedPointIndexState: setComposerSelectedPointIndexState,
+  setSelectedAssemblyIdState: setComposerSelectedAssemblyIdState,
+  setTransferListRawStateValue: setComposerTransferListRawStateValue,
+  updatePathPointAtState: updateComposerPathPointAtState,
+  mutatePathStateState: mutateComposerPathStateState,
+  getAssemblyDraftIndexById: getComposerAssemblyDraftIndexById,
+  getAssemblyDraftById: getComposerAssemblyDraftById,
+  ensureAssemblyDrafts: ensureComposerAssemblyDrafts,
+  getSelectedAssembly: getComposerSelectedAssembly,
+  validateSelectedAssemblyId: validateComposerSelectedAssemblyId,
+} = composerDraftStateRuntime;
+const composerAssemblyLabelRuntime = createComposerAssemblyLabelRuntime({
+  getCurrentDocument: () => composerCurrentDocument,
+  getAssemblyDrafts: getComposerAssemblyDraftsState,
+  getSelectedAssemblyId: getComposerSelectedAssemblyIdState,
+  normalizeMemberList: normalizeComposerMemberList,
+  normalizeSubassemblyList: normalizeComposerSubassemblyList,
+  getMemberId: getComposerMemberId,
+});
+const {
+  getAssemblyLetter: getComposerAssemblyLetter,
+  getPrimaryPathAssemblyLetter: getComposerPrimaryPathAssemblyLetter,
+  isBareArchitrinoAssembly: isComposerBareArchitrinoAssembly,
+  normalizeAssemblySceneRole: normalizeComposerAssemblySceneRole,
+  getAssemblySceneRoleLabel: getComposerAssemblySceneRoleLabel,
+  getAssemblySceneRoleGlyph: getComposerAssemblySceneRoleGlyph,
+  getAssemblySceneRoleColor: getComposerAssemblySceneRoleColor,
+  getAssemblyViewportLabel: getComposerAssemblyViewportLabel,
+  getSelectedAssemblyLetter: getComposerSelectedAssemblyLetter,
+} = composerAssemblyLabelRuntime;
+const composerViewportDisplayRuntime = createComposerViewportDisplayRuntime({
+  bindings: composerHudViewportToggleBindings,
+});
+const {
+  isFlagEnabled: isComposerViewportDisplayFlagEnabled,
+  setFlag: setComposerViewportDisplayFlag,
+  toggleFlag: toggleComposerViewportDisplayFlag,
+  updateToggleState: updateComposerHudViewportToggleState,
+} = composerViewportDisplayRuntime;
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -479,43 +548,6 @@ function normalizeComposerAssemblyDraft(draft = {}, index = 0) {
   };
 }
 
-function ensureComposerAssemblyDrafts() {
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  if (!Array.isArray(assemblyDrafts) || !assemblyDrafts.length) {
-    setComposerAssemblyDraftsState([]);
-    return;
-  }
-  setComposerAssemblyDraftsState(
-    assemblyDrafts.map((draft, index) => normalizeComposerAssemblyDraft(draft, index))
-  );
-}
-
-function updateComposerHudViewportToggleState() {
-  composerHudViewportToggleBindings.forEach(({ button, key, label }) => {
-    if (!button) {
-      return;
-    }
-    const isOn = isComposerViewportDisplayFlagEnabled(key);
-    button.setAttribute("aria-pressed", isOn ? "true" : "false");
-    button.classList.toggle("is-active", isOn);
-    button.textContent = label;
-  });
-}
-
-function isComposerViewportDisplayFlagEnabled(key) {
-  return composerViewportDisplayState[key] !== false;
-}
-
-function setComposerViewportDisplayFlag(key, value) {
-  composerViewportDisplayState[key] = !!value;
-}
-
-function toggleComposerViewportDisplayFlag(key) {
-  const nextValue = !isComposerViewportDisplayFlagEnabled(key);
-  setComposerViewportDisplayFlag(key, nextValue);
-  return nextValue;
-}
-
 function resolveComposerGraphicTargetContactPosition(
   target,
   overlayCenter,
@@ -540,163 +572,6 @@ function resolveComposerGraphicTargetContactPosition(
     return targetPosition.clone().add(new THREE.Vector3(radius, 0, 0));
   }
   return targetPosition.clone().add(direction.normalize().multiplyScalar(radius));
-}
-
-function getComposerAssemblyLetter(index = 0) {
-  let value = Math.max(0, Number(index) || 0);
-  let label = "";
-  do {
-    label = String.fromCharCode(65 + (value % 26)) + label;
-    value = Math.floor(value / 26) - 1;
-  } while (value >= 0);
-  return label;
-}
-
-function getComposerPrimaryPathAssemblyLetter() {
-  const documentData = composerCurrentDocument;
-  const primaryPathId = documentData?.paths?.[0]?.id ?? null;
-  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
-  if (!primaryPathId || !assemblies.length) {
-    return getComposerAssemblyLetter(0);
-  }
-  const ownerIndex = assemblies.findIndex((assembly) => {
-    const motions = Array.isArray(assembly?.motion)
-      ? assembly.motion
-      : assembly?.motion
-        ? [assembly.motion]
-        : [];
-    return motions.some((motion) => motion?.type === "path.transport" && motion?.pathId === primaryPathId);
-  });
-  return getComposerAssemblyLetter(ownerIndex >= 0 ? ownerIndex : 0);
-}
-
-function getComposerSelectedAssembly() {
-  ensureComposerAssemblyDrafts();
-  return (
-    getComposerAssemblyDraftById(getComposerSelectedAssemblyIdState()) ??
-    getComposerAssemblyDraftsState()[0] ??
-    null
-  );
-}
-
-function getComposerAssemblyDraftsState() {
-  return composerEditorStoreFacade.getComposerAssemblyDraftsState();
-}
-
-function getComposerGraphicOverlayDraftsState() {
-  return composerEditorStoreFacade.getComposerGraphicOverlayDraftsState();
-}
-
-function getComposerSelectedPointIndexState() {
-  return composerEditorStoreFacade.getComposerSelectedPointIndexState();
-}
-
-function getComposerSelectedAssemblyIdState() {
-  return composerEditorStoreFacade.getComposerSelectedAssemblyIdState();
-}
-
-function getComposerPendingTransferSourceState() {
-  return composerEditorStoreFacade.getComposerPendingTransferSourceState();
-}
-
-function getComposerTransferListRawStateValue() {
-  return composerEditorStoreFacade.getComposerTransferListRawStateValue();
-}
-
-function setComposerAssemblyDraftsState(nextValue) {
-  return composerEditorStoreFacade.setComposerAssemblyDraftsState(nextValue);
-}
-
-function appendComposerAssemblyDraftState(draft) {
-  return composerEditorStoreFacade.appendComposerAssemblyDraftState(draft);
-}
-
-function removeComposerAssemblyDraftByIdState(assemblyId) {
-  return composerEditorStoreFacade.removeComposerAssemblyDraftByIdState(assemblyId);
-}
-
-function updateComposerAssemblyDraftByIdState(assemblyId, updater) {
-  return composerEditorStoreFacade.updateComposerAssemblyDraftByIdState(assemblyId, updater);
-}
-
-function setComposerGraphicOverlayDraftsState(nextValue) {
-  return composerEditorStoreFacade.setComposerGraphicOverlayDraftsState(nextValue);
-}
-
-function upsertComposerGraphicOverlayDraftState(overlayDraft) {
-  return composerEditorStoreFacade.upsertComposerGraphicOverlayDraftState(overlayDraft);
-}
-
-function removeComposerGraphicOverlayDraftByIdState(overlayId) {
-  return composerEditorStoreFacade.removeComposerGraphicOverlayDraftByIdState(overlayId);
-}
-
-function updateComposerGraphicOverlayDraftByIdState(overlayId, updater) {
-  return composerEditorStoreFacade.updateComposerGraphicOverlayDraftByIdState(overlayId, updater);
-}
-
-function setComposerSelectedPointIndexState(nextValue) {
-  return composerEditorStoreFacade.setComposerSelectedPointIndexState(nextValue);
-}
-
-function setComposerSelectedAssemblyIdState(nextValue) {
-  return composerEditorStoreFacade.setComposerSelectedAssemblyIdState(nextValue);
-}
-
-function setComposerPendingTransferSourceState(nextValue) {
-  return composerEditorStoreFacade.setComposerPendingTransferSourceState(nextValue);
-}
-
-function clearComposerPendingTransferSourceState() {
-  return composerEditorStoreFacade.clearComposerPendingTransferSourceState();
-}
-
-function setComposerTransferListRawStateValue(nextValue) {
-  return composerEditorStoreFacade.setComposerTransferListRawStateValue(nextValue);
-}
-
-function updateComposerPathPointAtState(index, updater) {
-  return composerEditorStoreFacade.updateComposerPathPointAtState(index, updater);
-}
-
-function mutateComposerPathStateState(mutator) {
-  return composerEditorStoreFacade.mutateComposerPathStateState(mutator);
-}
-
-function isComposerBareArchitrinoAssembly(assembly) {
-  const members = normalizeComposerMemberList(assembly?.members);
-  const children = Array.isArray(assembly?.children) ? assembly.children : [];
-  const subassemblies = normalizeComposerSubassemblyList(assembly?.subassemblies);
-  const hasCore =
-    Array.isArray(assembly?.core?.shells) && assembly.core.shells.length > 0;
-  const role = String(assembly?.role ?? "").trim().toLowerCase();
-  const normalizedMemberId = members.length ? getComposerMemberId(members[0], 0).toLowerCase() : "";
-  const isNamedBareCharge =
-    role === "electrino" ||
-    role === "positrino" ||
-    normalizedMemberId.startsWith("electrino") ||
-    normalizedMemberId.startsWith("positrino");
-  return !hasCore && !children.length && !subassemblies.length && members.length === 1 && isNamedBareCharge;
-}
-
-function normalizeComposerAssemblySceneRole(rawRole = "assembly") {
-  return "assembly";
-}
-
-function getComposerAssemblySceneRoleLabel(rawRole = "assembly") {
-  return "Assembly";
-}
-
-function getComposerAssemblySceneRoleGlyph(rawRole = "assembly") {
-  return "A";
-}
-
-function getComposerAssemblySceneRoleColor(rawRole = "assembly") {
-  return "#ffc26a";
-}
-
-function getComposerAssemblyViewportLabel(assembly, index = 0) {
-  return `${getComposerAssemblySceneRoleGlyph(assembly?.sceneRole)}${index + 1}`;
 }
 
 function normalizeComposerTimelineAddType(rawType = "graphic") {
@@ -724,25 +599,6 @@ function getComposerTimelineEditKindTitle(editKind = "add") {
     return "Warp";
   }
   return "Timeline";
-}
-
-function getComposerSelectedAssemblyLetter() {
-  ensureComposerAssemblyDrafts();
-  const index = getComposerAssemblyDraftsState().findIndex(
-    (assembly) => assembly?.id === getComposerSelectedAssemblyIdState()
-  );
-  return getComposerAssemblyLetter(index >= 0 ? index : 0);
-}
-
-function getComposerTransferListRaw() {
-  return composerTransferListInput?.value ?? getComposerTransferListRawStateValue() ?? "";
-}
-
-function setComposerTransferListRaw(value = "") {
-  setComposerTransferListRawStateValue(value);
-  if (composerTransferListInput) {
-    composerTransferListInput.value = getComposerTransferListRawStateValue();
-  }
 }
 
 const composerTimelineOverlayRuntime = createComposerTimelineOverlayRuntime({
@@ -805,231 +661,45 @@ const {
   updateComposerTimingDiagnostics,
   readComposerTimingState,
 } = composerTimelineOverlayRuntime;
-
-function persistComposerPathStateToAssembly(assemblyId) {
-  if (!getComposerAssemblyDraftById(assemblyId)) {
-    return;
-  }
-  updateComposerAssemblyDraftByIdState(assemblyId, (assembly) => ({
-    ...assembly,
-    pathPoints: composerPathState.points.map((point) => normalizeComposerPathPoint(point)),
-    pathInterpolate: composerPathState.interpolate,
-    pathClosed: composerPathState.closed,
-  }));
-}
-
-function validateComposerSelectedAssemblyId(preferredAssemblyId = getComposerSelectedAssemblyIdState()) {
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  ensureComposerAssemblyDrafts();
-  if (assemblyDrafts.some((assembly) => assembly?.id === preferredAssemblyId)) {
-    setComposerSelectedAssemblyIdState(preferredAssemblyId);
-    return getComposerSelectedAssemblyIdState();
-  }
-  setComposerSelectedAssemblyIdState(assemblyDrafts[0]?.id ?? null);
-  return getComposerSelectedAssemblyIdState();
-}
-
-function setComposerSelectedAssembly(assemblyId, options = {}) {
-  const { persistCurrentPath = true, loadPath = true } = options;
-  ensureComposerAssemblyDrafts();
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  const nextAssemblyId = validateComposerSelectedAssemblyId(assemblyId);
-  if (!nextAssemblyId) {
-    setComposerSelectedAssemblyIdState(null);
-    mutateComposerPathStateState((pathState) => {
-      pathState.ownerAssemblyId = null;
-      pathState.points = [];
-      pathState.closed = false;
-    });
-    setComposerSelectedPointIndexState(null);
-    rebuildComposerControlPoints();
-    updateComposerPathGeometry();
-    return null;
-  }
-  const currentOwnerId = composerPathState.ownerAssemblyId;
-  if (persistCurrentPath && currentOwnerId && assemblyDrafts.some((assembly) => assembly?.id === currentOwnerId)) {
-    persistComposerPathStateToAssembly(currentOwnerId);
-  }
-  setComposerSelectedAssemblyIdState(nextAssemblyId);
-  if (loadPath) {
-    loadComposerPathStateFromSelectedAssembly();
-  }
-  return nextAssemblyId;
-}
-
-function loadComposerPathStateFromSelectedAssembly() {
-  let selectedAssembly = getComposerSelectedAssembly();
-  if (!selectedAssembly) {
-    mutateComposerPathStateState((pathState) => {
-      pathState.interpolate = composerPathModeSelect?.value || "spline";
-      pathState.closed = false;
-      pathState.ownerAssemblyId = null;
-      pathState.points = [];
-    });
-    setComposerSelectedPointIndexState(null);
-    if (composerPathModeSelect) {
-      composerPathModeSelect.value = composerPathState.interpolate;
-    }
-    rebuildComposerControlPoints();
-    updateComposerPathGeometry();
-    return;
-  }
-  if (
-    selectedAssembly &&
-    (!Array.isArray(selectedAssembly.pathPoints) || !selectedAssembly.pathPoints.length)
-  ) {
-    const anchor = Array.isArray(selectedAssembly.position) ? selectedAssembly.position : [0, 0, 0];
-    updateComposerAssemblyDraftByIdState(selectedAssembly.id, (assembly) => ({
-      ...assembly,
-      pathPoints: createComposerDefaultPathPoints(anchor),
-      pathInterpolate: assembly.pathInterpolate === "polyline" ? "polyline" : "spline",
-      pathClosed: !!assembly.pathClosed,
-    }));
-    selectedAssembly = getComposerAssemblyDraftById(selectedAssembly.id) ?? selectedAssembly;
-  }
-  mutateComposerPathStateState((pathState) => {
-    pathState.interpolate = selectedAssembly?.pathInterpolate === "polyline" ? "polyline" : "spline";
-    pathState.closed = !!selectedAssembly?.pathClosed;
-    pathState.ownerAssemblyId = selectedAssembly?.id ?? null;
-    pathState.points = normalizeComposerAssemblyPathPoints(selectedAssembly?.pathPoints).map((point) =>
-      vectorFromTriplet(point)
-    );
-  });
-  if (composerPathModeSelect) {
-    composerPathModeSelect.value = composerPathState.interpolate;
-  }
-  setComposerSelectedPointIndexState(
-    Number.isInteger(getComposerSelectedPointIndexState()) &&
-      getComposerSelectedPointIndexState() < composerPathState.points.length
-      ? getComposerSelectedPointIndexState()
-      : null
-  );
-  rebuildComposerControlPoints();
-  updateComposerPathGeometry();
-}
-
-function persistComposerPathStateToSelectedAssembly() {
-  const targetAssemblyId =
-    composerPathState.ownerAssemblyId && getComposerAssemblyDraftById(composerPathState.ownerAssemblyId)
-      ? composerPathState.ownerAssemblyId
-      : validateComposerSelectedAssemblyId();
-  if (!targetAssemblyId) {
-    return;
-  }
-  persistComposerPathStateToAssembly(targetAssemblyId);
-}
-
-function appendComposerAuthoringLine(rawValue, nextLine) {
-  const normalizedLine = String(nextLine ?? "").trim();
-  if (!normalizedLine) {
-    return String(rawValue ?? "");
-  }
-  const existing = String(rawValue ?? "").trim();
-  return existing ? `${existing}\n${normalizedLine}` : normalizedLine;
-}
-
-function replaceComposerAuthoringLineById(rawValue, authoredId, nextLine = null) {
-  const lines = String(rawValue ?? "").split(/\n/);
-  const match = String(authoredId ?? "").match(/_(\d+)$/);
-  if (!match) {
-    return String(rawValue ?? "");
-  }
-  const lineIndex = Number(match[1]) - 1;
-  if (lineIndex < 0 || lineIndex >= lines.length) {
-    return String(rawValue ?? "");
-  }
-  if (nextLine == null || !String(nextLine).trim()) {
-    lines.splice(lineIndex, 1);
-  } else {
-    lines[lineIndex] = String(nextLine).trim();
-  }
-  return lines.filter((line) => String(line).trim()).join("\n");
-}
-
-function setComposerSceneDurationValue(value = 24) {
-  const duration = Math.max(1, Number(Number(value ?? 24).toFixed(3)) || 24);
-  if (composerSceneDurationInput) {
-    composerSceneDurationInput.value = String(duration);
-  }
-  return duration;
-}
-
-function setComposerSceneLoopValue(value = false) {
-  const loop = !!value;
-  if (composerSceneLoopInput) {
-    composerSceneLoopInput.checked = loop;
-  }
-  return loop;
-}
-
-function appendComposerTransferLine(line) {
-  setComposerTransferListRaw(appendComposerAuthoringLine(getComposerTransferListRaw(), line));
-}
-
-function getComposerParsedTransferEntries(rawText = getComposerTransferListRaw()) {
-  return parseComposerTransfers(rawText).entries;
-}
-
-function getComposerAssemblyMemberIds(assembly) {
-  const members = Array.isArray(assembly?.members) ? assembly.members : [];
-  return members
-    .map((member) => (typeof member === "string" ? member : member?.id))
-    .map((memberId) => String(memberId ?? "").trim())
-    .filter(Boolean);
-}
-
-function promptComposerAssemblyMemberId(assembly, promptLabel, fallbackPrefix = "member") {
-  const memberIds = getComposerAssemblyMemberIds(assembly);
-  const defaultValue = memberIds[0] ?? `${fallbackPrefix}_1`;
-  const hint = memberIds.length ? `Available: ${memberIds.join(", ")}` : "No members yet. Type a member id.";
-  const response = window.prompt(`${promptLabel}\n${hint}`, defaultValue);
-  const value = String(response ?? "").trim();
-  return value || null;
-}
-
-function clearComposerPendingTransfer() {
-  clearComposerPendingTransferSourceState();
-}
-
-function startComposerTransferFromAssembly(assembly) {
-  if (!assembly?.id) {
-    return false;
-  }
-  const memberId = promptComposerAssemblyMemberId(assembly, "Source member for this transfer?");
-  if (!memberId) {
-    return false;
-  }
-  setComposerPendingTransferSourceState({
-    assemblyId: assembly.id,
-    memberId,
-  });
-  return true;
-}
-
-function completeComposerTransferToAssembly(assembly) {
-  const pendingTransferSource = getComposerPendingTransferSourceState();
-  if (!pendingTransferSource?.assemblyId || !assembly?.id) {
-    return false;
-  }
-  const targetMemberId = promptComposerAssemblyMemberId(assembly, "Target member for this transfer?");
-  if (!targetMemberId) {
-    return false;
-  }
-  const defaultTime = Number((composerPlaybackState.playheadSeconds ?? 0).toFixed(3));
-  const rawTime = window.prompt("Transfer time in seconds?", String(defaultTime));
-  if (rawTime == null) {
-    return false;
-  }
-  const parsedTime = Number(rawTime);
-  if (!Number.isFinite(parsedTime)) {
-    return false;
-  }
-  appendComposerTransferLine(
-    `${pendingTransferSource.assemblyId}.${pendingTransferSource.memberId} -> ${assembly.id}.${targetMemberId} @ ${Number(parsedTime.toFixed(3))}`
-  );
-  clearComposerPendingTransfer();
-  return true;
-}
+const composerAuthoringStateRuntime = createComposerAuthoringStateRuntime({
+  draftStateRuntime: composerDraftStateRuntime,
+  getPathState: () => composerPathState,
+  getPlaybackState: () => composerPlaybackState,
+  dom: {
+    pathModeSelect: composerPathModeSelect,
+    transferListInput: composerTransferListInput,
+    sceneDurationInput: composerSceneDurationInput,
+    sceneLoopInput: composerSceneLoopInput,
+  },
+  parseTransfers: parseComposerTransfers,
+  createDefaultPathPoints: createComposerDefaultPathPoints,
+  normalizeAssemblyPathPoints: normalizeComposerAssemblyPathPoints,
+  normalizePathPoint: normalizeComposerPathPoint,
+  vectorFromTriplet,
+  operations: {
+    rebuildControlPoints: rebuildComposerControlPoints,
+    updatePathGeometry: updateComposerPathGeometry,
+    updateCameraPoiStatus: updateComposerCameraPoiStatus,
+  },
+  windowLike: window,
+});
+const {
+  appendAuthoringLine: appendComposerAuthoringLine,
+  replaceAuthoringLineById: replaceComposerAuthoringLineById,
+  setSceneDurationValue: setComposerSceneDurationValue,
+  setSceneLoopValue: setComposerSceneLoopValue,
+  getTransferListRaw: getComposerTransferListRaw,
+  setTransferListRaw: setComposerTransferListRaw,
+  appendTransferLine: appendComposerTransferLine,
+  getParsedTransferEntries: getComposerParsedTransferEntries,
+  clearPendingTransfer: clearComposerPendingTransfer,
+  startTransferFromAssembly: startComposerTransferFromAssembly,
+  completeTransferToAssembly: completeComposerTransferToAssembly,
+  persistPathStateToAssembly: persistComposerPathStateToAssembly,
+  loadPathStateFromSelectedAssembly: loadComposerPathStateFromSelectedAssembly,
+  persistPathStateToSelectedAssembly: persistComposerPathStateToSelectedAssembly,
+  setSelectedAssembly: setComposerSelectedAssembly,
+} = composerAuthoringStateRuntime;
 
 function getComposerMemberColor(memberId, index = 0) {
   const normalized = typeof memberId === "object" && memberId !== null && !Array.isArray(memberId)
@@ -2080,16 +1750,6 @@ function renderComposerAssemblyEditor() {
 
   detailCard.appendChild(body);
   composerAssemblyDetail.appendChild(detailCard);
-}
-
-function getComposerAssemblyDraftIndexById(assemblyId) {
-  return getComposerAssemblyDraftsState().findIndex((assembly) => assembly?.id === assemblyId);
-}
-
-function getComposerAssemblyDraftById(assemblyId) {
-  const index = getComposerAssemblyDraftIndexById(assemblyId);
-  const assemblyDrafts = getComposerAssemblyDraftsState();
-  return index >= 0 ? assemblyDrafts[index] : null;
 }
 
 const composerAssemblyAuthoringRuntime = createComposerAssemblyAuthoringRuntime({
@@ -6962,15 +6622,6 @@ const markdownSceneRegistry = createMarkdownSceneRegistry({
   resolveMarkdownColumnsForPath,
 });
 
-const {
-  panelMap: composerPanelMap,
-  palette: composerPalette,
-  editorStore: composerEditorStore,
-  pathState: composerPathState,
-  storeFacade: composerEditorStoreFacade,
-} = createComposerAppStore({
-  palette: defaultAutoMarkdownPalette,
-});
 const composerFrameState = {
   rotation: new THREE.Euler(0, 0, 0, "YXZ"),
   scale: 1,
@@ -7070,7 +6721,6 @@ let composerDocumentCameraWaypointMeshes = [];
 let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
-let composerCurrentDocument = null;
 let composerCurrentViewportFramingState = null;
 let composerPathPointInfoPill = null;
 
@@ -7331,13 +6981,6 @@ function updateComposerPathPointInfoPill() {
   pill.element.classList.add("is-visible");
   pill.element.setAttribute("aria-hidden", "false");
 }
-const composerViewportDisplayState = {
-  showTransportPath: true,
-  showCameraGuides: true,
-  showLabels: true,
-  showHistoryTraces: true,
-  showEnvelopes: true,
-};
 const composerEditorPreviewState = {
   renderMotionTimeOverride: null,
   renderMotionTimePlayhead: null,
