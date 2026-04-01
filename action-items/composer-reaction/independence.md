@@ -36,12 +36,12 @@ Already done:
 - `reaction_designer` no longer runs as a Composer overlay mode;
 - boundary schemas, fixtures, and a boundary-check script are in place;
 - Reaction now owns its standalone app shell, template catalog, export seam, and much of its solver composition under `src/apps/reaction/`;
+- Reaction solve-state, solve-layout, solve-projection, and solve-proposal now live under real Reaction-owned module names, with legacy runtime paths reduced to compatibility exports where needed;
 - Composer now owns standalone app-mode policy, app composition, and editor-store facade layers under `src/apps/composer/`.
 
 Still remaining:
 
 - Reaction still has legacy `ComposerReaction...` naming and compatibility layers that should be retired;
-- the larger solve proposal layer is still legacy-named and has not yet been moved under a real Reaction-owned name;
 - Composer still depends too much on `app.js` as a shared composition root;
 - the Reaction export -> Composer import workflow is still provisional rather than production-hardened;
 - and some transitional compatibility code remains in place on both sides.
@@ -102,6 +102,15 @@ Keep:
 - Reaction export tests;
 - Composer import tests;
 - and smoke tests proving each app boots independently.
+  
+##Audit
+
+- review that reaction doesn't mention composer in file names or code where it doesn't make sense and vice versa
+- review modularity
+- review wrappers
+- review scaffolding
+- look for dead code
+- look for spaghetti code due to how we got here
 
 ## Post-Independence Disposition
 

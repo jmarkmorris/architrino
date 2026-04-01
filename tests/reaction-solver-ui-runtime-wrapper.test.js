@@ -56,3 +56,14 @@ test("reaction solve-state, layout, and projection modules now own their impleme
   assert.doesNotMatch(solveLayoutSource, /ComposerReactionSolveLayoutRuntime/);
   assert.doesNotMatch(solveProjectionSource, /ComposerReactionSolveProjectionRuntime/);
 });
+
+test("reaction solve proposal module now owns its implementation", () => {
+  const solveProposalSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolveProposalRuntime.js", import.meta.url),
+    "utf8"
+  );
+
+  assert.doesNotMatch(solveProposalSource, /ComposerReactionSolveProposalRuntime/);
+  assert.match(solveProposalSource, /export function buildReactionSolvePlan/);
+  assert.match(solveProposalSource, /export function describeReactionSolvePlan/);
+});
