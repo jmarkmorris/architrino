@@ -64,6 +64,18 @@ node scripts/build-scene-graph.mjs --check --strict
 - Prefer explicit file paths when there is any doubt.
 - Use `git add -A` only when the whole worktree is in scope.
 
+Commands:
+
+```bash
+git add path/to/file1 path/to/file2
+```
+
+or, when the whole worktree is intentionally in scope:
+
+```bash
+git add -A
+```
+
 ### 4. Commit with a terse intentional message
 
 - The commit should describe the actual completed unit of work, not a vague session summary.
@@ -102,6 +114,24 @@ git push origin <branch>
   - the user or developer impact,
   - the root cause when the branch fixes a bug,
   - and the checks used to validate it.
+
+Commands:
+
+```bash
+gh pr view --json state,url
+```
+
+If no PR exists yet, create one:
+
+```bash
+gh pr create --fill
+```
+
+If the branch is intentionally incomplete, create a draft instead:
+
+```bash
+gh pr create --draft --fill
+```
 
 ### 7. End the session in a clean state
 
@@ -196,10 +226,30 @@ This check should happen even if you believe you are "just updating the PR," bec
 - Open the PR in ready mode once the branch is coherent enough for real review.
 - Use draft only when the branch is intentionally incomplete and should not yet enter normal review.
 
+Commands:
+
+```bash
+gh pr create --fill
+```
+
+or, if intentionally incomplete:
+
+```bash
+gh pr create --draft --fill
+```
+
 ### 6. Respond to review on the same branch
 
 - Keep follow-up fixes on the PR branch until the PR is merged.
 - Do not branch from an unmerged feature branch to start the next line of work unless that dependency is intentional and explicitly accepted.
+
+Commands:
+
+```bash
+git branch --show-current
+gh pr view --json state,headRefName,url
+git push origin $(git branch --show-current)
+```
 
 ## Standard Post-Merge Synchronization Process
 
@@ -214,6 +264,12 @@ Precondition:
 ### 1. Verify the PR is merged
 
 - Confirm the PR merged on GitHub before cleaning up branches.
+
+Command:
+
+```bash
+gh pr view --json state,mergedAt,url
+```
 
 ### 2. Check for post-merge commits on the branch before cleanup
 
@@ -344,6 +400,13 @@ This makes the next branch the new canonical branch in the series.
 
 - All new commits for the next unit of work should land there.
 - Open the next PR only when the branch has a coherent reviewable unit.
+
+Commands:
+
+```bash
+git branch --show-current
+git status -sb
+```
 
 ## Full Series Example
 
