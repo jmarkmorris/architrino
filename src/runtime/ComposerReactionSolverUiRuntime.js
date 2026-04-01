@@ -14,10 +14,10 @@ import {
   createComposerReactionBinaryInventoryRuntime,
 } from "./ComposerReactionBinaryInventoryRuntime.js";
 import {
-  buildNodeKey,
+  buildNodeKey as defaultBuildNodeKey,
   createComposerReactionAnchorStateRuntime,
-  nodeKeysConflict,
-  parseNodeKey,
+  nodeKeysConflict as defaultNodeKeysConflict,
+  parseNodeKey as defaultParseNodeKey,
 } from "./ComposerReactionAnchorStateRuntime.js";
 import {
   createComposerReactionBinarySelectionRuntime,
@@ -773,6 +773,9 @@ export function createComposerReactionSolverUiRuntime(deps) {
     onActiveChange = () => {},
     storage = null,
     storageKey = "",
+    buildNodeKey = defaultBuildNodeKey,
+    parseNodeKey = defaultParseNodeKey,
+    nodeKeysConflict = defaultNodeKeysConflict,
   } = deps;
 
   const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
