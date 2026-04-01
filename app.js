@@ -8124,6 +8124,9 @@ const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "action-items/composer-reaction/composer.md";
+const appMode = String(globalThis.window?.__ARCHITRINO_APP_MODE__ ?? "").trim().toLowerCase();
+const isStandaloneComposerApp = appMode === "composer";
+const standaloneNavigatorHref = "./index.html";
 
 function isComposerOverlaySceneId(sceneId = "") {
   return sceneId === composerSceneId || sceneId === composerPreviewSceneId;
@@ -9315,6 +9318,10 @@ function recordBrowserBackHistory(options = {}) {
 
 async function resetToRootScene(options = {}) {
   if (transitionState.active) {
+    return;
+  }
+  if (isStandaloneComposerApp) {
+    globalThis.window?.location?.assign(standaloneNavigatorHref);
     return;
   }
   recordBrowserBackHistory(options);
@@ -10733,6 +10740,10 @@ const composerControlsUiRuntime = createComposerControlsUiRuntime({
     jumpToScene(composerScenePath, { mode: "instant" });
   },
   exitComposer: () => {
+    if (isStandaloneComposerApp) {
+      globalThis.window?.location?.assign(standaloneNavigatorHref);
+      return;
+    }
     if (browserBackStack.length > 0) {
       navUpButton?.click();
       return;
@@ -11045,8 +11056,11 @@ function onResize() {
 async function init() {
   closeDetailPanel();
   const requestedSceneState = sceneStateHashService.getSceneStateFromHash();
+  const requestedInitialScenePath = isStandaloneComposerApp
+    ? requestedSceneState.scenePath || composerScenePath
+    : requestedSceneState.scenePath || rootScenePath;
   const initialScene = await sceneBootstrapService.resolveInitialScene(
-    requestedSceneState.scenePath || rootScenePath
+    requestedInitialScenePath
   );
   if (!initialScene) {
     return;
