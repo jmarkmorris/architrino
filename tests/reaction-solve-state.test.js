@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildComposerReactionSolveState } from "../src/runtime/ComposerReactionSolveStateRuntime.js";
+import { buildReactionSolveState } from "../src/apps/reaction/ReactionSolveStateRuntime.js";
 
 test("solve state separates reactants, products, operators, and center assemblies without treating center bosons as unsupported", () => {
   const participants = [
@@ -16,7 +16,7 @@ test("solve state separates reactants, products, operators, and center assemblie
     },
   ];
 
-  const solveState = buildComposerReactionSolveState({
+  const solveState = buildReactionSolveState({
     participants,
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     isCenterAssemblyParticipant: (participant) => participant?.surfaceColumn === "center-assembly",
@@ -41,7 +41,7 @@ test("solve state allows existing operators when no center bosons are present", 
     { id: "operator_1", side: "operator", hierarchy: [{ id: "o_root" }] },
   ];
 
-  const solveState = buildComposerReactionSolveState({
+  const solveState = buildReactionSolveState({
     participants,
     buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
     isCenterAssemblyParticipant: (participant) => participant?.surfaceColumn === "center-assembly",
