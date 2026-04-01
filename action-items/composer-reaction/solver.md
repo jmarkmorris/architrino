@@ -77,6 +77,87 @@ Current solve-pipeline details:
 - projection creates solve-generated operators, resolves deferred endpoints, and materializes mappings back into the live Reaction UI;
 - and the UI runtime removes only solve-generated operators before rerunning solve, clears auto-dissociation markers, and keeps manual operators and manual dissociated-composite state intact.
 
+### Current Rule Order
+
+The current implemented solve order is:
+
+1. Build solve state from live participants.
+2. Partition entries into `reactants`, `products`, `center assemblies`, `operators`, and `unsupported`.
+3. Treat `reactants` plus `center assemblies` as the current source pool for proposal building.
+4. Build source sub-pools for special rules:
+5. `associateSourceEntries` contains full `Noether core` roots, full `Free Architrinos` roots, and top-level `Noether core` children pulled from composite sources.
+6. `compositeChildSourceEntries` contains top-level constituent children from composite sources.
+7. `standaloneRootSourceEntries` contains non-composite standalone roots.
+8. For each source/product pair, try base candidate families in this order:
+9. `composite-carry-through` first;
+10. then `direct-root`;
+11. then `center-root-direct`.
+12. Build `fragment-root-direct` candidates from composite-child source entries into standalone product roots.
+13. Build `associate-photon` candidates from pairs of opposite-polarity `Noether core` sources into photon products.
+14. For each product that does not already have an identical direct reactant, try `Associate` reassembly in this order:
+15. `associate-standalone` first;
+16. then `associate-composite`.
+17. Run the main candidate-set selector across base, fragment, and associate candidates together.
+18. Build `partial-composite-direct` candidates only after the main selection pass, and only from still-unresolved reactant/product pairs.
+19. Run a second selector for those partial-composite candidates, excluding already-used source fragments.
+20. Run the `product-child-direct` selection pass last, but the current proposal builder does not populate that candidate family yet, so this pass is effectively inactive today.
+21. Mark a composite reactant auto-dissociated if the selected mappings consume one of its internal child rows instead of its root.
+22. Place solve-generated operators onto the shared surface grid.
+23. Project solve-generated operators, mappings, and auto-dissociation markers back into live Reaction state.
+
+The current selection order inside the solver is also explicit:
+
+- candidate profiles are presorted by more fully resolved whole products, then more matched target nodes, then fewer partial-product claims, then higher candidate score, then a stable text identity tie-break;
+- the set-level selector then prefers more fully resolved whole products, then more matched target nodes, then fewer partial-product claims, then more matched source nodes, then higher total score, then a stable identity tie-break;
+- this means the solver currently prefers stronger whole-product solutions over weaker residue-heavy plans even before any future chemistry or PDG-facing heuristics are added.
+
+### Current Assembly And Operator Rules
+
+All current candidate families share one conservative gate unless noted otherwise:
+
+- any direct mapping candidate must pass `evaluateComposerReactionMappingCandidate`;
+- that gate currently requires known source and target inventories;
+- it currently requires equal `electrino` / `positrino` ledger on both sides;
+- and it forbids direct mapping between full tri-binary `Pro Noether Core` and `Anti Noether Core`.
+
+Current implemented assembly and operator rules are:
+
+- `composite-carry-through` applies only when source and product share direct participant identity and both top-level composite trees can be fully matched child-to-child;
+- `direct-root` applies only when source and product share the same template id and polarity and the direct conservative mapping gate allows the root-to-root mapping;
+- `center-root-direct` applies only when the source is a center assembly, the product is not a composite product, and the direct conservative mapping gate allows the root-to-root mapping;
+- `fragment-root-direct` applies only when a top-level source child has the same template id as a standalone product root, polarity is compatible, and the direct conservative mapping gate allows the mapping;
+- `partial-composite-direct` applies only when source and product share direct participant identity, some top-level child mappings are valid, and full composite carry-through was not possible;
+- `Associate` is the only operator the solver currently inserts explicitly into the plan;
+- explicit `Dissociate` operators are not inserted by the current planner;
+- instead, dissociation is currently represented as an auto-dissociation mark on a composite reactant when the selected mappings consume internal child rows.
+
+Current `Associate` rules are:
+
+- `associate-photon` requires exactly two source entries that classify as `Noether core`, opposite core polarities, a photon product with both `pro` and `anti` child targets, and exact full-inventory equality between the two sources combined and the photon product;
+- `associate-standalone` requires a non-photon, non-composite standalone product, at least one `Noether core` source, at least one `Free Architrinos` source, two different source participants, target polarity compatibility with the chosen core, and equality of the resulting `electrino` / `positrino` ledger with the product inventory;
+- `associate-composite` requires a composite product with at least two target child nodes, at least as many source entries as target child nodes, a valid conservative mapping from each chosen source to its assigned target child, at least two distinct source entries in the finished plan, and exact full-inventory equality between all chosen sources combined and the composite product;
+- when multiple `Associate` assignments are possible, the solver prefers assignments with more matched target nodes, then higher pair score, then a stable source-identity tie-break;
+- every solve-generated `Associate` currently uses operator lane `1` and produces exactly one assembled output participant.
+
+Current special assembly-source rules are:
+
+- `Noether core` and `Free Architrinos` are treated as source assemblies, not solver-defined operators;
+- `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` can appear as center assemblies in solve state;
+- only `Noether core` and `Free Architrinos` currently participate in the special `Associate` construction rules;
+- center assemblies may map directly into currently supported standalone products through `center-root-direct`;
+- the current planner does not yet introduce new bosons as intermediate solve-generated participants during search;
+- and broader weak-boson-mediated construction is still outside the implemented rule set.
+
+Current placement and projection rules are:
+
+- only solve-generated operators are removed before a fresh rerun;
+- manual operators remain in the surface and also occupy lane rows for later layout;
+- solve-generated operators are placed after candidate selection, not during candidate generation;
+- placement prefers the target-side row center for `Associate` when available, otherwise the shared center of connected rows;
+- placement avoids occupied rows inside the chosen operator lane by nearest-row search with a small direction bias;
+- projection creates the solve-generated operator participants, resolves deferred operator endpoints into concrete node keys, applies the selected mappings, and marks any newly auto-dissociated composite reactants;
+- and projection does not create an explicit `Dissociate` operator participant today.
+
 ### Solver Boundaries
 
 The solver is an internal Reaction component.
