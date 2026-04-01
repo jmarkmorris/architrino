@@ -1,5 +1,5 @@
 import {
-  createComposerReactionMappingRulesRuntime,
+  createComposerReactionMappingRulesRuntime as defaultCreateMappingRulesRuntime,
 } from "./ComposerReactionMappingRulesRuntime.js";
 import {
   createComposerReactionParticipantMutationRuntime,
@@ -776,6 +776,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     buildNodeKey = defaultBuildNodeKey,
     parseNodeKey = defaultParseNodeKey,
     nodeKeysConflict = defaultNodeKeysConflict,
+    createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
   } = deps;
 
@@ -828,7 +829,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
   let syncOperatorFan = () => {};
-  const mappingRulesRuntime = createComposerReactionMappingRulesRuntime({
+  const mappingRulesRuntime = createMappingRulesRuntime({
     getNodeContext,
     getOperatorInputNodeContexts,
     getOperatorLedgerSummary,
