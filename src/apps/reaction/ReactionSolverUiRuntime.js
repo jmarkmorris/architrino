@@ -11,6 +11,13 @@ import { createReactionBinarySelectionRuntime } from "./ReactionBinarySelectionR
 import { createReactionMappingRulesRuntime } from "./ReactionMappingRulesRuntime.js";
 import { createReactionParticipantMutationRuntime } from "./ReactionParticipantMutationRuntime.js";
 import { createReactionParticipantRenderRuntime } from "./ReactionParticipantRenderRuntime.js";
+import { applyReactionSolveLayout } from "./ReactionSolveLayoutRuntime.js";
+import {
+  buildReactionSolvePlan,
+  describeReactionSolvePlan,
+} from "./ReactionSolveProposalRuntime.js";
+import { applyReactionSolvePlan } from "./ReactionSolveProjectionRuntime.js";
+import { buildReactionSolveState } from "./ReactionSolveStateRuntime.js";
 import {
   buildReactionNodeKey,
   parseReactionNodeKey,
@@ -34,6 +41,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
     getReactionAddPickerCells,
     createMappingRulesRuntime: createReactionMappingRulesRuntime,
     createAnchorStateRuntime: createReactionAnchorStateRuntime,
+    buildSolveState: buildReactionSolveState,
+    buildSolvePlan: buildReactionSolvePlan,
+    describeSolvePlan: describeReactionSolvePlan,
+    applySolveLayout: applyReactionSolveLayout,
+    applySolvePlan: applyReactionSolvePlan,
   });
 
   return {

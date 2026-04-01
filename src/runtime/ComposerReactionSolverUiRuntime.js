@@ -28,13 +28,13 @@ import {
   buildReactionParticipantStructureForPickerCell as defaultBuildReactionParticipantStructureForPickerCell,
   getComposerReactionAddPickerCells as defaultGetComposerReactionAddPickerCells,
 } from "./ComposerReactionAddPickerRuntime.js";
-import { buildComposerReactionSolveState } from "./ComposerReactionSolveStateRuntime.js";
+import { buildComposerReactionSolveState as defaultBuildSolveState } from "./ComposerReactionSolveStateRuntime.js";
 import {
-  buildComposerReactionSolvePlan,
-  describeComposerReactionSolvePlan,
+  buildComposerReactionSolvePlan as defaultBuildSolvePlan,
+  describeComposerReactionSolvePlan as defaultDescribeSolvePlan,
 } from "./ComposerReactionSolveProposalRuntime.js";
-import { applyComposerReactionSolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
-import { applyComposerReactionSolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
+import { applyComposerReactionSolveLayout as defaultApplySolveLayout } from "./ComposerReactionSolveLayoutRuntime.js";
+import { applyComposerReactionSolvePlan as defaultApplySolvePlan } from "./ComposerReactionSolveProjectionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -748,6 +748,11 @@ export function createComposerReactionSolverUiRuntime(deps) {
     getReactionAddPickerCells = defaultGetComposerReactionAddPickerCells,
     createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
+    buildSolveState = defaultBuildSolveState,
+    buildSolvePlan = defaultBuildSolvePlan,
+    describeSolvePlan = defaultDescribeSolvePlan,
+    applySolveLayout = defaultApplySolveLayout,
+    applySolvePlan = defaultApplySolvePlan,
   } = deps;
 
   const {
@@ -1438,7 +1443,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       setStatus("Open the reaction solver before running solve.");
       return false;
     }
-    let solveState = buildComposerReactionSolveState({
+    let solveState = buildSolveState({
       participants: state.participants,
       mappings: state.mappings,
       buildNodeKey,
@@ -1457,7 +1462,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
       return false;
     }
     resetSolveDerivedArtifacts();
-    solveState = buildComposerReactionSolveState({
+    solveState = buildSolveState({
       participants: state.participants,
       mappings: state.mappings,
       buildNodeKey,
@@ -1466,12 +1471,12 @@ export function createComposerReactionSolverUiRuntime(deps) {
       isOperatorParticipant,
     });
 
-    const plan = buildComposerReactionSolvePlan({
+    const plan = buildSolvePlan({
       solveState,
       buildNodeKey,
       resolveBinaryChoiceInventory,
     });
-    const laidOutPlan = applyComposerReactionSolveLayout({
+    const laidOutPlan = applySolveLayout({
       plan,
       solveState,
     });
@@ -1488,7 +1493,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     state.hoveredMappingIds = [];
     state.mappings = [];
     clearAllRecentRouteState();
-    const { appliedMappingIds } = applyComposerReactionSolvePlan({
+    const { appliedMappingIds } = applySolvePlan({
       plan: laidOutPlan,
       createOperatorParticipant,
       getParticipantRootNode,
@@ -1502,7 +1507,7 @@ export function createComposerReactionSolverUiRuntime(deps) {
     const unresolvedProductCount = laidOutPlan.unresolvedProducts.length;
     const unresolvedReactantCount = laidOutPlan.unresolvedReactants.length;
     setStatus(
-      `Solve v1 mapped ${describeComposerReactionSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
+      `Solve v1 mapped ${describeSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
         unresolvedProductCount === 1 ? "" : "s"
       } and ${unresolvedReactantCount} reactant${
         unresolvedReactantCount === 1 ? "" : "s"

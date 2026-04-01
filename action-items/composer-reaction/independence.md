@@ -295,6 +295,7 @@ Completed work inside Phase 3 so far:
 - the standalone Reaction solver path now composes add-picker behavior through a Reaction-local wrapper under `src/apps/reaction/`;
 - the standalone Reaction solver path now composes binary-selection, binary-inventory, and participant-mutation helper runtimes through Reaction-local wrappers under `src/apps/reaction/`;
 - the standalone Reaction solver path now composes anchor-render, binary-glyph, and participant-render helper runtimes through Reaction-local wrappers under `src/apps/reaction/`;
+- the standalone Reaction solver path now composes solve-state, solve-plan, solve-layout, and solve-projection behavior through Reaction-local wrappers under `src/apps/reaction/`;
 - and Reaction now exposes a local `ReactionFlowDocument` export API under `src/apps/reaction/ReactionFlowExportRuntime.js`.
 
 ### Phase 4. Move Composer Into Its Own Tree
