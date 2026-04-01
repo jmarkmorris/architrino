@@ -1,0 +1,15 @@
+{
+  "schema": "composer-import-result/v1",
+  "sourceSchema": "reaction-flow/v1",
+  "importedReactionId": "free_neutron_beta_001",
+  "sceneId": "free_neutron_beta_scene",
+  "warnings": [],
+  "rejectedFeatures": [],
+  "fallbacks": [
+    {
+      "code": "observer-hints-normalized",
+      "message": "Composer normalized the reaction framing hints into its observer model.",
+      "path": "hints.initialFramingTargets"
+    }
+  ]
+}

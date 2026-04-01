@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/reaction-flow/v1/schema.json",
+  "title": "Reaction Flow Document v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "reactionId",
+    "title",
+    "participants",
+    "operators",
+    "mappings",
+    "stages",
+    "provenance",
+    "hints"
+  ],
+  "properties": {
+    "schema": {
+      "const": "reaction-flow/v1"
+    },
+    "reactionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "side", "label"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "side": {
+            "type": "string",
+            "enum": ["reactant", "product", "intermediate"]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "structureKey": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provenanceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "layout": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["column", "row"],
+            "properties": {
+              "column": {
+                "type": "string",
+                "enum": ["left", "center", "right"]
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "label", "inputs", "outputs"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stageId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["participantId", "anchorId"],
+              "properties": {
+                "participantId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "anchorId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["participantId", "anchorId"],
+              "properties": {
+                "participantId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "anchorId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "from", "to"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["participantId", "anchorId"],
+            "properties": {
+              "participantId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "anchorId": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "to": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["participantId", "anchorId"],
+            "properties": {
+              "participantId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "anchorId": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "viaOperatorId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stageId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "conservedLedger": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["electrinoCount", "positrinoCount"],
+            "properties": {
+              "electrinoCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "positrinoCount": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "order"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "timing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["startMs", "endMs"],
+            "properties": {
+              "startMs": {
+                "type": "number",
+                "minimum": 0
+              },
+              "endMs": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceDocumentIds", "participantIds", "mappingIds"],
+      "properties": {
+        "sourceDocumentIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "participantIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "mappingIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "hints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["initialFramingTargets", "semanticTags", "suggestedSceneId"],
+      "properties": {
+        "initialFramingTargets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "semanticTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "suggestedSceneId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
