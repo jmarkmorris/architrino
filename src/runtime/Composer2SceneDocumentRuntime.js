@@ -921,10 +921,12 @@ export function createComposerSceneDocument(input = {}, options = {}) {
     cameraPath: {
       waypoints: input.cameraWaypoints,
     },
+    cameraShots: input.cameraShots,
     overlays: input.overlays,
     reactions: input.reactions,
     transfers: input.transfers,
     provenance: authoredProvenance,
+    metadata: input.metadata,
   });
 }
 

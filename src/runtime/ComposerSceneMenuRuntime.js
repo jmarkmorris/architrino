@@ -198,6 +198,7 @@ export function buildComposerLibraryMenu(config) {
     composerRepoSaveButton,
     composerLibrarySaveButton,
     composerExportButton,
+    importReactionFlow,
     resetComposerAssemblyMenu,
     refreshComposerLibraryUi,
     appendComposerMenuBlock,
@@ -244,6 +245,15 @@ export function buildComposerLibraryMenu(config) {
       text: "JSON Preview",
       onClick: () => {
         openComposerJsonPreviewMenuAt(clientX, clientY);
+      },
+    },
+  ]);
+  appendComposerMenuButtonRow(saveBlock?.block, [
+    {
+      text: "Import Reaction",
+      onClick: () => {
+        closeComposerAssemblyMenu();
+        importReactionFlow?.();
       },
     },
   ]);
@@ -303,5 +313,5 @@ export function buildComposerLibraryMenu(config) {
     composerLibraryStatus?.textContent ||
       "Library storage is browser-local for now. Save keeps drafts in this browser only."
   );
-  positionComposerAssemblyMenu(clientX, clientY, 320, entries.length ? 332 : 244);
+  positionComposerAssemblyMenu(clientX, clientY, 320, entries.length ? 376 : 288);
 }

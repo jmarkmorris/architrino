@@ -6,14 +6,62 @@ import {
   formatComposerPauseList,
   formatComposerWarpList,
 } from "../../runtime/ComposerTimelineRuntime.js";
+import {
+  importReactionFlowToComposerDraft,
+  summarizeComposerReactionImport,
+} from "./ComposerReactionFlowImportRuntime.js";
 
 export function createComposerDocumentWorkspaceRuntime(options = {}) {
   const createSceneDocument = options.createSceneDocument ?? createComposerSceneDocument;
   const buildPreviewScene = options.buildPreviewSceneData ?? buildComposerPreviewSceneData;
+  const importReactionFlowDocument =
+    options.importReactionFlowDocument ?? importReactionFlowToComposerDraft;
   const documentLike = options.documentLike ?? globalThis.document ?? null;
   const storage = options.storage ?? globalThis.window?.localStorage ?? null;
   const storageKey = String(options.storageKey ?? "architrino.composer.library.v1");
   const nowIso = options.nowIso ?? (() => new Date().toISOString());
+  const pickReactionFlowText =
+    options.pickReactionFlowText ??
+    (async () => {
+      const picker = globalThis.window?.showOpenFilePicker;
+      if (typeof picker === "function") {
+        const [handle] = await picker({
+          multiple: false,
+          types: [
+            {
+              description: "Reaction Flow JSON",
+              accept: {
+                "application/json": [".json"],
+              },
+            },
+          ],
+        });
+        if (!handle) {
+          return null;
+        }
+        const file = await handle.getFile();
+        return typeof file?.text === "function" ? file.text() : null;
+      }
+      if (typeof documentLike?.createElement !== "function") {
+        return null;
+      }
+      return new Promise((resolve) => {
+        const input = documentLike.createElement("input");
+        input.type = "file";
+        input.accept = ".json,application/json";
+        input.style.display = "none";
+        input.addEventListener("change", async () => {
+          try {
+            const file = input.files?.[0] ?? null;
+            resolve(file && typeof file.text === "function" ? await file.text() : null);
+          } finally {
+            input.remove?.();
+          }
+        });
+        documentLike.body?.appendChild?.(input);
+        input.click?.();
+      });
+    });
   const confirmClear =
     options.confirmClear ??
     ((message) => globalThis.window?.confirm?.(message));
@@ -98,6 +146,8 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     setSelectedPointIndexState = () => {},
     getSelectedAssemblyIdState = () => null,
     setTransferListRawStateValue = () => {},
+    getSupplementalDraftState = () => ({}),
+    setSupplementalDraftState = () => {},
     setCurrentDocument = () => {},
   } = options.accessors ?? {};
 
@@ -132,6 +182,21 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     persistPathStateToSelectedAssembly();
     const state = readComposerFormState();
     const timing = readTimingState();
+    const rawSupplementalDraftState = getSupplementalDraftState();
+    const supplementalDraftState =
+      rawSupplementalDraftState && typeof rawSupplementalDraftState === "object"
+        ? rawSupplementalDraftState
+        : {};
+    const supplementalTransfers = Array.isArray(supplementalDraftState.transfers)
+      ? supplementalDraftState.transfers
+      : [];
+    const formattedSupplementalTransferList = supplementalTransfers.length
+      ? formatTransferList(supplementalTransfers)
+      : "";
+    const shouldReuseSupplementalTransfers =
+      supplementalTransfers.length > 0 &&
+      typeof state.transferListRaw === "string" &&
+      state.transferListRaw.trim() === formattedSupplementalTransferList.trim();
     const primaryAssembly = Array.isArray(state.assembliesDraft) ? state.assembliesDraft[0] ?? null : null;
     const pathPoints = normalizeAssemblyPathPoints(primaryAssembly?.pathPoints);
     const cameraWaypoints = Array.isArray(cameraFlightState?.waypoints)
@@ -151,12 +216,25 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     return {
       ...state,
       ...timing,
-      transfers: state.transfers,
-      reactions: [],
+      transfers: shouldReuseSupplementalTransfers ? supplementalTransfers : state.transfers,
+      reactions: Array.isArray(supplementalDraftState.reactions)
+        ? supplementalDraftState.reactions
+        : [],
       overlays: normalizeGraphicOverlayList(
         getGraphicOverlayDraftsState(),
         Number(timing?.time?.end ?? 24) || 24
       ),
+      markers:
+        Array.isArray(supplementalDraftState.markers) && supplementalDraftState.markers.length
+          ? supplementalDraftState.markers
+          : timing.markers,
+      cameraShots: Array.isArray(supplementalDraftState.cameraShots)
+        ? supplementalDraftState.cameraShots
+        : [],
+      metadata:
+        supplementalDraftState.metadata && typeof supplementalDraftState.metadata === "object"
+          ? supplementalDraftState.metadata
+          : undefined,
       markerListRaw: markerListInput?.value ?? "",
       pauseListRaw: pauseListInput?.value ?? "",
       warpListRaw: warpListInput?.value ?? "",
@@ -321,6 +399,13 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
         ? draftState.transferListRaw
         : formatTransferList(draftState.transfers)
     );
+    setSupplementalDraftState({
+      transfers: Array.isArray(draftState.transfers) ? draftState.transfers : [],
+      reactions: Array.isArray(draftState.reactions) ? draftState.reactions : [],
+      markers: Array.isArray(draftState.markers) ? draftState.markers : [],
+      cameraShots: Array.isArray(draftState.cameraShots) ? draftState.cameraShots : [],
+      metadata: draftState.metadata && typeof draftState.metadata === "object" ? draftState.metadata : null,
+    });
     setGraphicOverlayDraftsState(
       normalizeGraphicOverlayList(draftState.overlays, duration)
     );
@@ -526,6 +611,52 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     }
   }
 
+  async function importReactionFlowFromPicker() {
+    let rawText = null;
+    try {
+      rawText = await pickReactionFlowText();
+    } catch (error) {
+      if (error?.name === "AbortError") {
+        setStatus("Reaction import canceled.");
+        return null;
+      }
+      setStatus("Reaction import failed before a file could be read.");
+      throw error;
+    }
+    if (typeof rawText !== "string" || !rawText.trim()) {
+      setStatus("Select a reaction-flow JSON file to import.");
+      return null;
+    }
+    return importReactionFlowFromText(rawText);
+  }
+
+  function importReactionFlowFromText(rawText = "") {
+    let parsedDocument = null;
+    try {
+      parsedDocument = JSON.parse(rawText);
+    } catch (_error) {
+      setStatus("Reaction import failed. The selected file is not valid JSON.");
+      return null;
+    }
+    let importPayload = null;
+    try {
+      importPayload = importReactionFlowDocument(parsedDocument, {
+        nowIso,
+      });
+    } catch (error) {
+      setStatus(error?.message || "Reaction import failed.");
+      return null;
+    }
+    if (!importPayload?.draftState) {
+      setStatus("Reaction import failed. Composer did not receive a draft scene.");
+      return null;
+    }
+    applyComposerDraftState(importPayload.draftState);
+    renderComposerJsonPreview();
+    setStatus(summarizeComposerReactionImport(importPayload.importResult));
+    return importPayload;
+  }
+
   return {
     readComposerFormState,
     readComposerDraftState,
@@ -541,5 +672,7 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     clearComposerScene,
     deleteComposerSceneFromLibrary,
     renderComposerJsonPreview,
+    importReactionFlowFromPicker,
+    importReactionFlowFromText,
   };
 }
