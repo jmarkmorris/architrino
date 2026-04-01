@@ -108,6 +108,7 @@ git push origin <branch>
 
 - Default to a ready PR when the branch is coherent enough for real review.
 - Use draft only when the branch is intentionally incomplete and not yet ready for review.
+- If a PR for the branch already exists, pushing the branch updates that PR automatically.
 - The PR body should explain:
   - what changed,
   - why it changed,
@@ -118,8 +119,14 @@ git push origin <branch>
 Commands:
 
 ```bash
-gh pr view --json state,url
+gh pr list --head "$(git branch --show-current)" --state all --json state,isDraft,url
 ```
+
+Interpretation:
+
+- if this returns an empty array, no PR exists yet for the current branch;
+- if this returns an open PR, pushing the branch updates that PR automatically;
+- if this returns a draft PR that is now reviewable, use `gh pr ready`.
 
 If no PR exists yet, create one:
 
@@ -131,6 +138,12 @@ If the branch is intentionally incomplete, create a draft instead:
 
 ```bash
 gh pr create --draft --fill
+```
+
+If an existing PR is draft and is now ready for review:
+
+```bash
+gh pr ready
 ```
 
 ### 7. End the session in a clean state
@@ -209,12 +222,12 @@ Suggested checks:
 ```bash
 git branch --show-current
 git rev-parse HEAD
-gh pr view --json state,mergedAt,headRefOid,headRefName,url
+gh pr list --head "$(git branch --show-current)" --state all --json state,mergedAt,headRefOid,headRefName,url
 ```
 
 Interpretation:
 
-- if `gh pr view` reports no PR, create a new PR;
+- if `gh pr list` returns an empty array, create a new PR;
 - if `state` is `OPEN`, continue using that PR;
 - if `state` is `MERGED` and `headRefOid` matches `HEAD`, the current branch tip is already what the merged PR contained, so roll over before doing more work;
 - if `state` is `MERGED` and `headRefOid` does not match `HEAD`, the branch contains newer local commits that were not part of the merged PR, so stop and recover them onto a fresh branch before continuing.
@@ -236,6 +249,12 @@ or, if intentionally incomplete:
 
 ```bash
 gh pr create --draft --fill
+```
+
+If the PR already exists as a draft and should now enter normal review:
+
+```bash
+gh pr ready
 ```
 
 ### 6. Respond to review on the same branch
@@ -268,8 +287,13 @@ Precondition:
 Command:
 
 ```bash
-gh pr view --json state,mergedAt,url
+gh pr list --head "$(git branch --show-current)" --state merged --json state,mergedAt,url
 ```
+
+Interpretation:
+
+- if this returns an empty array, the branch does not yet have a merged PR, so stop cleanup;
+- if this returns one merged PR, use its `mergedAt` time for the post-merge commit check in the next step.
 
 ### 2. Check for post-merge commits on the branch before cleanup
 
@@ -282,7 +306,7 @@ Suggested checks:
 
 ```bash
 git branch --show-current
-gh pr view --json state,mergedAt,headRefName,url
+gh pr list --head "$(git branch --show-current)" --state all --json state,mergedAt,headRefName,url
 git log --oneline --decorate --since="<mergedAt>" HEAD
 ```
 
@@ -420,8 +444,16 @@ node scripts/build-scene-graph.mjs --check --strict
 git add <paths...>
 git commit -m "Finish current unit of work"
 git push origin codex/hydrogen
+git status -sb
+git rev-parse HEAD
+git rev-parse origin/codex/hydrogen
+gh pr list --head "codex/hydrogen" --state all --json state,mergedAt,headRefOid,url
+gh pr create --fill
 
 # after the PR merges
+gh pr list --head "codex/hydrogen" --state merged --json state,mergedAt,url
+git checkout codex/hydrogen
+git log --oneline --decorate --since="<mergedAt>" HEAD
 git checkout main
 git fetch origin
 git merge --ff-only origin/main
