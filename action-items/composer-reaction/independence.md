@@ -44,7 +44,7 @@ Already true in the repo today:
 Still not true yet:
 
 - Reaction still depends on legacy `ComposerReaction...` runtime modules under `src/runtime/`;
-- Composer standalone boot is still mediated by the old shared `app.js` shell;
+- Composer still depends heavily on the old shared `app.js` shell for runtime behavior even though some standalone policy and composition now live under `src/apps/composer/`;
 - and the full Reaction export -> Composer import workflow is still provisional rather than production-hardened.
 
 ## Architectural Rule
@@ -261,64 +261,20 @@ Bad:
 
 ## Migration Plan
 
-### Completed: Phase 1. Freeze The Boundary
+### Done So Far
 
-Create the design boundary before moving code.
-
-Deliverables:
-
-- this architecture decision documented;
-- versioned JSON schema location created;
-- contract examples added;
-- lint rule that forbids cross-imports between `src/apps/composer` and `src/apps/reaction`.
-
-Acceptance criteria:
-
-- no new direct dependencies are added across the future app boundary.
-
-Completed work:
-
-- versioned contract schemas now live under `src/contracts/`;
-- contract example fixtures now live under `content/contracts/examples/`;
-- a boundary-check script and tests now enforce the future app seam mechanically.
-
-### Completed: Phase 2. Separate App Entrypoints
-
-Create separate bootstraps and roots.
-
-Deliverables:
-
-- Composer app entrypoint;
-- Reaction app entrypoint;
-- navigator launch path to each app;
-- removal of shared overlay-mode routing as the primary implementation.
-
-Acceptance criteria:
-
-- opening Composer does not boot Reaction code;
-- opening Reaction does not boot Composer code.
-
-Completed work:
-
-- `composer.html` and `reaction.html` now exist as separate entrypoints;
-- the main webapp now launches those app pages from the existing scene network;
-- and `reaction_designer` is no longer implemented as a Composer overlay mode.
+- Phase 1 boundary freeze is complete:
+  - versioned contract schemas live under `src/contracts/`;
+  - contract fixtures live under `content/contracts/examples/`;
+  - and a boundary-check script/tests enforce the app seam mechanically.
+- Phase 2 entrypoint split is complete:
+  - `composer.html` and `reaction.html` exist as separate entrypoints;
+  - the main webapp launches those app pages from the scene network;
+  - and `reaction_designer` no longer runs as a Composer overlay mode.
 
 ### Phase 3. Move Reaction Into Its Own Tree
 
-Move all Reaction-specific runtime ownership under `src/apps/reaction/`.
-
-Deliverables:
-
-- reaction shell;
-- reaction state store;
-- reaction solver UI composition root;
-- reaction export API;
-- reaction-local template catalog or reaction-local interpretation of shared static data.
-
-Acceptance criteria:
-
-- Reaction has no imports from Composer app modules.
+Goal: move Reaction-specific runtime ownership under `src/apps/reaction/`.
 
 Current remaining cuts inside Phase 3:
 
@@ -335,18 +291,7 @@ Completed work inside Phase 3 so far:
 
 ### Phase 4. Move Composer Into Its Own Tree
 
-Move all Composer-specific runtime ownership under `src/apps/composer/`.
-
-Deliverables:
-
-- composer shell;
-- composer editor store;
-- composer scene import path;
-- composer-local template catalog or composer-local interpretation of shared static data.
-
-Acceptance criteria:
-
-- Composer has no imports from Reaction app modules.
+Goal: move Composer-specific runtime ownership under `src/apps/composer/`.
 
 Current remaining cuts inside Phase 4:
 
@@ -359,38 +304,29 @@ Completed work inside Phase 4 so far:
 
 - standalone Composer app-mode policy now lives under `src/apps/composer/` instead of being hard-coded only inside `app.js`;
 - Composer standalone boot and return-to-main-webapp behavior now use Composer-local app-mode helpers;
+- Composer app-specific runtime assembly now lives behind `src/apps/composer/ComposerAppRuntime.js`;
 - and the remaining Composer coupling is now more clearly concentrated in runtime composition rather than launch policy.
 
 ### Phase 5. Introduce The Handoff Contract
 
-Make the cross-app exchange real.
+Goal: make the cross-app exchange real.
 
-Deliverables:
+Remaining target:
 
-- `ReactionFlowDocument` export from Reaction;
-- Composer import adapter for `reaction-flow/v1`;
-- import report output;
-- golden test fixtures for import/export.
-
-Acceptance criteria:
-
-- Reaction can export a valid handoff file;
-- Composer can import it without executing Reaction code.
+- harden `ReactionFlowDocument` export from current solver semantics;
+- add the Composer import adapter for `reaction-flow/v1`;
+- add import report output and golden import/export fixtures;
+- confirm Composer can import the handoff without executing Reaction code.
 
 ### Phase 6. Remove Transitional Coupling
 
-Delete the old in-process bridge.
+Goal: delete the old in-process bridge.
 
-Deliverables:
+Remaining target:
 
-- remove shared overlay toggling;
-- remove direct scene-mode switching that pretends the apps are one tool;
-- remove cross-app imports;
-- retire obsolete compatibility scaffolding.
-
-Acceptance criteria:
-
-- the only remaining connection is the explicit contract boundary.
+- remove shared overlay toggling and obsolete scene-mode assumptions;
+- remove remaining cross-app imports and compatibility scaffolding;
+- leave the explicit contract boundary as the only connection.
 
 ## Stability Policy
 
@@ -419,25 +355,20 @@ Required checks:
 - compatibility tests that prove Composer imports old stable Reaction documents;
 - smoke tests proving each app can boot without the other bundle loaded.
 
-## Recommended First Cuts
-
-The first changes should be structural, not behavioral:
-
-1. create `src/apps/composer/` and `src/apps/reaction/`;
-2. move current app-specific boot logic into separate entry modules;
-3. define `reaction-flow/v1` schema and one or two golden example files;
-4. replace direct handoff assumptions with explicit export/import seams;
-5. then start deleting shared runtime dependencies.
-
-That order matters because it creates a stable seam before large code motion begins.
-
 ## Immediate Next Cuts
 
 From the current repository state, the next useful order is:
 
 1. move more of the standalone Reaction runtime stack behind `src/apps/reaction/` ownership instead of `src/runtime/ComposerReaction...`;
-2. then continue the same extraction for Composer under `src/apps/composer/`;
+2. keep shrinking Composer runtime ownership inside `app.js` by moving more app-specific behavior under `src/apps/composer/`;
 3. then harden the JSON handoff against the current solver/editor behavior.
+
+## Post-Independence Disposition
+
+After the separation work is complete, revisit these smaller UX fixes:
+
+1. add an `Exit` button to the standalone Reaction app, matching the Composer app pattern;
+2. fix product-side `Neutron` and `Proton` title tiles on the Reaction page so they include the `Pro` prefix consistently.
 
 ## Non-Goal
 

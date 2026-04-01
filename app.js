@@ -4,8 +4,6 @@ import { AppDirector } from "./src/director/AppDirector.js";
 import { createLevelRuntime } from "./src/runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "./src/runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "./src/runtime/NodeFactoryRuntime.js";
-import { createComposerUiRuntime } from "./src/runtime/ComposerUiRuntime.js";
-import { createComposerControlsUiRuntime } from "./src/runtime/ComposerControlsUiRuntime.js";
 import {
   buildComposerPreviewSceneData,
   createComposerSceneDocument,
@@ -68,7 +66,6 @@ import {
   summarizeComposerAssemblyStructure,
 } from "./src/runtime/ComposerAssemblyStructureBridgeRuntime.js";
 import { splitComposerAssemblyGroup as splitComposerAssemblyGroupRuntime } from "./src/runtime/ComposerAssemblyStructureMutationRuntime.js";
-import { createComposerEditorStore } from "./src/runtime/ComposerStoreRuntime.js";
 import { createInteractionRuntime } from "./src/runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "./src/runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "./src/runtime/SceneSearchRuntime.js";
@@ -123,6 +120,8 @@ import { resolveStandaloneAppHrefForScene } from "./src/apps/navigator/Standalon
 import {
   COMPOSER_SCENE_PATH,
   STANDALONE_COMPOSER_NAVIGATOR_HREF,
+  createComposerAppRuntime,
+  createComposerAppStore,
   getComposerAppMode,
   getComposerInitialScenePath,
   isStandaloneComposerAppMode,
@@ -8263,24 +8262,14 @@ const markdownSceneRegistry = createMarkdownSceneRegistry({
   resolveMarkdownColumnsForPath,
 });
 
-const composerPanelMap = new Map([
-  ["composer_tree", "tree"],
-  ["composer_path", "path"],
-  ["composer_orbit", "orbit"],
-  ["composer_interactions", "interactions"],
-  ["composer_preview", "preview"],
-  ["composer_export", "export"],
-]);
-const composerPalette = defaultAutoMarkdownPalette;
-const composerEditorStore = createComposerEditorStore({
-  pathState: {
-    points: [],
-    interpolate: "spline",
-    closed: false,
-    ownerAssemblyId: null,
-  },
+const {
+  panelMap: composerPanelMap,
+  palette: composerPalette,
+  editorStore: composerEditorStore,
+  pathState: composerPathState,
+} = createComposerAppStore({
+  palette: defaultAutoMarkdownPalette,
 });
-const composerPathState = composerEditorStore.getPathState();
 const composerFrameState = {
   rotation: new THREE.Euler(0, 0, 0, "YXZ"),
   scale: 1,
@@ -10515,31 +10504,120 @@ function wireElementNavigationControls() {
   elementNavigationRuntime.wireControls();
 }
 
-
-const composerUiRuntime = createComposerUiRuntime({
-  app,
-  composerOverlay,
-  composerTabs,
-  composerPanels,
-  composerSceneId,
-  composerPreviewSceneId,
-  composerPreviewScenePath,
-  composerDocsPath,
-  levelConfigs,
-  levels,
-  initComposerCanvas,
-  renderComposerJsonPreview,
-  stopComposerCameraFlightPreview,
-  showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
-  readComposerDraftState,
-  buildComposerSceneDocument: buildComposerDocumentData,
-  buildComposerPreviewSceneData: buildComposerPreviewData,
-  jumpToScene,
-  setComposerStatus,
-  setComposerNeedsResize: (value) => {
-    composerNeedsResize = value;
+const composerAppRuntime = createComposerAppRuntime({
+  ui: {
+    app,
+    composerOverlay,
+    composerTabs,
+    composerPanels,
+    composerSceneId,
+    composerPreviewSceneId,
+    composerPreviewScenePath,
+    composerDocsPath,
+    levelConfigs,
+    levels,
+    initComposerCanvas,
+    renderComposerJsonPreview,
+    stopComposerCameraFlightPreview,
+    showMarkdownPanel: (level) => markdownRuntime.showMarkdownPanel(level),
+    readComposerDraftState,
+    buildComposerSceneDocument: buildComposerDocumentData,
+    buildComposerPreviewSceneData: buildComposerPreviewData,
+    jumpToScene,
+    setComposerStatus,
+    setComposerNeedsResize: (value) => {
+      composerNeedsResize = value;
+    },
+  },
+  controls: {
+    composerTabs,
+    composerClearButton,
+    composerDocsButton,
+    composerExitButton,
+    composerPreviewButton,
+    composerViewDesignButton,
+    composerViewObserverButton,
+    composerReactionBackButton,
+    composerExportButton,
+    composerLibrarySaveButton,
+    composerRepoSaveButton,
+    composerLibrarySelect,
+    composerLibraryLoadButton,
+    composerLibraryDeleteButton,
+    composerPlayToggleButton,
+    composerPlayResetButton,
+    composerMarkerPrevButton,
+    composerMarkerNextButton,
+    composerMarkerJumpSelect,
+    composerPlayheadScrubInput,
+    composerTimelineTrack,
+    composerSceneIdInput,
+    composerSceneNameInput,
+    composerPathModeSelect,
+    composerPathResetButton,
+    composerFrameResetButton,
+    composerFrameScaleInput,
+    composerCameraPoiSelect,
+    composerCameraWaypointAdd,
+    composerCameraWaypointClear,
+    composerCameraFlightToggle,
+    composerSceneDurationInput,
+    composerSceneLoopInput,
+    composerMarkerListInput,
+    composerPauseListInput,
+    composerWarpListInput,
+    composerTransferListInput,
+    composerCameraSpeedInput,
+    composerCameraRadiusInput,
+    composerCameraResetButton,
+    composerPathState,
+    composerCameraFlightState,
+    updateComposerPathGeometry,
+    resetComposerPathPoints,
+    setComposerFrameDefaults,
+    updateComposerFrame,
+    addComposerCameraWaypoint,
+    clearComposerCameraWaypoints,
+    stopComposerCameraFlightPreview,
+    startComposerCameraFlightPreview,
+    setComposerViewportCameraSource,
+    applyComposerFrameScaleInput,
+    applyComposerCameraSpeedInput,
+    applyComposerCameraRadiusInput,
+    setComposerCameraDefaults,
+    updateComposerCamera,
+    updateComposerCameraPoiStatus,
+    persistComposerPathStateToSelectedAssembly,
+    toggleComposerPlayback,
+    restartComposerPlayback,
+    jumpToComposerMarker,
+    jumpComposerMarkerByOffset,
+    scrubComposerPlayback,
+    renderComposerJsonPreview,
+    clearComposerScene,
+    saveComposerSceneToLibrary,
+    loadComposerSceneFromLibrary,
+    deleteComposerSceneFromLibrary,
+    isTransitionActive: () => transitionState.active,
+    exitReactionApp: () => {
+      jumpToScene(composerScenePath, { mode: "instant" });
+    },
+    exitComposer: () => {
+      if (
+        isStandaloneComposerApp &&
+        navigateStandaloneComposerHome(globalThis.window?.location, standaloneNavigatorHref)
+      ) {
+        return;
+      }
+      if (browserBackStack.length > 0) {
+        navUpButton?.click();
+        return;
+      }
+      resetToRootScene();
+    },
   },
 });
+const { composerUiRuntime } = composerAppRuntime;
 
 const appSceneChromeRuntime = createAppSceneChromeRuntime({
   sceneLabel,
@@ -10679,95 +10757,6 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   isTransitionActive: () => transitionState.active,
   toggleTextbookToc,
 });
-const composerControlsUiRuntime = createComposerControlsUiRuntime({
-  composerTabs,
-  composerClearButton,
-  composerDocsButton,
-  composerExitButton,
-  composerPreviewButton,
-  composerViewDesignButton,
-  composerViewObserverButton,
-  composerReactionBackButton,
-  composerExportButton,
-  composerLibrarySaveButton,
-  composerRepoSaveButton,
-  composerLibrarySelect,
-  composerLibraryLoadButton,
-  composerLibraryDeleteButton,
-  composerPlayToggleButton,
-  composerPlayResetButton,
-  composerMarkerPrevButton,
-  composerMarkerNextButton,
-  composerMarkerJumpSelect,
-  composerPlayheadScrubInput,
-  composerTimelineTrack,
-  composerSceneIdInput,
-  composerSceneNameInput,
-  composerPathModeSelect,
-  composerPathResetButton,
-  composerFrameResetButton,
-  composerFrameScaleInput,
-  composerCameraPoiSelect,
-  composerCameraWaypointAdd,
-  composerCameraWaypointClear,
-  composerCameraFlightToggle,
-  composerSceneDurationInput,
-  composerSceneLoopInput,
-  composerMarkerListInput,
-  composerPauseListInput,
-  composerWarpListInput,
-  composerTransferListInput,
-  composerCameraSpeedInput,
-  composerCameraRadiusInput,
-  composerCameraResetButton,
-  composerUiRuntime,
-  composerPathState,
-  composerCameraFlightState,
-  updateComposerPathGeometry,
-  resetComposerPathPoints,
-  setComposerFrameDefaults,
-  updateComposerFrame,
-  addComposerCameraWaypoint,
-  clearComposerCameraWaypoints,
-  stopComposerCameraFlightPreview,
-  startComposerCameraFlightPreview,
-  setComposerViewportCameraSource,
-  applyComposerFrameScaleInput,
-  applyComposerCameraSpeedInput,
-  applyComposerCameraRadiusInput,
-  setComposerCameraDefaults,
-  updateComposerCamera,
-  updateComposerCameraPoiStatus,
-  persistComposerPathStateToSelectedAssembly,
-  toggleComposerPlayback,
-  restartComposerPlayback,
-  jumpToComposerMarker,
-  jumpComposerMarkerByOffset,
-  scrubComposerPlayback,
-  renderComposerJsonPreview,
-  clearComposerScene,
-  saveComposerSceneToLibrary,
-  loadComposerSceneFromLibrary,
-  deleteComposerSceneFromLibrary,
-  isTransitionActive: () => transitionState.active,
-  exitReactionApp: () => {
-    jumpToScene(composerScenePath, { mode: "instant" });
-  },
-  exitComposer: () => {
-    if (
-      isStandaloneComposerApp &&
-      navigateStandaloneComposerHome(globalThis.window?.location, standaloneNavigatorHref)
-    ) {
-      return;
-    }
-    if (browserBackStack.length > 0) {
-      navUpButton?.click();
-      return;
-    }
-    resetToRootScene();
-  },
-});
-
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
@@ -11172,7 +11161,7 @@ const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
 appDirector.init();
 appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
-composerControlsUiRuntime.wireListeners();
+composerAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
 composerHeaderTimestampRuntime.init();
 updateComposerViewportModeButtons();

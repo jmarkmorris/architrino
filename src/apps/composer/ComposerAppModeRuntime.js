@@ -32,3 +32,8 @@ export function navigateStandaloneComposerHome(
   locationLike.assign(resolvedHref);
   return true;
 }
+
+export {
+  createComposerAppRuntime,
+  createComposerAppStore,
+} from "./ComposerAppRuntime.js";
