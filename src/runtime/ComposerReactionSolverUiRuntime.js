@@ -177,6 +177,13 @@ const participantPolarityTemplateIds = new Set([
   "fermion_gen1",
 ]);
 
+function cloneSerializableValue(value) {
+  if (typeof globalThis.structuredClone === "function") {
+    return globalThis.structuredClone(value);
+  }
+  return JSON.parse(JSON.stringify(value));
+}
+
 function ensureCenterAssembliesColumn(surface) {
   if (!(surface instanceof HTMLElement)) {
     return null;
@@ -4088,6 +4095,10 @@ export function createComposerReactionSolverUiRuntime(deps) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionSolverCanvas,
+    getSnapshot: () => ({
+      participants: cloneSerializableValue(state.participants),
+      mappings: cloneSerializableValue(state.mappings),
+    }),
     solveCanvas: solveReactionSolverCanvas,
     setActive,
     toggleActive,

@@ -10229,7 +10229,11 @@ async function startLevelTransitionFromNode(targetNode) {
     return;
   }
 
-  if (isComposerOverlaySceneId(config.sceneId)) {
+  const standaloneAppHref = resolveStandaloneAppHrefForScene(
+    config.sceneId,
+    globalThis.window?.location?.href
+  );
+  if (isComposerOverlaySceneId(config.sceneId) || standaloneAppHref) {
     closeDetailPanel();
     hideHoverTooltip();
     markdownRuntime.hideMarkdownPanel();

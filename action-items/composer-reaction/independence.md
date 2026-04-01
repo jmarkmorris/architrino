@@ -29,6 +29,24 @@ That makes unrelated edits risky. A UI or behavior change intended for one tool 
 
 The new architecture should make the boundary explicit and enforceable.
 
+## Current Status
+
+The separation is real, but not finished.
+
+Already true in the repo today:
+
+- the main webapp now acts as the launcher/discovery surface for `Composer` and `Reaction Designer`;
+- `composer.html` and `reaction.html` are separate app entrypoints;
+- `reaction_designer` no longer runs as a Composer overlay mode;
+- the standalone Reaction app now owns its template picker catalog under `src/apps/reaction/`;
+- and the standalone Reaction app now has a local `ReactionFlowDocument` export seam instead of being UI-only.
+
+Still not true yet:
+
+- Reaction still depends on legacy `ComposerReaction...` runtime modules under `src/runtime/`;
+- Composer standalone boot is still mediated by the old shared `app.js` shell;
+- and the full Reaction export -> Composer import workflow is still provisional rather than production-hardened.
+
 ## Architectural Rule
 
 Composer and Reaction may share repository location, build tooling, and deployment pipeline, but they may not share live app logic.
@@ -304,10 +322,16 @@ Acceptance criteria:
 
 Current remaining cuts inside Phase 3:
 
-1. move Reaction-owned template and picker catalog decisions out of Composer-owned runtime catalogs;
-2. add a Reaction-local export boundary instead of treating the solver page as UI-only;
-3. continue pulling Reaction-specific composition and state ownership under `src/apps/reaction/`.
-4. remove legacy `Composer...` naming from Reaction-owned files and source text as those modules move under the Reaction app tree.
+1. continue pulling Reaction-specific composition and state ownership under `src/apps/reaction/` instead of leaving it in legacy `src/runtime/ComposerReaction...` modules;
+2. keep shrinking the standalone Reaction dependency on legacy `ComposerReaction...` files until the app tree owns its runtime stack end to end;
+3. remove legacy `Composer...` naming from Reaction-owned files and source text as those modules move under the Reaction app tree;
+4. refresh the provisional Reaction export shape against the current solver semantics before treating it as the final Composer handoff.
+
+Completed work inside Phase 3 so far:
+
+- the standalone Reaction app no longer depends on `ComposerCatalogRuntime.js` for its picker rows;
+- the standalone Reaction app now imports a Reaction-local solver wrapper from `src/apps/reaction/`;
+- and Reaction now exposes a local `ReactionFlowDocument` export API under `src/apps/reaction/ReactionFlowExportRuntime.js`.
 
 ### Phase 4. Move Composer Into Its Own Tree
 
@@ -405,9 +429,9 @@ That order matters because it creates a stable seam before large code motion beg
 
 From the current repository state, the next useful order is:
 
-1. finish Reaction-local catalog ownership so the standalone Reaction app stops importing Composer-owned runtime catalog choices;
-2. continue moving Reaction-local composition and export ownership under `src/apps/reaction/`;
-3. then continue the same extraction for Composer under `src/apps/composer/`.
+1. move more of the standalone Reaction runtime stack behind `src/apps/reaction/` ownership instead of `src/runtime/ComposerReaction...`;
+2. then continue the same extraction for Composer under `src/apps/composer/`;
+3. then harden the JSON handoff against the current solver/editor behavior.
 
 ## Non-Goal
 
