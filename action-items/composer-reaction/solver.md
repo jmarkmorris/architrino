@@ -1357,6 +1357,13 @@ That output should be rich enough to carry:
 
 The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
 
+The reviewed v1 boundary is now:
+
+- `solver.py` returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
+- the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time;
+- solve-created operator placements cross the boundary only as advisory lane / row / slot records under `placement.operatorPlacements`;
+- and Reaction keeps ownership of live operator creation, node-key packing, auto-dissociation marking, and any local row-slot fallback behavior.
+
 ### Request Format
 
 The solver input submitted to the headless core should be one normalized `solver-request/v1` document, not a browser-state dump and not a CLI-specific ad hoc shorthand.
@@ -1490,6 +1497,7 @@ Likely durable boundaries in the rearchitected system are:
 - a compact-notation parser for command-line use;
 - a headless external solve core;
 - a structured solve-result schema;
+- a Reaction result-to-projection adapter;
 - a Reaction projection adapter;
 - a Reaction surface-grid placement adapter;
 - and an export or import adapter for downstream Composer flow.
@@ -1551,7 +1559,7 @@ Review focus:
 
 ### 2. Decide The Python / JS Boundary For Layout And Projection
 
-Status: `pending`
+Status: `review`
 
 Goal:
 
@@ -1561,11 +1569,18 @@ Why it matters:
 
 - `solver.py` should return semantic solve output through a stable contract, not accidentally absorb UI-side layout and projection behavior that already has a clear local seam.
 
-Next steps:
+This pass locked in:
 
-- decide whether Python returns semantic solve output plus placement hints or fully resolved operator placements;
-- keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
-- and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
+- semantic `solver-result/v1` endpoints stay unpacked as `participantId` plus `anchorId`, with solve-created operators referenced by stable `operatorId`;
+- Reaction-side projection now accepts contract-shaped solver results through a dedicated adapter seam rather than requiring Python to emit JS-plan internals;
+- placement crosses the boundary as advisory `placement.operatorPlacements` keyed by `operatorId`, while live participant creation and node-key resolution stay in JS;
+- and focused projection tests now cover contract-shaped operator creation, semantic endpoint resolution, multi-operator placement, and auto-dissociation from the frozen result fixtures.
+
+Review focus:
+
+- confirm `placement.operatorPlacements` is the right v1 payload for Python rather than a thinner hint object;
+- confirm operator-root anchor semantics are strong enough for `Associate` / `Dissociate` without pushing UI node ids into the Python core;
+- and confirm the Reaction-side adapter is the correct place to resolve semantic ids into live node keys before `solver.py` starts landing.
 
 ### 3. Finish The Compact CLI Grammar As A Testable Lexer Spec
 

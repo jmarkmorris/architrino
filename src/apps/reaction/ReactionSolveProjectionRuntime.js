@@ -1,9 +1,61 @@
+import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
+import { buildReactionSolveProjectionPlanFromSolverResult } from "./ReactionSolverResultAdapterRuntime.js";
+
 function resolveParticipantRootNode(getParticipantRootNode, participant = null) {
   return typeof getParticipantRootNode === "function" ? getParticipantRootNode(participant) : null;
 }
 
-function resolveMappingEndpoint(endpoint = {}, addedParticipantMap = new Map(), options = {}) {
+function resolveParticipantById(participantId = "", options = {}) {
+  const normalizedParticipantId = String(participantId ?? "").trim();
+  if (!normalizedParticipantId) {
+    return null;
+  }
+  if (typeof options.getParticipantById === "function") {
+    return options.getParticipantById(normalizedParticipantId) ?? null;
+  }
+  const participants = Array.isArray(options.participants) ? options.participants : [];
+  return (
+    participants.find(
+      (participant) => String(participant?.id ?? "").trim() === normalizedParticipantId
+    ) ?? null
+  );
+}
+
+function defaultFindParticipantNodeById(participant = null, anchorId = "", options = {}) {
+  const normalizedAnchorId = String(anchorId ?? "").trim();
+  if (!participant || !normalizedAnchorId) {
+    return null;
+  }
+  const rootNode = resolveParticipantRootNode(options.getParticipantRootNode, participant);
+  if (String(rootNode?.id ?? "").trim() === normalizedAnchorId) {
+    return rootNode;
+  }
+  return findReactionStructureDescriptorNode(participant?.hierarchy, normalizedAnchorId) ?? null;
+}
+
+function resolveParticipantAnchorNode(endpoint = {}, participant = null, options = {}) {
   const getParticipantRootNode = options.getParticipantRootNode;
+  const normalizedAnchorId = String(endpoint?.anchorId ?? "").trim();
+  const rootNode = resolveParticipantRootNode(getParticipantRootNode, participant);
+  if (!normalizedAnchorId) {
+    return rootNode;
+  }
+  const findParticipantNodeById =
+    typeof options.findParticipantNodeById === "function"
+      ? options.findParticipantNodeById
+      : defaultFindParticipantNodeById;
+  const anchoredNode =
+    findParticipantNodeById(participant, normalizedAnchorId, { getParticipantRootNode }) ?? null;
+  if (anchoredNode) {
+    return anchoredNode;
+  }
+  if (endpoint?.participantRef) {
+    return rootNode;
+  }
+  return null;
+}
+
+function resolveMappingEndpoint(endpoint = {}, addedParticipantMap = new Map(), options = {}) {
   const buildNodeKey = options.buildNodeKey;
   if (endpoint?.nodeKey) {
     return {
@@ -15,10 +67,11 @@ function resolveMappingEndpoint(endpoint = {}, addedParticipantMap = new Map(), 
   const participant =
     endpoint?.participant ??
     addedParticipantMap.get(String(endpoint?.participantRef ?? "").trim()) ??
+    resolveParticipantById(endpoint?.participantId, options) ??
     null;
   const rootNode =
     endpoint?.node ??
-    resolveParticipantRootNode(getParticipantRootNode, participant);
+    resolveParticipantAnchorNode(endpoint, participant, options);
   if (!participant?.id || !rootNode?.id || typeof buildNodeKey !== "function") {
     return null;
   }
@@ -30,7 +83,9 @@ function resolveMappingEndpoint(endpoint = {}, addedParticipantMap = new Map(), 
 }
 
 export function applyReactionSolvePlan(options = {}) {
-  const plan = options.plan ?? {};
+  const plan =
+    options.plan ??
+    (options.result ? buildReactionSolveProjectionPlanFromSolverResult(options.result) : {});
   const participantAdditions = Array.isArray(plan.participantAdditions)
     ? plan.participantAdditions
     : [];
@@ -82,7 +137,11 @@ export function applyReactionSolvePlan(options = {}) {
   });
 
   const markedDissociatedParticipantIds = [];
-  dissociatedCompositeParticipants.forEach((participant) => {
+  dissociatedCompositeParticipants.forEach((participantOrId) => {
+    const participant =
+      typeof participantOrId === "string"
+        ? resolveParticipantById(participantOrId, options)
+        : participantOrId;
     if (!participant?.id) {
       return;
     }
@@ -112,7 +171,11 @@ export function applyReactionSolvePlan(options = {}) {
         anchorInstanceIndex: mapping.sourceAnchorInstanceIndex ?? null,
       },
       addedParticipantMap,
-      { getParticipantRootNode, buildNodeKey }
+      {
+        ...options,
+        getParticipantRootNode,
+        buildNodeKey,
+      }
     );
     const targetEndpoint = resolveMappingEndpoint(
       mapping.targetEndpoint ?? {
@@ -121,7 +184,11 @@ export function applyReactionSolvePlan(options = {}) {
         anchorInstanceIndex: mapping.targetAnchorInstanceIndex ?? null,
       },
       addedParticipantMap,
-      { getParticipantRootNode, buildNodeKey }
+      {
+        ...options,
+        getParticipantRootNode,
+        buildNodeKey,
+      }
     );
     if (!sourceEndpoint?.nodeKey || !targetEndpoint?.nodeKey) {
       return;
