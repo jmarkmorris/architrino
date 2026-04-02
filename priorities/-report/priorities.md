@@ -1,6 +1,6 @@
 # Action-Items Report
 
-This file is the canonical control surface for `action-items`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
+This file is the canonical control surface for `priorities`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
 
 The full pre-split monolith is preserved at [archive/priorities-legacy.md](../archive/priorities-legacy.md).
 
@@ -42,7 +42,7 @@ This keeps the files readable in plain Markdown, diff-friendly in git, and struc
 
 ## Unified Priority Table
 
-This single table is the canonical rollup for every direct child of `action-items`. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
+This single table is the canonical rollup for every direct child of `priorities`. Use it to maintain ranking, notice category mistakes, and decide which directories still deserve to live here as active workstreams.
 
 | Rank | Slug | Title | Value | Cost | ROI |
 | ---: | --- | --- | ---: | ---: | ---: |

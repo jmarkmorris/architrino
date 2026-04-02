@@ -26,7 +26,7 @@ This workstream tracks high-priority cases where the repo shows duplicate implem
 - `Reaction Designer` currently has two conceptual homes: an authored Archie scene and a Composer-owned special mode. That ambiguity should collapse into one canonical model.
 - Scene semantics such as periodic overlays, atom behavior, standard-model behavior, and exclusion rules are still inferred through scattered scene-id and path checks instead of a single declared capability layer.
 - `app.js` still carries too much high-level feature-routing responsibility, which makes it easier for new special cases to accrete there.
-- Composer and Reaction architecture notes are spread across multiple `action-items` documents that overlap in scope and canonicality.
+- Composer and Reaction architecture notes are spread across multiple `priorities` documents that overlap in scope and canonicality.
 - Some authored UI text is not actually source-of-truth because runtime code replaces it immediately.
 
 ## Review Questions
