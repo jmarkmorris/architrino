@@ -230,6 +230,12 @@ Current additional limits that should remain explicit:
 - the solver does not yet insert explicit `Dissociate` operators as part of the selected solve plan;
 - and solver handling of dissociated composite reactants still needs to become more explicit at the planning level.
 
+Open weak-channel provenance question:
+
+- future weak-channel solving depends on whether a `W^\pm` corridor should be treated as carrying pro/anti `Noether core` provenance into an outgoing lepton branch, or only as the charged transaction delta while final pro/anti cores are recruited from a local reservoir such as `4h` / Higgs-cluster or Noether-Sea content;
+- this matters especially for `beta reaction` solves, where a `W-` corridor may plausibly supply anti-core provenance to the outgoing antineutrino while the electron still recruits a pro core from the local reservoir;
+- and this question should be treated as theory-owned by [standard-model-closure](../standard-model-closure/standard-model-closure.md) rather than silently fixed by solver convenience.
+
 ### Primitive-First Planning
 
 The next major expansion should remain primitive-first.
@@ -309,7 +315,7 @@ Examples:
 | `P,e2,v` | same input with comma separators |
 | `h2.W-.P` | distinct assemblies made easier to scan |
 | `P.e.av` | proton, electron, anti-neutrino |
-| `2@.P.e` | counted `Free Architrinos` assembly plus proton and electron |
+| `1:1@.P.e` | explicit `Free Architrinos` ledger plus proton and electron |
 
 Example command, free neutron decay with an added `4h` reactant:
 
@@ -333,7 +339,7 @@ Current compact notation:
 | `h3` | Uni Binary | reduced `Noether core` form |
 | `2h` | photon | two-core photon shorthand |
 | `4h` | Higgs cluster | four-core Higgs-cluster shorthand |
-| `@` | Free Architrinos | committed special assembly token with no anti form |
+| `e:p@` | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present |
 | `N` | neutron | aligns with existing `Pro Neutron` support |
 | `P` | proton | aligns with existing `Pro Proton` support |
 | `u1` or `u` | up quark | generation I may omit the `1` |
@@ -366,6 +372,10 @@ Examples:
 
 | Notation | Meaning |
 | --- | --- |
+| `P` | pro proton |
+| `aP` | anti proton |
+| `N` | pro neutron |
+| `aN` | anti neutron |
 | `e` | pro electron |
 | `ae` | anti electron |
 | `e2` | pro muon |
@@ -375,7 +385,7 @@ Examples:
 | `h` | pro `Noether core` |
 | `ah` | anti `Noether core` |
 
-`Free Architrinos` are the exception to that polarity rule. They use `@` with no anti form.
+`Free Architrinos` are the exception to that polarity rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
 The `h` notation now has two different numeric roles, and both should stay explicit:
 
@@ -394,13 +404,18 @@ Current intended `h` family examples:
 | `2h` | two `Noether cores`, currently used as photon shorthand |
 | `4h` | four `Noether cores`, currently used as Higgs-cluster shorthand |
 
-`@` supports a leading count in the same multiplicity style as `nh`:
+For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The grammar should not treat arbitrary `nh` forms as generally valid unless that aggregate family is expanded deliberately in a later revision.
+
+`Free Architrinos` should be written with an explicit electrino:positrino ledger:
 
 | Notation | Meaning |
 | --- | --- |
-| `@` | one `Free Architrinos` assembly |
-| `2@` | two `Free Architrinos` assemblies |
-| `3@` | three `Free Architrinos` assemblies |
+| `1:1@` | one electrino and one positrino |
+| `227:120@` | `227` electrinos and `120` positrinos |
+| `227:0@` | `227` electrinos and zero positrinos |
+| `0:120@` | zero electrinos and `120` positrinos |
+
+Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
 
 The choice of `@` for `Free Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a free electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
 
@@ -410,9 +425,96 @@ Additional supported particles or solver-relevant assemblies that should still r
 | --- | --- | --- |
 |  | any future special assembly not yet assigned a shorthand | keep visible here until the notation is expanded |
 
-This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and counted `@` tokens preserve the assembly-side intuition.
+This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
-For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. The tokenizer should therefore recognize `W+` and `W-` greedily before any single-character symbols.
+For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. The tokenizer should therefore recognize `W+` and `W-` greedily before any single-character symbols. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced.
+
+### Compact Grammar
+
+The compact notation should be treated as a small lexer-first language rather than as ad hoc string guessing.
+
+Preferred lexer rule:
+
+- strip or ignore benign separators first: `.`, `,`, `_`, and whitespace;
+- then tokenize left to right;
+- use longest-match tokenization whenever two token families share a prefix;
+- and reject the whole string if any character sequence cannot be consumed as exactly one valid token.
+
+Current token families:
+
+| Token family | Form | Notes |
+| --- | --- | --- |
+| fermion | `a? [eudv] [123]?` | `1` may be omitted only for generation I |
+| nucleon | `a? P` or `a? N` | anti allowed for nucleons |
+| weak boson | `W+`, `W-`, `Z` | `W+` and `W-` must be recognized before any shorter `W`-prefixed idea |
+| core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether core` forms |
+| whole-core aggregate | `2h`, `4h` | only these two aggregate forms are currently valid |
+| free-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
+
+Equivalent EBNF-style sketch:
+
+```text
+reaction_arg   := token { separator* token }
+separator      := "." | "," | "_" | whitespace
+token          := fermion | nucleon | weak_boson | core_form | whole_core_aggregate | free_architrino_ledger
+fermion        := anti? family generation?
+anti           := "a"
+family         := "e" | "u" | "d" | "v"
+generation     := "1" | "2" | "3"
+nucleon        := anti? ("P" | "N")
+weak_boson     := "W+" | "W-" | "Z"
+core_form      := anti? ("h" | "h2" | "h3")
+whole_core_aggregate := "2h" | "4h"
+free_architrino_ledger := count ":" count "@"
+count          := digit { digit }
+```
+
+Interpretation rules:
+
+- `a` binds only to the single token immediately following it;
+- `a` is currently valid for fermions, nucleons, and `Noether core` forms `h`, `h2`, and `h3`;
+- generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
+- prefix counts belong only to aggregate whole-core forms such as `2h` and `4h`;
+- `Free Architrinos` use a dedicated two-sided ledger token `e:p@`;
+- `Free Architrinos` ledger tokens do not require surrounding separators when the lexer can already disambiguate adjacency;
+- and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.
+
+### Ambiguity Discipline
+
+The parser itself is not the hard part. The important requirement is that a human and a machine should see the same segmentation without guesswork.
+
+The current grammar should therefore aim for:
+
+- one obvious reading for every valid string;
+- no silent reinterpretation through parser cleverness;
+- no special omission rules that make zero or missing counts context-dependent;
+- and explicit rejection of token shapes that would otherwise admit multiple readings.
+
+Current recommended conflict checks:
+
+| Potential conflict | Why it is risky | Recommended rule |
+| --- | --- | --- |
+| `2h2`, `4h3`, `3h2` | mixes prefix-count and suffix-core-form roles on one token | forbid entirely |
+| `a2h`, `a4h`, `2ah` | unclear whether anti applies to an aggregate or to a core token inside it | forbid entirely |
+| `aae`, `aav2`, `aah` | stacked anti prefixes add no meaning and create parser noise | forbid entirely |
+| `aW+`, `aW-`, `aZ`, `a1:1@` | anti is not currently defined for these families | forbid entirely |
+| `e0`, `e4`, `u9`, `v7` | generation outside `1`, `2`, `3` | forbid entirely |
+| `0h` | zero-count whole-core aggregate is not meaningful in the current grammar | forbid entirely |
+| `3h`, `5h`, `12h` | only `2h` and `4h` are currently committed aggregate tokens | forbid entirely for now |
+| `0:0@` | null `Free Architrinos` ledger carries no usable content | forbid entirely |
+| `h23`, `u23`, `e12` | visually suggests one token but leaves trailing digits ambiguous | forbid entirely |
+| `@`, `2@`, `227@` | omitted ledger side makes the free-architrino token ambiguous | forbid entirely |
+| `:120@`, `227:@` | omitted ledger side creates a special-case parse | forbid entirely |
+| `227:120@3`, `1:1@2` | payload after `@` collides with the token boundary | forbid entirely |
+
+Operational lexer guidance:
+
+- recognize `W+` and `W-` before anything shorter that begins with `W`;
+- recognize `h2` and `h3` before bare `h`;
+- recognize `2h` and `4h` as committed aggregate tokens before testing bare `h`;
+- recognize `[digits]:[digits]@` as one `Free Architrinos` ledger token that ends at `@`;
+- do not require separators around a `Free Architrinos` ledger token when the surrounding token boundaries are already unambiguous;
+- and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
 
 ### Result And Integration Contract
 
@@ -556,6 +658,10 @@ Next steps:
 - add focused candidate families with targeted tests;
 - represent selected composite dissociation more explicitly at the plan level;
 - and keep manual dissociated-composite behavior stable while the planner grows.
+
+Dependency note:
+
+- do not hard-code final-state weak-corridor core provenance until the `W^\pm` provenance question above is settled.
 
 ### 3. Improve Residue And Dissociation Reporting
 

@@ -343,17 +343,15 @@ Progress update:
 - Composer pointer-hit resolution now lives in a dedicated Composer pointer-hit runtime rather than inlined inside `app.js`.
 - Composer pointer, drag, hover, wheel, and timeline-context interaction handling now live in a dedicated Composer pointer-interaction runtime rather than inlined inside `app.js`.
 - Composer canvas bootstrap now lives in a dedicated Composer canvas-bootstrap runtime rather than inlined inside `app.js`.
-- The remaining work in this item is still the larger canvas, playback, media-overlay, and pointer stack, but the first overlay-specific seam is now in place.
+- Composer playback, playhead, marker navigation, timeline rendering, and viewport-mode transport logic now live in a dedicated Composer playback-timeline runtime rather than inlined inside `app.js`.
+- Composer canvas resize, frame-scale, observer-camera, and render-loop wiring now live in a dedicated Composer viewport-render runtime rather than inlined inside `app.js`.
+- The remaining work in this item is now mostly the viewport visuals, media-overlay, and canvas-menu stack rather than the already-separated playback, bootstrap, pointer, and render loops.
 - A refresh-time white flash still appears intermittently before the scene populates, so the remaining viewport/bootstrap work also needs a first-paint audit rather than only structural extraction.
 
 Next steps:
 
 - move canvas/menu behavior into a Composer canvas-menu shell runtime;
-- move canvas bootstrap into a Composer canvas-bootstrap runtime;
-- split the document/viewport render pipeline into viewport-render and playback/timeline runtimes;
 - move viewport visuals and media overlays into a Composer viewport-visuals runtime;
-- move pointer handling into a Composer pointer-interaction runtime;
-- move the path-point info pill into a Composer viewport-overlay-pill runtime;
 - trace and eliminate the refresh-time white flash so Composer and Reaction hold a stable dark first paint on browser reload;
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.

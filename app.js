@@ -152,6 +152,7 @@ import { createComposerAuthoringStateRuntime } from "./src/apps/composer/Compose
 import { createComposerCanvasBootstrapRuntime } from "./src/apps/composer/ComposerCanvasBootstrapRuntime.js";
 import { createComposerCameraPathRuntime } from "./src/apps/composer/ComposerCameraPathRuntime.js";
 import { createComposerDraftStateRuntime } from "./src/apps/composer/ComposerDraftStateRuntime.js";
+import { createComposerPlaybackTimelineRuntime } from "./src/apps/composer/ComposerPlaybackTimelineRuntime.js";
 import { createComposerPointerHitRuntime } from "./src/apps/composer/ComposerPointerHitRuntime.js";
 import { createComposerPointerInteractionRuntime } from "./src/apps/composer/ComposerPointerInteractionRuntime.js";
 import { createComposerRenderAssetsRuntime } from "./src/apps/composer/ComposerRenderAssetsRuntime.js";
@@ -160,6 +161,7 @@ import { createComposerTimelineOverlayRuntime } from "./src/apps/composer/Compos
 import { createComposerDocumentWorkspaceRuntime } from "./src/apps/composer/ComposerDocumentWorkspaceRuntime.js";
 import { createComposerViewportDisplayRuntime } from "./src/apps/composer/ComposerViewportDisplayRuntime.js";
 import { createComposerViewportOverlayPillRuntime } from "./src/apps/composer/ComposerViewportOverlayPillRuntime.js";
+import { createComposerViewportRenderRuntime } from "./src/apps/composer/ComposerViewportRenderRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -1728,70 +1730,6 @@ function setComposerStatus(message) {
   composerStatus.textContent = message;
 }
 
-function resizeComposerCanvas() {
-  if (!composerRenderer || !composerCanvas || !composerCamera) {
-    return;
-  }
-  const rect = composerCanvas.getBoundingClientRect();
-  const width = Math.max(1, Math.floor(rect.width));
-  const height = Math.max(1, Math.floor(rect.height));
-  composerRenderer.setSize(width, height, false);
-  composerCamera.aspect = width / height;
-  composerCamera.updateProjectionMatrix();
-  composerNeedsResize = false;
-}
-
-function updateComposerFrame() {
-  if (!composerFrameGroup) {
-    return;
-  }
-  composerFrameGroup.rotation.copy(composerFrameState.rotation);
-  composerFrameGroup.scale.setScalar(getComposerEffectiveFrameScale());
-}
-
-function applyComposerFrameScaleInput() {
-  const scaleExp = readNumberInput(composerFrameScaleInput, 0);
-  composerFrameState.scale = Math.pow(10, scaleExp);
-  if (composerFrameScaleLabel) {
-    composerFrameScaleLabel.textContent = formatScaleLabel(composerFrameState.scale);
-  }
-  updateComposerFrame();
-}
-
-function updateComposerCamera() {
-  if (!composerCamera) {
-    return;
-  }
-  if (composerCameraFlightState.preview) {
-    return;
-  }
-  const target = getComposerOrbitTargetWorld();
-  const radius = clamp(
-    composerCameraOrbitState.radius,
-    composerCameraOrbitState.minDistance,
-    composerCameraOrbitState.maxDistance
-  );
-  const phi = clamp(composerCameraOrbitState.phi, 0.05, Math.PI - 0.05);
-  const theta = composerCameraOrbitState.theta;
-  const sinPhi = Math.sin(phi);
-  const offset = new THREE.Vector3(
-    radius * sinPhi * Math.sin(theta),
-    radius * Math.cos(phi),
-    radius * sinPhi * Math.cos(theta)
-  );
-  composerCamera.position.copy(target).add(offset);
-  composerCamera.lookAt(target);
-  composerCameraState.position.copy(composerCamera.position);
-}
-
-function applyComposerCameraSpeedInput() {
-  const speedExp = readNumberInput(composerCameraSpeedInput, 0);
-  composerCameraState.speed = Math.pow(10, speedExp);
-  if (composerCameraSpeedLabel) {
-    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
-  }
-}
-
 function rebuildComposerControlPoints() {
   if (!composerFrameGroup || !composerPointGeometry) {
     return;
@@ -2662,357 +2600,6 @@ function applyComposerStageVisualState(documentData, timeSeconds) {
     }
     line.material.opacity = isHighlighted ? 0.82 : 0.32;
   });
-}
-
-function getComposerSortedMarkers(documentData) {
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
-  return [...markers].sort((left, right) => left.t - right.t);
-}
-
-function syncComposerMarkerNavigation(documentData, timeSeconds) {
-  const markers = getComposerSortedMarkers(documentData);
-  if (composerMarkerJumpSelect) {
-    const existingSignature = composerMarkerJumpSelect.dataset.signature ?? "";
-    const nextSignature = markers
-      .map((marker) => `${marker.id}:${marker.t}:${getComposerGraphicEnd(marker)}:${marker.label ?? ""}`)
-      .join("|");
-    if (existingSignature !== nextSignature) {
-      composerMarkerJumpSelect.innerHTML = "";
-      if (!markers.length) {
-        const option = document.createElement("option");
-        option.value = "";
-        option.textContent = "No Markers";
-        composerMarkerJumpSelect.appendChild(option);
-      } else {
-        markers.forEach((marker) => {
-          const option = document.createElement("option");
-          option.value = marker.id;
-          const end = getComposerGraphicEnd(marker);
-          option.textContent = `${marker.label ?? marker.id ?? "Marker"} (${
-            end > marker.t + 0.001
-              ? `${formatComposerTimeLabel(marker.t)}-${formatComposerTimeLabel(end)}`
-              : formatComposerTimeLabel(marker.t)
-          })`;
-          composerMarkerJumpSelect.appendChild(option);
-        });
-      }
-      composerMarkerJumpSelect.dataset.signature = nextSignature;
-    }
-
-    if (markers.length) {
-      const activeMarker = [...markers]
-        .filter((marker) => marker.t <= timeSeconds + 0.001)
-        .pop() ?? markers[0];
-      if (composerMarkerJumpSelect.value !== activeMarker.id) {
-        composerMarkerJumpSelect.value = activeMarker.id;
-      }
-      composerMarkerJumpSelect.disabled = false;
-    } else {
-      composerMarkerJumpSelect.value = "";
-      composerMarkerJumpSelect.disabled = true;
-    }
-  }
-
-  if (composerMarkerPrevButton) {
-    composerMarkerPrevButton.disabled = !markers.some((marker) => marker.t < timeSeconds - 0.001);
-  }
-  if (composerMarkerNextButton) {
-    composerMarkerNextButton.disabled = !markers.some((marker) => marker.t > timeSeconds + 0.001);
-  }
-}
-
-function renderComposerTimeline(documentData) {
-  clearComposerTimelineLayer(composerTimelineWarps);
-  clearComposerTimelineLayer(composerTimelinePauses);
-  clearComposerTimelineLayer(composerTimelineMarkers);
-  if (!documentData || !composerTimelineTrack) {
-    return;
-  }
-
-  const markers = Array.isArray(documentData?.scene?.markers) ? documentData.scene.markers : [];
-  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
-  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
-  const graphics = getComposerGraphicTimelineOverlays(documentData);
-  const mediaOverlays = getComposerViewportMediaTimelineOverlays(documentData);
-
-  timeWarps.forEach((warp) => {
-    const start = getComposerTimelineFraction(documentData, warp.start);
-    const end = getComposerTimelineFraction(documentData, warp.end);
-    const band = createComposerTimelineBand(
-      start,
-      end,
-      "is-warp",
-      `Warp ${Number(warp.rate ?? 1).toFixed(2)}x: ${formatComposerTimeLabel(warp.start)} to ${formatComposerTimeLabel(warp.end)}`,
-      "WARP"
-    );
-    band.dataset.warpId = warp.id ?? "";
-    composerTimelineWarps?.appendChild(band);
-  });
-
-  pauses.forEach((pause) => {
-    const start = getComposerTimelineFraction(documentData, pause.start);
-    const end = getComposerTimelineFraction(
-      documentData,
-      Number(pause.start ?? 0) + Number(pause.duration ?? 0)
-    );
-    const band = createComposerTimelineBand(
-      start,
-      end,
-      "is-pause",
-      `Pause ${formatComposerTimeLabel(pause.duration)} at ${formatComposerTimeLabel(pause.start)}`,
-      "PAUSE"
-    );
-    band.dataset.pauseId = pause.id ?? "";
-    composerTimelinePauses?.appendChild(band);
-  });
-
-  graphics.forEach((graphic) => {
-    const start = getComposerTimelineFraction(documentData, graphic.start);
-    const end = getComposerTimelineFraction(documentData, graphic.end);
-    const label = getComposerGraphicOverlayLabel(graphic);
-    const band = createComposerTimelineBand(
-      start,
-      end,
-      "is-graphic",
-      `${label}: ${formatComposerTimeLabel(graphic.start)} to ${formatComposerTimeLabel(graphic.end)}`,
-      label
-    );
-    band.dataset.overlayId = graphic.id ?? "";
-    composerTimelineMarkers?.appendChild(band);
-  });
-
-  mediaOverlays.forEach((overlay) => {
-    const start = getComposerTimelineFraction(documentData, overlay.start);
-    const end = getComposerTimelineFraction(documentData, overlay.end);
-    const label = getComposerMediaOverlayLabel(overlay);
-    const band = createComposerTimelineBand(
-      start,
-      end,
-      overlay.kind === "video" ? "is-video" : "is-image",
-      `${label}: ${formatComposerTimeLabel(overlay.start)} to ${formatComposerTimeLabel(overlay.end)}`,
-      label
-    );
-    band.dataset.overlayId = overlay.id ?? "";
-    band.dataset.overlayKind = overlay.kind ?? "";
-    composerTimelineMarkers?.appendChild(band);
-  });
-
-  markers.forEach((marker) => {
-    const start = getComposerTimelineFraction(documentData, marker.t);
-    const end = getComposerTimelineFraction(
-      documentData,
-      Number(marker.end ?? marker.t)
-    );
-    const label = marker.label ?? marker.id ?? "MARK";
-    const band = createComposerTimelineBand(
-      start,
-      Math.max(start + 0.002, end),
-      "is-marker",
-      `${label}: ${
-        Number(marker.end ?? marker.t) > Number(marker.t ?? 0) + 0.001
-          ? `${formatComposerTimeLabel(marker.t)} to ${formatComposerTimeLabel(marker.end)}`
-          : formatComposerTimeLabel(marker.t)
-      }`,
-      label
-    );
-    band.dataset.markerId = marker.id ?? "";
-    composerTimelineMarkers?.appendChild(band);
-  });
-}
-
-function updateComposerTimelinePlayhead(timeSeconds, documentData) {
-  if (!documentData) {
-    return;
-  }
-  const fraction = getComposerTimelineFraction(documentData, timeSeconds);
-  if (composerTimelinePlayhead) {
-    composerTimelinePlayhead.style.left = `${fraction * 100}%`;
-  }
-  if (composerPlayheadScrubInput) {
-    composerPlayheadScrubInput.value = String(Math.round(fraction * 1000));
-  }
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  if (composerTimelineSummary) {
-    composerTimelineSummary.textContent = `${formatComposerTimeLabel(timeSeconds)} / ${formatComposerTimeLabel(
-      timeWindow.end
-    )}`;
-  }
-  if (composerPlayToggleButton) {
-    setComposerTransportButtonIcon(
-      composerPlayToggleButton,
-      composerPlaybackState.playing ? "pause" : "play"
-    );
-    composerPlayToggleButton.classList.toggle("is-active", composerPlaybackState.playing);
-  }
-}
-
-function clearComposerEditorPreviewState() {
-  composerEditorPreviewState.renderMotionTimeOverride = null;
-  composerEditorPreviewState.renderMotionTimePlayhead = null;
-  composerEditorPreviewState.renderMotionProgressOverride = null;
-  composerEditorPreviewState.renderMotionProgressPlayhead = null;
-}
-
-function updateComposerViewportModeButtons() {
-  const isObserver = composerViewportModeState.cameraSource === "authored";
-  if (composerViewDesignButton) {
-    composerViewDesignButton.classList.toggle("is-active", !isObserver);
-    composerViewDesignButton.setAttribute("aria-pressed", isObserver ? "false" : "true");
-  }
-  if (composerViewObserverButton) {
-    composerViewObserverButton.classList.toggle("is-active", isObserver);
-    composerViewObserverButton.setAttribute("aria-pressed", isObserver ? "true" : "false");
-  }
-}
-
-function setComposerViewportCameraSource(source = "design") {
-  composerViewportModeState.cameraSource = source === "authored" ? "authored" : "design";
-  updateComposerViewportModeButtons();
-  applyComposerViewportDisplayState();
-}
-
-function setComposerPlaybackPlayhead(timeSeconds, options = {}) {
-  const documentData = options.documentData ?? composerCurrentDocument;
-  if (!documentData) {
-    return;
-  }
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  composerPlaybackState.playheadSeconds = clamp(timeSeconds, timeWindow.start, timeWindow.end);
-  clearComposerEditorPreviewState();
-  composerPlaybackState.lastTickMs = performance.now();
-  if (options.playing !== undefined) {
-    composerPlaybackState.playing = !!options.playing;
-  }
-  updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
-  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
-}
-
-function startComposerPlayback(timeSeconds, options = {}) {
-  const documentData = options.documentData ?? composerCurrentDocument;
-  if (!documentData) {
-    return;
-  }
-  const timeWindow = getComposerSceneTimeWindow(documentData);
-  const clampedTime = clamp(timeSeconds, timeWindow.start, timeWindow.end);
-  composerPlaybackState.playheadSeconds =
-    clampedTime >= timeWindow.end - 0.001
-      ? timeWindow.start
-      : Math.min(clampedTime, timeWindow.end - 0.0001);
-  clearComposerEditorPreviewState();
-  composerPlaybackState.playing = true;
-  composerPlaybackState.lastTickMs = 0;
-  updateComposerAnimatedViewport(composerPlaybackState.playheadSeconds);
-  updateComposerTimelinePlayhead(composerPlaybackState.playheadSeconds, documentData);
-}
-
-function toggleComposerPlayback() {
-  if (!composerCurrentDocument) {
-    return;
-  }
-  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
-  if (composerPlaybackState.playing) {
-    setComposerPlaybackPlayhead(composerPlaybackState.playheadSeconds, {
-      documentData: composerCurrentDocument,
-      playing: false,
-    });
-    return;
-  }
-  startComposerPlayback(
-    composerPlaybackState.playheadSeconds >= timeWindow.end - 0.001
-      ? timeWindow.start
-      : composerPlaybackState.playheadSeconds,
-    { documentData: composerCurrentDocument }
-  );
-}
-
-function restartComposerPlayback() {
-  if (!composerCurrentDocument) {
-    return;
-  }
-  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
-  setComposerPlaybackPlayhead(timeWindow.start, {
-    documentData: composerCurrentDocument,
-    playing: false,
-  });
-}
-
-function jumpToComposerMarker(markerId, options = {}) {
-  if (!composerCurrentDocument || !markerId) {
-    return;
-  }
-  const marker = getComposerSortedMarkers(composerCurrentDocument).find((entry) => entry.id === markerId);
-  if (!marker) {
-    return;
-  }
-  setComposerPlaybackPlayhead(marker.t, {
-    documentData: composerCurrentDocument,
-    playing: options.playing,
-  });
-}
-
-function jumpComposerMarkerByOffset(direction) {
-  if (!composerCurrentDocument) {
-    return;
-  }
-  const markers = getComposerSortedMarkers(composerCurrentDocument);
-  if (!markers.length) {
-    return;
-  }
-  const epsilon = 0.001;
-  let target = null;
-  if (direction < 0) {
-    target = [...markers].reverse().find((marker) => marker.t < composerPlaybackState.playheadSeconds - epsilon);
-  } else {
-    target = markers.find((marker) => marker.t > composerPlaybackState.playheadSeconds + epsilon);
-  }
-  if (!target) {
-    target = direction < 0 ? markers[0] : markers[markers.length - 1];
-  }
-  jumpToComposerMarker(target.id, { playing: false });
-}
-
-function scrubComposerPlayback(fraction, options = {}) {
-  if (!composerCurrentDocument) {
-    return;
-  }
-  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
-  const nextTime = THREE.MathUtils.lerp(timeWindow.start, timeWindow.end, clamp(fraction, 0, 1));
-  setComposerPlaybackPlayhead(nextTime, {
-    documentData: composerCurrentDocument,
-    playing: options.playing,
-  });
-}
-
-function updateComposerPlaybackState(now) {
-  if (!composerCurrentDocument || !composerPlaybackState.playing) {
-    composerPlaybackState.lastTickMs = now;
-    return composerPlaybackState.playheadSeconds;
-  }
-  clearComposerEditorPreviewState();
-  if (!composerPlaybackState.lastTickMs) {
-    composerPlaybackState.lastTickMs = now;
-    return composerPlaybackState.playheadSeconds;
-  }
-  const deltaSeconds = Math.max(0, (now - composerPlaybackState.lastTickMs) / 1000);
-  composerPlaybackState.lastTickMs = now;
-
-  const timeWindow = getComposerSceneTimeWindow(composerCurrentDocument);
-  if (composerPlaybackState.playheadSeconds < timeWindow.start) {
-    composerPlaybackState.playheadSeconds = timeWindow.start;
-  }
-
-  const sceneRate = timeWindow.playbackRate;
-  const step = deltaSeconds * sceneRate;
-  composerPlaybackState.playheadSeconds += step;
-  if (composerPlaybackState.playheadSeconds > timeWindow.end) {
-    if (timeWindow.loop) {
-      composerPlaybackState.playheadSeconds = timeWindow.start;
-    } else {
-      composerPlaybackState.playheadSeconds = timeWindow.end;
-      composerPlaybackState.playing = false;
-    }
-  }
-  return composerPlaybackState.playheadSeconds;
 }
 
 function updateComposerAnimatedViewport(timeSeconds) {
@@ -4290,26 +3877,6 @@ function updateComposerCameraFlightDisplay() {
   applyComposerViewportDisplayState();
 }
 
-function renderComposerCanvas() {
-  if (!composerRenderer || !composerScene || !composerCamera || !composerOverlay) {
-    return;
-  }
-  if (!composerOverlay.classList.contains("is-open")) {
-    hideComposerPathPointInfoPill();
-    return;
-  }
-  if (composerNeedsResize) {
-    resizeComposerCanvas();
-  }
-  const now = performance.now();
-  const playheadSeconds = updateComposerPlaybackState(now);
-  updateComposerAnimatedViewport(playheadSeconds);
-  updateComposerPathMarkerScales();
-  updateComposerPathPointInfoPill();
-  updateComposerTimelinePlayhead(playheadSeconds, composerCurrentDocument);
-  composerRenderer.render(composerScene, composerCamera);
-}
-
 function onComposerTimelineClick(event) {
   const timelineBand = event.target.closest?.(".composer-timeline-band") ?? null;
   if (!timelineBand) {
@@ -4633,6 +4200,103 @@ let composerDocumentCameraShotMesh = null;
 let composerDocumentCameraTargetMesh = null;
 let composerDocumentCameraLookLine = null;
 let composerCurrentViewportFramingState = null;
+const composerPlaybackTimelineRuntime = createComposerPlaybackTimelineRuntime({
+  THREE,
+  documentLike: document,
+  clampFn: clamp,
+  formatTimeLabel: formatComposerTimeLabel,
+  getSceneTimeWindow: getComposerSceneTimeWindow,
+  getTimelineFraction: getComposerTimelineFraction,
+  getGraphicEnd: getComposerGraphicEnd,
+  getGraphicOverlayLabel: getComposerGraphicOverlayLabel,
+  getMediaOverlayLabel: getComposerMediaOverlayLabel,
+  getGraphicTimelineOverlays: (...args) => getComposerGraphicTimelineOverlays(...args),
+  getViewportMediaTimelineOverlays: (...args) => getComposerViewportMediaTimelineOverlays(...args),
+  setTransportButtonIcon: (...args) => setComposerTransportButtonIcon(...args),
+  updateAnimatedViewport: (...args) => updateComposerAnimatedViewport(...args),
+  applyViewportDisplayState: () => applyComposerViewportDisplayState(),
+  getCurrentDocument: () => composerCurrentDocument,
+  getPlaybackState: () => composerPlaybackState,
+  getEditorPreviewState: () => composerEditorPreviewState,
+  getViewportModeState: () => composerViewportModeState,
+  clearTimelineLayer: (...args) => clearComposerTimelineLayer(...args),
+  createTimelineBand: (...args) => createComposerTimelineBand(...args),
+  dom: {
+    viewDesignButton: composerViewDesignButton,
+    viewObserverButton: composerViewObserverButton,
+    markerJumpSelect: composerMarkerJumpSelect,
+    markerPrevButton: composerMarkerPrevButton,
+    markerNextButton: composerMarkerNextButton,
+    timelineTrack: composerTimelineTrack,
+    timelineWarps: composerTimelineWarps,
+    timelinePauses: composerTimelinePauses,
+    timelineMarkers: composerTimelineMarkers,
+    timelinePlayhead: composerTimelinePlayhead,
+    playheadScrubInput: composerPlayheadScrubInput,
+    timelineSummary: composerTimelineSummary,
+    playToggleButton: composerPlayToggleButton,
+  },
+});
+const {
+  renderComposerTimeline,
+  updateComposerTimelinePlayhead,
+  clearComposerEditorPreviewState,
+  updateComposerViewportModeButtons,
+  setComposerViewportCameraSource,
+  setComposerPlaybackPlayhead,
+  startComposerPlayback,
+  toggleComposerPlayback,
+  restartComposerPlayback,
+  jumpToComposerMarker,
+  jumpComposerMarkerByOffset,
+  scrubComposerPlayback,
+  updateComposerPlaybackState,
+  syncComposerMarkerNavigation,
+  getComposerSortedMarkers,
+} = composerPlaybackTimelineRuntime;
+const composerViewportRenderRuntime = createComposerViewportRenderRuntime({
+  THREE,
+  clampFn: clamp,
+  readNumberInput,
+  formatScaleLabel,
+  getEffectiveFrameScale: () => getComposerEffectiveFrameScale(),
+  getOrbitTargetWorld: () => getComposerOrbitTargetWorld(),
+  updatePathMarkerScales: () => updateComposerPathMarkerScales(),
+  updatePathPointInfoPill: () => updateComposerPathPointInfoPill(),
+  hidePathPointInfoPill: () => hideComposerPathPointInfoPill(),
+  updateTimelinePlayhead: (...args) => updateComposerTimelinePlayhead(...args),
+  updateAnimatedViewport: (...args) => updateComposerAnimatedViewport(...args),
+  updatePlaybackState: (...args) => updateComposerPlaybackState(...args),
+  getRenderer: () => composerRenderer,
+  getScene: () => composerScene,
+  getCanvas: () => composerCanvas,
+  getCamera: () => composerCamera,
+  getOverlay: () => composerOverlay,
+  getFrameGroup: () => composerFrameGroup,
+  getFrameState: () => composerFrameState,
+  getCameraState: () => composerCameraState,
+  getCameraOrbitState: () => composerCameraOrbitState,
+  getCameraFlightState: () => composerCameraFlightState,
+  getCurrentDocument: () => composerCurrentDocument,
+  getNeedsResize: () => composerNeedsResize,
+  setNeedsResize: (value) => {
+    composerNeedsResize = value;
+  },
+  dom: {
+    frameScaleInput: composerFrameScaleInput,
+    frameScaleLabel: composerFrameScaleLabel,
+    cameraSpeedInput: composerCameraSpeedInput,
+    cameraSpeedLabel: composerCameraSpeedLabel,
+  },
+});
+const {
+  resizeComposerCanvas,
+  updateComposerFrame,
+  applyComposerFrameScaleInput,
+  updateComposerCamera,
+  applyComposerCameraSpeedInput,
+  renderComposerCanvas,
+} = composerViewportRenderRuntime;
 const composerPointerInteractionRuntime = createComposerPointerInteractionRuntime({
   THREE,
   clampFn: clamp,
