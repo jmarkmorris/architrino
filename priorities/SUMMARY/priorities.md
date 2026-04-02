@@ -60,7 +60,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | 12 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
 | 13 | [`deferred-outlook`](../deferred-outlook/deferred-outlook.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
 | 14 | [`planar-bridge-closure`](../planar-bridge-closure/planar-bridge-closure.md) | First planar delayed-bridge closure and tame return map | 6 | 5 | 1.20 |
-| — | [`summary`](./priorities.md) | Action-items report control surface | — | — | — |
+| — | [`SUMMARY`](./priorities.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../observer/composer.md) | Composer | — | — | — |
