@@ -31,9 +31,9 @@ It does not own:
 
 ### Solver
 
-The main solver design is now the rearchitecture path, not the current browser implementation.
+The main solver design is now a fresh headless implementation path, not an extension of the current browser implementation.
 
-The next solver should be organized around a headless planning core plus app-side adapters. The browser should not remain the only place where solving can happen. The current JavaScript planner is still a useful behavioral reference and test source during migration, but it should become the old solver rather than the long-term center of gravity.
+`solver.py` should be treated as a new solver designed on its own terms around a headless planning core plus app-side adapters. The browser should not remain the only place where solving can happen. The current JavaScript planner is still a useful behavioral reference, fixture source, and functionality checklist, but it is not the implementation to port and it should not define the architecture of the new solver.
 
 The intended solve flow remains:
 
@@ -54,7 +54,7 @@ Core architectural requirements:
 - feed the Reaction app's manual review and correction workflow rather than bypassing it;
 - and avoid solving again inside Composer or smuggling cross-app behavior through shared runtime code.
 
-Behavior that the new solver should preserve while migrating away from the old one:
+Behavior that the new solver should preserve even though it is a fresh implementation:
 
 - direct conservative reuse for identical standalone participants;
 - full composite carry-through when the authored composite is itself the right answer;
@@ -74,7 +74,7 @@ Operator semantics that should remain canonical:
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
 - center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
-- and the current solver operator vocabulary remains `Associate` plus `Dissociate`, even though explicit `Dissociate` placement is still a migration target rather than a finished planner behavior.
+- and the current solver operator vocabulary remains `Associate` plus `Dissociate`, even though explicit `Dissociate` placement is still an unfinished planner behavior rather than a committed implemented feature.
 
 Composite and dissociation requirements that should move forward into the new architecture:
 
@@ -100,11 +100,11 @@ Open weak-channel provenance question:
 - this matters especially for `beta reaction` solves, where a `W-` corridor may plausibly supply anti-core provenance to the outgoing antineutrino while the electron still recruits a pro core from the local reservoir;
 - and this question should be treated as theory-owned by [standard-model-closure](../standard-model-closure/standard-model-closure.md) rather than silently fixed by solver convenience.
 
-Migration rule:
+Implementation stance:
 
-- treat the current browser solver as the old solver and the behavioral reference;
-- build the new headless solver behind explicit request/result contracts;
-- and keep extraction, parity checks, and projection adaptation incremental until the browser-specific runtime can be reduced to wiring and review support.
+- treat the current browser solver as a reference implementation for covered behavior, not as the codebase being ported;
+- build the new headless solver behind explicit request/result contracts and cleaner internal architecture;
+- and use fixture-based comparison and review to verify functional coverage without inheriting browser-specific design debt.
 
 ### External Solver Core
 
@@ -501,17 +501,17 @@ Next steps:
 - promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
 - and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
 
-### 2. Freeze A Golden Parity Corpus From The Current JS Solver
+### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
 
 Status: `next`
 
 Goal:
 
-- freeze the current supported conservative cases as request/result fixtures before the Python port begins.
+- freeze the current supported conservative cases as request/result fixtures before the Python implementation begins.
 
 Why it matters:
 
-- parity should be measured against stable fixtures and expectations, not by rereading browser-side code during the port.
+- coverage should be measured against stable fixtures and expectations, not by rereading browser-side code while the new solver is being built.
 
 Next steps:
 
@@ -529,7 +529,7 @@ Goal:
 
 Why it matters:
 
-- a Python port can appear correct while still disagreeing with the current solver on ids, node references, operator refs, or which candidate family should win.
+- a new Python solver can appear correct while still disagreeing with the covered browser behavior on ids, node references, operator refs, or which candidate family should win.
 
 Next steps:
 
@@ -588,7 +588,7 @@ Why it matters:
 Next steps:
 
 - either decide the currently open weak-channel provenance cases or mark them unsupported in v1;
-- keep the unsupported boundary explicit in the request/result contracts and parity corpus;
+- keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
 ### 7. Shrink The Solver UI Runtime
@@ -697,11 +697,11 @@ Next steps:
 
 Objective:
 
-- rearchitect the solver around a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
+- build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-## Note On The Old Solver
+## Note On The Current Browser Solver
 
-The current browser-side JavaScript solver remains the migration reference until the new headless solver reaches parity on the conservative cases that already work. This note keeps the old solver specifics available without making them the design center.
+The current browser-side JavaScript solver remains a functionality reference for already covered conservative cases while the new headless solver is designed and built. This note keeps the current browser solver specifics available without making them the design center or implying that the new solver should be a direct port.
 
 ### Current State
 
