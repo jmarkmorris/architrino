@@ -1584,6 +1584,9 @@ This pass added:
 
 Review focus:
 
+- the recognized boson forms are already settled as `W-`, `W+`, and `Z`;
+- the accepted direct product paths for those recognized or authored bosons are already settled as `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon`;
+- the remaining work is implementation scope and order rather than boson-rule discovery;
 - handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
 - support multiple disjoint boson recognitions inside one exact closure without double-claiming source material;
 - emit the recognized boson form in the final result rather than only tagging it internally;
