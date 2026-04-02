@@ -48,7 +48,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 ## Related Action Items
 
 - [simulations](../simulations/simulations.md)
-- [composer-reaction](../composer-reaction/observer.md)
+- [composer-reaction](../observer/observer.md)
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
 - [viewports](../viewports/viewports.md)
 

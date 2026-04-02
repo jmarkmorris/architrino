@@ -170,7 +170,7 @@ See [Absolute Time Defense](../foundations/absolute-time-defense.md).
 Example from one philosophy-history document linking to another in the same directory:
 
 ```markdown
-See [major-thinkers.md](major-thinkers.md).
+See [major-thinkers.md](../philosophy-history/major-thinkers.md).
 ```
 
 Do not use:

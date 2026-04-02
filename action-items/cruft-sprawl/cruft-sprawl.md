@@ -39,9 +39,9 @@ This workstream tracks high-priority cases where the repo shows duplicate implem
 
 ## Related Action Items
 
-- [composer-reaction](../composer-reaction/observer.md)
-- [composer](../composer-reaction/composer.md)
-- [reaction](../composer-reaction/reaction.md)
+- [composer-reaction](../observer/observer.md)
+- [composer](../observer/composer.md)
+- [reaction](../observer/reaction.md)
 - [viewports](../viewports/viewports.md)
 - [codex](../codex/codex.md)
 

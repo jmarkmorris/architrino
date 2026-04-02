@@ -40,7 +40,7 @@ This bucket includes:
 ## Related Action Items
 
 - [chapter-authoring](../chapter-authoring/chapter-authoring.md)
-- [composer-reaction](../composer-reaction/observer.md)
+- [composer-reaction](../observer/observer.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 
 ## Related AAA Notes

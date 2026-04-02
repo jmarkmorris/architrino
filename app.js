@@ -3969,7 +3969,7 @@ const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
-  "action-items/composer-reaction/composer.md";
+  "action-items/observer/composer.md";
 const appMode = getComposerAppMode(globalThis.window);
 const isStandaloneComposerApp = isStandaloneComposerAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_COMPOSER_NAVIGATOR_HREF;
