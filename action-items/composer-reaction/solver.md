@@ -309,6 +309,7 @@ Examples:
 | `P,e2,v` | same input with comma separators |
 | `h2.W-.P` | distinct assemblies made easier to scan |
 | `P.e.av` | proton, electron, anti-neutrino |
+| `2@.P.e` | counted `Free Architrinos` assembly plus proton and electron |
 
 Example command, free neutron decay with an added `4h` reactant:
 
@@ -317,7 +318,7 @@ Example command, free neutron decay with an added `4h` reactant:
 | compact | `solver --r N4h --p Peav` |
 | separated | `solver --r N.4h --p P.e.av` |
 
-Current compact notation direction:
+Current compact notation:
 
 | Notation | Meaning | Notes |
 | --- | --- | --- |
@@ -332,6 +333,7 @@ Current compact notation direction:
 | `h3` | Uni Binary | reduced `Noether core` form |
 | `2h` | photon | two-core photon shorthand |
 | `4h` | Higgs cluster | four-core Higgs-cluster shorthand |
+| `@` | Free Architrinos | committed special assembly token with no anti form |
 | `N` | neutron | aligns with existing `Pro Neutron` support |
 | `P` | proton | aligns with existing `Pro Proton` support |
 | `u1` or `u` | up quark | generation I may omit the `1` |
@@ -373,6 +375,8 @@ Examples:
 | `h` | pro `Noether core` |
 | `ah` | anti `Noether core` |
 
+`Free Architrinos` are the exception to that polarity rule. They use `@` with no anti form.
+
 The `h` notation now has two different numeric roles, and both should stay explicit:
 
 | Notation form | Meaning |
@@ -390,13 +394,23 @@ Current intended `h` family examples:
 | `2h` | two `Noether cores`, currently used as photon shorthand |
 | `4h` | four `Noether cores`, currently used as Higgs-cluster shorthand |
 
+`@` supports a leading count in the same multiplicity style as `nh`:
+
+| Notation | Meaning |
+| --- | --- |
+| `@` | one `Free Architrinos` assembly |
+| `2@` | two `Free Architrinos` assemblies |
+| `3@` | three `Free Architrinos` assemblies |
+
+The choice of `@` for `Free Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a free electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
+
 Additional supported particles or solver-relevant assemblies that should still remain visible in the notation inventory:
 
 | Notation | Particle or assembly | Notes |
 | --- | --- | --- |
-|  | Free Architrinos | solver-relevant center assembly; still unassigned in this notation |
+|  | any future special assembly not yet assigned a shorthand | keep visible here until the notation is expanded |
 
-This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, and `4h` preserve the core-count intuition for the assembly side of the notation.
+This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and counted `@` tokens preserve the assembly-side intuition.
 
 For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. The tokenizer should therefore recognize `W+` and `W-` greedily before any single-character symbols.
 
