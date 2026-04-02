@@ -1531,7 +1531,7 @@ Likely durable boundaries in the rearchitected system are:
 ### Neighboring Components
 
 - [reaction](./reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
-- [pdg](./pdg.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
+- [pdgfeed](./pdgfeed.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
 - [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
 - [app-architecture](./app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.

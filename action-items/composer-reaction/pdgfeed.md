@@ -28,10 +28,10 @@ It does not own:
 
 ## Current State
 
-- `pdg.py` now exists as a fixture-first local PDG pipeline.
+- `pdgfeed.py` now exists as a fixture-first local PDG pipeline.
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- `pdg.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
+- `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
 - The current implementation uses a small local particle alias table rather than live PDG object traversal during normal development.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
@@ -84,21 +84,21 @@ The first implementation should assume:
 
 The first program should have two surfaces:
 
-- a library entrypoint implemented first in `pdg.py` that returns normalized PDG-derived candidates;
-- and a CLI entrypoint in `pdg.py` that reads local PDG data and writes JSON artifacts for inspection and tests.
+- a library entrypoint implemented first in `pdgfeed.py` that returns normalized PDG-derived candidates;
+- and a CLI entrypoint in `pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests.
 
 The first implementation should start in one Python file:
 
-- `pdg.py`:
+- `pdgfeed.py`:
   connects to the local PDG database, performs the first PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-If `pdg.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers. The initial implementation should not force a multi-file layout before the first working path exists.
+If `pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers. The initial implementation should not force a multi-file layout before the first working path exists.
 
 The current CLI surface is:
 
-- `python3 pdg.py list-fixtures`
-- `python3 pdg.py emit-fixture <fixture-id>`
-- `python3 pdg.py emit-all-fixtures`
+- `python3 pdgfeed.py list-fixtures`
+- `python3 pdgfeed.py emit-fixture <fixture-id>`
+- `python3 pdgfeed.py emit-all-fixtures`
 
 The first local fixture corpus is:
 
@@ -291,7 +291,7 @@ Possible future automation:
 
 Status: `next`
 
-- decide the canonical v1 PDG-to-solver mapping table that `pdg.py` is allowed to export;
+- decide the canonical v1 PDG-to-solver mapping table that `pdgfeed.py` is allowed to export;
 - keep unsupported particles proposal-only until a solver-facing mapping exists;
 - and make the supported/unsupported boundary explicit in the note and in code.
 
