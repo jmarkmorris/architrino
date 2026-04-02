@@ -32,6 +32,9 @@ It does not own:
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdg.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
+- The current implementation uses a small local particle alias table rather than live PDG object traversal during normal development.
+- Exportable candidate requests currently exist for the neutron and muon fixture cases.
+- Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Live PDG package access is still represented as a helper path rather than the primary day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
@@ -102,6 +105,15 @@ The first local fixture corpus is:
 - `free_neutron_beta_decay`
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
+
+The current supported v1 particle mapping covers:
+
+- neutron and proton;
+- charged leptons through the shared `electron` solver template with generation flags;
+- neutrinos through the shared `neutrino` solver template with generation flags;
+- and photon.
+
+Anything outside that first mapping table currently stays in proposal metadata and notes until a solver-facing mapping rule exists.
 
 The first solver-facing target should be one `solver-request/v1` document per candidate, with:
 
@@ -275,15 +287,31 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Verify Against The Solver Boundary
+### 1. Lock The V1 Mapping Table And Unsupported-Particle Policy
 
 Status: `next`
+
+- decide the canonical v1 PDG-to-solver mapping table that `pdg.py` is allowed to export;
+- keep unsupported particles proposal-only until a solver-facing mapping exists;
+- and make the supported/unsupported boundary explicit in the note and in code.
+
+### 2. Verify Against The Solver Boundary
+
+Status: `pending`
 
 - validate emitted candidate payloads against `solver-request/v1`;
 - compare candidate shape against real solver needs before widening scope;
 - and keep downstream integration based on explicit contracts only.
 
-### 2. Add Proposal Review And Alternatives
+### 3. Add Live PDG Package Reads Alongside Fixtures
+
+Status: `pending`
+
+- add real `pdg.connect(...)` reads for the first supported channel lookups;
+- keep the local fixture corpus as the stable development and regression path;
+- and ensure live reads normalize into the same proposal and export shapes as fixtures.
+
+### 4. Add Proposal Review And Alternatives
 
 Status: `pending`
 
@@ -291,7 +319,7 @@ Status: `pending`
 - add review controls such as pin or forbid;
 - keep proposal review upstream of Reaction acceptance.
 
-### 3. Project Accepted Proposals Into Reaction
+### 5. Project Accepted Proposals Into Reaction
 
 Status: `pending`
 
@@ -299,7 +327,7 @@ Status: `pending`
 - preserve useful provenance-review context;
 - avoid direct shared runtime code across the boundary.
 
-### 4. Stay Downstream-Compatible With Reaction Export
+### 6. Stay Downstream-Compatible With Reaction Export
 
 Status: `pending`
 

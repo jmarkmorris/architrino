@@ -1538,56 +1538,33 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Freeze A Golden Coverage Corpus From The Current JS Solver
+### 1. Emit Recognized Boson Forms In Solver Results
 
 Status: `review`
 
 Goal:
 
-- freeze the current supported conservative cases as request/result fixtures before the Python implementation begins.
+- carry late-stage boson recognition through the emitted `solver-result/v1` document rather than leaving it as proposal-only internal metadata.
 
 Why it matters:
 
-- coverage should be measured against stable fixtures and expectations, not by rereading browser-side code while the new solver is being built.
-
-This pass froze:
-
-- a corpus manifest in [`content/contracts/examples/solver-corpus/v1/index.json`](../../content/contracts/examples/solver-corpus/v1/index.json);
-- five request/result fixture pairs under `content/contracts/examples/solver-request/` and `content/contracts/examples/solver-result/`;
-- runtime coverage for direct root reuse, fragment-to-root reuse, `Associate` photon assembly, center-lane standalone assembly, and `Higgs Cluster -> Photon + Photon`;
-- and a regression test in [`tests/solver-golden-corpus.test.js`](../../tests/solver-golden-corpus.test.js) that checks the corpus against the current JS proposal, layout, and projection behavior.
-
-Review focus:
-
-- confirm this first corpus slice covers the conservative families we need before `solver.py` starts;
-- confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
-- and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
-
-### 2. Stay Ready For PDG Seeds Without Becoming PDG-Specific
-
-Status: `review`
-
-Goal:
-
-- keep the solver reusable as the normalized planning core for future PDG ingest.
-
-Why it matters:
-
-- PDG work should reuse this seam rather than create a parallel solver.
+- the result contract already has `collapse-boson` steps, so recognized `W` / `Z` structure should be visible in exported solver results, fixtures, and future Python parity checks rather than disappearing after plan selection.
 
 This pass added:
 
-- a normalized PDG-seeded `solver-request/v1` fixture in [`pdg_seeded_center_neutrino.v1.json`](../../content/contracts/examples/solver-request/pdg_seeded_center_neutrino.v1.json) that uses `origin.sourceKind: "pdg-ingest"` while still entering the solver through the same explicit request contract as browser or CLI inputs;
-- contract coverage in [`composer-reaction-contracts.test.js`](../../tests/composer-reaction-contracts.test.js) proving that PDG-seeded requests validate as ordinary solver requests;
-- and a regression in that same test file proving raw PDG-shaped payload leakage inside normalized participant records is rejected by the request schema rather than becoming a second implicit solver boundary.
+- a dedicated JS result exporter in [`ReactionSolverResultExportRuntime.js`](../../src/apps/reaction/ReactionSolverResultExportRuntime.js) that turns solve-state plus selected plan data into a `solver-result/v1` document;
+- emitted `collapse-boson` steps plus solve-generated boson participant records for recognized center-lane `W-`, `W+`, and `Z` forms while preserving the primitive mappings and operator paths needed by current Reaction projection;
+- support for multiple disjoint recognized bosons in one exact closure at the result-export layer; and
+- regression coverage in [`reaction-solver-result-export.test.js`](../../tests/reaction-solver-result-export.test.js) for both single and multiple recognition cases, with schema validation against [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json).
 
 Review focus:
 
-- confirm `solver-request/v1` remains the only PDG-to-solver entry boundary rather than growing a parallel PDG-shaped request format;
-- confirm PDG provenance should stay in `origin` fields or proposal sidecars, not in participant-local raw PDG payloads;
-- and confirm PDG-specific ranking or proposal metadata should remain upstream of the solver core rather than entering participant or node records directly.
+- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
+- decide whether exported collapse steps should eventually replace primitive associate steps in the final selected result or continue to layer on top of them;
+- confirm the current result-export seam is the right place for recognized boson emission before Python parity work starts;
+- and keep unresolved or non-center closures unrecognized even in exported results.
 
-### 3. Solver Rearchitecture
+### 2. Solver Rearchitecture
 
 Objective:
 
@@ -1597,7 +1574,7 @@ Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
 
-### 4. Delete The Old Browser Solver After Flash Cut-Over
+### 3. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
