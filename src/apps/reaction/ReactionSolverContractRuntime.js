@@ -1,71 +1,98 @@
-import { applyReactionSolveLayout } from "./ReactionSolveLayoutRuntime.js";
-import {
-  buildReactionSolvePlan,
-  describeReactionSolvePlan,
-} from "./ReactionSolveProposalRuntime.js";
-import { buildReactionSolveState } from "./ReactionSolveStateRuntime.js";
 import { buildReactionSolverRequestDocument } from "./ReactionSolverRequestExportRuntime.js";
-import { buildReactionSnapshotFromSolverRequest } from "./ReactionSolverRequestAdapterRuntime.js";
-import { buildReactionSolverResultDocument } from "./ReactionSolverResultExportRuntime.js";
+import {
+  canExecuteExternalReactionSolver,
+  executeExternalReactionSolverRequest,
+} from "./ReactionSolverExternalRuntime.js";
+import { solveReactionSolverRequestInProcess } from "./ReactionSolverInProcessRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
 
-function buildInternalNodeKey(participantId = "", nodeId = "") {
-  return `${participantId}:${nodeId}`;
+function normalizeLowerText(value = "") {
+  return normalizeText(value).toLowerCase();
 }
 
-function isCenterAssemblyParticipant(participant = null) {
-  return participant?.side === "reactant" && participant?.surfaceColumn === "center-assembly";
+function formatCount(count = 0, singular = "item") {
+  const normalizedCount = Math.max(0, Number(count) || 0);
+  return `${normalizedCount} ${singular}${normalizedCount === 1 ? "" : "s"}`;
 }
 
-function isOperatorParticipant(participant = null) {
-  return participant?.side === "operator";
+function describeReactionSolverResult(result = {}) {
+  const counts = {
+    direct: 0,
+    composite: 0,
+    partialComposite: 0,
+    associate: 0,
+  };
+  (Array.isArray(result?.steps) ? result.steps : []).forEach((step) => {
+    const resolvedCount = Math.max(
+      1,
+      Array.isArray(step?.resolvedTargetIds) ? step.resolvedTargetIds.length : 0
+    );
+    const kind = normalizeLowerText(step?.kind);
+    const ruleFamily = normalizeLowerText(step?.ruleFamily);
+    if (kind === "associate") {
+      counts.associate += resolvedCount;
+      return;
+    }
+    if (kind === "carry-through") {
+      counts.composite += resolvedCount;
+      return;
+    }
+    if (ruleFamily.includes("partial")) {
+      counts.partialComposite += resolvedCount;
+      return;
+    }
+    if (kind === "direct-map") {
+      counts.direct += resolvedCount;
+    }
+  });
+  const parts = [];
+  if (counts.direct > 0) {
+    parts.push(formatCount(counts.direct, "direct product"));
+  }
+  if (counts.composite > 0) {
+    parts.push(formatCount(counts.composite, "composite product"));
+  }
+  if (counts.partialComposite > 0) {
+    parts.push(formatCount(counts.partialComposite, "partial composite product"));
+  }
+  if (counts.associate > 0) {
+    parts.push(formatCount(counts.associate, "associated product"));
+  }
+  if (!parts.length) {
+    return "0 products";
+  }
+  return parts.join(" and ");
 }
 
-export function solveReactionSolverRequest(request = {}, options = {}) {
-  const snapshot = buildReactionSnapshotFromSolverRequest(request);
-  const solveState = buildReactionSolveState({
-    participants: snapshot.participants,
-    mappings: snapshot.mappings,
-    buildNodeKey:
-      typeof options?.buildNodeKey === "function" ? options.buildNodeKey : buildInternalNodeKey,
-    isCenterAssemblyParticipant,
-    isOperatorParticipant,
-  });
-  const plan = buildReactionSolvePlan({
-    solveState,
-    buildNodeKey:
-      typeof options?.buildNodeKey === "function" ? options.buildNodeKey : buildInternalNodeKey,
-    resolveBinaryChoiceInventory:
-      typeof options?.resolveBinaryChoiceInventory === "function"
-        ? options.resolveBinaryChoiceInventory
-        : null,
-  });
-  const laidOutPlan = applyReactionSolveLayout({
-    plan,
-    solveState,
-  });
-  const result = buildReactionSolverResultDocument({
-    request,
-    solveState,
-    plan: laidOutPlan,
-    resultId:
-      normalizeText(options?.resultId) || `${normalizeText(request?.requestId) || "solver_request"}_result`,
-  });
+function buildContractSolveResponse(request = {}, result = {}, extra = {}) {
   return {
     request,
     result,
-    solveState,
-    plan: laidOutPlan,
-    planDescription: describeReactionSolvePlan(laidOutPlan),
-    unresolvedReactantCount: Array.isArray(laidOutPlan?.unresolvedReactants)
-      ? laidOutPlan.unresolvedReactants.length
+    planDescription: describeReactionSolverResult(result),
+    unresolvedReactantCount: Array.isArray(result?.residue?.unusedSourceIds)
+      ? result.residue.unusedSourceIds.length
       : 0,
-    unresolvedTargetCount: Array.isArray(laidOutPlan?.unresolvedProducts)
-      ? laidOutPlan.unresolvedProducts.length
-      : 0,
+    unresolvedTargetCount: Math.max(0, Number(result?.summary?.unresolvedTargetCount ?? 0) || 0),
+    execution: extra?.execution ?? null,
+  };
+}
+
+export function solveReactionSolverRequest(request = {}, options = {}) {
+  if (canExecuteExternalReactionSolver(options)) {
+    const externalSolve = executeExternalReactionSolverRequest(request, options);
+    return buildContractSolveResponse(request, externalSolve.result, {
+      execution: externalSolve.execution,
+    });
+  }
+  const inProcessSolve = solveReactionSolverRequestInProcess(request, options);
+  return {
+    ...inProcessSolve,
+    execution: {
+      mode: "in-process",
+    },
   };
 }
 

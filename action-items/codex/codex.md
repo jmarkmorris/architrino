@@ -82,7 +82,7 @@ Now:
 ## Related Action Items
 
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
-- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [composer-reaction](../composer-reaction/observer.md)
 - [chapter-authoring](../chapter-authoring/chapter-authoring.md)
 
 ## Related AAA Notes

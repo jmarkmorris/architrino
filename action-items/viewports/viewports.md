@@ -251,7 +251,7 @@ The Architrino-specific improvement is to make the observer itself frame-aware, 
 
 ## Related Action Items
 
-- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [composer-reaction](../composer-reaction/observer.md)
 - [composer](../composer-reaction/composer.md)
 - [reaction](../composer-reaction/reaction.md)
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)

@@ -1559,10 +1559,18 @@ This pass added:
 - explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts;
 - and Reaction UI solve-path wiring onto the request/result seam so solve projection now consumes `solver-result/v1` output rather than the UI calling planner stages inline.
 
+This pass now also adds:
+
+- an isolated in-process headless solver runtime in [`ReactionSolverInProcessRuntime.js`](../../src/apps/reaction/ReactionSolverInProcessRuntime.js) so the reference JS solve path is no longer embedded directly inside the contract facade;
+- an external execution runtime in [`ReactionSolverExternalRuntime.js`](../../src/apps/reaction/ReactionSolverExternalRuntime.js) that invokes the headless solver through the existing CLI boundary;
+- a cutover in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) so Node-side contract solves now use the external command path by default and leave the in-process path as an explicit fallback for runtimes that cannot execute external commands;
+- a `solve-reaction.mjs` implementation that executes the headless solver directly instead of recursing back through the contract facade;
+- and focused parity/fallback coverage in [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js) that verifies the external path remains contract-compatible with the extracted in-process reference implementation.
+
 Next focus:
 
-- replace the JS contract-bridge solver path with the real external solver implementation behind the same `solver-request/v1` / `solver-result/v1` boundary;
-- and then cut over the Reaction app from the browser-local bridge to that external solver without changing the contract seam again.
+- keep the `solver-request/v1` / `solver-result/v1` seam stable while replacing the extracted JS reference core behind the external CLI with the intended fresh solver core;
+- and then remove the remaining browser-safe in-process fallback once the app host can rely on the external solve path in every supported runtime without changing the contract seam again.
 
 Deferred idea:
 

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-import { solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
+import { solveReactionSolverRequestInProcess } from "../src/apps/reaction/ReactionSolverInProcessRuntime.js";
 
 async function readStdin() {
   const chunks = [];
@@ -21,7 +21,7 @@ function readRequestSource(argv = []) {
 try {
   const sourceText = readRequestSource(process.argv.slice(2)) ?? (await readStdin());
   const request = JSON.parse(sourceText);
-  const { result } = solveReactionSolverRequest(request);
+  const { result } = solveReactionSolverRequestInProcess(request);
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 } catch (error) {
   process.stderr.write(`${error?.stack || error?.message || String(error)}\n`);

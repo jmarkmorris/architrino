@@ -370,7 +370,7 @@ Practical order:
 
 ## Related Action Items
 
-- [composer-reaction](./composer-reaction.md)
+- [composer-reaction](./observer.md)
 - [composer](./composer.md)
 - [reaction](./reaction.md)
 - [solver](./solver.md)

@@ -359,7 +359,7 @@ Next steps:
 
 ## Related Action Items
 
-- [composer-reaction](./composer-reaction.md)
+- [composer-reaction](./observer.md)
 - [reaction](./reaction.md)
 - [solver](./solver.md)
 - [pdgfeed](./pdgfeed.md)

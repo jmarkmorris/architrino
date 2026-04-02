@@ -533,7 +533,7 @@ Natural follow-on work from this note would be:
 
 - [3x3](../3x3/3x3.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
-- [composer-reaction](../composer-reaction/composer-reaction.md)
+- [composer-reaction](../composer-reaction/observer.md)
 - [viewports](../viewports/viewports.md)
 
 ## Related AAA Notes

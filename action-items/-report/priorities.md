@@ -48,7 +48,7 @@ This single table is the canonical rollup for every direct child of `action-item
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | [`breather-proof`](../breather-proof/breather-proof.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | [`mass-map`](../mass-map/mass-map.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | [`composer-reaction`](../composer-reaction/composer-reaction.md) | Scene system, composer, reaction, solver, PDG ingest, and later enhancements | 9 | 4 | 2.25 |
+| 3 | [`composer-reaction`](../composer-reaction/observer.md) | Scene system, composer, reaction, solver, PDG ingest, and later enhancements | 9 | 4 | 2.25 |
 | 4 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
