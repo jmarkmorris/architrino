@@ -94,11 +94,13 @@ Conservative matching discipline that should remain explicit:
 - the gate requires equal `electrino` / `positrino` ledger on both sides;
 - and the gate forbids direct mapping between full tri-binary `Pro Noether Core` and `Anti Noether Core`.
 
-Open weak-channel provenance question:
+Resolved v1 weak-channel provenance convention:
 
-- future weak-channel solving depends on whether a `W^\pm` corridor should be treated as carrying pro/anti `Noether core` provenance into an outgoing lepton branch, or only as the charged transaction delta while final pro/anti cores are recruited from a local reservoir such as `4h` / Higgs-cluster or Noether-Sea content;
-- this matters especially for `beta reaction` solves, where a `W-` corridor may plausibly supply anti-core provenance to the outgoing antineutrino while the electron still recruits a pro core from the local reservoir;
-- and this question should be treated as theory-owned by [standard-model-closure](../standard-model-closure/standard-model-closure.md) rather than silently fixed by solver convenience.
+- `W+` carries anti `Noether core` provenance;
+- `W-` carries pro `Noether core` provenance;
+- and v1 solver rules should use that convention explicitly rather than treating `W^\pm` corridor core provenance as unresolved.
+
+Broader weak-channel theory may still need refinement in [standard-model-closure](../standard-model-closure/standard-model-closure.md), but the first solver should treat this boson-core assignment as settled working law rather than as an implementation guess.
 
 Implementation stance:
 
@@ -306,11 +308,19 @@ The command-line and normalized-request model should distinguish two strengths o
 - `--i` means authored middle-lane material that the solver may use or skip if a better closure exists without it;
 - `--I` means stronger authored middle-lane material that the solver should use if any closure exists that accounts for it.
 
+Both forms may appear in the same solve request. When they do:
+
+- `--I` constraints take precedence over `--i` preferences;
+- the solver should first rank branches by whether they satisfy the authored `--I` material;
+- then, among branches that tie on `--I` satisfaction, treat clean use of authored `--i` material as a weaker preference;
+- and diagnostics should report separately which authored center-lane inputs came from `--I` and which came from `--i`.
+
 For supported `--i` material:
 
 - the solver should consider branches that use it;
 - but it may skip that material if a stronger closure exists without consuming or carrying it through;
-- and skipped `--i` material should remain visible in diagnostics so the user can see that it was not part of the chosen closure.
+- skipped `--i` material should remain visible in diagnostics so the user can see that it was not part of the chosen closure;
+- and among branches that already tie on exact closure, `--I` satisfaction, and major residue or unsupported-state criteria, clean use of authored `--i` material should receive a weak ranking bonus.
 
 For supported `--I` material:
 
@@ -318,6 +328,8 @@ For supported `--I` material:
 - if at least one full closure exists that accounts for the authored `--I` material, the chosen solution should come from that class of branches;
 - if no full closure exists that accounts for the authored `--I` material but an alternate full closure exists without it, the solver may return that alternate closure and report that the `--I` constraint could not be satisfied;
 - and if no alternate full closure exists, the solver should show the best partial progress it can make while still keeping the authored `--I` intermediaries explicit in the reported branch.
+
+Among full closures, a branch that satisfies authored `--I` constraints should outrank a branch that does not, even if the `--I`-satisfying branch is somewhat more complex in operators or intermediate structure. The point of `--I` is to express a strong authored preference over the reaction story, not merely a weak hint.
 
 #### Rule 2: Carry Through Exact Repeated Participants First
 
@@ -520,8 +532,8 @@ For v1, this late-stage pass should use a strict exact recognizer, not a fuzzy r
 
 Accepted exact recognizers so far:
 
-- `W+` = pro `Noether core` plus six free positrinos;
-- `W-` = anti `Noether core` plus six free electrinos;
+- `W+` = anti `Noether core` plus six free positrinos;
+- `W-` = pro `Noether core` plus six free electrinos;
 - `Z` = pro `Noether core` plus anti `Noether core`.
 
 Free-architrino-ledger interaction rule:
@@ -529,8 +541,8 @@ Free-architrino-ledger interaction rule:
 - a late-stage `W+` collapse may consume six positrinos from a center-lane `Free Architrinos` ledger tile;
 - a late-stage `W-` collapse may consume six electrinos from a center-lane `Free Architrinos` ledger tile;
 - the source ledger tile must then be rewritten to the decremented remaining ledger rather than left unchanged;
-- for example, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
-- likewise, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
+- for example, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
+- likewise, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
 - and no `W` collapse is legal unless the required six-unit ledger decrement can be paid exactly from the available center-lane ledger content.
 
 Allowed direct `Z`-mapping targets for v1:
@@ -553,6 +565,8 @@ Recruitment is legal only when:
 - the current branch has an exact remaining ledger deficit that authored material cannot close;
 - the recruited material is added explicitly to the branch state with solver-created provenance;
 - and the recruited branch scores better than the best unrecruited branch by achieving stronger exact closure.
+
+Spacetime recruitment is not allowed merely because it makes a branch cleaner, shorter, or more visually elegant. If authored material can already close the reaction exactly, the solver must prefer that authored-material closure over a recruited alternative.
 
 Recruitment must not be:
 
@@ -659,6 +673,8 @@ Here:
 - `--i` supplies optional or preferred authored center-lane intermediates or center assemblies that may be skipped if a better closure exists without them;
 - `--I` supplies stronger authored center-lane intermediates or center assemblies that the solver should use if any closure exists that can account for them;
 - and `--p` supplies authored products.
+
+`--i` and `--I` may be used together in one solver call. In that case, `--I` is the stronger constraint layer and `--i` remains a weaker preference layer.
 
 Those concise strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
 
@@ -801,7 +817,7 @@ The choice of `@` for `Free Architrinos` is now intentional rather than provisio
 
 This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
-For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. The open question is not whether `W+` and `W-` are antiparticles, but whether a `W^\pm` corridor should be treated as carrying specific pro/anti `Noether core` provenance in the deeper solve ontology.
+For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. For v1, the boson-core convention is fixed: `W+` carries anti `Noether core` provenance and `W-` carries pro `Noether core` provenance.
 
 ### Compact Grammar
 
@@ -1149,11 +1165,12 @@ Goal:
 
 Why it matters:
 
-- the current open `W^\pm` provenance question is real, and the first headless solver should not hard-code an answer by implementation convenience.
+- even with the v1 `W^\pm` boson-core convention fixed, broader weak-channel expansion can still drift into unsupported theory if the solver starts guessing beyond the accepted rule families.
 
 Next steps:
 
-- either decide the currently open weak-channel provenance cases or mark them unsupported in v1;
+- keep the accepted v1 `W+` / `W-` boson-core convention explicit in the contracts and rule fixtures;
+- mark any broader weak-channel cases outside that accepted convention unsupported in v1;
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
