@@ -140,9 +140,7 @@
         "map_associate_photon_out_pro",
         "map_associate_photon_out_anti"
       ],
-      "operatorIds": [
-        "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon"
-      ]
+      "operatorIds": ["associate:1"]
     }
   ],
   "mappings": [
@@ -155,11 +153,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -175,11 +173,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -190,7 +188,7 @@
       "id": "map_associate_photon_out_pro",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -199,7 +197,7 @@
         "anchorId": "product_photon_structure/core_pro_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -210,7 +208,7 @@
       "id": "map_associate_photon_out_anti",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -219,7 +217,7 @@
         "anchorId": "product_photon_structure/core_anti_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -229,7 +227,7 @@
   ],
   "operators": [
     {
-      "id": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "id": "associate:1",
       "type": "associate",
       "origin": "solve-generated",
       "label": "Associate",
@@ -268,7 +266,7 @@
   "placement": {
     "operatorPlacements": [
       {
-        "operatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "operatorId": "associate:1",
         "lane": 1,
         "row": 1,
         "slot": 1

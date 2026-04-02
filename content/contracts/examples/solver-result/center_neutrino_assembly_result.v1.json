@@ -113,9 +113,7 @@
         "map_center_neutrino_in_free",
         "map_center_neutrino_out"
       ],
-      "operatorIds": [
-        "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino"
-      ]
+      "operatorIds": ["associate:1"]
     }
   ],
   "mappings": [
@@ -128,11 +126,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -148,11 +146,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -163,7 +161,7 @@
       "id": "map_center_neutrino_out",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -172,7 +170,7 @@
         "anchorId": "product_neutrino_structure",
         "role": "product"
       },
-      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 6,
@@ -182,7 +180,7 @@
   ],
   "operators": [
     {
-      "id": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "id": "associate:1",
       "type": "associate",
       "origin": "solve-generated",
       "label": "Associate",
@@ -216,7 +214,7 @@
   "placement": {
     "operatorPlacements": [
       {
-        "operatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "operatorId": "associate:1",
         "lane": 1,
         "row": 1,
         "slot": 1

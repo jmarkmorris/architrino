@@ -1415,6 +1415,51 @@ Required contract rules:
 - manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
 - and the solve-result format is upstream of `reaction-flow/v1`: the solver submits to Reaction in this format, then accepted Reaction state exports downstream through the separate Reaction-owned handoff contract.
 
+### Identity And Tie-Break Semantics
+
+Before `solver.py` starts, the identity and selection rules need to be treated as normative rather than as scattered browser behavior.
+
+External identity rules:
+
+- authored participant ids in `solver-request/v1` are canonical and must pass through unchanged into `solver-result/v1` whenever the solver is still referring to the same authored participant;
+- node or anchor identity in the external request/result contracts stays unpacked as `participantId` plus `anchorId`, not as one packed node-key string;
+- the packed Reaction adapter key remains `participantId::nodeId` through [`ReactionNodeKeyRuntime`](../../src/apps/reaction/ReactionNodeKeyRuntime.js), but that packing is a Reaction-side adapter concern rather than the external solver contract;
+- solve-generated operator ids in `solver-result/v1` should use compact deterministic ids such as `associate:1`, `associate:2`, and later `dissociate:1`, assigned in selected-step order within the final result;
+- and the current browser solver's verbose structural refs are acceptable browser-local reference behavior, but they should not become the canonical external operator-id scheme for `solver.py`.
+
+Deterministic candidate identity rules:
+
+- if a candidate creates a solve-generated operator, the first `participantAdditions[].ref` is its deterministic candidate identity for ordering purposes;
+- otherwise the fallback identity is the tuple `(candidate type, source participant id, source node id, target participant id, target node id)`;
+- lexical ordering over that deterministic identity is the final tie-break when stronger semantic ranking terms tie;
+- and the solver should treat that identity as an ordering device, not as a semantic excuse to encode browser-only detail into the public contract.
+
+Current JS candidate ranking order that the Python solver should preserve unless intentionally revised:
+
+1. more fully resolved products;
+2. more matched target nodes;
+3. fewer partial products;
+4. higher candidate score;
+5. lexical candidate identity.
+
+Current JS whole-set selection ranking order that the Python solver should preserve unless intentionally revised:
+
+1. more fully resolved products across the selected set;
+2. more matched target nodes across the selected set;
+3. fewer partial products;
+4. more matched source nodes;
+5. higher total score;
+6. lexical ordering over the ordered selected-candidate identities.
+
+Current JS solve-phase ordering that also matters for selection semantics:
+
+1. direct-root, composite carry-through, fragment-root-direct, and associate families compete in the first base selection pass;
+2. partial-composite-direct families are selected only after the base pass has already claimed whole participants, whole products, and fragment ownership;
+3. product-child-direct families run after that on the remaining unclaimed source fragments and target fragments;
+4. and automatic composite dissociation is currently inferred from selected mappings that consume internal rows, not from an earlier explicit selected `Dissociate` step.
+
+The new solver may eventually re-express these rules more cleanly, but any intentional deviation must be visible in fixtures and review rather than emerging as accidental Python drift.
+
 ### Direct Composer Path
 
 The external solver should eventually make a fast path possible in which a headless solve can feed Composer without first opening the Reaction UI.
@@ -1506,7 +1551,7 @@ Review focus:
 
 ### 2. Lock Down Identity, Selection, And Tie-Break Semantics
 
-Status: `pending`
+Status: `review`
 
 Goal:
 
@@ -1516,11 +1561,18 @@ Why it matters:
 
 - a new Python solver can appear correct while still disagreeing with the covered browser behavior on ids, node references, operator refs, or which candidate family should win.
 
-Next steps:
+This pass froze:
 
-- define stable participant ids, node-key rules, and synthetic operator refs such as `associate:1`;
-- write the candidate-selection and set-selection tie-break order as compact normative rules;
-- and keep those rules aligned with the current whole-product-first selection behavior.
+- the normative identity and tie-break section above;
+- compact external solve-generated operator ids such as `associate:1` in the solver-result fixtures;
+- targeted regression coverage in [`tests/solver-selection-semantics.test.js`](../../tests/solver-selection-semantics.test.js);
+- and the distinction between external unpacked anchor identity and the Reaction adapter's packed `participantId::nodeId` key.
+
+Review focus:
+
+- confirm that `solver-result/v1` should use compact sequential operator ids rather than the browser solver's verbose structural refs;
+- confirm that the documented candidate and whole-set tie-break order is the right frozen acceptance bar for `solver.py`;
+- and confirm that keeping packed node keys adapter-local while leaving request/result anchors unpacked is the right contract boundary.
 
 ### 3. Decide The Python / JS Boundary For Layout And Projection
 

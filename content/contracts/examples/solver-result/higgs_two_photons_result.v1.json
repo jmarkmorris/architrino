@@ -224,9 +224,7 @@
         "map_higgs_a_out_pro",
         "map_higgs_a_out_anti"
       ],
-      "operatorIds": [
-        "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a"
-      ]
+      "operatorIds": ["associate:1"]
     },
     {
       "stepId": "step_higgs_associate_b",
@@ -241,9 +239,7 @@
         "map_higgs_b_out_pro",
         "map_higgs_b_out_anti"
       ],
-      "operatorIds": [
-        "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b"
-      ]
+      "operatorIds": ["associate:2"]
     }
   ],
   "mappings": [
@@ -256,11 +252,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -276,11 +272,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -291,7 +287,7 @@
       "id": "map_higgs_a_out_pro",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -300,7 +296,7 @@
         "anchorId": "product_photon_a_structure/core_pro_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -311,7 +307,7 @@
       "id": "map_higgs_a_out_anti",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+        "participantId": "associate:1",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -320,7 +316,7 @@
         "anchorId": "product_photon_a_structure/core_anti_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+      "viaOperatorId": "associate:1",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -336,11 +332,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+        "participantId": "associate:2",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+      "viaOperatorId": "associate:2",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -356,11 +352,11 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+        "participantId": "associate:2",
         "anchorId": "root",
         "role": "operator-input"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+      "viaOperatorId": "associate:2",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -371,7 +367,7 @@
       "id": "map_higgs_b_out_pro",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+        "participantId": "associate:2",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -380,7 +376,7 @@
         "anchorId": "product_photon_b_structure/core_pro_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+      "viaOperatorId": "associate:2",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -391,7 +387,7 @@
       "id": "map_higgs_b_out_anti",
       "kind": "operator-path",
       "from": {
-        "participantId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+        "participantId": "associate:2",
         "anchorId": "root",
         "role": "operator-output"
       },
@@ -400,7 +396,7 @@
         "anchorId": "product_photon_b_structure/core_anti_1",
         "role": "product"
       },
-      "viaOperatorId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+      "viaOperatorId": "associate:2",
       "provenanceMode": "operator-mediated",
       "conservedLedger": {
         "electrinoCount": 3,
@@ -410,7 +406,7 @@
   ],
   "operators": [
     {
-      "id": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+      "id": "associate:1",
       "type": "associate",
       "origin": "solve-generated",
       "label": "Associate",
@@ -440,7 +436,7 @@
       ]
     },
     {
-      "id": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+      "id": "associate:2",
       "type": "associate",
       "origin": "solve-generated",
       "label": "Associate",
@@ -484,13 +480,13 @@
   "placement": {
     "operatorPlacements": [
       {
-        "operatorId": "associate:reactant_higgs:reactant_higgs_structure/core_anti_1:reactant_higgs:reactant_higgs_structure/core_pro_2:product_photon_a",
+        "operatorId": "associate:1",
         "lane": 1,
         "row": 1,
         "slot": 1
       },
       {
-        "operatorId": "associate:reactant_higgs:reactant_higgs_structure/core_pro_1:reactant_higgs:reactant_higgs_structure/core_anti_2:product_photon_b",
+        "operatorId": "associate:2",
         "lane": 1,
         "row": 3,
         "slot": 3
