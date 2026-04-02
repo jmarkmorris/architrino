@@ -1,0 +1,83 @@
+{
+  "schema": "pdg-proposal/v1",
+  "proposalId": "charged_pion_to_muon_neutrino.live-pdg",
+  "title": "Charged pion to muon neutrino",
+  "source": {
+    "edition": "2025",
+    "channelDescription": "pi+ -> mu+ nu_mu",
+    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+    "branchingDisplay": "99.98770+-0.00004",
+    "sourceMode": "pdg.connect",
+    "lookupParticleName": "pi+",
+    "pdgIdentifier": "S008.1/2025",
+    "liveCaseId": "charged_pion_to_muon_neutrino"
+  },
+  "reactants": [],
+  "products": [
+    {
+      "id": "product_anti_muon_1",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Anti Muon",
+      "family": "lepton",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "charged-lepton",
+          "pdg-id:mu+",
+          "pdg-name:mu+"
+        ]
+      },
+      "pdgName": "mu+",
+      "pdgId": "mu+",
+      "tags": [
+        "pdg:species:anti-muon",
+        "pdg:generation:2",
+        "pdg-id:mu+"
+      ]
+    },
+    {
+      "id": "product_pro_muon_neutrino_2",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Pro Muon Neutrino",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "neutrino",
+          "pdg-id:nu_mu",
+          "pdg-name:nu_mu"
+        ]
+      },
+      "pdgName": "nu_mu",
+      "pdgId": "nu_mu",
+      "tags": [
+        "pdg:species:muon-neutrino",
+        "pdg:generation:2",
+        "pdg-id:nu_mu"
+      ]
+    }
+  ],
+  "centers": [],
+  "ranking": {
+    "rank": 1,
+    "score": 70,
+    "reasons": [
+      "pdg-live-source",
+      "contains-unsupported-participants"
+    ]
+  },
+  "notes": [
+    "unsupported:reactant:pi+:no-v1-solver-template"
+  ],
+  "exportable": false
+}

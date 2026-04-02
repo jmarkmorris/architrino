@@ -366,6 +366,13 @@ LIVE_CHANNEL_SPECS: tuple[LiveChannelSpec, ...] = (
         product_names=("e-", "anti-nu_e", "nu_mu"),
         channel_description="mu- -> e- anti-nu_e nu_mu",
     ),
+    LiveChannelSpec(
+        case_id="charged_pion_to_muon_neutrino",
+        title="Charged pion to muon neutrino",
+        reactant_name="pi+",
+        product_names=("mu+", "nu_mu"),
+        channel_description="pi+ -> mu+ nu_mu",
+    ),
 )
 
 LIVE_CHANNEL_SPEC_BY_ID = {spec.case_id: spec for spec in LIVE_CHANNEL_SPECS}

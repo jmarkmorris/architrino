@@ -37,6 +37,7 @@ It does not own:
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
 - Exportable live-read candidate requests now also exist for the neutron and muon cases when a local `pdg` installation is present.
+- The live `charged_pion_to_muon_neutrino` read path is now supported as a proposal-only case; it must not emit `solver-request/v1` until pion receives an explicit solver-facing mapping.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -117,6 +118,12 @@ The current CLI surface is:
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
 The first local fixture corpus is:
+
+- `free_neutron_beta_decay`
+- `muon_decay`
+- `charged_pion_to_muon_neutrino`
+
+The first built-in live PDG cases are:
 
 - `free_neutron_beta_decay`
 - `muon_decay`

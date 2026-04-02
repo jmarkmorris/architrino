@@ -1150,31 +1150,33 @@ Example command, free neutron decay with an added `4h` reactant:
 
 Current compact notation:
 
-| Notation | Meaning | Notes |
-| --- | --- | --- |
-| `d1` or `d` | down quark | generation I may omit the `1` |
-| `d2` | strange quark | generation II down-family |
-| `d3` | bottom quark | generation III down-family |
-| `e1` or `e` | electron | generation I may omit the `1` |
-| `e2` | muon | generation II charged lepton |
-| `e3` | tau | generation III charged lepton |
-| `h` | Noether core | base core symbol |
-| `h2` | Bi Binary | reduced `Noether core` form |
-| `h3` | Uni Binary | reduced `Noether core` form |
-| `2h` | photon | two-core photon shorthand |
-| `4h` | Higgs cluster | four-core Higgs-cluster shorthand |
-| `e:p@` | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present |
-| `N` | neutron | aligns with existing `Pro Neutron` support |
-| `P` | proton | aligns with existing `Pro Proton` support |
-| `u1` or `u` | up quark | generation I may omit the `1` |
-| `u2` | charm quark | generation II up-family |
-| `u3` | top quark | generation III up-family |
-| `v1` or `v` | neutrino | generation I may omit the `1` |
-| `v2` | muon neutrino | generation II neutrino |
-| `v3` | tau neutrino | generation III neutrino |
-| `W+` | `W+` boson | two-character token |
-| `W-` | `W-` boson | two-character token |
-| `Z` | `Z` boson | direct match |
+| Notation    | Meaning                   | Notes                                                              | PDG API Notation |
+| ----------- | ------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `d1` or `d` | down quark                | generation I may omit the `1`                                      | `d`              |
+| `d2`        | strange quark             | generation II down-family                                          | `s`              |
+| `d3`        | bottom quark              | generation III down-family                                         | `b`              |
+| `e1` or `e` | electron                  | generation I may omit the `1`                                      | `e-`             |
+| `e2`        | muon                      | generation II charged lepton                                       | `mu-`            |
+| `e3`        | tau                       | generation III charged lepton                                      | `tau-`           |
+| `h`         | Noether core              | base core symbol                                                   | `n/a`            |
+| `h2`        | Bi Binary                 | reduced `Noether core` form                                        | `n/a`            |
+| `h3`        | Uni Binary                | reduced `Noether core` form                                        | `n/a`            |
+| `2h`        | photon                    | two-core photon shorthand                                          | `gamma`          |
+| `4h`        | Higgs cluster             | four-core Higgs-cluster shorthand                                  | `n/a`            |
+| `e:p@`      | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
+| `N`         | neutron                   | aligns with existing `Pro Neutron` support                         | `n`              |
+| `P`         | proton                    | aligns with existing `Pro Proton` support                          | `p`              |
+| `u1` or `u` | up quark                  | generation I may omit the `1`                                      | `u`              |
+| `u2`        | charm quark               | generation II up-family                                            | `c`              |
+| `u3`        | top quark                 | generation III up-family                                           | `t`              |
+| `v1` or `v` | neutrino                  | generation I may omit the `1`                                      | `nu_e`           |
+| `v2`        | muon neutrino             | generation II neutrino                                             | `nu_mu`          |
+| `v3`        | tau neutrino              | generation III neutrino                                            | `nu_tau`         |
+| `W+`        | `W+` boson                | two-character token                                                | `W+`             |
+| `W-`        | `W-` boson                | two-character token                                                | `W-`             |
+| `Z`         | `Z` boson                 | direct match                                                       | `Z`              |
+
+The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
 
 Generation numbers should be interpreted as family indices for fermions:
 
@@ -1567,9 +1569,23 @@ Review focus:
 
 ### 2. Solver Rearchitecture
 
+Status: `in_progress`
+
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
+
+This pass added:
+
+- a dedicated Reaction-side request exporter in [`ReactionSolverRequestExportRuntime.js`](../../src/apps/reaction/ReactionSolverRequestExportRuntime.js) that builds `solver-request/v1` documents from authored solver canvas state;
+- canonical participant and mapping ledger serialization through structure classification rather than UI-only display inventory;
+- authored-operator and authored-mapping export for existing manual canvas work, including placement hints and manual dissociation state; and
+- explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts.
+
+Next focus:
+
+- wire the Reaction app onto the request/result exporter-adapter seam so headless solver invocation no longer depends on planner-local state shape;
+- and start the first external solver entrypoint against the frozen request/result contracts rather than extending the browser planner further.
 
 Deferred idea:
 

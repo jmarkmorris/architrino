@@ -1,4 +1,9 @@
+from pathlib import Path
+import sys
 import unittest
+from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pdgfeed
 
@@ -97,6 +102,34 @@ class FindLiveDecayTests(unittest.TestCase):
         decay, _, _ = pdgfeed.find_live_decay(api, spec)
 
         self.assertEqual(decay.description, "mu- -> e- anti-nu_e nu_mu")
+
+    def test_live_charged_pion_case_stays_proposal_only_under_locked_v1_mapping(self):
+        api = FakeApi(
+            [
+                FakeDecay(
+                    "pi+ -> mu+ nu_mu",
+                    [
+                        FakeDecayProduct("mu+"),
+                        FakeDecayProduct("nu_mu"),
+                    ],
+                    mode_number=1,
+                )
+            ]
+        )
+        api.edition = "2025"
+        api.info = lambda key: "PDG Python API live read"
+        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["charged_pion_to_muon_neutrino"]
+
+        with patch.object(pdgfeed, "connect_pdg", return_value=api):
+            live_case = pdgfeed.load_live_case(spec)
+
+        proposal = pdgfeed.build_proposal(live_case)
+
+        self.assertEqual(live_case.source_kind, "pdg-live")
+        self.assertEqual(live_case.case_id, "charged_pion_to_muon_neutrino")
+        self.assertEqual(proposal.exportable, False)
+        self.assertIn("unsupported:reactant:pi+:no-v1-solver-template", proposal.notes)
+        self.assertIsNone(pdgfeed.build_solver_request(proposal))
 
 
 if __name__ == "__main__":

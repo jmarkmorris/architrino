@@ -155,11 +155,14 @@ test("live PDG artifacts preserve the same normalized participant template surfa
 test("live PDG proposals preserve live provenance while normalizing PDG aliases into the locked v1 particle vocabulary", () => {
   const neutronProposal = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.proposal.v1.json");
   const muonProposal = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.proposal.v1.json");
+  const pionProposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
 
   assert.equal(neutronProposal.source.sourceMode, "pdg.connect");
   assert.equal(muonProposal.source.sourceMode, "pdg.connect");
+  assert.equal(pionProposal.source.sourceMode, "pdg.connect");
   assert.equal(neutronProposal.source.pdgIdentifier, "S017.1/2025");
   assert.equal(muonProposal.source.pdgIdentifier, "S004.1/2025");
+  assert.equal(pionProposal.source.pdgIdentifier, "S008.1/2025");
   assert.equal(neutronProposal.products[2].pdgId, "nubar_e");
   assert.equal(neutronProposal.products[2].pdgName, "anti-nu_e");
   assert.equal(muonProposal.products[1].pdgId, "nubar_e");
@@ -177,6 +180,27 @@ test("unsupported PDG fixture remains proposal-only with no solver-request artif
   assert.equal(
     fs.existsSync(
       new URL("../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json", import.meta.url)
+    ),
+    false
+  );
+});
+
+test("unsupported live PDG channel remains proposal-only with no solver-request artifact", () => {
+  const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
+
+  assert.equal(proposal.exportable, false);
+  assert.equal(proposal.source.sourceMode, "pdg.connect");
+  assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
+  assert.ok(
+    proposal.notes.includes("unsupported:reactant:pi+:no-v1-solver-template"),
+    "charged pion live proposal should record the explicit unsupported v1 mapping reason"
+  );
+  assert.equal(
+    fs.existsSync(
+      new URL(
+        "../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json",
+        import.meta.url
+      )
     ),
     false
   );
