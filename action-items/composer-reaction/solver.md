@@ -1335,7 +1335,17 @@ Operational lexer guidance:
 
 The rebuilt solver should return explicit structured output rather than mutating app state directly.
 
-This section owns the solver-to-Reaction result shape. [reaction](./reaction.md) should reference this section rather than restating the payload.
+This section owns the solver input/output boundary. The canonical machine-readable contracts now live in:
+
+- [`solver-request/v1`](../../src/contracts/solver-request/v1/schema.json)
+- [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json)
+
+Reference fixtures for the frozen v1 boundary now live in:
+
+- [`carry_through_neutron.v1.json`](../../content/contracts/examples/solver-request/carry_through_neutron.v1.json)
+- [`carry_through_neutron_result.v1.json`](../../content/contracts/examples/solver-result/carry_through_neutron_result.v1.json)
+
+[reaction](./reaction.md) should reference this section rather than restating the payload.
 
 That output should be rich enough to carry:
 
@@ -1347,15 +1357,48 @@ That output should be rich enough to carry:
 
 The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
 
-### Result Format
+### Request Format
 
-The solver result submitted to the Reaction app should be one structured solve-result document, not a stream of ad hoc UI mutations.
+The solver input submitted to the headless core should be one normalized `solver-request/v1` document, not a browser-state dump and not a CLI-specific ad hoc shorthand.
 
 The intended top-level shape is:
 
-- `request`: solver-normalized description of the authored reaction inputs that were solved;
+- `schema`: fixed version tag `solver-request/v1`;
+- `requestId`: stable request identity for fixtures, diagnostics, and result correlation;
+- `origin`: optional source metadata such as `reaction`, `cli`, `pdg-ingest`, or fixture provenance;
+- `participants`: all authored non-operator participants, with explicit `side` values `reactant`, `product`, or `center`;
+- `manualOperators`: authored `Associate` or `Dissociate` operators that already exist in the request;
+- `manualMappings`: authored mappings that must remain visible to the solver rather than being rediscovered from UI state;
+- `dissociation`: authored dissociated-composite state that is already open and must be preserved;
+- and `policy`: explicit recruitment, late-boson-collapse, weak-channel, and carry-through gates.
+
+Required participant rules:
+
+- every participant must carry a stable `id`, `templateId`, `label`, canonical `inventory`, `rootNodeId`, and explicit flat `nodes`;
+- the request must carry solver-visible structure explicitly rather than asking the solver to infer node identities from rendered DOM or menu state;
+- center-lane inputs belong in `participants` with `side: "center"` and optional `centerUsage: "optional" | "required"` to encode the `--i` / `--I` distinction;
+- participant and node inventory must already be normalized into explicit conservative ledger fields;
+- and the request must remain Reaction-independent enough that future CLI or PDG seeds can produce the same shape without importing browser runtime code.
+
+Required request boundary rules:
+
+- manual operators, manual mappings, and manual dissociation state must remain explicit top-level request data rather than hidden projection assumptions;
+- the compact CLI grammar should normalize into this contract rather than becoming a second canonical input shape;
+- the request may include source metadata, but solve semantics must not depend on browser-only identifiers, DOM order, or render geometry;
+- and unsupported theory families must be expressed through `policy` gates rather than through silent omission or convenience guessing.
+
+### Result Format
+
+The solver result submitted to the Reaction app should be one structured `solver-result/v1` document, not a stream of ad hoc UI mutations.
+
+The intended top-level shape is:
+
+- `schema`: fixed version tag `solver-result/v1`;
+- `resultId`: stable result identity for fixtures and review;
+- `request`: back-reference to the solved `solver-request/v1` request id;
 - `summary`: overall solve outcome, including whether the solve is exact, partial, ambiguous, or unsupported;
 - `participants`: the participant records the projection adapter needs to preserve source ids, target ids, roles, and any solver-created intermediate or operator-side entries;
+- `steps`: the ordered audit trail of selected carry-through, direct-map, `Dissociate`, `Associate`, recruitment, or late-collapse steps;
 - `mappings`: selected source-to-target provenance claims, with enough endpoint identity to recreate live Reaction mappings;
 - `operators`: solve-created operator insertions and their intended produced outputs;
 - `dissociation`: explicit or implicit dissociation decisions selected by the solve, including auto-dissociated composite sources;
@@ -1366,6 +1409,7 @@ The intended top-level shape is:
 Required contract rules:
 
 - the result must be self-sufficient enough for the Reaction projection adapter to materialize the solve without rereading planner-internal state;
+- result participants and steps must preserve authored versus solve-generated provenance explicitly rather than relying on naming convention alone;
 - mappings, operators, dissociation, and residue must use stable participant or node identities rather than DOM-derived positions;
 - placement data may be advisory, but semantic solve claims must not depend on render-order inference;
 - manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
@@ -1437,7 +1481,7 @@ Likely durable boundaries in the rearchitected system are:
 
 ### 1. Define Versioned Solver Request And Result Schemas
 
-Status: `active`
+Status: `review`
 
 Goal:
 
@@ -1447,11 +1491,18 @@ Why it matters:
 
 - the Python core needs a stable boundary for authored inputs and projected solve output, or the Python/JS seam will drift immediately.
 
-Next steps:
+This pass froze:
 
-- define `solver-request/v1` around participants, mappings, manual operators, dissociation state, and center assemblies;
-- promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
-- and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
+- `solver-request/v1` in [`src/contracts/solver-request/v1/schema.json`](../../src/contracts/solver-request/v1/schema.json);
+- `solver-result/v1` in [`src/contracts/solver-result/v1/schema.json`](../../src/contracts/solver-result/v1/schema.json);
+- matching request/result fixtures under `content/contracts/examples/solver-request/` and `content/contracts/examples/solver-result/`;
+- and schema-validation coverage in [`tests/composer-reaction-contracts.test.js`](../../tests/composer-reaction-contracts.test.js).
+
+Review focus:
+
+- confirm the external field set is the right frozen seam for `solver.py`;
+- confirm that center-lane `--i` / `--I` intent belongs in `participants[].centerUsage`;
+- and confirm that `solver-result/v1` is the correct upstream contract to feed the Reaction projection adapter without collapsing into `reaction-flow/v1`.
 
 ### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
 
