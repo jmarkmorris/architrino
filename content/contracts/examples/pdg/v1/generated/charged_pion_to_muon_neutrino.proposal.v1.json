@@ -76,7 +76,7 @@
   },
   "notes": [
     "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
-    "unsupported:reactant:pi+"
+    "unsupported:reactant:pi+:no-v1-solver-template"
   ],
   "exportable": false
 }

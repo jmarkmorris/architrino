@@ -1554,15 +1554,16 @@ This pass added:
 
 - a dedicated JS result exporter in [`ReactionSolverResultExportRuntime.js`](../../src/apps/reaction/ReactionSolverResultExportRuntime.js) that turns solve-state plus selected plan data into a `solver-result/v1` document;
 - emitted `collapse-boson` steps plus solve-generated boson participant records for recognized center-lane `W-`, `W+`, and `Z` forms while preserving the primitive mappings and operator paths needed by current Reaction projection;
+- kept those exported `collapse-boson` steps layered on top of the primitive `Associate` path rather than replacing it, so Reaction review still sees the primitive closure that projection currently depends on;
+- rewrote recognized `W-` / `W+` use of aggregate `Free Architrinos` ledgers into decremented solve-generated remainder participants when a recognized collapse consumes only part of the bucket;
+- gated emitted recognition at the exporter seam so only exact all-center closures surface as recognized boson steps in the final `solver-result/v1` document; and
 - support for multiple disjoint recognized bosons in one exact closure at the result-export layer; and
 - regression coverage in [`reaction-solver-result-export.test.js`](../../tests/reaction-solver-result-export.test.js) for both single and multiple recognition cases, with schema validation against [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json).
 
 Review focus:
 
-- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
-- decide whether exported collapse steps should eventually replace primitive associate steps in the final selected result or continue to layer on top of them;
 - confirm the current result-export seam is the right place for recognized boson emission before Python parity work starts;
-- and keep unresolved or non-center closures unrecognized even in exported results.
+- and verify the new aggregate-ledger remainder emission is the right representation for future headless/Python parity inputs before removing this queue item.
 
 ### 2. Solver Rearchitecture
 

@@ -1,0 +1,134 @@
+{
+  "schema": "pdg-proposal/v1",
+  "proposalId": "muon_decay.live-pdg",
+  "title": "Muon decay",
+  "source": {
+    "edition": "2025",
+    "channelDescription": "mu- -> e- nubar_e nu_mu",
+    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+    "branchingDisplay": "~100",
+    "sourceMode": "pdg.connect",
+    "lookupParticleName": "mu-",
+    "pdgIdentifier": "S004.1/2025",
+    "liveCaseId": "muon_decay"
+  },
+  "reactants": [
+    {
+      "id": "reactant_pro_muon_1",
+      "side": "reactant",
+      "templateId": "electron",
+      "label": "Pro Muon",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "charged-lepton",
+          "pdg-id:mu-",
+          "pdg-name:mu-"
+        ]
+      },
+      "pdgName": "mu-",
+      "pdgId": "mu-",
+      "tags": [
+        "pdg:species:muon",
+        "pdg:generation:2",
+        "pdg-id:mu-"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "product_pro_electron_1",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Pro Electron",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "charged-lepton",
+          "pdg-id:e-",
+          "pdg-name:e-"
+        ]
+      },
+      "pdgName": "e-",
+      "pdgId": "e-",
+      "tags": [
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-"
+      ]
+    },
+    {
+      "id": "product_anti_electron_neutrino_2",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Anti Electron Neutrino",
+      "family": "lepton",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "neutrino",
+          "pdg-id:nubar_e",
+          "pdg-name:anti-nu_e"
+        ]
+      },
+      "pdgName": "anti-nu_e",
+      "pdgId": "nubar_e",
+      "tags": [
+        "pdg:species:anti-electron-neutrino",
+        "pdg:generation:1",
+        "pdg-id:nubar_e"
+      ]
+    },
+    {
+      "id": "product_pro_muon_neutrino_3",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Pro Muon Neutrino",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "neutrino",
+          "pdg-id:nu_mu",
+          "pdg-name:nu_mu"
+        ]
+      },
+      "pdgName": "nu_mu",
+      "pdgId": "nu_mu",
+      "tags": [
+        "pdg:species:muon-neutrino",
+        "pdg:generation:2",
+        "pdg-id:nu_mu"
+      ]
+    }
+  ],
+  "centers": [],
+  "ranking": {
+    "rank": 1,
+    "score": 100,
+    "reasons": [
+      "pdg-live-source",
+      "all-participants-supported"
+    ]
+  },
+  "notes": [],
+  "exportable": true
+}

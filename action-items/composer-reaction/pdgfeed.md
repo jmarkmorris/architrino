@@ -33,14 +33,17 @@ It does not own:
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
-- The current implementation uses a small local particle alias table rather than live PDG object traversal during normal development.
+- The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
+- Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
-- Live PDG package access is still represented as a helper path rather than the primary day-to-day development path.
+- Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
+- Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has a solver seam that PDG should feed.
 - There is not yet a finalized accepted-reaction payload path from PDG through Reaction into Composer handoff.
+- The current local fixture corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
 
@@ -107,6 +110,10 @@ The current CLI surface is:
 - `python3 pdgfeed.py list-fixtures`
 - `python3 pdgfeed.py emit-fixture <fixture-id>`
 - `python3 pdgfeed.py emit-all-fixtures`
+- `python3 pdgfeed.py list-live-cases`
+- `python3 pdgfeed.py emit-live-case <case-id>`
+- `python3 pdgfeed.py emit-all-live-cases`
+- optional `--database-url <sqlalchemy-url>` for the live commands
 
 The first local fixture corpus is:
 
@@ -114,14 +121,31 @@ The first local fixture corpus is:
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
 
-The current supported v1 particle mapping covers:
+The locked canonical v1 PDG-to-solver mapping table is:
 
-- neutron and proton;
-- charged leptons through the shared `electron` solver template with generation flags;
-- neutrinos through the shared `neutrino` solver template with generation flags;
-- and photon.
+| Canonical PDG ASCII name | Export status | Solver templateId | Normalized label | Notes |
+| --- | --- | --- | --- | --- |
+| `n` | exportable | `neutron` | `Neutron` | baryon |
+| `p` | exportable | `proton` | `Proton` | baryon |
+| `e-` | exportable | `electron` | `Pro Electron` | charged lepton, generation 1 |
+| `e+` | exportable | `electron` | `Anti Electron` | charged lepton, generation 1 |
+| `mu-` | exportable | `electron` | `Pro Muon` | charged lepton, generation 2 |
+| `mu+` | exportable | `electron` | `Anti Muon` | charged lepton, generation 2 |
+| `nu_e` | exportable | `neutrino` | `Pro Electron Neutrino` | neutrino, generation 1 |
+| `anti-nu_e` | exportable | `neutrino` | `Anti Electron Neutrino` | neutrino, generation 1 |
+| `nu_mu` | exportable | `neutrino` | `Pro Muon Neutrino` | neutrino, generation 2 |
+| `anti-nu_mu` | exportable | `neutrino` | `Anti Muon Neutrino` | neutrino, generation 2 |
+| `gamma` | exportable | `photon` | `Photon` | boson |
+| `pi+` | proposal-only | none | `Pi Plus` | explicitly blocked until a solver-facing pion mapping exists |
+| `pi-` | proposal-only | none | `Pi Minus` | explicitly blocked until a solver-facing pion mapping exists |
 
-Anything outside that first mapping table currently stays in proposal metadata and notes until a solver-facing mapping rule exists.
+The v1 unsupported-particle policy is:
+
+- only canonical PDG names in the exportable rows above may be emitted into `solver-request/v1`;
+- local aliases may canonicalize into those names, but aliases do not define new solver mappings;
+- a particle explicitly marked proposal-only, such as `pi+` or `pi-`, must remain in proposal metadata and notes only;
+- any particle absent from the table is also proposal-only by default;
+- and any decay product that arrives as a generic/textual PDG item, requires multiplicity expansion, or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
 
 The first solver-facing target should be one `solver-request/v1` document per candidate, with:
 
@@ -207,6 +231,12 @@ Each normalized participant record should contain at minimum:
 - and PDG-side identity fields needed for provenance and traceability.
 
 Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `solver-request/v1` payloads without a resolved solver-facing `templateId`.
+
+For consistency with the current local corpus:
+
+- fixture participant `pdgId` fields presently carry canonical PDG ASCII particle names;
+- live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
+- and changing the participant-side identity field shape is out of scope for the present v1 lock.
 
 The first exported `solver-request/v1` candidate should follow these rules:
 
@@ -297,7 +327,7 @@ Possible future automation:
 
 ### 1. Lock The V1 Mapping Table And Unsupported-Particle Policy
 
-Status: `next`
+Status: `completed`
 
 - decide the canonical v1 PDG-to-solver mapping table that `pdgfeed.py` is allowed to export;
 - keep unsupported particles proposal-only until a solver-facing mapping exists;
@@ -305,7 +335,7 @@ Status: `next`
 
 ### 2. Verify Against The Solver Boundary
 
-Status: `pending`
+Status: `completed`
 
 - validate emitted candidate payloads against `solver-request/v1`;
 - compare candidate shape against real solver needs before widening scope;
@@ -313,11 +343,11 @@ Status: `pending`
 
 ### 3. Add Live PDG Package Reads Alongside Fixtures
 
-Status: `pending`
+Status: `next`
 
 - add real `pdg.connect(...)` reads for the first supported channel lookups;
 - keep the local fixture corpus as the stable development and regression path;
-- and ensure live reads normalize into the same proposal and export shapes as fixtures.
+- and ensure live reads normalize into the same proposal and export shapes as fixtures once a local `pdg` install is available for runtime verification.
 
 ### 4. Add Proposal Review And Alternatives
 
