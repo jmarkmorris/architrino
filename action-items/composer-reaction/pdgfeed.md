@@ -36,6 +36,7 @@ It does not own:
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
+- Exportable live-read candidate requests now also exist for the neutron and muon cases when a local `pdg` installation is present.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -343,11 +344,11 @@ Status: `completed`
 
 ### 3. Add Live PDG Package Reads Alongside Fixtures
 
-Status: `next`
+Status: `completed`
 
 - add real `pdg.connect(...)` reads for the first supported channel lookups;
 - keep the local fixture corpus as the stable development and regression path;
-- and ensure live reads normalize into the same proposal and export shapes as fixtures once a local `pdg` install is available for runtime verification.
+- and ensure live reads normalize into the same proposal and export shapes as fixtures while preserving live PDG provenance fields.
 
 ### 4. Add Proposal Review And Alternatives
 
