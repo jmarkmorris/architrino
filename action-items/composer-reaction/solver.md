@@ -1559,33 +1559,9 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+### 2. Extend Primitive Charge Routing
 
 Status: `review`
-
-Goal:
-
-- keep `solver.py` from silently guessing on theory-owned weak-channel provenance questions.
-
-Why it matters:
-
-- even with the v1 `W^\pm` boson-core convention fixed, broader weak-channel expansion can still drift into unsupported theory if the solver starts guessing beyond the accepted rule families.
-
-This pass locked in:
-
-- explicit solve coverage for the accepted direct center-lane families `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon` in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js);
-- adjacent disallow coverage showing that neighboring weak-channel cases such as `W- -> anti-electron` and `W+ -> electron` are not allowed in v1 rather than being guessed from generic inventory matching;
-- and a narrower review boundary: the current JS solver may keep these committed direct weak-boson families, but anything beyond them should remain unsupported until theory-owned provenance rules are promoted explicitly.
-
-Review focus:
-
-- confirm the accepted v1 direct center-lane family set is exactly `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon` for now;
-- confirm neighboring weak-channel cases such as `W- -> anti-electron` and `W+ -> electron` should stay explicitly not allowed rather than merely unresolved;
-- and confirm broader weak-channel expansion remains blocked on theory-owned rules rather than on more generic ledger matching.
-
-### 3. Extend Primitive Charge Routing
-
-Status: `pending`
 
 Goal:
 
@@ -1595,17 +1571,23 @@ Why it matters:
 
 - this is the main missing capability before boson recognition or broader PDG-facing work becomes well-founded.
 
-Next steps:
+This pass locked in:
 
-- add focused candidate families with targeted tests;
-- represent selected composite dissociation more explicitly at the plan level;
-- and keep manual dissociated-composite behavior stable while the planner grows.
+- explicit primitive `Associate` coverage for standalone `neutrino`, `electron`, `down quark`, and `up quark` assembly from center-lane `Noether core` plus `Free Architrinos` selections in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js);
+- a first concrete primitive-routing slice without widening weak-channel behavior or changing the solver result boundary;
+- and a clearer next seam: the existing planner can already close these standalone primitive families once the source pool exposes the right primitive entries, so the remaining growth pressure is on dissociation/source-pool handling rather than on new assembly math for these products.
+
+Review focus:
+
+- confirm this first primitive-routing slice should include at least standalone `neutrino`, `electron`, `down quark`, and `up quark` assembly from `Noether core` plus selected `Free Architrinos`;
+- confirm the next extension pressure is explicit primitive source exposure from dissociation, not a new operator vocabulary;
+- and confirm we should keep primitive-routing growth separate from later boson recognition.
 
 Dependency note:
 
 - do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
 
-### 4. Improve Residue And Dissociation Reporting
+### 3. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1627,7 +1609,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 5. Add Exact Boson Recognition On Top Of Primitive Solves
+### 4. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1645,7 +1627,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 6. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 5. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1663,13 +1645,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 7. Solver Rearchitecture
+### 6. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 8. Delete The Old Browser Solver After Flash Cut-Over
+### 7. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 

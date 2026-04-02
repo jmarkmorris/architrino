@@ -544,6 +544,198 @@ test("solve plan can use associate to build a standalone neutrino from Noether c
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
+test("solve plan can use associate to build a standalone electron from Noether core and Free Architrinos", () => {
+  const centerNoetherCore = {
+    ...createParticipant({
+      id: "center_noether_core_electron",
+      side: "reactant",
+      templateId: "noether_core",
+      polarity: "pro",
+      label: "Pro Noether Core",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  const centerFreeArchitrinos = {
+    ...createParticipant({
+      id: "center_free_architrinos_electron",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  setParticipantBinarySelectionsBySlotCode(centerFreeArchitrinos, {
+    I: "ee",
+    M: "ee",
+    O: "ee",
+  });
+  const productElectron = createParticipant({
+    id: "product_electron",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([
+      centerNoetherCore,
+      centerFreeArchitrinos,
+      productElectron,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedAssociateCandidates[0]?.type, "associate-standalone");
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+    ]),
+    [
+      ["reactant", "operator-input", null],
+      ["reactant", "operator-input", null],
+      ["operator-output", "product", "electron"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan can use associate to build a standalone down quark from Noether core and Free Architrinos", () => {
+  const centerNoetherCore = {
+    ...createParticipant({
+      id: "center_noether_core_down",
+      side: "reactant",
+      templateId: "noether_core",
+      polarity: "pro",
+      label: "Pro Noether Core",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  const centerFreeArchitrinos = {
+    ...createParticipant({
+      id: "center_free_architrinos_down",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  setParticipantBinarySelectionsBySlotCode(centerFreeArchitrinos, {
+    I: "pe",
+    M: "ee",
+    O: "pe",
+  });
+  const productDownQuark = createParticipant({
+    id: "product_down_quark",
+    side: "product",
+    templateId: "down_quark",
+    polarity: "pro",
+    label: "Down Quark",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([
+      centerNoetherCore,
+      centerFreeArchitrinos,
+      productDownQuark,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedAssociateCandidates[0]?.type, "associate-standalone");
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+    ]),
+    [
+      ["reactant", "operator-input", null],
+      ["reactant", "operator-input", null],
+      ["operator-output", "product", "down_quark"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
+test("solve plan can use associate to build a standalone up quark from Noether core and Free Architrinos", () => {
+  const centerNoetherCore = {
+    ...createParticipant({
+      id: "center_noether_core_up",
+      side: "reactant",
+      templateId: "noether_core",
+      polarity: "pro",
+      label: "Pro Noether Core",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  const centerFreeArchitrinos = {
+    ...createParticipant({
+      id: "center_free_architrinos_up",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    surfaceColumn: "center-assembly",
+  };
+  setParticipantBinarySelectionsBySlotCode(centerFreeArchitrinos, {
+    I: "pp",
+    M: "pe",
+    O: "pp",
+  });
+  const productUpQuark = createParticipant({
+    id: "product_up_quark",
+    side: "product",
+    templateId: "up_quark",
+    polarity: "pro",
+    label: "Up Quark",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([
+      centerNoetherCore,
+      centerFreeArchitrinos,
+      productUpQuark,
+    ]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.directProductCount, 0);
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.selectedAssociateCandidates.length, 1);
+  assert.equal(plan.selectedAssociateCandidates[0]?.type, "associate-standalone");
+  assert.equal(plan.participantAdditions.length, 1);
+  assert.deepEqual(
+    plan.selectedMappings.map((mapping) => [
+      mapping.sourceEndpoint?.role ?? null,
+      mapping.targetEndpoint?.role ?? null,
+      mapping.targetParticipant?.templateId ?? null,
+    ]),
+    [
+      ["reactant", "operator-input", null],
+      ["reactant", "operator-input", null],
+      ["operator-output", "product", "up_quark"],
+    ]
+  );
+  assert.equal(plan.unresolvedReactants.length, 0);
+  assert.equal(plan.unresolvedProducts.length, 0);
+});
+
 test("solve plan still prefers direct standalone reuse over associative primitive reconstruction", () => {
   const reactantNeutrino = createParticipant({
     id: "reactant_neutrino",
