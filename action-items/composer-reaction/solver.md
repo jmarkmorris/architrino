@@ -285,6 +285,31 @@ That state must distinguish:
 
 No solve rule may depend on DOM shape, render order, menu state, or browser-local incidental structure.
 
+Authored center-lane material is part of this canonical state, but only for supported center-assembly families. In particular:
+
+- authored middle-lane inputs constrain the solve just like authored reactants and products do;
+- the center lane should admit supported authored `W+`, `W-`, `Z`, `Free Architrinos`, and supported `Noether core` forms;
+- the center lane should not be a generic slot for arbitrary composites;
+- and `Higgs Cluster` should not be treated as a default center-lane family in v1, because it belongs either on the reactant side when explicitly authored or in the separate spacetime-recruitment rule family when solver-added.
+
+The command-line and normalized-request model should distinguish two strengths of authored center-lane input:
+
+- `--i` means authored middle-lane material that the solver may use or skip if a better closure exists without it;
+- `--I` means stronger authored middle-lane material that the solver should use if any closure exists that accounts for it.
+
+For supported `--i` material:
+
+- the solver should consider branches that use it;
+- but it may skip that material if a stronger closure exists without consuming or carrying it through;
+- and skipped `--i` material should remain visible in diagnostics so the user can see that it was not part of the chosen closure.
+
+For supported `--I` material:
+
+- the solver should first prefer branches that consume or carry through that material in a supported way;
+- if at least one full closure exists that accounts for the authored `--I` material, the chosen solution should come from that class of branches;
+- if no full closure exists that accounts for the authored `--I` material but an alternate full closure exists without it, the solver may return that alternate closure and report that the `--I` constraint could not be satisfied;
+- and if no alternate full closure exists, the solver should show the best partial progress it can make while still keeping the authored `--I` intermediaries explicit in the reported branch.
+
 #### Rule 2: Carry Through Exact Repeated Participants First
 
 If an authored reactant and authored product have the same direct participant identity and the same conservative inventory, the solver must try to treat them as benign carry-through before exploring deeper operator logic.
@@ -335,6 +360,13 @@ For v1, that means direct mapping requires:
 - the same resolved conservative inventory for the mapped unit;
 - and the same resolved internal conservative configuration for any internal degrees of freedom that the solver models explicitly and treats as physically meaningful.
 
+This strict internal-configuration rule applies only to solver-visible, physically meaningful internal structure. The solver must not block direct mapping merely because some deeper internal detail is unknown or not represented in the active model. If an internal distinction is not solver-visible in the request and not part of the current conservative rule set, it is not yet a direct-mapping blocker. If the distinction is solver-visible and physically meaningful, then an exact match is required.
+
+This matters especially for quark color inside color-neutral bound composites such as proton and neutron states. In the modern QCD picture, constituent quarks inside a hadron exchange gluons and continually reshuffle individual color labels while the bound state remains overall color-neutral. The solver should therefore avoid treating per-quark color labels inside an intact color-singlet composite as fixed direct-identity markers unless the active model explicitly promotes those labels to stable solver-visible structure for that case. In practice:
+
+- a standalone or explicitly exposed constituent with a solver-visible color or polar configuration may require exact internal match for direct mapping;
+- but an intact authored proton or neutron should not fail direct whole-composite carry-through merely because one imagined internal quark color assignment differs from another equivalent color-neutral realization of the same bound state.
+
 Therefore, a same-name source and target do not automatically qualify for direct closure. For example, an `up quark` source with one resolved color or polar configuration must not map directly to an `up quark` target with a different resolved color or polar configuration. That would be an unmodeled internal change with no mechanism. In such a case, direct closure is forbidden and the solver must instead seek an explicit mechanism through supported dissociation, intermediate-material, and reassembly rules. If no supported mechanism exists, the branch remains unresolved rather than being waved through as direct continuity.
 
 Direct closure families include:
@@ -343,6 +375,8 @@ Direct closure families include:
 - root-to-root carry-through or direct mapping for a standalone frontier product;
 - center-assembly direct mapping where the source is already authored;
 - and fragment-to-root reuse where an already-available constituent exactly closes a standalone target.
+
+For intact composites, the default rule is conservative whole-composite carry-through. If an intact source composite and an intact target composite are the same authored composite kind, the solver should directly match them by default unless the active model sees a real physically meaningful mismatch in solver-visible structure, polarity, inventory, or other explicit conservative state. The solver should not open and rebuild such a composite merely because some hidden internal realization could differ.
 
 Direct closure exploration should obey the following order:
 
@@ -388,6 +422,12 @@ When `Dissociate` is selected:
 - the parent source must be marked as consumed, partially consumed, or opened according to the selected plan rather than remaining silently fully available;
 - any released `Free Architrinos`, `Noether core` forms, or other supported primitive units must be counted explicitly as available downstream material;
 - and dissociation must not automatically count as product closure by itself; it only changes the source pool.
+
+This matters for color-neutral bound composites such as proton and neutron states. An intact color-neutral composite may carry through as one bound state without requiring the solver to freeze an internal quark-color assignment. But once the solver explicitly dissociates that composite, the released constituents become explicit solver-visible entries and may be individually color-charged or otherwise internally non-neutral in the solver sense. After dissociation:
+
+- the branch must track the exposed constituent states explicitly rather than continuing to treat them as one hidden neutral bound object;
+- the released constituent set may still be neutral in aggregate even though the individual exposed entries are not;
+- and any later direct mapping or reassembly involving those exposed constituents must respect their now-visible internal configuration and closure requirements.
 
 #### Rule 6: Introduce `Associate` Only For Exact Gather-And-Assemble Closure
 
@@ -561,9 +601,32 @@ The external solver should support two input modes:
 The compact shorthand should stay intentionally short. The intended shape is:
 
 - `--r [Pe2u3dW+2h4h...]`
+- `--i [h.W-.1:1@...]`
+- `--I [h.W-.1:1@...]`
 - `--p [Pe2u3dW+2h4h...]`
 
-Those concise reactant and product strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
+Here:
+
+- `--r` supplies authored reactants;
+- `--i` supplies optional or preferred authored center-lane intermediates or center assemblies that may be skipped if a better closure exists without them;
+- `--I` supplies stronger authored center-lane intermediates or center assemblies that the solver should use if any closure exists that can account for them;
+- and `--p` supplies authored products.
+
+Those concise strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
+
+The authored middle lane should constrain the solve just like authored reactants and products do, but it should not admit arbitrary assembly kinds. For v1, both `--i` and `--I` should be limited to explicitly supported center-assembly families rather than "anything the user can name."
+
+Recommended initial `--i` / `--I` families:
+
+- authored `W+`, `W-`, and `Z`;
+- authored `Free Architrinos` ledgers;
+- and authored `Noether core` forms that the active model already supports as center assemblies.
+
+Recommended non-goal for v1:
+
+- do not let `--i` or `--I` become a generic slot for arbitrary composites or arbitrary recruited source material;
+- do not treat `Higgs Cluster` as a default middle-lane `--i` or `--I` family;
+- instead, treat authored `Higgs Cluster` as a reactant-side input via `--r` when the user really wants it authored, or as a solver-recruited spacetime source when the active recruitment policy permits it.
 
 The compact string should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The parser should ignore `.`, `,`, and `_` when they appear between valid tokens.
 
