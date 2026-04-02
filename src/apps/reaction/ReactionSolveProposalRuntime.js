@@ -1,4 +1,7 @@
-import { evaluateReactionMappingCandidate } from "./ReactionStructureMappingRuntime.js";
+import {
+  classifyReactionNode,
+  evaluateReactionMappingCandidate,
+} from "./ReactionStructureMappingRuntime.js";
 import {
   createAssociateCompositeCandidate,
   createAssociatePhotonCandidate,
@@ -13,6 +16,42 @@ function normalizeText(value = "") {
 
 function compareText(left = "", right = "") {
   return String(left ?? "").localeCompare(String(right ?? ""));
+}
+
+function createEmptyInventory() {
+  return {
+    proCore: 0,
+    antiCore: 0,
+    electrino: 0,
+    positrino: 0,
+  };
+}
+
+function normalizeInventory(inventory = null) {
+  const normalized = createEmptyInventory();
+  if (!inventory || typeof inventory !== "object") {
+    return normalized;
+  }
+  Object.keys(normalized).forEach((key) => {
+    normalized[key] = Math.max(0, Number(inventory?.[key] ?? 0));
+  });
+  return normalized;
+}
+
+function addInventories(left = null, right = null) {
+  const sum = createEmptyInventory();
+  const leftInventory = normalizeInventory(left);
+  const rightInventory = normalizeInventory(right);
+  Object.keys(sum).forEach((key) => {
+    sum[key] = leftInventory[key] + rightInventory[key];
+  });
+  return sum;
+}
+
+function inventoriesEqual(left = null, right = null) {
+  const leftInventory = normalizeInventory(left);
+  const rightInventory = normalizeInventory(right);
+  return Object.keys(leftInventory).every((key) => leftInventory[key] === rightInventory[key]);
 }
 
 function getParticipantIdentityScore(sourceParticipant = null, targetParticipant = null) {
@@ -737,6 +776,156 @@ function collectPlanAutoDissociationSummary(reactants = [], selectedMappings = [
     .filter(Boolean);
 }
 
+function resolveAssociateSourceInventory(entry = null, resolveBinaryChoiceInventory = null) {
+  const participant = entry?.participant ?? null;
+  const sourceNode = entry?.sourceNode ?? entry?.rootNode ?? null;
+  if (!participant || !sourceNode) {
+    return createEmptyInventory();
+  }
+  const sourceSpec = classifyReactionNode(participant, sourceNode, {
+    resolveBinaryChoiceInventory,
+  });
+  return normalizeInventory(sourceSpec?.inventory);
+}
+
+function isSourceEntryTemplate(entry = null, templateId = "") {
+  return normalizeText(
+    entry?.sourceNode?.templateId ?? entry?.rootNode?.templateId ?? entry?.participant?.templateId ?? ""
+  ) === normalizeText(templateId);
+}
+
+function getSourceEntryPolarity(entry = null) {
+  return normalizeText(
+    entry?.sourceNode?.polarity ?? entry?.rootNode?.polarity ?? entry?.participant?.polarity ?? ""
+  );
+}
+
+function buildExactCenterBosonRecognitions(
+  selectedAssociateCandidates = [],
+  centerAssemblies = [],
+  unresolvedReactants = [],
+  unresolvedProducts = [],
+  resolveBinaryChoiceInventory = null
+) {
+  if (unresolvedReactants.length || unresolvedProducts.length) {
+    return [];
+  }
+  const centerParticipantIds = new Set(
+    centerAssemblies.map((entry) => String(entry?.participant?.id ?? "")).filter(Boolean)
+  );
+  return selectedAssociateCandidates
+    .map((candidate) => {
+      const sourceEntries = Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [];
+      if (
+        sourceEntries.length !== 2 ||
+        sourceEntries.some(
+          (entry) => !centerParticipantIds.has(String(entry?.participant?.id ?? ""))
+        )
+      ) {
+        return null;
+      }
+      const targetParticipant = candidate?.targetParticipant ?? null;
+      const targetTemplateId = normalizeText(targetParticipant?.templateId);
+      const targetPolarity = normalizeText(targetParticipant?.polarity);
+      const orderedSourceRefs = sourceEntries
+        .map((entry) => ({
+          participantId: String(entry?.participant?.id ?? ""),
+          nodeId: String(entry?.sourceNode?.id ?? entry?.rootNode?.id ?? ""),
+        }))
+        .sort(
+          (left, right) =>
+            compareText(left?.participantId, right?.participantId) ||
+            compareText(left?.nodeId, right?.nodeId)
+        );
+      const sourceParticipantIds = orderedSourceRefs.map((entry) => entry.participantId);
+      const sourceNodeIds = orderedSourceRefs.map((entry) => entry.nodeId);
+      const coreEntry = sourceEntries.find((entry) => isSourceEntryTemplate(entry, "noether_core")) ?? null;
+      const freeEntry =
+        sourceEntries.find((entry) => isSourceEntryTemplate(entry, "free_architrinos")) ?? null;
+      const coreEntries = sourceEntries.filter((entry) => isSourceEntryTemplate(entry, "noether_core"));
+      if (
+        coreEntry &&
+        freeEntry &&
+        targetTemplateId === "electron" &&
+        targetPolarity === "pro" &&
+        getSourceEntryPolarity(coreEntry) === "pro" &&
+        inventoriesEqual(resolveAssociateSourceInventory(freeEntry, resolveBinaryChoiceInventory), {
+          electrino: 6,
+          positrino: 0,
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "w_minus_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: ["pro"],
+            freeArchitrinoLedger: {
+              electrino: 6,
+              positrino: 0,
+            },
+          },
+        };
+      }
+      if (
+        coreEntry &&
+        freeEntry &&
+        targetTemplateId === "electron" &&
+        targetPolarity === "anti" &&
+        getSourceEntryPolarity(coreEntry) === "anti" &&
+        inventoriesEqual(resolveAssociateSourceInventory(freeEntry, resolveBinaryChoiceInventory), {
+          electrino: 0,
+          positrino: 6,
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "w_plus_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: ["anti"],
+            freeArchitrinoLedger: {
+              electrino: 0,
+              positrino: 6,
+            },
+          },
+        };
+      }
+      if (
+        targetTemplateId === "photon" &&
+        coreEntries.length === 2 &&
+        new Set(coreEntries.map((entry) => getSourceEntryPolarity(entry))).size === 2 &&
+        coreEntries.every((entry) => {
+          const polarity = getSourceEntryPolarity(entry);
+          return polarity === "pro" || polarity === "anti";
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "z_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: coreEntries
+              .map((entry) => getSourceEntryPolarity(entry))
+              .sort((left, right) => compareText(left, right)),
+          },
+        };
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .sort((left, right) => compareText(left?.templateId, right?.templateId));
+}
+
 function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
   const participantId = String(entry?.participant?.id ?? "");
   if (!participantId) {
@@ -1091,6 +1280,13 @@ export function buildReactionSolvePlan(options = {}) {
     source: collectPlanResidueEntries(unresolvedReactants, selectedMappings, "source"),
     target: collectPlanResidueEntries(unresolvedProducts, selectedMappings, "target"),
   };
+  const recognizedCenterBosons = buildExactCenterBosonRecognitions(
+    selectedAssociateCandidates,
+    centerAssemblies,
+    unresolvedReactants,
+    unresolvedProducts,
+    resolveBinaryChoiceInventory
+  );
 
   return {
     mode: "direct-v1",
@@ -1107,6 +1303,8 @@ export function buildReactionSolvePlan(options = {}) {
       autoDissociatedParticipants,
     },
     residue,
+    recognizedCenterBosons,
+    recognizedCenterBosonCount: recognizedCenterBosons.length,
     directProductCount:
       selectedFragmentCandidates.length +
       selectedCandidates.filter(

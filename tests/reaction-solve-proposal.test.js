@@ -1221,3 +1221,197 @@ test("solve plan can route a center Z boson into a photon product", () => {
   assert.equal(plan.unresolvedReactants.length, 0);
   assert.equal(plan.unresolvedProducts.length, 0);
 });
+
+test("solve plan recognizes an exact center-lane W- boson over primitive electron closure", () => {
+  const centerCore = createParticipant({
+    id: "center_core_w_minus",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Noether core",
+  });
+  centerCore.surfaceColumn = "center-assembly";
+  const centerFreeArchitrinos = setParticipantBinarySelectionsBySlotCode(
+    createParticipant({
+      id: "center_free_architrinos_w_minus",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    {
+      I: "ee",
+      M: "ee",
+      O: "ee",
+    }
+  );
+  centerFreeArchitrinos.surfaceColumn = "center-assembly";
+  const productElectron = createParticipant({
+    id: "product_electron_w_minus",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([centerCore, centerFreeArchitrinos, productElectron]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.recognizedCenterBosonCount, 1);
+  assert.deepEqual(plan.recognizedCenterBosons, [
+    {
+      kind: "late-center-exact",
+      templateId: "w_minus_boson",
+      targetParticipantId: "product_electron_w_minus",
+      targetTemplateId: "electron",
+      sourceParticipantIds: ["center_core_w_minus", "center_free_architrinos_w_minus"],
+      sourceNodeIds: ["center_core_w_minus_structure", "center_free_architrinos_w_minus_structure"],
+      sourcePattern: {
+        corePolarities: ["pro"],
+        freeArchitrinoLedger: {
+          electrino: 6,
+          positrino: 0,
+        },
+      },
+    },
+  ]);
+});
+
+test("solve plan recognizes an exact center-lane W+ boson over primitive anti-electron closure", () => {
+  const centerCore = createParticipant({
+    id: "center_core_w_plus",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "anti",
+    label: "Noether core",
+  });
+  centerCore.surfaceColumn = "center-assembly";
+  const centerFreeArchitrinos = setParticipantBinarySelectionsBySlotCode(
+    createParticipant({
+      id: "center_free_architrinos_w_plus",
+      side: "reactant",
+      templateId: "free_architrinos",
+      label: "Free Architrinos",
+    }),
+    {
+      I: "pp",
+      M: "pp",
+      O: "pp",
+    }
+  );
+  centerFreeArchitrinos.surfaceColumn = "center-assembly";
+  const productAntiElectron = createParticipant({
+    id: "product_anti_electron_w_plus",
+    side: "product",
+    templateId: "electron",
+    polarity: "anti",
+    label: "Anti Electron",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([centerCore, centerFreeArchitrinos, productAntiElectron]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.recognizedCenterBosonCount, 1);
+  assert.deepEqual(plan.recognizedCenterBosons, [
+    {
+      kind: "late-center-exact",
+      templateId: "w_plus_boson",
+      targetParticipantId: "product_anti_electron_w_plus",
+      targetTemplateId: "electron",
+      sourceParticipantIds: ["center_core_w_plus", "center_free_architrinos_w_plus"],
+      sourceNodeIds: ["center_core_w_plus_structure", "center_free_architrinos_w_plus_structure"],
+      sourcePattern: {
+        corePolarities: ["anti"],
+        freeArchitrinoLedger: {
+          electrino: 0,
+          positrino: 6,
+        },
+      },
+    },
+  ]);
+});
+
+test("solve plan recognizes an exact center-lane Z boson over primitive photon closure", () => {
+  const centerProCore = createParticipant({
+    id: "center_pro_core_z",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Noether core",
+  });
+  centerProCore.surfaceColumn = "center-assembly";
+  const centerAntiCore = createParticipant({
+    id: "center_anti_core_z",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "anti",
+    label: "Noether core",
+  });
+  centerAntiCore.surfaceColumn = "center-assembly";
+  const productPhoton = createParticipant({
+    id: "product_photon_z",
+    side: "product",
+    templateId: "photon",
+    label: "Photon",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([centerProCore, centerAntiCore, productPhoton]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 1);
+  assert.equal(plan.recognizedCenterBosonCount, 1);
+  assert.deepEqual(plan.recognizedCenterBosons, [
+    {
+      kind: "late-center-exact",
+      templateId: "z_boson",
+      targetParticipantId: "product_photon_z",
+      targetTemplateId: "photon",
+      sourceParticipantIds: ["center_anti_core_z", "center_pro_core_z"],
+      sourceNodeIds: ["center_anti_core_z_structure", "center_pro_core_z_structure"],
+      sourcePattern: {
+        corePolarities: ["anti", "pro"],
+      },
+    },
+  ]);
+});
+
+test("solve plan does not recognize late bosons for non-center primitive closure", () => {
+  const reactantHiggs = createParticipant({
+    id: "reactant_higgs_unrecognized",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    label: "Higgs Cluster",
+  });
+  const productPhotonA = createParticipant({
+    id: "product_photon_a_unrecognized",
+    side: "product",
+    templateId: "photon",
+    label: "Photon A",
+  });
+  const productPhotonB = createParticipant({
+    id: "product_photon_b_unrecognized",
+    side: "product",
+    templateId: "photon",
+    label: "Photon B",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([reactantHiggs, productPhotonA, productPhotonB]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 2);
+  assert.equal(plan.recognizedCenterBosonCount, 0);
+  assert.deepEqual(plan.recognizedCenterBosons, []);
+});

@@ -137,7 +137,7 @@ The solver component itself is documented in [solver](./solver.md). The solver-t
 - participant templates and operator choices exposed by the Reaction app;
 - current authored mappings and dissociation state;
 - structured solver results in the format owned by [solver](./solver.md#result-format);
-- and future normalized seeds or proposals from [pdg-ingest](./pdg-ingest.md).
+- and future normalized seeds or proposals from [pdg](./pdg.md).
 
 ### Outputs
 
@@ -164,13 +164,32 @@ Reaction should not:
 ### Neighboring Components
 
 - [solver](./solver.md) owns the Reaction-side solve engine and algorithmic constraints.
-- [pdg-ingest](./pdg-ingest.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
+- [pdg](./pdg.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
 - [composer](./composer.md) is the downstream staging and explanation surface.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 
-### 1. Finish Manual Workflow Legibility
+### 1. Replace Free-Architrino Tile Group With One Aggregate Ledger Tile
+
+Status: `active`
+
+Goal:
+
+- stop implying that center-lane `Free Architrinos` are attached to specific `I` / `M` / `O` binaries and present them instead as one aggregate bucket tile with visible corner counts.
+
+Why it matters:
+
+- the current grouped binary-style depiction overcommits the app to a solver story we do not actually know, while the solving model only needs available free-architrino ledger content rather than fixed per-binary identity.
+
+Next steps:
+
+- replace the current grouped `Free Architrinos` center tile with a single tile presentation;
+- show the available electrino and positrino counts directly on that tile, such as corner-count treatment rather than binary-slot assignment;
+- keep the solver-facing meaning as an aggregate usable ledger rather than as three authored binary-coupled subunits;
+- and preserve clear balanced versus unbalanced state in the new tile grammar.
+
+### 2. Finish Manual Workflow Legibility
 
 Status: `next`
 
@@ -188,7 +207,7 @@ Next steps:
 - improve anchor-role legibility and path tracing;
 - and keep learning the app possible from the visible surface grammar.
 
-### 2. Unify Dissociate And Associate As One Grammar
+### 3. Unify Dissociate And Associate As One Grammar
 
 Status: `active`
 
@@ -206,7 +225,7 @@ Next steps:
 - keep conservation semantics centralized;
 - and remove leftover wording or behavior that makes the grammar feel fragmented.
 
-### 3. Add Explicit Accept And Downstream Export
+### 4. Add Explicit Accept And Downstream Export
 
 Status: `pending`
 
@@ -224,7 +243,7 @@ Next steps:
 - make accepted result ownership explicit inside Reaction;
 - and keep the downstream boundary data-first rather than runtime-coupled.
 
-### 4. Keep Conservation And Layout Rules Centralized
+### 5. Keep Conservation And Layout Rules Centralized
 
 Status: `pending`
 
@@ -242,7 +261,7 @@ Next steps:
 - keep lane geometry derived from the explicit layout model;
 - and keep mapping semantics out of incidental render behavior.
 
-### 5. Keep Reaction As The Primary Provenance Authoring Surface
+### 6. Keep Reaction As The Primary Provenance Authoring Surface
 
 Status: `pending`
 

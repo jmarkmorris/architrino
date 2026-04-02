@@ -965,6 +965,7 @@ Free-architrino-ledger interaction rule:
 
 - a late-stage `W+` collapse may consume six positrinos from a center-lane `Free Architrinos` ledger tile;
 - a late-stage `W-` collapse may consume six electrinos from a center-lane `Free Architrinos` ledger tile;
+- that ledger tile should be understood as one aggregate bucket of available free architrinos, not as three solver-significant binary-linked subtiles with fixed per-slot identity;
 - the source ledger tile must then be rewritten to the decremented remaining ledger rather than left unchanged;
 - for example, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
 - likewise, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
@@ -1527,7 +1528,7 @@ Likely durable boundaries in the rearchitected system are:
 ### Neighboring Components
 
 - [reaction](./reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
-- [pdg-ingest](./pdg-ingest.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
+- [pdg](./pdg.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
 - [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
 - [app-architecture](./app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
@@ -1559,39 +1560,9 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Improve Residue And Dissociation Reporting
+### 2. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `review`
-
-Goal:
-
-- make unresolved residue and solve-created dissociation legible in the plan and projection layers.
-
-Why it matters:
-
-- solver behavior is easier to trust and debug when leftover fragments and auto-dissociation are explicit.
-
-This pass added:
-
-- explicit `plan.dissociation` output in [`ReactionSolveProposalRuntime.js`](../../src/apps/reaction/ReactionSolveProposalRuntime.js), including stable auto-dissociated participant ids plus consumed and remaining top-level source node ids for composite sources opened by selected mappings;
-- explicit `plan.residue.source` and `plan.residue.target` summaries for unresolved whole participants and leftover top-level composite fragments;
-- projection-side support in [`ReactionSolveProjectionRuntime.js`](../../src/apps/reaction/ReactionSolveProjectionRuntime.js) for semantic dissociation records, so marking no longer depends on the legacy flat participant-object list alone;
-- solver-result adapter parity in [`ReactionSolverResultAdapterRuntime.js`](../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js) so semantic dissociation survives the result-to-projection seam; and
-- focused regressions in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js) and [`tests/reaction-solve-projection.test.js`](../../tests/reaction-solve-projection.test.js) covering partial Higgs-to-photon source residue, unresolved whole-participant residue, and semantic dissociation projection.
-
-Review focus:
-
-- confirm residue should stay top-level and explicit even when the current `unresolvedReactants` / `unresolvedProducts` arrays remain for compatibility;
-- confirm the auto-dissociation summary should expose consumed and remaining top-level node ids, rather than a thinner id-only marker;
-- and confirm projection should continue to accept both the semantic `dissociation` block and the older `dissociatedCompositeParticipants` list during the transition.
-
-Stability constraint:
-
-- direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
-
-### 3. Add Exact Boson Recognition On Top Of Primitive Solves
-
-Status: `pending`
 
 Goal:
 
@@ -1601,13 +1572,20 @@ Why it matters:
 
 - this preserves the primitive-first planning model while still allowing readable derived shorthand later.
 
-Next steps:
+This pass added:
 
-- define exact recognizers over primitive solved subgraphs;
-- keep authored source-side bosons valid;
-- and avoid widening the first-pass solve search space with free synthetic boson insertion.
+- a strict post-selection recognition layer in [`ReactionSolveProposalRuntime.js`](../../src/apps/reaction/ReactionSolveProposalRuntime.js) that inspects already-selected primitive `Associate` closures and emits `recognizedCenterBosons` only when the solve is exact and the source material is entirely center-lane;
+- exact v1 recognition for `W-` as pro `Noether core` plus six electrinos drawn from an aggregate `Free Architrinos` ledger closing to `electron`, `W+` as anti `Noether core` plus six positrinos drawn from an aggregate `Free Architrinos` ledger closing to anti `electron`, and `Z` as pro plus anti `Noether core` closing to `photon`;
+- no projection rewrite and no early-search widening: the planner still solves primitively first and then annotates the recognized boson form; and
+- focused regressions in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js) covering exact center-lane `W-`, `W+`, and `Z` recognition plus a negative non-center `Higgs Cluster` case.
 
-### 4. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+Review focus:
+
+- confirm `recognizedCenterBosons` should remain a late annotation layer for now rather than rewriting mappings or participant additions;
+- confirm the first exact slice should stay limited to fully closed center-lane `W-`, `W+`, and `Z -> photon` recognition;
+- and confirm unresolved or non-center closures should remain unrecognized even when their primitive inventory looks boson-like.
+
+### 3. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1625,13 +1603,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 5. Solver Rearchitecture
+### 4. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 6. Delete The Old Browser Solver After Flash Cut-Over
+### 5. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 

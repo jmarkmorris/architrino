@@ -197,7 +197,7 @@ The Composer-side intake should be strong enough to receive:
 
 - [reaction](./reaction.md) owns the conservative authoring workflow that feeds Composer.
 - [solver](./solver.md) owns Reaction-side solve logic and should remain upstream.
-- [pdg-ingest](./pdg-ingest.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
+- [pdg](./pdg.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
 - [app-architecture](./app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
 
@@ -362,7 +362,7 @@ Next steps:
 - [composer-reaction](./composer-reaction.md)
 - [reaction](./reaction.md)
 - [solver](./solver.md)
-- [pdg-ingest](./pdg-ingest.md)
+- [pdg](./pdg.md)
 - [app-architecture](./app-architecture.md)
 - [viewports](../viewports/viewports.md)
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
