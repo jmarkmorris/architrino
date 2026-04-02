@@ -239,6 +239,13 @@ function entryHasTopLevelConstituentChildren(entry = null) {
   return topLevelChildren.length > 0;
 }
 
+function allowsDirectCenterCompositeProductMapping(sourceParticipant = null, targetParticipant = null) {
+  return (
+    normalizeText(sourceParticipant?.templateId) === "z_boson" &&
+    normalizeText(targetParticipant?.templateId) === "photon"
+  );
+}
+
 function createCenterRootCandidate(
   sourceEntry,
   productEntry,
@@ -254,7 +261,8 @@ function createCenterRootCandidate(
     !sourceNode ||
     !targetParticipant ||
     !targetNode ||
-    entryHasTopLevelConstituentChildren(productEntry)
+    (entryHasTopLevelConstituentChildren(productEntry) &&
+      !allowsDirectCenterCompositeProductMapping(sourceParticipant, targetParticipant))
   ) {
     return null;
   }

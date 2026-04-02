@@ -134,6 +134,130 @@ The guiding rules are:
 - [app-architecture](./app-architecture.md) defines the app-boundary rule that keeps this layer from sharing live runtime logic across app seams.
 - [app-architecture](./app-architecture.md) owns the cross-app boundary this component must respect, while [reaction](./reaction.md) and [composer](./composer.md) own the downstream app work it depends on.
 
+## Available PDG Resources And API Options
+
+The official PDG entry point is the 2026 API overview at <https://pdg.lbl.gov/2026/api/index.html>. That overview points to three main machine-readable access paths plus the underlying schema documentation:
+
+- Python API docs: <https://pdgapi.lbl.gov/doc/pythonapi.html>
+- REST API docs: <https://pdgapi.lbl.gov/doc/restapi.html>
+- database schema docs: <https://pdgapi.lbl.gov/doc/schema.html>
+
+There are also two supporting resource types worth treating as first-class inputs to our own ingest design:
+
+- downloadable SQLite database files from the PDG API overview page;
+- and PDG Identifiers, which give stable IDs for particles, properties, and decay modes and are the primary lookup key for both REST and lower-level database access.
+
+### Option 1. Python API
+
+The Python API is the highest-level official integration path and is explicitly described by PDG as the recommended machine-readable access path for most users. In our intended usage, this means the local `pdg` Python package reading from its bundled or explicitly pinned SQLite database file, not making routine network calls to the PDG website during ingest.
+
+What it gives us:
+
+- Python-native access through the `pdg` package;
+- offline use after installation, because the installed package bundles a PDG SQLite database file for its default edition;
+- straightforward navigation from particle name, Monte Carlo ID, or PDG Identifier into properties, branching fractions, measurements, decay products, and subdecays;
+- and the ability to point the same API at a different downloaded database file when we want to pin a specific edition or use an expanded historical database.
+
+Why it is attractive for us:
+
+- our planned ingest layer is already Python-oriented because it needs to prepare data for `solver.py`;
+- the API already exposes decay-oriented structures rather than forcing us to reconstruct them from raw tables;
+- and it gives us a supported abstraction layer over PDG-specific flags, joins, and special cases that we do not want to rediscover inside our own ingest code.
+
+Limits to keep in mind:
+
+- PDG still documents ambiguity handling, and `pedantic=True` exists because some "best value" choices are not automatic;
+- the API reflects PDG's domain model rather than our solver seed model, so we still need a normalization layer;
+- and if we need data outside the API's higher-level affordances, we may still need direct SQL reads against the same database.
+
+### Option 2. REST API
+
+The REST API exposes JSON documents at `https://pdgapi.lbl.gov/PATH`, primarily via `/info`, `/summaries/PDGID`, and `/listings/PDGID`.
+
+What it gives us:
+
+- simple HTTP access without shipping a local PDG database file;
+- direct JSON payloads that are convenient for prototypes, debugging, fixtures, and ad hoc lookups;
+- access to summary-table data and listings data keyed by PDG Identifier;
+- and explicit metadata such as edition, citation, release timestamp, and license in the response preamble.
+
+Why it is less attractive as the main ingest path:
+
+- PDG describes it as intended for incidental access rather than bulk or broad data download;
+- PDG rate-limits it to under 2 requests per second;
+- reaction ingest will likely need many related traversals over channels, decay products, and ranking metadata rather than isolated one-off lookups;
+- and a network-bound API would make solver-adjacent ingest less reproducible, slower, and more operationally fragile than a local database-backed path.
+
+Best use here:
+
+- use REST for manual inspection, tiny experiments, or narrow fixture capture;
+- do not make it the backbone of the production PDG-to-solver ingest path.
+
+### Option 3. Direct Database Access
+
+The database layer is the SQLite file documented at <https://pdgapi.lbl.gov/doc/schema.html>. PDG documents this as the lower-level access path behind the Python API.
+
+What it gives us:
+
+- the raw tables for particles, identifiers, decays, summary data, measurements, references, text, mappings, and metadata;
+- complete local control over queries, caching, denormalization, and precomputation;
+- the easiest route for bulk extraction or cross-edition analysis if we need to build our own ingest snapshots;
+- and a durable substrate that can be queried directly when the Python API does not expose exactly the traversal we want.
+
+Why it is not the best first integration surface:
+
+- PDG explicitly describes the database path as relatively low-level;
+- using it well requires understanding PDG-specific table relationships, flags, and special cases;
+- and if we start here, we risk embedding PDG storage quirks directly into our ingest logic instead of keeping a cleaner adapter boundary.
+
+Best use here:
+
+- treat the SQLite schema as the fallback and validation layer under the Python API;
+- use direct SQL only for gaps, performance-sensitive bulk jobs, or explicit precomputation steps once the seed contract is stable.
+
+### Recommendation For `solver.py`
+
+The best primary path for us is:
+
+1. use the official Python API as the ingest-facing code interface;
+2. run that API against a local SQLite database file, ideally a pinned downloaded edition for reproducibility and edition control;
+3. normalize Python API objects into a small solver-owned seed/proposal schema;
+4. and reserve direct SQL access for any missing traversal or bulk extraction that the Python API cannot express cleanly.
+
+In other words, the normal ingest path should be local and offline once the package and database are installed. We should not design the main PDG-to-solver flow around live calls to the PDG website.
+
+That recommendation follows from the shape of the task. We do not merely need PDG values; we need reaction-like channel structure that a Python program can traverse, interpret, and project into solver-ready seeds. The Python API already exposes branching fractions, decay products, and subdecays in Python-native objects, which is much closer to what `solver.py` needs than rate-limited REST JSON or hand-written SQL over raw tables.
+
+Concretely, the ingest boundary should likely look like this:
+
+- PDG adapter layer:
+  use `pdg.connect(...)`, particle lookups, exclusive branching-fraction iteration, and decay-product traversal;
+- normalization layer:
+  convert PDG particle names, PDG Identifiers, multiplicities, subdecay structure, and ranking metadata into explicit solver seed records;
+- provenance layer:
+  preserve PDG edition, release timestamp, PDG Identifier, description text, and any confidence or limit semantics needed for review;
+- fallback layer:
+  allow direct database queries against the same local database for edge cases where the Python API is insufficient.
+
+This keeps the solver isolated from PDG-specific transport and schema details while still giving us a credible escape hatch if we later discover that some published channel structures require lower-level access.
+
+### Deferred Feature: Package And Database Maintenance
+
+Routine PDG ingest should not require visiting the PDG website during normal solver use. In the near term, package and database maintenance should remain an explicit developer responsibility rather than a runtime concern.
+
+That means:
+
+- developers install and pin the `pdg` package version deliberately;
+- developers choose whether to rely on the package-bundled database or point the API at a separately downloaded pinned SQLite file;
+- and ingest code assumes that the required local package and database are already present.
+
+Deferred future work may automate some of this maintenance, but it should stay outside the first production ingest path. Possible later automation includes:
+
+- checking whether a newer PDG edition or package version exists;
+- downloading or refreshing approved SQLite database files into a configured local cache;
+- recording edition and schema metadata automatically for derived artifacts;
+- and validating that local PDG resources match the version expected by the ingest pipeline.
+
 ## Priorities
 
 ### 1. Define The PDG Seed Boundary

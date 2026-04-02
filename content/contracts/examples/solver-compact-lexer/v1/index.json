@@ -90,6 +90,31 @@
         { "kind": "core-form", "lexeme": "ah3", "anti": true, "form": "h3" },
         { "kind": "whole-core-aggregate", "lexeme": "4h", "count": 4 }
       ]
+    },
+    {
+      "id": "all-token-families-without-separators",
+      "input": "ae1aPW+W-Zh24h0:3@3:0@",
+      "expectedTokens": [
+        { "kind": "fermion", "lexeme": "ae1", "anti": true, "family": "e", "generation": 1 },
+        { "kind": "nucleon", "lexeme": "aP", "anti": true, "symbol": "P" },
+        { "kind": "weak-boson", "lexeme": "W+", "symbol": "W+" },
+        { "kind": "weak-boson", "lexeme": "W-", "symbol": "W-" },
+        { "kind": "weak-boson", "lexeme": "Z", "symbol": "Z" },
+        { "kind": "core-form", "lexeme": "h2", "anti": false, "form": "h2" },
+        { "kind": "whole-core-aggregate", "lexeme": "4h", "count": 4 },
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "0:3@",
+          "electrinoCount": 0,
+          "positrinoCount": 3
+        },
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "3:0@",
+          "electrinoCount": 3,
+          "positrinoCount": 0
+        }
+      ]
     }
   ],
   "negative": [
