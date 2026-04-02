@@ -259,6 +259,405 @@ That means:
 - keep unsupported theory families gated rather than represented as low-confidence guesses;
 - and prefer exact failure with explicit residue over pretending to solve by inserting unjustified intermediates.
 
+### Internal State Model Options
+
+Priority 2 is not abstract tooling talk. It is about choosing an internal representation that matches the actual solver rules above.
+
+The core requirement is this: the solver needs to branch, compare, deduplicate, score, and explain partial closures without hidden mutation. That means the internal state model matters almost as much as the rule set.
+
+#### Option A: Mutable Object Graph
+
+One option is to represent the solve as a mutable object graph and rewrite that graph in place while searching.
+
+Advantages:
+
+- easy to picture conceptually;
+- natural for trees of composites and constituents;
+- and can feel close to the current UI/runtime shape.
+
+Disadvantages:
+
+- branch search becomes fragile because every branch must clone or carefully undo mutations;
+- canonical state keys become harder to compute;
+- debugging branch divergence gets harder;
+- and hidden mutation is exactly the kind of thing this solver should avoid.
+
+Recommendation:
+
+- do not use a mutable in-place graph as the main planner state.
+
+#### Option B: Pure Graph-Library Model
+
+Another option is to model the whole solve as a graph problem and use a graph library heavily.
+
+Advantages:
+
+- good for explicit connectivity;
+- potentially useful for subgraph recognition or late-stage boson collapse;
+- and graph terminology can match mappings and operator wiring.
+
+Disadvantages:
+
+- the main hard part of this solver is not generic graph traversal;
+- the branch state also needs inventories, consumption, residue, recruitment policy, and ranked partial closure;
+- graph libraries often encourage mutation-heavy workflows or carry more machinery than the solver actually needs;
+- and a graph-first representation can hide the fact that many rules are really constrained resource-allocation problems rather than pure connectivity problems.
+
+Recommendation:
+
+- do not make a graph library the primary state model for v1;
+- use lightweight derived graph views only where they clearly help with recognition or reporting.
+
+#### Option C: Pure Ledger / Multiset Model
+
+Another option is to model everything as multisets of available units and target deficits.
+
+Advantages:
+
+- good for exact conservation accounting;
+- naturally supports branch scoring around residue and deficits;
+- easy to hash and memoize if the entries are canonical.
+
+Disadvantages:
+
+- provenance becomes too lossy if everything collapses into counts;
+- composite structure matters for carry-through, dissociation, and center-lane recognition;
+- and direct mapping decisions often depend on specific source identity, not just inventory totals.
+
+Recommendation:
+
+- do not use a pure ledger model by itself;
+- but do keep explicit ledger summaries as part of each branch state and as part of candidate legality checks.
+
+#### Option D: Hybrid Immutable Branch State
+
+The strongest v1 option is a hybrid model:
+
+- immutable or mostly-immutable branch-state records;
+- explicit source-entry and target-entry records with stable ids;
+- explicit operator-step records;
+- explicit ledger summaries attached to entries and to the whole branch;
+- and lightweight derived views for tree structure, matching, and late-stage recognition.
+
+This fits the actual rulebook because the solver needs all of the following at once:
+
+- identity-sensitive direct mapping;
+- composite-aware dissociation;
+- exact inventory checks;
+- branch scoring and pruning;
+- deterministic memoization;
+- and human-readable diagnostics.
+
+Recommended branch-state shape:
+
+- `available_sources`: canonical tuple of source-entry records currently available for use;
+- `unresolved_targets`: canonical tuple of remaining target-entry records;
+- `selected_steps`: canonical tuple of direct-map, dissociate, associate, recruit, and late-stage-collapse steps chosen so far;
+- `selected_mappings`: canonical tuple of explicit provenance mappings;
+- `opened_sources`: canonical record of composites or recruited assemblies that have been dissociated;
+- `consumed_source_ids`: canonical set of fully consumed source-entry ids;
+- `residue`: explicit source-side and target-side leftover summaries;
+- `ledger_summary`: whole-branch electrino/positrino and related conservative totals;
+- `policy_flags`: recruitment and theory gates, plus `--i` / `--I` satisfaction state;
+- and `diagnostics`: unsupported-family notes, skipped optional intermediates, and other review-facing explanations.
+
+Recommended source-entry shape:
+
+- stable entry id;
+- origin kind: authored reactant, authored center, released intermediate, recruited source, operator output;
+- participant or node family;
+- polarity;
+- explicit conservative inventory summary;
+- explicit solver-visible internal-state summary when relevant;
+- parent provenance reference when released from dissociation;
+- and availability status.
+
+#### Recommended Python Mechanics
+
+For Python itself, the best first pass is likely:
+
+- `dataclasses` with `slots=True` and `frozen=True` for internal immutable records;
+- `Enum` for rule families, step kinds, and policy flags;
+- `tuple`, `frozenset`, and sorted canonical records for stable hashing and memoization;
+- `heapq` for the frontier;
+- and standard-library structural helpers before reaching for a large external dependency.
+
+Recommended boundary split:
+
+- use plain frozen dataclasses or small typed records for hot-path internal search state;
+- use schema validation only at the request/result boundary;
+- and keep internal branch-state validation lightweight and explicit.
+
+On libraries:
+
+- `pydantic` may be useful at the request/result boundary, but I would not make it the core internal state engine for the search loop;
+- `attrs` is viable if preferred, but standard-library dataclasses are probably enough for v1;
+- `networkx` is probably too heavy and too graph-centric for the primary planner state;
+- and bespoke graph helpers may still be useful for late-stage recognizers or structure matching without becoming the whole architecture.
+
+#### Current Recommendation
+
+My first recommendation for `solver.py` is:
+
+1. external request/result schemas for I/O;
+2. frozen dataclass records for internal entries, steps, and branch state;
+3. explicit ledger summaries attached to those records;
+4. canonical tuples and frozensets for hashing and deduplication;
+5. a best-first frontier built with `heapq`;
+6. and no heavy graph library as the core representation.
+
+That gives the solver:
+
+- deterministic branching;
+- cheap memoization;
+- explicit provenance;
+- strong testability;
+- and enough structure to support direct mapping, dissociation, association, recruitment, and late-stage boson recognition without turning the whole solver into an opaque object graph.
+
+#### Concrete Internal Record Definitions
+
+The main solver design should now treat the following internal records as the default v1 shapes.
+
+These are internal planner records, not the external JSON request/result schema. The external schema may be broader or friendlier, but it should normalize into these kinds of records before search starts.
+
+##### `InventorySummary`
+
+Purpose:
+
+- hold the explicit conservative inventory used for legality checks, residue accounting, and branch scoring.
+
+Recommended fields:
+
+- `electrino_count: int`
+- `positrino_count: int`
+- `family_counts: tuple[tuple[str, int], ...]`
+- `core_form_counts: tuple[tuple[str, int], ...]`
+- `extra_flags: tuple[str, ...]`
+
+Notes:
+
+- keep the representation canonical and hashable;
+- store zero-elided sorted tuples rather than mutable dicts in the final frozen record;
+- and allow this record to represent both exact participant inventory and residual deficits.
+
+##### `InternalStateSummary`
+
+Purpose:
+
+- hold solver-visible, physically meaningful internal structure when direct mapping or reassembly rules depend on it.
+
+Recommended fields:
+
+- `color_state: str | None`
+- `polar_state: str | None`
+- `binary_signature: tuple[str, ...]`
+- `composite_signature: tuple[str, ...]`
+- `extra_labels: tuple[str, ...]`
+
+Notes:
+
+- this record should stay sparse;
+- if an internal distinction is not solver-visible and physically meaningful, it should not be encoded here merely for completeness;
+- and intact color-neutral composites should not be forced into fake fixed internal labels just to populate this record.
+
+##### `SourceEntry`
+
+Purpose:
+
+- represent one available source unit in the branch state.
+
+Recommended fields:
+
+- `entry_id: str`
+- `origin_kind: SourceOriginKind`
+- `participant_id: str | None`
+- `node_id: str | None`
+- `family: str`
+- `template_id: str`
+- `polarity: str | None`
+- `inventory: InventorySummary`
+- `internal_state: InternalStateSummary | None`
+- `parent_entry_id: str | None`
+- `provenance_path: tuple[str, ...]`
+- `is_composite: bool`
+- `is_center_lane: bool`
+- `availability_state: AvailabilityState`
+- `tags: frozenset[str]`
+
+Notes:
+
+- `entry_id` is the canonical planner identity for source consumption and deduplication;
+- `participant_id` and `node_id` are references back to authored or projected structures when they exist;
+- released intermediates from dissociation should become new `SourceEntry` records with their own `entry_id` values and a `parent_entry_id` link;
+- and recruited material should also become explicit source entries rather than hidden branch metadata.
+
+##### `TargetEntry`
+
+Purpose:
+
+- represent one unresolved target unit or product target in the branch state.
+
+Recommended fields:
+
+- `target_id: str`
+- `participant_id: str | None`
+- `node_id: str | None`
+- `family: str`
+- `template_id: str`
+- `polarity: str | None`
+- `inventory: InventorySummary`
+- `internal_state: InternalStateSummary | None`
+- `is_composite: bool`
+- `is_center_lane_target: bool`
+- `priority_bucket: str`
+- `tags: frozenset[str]`
+
+Notes:
+
+- `priority_bucket` is where composite-first and late-state exceptions such as authored `Higgs Cluster` can be encoded explicitly for frontier ordering;
+- and targets should remain explicit until resolved rather than being mutated in place.
+
+##### `MappingRecord`
+
+Purpose:
+
+- represent one explicit provenance mapping chosen by the branch.
+
+Recommended fields:
+
+- `mapping_id: str`
+- `source_entry_id: str | None`
+- `source_endpoint_kind: str`
+- `source_ref: str`
+- `target_entry_id: str | None`
+- `target_endpoint_kind: str`
+- `target_ref: str`
+- `mapping_kind: MappingKind`
+- `provenance_mode: str`
+- `score_hint: int`
+
+Notes:
+
+- keep mapping records separate from source and target entries;
+- and make them fully explicit so projection and diagnostics do not need to reconstruct intent from branch mutation history.
+
+##### `SolveStep`
+
+Purpose:
+
+- represent one selected branch step such as direct mapping, dissociation, association, recruitment, or late-stage boson collapse.
+
+Recommended fields:
+
+- `step_id: str`
+- `step_kind: StepKind`
+- `rule_family: str`
+- `consumed_source_ids: tuple[str, ...]`
+- `produced_source_ids: tuple[str, ...]`
+- `resolved_target_ids: tuple[str, ...]`
+- `created_mapping_ids: tuple[str, ...]`
+- `created_operator_ids: tuple[str, ...]`
+- `created_boson_ids: tuple[str, ...]`
+- `score_hint: int`
+- `diagnostic_labels: tuple[str, ...]`
+
+Notes:
+
+- `SolveStep` is the main audit trail of how the branch got where it is;
+- every branch transition should be reconstructible from the ordered tuple of selected steps;
+- and late-stage `W` / `Z` collapse should appear here as a real step kind rather than as hidden normalization.
+
+##### `BranchResidue`
+
+Purpose:
+
+- hold explicit unresolved leftovers for branch comparison and final reporting.
+
+Recommended fields:
+
+- `unresolved_target_ids: tuple[str, ...]`
+- `unused_optional_center_ids: tuple[str, ...]`
+- `unsatisfied_required_center_ids: tuple[str, ...]`
+- `unused_source_ids: tuple[str, ...]`
+- `source_residue_inventory: InventorySummary`
+- `target_residue_inventory: InventorySummary`
+- `unsupported_notes: tuple[str, ...]`
+
+Notes:
+
+- residue must stay explicit even for "good" branches;
+- and `--i` / `--I` status belongs here as well as in policy flags because it directly affects branch ranking and diagnostics.
+
+##### `BranchState`
+
+Purpose:
+
+- represent one canonical search node in the best-first frontier.
+
+Recommended fields:
+
+- `available_sources: tuple[SourceEntry, ...]`
+- `unresolved_targets: tuple[TargetEntry, ...]`
+- `selected_steps: tuple[SolveStep, ...]`
+- `selected_mappings: tuple[MappingRecord, ...]`
+- `opened_source_ids: frozenset[str]`
+- `consumed_source_ids: frozenset[str]`
+- `ledger_summary: InventorySummary`
+- `residue: BranchResidue`
+- `policy_flags: frozenset[str]`
+- `i_satisfied_ids: frozenset[str]`
+- `I_satisfied_ids: frozenset[str]`
+- `diagnostics: tuple[str, ...]`
+
+Notes:
+
+- this record should be frozen and hashable;
+- all branch expansion should create a new `BranchState` rather than mutating an old one;
+- and the frontier should order these records by a derived ranking key, not by ad hoc mutation-time heuristics.
+
+#### Canonical Hash Key
+
+The branch-state hash key should be derived from canonical semantic content, not from debug text or object identity.
+
+Recommended hash components:
+
+- sorted available source identities plus their availability-relevant semantic fields;
+- sorted unresolved target identities plus their semantic fields;
+- sorted consumed and opened source id sets;
+- ordered selected-step semantic signatures;
+- normalized `--i` / `--I` satisfaction sets;
+- normalized residue signatures;
+- and the active policy flags.
+
+The hash key should explicitly exclude:
+
+- transient frontier score values;
+- human-readable diagnostic prose that does not change semantics;
+- and any render-only or layout-only fields.
+
+Two branches that are semantically equivalent should collapse to the same hash key even if they were discovered by different local candidate ordering.
+
+#### Redundant Inventory Storage
+
+For v1, inventory summaries should be stored redundantly on entries and on branch state rather than recomputed from scratch every time.
+
+Recommendation:
+
+- each `SourceEntry` and `TargetEntry` should carry its own canonical `InventorySummary`;
+- each `BranchState` should also carry a cached whole-branch `ledger_summary`;
+- and branch transitions should update these cached summaries explicitly.
+
+Why:
+
+- legality checks for direct mapping, dissociation, association, and recruitment are inventory-heavy;
+- recomputing inventory from deep structure repeatedly will make the search loop slower and harder to reason about;
+- and explicit cached summaries make diagnostics easier.
+
+Guardrail:
+
+- cached summaries must be treated as derived semantic state, not loose optional optimization;
+- add invariant checks in tests so branch-level `ledger_summary` matches the inventories implied by the branch contents.
+
 ### Solver Rules
 
 This is the first-draft normative rule set for the new solver. The point of this section is to make implementation decisions explicit enough that `solver.py` can be designed deliberately instead of filling gaps by convenience.
@@ -1053,37 +1452,7 @@ Next steps:
 - promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
 - and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
 
-### 2. Choose The Core Solver State Model And Python Implementation Mechanics
-
-Status: `next`
-
-Goal:
-
-- choose the data structures, state-transition model, and Python-side implementation mechanisms that make the new solver tractable, testable, and robust before too much rule logic hardens around a weak representation.
-
-Why it matters:
-
-- the difficulty of this solver is not just the rule set; it is also the representation of partial states, available source pools, consumed fragments, operator insertions, and canonical branch identity.
-- a poor state model will make correct search, pruning, determinism, and diagnostics much harder than they need to be.
-- Python may offer libraries or built-in capabilities that make this much more manageable if chosen deliberately rather than by habit.
-
-First thoughts:
-
-- prefer immutable or mostly-immutable planner-state records so branch expansion is easier to reason about and compare safely;
-- use canonical structural keys for memoization and branch deduplication rather than ad hoc mutable objects;
-- keep normalized request and result schemas separate from internal search-state structures;
-- consider whether `dataclasses`, `pydantic`, `attrs`, `frozenset`, structural hashing, or small graph/search helper libraries would materially improve clarity and correctness;
-- prefer standard-library-first where possible, but stay open to a small dependency if it meaningfully improves state validation, pattern matching, or search bookkeeping;
-- and evaluate whether some rule families are better modeled as graph rewrites, multiset ledger transitions, or explicit operator-state transitions rather than as loose object mutation.
-
-Next steps:
-
-- write down candidate internal state shapes for branch state, source entries, unresolved targets, and operator steps;
-- compare a few implementation styles such as immutable dataclass state, graph-based state, and multiset-ledger-plus-provenance state;
-- identify any Python libraries worth using deliberately rather than defaulting to hand-rolled structures;
-- and choose the representation before `solver.py` rule implementation gets far enough that changing it becomes expensive.
-
-### 3. Freeze A Golden Coverage Corpus From The Current JS Solver
+### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
 
 Status: `next`
 
@@ -1101,7 +1470,7 @@ Next steps:
 - capture those cases as golden request/result fixtures;
 - and use that corpus as the first acceptance bar for `solver.py`.
 
-### 4. Lock Down Identity, Selection, And Tie-Break Semantics
+### 3. Lock Down Identity, Selection, And Tie-Break Semantics
 
 Status: `pending`
 
@@ -1119,7 +1488,7 @@ Next steps:
 - write the candidate-selection and set-selection tie-break order as compact normative rules;
 - and keep those rules aligned with the current whole-product-first selection behavior.
 
-### 5. Decide The Python / JS Boundary For Layout And Projection
+### 4. Decide The Python / JS Boundary For Layout And Projection
 
 Status: `pending`
 
@@ -1137,7 +1506,7 @@ Next steps:
 - keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
 - and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
 
-### 6. Finish The Compact CLI Grammar As A Testable Lexer Spec
+### 5. Finish The Compact CLI Grammar As A Testable Lexer Spec
 
 Status: `pending`
 
@@ -1155,7 +1524,7 @@ Next steps:
 - keep longest-match, separator, and rejection rules explicit;
 - and keep the compact grammar subordinate to the canonical normalized request format.
 
-### 7. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+### 6. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
 
 Status: `pending`
 
@@ -1174,7 +1543,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 8. Shrink The Solver UI Runtime
+### 7. Shrink The Solver UI Runtime
 
 Status: `pending`
 
@@ -1196,7 +1565,7 @@ Execution rule:
 
 - when a newly reported solve bug appears, add a targeted regression test before or with the fix.
 
-### 9. Extend Primitive Charge Routing
+### 8. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -1218,7 +1587,7 @@ Dependency note:
 
 - do not hard-code final-state weak-corridor core provenance until the `W^\pm` provenance question above is settled.
 
-### 10. Improve Residue And Dissociation Reporting
+### 9. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1240,7 +1609,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 11. Add Exact Boson Recognition On Top Of Primitive Solves
+### 10. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1258,7 +1627,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 12. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 11. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1276,7 +1645,7 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 13. Solver Rearchitecture
+### 12. Solver Rearchitecture
 
 Objective:
 
