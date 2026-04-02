@@ -131,6 +131,19 @@ class FindLiveDecayTests(unittest.TestCase):
         self.assertIn("unsupported:reactant:pi+:no-v1-solver-template", proposal.notes)
         self.assertIsNone(pdgfeed.build_solver_request(proposal))
 
+    def test_live_registry_includes_supported_radiative_and_pair_extension_cases(self):
+        expected_case_ids = {
+            "free_neutron_beta_decay",
+            "radiative_free_neutron_beta_decay",
+            "muon_decay",
+            "radiative_muon_decay",
+            "muon_decay_with_electron_positron_pair",
+            "muon_to_electron_photon",
+            "charged_pion_to_muon_neutrino",
+        }
+
+        self.assertTrue(expected_case_ids.issubset(set(pdgfeed.LIVE_CHANNEL_SPEC_BY_ID)))
+
 
 if __name__ == "__main__":
     unittest.main()

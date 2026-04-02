@@ -11,6 +11,7 @@ import {
 } from "../src/apps/reaction/ReactionSolveProposalRuntime.js";
 import { applyReactionSolvePlan } from "../src/apps/reaction/ReactionSolveProjectionRuntime.js";
 import { buildReactionSolveState } from "../src/apps/reaction/ReactionSolveStateRuntime.js";
+import { solveReactionSnapshot, solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
 
 test("reaction solver runtime remains a compatibility wrapper over reaction solver ui runtime", () => {
   assert.equal(typeof createReactionSolverRuntime, "function");
@@ -23,19 +24,20 @@ test("reaction app exports a reaction-named solve pipeline facade", () => {
   assert.equal(typeof describeReactionSolvePlan, "function");
   assert.equal(typeof applyReactionSolveLayout, "function");
   assert.equal(typeof applyReactionSolvePlan, "function");
+  assert.equal(typeof solveReactionSnapshot, "function");
+  assert.equal(typeof solveReactionSolverRequest, "function");
 });
 
-test("reaction solver ui runtime injects the reaction-owned solve pipeline", () => {
+test("reaction solver ui runtime injects the reaction-owned solve contract pipeline", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
 
   assert.match(runtimeSource, /buildReactionSolveState as defaultBuildSolveState/);
-  assert.match(runtimeSource, /buildReactionSolvePlan as defaultBuildSolvePlan/);
   assert.match(runtimeSource, /describeReactionSolvePlan as defaultDescribeSolvePlan/);
-  assert.match(runtimeSource, /applyReactionSolveLayout as defaultApplySolveLayout/);
   assert.match(runtimeSource, /applyReactionSolvePlan as defaultApplySolvePlan/);
+  assert.match(runtimeSource, /solveReactionSnapshot as defaultSolveSnapshot/);
 });
 
 test("reaction solve-state, layout, and projection modules now own their implementations", () => {

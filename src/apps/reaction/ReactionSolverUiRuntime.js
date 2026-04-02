@@ -30,11 +30,10 @@ import {
 } from "./ReactionAddPickerRuntime.js";
 import { buildReactionSolveState as defaultBuildSolveState } from "./ReactionSolveStateRuntime.js";
 import {
-  buildReactionSolvePlan as defaultBuildSolvePlan,
   describeReactionSolvePlan as defaultDescribeSolvePlan,
 } from "./ReactionSolveProposalRuntime.js";
-import { applyReactionSolveLayout as defaultApplySolveLayout } from "./ReactionSolveLayoutRuntime.js";
 import { applyReactionSolvePlan as defaultApplySolvePlan } from "./ReactionSolveProjectionRuntime.js";
+import { solveReactionSnapshot as defaultSolveSnapshot } from "./ReactionSolverContractRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -765,10 +764,9 @@ export function createReactionSolverUiRuntime(deps = {}) {
     createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
     buildSolveState = defaultBuildSolveState,
-    buildSolvePlan = defaultBuildSolvePlan,
     describeSolvePlan = defaultDescribeSolvePlan,
-    applySolveLayout = defaultApplySolveLayout,
     applySolvePlan = defaultApplySolvePlan,
+    solveSnapshot = defaultSolveSnapshot,
   } = deps;
 
   const {
@@ -1488,16 +1486,24 @@ export function createReactionSolverUiRuntime(deps = {}) {
       isOperatorParticipant,
     });
 
-    const plan = buildSolvePlan({
-      solveState,
-      buildNodeKey,
-      resolveBinaryChoiceInventory,
-    });
-    const laidOutPlan = applySolveLayout({
-      plan,
-      solveState,
-    });
-    if (!laidOutPlan.selectedMappings.length) {
+    const solution = solveSnapshot(
+      {
+        participants: cloneSerializableValue(state.participants),
+        mappings: cloneSerializableValue(state.mappings),
+      },
+      {
+        requestId: "reaction_solver_canvas",
+        origin: {
+          sourceKind: "reaction",
+          sourceDocumentId: "reaction_solver_canvas",
+          title: "Reaction Solver Canvas",
+        },
+        buildNodeKey,
+        resolveBinaryChoiceInventory,
+      }
+    );
+    const result = solution?.result ?? null;
+    if (!Array.isArray(result?.mappings) || !result.mappings.length) {
       setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
       return false;
     }
@@ -1511,7 +1517,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     state.mappings = [];
     clearAllRecentRouteState();
     const { appliedMappingIds } = applySolvePlan({
-      plan: laidOutPlan,
+      result,
       createOperatorParticipant,
       getParticipantRootNode,
       buildNodeKey,
@@ -1521,10 +1527,10 @@ export function createReactionSolverUiRuntime(deps = {}) {
     markMappingsRecent(appliedMappingIds);
     render();
 
-    const unresolvedProductCount = laidOutPlan.unresolvedProducts.length;
-    const unresolvedReactantCount = laidOutPlan.unresolvedReactants.length;
+    const unresolvedProductCount = Number(solution?.unresolvedTargetCount ?? 0);
+    const unresolvedReactantCount = Number(solution?.unresolvedReactantCount ?? 0);
     setStatus(
-      `Solve v1 mapped ${describeSolvePlan(laidOutPlan)}. ${unresolvedProductCount} product${
+      `Solve v1 mapped ${normalizeText(solution?.planDescription) || describeSolvePlan({})}. ${unresolvedProductCount} product${
         unresolvedProductCount === 1 ? "" : "s"
       } and ${unresolvedReactantCount} reactant${
         unresolvedReactantCount === 1 ? "" : "s"

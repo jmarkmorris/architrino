@@ -1540,34 +1540,7 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Emit Recognized Boson Forms In Solver Results
-
-Status: `review`
-
-Goal:
-
-- carry late-stage boson recognition through the emitted `solver-result/v1` document rather than leaving it as proposal-only internal metadata.
-
-Why it matters:
-
-- the result contract already has `collapse-boson` steps, so recognized `W` / `Z` structure should be visible in exported solver results, fixtures, and future Python parity checks rather than disappearing after plan selection.
-
-This pass added:
-
-- a dedicated JS result exporter in [`ReactionSolverResultExportRuntime.js`](../../src/apps/reaction/ReactionSolverResultExportRuntime.js) that turns solve-state plus selected plan data into a `solver-result/v1` document;
-- emitted `collapse-boson` steps plus solve-generated boson participant records for recognized center-lane `W-`, `W+`, and `Z` forms while preserving the primitive mappings and operator paths needed by current Reaction projection;
-- kept those exported `collapse-boson` steps layered on top of the primitive `Associate` path rather than replacing it, so Reaction review still sees the primitive closure that projection currently depends on;
-- rewrote recognized `W-` / `W+` use of aggregate `Free Architrinos` ledgers into decremented solve-generated remainder participants when a recognized collapse consumes only part of the bucket;
-- gated emitted recognition at the exporter seam so only exact all-center closures surface as recognized boson steps in the final `solver-result/v1` document; and
-- support for multiple disjoint recognized bosons in one exact closure at the result-export layer; and
-- regression coverage in [`reaction-solver-result-export.test.js`](../../tests/reaction-solver-result-export.test.js) for both single and multiple recognition cases, with schema validation against [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json).
-
-Review focus:
-
-- confirm the current result-export seam is the right place for recognized boson emission before Python parity work starts;
-- and verify the new aggregate-ledger remainder emission is the right representation for future headless/Python parity inputs before removing this queue item.
-
-### 2. Solver Rearchitecture
+### 1. Solver Rearchitecture
 
 Status: `in_progress`
 
@@ -1578,34 +1551,19 @@ Objective:
 This pass added:
 
 - a dedicated Reaction-side request exporter in [`ReactionSolverRequestExportRuntime.js`](../../src/apps/reaction/ReactionSolverRequestExportRuntime.js) that builds `solver-request/v1` documents from authored solver canvas state;
+- a request adapter in [`ReactionSolverRequestAdapterRuntime.js`](../../src/apps/reaction/ReactionSolverRequestAdapterRuntime.js) that reconstructs current JS solver/runtime state from `solver-request/v1` documents;
+- a contract solve runtime in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) that runs the existing JS solver through the versioned request/result boundary instead of direct planner-local UI wiring;
+- a first headless entrypoint in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs) that accepts `solver-request/v1` JSON and emits `solver-result/v1` JSON;
 - canonical participant and mapping ledger serialization through structure classification rather than UI-only display inventory;
 - authored-operator and authored-mapping export for existing manual canvas work, including placement hints and manual dissociation state; and
-- explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts.
+- explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts;
+- and Reaction UI solve-path wiring onto the request/result seam so solve projection now consumes `solver-result/v1` output rather than the UI calling planner stages inline.
 
 Next focus:
 
-- wire the Reaction app onto the request/result exporter-adapter seam so headless solver invocation no longer depends on planner-local state shape;
-- and start the first external solver entrypoint against the frozen request/result contracts rather than extending the browser planner further.
+- replace the JS contract-bridge solver path with the real external solver implementation behind the same `solver-request/v1` / `solver-result/v1` boundary;
+- and then cut over the Reaction app from the browser-local bridge to that external solver without changing the contract seam again.
 
 Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
-
-### 3. Delete The Old Browser Solver After Flash Cut-Over
-
-Status: `pending`
-
-Goal:
-
-- remove the old Reaction-app solver code completely once `solver.py` is complete, integrated, and validated well enough for the flash migration.
-
-Why it matters:
-
-- there are no compatibility requirements for a long dual-run period, and keeping both solvers in-tree after cut-over will only preserve confusion, duplicate maintenance, and stale architecture.
-
-Next steps:
-
-- switch the Reaction app fully onto the new solver contract and adapter path;
-- remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
-- keep any needed historical reference in git history rather than in active source files;
-- and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.

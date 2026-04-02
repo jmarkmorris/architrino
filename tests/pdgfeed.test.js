@@ -122,6 +122,10 @@ test("generated live PDG solver-request artifacts validate against solver-reques
   assert.deepEqual(requestPaths, [
     "free_neutron_beta_decay.live-pdg.solver-request.v1.json",
     "muon_decay.live-pdg.solver-request.v1.json",
+    "muon_decay_with_electron_positron_pair.live-pdg.solver-request.v1.json",
+    "muon_to_electron_photon.live-pdg.solver-request.v1.json",
+    "radiative_free_neutron_beta_decay.live-pdg.solver-request.v1.json",
+    "radiative_muon_decay.live-pdg.solver-request.v1.json",
   ]);
 
   requestPaths.forEach((entry) => {
@@ -155,18 +159,43 @@ test("live PDG artifacts preserve the same normalized participant template surfa
 test("live PDG proposals preserve live provenance while normalizing PDG aliases into the locked v1 particle vocabulary", () => {
   const neutronProposal = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.proposal.v1.json");
   const muonProposal = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.proposal.v1.json");
+  const radiativeNeutronProposal = readJson(
+    "content/contracts/examples/pdg/v1/generated/radiative_free_neutron_beta_decay.live-pdg.proposal.v1.json"
+  );
+  const radiativeMuonProposal = readJson(
+    "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.proposal.v1.json"
+  );
+  const pairMuonProposal = readJson(
+    "content/contracts/examples/pdg/v1/generated/muon_decay_with_electron_positron_pair.live-pdg.proposal.v1.json"
+  );
+  const muonPhotonProposal = readJson(
+    "content/contracts/examples/pdg/v1/generated/muon_to_electron_photon.live-pdg.proposal.v1.json"
+  );
   const pionProposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
 
   assert.equal(neutronProposal.source.sourceMode, "pdg.connect");
   assert.equal(muonProposal.source.sourceMode, "pdg.connect");
+  assert.equal(radiativeNeutronProposal.source.sourceMode, "pdg.connect");
+  assert.equal(radiativeMuonProposal.source.sourceMode, "pdg.connect");
+  assert.equal(pairMuonProposal.source.sourceMode, "pdg.connect");
+  assert.equal(muonPhotonProposal.source.sourceMode, "pdg.connect");
   assert.equal(pionProposal.source.sourceMode, "pdg.connect");
   assert.equal(neutronProposal.source.pdgIdentifier, "S017.1/2025");
   assert.equal(muonProposal.source.pdgIdentifier, "S004.1/2025");
+  assert.equal(radiativeNeutronProposal.source.pdgIdentifier, "S017.4/2025");
+  assert.equal(radiativeMuonProposal.source.pdgIdentifier, "S004.2/2025");
+  assert.equal(pairMuonProposal.source.pdgIdentifier, "S004.7/2025");
+  assert.equal(muonPhotonProposal.source.pdgIdentifier, "S004.4/2025");
   assert.equal(pionProposal.source.pdgIdentifier, "S008.1/2025");
   assert.equal(neutronProposal.products[2].pdgId, "nubar_e");
   assert.equal(neutronProposal.products[2].pdgName, "anti-nu_e");
   assert.equal(muonProposal.products[1].pdgId, "nubar_e");
   assert.equal(muonProposal.products[1].pdgName, "anti-nu_e");
+  assert.equal(radiativeNeutronProposal.products[3].pdgId, "gamma");
+  assert.equal(radiativeMuonProposal.products[3].pdgId, "gamma");
+  assert.equal(pairMuonProposal.products[3].pdgId, "e+");
+  assert.equal(pairMuonProposal.products[4].pdgId, "e-");
+  assert.equal(muonPhotonProposal.products[1].pdgId, "gamma");
 });
 
 test("unsupported PDG fixture remains proposal-only with no solver-request artifact", () => {
