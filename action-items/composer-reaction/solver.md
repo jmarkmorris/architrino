@@ -514,6 +514,8 @@ Late-stage boson collapse rule:
 
 This rule is meant to reward cleaner recognized closure, not to authorize speculative boson invention earlier in search.
 
+The late-stage boson pass applies only to already completed closures. It must not be used to rescue an otherwise unclosed branch, invent missing closure, or convert a near-complete branch into a falsely complete one. Primitive conservative closure has to be established first; only then may the solver rewrite eligible center-lane material into recognized `W` or `Z` boson form.
+
 For v1, this late-stage pass should use a strict exact recognizer, not a fuzzy readability heuristic. A center-lane group may collapse into a boson only when it matches an accepted exact pattern. "Looks close enough" is not sufficient.
 
 Accepted exact recognizers so far:
@@ -538,6 +540,8 @@ Allowed direct `Z`-mapping targets for v1:
 - and photon.
 
 If a closure contains an authored or late-stage-recognized `Z`, the solver may consider direct conservative mapping from that `Z` only into those supported target families unless a later rule expansion explicitly adds more.
+
+Multiple late-stage boson collapses are allowed in the same completed closure, but only when each collapse uses disjoint center-lane material and each one independently satisfies the exact recognizer. One recognized `W` or `Z` must not consume ledger content, `Noether core` content, or other center-lane material that another recognized boson in the same closure also claims.
 
 #### Rule 9: Recruit Spacetime Material Only As An Explicit Late Solve Family
 
