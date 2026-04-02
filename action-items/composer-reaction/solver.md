@@ -106,6 +106,431 @@ Implementation stance:
 - build the new headless solver behind explicit request/result contracts and cleaner internal architecture;
 - and use fixture-based comparison and review to verify functional coverage without inheriting browser-specific design debt.
 
+### Solve Strategy And Search
+
+This section is about the logic and algorithm of the new solver itself. It is upstream of implementation details such as schemas, CLI grammar, or Python packaging.
+
+The recommended search stance is product-anchored rather than purely reactant-driven. In practice, the solver should work backward from unresolved products toward supporting source material, but always under forward conservation constraints from the available reactants, center assemblies, and any explicitly recruited spacetime material. The solver should not behave like an unconstrained reverse synthesizer. It should ask, for each unresolved product, "what exact conservative support plan could close this product from the currently available source pool?"
+
+That means the solver should be neither:
+
+- purely forward, where reactants spray out combinatorial possibilities and hope some later match a product;
+- nor purely backward, where products invent support structure without tight accounting against the available source pool.
+
+The better stance here is a constrained bidirectional solve with a product-first frontier:
+
+- products drive what must be explained next;
+- available reactants and already-created intermediates constrain what explanations are legal;
+- and conservation, provenance, and operator cost prune the search before it explodes combinatorially.
+
+The solver should not default to drilling through every combinatorial possibility and then scoring the whole universe of plans. Best practice here is staged candidate generation plus bounded search:
+
+- generate only operator and mapping families that are legal for the current unresolved product and current source pool;
+- rank those local candidate families by conservative strength before branching further;
+- use branch-and-bound, beam search, or another bounded best-first strategy over partial solve states;
+- memoize canonical partial states so equivalent subproblems are not re-solved repeatedly;
+- and stop expanding branches that are already dominated by a better branch with equal or stronger closure.
+
+Whole-product closure should stay the first ranking principle. A plan that closes a whole product exactly from conservative inputs should outrank a plan that creates extra residue or speculative structure, even if the latter is more creative. The search should therefore favor:
+
+- exact whole-product closure first;
+- fewer unresolved products next;
+- fewer recruited auxiliary inputs next;
+- fewer inserted operators next;
+- less residue next;
+- and only then finer-grained tie-breaks.
+
+#### Suggested Solve Phases
+
+The new solver should work in explicit phases rather than one undifferentiated search.
+
+Recommended phase order:
+
+1. Normalize the solve request into a planner-owned state with explicit source pool, target pool, authored operators, authored dissociation state, and any allowed recruitment policy.
+2. Run a carry-through pre-pass for exact identical reactant/product participants.
+3. Solve unresolved products from authored reactants, authored center assemblies, and already-available intermediates, preferring direct and conservative closure before introducing new operators.
+4. Introduce explicit `Dissociate` steps only when opening a source-side assembly is required to expose needed constituents.
+5. Introduce `Associate` steps only when multiple available source entries exactly assemble into one unresolved product.
+6. Only after authored-source closure is exhausted, consider explicitly permitted recruited spacetime inputs such as `Higgs Cluster` if the request or policy allows them.
+7. Treat synthetic `W` and `Z` intermediates as gated late-phase families rather than default search primitives unless authored directly or enabled by a theory-owned rule set.
+
+#### Catalyst And Benign Carry-Through Pre-Pass
+
+The first operational rule should be a carry-through pass for exact repeated participants. If a specified reactant is also a specified product with the same direct participant identity and conservative inventory, the default assumption should be that it is a catalyst, spectator, or benign carry-through participant.
+
+That pre-pass should:
+
+- pair exact carry-through reactant/product participants first;
+- emit those mappings immediately;
+- remove those paired participants from the remaining solve task;
+- preserve their provenance as authored continuity rather than as solver-created transformation;
+- and leave room for explicit authored overrides if the user has already indicated that an apparently identical participant should not be treated as simple carry-through.
+
+This pre-pass matters because it shrinks the remaining search space before any deeper operator reasoning begins.
+
+#### Dissociate, Associate, And Intermediate Material
+
+`Dissociate` and `Associate` should enter the solve for different reasons and should not be treated as interchangeable generic graph nodes.
+
+`Dissociate` should be introduced when:
+
+- a needed constituent exists inside a currently unavailable composite source;
+- a recruited spacetime assembly must be opened to expose useful primitive inventory;
+- or the plan requires explicit release of intermediate source material such as `Free Architrinos` or `Noether core` constituents.
+
+`Associate` should be introduced when:
+
+- an unresolved product cannot be closed by direct carry-through;
+- two or more already-available source entries exactly conserve into one assembled product;
+- and the product is better represented as a gathered assembly than as a loose residue set.
+
+Intermediates created by a `Dissociate` step should become explicit entries in the source pool for downstream search. They should not be treated as magical spontaneous material. If a `Dissociate` of a composite or recruited assembly yields `Free Architrinos`, `Noether core` forms, or other supported primitive units, those entries should be represented explicitly in the partial solve state and consumed explicitly by later steps.
+
+#### W And Z Handling
+
+`W` and `Z` need stricter discipline than first-pass `Associate` and `Dissociate`.
+
+Recommended rule:
+
+- authored `W` and `Z` participants remain valid source-side or center-assembly participants;
+- direct conservative use of authored `W` and `Z` may remain supported where the mapping rules already justify it;
+- synthetic `W` and `Z` insertion should not be a default early search family;
+- and solver-created `W` / `Z` intermediates should stay behind an explicit theory and rule gate until their provenance semantics are pinned down strongly enough to avoid fake closure.
+
+In other words, the new solver should stay primitive-first. It should first try to close products through direct mappings, dissociated constituents, `Associate`, `Dissociate`, `Noether core`, and `Free Architrinos`. Only after that primitive story is exact should it recognize or optionally introduce `W` / `Z` structure.
+
+#### Spacetime Recruitment And Higgs-Cluster Closure
+
+The solver should have an explicit policy for adding spacetime-derived material such as `Higgs Cluster` instead of smuggling it in as an invisible convenience.
+
+Recommended rule:
+
+- do not recruit spacetime inputs during the first authored-source closure pass;
+- if authored sources plus their justified dissociations cannot close the remaining targets, compute the remaining exact ledger deficit;
+- then ask whether the active solve policy permits recruitment from spacetime-like sources such as `Higgs Cluster`;
+- if recruitment is allowed, add those recruited assemblies explicitly as solver-created inputs with a clear provenance tag and a real search cost;
+- and require the resulting plan to close more exactly than the unrecruited alternative, rather than merely adding decorative completeness.
+
+This means spacetime recruitment is neither forbidden nor free. It is a late explicit solve family for exact closure when the conservative ledger says more source material is genuinely required.
+
+#### State Expansion And Scoring
+
+The search state should be explicit and canonical. At minimum it should track:
+
+- unresolved products;
+- available source entries, including authored sources and solver-created intermediates;
+- selected mappings and inserted operators;
+- recruited auxiliary inputs such as spacetime-derived assemblies;
+- unresolved residue on both source and target sides;
+- and any active theory gates or unsupported-family markers.
+
+Each branch expansion should choose one unresolved product, generate only the legal closure families for that product, and produce successor states. The solver should then score and prune those successors using branch-level and whole-plan criteria.
+
+Recommended scoring posture:
+
+- first maximize exact whole-product closure;
+- then minimize unsupported or unresolved targets;
+- then minimize recruited auxiliary inputs;
+- then minimize inserted operators;
+- then minimize leftover residue;
+- then prefer more direct provenance over more indirect provenance;
+- and finally use stable textual or structural tie-breaks so repeated runs stay deterministic.
+
+#### Practical Search Discipline
+
+The first version of `solver.py` should be designed for disciplined bounded search, not global exhaustive enumeration.
+
+That means:
+
+- use a canonical state key so equivalent partial branches collapse together;
+- maintain an explicit frontier ordered by the scoring posture above;
+- stop expanding branches whose upper bound cannot beat the current best complete branch;
+- keep unsupported theory families gated rather than represented as low-confidence guesses;
+- and prefer exact failure with explicit residue over pretending to solve by inserting unjustified intermediates.
+
+### Solver Rules
+
+This is the first-draft normative rule set for the new solver. The point of this section is to make implementation decisions explicit enough that `solver.py` can be designed deliberately instead of filling gaps by convenience.
+
+#### Rule Scope
+
+These rules are for the first supported solver generation.
+
+They should:
+
+- govern what the solver is allowed to consider;
+- govern the order in which solve families are explored;
+- define what counts as exact closure, partial closure, residue, recruitment, and unsupported behavior;
+- and provide a deterministic basis for implementation and fixtures.
+
+They should not:
+
+- silently settle theory-owned questions;
+- force the new solver to inherit browser-side architectural debt;
+- or widen the search space with convenience intermediates that have not been justified by explicit rules.
+
+#### Rule 1: Normalize Into A Canonical Planner State
+
+Before any search begins, the solver must normalize the request into one canonical planner-owned state.
+
+That state must distinguish:
+
+- authored reactants;
+- authored products;
+- authored center assemblies;
+- authored operators;
+- authored dissociation state;
+- already-authored mappings if any are part of the request;
+- and the active policy gates for recruitment and theory-dependent families.
+
+No solve rule may depend on DOM shape, render order, menu state, or browser-local incidental structure.
+
+#### Rule 2: Carry Through Exact Repeated Participants First
+
+If an authored reactant and authored product have the same direct participant identity and the same conservative inventory, the solver must try to treat them as benign carry-through before exploring deeper operator logic.
+
+This carry-through pass must:
+
+- pair exact repeated participants first;
+- emit direct continuity mappings for those pairs;
+- remove those paired participants from the remaining unresolved solve task;
+- and preserve them as authored continuity rather than as solver-created transformation.
+
+The solver may skip this rule only when an explicit authored override says that an apparently identical participant must be transformed rather than carried through.
+
+#### Rule 3: Choose One Unresolved Product As The Next Frontier
+
+After carry-through, each branch expansion must select one unresolved product as the next target to explain.
+
+The frontier product should be chosen by a stable rule such as:
+
+- unresolved composite products before unresolved non-composite products;
+- except authored `Higgs Cluster` products, which should be deferred as late-state targets unless they were already closed by exact carry-through;
+- then products with the fewest legal closure families;
+- then products with the strongest exact direct-closure candidates;
+- then products with the largest unresolved inventory;
+- then stable document order as a final tie-break.
+
+The solver must not expand arbitrary reactant-side possibilities that are not being asked for by some unresolved product.
+
+This composite-first rule reflects a conservative planning preference: complete assembled targets usually constrain the solve more strongly than standalone leftovers do, while unnecessary spacetime source or sink balancing should remain a late-state concern rather than the first thing the solver optimizes.
+
+#### Rule 4: Try Direct Conservative Closure Before Adding Operators
+
+For each frontier product, the solver must first try direct conservative closure from currently available source entries.
+
+Direct closure is legal only if:
+
+- source and target inventories are known;
+- the direct conservative mapping gate passes;
+- provenance is not contradicted by the move;
+- and the candidate does not require hidden recruitment or hidden intermediate creation.
+
+The direct conservative mapping gate is intentionally strict. Direct mapping is allowed only when the mapped unit preserves exact conservative identity, not merely its coarse participant label.
+
+For v1, that means direct mapping requires:
+
+- the same participant or node family where direct identity is being claimed;
+- the same polarity;
+- the same resolved conservative inventory for the mapped unit;
+- and the same resolved internal conservative configuration for any internal degrees of freedom that the solver models explicitly and treats as physically meaningful.
+
+Therefore, a same-name source and target do not automatically qualify for direct closure. For example, an `up quark` source with one resolved color or polar configuration must not map directly to an `up quark` target with a different resolved color or polar configuration. That would be an unmodeled internal change with no mechanism. In such a case, direct closure is forbidden and the solver must instead seek an explicit mechanism through supported dissociation, intermediate-material, and reassembly rules. If no supported mechanism exists, the branch remains unresolved rather than being waved through as direct continuity.
+
+Direct closure families include:
+
+- identical whole-composite carry-through for a composite frontier product;
+- root-to-root carry-through or direct mapping for a standalone frontier product;
+- center-assembly direct mapping where the source is already authored;
+- and fragment-to-root reuse where an already-available constituent exactly closes a standalone target.
+
+Direct closure exploration should obey the following order:
+
+1. exact whole-product carry-through for the frontier product;
+2. exact direct root closure from one currently available source entry;
+3. exact authored center-assembly direct closure where applicable;
+4. exact fragment-to-root closure for standalone targets only.
+
+Additional direct-closure rules:
+
+- if the frontier product is composite, exact whole-composite closure must be attempted before any branch that breaks source composites open for fragments;
+- fragment-to-root reuse must not cannibalize a stronger exact composite closure that is still available for another unresolved composite target;
+- direct closure may consume only material already present in the branch state;
+- and direct closure must not smuggle in late recruited material, hidden operator behavior, or hidden source opening.
+
+If an exact whole-product direct closure exists, it should outrank any branch that needs additional operators or recruited material.
+
+#### Rule 5: Introduce `Dissociate` Only To Expose Needed Constituents
+
+`Dissociate` is legal only when it exposes source material that is needed for some unresolved product and is not otherwise available in the current source pool.
+
+The solver may introduce `Dissociate` when:
+
+- the needed constituent exists inside an authored composite source;
+- the needed constituent exists inside an explicitly recruited assembly that has already been admitted into the branch;
+- or the supported primitive solve language requires explicit release of intermediate material such as `Free Architrinos` or `Noether core` forms.
+
+The solver should choose `Dissociate` only after it can name the target-side need that justifies the opening. In particular:
+
+- the branch should identify which unresolved product or product node requires the released constituent;
+- the selected dissociation should be the narrowest one that exposes the needed material;
+- and the solver should prefer dissociating authored source composites before dissociating any recruited spacetime assembly.
+
+The solver must not introduce `Dissociate`:
+
+- as a speculative exploratory move with no target-side need;
+- merely because dissociation is possible;
+- or when a stronger exact non-dissociative closure already exists for the same frontier product.
+
+When `Dissociate` is selected:
+
+- the released constituents must become explicit new source entries in the branch state;
+- the parent source must be marked as consumed, partially consumed, or opened according to the selected plan rather than remaining silently fully available;
+- any released `Free Architrinos`, `Noether core` forms, or other supported primitive units must be counted explicitly as available downstream material;
+- and dissociation must not automatically count as product closure by itself; it only changes the source pool.
+
+#### Rule 6: Introduce `Associate` Only For Exact Gather-And-Assemble Closure
+
+`Associate` is legal only when two or more available source entries exactly conserve into one unresolved assembled product.
+
+`Associate` may be introduced when:
+
+- no stronger direct whole-product closure exists for that target;
+- the chosen source entries are all available in the branch state;
+- the chosen source entries together match the target inventory exactly;
+- and the target is better represented as one assembled output than as unrelated residue.
+
+`Associate` exploration should obey the following order:
+
+1. exact assembly of an unresolved composite product from already-available source entries;
+2. exact assembly of an unresolved supported standalone product from already-available primitive or released source entries;
+3. only later, if separately enabled, more specialized derived recognizers layered on top of primitive exact closure.
+
+Additional `Associate` rules:
+
+- if unresolved non-`Higgs Cluster` composite products exist, `Associate` branches for those products should be explored before `Associate` branches for standalone products;
+- authored `Higgs Cluster` products should remain late-state exceptions unless they close by direct carry-through or become the only remaining exact unresolved targets;
+- the chosen source set must be minimal with respect to exact closure, meaning the branch should not include extra source entries that merely happen to conserve after cancellation;
+- and the same source entry must not feed two different `Associate` outputs within one branch.
+
+`Associate` must not be used:
+
+- as a generic weak-reaction routing node;
+- as a many-output transform;
+- or to hide unresolved residue that should remain explicit.
+
+Every selected `Associate` step must name:
+
+- the consumed source entries;
+- the produced output participant;
+- the mapping endpoints into and out of the operator;
+- and the exact inventory equality that justified the assembly.
+
+#### Rule 7: Treat Intermediates As Real Branch-State Material
+
+Any intermediate produced or released by a selected solve step must become explicit material in the branch state.
+
+This includes:
+
+- constituents released by `Dissociate`;
+- `Free Architrinos` released from opened sources;
+- `Noether core` forms released from opened sources;
+- and any other supported primitive intermediate.
+
+The solver must not:
+
+- consume intermediates that were never made explicit;
+- let one released unit be consumed twice across the same branch;
+- or pretend that released material remains available after it has been consumed by a later step.
+
+#### Rule 8: Keep `W` And `Z` Behind A Strong Gate
+
+Authored `W` and `Z` participants are valid input material where their current conservative uses are already supported. Solver-created `W` and `Z` intermediates are not part of the default early search space.
+
+For v1:
+
+- authored `W` and `Z` may participate as authored sources or center assemblies;
+- direct conservative mappings involving authored `W` and `Z` may be considered where the rules already justify them;
+- solver-created `W` or `Z` intermediates must remain gated behind explicit rule enablement;
+- and any branch that depends on unresolved `W^\pm` provenance theory must be rejected or marked unsupported rather than guessed.
+
+Primitive exact closure remains the default priority over boson-shaped shorthand.
+
+#### Rule 9: Recruit Spacetime Material Only As An Explicit Late Solve Family
+
+The solver may recruit spacetime-derived material such as `Higgs Cluster` only after authored-source closure and justified dissociation have failed to close the remaining targets exactly.
+
+Recruitment is legal only when:
+
+- the active solve policy permits that recruitment family;
+- the current branch has an exact remaining ledger deficit that authored material cannot close;
+- the recruited material is added explicitly to the branch state with solver-created provenance;
+- and the recruited branch scores better than the best unrecruited branch by achieving stronger exact closure.
+
+Recruitment must not be:
+
+- invisible;
+- free in score;
+- or introduced before simpler authored-source closure families have been exhausted.
+
+#### Rule 10: Mutate The Branch State Explicitly After Every Selected Step
+
+After any selected direct map, `Dissociate`, `Associate`, or recruitment event, the branch state must be updated explicitly.
+
+The update must record:
+
+- which source entries were consumed;
+- which products or product nodes were resolved;
+- which intermediates were added;
+- which operators were inserted;
+- which sources became dissociated or partially consumed;
+- and what residue remains on both sides.
+
+No rule may rely on implicit side effects or "obvious" availability.
+
+#### Rule 11: Prefer Exact Closure Over Creative Closure
+
+The solver must prefer plans that achieve exact conservative whole-product closure using fewer special moves.
+
+The branch and plan ranking order should be:
+
+1. more exactly closed whole products;
+2. fewer unresolved targets;
+3. fewer unsupported targets;
+4. fewer recruited auxiliary inputs;
+5. fewer inserted operators;
+6. less leftover source or target residue;
+7. more direct provenance continuity;
+8. stable deterministic tie-breaks.
+
+A plan that looks elegant but recruits unjustified material or hides residue must lose to a plainer exact conservative plan.
+
+#### Rule 12: Unsupported Cases Must Stay Explicit
+
+If a branch requires a rule family that has not been accepted into this solver rule set, the solver must not guess. It must either reject that branch or return it as unsupported with explicit diagnostics.
+
+This applies especially to:
+
+- weak-channel cases whose `W^\pm` provenance semantics are still theory-owned;
+- synthetic `W` / `Z` insertion without an accepted rule family;
+- recruitment families that are not enabled by policy;
+- and any candidate that depends on ambiguous notation, ambiguous identity, or ambiguous inventory.
+
+The first supported solver should prefer honest partial closure plus explicit residue over false complete closure.
+
+#### Rule 13: Determinism Is Required
+
+Repeated runs on the same normalized request and same enabled rule set must produce the same chosen result.
+
+This requires:
+
+- canonical state keys;
+- canonical ordering of candidate families;
+- stable scoring;
+- and stable textual or structural final tie-breaks.
+
+If two branches are truly equivalent, the solver must still pick one deterministically.
+
 ### External Solver Core
 
 The intended rebuilt solver core is an external command-line tool, likely implemented in Python.
@@ -501,7 +926,37 @@ Next steps:
 - promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
 - and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
 
-### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
+### 2. Choose The Core Solver State Model And Python Implementation Mechanics
+
+Status: `next`
+
+Goal:
+
+- choose the data structures, state-transition model, and Python-side implementation mechanisms that make the new solver tractable, testable, and robust before too much rule logic hardens around a weak representation.
+
+Why it matters:
+
+- the difficulty of this solver is not just the rule set; it is also the representation of partial states, available source pools, consumed fragments, operator insertions, and canonical branch identity.
+- a poor state model will make correct search, pruning, determinism, and diagnostics much harder than they need to be.
+- Python may offer libraries or built-in capabilities that make this much more manageable if chosen deliberately rather than by habit.
+
+First thoughts:
+
+- prefer immutable or mostly-immutable planner-state records so branch expansion is easier to reason about and compare safely;
+- use canonical structural keys for memoization and branch deduplication rather than ad hoc mutable objects;
+- keep normalized request and result schemas separate from internal search-state structures;
+- consider whether `dataclasses`, `pydantic`, `attrs`, `frozenset`, structural hashing, or small graph/search helper libraries would materially improve clarity and correctness;
+- prefer standard-library-first where possible, but stay open to a small dependency if it meaningfully improves state validation, pattern matching, or search bookkeeping;
+- and evaluate whether some rule families are better modeled as graph rewrites, multiset ledger transitions, or explicit operator-state transitions rather than as loose object mutation.
+
+Next steps:
+
+- write down candidate internal state shapes for branch state, source entries, unresolved targets, and operator steps;
+- compare a few implementation styles such as immutable dataclass state, graph-based state, and multiset-ledger-plus-provenance state;
+- identify any Python libraries worth using deliberately rather than defaulting to hand-rolled structures;
+- and choose the representation before `solver.py` rule implementation gets far enough that changing it becomes expensive.
+
+### 3. Freeze A Golden Coverage Corpus From The Current JS Solver
 
 Status: `next`
 
@@ -519,7 +974,7 @@ Next steps:
 - capture those cases as golden request/result fixtures;
 - and use that corpus as the first acceptance bar for `solver.py`.
 
-### 3. Lock Down Identity, Selection, And Tie-Break Semantics
+### 4. Lock Down Identity, Selection, And Tie-Break Semantics
 
 Status: `pending`
 
@@ -537,7 +992,7 @@ Next steps:
 - write the candidate-selection and set-selection tie-break order as compact normative rules;
 - and keep those rules aligned with the current whole-product-first selection behavior.
 
-### 4. Decide The Python / JS Boundary For Layout And Projection
+### 5. Decide The Python / JS Boundary For Layout And Projection
 
 Status: `pending`
 
@@ -555,7 +1010,7 @@ Next steps:
 - keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
 - and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
 
-### 5. Finish The Compact CLI Grammar As A Testable Lexer Spec
+### 6. Finish The Compact CLI Grammar As A Testable Lexer Spec
 
 Status: `pending`
 
@@ -573,7 +1028,7 @@ Next steps:
 - keep longest-match, separator, and rejection rules explicit;
 - and keep the compact grammar subordinate to the canonical normalized request format.
 
-### 6. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+### 7. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
 
 Status: `pending`
 
@@ -591,7 +1046,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 7. Shrink The Solver UI Runtime
+### 8. Shrink The Solver UI Runtime
 
 Status: `pending`
 
@@ -613,7 +1068,7 @@ Execution rule:
 
 - when a newly reported solve bug appears, add a targeted regression test before or with the fix.
 
-### 8. Extend Primitive Charge Routing
+### 9. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -635,7 +1090,7 @@ Dependency note:
 
 - do not hard-code final-state weak-corridor core provenance until the `W^\pm` provenance question above is settled.
 
-### 9. Improve Residue And Dissociation Reporting
+### 10. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -657,7 +1112,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 10. Add Exact Boson Recognition On Top Of Primitive Solves
+### 11. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -675,7 +1130,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 11. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 12. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -693,7 +1148,7 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 12. Solver Rearchitecture
+### 13. Solver Rearchitecture
 
 Objective:
 
