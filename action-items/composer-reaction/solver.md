@@ -1046,6 +1046,8 @@ This applies especially to:
 
 The first supported solver should prefer honest partial closure plus explicit residue over false complete closure.
 
+When the solver emits a partial result, that result may still be exported for Reaction-side review, inspection, and manual correction. It must not become a continuation state for the next solver run. Any further solve attempt after review or editing must start from a fresh authored request assembled from the current Reaction participant state, not from prior partial-solve branch state.
+
 #### Rule 13: Determinism Is Required
 
 Repeated runs on the same normalized request and same enabled rule set must produce the same chosen result.
@@ -1423,6 +1425,7 @@ Required contract rules:
 - mappings, operators, dissociation, and residue must use stable participant or node identities rather than DOM-derived positions;
 - placement data may be advisory, but semantic solve claims must not depend on render-order inference;
 - manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
+- partial results may be emitted to Reaction for review, but they are review artifacts rather than resumable solver state; any new solve must begin from a fresh authored request built from the current accepted/authored Reaction state;
 - and the solve-result format is upstream of `reaction-flow/v1`: the solver submits to Reaction in this format, then accepted Reaction state exports downstream through the separate Reaction-owned handoff contract.
 
 ### Identity And Tie-Break Semantics
@@ -1575,15 +1578,17 @@ Why it matters:
 This pass added:
 
 - a strict post-selection recognition layer in [`ReactionSolveProposalRuntime.js`](../../src/apps/reaction/ReactionSolveProposalRuntime.js) that inspects already-selected primitive `Associate` closures and emits `recognizedCenterBosons` only when the solve is exact and the source material is entirely center-lane;
-- exact v1 recognition for `W-` as pro `Noether core` plus six electrinos drawn from an aggregate `Free Architrinos` ledger closing to `electron`, `W+` as anti `Noether core` plus six positrinos drawn from an aggregate `Free Architrinos` ledger closing to anti `electron`, and `Z` as pro plus anti `Noether core` closing to `photon`;
-- no projection rewrite and no early-search widening: the planner still solves primitively first and then annotates the recognized boson form; and
+- the settled recognized boson forms `W-`, `W+`, and `Z`, with the currently accepted direct product paths `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon`;
+- no early-search widening: the planner still solves primitively first, then allows late-stage boson recognition to participate in alternative ranking and final emitted result shaping rather than inventing earlier closure; and
 - focused regressions in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js) covering exact center-lane `W-`, `W+`, and `Z` recognition plus a negative non-center `Higgs Cluster` case.
 
 Review focus:
 
-- confirm `recognizedCenterBosons` should remain a late annotation layer for now rather than rewriting mappings or participant additions;
-- confirm the first exact slice should stay limited to fully closed center-lane `W-`, `W+`, and `Z -> photon` recognition;
-- and confirm unresolved or non-center closures should remain unrecognized even when their primitive inventory looks boson-like.
+- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
+- support multiple disjoint boson recognitions inside one exact closure without double-claiming source material;
+- emit the recognized boson form in the final result rather than only tagging it internally;
+- keep unresolved or non-center closures unrecognized even when their primitive inventory looks boson-like;
+- and keep the late-stage boson pass acting only on already-closed alternatives rather than opening new early-search families.
 
 ### 3. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
@@ -1608,6 +1613,10 @@ Next steps:
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
+
+Deferred idea:
+
+- add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
 
 ### 5. Delete The Old Browser Solver After Flash Cut-Over
 
