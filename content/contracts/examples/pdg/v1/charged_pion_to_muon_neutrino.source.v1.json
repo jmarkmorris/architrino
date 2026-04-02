@@ -1,0 +1,33 @@
+{
+  "schema": "pdg-fixture-source/v1",
+  "fixtureId": "charged_pion_to_muon_neutrino",
+  "title": "Charged pion to muon neutrino",
+  "source": {
+    "edition": "2026",
+    "channelDescription": "pi+ -> mu+ nu_mu",
+    "citation": "Local PDG fixture seed",
+    "branchingDisplay": "dominant charged pion decay channel"
+  },
+  "reactants": [
+    {
+      "name": "pi+",
+      "displayLabel": "Pi Plus",
+      "pdgId": "pi+"
+    }
+  ],
+  "products": [
+    {
+      "name": "mu+",
+      "displayLabel": "Anti Muon",
+      "pdgId": "mu+"
+    },
+    {
+      "name": "nu_mu",
+      "displayLabel": "Pro Muon Neutrino",
+      "pdgId": "nu_mu"
+    }
+  ],
+  "notes": [
+    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+  ]
+}

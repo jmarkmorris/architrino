@@ -28,7 +28,11 @@ It does not own:
 
 ## Current State
 
-- There is no PDG pipeline yet.
+- `pdg.py` now exists as a fixture-first local PDG pipeline.
+- A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
+- Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
+- `pdg.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
+- Live PDG package access is still represented as a helper path rather than the primary day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has a solver seam that PDG should feed.
@@ -86,6 +90,18 @@ The first implementation should start in one Python file:
   connects to the local PDG database, performs the first PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
 If `pdg.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers. The initial implementation should not force a multi-file layout before the first working path exists.
+
+The current CLI surface is:
+
+- `python3 pdg.py list-fixtures`
+- `python3 pdg.py emit-fixture <fixture-id>`
+- `python3 pdg.py emit-all-fixtures`
+
+The first local fixture corpus is:
+
+- `free_neutron_beta_decay`
+- `muon_decay`
+- `charged_pion_to_muon_neutrino`
 
 The first solver-facing target should be one `solver-request/v1` document per candidate, with:
 
@@ -162,13 +178,15 @@ The normalized PDG proposal record should contain:
 Each normalized participant record should contain at minimum:
 
 - stable ingest-local `id`;
-- solver-facing `templateId` when known;
+- solver-facing `templateId` for every exportable candidate;
 - human-readable `label`;
 - explicit `side`;
 - particle/composite flags;
 - normalized inventory ledger fields required by the solver;
 - a root node id and flat node list;
 - and PDG-side identity fields needed for provenance and traceability.
+
+Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `solver-request/v1` payloads without a resolved solver-facing `templateId`.
 
 The first exported `solver-request/v1` candidate should follow these rules:
 
@@ -257,32 +275,15 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Build `pdg.py` And The Local Fixture Corpus
+### 1. Verify Against The Solver Boundary
 
 Status: `next`
-
-- build `pdg.py` around the official `pdg` package;
-- connect to the local database through the Python API;
-- choose a first fixture corpus of representative PDG channels;
-- and add fixtures covering adapter reads and provenance capture.
-
-### 2. Implement Normalization And Candidate Export
-
-Status: `pending`
-
-- normalize PDG channels into solver-owned intermediate records;
-- export one or more candidate `solver-request/v1` payloads per ingest run;
-- and attach ranking/provenance metadata needed for review and debugging.
-
-### 3. Verify Against The Solver Boundary
-
-Status: `pending`
 
 - validate emitted candidate payloads against `solver-request/v1`;
 - compare candidate shape against real solver needs before widening scope;
 - and keep downstream integration based on explicit contracts only.
 
-### 4. Add Proposal Review And Alternatives
+### 2. Add Proposal Review And Alternatives
 
 Status: `pending`
 
@@ -290,7 +291,7 @@ Status: `pending`
 - add review controls such as pin or forbid;
 - keep proposal review upstream of Reaction acceptance.
 
-### 5. Project Accepted Proposals Into Reaction
+### 3. Project Accepted Proposals Into Reaction
 
 Status: `pending`
 
@@ -298,7 +299,7 @@ Status: `pending`
 - preserve useful provenance-review context;
 - avoid direct shared runtime code across the boundary.
 
-### 6. Stay Downstream-Compatible With Reaction Export
+### 4. Stay Downstream-Compatible With Reaction Export
 
 Status: `pending`
 
