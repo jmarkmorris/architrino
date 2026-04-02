@@ -152,7 +152,8 @@ Recommended phase order:
 4. Introduce explicit `Dissociate` steps only when opening a source-side assembly is required to expose needed constituents.
 5. Introduce `Associate` steps only when multiple available source entries exactly assemble into one unresolved product.
 6. Only after authored-source closure is exhausted, consider explicitly permitted recruited spacetime inputs such as `Higgs Cluster` if the request or policy allows them.
-7. Treat synthetic `W` and `Z` intermediates as gated late-phase families rather than default search primitives unless authored directly or enabled by a theory-owned rule set.
+7. Run a late-stage normalization pass over completed candidate closures and collapse qualifying center-lane assembly groups into implied-operator `W` or `Z` bosons where the accepted rules allow it.
+8. Treat synthetic `W` and `Z` intermediates as gated late-phase families rather than default search primitives unless authored directly or enabled by a theory-owned rule set.
 
 #### Catalyst And Benign Carry-Through Pre-Pass
 
@@ -198,6 +199,14 @@ Recommended rule:
 - and solver-created `W` / `Z` intermediates should stay behind an explicit theory and rule gate until their provenance semantics are pinned down strongly enough to avoid fake closure.
 
 In other words, the new solver should stay primitive-first. It should first try to close products through direct mappings, dissociated constituents, `Associate`, `Dissociate`, `Noether core`, and `Free Architrinos`. Only after that primitive story is exact should it recognize or optionally introduce `W` / `Z` structure.
+
+Once a branch already has a completed or near-completed primitive closure, the solver may run a late-stage recognition pass over the center lane. In that pass:
+
+- if a set of center-lane assemblies can be exactly associated into a `W` or `Z` boson under the accepted rule family;
+- and the resulting boson representation does not break any already-established conservative closure;
+- then the solver should replace that assembly group with the implied-operator `W` or `Z` form before final scoring.
+
+This is a normalization and ranking pass, not a license to widen the early search space. The solver should not generate free synthetic `W` / `Z` branches up front just because such a collapse might later be possible.
 
 #### Spacetime Recruitment And Higgs-Cluster Closure
 
@@ -496,6 +505,15 @@ For v1:
 
 Primitive exact closure remains the default priority over boson-shaped shorthand.
 
+Late-stage boson collapse rule:
+
+- after the solver has built completed candidate closures, it should run a late-stage pass over each candidate closure;
+- if a closure contains center-lane assemblies that can be exactly associated into a `W` or `Z` boson under the accepted rule family, that closure should be rewritten to use the implied-operator boson form before final scoring;
+- this rewrite should happen only when it preserves or improves exact closure and does not hide unresolved residue;
+- and completed closures that include justified center-lane `W` or `Z` bosons should rank higher than equivalent closures that leave the same center-lane content uncollapsed.
+
+This rule is meant to reward cleaner recognized closure, not to authorize speculative boson invention earlier in search.
+
 #### Rule 9: Recruit Spacetime Material Only As An Explicit Late Solve Family
 
 The solver may recruit spacetime-derived material such as `Higgs Cluster` only after authored-source closure and justified dissociation have failed to close the remaining targets exactly.
@@ -537,11 +555,12 @@ The branch and plan ranking order should be:
 1. more exactly closed whole products;
 2. fewer unresolved targets;
 3. fewer unsupported targets;
-4. fewer recruited auxiliary inputs;
-5. fewer inserted operators;
-6. less leftover source or target residue;
-7. more direct provenance continuity;
-8. stable deterministic tie-breaks.
+4. more recognized justified center-lane `W` / `Z` closures after the late-stage normalization pass;
+5. fewer recruited auxiliary inputs;
+6. fewer inserted operators;
+7. less leftover source or target residue;
+8. more direct provenance continuity;
+9. stable deterministic tie-breaks.
 
 A plan that looks elegant but recruits unjustified material or hides residue must lose to a plainer exact conservative plan.
 
