@@ -1,0 +1,110 @@
+{
+  "schema": "solver-compact-lexer-fixtures/v1",
+  "positive": [
+    {
+      "id": "fermions",
+      "input": "e, ae1, u2, ad3, v",
+      "expectedTokens": [
+        { "kind": "fermion", "lexeme": "e", "anti": false, "family": "e", "generation": 1 },
+        { "kind": "fermion", "lexeme": "ae1", "anti": true, "family": "e", "generation": 1 },
+        { "kind": "fermion", "lexeme": "u2", "anti": false, "family": "u", "generation": 2 },
+        { "kind": "fermion", "lexeme": "ad3", "anti": true, "family": "d", "generation": 3 },
+        { "kind": "fermion", "lexeme": "v", "anti": false, "family": "v", "generation": 1 }
+      ]
+    },
+    {
+      "id": "nucleons",
+      "input": "P aN aP N",
+      "expectedTokens": [
+        { "kind": "nucleon", "lexeme": "P", "anti": false, "symbol": "P" },
+        { "kind": "nucleon", "lexeme": "aN", "anti": true, "symbol": "N" },
+        { "kind": "nucleon", "lexeme": "aP", "anti": true, "symbol": "P" },
+        { "kind": "nucleon", "lexeme": "N", "anti": false, "symbol": "N" }
+      ]
+    },
+    {
+      "id": "weak-bosons",
+      "input": "W+W-Z",
+      "expectedTokens": [
+        { "kind": "weak-boson", "lexeme": "W+", "symbol": "W+" },
+        { "kind": "weak-boson", "lexeme": "W-", "symbol": "W-" },
+        { "kind": "weak-boson", "lexeme": "Z", "symbol": "Z" }
+      ]
+    },
+    {
+      "id": "core-forms",
+      "input": "h h2 h3 ah ah2 ah3",
+      "expectedTokens": [
+        { "kind": "core-form", "lexeme": "h", "anti": false, "form": "h" },
+        { "kind": "core-form", "lexeme": "h2", "anti": false, "form": "h2" },
+        { "kind": "core-form", "lexeme": "h3", "anti": false, "form": "h3" },
+        { "kind": "core-form", "lexeme": "ah", "anti": true, "form": "h" },
+        { "kind": "core-form", "lexeme": "ah2", "anti": true, "form": "h2" },
+        { "kind": "core-form", "lexeme": "ah3", "anti": true, "form": "h3" }
+      ]
+    },
+    {
+      "id": "whole-core-aggregates",
+      "input": "2h,4h",
+      "expectedTokens": [
+        { "kind": "whole-core-aggregate", "lexeme": "2h", "count": 2 },
+        { "kind": "whole-core-aggregate", "lexeme": "4h", "count": 4 }
+      ]
+    },
+    {
+      "id": "free-architrino-ledgers",
+      "input": "0:3@ 3:0@ 12:7@",
+      "expectedTokens": [
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "0:3@",
+          "electrinoCount": 0,
+          "positrinoCount": 3
+        },
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "3:0@",
+          "electrinoCount": 3,
+          "positrinoCount": 0
+        },
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "12:7@",
+          "electrinoCount": 12,
+          "positrinoCount": 7
+        }
+      ]
+    },
+    {
+      "id": "mixed-adjacency-and-separators",
+      "input": "2:1@e_W+ah3,4h",
+      "expectedTokens": [
+        {
+          "kind": "free-architrino-ledger",
+          "lexeme": "2:1@",
+          "electrinoCount": 2,
+          "positrinoCount": 1
+        },
+        { "kind": "fermion", "lexeme": "e", "anti": false, "family": "e", "generation": 1 },
+        { "kind": "weak-boson", "lexeme": "W+", "symbol": "W+" },
+        { "kind": "core-form", "lexeme": "ah3", "anti": true, "form": "h3" },
+        { "kind": "whole-core-aggregate", "lexeme": "4h", "count": 4 }
+      ]
+    }
+  ],
+  "negative": [
+    { "id": "mixed-prefix-and-suffix-core-counts", "input": "2h2", "expectedError": { "code": "invalid-token", "index": 2 } },
+    { "id": "anti-prefix-on-aggregate", "input": "a2h", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "stacked-anti-prefix", "input": "aae", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "anti-weak-boson", "input": "aW+", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "invalid-generation", "input": "e0", "expectedError": { "code": "invalid-token", "index": 1 } },
+    { "id": "zero-aggregate", "input": "0h", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "unsupported-aggregate", "input": "3h", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "null-free-architrino-ledger", "input": "0:0@", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "ambiguous-core-tail", "input": "h23", "expectedError": { "code": "invalid-token", "index": 2 } },
+    { "id": "omitted-ledger-side", "input": "@", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "missing-left-ledger-side", "input": ":120@", "expectedError": { "code": "invalid-token", "index": 0 } },
+    { "id": "trailing-ledger-payload", "input": "227:120@3", "expectedError": { "code": "invalid-token", "index": 8 } },
+    { "id": "empty-input", "input": "   _ , .  ", "expectedError": { "code": "empty-input", "index": 0 } }
+  ]
+}

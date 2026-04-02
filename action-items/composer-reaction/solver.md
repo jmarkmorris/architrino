@@ -1331,6 +1331,8 @@ Operational lexer guidance:
 - do not require separators around a `Free Architrinos` ledger token when the surrounding token boundaries are already unambiguous;
 - and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
 
+Reference lexer fixtures for this grammar now live in [`content/contracts/examples/solver-compact-lexer/v1/index.json`](../../content/contracts/examples/solver-compact-lexer/v1/index.json), with the JS reference lexer in [`src/apps/reaction/ReactionSolverArgumentLexerRuntime.js`](../../src/apps/reaction/ReactionSolverArgumentLexerRuntime.js) and regression coverage in [`tests/reaction-solver-argument-lexer.test.js`](../../tests/reaction-solver-argument-lexer.test.js).
+
 ### Result And Integration Contract
 
 The rebuilt solver should return explicit structured output rather than mutating app state directly.
@@ -1557,34 +1559,9 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Decide The Python / JS Boundary For Layout And Projection
+### 2. Finish The Compact CLI Grammar As A Testable Lexer Spec
 
 Status: `review`
-
-Goal:
-
-- decide exactly which responsibilities stay in the headless solver and which stay in the Reaction app adapters.
-
-Why it matters:
-
-- `solver.py` should return semantic solve output through a stable contract, not accidentally absorb UI-side layout and projection behavior that already has a clear local seam.
-
-This pass locked in:
-
-- semantic `solver-result/v1` endpoints stay unpacked as `participantId` plus `anchorId`, with solve-created operators referenced by stable `operatorId`;
-- Reaction-side projection now accepts contract-shaped solver results through a dedicated adapter seam rather than requiring Python to emit JS-plan internals;
-- placement crosses the boundary as advisory `placement.operatorPlacements` keyed by `operatorId`, while live participant creation and node-key resolution stay in JS;
-- and focused projection tests now cover contract-shaped operator creation, semantic endpoint resolution, multi-operator placement, and auto-dissociation from the frozen result fixtures.
-
-Review focus:
-
-- confirm `placement.operatorPlacements` is the right v1 payload for Python rather than a thinner hint object;
-- confirm operator-root anchor semantics are strong enough for `Associate` / `Dissociate` without pushing UI node ids into the Python core;
-- and confirm the Reaction-side adapter is the correct place to resolve semantic ids into live node keys before `solver.py` starts landing.
-
-### 3. Finish The Compact CLI Grammar As A Testable Lexer Spec
-
-Status: `pending`
 
 Goal:
 
@@ -1594,13 +1571,20 @@ Why it matters:
 
 - the command-line form should be a convenience syntax over the same request schema, and the implementation will go faster if valid and invalid forms are frozen in fixtures first.
 
-Next steps:
+This pass locked in:
 
-- add positive and negative fixture strings for every committed token family and ambiguity rule;
-- keep longest-match, separator, and rejection rules explicit;
-- and keep the compact grammar subordinate to the canonical normalized request format.
+- a dedicated JS reference lexer in [`src/apps/reaction/ReactionSolverArgumentLexerRuntime.js`](../../src/apps/reaction/ReactionSolverArgumentLexerRuntime.js);
+- a fixture manifest in [`content/contracts/examples/solver-compact-lexer/v1/index.json`](../../content/contracts/examples/solver-compact-lexer/v1/index.json) covering each committed token family plus explicit ambiguity and rejection cases;
+- regression coverage in [`tests/reaction-solver-argument-lexer.test.js`](../../tests/reaction-solver-argument-lexer.test.js) for longest-match tokenization, benign separator stripping, adjacency, and rejection offsets;
+- and a frozen distinction between lexer-only shorthand handling and the canonical normalized `solver-request/v1` contract.
 
-### 4. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+Review focus:
+
+- confirm adjacency without separators should remain valid for all token families rather than only for `Free Architrinos` ledger tokens;
+- confirm allowing one-sided zero ledgers such as `0:3@` and `3:0@` is the intended v1 reading while still forbidding `0:0@`;
+- and confirm the current fixture set is sufficient before any parser or request-normalization work starts.
+
+### 3. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
 
 Status: `pending`
 
@@ -1619,7 +1603,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 5. Extend Primitive Charge Routing
+### 4. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -1641,7 +1625,7 @@ Dependency note:
 
 - do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
 
-### 6. Improve Residue And Dissociation Reporting
+### 5. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1663,7 +1647,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 7. Add Exact Boson Recognition On Top Of Primitive Solves
+### 6. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1681,7 +1665,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 8. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 7. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1699,13 +1683,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 9. Solver Rearchitecture
+### 8. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 10. Delete The Old Browser Solver After Flash Cut-Over
+### 9. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
