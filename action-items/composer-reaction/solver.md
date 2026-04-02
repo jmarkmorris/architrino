@@ -1563,39 +1563,9 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Add Exact Boson Recognition On Top Of Primitive Solves
+### 2. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `review`
-
-Goal:
-
-- recognize exact boson-shaped subgraphs only after primitive charge-routing is working.
-
-Why it matters:
-
-- this preserves the primitive-first planning model while still allowing readable derived shorthand later.
-
-This pass added:
-
-- a strict post-selection recognition layer in [`ReactionSolveProposalRuntime.js`](../../src/apps/reaction/ReactionSolveProposalRuntime.js) that inspects already-selected primitive `Associate` closures and emits `recognizedCenterBosons` only when the solve is exact and the source material is entirely center-lane;
-- the settled recognized boson forms `W-`, `W+`, and `Z`, with the currently accepted direct product paths `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon`;
-- no early-search widening: the planner still solves primitively first, then allows late-stage boson recognition to participate in alternative ranking and final emitted result shaping rather than inventing earlier closure; and
-- focused regressions in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js) covering exact center-lane `W-`, `W+`, and `Z` recognition plus a negative non-center `Higgs Cluster` case.
-
-Review focus:
-
-- the recognized boson forms are already settled as `W-`, `W+`, and `Z`;
-- the accepted direct product paths for those recognized or authored bosons are already settled as `W- -> electron`, `W+ -> anti-electron`, `Z -> neutrino`, and `Z -> photon`;
-- the remaining work is implementation scope and order rather than boson-rule discovery;
-- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
-- support multiple disjoint boson recognitions inside one exact closure without double-claiming source material;
-- emit the recognized boson form in the final result rather than only tagging it internally;
-- keep unresolved or non-center closures unrecognized even when their primitive inventory looks boson-like;
-- and keep the late-stage boson pass acting only on already-closed alternatives rather than opening new early-search families.
-
-### 3. Stay Ready For PDG Seeds Without Becoming PDG-Specific
-
-Status: `pending`
 
 Goal:
 
@@ -1605,13 +1575,19 @@ Why it matters:
 
 - PDG work should reuse this seam rather than create a parallel solver.
 
-Next steps:
+This pass added:
 
-- keep the abstract solve state as the planner boundary;
-- keep solver inputs normalized and UI-independent;
-- and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
+- a normalized PDG-seeded `solver-request/v1` fixture in [`pdg_seeded_center_neutrino.v1.json`](../../content/contracts/examples/solver-request/pdg_seeded_center_neutrino.v1.json) that uses `origin.sourceKind: "pdg-ingest"` while still entering the solver through the same explicit request contract as browser or CLI inputs;
+- contract coverage in [`composer-reaction-contracts.test.js`](../../tests/composer-reaction-contracts.test.js) proving that PDG-seeded requests validate as ordinary solver requests;
+- and a regression in that same test file proving raw PDG-shaped payload leakage inside normalized participant records is rejected by the request schema rather than becoming a second implicit solver boundary.
 
-### 4. Solver Rearchitecture
+Review focus:
+
+- confirm `solver-request/v1` remains the only PDG-to-solver entry boundary rather than growing a parallel PDG-shaped request format;
+- confirm PDG provenance should stay in `origin` fields or proposal sidecars, not in participant-local raw PDG payloads;
+- and confirm PDG-specific ranking or proposal metadata should remain upstream of the solver core rather than entering participant or node records directly.
+
+### 3. Solver Rearchitecture
 
 Objective:
 
@@ -1621,7 +1597,7 @@ Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
 
-### 5. Delete The Old Browser Solver After Flash Cut-Over
+### 4. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
