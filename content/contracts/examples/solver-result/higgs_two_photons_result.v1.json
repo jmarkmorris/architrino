@@ -1,0 +1,510 @@
+{
+  "schema": "solver-result/v1",
+  "resultId": "higgs_two_photons_result",
+  "request": {
+    "schema": "solver-request/v1",
+    "requestId": "higgs_two_photons"
+  },
+  "summary": {
+    "outcome": "exact",
+    "exact": true,
+    "selectedPlanId": "plan_higgs_two_photons",
+    "unresolvedTargetCount": 0,
+    "ambiguityCount": 0,
+    "unsupportedCount": 0
+  },
+  "participants": [
+    {
+      "id": "reactant_higgs",
+      "origin": "authored-reactant",
+      "side": "reactant",
+      "templateId": "higgs_cluster",
+      "label": "Higgs Cluster",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 12,
+        "positrinoCount": 12
+      },
+      "rootNodeId": "reactant_higgs_structure",
+      "nodes": [
+        {
+          "id": "reactant_higgs_structure",
+          "templateId": "higgs_cluster",
+          "label": "Higgs Cluster",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 12,
+            "positrinoCount": 12
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_pro_1",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core 1",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_anti_1",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core 1",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_pro_2",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core 2",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_anti_2",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core 2",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon_a",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon A",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_a_structure",
+      "nodes": [
+        {
+          "id": "product_photon_a_structure",
+          "templateId": "photon",
+          "label": "Photon A",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_a_structure/core_pro_1",
+          "parentId": "product_photon_a_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_a_structure/core_anti_1",
+          "parentId": "product_photon_a_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon_b",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon B",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_b_structure",
+      "nodes": [
+        {
+          "id": "product_photon_b_structure",
+          "templateId": "photon",
+          "label": "Photon B",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_b_structure/core_pro_1",
+          "parentId": "product_photon_b_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_b_structure/core_anti_1",
+          "parentId": "product_photon_b_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "stepId": "step_higgs_dissociate",
+      "kind": "dissociate",
+      "ruleFamily": "auto-dissociate-composite",
+      "consumedParticipantIds": ["reactant_higgs"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": [],
+      "mappingIds": [],
+      "operatorIds": []
+    },
+    {
+      "stepId": "step_higgs_associate_a",
+      "kind": "associate",
+      "ruleFamily": "associate-photon",
+      "consumedParticipantIds": ["reactant_higgs"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": ["product_photon_a"],
+      "mappingIds": [
+        "map_higgs_a_in_anti",
+        "map_higgs_a_in_pro",
+        "map_higgs_a_out_pro",
+        "map_higgs_a_out_anti"
+      ],
+      "operatorIds": ["associate:1"]
+    },
+    {
+      "stepId": "step_higgs_associate_b",
+      "kind": "associate",
+      "ruleFamily": "associate-photon",
+      "consumedParticipantIds": ["reactant_higgs"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": ["product_photon_b"],
+      "mappingIds": [
+        "map_higgs_b_in_pro",
+        "map_higgs_b_in_anti",
+        "map_higgs_b_out_pro",
+        "map_higgs_b_out_anti"
+      ],
+      "operatorIds": ["associate:2"]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_higgs_a_in_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_higgs",
+        "anchorId": "reactant_higgs_structure/core_anti_1",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:1",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:1",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_a_in_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_higgs",
+        "anchorId": "reactant_higgs_structure/core_pro_2",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:1",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:1",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_a_out_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:1",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon_a",
+        "anchorId": "product_photon_a_structure/core_pro_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:1",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_a_out_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:1",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon_a",
+        "anchorId": "product_photon_a_structure/core_anti_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:1",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_b_in_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_higgs",
+        "anchorId": "reactant_higgs_structure/core_pro_1",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:2",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:2",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_b_in_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_higgs",
+        "anchorId": "reactant_higgs_structure/core_anti_2",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:2",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:2",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_b_out_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:2",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon_b",
+        "anchorId": "product_photon_b_structure/core_pro_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:2",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_higgs_b_out_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:2",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon_b",
+        "anchorId": "product_photon_b_structure/core_anti_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:2",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "associate:1",
+      "type": "associate",
+      "origin": "solve-generated",
+      "label": "Associate",
+      "inputs": [
+        {
+          "participantId": "reactant_higgs",
+          "anchorId": "reactant_higgs_structure/core_anti_1",
+          "role": "reactant"
+        },
+        {
+          "participantId": "reactant_higgs",
+          "anchorId": "reactant_higgs_structure/core_pro_2",
+          "role": "reactant"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_photon_a",
+          "anchorId": "product_photon_a_structure/core_pro_1",
+          "role": "product"
+        },
+        {
+          "participantId": "product_photon_a",
+          "anchorId": "product_photon_a_structure/core_anti_1",
+          "role": "product"
+        }
+      ]
+    },
+    {
+      "id": "associate:2",
+      "type": "associate",
+      "origin": "solve-generated",
+      "label": "Associate",
+      "inputs": [
+        {
+          "participantId": "reactant_higgs",
+          "anchorId": "reactant_higgs_structure/core_pro_1",
+          "role": "reactant"
+        },
+        {
+          "participantId": "reactant_higgs",
+          "anchorId": "reactant_higgs_structure/core_anti_2",
+          "role": "reactant"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_photon_b",
+          "anchorId": "product_photon_b_structure/core_pro_1",
+          "role": "product"
+        },
+        {
+          "participantId": "product_photon_b",
+          "anchorId": "product_photon_b_structure/core_anti_1",
+          "role": "product"
+        }
+      ]
+    }
+  ],
+  "dissociation": {
+    "openedParticipantIds": ["reactant_higgs"],
+    "autoDissociatedParticipantIds": ["reactant_higgs"],
+    "releasedParticipantIds": [],
+    "notes": [
+      {
+        "code": "auto-dissociate-composite",
+        "message": "Composite source opened implicitly because internal rows were consumed."
+      }
+    ]
+  },
+  "placement": {
+    "operatorPlacements": [
+      {
+        "operatorId": "associate:1",
+        "lane": 1,
+        "row": 1,
+        "slot": 1
+      },
+      {
+        "operatorId": "associate:2",
+        "lane": 1,
+        "row": 3,
+        "slot": 3
+      }
+    ]
+  },
+  "residue": {
+    "unresolvedTargetIds": [],
+    "unusedSourceIds": [],
+    "sourceInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "targetInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "unsupportedNotes": []
+  },
+  "diagnostics": []
+}

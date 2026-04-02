@@ -965,6 +965,7 @@ Free-architrino-ledger interaction rule:
 
 - a late-stage `W+` collapse may consume six positrinos from a center-lane `Free Architrinos` ledger tile;
 - a late-stage `W-` collapse may consume six electrinos from a center-lane `Free Architrinos` ledger tile;
+- that ledger tile should be understood as one aggregate bucket of available free architrinos, not as three solver-significant binary-linked subtiles with fixed per-slot identity;
 - the source ledger tile must then be rewritten to the decremented remaining ledger rather than left unchanged;
 - for example, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
 - likewise, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
@@ -1044,6 +1045,8 @@ This applies especially to:
 - and any candidate that depends on ambiguous notation, ambiguous identity, or ambiguous inventory.
 
 The first supported solver should prefer honest partial closure plus explicit residue over false complete closure.
+
+When the solver emits a partial result, that result may still be exported for Reaction-side review, inspection, and manual correction. It must not become a continuation state for the next solver run. Any further solve attempt after review or editing must start from a fresh authored request assembled from the current Reaction participant state, not from prior partial-solve branch state.
 
 #### Rule 13: Determinism Is Required
 
@@ -1291,7 +1294,7 @@ Interpretation rules:
 - generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
 - prefix counts belong only to aggregate whole-core forms such as `2h` and `4h`;
 - `Free Architrinos` use a dedicated two-sided ledger token `e:p@`;
-- `Free Architrinos` ledger tokens do not require surrounding separators when the lexer can already disambiguate adjacency;
+- separators are optional for any adjacent token sequence whose left-to-right longest-match tokenization remains unambiguous;
 - and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.
 
 ### Ambiguity Discipline
@@ -1328,14 +1331,26 @@ Operational lexer guidance:
 - recognize `h2` and `h3` before bare `h`;
 - recognize `2h` and `4h` as committed aggregate tokens before testing bare `h`;
 - recognize `[digits]:[digits]@` as one `Free Architrinos` ledger token that ends at `@`;
-- do not require separators around a `Free Architrinos` ledger token when the surrounding token boundaries are already unambiguous;
+- do not require separators around any token family when the surrounding token boundaries are already unambiguous under longest-match tokenization;
 - and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
+
+Reference lexer fixtures for this grammar now live in [`content/contracts/examples/solver-compact-lexer/v1/index.json`](../../content/contracts/examples/solver-compact-lexer/v1/index.json), with the JS reference lexer in [`src/apps/reaction/ReactionSolverArgumentLexerRuntime.js`](../../src/apps/reaction/ReactionSolverArgumentLexerRuntime.js) and regression coverage in [`tests/reaction-solver-argument-lexer.test.js`](../../tests/reaction-solver-argument-lexer.test.js).
 
 ### Result And Integration Contract
 
 The rebuilt solver should return explicit structured output rather than mutating app state directly.
 
-This section owns the solver-to-Reaction result shape. [reaction](./reaction.md) should reference this section rather than restating the payload.
+This section owns the solver input/output boundary. The canonical machine-readable contracts now live in:
+
+- [`solver-request/v1`](../../src/contracts/solver-request/v1/schema.json)
+- [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json)
+
+Reference fixtures for the frozen v1 boundary now live in:
+
+- [`carry_through_neutron.v1.json`](../../content/contracts/examples/solver-request/carry_through_neutron.v1.json)
+- [`carry_through_neutron_result.v1.json`](../../content/contracts/examples/solver-result/carry_through_neutron_result.v1.json)
+
+[reaction](./reaction.md) should reference this section rather than restating the payload.
 
 That output should be rich enough to carry:
 
@@ -1347,15 +1362,55 @@ That output should be rich enough to carry:
 
 The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
 
-### Result Format
+The reviewed v1 boundary is now:
 
-The solver result submitted to the Reaction app should be one structured solve-result document, not a stream of ad hoc UI mutations.
+- `solver.py` returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
+- the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time;
+- solve-created operator placements cross the boundary only as advisory lane / row / slot records under `placement.operatorPlacements`;
+- and Reaction keeps ownership of live operator creation, node-key packing, auto-dissociation marking, and any local row-slot fallback behavior.
+
+### Request Format
+
+The solver input submitted to the headless core should be one normalized `solver-request/v1` document, not a browser-state dump and not a CLI-specific ad hoc shorthand.
 
 The intended top-level shape is:
 
-- `request`: solver-normalized description of the authored reaction inputs that were solved;
+- `schema`: fixed version tag `solver-request/v1`;
+- `requestId`: stable request identity for fixtures, diagnostics, and result correlation;
+- `origin`: optional source metadata such as `reaction`, `cli`, `pdg-ingest`, or fixture provenance;
+- `participants`: all authored non-operator participants, with explicit `side` values `reactant`, `product`, or `center`;
+- `manualOperators`: authored `Associate` or `Dissociate` operators that already exist in the request;
+- `manualMappings`: authored mappings that must remain visible to the solver rather than being rediscovered from UI state;
+- `dissociation`: authored dissociated-composite state that is already open and must be preserved;
+- and `policy`: explicit recruitment, late-boson-collapse, weak-channel, and carry-through gates.
+
+Required participant rules:
+
+- every participant must carry a stable `id`, `templateId`, `label`, canonical `inventory`, `rootNodeId`, and explicit flat `nodes`;
+- the request must carry solver-visible structure explicitly rather than asking the solver to infer node identities from rendered DOM or menu state;
+- center-lane inputs belong in `participants` with `side: "center"` and optional `centerUsage: "optional" | "required"` to encode the `--i` / `--I` distinction;
+- participant and node inventory must already be normalized into explicit conservative ledger fields;
+- and the request must remain Reaction-independent enough that future CLI or PDG seeds can produce the same shape without importing browser runtime code.
+
+Required request boundary rules:
+
+- manual operators, manual mappings, and manual dissociation state must remain explicit top-level request data rather than hidden projection assumptions;
+- the compact CLI grammar should normalize into this contract rather than becoming a second canonical input shape;
+- the request may include source metadata, but solve semantics must not depend on browser-only identifiers, DOM order, or render geometry;
+- and unsupported theory families must be expressed through `policy` gates rather than through silent omission or convenience guessing.
+
+### Result Format
+
+The solver result submitted to the Reaction app should be one structured `solver-result/v1` document, not a stream of ad hoc UI mutations.
+
+The intended top-level shape is:
+
+- `schema`: fixed version tag `solver-result/v1`;
+- `resultId`: stable result identity for fixtures and review;
+- `request`: back-reference to the solved `solver-request/v1` request id;
 - `summary`: overall solve outcome, including whether the solve is exact, partial, ambiguous, or unsupported;
 - `participants`: the participant records the projection adapter needs to preserve source ids, target ids, roles, and any solver-created intermediate or operator-side entries;
+- `steps`: the ordered audit trail of selected carry-through, direct-map, `Dissociate`, `Associate`, recruitment, or late-collapse steps;
 - `mappings`: selected source-to-target provenance claims, with enough endpoint identity to recreate live Reaction mappings;
 - `operators`: solve-created operator insertions and their intended produced outputs;
 - `dissociation`: explicit or implicit dissociation decisions selected by the solve, including auto-dissociated composite sources;
@@ -1366,10 +1421,57 @@ The intended top-level shape is:
 Required contract rules:
 
 - the result must be self-sufficient enough for the Reaction projection adapter to materialize the solve without rereading planner-internal state;
+- result participants and steps must preserve authored versus solve-generated provenance explicitly rather than relying on naming convention alone;
 - mappings, operators, dissociation, and residue must use stable participant or node identities rather than DOM-derived positions;
 - placement data may be advisory, but semantic solve claims must not depend on render-order inference;
 - manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
+- partial results may be emitted to Reaction for review, but they are review artifacts rather than resumable solver state; any new solve must begin from a fresh authored request built from the current accepted/authored Reaction state;
 - and the solve-result format is upstream of `reaction-flow/v1`: the solver submits to Reaction in this format, then accepted Reaction state exports downstream through the separate Reaction-owned handoff contract.
+
+### Identity And Tie-Break Semantics
+
+Before `solver.py` starts, the identity and selection rules need to be treated as normative rather than as scattered browser behavior.
+
+External identity rules:
+
+- authored participant ids in `solver-request/v1` are canonical and must pass through unchanged into `solver-result/v1` whenever the solver is still referring to the same authored participant;
+- node or anchor identity in the external request/result contracts stays unpacked as `participantId` plus `anchorId`, not as one packed node-key string;
+- the packed Reaction adapter key remains `participantId::nodeId` through [`ReactionNodeKeyRuntime`](../../src/apps/reaction/ReactionNodeKeyRuntime.js), but that packing is a Reaction-side adapter concern rather than the external solver contract;
+- solve-generated operator ids in `solver-result/v1` should use compact deterministic ids such as `associate:1`, `associate:2`, and later `dissociate:1`, assigned in selected-step order within the final result;
+- and the current browser solver's verbose structural refs are acceptable browser-local reference behavior, but they should not become the canonical external operator-id scheme for `solver.py`.
+
+Deterministic candidate identity rules:
+
+- if a candidate creates a solve-generated operator, the first `participantAdditions[].ref` is its deterministic candidate identity for ordering purposes;
+- otherwise the fallback identity is the tuple `(candidate type, source participant id, source node id, target participant id, target node id)`;
+- lexical ordering over that deterministic identity is the final tie-break when stronger semantic ranking terms tie;
+- and the solver should treat that identity as an ordering device, not as a semantic excuse to encode browser-only detail into the public contract.
+
+Current JS candidate ranking order that the Python solver should preserve unless intentionally revised:
+
+1. more fully resolved products;
+2. more matched target nodes;
+3. fewer partial products;
+4. higher candidate score;
+5. lexical candidate identity.
+
+Current JS whole-set selection ranking order that the Python solver should preserve unless intentionally revised:
+
+1. more fully resolved products across the selected set;
+2. more matched target nodes across the selected set;
+3. fewer partial products;
+4. more matched source nodes;
+5. higher total score;
+6. lexical ordering over the ordered selected-candidate identities.
+
+Current JS solve-phase ordering that also matters for selection semantics:
+
+1. direct-root, composite carry-through, fragment-root-direct, and associate families compete in the first base selection pass;
+2. partial-composite-direct families are selected only after the base pass has already claimed whole participants, whole products, and fragment ownership;
+3. product-child-direct families run after that on the remaining unclaimed source fragments and target fragments;
+4. and automatic composite dissociation is currently inferred from selected mappings that consume internal rows, not from an earlier explicit selected `Dissociate` step.
+
+The new solver may eventually re-express these rules more cleanly, but any intentional deviation must be visible in fixtures and review rather than emerging as accidental Python drift.
 
 ### Direct Composer Path
 
@@ -1401,6 +1503,7 @@ Likely durable boundaries in the rearchitected system are:
 - a compact-notation parser for command-line use;
 - a headless external solve core;
 - a structured solve-result schema;
+- a Reaction result-to-projection adapter;
 - a Reaction projection adapter;
 - a Reaction surface-grid placement adapter;
 - and an export or import adapter for downstream Composer flow.
@@ -1428,209 +1531,50 @@ Likely durable boundaries in the rearchitected system are:
 ### Neighboring Components
 
 - [reaction](./reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
-- [pdg-ingest](./pdg-ingest.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
+- [pdgfeed](./pdgfeed.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
 - [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
 - [app-architecture](./app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
 - [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 
-### 1. Define Versioned Solver Request And Result Schemas
+### 1. Emit Recognized Boson Forms In Solver Results
 
-Status: `active`
-
-Goal:
-
-- define one canonical JSON request schema for solver input and one canonical JSON result schema for solver output before `solver.py` is written.
-
-Why it matters:
-
-- the Python core needs a stable boundary for authored inputs and projected solve output, or the Python/JS seam will drift immediately.
-
-Next steps:
-
-- define `solver-request/v1` around participants, mappings, manual operators, dissociation state, and center assemblies;
-- promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
-- and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
-
-### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
-
-Status: `next`
+Status: `review`
 
 Goal:
 
-- freeze the current supported conservative cases as request/result fixtures before the Python implementation begins.
+- carry late-stage boson recognition through the emitted `solver-result/v1` document rather than leaving it as proposal-only internal metadata.
 
 Why it matters:
 
-- coverage should be measured against stable fixtures and expectations, not by rereading browser-side code while the new solver is being built.
+- the result contract already has `collapse-boson` steps, so recognized `W` / `Z` structure should be visible in exported solver results, fixtures, and future Python parity checks rather than disappearing after plan selection.
 
-Next steps:
+This pass added:
 
-- choose the initial supported cases from the current proposal, layout, and projection tests;
-- capture those cases as golden request/result fixtures;
-- and use that corpus as the first acceptance bar for `solver.py`.
+- a dedicated JS result exporter in [`ReactionSolverResultExportRuntime.js`](../../src/apps/reaction/ReactionSolverResultExportRuntime.js) that turns solve-state plus selected plan data into a `solver-result/v1` document;
+- emitted `collapse-boson` steps plus solve-generated boson participant records for recognized center-lane `W-`, `W+`, and `Z` forms while preserving the primitive mappings and operator paths needed by current Reaction projection;
+- support for multiple disjoint recognized bosons in one exact closure at the result-export layer; and
+- regression coverage in [`reaction-solver-result-export.test.js`](../../tests/reaction-solver-result-export.test.js) for both single and multiple recognition cases, with schema validation against [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json).
 
-### 3. Lock Down Identity, Selection, And Tie-Break Semantics
+Review focus:
 
-Status: `pending`
+- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
+- decide whether exported collapse steps should eventually replace primitive associate steps in the final selected result or continue to layer on top of them;
+- confirm the current result-export seam is the right place for recognized boson emission before Python parity work starts;
+- and keep unresolved or non-center closures unrecognized even in exported results.
 
-Goal:
-
-- make the winning-plan rules and identity conventions explicit before the Python implementation starts.
-
-Why it matters:
-
-- a new Python solver can appear correct while still disagreeing with the covered browser behavior on ids, node references, operator refs, or which candidate family should win.
-
-Next steps:
-
-- define stable participant ids, node-key rules, and synthetic operator refs such as `associate:1`;
-- write the candidate-selection and set-selection tie-break order as compact normative rules;
-- and keep those rules aligned with the current whole-product-first selection behavior.
-
-### 4. Decide The Python / JS Boundary For Layout And Projection
-
-Status: `pending`
-
-Goal:
-
-- decide exactly which responsibilities stay in the headless solver and which stay in the Reaction app adapters.
-
-Why it matters:
-
-- `solver.py` should return semantic solve output through a stable contract, not accidentally absorb UI-side layout and projection behavior that already has a clear local seam.
-
-Next steps:
-
-- decide whether Python returns semantic solve output plus placement hints or fully resolved operator placements;
-- keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
-- and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
-
-### 5. Finish The Compact CLI Grammar As A Testable Lexer Spec
-
-Status: `pending`
-
-Goal:
-
-- turn the shorthand notation into a fully testable lexer contract rather than an examples-only description.
-
-Why it matters:
-
-- the command-line form should be a convenience syntax over the same request schema, and the implementation will go faster if valid and invalid forms are frozen in fixtures first.
-
-Next steps:
-
-- add positive and negative fixture strings for every committed token family and ambiguity rule;
-- keep longest-match, separator, and rejection rules explicit;
-- and keep the compact grammar subordinate to the canonical normalized request format.
-
-### 6. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
-
-Status: `pending`
-
-Goal:
-
-- keep `solver.py` from silently guessing on theory-owned weak-channel provenance questions.
-
-Why it matters:
-
-- even with the v1 `W^\pm` boson-core convention fixed, broader weak-channel expansion can still drift into unsupported theory if the solver starts guessing beyond the accepted rule families.
-
-Next steps:
-
-- keep the accepted v1 `W+` / `W-` boson-core convention explicit in the contracts and rule fixtures;
-- mark any broader weak-channel cases outside that accepted convention unsupported in v1;
-- keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
-- and treat theory-owned resolution as upstream of broader weak-channel expansion.
-
-### 7. Extend Primitive Charge Routing
-
-Status: `pending`
-
-Goal:
-
-- move beyond the current `Associate`-centered families so the solver can reason through authored or generated `Dissociate`, `Noether core`, and `Free Architrinos` paths.
-
-Why it matters:
-
-- this is the main missing capability before boson recognition or broader PDG-facing work becomes well-founded.
-
-Next steps:
-
-- add focused candidate families with targeted tests;
-- represent selected composite dissociation more explicitly at the plan level;
-- and keep manual dissociated-composite behavior stable while the planner grows.
-
-Dependency note:
-
-- do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
-
-### 8. Improve Residue And Dissociation Reporting
-
-Status: `pending`
-
-Goal:
-
-- make unresolved residue and solve-created dissociation legible in the plan and projection layers.
-
-Why it matters:
-
-- solver behavior is easier to trust and debug when leftover fragments and auto-dissociation are explicit.
-
-Next steps:
-
-- improve residue reporting in proposal output;
-- preserve clean projection of solve-created dissociation into the live Reaction surface;
-- and add regression tests around those cases.
-
-Stability constraint:
-
-- direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
-
-### 9. Add Exact Boson Recognition On Top Of Primitive Solves
-
-Status: `pending`
-
-Goal:
-
-- recognize exact boson-shaped subgraphs only after primitive charge-routing is working.
-
-Why it matters:
-
-- this preserves the primitive-first planning model while still allowing readable derived shorthand later.
-
-Next steps:
-
-- define exact recognizers over primitive solved subgraphs;
-- keep authored source-side bosons valid;
-- and avoid widening the first-pass solve search space with free synthetic boson insertion.
-
-### 10. Stay Ready For PDG Seeds Without Becoming PDG-Specific
-
-Status: `pending`
-
-Goal:
-
-- keep the solver reusable as the normalized planning core for future PDG ingest.
-
-Why it matters:
-
-- PDG work should reuse this seam rather than create a parallel solver.
-
-Next steps:
-
-- keep the abstract solve state as the planner boundary;
-- keep solver inputs normalized and UI-independent;
-- and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
-
-### 11. Solver Rearchitecture
+### 2. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 12. Delete The Old Browser Solver After Flash Cut-Over
+Deferred idea:
+
+- add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
+
+### 3. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 

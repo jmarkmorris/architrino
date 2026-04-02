@@ -1,0 +1,180 @@
+{
+  "schema": "solver-result/v1",
+  "resultId": "fragment_down_quark_result",
+  "request": {
+    "schema": "solver-request/v1",
+    "requestId": "fragment_down_quark"
+  },
+  "summary": {
+    "outcome": "partial",
+    "exact": false,
+    "selectedPlanId": "plan_fragment_down_quark",
+    "unresolvedTargetCount": 1,
+    "ambiguityCount": 0,
+    "unsupportedCount": 0
+  },
+  "participants": [
+    {
+      "id": "reactant_neutron",
+      "origin": "authored-reactant",
+      "side": "reactant",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "reactant_neutron_structure",
+      "nodes": [
+        {
+          "id": "reactant_neutron_structure",
+          "templateId": "neutron",
+          "label": "Neutron",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "reactant_neutron_structure/quark_1",
+          "parentId": "reactant_neutron_structure",
+          "templateId": "down_quark",
+          "label": "Down quark",
+          "family": "quark",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 2,
+            "positrinoCount": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_proton",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "proton",
+      "label": "Proton",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_proton_structure",
+      "nodes": [
+        {
+          "id": "product_proton_structure",
+          "templateId": "proton",
+          "label": "Proton",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_down_quark",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "down_quark",
+      "label": "Down Quark",
+      "family": "quark",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 2,
+        "positrinoCount": 2
+      },
+      "rootNodeId": "product_down_quark_structure",
+      "nodes": [
+        {
+          "id": "product_down_quark_structure",
+          "templateId": "down_quark",
+          "label": "Down Quark",
+          "family": "quark",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 2,
+            "positrinoCount": 2
+          }
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "stepId": "step_fragment_down_quark",
+      "kind": "direct-map",
+      "ruleFamily": "fragment-to-root",
+      "consumedParticipantIds": ["reactant_neutron"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": ["product_down_quark"],
+      "mappingIds": ["map_fragment_down_quark"],
+      "operatorIds": []
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_fragment_down_quark",
+      "kind": "fragment",
+      "from": {
+        "participantId": "reactant_neutron",
+        "anchorId": "reactant_neutron_structure/quark_1",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "product_down_quark",
+        "anchorId": "product_down_quark_structure",
+        "role": "product"
+      },
+      "provenanceMode": "direct-conservative",
+      "conservedLedger": {
+        "electrinoCount": 2,
+        "positrinoCount": 2
+      }
+    }
+  ],
+  "operators": [],
+  "dissociation": {
+    "openedParticipantIds": ["reactant_neutron"],
+    "autoDissociatedParticipantIds": ["reactant_neutron"],
+    "releasedParticipantIds": [],
+    "notes": [
+      {
+        "code": "auto-dissociate-composite",
+        "message": "Composite source opened implicitly because an internal row was consumed."
+      }
+    ]
+  },
+  "placement": {
+    "operatorPlacements": []
+  },
+  "residue": {
+    "unresolvedTargetIds": ["product_proton"],
+    "unusedSourceIds": ["reactant_neutron"],
+    "sourceInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "targetInventory": {
+      "electrinoCount": 6,
+      "positrinoCount": 6
+    },
+    "unsupportedNotes": []
+  },
+  "diagnostics": []
+}

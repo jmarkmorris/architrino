@@ -114,3 +114,50 @@ test("composer import result fixture consumes the reaction-flow contract explici
   assert.equal(importResult.importedReactionId, reactionFlow.reactionId);
   assert.equal(importResult.sceneId, reactionFlow.hints.suggestedSceneId);
 });
+
+test("solver request example matches the versioned solver-request schema", () => {
+  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+  const example = readJson("content/contracts/examples/solver-request/carry_through_neutron.v1.json");
+  const errors = validateAgainstSchema(example, schema);
+
+  assert.deepEqual(errors, []);
+});
+
+test("pdg-seeded solver request example matches the versioned solver-request schema", () => {
+  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+  const example = readJson("content/contracts/examples/solver-request/pdg_seeded_center_neutrino.v1.json");
+  const errors = validateAgainstSchema(example, schema);
+
+  assert.deepEqual(errors, []);
+  assert.equal(example.origin.sourceKind, "pdg-ingest");
+  assert.equal(example.manualOperators.length, 0);
+  assert.equal(example.manualMappings.length, 0);
+});
+
+test("solver request contract rejects raw PDG payload leakage inside normalized participants", () => {
+  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+  const example = readJson("content/contracts/examples/solver-request/pdg_seeded_center_neutrino.v1.json");
+  example.participants[0].pdg = {
+    pdgid: "S043",
+    description: "Raw PDG object should stay outside normalized solver participants",
+  };
+  const errors = validateAgainstSchema(example, schema);
+
+  assert.ok(errors.some((error) => error.includes("$.participants[0]: unexpected property pdg")));
+});
+
+test("solver result example matches the versioned solver-result schema", () => {
+  const schema = readJson("src/contracts/solver-result/v1/schema.json");
+  const example = readJson("content/contracts/examples/solver-result/carry_through_neutron_result.v1.json");
+  const errors = validateAgainstSchema(example, schema);
+
+  assert.deepEqual(errors, []);
+});
+
+test("solver result fixture points back to the solver request contract explicitly", () => {
+  const request = readJson("content/contracts/examples/solver-request/carry_through_neutron.v1.json");
+  const result = readJson("content/contracts/examples/solver-result/carry_through_neutron_result.v1.json");
+
+  assert.equal(result.request.schema, request.schema);
+  assert.equal(result.request.requestId, request.requestId);
+});

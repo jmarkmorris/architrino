@@ -66,7 +66,7 @@ This single table is the canonical rollup for every direct child of `action-item
 | — | [`composer`](../composer-reaction/composer.md) | Composer | — | — | — |
 | — | [`reaction`](../composer-reaction/reaction.md) | Reaction app | — | — | — |
 | — | [`solver`](../composer-reaction/solver.md) | Reaction solver | — | — | — |
-| — | [`pdg-ingest`](../composer-reaction/pdg-ingest.md) | PDG ingest | — | — | — |
+| — | [`pdgfeed`](../composer-reaction/pdgfeed.md) | PDG | — | — | — |
 | — | [`cruft-sprawl`](../cruft-sprawl/cruft-sprawl.md) | Cruft and sprawl reduction | — | — | — |
 | — | [`glyph`](../glyph/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../viewports/viewports.md) | Viewports | — | — | — |

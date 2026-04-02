@@ -1,0 +1,136 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "direct_core_pairs",
+  "origin": {
+    "sourceKind": "fixture",
+    "sourceDocumentId": "direct_core_pairs_fixture",
+    "title": "Direct Noether Core Pairs"
+  },
+  "participants": [
+    {
+      "id": "reactant_pro_core",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Pro Noether core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_pro_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_pro_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "reactant_anti_core",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Anti Noether core",
+      "family": "noether-core",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_anti_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_anti_core_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_anti_core",
+      "side": "product",
+      "templateId": "noether_core",
+      "label": "Anti Noether core",
+      "family": "noether-core",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "product_anti_core_structure",
+      "nodes": [
+        {
+          "id": "product_anti_core_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_pro_core",
+      "side": "product",
+      "templateId": "noether_core",
+      "label": "Pro Noether core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "product_pro_core_structure",
+      "nodes": [
+        {
+          "id": "product_pro_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

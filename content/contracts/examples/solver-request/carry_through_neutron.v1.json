@@ -1,0 +1,84 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "carry_through_neutron",
+  "origin": {
+    "sourceKind": "fixture",
+    "sourceDocumentId": "carry_through_neutron_fixture",
+    "title": "Exact Carry-Through Neutron"
+  },
+  "participants": [
+    {
+      "id": "reactant_neutron_1",
+      "side": "reactant",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "reactant_neutron_1/root",
+      "nodes": [
+        {
+          "id": "reactant_neutron_1/root",
+          "templateId": "neutron",
+          "label": "Neutron",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          },
+          "tags": ["root"]
+        }
+      ],
+      "tags": ["authored", "carry-through-candidate"]
+    },
+    {
+      "id": "product_neutron_1",
+      "side": "product",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_neutron_1/root",
+      "nodes": [
+        {
+          "id": "product_neutron_1/root",
+          "templateId": "neutron",
+          "label": "Neutron",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          },
+          "tags": ["root"]
+        }
+      ],
+      "tags": ["authored"]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

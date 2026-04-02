@@ -1,4 +1,7 @@
-import { evaluateReactionMappingCandidate } from "./ReactionStructureMappingRuntime.js";
+import {
+  classifyReactionNode,
+  evaluateReactionMappingCandidate,
+} from "./ReactionStructureMappingRuntime.js";
 import {
   createAssociateCompositeCandidate,
   createAssociatePhotonCandidate,
@@ -13,6 +16,42 @@ function normalizeText(value = "") {
 
 function compareText(left = "", right = "") {
   return String(left ?? "").localeCompare(String(right ?? ""));
+}
+
+function createEmptyInventory() {
+  return {
+    proCore: 0,
+    antiCore: 0,
+    electrino: 0,
+    positrino: 0,
+  };
+}
+
+function normalizeInventory(inventory = null) {
+  const normalized = createEmptyInventory();
+  if (!inventory || typeof inventory !== "object") {
+    return normalized;
+  }
+  Object.keys(normalized).forEach((key) => {
+    normalized[key] = Math.max(0, Number(inventory?.[key] ?? 0));
+  });
+  return normalized;
+}
+
+function addInventories(left = null, right = null) {
+  const sum = createEmptyInventory();
+  const leftInventory = normalizeInventory(left);
+  const rightInventory = normalizeInventory(right);
+  Object.keys(sum).forEach((key) => {
+    sum[key] = leftInventory[key] + rightInventory[key];
+  });
+  return sum;
+}
+
+function inventoriesEqual(left = null, right = null) {
+  const leftInventory = normalizeInventory(left);
+  const rightInventory = normalizeInventory(right);
+  return Object.keys(leftInventory).every((key) => leftInventory[key] === rightInventory[key]);
 }
 
 function getParticipantIdentityScore(sourceParticipant = null, targetParticipant = null) {
@@ -239,6 +278,13 @@ function entryHasTopLevelConstituentChildren(entry = null) {
   return topLevelChildren.length > 0;
 }
 
+function allowsDirectCenterCompositeProductMapping(sourceParticipant = null, targetParticipant = null) {
+  return (
+    normalizeText(sourceParticipant?.templateId) === "z_boson" &&
+    normalizeText(targetParticipant?.templateId) === "photon"
+  );
+}
+
 function createCenterRootCandidate(
   sourceEntry,
   productEntry,
@@ -254,7 +300,8 @@ function createCenterRootCandidate(
     !sourceNode ||
     !targetParticipant ||
     !targetNode ||
-    entryHasTopLevelConstituentChildren(productEntry)
+    (entryHasTopLevelConstituentChildren(productEntry) &&
+      !allowsDirectCenterCompositeProductMapping(sourceParticipant, targetParticipant))
   ) {
     return null;
   }
@@ -625,39 +672,258 @@ function getParticipantMatchedTargetNodeIds(selectedMappings = [], participantId
   return matchedNodeIds;
 }
 
-function collectPlanDissociatedCompositeParticipants(reactants = [], selectedMappings = []) {
-  const compositeReactantsById = new Map();
+function getParticipantTopLevelChildNodes(rootNode = null) {
+  return Array.isArray(rootNode?.children)
+    ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
+    : [];
+}
+
+function sortTextList(values = []) {
+  return values
+    .map((value) => String(value ?? ""))
+    .filter(Boolean)
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function buildParticipantResidueEntry(entry = null, matchedNodeIds = new Set()) {
+  const participant = entry?.participant ?? null;
+  const rootNode = entry?.rootNode ?? null;
+  const participantId = String(participant?.id ?? "");
+  const rootNodeId = String(rootNode?.id ?? "");
+  if (!participantId || !rootNodeId) {
+    return null;
+  }
+  const topLevelChildren = getParticipantTopLevelChildNodes(rootNode);
+  const unresolvedNodeIds = topLevelChildren.length
+    ? sortTextList(
+        topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && !matchedNodeIds.has(nodeId))
+      )
+    : matchedNodeIds.has(rootNodeId)
+      ? []
+      : [rootNodeId];
+  if (!unresolvedNodeIds.length) {
+    return null;
+  }
+  return {
+    participantId,
+    templateId: normalizeText(participant?.templateId),
+    polarity: normalizeText(participant?.polarity),
+    rootNodeId,
+    residueKind: topLevelChildren.length ? "fragments" : "whole-participant",
+    unresolvedNodeIds,
+  };
+}
+
+function collectPlanResidueEntries(entries = [], selectedMappings = [], target = "source") {
+  const matchNodeIds =
+    target === "target" ? getParticipantMatchedTargetNodeIds : getParticipantMatchedSourceNodeIds;
+  return entries
+    .map((entry) =>
+      buildParticipantResidueEntry(
+        entry,
+        matchNodeIds(selectedMappings, String(entry?.participant?.id ?? ""))
+      )
+    )
+    .filter(Boolean);
+}
+
+function collectPlanAutoDissociationSummary(reactants = [], selectedMappings = []) {
+  const compositeReactants = [];
   reactants.forEach((entry) => {
     const participant = entry?.participant ?? null;
     const rootNode = entry?.rootNode ?? null;
-    const topLevelChildren = Array.isArray(rootNode?.children)
-      ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
-      : [];
+    const topLevelChildren = getParticipantTopLevelChildNodes(rootNode);
     if (!participant?.id || !rootNode?.id || !topLevelChildren.length) {
       return;
     }
-    compositeReactantsById.set(String(participant.id), {
+    compositeReactants.push({
       participant,
+      templateId: normalizeText(participant?.templateId),
       rootNodeId: String(rootNode.id),
+      topLevelChildren,
     });
   });
 
-  const seenParticipantIds = new Set();
-  const dissociatedCompositeParticipants = [];
-  selectedMappings.forEach((mapping) => {
-    const participantId = String(mapping?.sourceParticipant?.id ?? "");
-    const sourceNodeId = String(mapping?.sourceNode?.id ?? "");
-    if (!participantId || !sourceNodeId || seenParticipantIds.has(participantId)) {
-      return;
-    }
-    const compositeEntry = compositeReactantsById.get(participantId) ?? null;
-    if (!compositeEntry || sourceNodeId === compositeEntry.rootNodeId) {
-      return;
-    }
-    seenParticipantIds.add(participantId);
-    dissociatedCompositeParticipants.push(compositeEntry.participant);
+  return compositeReactants
+    .map((entry) => {
+      const matchedNodeIds = getParticipantMatchedSourceNodeIds(
+        selectedMappings,
+        String(entry?.participant?.id ?? "")
+      );
+      const consumedNodeIds = sortTextList(
+        entry.topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && matchedNodeIds.has(nodeId))
+      );
+      if (!consumedNodeIds.length || matchedNodeIds.has(entry.rootNodeId)) {
+        return null;
+      }
+      const remainingNodeIds = sortTextList(
+        entry.topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && !matchedNodeIds.has(nodeId))
+      );
+      return {
+        participantId: String(entry.participant.id),
+        templateId: entry.templateId,
+        rootNodeId: entry.rootNodeId,
+        consumedNodeIds,
+        remainingNodeIds,
+      };
+    })
+    .filter(Boolean);
+}
+
+function resolveAssociateSourceInventory(entry = null, resolveBinaryChoiceInventory = null) {
+  const participant = entry?.participant ?? null;
+  const sourceNode = entry?.sourceNode ?? entry?.rootNode ?? null;
+  if (!participant || !sourceNode) {
+    return createEmptyInventory();
+  }
+  const sourceSpec = classifyReactionNode(participant, sourceNode, {
+    resolveBinaryChoiceInventory,
   });
-  return dissociatedCompositeParticipants;
+  return normalizeInventory(sourceSpec?.inventory);
+}
+
+function isSourceEntryTemplate(entry = null, templateId = "") {
+  return normalizeText(
+    entry?.sourceNode?.templateId ?? entry?.rootNode?.templateId ?? entry?.participant?.templateId ?? ""
+  ) === normalizeText(templateId);
+}
+
+function getSourceEntryPolarity(entry = null) {
+  return normalizeText(
+    entry?.sourceNode?.polarity ?? entry?.rootNode?.polarity ?? entry?.participant?.polarity ?? ""
+  );
+}
+
+function buildExactCenterBosonRecognitions(
+  selectedAssociateCandidates = [],
+  centerAssemblies = [],
+  unresolvedReactants = [],
+  unresolvedProducts = [],
+  resolveBinaryChoiceInventory = null
+) {
+  if (unresolvedReactants.length || unresolvedProducts.length) {
+    return [];
+  }
+  const centerParticipantIds = new Set(
+    centerAssemblies.map((entry) => String(entry?.participant?.id ?? "")).filter(Boolean)
+  );
+  return selectedAssociateCandidates
+    .map((candidate) => {
+      const sourceEntries = Array.isArray(candidate?.sourceEntries) ? candidate.sourceEntries : [];
+      if (
+        sourceEntries.length !== 2 ||
+        sourceEntries.some(
+          (entry) => !centerParticipantIds.has(String(entry?.participant?.id ?? ""))
+        )
+      ) {
+        return null;
+      }
+      const targetParticipant = candidate?.targetParticipant ?? null;
+      const targetTemplateId = normalizeText(targetParticipant?.templateId);
+      const targetPolarity = normalizeText(targetParticipant?.polarity);
+      const orderedSourceRefs = sourceEntries
+        .map((entry) => ({
+          participantId: String(entry?.participant?.id ?? ""),
+          nodeId: String(entry?.sourceNode?.id ?? entry?.rootNode?.id ?? ""),
+        }))
+        .sort(
+          (left, right) =>
+            compareText(left?.participantId, right?.participantId) ||
+            compareText(left?.nodeId, right?.nodeId)
+        );
+      const sourceParticipantIds = orderedSourceRefs.map((entry) => entry.participantId);
+      const sourceNodeIds = orderedSourceRefs.map((entry) => entry.nodeId);
+      const coreEntry = sourceEntries.find((entry) => isSourceEntryTemplate(entry, "noether_core")) ?? null;
+      const freeEntry =
+        sourceEntries.find((entry) => isSourceEntryTemplate(entry, "free_architrinos")) ?? null;
+      const coreEntries = sourceEntries.filter((entry) => isSourceEntryTemplate(entry, "noether_core"));
+      if (
+        coreEntry &&
+        freeEntry &&
+        targetTemplateId === "electron" &&
+        targetPolarity === "pro" &&
+        getSourceEntryPolarity(coreEntry) === "pro" &&
+        inventoriesEqual(resolveAssociateSourceInventory(freeEntry, resolveBinaryChoiceInventory), {
+          electrino: 6,
+          positrino: 0,
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "w_minus_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: ["pro"],
+            freeArchitrinoLedger: {
+              electrino: 6,
+              positrino: 0,
+            },
+          },
+        };
+      }
+      if (
+        coreEntry &&
+        freeEntry &&
+        targetTemplateId === "electron" &&
+        targetPolarity === "anti" &&
+        getSourceEntryPolarity(coreEntry) === "anti" &&
+        inventoriesEqual(resolveAssociateSourceInventory(freeEntry, resolveBinaryChoiceInventory), {
+          electrino: 0,
+          positrino: 6,
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "w_plus_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: ["anti"],
+            freeArchitrinoLedger: {
+              electrino: 0,
+              positrino: 6,
+            },
+          },
+        };
+      }
+      if (
+        targetTemplateId === "photon" &&
+        coreEntries.length === 2 &&
+        new Set(coreEntries.map((entry) => getSourceEntryPolarity(entry))).size === 2 &&
+        coreEntries.every((entry) => {
+          const polarity = getSourceEntryPolarity(entry);
+          return polarity === "pro" || polarity === "anti";
+        })
+      ) {
+        return {
+          kind: "late-center-exact",
+          templateId: "z_boson",
+          targetParticipantId: String(targetParticipant?.id ?? ""),
+          targetTemplateId,
+          sourceParticipantIds,
+          sourceNodeIds,
+          sourcePattern: {
+            corePolarities: coreEntries
+              .map((entry) => getSourceEntryPolarity(entry))
+              .sort((left, right) => compareText(left, right)),
+          },
+        };
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .sort((left, right) => compareText(left?.templateId, right?.templateId));
 }
 
 function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
@@ -995,9 +1261,31 @@ export function buildReactionSolvePlan(options = {}) {
     selectedMappings.push(...(candidate?.mappings ?? []));
   });
 
-  const dissociatedCompositeParticipants = collectPlanDissociatedCompositeParticipants(
-    reactants,
-    selectedMappings
+  const unresolvedReactants = reactants.filter(
+    (entry) => !isReactantEntryResolved(entry, usedReactantIds, selectedMappings)
+  );
+  const unresolvedProducts = products.filter(
+    (entry) => !isProductEntryResolved(entry, usedProductIds, selectedMappings)
+  );
+  const autoDissociatedParticipants = collectPlanAutoDissociationSummary(reactants, selectedMappings);
+  const autoDissociatedParticipantIds = autoDissociatedParticipants.map(
+    (entry) => entry.participantId
+  );
+  const dissociatedCompositeParticipants = autoDissociatedParticipantIds
+    .map((participantId) =>
+      reactants.find((entry) => String(entry?.participant?.id ?? "") === participantId)?.participant ?? null
+    )
+    .filter(Boolean);
+  const residue = {
+    source: collectPlanResidueEntries(unresolvedReactants, selectedMappings, "source"),
+    target: collectPlanResidueEntries(unresolvedProducts, selectedMappings, "target"),
+  };
+  const recognizedCenterBosons = buildExactCenterBosonRecognitions(
+    selectedAssociateCandidates,
+    centerAssemblies,
+    unresolvedReactants,
+    unresolvedProducts,
+    resolveBinaryChoiceInventory
   );
 
   return {
@@ -1010,6 +1298,13 @@ export function buildReactionSolvePlan(options = {}) {
     selectedMappings,
     participantAdditions,
     dissociatedCompositeParticipants,
+    dissociation: {
+      autoDissociatedParticipantIds,
+      autoDissociatedParticipants,
+    },
+    residue,
+    recognizedCenterBosons,
+    recognizedCenterBosonCount: recognizedCenterBosons.length,
     directProductCount:
       selectedFragmentCandidates.length +
       selectedCandidates.filter(
@@ -1022,12 +1317,8 @@ export function buildReactionSolvePlan(options = {}) {
     associatedProductCount: selectedAssociateCandidates.length,
     matchedReactantCount: usedReactantIds.size,
     matchedProductCount: usedProductIds.size,
-    unresolvedReactants: reactants.filter(
-      (entry) => !isReactantEntryResolved(entry, usedReactantIds, selectedMappings)
-    ),
-    unresolvedProducts: products.filter(
-      (entry) => !isProductEntryResolved(entry, usedProductIds, selectedMappings)
-    ),
+    unresolvedReactants,
+    unresolvedProducts,
   };
 }
 

@@ -1,0 +1,206 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "higgs_two_photons",
+  "origin": {
+    "sourceKind": "fixture",
+    "sourceDocumentId": "higgs_two_photons_fixture",
+    "title": "Higgs Cluster To Two Photons"
+  },
+  "participants": [
+    {
+      "id": "reactant_higgs",
+      "side": "reactant",
+      "templateId": "higgs_cluster",
+      "label": "Higgs Cluster",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 12,
+        "positrinoCount": 12
+      },
+      "rootNodeId": "reactant_higgs_structure",
+      "nodes": [
+        {
+          "id": "reactant_higgs_structure",
+          "templateId": "higgs_cluster",
+          "label": "Higgs Cluster",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 12,
+            "positrinoCount": 12
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_pro_1",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core 1",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_anti_1",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core 1",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_pro_2",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core 2",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "reactant_higgs_structure/core_anti_2",
+          "parentId": "reactant_higgs_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core 2",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon_a",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon A",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_a_structure",
+      "nodes": [
+        {
+          "id": "product_photon_a_structure",
+          "templateId": "photon",
+          "label": "Photon A",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_a_structure/core_pro_1",
+          "parentId": "product_photon_a_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_a_structure/core_anti_1",
+          "parentId": "product_photon_a_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon_b",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon B",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_b_structure",
+      "nodes": [
+        {
+          "id": "product_photon_b_structure",
+          "templateId": "photon",
+          "label": "Photon B",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_b_structure/core_pro_1",
+          "parentId": "product_photon_b_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_b_structure/core_anti_1",
+          "parentId": "product_photon_b_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

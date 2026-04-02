@@ -1,0 +1,20 @@
+{
+  "schema": "pdg-fixture-corpus/v1",
+  "cases": [
+    {
+      "id": "free_neutron_beta_decay",
+      "title": "Free neutron beta decay",
+      "sourcePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json"
+    },
+    {
+      "id": "muon_decay",
+      "title": "Muon decay",
+      "sourcePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json"
+    },
+    {
+      "id": "charged_pion_to_muon_neutrino",
+      "title": "Charged pion to muon neutrino",
+      "sourcePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json"
+    }
+  ]
+}
