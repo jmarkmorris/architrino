@@ -285,31 +285,120 @@ The external solver should support two input modes:
 
 The compact shorthand should stay intentionally short. The intended shape is:
 
-- `--r [PNeuctdsbhHVWZ...]`
-- `--p [PNeuctdsbhHVWZ...]`
+- `--r [Pe2u3dW+2h4h...]`
+- `--p [Pe2u3dW+2h4h...]`
 
 Those concise reactant and product strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
 
-Current best read of the intended compact particle alphabet:
+The compact string should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The parser should ignore `.`, `,`, and `_` when they appear between valid tokens.
 
-| Code | Intended particle | Notes |
+Recommended human-facing separator:
+
+| Separator | Status | Notes |
 | --- | --- | --- |
-| `P` | proton | aligns with existing `Pro Proton` support |
+| `.` | preferred | no shift key, shell-safe, visually light |
+| `,` | allowed | also shell-safe and easy to scan |
+| `_` | allowed | readable, but less pleasant to type |
+
+Examples:
+
+| Notation | Meaning |
+| --- | --- |
+| `Pe2v` | compact form with no separators |
+| `P.e2.v` | same input with preferred separators |
+| `P,e2,v` | same input with comma separators |
+| `h2.W-.P` | distinct assemblies made easier to scan |
+| `P.e.av` | proton, electron, anti-neutrino |
+
+Example command, free neutron decay with an added `4h` reactant:
+
+| Form | Command |
+| --- | --- |
+| compact | `solver --r N4h --p Peav` |
+| separated | `solver --r N.4h --p P.e.av` |
+
+Current compact notation direction:
+
+| Notation | Meaning | Notes |
+| --- | --- | --- |
+| `d1` or `d` | down quark | generation I may omit the `1` |
+| `d2` | strange quark | generation II down-family |
+| `d3` | bottom quark | generation III down-family |
+| `e1` or `e` | electron | generation I may omit the `1` |
+| `e2` | muon | generation II charged lepton |
+| `e3` | tau | generation III charged lepton |
+| `h` | Noether core | base core symbol |
+| `h2` | Bi Binary | reduced `Noether core` form |
+| `h3` | Uni Binary | reduced `Noether core` form |
+| `2h` | photon | two-core photon shorthand |
+| `4h` | Higgs cluster | four-core Higgs-cluster shorthand |
 | `N` | neutron | aligns with existing `Pro Neutron` support |
-| `e` | electron | aligns with existing `Pro Electron` support |
-| `u` | up quark | first-generation up-type quark |
-| `c` | charm quark | second-generation up-type quark |
-| `t` | top quark | third-generation up-type quark |
-| `d` | down quark | first-generation down-type quark |
-| `s` | strange quark | second-generation down-type quark |
-| `b` | bottom quark | third-generation down-type quark |
-| `V` | neutrino | likely ASCII stand-in for `\nu` |
-| `H` | Higgs cluster | the most natural uppercase `H` reading |
-| `h` | photon | likely the `h\nu` mnemonic rather than a second Higgs code |
-| `W` | `W` boson family | sign probably needs a later polarity or suffix convention such as `W+` / `W-` |
+| `P` | proton | aligns with existing `Pro Proton` support |
+| `u1` or `u` | up quark | generation I may omit the `1` |
+| `u2` | charm quark | generation II up-family |
+| `u3` | top quark | generation III up-family |
+| `v1` or `v` | neutrino | generation I may omit the `1` |
+| `v2` | muon neutrino | generation II neutrino |
+| `v3` | tau neutrino | generation III neutrino |
+| `W+` | `W+` boson | two-character token |
+| `W-` | `W-` boson | two-character token |
 | `Z` | `Z` boson | direct match |
 
-This alphabet appears to describe particle-level shorthand rather than every internal solver assembly. In particular, `Noether core` and `Free Architrinos` are solver-relevant assemblies today, but they do not fit cleanly into the current one-letter sketch and should be treated as out of scope for this first compact notation unless separate codes are reserved for them.
+Generation numbers should be interpreted as family indices for fermions:
+
+| Family letter | Generation I | Generation II | Generation III |
+| --- | --- | --- | --- |
+| `e` | electron | muon | tau |
+| `u` | up quark | charm quark | top quark |
+| `d` | down quark | strange quark | bottom quark |
+| `v` | neutrino | muon neutrino | tau neutrino |
+
+Polarity should be handled with `a` only:
+
+| Notation form | Meaning |
+| --- | --- |
+| `x` | pro form is implied |
+| `ax` | anti form |
+
+Examples:
+
+| Notation | Meaning |
+| --- | --- |
+| `e` | pro electron |
+| `ae` | anti electron |
+| `e2` | pro muon |
+| `ae2` | anti muon |
+| `v` | pro neutrino |
+| `av3` | anti tau neutrino |
+| `h` | pro `Noether core` |
+| `ah` | anti `Noether core` |
+
+The `h` notation now has two different numeric roles, and both should stay explicit:
+
+| Notation form | Meaning |
+| --- | --- |
+| `nh` | `n` whole `Noether cores` |
+| `hn` | a reduced `Noether core` form |
+
+Current intended `h` family examples:
+
+| Notation | Meaning |
+| --- | --- |
+| `h` | tri-binary `Noether core` |
+| `h2` | Bi Binary |
+| `h3` | Uni Binary |
+| `2h` | two `Noether cores`, currently used as photon shorthand |
+| `4h` | four `Noether cores`, currently used as Higgs-cluster shorthand |
+
+Additional supported particles or solver-relevant assemblies that should still remain visible in the notation inventory:
+
+| Notation | Particle or assembly | Notes |
+| --- | --- | --- |
+|  | Free Architrinos | solver-relevant center assembly; still unassigned in this notation |
+
+This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, and `4h` preserve the core-count intuition for the assembly side of the notation.
+
+For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. The tokenizer should therefore recognize `W+` and `W-` greedily before any single-character symbols.
 
 ### Result And Integration Contract
 
