@@ -110,30 +110,10 @@ Implementation stance:
 
 ### Reference Behavior And Assets
 
-The current browser solver should no longer drive architecture, but it still provides three useful kinds of reference value for `solver.py`:
+The current browser solver should no longer drive architecture, but it still provides a narrow remaining reference value for `solver.py`:
 
 - covered behavior that the new solver should preserve unless intentionally changed;
-- concrete JS seam and test inventory for extracting golden fixtures;
 - and Reaction-side adapter expectations around rerun, layout, and projection.
-
-Reference implementation inventory:
-
-- `src/apps/reaction/ReactionSolveStateRuntime.js`
-- `src/apps/reaction/ReactionSolveProposalRuntime.js`
-- `src/apps/reaction/ReactionSolveSelectionRuntime.js`
-- `src/apps/reaction/ReactionSolveMatchRuntime.js`
-- `src/apps/reaction/ReactionSolveAssociateRuntime.js`
-- `src/apps/reaction/ReactionSolveLayoutRuntime.js`
-- `src/apps/reaction/ReactionSolveProjectionRuntime.js`
-- `src/apps/reaction/ReactionSolverUiRuntime.js`
-
-Reference test inventory:
-
-- `tests/reaction-solve-state.test.js`
-- `tests/reaction-solve-proposal.test.js`
-- `tests/reaction-solve-layout.test.js`
-- `tests/reaction-solve-projection.test.js`
-- `tests/reaction-solver-ui.test.js`
 
 Covered conservative solve families worth preserving as explicit reference behavior:
 
@@ -1411,27 +1391,9 @@ Do not:
 
 - duplicate lane geometry across CSS and JS;
 - infer centers from ad hoc rendered offsets;
-- or collapse new solve logic back into the UI runtime.
-
-The long-term target is for the solver UI runtime to become composition and wiring only, with domain logic staying in focused runtimes.
+- or collapse new solve logic back into the Reaction app adapter layer.
 
 ### File Boundaries
-
-On the browser side, the current solver file boundaries should remain the basis for extension during the transition:
-
-- `ReactionSolveStateRuntime.js`
-- `ReactionSolveProposalRuntime.js`
-- `ReactionSolveSelectionRuntime.js`
-- `ReactionSolveMatchRuntime.js`
-- `ReactionSolveAssociateRuntime.js`
-- `ReactionSolveProjectionRuntime.js`
-- `ReactionSolveLayoutRuntime.js`
-
-Those runtimes should increasingly act as:
-
-- the reference implementation for current behavior;
-- the projection and layout adapters for Reaction;
-- and the bridge layer to a future external solver contract.
 
 Likely durable boundaries in the rearchitected system are:
 
@@ -1442,13 +1404,6 @@ Likely durable boundaries in the rearchitected system are:
 - a Reaction projection adapter;
 - a Reaction surface-grid placement adapter;
 - and an export or import adapter for downstream Composer flow.
-
-Likely next extraction targets from the current UI runtime remain:
-
-- a surface-grid placement runtime;
-- a menu and picker runtime;
-- a route-render runtime;
-- and a participant-interaction runtime.
 
 ## Interfaces
 
@@ -1589,29 +1544,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 7. Shrink The Solver UI Runtime
-
-Status: `pending`
-
-Goal:
-
-- keep `ReactionSolverUiRuntime.js` moving toward composition-only wiring.
-
-Why it matters:
-
-- this is still the biggest solver-side readability, testability, and regression hotspot on the browser side, even if it is no longer the first blocker before `solver.py`.
-
-Next steps:
-
-- continue moving domain logic into focused runtimes;
-- keep layout, proposal, projection, and interaction seams explicit;
-- and avoid adding new solve behavior directly to the UI runtime.
-
-Execution rule:
-
-- when a newly reported solve bug appears, add a targeted regression test before or with the fix.
-
-### 8. Extend Primitive Charge Routing
+### 7. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -1631,9 +1564,9 @@ Next steps:
 
 Dependency note:
 
-- do not hard-code final-state weak-corridor core provenance until the `W^\pm` provenance question above is settled.
+- do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
 
-### 9. Improve Residue And Dissociation Reporting
+### 8. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1655,7 +1588,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 10. Add Exact Boson Recognition On Top Of Primitive Solves
+### 9. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1673,7 +1606,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 11. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 10. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1691,8 +1624,27 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 12. Solver Rearchitecture
+### 11. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
+
+### 12. Delete The Old Browser Solver After Flash Cut-Over
+
+Status: `pending`
+
+Goal:
+
+- remove the old Reaction-app solver code completely once `solver.py` is complete, integrated, and validated well enough for the flash migration.
+
+Why it matters:
+
+- there are no compatibility requirements for a long dual-run period, and keeping both solvers in-tree after cut-over will only preserve confusion, duplicate maintenance, and stale architecture.
+
+Next steps:
+
+- switch the Reaction app fully onto the new solver contract and adapter path;
+- remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
+- keep any needed historical reference in git history rather than in active source files;
+- and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.
