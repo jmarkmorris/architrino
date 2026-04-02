@@ -1,0 +1,108 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "pdg_seeded_center_neutrino",
+  "origin": {
+    "sourceKind": "pdg-ingest",
+    "sourceDocumentId": "pdg:proposal:center_neutrino:1",
+    "title": "PDG-Seeded Center Noether Core And Free Architrinos To Neutrino"
+  },
+  "participants": [
+    {
+      "id": "center_noether_core",
+      "side": "center",
+      "centerUsage": "required",
+      "templateId": "noether_core",
+      "label": "Pro Noether Core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "center_noether_core_structure",
+      "nodes": [
+        {
+          "id": "center_noether_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether Core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "center_free_architrinos",
+      "side": "center",
+      "centerUsage": "required",
+      "templateId": "free_architrinos",
+      "label": "Free Architrinos",
+      "family": "free-architrinos",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "center_free_architrinos_structure",
+      "nodes": [
+        {
+          "id": "center_free_architrinos_structure",
+          "templateId": "free_architrinos",
+          "label": "Free Architrinos",
+          "family": "free-architrinos",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_neutrino",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Pro Neutrino",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_neutrino_structure",
+      "nodes": [
+        {
+          "id": "product_neutrino_structure",
+          "templateId": "neutrino",
+          "label": "Pro Neutrino",
+          "family": "lepton",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        }
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}
