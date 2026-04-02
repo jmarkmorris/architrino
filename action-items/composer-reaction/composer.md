@@ -47,7 +47,8 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a first-pass staged reaction scene from it.
+- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
+- The `reaction-flow/v1` intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
 
 ## Design
 
@@ -270,13 +271,13 @@ Why it matters:
 
 Next steps:
 
-- keep import logic, framing logic, and editorial behavior in focused modules;
+- keep framing logic, editorial behavior, and any remaining handoff-adjacent logic in focused modules;
 - keep the composition root thin;
 - and use [app-architecture](./app-architecture.md) for the cross-cutting enforcement standard.
 
 ### 5. Retire Remaining Composer State And Authoring Logic From `app.js`
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -286,16 +287,22 @@ Why it matters:
 
 - Composer still depends too much on a shared composition root for app-owned state and authoring behavior.
 
+Progress update:
+
+- Composer draft-state, authoring-state, viewport-display, and assembly-label runtimes now exist under `src/apps/composer/`, and the matching helper blocks have been removed from `app.js`.
+- The remaining Composer debt in `app.js` is still large, but it is concentrated rather than evenly spread: about 205 Composer-named routines remain, totaling about 6.4k LOC, with the top 20 routines accounting for about 2.8k LOC.
+- Current estimate: about 5.0k-5.8k LOC still look worth extracting into Composer-owned runtimes, while about 0.6k-1.4k LOC likely remain acceptable as thin composition-root glue after the larger migrations land.
+
 Next steps:
 
-- move draft/state/selection helpers into a Composer draft-state runtime and collapse direct store wrappers into the existing store facade;
-- move transfer/path authoring helpers into a Composer authoring-state runtime;
-- move view-mode/display-flag helpers into a Composer viewport-display runtime;
-- and move assembly identity/label helpers into a Composer assembly-label runtime or merge them into existing assembly helpers.
+- keep the new state/authoring runtimes stable and avoid reintroducing direct store wrappers into `app.js`;
+- treat items 6 and 7 as batch extractions rather than one helper at a time;
+- prioritize the largest remaining seams first so each pass removes hundreds of lines instead of dozens;
+- and leave only thin launch, wiring, and cross-runtime glue in `app.js` once the larger Composer-owned families have moved.
 
 ### 6. Extract Composer Viewport Geometry, Assets, And Authoring Modules
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -305,16 +312,22 @@ Why it matters:
 
 - these behaviors are clearly Composer-owned, but too many of them are still grouped together in broad legacy surfaces.
 
+Progress update:
+
+- Composer render-asset builders for textures, sprites, and overlay text now live in a dedicated Composer render-assets runtime rather than inlined inside `app.js`.
+- Composer orbit/member/anchor math, member-anchor state, path/base-position sampling, and autoscale geometry helpers now live in a dedicated Composer structure-geometry runtime rather than inlined inside `app.js`.
+- Composer camera/path authoring now lives in a dedicated camera-path runtime, and assembly editor plus hover-inspector behavior now live in a dedicated assembly-inspector runtime rather than inlined inside `app.js`.
+- The remaining work in this item is now mostly the broader canvas/playback/interaction stack rather than the already-separated geometry, asset, camera-path, and inspector seams.
+
 Next steps:
 
-- move orbit/member/anchor math into a Composer structure-geometry runtime;
-- move texture and sprite builders into a Composer render-assets runtime;
-- move camera/path authoring into a Composer camera-path runtime;
-- and move assembly editor and inspector behavior into a Composer assembly-inspector runtime.
+- keep those new camera-path and inspector seams stable while the remaining viewport stack moves out;
+- start item 7 extractions with the path-point info pill and related overlay helpers;
+- and keep `app.js` changes to wiring only as those focused runtimes land.
 
-### 8. Split The Remaining Composer Canvas, Playback, And Interaction Stack
+### 7. Split The Remaining Composer Canvas, Playback, And Interaction Stack
 
-Status: `pending`
+Status: `active`
 
 Goal:
 
@@ -324,35 +337,25 @@ Why it matters:
 
 - viewport render, playback, menus, media overlays, and pointer interaction are still a major concentration of Composer structural debt.
 
+Progress update:
+
+- The path-point info pill now lives in a dedicated Composer viewport-overlay-pill runtime rather than inlined inside `app.js`.
+- Composer pointer-hit resolution now lives in a dedicated Composer pointer-hit runtime rather than inlined inside `app.js`.
+- Composer pointer, drag, hover, wheel, and timeline-context interaction handling now live in a dedicated Composer pointer-interaction runtime rather than inlined inside `app.js`.
+- Composer canvas bootstrap now lives in a dedicated Composer canvas-bootstrap runtime rather than inlined inside `app.js`.
+- Composer playback, playhead, marker navigation, timeline rendering, and viewport-mode transport logic now live in a dedicated Composer playback-timeline runtime rather than inlined inside `app.js`.
+- Composer canvas resize, frame-scale, observer-camera, and render-loop wiring now live in a dedicated Composer viewport-render runtime rather than inlined inside `app.js`.
+- `app.js` is now down to about 7.1k lines, so the remaining structural debt is increasingly concentrated in a smaller set of larger viewport-facing seams.
+- The remaining work in this item is now mostly the viewport visuals, media-overlay, and canvas-menu stack rather than the already-separated playback, bootstrap, pointer, and render loops.
+- A refresh-time white flash still appears intermittently before the scene populates, so the remaining viewport/bootstrap work also needs a first-paint audit rather than only structural extraction.
+
 Next steps:
 
-- move canvas/menu behavior into a Composer canvas-menu shell runtime;
-- move canvas bootstrap into a Composer canvas-bootstrap runtime;
-- split the document/viewport render pipeline into viewport-render and playback/timeline runtimes;
-- move viewport visuals and media overlays into a Composer viewport-visuals runtime;
-- move pointer handling into a Composer pointer-interaction runtime;
-- move the path-point info pill into a Composer viewport-overlay-pill runtime;
+- take the next larger pass through viewport visuals and media overlays so the next turn can remove another substantial chunk from `app.js`;
+- move canvas/menu behavior into a Composer canvas-menu shell runtime once the viewport-visuals boundary is settled;
+- trace and eliminate the refresh-time white flash so Composer and Reaction hold a stable dark first paint on browser reload;
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
-
-### 9. Harden The Composer Side Of `reaction-flow/v1`
-
-Status: `pending`
-
-Goal:
-
-- make the Composer side of the Reaction handoff production-hardened around the single intended bridge.
-
-Why it matters:
-
-- the Reaction export to Composer import path is still provisional, and Composer should consume it without importing Reaction runtime code.
-
-Next steps:
-
-- keep `reaction-flow/v1` as the only intended import bridge;
-- build the real Composer import adapter against that contract;
-- add golden Composer import tests before deleting transitional scaffolding;
-- and keep import behavior data-first rather than runtime-coupled.
 
 ## Related Action Items
 

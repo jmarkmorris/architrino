@@ -84,6 +84,8 @@ The repository works best when different contribution types are routed to the ri
 
 This separation helps preserve both clarity and momentum. It keeps the issue tracker from being overloaded with speculative conversation while still allowing strong discussions to mature into actionable work.
 
+As a practical workflow suggestion rather than a requirement, contributors working through a long session or a large in-progress refactor may find lightweight annotated tags useful as named checkpoints between pull requests. That can be a good way to preserve meaningful intermediate states without forcing a full branch-reset and pull-request cycle every time the amount of change becomes substantial. Pull requests should still remain the normal unit of review and integration. Tags are better understood here as optional bookmarks inside a larger working arc.
+
 ## Editorial and Moderation Principles
 
 If the public-facing GitHub presence grows, it will need moderation and editorial norms that remain consistent with the broader project.

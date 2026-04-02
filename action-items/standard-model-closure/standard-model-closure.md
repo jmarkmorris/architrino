@@ -15,6 +15,7 @@
 2. `overlap_integrals` — Derive CKM and PMNS overlap integrals from geometry. Status: `pending`. Depends on: `quark_mass_predictions`.
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `chirality_crisis` — Test whether the spiral-handedness story can produce weak V-A selection. Status: `pending`. Depends on: `overlap_integrals`.
+5. `weak_corridor_provenance` — Determine whether `W^\pm` corridors carry pro/anti Noether-core provenance, or only charged transaction delta, and close how outgoing lepton / antilepton cores are sourced in weak reactions. Status: `pending`. Depends on: `overlap_integrals`.
 
 ## Scope
 
@@ -32,6 +33,7 @@ The quark catalog and basic `SU(3)\times SU(2)\times U(1)` bookkeeping are in pl
 - Derive CKM / PMNS data from explicit overlap integrals rather than fit knobs.
 - Derive confinement behavior from topological or strain energetics.
 - Work the chirality crisis hard enough to test weak `V-A` closure.
+- Close the provenance question for weak corridors: whether `W^\pm` should be modeled as carrying final-state pro/anti Noether-core identity, or only as transient charge-routing bundles while the local pro/anti core reservoir supplies outgoing lepton cores.
 
 ## Geometry-First Program
 
@@ -50,6 +52,7 @@ rather than treating transport costs as fit knobs.
 - Work the chirality crisis explicitly: if spiral handedness cannot generate the weak `V-A` selection rule, the model fails on this front.
 - If right-handed neutrinos couple to `W` with the same strength as left-handed ones, the model fails.
 - Keep trying to derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
+- If the model cannot say where outgoing weak-reaction lepton and antilepton cores actually come from, then electroweak provenance closure remains incomplete even if coarse CKM-style bookkeeping is reproduced.
 
 ## Related Action Items
 
