@@ -1549,32 +1549,7 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Lock Down Identity, Selection, And Tie-Break Semantics
-
-Status: `review`
-
-Goal:
-
-- make the winning-plan rules and identity conventions explicit before the Python implementation starts.
-
-Why it matters:
-
-- a new Python solver can appear correct while still disagreeing with the covered browser behavior on ids, node references, operator refs, or which candidate family should win.
-
-This pass froze:
-
-- the normative identity and tie-break section above;
-- compact external solve-generated operator ids such as `associate:1` in the solver-result fixtures;
-- targeted regression coverage in [`tests/solver-selection-semantics.test.js`](../../tests/solver-selection-semantics.test.js);
-- and the distinction between external unpacked anchor identity and the Reaction adapter's packed `participantId::nodeId` key.
-
-Review focus:
-
-- confirm that `solver-result/v1` should use compact sequential operator ids rather than the browser solver's verbose structural refs;
-- confirm that the documented candidate and whole-set tie-break order is the right frozen acceptance bar for `solver.py`;
-- and confirm that keeping packed node keys adapter-local while leaving request/result anchors unpacked is the right contract boundary.
-
-### 3. Decide The Python / JS Boundary For Layout And Projection
+### 2. Decide The Python / JS Boundary For Layout And Projection
 
 Status: `pending`
 
@@ -1592,7 +1567,7 @@ Next steps:
 - keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
 - and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
 
-### 4. Finish The Compact CLI Grammar As A Testable Lexer Spec
+### 3. Finish The Compact CLI Grammar As A Testable Lexer Spec
 
 Status: `pending`
 
@@ -1610,7 +1585,7 @@ Next steps:
 - keep longest-match, separator, and rejection rules explicit;
 - and keep the compact grammar subordinate to the canonical normalized request format.
 
-### 5. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+### 4. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
 
 Status: `pending`
 
@@ -1629,7 +1604,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 6. Extend Primitive Charge Routing
+### 5. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -1651,7 +1626,7 @@ Dependency note:
 
 - do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
 
-### 7. Improve Residue And Dissociation Reporting
+### 6. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1673,7 +1648,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 8. Add Exact Boson Recognition On Top Of Primitive Solves
+### 7. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1691,7 +1666,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 9. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 8. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1709,13 +1684,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 10. Solver Rearchitecture
+### 9. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 11. Delete The Old Browser Solver After Flash Cut-Over
+### 10. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
