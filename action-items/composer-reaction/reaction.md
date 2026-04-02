@@ -127,7 +127,7 @@ That screen should be understood as:
 - allowed to share contract vocabulary and visual language with Composer, but not Composer runtime code;
 - and downstream of future PDG seeds or proposals when those exist.
 
-The solver component itself is documented in [solver](./solver.md). This document owns how that capability appears inside the Reaction app.
+The solver component itself is documented in [solver](./solver.md). The solver-to-Reaction payload format is owned in [solver](./solver.md#result-format). This document owns how that capability appears inside the Reaction app.
 
 ## Interfaces
 
@@ -136,6 +136,7 @@ The solver component itself is documented in [solver](./solver.md). This documen
 - manually authored or selected reactants and products;
 - participant templates and operator choices exposed by the Reaction app;
 - current authored mappings and dissociation state;
+- structured solver results in the format owned by [solver](./solver.md#result-format);
 - and future normalized seeds or proposals from [pdg-ingest](./pdg-ingest.md).
 
 ### Outputs

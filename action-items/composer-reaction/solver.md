@@ -358,6 +358,8 @@ Operational lexer guidance:
 
 The rebuilt solver should return explicit structured output rather than mutating app state directly.
 
+This section owns the solver-to-Reaction result shape. [reaction](./reaction.md) should reference this section rather than restating the payload.
+
 That output should be rich enough to carry:
 
 - solved participants and participant roles;
@@ -367,6 +369,30 @@ That output should be rich enough to carry:
 - and enough staged structure to feed Reaction review and later downstream export.
 
 The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
+
+### Result Format
+
+The solver result submitted to the Reaction app should be one structured solve-result document, not a stream of ad hoc UI mutations.
+
+The intended top-level shape is:
+
+- `request`: solver-normalized description of the authored reaction inputs that were solved;
+- `summary`: overall solve outcome, including whether the solve is exact, partial, ambiguous, or unsupported;
+- `participants`: the participant records the projection adapter needs to preserve source ids, target ids, roles, and any solver-created intermediate or operator-side entries;
+- `mappings`: selected source-to-target provenance claims, with enough endpoint identity to recreate live Reaction mappings;
+- `operators`: solve-created operator insertions and their intended produced outputs;
+- `dissociation`: explicit or implicit dissociation decisions selected by the solve, including auto-dissociated composite sources;
+- `placement`: lane, row, or placement-hint data for solve-created operators and other projection-side layout needs;
+- `residue`: unresolved sources, unresolved targets, and other leftover inventory the solver could not close;
+- and `diagnostics`: ambiguity notes, rule-family provenance, warnings, and other review-facing details that should remain visible in Reaction.
+
+Required contract rules:
+
+- the result must be self-sufficient enough for the Reaction projection adapter to materialize the solve without rereading planner-internal state;
+- mappings, operators, dissociation, and residue must use stable participant or node identities rather than DOM-derived positions;
+- placement data may be advisory, but semantic solve claims must not depend on render-order inference;
+- manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
+- and the solve-result format is upstream of `reaction-flow/v1`: the solver submits to Reaction in this format, then accepted Reaction state exports downstream through the separate Reaction-owned handoff contract.
 
 ### Direct Composer Path
 
@@ -457,9 +483,117 @@ Likely next extraction targets from the current UI runtime remain:
 
 ## Priorities
 
-### 1. Shrink The Solver UI Runtime
+### 1. Define Versioned Solver Request And Result Schemas
 
 Status: `active`
+
+Goal:
+
+- define one canonical JSON request schema for solver input and one canonical JSON result schema for solver output before `solver.py` is written.
+
+Why it matters:
+
+- the Python core needs a stable boundary for authored inputs and projected solve output, or the Python/JS seam will drift immediately.
+
+Next steps:
+
+- define `solver-request/v1` around participants, mappings, manual operators, dissociation state, and center assemblies;
+- promote the solver-to-Reaction result shape into a real versioned schema rather than prose only;
+- and keep the solver-result contract distinct from the downstream Reaction-owned `reaction-flow/v1` export.
+
+### 2. Freeze A Golden Parity Corpus From The Current JS Solver
+
+Status: `next`
+
+Goal:
+
+- freeze the current supported conservative cases as request/result fixtures before the Python port begins.
+
+Why it matters:
+
+- parity should be measured against stable fixtures and expectations, not by rereading browser-side code during the port.
+
+Next steps:
+
+- choose the initial supported cases from the current proposal, layout, and projection tests;
+- capture those cases as golden request/result fixtures;
+- and use that corpus as the first acceptance bar for `solver.py`.
+
+### 3. Lock Down Identity, Selection, And Tie-Break Semantics
+
+Status: `pending`
+
+Goal:
+
+- make the winning-plan rules and identity conventions explicit before the Python implementation starts.
+
+Why it matters:
+
+- a Python port can appear correct while still disagreeing with the current solver on ids, node references, operator refs, or which candidate family should win.
+
+Next steps:
+
+- define stable participant ids, node-key rules, and synthetic operator refs such as `associate:1`;
+- write the candidate-selection and set-selection tie-break order as compact normative rules;
+- and keep those rules aligned with the current whole-product-first selection behavior.
+
+### 4. Decide The Python / JS Boundary For Layout And Projection
+
+Status: `pending`
+
+Goal:
+
+- decide exactly which responsibilities stay in the headless solver and which stay in the Reaction app adapters.
+
+Why it matters:
+
+- `solver.py` should return semantic solve output through a stable contract, not accidentally absorb UI-side layout and projection behavior that already has a clear local seam.
+
+Next steps:
+
+- decide whether Python returns semantic solve output plus placement hints or fully resolved operator placements;
+- keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
+- and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
+
+### 5. Finish The Compact CLI Grammar As A Testable Lexer Spec
+
+Status: `pending`
+
+Goal:
+
+- turn the shorthand notation into a fully testable lexer contract rather than an examples-only description.
+
+Why it matters:
+
+- the command-line form should be a convenience syntax over the same request schema, and the implementation will go faster if valid and invalid forms are frozen in fixtures first.
+
+Next steps:
+
+- add positive and negative fixture strings for every committed token family and ambiguity rule;
+- keep longest-match, separator, and rejection rules explicit;
+- and keep the compact grammar subordinate to the canonical normalized request format.
+
+### 6. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+
+Status: `pending`
+
+Goal:
+
+- keep `solver.py` from silently guessing on theory-owned weak-channel provenance questions.
+
+Why it matters:
+
+- the current open `W^\pm` provenance question is real, and the first headless solver should not hard-code an answer by implementation convenience.
+
+Next steps:
+
+- either decide the currently open weak-channel provenance cases or mark them unsupported in v1;
+- keep the unsupported boundary explicit in the request/result contracts and parity corpus;
+- and treat theory-owned resolution as upstream of broader weak-channel expansion.
+
+### 7. Shrink The Solver UI Runtime
+
+Status: `pending`
 
 Goal:
 
@@ -467,7 +601,7 @@ Goal:
 
 Why it matters:
 
-- this is still the biggest solver-side readability, testability, and regression hotspot.
+- this is still the biggest solver-side readability, testability, and regression hotspot on the browser side, even if it is no longer the first blocker before `solver.py`.
 
 Next steps:
 
@@ -479,9 +613,9 @@ Execution rule:
 
 - when a newly reported solve bug appears, add a targeted regression test before or with the fix.
 
-### 2. Extend Primitive Charge Routing
+### 8. Extend Primitive Charge Routing
 
-Status: `next`
+Status: `pending`
 
 Goal:
 
@@ -501,7 +635,7 @@ Dependency note:
 
 - do not hard-code final-state weak-corridor core provenance until the `W^\pm` provenance question above is settled.
 
-### 3. Improve Residue And Dissociation Reporting
+### 9. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -523,7 +657,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 4. Add Exact Boson Recognition On Top Of Primitive Solves
+### 10. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -541,7 +675,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 5. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 11. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -559,7 +693,7 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 6. Solver Rearchitecture
+### 12. Solver Rearchitecture
 
 Objective:
 
