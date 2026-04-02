@@ -55,6 +55,13 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
   const solveGeneratedOperatorIds = new Set(
     solveGeneratedOperators.map((operator) => normalizeText(operator.id))
   );
+  const autoDissociatedParticipantIds = Array.isArray(
+    result?.dissociation?.autoDissociatedParticipantIds
+  )
+    ? result.dissociation.autoDissociatedParticipantIds
+        .map((participantId) => normalizeText(participantId))
+        .filter(Boolean)
+    : [];
 
   return {
     participantAdditions: solveGeneratedOperators.map((operator) => {
@@ -69,13 +76,10 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
         operatorSlotIndex: placement?.slot ?? placement?.row ?? 0,
       };
     }),
-    dissociatedCompositeParticipants: Array.isArray(
-      result?.dissociation?.autoDissociatedParticipantIds
-    )
-      ? result.dissociation.autoDissociatedParticipantIds
-          .map((participantId) => normalizeText(participantId))
-          .filter(Boolean)
-      : [],
+    dissociatedCompositeParticipants: autoDissociatedParticipantIds,
+    dissociation: {
+      autoDissociatedParticipantIds,
+    },
     selectedMappings: (Array.isArray(result?.mappings) ? result.mappings : [])
       .map((mapping) => {
         const sourceEndpoint = normalizeProjectionEndpoint(

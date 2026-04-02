@@ -633,39 +633,108 @@ function getParticipantMatchedTargetNodeIds(selectedMappings = [], participantId
   return matchedNodeIds;
 }
 
-function collectPlanDissociatedCompositeParticipants(reactants = [], selectedMappings = []) {
-  const compositeReactantsById = new Map();
+function getParticipantTopLevelChildNodes(rootNode = null) {
+  return Array.isArray(rootNode?.children)
+    ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
+    : [];
+}
+
+function sortTextList(values = []) {
+  return values
+    .map((value) => String(value ?? ""))
+    .filter(Boolean)
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function buildParticipantResidueEntry(entry = null, matchedNodeIds = new Set()) {
+  const participant = entry?.participant ?? null;
+  const rootNode = entry?.rootNode ?? null;
+  const participantId = String(participant?.id ?? "");
+  const rootNodeId = String(rootNode?.id ?? "");
+  if (!participantId || !rootNodeId) {
+    return null;
+  }
+  const topLevelChildren = getParticipantTopLevelChildNodes(rootNode);
+  const unresolvedNodeIds = topLevelChildren.length
+    ? sortTextList(
+        topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && !matchedNodeIds.has(nodeId))
+      )
+    : matchedNodeIds.has(rootNodeId)
+      ? []
+      : [rootNodeId];
+  if (!unresolvedNodeIds.length) {
+    return null;
+  }
+  return {
+    participantId,
+    templateId: normalizeText(participant?.templateId),
+    polarity: normalizeText(participant?.polarity),
+    rootNodeId,
+    residueKind: topLevelChildren.length ? "fragments" : "whole-participant",
+    unresolvedNodeIds,
+  };
+}
+
+function collectPlanResidueEntries(entries = [], selectedMappings = [], target = "source") {
+  const matchNodeIds =
+    target === "target" ? getParticipantMatchedTargetNodeIds : getParticipantMatchedSourceNodeIds;
+  return entries
+    .map((entry) =>
+      buildParticipantResidueEntry(
+        entry,
+        matchNodeIds(selectedMappings, String(entry?.participant?.id ?? ""))
+      )
+    )
+    .filter(Boolean);
+}
+
+function collectPlanAutoDissociationSummary(reactants = [], selectedMappings = []) {
+  const compositeReactants = [];
   reactants.forEach((entry) => {
     const participant = entry?.participant ?? null;
     const rootNode = entry?.rootNode ?? null;
-    const topLevelChildren = Array.isArray(rootNode?.children)
-      ? rootNode.children.filter((childNode) => childNode?.id && childNode?.templateId)
-      : [];
+    const topLevelChildren = getParticipantTopLevelChildNodes(rootNode);
     if (!participant?.id || !rootNode?.id || !topLevelChildren.length) {
       return;
     }
-    compositeReactantsById.set(String(participant.id), {
+    compositeReactants.push({
       participant,
+      templateId: normalizeText(participant?.templateId),
       rootNodeId: String(rootNode.id),
+      topLevelChildren,
     });
   });
 
-  const seenParticipantIds = new Set();
-  const dissociatedCompositeParticipants = [];
-  selectedMappings.forEach((mapping) => {
-    const participantId = String(mapping?.sourceParticipant?.id ?? "");
-    const sourceNodeId = String(mapping?.sourceNode?.id ?? "");
-    if (!participantId || !sourceNodeId || seenParticipantIds.has(participantId)) {
-      return;
-    }
-    const compositeEntry = compositeReactantsById.get(participantId) ?? null;
-    if (!compositeEntry || sourceNodeId === compositeEntry.rootNodeId) {
-      return;
-    }
-    seenParticipantIds.add(participantId);
-    dissociatedCompositeParticipants.push(compositeEntry.participant);
-  });
-  return dissociatedCompositeParticipants;
+  return compositeReactants
+    .map((entry) => {
+      const matchedNodeIds = getParticipantMatchedSourceNodeIds(
+        selectedMappings,
+        String(entry?.participant?.id ?? "")
+      );
+      const consumedNodeIds = sortTextList(
+        entry.topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && matchedNodeIds.has(nodeId))
+      );
+      if (!consumedNodeIds.length || matchedNodeIds.has(entry.rootNodeId)) {
+        return null;
+      }
+      const remainingNodeIds = sortTextList(
+        entry.topLevelChildren
+          .map((childNode) => String(childNode?.id ?? ""))
+          .filter((nodeId) => nodeId && !matchedNodeIds.has(nodeId))
+      );
+      return {
+        participantId: String(entry.participant.id),
+        templateId: entry.templateId,
+        rootNodeId: entry.rootNodeId,
+        consumedNodeIds,
+        remainingNodeIds,
+      };
+    })
+    .filter(Boolean);
 }
 
 function isReactantEntryResolved(entry = null, usedReactantIds = new Set(), selectedMappings = []) {
@@ -1003,10 +1072,25 @@ export function buildReactionSolvePlan(options = {}) {
     selectedMappings.push(...(candidate?.mappings ?? []));
   });
 
-  const dissociatedCompositeParticipants = collectPlanDissociatedCompositeParticipants(
-    reactants,
-    selectedMappings
+  const unresolvedReactants = reactants.filter(
+    (entry) => !isReactantEntryResolved(entry, usedReactantIds, selectedMappings)
   );
+  const unresolvedProducts = products.filter(
+    (entry) => !isProductEntryResolved(entry, usedProductIds, selectedMappings)
+  );
+  const autoDissociatedParticipants = collectPlanAutoDissociationSummary(reactants, selectedMappings);
+  const autoDissociatedParticipantIds = autoDissociatedParticipants.map(
+    (entry) => entry.participantId
+  );
+  const dissociatedCompositeParticipants = autoDissociatedParticipantIds
+    .map((participantId) =>
+      reactants.find((entry) => String(entry?.participant?.id ?? "") === participantId)?.participant ?? null
+    )
+    .filter(Boolean);
+  const residue = {
+    source: collectPlanResidueEntries(unresolvedReactants, selectedMappings, "source"),
+    target: collectPlanResidueEntries(unresolvedProducts, selectedMappings, "target"),
+  };
 
   return {
     mode: "direct-v1",
@@ -1018,6 +1102,11 @@ export function buildReactionSolvePlan(options = {}) {
     selectedMappings,
     participantAdditions,
     dissociatedCompositeParticipants,
+    dissociation: {
+      autoDissociatedParticipantIds,
+      autoDissociatedParticipants,
+    },
+    residue,
     directProductCount:
       selectedFragmentCandidates.length +
       selectedCandidates.filter(
@@ -1030,12 +1119,8 @@ export function buildReactionSolvePlan(options = {}) {
     associatedProductCount: selectedAssociateCandidates.length,
     matchedReactantCount: usedReactantIds.size,
     matchedProductCount: usedProductIds.size,
-    unresolvedReactants: reactants.filter(
-      (entry) => !isReactantEntryResolved(entry, usedReactantIds, selectedMappings)
-    ),
-    unresolvedProducts: products.filter(
-      (entry) => !isProductEntryResolved(entry, usedProductIds, selectedMappings)
-    ),
+    unresolvedReactants,
+    unresolvedProducts,
   };
 }
 

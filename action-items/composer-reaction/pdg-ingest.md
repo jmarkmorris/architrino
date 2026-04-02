@@ -65,6 +65,42 @@ The Python program should be split into small layers:
 - export boundary:
   emits normalized data for the solver and Reaction-side review flow.
 
+### Implementation Baseline
+
+The first implementation should assume:
+
+- Python 3 runtime;
+- installed `pdg` package;
+- local SQLite database access through `pdg.connect(...)`;
+- no live PDG website dependency during normal ingest;
+- and explicit JSON artifacts for fixtures and debugging.
+
+The first program should have two surfaces:
+
+- a library entrypoint that returns normalized PDG-derived candidates;
+- and a CLI entrypoint that reads local PDG data and writes JSON artifacts for inspection and tests.
+
+The first module split should be:
+
+- `pdg_source`:
+  connects to the local PDG database and performs the limited set of PDG lookups needed by ingest;
+- `pdg_normalize`:
+  converts PDG objects into repo-owned intermediate records with stable IDs and provenance;
+- `pdg_proposals`:
+  builds ranked candidate proposals from normalized records;
+- `pdg_export`:
+  emits solver-facing payloads and any sidecar proposal metadata;
+- and `pdg_fixtures`:
+  stores small reproducible example inputs and outputs for tests.
+
+The first solver-facing target should be one `solver-request/v1` document per candidate, with:
+
+- `origin.sourceKind` set to `pdg-ingest`;
+- participants normalized into the solver contract rather than passed through as raw PDG objects;
+- empty `manualOperators` and `manualMappings` unless a later review stage adds them;
+- explicit `policy` values chosen by ingest rather than left implicit;
+- and PDG provenance kept either in `origin` fields or in sidecar proposal metadata, not hidden in ad hoc code paths.
+
 ### PDG Ecosystem
 
 The surrounding PDG resources are:
@@ -133,6 +169,7 @@ PDG ingest may eventually need an upstream review boundary with:
 ### Outputs
 
 - normalized seed data for the Reaction solver;
+- candidate `solver-request/v1` payloads;
 - ranked candidate proposals;
 - proposal-review state;
 - and provenance metadata attached to those artifacts.
@@ -163,20 +200,20 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Finalize This Document
+### 1. Freeze The Implementation Baseline
 
-Status: `next`
+Status: `completed`
 
 Work:
 
-- keep this note limited to PDG-ingest architecture, Python-program structure, and PDG ecosystem facts;
-- keep the normal ingest path explicitly local/offline and database-backed;
-- keep the solver boundary, review boundary, and maintenance policy explicit;
-- and update this note as the Python ingest program takes shape so the document stays implementation-relevant.
+- keep the runtime model local/offline and database-backed;
+- fix the initial module split and program surfaces;
+- fix the first solver-facing output target as candidate `solver-request/v1` payloads plus proposal metadata;
+- and keep the maintenance policy explicit so implementation can begin without open architectural ambiguity.
 
 ### 2. Define The PDG Seed Boundary
 
-Status: `pending`
+Status: `next`
 
 Work:
 
@@ -184,16 +221,32 @@ Work:
 - identify the minimum PDG metadata required for ranking and provenance;
 - keep the shape UI-independent.
 
-### 3. Build Official PDG Channel Ingest
+### 3. Build The Local PDG Adapter And Fixtures
 
 Status: `pending`
 
 - build ingest around the official `pdg` package;
-- load local channel and metadata inputs through the Python API;
-- normalize them into solver-ready seeds;
-- add fixtures covering ingest and normalization.
+- connect to the local database through the Python API;
+- choose a first fixture corpus of representative PDG channels;
+- and add fixtures covering adapter reads and provenance capture.
 
-### 4. Add Proposal Review And Alternatives
+### 4. Implement Normalization And Candidate Export
+
+Status: `pending`
+
+- normalize PDG channels into solver-owned intermediate records;
+- export one or more candidate `solver-request/v1` payloads per ingest run;
+- and attach ranking/provenance metadata needed for review and debugging.
+
+### 5. Verify Against The Solver Boundary
+
+Status: `pending`
+
+- validate emitted candidate payloads against `solver-request/v1`;
+- compare candidate shape against real solver needs before widening scope;
+- and keep downstream integration based on explicit contracts only.
+
+### 6. Add Proposal Review And Alternatives
 
 Status: `pending`
 
@@ -201,7 +254,7 @@ Status: `pending`
 - add review controls such as pin or forbid;
 - keep proposal review upstream of Reaction acceptance.
 
-### 5. Project Accepted Proposals Into Reaction
+### 7. Project Accepted Proposals Into Reaction
 
 Status: `pending`
 
@@ -209,7 +262,7 @@ Status: `pending`
 - preserve useful provenance-review context;
 - avoid direct shared runtime code across the boundary.
 
-### 6. Stay Downstream-Compatible With Reaction Export
+### 8. Stay Downstream-Compatible With Reaction Export
 
 Status: `pending`
 

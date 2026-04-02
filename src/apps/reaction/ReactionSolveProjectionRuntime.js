@@ -82,6 +82,36 @@ function resolveMappingEndpoint(endpoint = {}, addedParticipantMap = new Map(), 
   };
 }
 
+function collectDissociatedParticipantRefs(plan = {}) {
+  const refs = [];
+  const seenRefs = new Set();
+  const appendRef = (value) => {
+    const isParticipantObject = Boolean(value && typeof value === "object" && value?.id);
+    const normalizedRef = typeof value === "string"
+      ? String(value).trim()
+      : String(isParticipantObject ? value.id : value?.participantId ?? "").trim();
+    if (!normalizedRef || seenRefs.has(normalizedRef)) {
+      return;
+    }
+    seenRefs.add(normalizedRef);
+    refs.push(isParticipantObject ? value : normalizedRef);
+  };
+  (Array.isArray(plan?.dissociatedCompositeParticipants) ? plan.dissociatedCompositeParticipants : []).forEach(
+    appendRef
+  );
+  (
+    Array.isArray(plan?.dissociation?.autoDissociatedParticipantIds)
+      ? plan.dissociation.autoDissociatedParticipantIds
+      : []
+  ).forEach(appendRef);
+  (
+    Array.isArray(plan?.dissociation?.autoDissociatedParticipants)
+      ? plan.dissociation.autoDissociatedParticipants
+      : []
+  ).forEach(appendRef);
+  return refs;
+}
+
 export function applyReactionSolvePlan(options = {}) {
   const plan =
     options.plan ??
@@ -89,9 +119,7 @@ export function applyReactionSolvePlan(options = {}) {
   const participantAdditions = Array.isArray(plan.participantAdditions)
     ? plan.participantAdditions
     : [];
-  const dissociatedCompositeParticipants = Array.isArray(plan.dissociatedCompositeParticipants)
-    ? plan.dissociatedCompositeParticipants.filter(Boolean)
-    : [];
+  const dissociatedCompositeParticipants = collectDissociatedParticipantRefs(plan);
   const selectedMappings = Array.isArray(plan.selectedMappings) ? plan.selectedMappings : [];
   const createOperatorParticipant =
     typeof options.createOperatorParticipant === "function"

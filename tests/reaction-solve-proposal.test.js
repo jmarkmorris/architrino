@@ -853,6 +853,61 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
   assert.equal(plan.unresolvedProducts.length, 0);
 });
 
+test("solve plan reports residue for a partially consumed auto-dissociated composite source", () => {
+  const reactantHiggs = createParticipant({
+    id: "reactant_higgs",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    label: "Higgs Cluster",
+  });
+  const productPhoton = createParticipant({
+    id: "product_photon",
+    side: "product",
+    templateId: "photon",
+    label: "Photon",
+  });
+
+  const plan = buildReactionSolvePlan({
+    solveState: buildSolveState([reactantHiggs, productPhoton]),
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(plan.associatedProductCount, 1);
+  assert.deepEqual(plan.unresolvedReactants.map((entry) => entry.participant.id), ["reactant_higgs"]);
+  assert.equal(plan.unresolvedProducts.length, 0);
+  assert.deepEqual(plan.dissociation.autoDissociatedParticipantIds, ["reactant_higgs"]);
+  assert.deepEqual(plan.dissociation.autoDissociatedParticipants, [
+    {
+      participantId: "reactant_higgs",
+      templateId: "higgs_cluster",
+      rootNodeId: "reactant_higgs_structure",
+      consumedNodeIds: [
+        "reactant_higgs_structure/core_anti_1",
+        "reactant_higgs_structure/core_pro_2",
+      ],
+      remainingNodeIds: [
+        "reactant_higgs_structure/core_anti_2",
+        "reactant_higgs_structure/core_pro_1",
+      ],
+    },
+  ]);
+  assert.deepEqual(plan.residue.source, [
+    {
+      participantId: "reactant_higgs",
+      templateId: "higgs_cluster",
+      polarity: "pro",
+      rootNodeId: "reactant_higgs_structure",
+      residueKind: "fragments",
+      unresolvedNodeIds: [
+        "reactant_higgs_structure/core_anti_2",
+        "reactant_higgs_structure/core_pro_1",
+      ],
+    },
+  ]);
+  assert.deepEqual(plan.residue.target, []);
+});
+
 test("solve plan prefers two full associate photons over fragment-plus-partial residue", () => {
   const reactantHiggs = createParticipant({
     id: "reactant_higgs",
@@ -936,6 +991,26 @@ test("solve plan leaves unsupported product matches unresolved", () => {
   assert.equal(plan.selectedMappings.length, 0);
   assert.equal(plan.selectedCandidates.length, 0);
   assert.equal(plan.directProductCount, 0);
+  assert.deepEqual(plan.residue.source, [
+    {
+      participantId: "reactant_core",
+      templateId: "noether_core",
+      polarity: "pro",
+      rootNodeId: "reactant_core_structure",
+      residueKind: "whole-participant",
+      unresolvedNodeIds: ["reactant_core_structure"],
+    },
+  ]);
+  assert.deepEqual(plan.residue.target, [
+    {
+      participantId: "product_core",
+      templateId: "noether_core",
+      polarity: "anti",
+      rootNodeId: "product_core_structure",
+      residueKind: "whole-participant",
+      unresolvedNodeIds: ["product_core_structure"],
+    },
+  ]);
   assert.equal(plan.unresolvedProducts.length, 1);
 });
 

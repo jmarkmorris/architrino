@@ -166,6 +166,41 @@ test("solve projection marks explicit dissociated composites before applying map
   assert.equal(reactantHiggs.isAutoDissociatedComposite, true);
 });
 
+test("solve projection accepts semantic dissociation records without legacy participant objects", () => {
+  const reactantHiggs = {
+    id: "reactant_higgs",
+    side: "reactant",
+    templateId: "higgs_cluster",
+    isAutoDissociatedComposite: false,
+    hierarchy: [{ id: "reactant_higgs_root" }],
+  };
+  const participants = [reactantHiggs];
+
+  const result = applyReactionSolvePlan({
+    plan: {
+      dissociation: {
+        autoDissociatedParticipants: [
+          {
+            participantId: "reactant_higgs",
+            rootNodeId: "reactant_higgs_root",
+            consumedNodeIds: ["reactant_higgs_root/core_pro_1"],
+            remainingNodeIds: ["reactant_higgs_root/core_anti_1"],
+          },
+        ],
+      },
+      selectedMappings: [],
+    },
+    participants,
+    markParticipantAutoDissociated: (participant) => {
+      participant.isAutoDissociatedComposite = true;
+      return true;
+    },
+  });
+
+  assert.deepEqual(result.markedDissociatedParticipantIds, ["reactant_higgs"]);
+  assert.equal(reactantHiggs.isAutoDissociatedComposite, true);
+});
+
 test("solve projection accepts solver-result fixtures with semantic endpoints and placement hints", () => {
   const resultFixture = readJson("content/contracts/examples/solver-result/associate_photon_result.v1.json");
   const participants = [

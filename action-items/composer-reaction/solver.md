@@ -1559,37 +1559,9 @@ Review focus:
 - confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
 - and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
 
-### 2. Extend Primitive Charge Routing
+### 2. Improve Residue And Dissociation Reporting
 
 Status: `review`
-
-Goal:
-
-- move beyond the current `Associate`-centered families so the solver can reason through authored or generated `Dissociate`, `Noether core`, and `Free Architrinos` paths.
-
-Why it matters:
-
-- this is the main missing capability before boson recognition or broader PDG-facing work becomes well-founded.
-
-This pass locked in:
-
-- explicit primitive `Associate` coverage for standalone `neutrino`, `electron`, `down quark`, and `up quark` assembly from center-lane `Noether core` plus `Free Architrinos` selections in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js);
-- a first concrete primitive-routing slice without widening weak-channel behavior or changing the solver result boundary;
-- and a clearer next seam: the existing planner can already close these standalone primitive families once the source pool exposes the right primitive entries, so the remaining growth pressure is on dissociation/source-pool handling rather than on new assembly math for these products.
-
-Review focus:
-
-- confirm this first primitive-routing slice should include at least standalone `neutrino`, `electron`, `down quark`, and `up quark` assembly from `Noether core` plus selected `Free Architrinos`;
-- confirm the next extension pressure is explicit primitive source exposure from dissociation, not a new operator vocabulary;
-- and confirm we should keep primitive-routing growth separate from later boson recognition.
-
-Dependency note:
-
-- do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
-
-### 3. Improve Residue And Dissociation Reporting
-
-Status: `pending`
 
 Goal:
 
@@ -1599,17 +1571,25 @@ Why it matters:
 
 - solver behavior is easier to trust and debug when leftover fragments and auto-dissociation are explicit.
 
-Next steps:
+This pass added:
 
-- improve residue reporting in proposal output;
-- preserve clean projection of solve-created dissociation into the live Reaction surface;
-- and add regression tests around those cases.
+- explicit `plan.dissociation` output in [`ReactionSolveProposalRuntime.js`](../../src/apps/reaction/ReactionSolveProposalRuntime.js), including stable auto-dissociated participant ids plus consumed and remaining top-level source node ids for composite sources opened by selected mappings;
+- explicit `plan.residue.source` and `plan.residue.target` summaries for unresolved whole participants and leftover top-level composite fragments;
+- projection-side support in [`ReactionSolveProjectionRuntime.js`](../../src/apps/reaction/ReactionSolveProjectionRuntime.js) for semantic dissociation records, so marking no longer depends on the legacy flat participant-object list alone;
+- solver-result adapter parity in [`ReactionSolverResultAdapterRuntime.js`](../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js) so semantic dissociation survives the result-to-projection seam; and
+- focused regressions in [`tests/reaction-solve-proposal.test.js`](../../tests/reaction-solve-proposal.test.js) and [`tests/reaction-solve-projection.test.js`](../../tests/reaction-solve-projection.test.js) covering partial Higgs-to-photon source residue, unresolved whole-participant residue, and semantic dissociation projection.
+
+Review focus:
+
+- confirm residue should stay top-level and explicit even when the current `unresolvedReactants` / `unresolvedProducts` arrays remain for compatibility;
+- confirm the auto-dissociation summary should expose consumed and remaining top-level node ids, rather than a thinner id-only marker;
+- and confirm projection should continue to accept both the semantic `dissociation` block and the older `dissociatedCompositeParticipants` list during the transition.
 
 Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 4. Add Exact Boson Recognition On Top Of Primitive Solves
+### 3. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1627,7 +1607,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 5. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 4. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1645,13 +1625,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 6. Solver Rearchitecture
+### 5. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 7. Delete The Old Browser Solver After Flash Cut-Over
+### 6. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
