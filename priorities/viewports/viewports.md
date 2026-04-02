@@ -249,7 +249,7 @@ Standard tooling gives us the baseline:
 
 The Architrino-specific improvement is to make the observer itself frame-aware, assembly-aware, and reveal-aware. That is the path to an observation tool that feels less like a bolted-on film editor and more like a natural extension of the assembly architecture itself.
 
-## Related Action Items
+## Related Priorities
 
 - [composer-reaction](../observer/observer.md)
 - [composer](../observer/composer.md)

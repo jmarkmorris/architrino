@@ -67,7 +67,7 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 - Mine material from WordPress where it materially saves time.
 - Clean up old PowerPoints, or better, migrate the worthwhile ones into the web site.
 
-## Related Action Items
+## Related Priorities
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [mass-map](../mass-map/mass-map.md)

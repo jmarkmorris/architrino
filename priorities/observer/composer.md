@@ -357,7 +357,7 @@ Next steps:
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
 
-## Related Action Items
+## Related Priorities
 
 - [composer-reaction](./observer.md)
 - [reaction](./reaction.md)

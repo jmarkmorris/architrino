@@ -28,7 +28,7 @@ Lock the simulation and numerics side tightly enough to support the analytic clo
 - Tie the Planck mapping back to the master equation and validate it numerically instead of leaving key identifications conjectural.
 - If a quick intuition tool would help, build a simple model with sliders for escaping potential versus different frequencies so the `f_{\mathrm{MCB}}` behavior is easier to see.
 
-## Related Action Items
+## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [mass-map](../mass-map/mass-map.md)

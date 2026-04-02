@@ -75,7 +75,7 @@ The Supergalactic Plane maps cleanly onto the architrino framework at three leve
 
 The SGP provides no evidence for or against the architrino substrate at the level of cosmic-web topology, which is determined by gravitational instability regardless of whether gravity is fundamental or emergent. The distinctive $\mathbb{A}\mathbb{A}\mathbb{A}$ contribution is the feedback loop connecting SMBH recycling (Planck-alignment core physics) to void evacuation, a mechanism that makes specific predictions about the thermal state of supervoids adjacent to jet-active superclusters.
 
-## Related Action Items
+## Related Priorities
 
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)

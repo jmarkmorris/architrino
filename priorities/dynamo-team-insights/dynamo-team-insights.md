@@ -222,7 +222,7 @@ The mathematical challenge is to rigorously connect these scales:
 - **Meso → Macro**: statistical mechanics, coarse-graining, continuum limits
 - **Macro feedback**: effective metric influences microdynamics via gravitational coupling
 
-## Related Action Items
+## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [mass-map](../mass-map/mass-map.md)

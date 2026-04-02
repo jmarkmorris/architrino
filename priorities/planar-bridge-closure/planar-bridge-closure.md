@@ -66,7 +66,7 @@ Each of these outcomes is still informative because it identifies the exact geom
 4. Prove a radial-turnaround inequality in which inward delayed forcing beats centrifugal leakage.
 5. Assemble these ingredients into a tame-envelope return theorem with continuous gauge reset.
 
-## Related Action Items
+## Related Priorities
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)

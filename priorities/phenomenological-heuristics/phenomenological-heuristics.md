@@ -180,7 +180,7 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 | $4f$ | $2f$ | $f$ | $\dfrac{\beta(4f)\,c_f}{8\pi f}$ | $\dfrac{c_f}{4\pi f}$ | $\dfrac{\beta(f)\,c_f}{2\pi f}$ | $\beta(4f)\,c_f$ | $c_f$ | $\beta(f)\,c_f$ |
 | $4f_P$ | $2f_P$ | $f_P$ | $\dfrac{\beta(4f_P)\,c_f}{8\pi f_P}$ | $\dfrac{c_f}{4\pi f_P}$ | $\dfrac{c_f}{2\pi f_P} = \dfrac{\ell_P}{2\pi}$ | $\beta(4f_P)\,c_f$ | $c_f$ | $c_f$ |
 
-## Related Action Items
+## Related Priorities
 
 - [dyadic-lock](../dyadic-lock/dyadic-lock.md)
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)

@@ -206,7 +206,7 @@ Turning this structural mapping into a quantitative effective metric requires fi
 
 The combined shape-plus-scale deformation is the structural feature that distinguishes this framework from a simple "gravity as refraction in a medium" story. The scale change introduces an additional degree of freedom that standard optical-metric analogies do not carry, and it is this extra channel that must ultimately account for the full richness of GR phenomenology - or fail in a clean, identifiable way.
 
-## Related Action Items
+## Related Priorities
 
 - [viewports](../viewports/viewports.md)
 - [simulations](../simulations/simulations.md)

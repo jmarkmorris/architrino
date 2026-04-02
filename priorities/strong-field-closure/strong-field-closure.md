@@ -34,7 +34,7 @@ The main black-hole and strong-field chapter architecture is already in place. T
 - Decide the release-channel selection between jets, diffuse outflow, and dark-sector escape.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 
-## Related Action Items
+## Related Priorities
 
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)

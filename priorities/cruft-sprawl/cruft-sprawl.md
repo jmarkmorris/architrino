@@ -37,7 +37,7 @@ This workstream tracks high-priority cases where the repo shows duplicate implem
 - Does a Markdown note really need to exist as its own document, or should it be merged into a stronger canonical reference?
 - Is a supposedly temporary bridge, fallback, or placeholder now functioning as legacy architecture?
 
-## Related Action Items
+## Related Priorities
 
 - [composer-reaction](../observer/observer.md)
 - [composer](../observer/composer.md)

@@ -54,7 +54,7 @@ rather than treating transport costs as fit knobs.
 - Keep trying to derive `\alpha` and the other coupling constants from geometry rather than treating them as arbitrary inputs.
 - If the model cannot say where outgoing weak-reaction lepton and antilepton cores actually come from, then electroweak provenance closure remains incomplete even if coarse CKM-style bookkeeping is reproduced.
 
-## Related Action Items
+## Related Priorities
 
 - [mass-map](../mass-map/mass-map.md)
 - [3x3](../3x3/3x3.md)

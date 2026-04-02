@@ -529,7 +529,7 @@ Natural follow-on work from this note would be:
 - a canonical library of reference assemblies for the first binary vocabulary;
 - and a separate follow-on note that reopens whole-quark color only after the 3x3x3 and axis-basis relation is closed.
 
-## Related Action Items
+## Related Priorities
 
 - [3x3](../3x3/3x3.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)

@@ -37,7 +37,7 @@ This bucket includes:
 - Rename the blog.
 - Remember the convenience-hardware note about a Mac mini when the `M5` cycle arrives.
 
-## Related Action Items
+## Related Priorities
 
 - [chapter-authoring](../chapter-authoring/chapter-authoring.md)
 - [composer-reaction](../observer/observer.md)

@@ -69,7 +69,7 @@ Useful AI-assisted tasks include:
 - testing whether an objection is already answered elsewhere in the repository
 - checking whether a proposal is genuinely relevant to the theory
 - converting a rough idea into a clearer argument
-- summarizing a long exchange into candidate action items
+- summarizing a long exchange into candidate priority items
 - turning a mature discussion into a draft issue or enhancement request
 
 The standard is not that a post be AI-generated. The standard is that the post be serious, intelligible, relevant, and useful.

@@ -42,7 +42,7 @@ This is a watchlist workstream. It exists to keep strong-field and tri-binary id
 - Maybe the internal radius can enter self-hit first as the tri-binary rides the rail.
 - One gravity / MOND-style intuition may still be loosely tied to the inner binary crossing `c_f`, though that currently looks doubtful.
 
-## Related Action Items
+## Related Priorities
 
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)

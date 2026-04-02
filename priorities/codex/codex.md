@@ -79,7 +79,7 @@ Now:
 
 ---
 
-## Related Action Items
+## Related Priorities
 
 - [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
 - [composer-reaction](../observer/observer.md)

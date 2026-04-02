@@ -96,7 +96,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 6. Full attractor landscape for binaries and tri-binaries.
 7. Quantum closure from the master equation.
 
-## Related Action Items
+## Related Priorities
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [mass-map](../mass-map/mass-map.md)

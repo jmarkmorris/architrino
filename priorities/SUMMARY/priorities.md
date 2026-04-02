@@ -1,4 +1,4 @@
-# Action-Items Report
+# Priorities Report
 
 This file is the canonical control surface for `priorities`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
 

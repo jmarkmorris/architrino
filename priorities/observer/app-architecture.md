@@ -368,7 +368,7 @@ Practical order:
 3. perform the real extraction one responsibility cluster at a time;
 4. then remove temporary compatibility layers once the new ownership is proven.
 
-## Related Action Items
+## Related Priorities
 
 - [composer-reaction](./observer.md)
 - [composer](./composer.md)

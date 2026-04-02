@@ -43,7 +43,7 @@ Treat [dyadic-resonance-lock.md](../../content/markdown/aaa/dynamics/dyadic-reso
 4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
 5. Only after that revisit `\eta \to 0^+` and promote archive material that can be rederived from the reduced dynamics.
 
-## Related Action Items
+## Related Priorities
 
 - [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)
 - [simulations](../simulations/simulations.md)

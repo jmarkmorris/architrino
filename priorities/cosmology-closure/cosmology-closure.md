@@ -35,7 +35,7 @@ Convert the current cosmology story from narrative strength to equation-level cl
 
 The goal is to expose exactly where `\mathbb{A}\mathbb{A}\mathbb{A}` matches, replaces, or diverges from each component.
 
-## Related Action Items
+## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)

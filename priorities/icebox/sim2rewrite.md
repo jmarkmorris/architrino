@@ -45,7 +45,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 * Ensure `npm`/`yarn` build pipeline copies over worker scripts (if separate files) and `sim2` scenes.
 * Add tests or manual checklists verifying the worker runs in browsers of interest and that generated scenes load correctly.
 
-## Related Action Items
+## Related Priorities
 
 - [simulations](../simulations/simulations.md)
 - [composer-reaction](../observer/observer.md)

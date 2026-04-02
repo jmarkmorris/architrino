@@ -115,7 +115,7 @@ $$
 $$
 4. Preserve the theorem-program structure exactly as written. The active work is proof execution, not another architecture pass.
 
-## Related Action Items
+## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [simulations](../simulations/simulations.md)

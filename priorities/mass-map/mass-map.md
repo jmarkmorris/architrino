@@ -44,7 +44,7 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 - Decide which quantities survive as shared inputs across the whole mass-side program, especially `\kappa` and the physical role of `\eta`.
 - Decide whether the first mass map should also constrain the bridge to `h` and `G`, or whether those constants should remain downstream until the mass derivation is stable.
 
-## Related Action Items
+## Related Priorities
 
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)

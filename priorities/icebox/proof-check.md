@@ -467,7 +467,7 @@ Once that framework exists, the rest becomes much more tractable for formal veri
 
 If you're interested, there is another emerging development that matters for work like yours: **AI-driven proof search directly inside Lean**. That approach lets the system discover proof steps rather than merely translating them. It is beginning to change how new mathematics might be explored and verified.
 
-## Related Action Items
+## Related Priorities
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)

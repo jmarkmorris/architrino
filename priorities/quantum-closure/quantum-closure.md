@@ -43,7 +43,7 @@ Populate the missing quantum closure notes only after the work becomes testable.
 
 - Keep alive the question of whether the missing neutrino chirality is tied to converting a pro-Noether core.
 
-## Related Action Items
+## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [simulations](../simulations/simulations.md)
