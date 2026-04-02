@@ -29,6 +29,7 @@ It does not own:
 ## Current State
 
 - `pdgfeed.py` now exists as a fixture-first local PDG pipeline.
+- `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
@@ -77,10 +78,17 @@ The Python program should keep these responsibilities distinct even in the first
 The first implementation should assume:
 
 - Python 3 runtime;
-- installed `pdg` package;
+- installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
 - no live PDG website dependency during normal ingest;
 - and explicit JSON artifacts for fixtures and debugging.
+
+Suggested local environment setup:
+
+- `python3 -m venv .venv`
+- `source .venv/bin/activate`
+- `python -m pip install -r requirements.txt`
+- `echo $VIRTUAL_ENV` to confirm the venv is active.
 
 The first program should have two surfaces:
 
