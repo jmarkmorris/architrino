@@ -514,6 +514,31 @@ Late-stage boson collapse rule:
 
 This rule is meant to reward cleaner recognized closure, not to authorize speculative boson invention earlier in search.
 
+For v1, this late-stage pass should use a strict exact recognizer, not a fuzzy readability heuristic. A center-lane group may collapse into a boson only when it matches an accepted exact pattern. "Looks close enough" is not sufficient.
+
+Accepted exact recognizers so far:
+
+- `W+` = pro `Noether core` plus six free positrinos;
+- `W-` = anti `Noether core` plus six free electrinos;
+- `Z` = pro `Noether core` plus anti `Noether core`.
+
+Free-architrino-ledger interaction rule:
+
+- a late-stage `W+` collapse may consume six positrinos from a center-lane `Free Architrinos` ledger tile;
+- a late-stage `W-` collapse may consume six electrinos from a center-lane `Free Architrinos` ledger tile;
+- the source ledger tile must then be rewritten to the decremented remaining ledger rather than left unchanged;
+- for example, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
+- likewise, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
+- and no `W` collapse is legal unless the required six-unit ledger decrement can be paid exactly from the available center-lane ledger content.
+
+Allowed direct `Z`-mapping targets for v1:
+
+- pro neutrino;
+- anti neutrino;
+- and photon.
+
+If a closure contains an authored or late-stage-recognized `Z`, the solver may consider direct conservative mapping from that `Z` only into those supported target families unless a later rule expansion explicitly adds more.
+
 #### Rule 9: Recruit Spacetime Material Only As An Explicit Late Solve Family
 
 The solver may recruit spacetime-derived material such as `Higgs Cluster` only after authored-source closure and justified dissociation have failed to close the remaining targets exactly.
