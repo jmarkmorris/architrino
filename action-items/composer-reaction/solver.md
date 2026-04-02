@@ -108,6 +108,52 @@ Implementation stance:
 - build the new headless solver behind explicit request/result contracts and cleaner internal architecture;
 - and use fixture-based comparison and review to verify functional coverage without inheriting browser-specific design debt.
 
+### Reference Behavior And Assets
+
+The current browser solver should no longer drive architecture, but it still provides three useful kinds of reference value for `solver.py`:
+
+- covered behavior that the new solver should preserve unless intentionally changed;
+- concrete JS seam and test inventory for extracting golden fixtures;
+- and Reaction-side adapter expectations around rerun, layout, and projection.
+
+Reference implementation inventory:
+
+- `src/apps/reaction/ReactionSolveStateRuntime.js`
+- `src/apps/reaction/ReactionSolveProposalRuntime.js`
+- `src/apps/reaction/ReactionSolveSelectionRuntime.js`
+- `src/apps/reaction/ReactionSolveMatchRuntime.js`
+- `src/apps/reaction/ReactionSolveAssociateRuntime.js`
+- `src/apps/reaction/ReactionSolveLayoutRuntime.js`
+- `src/apps/reaction/ReactionSolveProjectionRuntime.js`
+- `src/apps/reaction/ReactionSolverUiRuntime.js`
+
+Reference test inventory:
+
+- `tests/reaction-solve-state.test.js`
+- `tests/reaction-solve-proposal.test.js`
+- `tests/reaction-solve-layout.test.js`
+- `tests/reaction-solve-projection.test.js`
+- `tests/reaction-solver-ui.test.js`
+
+Covered conservative solve families worth preserving as explicit reference behavior:
+
+- direct root reuse for identical conservative standalone participants;
+- full composite carry-through for identical composites;
+- fragment-to-root reuse from composite children into supported standalone products;
+- authored center-assembly direct mapping for currently supported product families;
+- `Associate`-based standalone assembly from `Noether core` plus `Free Architrinos` where exact inventory closure holds;
+- `Associate`-based composite reassembly from exact available source sets;
+- `Associate`-based photon assembly from opposite-polarity `Noether core` sources where exact closure holds;
+- and `Higgs Cluster -> Photon + Photon` through conservative dissociation plus two assembled photon outputs.
+
+Reference rerun and adapter behavior worth preserving at the app boundary:
+
+- rerun from a clean auto-solve baseline removes only solve-generated operators, not manual operators;
+- manual dissociated-composite state remains valid authored state across reruns;
+- auto-dissociation marks appear when selected mappings consume internal composite rows;
+- operator layout happens after candidate selection rather than during early candidate generation;
+- and projection materializes explicit operators, mappings, and dissociation effects back into live Reaction state rather than leaving them implicit.
+
 ### Solve Strategy And Search
 
 This section is about the logic and algorithm of the new solver itself. It is upstream of implementation details such as schemas, CLI grammar, or Python packaging.
@@ -202,13 +248,13 @@ Recommended rule:
 
 In other words, the new solver should stay primitive-first. It should first try to close products through direct mappings, dissociated constituents, `Associate`, `Dissociate`, `Noether core`, and `Free Architrinos`. Only after that primitive story is exact should it recognize or optionally introduce `W` / `Z` structure.
 
-Once a branch already has a completed or near-completed primitive closure, the solver may run a late-stage recognition pass over the center lane. In that pass:
+Once a branch already has a completed primitive closure, the solver may run a late-stage recognition pass over the center lane. In that pass:
 
 - if a set of center-lane assemblies can be exactly associated into a `W` or `Z` boson under the accepted rule family;
 - and the resulting boson representation does not break any already-established conservative closure;
 - then the solver should replace that assembly group with the implied-operator `W` or `Z` form before final scoring.
 
-This is a normalization and ranking pass, not a license to widen the early search space. The solver should not generate free synthetic `W` / `Z` branches up front just because such a collapse might later be possible.
+This is a normalization and ranking pass, not a license to widen the early search space. The solver should not generate synthetic `W` / `Z` branches up front just because such a collapse might later be possible.
 
 #### Spacetime Recruitment And Higgs-Cluster Closure
 
@@ -1650,136 +1696,3 @@ Next steps:
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
-
-## Note On The Current Browser Solver
-
-The current browser-side JavaScript solver remains a functionality reference for already covered conservative cases while the new headless solver is designed and built. This note keeps the current browser solver specifics available without making them the design center or implying that the new solver should be a direct port.
-
-### Current State
-
-- The repository already has a real solver seam rather than a placeholder plan.
-- The current solve path includes dedicated runtimes for solve state, proposal building, candidate selection, matching, associate construction, layout, projection, and UI wiring.
-- The solver already supports several important conservative solve families, including direct reuse, composite carry-through, fragment reuse, and `Associate`-based reassembly.
-- The solver can rerun from a clean auto-solve baseline while preserving manual operators and manual dissociated-composite state.
-- Automated coverage already exists for solve state, proposal logic, layout, projection, and the solver UI.
-- The main remaining technical risk is that the UI runtime is still too large and still carries too much subsystem behavior.
-
-Current implementation inventory:
-
-- `src/apps/reaction/ReactionSolveStateRuntime.js`
-- `src/apps/reaction/ReactionSolveProposalRuntime.js`
-- `src/apps/reaction/ReactionSolveSelectionRuntime.js`
-- `src/apps/reaction/ReactionSolveMatchRuntime.js`
-- `src/apps/reaction/ReactionSolveAssociateRuntime.js`
-- `src/apps/reaction/ReactionSolveLayoutRuntime.js`
-- `src/apps/reaction/ReactionSolveProjectionRuntime.js`
-- `src/apps/reaction/ReactionSolverUiRuntime.js`
-
-Current test coverage inventory:
-
-- `tests/reaction-solve-state.test.js`
-- `tests/reaction-solve-proposal.test.js`
-- `tests/reaction-solve-layout.test.js`
-- `tests/reaction-solve-projection.test.js`
-- `tests/reaction-solver-ui.test.js`
-
-### Current Solve Pipeline
-
-- solve state separates reactants, products, operators, and center assemblies;
-- the current proposal layer builds plans over explicit candidate families and reports unresolved reactants and products;
-- layout uses explicit surface-row centers plus row-bias heuristics when operators compete for nearby lane regions;
-- projection creates solve-generated operators, resolves deferred endpoints, and materializes mappings back into the live Reaction UI;
-- and the UI runtime removes only solve-generated operators before rerunning solve, clears auto-dissociation markers, and keeps manual operators and manual dissociated-composite state intact.
-
-### Current Rule Order
-
-The current implemented solve order is:
-
-1. Build solve state from live participants.
-2. Partition entries into `reactants`, `products`, `center assemblies`, `operators`, and `unsupported`.
-3. Treat `reactants` plus `center assemblies` as the current source pool for proposal building.
-4. Build source sub-pools for special rules:
-5. `associateSourceEntries` contains full `Noether core` roots, full `Free Architrinos` roots, and top-level `Noether core` children pulled from composite sources.
-6. `compositeChildSourceEntries` contains top-level constituent children from composite sources.
-7. `standaloneRootSourceEntries` contains non-composite standalone roots.
-8. For each source/product pair, try base candidate families in this order:
-9. `composite-carry-through` first;
-10. then `direct-root`;
-11. then `center-root-direct`.
-12. Build `fragment-root-direct` candidates from composite-child source entries into standalone product roots.
-13. Build `associate-photon` candidates from pairs of opposite-polarity `Noether core` sources into photon products.
-14. For each product that does not already have an identical direct reactant, try `Associate` reassembly in this order:
-15. `associate-standalone` first;
-16. then `associate-composite`.
-17. Run the main candidate-set selector across base, fragment, and associate candidates together.
-18. Build `partial-composite-direct` candidates only after the main selection pass, and only from still-unresolved reactant/product pairs.
-19. Run a second selector for those partial-composite candidates, excluding already-used source fragments.
-20. Run the `product-child-direct` selection pass last, but the current proposal builder does not populate that candidate family yet, so this pass is effectively inactive today.
-21. Mark a composite reactant auto-dissociated if the selected mappings consume one of its internal child rows instead of its root.
-22. Place solve-generated operators onto the shared surface grid.
-23. Project solve-generated operators, mappings, and auto-dissociation markers back into live Reaction state.
-
-The current selection order inside the solver is also explicit:
-
-- candidate profiles are presorted by more fully resolved whole products, then more matched target nodes, then fewer partial-product claims, then higher candidate score, then a stable text identity tie-break;
-- the set-level selector then prefers more fully resolved whole products, then more matched target nodes, then fewer partial-product claims, then more matched source nodes, then higher total score, then a stable identity tie-break;
-- this means the solver currently prefers stronger whole-product solutions over weaker residue-heavy plans even before any future chemistry or PDG-facing heuristics are added.
-
-### Current Assembly And Operator Rules
-
-Current implemented assembly and operator rules are:
-
-- `composite-carry-through` applies only when source and product share direct participant identity and both top-level composite trees can be fully matched child-to-child;
-- `direct-root` applies only when source and product share the same template id and polarity and the direct conservative mapping gate allows the root-to-root mapping;
-- `center-root-direct` applies only when the source is a center assembly, the product is not a composite product, and the direct conservative mapping gate allows the root-to-root mapping;
-- `fragment-root-direct` applies only when a top-level source child has the same template id as a standalone product root, polarity is compatible, and the direct conservative mapping gate allows the mapping;
-- `partial-composite-direct` applies only when source and product share direct participant identity, some top-level child mappings are valid, and full composite carry-through was not possible;
-- `Associate` is the only operator the solver currently inserts explicitly into the plan;
-- explicit `Dissociate` operators are not inserted by the current planner;
-- and dissociation is currently represented as an auto-dissociation mark on a composite reactant when the selected mappings consume internal child rows.
-
-Current `Associate` rules are:
-
-- `associate-photon` requires exactly two source entries that classify as `Noether core`, opposite core polarities, a photon product with both `pro` and `anti` child targets, and exact full-inventory equality between the two sources combined and the photon product;
-- `associate-standalone` requires a non-photon, non-composite standalone product, at least one `Noether core` source, at least one `Free Architrinos` source, two different source participants, target polarity compatibility with the chosen core, and equality of the resulting `electrino` / `positrino` ledger with the product inventory;
-- `associate-composite` requires a composite product with at least two target child nodes, at least as many source entries as target child nodes, a valid conservative mapping from each chosen source to its assigned target child, at least two distinct source entries in the finished plan, and exact full-inventory equality between all chosen sources combined and the composite product;
-- when multiple `Associate` assignments are possible, the solver prefers assignments with more matched target nodes, then higher pair score, then a stable source-identity tie-break;
-- and every solve-generated `Associate` currently uses operator lane `1` and produces exactly one assembled output participant.
-
-Current special assembly-source rules are:
-
-- `Noether core` and `Free Architrinos` are treated as source assemblies, not solver-defined operators;
-- `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` can appear as center assemblies in solve state;
-- only `Noether core` and `Free Architrinos` currently participate in the special `Associate` construction rules;
-- center assemblies may map directly into currently supported standalone products through `center-root-direct`;
-- the current planner does not yet introduce new bosons as intermediate solve-generated participants during search;
-- and broader weak-boson-mediated construction is still outside the implemented rule set.
-
-Current placement and projection rules are:
-
-- only solve-generated operators are removed before a fresh rerun;
-- manual operators remain in the surface and also occupy lane rows for later layout;
-- solve-generated operators are placed after candidate selection, not during candidate generation;
-- placement prefers the target-side row center for `Associate` when available, otherwise the shared center of connected rows;
-- placement avoids occupied rows inside the chosen operator lane by nearest-row search with a small direction bias;
-- projection creates the solve-generated operator participants, resolves deferred operator endpoints into concrete node keys, applies the selected mappings, and marks any newly auto-dissociated composite reactants;
-- and projection does not create an explicit `Dissociate` operator participant today.
-
-### Present Capabilities
-
-The current solver already supports:
-
-- direct root matches for identical conservative standalone participants;
-- direct standalone reuse for slot-based fermions;
-- full composite carry-through for identical composites;
-- fragment-to-root mapping from a composite child into a standalone product;
-- `Associate`-based composite reassembly for composite products;
-- `Associate`-based composite reassembly from mixed fragment and standalone inputs;
-- `Associate` construction for supported standalone outputs from `Noether core` and `Free Architrinos`;
-- `Higgs Cluster -> Photon + Photon` through auto-dissociation plus two `Associate` operators;
-- supported center bosons as source-side participants when the user has already authored them;
-- direct center-boson mapping to currently supported conservative standalone products;
-- candidate selection that prefers stronger whole-product solutions over weaker partial residue paths;
-- repeated `Solve` from a clean auto-solve baseline without duplicating solve-generated operators;
-- automatic reactant composite dissociation marking when internal rows are mapped;
-- and persistent manual dissociated-composite state alongside solve-created dissociation marks.
