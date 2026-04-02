@@ -1,0 +1,216 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "free_neutron_beta_decay.live-pdg",
+  "origin": {
+    "sourceKind": "pdg-ingest",
+    "sourceDocumentId": "free_neutron_beta_decay",
+    "title": "Free neutron beta decay"
+  },
+  "participants": [
+    {
+      "id": "reactant_neutron_1",
+      "side": "reactant",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:n",
+          "pdg-name:n"
+        ]
+      },
+      "rootNodeId": "reactant_neutron_1/root",
+      "nodes": [
+        {
+          "id": "reactant_neutron_1/root",
+          "templateId": "neutron",
+          "label": "Neutron",
+          "family": "baryon",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "pdg-id:n",
+              "pdg-name:n"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:neutron",
+            "pdg-id:n"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:neutron",
+        "pdg-id:n"
+      ],
+      "polarity": "pro"
+    },
+    {
+      "id": "product_proton_1",
+      "side": "product",
+      "templateId": "proton",
+      "label": "Proton",
+      "family": "baryon",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:p",
+          "pdg-name:p"
+        ]
+      },
+      "rootNodeId": "product_proton_1/root",
+      "nodes": [
+        {
+          "id": "product_proton_1/root",
+          "templateId": "proton",
+          "label": "Proton",
+          "family": "baryon",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "pdg-id:p",
+              "pdg-name:p"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:proton",
+            "pdg-id:p"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:proton",
+        "pdg-id:p"
+      ],
+      "polarity": "pro"
+    },
+    {
+      "id": "product_pro_electron_2",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Pro Electron",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "charged-lepton",
+          "pdg-id:e-",
+          "pdg-name:e-"
+        ]
+      },
+      "rootNodeId": "product_pro_electron_2/root",
+      "nodes": [
+        {
+          "id": "product_pro_electron_2/root",
+          "templateId": "electron",
+          "label": "Pro Electron",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:1",
+              "charged-lepton",
+              "pdg-id:e-",
+              "pdg-name:e-"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:electron",
+            "pdg:generation:1",
+            "pdg-id:e-"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-"
+      ],
+      "polarity": "pro"
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Anti Electron Neutrino",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "neutrino",
+          "pdg-id:nubar_e",
+          "pdg-name:anti-nu_e"
+        ]
+      },
+      "rootNodeId": "product_anti_electron_neutrino_3/root",
+      "nodes": [
+        {
+          "id": "product_anti_electron_neutrino_3/root",
+          "templateId": "neutrino",
+          "label": "Anti Electron Neutrino",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:1",
+              "neutrino",
+              "pdg-id:nubar_e",
+              "pdg-name:anti-nu_e"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:anti-electron-neutrino",
+            "pdg:generation:1",
+            "pdg-id:nubar_e"
+          ],
+          "polarity": "anti"
+        }
+      ],
+      "tags": [
+        "pdg:species:anti-electron-neutrino",
+        "pdg:generation:1",
+        "pdg-id:nubar_e"
+      ],
+      "polarity": "anti"
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

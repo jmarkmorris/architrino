@@ -1,0 +1,151 @@
+{
+  "schema": "pdg-proposal/v1",
+  "proposalId": "radiative_free_neutron_beta_decay.live-pdg",
+  "title": "Radiative free neutron beta decay",
+  "source": {
+    "edition": "2025",
+    "channelDescription": "n -> p e- nubar_e gamma",
+    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+    "branchingDisplay": "(9.2+-0.7)E-3",
+    "sourceMode": "pdg.connect",
+    "lookupParticleName": "n",
+    "pdgIdentifier": "S017.4/2025",
+    "liveCaseId": "radiative_free_neutron_beta_decay"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron_1",
+      "side": "reactant",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:n",
+          "pdg-name:n"
+        ]
+      },
+      "pdgName": "n",
+      "pdgId": "n",
+      "tags": [
+        "pdg:species:neutron",
+        "pdg-id:n"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton_1",
+      "side": "product",
+      "templateId": "proton",
+      "label": "Proton",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:p",
+          "pdg-name:p"
+        ]
+      },
+      "pdgName": "p",
+      "pdgId": "p",
+      "tags": [
+        "pdg:species:proton",
+        "pdg-id:p"
+      ]
+    },
+    {
+      "id": "product_pro_electron_2",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Pro Electron",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "charged-lepton",
+          "pdg-id:e-",
+          "pdg-name:e-"
+        ]
+      },
+      "pdgName": "e-",
+      "pdgId": "e-",
+      "tags": [
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-"
+      ]
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Anti Electron Neutrino",
+      "family": "lepton",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "neutrino",
+          "pdg-id:nubar_e",
+          "pdg-name:anti-nu_e"
+        ]
+      },
+      "pdgName": "anti-nu_e",
+      "pdgId": "nubar_e",
+      "tags": [
+        "pdg:species:anti-electron-neutrino",
+        "pdg:generation:1",
+        "pdg-id:nubar_e"
+      ]
+    },
+    {
+      "id": "product_photon_4",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon",
+      "family": "boson",
+      "polarity": "",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:gamma",
+          "pdg-name:gamma"
+        ]
+      },
+      "pdgName": "gamma",
+      "pdgId": "gamma",
+      "tags": [
+        "pdg:species:photon",
+        "pdg-id:gamma"
+      ]
+    }
+  ],
+  "centers": [],
+  "ranking": {
+    "rank": 1,
+    "score": 100,
+    "reasons": [
+      "pdg-live-source",
+      "all-participants-supported"
+    ]
+  },
+  "notes": [],
+  "exportable": true
+}

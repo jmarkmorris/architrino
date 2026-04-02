@@ -279,7 +279,7 @@ Next steps:
 - keep provenance authoring out of downstream Composer tooling;
 - and continue reducing launcher-era coupling as the standalone app boundary hardens.
 
-### 6. Harden Reaction Export And Contract Ownership
+### 7. Harden Reaction Export And Contract Ownership
 
 Status: `pending`
 
@@ -297,3 +297,22 @@ Next steps:
 - refresh the schema against current solver output;
 - add or keep Reaction export tests around that contract;
 - and keep the Reaction side of the boundary explicit before deeper downstream integration.
+
+### 8. Delete The Old Browser Solver After Flash Cut-Over
+
+Status: `pending`
+
+Goal:
+
+- remove the old Reaction-app solver code completely once `solver.py` is complete, integrated, and validated well enough for the flash migration.
+
+Why it matters:
+
+- there are no compatibility requirements for a long dual-run period, and keeping both solvers in-tree after cut-over will only preserve confusion, duplicate maintenance, and stale architecture.
+
+Next steps:
+
+- switch the Reaction app fully onto the new solver contract and adapter path;
+- remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
+- keep any needed historical reference in git history rather than in active source files;
+- and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.

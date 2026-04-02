@@ -161,6 +161,235 @@ function buildRecognizedBosonParticipant(recognition = {}, index = 0) {
   };
 }
 
+function hasNonZeroLedger(ledger = null) {
+  const normalizedLedger = toLedgerCounts(ledger);
+  return normalizedLedger.electrinoCount > 0 || normalizedLedger.positrinoCount > 0;
+}
+
+function getRecognizedBosonLedgerDecrement(templateId = "") {
+  const normalizedTemplateId = normalizeLowerText(templateId);
+  if (normalizedTemplateId === "w_minus_boson") {
+    return {
+      electrinoCount: 6,
+      positrinoCount: 0,
+    };
+  }
+  if (normalizedTemplateId === "w_plus_boson") {
+    return {
+      electrinoCount: 0,
+      positrinoCount: 6,
+    };
+  }
+  return {
+    electrinoCount: 0,
+    positrinoCount: 0,
+  };
+}
+
+function canApplyLedgerDecrement(availableLedger = null, decrement = null) {
+  const available = toLedgerCounts(availableLedger);
+  const required = toLedgerCounts(decrement);
+  return (
+    available.electrinoCount >= required.electrinoCount &&
+    available.positrinoCount >= required.positrinoCount
+  );
+}
+
+function subtractLedgerCounts(availableLedger = null, decrement = null) {
+  const available = toLedgerCounts(availableLedger);
+  const required = toLedgerCounts(decrement);
+  return {
+    electrinoCount: Math.max(0, available.electrinoCount - required.electrinoCount),
+    positrinoCount: Math.max(0, available.positrinoCount - required.positrinoCount),
+  };
+}
+
+function formatFreeArchitrinoLedgerLabel(ledger = null) {
+  const normalizedLedger = toLedgerCounts(ledger);
+  return `Free Architrinos ${normalizedLedger.electrinoCount}:${normalizedLedger.positrinoCount}@`;
+}
+
+function buildRemainingFreeArchitrinoParticipant(options = {}) {
+  const sourceParticipantId = normalizeText(options?.sourceParticipantId);
+  const sourceParticipantRecord = options?.sourceParticipantRecord ?? null;
+  const sourceStepId = normalizeText(options?.sourceStepId);
+  const sequenceIndex = Math.max(0, Number(options?.sequenceIndex ?? 0) || 0);
+  const remainingLedger = toLedgerCounts(options?.remainingLedger);
+  if (!sourceParticipantId || !sourceStepId || !hasNonZeroLedger(remainingLedger)) {
+    return null;
+  }
+  const participantId = `recognized:free_architrinos_remaining:${sourceParticipantId}:${sequenceIndex + 1}`;
+  const rootNodeId = `${participantId}_root`;
+  return {
+    id: participantId,
+    origin: "solve-generated-intermediate",
+    sourceParticipantId,
+    sourceStepId,
+    side: normalizeText(sourceParticipantRecord?.side) || "center",
+    templateId: "free_architrinos",
+    label: formatFreeArchitrinoLedgerLabel(remainingLedger),
+    family: "free-architrinos",
+    isComposite: false,
+    inventory: remainingLedger,
+    rootNodeId,
+    nodes: [
+      {
+        id: rootNodeId,
+        templateId: "free_architrinos",
+        label: formatFreeArchitrinoLedgerLabel(remainingLedger),
+        family: "free-architrinos",
+        inventory: remainingLedger,
+      },
+    ],
+    tags: ["late-boson-collapse-remaining-ledger"],
+  };
+}
+
+function buildParticipantRecordIndex(participants = []) {
+  return new Map(
+    (Array.isArray(participants) ? participants : [])
+      .filter((participant) => normalizeText(participant?.id))
+      .map((participant) => [normalizeText(participant.id), participant])
+  );
+}
+
+function resolveRecognitionSourceParticipantIds(recognition = {}) {
+  return Array.isArray(recognition?.sourceParticipantIds)
+    ? recognition.sourceParticipantIds.map((value) => normalizeText(value)).filter(Boolean)
+    : [];
+}
+
+function getRecognitionFreeArchitrinoLedger(recognition = {}, fallbackLedger = null) {
+  const recognitionLedger = toLedgerCounts(recognition?.sourcePattern?.freeArchitrinoLedger);
+  if (hasNonZeroLedger(recognitionLedger)) {
+    return recognitionLedger;
+  }
+  return toLedgerCounts(fallbackLedger);
+}
+
+function buildRecognizedBosonArtifacts(plan = {}, solveState = {}, authoredParticipants = []) {
+  const unresolvedReactantCount = Array.isArray(plan?.unresolvedReactants) ? plan.unresolvedReactants.length : 0;
+  const unresolvedTargetCount = Array.isArray(plan?.unresolvedProducts) ? plan.unresolvedProducts.length : 0;
+  if (unresolvedReactantCount > 0 || unresolvedTargetCount > 0) {
+    return {
+      participants: [],
+      steps: [],
+    };
+  }
+  const participantIndex = buildParticipantRecordIndex(authoredParticipants);
+  const centerParticipantIds = new Set(
+    (Array.isArray(solveState?.centerAssemblies) ? solveState.centerAssemblies : [])
+      .map((entry) => normalizeText(entry?.participant?.id))
+      .filter(Boolean)
+  );
+  const recognizedCenterBosons = Array.isArray(plan?.recognizedCenterBosons)
+    ? plan.recognizedCenterBosons
+    : [];
+  const activeFreeLedgerStateBySourceId = new Map();
+  const producedParticipants = [];
+  const collapseSteps = [];
+
+  recognizedCenterBosons.forEach((recognition) => {
+    const sourceParticipantIds = resolveRecognitionSourceParticipantIds(recognition);
+    if (
+      !sourceParticipantIds.length ||
+      sourceParticipantIds.some((participantId) => !centerParticipantIds.has(participantId))
+    ) {
+      return;
+    }
+
+    const stepIndex = collapseSteps.length;
+    const stepId = `step_collapse_boson_${stepIndex + 1}`;
+    const bosonParticipant = buildRecognizedBosonParticipant(recognition, stepIndex);
+    const bosonParticipantId = normalizeText(bosonParticipant?.record?.id);
+    const bosonTemplateId = normalizeText(recognition?.templateId);
+    const ledgerDecrement = getRecognizedBosonLedgerDecrement(bosonTemplateId);
+    const freeSourceParticipantId =
+      sourceParticipantIds.find(
+        (participantId) =>
+          normalizeLowerText(participantIndex.get(participantId)?.templateId) === "free_architrinos"
+      ) ?? "";
+
+    let remainingLedgerParticipant = null;
+    let consumedParticipantIds = [...sourceParticipantIds];
+
+    if (hasNonZeroLedger(ledgerDecrement)) {
+      const sourceParticipantRecord = participantIndex.get(freeSourceParticipantId) ?? null;
+      if (!sourceParticipantRecord) {
+        return;
+      }
+      const currentFreeLedgerState = activeFreeLedgerStateBySourceId.get(freeSourceParticipantId) ?? null;
+      const availableLedger = currentFreeLedgerState
+        ? toLedgerCounts(currentFreeLedgerState.inventory)
+        : getRecognitionFreeArchitrinoLedger(recognition, sourceParticipantRecord?.inventory);
+      if (!canApplyLedgerDecrement(availableLedger, ledgerDecrement)) {
+        return;
+      }
+      const activeFreeParticipantId =
+        normalizeText(currentFreeLedgerState?.participantId) || freeSourceParticipantId;
+      if (!activeFreeParticipantId) {
+        return;
+      }
+      consumedParticipantIds = sourceParticipantIds.map((participantId) =>
+        participantId === freeSourceParticipantId ? activeFreeParticipantId : participantId
+      );
+      const remainingLedger = subtractLedgerCounts(availableLedger, ledgerDecrement);
+      if (hasNonZeroLedger(remainingLedger)) {
+        remainingLedgerParticipant = buildRemainingFreeArchitrinoParticipant({
+          sourceParticipantId: freeSourceParticipantId,
+          sourceParticipantRecord,
+          sourceStepId: stepId,
+          remainingLedger,
+          sequenceIndex: stepIndex,
+        });
+        if (!remainingLedgerParticipant) {
+          return;
+        }
+        activeFreeLedgerStateBySourceId.set(freeSourceParticipantId, {
+          participantId: remainingLedgerParticipant.id,
+          inventory: remainingLedger,
+        });
+      } else {
+        activeFreeLedgerStateBySourceId.set(freeSourceParticipantId, {
+          participantId: "",
+          inventory: remainingLedger,
+        });
+      }
+    }
+
+    const producedParticipantIds = [];
+    if (bosonParticipant?.record) {
+      producedParticipants.push(bosonParticipant.record);
+      participantIndex.set(normalizeText(bosonParticipant.record.id), bosonParticipant.record);
+      if (bosonParticipantId) {
+        producedParticipantIds.push(bosonParticipantId);
+      }
+    }
+    if (remainingLedgerParticipant) {
+      producedParticipants.push(remainingLedgerParticipant);
+      participantIndex.set(normalizeText(remainingLedgerParticipant.id), remainingLedgerParticipant);
+      producedParticipantIds.push(remainingLedgerParticipant.id);
+    }
+
+    collapseSteps.push({
+      stepId,
+      kind: "collapse-boson",
+      ruleFamily: normalizeText(recognition?.kind) || "late-center-exact",
+      consumedParticipantIds,
+      producedParticipantIds,
+      resolvedTargetIds: [normalizeText(recognition?.targetParticipantId)].filter(Boolean),
+      mappingIds: [],
+      operatorIds: [],
+      diagnosticLabels: [bosonTemplateId].filter(Boolean),
+    });
+  });
+
+  return {
+    participants: producedParticipants,
+    steps: collapseSteps,
+  };
+}
+
 function buildEndpointFromMappingSide(mapping = {}, side = "source") {
   const endpoint = side === "source" ? mapping?.sourceEndpoint : mapping?.targetEndpoint;
   const participant = endpoint?.participant ?? (side === "source" ? mapping?.sourceParticipant : mapping?.targetParticipant);
@@ -318,28 +547,6 @@ function buildDirectSteps(plan = {}, serializedMappings = []) {
   });
 }
 
-function buildCollapseBosonSteps(plan = {}, recognizedBosonParticipants = []) {
-  const recognizedCenterBosons = Array.isArray(plan?.recognizedCenterBosons)
-    ? plan.recognizedCenterBosons
-    : [];
-  return recognizedCenterBosons.map((recognition, index) => {
-    const producedParticipantId = String(recognizedBosonParticipants[index]?.record?.id ?? "");
-    return {
-      stepId: `step_collapse_boson_${index + 1}`,
-      kind: "collapse-boson",
-      ruleFamily: normalizeText(recognition?.kind) || "late-center-exact",
-      consumedParticipantIds: Array.isArray(recognition?.sourceParticipantIds)
-        ? recognition.sourceParticipantIds.map((value) => String(value))
-        : [],
-      producedParticipantIds: producedParticipantId ? [producedParticipantId] : [],
-      resolvedTargetIds: [normalizeText(recognition?.targetParticipantId)].filter(Boolean),
-      mappingIds: [],
-      operatorIds: [],
-      diagnosticLabels: [normalizeText(recognition?.templateId)].filter(Boolean),
-    };
-  });
-}
-
 function buildResidue(plan = {}) {
   const unresolvedTargetIds = (Array.isArray(plan?.unresolvedProducts) ? plan.unresolvedProducts : [])
     .map((entry) => normalizeText(entry?.participant?.id))
@@ -386,19 +593,17 @@ export function buildReactionSolverResultDocument(options = {}) {
   ]
     .map(serializeSolveStateParticipant)
     .filter(Boolean);
-  const recognizedBosonParticipants = (Array.isArray(plan?.recognizedCenterBosons) ? plan.recognizedCenterBosons : [])
-    .map((recognition, index) => buildRecognizedBosonParticipant(recognition, index))
-    .filter(Boolean);
+  const recognizedBosonArtifacts = buildRecognizedBosonArtifacts(plan, solveState, authoredParticipants);
   const participants = [
     ...authoredParticipants,
-    ...recognizedBosonParticipants.map((entry) => entry.record),
+    ...recognizedBosonArtifacts.participants,
   ];
   const mappings = serializeMappings(plan);
   const operators = serializeOperators(plan);
   const steps = [
     ...buildDirectSteps(plan, mappings),
     ...buildAssociateSteps(plan, mappings, operators),
-    ...buildCollapseBosonSteps(plan, recognizedBosonParticipants),
+    ...recognizedBosonArtifacts.steps,
   ];
   const unresolvedTargetCount = Array.isArray(plan?.unresolvedProducts) ? plan.unresolvedProducts.length : 0;
   const exact = unresolvedTargetCount === 0;

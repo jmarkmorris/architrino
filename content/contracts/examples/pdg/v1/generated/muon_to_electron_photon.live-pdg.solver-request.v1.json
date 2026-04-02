@@ -1,0 +1,169 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "muon_to_electron_photon.live-pdg",
+  "origin": {
+    "sourceKind": "pdg-ingest",
+    "sourceDocumentId": "muon_to_electron_photon",
+    "title": "Muon to electron photon"
+  },
+  "participants": [
+    {
+      "id": "reactant_pro_muon_1",
+      "side": "reactant",
+      "templateId": "electron",
+      "label": "Pro Muon",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "charged-lepton",
+          "pdg-id:mu-",
+          "pdg-name:mu-"
+        ]
+      },
+      "rootNodeId": "reactant_pro_muon_1/root",
+      "nodes": [
+        {
+          "id": "reactant_pro_muon_1/root",
+          "templateId": "electron",
+          "label": "Pro Muon",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:2",
+              "charged-lepton",
+              "pdg-id:mu-",
+              "pdg-name:mu-"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:muon",
+            "pdg:generation:2",
+            "pdg-id:mu-"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:muon",
+        "pdg:generation:2",
+        "pdg-id:mu-"
+      ],
+      "polarity": "pro"
+    },
+    {
+      "id": "product_pro_electron_1",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Pro Electron",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:1",
+          "charged-lepton",
+          "pdg-id:e-",
+          "pdg-name:e-"
+        ]
+      },
+      "rootNodeId": "product_pro_electron_1/root",
+      "nodes": [
+        {
+          "id": "product_pro_electron_1/root",
+          "templateId": "electron",
+          "label": "Pro Electron",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:1",
+              "charged-lepton",
+              "pdg-id:e-",
+              "pdg-name:e-"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:electron",
+            "pdg:generation:1",
+            "pdg-id:e-"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-"
+      ],
+      "polarity": "pro"
+    },
+    {
+      "id": "product_photon_2",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "pdg-id:gamma",
+          "pdg-name:gamma"
+        ]
+      },
+      "rootNodeId": "product_photon_2/root",
+      "nodes": [
+        {
+          "id": "product_photon_2/root",
+          "templateId": "photon",
+          "label": "Photon",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "pdg-id:gamma",
+              "pdg-name:gamma"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:photon",
+            "pdg-id:gamma"
+          ]
+        }
+      ],
+      "tags": [
+        "pdg:species:photon",
+        "pdg-id:gamma"
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

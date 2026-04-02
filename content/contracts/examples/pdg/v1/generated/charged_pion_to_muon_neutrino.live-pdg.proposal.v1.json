@@ -1,14 +1,16 @@
 {
   "schema": "pdg-proposal/v1",
-  "proposalId": "charged_pion_to_muon_neutrino",
+  "proposalId": "charged_pion_to_muon_neutrino.live-pdg",
   "title": "Charged pion to muon neutrino",
   "source": {
-    "edition": "2026",
+    "edition": "2025",
     "channelDescription": "pi+ -> mu+ nu_mu",
-    "citation": "Local PDG fixture seed",
-    "branchingDisplay": "dominant charged pion decay channel",
-    "fixtureId": "charged_pion_to_muon_neutrino",
-    "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json"
+    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+    "branchingDisplay": "99.98770+-0.00004",
+    "sourceMode": "pdg.connect",
+    "lookupParticleName": "pi+",
+    "pdgIdentifier": "S008.1/2025",
+    "liveCaseId": "charged_pion_to_muon_neutrino"
   },
   "reactants": [],
   "products": [
@@ -68,14 +70,13 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 65,
+    "score": 70,
     "reasons": [
-      "fixture-source",
+      "pdg-live-source",
       "contains-unsupported-participants"
     ]
   },
   "notes": [
-    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
     "unsupported:reactant:pi+:no-v1-solver-template"
   ],
   "exportable": false

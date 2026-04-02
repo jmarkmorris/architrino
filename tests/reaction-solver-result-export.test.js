@@ -150,6 +150,71 @@ function buildSolveState(participants) {
   });
 }
 
+function createAggregateLedgerParticipant({
+  id,
+  side = "reactant",
+  electrinoCount = 0,
+  positrinoCount = 0,
+  label = "Free Architrinos",
+}) {
+  return {
+    id,
+    side,
+    templateId: "free_architrinos",
+    baseLabel: label,
+    label,
+    hierarchy: [
+      {
+        id: `${id}_structure`,
+        templateId: "free_architrinos",
+        label,
+        inventory: {
+          electrinoCount,
+          positrinoCount,
+        },
+        children: [],
+      },
+    ],
+  };
+}
+
+function createRecognizedCollapsePlan({
+  sourceEntries = [],
+  targetParticipant = null,
+  recognition = null,
+  unresolvedProducts = [],
+}) {
+  const operatorRef = `associate:${sourceEntries.map((entry) => entry?.participant?.id ?? "").join(":")}:${targetParticipant?.id ?? "target"}`;
+  const candidate = {
+    type: "associate-standalone",
+    sourceEntries,
+    targetParticipant,
+    participantAdditions: [
+      {
+        ref: operatorRef,
+        kind: "operator",
+        templateId: "associate",
+        operatorLaneIndex: 1,
+      },
+    ],
+  };
+  return {
+    selectedAssociateCandidates: [candidate],
+    participantAdditions: [...candidate.participantAdditions],
+    selectedMappings: [],
+    recognizedCenterBosons: recognition ? [recognition] : [],
+    unresolvedReactants: [],
+    unresolvedProducts,
+    dissociation: {
+      autoDissociatedParticipantIds: [],
+    },
+    residue: {
+      source: [],
+      target: [],
+    },
+  };
+}
+
 test("solver result exporter emits a collapse-boson step and participant for an exact W- recognition", () => {
   const centerCore = createParticipant({
     id: "center_core_w_minus",
@@ -194,6 +259,10 @@ test("solver result exporter emits a collapse-boson step and participant for an 
   const errors = validateAgainstSchema(result, schema);
 
   assert.deepEqual(errors, []);
+  assert.deepEqual(
+    result.steps.map((step) => step.kind),
+    ["associate", "collapse-boson"]
+  );
   assert.ok(
     result.steps.some(
       (step) =>
@@ -208,6 +277,227 @@ test("solver result exporter emits a collapse-boson step and participant for an 
         participant.origin === "solve-generated-intermediate" &&
         participant.templateId === "w_minus_boson"
     )
+  );
+});
+
+test("solver result exporter rewrites aggregate Free Architrinos residue after a recognized W- collapse", () => {
+  const centerCore = createParticipant({
+    id: "center_core_w_minus_aggregate",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Noether core",
+  });
+  centerCore.surfaceColumn = "center-assembly";
+  const centerFreeArchitrinos = createAggregateLedgerParticipant({
+    id: "center_free_architrinos_w_minus_aggregate",
+    electrinoCount: 11,
+    positrinoCount: 7,
+  });
+  centerFreeArchitrinos.surfaceColumn = "center-assembly";
+  const productElectron = createParticipant({
+    id: "product_electron_w_minus_aggregate",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+  const solveState = buildSolveState([centerCore, centerFreeArchitrinos, productElectron]);
+  const plan = createRecognizedCollapsePlan({
+    sourceEntries: [
+      { participant: centerCore, rootNode: centerCore.hierarchy[0], sourceNode: centerCore.hierarchy[0] },
+      {
+        participant: centerFreeArchitrinos,
+        rootNode: centerFreeArchitrinos.hierarchy[0],
+        sourceNode: centerFreeArchitrinos.hierarchy[0],
+      },
+    ],
+    targetParticipant: productElectron,
+    recognition: {
+      kind: "late-center-exact",
+      templateId: "w_minus_boson",
+      targetParticipantId: "product_electron_w_minus_aggregate",
+      targetTemplateId: "electron",
+      sourceParticipantIds: [
+        "center_core_w_minus_aggregate",
+        "center_free_architrinos_w_minus_aggregate",
+      ],
+      sourceNodeIds: [
+        "center_core_w_minus_aggregate_structure",
+        "center_free_architrinos_w_minus_aggregate_structure",
+      ],
+      sourcePattern: {
+        corePolarities: ["pro"],
+        freeArchitrinoLedger: {
+          electrino: 11,
+          positrino: 7,
+        },
+      },
+    },
+  });
+
+  const result = buildReactionSolverResultDocument({
+    request: {
+      requestId: "center_w_minus_aggregate_recognition",
+    },
+    solveState,
+    plan,
+  });
+  const schema = readJson("src/contracts/solver-result/v1/schema.json");
+  const errors = validateAgainstSchema(result, schema);
+  const collapseStep = result.steps.find((step) => step.kind === "collapse-boson");
+  const remainingLedgerParticipants = result.participants.filter(
+    (participant) =>
+      participant.templateId === "free_architrinos" &&
+      participant.origin === "solve-generated-intermediate"
+  );
+
+  assert.deepEqual(errors, []);
+  assert.ok(collapseStep);
+  assert.equal(collapseStep.producedParticipantIds.length, 2);
+  assert.deepEqual(collapseStep.consumedParticipantIds, [
+    "center_core_w_minus_aggregate",
+    "center_free_architrinos_w_minus_aggregate",
+  ]);
+  assert.deepEqual(
+    remainingLedgerParticipants.map((participant) => participant.inventory),
+    [{ electrinoCount: 5, positrinoCount: 7 }]
+  );
+  assert.deepEqual(
+    remainingLedgerParticipants.map((participant) => participant.sourceParticipantId),
+    ["center_free_architrinos_w_minus_aggregate"]
+  );
+});
+
+test("solver result exporter suppresses recognized boson emission for unresolved or non-center closures", () => {
+  const centerCore = createParticipant({
+    id: "center_core_partial_recognition",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Noether core",
+  });
+  centerCore.surfaceColumn = "center-assembly";
+  const centerFreeArchitrinos = createAggregateLedgerParticipant({
+    id: "center_free_architrinos_partial_recognition",
+    electrinoCount: 11,
+    positrinoCount: 7,
+  });
+  centerFreeArchitrinos.surfaceColumn = "center-assembly";
+  const productElectron = createParticipant({
+    id: "product_electron_partial_recognition",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+  const partialSolveState = buildSolveState([centerCore, centerFreeArchitrinos, productElectron]);
+  const partialResult = buildReactionSolverResultDocument({
+    request: {
+      requestId: "partial_recognition_suppressed",
+    },
+    solveState: partialSolveState,
+    plan: createRecognizedCollapsePlan({
+      sourceEntries: [
+        { participant: centerCore, rootNode: centerCore.hierarchy[0], sourceNode: centerCore.hierarchy[0] },
+        {
+          participant: centerFreeArchitrinos,
+          rootNode: centerFreeArchitrinos.hierarchy[0],
+          sourceNode: centerFreeArchitrinos.hierarchy[0],
+        },
+      ],
+      targetParticipant: productElectron,
+      unresolvedProducts: [{ participant: productElectron }],
+      recognition: {
+        kind: "late-center-exact",
+        templateId: "w_minus_boson",
+        targetParticipantId: "product_electron_partial_recognition",
+        sourceParticipantIds: [
+          "center_core_partial_recognition",
+          "center_free_architrinos_partial_recognition",
+        ],
+        sourcePattern: {
+          corePolarities: ["pro"],
+          freeArchitrinoLedger: {
+            electrino: 11,
+            positrino: 7,
+          },
+        },
+      },
+    }),
+  });
+
+  const reactantCore = createParticipant({
+    id: "reactant_core_non_center_recognition",
+    side: "reactant",
+    templateId: "noether_core",
+    polarity: "pro",
+    label: "Noether core",
+  });
+  const reactantFreeArchitrinos = createAggregateLedgerParticipant({
+    id: "reactant_free_architrinos_non_center_recognition",
+    electrinoCount: 11,
+    positrinoCount: 7,
+  });
+  const exactProductElectron = createParticipant({
+    id: "product_electron_non_center_recognition",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+  const nonCenterSolveState = buildSolveState([
+    reactantCore,
+    reactantFreeArchitrinos,
+    exactProductElectron,
+  ]);
+  const nonCenterResult = buildReactionSolverResultDocument({
+    request: {
+      requestId: "non_center_recognition_suppressed",
+    },
+    solveState: nonCenterSolveState,
+    plan: createRecognizedCollapsePlan({
+      sourceEntries: [
+        { participant: reactantCore, rootNode: reactantCore.hierarchy[0], sourceNode: reactantCore.hierarchy[0] },
+        {
+          participant: reactantFreeArchitrinos,
+          rootNode: reactantFreeArchitrinos.hierarchy[0],
+          sourceNode: reactantFreeArchitrinos.hierarchy[0],
+        },
+      ],
+      targetParticipant: exactProductElectron,
+      recognition: {
+        kind: "late-center-exact",
+        templateId: "w_minus_boson",
+        targetParticipantId: "product_electron_non_center_recognition",
+        sourceParticipantIds: [
+          "reactant_core_non_center_recognition",
+          "reactant_free_architrinos_non_center_recognition",
+        ],
+        sourcePattern: {
+          corePolarities: ["pro"],
+          freeArchitrinoLedger: {
+            electrino: 11,
+            positrino: 7,
+          },
+        },
+      },
+    }),
+  });
+
+  assert.equal(partialResult.steps.some((step) => step.kind === "collapse-boson"), false);
+  assert.equal(
+    partialResult.participants.some(
+      (participant) => participant.origin === "solve-generated-intermediate"
+    ),
+    false
+  );
+  assert.equal(nonCenterResult.steps.some((step) => step.kind === "collapse-boson"), false);
+  assert.equal(
+    nonCenterResult.participants.some(
+      (participant) => participant.origin === "solve-generated-intermediate"
+    ),
+    false
   );
 });
 

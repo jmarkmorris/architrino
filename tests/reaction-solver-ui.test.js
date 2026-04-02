@@ -144,19 +144,15 @@ test("reaction solver exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /buildSolvePlan\(\{\s*solveState,\s*buildNodeKey,\s*resolveBinaryChoiceInventory,/s
-  );
-  assert.match(
-    runtimeSource,
     /resetSolveDerivedArtifacts\(\);/
   );
   assert.match(
     runtimeSource,
-    /const laidOutPlan = applySolveLayout\(\{\s*plan,\s*solveState,\s*\}\);/
+    /const solution = solveSnapshot\(\s*\{\s*participants:\s*cloneSerializableValue\(state\.participants\),\s*mappings:\s*cloneSerializableValue\(state\.mappings\),/s
   );
   assert.match(
     runtimeSource,
-    /describeSolvePlan\(laidOutPlan\)/
+    /const result = solution\?\.result \?\? null;/
   );
   assert.match(
     runtimeSource,
@@ -176,7 +172,15 @@ test("reaction solver exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
+    /result,\s*createOperatorParticipant,/s
+  );
+  assert.match(
+    runtimeSource,
     /markParticipantAutoDissociated,/
+  );
+  assert.match(
+    runtimeSource,
+    /normalizeText\(solution\?\.planDescription\) \|\| describeSolvePlan\(\{\}\)/
   );
   assert.match(
     runtimeSource,

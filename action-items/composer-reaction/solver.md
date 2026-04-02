@@ -1150,31 +1150,33 @@ Example command, free neutron decay with an added `4h` reactant:
 
 Current compact notation:
 
-| Notation | Meaning | Notes |
-| --- | --- | --- |
-| `d1` or `d` | down quark | generation I may omit the `1` |
-| `d2` | strange quark | generation II down-family |
-| `d3` | bottom quark | generation III down-family |
-| `e1` or `e` | electron | generation I may omit the `1` |
-| `e2` | muon | generation II charged lepton |
-| `e3` | tau | generation III charged lepton |
-| `h` | Noether core | base core symbol |
-| `h2` | Bi Binary | reduced `Noether core` form |
-| `h3` | Uni Binary | reduced `Noether core` form |
-| `2h` | photon | two-core photon shorthand |
-| `4h` | Higgs cluster | four-core Higgs-cluster shorthand |
-| `e:p@` | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present |
-| `N` | neutron | aligns with existing `Pro Neutron` support |
-| `P` | proton | aligns with existing `Pro Proton` support |
-| `u1` or `u` | up quark | generation I may omit the `1` |
-| `u2` | charm quark | generation II up-family |
-| `u3` | top quark | generation III up-family |
-| `v1` or `v` | neutrino | generation I may omit the `1` |
-| `v2` | muon neutrino | generation II neutrino |
-| `v3` | tau neutrino | generation III neutrino |
-| `W+` | `W+` boson | two-character token |
-| `W-` | `W-` boson | two-character token |
-| `Z` | `Z` boson | direct match |
+| Notation    | Meaning                   | Notes                                                              | PDG API Notation |
+| ----------- | ------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `d1` or `d` | down quark                | generation I may omit the `1`                                      | `d`              |
+| `d2`        | strange quark             | generation II down-family                                          | `s`              |
+| `d3`        | bottom quark              | generation III down-family                                         | `b`              |
+| `e1` or `e` | electron                  | generation I may omit the `1`                                      | `e-`             |
+| `e2`        | muon                      | generation II charged lepton                                       | `mu-`            |
+| `e3`        | tau                       | generation III charged lepton                                      | `tau-`           |
+| `h`         | Noether core              | base core symbol                                                   | `n/a`            |
+| `h2`        | Bi Binary                 | reduced `Noether core` form                                        | `n/a`            |
+| `h3`        | Uni Binary                | reduced `Noether core` form                                        | `n/a`            |
+| `2h`        | photon                    | two-core photon shorthand                                          | `gamma`          |
+| `4h`        | Higgs cluster             | four-core Higgs-cluster shorthand                                  | `n/a`            |
+| `e:p@`      | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
+| `N`         | neutron                   | aligns with existing `Pro Neutron` support                         | `n`              |
+| `P`         | proton                    | aligns with existing `Pro Proton` support                          | `p`              |
+| `u1` or `u` | up quark                  | generation I may omit the `1`                                      | `u`              |
+| `u2`        | charm quark               | generation II up-family                                            | `c`              |
+| `u3`        | top quark                 | generation III up-family                                           | `t`              |
+| `v1` or `v` | neutrino                  | generation I may omit the `1`                                      | `nu_e`           |
+| `v2`        | muon neutrino             | generation II neutrino                                             | `nu_mu`          |
+| `v3`        | tau neutrino              | generation III neutrino                                            | `nu_tau`         |
+| `W+`        | `W+` boson                | two-character token                                                | `W+`             |
+| `W-`        | `W-` boson                | two-character token                                                | `W-`             |
+| `Z`         | `Z` boson                 | direct match                                                       | `Z`              |
+
+The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
 
 Generation numbers should be interpreted as family indices for fermions:
 
@@ -1538,57 +1540,30 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Emit Recognized Boson Forms In Solver Results
+### 1. Solver Rearchitecture
 
-Status: `review`
-
-Goal:
-
-- carry late-stage boson recognition through the emitted `solver-result/v1` document rather than leaving it as proposal-only internal metadata.
-
-Why it matters:
-
-- the result contract already has `collapse-boson` steps, so recognized `W` / `Z` structure should be visible in exported solver results, fixtures, and future Python parity checks rather than disappearing after plan selection.
-
-This pass added:
-
-- a dedicated JS result exporter in [`ReactionSolverResultExportRuntime.js`](../../src/apps/reaction/ReactionSolverResultExportRuntime.js) that turns solve-state plus selected plan data into a `solver-result/v1` document;
-- emitted `collapse-boson` steps plus solve-generated boson participant records for recognized center-lane `W-`, `W+`, and `Z` forms while preserving the primitive mappings and operator paths needed by current Reaction projection;
-- support for multiple disjoint recognized bosons in one exact closure at the result-export layer; and
-- regression coverage in [`reaction-solver-result-export.test.js`](../../tests/reaction-solver-result-export.test.js) for both single and multiple recognition cases, with schema validation against [`solver-result/v1`](../../src/contracts/solver-result/v1/schema.json).
-
-Review focus:
-
-- handle leftover aggregate `Free Architrinos` ledger correctly after a recognized `W-` or `W+` decrement;
-- decide whether exported collapse steps should eventually replace primitive associate steps in the final selected result or continue to layer on top of them;
-- confirm the current result-export seam is the right place for recognized boson emission before Python parity work starts;
-- and keep unresolved or non-center closures unrecognized even in exported results.
-
-### 2. Solver Rearchitecture
+Status: `in_progress`
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
+This pass added:
+
+- a dedicated Reaction-side request exporter in [`ReactionSolverRequestExportRuntime.js`](../../src/apps/reaction/ReactionSolverRequestExportRuntime.js) that builds `solver-request/v1` documents from authored solver canvas state;
+- a request adapter in [`ReactionSolverRequestAdapterRuntime.js`](../../src/apps/reaction/ReactionSolverRequestAdapterRuntime.js) that reconstructs current JS solver/runtime state from `solver-request/v1` documents;
+- a contract solve runtime in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) that runs the existing JS solver through the versioned request/result boundary instead of direct planner-local UI wiring;
+- a first headless entrypoint in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs) that accepts `solver-request/v1` JSON and emits `solver-result/v1` JSON;
+- canonical participant and mapping ledger serialization through structure classification rather than UI-only display inventory;
+- authored-operator and authored-mapping export for existing manual canvas work, including placement hints and manual dissociation state; and
+- explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts;
+- and Reaction UI solve-path wiring onto the request/result seam so solve projection now consumes `solver-result/v1` output rather than the UI calling planner stages inline.
+
+Next focus:
+
+- replace the JS contract-bridge solver path with the real external solver implementation behind the same `solver-request/v1` / `solver-result/v1` boundary;
+- and then cut over the Reaction app from the browser-local bridge to that external solver without changing the contract seam again.
+
 Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
-
-### 3. Delete The Old Browser Solver After Flash Cut-Over
-
-Status: `pending`
-
-Goal:
-
-- remove the old Reaction-app solver code completely once `solver.py` is complete, integrated, and validated well enough for the flash migration.
-
-Why it matters:
-
-- there are no compatibility requirements for a long dual-run period, and keeping both solvers in-tree after cut-over will only preserve confusion, duplicate maintenance, and stale architecture.
-
-Next steps:
-
-- switch the Reaction app fully onto the new solver contract and adapter path;
-- remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
-- keep any needed historical reference in git history rather than in active source files;
-- and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.
