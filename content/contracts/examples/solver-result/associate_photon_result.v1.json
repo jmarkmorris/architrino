@@ -1,0 +1,292 @@
+{
+  "schema": "solver-result/v1",
+  "resultId": "associate_photon_result",
+  "request": {
+    "schema": "solver-request/v1",
+    "requestId": "associate_photon"
+  },
+  "summary": {
+    "outcome": "exact",
+    "exact": true,
+    "selectedPlanId": "plan_associate_photon",
+    "unresolvedTargetCount": 0,
+    "ambiguityCount": 0,
+    "unsupportedCount": 0
+  },
+  "participants": [
+    {
+      "id": "reactant_pro_core",
+      "origin": "authored-reactant",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Pro Noether core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_pro_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_pro_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "reactant_anti_core",
+      "origin": "authored-reactant",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Anti Noether core",
+      "family": "noether-core",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_anti_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_anti_core_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_structure",
+      "nodes": [
+        {
+          "id": "product_photon_structure",
+          "templateId": "photon",
+          "label": "Photon",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_structure/core_pro_1",
+          "parentId": "product_photon_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_structure/core_anti_1",
+          "parentId": "product_photon_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "stepId": "step_associate_photon",
+      "kind": "associate",
+      "ruleFamily": "associate-photon",
+      "consumedParticipantIds": ["reactant_pro_core", "reactant_anti_core"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": ["product_photon"],
+      "mappingIds": [
+        "map_associate_photon_in_pro",
+        "map_associate_photon_in_anti",
+        "map_associate_photon_out_pro",
+        "map_associate_photon_out_anti"
+      ],
+      "operatorIds": [
+        "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_associate_photon_in_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_pro_core",
+        "anchorId": "reactant_pro_core_structure",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_associate_photon_in_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "reactant_anti_core",
+        "anchorId": "reactant_anti_core_structure",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_associate_photon_out_pro",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon",
+        "anchorId": "product_photon_structure/core_pro_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_associate_photon_out_anti",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_photon",
+        "anchorId": "product_photon_structure/core_anti_1",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+      "type": "associate",
+      "origin": "solve-generated",
+      "label": "Associate",
+      "inputs": [
+        {
+          "participantId": "reactant_pro_core",
+          "anchorId": "reactant_pro_core_structure",
+          "role": "reactant"
+        },
+        {
+          "participantId": "reactant_anti_core",
+          "anchorId": "reactant_anti_core_structure",
+          "role": "reactant"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_photon",
+          "anchorId": "product_photon_structure/core_pro_1",
+          "role": "product"
+        },
+        {
+          "participantId": "product_photon",
+          "anchorId": "product_photon_structure/core_anti_1",
+          "role": "product"
+        }
+      ]
+    }
+  ],
+  "dissociation": {
+    "openedParticipantIds": [],
+    "autoDissociatedParticipantIds": [],
+    "releasedParticipantIds": [],
+    "notes": []
+  },
+  "placement": {
+    "operatorPlacements": [
+      {
+        "operatorId": "associate:reactant_pro_core:reactant_pro_core_structure:reactant_anti_core:reactant_anti_core_structure:product_photon",
+        "lane": 1,
+        "row": 1,
+        "slot": 1
+      }
+    ]
+  },
+  "residue": {
+    "unresolvedTargetIds": [],
+    "unusedSourceIds": [],
+    "sourceInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "targetInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "unsupportedNotes": []
+  },
+  "diagnostics": []
+}

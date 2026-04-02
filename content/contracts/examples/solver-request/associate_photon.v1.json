@@ -1,0 +1,132 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "associate_photon",
+  "origin": {
+    "sourceKind": "fixture",
+    "sourceDocumentId": "associate_photon_fixture",
+    "title": "Associate Photon From Pro And Anti Noether Cores"
+  },
+  "participants": [
+    {
+      "id": "reactant_pro_core",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Pro Noether core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_pro_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_pro_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "reactant_anti_core",
+      "side": "reactant",
+      "templateId": "noether_core",
+      "label": "Anti Noether core",
+      "family": "noether-core",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "reactant_anti_core_structure",
+      "nodes": [
+        {
+          "id": "reactant_anti_core_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_photon",
+      "side": "product",
+      "templateId": "photon",
+      "label": "Photon",
+      "family": "boson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_photon_structure",
+      "nodes": [
+        {
+          "id": "product_photon_structure",
+          "templateId": "photon",
+          "label": "Photon",
+          "family": "boson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "product_photon_structure/core_pro_1",
+          "parentId": "product_photon_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        },
+        {
+          "id": "product_photon_structure/core_anti_1",
+          "parentId": "product_photon_structure",
+          "templateId": "noether_core",
+          "label": "Anti Noether core",
+          "family": "noether-core",
+          "polarity": "anti",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

@@ -1479,34 +1479,9 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Define Versioned Solver Request And Result Schemas
+### 1. Freeze A Golden Coverage Corpus From The Current JS Solver
 
 Status: `review`
-
-Goal:
-
-- define one canonical JSON request schema for solver input and one canonical JSON result schema for solver output before `solver.py` is written.
-
-Why it matters:
-
-- the Python core needs a stable boundary for authored inputs and projected solve output, or the Python/JS seam will drift immediately.
-
-This pass froze:
-
-- `solver-request/v1` in [`src/contracts/solver-request/v1/schema.json`](../../src/contracts/solver-request/v1/schema.json);
-- `solver-result/v1` in [`src/contracts/solver-result/v1/schema.json`](../../src/contracts/solver-result/v1/schema.json);
-- matching request/result fixtures under `content/contracts/examples/solver-request/` and `content/contracts/examples/solver-result/`;
-- and schema-validation coverage in [`tests/composer-reaction-contracts.test.js`](../../tests/composer-reaction-contracts.test.js).
-
-Review focus:
-
-- confirm the external field set is the right frozen seam for `solver.py`;
-- confirm that center-lane `--i` / `--I` intent belongs in `participants[].centerUsage`;
-- and confirm that `solver-result/v1` is the correct upstream contract to feed the Reaction projection adapter without collapsing into `reaction-flow/v1`.
-
-### 2. Freeze A Golden Coverage Corpus From The Current JS Solver
-
-Status: `next`
 
 Goal:
 
@@ -1516,13 +1491,20 @@ Why it matters:
 
 - coverage should be measured against stable fixtures and expectations, not by rereading browser-side code while the new solver is being built.
 
-Next steps:
+This pass froze:
 
-- choose the initial supported cases from the current proposal, layout, and projection tests;
-- capture those cases as golden request/result fixtures;
-- and use that corpus as the first acceptance bar for `solver.py`.
+- a corpus manifest in [`content/contracts/examples/solver-corpus/v1/index.json`](../../content/contracts/examples/solver-corpus/v1/index.json);
+- five request/result fixture pairs under `content/contracts/examples/solver-request/` and `content/contracts/examples/solver-result/`;
+- runtime coverage for direct root reuse, fragment-to-root reuse, `Associate` photon assembly, center-lane standalone assembly, and `Higgs Cluster -> Photon + Photon`;
+- and a regression test in [`tests/solver-golden-corpus.test.js`](../../tests/solver-golden-corpus.test.js) that checks the corpus against the current JS proposal, layout, and projection behavior.
 
-### 3. Lock Down Identity, Selection, And Tie-Break Semantics
+Review focus:
+
+- confirm this first corpus slice covers the conservative families we need before `solver.py` starts;
+- confirm the fixture/result shape is concrete enough to serve as the first Python acceptance bar;
+- and confirm the fragment auto-dissociation and Higgs two-photon placement expectations match the intended covered browser behavior.
+
+### 2. Lock Down Identity, Selection, And Tie-Break Semantics
 
 Status: `pending`
 
@@ -1540,7 +1522,7 @@ Next steps:
 - write the candidate-selection and set-selection tie-break order as compact normative rules;
 - and keep those rules aligned with the current whole-product-first selection behavior.
 
-### 4. Decide The Python / JS Boundary For Layout And Projection
+### 3. Decide The Python / JS Boundary For Layout And Projection
 
 Status: `pending`
 
@@ -1558,7 +1540,7 @@ Next steps:
 - keep actual Reaction-side row-slot layout in JS unless a stronger reason appears;
 - and keep projection into live participants, mappings, and dissociation state as an explicit adapter boundary.
 
-### 5. Finish The Compact CLI Grammar As A Testable Lexer Spec
+### 4. Finish The Compact CLI Grammar As A Testable Lexer Spec
 
 Status: `pending`
 
@@ -1576,7 +1558,7 @@ Next steps:
 - keep longest-match, separator, and rejection rules explicit;
 - and keep the compact grammar subordinate to the canonical normalized request format.
 
-### 6. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
+### 5. Resolve Or Explicitly Gate Theory-Dependent Weak-Channel Cases
 
 Status: `pending`
 
@@ -1595,7 +1577,7 @@ Next steps:
 - keep the unsupported boundary explicit in the request/result contracts and coverage corpus;
 - and treat theory-owned resolution as upstream of broader weak-channel expansion.
 
-### 7. Extend Primitive Charge Routing
+### 6. Extend Primitive Charge Routing
 
 Status: `pending`
 
@@ -1617,7 +1599,7 @@ Dependency note:
 
 - do not extend weak-corridor provenance behavior beyond the accepted v1 `W+` / `W-` boson-core convention without explicit rule support.
 
-### 8. Improve Residue And Dissociation Reporting
+### 7. Improve Residue And Dissociation Reporting
 
 Status: `pending`
 
@@ -1639,7 +1621,7 @@ Stability constraint:
 
 - direct center-boson mapping for currently supported product cases should remain stable while residue and dissociation reporting improve.
 
-### 9. Add Exact Boson Recognition On Top Of Primitive Solves
+### 8. Add Exact Boson Recognition On Top Of Primitive Solves
 
 Status: `pending`
 
@@ -1657,7 +1639,7 @@ Next steps:
 - keep authored source-side bosons valid;
 - and avoid widening the first-pass solve search space with free synthetic boson insertion.
 
-### 10. Stay Ready For PDG Seeds Without Becoming PDG-Specific
+### 9. Stay Ready For PDG Seeds Without Becoming PDG-Specific
 
 Status: `pending`
 
@@ -1675,13 +1657,13 @@ Next steps:
 - keep solver inputs normalized and UI-independent;
 - and let PDG ingest talk to the solver through explicit seed/proposal shapes rather than shared UI code.
 
-### 11. Solver Rearchitecture
+### 10. Solver Rearchitecture
 
 Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-### 12. Delete The Old Browser Solver After Flash Cut-Over
+### 11. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 

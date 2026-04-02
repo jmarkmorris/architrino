@@ -1,0 +1,121 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "fragment_down_quark",
+  "origin": {
+    "sourceKind": "fixture",
+    "sourceDocumentId": "fragment_down_quark_fixture",
+    "title": "Neutron Fragment To Down Quark"
+  },
+  "participants": [
+    {
+      "id": "reactant_neutron",
+      "side": "reactant",
+      "templateId": "neutron",
+      "label": "Neutron",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "reactant_neutron_structure",
+      "nodes": [
+        {
+          "id": "reactant_neutron_structure",
+          "templateId": "neutron",
+          "label": "Neutron",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        },
+        {
+          "id": "reactant_neutron_structure/quark_1",
+          "parentId": "reactant_neutron_structure",
+          "templateId": "down_quark",
+          "label": "Down quark",
+          "family": "quark",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 2,
+            "positrinoCount": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_proton",
+      "side": "product",
+      "templateId": "proton",
+      "label": "Proton",
+      "family": "baryon",
+      "polarity": "pro",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_proton_structure",
+      "nodes": [
+        {
+          "id": "product_proton_structure",
+          "templateId": "proton",
+          "label": "Proton",
+          "family": "baryon",
+          "polarity": "pro",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_down_quark",
+      "side": "product",
+      "templateId": "down_quark",
+      "label": "Down Quark",
+      "family": "quark",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 2,
+        "positrinoCount": 2
+      },
+      "rootNodeId": "product_down_quark_structure",
+      "nodes": [
+        {
+          "id": "product_down_quark_structure",
+          "templateId": "down_quark",
+          "label": "Down Quark",
+          "family": "quark",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 2,
+            "positrinoCount": 2
+          }
+        }
+      ]
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

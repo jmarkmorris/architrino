@@ -1,0 +1,240 @@
+{
+  "schema": "solver-result/v1",
+  "resultId": "center_neutrino_assembly_result",
+  "request": {
+    "schema": "solver-request/v1",
+    "requestId": "center_neutrino_assembly"
+  },
+  "summary": {
+    "outcome": "exact",
+    "exact": true,
+    "selectedPlanId": "plan_center_neutrino_assembly",
+    "unresolvedTargetCount": 0,
+    "ambiguityCount": 0,
+    "unsupportedCount": 0
+  },
+  "participants": [
+    {
+      "id": "center_noether_core",
+      "origin": "authored-center",
+      "side": "center",
+      "templateId": "noether_core",
+      "label": "Pro Noether Core",
+      "family": "noether-core",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "center_noether_core_structure",
+      "nodes": [
+        {
+          "id": "center_noether_core_structure",
+          "templateId": "noether_core",
+          "label": "Pro Noether Core",
+          "family": "noether-core",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "center_free_architrinos",
+      "origin": "authored-center",
+      "side": "center",
+      "templateId": "free_architrinos",
+      "label": "Free Architrinos",
+      "family": "free-architrinos",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rootNodeId": "center_free_architrinos_structure",
+      "nodes": [
+        {
+          "id": "center_free_architrinos_structure",
+          "templateId": "free_architrinos",
+          "label": "Free Architrinos",
+          "family": "free-architrinos",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "product_neutrino",
+      "origin": "authored-product",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Pro Neutrino",
+      "family": "lepton",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rootNodeId": "product_neutrino_structure",
+      "nodes": [
+        {
+          "id": "product_neutrino_structure",
+          "templateId": "neutrino",
+          "label": "Pro Neutrino",
+          "family": "lepton",
+          "polarity": "pro",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6
+          }
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "stepId": "step_center_neutrino_assembly",
+      "kind": "associate",
+      "ruleFamily": "associate-standalone",
+      "consumedParticipantIds": ["center_noether_core", "center_free_architrinos"],
+      "producedParticipantIds": [],
+      "resolvedTargetIds": ["product_neutrino"],
+      "mappingIds": [
+        "map_center_neutrino_in_core",
+        "map_center_neutrino_in_free",
+        "map_center_neutrino_out"
+      ],
+      "operatorIds": [
+        "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "map_center_neutrino_in_core",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "center_noether_core",
+        "anchorId": "center_noether_core_structure",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_center_neutrino_in_free",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "center_free_architrinos",
+        "anchorId": "center_free_architrinos_structure",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "anchorId": "root",
+        "role": "operator-input"
+      },
+      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      }
+    },
+    {
+      "id": "map_center_neutrino_out",
+      "kind": "operator-path",
+      "from": {
+        "participantId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "anchorId": "root",
+        "role": "operator-output"
+      },
+      "to": {
+        "participantId": "product_neutrino",
+        "anchorId": "product_neutrino_structure",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "provenanceMode": "operator-mediated",
+      "conservedLedger": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+      "type": "associate",
+      "origin": "solve-generated",
+      "label": "Associate",
+      "inputs": [
+        {
+          "participantId": "center_noether_core",
+          "anchorId": "center_noether_core_structure",
+          "role": "reactant"
+        },
+        {
+          "participantId": "center_free_architrinos",
+          "anchorId": "center_free_architrinos_structure",
+          "role": "reactant"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_neutrino",
+          "anchorId": "product_neutrino_structure",
+          "role": "product"
+        }
+      ]
+    }
+  ],
+  "dissociation": {
+    "openedParticipantIds": [],
+    "autoDissociatedParticipantIds": [],
+    "releasedParticipantIds": [],
+    "notes": []
+  },
+  "placement": {
+    "operatorPlacements": [
+      {
+        "operatorId": "associate:center_noether_core:center_noether_core_structure:center_free_architrinos:center_free_architrinos_structure:product_neutrino",
+        "lane": 1,
+        "row": 1,
+        "slot": 1
+      }
+    ]
+  },
+  "residue": {
+    "unresolvedTargetIds": [],
+    "unusedSourceIds": [],
+    "sourceInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "targetInventory": {
+      "electrinoCount": 0,
+      "positrinoCount": 0
+    },
+    "unsupportedNotes": []
+  },
+  "diagnostics": []
+}
