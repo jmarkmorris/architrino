@@ -69,14 +69,14 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     }
     if (shouldSuppressRouteState()) {
       surface
-        .querySelectorAll(".composer-reaction-solver-anchor[data-anchor-key][data-anchor-side]")
+        .querySelectorAll(".composer-reaction-canvas-anchor[data-anchor-key][data-anchor-side]")
         .forEach((anchor) => {
           anchor.classList.remove(
             "is-route-highlighted",
             "is-route-recent"
           );
         });
-      mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
+      mapSvg.querySelectorAll(".composer-reaction-canvas-path[data-mapping-id]").forEach((path) => {
         path.classList.remove("is-route-highlighted", "is-route-recent");
       });
       return;
@@ -85,7 +85,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     const recentMappingIds = new Set(getRecentMappingIds());
 
     surface
-      .querySelectorAll(".composer-reaction-solver-anchor[data-anchor-key][data-anchor-side]")
+      .querySelectorAll(".composer-reaction-canvas-anchor[data-anchor-key][data-anchor-side]")
       .forEach((anchor) => {
         const anchorKey = anchor.getAttribute("data-anchor-key") ?? "";
         const anchorRole = anchor.getAttribute("data-anchor-side") ?? "";
@@ -103,7 +103,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
         anchor.classList.remove("is-route-dimmed");
       });
 
-    mapSvg.querySelectorAll(".composer-reaction-solver-path[data-mapping-id]").forEach((path) => {
+    mapSvg.querySelectorAll(".composer-reaction-canvas-path[data-mapping-id]").forEach((path) => {
       const mappingId = path.getAttribute("data-mapping-id") ?? "";
       const isHighlighted = hoveredMappingIds.has(mappingId);
       const isRecent = recentMappingIds.has(mappingId);
@@ -169,7 +169,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
       : mappings.length > 0;
     const anchor = document.createElement("button");
     anchor.type = "button";
-    anchor.className = "composer-reaction-solver-anchor";
+    anchor.className = "composer-reaction-canvas-anchor";
     extraClassNames.filter(Boolean).forEach((className) => anchor.classList.add(className));
     anchor.dataset.anchorKey = nodeKey;
     anchor.dataset.anchorSide = anchorRole;
@@ -218,7 +218,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
 
   function createInlineAnchorSlot(participant, node, nodeKey) {
     const slot = document.createElement("div");
-    slot.className = `composer-reaction-solver-inline-anchor-slot is-${participant.side}`;
+    slot.className = `composer-reaction-canvas-inline-anchor-slot is-${participant.side}`;
     slot.appendChild(createAnchorButton(participant, node, nodeKey));
     return slot;
   }

@@ -158,6 +158,115 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             ["photon", "photon"],
         )
 
+    def test_manifest_exports_charged_kaon_decay_through_solver_request_v1(self):
+        charged_kaon_particle = FakeParticle(
+            "K+",
+            "S010/2025",
+            [
+                FakeDecay(
+                    "S010.1/2025",
+                    "K+ -> mu+ nu_mu",
+                    [
+                        FakeDecayProduct("mu+"),
+                        FakeDecayProduct("nu_mu"),
+                    ],
+                    mode_number=1,
+                    display_value_text="(63.5)",
+                )
+            ],
+        )
+        api = FakeApi(
+            [
+                FakeParticleList("S010/2025", "charged kaon", [charged_kaon_particle]),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+
+        self.assertEqual(manifest["exportableCount"], 1)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S010.1/2025")
+        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "K+")
+        self.assertEqual(
+            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
+            "k_plus",
+        )
+        self.assertEqual(
+            [participant["templateId"] for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]],
+            ["electron", "neutrino"],
+        )
+
+    def test_manifest_exports_charged_b_decay_through_solver_request_v1(self):
+        charged_b_particle = FakeParticle(
+            "B+",
+            "S041/2025",
+            [
+                FakeDecay(
+                    "S041.183/2025",
+                    "B+ -> mu+ nu_mu",
+                    [
+                        FakeDecayProduct("mu+"),
+                        FakeDecayProduct("nu_mu"),
+                    ],
+                    mode_number=183,
+                    display_value_text="(0.000006)",
+                )
+            ],
+        )
+        api = FakeApi(
+            [
+                FakeParticleList("S041/2025", "charged b meson", [charged_b_particle]),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+
+        self.assertEqual(manifest["exportableCount"], 1)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S041.183/2025")
+        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "B+")
+        self.assertEqual(
+            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
+            "b_plus",
+        )
+        self.assertEqual(
+            [participant["templateId"] for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]],
+            ["electron", "neutrino"],
+        )
+
+    def test_manifest_uses_anti_baryon_reactant_from_live_decay_description(self):
+        proton_particle = FakeParticle(
+            "p",
+            "S016/2025",
+            [
+                FakeDecay(
+                    "S016.82/2025",
+                    "pbar -> e- pi0",
+                    [
+                        FakeDecayProduct("e-"),
+                        FakeDecayProduct("pi0"),
+                    ],
+                    mode_number=82,
+                    display_value_text=">4E5",
+                )
+            ],
+        )
+        api = FakeApi(
+            [
+                FakeParticleList("S016/2025", "proton", [proton_particle]),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+
+        self.assertEqual(manifest["exportableCount"], 1)
+        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "anti-p")
+        self.assertEqual(manifest["entries"][0]["title"], "pbar -> e- pi0")
+        reactant = manifest["entries"][0]["proposal"]["reactants"][0]
+        self.assertEqual(reactant["templateId"], "proton")
+        self.assertEqual(reactant["polarity"], "anti")
+        self.assertEqual(reactant["pdgName"], "anti-p")
+
     def test_extract_unsupported_particle_names_ignores_non_particle_text_tokens(self):
         notes = [
             "unsupported:product:pi+:no-v1-mapping",

@@ -54,8 +54,8 @@ test("reaction add picker exposes kaons on the row directly below the pions", ()
   const pickerCells = getReactionAddPickerCells();
   const kMinusCell = pickerCells.find((cell) => cell.id === "k_minus");
   const kPlusCell = pickerCells.find((cell) => cell.id === "k_plus");
-  const antiK0Cell = pickerCells.find((cell) => cell.id === "anti_k0");
-  const k0Cell = pickerCells.find((cell) => cell.id === "k0");
+  const antiK0Cell = pickerCells.find((cell) => cell.id === "sk0");
+  const k0Cell = pickerCells.find((cell) => cell.id === "dk0");
 
   assert.ok(kMinusCell);
   assert.ok(kPlusCell);
@@ -76,15 +76,15 @@ test("reaction add picker exposes b mesons on the row directly below the kaons",
   const pickerCells = getReactionAddPickerCells();
   const bMinusCell = pickerCells.find((cell) => cell.id === "b_minus");
   const bPlusCell = pickerCells.find((cell) => cell.id === "b_plus");
-  const antiB0Cell = pickerCells.find((cell) => cell.id === "anti_b0");
-  const b0Cell = pickerCells.find((cell) => cell.id === "b0");
+  const bB0Cell = pickerCells.find((cell) => cell.id === "bB0");
+  const dB0Cell = pickerCells.find((cell) => cell.id === "dB0");
 
   assert.ok(bMinusCell);
   assert.ok(bPlusCell);
-  assert.ok(antiB0Cell);
-  assert.ok(b0Cell);
+  assert.ok(bB0Cell);
+  assert.ok(dB0Cell);
   assert.deepEqual(
-    [bMinusCell?.label, bPlusCell?.label, antiB0Cell?.label, b0Cell?.label],
+    [bMinusCell?.label, bPlusCell?.label, bB0Cell?.label, dB0Cell?.label],
     [
       "Negative B Meson",
       "Positive B Meson",

@@ -402,8 +402,8 @@ Required particle content:
 
 - accepted `K+` structures based on `u + anti-s`;
 - accepted `K-` structures based on `s + anti-u`;
-- accepted `K0` structures based on `d + anti-s`;
-- and accepted `anti-K0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream.
+- accepted `dk0` structures based on `d + anti-s`;
+- and accepted `sk0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream.
 
 Next steps:
 

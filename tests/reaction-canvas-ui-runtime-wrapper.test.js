@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-import { createReactionSolverRuntime } from "../src/apps/reaction/ReactionSolverRuntime.js";
-import { createReactionSolverUiRuntime } from "../src/apps/reaction/ReactionSolverUiRuntime.js";
+import { createReactionCanvasRuntime } from "../src/apps/reaction/ReactionCanvasRuntime.js";
+import { createReactionCanvasUiRuntime } from "../src/apps/reaction/ReactionCanvasUiRuntime.js";
 import { applyReactionSolveLayout } from "../src/apps/reaction/ReactionSolveLayoutRuntime.js";
 import {
   buildReactionSolvePlan,
@@ -13,9 +13,9 @@ import { applyReactionSolvePlan } from "../src/apps/reaction/ReactionSolveProjec
 import { buildReactionSolveState } from "../src/apps/reaction/ReactionSolveStateRuntime.js";
 import { solveReactionSnapshot, solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
 
-test("reaction solver runtime remains a compatibility wrapper over reaction solver ui runtime", () => {
-  assert.equal(typeof createReactionSolverRuntime, "function");
-  assert.equal(typeof createReactionSolverUiRuntime, "function");
+test("reaction canvas runtime exposes the primary reaction canvas ui runtime", () => {
+  assert.equal(typeof createReactionCanvasRuntime, "function");
+  assert.equal(typeof createReactionCanvasUiRuntime, "function");
 });
 
 test("reaction app exports a reaction-named solve pipeline facade", () => {
@@ -28,9 +28,9 @@ test("reaction app exports a reaction-named solve pipeline facade", () => {
   assert.equal(typeof solveReactionSolverRequest, "function");
 });
 
-test("reaction solver ui runtime injects the reaction-owned solve contract pipeline", () => {
+test("reaction canvas ui runtime injects the reaction-owned solve contract pipeline", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
 

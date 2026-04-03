@@ -2,27 +2,27 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  applyReactionSolverLayoutCssVars,
-  applyReactionSolverSurfaceGridLayout,
+  applyReactionCanvasLayoutCssVars,
+  applyReactionCanvasSurfaceGridLayout,
   getReactionParticipantTrackHeaderInsetCss,
   getReactionParticipantTrackHeaderInsetPx,
   getReactionParticipantTrackStartOffsetCss,
   getReactionParticipantTrackStartOffsetPx,
-  REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX,
-  REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX,
-  REACTION_SOLVER_COMPOSITE_NODE_INSET_PX,
-  REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX,
-  REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX,
+  REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX,
+  REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX,
+  REACTION_CANVAS_COMPOSITE_NODE_INSET_PX,
+  REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX,
+  REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX,
   getReactionSurfaceColumnGroupFallbackRatios,
   measureReactionSurfaceColumnGroupRatios,
-  REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT,
-  REACTION_SOLVER_SURFACE_COLUMN_COUNT,
-  REACTION_SOLVER_LAYOUT,
-} from "../src/apps/reaction/ReactionSolverLayoutRuntime.js";
+  REACTION_CANVAS_SURFACE_COLUMN_GROUP_COUNT,
+  REACTION_CANVAS_SURFACE_COLUMN_COUNT,
+  REACTION_CANVAS_LAYOUT,
+} from "../src/apps/reaction/ReactionCanvasLayoutRuntime.js";
 
-test("reaction solver layout applies shared css variables from one source of truth", () => {
+test("reaction canvas layout applies shared css variables from one source of truth", () => {
   const applied = new Map();
-  applyReactionSolverLayoutCssVars({
+  applyReactionCanvasLayoutCssVars({
     style: {
       setProperty(name, value) {
         applied.set(name, value);
@@ -30,90 +30,90 @@ test("reaction solver layout applies shared css variables from one source of tru
     },
   });
   assert.equal(
-    applied.get("--solver-surface-column-gap"),
-    `${REACTION_SOLVER_LAYOUT.surfaceColumnGapPx}px`
+    applied.get("--reaction-canvas-surface-column-gap"),
+    `${REACTION_CANVAS_LAYOUT.surfaceColumnGapPx}px`
   );
   assert.equal(
-    applied.get("--solver-attachment-gap"),
-    `${REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
+    applied.get("--reaction-canvas-attachment-gap"),
+    `${REACTION_CANVAS_LAYOUT.attachmentGapPx}px`
   );
   assert.equal(
-    applied.get("--solver-anchor-size"),
-    `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+    applied.get("--reaction-canvas-anchor-size"),
+    `${REACTION_CANVAS_LAYOUT.anchorSizePx}px`
   );
   assert.equal(
-    applied.get("--solver-anchor-center-offset"),
-    `${REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX}px`
+    applied.get("--reaction-canvas-anchor-center-offset"),
+    `${REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX}px`
   );
   assert.equal(
-    applied.get("--solver-anchor-attachment-offset"),
-    `${REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX}px`
+    applied.get("--reaction-canvas-anchor-attachment-offset"),
+    `${REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-node-size"),
-    `${REACTION_SOLVER_LAYOUT.compositeNodeSizePx}px`
+    applied.get("--reaction-canvas-composite-node-size"),
+    `${REACTION_CANVAS_LAYOUT.compositeNodeSizePx}px`
   );
   assert.equal(
-    applied.get("--solver-composite-node-center"),
-    `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
+    applied.get("--reaction-canvas-composite-node-center"),
+    `${REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-connector-span"),
-    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX}px`
+    applied.get("--reaction-canvas-composite-connector-span"),
+    `${REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-node-inset"),
-    `${REACTION_SOLVER_COMPOSITE_NODE_INSET_PX}px`
+    applied.get("--reaction-canvas-composite-node-inset"),
+    `${REACTION_CANVAS_COMPOSITE_NODE_INSET_PX}px`
   );
   assert.equal(
-    applied.get("--solver-composite-participant-gap"),
-    `${REACTION_SOLVER_LAYOUT.compositeParticipantGapPx}px`
+    applied.get("--reaction-canvas-composite-participant-gap"),
+    `${REACTION_CANVAS_LAYOUT.compositeParticipantGapPx}px`
   );
   assert.equal(
-    applied.get("--solver-stack-gap"),
-    `${REACTION_SOLVER_LAYOUT.contentStackGapPx}px`
+    applied.get("--reaction-canvas-stack-gap"),
+    `${REACTION_CANVAS_LAYOUT.contentStackGapPx}px`
   );
   assert.equal(
-    applied.get("--solver-top-control-row-height"),
-    `${REACTION_SOLVER_LAYOUT.topControlRowHeightPx}px`
+    applied.get("--reaction-canvas-top-control-row-height"),
+    `${REACTION_CANVAS_LAYOUT.topControlRowHeightPx}px`
   );
   assert.equal(
-    applied.get("--solver-surface-column-count"),
-    String(REACTION_SOLVER_SURFACE_COLUMN_COUNT)
+    applied.get("--reaction-canvas-surface-column-count"),
+    String(REACTION_CANVAS_SURFACE_COLUMN_COUNT)
   );
-  assert.equal(REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT, 5);
+  assert.equal(REACTION_CANVAS_SURFACE_COLUMN_GROUP_COUNT, 5);
 });
 
-test("reaction solver layout derives explicit track-start offsets for standalone and composite grids", () => {
+test("reaction canvas layout derives explicit track-start offsets for standalone and composite grids", () => {
   assert.equal(
     getReactionParticipantTrackStartOffsetPx("binary-selector-grid"),
-    REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx
+    REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.tileGapPx
   );
   assert.equal(
     getReactionParticipantTrackStartOffsetPx("assembly-cluster-grid"),
-    REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx
+    REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.tileGapPx
   );
   assert.equal(
     getReactionParticipantTrackStartOffsetCss("assembly-cluster-grid"),
-    `${REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx}px`
+    `${REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.tileGapPx}px`
   );
   assert.equal(
     getReactionParticipantTrackHeaderInsetPx("binary-selector-grid"),
-    REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx
+    REACTION_CANVAS_LAYOUT.anchorSizePx + REACTION_CANVAS_LAYOUT.attachmentGapPx
   );
   assert.equal(
     getReactionParticipantTrackHeaderInsetCss("assembly-cluster-grid"),
-    `${REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
+    `${REACTION_CANVAS_LAYOUT.anchorSizePx + REACTION_CANVAS_LAYOUT.attachmentGapPx}px`
   );
 });
 
-test("reaction solver layout applies periodic-table grid spans to visible lane elements", () => {
+test("reaction canvas layout applies periodic-table grid spans to visible lane elements", () => {
   const reactantsApplied = new Map();
   const centerApplied = new Map();
   const productsApplied = new Map();
   const operatorLane0Applied = new Map();
   const operatorLane1Applied = new Map();
-  applyReactionSolverSurfaceGridLayout({
+  applyReactionCanvasSurfaceGridLayout({
     surface: {
       querySelector(selector) {
         if (selector.includes('data-operator-lane-index="0"')) {
@@ -159,14 +159,14 @@ test("reaction solver layout applies periodic-table grid spans to visible lane e
       },
     },
   });
-  assert.equal(reactantsApplied.get("--solver-reactants-grid-column"), "1 / span 4");
-  assert.equal(centerApplied.get("--solver-center-assemblies-grid-column"), "7 / span 4");
-  assert.equal(productsApplied.get("--solver-products-grid-column"), "13 / span 4");
-  assert.equal(operatorLane0Applied.get("--solver-operator-lane-0-grid-column"), "4 / span 4");
-  assert.equal(operatorLane1Applied.get("--solver-operator-lane-1-grid-column"), "10 / span 4");
+  assert.equal(reactantsApplied.get("--reaction-canvas-reactants-grid-column"), "1 / span 4");
+  assert.equal(centerApplied.get("--reaction-canvas-center-assemblies-grid-column"), "7 / span 4");
+  assert.equal(productsApplied.get("--reaction-canvas-products-grid-column"), "13 / span 4");
+  assert.equal(operatorLane0Applied.get("--reaction-canvas-operator-lane-0-grid-column"), "4 / span 4");
+  assert.equal(operatorLane1Applied.get("--reaction-canvas-operator-lane-1-grid-column"), "10 / span 4");
 });
 
-test("reaction solver layout derives fallback column-group ratios from periodic-table slot spans", () => {
+test("reaction canvas layout derives fallback column-group ratios from periodic-table slot spans", () => {
   const ratios = getReactionSurfaceColumnGroupFallbackRatios([
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
@@ -180,7 +180,7 @@ test("reaction solver layout derives fallback column-group ratios from periodic-
   );
 });
 
-test("reaction solver layout measures operator column-group centers from explicit group slots", () => {
+test("reaction canvas layout measures operator column-group centers from explicit group slots", () => {
   const columnGroupEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },
@@ -225,7 +225,7 @@ test("reaction solver layout measures operator column-group centers from explici
   );
 });
 
-test("reaction solver layout measures outer column-group centers from fixed periodic grid spans", () => {
+test("reaction canvas layout measures outer column-group centers from fixed periodic grid spans", () => {
   const columnGroupEntries = [
     { side: "reactant", operatorLaneIndex: null },
     { side: "operator", operatorLaneIndex: 0 },

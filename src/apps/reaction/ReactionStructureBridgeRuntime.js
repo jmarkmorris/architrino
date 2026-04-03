@@ -545,10 +545,10 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       ],
       { label: label || "Negative Kaon" }
     );
-  } else if (normalizedTemplateId === "k0") {
+  } else if (normalizedTemplateId === "dk0") {
     root = createMesonNode(
       structureId,
-      "k0",
+      "dk0",
       [
         {
           family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
@@ -565,10 +565,10 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       ],
       { label: label || "Neutral Kaon (d anti-s)" }
     );
-  } else if (normalizedTemplateId === "anti_k0") {
+  } else if (normalizedTemplateId === "sk0") {
     root = createMesonNode(
       structureId,
-      "anti_k0",
+      "sk0",
       [
         {
           family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
@@ -625,10 +625,10 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       ],
       { label: label || "Negative B Meson" }
     );
-  } else if (normalizedTemplateId === "b0") {
+  } else if (normalizedTemplateId === "db0") {
     root = createMesonNode(
       structureId,
-      "b0",
+      "db0",
       [
         {
           family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
@@ -645,10 +645,10 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       ],
       { label: label || "Neutral B Meson (d anti-b)" }
     );
-  } else if (normalizedTemplateId === "anti_b0") {
+  } else if (normalizedTemplateId === "bb0") {
     root = createMesonNode(
       structureId,
-      "anti_b0",
+      "bb0",
       [
         {
           family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,

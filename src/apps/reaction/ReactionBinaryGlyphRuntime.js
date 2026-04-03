@@ -53,14 +53,14 @@ export function createReactionBinaryGlyphRuntime(options = {}) {
       normalizeParticipantPolarity
     );
     const glyph = createSvgElement("svg");
-    glyph.classList.add("composer-reaction-solver-binary-glyph");
+    glyph.classList.add("composer-reaction-canvas-binary-glyph");
     glyph.setAttribute("viewBox", "0 0 120 120");
     glyph.setAttribute("aria-hidden", "true");
 
     if (showBinary) {
       if (showOrbitEllipse) {
         const orbit = createSvgElement("ellipse");
-        orbit.classList.add("composer-reaction-solver-binary-glyph-orbit");
+        orbit.classList.add("composer-reaction-canvas-binary-glyph-orbit");
         orbit.setAttribute("cx", "60");
         orbit.setAttribute("cy", "60");
         orbit.setAttribute("rx", "38");
@@ -69,7 +69,7 @@ export function createReactionBinaryGlyphRuntime(options = {}) {
       }
 
       const axis = createSvgElement("line");
-      axis.classList.add("composer-reaction-solver-binary-glyph-axis");
+      axis.classList.add("composer-reaction-canvas-binary-glyph-axis");
       axis.setAttribute("x1", "60");
       axis.setAttribute("y1", "18");
       axis.setAttribute("x2", "60");
@@ -80,14 +80,14 @@ export function createReactionBinaryGlyphRuntime(options = {}) {
       const rightPolePoint = rotatePoint(98, 60, 60, 60, binaryRotationDegrees);
 
       const leftPole = createSvgElement("circle");
-      leftPole.classList.add("composer-reaction-solver-binary-dot", "is-left", `is-${leftCharge}`);
+      leftPole.classList.add("composer-reaction-canvas-binary-dot", "is-left", `is-${leftCharge}`);
       leftPole.setAttribute("cx", String(leftPolePoint.x));
       leftPole.setAttribute("cy", String(leftPolePoint.y));
       leftPole.setAttribute("r", "8.5");
       glyph.appendChild(leftPole);
 
       const rightPole = createSvgElement("circle");
-      rightPole.classList.add("composer-reaction-solver-binary-dot", "is-right", `is-${rightCharge}`);
+      rightPole.classList.add("composer-reaction-canvas-binary-dot", "is-right", `is-${rightCharge}`);
       rightPole.setAttribute("cx", String(rightPolePoint.x));
       rightPole.setAttribute("cy", String(rightPolePoint.y));
       rightPole.setAttribute("r", "8.5");
@@ -96,14 +96,14 @@ export function createReactionBinaryGlyphRuntime(options = {}) {
 
     if (showPersonality && choice) {
       const topDot = createSvgElement("circle");
-      topDot.classList.add("composer-reaction-solver-binary-dot", "is-top", `is-${choice.top}`);
+      topDot.classList.add("composer-reaction-canvas-binary-dot", "is-top", `is-${choice.top}`);
       topDot.setAttribute("cx", "60");
       topDot.setAttribute("cy", "18");
       topDot.setAttribute("r", "7.8");
       glyph.appendChild(topDot);
 
       const bottomDot = createSvgElement("circle");
-      bottomDot.classList.add("composer-reaction-solver-binary-dot", "is-bottom", `is-${choice.bottom}`);
+      bottomDot.classList.add("composer-reaction-canvas-binary-dot", "is-bottom", `is-${choice.bottom}`);
       bottomDot.setAttribute("cx", "60");
       bottomDot.setAttribute("cy", "102");
       bottomDot.setAttribute("r", "7.8");

@@ -452,13 +452,13 @@ test("external solve-reaction CLI keeps neutral kaon identities distinct", () =>
         createAuthoredParticipant({
           id: "reactant_k0_authored",
           side: "reactant",
-          templateId: "k0",
+          templateId: "dk0",
           label: "Neutral Kaon (d anti-s)",
         }),
         createAuthoredParticipant({
           id: "product_k0_authored",
           side: "product",
-          templateId: "k0",
+          templateId: "dk0",
           label: "Neutral Kaon (d anti-s)",
         }),
       ],
@@ -473,14 +473,118 @@ test("external solve-reaction CLI keeps neutral kaon identities distinct", () =>
         createAuthoredParticipant({
           id: "reactant_k0_authored",
           side: "reactant",
-          templateId: "k0",
+          templateId: "dk0",
           label: "Neutral Kaon (d anti-s)",
         }),
         createAuthoredParticipant({
-          id: "product_anti_k0_authored",
+          id: "product_sk0_authored",
           side: "product",
-          templateId: "anti_k0",
+          templateId: "sk0",
           label: "Neutral Kaon (s anti-d)",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const exactResult = runSolveReactionCli(exactRequest);
+  const swappedResult = runSolveReactionCli(swappedRequest);
+
+  assert.equal(
+    exactResult.steps.some((step) => step.ruleFamily === "exact-identical-participant"),
+    true
+  );
+  assert.equal(swappedResult.summary.outcome, "no-solution");
+  assert.equal(swappedResult.summary.exact, false);
+});
+
+test("external solve-reaction CLI closes an authored charged-b decay request while preserving bottom-quark provenance", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_b_decay",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_b_plus_authored",
+          side: "reactant",
+          templateId: "b_plus",
+          label: "Positive B Meson",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_muon_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Muon",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_muon_neutrino_authored",
+          side: "product",
+          templateId: "neutrino",
+          polarity: "pro",
+          label: "Pro Muon Neutrino",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-b-muon-decay"), true);
+  assert.equal(result.operators.length, 2);
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "down_quark" &&
+        String(participant.label ?? "").includes("Bottom Quark")
+    ),
+    true
+  );
+});
+
+test("external solve-reaction CLI keeps neutral b meson identities distinct", () => {
+  const exactRequest = buildReactionSolverRequestDocument({
+    requestId: "authored_b0_exact_identity",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_db0_authored",
+          side: "reactant",
+          templateId: "dB0",
+          label: "Neutral B Meson (d anti-b)",
+        }),
+        createAuthoredParticipant({
+          id: "product_db0_authored",
+          side: "product",
+          templateId: "dB0",
+          label: "Neutral B Meson (d anti-b)",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+  const swappedRequest = buildReactionSolverRequestDocument({
+    requestId: "authored_b0_identity_swap",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_db0_authored",
+          side: "reactant",
+          templateId: "dB0",
+          label: "Neutral B Meson (d anti-b)",
+        }),
+        createAuthoredParticipant({
+          id: "product_bb0_authored",
+          side: "product",
+          templateId: "bB0",
+          label: "Neutral B Meson (b anti-d)",
         }),
       ],
       mappings: [],

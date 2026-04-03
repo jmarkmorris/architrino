@@ -330,6 +330,14 @@ function compactTokenFromProposalParticipant(participant) {
       return "pi-";
     case "pi0":
       return "pi0";
+    case "B+":
+      return "B+";
+    case "B-":
+      return "B-";
+    case "B0":
+      return "dB0";
+    case "anti-B0":
+      return "bB0";
     case "W+":
     case "W-":
     case "Z":
@@ -359,6 +367,18 @@ function compactTokenFromProposalParticipant(participant) {
   }
   if (templateId === "upi0" || templateId === "dpi0") {
     return "pi0";
+  }
+  if (templateId === "b_plus") {
+    return "B+";
+  }
+  if (templateId === "b_minus") {
+    return "B-";
+  }
+  if (templateId === "dB0" || templateId === "db0") {
+    return "dB0";
+  }
+  if (templateId === "bB0" || templateId === "bb0") {
+    return "bB0";
   }
 
   return String(participant?.templateId || participant?.label || participant?.id || "?");

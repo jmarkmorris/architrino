@@ -383,6 +383,98 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         "implicitCenterPolarity": "pro",
     },
     {
+        "key": "weak-meson-charged-b-electron-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "1"): 1,
+                ("neutrino", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-electron-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-b-electron-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-muon-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "2"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-muon-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-b-muon-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-electron-decay-conjugate",
+        "sourceSignatures": Counter({("b_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "1"): 1,
+                ("neutrino", "anti", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-electron-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-b-electron-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-muon-decay-conjugate",
+        "sourceSignatures": Counter({("b_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "2"): 1,
+                ("neutrino", "anti", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-muon-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-b-muon-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
         "key": "meson-neutral-pion-decay",
         "sourceSignatures": Counter({("pi0", "", ""): 1}),
         "requiredProductSignatures": Counter(),
@@ -851,14 +943,34 @@ def get_meson_quark_constituents(source_participant=None):
             {"templateId": "down_quark", "polarity": "pro", "label": "Strange Quark"},
             {"templateId": "up_quark", "polarity": "anti"},
         )
-    if raw_template_id == "k0":
+    if raw_template_id == "dk0":
         return (
             {"templateId": "down_quark", "polarity": "pro"},
             {"templateId": "down_quark", "polarity": "anti", "label": "Strange Quark"},
         )
-    if raw_template_id == "anti_k0":
+    if raw_template_id == "sk0":
         return (
             {"templateId": "down_quark", "polarity": "pro", "label": "Strange Quark"},
+            {"templateId": "down_quark", "polarity": "anti"},
+        )
+    if raw_template_id == "b_plus":
+        return (
+            {"templateId": "up_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "anti", "label": "Bottom Quark"},
+        )
+    if raw_template_id == "b_minus":
+        return (
+            {"templateId": "down_quark", "polarity": "pro", "label": "Bottom Quark"},
+            {"templateId": "up_quark", "polarity": "anti"},
+        )
+    if raw_template_id == "db0":
+        return (
+            {"templateId": "down_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "anti", "label": "Bottom Quark"},
+        )
+    if raw_template_id == "bb0":
+        return (
+            {"templateId": "down_quark", "polarity": "pro", "label": "Bottom Quark"},
             {"templateId": "down_quark", "polarity": "anti"},
         )
     return ()
@@ -1166,7 +1278,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
         return None
     if (
         get_effective_template_id(source_root or source_participant)
-        in {"pi_plus", "pi_minus", "pi0", "k_plus", "k_minus", "k0", "anti_k0"}
+        in {"pi_plus", "pi_minus", "pi0", "k_plus", "k_minus", "dk0", "sk0", "b_plus", "b_minus", "db0", "bb0"}
         and product_participants
         and all(product_requires_lepton_core(product) for product in product_participants)
     ):

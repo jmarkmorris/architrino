@@ -3,7 +3,7 @@ import {
   isReactionStructureInlineAnchorRenderMode,
 } from "./ReactionStructureDescriptorRuntime.js";
 
-export const REACTION_SOLVER_LAYOUT = Object.freeze({
+export const REACTION_CANVAS_LAYOUT = Object.freeze({
   addButtonSizePx: 32,
   attachmentGapPx: 3,
   anchorSizePx: 16,
@@ -22,10 +22,10 @@ export const REACTION_SOLVER_LAYOUT = Object.freeze({
   operatorSlotStepPx: 108,
 });
 
-export const REACTION_SOLVER_SURFACE_COLUMN_COUNT = 16;
-export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_COUNT = 5;
-export const REACTION_SOLVER_SURFACE_ROW_COUNT = 11;
-export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
+export const REACTION_CANVAS_SURFACE_COLUMN_COUNT = 16;
+export const REACTION_CANVAS_SURFACE_COLUMN_GROUP_COUNT = 5;
+export const REACTION_CANVAS_SURFACE_ROW_COUNT = 11;
+export const REACTION_CANVAS_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
   Object.freeze({
     side: "reactant",
     operatorLaneIndex: null,
@@ -58,29 +58,29 @@ export const REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
   }),
 ]);
 
-export const REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX =
-  REACTION_SOLVER_LAYOUT.binaryChoiceSizePx * REACTION_SOLVER_LAYOUT.operatorTileCount +
-  REACTION_SOLVER_LAYOUT.tileGapPx * (REACTION_SOLVER_LAYOUT.operatorTileCount - 1);
-export const REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX = REACTION_SOLVER_LAYOUT.tileGapPx;
-export const REACTION_SOLVER_COMPOSITE_NODE_INSET_PX = Math.max(
+export const REACTION_CANVAS_OPERATOR_LANE_WIDTH_PX =
+  REACTION_CANVAS_LAYOUT.binaryChoiceSizePx * REACTION_CANVAS_LAYOUT.operatorTileCount +
+  REACTION_CANVAS_LAYOUT.tileGapPx * (REACTION_CANVAS_LAYOUT.operatorTileCount - 1);
+export const REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX = REACTION_CANVAS_LAYOUT.tileGapPx;
+export const REACTION_CANVAS_COMPOSITE_NODE_INSET_PX = Math.max(
   0,
-  (REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX - REACTION_SOLVER_LAYOUT.compositeNodeSizePx) / 2
+  (REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX - REACTION_CANVAS_LAYOUT.compositeNodeSizePx) / 2
 );
-export const REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX =
-  REACTION_SOLVER_LAYOUT.compositeNodeSizePx / 2;
-export const REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX =
-  REACTION_SOLVER_LAYOUT.anchorSizePx / 2;
-export const REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX =
-  REACTION_SOLVER_LAYOUT.attachmentGapPx;
-export const REACTION_SOLVER_TRACK_HEADER_INSET_PX =
-  REACTION_SOLVER_LAYOUT.anchorSizePx + REACTION_SOLVER_LAYOUT.attachmentGapPx;
+export const REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX =
+  REACTION_CANVAS_LAYOUT.compositeNodeSizePx / 2;
+export const REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX =
+  REACTION_CANVAS_LAYOUT.anchorSizePx / 2;
+export const REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX =
+  REACTION_CANVAS_LAYOUT.attachmentGapPx;
+export const REACTION_CANVAS_TRACK_HEADER_INSET_PX =
+  REACTION_CANVAS_LAYOUT.anchorSizePx + REACTION_CANVAS_LAYOUT.attachmentGapPx;
 
 export function getReactionParticipantTrackStartOffsetPx(renderMode = "") {
   if (isReactionStructureCompositeGridRenderMode(renderMode)) {
-    return REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx;
+    return REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.tileGapPx;
   }
   if (isReactionStructureInlineAnchorRenderMode(renderMode)) {
-    return REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.tileGapPx;
+    return REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.tileGapPx;
   }
   return 0;
 }
@@ -91,10 +91,10 @@ export function getReactionParticipantTrackStartOffsetCss(renderMode = "") {
 
 export function getReactionParticipantTrackHeaderInsetPx(renderMode = "") {
   if (isReactionStructureCompositeGridRenderMode(renderMode)) {
-    return REACTION_SOLVER_TRACK_HEADER_INSET_PX;
+    return REACTION_CANVAS_TRACK_HEADER_INSET_PX;
   }
   if (isReactionStructureInlineAnchorRenderMode(renderMode)) {
-    return REACTION_SOLVER_TRACK_HEADER_INSET_PX;
+    return REACTION_CANVAS_TRACK_HEADER_INSET_PX;
   }
   return 0;
 }
@@ -103,104 +103,104 @@ export function getReactionParticipantTrackHeaderInsetCss(renderMode = "") {
   return `${getReactionParticipantTrackHeaderInsetPx(renderMode)}px`;
 }
 
-function setReactionSolverLayoutVar(surface, name, value) {
+function setReactionCanvasLayoutVar(surface, name, value) {
   if (!surface?.style || typeof surface.style.setProperty !== "function") {
     return;
   }
   surface.style.setProperty(name, value);
 }
 
-export function applyReactionSolverLayoutCssVars(surface) {
-  setReactionSolverLayoutVar(
+export function applyReactionCanvasLayoutCssVars(surface) {
+  setReactionCanvasLayoutVar(
     surface,
     "--binary-choice-size",
-    `${REACTION_SOLVER_LAYOUT.binaryChoiceSizePx}px`
+    `${REACTION_CANVAS_LAYOUT.binaryChoiceSizePx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-surface-column-count",
-    String(REACTION_SOLVER_SURFACE_COLUMN_COUNT)
+    "--reaction-canvas-surface-column-count",
+    String(REACTION_CANVAS_SURFACE_COLUMN_COUNT)
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-add-button-size",
-    `${REACTION_SOLVER_LAYOUT.addButtonSizePx}px`
+    "--reaction-canvas-add-button-size",
+    `${REACTION_CANVAS_LAYOUT.addButtonSizePx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-surface-column-gap",
-    `${REACTION_SOLVER_LAYOUT.surfaceColumnGapPx}px`
+    "--reaction-canvas-surface-column-gap",
+    `${REACTION_CANVAS_LAYOUT.surfaceColumnGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-small-gap",
-    `${REACTION_SOLVER_LAYOUT.tileGapPx}px`
+    "--reaction-canvas-small-gap",
+    `${REACTION_CANVAS_LAYOUT.tileGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-attachment-gap",
-    `${REACTION_SOLVER_LAYOUT.attachmentGapPx}px`
+    "--reaction-canvas-attachment-gap",
+    `${REACTION_CANVAS_LAYOUT.attachmentGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-anchor-size",
-    `${REACTION_SOLVER_LAYOUT.anchorSizePx}px`
+    "--reaction-canvas-anchor-size",
+    `${REACTION_CANVAS_LAYOUT.anchorSizePx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-anchor-center-offset",
-    `${REACTION_SOLVER_ANCHOR_CENTER_OFFSET_PX}px`
+    "--reaction-canvas-anchor-center-offset",
+    `${REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-anchor-attachment-offset",
-    `${REACTION_SOLVER_ANCHOR_ATTACHMENT_OFFSET_PX}px`
+    "--reaction-canvas-anchor-attachment-offset",
+    `${REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-composite-node-size",
-    `${REACTION_SOLVER_LAYOUT.compositeNodeSizePx}px`
+    "--reaction-canvas-composite-node-size",
+    `${REACTION_CANVAS_LAYOUT.compositeNodeSizePx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-composite-node-center",
-    `${REACTION_SOLVER_COMPOSITE_NODE_CENTER_PX}px`
+    "--reaction-canvas-composite-node-center",
+    `${REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-composite-connector-span",
-    `${REACTION_SOLVER_COMPOSITE_CONNECTOR_SPAN_PX}px`
+    "--reaction-canvas-composite-connector-span",
+    `${REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-composite-node-inset",
-    `${REACTION_SOLVER_COMPOSITE_NODE_INSET_PX}px`
+    "--reaction-canvas-composite-node-inset",
+    `${REACTION_CANVAS_COMPOSITE_NODE_INSET_PX}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-composite-participant-gap",
-    `${REACTION_SOLVER_LAYOUT.compositeParticipantGapPx}px`
+    "--reaction-canvas-composite-participant-gap",
+    `${REACTION_CANVAS_LAYOUT.compositeParticipantGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-stack-gap",
-    `${REACTION_SOLVER_LAYOUT.contentStackGapPx}px`
+    "--reaction-canvas-stack-gap",
+    `${REACTION_CANVAS_LAYOUT.contentStackGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-tile-gap",
-    `${REACTION_SOLVER_LAYOUT.tileGapPx}px`
+    "--reaction-canvas-tile-gap",
+    `${REACTION_CANVAS_LAYOUT.tileGapPx}px`
   );
-  setReactionSolverLayoutVar(
+  setReactionCanvasLayoutVar(
     surface,
-    "--solver-top-control-row-height",
-    `${REACTION_SOLVER_LAYOUT.topControlRowHeightPx}px`
+    "--reaction-canvas-top-control-row-height",
+    `${REACTION_CANVAS_LAYOUT.topControlRowHeightPx}px`
   );
 }
 
-function getReactionSolverSurfaceColumnGroupLayoutEntry(side, operatorLaneIndex = null) {
+function getReactionCanvasSurfaceColumnGroupLayoutEntry(side, operatorLaneIndex = null) {
   return (
-    REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT.find(
+    REACTION_CANVAS_SURFACE_COLUMN_GROUP_LAYOUT.find(
       (entry) =>
         entry.side === side &&
         entry.operatorLaneIndex ===
@@ -217,60 +217,60 @@ function getOperatorLaneSlotElement(surface, operatorLaneIndex) {
   }
   return (
     surface.querySelector(
-      `.composer-reaction-solver-column-group-slot[data-operator-lane-index="${String(operatorLaneIndex)}"]`
+      `.composer-reaction-canvas-column-group-slot[data-operator-lane-index="${String(operatorLaneIndex)}"]`
     ) ?? null
   );
 }
 
 function getLaneGridColumnVarName(side, operatorLaneIndex = null) {
   if (side === "center") {
-    return "--solver-center-assemblies-grid-column";
+    return "--reaction-canvas-center-assemblies-grid-column";
   }
   const normalizedIndex = Number(operatorLaneIndex);
   if (normalizedIndex === 0) {
-    return "--solver-operator-lane-0-grid-column";
+    return "--reaction-canvas-operator-lane-0-grid-column";
   }
   if (normalizedIndex === 1) {
-    return "--solver-operator-lane-1-grid-column";
+    return "--reaction-canvas-operator-lane-1-grid-column";
   }
   return "";
 }
 
-export function applyReactionSolverSurfaceGridLayout({
+export function applyReactionCanvasSurfaceGridLayout({
   surface,
   reactantsColumn,
   centerAssembliesColumn,
   productsColumn,
 }) {
-  const reactantEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("reactant");
+  const reactantEntry = getReactionCanvasSurfaceColumnGroupLayoutEntry("reactant");
   if (reactantsColumn?.style && reactantEntry && typeof reactantsColumn.style.setProperty === "function") {
     reactantsColumn.style.setProperty(
-      "--solver-reactants-grid-column",
+      "--reaction-canvas-reactants-grid-column",
       `${reactantEntry.start} / span ${reactantEntry.span}`
     );
   }
 
-  const centerEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("center");
+  const centerEntry = getReactionCanvasSurfaceColumnGroupLayoutEntry("center");
   if (
     centerAssembliesColumn?.style &&
     centerEntry &&
     typeof centerAssembliesColumn.style.setProperty === "function"
   ) {
     centerAssembliesColumn.style.setProperty(
-      "--solver-center-assemblies-grid-column",
+      "--reaction-canvas-center-assemblies-grid-column",
       `${centerEntry.start} / span ${centerEntry.span}`
     );
   }
 
-  const productEntry = getReactionSolverSurfaceColumnGroupLayoutEntry("product");
+  const productEntry = getReactionCanvasSurfaceColumnGroupLayoutEntry("product");
   if (productsColumn?.style && productEntry && typeof productsColumn.style.setProperty === "function") {
     productsColumn.style.setProperty(
-      "--solver-products-grid-column",
+      "--reaction-canvas-products-grid-column",
       `${productEntry.start} / span ${productEntry.span}`
     );
   }
 
-  REACTION_SOLVER_SURFACE_COLUMN_GROUP_LAYOUT.filter((entry) => entry.side === "operator").forEach((entry) => {
+  REACTION_CANVAS_SURFACE_COLUMN_GROUP_LAYOUT.filter((entry) => entry.side === "operator").forEach((entry) => {
     const slotElement = getOperatorLaneSlotElement(surface, entry.operatorLaneIndex);
     const operatorGridColumnVarName = getLaneGridColumnVarName(
       entry.side,
@@ -316,14 +316,14 @@ export function getReactionSurfaceColumnGroupFallbackRatios(columnGroupEntries =
     return [0.5];
   }
   return columnGroupEntries.map((columnGroupEntry) => {
-    const layoutEntry = getReactionSolverSurfaceColumnGroupLayoutEntry(
+    const layoutEntry = getReactionCanvasSurfaceColumnGroupLayoutEntry(
       columnGroupEntry?.side,
       columnGroupEntry?.operatorLaneIndex ?? null
     );
     if (!layoutEntry) {
       return 0.5;
     }
-    return (layoutEntry.start - 1 + layoutEntry.span / 2) / REACTION_SOLVER_SURFACE_COLUMN_COUNT;
+    return (layoutEntry.start - 1 + layoutEntry.span / 2) / REACTION_CANVAS_SURFACE_COLUMN_COUNT;
   });
 }
 

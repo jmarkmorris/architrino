@@ -102,7 +102,7 @@ export function buildReactionFlowDocument(options = {}) {
   const mappings = Array.isArray(snapshot?.mappings) ? snapshot.mappings : [];
   const reactionId = String(options?.reactionId ?? "reaction_manual_draft").trim() || "reaction_manual_draft";
   const title =
-    String(options?.title ?? "Reaction Designer and Solver").trim() || "Reaction Designer and Solver";
+    String(options?.title ?? "Reaction Designer").trim() || "Reaction Designer";
   const sourceDocumentIds = Array.isArray(options?.sourceDocumentIds) && options.sourceDocumentIds.length
     ? options.sourceDocumentIds
     : [DEFAULT_SOURCE_DOCUMENT_ID];

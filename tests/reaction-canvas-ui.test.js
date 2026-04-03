@@ -7,13 +7,13 @@ import {
   REACTION_OPERATOR_LANE_LAYOUT,
   REACTION_OPERATOR_LANE_COUNT,
   REACTION_OPERATOR_ENTRIES,
-} from "../src/apps/reaction/ReactionSolverUiRuntime.js";
+} from "../src/apps/reaction/ReactionCanvasUiRuntime.js";
 
-test("reaction solver keeps two operator lanes available", () => {
+test("reaction canvas keeps two operator lanes available", () => {
   assert.equal(REACTION_OPERATOR_LANE_COUNT, 2);
 });
 
-test("reaction solver operator registry includes only associate and dissociate", () => {
+test("reaction canvas operator registry includes only associate and dissociate", () => {
   assert.deepEqual(
     REACTION_OPERATOR_ENTRIES.map((entry) => entry.templateId),
     [
@@ -23,7 +23,7 @@ test("reaction solver operator registry includes only associate and dissociate",
   );
 });
 
-test("reaction solver operator layout assigns dissociate to the inner-left group and associate to the inner-right group", () => {
+test("reaction canvas operator layout assigns dissociate to the inner-left group and associate to the inner-right group", () => {
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT.map((entry) => ({
       laneIndex: entry.laneIndex,
@@ -45,27 +45,27 @@ test("reaction solver operator layout assigns dissociate to the inner-left group
   );
 });
 
-test("reaction solver center assembly lane exposes Noether core, weak bosons, and Free Architrinos", () => {
+test("reaction canvas center assembly lane exposes Noether core, weak bosons, and Free Architrinos", () => {
   assert.deepEqual(
     REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => entry.templateId),
     ["noether_core", "w_minus_boson", "w_plus_boson", "z_boson", "free_architrinos"]
   );
 });
 
-test("reaction solver template-grid picker places b mesons on a new row below kaons and shifts composites down", () => {
+test("reaction canvas template-grid picker places b mesons on a new row below kaons and shifts composites down", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "anti_k0", "k0"\],\s*\["", "b_minus", "b_plus", "anti_b0", "b0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
+    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "sk0", "dk0"\],\s*\["", "b_minus", "b_plus", "bB0", "dB0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
   );
 });
 
 test("center-column Noether core title click toggles polarity directly", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   const renderSource = readFileSync(
@@ -84,7 +84,7 @@ test("center-column Noether core title click toggles polarity directly", () => {
 
 test("operator fan sync remains optional in the participant render runtime", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -93,9 +93,9 @@ test("operator fan sync remains optional in the participant render runtime", () 
   );
 });
 
-test("reaction solver no longer exposes a canvas right-click root menu", () => {
+test("reaction canvas no longer exposes a right-click root menu", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.doesNotMatch(
@@ -120,13 +120,13 @@ test("reaction solver no longer exposes a canvas right-click root menu", () => {
   );
 });
 
-test("reaction solver exposes clear and solve actions in the reaction app shell and keeps them runtime-owned", () => {
+test("reaction canvas exposes clear and solve actions in the reaction app shell and keeps them runtime-owned", () => {
   const reactionMainSource = readFileSync(
     new URL("../src/apps/reaction/main.js", import.meta.url),
     "utf8"
   );
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -139,19 +139,19 @@ test("reaction solver exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /function clearReactionSolverCanvas\(\)/
+    /function clearReactionCanvas\(\)/
   );
   assert.match(
     runtimeSource,
-    /function solveReactionSolverCanvas\(\)/
+    /function solveReactionCanvas\(\)/
   );
   assert.match(
     runtimeSource,
-    /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionSolverCanvas\(\);/s
+    /clearButton\.addEventListener\("click",\s*\(\) => \{\s*clearReactionCanvas\(\);/s
   );
   assert.match(
     runtimeSource,
-    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionSolverCanvas\(\);/s
+    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionCanvas\(\);/s
   );
   assert.match(
     runtimeSource,
@@ -213,7 +213,7 @@ test("reaction solver exposes clear and solve actions in the reaction app shell 
 
 test("W and Z bosons are not treated as polarity-toggling templates", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   const setStart = runtimeSource.indexOf("const participantPolarityTemplateIds = new Set([");
@@ -227,7 +227,7 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
 
 test("side-column dragging places participants on explicit shared surface rows instead of collection order", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -246,7 +246,7 @@ test("side-column dragging places participants on explicit shared surface rows i
 
 test("center assembly header geometry is resynced with the other lane columns", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -259,14 +259,14 @@ test("center assembly header geometry is resynced with the other lane columns", 
   );
 });
 
-test("solver surface rows are shared across all five column groups and capped to the first eleven rows", () => {
+test("canvas surface rows are shared across all five column groups and capped to the first eleven rows", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /const solverSurfaceMaxRowIndex = REACTION_SOLVER_SURFACE_ROW_COUNT - 1;/
+    /const canvasSurfaceMaxRowIndex = REACTION_CANVAS_SURFACE_ROW_COUNT - 1;/
   );
   assert.match(
     runtimeSource,
@@ -282,7 +282,7 @@ test("solver surface rows are shared across all five column groups and capped to
   );
   assert.match(
     runtimeSource,
-    /Math\.min\(solverSurfaceMaxRowIndex,\s*normalizedRowIndex\)/
+    /Math\.min\(canvasSurfaceMaxRowIndex,\s*normalizedRowIndex\)/
   );
   assert.match(
     runtimeSource,
@@ -290,13 +290,13 @@ test("solver surface rows are shared across all five column groups and capped to
   );
   assert.match(
     runtimeSource,
-    /const maxStartRowIndex = Math\.max\(0,\s*solverSurfaceMaxRowIndex - resolvedRowSpan \+ 1\);/
+    /const maxStartRowIndex = Math\.max\(0,\s*canvasSurfaceMaxRowIndex - resolvedRowSpan \+ 1\);/
   );
 });
 
 test("split row helper preserves the original participant row block instead of restacking at the top", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -315,7 +315,7 @@ test("split row helper preserves the original participant row block instead of r
 
 test("composite right-click dissociation marks the existing composite instead of replacing it with split participants", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -346,7 +346,7 @@ test("composite right-click dissociation marks the existing composite instead of
 
 test("mapping from a composite reactant child auto-marks the composite as dissociated", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -379,9 +379,9 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
   );
 });
 
-test("solve resets only solver-generated operators and auto dissociation before rebuilding mappings", () => {
+test("solve resets only canvas-generated operators and auto dissociation before rebuilding mappings", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -404,7 +404,7 @@ test("solve resets only solver-generated operators and auto dissociation before 
 
 test("operator tiles resolve vertical placement from explicit grid rows instead of free percentage offsets", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -421,7 +421,7 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
   );
   assert.match(
     runtimeSource,
-    /solverCanvasRowHeightPx \/ 2 \+\s*resolvedRowIndex \* solverCanvasRowStepPx/
+    /canvasRowHeightPx \/ 2 \+\s*resolvedRowIndex \* canvasRowStepPx/
   );
   assert.match(
     runtimeSource,
@@ -439,7 +439,7 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
 
 test("only drawn paths remove existing reaction mappings on click", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.doesNotMatch(
@@ -458,7 +458,7 @@ test("only drawn paths remove existing reaction mappings on click", () => {
 
 test("removing a reactant or product clears mappings and removes operators plus center bosons", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -483,14 +483,14 @@ test("removing a reactant or product clears mappings and removes operators plus 
   );
 });
 
-test("route endpoints use fixed left and right tangents for solver connectors", () => {
+test("route endpoints use fixed left and right tangents for canvas connectors", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /function getFixedAnchorAttachmentPoint\(element,\s*bounds,\s*edgeInset = solverRouteAnchorGapPx\) \{/
+    /function getFixedAnchorAttachmentPoint\(element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx\) \{/
   );
   assert.match(
     runtimeSource,
@@ -520,7 +520,7 @@ test("route endpoints use fixed left and right tangents for solver connectors", 
 
 test("changing reactant or product polarity clears mappings and operators", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -543,7 +543,7 @@ test("changing reactant or product polarity clears mappings and operators", () =
 
 test("participant menu exposes dissociate only for reactant composites", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -554,7 +554,7 @@ test("participant menu exposes dissociate only for reactant composites", () => {
 
 test("reactant to dissociate mappings auto-create center assemblies from the source node", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(

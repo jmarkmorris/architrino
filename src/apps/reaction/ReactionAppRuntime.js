@@ -1,9 +1,9 @@
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
 import { navigateStandaloneReactionHome } from "./ReactionAppModeRuntime.js";
-import { createReactionSolverUiRuntime } from "./ReactionSolverUiRuntime.js";
+import { createReactionCanvasUiRuntime } from "./ReactionCanvasUiRuntime.js";
 import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
-const reactionSolverStorageKey = "architrino.reaction.active";
+const reactionCanvasStorageKey = "architrino.reaction.active";
 
 export function createReactionAppRuntime(deps) {
   const {
@@ -32,7 +32,7 @@ export function createReactionAppRuntime(deps) {
     return navigateStandaloneReactionHome(globalThis.window?.location);
   }
 
-  const solverRuntime = createReactionSolverUiRuntime({
+  const canvasRuntime = createReactionCanvasUiRuntime({
     root,
     surface,
     reactantsColumn,
@@ -47,13 +47,13 @@ export function createReactionAppRuntime(deps) {
     setStatus,
     closeExternalMenus: () => {},
     storage: globalThis.window?.sessionStorage ?? null,
-    storageKey: reactionSolverStorageKey,
+    storageKey: reactionCanvasStorageKey,
   });
   const exportRuntime = createReactionFlowExportRuntime({
-    getSnapshot: solverRuntime.getSnapshot,
+    getSnapshot: canvasRuntime.getSnapshot,
     reactionId: "reaction_designer_active",
-    title: "Reaction Designer and Solver",
-    sourceDocumentIds: [reactionSolverStorageKey],
+    title: "Reaction Designer",
+    sourceDocumentIds: [reactionCanvasStorageKey],
     semanticTags: ["manual-authoring", "reaction-designer"],
     suggestedSceneId: "reaction_designer_scene",
   });
@@ -64,9 +64,9 @@ export function createReactionAppRuntime(deps) {
         exitReactionApp();
       });
     }
-    solverRuntime.setActive(true, { persist: false, announce: false });
+    canvasRuntime.setActive(true, { persist: false, announce: false });
     setStatus(
-      "Reaction app ready. Use the left and right + controls to author a manual solve."
+      "Reaction app ready. Use the left and right + controls to build a reaction."
     );
   }
 
@@ -74,7 +74,7 @@ export function createReactionAppRuntime(deps) {
     init,
     setStatus,
     exitReactionApp,
-    solverRuntime,
+    canvasRuntime,
     exportReactionFlowDocument: exportRuntime.exportDocument,
   };
 }

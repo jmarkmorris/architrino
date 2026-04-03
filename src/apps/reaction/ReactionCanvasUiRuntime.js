@@ -49,14 +49,14 @@ import {
   getReactionParticleTileLabelLines,
 } from "./ReactionParticleTileRuntime.js";
 import {
-  applyReactionSolverLayoutCssVars,
-  applyReactionSolverSurfaceGridLayout,
+  applyReactionCanvasLayoutCssVars,
+  applyReactionCanvasSurfaceGridLayout,
   getReactionSurfaceColumnGroupFallbackRatios,
   measureReactionSurfaceColumnGroupRatios,
-  REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX,
-  REACTION_SOLVER_LAYOUT,
-  REACTION_SOLVER_SURFACE_ROW_COUNT,
-} from "./ReactionSolverLayoutRuntime.js";
+  REACTION_CANVAS_OPERATOR_LANE_WIDTH_PX,
+  REACTION_CANVAS_LAYOUT,
+  REACTION_CANVAS_SURFACE_ROW_COUNT,
+} from "./ReactionCanvasLayoutRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -81,7 +81,7 @@ import {
 } from "../../domain/structure/StructureTransforms.js";
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
 
-const solverTemplateMeta = Object.freeze({
+const canvasTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
   higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
   photon: { shortLabel: "Ph", accent: "#a259ff" },
@@ -103,12 +103,12 @@ const solverTemplateMeta = Object.freeze({
   dpi0: { shortLabel: "Pi0", accent: "#a259ff" },
   k_plus: { shortLabel: "K+", accent: "#ff5a4a" },
   k_minus: { shortLabel: "K-", accent: "#2d8cff" },
-  k0: { shortLabel: "K0", accent: "#a259ff" },
-  anti_k0: { shortLabel: "K0b", accent: "#a259ff" },
+  dk0: { shortLabel: "dK0", accent: "#a259ff" },
+  sk0: { shortLabel: "sK0", accent: "#a259ff" },
   b_plus: { shortLabel: "B+", accent: "#ff5a4a" },
   b_minus: { shortLabel: "B-", accent: "#2d8cff" },
-  b0: { shortLabel: "B0", accent: "#a259ff" },
-  anti_b0: { shortLabel: "B0b", accent: "#a259ff" },
+  db0: { shortLabel: "dB0", accent: "#a259ff" },
+  bb0: { shortLabel: "bB0", accent: "#a259ff" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -204,12 +204,12 @@ function ensureCenterAssembliesColumn(surface) {
     return null;
   }
   const existingColumn =
-    surface.querySelector(".composer-reaction-solver-column.is-center-assemblies") ?? null;
+    surface.querySelector(".composer-reaction-canvas-column.is-center-assemblies") ?? null;
   if (existingColumn instanceof HTMLElement) {
     return existingColumn;
   }
   const column = document.createElement("div");
-  column.className = "composer-reaction-solver-column is-center-assemblies";
+  column.className = "composer-reaction-canvas-column is-center-assemblies";
   surface.appendChild(column);
   return column;
 }
@@ -361,7 +361,7 @@ function buildFallbackHierarchyForTemplate(templateId, label) {
 
 function getTemplateMeta(templateId, label = "") {
   const normalized = String(templateId ?? "").trim().toLowerCase();
-  const entry = solverTemplateMeta[normalized] ?? null;
+  const entry = canvasTemplateMeta[normalized] ?? null;
   if (entry) {
     return entry;
   }
@@ -419,25 +419,25 @@ function getParticipantCardMeta(participant = null) {
       accent: templateId === "pi_minus" ? "#2d8cff" : "#a259ff",
     };
   }
-  if (templateId === "k_plus" || templateId === "k0") {
+  if (templateId === "k_plus" || templateId === "dk0") {
     return {
       ...baseMeta,
       accent: templateId === "k_plus" ? "#ff5a4a" : "#a259ff",
     };
   }
-  if (templateId === "k_minus" || templateId === "anti_k0") {
+  if (templateId === "k_minus" || templateId === "sk0") {
     return {
       ...baseMeta,
       accent: templateId === "k_minus" ? "#2d8cff" : "#a259ff",
     };
   }
-  if (templateId === "b_plus" || templateId === "b0") {
+  if (templateId === "b_plus" || templateId === "db0") {
     return {
       ...baseMeta,
       accent: templateId === "b_plus" ? "#ff5a4a" : "#a259ff",
     };
   }
-  if (templateId === "b_minus" || templateId === "anti_b0") {
+  if (templateId === "b_minus" || templateId === "bb0") {
     return {
       ...baseMeta,
       accent: templateId === "b_minus" ? "#2d8cff" : "#a259ff",
@@ -541,10 +541,10 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "k_minus") {
     return "Negative Kaon";
   }
-  if (normalizedTemplateId === "k0") {
+  if (normalizedTemplateId === "dk0") {
     return "Neutral Kaon (d anti-s)";
   }
-  if (normalizedTemplateId === "anti_k0") {
+  if (normalizedTemplateId === "sk0") {
     return "Neutral Kaon (s anti-d)";
   }
   if (normalizedTemplateId === "b_plus") {
@@ -553,10 +553,10 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "b_minus") {
     return "Negative B Meson";
   }
-  if (normalizedTemplateId === "b0") {
+  if (normalizedTemplateId === "db0") {
     return "Neutral B Meson (d anti-b)";
   }
-  if (normalizedTemplateId === "anti_b0") {
+  if (normalizedTemplateId === "bb0") {
     return "Neutral B Meson (b anti-d)";
   }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
@@ -571,8 +571,8 @@ function getTemplateGridPickerLayout(pickerCells = []) {
     ["bi_binary", "strange", "charm", "muon", "muon_neutrino"],
     ["tri_binary", "down", "up", "electron", "neutrino"],
     ["photon", "pi_minus", "pi_plus", "dpi0", "upi0"],
-    ["", "k_minus", "k_plus", "anti_k0", "k0"],
-    ["", "b_minus", "b_plus", "anti_b0", "b0"],
+    ["", "k_minus", "k_plus", "sk0", "dk0"],
+    ["", "b_minus", "b_plus", "bB0", "dB0"],
     ["higgs", "", "proton", "", "neutron"],
   ].flatMap((row, rowIndex) =>
     row.map((cellId, columnIndex) => ({
@@ -709,22 +709,22 @@ function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
   return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
 }
 
-const operatorCardHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
-const solverTileGapPx = REACTION_SOLVER_LAYOUT.tileGapPx;
-const operatorTrackWidthPx = REACTION_SOLVER_OPERATOR_LANE_WIDTH_PX;
-const operatorSlotStepPx = REACTION_SOLVER_LAYOUT.operatorSlotStepPx;
+const operatorCardHeightPx = REACTION_CANVAS_LAYOUT.binaryChoiceSizePx;
+const canvasTileGapPx = REACTION_CANVAS_LAYOUT.tileGapPx;
+const operatorTrackWidthPx = REACTION_CANVAS_OPERATOR_LANE_WIDTH_PX;
+const operatorSlotStepPx = REACTION_CANVAS_LAYOUT.operatorSlotStepPx;
 const recentRouteFadeMs = 400;
-const operatorSlotEdgePaddingPx = REACTION_SOLVER_LAYOUT.operatorSlotEdgePaddingPx;
+const operatorSlotEdgePaddingPx = REACTION_CANVAS_LAYOUT.operatorSlotEdgePaddingPx;
 const operatorLaneCount = REACTION_OPERATOR_LANE_COUNT;
-const operatorLaneEdgePaddingPx = REACTION_SOLVER_LAYOUT.operatorLaneEdgePaddingPx;
-const solverRouteAnchorGapPx = REACTION_SOLVER_LAYOUT.routeAnchorGapPx;
+const operatorLaneEdgePaddingPx = REACTION_CANVAS_LAYOUT.operatorLaneEdgePaddingPx;
+const canvasRouteAnchorGapPx = REACTION_CANVAS_LAYOUT.routeAnchorGapPx;
 const operatorGraphicConnectionStepPx =
-  REACTION_SOLVER_LAYOUT.operatorGraphicConnectionStepPx;
-const solverAddButtonSizePx = REACTION_SOLVER_LAYOUT.addButtonSizePx;
-const solverCanvasRowHeightPx = REACTION_SOLVER_LAYOUT.binaryChoiceSizePx;
-const solverCanvasRowStepPx =
-  REACTION_SOLVER_LAYOUT.binaryChoiceSizePx + REACTION_SOLVER_LAYOUT.contentStackGapPx;
-const solverSurfaceMaxRowIndex = REACTION_SOLVER_SURFACE_ROW_COUNT - 1;
+  REACTION_CANVAS_LAYOUT.operatorGraphicConnectionStepPx;
+const canvasAddButtonSizePx = REACTION_CANVAS_LAYOUT.addButtonSizePx;
+const canvasRowHeightPx = REACTION_CANVAS_LAYOUT.binaryChoiceSizePx;
+const canvasRowStepPx =
+  REACTION_CANVAS_LAYOUT.binaryChoiceSizePx + REACTION_CANVAS_LAYOUT.contentStackGapPx;
+const canvasSurfaceMaxRowIndex = REACTION_CANVAS_SURFACE_ROW_COUNT - 1;
 
 function getParticipantSideLabel(side = "", options = {}) {
   const label =
@@ -799,7 +799,7 @@ function clampMenuPosition(clientX, clientY, menu, boundsElement) {
   };
 }
 
-function readPersistedSolverActive(storage, storageKey) {
+function readPersistedCanvasActive(storage, storageKey) {
   if (!storage || !storageKey) {
     return false;
   }
@@ -810,18 +810,18 @@ function readPersistedSolverActive(storage, storageKey) {
   }
 }
 
-function persistSolverActive(storage, storageKey, active) {
+function persistCanvasActive(storage, storageKey, active) {
   if (!storage || !storageKey) {
     return;
   }
   try {
     storage.setItem(storageKey, active ? "true" : "false");
   } catch (_error) {
-    // Ignore storage failures and keep the solver working in-memory.
+    // Ignore storage failures and keep the canvas working in-memory.
   }
 }
 
-export function createReactionSolverUiRuntime(deps = {}) {
+export function createReactionCanvasUiRuntime(deps = {}) {
   const {
     toggleButton,
     root,
@@ -901,16 +901,16 @@ export function createReactionSolverUiRuntime(deps = {}) {
   });
 
   const centerAssembliesColumn = ensureCenterAssembliesColumn(surface);
-  applyReactionSolverLayoutCssVars(root);
-  applyReactionSolverLayoutCssVars(surface);
-  applyReactionSolverSurfaceGridLayout({
+  applyReactionCanvasLayoutCssVars(root);
+  applyReactionCanvasLayoutCssVars(surface);
+  applyReactionCanvasSurfaceGridLayout({
     surface,
     reactantsColumn,
     centerAssembliesColumn,
     productsColumn,
   });
 
-  const operatorLayer = root?.querySelector(".composer-reaction-solver-operator-layer") ?? null;
+  const operatorLayer = root?.querySelector(".composer-reaction-canvas-operator-layer") ?? null;
   const templateEntries = dedupeTemplateEntries(templateMenuRows, extraTemplateEntries);
   const addPickerCells = getReactionAddPickerCells();
   const state = {
@@ -1094,7 +1094,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
           extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
         )
       : "";
-    const participantId = `solver_participant_${state.nextParticipantId++}`;
+    const participantId = `canvas_participant_${state.nextParticipantId++}`;
     const pendingBaseLabel = normalizeParticipantBaseLabel(label, resolvedTemplateId);
     const factoryStructure =
       !structure && typeof structureFactory === "function"
@@ -1515,12 +1515,12 @@ export function createReactionSolverUiRuntime(deps = {}) {
     closeMenu();
     render();
     setStatus(
-      `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} removed from the reaction solver.`
+      `${getParticipantSideLabel(participant.side, { capitalized: true })} ${participant.label} removed from the reaction canvas.`
     );
     return true;
   }
 
-  function clearReactionSolverCanvas() {
+  function clearReactionCanvas() {
     const hasCanvasState =
       state.participants.length > 0 ||
       state.mappings.length > 0 ||
@@ -1545,9 +1545,9 @@ export function createReactionSolverUiRuntime(deps = {}) {
     return true;
   }
 
-  function solveReactionSolverCanvas() {
+  function solveReactionCanvas() {
     if (!state.active) {
-      setStatus("Open the reaction solver before running solve.");
+      setStatus("Open the reaction app before running solve.");
       return false;
     }
     let solveState = buildSolveState({
@@ -1584,11 +1584,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
         mappings: cloneSerializableValue(state.mappings),
       },
       {
-        requestId: "reaction_solver_canvas",
+        requestId: "reaction_canvas",
         origin: {
           sourceKind: "reaction",
-          sourceDocumentId: "reaction_solver_canvas",
-          title: "Reaction Solver Canvas",
+          sourceDocumentId: "reaction_canvas",
+          title: "Reaction Canvas",
         },
         buildNodeKey,
         resolveBinaryChoiceInventory,
@@ -2083,7 +2083,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return !(sourceConflict || targetConflict);
     });
     pruneRecentRouteState();
-    const mappingId = `solver_mapping_${state.nextMappingId++}`;
+    const mappingId = `canvas_mapping_${state.nextMappingId++}`;
     state.mappings.push({
       id: mappingId,
       sourceKey,
@@ -2353,7 +2353,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
 
   function renderMenuTitle(text) {
     const title = document.createElement("div");
-    title.className = "composer-reaction-solver-menu-title";
+    title.className = "composer-reaction-canvas-menu-title";
     title.textContent = text;
     menu.appendChild(title);
   }
@@ -2361,7 +2361,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
   function renderMenuButton(text, options = {}) {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "composer-reaction-solver-menu-button";
+    button.className = "composer-reaction-canvas-menu-button";
     if (Array.isArray(options.extraClassNames)) {
       options.extraClassNames.filter(Boolean).forEach((className) => {
         button.classList.add(className);
@@ -2370,7 +2370,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     if (Array.isArray(options.lines) && options.lines.length) {
       options.lines.forEach((line) => {
         const lineElement = document.createElement("span");
-        lineElement.className = "composer-reaction-solver-menu-button-line";
+        lineElement.className = "composer-reaction-canvas-menu-button-line";
         lineElement.textContent = String(line ?? "");
         button.appendChild(lineElement);
       });
@@ -2391,7 +2391,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
   function createPickerTilePreview(pickerCell = null) {
     if (!pickerCell || pickerCell.vacant) {
       const preview = createReactionParticleTileElement(null, {
-        classNames: ["composer-reaction-solver-picker-card"],
+        classNames: ["composer-reaction-canvas-picker-card"],
       });
       preview.classList.add("is-vacant");
       preview.setAttribute("aria-hidden", "true");
@@ -2403,7 +2403,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       polarity: "",
     };
     return createReactionParticleTileElement(previewParticipant, {
-      classNames: ["composer-reaction-solver-picker-card"],
+      classNames: ["composer-reaction-canvas-picker-card"],
       getParticipantCardMeta,
       getParticipantCardLabelLines: () => getPickerTileLabelLines(pickerCell, previewParticipant),
     });
@@ -2416,7 +2416,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     const operatorPickerEntries = getOperatorLanePickerEntries(operatorLayerEntry);
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "composer-reaction-solver-add-button";
+    button.className = "composer-reaction-canvas-add-button";
     button.dataset.addSide = side;
     if (side === "operator") {
       button.dataset.operatorLaneIndex = String(operatorLaneIndex);
@@ -2520,7 +2520,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
 
   function createColumnAddControl(side, options = {}) {
     const control = document.createElement("div");
-    control.className = `composer-reaction-solver-add-control is-${side}`;
+    control.className = `composer-reaction-canvas-add-control is-${side}`;
     if (side === "operator") {
       const resolvedLaneIndex = normalizeOperatorLaneIndex(options.operatorLaneIndex);
       control.dataset.operatorLaneIndex = String(resolvedLaneIndex);
@@ -2534,7 +2534,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     const controls = document.createElement("div");
     const columnGroupEntries = getReactionSurfaceColumnGroupEntries();
     const columnGroupRatios = getReactionSurfaceColumnGroupRatios(columnGroupEntries.length);
-    controls.className = "composer-reaction-solver-surface-add-controls";
+    controls.className = "composer-reaction-canvas-surface-add-controls";
     columnGroupEntries.forEach((entry, columnGroupIndex) => {
       const control = createColumnAddControl(entry.side, {
         operatorLaneIndex: entry.operatorLaneIndex,
@@ -2614,10 +2614,10 @@ export function createReactionSolverUiRuntime(deps = {}) {
     const normalizedRowIndex = Math.round(Number(rowIndex));
     const resolvedFallbackIndex = Math.max(
       0,
-      Math.min(solverSurfaceMaxRowIndex, Math.round(Number(fallbackIndex) || 0))
+      Math.min(canvasSurfaceMaxRowIndex, Math.round(Number(fallbackIndex) || 0))
     );
     return Number.isFinite(normalizedRowIndex)
-      ? Math.max(0, Math.min(solverSurfaceMaxRowIndex, normalizedRowIndex))
+      ? Math.max(0, Math.min(canvasSurfaceMaxRowIndex, normalizedRowIndex))
       : resolvedFallbackIndex;
   }
 
@@ -2625,16 +2625,16 @@ export function createReactionSolverUiRuntime(deps = {}) {
     const normalizedRowSpan = Math.round(Number(rowSpan));
     const resolvedFallbackSpan = Math.max(
       1,
-      Math.min(REACTION_SOLVER_SURFACE_ROW_COUNT, Math.round(Number(fallbackSpan) || 1))
+      Math.min(REACTION_CANVAS_SURFACE_ROW_COUNT, Math.round(Number(fallbackSpan) || 1))
     );
     return Number.isFinite(normalizedRowSpan)
-      ? Math.max(1, Math.min(REACTION_SOLVER_SURFACE_ROW_COUNT, normalizedRowSpan))
+      ? Math.max(1, Math.min(REACTION_CANVAS_SURFACE_ROW_COUNT, normalizedRowSpan))
       : resolvedFallbackSpan;
   }
 
   function normalizeSurfaceRowStartIndex(rowIndex, rowSpan = 1, fallbackIndex = 0) {
     const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
-    const maxStartRowIndex = Math.max(0, solverSurfaceMaxRowIndex - resolvedRowSpan + 1);
+    const maxStartRowIndex = Math.max(0, canvasSurfaceMaxRowIndex - resolvedRowSpan + 1);
     const normalizedRowIndex = Math.round(Number(rowIndex));
     const resolvedFallbackIndex = Math.max(
       0,
@@ -2730,7 +2730,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
 
   function getFirstAvailableRowIndexFromOccupied(occupiedRowIndexes, fallbackIndex = 0, rowSpan = 1) {
     const resolvedRowSpan = normalizeSurfaceRowSpan(rowSpan);
-    const maxStartRowIndex = Math.max(0, solverSurfaceMaxRowIndex - resolvedRowSpan + 1);
+    const maxStartRowIndex = Math.max(0, canvasSurfaceMaxRowIndex - resolvedRowSpan + 1);
     for (let rowIndex = 0; rowIndex <= maxStartRowIndex; rowIndex += 1) {
       if (canOccupySurfaceRowRange(occupiedRowIndexes, rowIndex, resolvedRowSpan)) {
         return rowIndex;
@@ -2749,7 +2749,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     if (canOccupySurfaceRowRange(occupiedRowIndexes, preferredRowIndex, resolvedRowSpan)) {
       return preferredRowIndex;
     }
-    for (let distance = 1; distance <= REACTION_SOLVER_SURFACE_ROW_COUNT; distance += 1) {
+    for (let distance = 1; distance <= REACTION_CANVAS_SURFACE_ROW_COUNT; distance += 1) {
       const lowerRowIndex = preferredRowIndex - distance;
       const upperRowIndex = preferredRowIndex + distance;
       if (
@@ -2759,7 +2759,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
         return lowerRowIndex;
       }
       if (
-        upperRowIndex <= solverSurfaceMaxRowIndex &&
+        upperRowIndex <= canvasSurfaceMaxRowIndex &&
         canOccupySurfaceRowRange(occupiedRowIndexes, upperRowIndex, resolvedRowSpan)
       ) {
         return upperRowIndex;
@@ -2867,16 +2867,16 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return 0;
     }
     const header = columnElement.querySelector(
-      `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
+      `.composer-reaction-canvas-side-slot-header.is-${CSS.escape(side)}`
     );
     const columnBounds = columnElement.getBoundingClientRect();
     const headerBounds =
       header instanceof HTMLElement ? header.getBoundingClientRect() : null;
     const gridStartY = headerBounds
-      ? headerBounds.bottom + REACTION_SOLVER_LAYOUT.contentStackGapPx
+      ? headerBounds.bottom + REACTION_CANVAS_LAYOUT.contentStackGapPx
       : columnBounds.top;
     const targetRowIndex = Math.round(
-      (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
+      (clientY - (gridStartY + canvasRowHeightPx / 2)) / canvasRowStepPx
     );
     return normalizeSurfaceRowIndex(targetRowIndex);
   }
@@ -2939,7 +2939,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
     setStatus(
-      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver${
+      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction canvas${
         compositeModeLabel ? ` in ${compositeModeLabel.toLowerCase()} mode` : ""
       }.`
     );
@@ -2966,7 +2966,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     render();
     const compositeModeLabel = getParticipantCompositeModeLabel(participant);
     setStatus(
-      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction solver${
+      `${side === "reactant" ? "Reactant" : "Product"} ${participant.label} added to the reaction canvas${
         compositeModeLabel ? ` in ${compositeModeLabel.toLowerCase()} mode` : ""
       }.`
     );
@@ -2980,7 +2980,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
-    setStatus(`Center assembly ${participant.label} added to the reaction solver.`);
+    setStatus(`Center assembly ${participant.label} added to the reaction canvas.`);
   }
 
   function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1, options = {}) {
@@ -3021,7 +3021,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     state.pendingSourceAnchorInstanceIndex = null;
     closeMenu();
     render();
-    setStatus(`${participant.label} added to the reaction solver.`);
+    setStatus(`${participant.label} added to the reaction canvas.`);
   }
 
   function renderMenu() {
@@ -3064,7 +3064,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
         const gridRow = String((entry?.rowIndex ?? 0) + 2);
         if (!pickerCell) {
           const vacantCell = document.createElement("span");
-          vacantCell.className = "composer-reaction-solver-picker-vacant";
+          vacantCell.className = "composer-reaction-canvas-picker-vacant";
           vacantCell.style.gridColumn = gridColumn;
           vacantCell.style.gridRow = gridRow;
           vacantCell.appendChild(createPickerTilePreview(null));
@@ -3073,7 +3073,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
         }
         const tileButton = document.createElement("button");
         tileButton.type = "button";
-        tileButton.className = "composer-reaction-solver-picker-tile";
+        tileButton.className = "composer-reaction-canvas-picker-tile";
         tileButton.style.gridColumn = gridColumn;
         tileButton.style.gridRow = gridRow;
         tileButton.setAttribute(
@@ -3113,12 +3113,12 @@ export function createReactionSolverUiRuntime(deps = {}) {
           participant.templateId === "dpi0" ||
           participant.templateId === "k_plus" ||
           participant.templateId === "k_minus" ||
-          participant.templateId === "k0" ||
-          participant.templateId === "anti_k0" ||
+          participant.templateId === "dk0" ||
+          participant.templateId === "sk0" ||
           participant.templateId === "b_plus" ||
           participant.templateId === "b_minus" ||
-          participant.templateId === "b0" ||
-          participant.templateId === "anti_b0"
+          participant.templateId === "dB0" ||
+          participant.templateId === "bB0"
         )
       ) {
         renderMenuButton("Dissociate", {
@@ -3182,14 +3182,14 @@ export function createReactionSolverUiRuntime(deps = {}) {
     }
     onActiveChange(nextActive);
     if (persist) {
-      persistSolverActive(storage, storageKey, nextActive);
+      persistCanvasActive(storage, storageKey, nextActive);
     }
     render();
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction solver opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products."
-          : "Reaction solver closed."
+          ? "Reaction app opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products."
+          : "Reaction app closed."
       );
     }
   }
@@ -3414,7 +3414,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return null;
     }
     return surface.querySelector(
-      `.composer-reaction-solver-column-group-slot[data-operator-lane-index="${CSS.escape(String(
+      `.composer-reaction-canvas-column-group-slot[data-operator-lane-index="${CSS.escape(String(
         normalizeOperatorLaneIndex(operatorLaneIndex)
       ))}"]`
     );
@@ -3422,20 +3422,20 @@ export function createReactionSolverUiRuntime(deps = {}) {
 
   function getReactionSurfaceGridStartOffsetPx() {
     if (!surface || typeof surface.getBoundingClientRect !== "function") {
-      return solverCanvasRowHeightPx / 2;
+      return canvasRowHeightPx / 2;
     }
     const surfaceBounds = surface.getBoundingClientRect();
     const headerBottomOffsets = [
-      ...surface.querySelectorAll(".composer-reaction-solver-side-slot-header"),
+      ...surface.querySelectorAll(".composer-reaction-canvas-side-slot-header"),
     ]
       .filter((element) => element instanceof HTMLElement)
       .map((element) => element.getBoundingClientRect())
       .filter((bounds) => bounds.height > 0)
       .map((bounds) => bounds.bottom - surfaceBounds.top);
     if (headerBottomOffsets.length) {
-      return Math.max(...headerBottomOffsets) + REACTION_SOLVER_LAYOUT.contentStackGapPx;
+      return Math.max(...headerBottomOffsets) + REACTION_CANVAS_LAYOUT.contentStackGapPx;
     }
-    return REACTION_SOLVER_LAYOUT.topControlRowHeightPx - 4;
+    return REACTION_CANVAS_LAYOUT.topControlRowHeightPx - 4;
   }
 
   function getReactionSurfaceRowCenterPx(rowIndex = 0) {
@@ -3450,8 +3450,8 @@ export function createReactionSolverUiRuntime(deps = {}) {
     return (
       getReactionSurfaceGridStartOffsetPx() -
       operatorLayerOffsetPx +
-      solverCanvasRowHeightPx / 2 +
-      resolvedRowIndex * solverCanvasRowStepPx
+      canvasRowHeightPx / 2 +
+      resolvedRowIndex * canvasRowStepPx
     );
   }
 
@@ -3462,7 +3462,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     const bounds = operatorLayer.getBoundingClientRect();
     const gridStartY = bounds.top + getReactionSurfaceGridStartOffsetPx();
     const targetRowIndex = Math.round(
-      (clientY - (gridStartY + solverCanvasRowHeightPx / 2)) / solverCanvasRowStepPx
+      (clientY - (gridStartY + canvasRowHeightPx / 2)) / canvasRowStepPx
     );
     return normalizeSurfaceRowIndex(targetRowIndex);
   }
@@ -3513,7 +3513,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     }
     const participant = findParticipantById(participantId);
     const card = surface.querySelector(
-      `.composer-reaction-solver-participant.is-operator[data-participant-id="${CSS.escape(participantId)}"]`
+      `.composer-reaction-canvas-participant.is-operator[data-participant-id="${CSS.escape(participantId)}"]`
     );
     if (!participant || !card) {
       return;
@@ -3584,7 +3584,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return;
     }
     const card = surface.querySelector(
-      `.composer-reaction-solver-participant[data-participant-id="${CSS.escape(
+      `.composer-reaction-canvas-participant[data-participant-id="${CSS.escape(
         state.dragParticipantId
       )}"]`
     );
@@ -3599,7 +3599,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return;
     }
     const target = event.target;
-    if (target instanceof Element && target.closest(".composer-reaction-solver-anchor")) {
+    if (target instanceof Element && target.closest(".composer-reaction-canvas-anchor")) {
       return;
     }
     state.dragParticipantId = participantId;
@@ -3635,7 +3635,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     if (
       target instanceof Element &&
       target.closest(
-        ".composer-reaction-solver-anchor, button, input, select, textarea, label"
+        ".composer-reaction-canvas-anchor, button, input, select, textarea, label"
       )
     ) {
       return;
@@ -3701,7 +3701,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     return Math.max(0, Math.min(rect.width, rect.height) / 2);
   }
 
-  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = solverRouteAnchorGapPx) {
+  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = canvasRouteAnchorGapPx) {
     if (!(element instanceof Element)) {
       return null;
     }
@@ -3727,7 +3727,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     sourceElement,
     targetElement,
     bounds,
-    edgeInset = solverRouteAnchorGapPx
+    edgeInset = canvasRouteAnchorGapPx
   ) {
     const sourcePoint =
       getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
@@ -3758,7 +3758,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     spanStem,
     collector,
     bounds,
-    edgeInset = solverRouteAnchorGapPx
+    edgeInset = canvasRouteAnchorGapPx
   ) {
     if (!(spanStem instanceof Element) || !(collector instanceof Element)) {
       return getTrimmedRouteEndpoints(spanStem, collector, bounds, edgeInset);
@@ -3797,7 +3797,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
   function createCompositeBusPath({ startX, startY, endX, endY }) {
     const path = createSvgElement("path");
     path.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
-    path.setAttribute("class", "composer-reaction-solver-composite-link");
+    path.setAttribute("class", "composer-reaction-canvas-composite-link");
     return path;
   }
 
@@ -3806,13 +3806,13 @@ export function createReactionSolverUiRuntime(deps = {}) {
       .filter((participant) => isCompositeParticipant(participant))
       .forEach((participant) => {
         const collector = surface.querySelector(
-          `.composer-reaction-solver-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
+          `.composer-reaction-canvas-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
         );
         if (!collector) {
           return;
         }
         const spanStem = surface.querySelector(
-          `.composer-reaction-solver-composite-span-stem[data-composite-span-participant-id="${CSS.escape(participant.id)}"]`
+          `.composer-reaction-canvas-composite-span-stem[data-composite-span-participant-id="${CSS.escape(participant.id)}"]`
         );
         if (spanStem) {
           const { startX, startY, endX, endY } = getCompositeBusRouteEndpoints(
@@ -3828,7 +3828,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
         }
         const sourceAnchors = Array.from(
           surface.querySelectorAll(
-            `.composer-reaction-solver-anchor[data-composite-participant-id="${CSS.escape(participant.id)}"][data-composite-source-key]`
+            `.composer-reaction-canvas-anchor[data-composite-participant-id="${CSS.escape(participant.id)}"][data-composite-source-key]`
           )
         );
         sourceAnchors.forEach((sourceAnchor) => {
@@ -3848,7 +3848,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     }
     return Array.from(
       surface.querySelectorAll(
-        `.composer-reaction-solver-anchor[data-anchor-key="${CSS.escape(nodeKey)}"][data-anchor-side="${CSS.escape(role)}"]`
+        `.composer-reaction-canvas-anchor[data-anchor-key="${CSS.escape(nodeKey)}"][data-anchor-side="${CSS.escape(role)}"]`
       )
     ).sort((leftAnchor, rightAnchor) => {
       const leftIndex = Number(leftAnchor.dataset.anchorInstanceIndex ?? 0);
@@ -3932,7 +3932,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
         "d",
         `M ${startX} ${startY} C ${startX + deltaX} ${startY}, ${endX - deltaX} ${endY}, ${endX} ${endY}`
       );
-      path.setAttribute("class", "composer-reaction-solver-path");
+      path.setAttribute("class", "composer-reaction-canvas-path");
       path.dataset.mappingId = mapping.id;
       path.classList.toggle("is-invalid", !validation.valid);
       if (validation.reason) {
@@ -3974,7 +3974,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     );
     Array.from(
       operatorLayer.querySelectorAll(
-        ".composer-reaction-solver-surface-add-controls > .composer-reaction-solver-add-control"
+        ".composer-reaction-canvas-surface-add-controls > .composer-reaction-canvas-add-control"
       )
     ).forEach((control, index) => {
       const resolvedColumnGroupIndex = Math.max(
@@ -3999,7 +3999,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
       return false;
     }
     const header = columnElement.querySelector(
-      `.composer-reaction-solver-side-slot-header.is-${CSS.escape(side)}`
+      `.composer-reaction-canvas-side-slot-header.is-${CSS.escape(side)}`
     );
     const sideParticipants = state.participants.filter(
       (participant) => {
@@ -4014,13 +4014,13 @@ export function createReactionSolverUiRuntime(deps = {}) {
     );
     if (!sideParticipants.length) {
       if (header instanceof HTMLElement) {
-        header.style.setProperty("--solver-slot-header-offset", "0px");
+        header.style.setProperty("--reaction-canvas-slot-header-offset", "0px");
       }
       return false;
     }
     if (header instanceof HTMLElement) {
       const profile = getReactionSideSlotHeaderProfile(sideParticipants, side);
-      header.style.setProperty("--solver-slot-header-offset", profile.offset);
+      header.style.setProperty("--reaction-canvas-slot-header-offset", profile.offset);
     }
     return true;
   }
@@ -4181,14 +4181,14 @@ export function createReactionSolverUiRuntime(deps = {}) {
   }
 
   function wireListeners() {
-    if (toggleButton && !toggleButton.dataset.solverBound) {
-      toggleButton.dataset.solverBound = "true";
+    if (toggleButton && !toggleButton.dataset.canvasBound) {
+      toggleButton.dataset.canvasBound = "true";
       toggleButton.addEventListener("click", () => {
         toggleActive();
       });
     }
-    if (root && !root.dataset.solverBound) {
-      root.dataset.solverBound = "true";
+    if (root && !root.dataset.canvasBound) {
+      root.dataset.canvasBound = "true";
       root.addEventListener("keydown", handleRootKeyDown);
       root.addEventListener(
         "scroll",
@@ -4201,20 +4201,20 @@ export function createReactionSolverUiRuntime(deps = {}) {
         true
       );
     }
-    if (clearButton instanceof HTMLButtonElement && !clearButton.dataset.solverBound) {
-      clearButton.dataset.solverBound = "true";
+    if (clearButton instanceof HTMLButtonElement && !clearButton.dataset.canvasBound) {
+      clearButton.dataset.canvasBound = "true";
       clearButton.addEventListener("click", () => {
-        clearReactionSolverCanvas();
+        clearReactionCanvas();
       });
     }
-    if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.solverBound) {
-      solveButton.dataset.solverBound = "true";
+    if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.canvasBound) {
+      solveButton.dataset.canvasBound = "true";
       solveButton.addEventListener("click", () => {
-        solveReactionSolverCanvas();
+        solveReactionCanvas();
       });
     }
-    if (!document.body.dataset.composerReactionSolverDocumentBound) {
-      document.body.dataset.composerReactionSolverDocumentBound = "true";
+    if (!document.body.dataset.composerReactionCanvasDocumentBound) {
+      document.body.dataset.composerReactionCanvasDocumentBound = "true";
       document.addEventListener("pointerdown", handleDocumentPointerDown, true);
       document.addEventListener("pointermove", handleDocumentPointerMove, true);
       document.addEventListener("pointerup", handleDocumentPointerUp, true);
@@ -4231,19 +4231,19 @@ export function createReactionSolverUiRuntime(deps = {}) {
   }
 
   wireListeners();
-  if (readPersistedSolverActive(storage, storageKey)) {
+  if (readPersistedCanvasActive(storage, storageKey)) {
     setActive(true, { persist: false, announce: false });
   }
   render();
 
   return {
     isActive: () => state.active,
-    clearCanvas: clearReactionSolverCanvas,
+    clearCanvas: clearReactionCanvas,
     getSnapshot: () => ({
       participants: cloneSerializableValue(state.participants),
       mappings: cloneSerializableValue(state.mappings),
     }),
-    solveCanvas: solveReactionSolverCanvas,
+    solveCanvas: solveReactionCanvas,
     setActive,
     toggleActive,
     closeMenu,

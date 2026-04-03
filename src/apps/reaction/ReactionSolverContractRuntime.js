@@ -100,13 +100,13 @@ export function solveReactionSnapshot(snapshot = {}, options = {}) {
   const request = buildReactionSolverRequestDocument({
     snapshot,
     requestId:
-      normalizeText(options?.requestId) || "reaction_solver_request",
+      normalizeText(options?.requestId) || "reaction_canvas_request",
     origin:
       options?.origin === undefined
         ? {
             sourceKind: "reaction",
-            sourceDocumentId: "reaction_solver_ui",
-            title: "Reaction Solver Canvas",
+            sourceDocumentId: "reaction_canvas_ui",
+            title: "Reaction Canvas",
           }
         : options?.origin,
     resolveBinaryChoiceInventory:

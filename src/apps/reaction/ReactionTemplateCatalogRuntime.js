@@ -19,13 +19,13 @@ export const reactionAssemblyTemplateMenuRows = Object.freeze([
   Object.freeze([
     Object.freeze({ template: "k_minus", label: "Negative Kaon" }),
     Object.freeze({ template: "k_plus", label: "Positive Kaon" }),
-    Object.freeze({ template: "anti_k0", label: "Neutral Kaon (s anti-d)" }),
-    Object.freeze({ template: "k0", label: "Neutral Kaon (d anti-s)" }),
+    Object.freeze({ template: "sk0", label: "Neutral Kaon (s anti-d)" }),
+    Object.freeze({ template: "dk0", label: "Neutral Kaon (d anti-s)" }),
   ]),
   Object.freeze([
     Object.freeze({ template: "b_minus", label: "Negative B Meson" }),
     Object.freeze({ template: "b_plus", label: "Positive B Meson" }),
-    Object.freeze({ template: "anti_b0", label: "Neutral B Meson (b anti-d)" }),
-    Object.freeze({ template: "b0", label: "Neutral B Meson (d anti-b)" }),
+    Object.freeze({ template: "bB0", label: "Neutral B Meson (b anti-d)" }),
+    Object.freeze({ template: "dB0", label: "Neutral B Meson (d anti-b)" }),
   ]),
 ]);

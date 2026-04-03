@@ -37,9 +37,9 @@ It does not own:
 - `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
-- Exportable candidate requests currently exist for the neutron, muon, and charged-pion fixture cases.
-- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, and neutral-pion-discovery cases when a local `pdg` installation is present.
-- Charged and neutral pion now have explicit solver-facing mappings in the locked v1 registry, so pion channels no longer stop at proposal-only classification merely because of particle vocabulary.
+- Exportable candidate requests currently exist for the neutron, muon, pion, kaon, and B-meson solver-facing particle sets that are in the locked v1 registry.
+- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, neutral-pion discovery cases, the first charged/neutral kaon discovery cases, and the first charged/neutral B-meson discovery cases when a local `pdg` installation is present.
+- Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -177,6 +177,14 @@ The locked canonical v1 PDG-to-solver mapping table is:
 | `pi+` | exportable | `pi_plus` | `Positive Pion` | meson, `u + anti-d` |
 | `pi-` | exportable | `pi_minus` | `Negative Pion` | meson, `d + anti-u` |
 | `pi0` | exportable | `upi0` | `Neutral Pion` | PDG ingest normalizes neutral pion to one canonical authored form, while the solver treats `upi0` and `dpi0` as equivalent |
+| `K+` | exportable | `k_plus` | `Positive Kaon` | meson, `u + anti-s` |
+| `K-` | exportable | `k_minus` | `Negative Kaon` | meson, `s + anti-u` |
+| `K0` | exportable | `dk0` | `Neutral Kaon (d anti-s)` | meson, `d + anti-s` |
+| `anti-K0` | exportable | `sk0` | `Neutral Kaon (s anti-d)` | meson, `s + anti-d` |
+| `B+` | exportable | `b_plus` | `Positive B Meson` | meson, `u + anti-b` |
+| `B-` | exportable | `b_minus` | `Negative B Meson` | meson, `b + anti-u` |
+| `B0` | exportable | `dB0` | `Neutral B Meson (d anti-b)` | meson, `d + anti-b` |
+| `anti-B0` | exportable | `bB0` | `Neutral B Meson (b anti-d)` | meson, `b + anti-d` |
 
 The v1 unsupported-particle policy is:
 

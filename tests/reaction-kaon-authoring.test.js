@@ -56,8 +56,8 @@ test("kaon authored templates build explicit meson assemblies with strange-quark
     id: "k_plus_structure",
     label: "Positive Kaon",
   }).root;
-  const antiK0 = buildReactionParticipantStructure("anti_k0", {
-    id: "anti_k0_structure",
+  const antiK0 = buildReactionParticipantStructure("sk0", {
+    id: "sk0_structure",
     label: "Neutral Kaon (s anti-d)",
   }).root;
 
@@ -80,8 +80,8 @@ test("kaon authored templates build explicit meson assemblies with strange-quark
 
 test("kaon descriptor trees preserve explicit strange-quark labels", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    buildReactionParticipantStructure("k0", {
-      id: "k0_structure",
+    buildReactionParticipantStructure("dk0", {
+      id: "dk0_structure",
       label: "Neutral Kaon (d anti-s)",
     }).root
   );
@@ -106,9 +106,9 @@ test("solver request exporter classifies authored kaons as mesons", () => {
         label: "Positive Kaon",
       }),
       createParticipant({
-        id: "product_anti_k0",
+        id: "product_sk0",
         side: "product",
-        templateId: "anti_k0",
+        templateId: "sk0",
         label: "Neutral Kaon (s anti-d)",
       }),
     ],
@@ -138,13 +138,13 @@ test("reaction-flow export keeps neutral kaon identities distinct on the shared 
       createParticipant({
         id: "reactant_k0",
         side: "reactant",
-        templateId: "k0",
+        templateId: "dk0",
         label: "Neutral Kaon (d anti-s)",
       }),
       createParticipant({
-        id: "product_anti_k0",
+        id: "product_sk0",
         side: "product",
-        templateId: "anti_k0",
+        templateId: "sk0",
         label: "Neutral Kaon (s anti-d)",
       }),
     ],
@@ -157,9 +157,9 @@ test("reaction-flow export keeps neutral kaon identities distinct on the shared 
   });
 
   assert.equal(document.schema, "reaction-flow/v1");
-  assert.equal(document.participants[0]?.structureKey, "k0");
-  assert.equal(document.participants[1]?.structureKey, "anti_k0");
-  assert(document.participants[0]?.tags.includes("k0"));
-  assert(document.participants[1]?.tags.includes("anti_k0"));
+  assert.equal(document.participants[0]?.structureKey, "dk0");
+  assert.equal(document.participants[1]?.structureKey, "sk0");
+  assert(document.participants[0]?.tags.includes("dk0"));
+  assert(document.participants[1]?.tags.includes("sk0"));
   assert.notDeepEqual(document.participants[0], document.participants[1]);
 });

@@ -74,6 +74,18 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         tags=("pdg:species:neutron",),
     ),
     PdgV1ParticleMapping(
+        canonical_name="anti-n",
+        aliases=("anti-n", "nbar", "anti-neutron"),
+        template_id="neutron",
+        label="Anti Neutron",
+        family="baryon",
+        polarity="anti",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=6,
+        tags=("pdg:species:anti-neutron",),
+    ),
+    PdgV1ParticleMapping(
         canonical_name="p",
         aliases=("p", "proton"),
         template_id="proton",
@@ -84,6 +96,18 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         tags=("pdg:species:proton",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-p",
+        aliases=("anti-p", "pbar", "anti-proton"),
+        template_id="proton",
+        label="Anti Proton",
+        family="baryon",
+        polarity="anti",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=6,
+        tags=("pdg:species:anti-proton",),
     ),
     PdgV1ParticleMapping(
         canonical_name="e-",
@@ -236,6 +260,102 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         electrino_count=8,
         positrino_count=16,
         tags=("pdg:species:pi0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K+",
+        aliases=("K+", "k+", "kaon+", "positive-kaon"),
+        template_id="k_plus",
+        label="Positive Kaon",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=11,
+        tags=("pdg:species:k-plus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K-",
+        aliases=("K-", "k-", "kaon-", "negative-kaon"),
+        template_id="k_minus",
+        label="Negative Kaon",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=11,
+        tags=("pdg:species:k-minus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K0",
+        aliases=("K0", "k0", "kaon0", "neutral-kaon"),
+        template_id="dk0",
+        label="Neutral Kaon (d anti-s)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=12,
+        positrino_count=8,
+        tags=("pdg:species:k0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-K0",
+        aliases=("anti-K0", "anti-k0", "Kbar0", "kbar0", "anti-kaon0"),
+        template_id="sk0",
+        label="Neutral Kaon (s anti-d)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=12,
+        positrino_count=8,
+        tags=("pdg:species:anti-k0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B+",
+        aliases=("B+", "b+", "positive-b-meson"),
+        template_id="b_plus",
+        label="Positive B Meson",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=10,
+        tags=("pdg:species:b-plus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B-",
+        aliases=("B-", "b-", "negative-b-meson"),
+        template_id="b_minus",
+        label="Negative B Meson",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=10,
+        tags=("pdg:species:b-minus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B0",
+        aliases=("B0", "b0", "neutral-b-meson"),
+        template_id="dB0",
+        label="Neutral B Meson (d anti-b)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=7,
+        tags=("pdg:species:b0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-B0",
+        aliases=("anti-B0", "anti-b0", "Bbar0", "bbar0", "anti-b-meson"),
+        template_id="bB0",
+        label="Neutral B Meson (b anti-d)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=7,
+        tags=("pdg:species:anti-b0",),
     ),
 )
 
@@ -705,6 +825,16 @@ def normalize_channel_description(text: str) -> str:
     return " ".join(str(text).replace("-->", "->").split())
 
 
+def infer_reactant_name_from_description(api: Any, particle: Any, description: str) -> str:
+    normalized_description = normalize_channel_description(description)
+    left_side = normalized_description.partition("->")[0].strip()
+    if left_side and " " not in left_side:
+        canonical_left = canonicalize_api_particle_name(api, left_side)
+        if canonical_left in PDG_V1_MAPPING_BY_NAME:
+            return canonical_left
+    return canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+
+
 def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> list[str]:
     names: list[str] = []
     for note in notes:
@@ -844,7 +974,7 @@ def build_live_case_from_decay(api: Any, particle: Any, decay: Any) -> PdgCase:
     if subdecay_count:
         notes.append(f"unsupported:channel-subdecays:{subdecay_count}")
 
-    particle_name = str(getattr(particle, "name", "") or "")
+    particle_name = infer_reactant_name_from_description(api, particle, description)
     decay_pdgid = getattr(decay, "pdgid", None)
     case_token = str(decay_pdgid or description or particle_name or "pdg_decay")
     case_id = slugify(case_token)

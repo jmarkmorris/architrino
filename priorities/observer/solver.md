@@ -1556,8 +1556,9 @@ Current state:
 - the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
 - the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
 - the external core now closes the current supported generated PDG weak-channel request set exactly through a generic weak-channel operator path, and pion lepton-only channels now emit explicit meson provenance steps with solve-generated quark constituents, `Noether core` intermediates, a shared `Free Architrinos` pool, and a `Higgs cluster` supplement when the requested lepton multiplicity exceeds the meson's own core supply;
-- charged and neutral pion support plus repeated-particle expansion now promote a larger frozen live manifest into the analyzable denominator: the current recomputed manifest reaches `64` exportable reactions with `37` exact, `2` partial, and `25` no-solution in the sweep;
-- the top unsupported-particle pressure has therefore shifted away from pion vocabulary and toward kaons, heavier mesons/baryons, and generic textual hadron tokens such as bare `pi`, while the solver-completion pressure has shifted toward the newly analyzable pion-bearing families that still return `partial` or `no-solution`;
+- charged and neutral pion support, repeated-particle expansion, PDG-side kaon mappings, and the first charged/neutral B-meson mappings now promote a larger frozen live manifest into the analyzable denominator: the current recomputed manifest reaches `191` exportable reactions with `43` exact, `3` partial, and `145` no-solution in the sweep;
+- the external core now closes the first B-meson leptonic families exactly, including `B+ -> e+ nu_e`, `B+ -> mu+ nu_mu`, and the corresponding radiative channels, while keeping the neutral `dB0` / `bB0` pair distinct;
+- the top unsupported-particle pressure has therefore shifted further away from pions, kaons, and B mesons toward generic or heavier hadron vocabulary such as bare `pi`, `eta`, `K0S`, `D0`, and `phi`, while the solver-completion pressure has shifted toward the newly analyzable kaon- and B-bearing families that now return `partial` or `no-solution`;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
 - and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
@@ -1600,31 +1601,60 @@ Next steps:
 - decide whether the remaining `3gamma` and `4gamma` neutral-pion channels should be solved through a more general repeated-photon meson rule or left as later electromagnetic-family work;
 - and use the closure sweep to confirm that each added pion family improves exact-closure percentage rather than merely increasing the analyzable denominator.
 
-### 3. Add Kaon Support After The Pion Family
+### 3. Expand Kaon Solver Coverage After The First PDG Cutover
 
-Status: `pending`
+Status: `in_progress`
 
 Objective:
 
-- add the four kaons as supported light-meson content, using the same explicit particle-mapping discipline that just expanded pion coverage.
+- expand kaon coverage now that the four kaons are supported light-meson content in both the solver path and PDG-side mapping registry.
 
 Why it matters:
 
-- the sweep pressure has already shifted toward kaons once charged-pion support moved more reactions into the analyzable denominator;
-- kaons are the next small, concrete meson family that can expand supported input vocabulary without jumping immediately to broader heavier-hadron policy;
+- kaons now materially widen the analyzable live manifest, so their remaining unsolved channels are solver gaps rather than unsupported-input bookkeeping;
+- kaons are still a small, concrete meson family, so expanding their rule coverage is a tractable next step before jumping to broader heavier-hadron policy;
 - and the neutral kaon pair shares charge while differing by strangeness, so the solver contract and closure logic need explicit identity handling rather than a single neutral-kaon placeholder.
 
 Required particle content:
 
 - `K+` as `u + anti-s`;
 - `K-` as `s + anti-u`;
-- `K0` as `d + anti-s`;
-- and `anti-K0` as `s + anti-d`.
+- `dk0` as `d + anti-s`;
+- and `sk0` as `s + anti-d`.
 
 Next steps:
 
-- preserve authored kaon constituent identity through the solver path, especially the `generation:2` strange-quark distinction that currently rides on the existing quark template surface;
-- keep the neutral `K0` / `anti-K0` pair distinct in solver behavior rather than collapsing them into one neutral-kaon placeholder;
-- expand beyond the first authored charged-kaon lepton closures now covered in the external solver and add the next kaon-bearing channels exposed by PDG export;
-- add PDG-side kaon particle mappings so kaon-bearing reactions move from unsupported-input classification into the analyzable denominator;
-- and use the closure sweep to measure whether PDG-visible kaon support improves exact or partial closure rather than only increasing supported-input count.
+- preserve kaon constituent identity through the solver path, especially the `generation:2` strange-quark distinction that currently rides on the existing quark template surface;
+- keep the neutral `dk0` / `sk0` pair distinct in solver behavior rather than collapsing them into one neutral-kaon placeholder;
+- expand beyond the first charged-kaon lepton closures now covered in the external solver, such as `K+ -> mu+ nu_mu` and `K+ -> e+ nu_e`, and add the next kaon-bearing channels exposed by PDG export;
+- prioritize the newly analyzable kaon families now visible in the sweep, such as `K+ -> pi+ pi0`, radiative kaon channels, and kaon-bearing proton-decay products;
+- and use the closure sweep to measure whether each added kaon family improves exact or partial closure rather than merely increasing the analyzable denominator.
+
+### 4. Expand B-Meson Solver Coverage After The First PDG Cutover
+
+Status: `in_progress`
+
+Objective:
+
+- expand B-meson coverage now that `B+`, `B-`, `dB0`, and `bB0` are supported in the solver path and PDG-side mapping registry.
+
+Why it matters:
+
+- B-meson mappings materially widened the analyzable live manifest again, so their remaining failures are now solver gaps rather than unsupported-input bookkeeping;
+- the first charged-B leptonic and radiative channels already close exactly, which means the seam is good and the next work is concrete family expansion rather than more contract surgery;
+- and the neutral `dB0` / `bB0` pair must stay identity-distinct in solver behavior because they differ by constituent content even though both are neutral.
+
+Required particle content:
+
+- `B+` as `u + anti-b`;
+- `B-` as `b + anti-u`;
+- `dB0` as `d + anti-b`;
+- and `bB0` as `b + anti-d`.
+
+Next steps:
+
+- preserve bottom-quark constituent identity through the solver path using the existing `down_quark` plus `generation:3` surface rather than inventing a parallel quark template family;
+- keep the neutral `dB0` / `bB0` pair distinct in exact-identity and downstream handoff behavior;
+- expand beyond the first charged-B leptonic closures now covered in the external solver, especially the newly analyzable B families visible in the sweep such as `B+ -> pi+ pi0`, `B+ -> K+ pi0`, `B+ -> dk0 pi+`, and the first neutral-B electromagnetic or dilepton channels;
+- use the sweep to separate simple meson-family rule gaps from genuinely heavier-hadron policy questions before widening beyond the current B vocabulary;
+- and confirm that each added B family improves exact or partial closure rather than merely increasing the analyzable denominator.

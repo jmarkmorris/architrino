@@ -1,7 +1,7 @@
 function appendTileLabelLines(labelElement, lines = []) {
   (Array.isArray(lines) ? lines : []).forEach((line) => {
     const lineElement = document.createElement("span");
-    lineElement.className = "composer-reaction-solver-particle-label-line";
+    lineElement.className = "composer-reaction-canvas-particle-label-line";
     lineElement.textContent = String(line ?? "");
     labelElement.appendChild(lineElement);
   });
@@ -36,10 +36,10 @@ export function getReactionParticleTileLabelLines(
   if (normalizedTemplateId === "k_plus") {
     return ["Positive", "Kaon", "u !s"];
   }
-  if (normalizedTemplateId === "anti_k0") {
+  if (normalizedTemplateId === "sk0") {
     return ["Neutral", "Kaon", "s !d"];
   }
-  if (normalizedTemplateId === "k0") {
+  if (normalizedTemplateId === "dk0") {
     return ["Neutral", "Kaon", "d !s"];
   }
   if (normalizedTemplateId === "b_minus") {
@@ -48,10 +48,10 @@ export function getReactionParticleTileLabelLines(
   if (normalizedTemplateId === "b_plus") {
     return ["Positive", "B Meson", "u !b"];
   }
-  if (normalizedTemplateId === "anti_b0") {
+  if (normalizedTemplateId === "bb0") {
     return ["Neutral", "B Meson", "b !d"];
   }
-  if (normalizedTemplateId === "b0") {
+  if (normalizedTemplateId === "db0") {
     return ["Neutral", "B Meson", "d !b"];
   }
   if (normalizedTemplateId === "proton" && options.includeCompositePreviewLines === true) {
@@ -90,7 +90,7 @@ export function createReactionParticleTileElement(participant = null, options = 
   const getParticipantCardLabelLines =
     options.getParticipantCardLabelLines ?? ((tileLabel) => [String(tileLabel ?? "").trim() || "?"]);
   const tile = document.createElement("div");
-  tile.className = "composer-reaction-solver-particle";
+  tile.className = "composer-reaction-canvas-particle";
   classNames.filter(Boolean).forEach((className) => tile.classList.add(className));
   if (participant?.templateId === "free_architrinos") {
     tile.classList.add("is-free-architrinos");
@@ -99,9 +99,9 @@ export function createReactionParticleTileElement(participant = null, options = 
     tile.classList.add("is-anti-polarity");
   }
   const meta = getParticipantCardMeta(participant);
-  tile.style.setProperty("--solver-accent", meta.accent);
+  tile.style.setProperty("--reaction-canvas-accent", meta.accent);
   const visualLabel = document.createElement("div");
-  visualLabel.className = "composer-reaction-solver-particle-label";
+  visualLabel.className = "composer-reaction-canvas-particle-label";
   appendTileLabelLines(
     visualLabel,
     getParticipantCardLabelLines(participant?.label, participant)
