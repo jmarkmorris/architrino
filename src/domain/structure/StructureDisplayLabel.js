@@ -27,6 +27,10 @@ const displayLabelsBySpecies = Object.freeze({
   down_quark: "Down Quark",
   strange_quark: "Strange Quark",
   bottom_quark: "Bottom Quark",
+  pi_plus: "Pi+",
+  pi_minus: "Pi-",
+  upi0: "Pi0 (u anti-u)",
+  dpi0: "Pi0 (d anti-d)",
 });
 
 const polarityQualifiedSpecies = new Set([

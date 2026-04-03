@@ -93,6 +93,10 @@ const solverTemplateMeta = Object.freeze({
   free_architrinos: { shortLabel: "FA", accent: "#7db2ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
+  pi_plus: { shortLabel: "Pi+", accent: "#ff8a52" },
+  pi_minus: { shortLabel: "Pi-", accent: "#4a78ff" },
+  upi0: { shortLabel: "Pi0", accent: "#ff8a52" },
+  dpi0: { shortLabel: "Pi0", accent: "#4a78ff" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -391,6 +395,18 @@ function getParticipantCardMeta(participant = null) {
       accent: polarity === "anti" ? "#2d8cff" : "#ff5a4a",
     };
   }
+  if (templateId === "pi_plus" || templateId === "upi0") {
+    return {
+      ...baseMeta,
+      accent: "#ff8a52",
+    };
+  }
+  if (templateId === "pi_minus" || templateId === "dpi0") {
+    return {
+      ...baseMeta,
+      accent: "#4a78ff",
+    };
+  }
   return baseMeta;
 }
 
@@ -470,6 +486,18 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "higgs_cluster") {
     return "Higgs cluster";
+  }
+  if (normalizedTemplateId === "pi_plus") {
+    return "Pi+";
+  }
+  if (normalizedTemplateId === "pi_minus") {
+    return "Pi-";
+  }
+  if (normalizedTemplateId === "upi0") {
+    return "Pi0 (u anti-u)";
+  }
+  if (normalizedTemplateId === "dpi0") {
+    return "Pi0 (d anti-d)";
   }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
 }
@@ -3017,7 +3045,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
           participant.templateId === "higgs_cluster" ||
           participant.templateId === "photon" ||
           participant.templateId === "neutron" ||
-          participant.templateId === "proton"
+          participant.templateId === "proton" ||
+          participant.templateId === "pi_plus" ||
+          participant.templateId === "pi_minus" ||
+          participant.templateId === "upi0" ||
+          participant.templateId === "dpi0"
         )
       ) {
         renderMenuButton("Dissociate", {

@@ -75,6 +75,9 @@ function detectParticipantFamily(participant = null) {
   if (templateId.includes("quark")) {
     return "quark";
   }
+  if (templateId.includes("pi")) {
+    return "meson";
+  }
   return "";
 }
 

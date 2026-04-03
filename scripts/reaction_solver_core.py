@@ -72,125 +72,301 @@ def get_participant_root_or_self(participant=None):
     return get_root_node(participant) or (participant or {})
 
 
-def build_participant_pdg_name_counter(participants=None):
+def get_effective_template_id(entity=None):
+    return normalize_text((entity or {}).get("templateId")).lower()
+
+
+def get_generation_flag_value(entity=None):
+    return get_pdg_flag_value(entity, "generation:")
+
+
+def build_participant_signature_counter(participants=None):
     counter = Counter()
     for participant in participants or []:
-        pdg_name = get_effective_pdg_name(get_participant_root_or_self(participant))
-        if pdg_name:
-            counter[pdg_name] += 1
+        entity = get_participant_root_or_self(participant)
+        signature = (
+            get_effective_template_id(entity),
+            normalize_text(entity.get("polarity")).lower(),
+            get_generation_flag_value(entity),
+        )
+        if signature[0]:
+            counter[signature] += 1
     return counter
 
 
-def build_participant_pdg_name_groups(participants=None):
-    groups = {}
-    for participant in participants or []:
-        pdg_name = get_effective_pdg_name(get_participant_root_or_self(participant))
-        groups.setdefault(pdg_name, []).append(participant)
-    return groups
-
-
-SUPPORTED_PDG_WEAK_FAMILIES = (
+GENERIC_WEAK_CHANNEL_PROFILES = (
     {
-        "key": "neutron-beta",
-        "sourcePdgNames": Counter({"n": 1}),
-        "productPdgNames": Counter({"p": 1, "e-": 1, "anti-nu_e": 1}),
-        "ruleFamily": "pdg-weak-neutron-beta",
+        "key": "weak-baryon-beta-decay",
+        "sourceSignatures": Counter({("neutron", "pro", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("proton", "pro", ""): 1,
+                ("electron", "pro", "1"): 1,
+                ("neutrino", "anti", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-baryon-beta-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-baryon-beta-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
     },
     {
-        "key": "radiative-neutron-beta",
-        "sourcePdgNames": Counter({"n": 1}),
-        "productPdgNames": Counter({"p": 1, "e-": 1, "anti-nu_e": 1, "gamma": 1}),
-        "ruleFamily": "pdg-weak-radiative-neutron-beta",
+        "key": "weak-lepton-decay",
+        "sourceSignatures": Counter({("electron", "pro", "2"): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "1"): 1,
+                ("neutrino", "anti", "1"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-lepton-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-lepton-decay-radiative",
+            },
+            {
+                "key": "pair",
+                "productSignatures": Counter(
+                    {
+                        ("electron", "pro", "1"): 1,
+                        ("electron", "anti", "1"): 1,
+                    }
+                ),
+                "ruleFamily": "weak-lepton-decay-pair",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
     },
     {
-        "key": "muon-decay",
-        "sourcePdgNames": Counter({"mu-": 1}),
-        "productPdgNames": Counter({"e-": 1, "anti-nu_e": 1, "nu_mu": 1}),
-        "ruleFamily": "pdg-weak-muon-decay",
-    },
-    {
-        "key": "radiative-muon-decay",
-        "sourcePdgNames": Counter({"mu-": 1}),
-        "productPdgNames": Counter({"e-": 1, "anti-nu_e": 1, "nu_mu": 1, "gamma": 1}),
-        "ruleFamily": "pdg-weak-radiative-muon-decay",
-    },
-    {
-        "key": "muon-decay-pair",
-        "sourcePdgNames": Counter({"mu-": 1}),
-        "productPdgNames": Counter({"e-": 2, "e+": 1, "anti-nu_e": 1, "nu_mu": 1}),
-        "ruleFamily": "pdg-weak-muon-decay-with-electron-positron-pair",
-    },
-    {
-        "key": "muon-to-electron-photon",
-        "sourcePdgNames": Counter({"mu-": 1}),
-        "productPdgNames": Counter({"e-": 1, "gamma": 1}),
-        "ruleFamily": "pdg-weak-muon-to-electron-photon",
+        "key": "weak-lepton-radiative-conversion",
+        "sourceSignatures": Counter({("electron", "pro", "2"): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "1"): 1,
+                ("photon", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-lepton-radiative-conversion",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
     },
 )
 
 
-def match_supported_pdg_weak_family(source_participants=None, product_participants=None):
-    source_counter = build_participant_pdg_name_counter(source_participants)
-    product_counter = build_participant_pdg_name_counter(product_participants)
-    for family in SUPPORTED_PDG_WEAK_FAMILIES:
-        if source_counter == family["sourcePdgNames"] and product_counter == family["productPdgNames"]:
-            return family
+def counter_includes(left=None, right=None):
+    left = left or Counter()
+    right = right or Counter()
+    for key, count in right.items():
+        if left.get(key, 0) < count:
+            return False
+    return True
+
+
+def counter_difference(left=None, right=None):
+    left = left or Counter()
+    right = right or Counter()
+    difference = Counter(left)
+    for key, count in right.items():
+        remaining = difference.get(key, 0) - count
+        if remaining > 0:
+            difference[key] = remaining
+        elif key in difference:
+            del difference[key]
+    return difference
+
+
+def match_generic_weak_channel(source_participants=None, product_participants=None):
+    source_counter = build_participant_signature_counter(source_participants)
+    product_counter = build_participant_signature_counter(product_participants)
+    for profile in GENERIC_WEAK_CHANNEL_PROFILES:
+        if source_counter != profile["sourceSignatures"]:
+            continue
+        if not counter_includes(product_counter, profile["requiredProductSignatures"]):
+            continue
+        remainder = counter_difference(product_counter, profile["requiredProductSignatures"])
+        for variant in profile["optionalProductVariants"]:
+            if remainder == variant["productSignatures"]:
+                return {
+                    "key": profile["key"],
+                    "ruleFamily": variant["ruleFamily"],
+                    "variantKey": variant["key"],
+                    "implicitCenterPolarity": profile["implicitCenterPolarity"],
+                }
     return None
 
 
-def solve_supported_pdg_weak_family(request, source_participants, product_participants, family):
+def build_generated_weak_center(step_id, source_participant, polarity="pro"):
+    source_participant_id = normalize_text((source_participant or {}).get("id"))
+    center_id = f"weak_center:{step_id}"
+    center_root_id = f"{center_id}/root"
+    return {
+        "id": center_id,
+        "origin": "solve-generated-intermediate",
+        "side": "center",
+        "templateId": "noether_core",
+        "label": "Pro Noether core" if polarity != "anti" else "Anti Noether core",
+        "family": "noether-core",
+        "polarity": "anti" if polarity == "anti" else "pro",
+        "isComposite": False,
+        "inventory": {
+            "electrinoCount": 3,
+            "positrinoCount": 3,
+        },
+        "rootNodeId": center_root_id,
+        "sourceParticipantId": source_participant_id,
+        "sourceStepId": step_id,
+        "tags": ["solve-generated", "implicit-weak-center", "noether-core-provenance"],
+        "nodes": [
+            {
+                "id": center_root_id,
+                "templateId": "noether_core",
+                "label": "Pro Noether core" if polarity != "anti" else "Anti Noether core",
+                "family": "noether-core",
+                "polarity": "anti" if polarity == "anti" else "pro",
+                "isComposite": False,
+                "inventory": {
+                    "electrinoCount": 3,
+                    "positrinoCount": 3,
+                },
+            }
+        ],
+    }
+
+
+def solve_generic_weak_channel(request, source_participants, product_participants, family):
     source_participant = source_participants[0]
     source_root = get_root_node(source_participant)
     if source_root is None:
         return None
-    mappings = []
+    operator_id = f"associate:{family['key']}"
+    step_id = f"step_{family['key']}_{family['variantKey']}"
+    mappings = [
+        build_mapping(
+            mapping_id=f"map_{family['key']}_source_in",
+            kind="operator-path",
+            from_participant_id=normalize_text(source_participant.get("id")),
+            from_anchor_id=normalize_text(source_root.get("id")) or "root",
+            from_role="reactant",
+            to_participant_id=operator_id,
+            to_anchor_id="root",
+            to_role="operator-input",
+            conserved_ledger=source_root.get("inventory"),
+            provenance_mode="operator-mediated",
+            via_operator_id=operator_id,
+        )
+    ]
     resolved_target_ids = []
-    step_mapping_ids = []
+    step_mapping_ids = [f"map_{family['key']}_source_in"]
+    operator_outputs = []
     for index, product in enumerate(product_participants, start=1):
         product_id = normalize_text(product.get("id"))
         product_root = get_root_node(product)
         if not product_id or product_root is None:
             return None
-        mapping_id = f"map_{family['key']}_{index}"
+        mapping_id = f"map_{family['key']}_out_{index}"
         mappings.append(
             build_mapping(
                 mapping_id=mapping_id,
-                kind="direct",
-                from_participant_id=normalize_text(source_participant.get("id")),
-                from_anchor_id=normalize_text(source_root.get("id")) or "root",
-                from_role="reactant",
+                kind="operator-path",
+                from_participant_id=operator_id,
+                from_anchor_id="root",
+                from_role="operator-output",
                 to_participant_id=product_id,
                 to_anchor_id=normalize_text(product_root.get("id")) or "root",
                 to_role="product",
                 conserved_ledger=product_root.get("inventory"),
-                provenance_mode="direct-conservative",
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
             )
         )
         resolved_target_ids.append(product_id)
         step_mapping_ids.append(mapping_id)
+        operator_outputs.append(
+            {
+                "participantId": product_id,
+                "anchorId": normalize_text(product_root.get("id")) or "root",
+                "role": "product",
+            }
+        )
+    generated_center = build_generated_weak_center(
+        step_id,
+        source_participant,
+        family.get("implicitCenterPolarity", "pro"),
+    )
     return build_result(
         request=request,
         generated_steps=[
             {
-                "stepId": f"step_{family['key']}",
-                "kind": "direct-map",
+                "stepId": step_id,
+                "kind": "associate",
                 "ruleFamily": family["ruleFamily"],
                 "consumedParticipantIds": [normalize_text(source_participant.get("id"))],
-                "producedParticipantIds": [],
+                "producedParticipantIds": [normalize_text(generated_center.get("id"))],
                 "resolvedTargetIds": resolved_target_ids,
                 "mappingIds": step_mapping_ids,
-                "operatorIds": [],
-                "diagnosticLabels": ["pdg-supported-weak-family"],
+                "operatorIds": [operator_id],
+                "diagnosticLabels": [
+                    "implicit-weak-center",
+                    "noether-core-provenance",
+                    "generic-weak-channel",
+                ],
             }
         ],
         generated_mappings=mappings,
-        generated_operators=[],
-        operator_placements=[],
+        generated_operators=[
+            {
+                "id": operator_id,
+                "type": "associate",
+                "origin": "solve-generated",
+                "label": "Weak Channel",
+                "inputs": [
+                    {
+                        "participantId": normalize_text(source_participant.get("id")),
+                        "anchorId": normalize_text(source_root.get("id")) or "root",
+                        "role": "reactant",
+                    }
+                ],
+                "outputs": operator_outputs,
+            }
+        ],
+        operator_placements=[
+            {
+                "operatorId": operator_id,
+                "lane": 1,
+                "row": 1,
+                "slot": 1,
+            }
+        ],
         auto_dissociated_participant_ids=[],
+        generated_participants=[generated_center],
     )
 
 
 def participant_origin(participant=None):
+    explicit_origin = normalize_text((participant or {}).get("origin"))
+    if explicit_origin:
+        return explicit_origin
     side = normalize_text((participant or {}).get("side")).lower()
     if side == "product":
         return "authored-product"
@@ -212,6 +388,10 @@ def serialize_result_participant(participant=None):
         "rootNodeId": normalize_text(participant.get("rootNodeId")),
         "nodes": [],
     }
+    if normalize_text(participant.get("sourceParticipantId")):
+        record["sourceParticipantId"] = normalize_text(participant.get("sourceParticipantId"))
+    if normalize_text(participant.get("sourceStepId")):
+        record["sourceStepId"] = normalize_text(participant.get("sourceStepId"))
     if participant.get("family"):
         record["family"] = normalize_text(participant.get("family"))
     if participant.get("polarity"):
@@ -567,9 +747,20 @@ def find_associate_inputs_for_standalone(product, source_entries):
     return None
 
 
-def build_result(request, generated_steps, generated_mappings, generated_operators, operator_placements, auto_dissociated_participant_ids):
+def build_result(
+    request,
+    generated_steps,
+    generated_mappings,
+    generated_operators,
+    operator_placements,
+    auto_dissociated_participant_ids,
+    generated_participants=None,
+):
     request_id = normalize_text(request.get("requestId")) or "solver_request"
-    participants = [serialize_result_participant(participant) for participant in request.get("participants", [])]
+    participants = [
+        serialize_result_participant(participant)
+        for participant in list(request.get("participants", [])) + list(generated_participants or [])
+    ]
     manually_opened_participant_ids = [
         normalize_text(participant_id)
         for participant_id in ((request.get("dissociation") or {}).get("manuallyOpenedParticipantIds") or [])
@@ -700,23 +891,39 @@ def collect_unused_source_ids(request, result_mappings, auto_dissociated_partici
 
 def solve_request(request):
     participants = request.get("participants", [])
-    source_participants = [
+    reactant_participants = [
         participant
         for participant in participants
-        if normalize_text(participant.get("side")).lower() in ("reactant", "center")
+        if normalize_text(participant.get("side")).lower() == "reactant"
     ]
+    center_participants = [
+        participant
+        for participant in participants
+        if normalize_text(participant.get("side")).lower() == "center"
+    ]
+    source_participants = reactant_participants + center_participants
     product_participants = [
         participant
         for participant in participants
         if normalize_text(participant.get("side")).lower() == "product"
     ]
-    supported_pdg_weak_family = match_supported_pdg_weak_family(source_participants, product_participants)
-    if supported_pdg_weak_family is not None:
-        result = solve_supported_pdg_weak_family(
-            request,
-            source_participants,
+    if (
+        not request.get("manualOperators")
+        and not request.get("manualMappings")
+        and not center_participants
+    ):
+        supported_generic_weak_channel = match_generic_weak_channel(
+            reactant_participants,
             product_participants,
-            supported_pdg_weak_family,
+        )
+    else:
+        supported_generic_weak_channel = None
+    if supported_generic_weak_channel is not None:
+        result = solve_generic_weak_channel(
+            request,
+            reactant_participants,
+            product_participants,
+            supported_generic_weak_channel,
         )
         if result is not None:
             return result

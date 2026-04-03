@@ -357,6 +357,33 @@ Next steps:
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
 
+### 8. Accept Pion Structures From Reaction
+
+Status: `pending`
+
+Goal:
+
+- make sure downstream Composer import and display paths can accept accepted pion-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
+
+Why it matters:
+
+- pion support should eventually flow cleanly from solver and Reaction into Composer review/output without Composer becoming the place where pion semantics are invented;
+- neutral-pion authored variants need to stay legible after handoff even though the solver treats them as closure-equivalent;
+- and adding this explicitly now keeps downstream expectations aligned with the upstream particle-vocabulary expansion.
+
+Required particle content:
+
+- accepted `pi+` structures based on `u + anti-d`;
+- accepted `pi-` structures based on `d + anti-u`;
+- and accepted `pi0` structures based on either `u + anti-u` or `d + anti-d`, with both remaining display-valid downstream.
+
+Next steps:
+
+- confirm that Composer accepts pion-bearing downstream contracts without runtime coupling back into Reaction or solver internals;
+- keep pion rendering and labels data-driven from accepted upstream output rather than Composer-local particle policy;
+- add at least one downstream handoff/import check once Reaction export can emit pion structures;
+- and keep Composer as a consumer of accepted pion output rather than a second particle-authoring surface.
+
 ## Related Priorities
 
 - [composer-reaction](./observer.md)

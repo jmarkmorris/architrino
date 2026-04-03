@@ -32,6 +32,8 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.equal(summary.outcomeCounts["no-solution"], 0);
   assert.equal(summary.outcomeCounts["unsupported-input"], 1);
   assert.deepEqual(summary.topUnsupportedParticles, [{ particle: "pi+", count: 1 }]);
+  assert.equal(summary.discoveredUnsupportedReactionCount, null);
+  assert.deepEqual(summary.discoveredTopUnsupportedParticles, []);
   assert.equal(summary.cases.length, 3);
   assert.equal(summary.cases[0].reactantsCompact, "N");
   assert.equal(summary.cases[0].productsCompact, "P.e.av");
@@ -39,7 +41,7 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.equal(summary.cases[1].productsCompact, "e.av.v2");
   assert.equal(summary.cases[2].reactantsCompact, "pi+");
   assert.equal(summary.cases[2].productsCompact, "ae2.v2");
-  assert.match(report, /Top unsupported particles:\npi\+\t1/);
+  assert.match(report, /Top unsupported particles in this run:\npi\+\t1/);
   assert.match(report, /batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
   assert.match(report, /\tfree_neutron_beta_decay\texact\texact=true\tunresolved=0\tN\tP\.e\.av\t\t/);
   assert.match(report, /\tmuon_decay\texact\texact=true\tunresolved=0\te2\te\.av\.v2\t\t/);
@@ -68,8 +70,11 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
     schema: "pdg-live-manifest/v1",
     edition: "test",
     exportableCount: 2,
-    unsupportedDiscoveryCount: 0,
-    topUnsupportedParticles: [],
+    unsupportedDiscoveryCount: 7,
+    topUnsupportedParticles: [
+      { particle: "pi+", count: 12 },
+      { particle: "pi-", count: 5 },
+    ],
     entries: [
       {
         batchId: 1,
@@ -141,10 +146,17 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
 
   assert.match(stdoutOne, /startBatchId: 1/);
   assert.match(stdoutOne, /endBatchId: 1/);
+  assert.match(stdoutOne, /Discovered unsupported reactions outside this batch: 7/);
+  assert.match(stdoutOne, /Top unsupported particles across all discovered unsupported reactions:\npi\+\t12\npi-\t5/);
   assert.match(stdoutOne, /batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
   assert.match(stdoutOne, /1\tfree_neutron_beta_decay\texact\texact=true\tunresolved=0\tN\tP\.e\.av\t\tS017\.1\/2025/);
   assert.equal(summaryOne.reactionsTested, 1);
   assert.equal(summaryOne.exactClosureCount, 1);
+  assert.equal(summaryOne.discoveredUnsupportedReactionCount, 7);
+  assert.deepEqual(summaryOne.discoveredTopUnsupportedParticles, [
+    { particle: "pi+", count: 12 },
+    { particle: "pi-", count: 5 },
+  ]);
   assert.equal(summaryOne.cases[0].reactantsCompact, "N");
   assert.equal(summaryOne.cases[0].productsCompact, "P.e.av");
   assert.equal(cursorAfterOne.nextBatchId, 2);

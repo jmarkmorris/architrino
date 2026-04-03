@@ -148,8 +148,34 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
     assert.equal(result.summary.exact, true, `${requestPath} should report exact closure`);
     assert.equal(result.summary.unresolvedTargetCount, 0, `${requestPath} should have no unresolved targets`);
     assert.deepEqual(result.residue.unresolvedTargetIds, [], `${requestPath} should have no unresolved residue`);
-    assert.equal(result.mappings.length, expectedProductCount, `${requestPath} should map each product`);
-    assert.equal(result.operators.length, 0, `${requestPath} should not need synthetic operators in the current weak-family closure path`);
+    assert.equal(result.mappings.length, expectedProductCount + 1, `${requestPath} should add one weak-channel input mapping plus one mapping per product`);
+    assert.equal(result.operators.length, 1, `${requestPath} should use one generated weak-channel operator`);
+    assert.equal(
+      result.operators.some(
+        (operator) => operator.origin === "solve-generated" && operator.type === "associate"
+      ),
+      true,
+      `${requestPath} should expose the generic weak operator through the contract`
+    );
+    assert.equal(
+      result.steps.some(
+        (step) =>
+          step.kind === "associate" &&
+          String(step.ruleFamily ?? "").startsWith("weak-")
+      ),
+      true,
+      `${requestPath} should solve through a generic weak-channel rule family`
+    );
+    assert.equal(
+      result.participants.some(
+        (participant) =>
+          participant.origin === "solve-generated-intermediate" &&
+          participant.side === "center" &&
+          participant.templateId === "noether_core"
+      ),
+      true,
+      `${requestPath} should synthesize an implicit weak center`
+    );
   });
 });
 

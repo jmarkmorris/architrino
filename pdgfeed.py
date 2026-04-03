@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
@@ -28,6 +29,7 @@ PDG_FIXTURE_CORPUS_SCHEMA = "pdg-fixture-corpus/v1"
 PDG_FIXTURE_SOURCE_SCHEMA = "pdg-fixture-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
 PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
+PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
 DEFAULT_POLICY = {
     "recruitmentMode": "forbid",
@@ -702,6 +704,8 @@ def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> li
         side = parts[1]
         particle_name = parts[2]
         if side not in ("reactant", "product") or particle_name in ("", "unknown"):
+            continue
+        if not PARTICLE_NAME_PATTERN.match(particle_name):
             continue
         names.append(particle_name)
     return names

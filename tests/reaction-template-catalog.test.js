@@ -16,5 +16,11 @@ test("reaction template catalog exposes the current manual-authoring picker rows
       { template: "down_quark", label: "Pro Down Quark" },
       { template: "up_quark", label: "Pro Up Quark" },
     ],
+    [
+      { template: "pi_plus", label: "Pi+" },
+      { template: "pi_minus", label: "Pi-" },
+      { template: "upi0", label: "Pi0 (u anti-u)" },
+      { template: "dpi0", label: "Pi0 (d anti-d)" },
+    ],
   ]);
 });

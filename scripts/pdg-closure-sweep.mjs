@@ -416,7 +416,7 @@ function buildReport(summary) {
     `requestErrors: ${summary.outcomeCounts["request-error"]}`,
     `solveErrors: ${summary.outcomeCounts["solve-error"]}`,
     "",
-    "Top unsupported particles:",
+    "Top unsupported particles in this run:",
   ].filter(Boolean);
 
   if (summary.topUnsupportedParticles.length === 0) {
@@ -424,6 +424,21 @@ function buildReport(summary) {
   } else {
     for (const entry of summary.topUnsupportedParticles) {
       lines.push(`${entry.particle}\t${entry.count}`);
+    }
+  }
+
+  if (Number.isInteger(summary.discoveredUnsupportedReactionCount)) {
+    lines.push(
+      "",
+      `Discovered unsupported reactions outside this batch: ${summary.discoveredUnsupportedReactionCount}`,
+      "Top unsupported particles across all discovered unsupported reactions:"
+    );
+    if (summary.discoveredTopUnsupportedParticles.length === 0) {
+      lines.push("(none)");
+    } else {
+      for (const entry of summary.discoveredTopUnsupportedParticles) {
+        lines.push(`${entry.particle}\t${entry.count}`);
+      }
     }
   }
 
@@ -463,6 +478,7 @@ function buildManifestItems(options) {
   return {
     manifestPath,
     manifestHash,
+    manifest,
     startBatchId: Number.isInteger(selection.startBatchId) ? selection.startBatchId : null,
     items: selection.entries.map((entry) => ({
       batchId: Number(entry.batchId),
@@ -506,12 +522,14 @@ function main() {
   let selectedItems = [];
   let manifestPath = "";
   let manifestHash = "";
+  let manifest = null;
   let startBatchId = null;
 
   if (options.manifestPath) {
     const manifestSelection = buildManifestItems(options);
     manifestPath = manifestSelection.manifestPath;
     manifestHash = manifestSelection.manifestHash;
+    manifest = manifestSelection.manifest;
     startBatchId = manifestSelection.startBatchId;
     selectedItems = manifestSelection.items;
   } else {
@@ -711,6 +729,12 @@ function main() {
     outcomeCounts: summarizeOutcomeCounts(results),
     unsupportedParticleCounts,
     topUnsupportedParticles: buildTopUnsupportedParticles(unsupportedParticleCounts),
+    discoveredUnsupportedReactionCount: Number.isInteger(manifest?.unsupportedDiscoveryCount)
+      ? manifest.unsupportedDiscoveryCount
+      : null,
+    discoveredTopUnsupportedParticles: Array.isArray(manifest?.topUnsupportedParticles)
+      ? manifest.topUnsupportedParticles
+      : [],
     cases: results,
   };
 

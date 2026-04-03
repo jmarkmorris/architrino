@@ -63,6 +63,18 @@ export function createReactionParticipantMutationRuntime(options = {}) {
     if (structureSpecies === "neutron") {
       return "neutron";
     }
+    if (structureSpecies === "pi_plus") {
+      return "pi_plus";
+    }
+    if (structureSpecies === "pi_minus") {
+      return "pi_minus";
+    }
+    if (structureSpecies === "upi0") {
+      return "upi0";
+    }
+    if (structureSpecies === "dpi0") {
+      return "dpi0";
+    }
     if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
       return "electron";
     }

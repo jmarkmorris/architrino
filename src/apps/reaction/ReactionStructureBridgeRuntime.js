@@ -243,6 +243,33 @@ function createBaryonNode(id, species, quarkFamilies, options = {}) {
   });
 }
 
+function createMesonNode(id, species, constituents = [], options = {}) {
+  const { label = species } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species,
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.MESON,
+      source: "authored_override",
+    },
+    children: constituents.map((constituent, index) =>
+      createQuarkNode(
+        `${id}/quark_${index + 1}`,
+        constituent.family,
+        formatPolarityQualifiedLabel(
+          constituent.family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK
+            ? "Up Quark"
+            : "Down Quark",
+          constituent.polarity
+        ),
+        { polarity: constituent.polarity }
+      )
+    ),
+  });
+}
+
 function createHiggsClusterNode(id, options = {}) {
   const { label = "Higgs cluster" } = options;
   return createStructureNode({
@@ -409,6 +436,70 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
         STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
       ],
       { label: label || "Pro Neutron" }
+    );
+  } else if (normalizedTemplateId === "pi_plus") {
+    root = createMesonNode(
+      structureId,
+      "pi_plus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Pi+" }
+    );
+  } else if (normalizedTemplateId === "pi_minus") {
+    root = createMesonNode(
+      structureId,
+      "pi_minus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Pi-" }
+    );
+  } else if (normalizedTemplateId === "upi0") {
+    root = createMesonNode(
+      structureId,
+      "upi0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Pi0 (u anti-u)" }
+    );
+  } else if (normalizedTemplateId === "dpi0") {
+    root = createMesonNode(
+      structureId,
+      "dpi0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Pi0 (d anti-d)" }
     );
   } else if (normalizedTemplateId === "higgs_cluster") {
     root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });

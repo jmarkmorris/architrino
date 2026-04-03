@@ -116,6 +116,15 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(manifest["entries"][0]["solverRequest"]["schema"], "solver-request/v1")
         self.assertEqual(manifest["topUnsupportedParticles"], [{"particle": "pi+", "count": 1}])
 
+    def test_extract_unsupported_particle_names_ignores_non_particle_text_tokens(self):
+        notes = [
+            "unsupported:product:pi+:no-v1-mapping",
+            "unsupported:product:-->:generic-or-textual-item",
+            "unsupported:product:gamma ray:generic-or-textual-item",
+        ]
+
+        self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
+
 
 if __name__ == "__main__":
     unittest.main()
