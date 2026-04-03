@@ -297,3 +297,22 @@ Next steps:
 - remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
 - keep any needed historical reference in git history rather than in active source files;
 - and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.
+
+### 8. Add `Noether Pair` As A First-Class Reaction Assembly
+
+Status: `pending`
+
+Goal:
+
+- add a `Noether Pair` assembly to the Reaction-side collection so authors can use it explicitly in the same overall assembly vocabulary as the existing clusters and particles.
+
+Why it matters:
+
+- the pair gives Reaction a middle-scale spacetime assembly between the current planar photon path and the full `Higgs Cluster`;
+- it also creates a natural moment to consider whether `Higgs Cluster` should eventually be renamed to `Noether Quad`, while keeping Reaction terminology coherent rather than split across old and new names.
+
+Next steps:
+
+- add `Noether Pair` to the authored assembly collection, picker surfaces, structure bridge, and labels;
+- make sure its authored structure is explicit and survives the existing request/result seam cleanly;
+- and evaluate the naming relationship between `Noether Pair` and a possible future `Noether Quad` rename for `Higgs Cluster` before the terminology hardens further.

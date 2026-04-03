@@ -1658,3 +1658,24 @@ Next steps:
 - expand beyond the first charged-B leptonic closures now covered in the external solver, especially the newly analyzable B families visible in the sweep such as `B+ -> pi+ pi0`, `B+ -> K+ pi0`, `B+ -> dk0 pi+`, and the first neutral-B electromagnetic or dilepton channels;
 - use the sweep to separate simple meson-family rule gaps from genuinely heavier-hadron policy questions before widening beyond the current B vocabulary;
 - and confirm that each added B family improves exact or partial closure rather than merely increasing the analyzable denominator.
+
+### 5. Add `Noether Pair` As A Solver-Visible Assembly
+
+Status: `pending`
+
+Objective:
+
+- add `Noether Pair` as a first-class solver-visible assembly in the shared collection and use it to open new solve routes on both the reactant and product sides.
+
+Why it matters:
+
+- `Noether Pair` gives the solver a reusable intermediate between the current planar photon path and the full `Higgs Cluster`, so more reactions can be routed through explicit spacetime assemblies instead of forcing every path to choose between `2h` and a full quad-like cluster;
+- it should provide new reactant and product routes that help the solver close more reactions, especially channels where a pro/anti `Noether Core` pair is the natural intermediate or residue-bearing assembly;
+- and adding it now is also a good time to consider whether `Higgs Cluster` should eventually be renamed to `Noether Quad`, so the cluster vocabulary stays internally coherent as the collection grows.
+
+Next steps:
+
+- define the `Noether Pair` assembly explicitly in the shared authored/solver-facing structure surface;
+- add focused solver rules and tests that use `Noether Pair` as an intermediate, reactant, and product where it genuinely improves closure rather than acting as a mere alias;
+- keep the request/result seam stable while widening the solver's assembly vocabulary;
+- and evaluate the terminology relationship between `Noether Pair` and a possible future `Noether Quad` rename for `Higgs Cluster` before more rules and artifacts depend on the current name.
