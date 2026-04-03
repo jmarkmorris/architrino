@@ -26,7 +26,6 @@ export function getComposerDomElements(documentLike = globalThis.document) {
 
   return {
     composerOverlay,
-    composerTitle: getElementById(documentLike, "composer-title"),
     composerViewDesignButton: getElementById(documentLike, "composer-view-design-button"),
     composerViewObserverButton: getElementById(documentLike, "composer-view-observer-button"),
     composerSceneButton: getElementById(documentLike, "composer-scene-button"),

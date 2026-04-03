@@ -33,7 +33,6 @@
 - When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
-- The user-visible composer header should remain timestamp-only; do not prepend version labels.
 
 ## SWE Architecture and Modularity
 
@@ -46,11 +45,6 @@
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a clean seam so later extraction is straightforward instead of leaving another layer of spaghetti.
 - Reaction solver lane geometry must have one source of truth. Use the explicit periodic-table-style surface grid model and dedicated lane-slot elements for runtime lane centers; do not duplicate lane widths/gaps in both CSS and JS, infer visible centers from rendered content offsets, or hide spacing in ad hoc per-column padding.
-
-## Composer Header Signature
-
-- After any code-changing turn in this workspace, run `node scripts/generate-composer-header-signature.mjs` so the top-left composer header timestamp reflects the latest Codex edit even when the external watcher is not running.
-- Do not treat pure analysis or no-op turns as signature-update events; regenerate only after actual file changes.
 
 ## Commit Audits (Run Every Turn Before Commit)
 
