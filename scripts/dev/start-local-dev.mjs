@@ -2,6 +2,10 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  createDevServerHttpCacheHeaders,
+  isFreshDevServerHttpCacheRequest,
+} from "./DevServerHttpCache.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
@@ -49,13 +53,26 @@ function sendNotFound(response) {
 
 function serveFile(request, response) {
   const filePath = resolveRequestPath(request.url);
-  if (!filePath || !existsSync(filePath) || statSync(filePath).isDirectory()) {
+  const fileStats = filePath && existsSync(filePath) ? statSync(filePath) : null;
+  if (!filePath || !fileStats || fileStats.isDirectory()) {
     sendNotFound(response);
     return;
   }
+
+  const cacheHeaders = createDevServerHttpCacheHeaders(fileStats);
+  if (isFreshDevServerHttpCacheRequest(request, cacheHeaders)) {
+    response.writeHead(304, {
+      "Cache-Control": "no-cache",
+      ...cacheHeaders,
+    });
+    response.end();
+    return;
+  }
+
   response.writeHead(200, {
     "Content-Type": getContentType(filePath),
     "Cache-Control": "no-cache",
+    ...cacheHeaders,
   });
   createReadStream(filePath).pipe(response);
 }
