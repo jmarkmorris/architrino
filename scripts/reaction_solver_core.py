@@ -4,6 +4,7 @@ import itertools
 import json
 import sys
 from copy import deepcopy
+from collections import Counter
 
 
 def normalize_text(value=""):
@@ -42,6 +43,151 @@ def add_inventory(left=None, right=None):
         "electrinoCount": left_counts["electrinoCount"] + right_counts["electrinoCount"],
         "positrinoCount": left_counts["positrinoCount"] + right_counts["positrinoCount"],
     }
+
+
+def get_inventory_flags(entity=None):
+    inventory = (entity or {}).get("inventory") or {}
+    flags = inventory.get("flags") or []
+    return [normalize_text(flag) for flag in flags if normalize_text(flag)]
+
+
+def get_pdg_flag_value(entity=None, prefix=""):
+    normalized_prefix = normalize_text(prefix)
+    if not normalized_prefix:
+        return ""
+    for flag in get_inventory_flags(entity):
+        if flag.startswith(normalized_prefix):
+            return normalize_text(flag[len(normalized_prefix) :])
+    return ""
+
+
+def get_effective_pdg_name(entity=None):
+    pdg_name = get_pdg_flag_value(entity, "pdg-name:")
+    if pdg_name:
+        return pdg_name
+    return get_pdg_flag_value(entity, "pdg-id:")
+
+
+def get_participant_root_or_self(participant=None):
+    return get_root_node(participant) or (participant or {})
+
+
+def build_participant_pdg_name_counter(participants=None):
+    counter = Counter()
+    for participant in participants or []:
+        pdg_name = get_effective_pdg_name(get_participant_root_or_self(participant))
+        if pdg_name:
+            counter[pdg_name] += 1
+    return counter
+
+
+def build_participant_pdg_name_groups(participants=None):
+    groups = {}
+    for participant in participants or []:
+        pdg_name = get_effective_pdg_name(get_participant_root_or_self(participant))
+        groups.setdefault(pdg_name, []).append(participant)
+    return groups
+
+
+SUPPORTED_PDG_WEAK_FAMILIES = (
+    {
+        "key": "neutron-beta",
+        "sourcePdgNames": Counter({"n": 1}),
+        "productPdgNames": Counter({"p": 1, "e-": 1, "anti-nu_e": 1}),
+        "ruleFamily": "pdg-weak-neutron-beta",
+    },
+    {
+        "key": "radiative-neutron-beta",
+        "sourcePdgNames": Counter({"n": 1}),
+        "productPdgNames": Counter({"p": 1, "e-": 1, "anti-nu_e": 1, "gamma": 1}),
+        "ruleFamily": "pdg-weak-radiative-neutron-beta",
+    },
+    {
+        "key": "muon-decay",
+        "sourcePdgNames": Counter({"mu-": 1}),
+        "productPdgNames": Counter({"e-": 1, "anti-nu_e": 1, "nu_mu": 1}),
+        "ruleFamily": "pdg-weak-muon-decay",
+    },
+    {
+        "key": "radiative-muon-decay",
+        "sourcePdgNames": Counter({"mu-": 1}),
+        "productPdgNames": Counter({"e-": 1, "anti-nu_e": 1, "nu_mu": 1, "gamma": 1}),
+        "ruleFamily": "pdg-weak-radiative-muon-decay",
+    },
+    {
+        "key": "muon-decay-pair",
+        "sourcePdgNames": Counter({"mu-": 1}),
+        "productPdgNames": Counter({"e-": 2, "e+": 1, "anti-nu_e": 1, "nu_mu": 1}),
+        "ruleFamily": "pdg-weak-muon-decay-with-electron-positron-pair",
+    },
+    {
+        "key": "muon-to-electron-photon",
+        "sourcePdgNames": Counter({"mu-": 1}),
+        "productPdgNames": Counter({"e-": 1, "gamma": 1}),
+        "ruleFamily": "pdg-weak-muon-to-electron-photon",
+    },
+)
+
+
+def match_supported_pdg_weak_family(source_participants=None, product_participants=None):
+    source_counter = build_participant_pdg_name_counter(source_participants)
+    product_counter = build_participant_pdg_name_counter(product_participants)
+    for family in SUPPORTED_PDG_WEAK_FAMILIES:
+        if source_counter == family["sourcePdgNames"] and product_counter == family["productPdgNames"]:
+            return family
+    return None
+
+
+def solve_supported_pdg_weak_family(request, source_participants, product_participants, family):
+    source_participant = source_participants[0]
+    source_root = get_root_node(source_participant)
+    if source_root is None:
+        return None
+    mappings = []
+    resolved_target_ids = []
+    step_mapping_ids = []
+    for index, product in enumerate(product_participants, start=1):
+        product_id = normalize_text(product.get("id"))
+        product_root = get_root_node(product)
+        if not product_id or product_root is None:
+            return None
+        mapping_id = f"map_{family['key']}_{index}"
+        mappings.append(
+            build_mapping(
+                mapping_id=mapping_id,
+                kind="direct",
+                from_participant_id=normalize_text(source_participant.get("id")),
+                from_anchor_id=normalize_text(source_root.get("id")) or "root",
+                from_role="reactant",
+                to_participant_id=product_id,
+                to_anchor_id=normalize_text(product_root.get("id")) or "root",
+                to_role="product",
+                conserved_ledger=product_root.get("inventory"),
+                provenance_mode="direct-conservative",
+            )
+        )
+        resolved_target_ids.append(product_id)
+        step_mapping_ids.append(mapping_id)
+    return build_result(
+        request=request,
+        generated_steps=[
+            {
+                "stepId": f"step_{family['key']}",
+                "kind": "direct-map",
+                "ruleFamily": family["ruleFamily"],
+                "consumedParticipantIds": [normalize_text(source_participant.get("id"))],
+                "producedParticipantIds": [],
+                "resolvedTargetIds": resolved_target_ids,
+                "mappingIds": step_mapping_ids,
+                "operatorIds": [],
+                "diagnosticLabels": ["pdg-supported-weak-family"],
+            }
+        ],
+        generated_mappings=mappings,
+        generated_operators=[],
+        operator_placements=[],
+        auto_dissociated_participant_ids=[],
+    )
 
 
 def participant_origin(participant=None):
@@ -564,6 +710,16 @@ def solve_request(request):
         for participant in participants
         if normalize_text(participant.get("side")).lower() == "product"
     ]
+    supported_pdg_weak_family = match_supported_pdg_weak_family(source_participants, product_participants)
+    if supported_pdg_weak_family is not None:
+        result = solve_supported_pdg_weak_family(
+            request,
+            source_participants,
+            product_participants,
+            supported_pdg_weak_family,
+        )
+        if result is not None:
+            return result
     source_entries = []
     for participant in source_participants:
         source_entries.extend(build_source_entries(participant))

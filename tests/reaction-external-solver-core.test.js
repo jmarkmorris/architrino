@@ -126,6 +126,33 @@ test("external solve-reaction CLI preserves the supported golden corpus summarie
   });
 });
 
+test("external solve-reaction CLI closes the supported PDG weak-channel request set exactly", () => {
+  const resultSchema = readJson("src/contracts/solver-result/v1/schema.json");
+  const requestPaths = [
+    "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/radiative_free_neutron_beta_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/muon_decay_with_electron_positron_pair.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/muon_to_electron_photon.live-pdg.solver-request.v1.json",
+  ];
+
+  requestPaths.forEach((requestPath) => {
+    const request = readJson(requestPath);
+    const expectedProductCount = request.participants.filter((participant) => participant.side === "product").length;
+    const result = runSolveReactionCli(requestPath);
+    assert.deepEqual(validateAgainstSchema(result, resultSchema), [], `${requestPath} result schema mismatch`);
+    assert.equal(result.summary.outcome, "exact", `${requestPath} should close exactly`);
+    assert.equal(result.summary.exact, true, `${requestPath} should report exact closure`);
+    assert.equal(result.summary.unresolvedTargetCount, 0, `${requestPath} should have no unresolved targets`);
+    assert.deepEqual(result.residue.unresolvedTargetIds, [], `${requestPath} should have no unresolved residue`);
+    assert.equal(result.mappings.length, expectedProductCount, `${requestPath} should map each product`);
+    assert.equal(result.operators.length, 0, `${requestPath} should not need synthetic operators in the current weak-family closure path`);
+  });
+});
+
 test("external solve-reaction CLI preserves authored manual operators, mappings, and placement hints", () => {
   const request = {
     schema: "solver-request/v1",

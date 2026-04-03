@@ -19,19 +19,23 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.match(stdout, /reactionsTested: 3/);
   assert.match(stdout, /analyzableReactions: 2/);
   assert.match(stdout, /reactionsNotYetAnalyzed: 1/);
-  assert.match(stdout, /exactClosurePercent: 0%/);
+  assert.match(stdout, /exactClosures: 2/);
+  assert.match(stdout, /exactClosurePercent: 100%/);
   assert.equal(summary.source, "fixtures");
   assert.equal(summary.reactionsTested, 3);
   assert.equal(summary.analyzableReactionCount, 2);
   assert.equal(summary.reactionsNotYetAnalyzed, 1);
-  assert.equal(summary.exactClosureCount, 0);
-  assert.equal(summary.exactClosurePercent, 0);
-  assert.equal(summary.outcomeCounts.partial, 1);
-  assert.equal(summary.outcomeCounts["no-solution"], 1);
+  assert.equal(summary.exactClosureCount, 2);
+  assert.equal(summary.exactClosurePercent, 100);
+  assert.equal(summary.outcomeCounts.exact, 2);
+  assert.equal(summary.outcomeCounts.partial, 0);
+  assert.equal(summary.outcomeCounts["no-solution"], 0);
   assert.equal(summary.outcomeCounts["unsupported-input"], 1);
   assert.deepEqual(summary.topUnsupportedParticles, [{ particle: "pi+", count: 1 }]);
   assert.equal(summary.cases.length, 3);
   assert.match(report, /Top unsupported particles:\npi\+\t1/);
+  assert.match(report, /free_neutron_beta_decay\s+exact/);
+  assert.match(report, /muon_decay\s+exact/);
   assert.match(report, /charged_pion_to_muon_neutrino\s+unsupported-input/);
   assert.equal(fs.existsSync(path.join(outDir, "run.log")), true);
   assert.equal(
