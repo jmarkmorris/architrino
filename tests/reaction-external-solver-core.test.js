@@ -274,3 +274,97 @@ test("external solve-reaction CLI preserves authored manual operators, mappings,
     true
   );
 });
+
+test("external solve-reaction CLI counts authored manual mappings toward resolved products and residue accounting", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "manual_resolution_only",
+    participants: [
+      {
+        id: "reactant_neutron_manual",
+        side: "reactant",
+        templateId: "neutron",
+        label: "Neutron",
+        family: "baryon",
+        polarity: "pro",
+        isComposite: true,
+        inventory: { electrinoCount: 6, positrinoCount: 6 },
+        rootNodeId: "reactant_neutron_manual_root",
+        nodes: [
+          {
+            id: "reactant_neutron_manual_root",
+            templateId: "neutron",
+            label: "Neutron",
+            family: "baryon",
+            polarity: "pro",
+            isComposite: true,
+            inventory: { electrinoCount: 6, positrinoCount: 6 },
+          },
+        ],
+      },
+      {
+        id: "product_proton_manual",
+        side: "product",
+        templateId: "proton",
+        label: "Proton",
+        family: "baryon",
+        polarity: "pro",
+        isComposite: true,
+        inventory: { electrinoCount: 6, positrinoCount: 6 },
+        rootNodeId: "product_proton_manual_root",
+        nodes: [
+          {
+            id: "product_proton_manual_root",
+            templateId: "proton",
+            label: "Proton",
+            family: "baryon",
+            polarity: "pro",
+            isComposite: true,
+            inventory: { electrinoCount: 6, positrinoCount: 6 },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [
+      {
+        id: "mapping_manual_direct",
+        kind: "direct",
+        from: {
+          participantId: "reactant_neutron_manual",
+          anchorId: "reactant_neutron_manual_root",
+          role: "reactant",
+        },
+        to: {
+          participantId: "product_proton_manual",
+          anchorId: "product_proton_manual_root",
+          role: "product",
+        },
+        provenanceMode: "manual-authored",
+        conservedLedger: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+        },
+      },
+    ],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.deepEqual(result.residue.unresolvedTargetIds, []);
+  assert.deepEqual(result.residue.unusedSourceIds, []);
+  assert.equal(result.mappings.some((mapping) => mapping.id === "mapping_manual_direct"), true);
+});

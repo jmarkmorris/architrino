@@ -1548,31 +1548,19 @@ Objective:
 
 - build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
-This pass added:
+Current state:
 
-- a dedicated Reaction-side request exporter in [`ReactionSolverRequestExportRuntime.js`](../../src/apps/reaction/ReactionSolverRequestExportRuntime.js) that builds `solver-request/v1` documents from authored solver canvas state;
-- a request adapter in [`ReactionSolverRequestAdapterRuntime.js`](../../src/apps/reaction/ReactionSolverRequestAdapterRuntime.js) that reconstructs current JS solver/runtime state from `solver-request/v1` documents;
-- a contract solve runtime in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) that runs the existing JS solver through the versioned request/result boundary instead of direct planner-local UI wiring;
-- a first headless entrypoint in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs) that accepts `solver-request/v1` JSON and emits `solver-result/v1` JSON;
-- canonical participant and mapping ledger serialization through structure classification rather than UI-only display inventory;
-- authored-operator and authored-mapping export for existing manual canvas work, including placement hints and manual dissociation state; and
-- explicit exclusion of solve-generated operators and mappings from exported requests so fresh headless solves start from authored state rather than prior partial-solve artifacts;
-- and Reaction UI solve-path wiring onto the request/result seam so solve projection now consumes `solver-result/v1` output rather than the UI calling planner stages inline.
-
-This pass now also adds:
-
-- an isolated in-process headless solver runtime in [`ReactionSolverInProcessRuntime.js`](../../src/apps/reaction/ReactionSolverInProcessRuntime.js) so the reference JS solve path is no longer embedded directly inside the contract facade;
-- an external execution runtime in [`ReactionSolverExternalRuntime.js`](../../src/apps/reaction/ReactionSolverExternalRuntime.js) that invokes the headless solver through the existing CLI boundary;
-- a cutover in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) so Node-side contract solves now use the external command path by default and leave the in-process path as an explicit fallback for runtimes that cannot execute external commands;
-- a `solve-reaction.mjs` implementation that executes the headless solver directly instead of recursing back through the contract facade;
-- a fresh Python external solver core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) that reads `solver-request/v1` directly, preserves authored manual operator and mapping state, and independently solves the current supported golden-corpus families behind the stable CLI boundary;
-- focused parity/fallback coverage in [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js) that verifies the external path remains contract-compatible with the extracted in-process reference implementation at the contract level rather than by byte-for-byte JS-plan identity;
-- and corpus-level regression coverage in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) that verifies the external CLI preserves the frozen supported-result summaries and manual authored-state passthrough rules.
+- the `solver-request/v1` / `solver-result/v1` seam is in place and Reaction UI already solves through that boundary;
+- Node-side contract solves default to the external CLI path in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs);
+- the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
+- the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
+- and regression coverage exists for the current supported golden-corpus families plus authored manual-state passthrough in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
 Next focus:
 
-- keep the `solver-request/v1` / `solver-result/v1` seam stable while broadening the fresh external solver core beyond the current supported golden-corpus families and remaining authored-state edge cases;
-- use the extracted JS bridge only as a shrinking reference path while new external-core coverage reaches the remaining accepted solver behavior;
+- broaden the fresh external solver core beyond the current supported golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
+- close the remaining authored-state edge cases so manual operators, manual mappings, and manual dissociation behave as first-class solver inputs rather than mere passthrough records;
+- use the extracted JS bridge only as a shrinking reference path while external-core coverage reaches the remaining accepted solver behavior;
 - and then remove the remaining browser-safe in-process fallback once the app host can rely on the external solve path in every supported runtime without changing the contract seam again.
 
 Deferred idea:

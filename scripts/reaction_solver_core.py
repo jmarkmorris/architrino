@@ -311,6 +311,58 @@ def get_child_nodes(participant):
     ]
 
 
+def build_matched_target_node_ids(mappings, participant_id):
+    matched = set()
+    normalized_participant_id = normalize_text(participant_id)
+    for mapping in mappings:
+        to_endpoint = (mapping or {}).get("to") or {}
+        if normalize_text(to_endpoint.get("participantId")) != normalized_participant_id:
+            continue
+        if normalize_text(to_endpoint.get("role")) != "product":
+            continue
+        anchor_id = normalize_text(to_endpoint.get("anchorId"))
+        if anchor_id:
+            matched.add(anchor_id)
+    return matched
+
+
+def build_matched_source_node_ids(mappings, participant_id):
+    matched = set()
+    normalized_participant_id = normalize_text(participant_id)
+    for mapping in mappings:
+        from_endpoint = (mapping or {}).get("from") or {}
+        if normalize_text(from_endpoint.get("participantId")) != normalized_participant_id:
+            continue
+        if normalize_text(from_endpoint.get("role")) != "reactant":
+            continue
+        anchor_id = normalize_text(from_endpoint.get("anchorId"))
+        if anchor_id:
+            matched.add(anchor_id)
+    return matched
+
+
+def participant_target_resolved(participant, mappings):
+    root_node = get_root_node(participant)
+    if root_node is None:
+        return False
+    matched_node_ids = build_matched_target_node_ids(mappings, participant.get("id"))
+    top_level_children = get_child_nodes(participant)
+    if not top_level_children:
+        return normalize_text(root_node.get("id")) in matched_node_ids
+    return all(normalize_text(child.get("id")) in matched_node_ids for child in top_level_children)
+
+
+def participant_source_resolved(participant, mappings):
+    root_node = get_root_node(participant)
+    if root_node is None:
+        return False
+    matched_node_ids = build_matched_source_node_ids(mappings, participant.get("id"))
+    top_level_children = get_child_nodes(participant)
+    if not top_level_children:
+        return normalize_text(root_node.get("id")) in matched_node_ids
+    return all(normalize_text(child.get("id")) in matched_node_ids for child in top_level_children)
+
+
 def find_fragment_match(product, source_entries):
     product_root = get_root_node(product)
     if not product_root:
@@ -391,8 +443,14 @@ def build_result(request, generated_steps, generated_mappings, generated_operato
     manual_mappings = [
         serialize_manual_mapping(mapping) for mapping in request.get("manualMappings", [])
     ]
-    unresolved_target_ids = collect_unresolved_target_ids(request, generated_steps)
-    unused_source_ids = collect_unused_source_ids(request, generated_steps, auto_dissociated_participant_ids)
+    all_result_mappings = manual_mappings + generated_mappings
+    unresolved_target_ids = collect_unresolved_target_ids(request, all_result_mappings)
+    unused_source_ids = collect_unused_source_ids(
+        request,
+        all_result_mappings,
+        auto_dissociated_participant_ids,
+        unresolved_target_ids,
+    )
     outcome = "exact"
     if unresolved_target_ids and (manual_mappings or generated_mappings):
         outcome = "partial"
@@ -424,7 +482,7 @@ def build_result(request, generated_steps, generated_mappings, generated_operato
         },
         "participants": participants,
         "steps": generated_steps,
-        "mappings": manual_mappings + generated_mappings,
+        "mappings": all_result_mappings,
         "operators": manual_operators + generated_operators,
         "dissociation": {
             "openedParticipantIds": list(auto_dissociated_participant_ids),
@@ -460,28 +518,19 @@ def build_result(request, generated_steps, generated_mappings, generated_operato
     }
 
 
-def collect_unresolved_target_ids(request, generated_steps):
-    resolved = set()
-    for step in generated_steps:
-        for target_id in step.get("resolvedTargetIds", []):
-            resolved.add(normalize_text(target_id))
+def collect_unresolved_target_ids(request, result_mappings):
     unresolved = []
     for participant in request.get("participants", []):
         if normalize_text(participant.get("side")).lower() != "product":
             continue
         participant_id = normalize_text(participant.get("id"))
-        if participant_id not in resolved:
+        if not participant_target_resolved(participant, result_mappings):
             unresolved.append(participant_id)
     return unresolved
 
 
-def collect_unused_source_ids(request, generated_steps, auto_dissociated_participant_ids):
-    consumed_source_ids = set()
-    for step in generated_steps:
-        for participant_id in step.get("consumedParticipantIds", []):
-            consumed_source_ids.add(normalize_text(participant_id))
-    unresolved_targets = set(collect_unresolved_target_ids(request, generated_steps))
-    if not unresolved_targets:
+def collect_unused_source_ids(request, result_mappings, auto_dissociated_participant_ids, unresolved_target_ids):
+    if not unresolved_target_ids:
         return []
     unused_source_ids = []
     for participant in request.get("participants", []):
@@ -489,7 +538,9 @@ def collect_unused_source_ids(request, generated_steps, auto_dissociated_partici
         if side not in ("reactant", "center"):
             continue
         participant_id = normalize_text(participant.get("id"))
-        if participant_id in auto_dissociated_participant_ids or participant_id not in consumed_source_ids:
+        if participant_id in auto_dissociated_participant_ids or not participant_source_resolved(
+            participant, result_mappings
+        ):
             unused_source_ids.append(participant_id)
     return unused_source_ids
 
