@@ -135,6 +135,42 @@ def count_signatures(counter=None, template_id=None, polarity=None, generation=N
     return total
 
 
+STANDALONE_PRIMITIVE_ASSOCIATE_REQUIREMENTS = {
+    ("electron", "pro"): {
+        "corePolarity": "pro",
+        "freeInventory": {"electrinoCount": 6, "positrinoCount": 0},
+    },
+    ("electron", "anti"): {
+        "corePolarity": "anti",
+        "freeInventory": {"electrinoCount": 0, "positrinoCount": 6},
+    },
+    ("neutrino", "pro"): {
+        "corePolarity": "pro",
+        "freeInventory": {"electrinoCount": 3, "positrinoCount": 3},
+    },
+    ("neutrino", "anti"): {
+        "corePolarity": "anti",
+        "freeInventory": {"electrinoCount": 3, "positrinoCount": 3},
+    },
+    ("down_quark", "pro"): {
+        "corePolarity": "pro",
+        "freeInventory": {"electrinoCount": 4, "positrinoCount": 2},
+    },
+    ("down_quark", "anti"): {
+        "corePolarity": "anti",
+        "freeInventory": {"electrinoCount": 2, "positrinoCount": 4},
+    },
+    ("up_quark", "pro"): {
+        "corePolarity": "pro",
+        "freeInventory": {"electrinoCount": 1, "positrinoCount": 5},
+    },
+    ("up_quark", "anti"): {
+        "corePolarity": "anti",
+        "freeInventory": {"electrinoCount": 5, "positrinoCount": 1},
+    },
+}
+
+
 GENERIC_WEAK_CHANNEL_PROFILES = (
     {
         "key": "weak-baryon-beta-decay",
@@ -3920,6 +3956,10 @@ class SourceEntry:
         return normalize_inventory(self.node.get("inventory"))
 
 
+def source_entry_participant_template_id(source_entry):
+    return canonical_template_id((source_entry.participant or {}).get("templateId"))
+
+
 def build_source_entries(participant):
     participant = participant or {}
     nodes = participant.get("nodes", [])
@@ -4166,6 +4206,9 @@ def find_associate_inputs_for_composite(product, source_entries):
 
 
 def find_associate_inputs_for_standalone(product, source_entries):
+    primitive_inputs = find_primitive_associate_inputs_for_standalone(product, source_entries)
+    if primitive_inputs is not None:
+        return primitive_inputs
     target_root = get_root_node(product)
     if not target_root:
         return None
@@ -4177,6 +4220,79 @@ def find_associate_inputs_for_standalone(product, source_entries):
                 total_inventory = add_inventory(total_inventory, entry.inventory)
             if inventories_equal(total_inventory, target_root.get("inventory")):
                 return list(combo)
+    return None
+
+
+def get_standalone_primitive_associate_requirement(product=None):
+    target_root = get_root_node(product)
+    if not target_root:
+        return None
+    template_id = get_effective_template_id(target_root)
+    polarity = get_effective_polarity(target_root, template_id)
+    return STANDALONE_PRIMITIVE_ASSOCIATE_REQUIREMENTS.get((template_id, polarity))
+
+
+def rank_primitive_core_source(source_entry):
+    participant_template_id = source_entry_participant_template_id(source_entry)
+    participant_rank = {
+        "noether_core": 0,
+        "noether_pair": 1,
+        "noether_quad": 2,
+    }.get(participant_template_id, 3)
+    return (
+        participant_rank,
+        0 if source_entry.root_source else 1,
+        source_entry.participant_id,
+        source_entry.node_id,
+    )
+
+
+def rank_free_architrino_source(source_entry):
+    return (
+        0 if source_entry.root_source else 1,
+        source_entry.participant_id,
+        source_entry.node_id,
+    )
+
+
+def find_matching_free_architrino_combo(required_inventory, source_entries):
+    available_entries = sorted(
+        [
+            entry
+            for entry in source_entries
+            if not entry.consumed and source_entry_participant_template_id(entry) == "free_architrinos"
+        ],
+        key=rank_free_architrino_source,
+    )
+    for group_size in range(1, len(available_entries) + 1):
+        for combo in itertools.combinations(available_entries, group_size):
+            total_inventory = {"electrinoCount": 0, "positrinoCount": 0}
+            for entry in combo:
+                total_inventory = add_inventory(total_inventory, entry.inventory)
+            if inventories_equal(total_inventory, required_inventory):
+                return list(combo)
+    return None
+
+
+def find_primitive_associate_inputs_for_standalone(product, source_entries):
+    requirement = get_standalone_primitive_associate_requirement(product)
+    if requirement is None:
+        return None
+    candidate_core_entries = sorted(
+        [
+            entry
+            for entry in source_entries
+            if not entry.consumed
+            and entry.template_id == "noether_core"
+            and entry.polarity == requirement["corePolarity"]
+        ],
+        key=rank_primitive_core_source,
+    )
+    for core_entry in candidate_core_entries:
+        free_combo = find_matching_free_architrino_combo(requirement["freeInventory"], source_entries)
+        if free_combo is None:
+            continue
+        return [core_entry] + free_combo
     return None
 
 

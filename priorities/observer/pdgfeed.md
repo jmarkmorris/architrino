@@ -233,6 +233,17 @@ The v1 unsupported-particle policy is:
 - decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
 - and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
 
+Registry expansion should stay deliberate rather than opportunistic.
+
+That means:
+
+- new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
+- each new row must name the solver `templateId`, the normalized author-facing label, and any note needed to keep neutral-state or constituent provenance conventions explicit;
+- local aliases may improve ingest convenience, but they must never create exportability on their own;
+- every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `solver-request/v1` seam cleanly;
+- sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
+- and until that package of mapping, provenance, and regression coverage exists, the particle remains proposal-only by design.
+
 The first solver-facing target should be one `solver-request/v1` document per candidate, with:
 
 - `origin.sourceKind` set to `pdg-ingest`;
@@ -460,20 +471,7 @@ Objective:
 
 - keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
 
-### 3. Expand The Locked Mapping Registry Deliberately
-
-Status: `pending`
-
-Current:
-
-- the v1 registry already covers neutron, muon, pion, kaon, and first B-meson families;
-- unsupported particles still remain proposal-only.
-
-Objective:
-
-- widen exportable vocabulary only through explicit mapping entries, provenance rules, and regression tests.
-
-### 4. Stay Aligned With The Reaction/Composer Contract Story
+### 3. Stay Aligned With The Reaction/Composer Contract Story
 
 Status: `pending`
 

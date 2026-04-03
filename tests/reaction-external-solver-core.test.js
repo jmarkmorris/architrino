@@ -3322,6 +3322,234 @@ test("external solve-reaction CLI materializes a Noether Pair supplement for neu
   );
 });
 
+test("external solve-reaction CLI uses an authored Noether Pair as a normal source assembly for electron-positron closure", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "authored_noether_pair_electron_positron",
+    participants: [
+      {
+        id: "center_noether_pair_authored",
+        side: "center",
+        templateId: "noether_pair",
+        label: "Noether Pair",
+        family: "boson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+        },
+        rootNodeId: "center_noether_pair_authored/root",
+        nodes: [
+          {
+            id: "center_noether_pair_authored/root",
+            templateId: "noether_pair",
+            label: "Noether Pair",
+            family: "boson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+            },
+          },
+          {
+            id: "center_noether_pair_authored/root/core_pro_1",
+            parentId: "center_noether_pair_authored/root",
+            templateId: "noether_core",
+            label: "Pro Noether core",
+            family: "noether-core",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 3,
+              positrinoCount: 3,
+            },
+          },
+          {
+            id: "center_noether_pair_authored/root/core_anti_1",
+            parentId: "center_noether_pair_authored/root",
+            templateId: "noether_core",
+            label: "Anti Noether core",
+            family: "noether-core",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 3,
+              positrinoCount: 3,
+            },
+          },
+        ],
+      },
+      {
+        id: "center_free_architrinos_electron",
+        side: "center",
+        templateId: "free_architrinos",
+        label: "Free Architrinos",
+        family: "free-architrinos",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 0,
+        },
+        rootNodeId: "center_free_architrinos_electron/root",
+        nodes: [
+          {
+            id: "center_free_architrinos_electron/root",
+            templateId: "free_architrinos",
+            label: "Free Architrinos",
+            family: "free-architrinos",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 0,
+            },
+          },
+        ],
+      },
+      {
+        id: "center_free_architrinos_positron",
+        side: "center",
+        templateId: "free_architrinos",
+        label: "Free Architrinos",
+        family: "free-architrinos",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 0,
+          positrinoCount: 6,
+        },
+        rootNodeId: "center_free_architrinos_positron/root",
+        nodes: [
+          {
+            id: "center_free_architrinos_positron/root",
+            templateId: "free_architrinos",
+            label: "Free Architrinos",
+            family: "free-architrinos",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 0,
+              positrinoCount: 6,
+            },
+          },
+        ],
+      },
+      {
+        id: "product_electron_authored",
+        side: "product",
+        templateId: "electron",
+        label: "Electron",
+        family: "lepton",
+        polarity: "pro",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e-", "pdg-name:e-"],
+        },
+        rootNodeId: "product_electron_authored/root",
+        nodes: [
+          {
+            id: "product_electron_authored/root",
+            templateId: "electron",
+            label: "Electron",
+            family: "lepton",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e-", "pdg-name:e-"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_positron_authored",
+        side: "product",
+        templateId: "electron",
+        label: "Positron",
+        family: "lepton",
+        polarity: "anti",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+        },
+        rootNodeId: "product_positron_authored/root",
+        nodes: [
+          {
+            id: "product_positron_authored/root",
+            templateId: "electron",
+            label: "Positron",
+            family: "lepton",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+            },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.deepEqual(result.residue.unresolvedTargetIds, []);
+  assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, ["center_noether_pair_authored"]);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "associate-standalone"),
+    true
+  );
+  assert.equal(result.operators.length, 2);
+  assert.equal(
+    result.operators.every((operator) =>
+      operator.inputs.some(
+        (input) =>
+          input.participantId === "center_noether_pair_authored" &&
+          String(input.anchorId ?? "").includes("/core_")
+      )
+    ),
+    true
+  );
+  assert.equal(
+    result.operators.some((operator) =>
+      operator.inputs.some((input) => input.participantId === "center_free_architrinos_electron")
+    ),
+    true
+  );
+  assert.equal(
+    result.operators.some((operator) =>
+      operator.inputs.some((input) => input.participantId === "center_free_architrinos_positron")
+    ),
+    true
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.id === "center_noether_pair_authored" && participant.origin === "authored-center"
+    ),
+    true
+  );
+});
+
 test("external solve-reaction CLI treats upi0 and dpi0 as solver-equivalent neutral-pion forms", () => {
   const request = {
     schema: "solver-request/v1",

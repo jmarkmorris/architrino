@@ -157,6 +157,10 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
     new URL("../src/apps/reaction/ReactionSolverExecutionRuntime.js", import.meta.url),
     "utf8"
   );
+  const reactionCommitStateSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCommitStateRuntime.js", import.meta.url),
+    "utf8"
+  );
   const reactionAppRuntimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionAppRuntime.js", import.meta.url),
     "utf8"
@@ -171,7 +175,43 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
+    /reviewStateElement = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /acceptButton = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /exportButton = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
     /solveSnapshot = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /createReactionCommitStateRuntime\(\{/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /getReview:\s*\(\)\s*=> commitRuntime\.buildExportReview\(\),/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function acceptReactionFlowDocument\(\)/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function downloadReactionFlowDocument\(\)/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /setStatus\("Reaction changed after acceptance\. Accept again to commit the latest handoff\."\);/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /setStatus\("Reaction accepted for handoff\. Export now emits accepted reaction-flow\/v1 JSON\."\);/
   );
   assert.match(
     reactionAppRuntimeSource,
@@ -191,11 +231,35 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionMainSource,
+    /document\.getElementById\("reaction-review-state"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-accept-button"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-export-button"\)/
+  );
+  assert.match(
+    reactionMainSource,
     /document\.getElementById\("reaction-clear-button"\)/
   );
   assert.match(
     reactionMainSource,
     /document\.getElementById\("reaction-solve-button"\)/
+  );
+  assert.match(
+    reactionCommitStateSource,
+    /export function createReactionCommitStateRuntime/
+  );
+  assert.match(
+    reactionCommitStateSource,
+    /needsReaccept:\s*false,/
+  );
+  assert.match(
+    reactionCommitStateSource,
+    /reset\(\{\s*needsReaccept:\s*true\s*\}\);/
   );
   assert.match(
     runtimeSource,

@@ -39,7 +39,7 @@ It does not own:
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
 - The canonical implementation for Reaction helper, canvas, solve, structure, export, and layout runtimes now lives under `src/apps/reaction/`.
-- Reaction already exports a versioned `reaction-flow/v1` handoff document through a dedicated export runtime, but the live app still lacks an explicit accept / commit step that marks reviewed work as downstream-ready.
+- Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 
 ## Design
 
@@ -183,20 +183,7 @@ Objective:
 
 - make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
 
-### 2. Add An Explicit Accept / Commit State On Top Of `reaction-flow/v1` Export
-
-Status: `next`
-
-Current:
-
-- Reaction already exports a versioned handoff document through a dedicated export runtime;
-- the standalone app still has no reviewed/accepted state that marks a reaction as downstream-ready.
-
-Objective:
-
-- separate "still editing" from "accepted for handoff" inside Reaction itself.
-
-### 3. Complete The Solver Cut-Over And Remove The In-Process Fallback
+### 2. Complete The Solver Cut-Over And Remove The In-Process Fallback
 
 Status: `pending`
 
@@ -209,7 +196,7 @@ Objective:
 
 - finish the flash cut-over so Reaction ships one solver path, one adapter surface, and one test story.
 
-### 4. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
+### 3. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
 
 Status: `pending`
 

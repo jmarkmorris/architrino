@@ -1189,6 +1189,13 @@ body {
   line-height: 1.35;
 }
 
+.reaction-app-review-state {
+  min-height: 1.35em;
+  font-size: 12px;
+  color: rgba(167, 214, 255, 0.88);
+  line-height: 1.35;
+}
+
 .reaction-app-actions {
   display: flex;
   align-items: center;
@@ -1220,6 +1227,22 @@ body {
 .reaction-app-action:focus-visible {
   border-color: rgba(172, 195, 235, 0.56);
   background: rgba(24, 32, 58, 0.94);
+}
+
+.reaction-app-action.is-primary {
+  border-color: rgba(118, 198, 154, 0.48);
+  background: linear-gradient(135deg, rgba(18, 47, 38, 0.96), rgba(34, 96, 73, 0.92));
+}
+
+.reaction-app-action.is-primary:hover,
+.reaction-app-action.is-primary:focus-visible {
+  border-color: rgba(157, 226, 186, 0.62);
+  background: linear-gradient(135deg, rgba(24, 64, 49, 0.98), rgba(42, 118, 88, 0.96));
+}
+
+.reaction-app-action:disabled {
+  cursor: default;
+  opacity: 0.56;
 }
 
 .reaction-app-main {

@@ -59,6 +59,7 @@ Behavior that the new solver should preserve even though it is a fresh implement
 - direct conservative reuse for identical standalone participants;
 - full composite carry-through when the authored composite is itself the right answer;
 - fragment-to-root reuse from dissociated composite structure into standalone products where conservation permits it;
+- authored `Noether Pair` and `Noether Quad` assemblies as ordinary solver-visible core carriers whose constituent rows may be consumed under the same source-side accounting as other opened composites;
 - `Associate`-based reassembly for supported standalone and composite products;
 - `Higgs Cluster -> Photon + Photon` through conservative dissociation plus two assembled outputs;
 - support for authored center assemblies as source-side participants rather than solver-owned operators;
@@ -1569,21 +1570,7 @@ Objective:
 
 - make exact closure carry the strongest defensible explanatory meaning by expanding full constituent provenance wherever the solver already has enough particle-content knowledge to derive it.
 
-### 3. Promote `Noether Pair` Beyond A Solve-Generated Supplement
-
-Status: `next`
-
-Current:
-
-- the external core can already generate `Noether Pair` and `Noether Quad` supplements;
-- regression coverage already proves `Noether Pair` appears in neutral-pion double-Dalitz closure;
-- but current coverage is still centered on solve-generated supplementation rather than general authored/input-visible use as a solver-visible assembly.
-
-Objective:
-
-- make `Noether Pair` a general solver-visible assembly where it genuinely improves closure, residue handling, or intermediate legibility, not just a generated supplement.
-
-### 4. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
+### 3. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 

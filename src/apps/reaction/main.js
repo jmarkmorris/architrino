@@ -9,6 +9,7 @@ const defaultBrowserSolveSnapshot = createBrowserReactionSolveSnapshot({
 });
 
 const reactionAppRuntime = createReactionAppRuntime({
+  reviewStateElement: document.getElementById("reaction-review-state"),
   statusElement: document.getElementById("reaction-status"),
   root: document.getElementById("reaction-canvas"),
   surface: document.getElementById("reaction-canvas-surface"),
@@ -18,6 +19,8 @@ const reactionAppRuntime = createReactionAppRuntime({
   emptyState: document.getElementById("reaction-canvas-empty"),
   mapSvg: document.getElementById("reaction-canvas-svg"),
   menu: document.getElementById("reaction-canvas-menu"),
+  acceptButton: document.getElementById("reaction-accept-button"),
+  exportButton: document.getElementById("reaction-export-button"),
   clearButton: document.getElementById("reaction-clear-button"),
   solveButton: document.getElementById("reaction-solve-button"),
   exitButton: document.getElementById("reaction-exit-button"),

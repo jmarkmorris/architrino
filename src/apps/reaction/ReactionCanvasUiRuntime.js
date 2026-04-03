@@ -880,6 +880,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     templateMenuRows = [],
     extraTemplateEntries = [],
     setStatus = () => {},
+    onSnapshotChange = () => {},
     closeExternalMenus = () => {},
     onActiveChange = () => {},
     storage = null,
@@ -982,6 +983,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     recentMappingIds: [],
     isSolving: false,
   };
+  let lastSnapshotChangeSignature = "";
 
   let drawFrameId = 0;
   let operatorLayoutFrameId = 0;
@@ -1193,6 +1195,24 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
     syncParticipantCompositeMode(participant);
     return participant;
+  }
+
+  function buildSerializableSnapshot() {
+    return {
+      participants: cloneSerializableValue(state.participants),
+      mappings: cloneSerializableValue(state.mappings),
+    };
+  }
+
+  function notifySnapshotChange() {
+    const snapshot = buildSerializableSnapshot();
+    const nextSnapshotSignature = JSON.stringify(snapshot);
+    if (nextSnapshotSignature === lastSnapshotChangeSignature) {
+      return snapshot;
+    }
+    lastSnapshotChangeSignature = nextSnapshotSignature;
+    onSnapshotChange(snapshot);
+    return snapshot;
   }
 
   function getNodeContext(nodeKey) {
@@ -4187,6 +4207,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     if (!root || !reactantsColumn || !centerAssembliesColumn || !productsColumn || !operatorLayer) {
       return;
     }
+    notifySnapshotChange();
     syncHeaderActionButtons();
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
@@ -4361,10 +4382,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionCanvas,
-    getSnapshot: () => ({
-      participants: cloneSerializableValue(state.participants),
-      mappings: cloneSerializableValue(state.mappings),
-    }),
+    getSnapshot: buildSerializableSnapshot,
     solveCanvas: solveReactionCanvas,
     setActive,
     toggleActive,

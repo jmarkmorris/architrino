@@ -8,6 +8,7 @@
     "schema",
     "reactionId",
     "title",
+    "review",
     "participants",
     "operators",
     "mappings",
@@ -26,6 +27,21 @@
     "title": {
       "type": "string",
       "minLength": 1
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["draft", "accepted"]
+        },
+        "acceptedAt": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     },
     "participants": {
       "type": "array",

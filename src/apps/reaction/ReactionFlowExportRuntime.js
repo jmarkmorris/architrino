@@ -4,6 +4,20 @@ const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_STAGE_ID = "stage_manual_authoring";
 const DEFAULT_SOURCE_DOCUMENT_ID = "reaction_designer_session";
 
+function buildReactionFlowReview(review = {}) {
+  const status = String(review?.status ?? "").trim() === "accepted" ? "accepted" : "draft";
+  const acceptedAt = String(review?.acceptedAt ?? "").trim();
+  if (status === "accepted" && acceptedAt) {
+    return {
+      status,
+      acceptedAt,
+    };
+  }
+  return {
+    status: "draft",
+  };
+}
+
 function normalizeParticipantSide(participant = {}) {
   if (participant?.side === "product") {
     return "product";
@@ -111,6 +125,7 @@ export function buildReactionFlowDocument(options = {}) {
   );
   const suggestedSceneId =
     String(options?.suggestedSceneId ?? `${reactionId}_scene`).trim() || `${reactionId}_scene`;
+  const review = buildReactionFlowReview(options?.review);
 
   const operatorParticipants = allParticipants.filter((participant) => participant?.side === "operator");
   const nonOperatorParticipants = allParticipants.filter((participant) => participant?.side !== "operator");
@@ -165,6 +180,7 @@ export function buildReactionFlowDocument(options = {}) {
     schema: REACTION_FLOW_SCHEMA,
     reactionId,
     title,
+    review,
     participants: documentParticipants,
     operators: documentOperators,
     mappings: documentMappings,
@@ -193,6 +209,10 @@ export function createReactionFlowExportRuntime(options = {}) {
     typeof options?.getSnapshot === "function"
       ? options.getSnapshot
       : () => ({ participants: [], mappings: [] });
+  const getReview =
+    typeof options?.getReview === "function"
+      ? options.getReview
+      : () => ({ status: "draft" });
 
   return {
     exportDocument(overrides = {}) {
@@ -200,6 +220,7 @@ export function createReactionFlowExportRuntime(options = {}) {
         ...options,
         ...overrides,
         snapshot: getSnapshot(),
+        review: overrides?.review ?? getReview(),
       });
     },
   };

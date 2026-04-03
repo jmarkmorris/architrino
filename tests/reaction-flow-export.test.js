@@ -154,6 +154,7 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
 
   assert.deepEqual(errors, []);
   assert.equal(reactionFlow.schema, "reaction-flow/v1");
+  assert.deepEqual(reactionFlow.review, { status: "draft" });
   assert.equal(reactionFlow.operators.length, 1);
   assert.deepEqual(reactionFlow.operators[0].inputs, [
     { participantId: "reactant_neutron", anchorId: "neutron_root" },
@@ -165,4 +166,31 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
   assert.equal(reactionFlow.participants[1].layout.column, "center");
   assert.equal(reactionFlow.mappings[0].viaOperatorId, "op_dissociate_1");
   assert.equal(reactionFlow.mappings[1].viaOperatorId, "op_dissociate_1");
+});
+
+test("reaction flow exporter can mark an accepted handoff review state", () => {
+  const document = buildReactionFlowDocument({
+    reactionId: "manual_beta_decay",
+    review: {
+      status: "accepted",
+      acceptedAt: "2026-04-03T09:00:00.000Z",
+    },
+    snapshot: {
+      participants: [
+        {
+          id: "reactant_neutron",
+          side: "reactant",
+          templateId: "neutron",
+          label: "Neutron",
+          surfaceRowIndex: 0,
+        },
+      ],
+      mappings: [],
+    },
+  });
+
+  assert.deepEqual(document.review, {
+    status: "accepted",
+    acceptedAt: "2026-04-03T09:00:00.000Z",
+  });
 });
