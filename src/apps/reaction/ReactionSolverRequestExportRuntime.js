@@ -1,6 +1,7 @@
 import { classifyReactionNode } from "./ReactionStructureMappingRuntime.js";
 import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
+import { deriveStructureClassification } from "../../domain/structure/StructureClassification.js";
 
 const DEFAULT_POLICY = Object.freeze({
   recruitmentMode: "forbid",
@@ -44,6 +45,94 @@ function toLedgerCounts(inventory = null) {
 
 function buildTagList(values = []) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
+}
+
+function buildInventoryRecord(inventory = null, flags = []) {
+  const normalizedFlags = buildTagList(flags);
+  const counts = toLedgerCounts(inventory);
+  return normalizedFlags.length ? { ...counts, flags: normalizedFlags } : counts;
+}
+
+function inferGenerationFromLabel(templateId = "", label = "") {
+  const normalizedTemplateId = normalizeLowerText(templateId);
+  const normalizedLabel = normalizeLowerText(label);
+  if (!normalizedTemplateId || !normalizedLabel) {
+    return "";
+  }
+  if (normalizedTemplateId === "electron") {
+    if (normalizedLabel.includes("tau")) {
+      return "3";
+    }
+    if (normalizedLabel.includes("muon")) {
+      return "2";
+    }
+    if (normalizedLabel.includes("electron")) {
+      return "1";
+    }
+    return "";
+  }
+  if (normalizedTemplateId === "neutrino") {
+    if (normalizedLabel.includes("tau")) {
+      return "3";
+    }
+    if (normalizedLabel.includes("muon")) {
+      return "2";
+    }
+    if (normalizedLabel.includes("neutrino")) {
+      return "1";
+    }
+    return "";
+  }
+  if (normalizedTemplateId === "up_quark") {
+    if (normalizedLabel.includes("top")) {
+      return "3";
+    }
+    if (normalizedLabel.includes("charm")) {
+      return "2";
+    }
+    if (normalizedLabel.includes("up")) {
+      return "1";
+    }
+    return "";
+  }
+  if (normalizedTemplateId === "down_quark") {
+    if (normalizedLabel.includes("bottom")) {
+      return "3";
+    }
+    if (normalizedLabel.includes("strange")) {
+      return "2";
+    }
+    if (normalizedLabel.includes("down")) {
+      return "1";
+    }
+    return "";
+  }
+  return "";
+}
+
+function inferGenerationFromStructure(participant = null) {
+  const derived = deriveStructureClassification(participant?.structure ?? null);
+  const generation = derived?.classification?.generation;
+  return Number.isInteger(generation) && generation > 0 ? String(generation) : "";
+}
+
+function buildParticipantInventoryFlags(participant = null, templateId = "", node = null, parentId = "") {
+  const normalizedTemplateId = normalizeLowerText(templateId);
+  if (!normalizedTemplateId) {
+    return [];
+  }
+  const rootGeneration =
+    !parentId && participant ? inferGenerationFromStructure(participant) : "";
+  const generation =
+    inferGenerationFromLabel(normalizedTemplateId, normalizeText(node?.label)) ||
+    inferGenerationFromLabel(normalizedTemplateId, normalizeText(participant?.label)) ||
+    inferGenerationFromLabel(normalizedTemplateId, normalizeText(participant?.baseLabel)) ||
+    rootGeneration;
+  return buildTagList([
+    generation ? `generation:${generation}` : "",
+    normalizedTemplateId === "electron" ? "charged-lepton" : "",
+    normalizedTemplateId === "neutrino" ? "neutrino" : "",
+  ]);
 }
 
 function detectParticipantFamily(participant = null) {
@@ -109,27 +198,42 @@ function serializeParticipantNodes(participant = null, resolveBinaryChoiceInvent
   }
 
   function visit(node = null, parentId = "") {
-    if (!node?.id || !node?.templateId) {
+    if (!node?.id) {
       return [];
     }
     const spec = classifyReactionNode(participant, node, {
       resolveBinaryChoiceInventory,
     });
+    const inferredTemplateId =
+      normalizeText(node.templateId) ||
+      (!parentId ? normalizeText(participant?.templateId) : "");
+    if (!inferredTemplateId) {
+      return [];
+    }
     const record = {
       id: normalizeText(node.id),
-      templateId: normalizeText(node.templateId),
-      label: normalizeText(node.label) || normalizeText(node.templateId),
-      inventory: toLedgerCounts(spec?.inventory),
+      templateId: inferredTemplateId,
+      label:
+        (!parentId ? normalizeText(participant?.label) : "") ||
+        normalizeText(node.label) ||
+        inferredTemplateId,
+      inventory: buildInventoryRecord(
+        spec?.inventory,
+        buildParticipantInventoryFlags(participant, inferredTemplateId, node, parentId)
+      ),
     };
-    const family = normalizeText(node.family) || detectParticipantFamily({ templateId: node.templateId });
+    const family =
+      normalizeText(node.family) || detectParticipantFamily({ templateId: inferredTemplateId });
     if (parentId) {
       record.parentId = parentId;
     }
     if (family) {
       record.family = family;
     }
-    if (normalizeText(node.polarity)) {
-      record.polarity = normalizeText(node.polarity);
+    const recordPolarity =
+      (!parentId ? normalizeText(participant?.polarity) : "") || normalizeText(node.polarity);
+    if (recordPolarity) {
+      record.polarity = recordPolarity;
     }
     if (Array.isArray(node.children) && node.children.length) {
       record.isComposite = true;
@@ -195,7 +299,10 @@ function serializeParticipantRecord(participant = null, resolveBinaryChoiceInven
     ...(family ? { family } : {}),
     ...(normalizeText(participant.polarity) ? { polarity: normalizeText(participant.polarity) } : {}),
     isComposite: Array.isArray(rootNode.children) && rootNode.children.length > 0,
-    inventory: toLedgerCounts(rootSpec?.inventory),
+    inventory: buildInventoryRecord(
+      rootSpec?.inventory,
+      buildParticipantInventoryFlags(participant, normalizeText(participant.templateId), rootNode, "")
+    ),
     rootNodeId: normalizeText(rootNode.id),
     nodes,
     ...(tags.length ? { tags } : {}),

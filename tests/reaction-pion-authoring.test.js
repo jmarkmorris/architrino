@@ -122,6 +122,24 @@ test("solver request exporter classifies authored pions as mesons", () => {
 
   assert.equal(document.participants[0]?.family, "meson");
   assert.equal(document.participants[1]?.family, "meson");
+  assert.equal(document.participants[0]?.nodes.length, 3);
+  assert.deepEqual(
+    document.participants[0]?.nodes.map((node) => [node.templateId, node.parentId ?? "", node.polarity ?? ""]),
+    [
+      ["upi0", "", ""],
+      ["up_quark", "reactant_upi0_structure", "pro"],
+      ["up_quark", "reactant_upi0_structure", "anti"],
+    ]
+  );
+  assert.equal(document.participants[1]?.nodes.length, 3);
+  assert.deepEqual(
+    document.participants[1]?.nodes.map((node) => [node.templateId, node.parentId ?? "", node.polarity ?? ""]),
+    [
+      ["pi_minus", "", ""],
+      ["down_quark", "product_pi_minus_structure", "pro"],
+      ["up_quark", "product_pi_minus_structure", "anti"],
+    ]
+  );
 });
 
 test("reaction-flow export keeps explicit neutral-pion authored form visible", () => {

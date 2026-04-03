@@ -17,21 +17,21 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
 
   assert.match(stdout, /PDG closure sweep/);
   assert.match(stdout, /reactionsTested: 3/);
-  assert.match(stdout, /analyzableReactions: 2/);
-  assert.match(stdout, /reactionsNotYetAnalyzed: 1/);
-  assert.match(stdout, /exactClosures: 2/);
+  assert.match(stdout, /analyzableReactions: 3/);
+  assert.match(stdout, /reactionsNotYetAnalyzed: 0/);
+  assert.match(stdout, /exactClosures: 3/);
   assert.match(stdout, /exactClosurePercent: 100%/);
   assert.equal(summary.source, "fixtures");
   assert.equal(summary.reactionsTested, 3);
-  assert.equal(summary.analyzableReactionCount, 2);
-  assert.equal(summary.reactionsNotYetAnalyzed, 1);
-  assert.equal(summary.exactClosureCount, 2);
+  assert.equal(summary.analyzableReactionCount, 3);
+  assert.equal(summary.reactionsNotYetAnalyzed, 0);
+  assert.equal(summary.exactClosureCount, 3);
   assert.equal(summary.exactClosurePercent, 100);
-  assert.equal(summary.outcomeCounts.exact, 2);
+  assert.equal(summary.outcomeCounts.exact, 3);
   assert.equal(summary.outcomeCounts.partial, 0);
   assert.equal(summary.outcomeCounts["no-solution"], 0);
-  assert.equal(summary.outcomeCounts["unsupported-input"], 1);
-  assert.deepEqual(summary.topUnsupportedParticles, [{ particle: "pi+", count: 1 }]);
+  assert.equal(summary.outcomeCounts["unsupported-input"], 0);
+  assert.deepEqual(summary.topUnsupportedParticles, []);
   assert.equal(summary.discoveredUnsupportedReactionCount, null);
   assert.deepEqual(summary.discoveredTopUnsupportedParticles, []);
   assert.equal(summary.cases.length, 3);
@@ -41,11 +41,11 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.equal(summary.cases[1].productsCompact, "e.av.v2");
   assert.equal(summary.cases[2].reactantsCompact, "pi+");
   assert.equal(summary.cases[2].productsCompact, "ae2.v2");
-  assert.match(report, /Top unsupported particles in this run:\npi\+\t1/);
+  assert.match(report, /Top unsupported particles in this run:\n\(none\)/);
   assert.match(report, /batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
   assert.match(report, /\tfree_neutron_beta_decay\texact\texact=true\tunresolved=0\tN\tP\.e\.av\t\t/);
   assert.match(report, /\tmuon_decay\texact\texact=true\tunresolved=0\te2\te\.av\.v2\t\t/);
-  assert.match(report, /\tcharged_pion_to_muon_neutrino\tunsupported-input\texact=false\tunresolved=null\tpi\+\tae2\.v2\tpi\+\t/);
+  assert.match(report, /\tcharged_pion_to_muon_neutrino\texact\texact=true\tunresolved=0\tpi\+\tae2\.v2\t\t/);
   assert.equal(fs.existsSync(path.join(outDir, "run.log")), true);
   assert.equal(
     fs.existsSync(

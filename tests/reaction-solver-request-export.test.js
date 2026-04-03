@@ -353,3 +353,47 @@ test("solver request exporter derives canonical ledgers and fragment mappings fr
     }
   );
 });
+
+test("solver request exporter preserves authored muon-family flags and root polarity metadata", () => {
+  const antiMuon = createParticipant({
+    id: "product_anti_muon_authored",
+    side: "product",
+    templateId: "electron",
+    polarity: "anti",
+    label: "Anti Muon",
+  });
+  const muonNeutrino = createParticipant({
+    id: "product_muon_neutrino_authored",
+    side: "product",
+    templateId: "neutrino",
+    polarity: "pro",
+    label: "Pro Muon Neutrino",
+  });
+
+  const request = buildReactionSolverRequestDocument({
+    requestId: "reaction_muon_family_flags",
+    snapshot: {
+      participants: [antiMuon, muonNeutrino],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory,
+  });
+  const antiMuonRecord = request.participants.find(
+    (participant) => participant.id === "product_anti_muon_authored"
+  );
+  const muonNeutrinoRecord = request.participants.find(
+    (participant) => participant.id === "product_muon_neutrino_authored"
+  );
+
+  assert.equal(antiMuonRecord?.polarity, "anti");
+  assert.equal(antiMuonRecord?.nodes[0]?.polarity, "anti");
+  assert.equal(antiMuonRecord?.nodes[0]?.label, "Anti Muon");
+  assert.deepEqual(antiMuonRecord?.inventory?.flags, ["generation:2", "charged-lepton"]);
+  assert.deepEqual(antiMuonRecord?.nodes[0]?.inventory?.flags, ["generation:2", "charged-lepton"]);
+
+  assert.equal(muonNeutrinoRecord?.polarity, "pro");
+  assert.equal(muonNeutrinoRecord?.nodes[0]?.polarity, "pro");
+  assert.equal(muonNeutrinoRecord?.nodes[0]?.label, "Pro Muon Neutrino");
+  assert.deepEqual(muonNeutrinoRecord?.inventory?.flags, ["generation:2", "neutrino"]);
+  assert.deepEqual(muonNeutrinoRecord?.nodes[0]?.inventory?.flags, ["generation:2", "neutrino"]);
+});

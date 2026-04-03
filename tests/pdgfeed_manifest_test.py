@@ -107,14 +107,17 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
         self.assertEqual(manifest["schema"], "pdg-live-manifest/v1")
         self.assertEqual(manifest["edition"], "2025")
-        self.assertEqual(manifest["exportableCount"], 1)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
-        self.assertEqual(len(manifest["entries"]), 1)
+        self.assertEqual(manifest["exportableCount"], 2)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
+        self.assertEqual(len(manifest["entries"]), 2)
         self.assertEqual(manifest["entries"][0]["batchId"], 1)
-        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S017.1/2025")
-        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "n")
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S008.1/2025")
+        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "pi+")
         self.assertEqual(manifest["entries"][0]["solverRequest"]["schema"], "solver-request/v1")
-        self.assertEqual(manifest["topUnsupportedParticles"], [{"particle": "pi+", "count": 1}])
+        self.assertEqual(manifest["entries"][1]["batchId"], 2)
+        self.assertEqual(manifest["entries"][1]["pdgIdentifier"], "S017.1/2025")
+        self.assertEqual(manifest["entries"][1]["lookupParticleName"], "n")
+        self.assertEqual(manifest["topUnsupportedParticles"], [])
 
     def test_extract_unsupported_particle_names_ignores_non_particle_text_tokens(self):
         notes = [

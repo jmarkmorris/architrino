@@ -99,6 +99,7 @@ test("generated PDG solver-request fixtures validate against solver-request/v1",
     .sort();
 
   assert.deepEqual(requestPaths, [
+    "charged_pion_to_muon_neutrino.solver-request.v1.json",
     "free_neutron_beta_decay.solver-request.v1.json",
     "muon_decay.solver-request.v1.json",
   ]);
@@ -121,6 +122,7 @@ test("generated live PDG solver-request artifacts validate against solver-reques
     .sort();
 
   assert.deepEqual(requestPaths, [
+    "charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json",
     "free_neutron_beta_decay.live-pdg.solver-request.v1.json",
     "muon_decay.live-pdg.solver-request.v1.json",
     "muon_decay_with_electron_positron_pair.live-pdg.solver-request.v1.json",
@@ -141,6 +143,8 @@ test("generated live PDG solver-request artifacts validate against solver-reques
 test("live PDG artifacts preserve the same normalized participant template surface as fixture exports", () => {
   const fixtureNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
   const liveNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.solver-request.v1.json");
+  const fixturePion = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json");
+  const livePion = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json");
   const fixtureMuon = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
   const liveMuon = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.solver-request.v1.json");
 
@@ -154,6 +158,7 @@ test("live PDG artifacts preserve the same normalized participant template surfa
   }
 
   assert.deepEqual(summarizeParticipants(liveNeutron), summarizeParticipants(fixtureNeutron));
+  assert.deepEqual(summarizeParticipants(livePion), summarizeParticipants(fixturePion));
   assert.deepEqual(summarizeParticipants(liveMuon), summarizeParticipants(fixtureMuon));
 });
 
@@ -197,43 +202,35 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
   assert.equal(pairMuonProposal.products[3].pdgId, "e+");
   assert.equal(pairMuonProposal.products[4].pdgId, "e-");
   assert.equal(muonPhotonProposal.products[1].pdgId, "gamma");
+  assert.equal(pionProposal.reactants[0].templateId, "pi_plus");
+  assert.equal(pionProposal.products[0].templateId, "electron");
+  assert.equal(pionProposal.products[1].templateId, "neutrino");
 });
 
-test("unsupported PDG fixture remains proposal-only with no solver-request artifact", () => {
+test("charged pion fixture now emits a solver-request artifact through the stable v1 seam", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.proposal.v1.json");
+  const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json");
 
-  assert.equal(proposal.exportable, false);
-  assert.ok(
-    proposal.notes.includes("unsupported:reactant:pi+:no-v1-solver-template"),
-    "charged pion proposal should record the explicit unsupported v1 mapping reason"
-  );
-  assert.equal(
-    fs.existsSync(
-      new URL("../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json", import.meta.url)
-    ),
-    false
-  );
+  assert.equal(proposal.exportable, true);
+  assert.deepEqual(proposal.notes, [
+    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
+  ]);
+  assert.equal(request.participants[0].templateId, "pi_plus");
+  assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
+  assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);
 });
 
-test("unsupported live PDG channel remains proposal-only with no solver-request artifact", () => {
+test("charged pion live PDG channel now emits a solver-request artifact through the stable v1 seam", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
+  const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json");
 
-  assert.equal(proposal.exportable, false);
+  assert.equal(proposal.exportable, true);
   assert.equal(proposal.source.sourceMode, "pdg.connect");
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
-  assert.ok(
-    proposal.notes.includes("unsupported:reactant:pi+:no-v1-solver-template"),
-    "charged pion live proposal should record the explicit unsupported v1 mapping reason"
-  );
-  assert.equal(
-    fs.existsSync(
-      new URL(
-        "../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json",
-        import.meta.url
-      )
-    ),
-    false
-  );
+  assert.deepEqual(proposal.notes, []);
+  assert.equal(request.participants[0].templateId, "pi_plus");
+  assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
+  assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);
 });
 
 test("pdgfeed can print fixture solver-request json to stdout for piping", () => {

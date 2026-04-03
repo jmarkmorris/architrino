@@ -2,6 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
+import { buildReactionSolverRequestDocument } from "../src/apps/reaction/ReactionSolverRequestExportRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
+import { createReactionBinaryInventoryRuntime } from "../src/apps/reaction/ReactionBinaryInventoryRuntime.js";
+import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -95,6 +100,43 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
   return errors;
 }
 
+const supportsParticipantPolarity = (templateId) =>
+  new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(
+    String(templateId ?? "").trim().toLowerCase()
+  );
+const normalizeParticipantPolarity = (polarity) =>
+  String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+const selectionRuntime = createReactionBinarySelectionRuntime({
+  supportsParticipantPolarity,
+  normalizeParticipantPolarity,
+});
+const inventoryRuntime = createReactionBinaryInventoryRuntime({
+  getBinaryChoiceInventory: selectionRuntime.getBinaryChoiceInventory,
+  getResolvedBinarySelectionMap: selectionRuntime.getResolvedBinarySelectionMap,
+  resolveBinarySelectorGroup: selectionRuntime.resolveBinarySelectorGroup,
+});
+
+function createAuthoredParticipant({ id, side, templateId, polarity = "", label }) {
+  const structure = buildReactionParticipantStructure(templateId, {
+    id: `${id}_structure`,
+    label,
+    polarity,
+  });
+  const participant = {
+    id,
+    side,
+    templateId,
+    polarity,
+    baseLabel: label,
+    label,
+    structure: structure.root,
+    hierarchy: buildReactionStructureDescriptorTree(structure.root),
+    binarySelections: {},
+  };
+  participant.binarySelections = selectionRuntime.getInitialParticipantBinarySelections(participant);
+  return participant;
+}
+
 function summarizeResult(result) {
   return {
     outcome: result?.summary?.outcome ?? "",
@@ -130,7 +172,9 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
   const resultSchema = readJson("src/contracts/solver-result/v1/schema.json");
   const requestPaths = [
     "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json",
     "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json",
     "content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json",
     "content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.solver-request.v1.json",
     "content/contracts/examples/pdg/v1/generated/radiative_free_neutron_beta_decay.live-pdg.solver-request.v1.json",
@@ -278,6 +322,55 @@ test("external solve-reaction CLI closes generic proton radiative weak channels 
   assert.equal(result.summary.exact, true);
   assert.equal(result.operators.length, 1);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-baryon-radiative-conversion"), true);
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.side === "center" &&
+        participant.templateId === "noether_core"
+    ),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes an authored charged-pion decay request exported from Reaction structures", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_pion_decay",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_pi_plus_authored",
+          side: "reactant",
+          templateId: "pi_plus",
+          label: "Positive Pion",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_muon_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Muon",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_muon_neutrino_authored",
+          side: "product",
+          templateId: "neutrino",
+          polarity: "pro",
+          label: "Pro Muon Neutrino",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-pion-decay"), true);
+  assert.equal(result.operators.length, 1);
   assert.equal(
     result.participants.some(
       (participant) =>

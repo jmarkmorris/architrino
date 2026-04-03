@@ -7,6 +7,7 @@ import {
   getReactionParticipantCardSectionOrder,
   getRenderedSlotCodesForSide,
 } from "../src/apps/reaction/ReactionParticipantRenderRuntime.js";
+import { getReactionParticleTileLabelLines } from "../src/apps/reaction/ReactionParticleTileRuntime.js";
 
 test("render slot codes mirror on product side only", () => {
   assert.deepEqual(getRenderedSlotCodesForSide("reactant"), ["I", "M", "O"]);
@@ -78,6 +79,40 @@ test("side slot headers align from the track-side edge, not the outer participan
     styleSheet,
     /\.composer-reaction-solver-side-slot-header\.is-product\s*\{[\s\S]*?justify-self:\s*start;[\s\S]*?margin-left:\s*var\(--solver-slot-header-offset,\s*0px\);/
   );
+});
+
+test("pion canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative Pion", { templateId: "pi_minus" }),
+    ["Negative", "Pion", "d !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Pion (u anti-u)", { templateId: "upi0" }),
+    ["Neutral", "Pion", "u !u"]
+  );
+});
+
+test("shared particle tile label helper preserves picker-only baryon preview text", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Pro Proton", { templateId: "proton" }, {
+      includeCompositePreviewLines: true,
+    }),
+    ["Pro", "Proton", "u d u"]
+  );
+});
+
+test("picker and canvas use the shared particle tile helper module", () => {
+  const solverUiRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const participantRenderRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(solverUiRuntimeSource, /createReactionParticleTileElement/);
+  assert.match(solverUiRuntimeSource, /getReactionParticleTileLabelLines/);
+  assert.match(participantRenderRuntimeSource, /createReactionParticleTileElement/);
 });
 
 test("center assembly column group uses the shared surface grid column and centered participant alignment", () => {

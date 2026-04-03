@@ -45,6 +45,10 @@ import {
   getReactionSideSlotHeaderProfile,
 } from "./ReactionParticipantRenderRuntime.js";
 import {
+  createReactionParticleTileElement,
+  getReactionParticleTileLabelLines,
+} from "./ReactionParticleTileRuntime.js";
+import {
   applyReactionSolverLayoutCssVars,
   applyReactionSolverSurfaceGridLayout,
   getReactionSurfaceColumnGroupFallbackRatios,
@@ -530,59 +534,19 @@ function normalizeParticipantBaseLabel(label = "", templateId = "") {
 }
 
 function getParticipantCardLabelLines(label = "", participant = null) {
-  const words = String(label || "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
-  const normalizedTemplateId = String(participant?.templateId ?? "").trim().toLowerCase();
-  if (
-    normalizedTemplateId === "noether_core" &&
-    words.length >= 3
-  ) {
-    const [polarityWord = "", secondWord = "", thirdWord = ""] = words;
-    return [
-      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
-      secondWord ? secondWord[0].toUpperCase() + secondWord.slice(1).toLowerCase() : "",
-      thirdWord ? thirdWord[0].toUpperCase() + thirdWord.slice(1).toLowerCase() : "",
-    ].filter(Boolean);
-  }
-  if (supportsParticipantPolarity(normalizedTemplateId) && words.length >= 2) {
-    const [polarityWord = "", ...restWords] = words;
-    return [
-      polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
-      ...restWords.map((word) => word[0]?.toUpperCase?.() + word.slice(1).toLowerCase()),
-    ].filter(Boolean);
-  }
-  if (words.length <= 1) {
-    return [String(label || "").trim() || "?"];
-  }
-  if (words.length === 2) {
-    return words;
-  }
-  return [words.slice(0, -1).join(" "), words.at(-1) ?? ""];
+  return getReactionParticleTileLabelLines(label, participant, {
+    supportsParticipantPolarity,
+  });
 }
 
 function getPickerTileLabelLines(pickerCell = null, participant = null) {
-  const templateId = String(pickerCell?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
-  if (templateId === "pi_minus") {
-    return ["Negative", "Pion", "d !u"];
-  }
-  if (templateId === "pi_plus") {
-    return ["Positive", "Pion", "!d u"];
-  }
-  if (templateId === "dpi0") {
-    return ["Neutral", "Pion", "d !d"];
-  }
-  if (templateId === "upi0") {
-    return ["Neutral", "Pion", "u !u"];
-  }
-  if (templateId === "proton") {
-    return ["Pro", "Proton", "u d u"];
-  }
-  if (templateId === "neutron") {
-    return ["Pro", "Neutron", "d u d"];
-  }
-  return getParticipantCardLabelLines(pickerCell?.label, participant);
+  return getReactionParticleTileLabelLines(pickerCell?.label, {
+    ...participant,
+    templateId: pickerCell?.templateId ?? participant?.templateId ?? "",
+  }, {
+    includeCompositePreviewLines: true,
+    supportsParticipantPolarity,
+  });
 }
 
 function countDescendants(node) {
@@ -2367,9 +2331,10 @@ export function createReactionSolverUiRuntime(deps = {}) {
   }
 
   function createPickerTilePreview(pickerCell = null) {
-    const preview = document.createElement("div");
-    preview.className = "composer-reaction-solver-particle composer-reaction-solver-picker-card";
     if (!pickerCell || pickerCell.vacant) {
+      const preview = createReactionParticleTileElement(null, {
+        classNames: ["composer-reaction-solver-picker-card"],
+      });
       preview.classList.add("is-vacant");
       preview.setAttribute("aria-hidden", "true");
       return preview;
@@ -2379,18 +2344,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
       label: pickerCell.label,
       polarity: "",
     };
-    const meta = getParticipantCardMeta(previewParticipant);
-    preview.style.setProperty("--solver-accent", meta.accent);
-    const label = document.createElement("div");
-    label.className = "composer-reaction-solver-particle-label";
-    getPickerTileLabelLines(pickerCell, previewParticipant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      label.appendChild(lineElement);
+    return createReactionParticleTileElement(previewParticipant, {
+      classNames: ["composer-reaction-solver-picker-card"],
+      getParticipantCardMeta,
+      getParticipantCardLabelLines: () => getPickerTileLabelLines(pickerCell, previewParticipant),
     });
-    preview.appendChild(label);
-    return preview;
   }
 
   function createColumnAddButton(side, options = {}) {

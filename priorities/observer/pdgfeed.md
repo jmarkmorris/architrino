@@ -37,9 +37,9 @@ It does not own:
 - `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
-- Exportable candidate requests currently exist for the neutron and muon fixture cases.
-- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, and muon-to-electron-photon cases when a local `pdg` installation is present.
-- The live `charged_pion_to_muon_neutrino` read path is now supported as a proposal-only case; it must not emit `solver-request/v1` until pion receives an explicit solver-facing mapping.
+- Exportable candidate requests currently exist for the neutron, muon, and charged-pion fixture cases.
+- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, and charged-pion-to-muon-neutrino cases when a local `pdg` installation is present.
+- Charged pion now has an explicit solver-facing mapping in the locked v1 registry, so `charged_pion_to_muon_neutrino` no longer stops at proposal-only classification.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -172,14 +172,15 @@ The locked canonical v1 PDG-to-solver mapping table is:
 | `nu_mu` | exportable | `neutrino` | `Pro Muon Neutrino` | neutrino, generation 2 |
 | `anti-nu_mu` | exportable | `neutrino` | `Anti Muon Neutrino` | neutrino, generation 2 |
 | `gamma` | exportable | `photon` | `Photon` | boson |
-| `pi+` | proposal-only | none | `Pi Plus` | explicitly blocked until a solver-facing pion mapping exists |
-| `pi-` | proposal-only | none | `Pi Minus` | explicitly blocked until a solver-facing pion mapping exists |
+| `pi+` | exportable | `pi_plus` | `Positive Pion` | meson, `u + anti-d` |
+| `pi-` | exportable | `pi_minus` | `Negative Pion` | meson, `d + anti-u` |
+| `pi0` | proposal-only | none | `Neutral Pion` | neutral-pion option handling is not yet locked in PDG ingest |
 
 The v1 unsupported-particle policy is:
 
 - only canonical PDG names in the exportable rows above may be emitted into `solver-request/v1`;
 - local aliases may canonicalize into those names, but aliases do not define new solver mappings;
-- a particle explicitly marked proposal-only, such as `pi+` or `pi-`, must remain in proposal metadata and notes only;
+- a particle explicitly marked proposal-only, such as `pi0`, must remain in proposal metadata and notes only;
 - any particle absent from the table is also proposal-only by default;
 - and any decay product that arrives as a generic/textual PDG item, requires multiplicity expansion, or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
 

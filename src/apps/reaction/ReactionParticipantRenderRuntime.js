@@ -1,4 +1,5 @@
 import { getBinaryPersonalityChoice } from "./ReactionBinarySelectionRuntime.js";
+import { createReactionParticleTileElement } from "./ReactionParticleTileRuntime.js";
 import {
   getReactionParticipantTrackHeaderInsetCss,
   getReactionParticipantTrackStartOffsetPx,
@@ -256,26 +257,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createParticipantVisual(participant, extraClassNames = []) {
-    const visual = document.createElement("div");
-    visual.className = "composer-reaction-solver-particle";
-    extraClassNames.filter(Boolean).forEach((className) => visual.classList.add(className));
-    if (participant?.templateId === "free_architrinos") {
-      visual.classList.add("is-free-architrinos");
-    }
-    if (participant.polarity === "anti") {
-      visual.classList.add("is-anti-polarity");
-    }
-    const meta = getParticipantCardMeta(participant);
-    visual.style.setProperty("--solver-accent", meta.accent);
-    const visualLabel = document.createElement("div");
-    visualLabel.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      visualLabel.appendChild(lineElement);
+    const visual = createReactionParticleTileElement(participant, {
+      classNames: extraClassNames,
+      getParticipantCardMeta,
+      getParticipantCardLabelLines,
     });
-    visual.appendChild(visualLabel);
     visual.addEventListener("click", (event) => {
       if (handleParticipantVisualClick(participant, event)) {
         event.preventDefault();
@@ -593,23 +579,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
             ? formatParticipantLabel(baseLabel, templateId, polarity || "pro")
             : baseLabel,
     };
-    const card = document.createElement("div");
-    card.className = "composer-reaction-solver-particle composer-reaction-solver-composite-row-card";
-    if (cardParticipant.polarity === "anti") {
-      card.classList.add("is-anti-polarity");
-    }
-    const meta = getParticipantCardMeta(cardParticipant);
-    card.style.setProperty("--solver-accent", meta.accent);
-    const label = document.createElement("div");
-    label.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(cardParticipant.label, cardParticipant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      label.appendChild(lineElement);
+    return createReactionParticleTileElement(cardParticipant, {
+      classNames: ["composer-reaction-solver-composite-row-card"],
+      getParticipantCardMeta,
+      getParticipantCardLabelLines,
     });
-    card.appendChild(label);
-    return card;
   }
 
   function createCompositeAssemblyRowBody(participant, rowNode) {

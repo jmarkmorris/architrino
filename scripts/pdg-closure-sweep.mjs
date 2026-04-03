@@ -324,6 +324,12 @@ function compactTokenFromProposalParticipant(participant) {
       return "av3";
     case "gamma":
       return "2h";
+    case "pi+":
+      return "pi+";
+    case "pi-":
+      return "pi-";
+    case "pi0":
+      return "pi0";
     case "W+":
     case "W-":
     case "Z":

@@ -103,7 +103,7 @@ class FindLiveDecayTests(unittest.TestCase):
 
         self.assertEqual(decay.description, "mu- -> e- anti-nu_e nu_mu")
 
-    def test_live_charged_pion_case_stays_proposal_only_under_locked_v1_mapping(self):
+    def test_live_charged_pion_case_now_emits_a_solver_request_under_v1_mapping(self):
         api = FakeApi(
             [
                 FakeDecay(
@@ -127,9 +127,11 @@ class FindLiveDecayTests(unittest.TestCase):
 
         self.assertEqual(live_case.source_kind, "pdg-live")
         self.assertEqual(live_case.case_id, "charged_pion_to_muon_neutrino")
-        self.assertEqual(proposal.exportable, False)
-        self.assertIn("unsupported:reactant:pi+:no-v1-solver-template", proposal.notes)
-        self.assertIsNone(pdgfeed.build_solver_request(proposal))
+        self.assertEqual(proposal.exportable, True)
+        self.assertEqual(proposal.notes, ())
+        solver_request = pdgfeed.build_solver_request(proposal)
+        self.assertIsNotNone(solver_request)
+        self.assertEqual(solver_request["participants"][0]["templateId"], "pi_plus")
 
     def test_live_registry_includes_supported_radiative_and_pair_extension_cases(self):
         expected_case_ids = {

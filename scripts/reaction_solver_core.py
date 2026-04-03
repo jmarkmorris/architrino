@@ -80,14 +80,31 @@ def get_generation_flag_value(entity=None):
     return get_pdg_flag_value(entity, "generation:")
 
 
+def get_effective_polarity(entity=None, template_id=""):
+    normalized_template_id = normalize_text(template_id).lower()
+    normalized_polarity = normalize_text((entity or {}).get("polarity")).lower()
+    if normalized_template_id in {
+        "electron",
+        "neutrino",
+        "up_quark",
+        "down_quark",
+        "noether_core",
+    }:
+        return normalized_polarity
+    return ""
+
+
 def build_participant_signature_counter(participants=None):
     counter = Counter()
     for participant in participants or []:
-        entity = get_participant_root_or_self(participant)
+        root_entity = get_root_node(participant) or {}
+        entity = root_entity or (participant or {})
+        template_id = get_effective_template_id(entity) or get_effective_template_id(participant)
         signature = (
-            get_effective_template_id(entity),
-            normalize_text(entity.get("polarity")).lower(),
-            get_generation_flag_value(entity),
+            template_id,
+            get_effective_polarity(entity if root_entity else participant, template_id)
+            or get_effective_polarity(participant, template_id),
+            get_generation_flag_value(entity) or get_generation_flag_value(participant),
         )
         if signature[0]:
             counter[signature] += 1
@@ -111,10 +128,10 @@ def count_signatures(counter=None, template_id=None, polarity=None, generation=N
 GENERIC_WEAK_CHANNEL_PROFILES = (
     {
         "key": "weak-baryon-beta-decay",
-        "sourceSignatures": Counter({("neutron", "pro", ""): 1}),
+        "sourceSignatures": Counter({("neutron", "", ""): 1}),
         "requiredProductSignatures": Counter(
             {
-                ("proton", "pro", ""): 1,
+                ("proton", "", ""): 1,
                 ("electron", "pro", "1"): 1,
                 ("neutrino", "anti", "1"): 1,
             }
@@ -209,6 +226,42 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                     }
                 ),
                 "ruleFamily": "weak-lepton-trilepton-conversion",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-pion-decay",
+        "sourceSignatures": Counter({("pi_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "2"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-pion-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-pion-decay-conjugate",
+        "sourceSignatures": Counter({("pi_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "2"): 1,
+                ("neutrino", "anti", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-pion-decay-conjugate",
             },
         ),
         "implicitCenterPolarity": "pro",
@@ -351,9 +404,9 @@ def match_generic_weak_channel(source_participants=None, product_participants=No
                     "variantKey": variant["key"],
                     "implicitCenterPolarity": profile["implicitCenterPolarity"],
                 }
-    if source_counter == Counter({("proton", "pro", ""): 1}):
+    if source_counter == Counter({("proton", "", ""): 1}):
         return match_generic_proton_channel(product_counter)
-    if source_counter == Counter({("neutron", "pro", ""): 1}):
+    if source_counter == Counter({("neutron", "", ""): 1}):
         return match_generic_neutron_channel(product_counter)
     return None
 
