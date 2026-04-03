@@ -3,7 +3,7 @@
   "requestId": "muon_to_electron_photon.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "muon_to_electron_photon",
+    "sourceDocumentId": "pdg-proposal:muon_to_electron_photon.live-pdg",
     "title": "Muon to electron photon"
   },
   "participants": [

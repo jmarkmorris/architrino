@@ -228,6 +228,36 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
   });
 });
 
+test("external solve-reaction CLI upgrades muon decay to the lepton constituent provenance path", () => {
+  const result = runSolveReactionCli("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-lepton-core-pool"), true);
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
+    true
+  );
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
+    false
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "noether_pair" &&
+        participant.tags?.includes("noether-pair-supplement")
+    ),
+    true
+  );
+  assert.equal(
+    result.diagnostics.some((diagnostic) => diagnostic.code === "lepton-constituent-provenance"),
+    true
+  );
+});
+
 test("external solve-reaction CLI closes generic proton radiative weak channels through the same operator-plus-center path", () => {
   const request = {
     schema: "solver-request/v1",
@@ -3639,7 +3669,7 @@ test("external solve-reaction CLI treats upi0 and dpi0 as solver-equivalent neut
   assert.equal(result.steps.some((step) => step.ruleFamily === "exact-identical-participant"), true);
 });
 
-test("external solve-reaction CLI closes generic muon trilepton weak channels through the same operator-plus-center path", () => {
+test("external solve-reaction CLI closes muon trilepton weak channels through the lepton constituent provenance path", () => {
   const request = {
     schema: "solver-request/v1",
     requestId: "muon_to_three_electrons",
@@ -3738,14 +3768,18 @@ test("external solve-reaction CLI closes generic muon trilepton weak channels th
 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
-  assert.equal(result.operators.length, 1);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-lepton-core-pool"), true);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-lepton-trilepton-conversion"), true);
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
+    true
+  );
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
         participant.side === "center" &&
-        participant.templateId === "noether_core"
+        participant.templateId === "noether_pair"
     ),
     true
   );

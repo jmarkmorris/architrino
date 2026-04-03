@@ -108,6 +108,7 @@ test("generated PDG solver-request fixtures validate against solver-request/v1",
     const request = JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"));
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
     assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
+    assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
     assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
     assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
   });
@@ -135,6 +136,7 @@ test("generated live PDG solver-request artifacts validate against solver-reques
     const request = JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"));
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
     assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
+    assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
     assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
     assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
   });
@@ -198,6 +200,9 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
     downstreamSchema: "solver-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
+    reactionAcceptanceBoundary: "reaction-review",
+    acceptedReactionHandoff: "reaction-owned",
+    composerHandoff: "accepted-reaction-only",
   });
   assert.equal(neutronProposal.products[2].pdgId, "nubar_e");
   assert.equal(neutronProposal.products[2].pdgName, "anti-nu_e");
@@ -223,7 +228,11 @@ test("charged pion fixture now emits a solver-request artifact through the stabl
     downstreamSchema: "solver-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
+    reactionAcceptanceBoundary: "reaction-review",
+    acceptedReactionHandoff: "reaction-owned",
+    composerHandoff: "accepted-reaction-only",
   });
+  assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino");
   assert.deepEqual(proposal.notes, [
     "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
   ]);
@@ -242,10 +251,14 @@ test("charged pion live PDG channel now emits a solver-request artifact through 
     downstreamSchema: "solver-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
+    reactionAcceptanceBoundary: "reaction-review",
+    acceptedReactionHandoff: "reaction-owned",
+    composerHandoff: "accepted-reaction-only",
   });
   assert.equal(proposal.source.sourceMode, "pdg.connect");
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
   assert.deepEqual(proposal.notes, []);
+  assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg");
   assert.equal(request.participants[0].templateId, "pi_plus");
   assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
   assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);

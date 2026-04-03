@@ -1564,12 +1564,12 @@ Current:
 
 - the sweep/report path already distinguishes `generic-profile` exact closures from `full-provenance` exact closures;
 - exact composite meson carry-through now emits meson-constituent provenance when the source tree exposes child constituents;
-- lepton-heavy meson channels and neutral-pion paths already have full constituent provenance coverage;
-- but some remaining exact composite identities still close through generic profiles when the solver lacks enough child-node evidence to spell them out fully.
+- lepton-heavy meson channels, neutral-pion paths, and weak-lepton all-lepton closures now have full constituent provenance coverage;
+- but some remaining exact closures, especially baryon weak-channel families and radiative weak profiles, still close through generic profiles because the solver does not yet spell out a stronger constituent ledger for them.
 
 Objective:
 
-- make exact closure carry the strongest defensible explanatory meaning by expanding full constituent provenance wherever the solver already has enough particle-content knowledge to derive it.
+- keep shrinking the generic-profile bucket by upgrading the remaining exact weak-channel families only where the solver already has enough particle-content knowledge to justify a stronger provenance story.
 
 ### 3. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 

@@ -15,7 +15,10 @@
       "upstreamSchema": "pdg-proposal/v1",
       "downstreamSchema": "solver-request/v1",
       "handoffMode": "upstream-only",
-      "reactionAcceptanceRequired": true
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
     }
   },
   "reactants": [

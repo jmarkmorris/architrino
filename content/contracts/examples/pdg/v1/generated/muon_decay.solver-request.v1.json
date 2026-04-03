@@ -3,7 +3,7 @@
   "requestId": "muon_decay",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "muon_decay",
+    "sourceDocumentId": "pdg-proposal:muon_decay",
     "title": "Muon decay"
   },
   "participants": [

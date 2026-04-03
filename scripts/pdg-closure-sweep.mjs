@@ -257,7 +257,10 @@ function classifyExactClosureKind(result) {
     return null;
   }
   const labels = collectStepDiagnosticLabels(result);
-  if (labels.has("meson-constituent-provenance")) {
+  if (
+    labels.has("meson-constituent-provenance") ||
+    labels.has("lepton-constituent-provenance")
+  ) {
     return "full-provenance";
   }
   if (labels.has("generic-weak-channel")) {

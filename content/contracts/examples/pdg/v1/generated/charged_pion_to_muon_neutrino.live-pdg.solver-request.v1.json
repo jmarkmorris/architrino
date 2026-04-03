@@ -3,7 +3,7 @@
   "requestId": "charged_pion_to_muon_neutrino.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "charged_pion_to_muon_neutrino",
+    "sourceDocumentId": "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg",
     "title": "Charged pion to muon neutrino"
   },
   "participants": [

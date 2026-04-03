@@ -3,7 +3,7 @@
   "requestId": "radiative_free_neutron_beta_decay.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "radiative_free_neutron_beta_decay",
+    "sourceDocumentId": "pdg-proposal:radiative_free_neutron_beta_decay.live-pdg",
     "title": "Radiative free neutron beta decay"
   },
   "participants": [

@@ -34,7 +34,7 @@ It does not own:
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
 - `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and piping into the solver CLI.
-- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the solver-request seam.
+- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the solver-request seam, including that Reaction owns acceptance and Composer handoff stays downstream of accepted Reaction output.
 - `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
@@ -42,6 +42,7 @@ It does not own:
 - Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, neutral-pion discovery cases, the first charged/neutral kaon discovery cases, and the first charged/neutral B-meson discovery cases when a local `pdg` installation is present.
 - Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Reaction-side acceptance before any downstream handoff can be considered.
+- Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Reaction output.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -341,7 +342,7 @@ The first exported `solver-request/v1` candidate should follow these rules:
 
 - `schema` is always `solver-request/v1`;
 - `origin.sourceKind` is `pdg-ingest`;
-- `origin.sourceDocumentId` should identify the PDG proposal or source channel;
+- `origin.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a Composer or accepted-Reaction document;
 - `title` should be a concise channel label suitable for fixtures and review;
 - `participants` are produced only from normalized proposal records, never from raw PDG objects at export time;
 - `manualOperators` is empty in the first ingest version;
@@ -472,16 +473,3 @@ Current:
 Objective:
 
 - keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
-
-### 3. Stay Aligned With The Reaction/Composer Contract Story
-
-Status: `pending`
-
-Current:
-
-- PDG exports target `solver-request/v1` and avoid Composer-specific shortcut payloads;
-- the accepted handoff path through Reaction is still unfinished.
-
-Objective:
-
-- keep PDG strictly upstream of Reaction acceptance and preserve explicit downstream contracts.

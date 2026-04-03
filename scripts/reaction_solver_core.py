@@ -3374,6 +3374,330 @@ def product_requires_lepton_core(participant=None):
     return template_id in {"electron", "neutrino"}
 
 
+def get_standalone_constituent_requirements(source_participant=None):
+    source_root = get_root_node(source_participant) or (source_participant or {})
+    template_id = get_effective_template_id(source_root)
+    polarity = get_effective_polarity(source_root, template_id)
+    if not template_id or not polarity:
+        return None
+    requirements = STANDALONE_PRIMITIVE_ASSOCIATE_REQUIREMENTS.get((template_id, polarity))
+    if requirements is None:
+        return None
+    return {
+        "templateId": template_id,
+        "polarity": polarity,
+        "corePolarity": normalize_text(requirements.get("corePolarity")).lower() or polarity,
+        "freeInventory": normalize_inventory(requirements.get("freeInventory")),
+    }
+
+
+def build_lepton_constituent_provenance_diagnostic(
+    subject_participant=None,
+    context_label="Exact lepton closure",
+):
+    subject_participant = subject_participant or {}
+    subject_root = get_root_node(subject_participant) or subject_participant
+    subject_label = normalize_text(subject_root.get("label")) or normalize_text(subject_root.get("templateId"))
+    requirements = get_standalone_constituent_requirements(subject_participant)
+    if not subject_label or requirements is None:
+        return None
+    core_label = (
+        "Anti Noether core"
+        if normalize_text(requirements.get("corePolarity")).lower() == "anti"
+        else "Pro Noether core"
+    )
+    return {
+        "code": "lepton-constituent-provenance",
+        "severity": "info",
+        "message": (
+            f"{context_label} preserves lepton constituent provenance for {subject_label}: "
+            f"{core_label} + Free Architrinos."
+        ),
+        "path": "steps[0]",
+    }
+
+
+def solve_lepton_constituent_provenance_channel(request, source_participants, product_participants, family):
+    source_participant = source_participants[0]
+    source_id = normalize_text(source_participant.get("id"))
+    source_requirements = get_standalone_constituent_requirements(source_participant)
+    if source_requirements is None:
+        return None
+
+    variant_prefix = f"{family['key']}_{family['variantKey']}"
+    ledger_step_id = f"step_{variant_prefix}_lepton_core_pool"
+    generated_participants = []
+
+    source_core = build_generated_noether_core_participant(
+        participant_id=f"center_{variant_prefix}_source_core",
+        polarity=source_requirements["corePolarity"],
+        source_participant_id=source_id,
+        source_step_id=ledger_step_id,
+    )
+    generated_participants.append(source_core)
+    generated_core_ids = [normalize_text(source_core.get("id"))]
+    source_core_refs = {"pro": [], "anti": []}
+    source_core_refs[source_requirements["corePolarity"]].append(
+        {
+            "participantId": normalize_text(source_core.get("id")),
+            "anchorId": normalize_text(source_core.get("rootNodeId")),
+            "sourceKind": "source-core",
+        }
+    )
+
+    free_pool = build_generated_free_architrino_pool(
+        participant_id=f"center_{variant_prefix}_free_architrinos",
+        product_count=len(product_participants),
+        source_participant_id=source_id,
+        source_step_id=ledger_step_id,
+    )
+    generated_participants.append(free_pool)
+    free_pool_id = normalize_text(free_pool.get("id"))
+    free_pool_root_id = normalize_text(free_pool.get("rootNodeId"))
+
+    needed_core_counts = {"pro": 0, "anti": 0}
+    product_requirements = []
+    for product in product_participants:
+        product_root = get_root_node(product)
+        template_id = get_effective_template_id(product_root or product)
+        product_polarity = get_effective_polarity(product_root or product, template_id)
+        if not product_root or template_id not in {"electron", "neutrino"} or product_polarity not in {
+            "pro",
+            "anti",
+        }:
+            return None
+        needed_core_counts[product_polarity] += 1
+        product_requirements.append(
+            {
+                "participant": product,
+                "root": product_root,
+                "polarity": product_polarity,
+            }
+        )
+
+    deficit_pro = max(0, needed_core_counts["pro"] - len(source_core_refs["pro"]))
+    deficit_anti = max(0, needed_core_counts["anti"] - len(source_core_refs["anti"]))
+    noether_pair_count = min(deficit_pro, deficit_anti)
+    deficit_pro = max(0, deficit_pro - noether_pair_count)
+    deficit_anti = max(0, deficit_anti - noether_pair_count)
+    noether_pair_core_refs = {"pro": [], "anti": []}
+    generated_noether_pair_ids = []
+    for pair_index in range(1, noether_pair_count + 1):
+        noether_pair = build_generated_noether_pair(
+            participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
+            source_participant_id=source_id,
+            source_step_id=ledger_step_id,
+        )
+        generated_participants.append(noether_pair)
+        generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
+        for node in get_child_nodes(noether_pair):
+            node_polarity = normalize_text(node.get("polarity")).lower()
+            if node_polarity in {"pro", "anti"}:
+                noether_pair_core_refs[node_polarity].append(
+                    {
+                        "participantId": normalize_text(noether_pair.get("id")),
+                        "anchorId": normalize_text(node.get("id")),
+                        "sourceKind": "noether-pair",
+                    }
+                )
+
+    noether_quad_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
+    noether_quad_core_refs = {"pro": [], "anti": []}
+    generated_noether_quad_ids = []
+    for cluster_index in range(1, noether_quad_count + 1):
+        noether_quad = build_generated_noether_quad(
+            participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
+            source_participant_id=source_id,
+            source_step_id=ledger_step_id,
+        )
+        generated_participants.append(noether_quad)
+        generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
+        for node in get_child_nodes(noether_quad):
+            node_polarity = normalize_text(node.get("polarity")).lower()
+            if node_polarity in {"pro", "anti"}:
+                noether_quad_core_refs[node_polarity].append(
+                    {
+                        "participantId": normalize_text(noether_quad.get("id")),
+                        "anchorId": normalize_text(node.get("id")),
+                        "sourceKind": "noether-quad",
+                    }
+                )
+
+    steps = [
+        {
+            "stepId": ledger_step_id,
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-lepton-core-pool",
+            "consumedParticipantIds": [source_id],
+            "producedParticipantIds": generated_core_ids
+            + [free_pool_id]
+            + generated_noether_pair_ids
+            + generated_noether_quad_ids,
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": ["lepton-constituent-provenance", "shared-free-architrino-pool"]
+            + (["noether-pair-supplement"] if generated_noether_pair_ids else [])
+            + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
+        }
+    ]
+    mappings = []
+    operators = []
+    operator_placements = []
+    available_core_refs = {
+        "pro": list(source_core_refs["pro"]),
+        "anti": list(source_core_refs["anti"]),
+    }
+    available_noether_pair_refs = {
+        "pro": list(noether_pair_core_refs["pro"]),
+        "anti": list(noether_pair_core_refs["anti"]),
+    }
+    available_noether_quad_refs = {
+        "pro": list(noether_quad_core_refs["pro"]),
+        "anti": list(noether_quad_core_refs["anti"]),
+    }
+
+    for index, requirement in enumerate(product_requirements, start=1):
+        product = requirement["participant"]
+        product_root = requirement["root"]
+        product_id = normalize_text(product.get("id"))
+        product_polarity = requirement["polarity"]
+        core_ref = None
+        if available_core_refs[product_polarity]:
+            core_ref = available_core_refs[product_polarity].pop(0)
+        elif available_noether_pair_refs[product_polarity]:
+            core_ref = available_noether_pair_refs[product_polarity].pop(0)
+        elif available_noether_quad_refs[product_polarity]:
+            core_ref = available_noether_quad_refs[product_polarity].pop(0)
+        if core_ref is None:
+            return None
+
+        operator_id = f"associate:{variant_prefix}:{index}"
+        mapping_ids = []
+        core_mapping_id = f"map_{variant_prefix}_{product_id}_core"
+        mappings.append(
+            build_mapping(
+                mapping_id=core_mapping_id,
+                kind="operator-path",
+                from_participant_id=core_ref["participantId"],
+                from_anchor_id=core_ref["anchorId"],
+                from_role="reactant",
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger={"electrinoCount": 3, "positrinoCount": 3},
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(core_mapping_id)
+        pool_mapping_id = f"map_{variant_prefix}_{product_id}_free"
+        mappings.append(
+            build_mapping(
+                mapping_id=pool_mapping_id,
+                kind="operator-path",
+                from_participant_id=free_pool_id,
+                from_anchor_id=free_pool_root_id,
+                from_role="reactant",
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=free_pool.get("inventory"),
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(pool_mapping_id)
+        output_mapping_id = f"map_{variant_prefix}_{product_id}_out"
+        mappings.append(
+            build_mapping(
+                mapping_id=output_mapping_id,
+                kind="operator-path",
+                from_participant_id=operator_id,
+                from_anchor_id="root",
+                from_role="operator-output",
+                to_participant_id=product_id,
+                to_anchor_id=normalize_text(product_root.get("id")) or "root",
+                to_role="product",
+                conserved_ledger=product_root.get("inventory"),
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(output_mapping_id)
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "associate",
+                "origin": "solve-generated",
+                "label": "Associate",
+                "inputs": [
+                    {
+                        "participantId": core_ref["participantId"],
+                        "anchorId": core_ref["anchorId"],
+                        "role": "reactant",
+                    },
+                    {
+                        "participantId": free_pool_id,
+                        "anchorId": free_pool_root_id,
+                        "role": "reactant",
+                    },
+                ],
+                "outputs": [
+                    {
+                        "participantId": product_id,
+                        "anchorId": normalize_text(product_root.get("id")) or "root",
+                        "role": "product",
+                    }
+                ],
+            }
+        )
+        operator_placements.append(
+            {
+                "operatorId": operator_id,
+                "lane": 1,
+                "row": index * 2 + 1,
+                "slot": index * 2 + 1,
+            }
+        )
+        steps.append(
+            {
+                "stepId": f"step_{variant_prefix}_associate_{index}",
+                "kind": "associate",
+                "ruleFamily": family["ruleFamily"],
+                "consumedParticipantIds": [core_ref["participantId"], free_pool_id],
+                "producedParticipantIds": [],
+                "resolvedTargetIds": [product_id],
+                "mappingIds": mapping_ids,
+                "operatorIds": [operator_id],
+                "diagnosticLabels": ["shared-free-architrino-pool", "associate-lepton-from-core-pool"]
+                + (
+                    ["lepton-core-provenance"]
+                    if core_ref["sourceKind"] == "source-core"
+                    else ["noether-pair-supplement"]
+                    if core_ref["sourceKind"] == "noether-pair"
+                    else ["noether-quad-supplement"]
+                ),
+            }
+        )
+
+    diagnostics = []
+    source_lepton_diagnostic = build_lepton_constituent_provenance_diagnostic(source_participant)
+    if source_lepton_diagnostic is not None:
+        diagnostics.append(source_lepton_diagnostic)
+
+    return build_result(
+        request=request,
+        generated_steps=steps,
+        generated_mappings=mappings,
+        generated_operators=operators,
+        operator_placements=operator_placements,
+        auto_dissociated_participant_ids=[],
+        generated_participants=generated_participants,
+        diagnostics=diagnostics,
+    )
+
+
 def solve_meson_lepton_provenance_channel(request, source_participants, product_participants, family):
     source_participant = source_participants[0]
     source_id = normalize_text(source_participant.get("id"))
@@ -3689,6 +4013,19 @@ def solve_generic_weak_channel(request, source_participants, product_participant
     source_root = get_root_node(source_participant)
     if source_root is None:
         return None
+    if (
+        get_effective_template_id(source_root or source_participant) in {"electron", "neutrino"}
+        and product_participants
+        and all(product_requires_lepton_core(product) for product in product_participants)
+    ):
+        lepton_result = solve_lepton_constituent_provenance_channel(
+            request,
+            source_participants,
+            product_participants,
+            family,
+        )
+        if lepton_result is not None:
+            return lepton_result
     if (
         get_effective_template_id(source_root or source_participant)
         in {"pi_plus", "pi_minus", "pi0", "k_plus", "k_minus", "dk0", "sk0", "b_plus", "b_minus", "db0", "bb0"}

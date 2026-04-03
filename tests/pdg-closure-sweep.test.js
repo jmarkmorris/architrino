@@ -28,6 +28,9 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.equal(summary.reactionsNotYetAnalyzed, 0);
   assert.equal(summary.exactClosureCount, 3);
   assert.equal(summary.exactClosurePercent, 100);
+  assert.equal(summary.exactClosureKindCounts["generic-profile"], 1);
+  assert.equal(summary.exactClosureKindCounts["full-provenance"], 2);
+  assert.equal(summary.exactClosureKindCounts.other, 0);
   assert.equal(
     summary.exactClosureKindCounts["generic-profile"] +
       summary.exactClosureKindCounts["full-provenance"] +
@@ -45,18 +48,21 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.match(String(summary.cases[0].exactClosureKind || ""), /^(generic-profile|full-provenance|other)$/);
   assert.equal(summary.cases[0].reactantsCompact, "N");
   assert.equal(summary.cases[0].productsCompact, "P.e.av");
+  assert.equal(summary.cases[0].exactClosureKind, "generic-profile");
   assert.equal(summary.cases[1].reactantsCompact, "e2");
   assert.equal(summary.cases[1].productsCompact, "e.av.v2");
+  assert.equal(summary.cases[1].exactClosureKind, "full-provenance");
   assert.equal(summary.cases[2].reactantsCompact, "pi+");
   assert.equal(summary.cases[2].productsCompact, "ae2.v2");
+  assert.equal(summary.cases[2].exactClosureKind, "full-provenance");
   assert.match(report, /Top unsupported particles in this run:\n\(none\)/);
   assert.match(report, /genericProfileExactClosures: \d+/);
   assert.match(report, /fullProvenanceExactClosures: \d+/);
   assert.match(report, /otherExactClosures: \d+/);
   assert.match(report, /batchId\tcaseId\tstatus\texact\texactKind\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
-  assert.match(report, /\tfree_neutron_beta_decay\texact\texact=true\t(?:generic-profile|full-provenance|other)\tunresolved=0\tN\tP\.e\.av\t\t/);
-  assert.match(report, /\tmuon_decay\texact\texact=true\t(?:generic-profile|full-provenance|other)\tunresolved=0\te2\te\.av\.v2\t\t/);
-  assert.match(report, /\tcharged_pion_to_muon_neutrino\texact\texact=true\t(?:generic-profile|full-provenance|other)\tunresolved=0\tpi\+\tae2\.v2\t\t/);
+  assert.match(report, /\tfree_neutron_beta_decay\texact\texact=true\tgeneric-profile\tunresolved=0\tN\tP\.e\.av\t\t/);
+  assert.match(report, /\tmuon_decay\texact\texact=true\tfull-provenance\tunresolved=0\te2\te\.av\.v2\t\t/);
+  assert.match(report, /\tcharged_pion_to_muon_neutrino\texact\texact=true\tfull-provenance\tunresolved=0\tpi\+\tae2\.v2\t\t/);
   assert.match(exactClosuresCompact, /PDG closure sweep exact closures in compact notation/);
   assert.match(exactClosuresCompact, /Full-Provenance Exact Closures:/);
   assert.match(exactClosuresCompact, /Generic-Profile Exact Closures:/);
@@ -170,7 +176,7 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
   assert.match(stdoutOne, /fullProvenanceExactClosures: \d+/);
   assert.match(stdoutOne, /otherExactClosures: \d+/);
   assert.match(stdoutOne, /batchId\tcaseId\tstatus\texact\texactKind\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
-  assert.match(stdoutOne, /1\tfree_neutron_beta_decay\texact\texact=true\t(?:generic-profile|full-provenance|other)\tunresolved=0\tN\tP\.e\.av\t\tS017\.1\/2025/);
+  assert.match(stdoutOne, /1\tfree_neutron_beta_decay\texact\texact=true\tgeneric-profile\tunresolved=0\tN\tP\.e\.av\t\tS017\.1\/2025/);
   assert.equal(summaryOne.reactionsTested, 1);
   assert.equal(summaryOne.exactClosureCount, 1);
   assert.equal(
@@ -209,7 +215,7 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
 
   assert.match(stdoutTwo, /startBatchId: 2/);
   assert.match(stdoutTwo, /endBatchId: 2/);
-  assert.match(stdoutTwo, /2\tmuon_decay\texact\texact=true\t(?:generic-profile|full-provenance|other)\tunresolved=0\te2\te\.av\.v2\t\tS004\.1\/2025/);
+  assert.match(stdoutTwo, /2\tmuon_decay\texact\texact=true\tfull-provenance\tunresolved=0\te2\te\.av\.v2\t\tS004\.1\/2025/);
   assert.equal(summaryTwo.reactionsTested, 1);
   assert.equal(summaryTwo.exactClosureCount, 1);
   assert.equal(

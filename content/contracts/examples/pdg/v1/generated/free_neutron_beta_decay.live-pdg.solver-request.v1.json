@@ -3,7 +3,7 @@
   "requestId": "free_neutron_beta_decay.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "free_neutron_beta_decay",
+    "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay.live-pdg",
     "title": "Free neutron beta decay"
   },
   "participants": [

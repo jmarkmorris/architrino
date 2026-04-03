@@ -3,7 +3,7 @@
   "requestId": "muon_decay_with_electron_positron_pair.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "muon_decay_with_electron_positron_pair",
+    "sourceDocumentId": "pdg-proposal:muon_decay_with_electron_positron_pair.live-pdg",
     "title": "Muon decay with electron-positron pair"
   },
   "participants": [

@@ -43,6 +43,9 @@ PDG_SOURCE_CONTRACT = {
     "downstreamSchema": SOLVER_REQUEST_SCHEMA,
     "handoffMode": "upstream-only",
     "reactionAcceptanceRequired": True,
+    "reactionAcceptanceBoundary": "reaction-review",
+    "acceptedReactionHandoff": "reaction-owned",
+    "composerHandoff": "accepted-reaction-only",
 }
 
 
@@ -720,22 +723,21 @@ def build_proposal(case: PdgCase) -> Proposal:
     )
 
 
+def build_solver_request_origin(proposal: Proposal) -> dict[str, str]:
+    return {
+        "sourceKind": "pdg-ingest",
+        "sourceDocumentId": f"pdg-proposal:{proposal.proposal_id}",
+        "title": proposal.title,
+    }
+
+
 def build_solver_request(proposal: Proposal) -> dict[str, Any] | None:
     if not proposal.exportable:
         return None
     request = {
         "schema": SOLVER_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
-        "origin": {
-            "sourceKind": "pdg-ingest",
-            "sourceDocumentId": (
-                proposal.source.get("fixtureId")
-                or proposal.source.get("liveCaseId")
-                or proposal.source.get("pdgIdentifier")
-                or proposal.proposal_id
-            ),
-            "title": proposal.title,
-        },
+        "origin": build_solver_request_origin(proposal),
         "participants": [
             participant.to_solver_participant()
             for participant in (*proposal.reactants, *proposal.products, *proposal.centers)
