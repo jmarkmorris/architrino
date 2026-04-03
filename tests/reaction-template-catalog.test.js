@@ -7,7 +7,8 @@ test("reaction template catalog exposes the current manual-authoring picker rows
   assert.deepEqual(reactionAssemblyTemplateMenuRows, [
     [
       { template: "noether_core", label: "Pro Noether Core" },
-      { template: "higgs_cluster", label: "Higgs Cluster" },
+      { template: "noether_pair", label: "Noether Pair" },
+      { template: "noether_quad", label: "Noether Quad" },
     ],
     [
       { template: "electron", label: "Pro Electron" },

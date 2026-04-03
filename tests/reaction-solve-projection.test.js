@@ -143,7 +143,7 @@ test("solve projection marks explicit dissociated composites before applying map
   const reactantHiggs = {
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     isAutoDissociatedComposite: false,
     hierarchy: [{ id: "reactant_higgs_root" }],
   };
@@ -170,7 +170,7 @@ test("solve projection accepts semantic dissociation records without legacy part
   const reactantHiggs = {
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     isAutoDissociatedComposite: false,
     hierarchy: [{ id: "reactant_higgs_root" }],
   };
@@ -293,8 +293,8 @@ test("solve projection preserves JS-side dissociation and multiple operator plac
   const reactantHiggs = createParticipant({
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   const participants = [
     reactantHiggs,

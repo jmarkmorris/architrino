@@ -192,8 +192,8 @@ test("solver request exporter emits an authored-only solver-request document", (
   const reactantHiggsAuto = createParticipant({
     id: "reactant_higgs_auto",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   reactantHiggsAuto.isAutoDissociatedComposite = true;
   const productElectron = createParticipant({

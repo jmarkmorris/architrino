@@ -135,10 +135,10 @@
     },
     {
       "id": "higgs_two_photons",
-      "label": "Higgs cluster to two associated photons",
+      "label": "Noether Quad to two associated photons",
       "requestPath": "content/contracts/examples/solver-request/higgs_two_photons.v1.json",
       "resultPath": "content/contracts/examples/solver-result/higgs_two_photons_result.v1.json",
-      "tags": ["higgs-cluster", "associate", "auto-dissociate", "layout"],
+      "tags": ["noether-quad", "associate", "auto-dissociate", "layout"],
       "runtimeCase": "higgs_two_photons",
       "expectedResult": {
         "outcome": "exact",

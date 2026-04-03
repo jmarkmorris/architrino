@@ -75,12 +75,33 @@ export function createBuiltInComposerAssemblyDraftRuntime(templateId, position =
         core: createDefaultCoreSpec(id),
       });
     },
-    higgs_cluster: () => {
-      const id = getNextAssemblyId("higgs_cluster");
+    noether_pair: () => {
+      const id = getNextAssemblyId("noether_pair");
       return buildDraft({
         id,
-        name: "Higgs Cluster",
-        role: "higgs_cluster",
+        name: "Noether Pair",
+        role: "noether_pair",
+        sceneRole,
+        position: normalizedPosition,
+        members: [
+          "positrino_1",
+          "electrino_1",
+          "positrino_2",
+          "electrino_2",
+          "positrino_3",
+          "electrino_3",
+        ],
+        subassemblies: [],
+        pathPoints: createDefaultPathPoints(normalizedPosition),
+        core: createDefaultCoreSpec(id),
+      });
+    },
+    noether_quad: () => {
+      const id = getNextAssemblyId("noether_quad");
+      return buildDraft({
+        id,
+        name: "Noether Quad",
+        role: "noether_quad",
         sceneRole,
         position: normalizedPosition,
         members: [

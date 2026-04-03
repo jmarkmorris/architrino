@@ -298,8 +298,8 @@ function buildRuntimeParticipants(caseId) {
       createParticipant({
         id: "reactant_higgs",
         side: "reactant",
-        templateId: "higgs_cluster",
-        label: "Higgs Cluster",
+        templateId: "noether_quad",
+        label: "Noether Quad",
         surfaceRowIndex: 0,
       }),
       createParticipant({

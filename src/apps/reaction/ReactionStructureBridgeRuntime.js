@@ -7,6 +7,11 @@ import {
   STRUCTURE_KINDS,
   STRUCTURE_SLOT_ORDER,
 } from "../../domain/structure/StructureSchema.js";
+import {
+  getStructureAssemblyCorePolarities,
+  getStructureAssemblyDisplayLabel,
+  normalizeStructureAssemblyTemplateId,
+} from "../../domain/structure/StructureAssemblyCatalog.js";
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
 
 function formatNoetherCoreLabel(polarity = "pro") {
@@ -179,7 +184,7 @@ function createQuarkNode(id, family, label, options = {}) {
 }
 
 function createZBosonNode(id, options = {}) {
-  const { label = "Z Boson", occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
+  const { label = "Neutral Z Boson", occupiedSlots = STRUCTURE_SLOT_ORDER } = options;
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.PARTICLE,
@@ -274,35 +279,25 @@ function createMesonNode(id, species, constituents = [], options = {}) {
   });
 }
 
-function createHiggsClusterNode(id, options = {}) {
-  const { label = "Higgs cluster" } = options;
+function createNoetherAssemblyNode(id, templateId, options = {}) {
+  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
+  const corePolarities = getStructureAssemblyCorePolarities(normalizedTemplateId);
+  const { label = getStructureAssemblyDisplayLabel(normalizedTemplateId, "Noether Assembly") } = options;
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.PARTICLE,
-    species: "higgs_cluster",
+    species: normalizedTemplateId,
     label,
     classification: {
       family: STRUCTURE_CLASSIFICATION_FAMILIES.BOSON,
       source: "derived",
     },
-    children: [
-      createNoetherCoreNode(`${id}/core_pro_1`, {
-        label: formatNoetherCoreLabel("pro"),
-        polarity: "pro",
-      }),
-      createNoetherCoreNode(`${id}/core_anti_1`, {
-        label: formatNoetherCoreLabel("anti"),
-        polarity: "anti",
-      }),
-      createNoetherCoreNode(`${id}/core_pro_2`, {
-        label: formatNoetherCoreLabel("pro"),
-        polarity: "pro",
-      }),
-      createNoetherCoreNode(`${id}/core_anti_2`, {
-        label: formatNoetherCoreLabel("anti"),
-        polarity: "anti",
-      }),
-    ],
+    children: corePolarities.map((polarity, index) =>
+      createNoetherCoreNode(`${id}/core_${polarity}_${index + 1}`, {
+        label: formatNoetherCoreLabel(polarity),
+        polarity,
+      })
+    ),
   });
 }
 
@@ -371,7 +366,7 @@ function createGenericParticleNode(id, templateId, options = {}) {
 }
 
 export function buildReactionParticipantStructure(templateId, options = {}) {
-  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
   const structureId = String(options.id ?? `structure_${normalizedTemplateId || "node"}`).trim();
   const label = String(options.label ?? "").trim();
   const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
@@ -386,16 +381,16 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "w_minus_boson") {
-    root = createWBosonNode(structureId, "w_minus_boson", label || "W- Boson", {
+    root = createWBosonNode(structureId, "w_minus_boson", label || "Negative W Boson", {
       occupiedSlots,
     });
   } else if (normalizedTemplateId === "w_plus_boson") {
-    root = createWBosonNode(structureId, "w_plus_boson", label || "W+ Boson", {
+    root = createWBosonNode(structureId, "w_plus_boson", label || "Positive W Boson", {
       occupiedSlots,
     });
   } else if (normalizedTemplateId === "z_boson") {
     root = createZBosonNode(structureId, {
-      label: label || "Z Boson",
+      label: label || "Neutral Z Boson",
       occupiedSlots,
     });
   } else if (normalizedTemplateId === "neutrino") {
@@ -665,8 +660,10 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       ],
       { label: label || "Neutral B Meson (b anti-d)" }
     );
-  } else if (normalizedTemplateId === "higgs_cluster") {
-    root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });
+  } else if (normalizedTemplateId === "noether_pair" || normalizedTemplateId === "noether_quad") {
+    root = createNoetherAssemblyNode(structureId, normalizedTemplateId, {
+      label: label || getStructureAssemblyDisplayLabel(normalizedTemplateId),
+    });
   } else if (normalizedTemplateId === "photon") {
     root = createPhotonNode(structureId, { label: label || "Photon" });
   } else if (normalizedTemplateId === "noether_core") {

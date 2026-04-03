@@ -1,3 +1,5 @@
+import { isNoetherQuadTemplateId } from "../../domain/structure/StructureAssemblyCatalog.js";
+
 const HIGGS_CLUSTER_REACTION_MODES = Object.freeze(["associate", "dissociate"]);
 
 function normalizeTemplateId(templateId = "") {
@@ -9,7 +11,7 @@ function normalizeSide(side = "") {
 }
 
 export function supportsReactionCompositeModes(templateId = "") {
-  return normalizeTemplateId(templateId) === "higgs_cluster";
+  return isNoetherQuadTemplateId(normalizeTemplateId(templateId));
 }
 
 export function getSupportedReactionCompositeModes(templateId = "") {

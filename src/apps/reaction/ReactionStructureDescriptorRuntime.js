@@ -9,6 +9,10 @@ import {
   STRUCTURE_KINDS,
   STRUCTURE_SLOT_ORDER,
 } from "../../domain/structure/StructureSchema.js";
+import {
+  getStructureAssemblyDisplayLabel,
+  normalizeStructureAssemblyTemplateId,
+} from "../../domain/structure/StructureAssemblyCatalog.js";
 
 export const REACTION_STRUCTURE_RENDER_MODES = Object.freeze({
   BINARY_SELECTOR: "binary-selector",
@@ -201,7 +205,7 @@ function buildZBosonDescriptorTree(structureRoot) {
   const binaryPresence = getNoetherCoreSlotBinaryPresence(coreNode);
   return [{
     id: String(structureRoot?.id ?? "root"),
-    label: String(structureRoot?.label ?? "Z Boson").trim() || "Z Boson",
+    label: String(structureRoot?.label ?? "Neutral Z Boson").trim() || "Neutral Z Boson",
     templateId: "z_boson",
     renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
     layoutRole: "track-row",
@@ -342,8 +346,11 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
     }];
   }
 
-  if (normalizedSpecies === "higgs_cluster") {
-    return buildCoreAssemblyDescriptorTree(structureRoot, "Higgs cluster");
+  if (normalizedSpecies === "noether_pair" || normalizedSpecies === "noether_quad") {
+    return buildCoreAssemblyDescriptorTree(
+      structureRoot,
+      getStructureAssemblyDisplayLabel(normalizeStructureAssemblyTemplateId(normalizedSpecies), "Noether Assembly")
+    );
   }
 
   if (normalizedSpecies === "photon") {
@@ -431,10 +438,10 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
     const family = String(structureRoot?.classification?.family ?? "").trim();
     if (normalizedSpecies === "w_minus_boson") {
-      return buildWBosonDescriptorTree(structureRoot, "w_minus_boson", "W- Boson");
+      return buildWBosonDescriptorTree(structureRoot, "w_minus_boson", "Negative W Boson");
     }
     if (normalizedSpecies === "w_plus_boson") {
-      return buildWBosonDescriptorTree(structureRoot, "w_plus_boson", "W+ Boson");
+      return buildWBosonDescriptorTree(structureRoot, "w_plus_boson", "Positive W Boson");
     }
     if (normalizedSpecies === "z_boson") {
       return buildZBosonDescriptorTree(structureRoot);

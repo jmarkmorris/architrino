@@ -147,8 +147,8 @@ test("solve plan maps identical composite participants through their top-level c
     createParticipant({
       id: "reactant_higgs",
       side: "reactant",
-      templateId: "higgs_cluster",
-      label: "Higgs Cluster",
+      templateId: "noether_quad",
+      label: "Noether Quad",
     }),
     createParticipant({
       id: "product_neutron",
@@ -165,8 +165,8 @@ test("solve plan maps identical composite participants through their top-level c
     createParticipant({
       id: "product_higgs",
       side: "product",
-      templateId: "higgs_cluster",
-      label: "Higgs Cluster",
+      templateId: "noether_quad",
+      label: "Noether Quad",
     }),
   ];
 
@@ -187,10 +187,10 @@ test("solve plan maps identical composite participants through their top-level c
       mapping.targetParticipant.templateId,
     ]),
     [
-      ["higgs_cluster", "higgs_cluster"],
-      ["higgs_cluster", "higgs_cluster"],
-      ["higgs_cluster", "higgs_cluster"],
-      ["higgs_cluster", "higgs_cluster"],
+      ["noether_quad", "noether_quad"],
+      ["noether_quad", "noether_quad"],
+      ["noether_quad", "noether_quad"],
+      ["noether_quad", "noether_quad"],
       ["neutron", "neutron"],
       ["neutron", "neutron"],
       ["neutron", "neutron"],
@@ -801,8 +801,8 @@ test("solve plan can consume Higgs-cluster noether-core rows into two associated
   const reactantHiggs = createParticipant({
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   const productPhotonA = createParticipant({
     id: "product_photon_a",
@@ -857,8 +857,8 @@ test("solve plan reports residue for a partially consumed auto-dissociated compo
   const reactantHiggs = createParticipant({
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   const productPhoton = createParticipant({
     id: "product_photon",
@@ -880,14 +880,14 @@ test("solve plan reports residue for a partially consumed auto-dissociated compo
   assert.deepEqual(plan.dissociation.autoDissociatedParticipants, [
     {
       participantId: "reactant_higgs",
-      templateId: "higgs_cluster",
+      templateId: "noether_quad",
       rootNodeId: "reactant_higgs_structure",
       consumedNodeIds: [
-        "reactant_higgs_structure/core_anti_1",
-        "reactant_higgs_structure/core_pro_2",
+        "reactant_higgs_structure/core_anti_2",
+        "reactant_higgs_structure/core_pro_3",
       ],
       remainingNodeIds: [
-        "reactant_higgs_structure/core_anti_2",
+        "reactant_higgs_structure/core_anti_4",
         "reactant_higgs_structure/core_pro_1",
       ],
     },
@@ -895,12 +895,12 @@ test("solve plan reports residue for a partially consumed auto-dissociated compo
   assert.deepEqual(plan.residue.source, [
     {
       participantId: "reactant_higgs",
-      templateId: "higgs_cluster",
+      templateId: "noether_quad",
       polarity: "pro",
       rootNodeId: "reactant_higgs_structure",
       residueKind: "fragments",
       unresolvedNodeIds: [
-        "reactant_higgs_structure/core_anti_2",
+        "reactant_higgs_structure/core_anti_4",
         "reactant_higgs_structure/core_pro_1",
       ],
     },
@@ -912,8 +912,8 @@ test("solve plan prefers two full associate photons over fragment-plus-partial r
   const reactantHiggs = createParticipant({
     id: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   const productPhotonA = createParticipant({
     id: "product_photon_a",
@@ -1019,7 +1019,7 @@ test("solve plan can route a center W- boson into an electron product", () => {
     id: "center_w_minus",
     side: "reactant",
     templateId: "w_minus_boson",
-    label: "W- Boson",
+    label: "Negative W Boson",
   });
   centerWBoson.surfaceColumn = "center-assembly";
   const productElectron = createParticipant({
@@ -1058,7 +1058,7 @@ test("solve plan can route a center W+ boson into an anti-electron product", () 
     id: "center_w_plus",
     side: "reactant",
     templateId: "w_plus_boson",
-    label: "W+ Boson",
+    label: "Positive W Boson",
   });
   centerWPlusBoson.surfaceColumn = "center-assembly";
   const productAntiElectron = createParticipant({
@@ -1098,7 +1098,7 @@ test("solve plan does not allow center W- to anti-electron in v1", () => {
     id: "center_w_minus",
     side: "reactant",
     templateId: "w_minus_boson",
-    label: "W- Boson",
+    label: "Negative W Boson",
   });
   centerWBoson.surfaceColumn = "center-assembly";
   const productAntiElectron = createParticipant({
@@ -1126,7 +1126,7 @@ test("solve plan does not allow center W+ to pro electron in v1", () => {
     id: "center_w_plus",
     side: "reactant",
     templateId: "w_plus_boson",
-    label: "W+ Boson",
+    label: "Positive W Boson",
   });
   centerWPlusBoson.surfaceColumn = "center-assembly";
   const productElectron = createParticipant({
@@ -1154,7 +1154,7 @@ test("solve plan can route a center Z boson into a neutrino product", () => {
     id: "center_z",
     side: "reactant",
     templateId: "z_boson",
-    label: "Z Boson",
+    label: "Neutral Z Boson",
   });
   centerZBoson.surfaceColumn = "center-assembly";
   const productNeutrino = createParticipant({
@@ -1191,7 +1191,7 @@ test("solve plan can route a center Z boson into a photon product", () => {
     id: "center_z",
     side: "reactant",
     templateId: "z_boson",
-    label: "Z Boson",
+    label: "Neutral Z Boson",
   });
   centerZBoson.surfaceColumn = "center-assembly";
   const productPhoton = createParticipant({
@@ -1389,8 +1389,8 @@ test("solve plan does not recognize late bosons for non-center primitive closure
   const reactantHiggs = createParticipant({
     id: "reactant_higgs_unrecognized",
     side: "reactant",
-    templateId: "higgs_cluster",
-    label: "Higgs Cluster",
+    templateId: "noether_quad",
+    label: "Noether Quad",
   });
   const productPhotonA = createParticipant({
     id: "product_photon_a_unrecognized",

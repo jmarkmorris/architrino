@@ -1,7 +1,8 @@
 export const reactionAssemblyTemplateMenuRows = Object.freeze([
   Object.freeze([
     Object.freeze({ template: "noether_core", label: "Pro Noether Core" }),
-    Object.freeze({ template: "higgs_cluster", label: "Higgs Cluster" }),
+    Object.freeze({ template: "noether_pair", label: "Noether Pair" }),
+    Object.freeze({ template: "noether_quad", label: "Noether Quad" }),
   ]),
   Object.freeze([
     Object.freeze({ template: "electron", label: "Pro Electron" }),

@@ -44,37 +44,37 @@ test("trimmed electron keeps three tiles but marks the stripped slot as binary-f
 
 test("Z boson descriptor tree keeps the tri-binary particle row without a neutrino label", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("z_boson", "pro", "Z Boson")
+    createStructure("z_boson", "pro", "Neutral Z Boson")
   );
   const [root] = descriptorTree;
 
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
   assert.equal(root.templateId, "z_boson");
-  assert.equal(root.label, "Z Boson");
+  assert.equal(root.label, "Neutral Z Boson");
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
 test("W- boson descriptor tree uses the standard tri-binary particle row", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("w_minus_boson", "pro", "W- Boson")
+    createStructure("w_minus_boson", "pro", "Negative W Boson")
   );
   const [root] = descriptorTree;
 
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
   assert.equal(root.templateId, "w_minus_boson");
-  assert.equal(root.label, "W- Boson");
+  assert.equal(root.label, "Negative W Boson");
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
 test("W+ boson descriptor tree uses the standard tri-binary particle row", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("w_plus_boson", "pro", "W+ Boson")
+    createStructure("w_plus_boson", "pro", "Positive W Boson")
   );
   const [root] = descriptorTree;
 
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID);
   assert.equal(root.templateId, "w_plus_boson");
-  assert.equal(root.label, "W+ Boson");
+  assert.equal(root.label, "Positive W Boson");
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
@@ -102,9 +102,9 @@ test("proton descriptor tree expands to up/down/up quark rows", () => {
   );
 });
 
-test("higgs cluster descriptor tree expands to four alternating core rows", () => {
+test("Noether Quad descriptor tree expands to four alternating core rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("higgs_cluster", "pro", "Higgs cluster")
+    createStructure("noether_quad", "pro", "Noether Quad")
   );
   const [root] = descriptorTree;
 
@@ -113,6 +113,20 @@ test("higgs cluster descriptor tree expands to four alternating core rows", () =
   assert.deepEqual(
     root.children.map((child) => child.inventory?.antiCore ?? 0),
     [0, 1, 0, 1]
+  );
+});
+
+test("Noether Pair descriptor tree expands to one pro core and one anti core", () => {
+  const descriptorTree = buildReactionStructureDescriptorTree(
+    createStructure("noether_pair", "pro", "Noether Pair")
+  );
+  const [root] = descriptorTree;
+
+  assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.ASSEMBLY_CLUSTER_GRID);
+  assert.equal(root.children.length, 2);
+  assert.deepEqual(
+    root.children.map((child) => child.inventory?.antiCore ?? 0),
+    [0, 1]
   );
 });
 

@@ -63,6 +63,9 @@ function detectParticipantFamily(participant = null) {
   if (templateId.includes("noether_core")) {
     return "noether-core";
   }
+  if (templateId === "noether_pair" || templateId === "noether_quad") {
+    return "boson";
+  }
   if (templateId.includes("photon") || templateId.includes("boson")) {
     return "boson";
   }
@@ -114,13 +117,13 @@ function serializeSolveStateParticipant(entry = null) {
 
 function buildRecognizedBosonLabel(templateId = "") {
   if (normalizeLowerText(templateId) === "w_minus_boson") {
-    return "W- Boson";
+    return "Negative W Boson";
   }
   if (normalizeLowerText(templateId) === "w_plus_boson") {
-    return "W+ Boson";
+    return "Positive W Boson";
   }
   if (normalizeLowerText(templateId) === "z_boson") {
-    return "Z Boson";
+    return "Neutral Z Boson";
   }
   return normalizeText(templateId) || "Boson";
 }

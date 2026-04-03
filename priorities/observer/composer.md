@@ -393,6 +393,25 @@ Next steps:
 - confirm that Composer accepts those downstream contracts without runtime coupling back into Reaction or solver internals;
 - and keep Composer as a consumer of accepted upstream meson output rather than a second particle-authoring surface.
 
+### 9. Accept `Noether Pair` Assemblies From Reaction
+
+Status: `pending`
+
+Goal:
+
+- make sure Composer can accept and display accepted `Noether Pair` assemblies downstream once Reaction and solver add them to the shared contract surface.
+
+Why it matters:
+
+- `Noether Pair` is intended to become a reusable assembly in the same collection as the current clusters and particles, so downstream import/render paths should be ready for it without Composer inventing its own semantics;
+- it also gives us a clean place to consider whether `Higgs Cluster` should eventually be renamed to `Noether Quad`, while keeping Composer data-driven from upstream accepted output rather than hard-coding terminology locally.
+
+Next steps:
+
+- add downstream handoff/import coverage once `Noether Pair` appears in accepted `reaction-flow/v1` output;
+- keep the new assembly's labels and rendering data-driven from upstream contracts rather than Composer-local particle policy;
+- and be prepared to absorb a future naming change from `Higgs Cluster` to `Noether Quad` without creating a second downstream terminology fork.
+
 ## Related Priorities
 
 - [composer-reaction](./observer.md)

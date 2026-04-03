@@ -140,6 +140,9 @@ function detectParticipantFamily(participant = null) {
   if (templateId.includes("noether_core")) {
     return "noether-core";
   }
+  if (templateId === "noether_pair" || templateId === "noether_quad") {
+    return "boson";
+  }
   if (templateId.includes("photon") || templateId.includes("boson")) {
     return "boson";
   }
