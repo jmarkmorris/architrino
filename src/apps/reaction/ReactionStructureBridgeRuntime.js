@@ -451,7 +451,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
           polarity: "anti",
         },
       ],
-      { label: label || "Pi+" }
+      { label: label || "Positive Pion" }
     );
   } else if (normalizedTemplateId === "pi_minus") {
     root = createMesonNode(
@@ -467,7 +467,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
           polarity: "anti",
         },
       ],
-      { label: label || "Pi-" }
+      { label: label || "Negative Pion" }
     );
   } else if (normalizedTemplateId === "upi0") {
     root = createMesonNode(
@@ -483,7 +483,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
           polarity: "anti",
         },
       ],
-      { label: label || "Pi0 (u anti-u)" }
+      { label: label || "Neutral Pion (u anti-u)" }
     );
   } else if (normalizedTemplateId === "dpi0") {
     root = createMesonNode(
@@ -499,7 +499,7 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
           polarity: "anti",
         },
       ],
-      { label: label || "Pi0 (d anti-d)" }
+      { label: label || "Neutral Pion (d anti-d)" }
     );
   } else if (normalizedTemplateId === "higgs_cluster") {
     root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });

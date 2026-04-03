@@ -94,6 +94,20 @@ def build_participant_signature_counter(participants=None):
     return counter
 
 
+def count_signatures(counter=None, template_id=None, polarity=None, generation=None):
+    counter = counter or Counter()
+    total = 0
+    for (entry_template_id, entry_polarity, entry_generation), count in counter.items():
+        if template_id is not None and entry_template_id != template_id:
+            continue
+        if polarity is not None and entry_polarity != polarity:
+            continue
+        if generation is not None and entry_generation != generation:
+            continue
+        total += count
+    return total
+
+
 GENERIC_WEAK_CHANNEL_PROFILES = (
     {
         "key": "weak-baryon-beta-decay",
@@ -171,6 +185,34 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         ),
         "implicitCenterPolarity": "pro",
     },
+    {
+        "key": "weak-lepton-flavor-conversion",
+        "sourceSignatures": Counter({("electron", "pro", "2"): 1}),
+        "requiredProductSignatures": Counter({("electron", "pro", "1"): 1}),
+        "optionalProductVariants": (
+            {
+                "key": "flavor-swap",
+                "productSignatures": Counter(
+                    {
+                        ("neutrino", "pro", "1"): 1,
+                        ("neutrino", "anti", "2"): 1,
+                    }
+                ),
+                "ruleFamily": "weak-lepton-flavor-swap",
+            },
+            {
+                "key": "trilepton",
+                "productSignatures": Counter(
+                    {
+                        ("electron", "pro", "1"): 1,
+                        ("electron", "anti", "1"): 1,
+                    }
+                ),
+                "ruleFamily": "weak-lepton-trilepton-conversion",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
 )
 
 
@@ -196,6 +238,102 @@ def counter_difference(left=None, right=None):
     return difference
 
 
+def match_generic_proton_channel(product_counter):
+    baryon_count = count_signatures(product_counter, template_id="proton") + count_signatures(
+        product_counter, template_id="neutron"
+    )
+    if baryon_count > 1:
+        return None
+    if count_signatures(product_counter, template_id="neutrino") > 0 and count_signatures(
+        product_counter, template_id="neutron"
+    ) == 0:
+        return None
+
+    charged_lepton_count = count_signatures(product_counter, template_id="electron")
+    photon_count = count_signatures(product_counter, template_id="photon")
+    anti_lepton_count = count_signatures(product_counter, template_id="electron", polarity="anti")
+    pro_lepton_count = count_signatures(product_counter, template_id="electron", polarity="pro")
+    proton_product_count = count_signatures(product_counter, template_id="proton")
+    neutron_product_count = count_signatures(product_counter, template_id="neutron")
+    neutrino_pro_count = count_signatures(product_counter, template_id="neutrino", polarity="pro")
+    neutrino_anti_count = count_signatures(product_counter, template_id="neutrino", polarity="anti")
+
+    if proton_product_count == 0 and neutron_product_count == 0:
+        if charged_lepton_count == 3 and anti_lepton_count == 2 and pro_lepton_count == 1 and photon_count == 0:
+            return {
+                "key": "weak-proton-trilepton",
+                "ruleFamily": "weak-baryon-trilepton-conversion",
+                "variantKey": "trilepton",
+                "implicitCenterPolarity": "pro",
+            }
+        if charged_lepton_count == 1 and photon_count in (1, 2):
+            return {
+                "key": "weak-proton-radiative",
+                "ruleFamily": (
+                    "weak-baryon-radiative-conversion"
+                    if photon_count == 1
+                    else "weak-baryon-radiative-double-conversion"
+                ),
+                "variantKey": "radiative" if photon_count == 1 else "radiative-double",
+                "implicitCenterPolarity": "pro",
+            }
+        return None
+
+    if proton_product_count == 1 and neutron_product_count == 0:
+        if charged_lepton_count == 2 and anti_lepton_count == 2 and pro_lepton_count == 0 and photon_count == 0:
+            return {
+                "key": "weak-proton-carry",
+                "ruleFamily": "weak-baryon-carry-conversion",
+                "variantKey": "carry",
+                "implicitCenterPolarity": "pro",
+            }
+        return None
+
+    if neutron_product_count == 1 and proton_product_count == 0:
+        if (
+            charged_lepton_count == 0
+            and photon_count == 0
+            and neutrino_pro_count == 1
+            and neutrino_anti_count == 1
+        ):
+            return {
+                "key": "weak-proton-neutron-conversion",
+                "ruleFamily": "weak-baryon-neutrino-pair-conversion",
+                "variantKey": "neutrino-pair",
+                "implicitCenterPolarity": "pro",
+            }
+        return None
+
+    return None
+
+
+def match_generic_neutron_channel(product_counter):
+    proton_product_count = count_signatures(product_counter, template_id="proton")
+    neutron_product_count = count_signatures(product_counter, template_id="neutron")
+    photon_count = count_signatures(product_counter, template_id="photon")
+    charged_lepton_count = count_signatures(product_counter, template_id="electron")
+    neutrino_pro_count = count_signatures(product_counter, template_id="neutrino", polarity="pro")
+    neutrino_anti_count = count_signatures(product_counter, template_id="neutrino", polarity="anti")
+
+    if proton_product_count != 1 or neutron_product_count != 0:
+        return None
+    if charged_lepton_count == 1 and neutrino_anti_count == 1 and neutrino_pro_count == 0 and photon_count in (0, 1):
+        return {
+            "key": "weak-baryon-beta-decay",
+            "ruleFamily": "weak-baryon-beta-decay" if photon_count == 0 else "weak-baryon-beta-decay-radiative",
+            "variantKey": "base" if photon_count == 0 else "radiative",
+            "implicitCenterPolarity": "pro",
+        }
+    if charged_lepton_count == 0 and neutrino_pro_count == 1 and neutrino_anti_count == 1 and photon_count == 0:
+        return {
+            "key": "weak-baryon-neutrino-pair",
+            "ruleFamily": "weak-baryon-neutrino-pair",
+            "variantKey": "neutrino-pair",
+            "implicitCenterPolarity": "pro",
+        }
+    return None
+
+
 def match_generic_weak_channel(source_participants=None, product_participants=None):
     source_counter = build_participant_signature_counter(source_participants)
     product_counter = build_participant_signature_counter(product_participants)
@@ -213,6 +351,10 @@ def match_generic_weak_channel(source_participants=None, product_participants=No
                     "variantKey": variant["key"],
                     "implicitCenterPolarity": profile["implicitCenterPolarity"],
                 }
+    if source_counter == Counter({("proton", "pro", ""): 1}):
+        return match_generic_proton_channel(product_counter)
+    if source_counter == Counter({("neutron", "pro", ""): 1}):
+        return match_generic_neutron_channel(product_counter)
     return None
 
 

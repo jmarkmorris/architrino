@@ -149,19 +149,29 @@ export const reactionAddPickerColumns = Object.freeze([
     id: "boson_bridge",
     entries: Object.freeze([
       createPickerEntry({
-        id: "boson_bridge_vacant_top",
-        label: "Vacant",
-        vacant: true,
-      }),
-      createPickerEntry({
-        id: "boson_bridge_vacant",
-        label: "Vacant",
-        vacant: true,
-      }),
-      createPickerEntry({
         id: "photon",
         label: "Photon",
         templateId: "photon",
+      }),
+      createPickerEntry({
+        id: "pi_minus",
+        label: "Negative Pion",
+        templateId: "pi_minus",
+      }),
+      createPickerEntry({
+        id: "pi_plus",
+        label: "Positive Pion",
+        templateId: "pi_plus",
+      }),
+      createPickerEntry({
+        id: "dpi0",
+        label: "Neutral Pion (d anti-d)",
+        templateId: "dpi0",
+      }),
+      createPickerEntry({
+        id: "upi0",
+        label: "Neutral Pion (u anti-u)",
+        templateId: "upi0",
       }),
     ]),
   }),

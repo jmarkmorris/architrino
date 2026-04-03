@@ -11,9 +11,9 @@ export const reactionAssemblyTemplateMenuRows = Object.freeze([
     Object.freeze({ template: "up_quark", label: "Pro Up Quark" }),
   ]),
   Object.freeze([
-    Object.freeze({ template: "pi_plus", label: "Pi+" }),
-    Object.freeze({ template: "pi_minus", label: "Pi-" }),
-    Object.freeze({ template: "upi0", label: "Pi0 (u anti-u)" }),
-    Object.freeze({ template: "dpi0", label: "Pi0 (d anti-d)" }),
+    Object.freeze({ template: "pi_plus", label: "Positive Pion" }),
+    Object.freeze({ template: "pi_minus", label: "Negative Pion" }),
+    Object.freeze({ template: "upi0", label: "Neutral Pion (u anti-u)" }),
+    Object.freeze({ template: "dpi0", label: "Neutral Pion (d anti-d)" }),
   ]),
 ]);

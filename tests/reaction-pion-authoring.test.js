@@ -54,11 +54,11 @@ function createParticipant({ id, side, templateId, polarity = "", label }) {
 test("pion authored templates build explicit meson assemblies", () => {
   const neutralUp = buildReactionParticipantStructure("upi0", {
     id: "upi0_structure",
-    label: "Pi0 (u anti-u)",
+    label: "Neutral Pion (u anti-u)",
   }).root;
   const chargedPlus = buildReactionParticipantStructure("pi_plus", {
     id: "pi_plus_structure",
-    label: "Pi+",
+    label: "Positive Pion",
   }).root;
 
   assert.equal(neutralUp.classification?.family, "meson");
@@ -80,13 +80,13 @@ test("pion authored templates build explicit meson assemblies", () => {
 
 test("pion descriptor trees preserve authored anti-quark rows", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    buildReactionParticipantStructure("dpi0", {
-      id: "dpi0_structure",
-      label: "Pi0 (d anti-d)",
-    }).root
+      buildReactionParticipantStructure("dpi0", {
+        id: "dpi0_structure",
+        label: "Neutral Pion (d anti-d)",
+      }).root
   );
 
-  assert.equal(descriptorTree[0]?.label, "Pi0 (d anti-d)");
+  assert.equal(descriptorTree[0]?.label, "Neutral Pion (d anti-d)");
   assert.deepEqual(
     descriptorTree[0]?.children?.map((child) => [child.templateId, child.polarity]),
     [
@@ -103,13 +103,13 @@ test("solver request exporter classifies authored pions as mesons", () => {
         id: "reactant_upi0",
         side: "reactant",
         templateId: "upi0",
-        label: "Pi0 (u anti-u)",
+        label: "Neutral Pion (u anti-u)",
       }),
       createParticipant({
         id: "product_pi_minus",
         side: "product",
         templateId: "pi_minus",
-        label: "Pi-",
+        label: "Negative Pion",
       }),
     ],
     mappings: [],
@@ -131,7 +131,7 @@ test("reaction-flow export keeps explicit neutral-pion authored form visible", (
         id: "reactant_upi0",
         side: "reactant",
         templateId: "upi0",
-        label: "Pi0 (u anti-u)",
+        label: "Neutral Pion (u anti-u)",
       }),
     ],
     mappings: [],

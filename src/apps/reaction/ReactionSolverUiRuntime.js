@@ -93,10 +93,10 @@ const solverTemplateMeta = Object.freeze({
   free_architrinos: { shortLabel: "FA", accent: "#7db2ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
-  pi_plus: { shortLabel: "Pi+", accent: "#ff8a52" },
-  pi_minus: { shortLabel: "Pi-", accent: "#4a78ff" },
-  upi0: { shortLabel: "Pi0", accent: "#ff8a52" },
-  dpi0: { shortLabel: "Pi0", accent: "#4a78ff" },
+  pi_plus: { shortLabel: "Pi+", accent: "#ff5a4a" },
+  pi_minus: { shortLabel: "Pi-", accent: "#2d8cff" },
+  upi0: { shortLabel: "Pi0", accent: "#a259ff" },
+  dpi0: { shortLabel: "Pi0", accent: "#a259ff" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -398,13 +398,13 @@ function getParticipantCardMeta(participant = null) {
   if (templateId === "pi_plus" || templateId === "upi0") {
     return {
       ...baseMeta,
-      accent: "#ff8a52",
+      accent: templateId === "pi_plus" ? "#ff5a4a" : "#a259ff",
     };
   }
   if (templateId === "pi_minus" || templateId === "dpi0") {
     return {
       ...baseMeta,
-      accent: "#4a78ff",
+      accent: templateId === "pi_minus" ? "#2d8cff" : "#a259ff",
     };
   }
   return baseMeta;
@@ -488,18 +488,37 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
     return "Higgs cluster";
   }
   if (normalizedTemplateId === "pi_plus") {
-    return "Pi+";
+    return "Positive Pion";
   }
   if (normalizedTemplateId === "pi_minus") {
-    return "Pi-";
+    return "Negative Pion";
   }
   if (normalizedTemplateId === "upi0") {
-    return "Pi0 (u anti-u)";
+    return "Neutral Pion (u anti-u)";
   }
   if (normalizedTemplateId === "dpi0") {
-    return "Pi0 (d anti-d)";
+    return "Neutral Pion (d anti-d)";
   }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
+}
+
+function getTemplateGridPickerLayout(pickerCells = []) {
+  const cellById = new Map(
+    (Array.isArray(pickerCells) ? pickerCells : []).map((cell) => [String(cell?.id ?? ""), cell])
+  );
+  return [
+    ["uni_binary", "bottom", "top", "tau", "tau_neutrino"],
+    ["bi_binary", "strange", "charm", "muon", "muon_neutrino"],
+    ["tri_binary", "down", "up", "electron", "neutrino"],
+    ["photon", "pi_minus", "pi_plus", "dpi0", "upi0"],
+    ["higgs", "", "proton", "", "neutron"],
+  ].flatMap((row, rowIndex) =>
+    row.map((cellId, columnIndex) => ({
+      rowIndex,
+      columnIndex,
+      cell: cellId ? (cellById.get(cellId) ?? null) : null,
+    }))
+  );
 }
 
 function normalizeParticipantBaseLabel(label = "", templateId = "") {
@@ -524,7 +543,7 @@ function getParticipantCardLabelLines(label = "", participant = null) {
     return [
       polarityWord ? polarityWord[0].toUpperCase() + polarityWord.slice(1).toLowerCase() : "?",
       secondWord ? secondWord[0].toUpperCase() + secondWord.slice(1).toLowerCase() : "",
-      thirdWord ? thirdWord.toLowerCase() : "",
+      thirdWord ? thirdWord[0].toUpperCase() + thirdWord.slice(1).toLowerCase() : "",
     ].filter(Boolean);
   }
   if (supportsParticipantPolarity(normalizedTemplateId) && words.length >= 2) {
@@ -541,6 +560,23 @@ function getParticipantCardLabelLines(label = "", participant = null) {
     return words;
   }
   return [words.slice(0, -1).join(" "), words.at(-1) ?? ""];
+}
+
+function getPickerTileLabelLines(pickerCell = null, participant = null) {
+  const templateId = String(pickerCell?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
+  if (templateId === "pi_minus") {
+    return ["Negative", "Pion", "D !U"];
+  }
+  if (templateId === "pi_plus") {
+    return ["Positive", "Pion", "!D U"];
+  }
+  if (templateId === "dpi0") {
+    return ["Neutral", "Pion", "D !D"];
+  }
+  if (templateId === "upi0") {
+    return ["Neutral", "Pion", "U !U"];
+  }
+  return getParticipantCardLabelLines(pickerCell?.label, participant);
 }
 
 function countDescendants(node) {
@@ -2341,7 +2377,7 @@ export function createReactionSolverUiRuntime(deps = {}) {
     preview.style.setProperty("--solver-accent", meta.accent);
     const label = document.createElement("div");
     label.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(pickerCell.label, previewParticipant).forEach((line) => {
+    getPickerTileLabelLines(pickerCell, previewParticipant).forEach((line) => {
       const lineElement = document.createElement("span");
       lineElement.className = "composer-reaction-solver-particle-label-line";
       lineElement.textContent = line;
@@ -3000,21 +3036,24 @@ export function createReactionSolverUiRuntime(deps = {}) {
       });
     } else if (state.menuMode === "template-grid-picker") {
       renderMenuTitle(state.menuSide === "product" ? "Add Product" : "Add Reactant");
-      addPickerCells.forEach((pickerCell) => {
-        if (pickerCell.vacant) {
+      getTemplateGridPickerLayout(addPickerCells).forEach((entry) => {
+        const pickerCell = entry?.cell ?? null;
+        const gridColumn = String((entry?.columnIndex ?? 0) + 1);
+        const gridRow = String((entry?.rowIndex ?? 0) + 2);
+        if (!pickerCell) {
           const vacantCell = document.createElement("span");
           vacantCell.className = "composer-reaction-solver-picker-vacant";
-          vacantCell.style.gridColumn = String(pickerCell.columnIndex + 1);
-          vacantCell.style.gridRow = String(pickerCell.rowIndex + 2);
-          vacantCell.appendChild(createPickerTilePreview(pickerCell));
+          vacantCell.style.gridColumn = gridColumn;
+          vacantCell.style.gridRow = gridRow;
+          vacantCell.appendChild(createPickerTilePreview(null));
           menu.appendChild(vacantCell);
           return;
         }
         const tileButton = document.createElement("button");
         tileButton.type = "button";
         tileButton.className = "composer-reaction-solver-picker-tile";
-        tileButton.style.gridColumn = String(pickerCell.columnIndex + 1);
-        tileButton.style.gridRow = String(pickerCell.rowIndex + 2);
+        tileButton.style.gridColumn = gridColumn;
+        tileButton.style.gridRow = gridRow;
         tileButton.setAttribute(
           "aria-label",
           `${state.menuSide === "product" ? "Add product" : "Add reactant"} ${pickerCell.label}`

@@ -17,10 +17,10 @@ test("reaction template catalog exposes the current manual-authoring picker rows
       { template: "up_quark", label: "Pro Up Quark" },
     ],
     [
-      { template: "pi_plus", label: "Pi+" },
-      { template: "pi_minus", label: "Pi-" },
-      { template: "upi0", label: "Pi0 (u anti-u)" },
-      { template: "dpi0", label: "Pi0 (d anti-d)" },
+      { template: "pi_plus", label: "Positive Pion" },
+      { template: "pi_minus", label: "Negative Pion" },
+      { template: "upi0", label: "Neutral Pion (u anti-u)" },
+      { template: "dpi0", label: "Neutral Pion (d anti-d)" },
     ],
   ]);
 });

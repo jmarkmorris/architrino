@@ -179,6 +179,228 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
   });
 });
 
+test("external solve-reaction CLI closes generic proton radiative weak channels through the same operator-plus-center path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "proton_to_positron_photon",
+    participants: [
+      {
+        id: "reactant_proton_1",
+        side: "reactant",
+        templateId: "proton",
+        label: "Proton",
+        family: "baryon",
+        polarity: "pro",
+        isComposite: true,
+        inventory: { electrinoCount: 6, positrinoCount: 6, flags: ["pdg-id:p", "pdg-name:p"] },
+        rootNodeId: "reactant_proton_1/root",
+        nodes: [
+          {
+            id: "reactant_proton_1/root",
+            templateId: "proton",
+            label: "Proton",
+            family: "baryon",
+            polarity: "pro",
+            isComposite: true,
+            inventory: { electrinoCount: 6, positrinoCount: 6, flags: ["pdg-id:p", "pdg-name:p"] },
+          },
+        ],
+      },
+      {
+        id: "product_positron_1",
+        side: "product",
+        templateId: "electron",
+        label: "Anti Electron",
+        family: "lepton",
+        polarity: "anti",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+        },
+        rootNodeId: "product_positron_1/root",
+        nodes: [
+          {
+            id: "product_positron_1/root",
+            templateId: "electron",
+            label: "Anti Electron",
+            family: "lepton",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_photon_1",
+        side: "product",
+        templateId: "photon",
+        label: "Photon",
+        family: "boson",
+        isComposite: true,
+        inventory: { electrinoCount: 6, positrinoCount: 6, flags: ["pdg-id:gamma", "pdg-name:gamma"] },
+        rootNodeId: "product_photon_1/root",
+        nodes: [
+          {
+            id: "product_photon_1/root",
+            templateId: "photon",
+            label: "Photon",
+            family: "boson",
+            isComposite: true,
+            inventory: { electrinoCount: 6, positrinoCount: 6, flags: ["pdg-id:gamma", "pdg-name:gamma"] },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-baryon-radiative-conversion"), true);
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.side === "center" &&
+        participant.templateId === "noether_core"
+    ),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes generic muon trilepton weak channels through the same operator-plus-center path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "muon_to_three_electrons",
+    participants: [
+      {
+        id: "reactant_muon_1",
+        side: "reactant",
+        templateId: "electron",
+        label: "Pro Muon",
+        family: "lepton",
+        polarity: "pro",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:2", "charged-lepton", "pdg-id:mu-", "pdg-name:mu-"],
+        },
+        rootNodeId: "reactant_muon_1/root",
+        nodes: [
+          {
+            id: "reactant_muon_1/root",
+            templateId: "electron",
+            label: "Pro Muon",
+            family: "lepton",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:2", "charged-lepton", "pdg-id:mu-", "pdg-name:mu-"],
+            },
+          },
+        ],
+      },
+      ...[
+        ["product_electron_a", "Pro Electron", "pro"],
+        ["product_positron_b", "Anti Electron", "anti"],
+        ["product_electron_c", "Pro Electron", "pro"],
+      ].map(([id, label, polarity]) => ({
+        id,
+        side: "product",
+        templateId: "electron",
+        label,
+        family: "lepton",
+        polarity,
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: [
+            "generation:1",
+            "charged-lepton",
+            polarity === "anti" ? "pdg-id:e+" : "pdg-id:e-",
+            polarity === "anti" ? "pdg-name:e+" : "pdg-name:e-",
+          ],
+        },
+        rootNodeId: `${id}/root`,
+        nodes: [
+          {
+            id: `${id}/root`,
+            templateId: "electron",
+            label,
+            family: "lepton",
+            polarity,
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: [
+                "generation:1",
+                "charged-lepton",
+                polarity === "anti" ? "pdg-id:e+" : "pdg-id:e-",
+                polarity === "anti" ? "pdg-name:e+" : "pdg-name:e-",
+              ],
+            },
+          },
+        ],
+      })),
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-lepton-trilepton-conversion"), true);
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.side === "center" &&
+        participant.templateId === "noether_core"
+    ),
+    true
+  );
+});
+
 test("external solve-reaction CLI preserves authored manual operators, mappings, and placement hints", () => {
   const request = {
     schema: "solver-request/v1",

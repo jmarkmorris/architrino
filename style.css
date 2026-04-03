@@ -3142,10 +3142,10 @@ body {
 
 .composer-reaction-solver-menu[data-menu-mode="template-grid-picker"] {
   min-width: auto;
-  max-width: min(664px, calc(100vw - 32px));
-  grid-template-columns: repeat(7, var(--binary-choice-size, 72px));
-  gap: var(--solver-tile-gap, 7px);
-  padding: 14px;
+  max-width: min(860px, calc(100vw - 24px));
+  grid-template-columns: repeat(5, var(--binary-choice-size, 72px));
+  gap: 14px;
+  padding: 12px 14px 14px;
 }
 
 .composer-reaction-solver-menu[data-menu-mode="root"] {

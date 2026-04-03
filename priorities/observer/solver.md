@@ -1556,6 +1556,7 @@ Current state:
 - the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
 - the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
 - the external core now closes the current supported generated PDG weak-channel request set exactly through a generic weak-channel operator path with implicit `Noether core` provenance, including neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, and muon-to-electron-photon;
+- the current frozen live manifest of exportable PDG reactions now reaches `27/27` exact closures over the analyzable denominator in the sweep, so the remaining completion pressure has shifted away from those supported weak families and toward unsupported particle vocabulary such as pions and higher mesons;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
 - and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
