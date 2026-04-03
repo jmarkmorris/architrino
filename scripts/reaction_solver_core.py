@@ -3777,6 +3777,19 @@ def solve_generic_weak_channel(request, source_participants, product_participant
         source_participant,
         family.get("implicitCenterPolarity", "pro"),
     )
+    source_meson_diagnostic = build_meson_constituent_provenance_diagnostic(
+        source_participant,
+        "Exact meson closure",
+    )
+    diagnostic_labels = [
+        "implicit-weak-center",
+        "noether-core-provenance",
+        "generic-weak-channel",
+    ]
+    diagnostics = []
+    if source_meson_diagnostic is not None:
+        diagnostic_labels.append("meson-constituent-provenance")
+        diagnostics.append(source_meson_diagnostic)
     return build_result(
         request=request,
         generated_steps=[
@@ -3789,11 +3802,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
                 "resolvedTargetIds": resolved_target_ids,
                 "mappingIds": step_mapping_ids,
                 "operatorIds": [operator_id],
-                "diagnosticLabels": [
-                    "implicit-weak-center",
-                    "noether-core-provenance",
-                    "generic-weak-channel",
-                ],
+                "diagnosticLabels": diagnostic_labels,
             }
         ],
         generated_mappings=mappings,
@@ -3823,6 +3832,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
         ],
         auto_dissociated_participant_ids=[],
         generated_participants=[generated_center],
+        diagnostics=diagnostics,
     )
 
 
@@ -3960,6 +3970,70 @@ def source_entry_participant_template_id(source_entry):
     return canonical_template_id((source_entry.participant or {}).get("templateId"))
 
 
+MESON_CONSTITUENT_PROVENANCE_TEMPLATE_IDS = {
+    "pi_plus",
+    "pi_minus",
+    "pi0",
+    "k_plus",
+    "k_minus",
+    "dk0",
+    "sk0",
+    "b_plus",
+    "b_minus",
+    "db0",
+    "bb0",
+}
+
+
+def get_exact_composite_constituent_labels(source_participant=None):
+    source_participant = source_participant or {}
+    if canonical_template_id(source_participant.get("templateId")) not in MESON_CONSTITUENT_PROVENANCE_TEMPLATE_IDS:
+        return ()
+    child_nodes = get_child_nodes(source_participant)
+    if not child_nodes:
+        return ()
+    labels = []
+    for node in child_nodes:
+        label = normalize_text(node.get("label")) or normalize_text(node.get("templateId"))
+        if label:
+            labels.append(label)
+    return tuple(labels)
+
+
+def build_meson_constituent_provenance_diagnostic(
+    subject_participant=None,
+    context_label="Exact meson closure",
+):
+    subject_participant = subject_participant or {}
+    subject_root = get_root_node(subject_participant) or subject_participant
+    subject_label = normalize_text(subject_root.get("label")) or normalize_text(subject_root.get("templateId"))
+    if not subject_label:
+        return None
+    constituent_labels = get_exact_composite_constituent_labels(subject_participant)
+    if not constituent_labels:
+        return None
+    constituent_label = " + ".join(constituent_labels)
+    return {
+        "code": "meson-constituent-provenance",
+        "severity": "info",
+        "message": (
+            f"{context_label} preserves meson constituent provenance for {subject_label}: "
+            f"{constituent_label}."
+        ),
+        "path": "steps[0]",
+    }
+
+
+def build_exact_composite_provenance_diagnostic(source_participant=None, product=None):
+    constituent_labels = get_exact_composite_constituent_labels(source_participant)
+    if not constituent_labels:
+        return None
+    return build_meson_constituent_provenance_diagnostic(
+        product,
+        "Exact carry-through",
+    )
+
+
 def build_source_entries(participant):
     participant = participant or {}
     nodes = participant.get("nodes", [])
@@ -4038,6 +4112,7 @@ def direct_match_score(source_entry, product):
     source_participant = source_entry.participant
     source_template_id = canonical_template_id(source_participant.get("templateId"))
     product_template_id = canonical_template_id(product.get("templateId"))
+    source_child_constituents = get_child_nodes(source_participant)
     is_carry_through = (
         bool(source_participant.get("isComposite"))
         and bool(product.get("isComposite"))
@@ -4055,6 +4130,17 @@ def direct_match_score(source_entry, product):
         return None
     if not source_entry.root_source:
         return None
+    diagnostic_labels = []
+    diagnostics = []
+    if source_template_id in MESON_CONSTITUENT_PROVENANCE_TEMPLATE_IDS and source_child_constituents:
+        diagnostic_labels.append("exact-carry-through")
+        composite_diagnostic = build_exact_composite_provenance_diagnostic(
+            source_participant,
+            product,
+        )
+        if composite_diagnostic is not None:
+            diagnostic_labels.append("meson-constituent-provenance")
+            diagnostics.append(composite_diagnostic)
     return {
         "isCarryThrough": is_carry_through,
         "kind": "carry-through" if is_carry_through else "direct-map",
@@ -4064,6 +4150,8 @@ def direct_match_score(source_entry, product):
         "sourceAnchorId": normalize_text(source_entry.node.get("id")) or "root",
         "targetAnchorId": normalize_text(product_root.get("id")) or "root",
         "mappingLedger": product_root.get("inventory"),
+        "diagnosticLabels": diagnostic_labels,
+        "diagnostics": diagnostics,
     }
 
 
@@ -4304,6 +4392,7 @@ def build_result(
     operator_placements,
     auto_dissociated_participant_ids,
     generated_participants=None,
+    diagnostics=None,
 ):
     request_id = normalize_text(request.get("requestId")) or "solver_request"
     participants = [
@@ -4407,7 +4496,7 @@ def build_result(
             "targetInventory": target_inventory,
             "unsupportedNotes": [],
         },
-        "diagnostics": [],
+        "diagnostics": list(diagnostics or []),
     }
 
 
@@ -4484,6 +4573,7 @@ def solve_request(request):
     mappings = []
     operators = []
     operator_placements = []
+    diagnostics = []
     auto_dissociated_participant_ids = []
     resolved_product_ids = set()
     operator_count = 0
@@ -4520,6 +4610,7 @@ def solve_request(request):
                     provenance_mode=direct_match["provenanceMode"],
                 )
             )
+            diagnostics.extend(direct_match.get("diagnostics") or [])
             step = {
                 "stepId": (
                     f"step_direct_{normalize_text(product.get('polarity')).lower()}"
@@ -4534,8 +4625,8 @@ def solve_request(request):
                 "mappingIds": [mapping_id],
                 "operatorIds": [],
             }
-            if direct_match["kind"] == "carry-through":
-                step["diagnosticLabels"] = ["exact-carry-through"]
+            if direct_match.get("diagnosticLabels"):
+                step["diagnosticLabels"] = list(direct_match["diagnosticLabels"])
             steps.append(step)
             break
 
@@ -4811,6 +4902,7 @@ def solve_request(request):
         generated_operators=operators,
         operator_placements=operator_placements,
         auto_dissociated_participant_ids=auto_dissociated_participant_ids,
+        diagnostics=diagnostics,
     )
 
 

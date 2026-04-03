@@ -10,7 +10,13 @@
     "sourceMode": "pdg.connect",
     "lookupParticleName": "mu-",
     "pdgIdentifier": "S004.4/2025",
-    "liveCaseId": "muon_to_electron_photon"
+    "liveCaseId": "muon_to_electron_photon",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true
+    }
   },
   "reactants": [
     {

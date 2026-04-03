@@ -183,6 +183,10 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
+    /legibilityPanel = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
     /exportButton = null,/
   );
   assert.match(
@@ -235,6 +239,18 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionMainSource,
+    /document\.getElementById\("reaction-status"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-hint"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-legibility-panel"\)/
+  );
+  assert.match(
+    reactionMainSource,
     /document\.getElementById\("reaction-accept-button"\)/
   );
   assert.match(
@@ -284,6 +300,14 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   assert.match(
     runtimeSource,
     /const solution = await Promise\.resolve\(\s*solveSnapshot\(\s*\{\s*participants:\s*cloneSerializableValue\(state\.participants\),\s*mappings:\s*cloneSerializableValue\(state\.mappings\),/s
+  );
+  assert.match(
+    runtimeSource,
+    /buildReactionLegibilitySnapshot/
+  );
+  assert.match(
+    runtimeSource,
+    /function syncLegibilityPanel\(\)/
   );
   assert.match(
     runtimeSource,

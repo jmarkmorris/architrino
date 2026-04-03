@@ -40,6 +40,7 @@ It does not own:
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
 - The canonical implementation for Reaction helper, canvas, solve, structure, export, and layout runtimes now lives under `src/apps/reaction/`.
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
+- The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
 
 ## Design
 
@@ -177,7 +178,8 @@ Status: `active`
 Current:
 
 - the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
-- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and `Dissociate` / `Associate` still read as separate controls more than one explanation flow.
+- the standalone shell now keeps corridor grammar, operator-lane meaning, and live surface-state counts visible without reusing the transient status line;
+- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and path emphasis plus deeper object-local legibility still need more focused extraction.
 
 Objective:
 

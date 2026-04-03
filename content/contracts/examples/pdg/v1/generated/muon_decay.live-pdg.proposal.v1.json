@@ -10,7 +10,13 @@
     "sourceMode": "pdg.connect",
     "lookupParticleName": "mu-",
     "pdgIdentifier": "S004.1/2025",
-    "liveCaseId": "muon_decay"
+    "liveCaseId": "muon_decay",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true
+    }
   },
   "reactants": [
     {

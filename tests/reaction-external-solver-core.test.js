@@ -2120,6 +2120,14 @@ test("external solve-reaction CLI closes charged B to proton-antiproton plus cha
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-b-baryon-pion-decay"), true);
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("meson-constituent-provenance")),
+    true
+  );
+  assert.equal(
+    result.diagnostics.some((diagnostic) => diagnostic.code === "meson-constituent-provenance"),
+    true
+  );
 });
 
 test("external solve-reaction CLI closes charged B to proton-antiproton plus charged kaon through the generic meson path", () => {

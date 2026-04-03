@@ -62,6 +62,40 @@ class FakeApi:
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
+    def test_build_proposal_marks_the_pdg_to_solver_boundary_explicitly(self):
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="fixture",
+            source={
+                "edition": "2025",
+                "channelDescription": "n -> p e- anti-nu_e",
+                "citation": "Local PDG fixture seed",
+                "branchingDisplay": "dominant neutron decay channel",
+            },
+            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
+                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
+                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            proposal.source["contract"],
+            {
+                "upstreamSchema": "pdg-proposal/v1",
+                "downstreamSchema": "solver-request/v1",
+                "handoffMode": "upstream-only",
+                "reactionAcceptanceRequired": True,
+            },
+        )
+        self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
+        self.assertEqual(proposal.exportable, True)
+
     def test_manifest_assigns_incrementing_batch_ids_to_exportable_discoveries(self):
         neutron_particle = FakeParticle(
             "n",

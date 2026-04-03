@@ -10,7 +10,13 @@
     "sourceMode": "pdg.connect",
     "lookupParticleName": "n",
     "pdgIdentifier": "S017.1/2025",
-    "liveCaseId": "free_neutron_beta_decay"
+    "liveCaseId": "free_neutron_beta_decay",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true
+    }
   },
   "reactants": [
     {

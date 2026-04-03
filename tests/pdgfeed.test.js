@@ -193,6 +193,12 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
   assert.equal(pairMuonProposal.source.pdgIdentifier, "S004.7/2025");
   assert.equal(muonPhotonProposal.source.pdgIdentifier, "S004.4/2025");
   assert.equal(pionProposal.source.pdgIdentifier, "S008.1/2025");
+  assert.deepEqual(neutronProposal.source.contract, {
+    upstreamSchema: "pdg-proposal/v1",
+    downstreamSchema: "solver-request/v1",
+    handoffMode: "upstream-only",
+    reactionAcceptanceRequired: true,
+  });
   assert.equal(neutronProposal.products[2].pdgId, "nubar_e");
   assert.equal(neutronProposal.products[2].pdgName, "anti-nu_e");
   assert.equal(muonProposal.products[1].pdgId, "nubar_e");
@@ -212,6 +218,12 @@ test("charged pion fixture now emits a solver-request artifact through the stabl
   const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json");
 
   assert.equal(proposal.exportable, true);
+  assert.deepEqual(proposal.source.contract, {
+    upstreamSchema: "pdg-proposal/v1",
+    downstreamSchema: "solver-request/v1",
+    handoffMode: "upstream-only",
+    reactionAcceptanceRequired: true,
+  });
   assert.deepEqual(proposal.notes, [
     "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
   ]);
@@ -225,6 +237,12 @@ test("charged pion live PDG channel now emits a solver-request artifact through 
   const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json");
 
   assert.equal(proposal.exportable, true);
+  assert.deepEqual(proposal.source.contract, {
+    upstreamSchema: "pdg-proposal/v1",
+    downstreamSchema: "solver-request/v1",
+    handoffMode: "upstream-only",
+    reactionAcceptanceRequired: true,
+  });
   assert.equal(proposal.source.sourceMode, "pdg.connect");
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
   assert.deepEqual(proposal.notes, []);

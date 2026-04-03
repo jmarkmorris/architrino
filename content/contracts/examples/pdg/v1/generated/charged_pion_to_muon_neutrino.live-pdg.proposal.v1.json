@@ -10,7 +10,13 @@
     "sourceMode": "pdg.connect",
     "lookupParticleName": "pi+",
     "pdgIdentifier": "S008.1/2025",
-    "liveCaseId": "charged_pion_to_muon_neutrino"
+    "liveCaseId": "charged_pion_to_muon_neutrino",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true
+    }
   },
   "reactants": [
     {

@@ -8,7 +8,13 @@
     "citation": "Local PDG fixture seed",
     "branchingDisplay": "dominant muon decay channel",
     "fixtureId": "muon_decay",
-    "fixturePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json"
+    "fixturePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true
+    }
   },
   "reactants": [
     {

@@ -58,6 +58,7 @@ import {
   REACTION_CANVAS_LAYOUT,
   REACTION_CANVAS_SURFACE_ROW_COUNT,
 } from "./ReactionCanvasLayoutRuntime.js";
+import { buildReactionLegibilitySnapshot } from "./ReactionCanvasLegibilityRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -872,6 +873,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     reactantsColumn,
     productsColumn,
     mapHint,
+    legibilityPanel = null,
     emptyState,
     mapSvg,
     menu,
@@ -3827,6 +3829,95 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
   }
 
+  function createLegibilityCard(title = "", summary = "") {
+    const card = document.createElement("article");
+    card.className = "reaction-app-legibility-card";
+    const titleElement = document.createElement("h2");
+    titleElement.className = "reaction-app-legibility-title";
+    titleElement.textContent = title;
+    card.appendChild(titleElement);
+    if (summary) {
+      const summaryElement = document.createElement("p");
+      summaryElement.className = "reaction-app-legibility-summary";
+      summaryElement.textContent = summary;
+      card.appendChild(summaryElement);
+    }
+    return card;
+  }
+
+  function createLegibilityList(lines = [], className = "reaction-app-legibility-list") {
+    const list = document.createElement("ul");
+    list.className = className;
+    lines.filter(Boolean).forEach((line) => {
+      const item = document.createElement("li");
+      item.textContent = line;
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  function createLegibilityPillList(entries = []) {
+    const list = document.createElement("ul");
+    list.className = "reaction-app-legibility-pills";
+    entries.filter((entry) => entry?.label).forEach((entry) => {
+      const item = document.createElement("li");
+      item.className = "reaction-app-legibility-pill";
+      item.classList.add(`is-${String(entry?.tone ?? "neutral").trim() || "neutral"}`);
+      item.textContent = entry.label;
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  function syncLegibilityPanel() {
+    if (!(legibilityPanel instanceof HTMLElement)) {
+      return;
+    }
+    const snapshot = buildReactionLegibilitySnapshot({
+      participants: state.participants,
+      mappings: state.mappings,
+      pendingSourceKey: state.pendingSourceKey,
+      pendingSourceRole: state.pendingSourceRole,
+      getMappingValidation,
+      getOperatorLedgerSummary,
+    });
+    legibilityPanel.dataset.focusKind = snapshot.focusState.kind;
+    const fragment = document.createDocumentFragment();
+
+    const workflowCard = createLegibilityCard("Corridor grammar", snapshot.focusState.summary);
+    workflowCard.appendChild(createLegibilityList(snapshot.workflowLines));
+    fragment.appendChild(workflowCard);
+
+    const operatorCard = createLegibilityCard(
+      "Operator lanes",
+      "The center lanes mean different authored moves. Keep that grammar explicit on the visible surface."
+    );
+    operatorCard.appendChild(
+      createLegibilityList(
+        snapshot.operatorGrammarEntries.map(
+          (entry) => `${entry.laneLabel}: ${entry.title}. ${entry.detail}`
+        )
+      )
+    );
+    fragment.appendChild(operatorCard);
+
+    const stateCard = createLegibilityCard(
+      "Visible state",
+      "Anchor color and route state should be legible enough to review without hidden side knowledge."
+    );
+    stateCard.appendChild(createLegibilityPillList(snapshot.corridorState.pillEntries));
+    stateCard.appendChild(createLegibilityPillList(snapshot.operatorState.pillEntries));
+    stateCard.appendChild(
+      createLegibilityList(
+        snapshot.corridorLegendEntries.map((entry) => `${entry.label}: ${entry.detail}`),
+        "reaction-app-legibility-list is-legend"
+      )
+    );
+    fragment.appendChild(stateCard);
+
+    legibilityPanel.replaceChildren(fragment);
+  }
+
   function getElementCenterWithinSurface(element, bounds) {
     const rect = element.getBoundingClientRect();
     return {
@@ -4221,6 +4312,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       }
       state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
+      syncLegibilityPanel();
       return;
     }
     rebuildAnchorRegistry();
@@ -4269,6 +4361,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       operatorLayer.appendChild(createOperatorParticipantCard(participant));
     });
     updateHint();
+    syncLegibilityPanel();
     scheduleSideColumnGeometry();
     scheduleMappingDraw();
     scheduleOperatorLaneLayout();

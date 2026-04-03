@@ -1563,8 +1563,9 @@ Status: `active`
 Current:
 
 - the sweep/report path already distinguishes `generic-profile` exact closures from `full-provenance` exact closures;
-- full constituent provenance is already covered for some lepton-heavy meson channels and neutral-pion paths;
-- but many exact kaon and B-meson results still close through generic weak-meson profiles rather than a full constituent-by-constituent derivation.
+- exact composite meson carry-through now emits meson-constituent provenance when the source tree exposes child constituents;
+- lepton-heavy meson channels and neutral-pion paths already have full constituent provenance coverage;
+- but some remaining exact composite identities still close through generic profiles when the solver lacks enough child-node evidence to spell them out fully.
 
 Objective:
 
