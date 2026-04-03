@@ -143,6 +143,44 @@ For batch work over every exportable discovered live decay, first freeze a manif
 
 The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery. The cursor stores the next `batchId`, so phrases like "the first 20" and "the next 34" can map to a frozen ordered list rather than agent memory.
 
+#### Frozen Manifest Sweep Workflow
+
+When the goal is to measure solver progress across many live PDG decays, the preferred path is the frozen-manifest sweep rather than the small built-in live-case list.
+
+Recommended workflow:
+
+1. build a frozen live manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
+2. run `scripts/pdg-closure-sweep.mjs` against that frozen manifest, optionally in batches with `--cursor` plus `--limit`;
+3. read `/tmp` run artifacts such as `summary.json` and `report.txt`;
+4. treat analyzable/exportable manifest entries as the solver denominator;
+5. separate unsupported-particle discovery from solver no-solution or partial cases.
+
+Example full-manifest run:
+
+- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `node /path/to/repo/scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --out-dir /tmp/pdg-closure-sweep`
+
+How to read the denominator:
+
+- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `solver-request/v1`;
+- in manifest mode, unsupported discoveries stay outside that denominator and are reported separately;
+- `unsupportedInputs` should normally remain `0` in manifest mode because unsupported particle cases were filtered out before solving;
+- `exactClosurePercent` is computed over analyzable/exportable cases only, not over every discovered PDG reaction.
+
+How to interpret the sweep:
+
+- `exactClosures` are analyzable cases solved exactly;
+- `partialClosures` are analyzable cases where some products closed and some did not;
+- `noSolution` are analyzable cases where the solver could not close the reaction;
+- `discoveredTopUnsupportedParticles` is the particle-vocabulary priority list, not a solver-failure list.
+
+For solver-progress reporting after each solve-rate change:
+
+- rebuild the manifest;
+- rerun the sweep;
+- compare `exactClosureCount`, `exactClosurePercent`, and case-level movements from `no-solution` to `partial` or `exact`;
+- and do not count unsupported-particle discoveries as solver failures.
+
 The first local fixture corpus is:
 
 - `free_neutron_beta_decay`

@@ -383,6 +383,52 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         "implicitCenterPolarity": "pro",
     },
     {
+        "key": "weak-meson-charged-kaon-pion-decay",
+        "sourceSignatures": Counter({("k_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_plus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-pion-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-pion-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-pion-decay-conjugate",
+        "sourceSignatures": Counter({("k_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_minus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-pion-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-pion-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
         "key": "weak-meson-charged-b-electron-decay",
         "sourceSignatures": Counter({("b_plus", "", ""): 1}),
         "requiredProductSignatures": Counter(
@@ -470,6 +516,114 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "key": "radiative",
                 "productSignatures": Counter({("photon", "", ""): 1}),
                 "ruleFamily": "weak-meson-charged-b-muon-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-pion-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_plus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-pion-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-kaon-pion-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("k_plus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-kaon-pion-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-neutral-kaon-pion-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("dk0", "", ""): 1,
+                ("pi_plus", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-neutral-kaon-pion-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-pion-decay-conjugate",
+        "sourceSignatures": Counter({("b_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_minus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-pion-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-kaon-pion-decay-conjugate",
+        "sourceSignatures": Counter({("b_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("k_minus", "", ""): 1,
+                ("pi0", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-kaon-pion-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-neutral-kaon-pion-decay-conjugate",
+        "sourceSignatures": Counter({("b_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("sk0", "", ""): 1,
+                ("pi_minus", "", ""): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-neutral-kaon-pion-decay-conjugate",
             },
         ),
         "implicitCenterPolarity": "pro",
@@ -877,6 +1031,43 @@ def build_generated_noether_quad(
     )
 
 
+def build_generated_noether_pair(
+    participant_id, *, source_participant_id="", source_step_id=""
+):
+    root_id = f"{normalize_text(participant_id)}/root"
+    child_nodes = []
+    for suffix, polarity in (("core_pro_1", "pro"), ("core_anti_1", "anti")):
+        child_nodes.append(
+            {
+                "id": f"{root_id}/{suffix}",
+                "parentId": root_id,
+                "templateId": "noether_core",
+                "label": "Anti Noether core" if polarity == "anti" else "Pro Noether core",
+                "family": "noether-core",
+                "polarity": polarity,
+                "isComposite": False,
+                "inventory": {
+                    "electrinoCount": 3,
+                    "positrinoCount": 3,
+                },
+            }
+        )
+    return build_generated_participant(
+        participant_id=participant_id,
+        template_id="noether_pair",
+        label="Noether Pair",
+        family="boson",
+        inventory={"electrinoCount": 6, "positrinoCount": 6},
+        side="center",
+        is_composite=True,
+        source_participant_id=source_participant_id,
+        source_step_id=source_step_id,
+        root_node_id=root_id,
+        child_nodes=child_nodes,
+        tags=["solve-generated", "noether-pair-supplement"],
+    )
+
+
 def build_generated_quark_participant(
     participant_id,
     template_id,
@@ -1077,6 +1268,30 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
 
     deficit_pro = max(0, needed_core_counts["pro"] - len(source_core_refs["pro"]))
     deficit_anti = max(0, needed_core_counts["anti"] - len(source_core_refs["anti"]))
+    noether_pair_count = min(deficit_pro, deficit_anti)
+    deficit_pro = max(0, deficit_pro - noether_pair_count)
+    deficit_anti = max(0, deficit_anti - noether_pair_count)
+    noether_pair_core_refs = {"pro": [], "anti": []}
+    generated_noether_pair_ids = []
+    for pair_index in range(1, noether_pair_count + 1):
+        noether_pair = build_generated_noether_pair(
+            participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
+            source_participant_id=source_id,
+            source_step_id=ledger_step_id,
+        )
+        generated_participants.append(noether_pair)
+        generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
+        for node in get_child_nodes(noether_pair):
+            node_polarity = normalize_text(node.get("polarity")).lower()
+            if node_polarity in {"pro", "anti"}:
+                noether_pair_core_refs[node_polarity].append(
+                    {
+                        "participantId": normalize_text(noether_pair.get("id")),
+                        "anchorId": normalize_text(node.get("id")),
+                        "sourceKind": "noether-pair",
+                    }
+                )
+
     noether_quad_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
     noether_quad_core_refs = {"pro": [], "anti": []}
     generated_noether_quad_ids = []
@@ -1120,11 +1335,15 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
             "consumedParticipantIds": [
                 normalize_text(participant.get("id")) for participant in quark_participants
             ],
-            "producedParticipantIds": generated_core_ids + [free_pool_id] + generated_noether_quad_ids,
+            "producedParticipantIds": generated_core_ids
+            + [free_pool_id]
+            + generated_noether_pair_ids
+            + generated_noether_quad_ids,
             "resolvedTargetIds": [],
             "mappingIds": [],
             "operatorIds": [],
             "diagnosticLabels": ["shared-free-architrino-pool"]
+            + (["noether-pair-supplement"] if generated_noether_pair_ids else [])
             + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
         },
     ]
@@ -1134,6 +1353,10 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
     available_core_refs = {
         "pro": list(source_core_refs["pro"]),
         "anti": list(source_core_refs["anti"]),
+    }
+    available_noether_pair_refs = {
+        "pro": list(noether_pair_core_refs["pro"]),
+        "anti": list(noether_pair_core_refs["anti"]),
     }
     available_noether_quad_refs = {
         "pro": list(noether_quad_core_refs["pro"]),
@@ -1148,6 +1371,8 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         core_ref = None
         if available_core_refs[product_polarity]:
             core_ref = available_core_refs[product_polarity].pop(0)
+        elif available_noether_pair_refs[product_polarity]:
+            core_ref = available_noether_pair_refs[product_polarity].pop(0)
         elif available_noether_quad_refs[product_polarity]:
             core_ref = available_noether_quad_refs[product_polarity].pop(0)
         if core_ref is None:
@@ -1253,7 +1478,9 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 "operatorIds": [operator_id],
                 "diagnosticLabels": ["shared-free-architrino-pool", "associate-lepton-from-core-pool"]
                 + (
-                    ["noether-quad-supplement"]
+                    ["noether-pair-supplement"]
+                    if core_ref["sourceKind"] == "noether-pair"
+                    else ["noether-quad-supplement"]
                     if core_ref["sourceKind"] == "noether-quad"
                     else ["meson-core-provenance"]
                 ),
@@ -1316,6 +1543,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
         if not product_id or product_root is None:
             return None
         mapping_id = f"map_{family['key']}_out_{index}"
+        target_children = get_child_nodes(product)
         mappings.append(
             build_mapping(
                 mapping_id=mapping_id,
@@ -1340,6 +1568,24 @@ def solve_generic_weak_channel(request, source_participants, product_participant
                 "role": "product",
             }
         )
+        for child_index, child in enumerate(target_children, start=1):
+            child_mapping_id = f"map_{family['key']}_out_{index}_child_{child_index}"
+            mappings.append(
+                build_mapping(
+                    mapping_id=child_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=operator_id,
+                    from_anchor_id="root",
+                    from_role="operator-output",
+                    to_participant_id=product_id,
+                    to_anchor_id=normalize_text(child.get("id")) or "root",
+                    to_role="product",
+                    conserved_ledger=child.get("inventory"),
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            step_mapping_ids.append(child_mapping_id)
     generated_center = build_generated_weak_center(
         step_id,
         source_participant,
