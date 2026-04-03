@@ -491,6 +491,99 @@ test("external solve-reaction CLI closes charged kaon to pion plus neutral pion 
   );
 });
 
+test("external solve-reaction CLI closes radiative charged-kaon leptonic decay through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_kaon_radiative_muon_decay",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_k_plus_authored",
+          side: "reactant",
+          templateId: "k_plus",
+          label: "Positive Kaon",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_muon_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Muon",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_muon_neutrino_authored",
+          side: "product",
+          templateId: "neutrino",
+          polarity: "pro",
+          label: "Pro Muon Neutrino",
+        }),
+        createAuthoredParticipant({
+          id: "product_photon_authored",
+          side: "product",
+          templateId: "photon",
+          label: "Photon",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-kaon-decay-radiative"), true);
+});
+
+test("external solve-reaction CLI closes charged kaon to neutral pion plus electron-neutrino through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_kaon_neutral_pion_electron_decay",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_k_plus_authored",
+          side: "reactant",
+          templateId: "k_plus",
+          label: "Positive Kaon",
+        }),
+        createAuthoredParticipant({
+          id: "product_pi_zero_authored",
+          side: "product",
+          templateId: "upi0",
+          label: "Neutral Pion",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_electron_neutrino_authored",
+          side: "product",
+          templateId: "neutrino",
+          polarity: "pro",
+          label: "Pro Electron Neutrino",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "weak-meson-charged-kaon-neutral-pion-electron-decay"),
+    true
+  );
+});
+
 test("external solve-reaction CLI keeps neutral kaon identities distinct", () => {
   const exactRequest = buildReactionSolverRequestDocument({
     requestId: "authored_k0_exact_identity",
@@ -712,6 +805,102 @@ test("external solve-reaction CLI closes charged B to neutral kaon plus charged 
   );
 });
 
+test("external solve-reaction CLI closes charged B to neutral pion plus electron-neutrino through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_b_neutral_pion_electron_decay",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_b_plus_authored",
+          side: "reactant",
+          templateId: "b_plus",
+          label: "Positive B Meson",
+        }),
+        createAuthoredParticipant({
+          id: "product_pi_zero_authored",
+          side: "product",
+          templateId: "upi0",
+          label: "Neutral Pion",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_electron_neutrino_authored",
+          side: "product",
+          templateId: "neutrino",
+          polarity: "pro",
+          label: "Pro Electron Neutrino",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "weak-meson-charged-b-neutral-pion-electron-decay"),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes charged B to charged pion plus electron pair through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_charged_b_pion_electron_pair",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_b_plus_authored",
+          side: "reactant",
+          templateId: "b_plus",
+          label: "Positive B Meson",
+        }),
+        createAuthoredParticipant({
+          id: "product_pi_plus_authored",
+          side: "product",
+          templateId: "pi_plus",
+          label: "Positive Pion",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "pro",
+          label: "Pro Electron",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "weak-meson-charged-b-pion-electron-pair-decay"),
+    true
+  );
+});
+
 test("external solve-reaction CLI keeps neutral b meson identities distinct", () => {
   const exactRequest = buildReactionSolverRequestDocument({
     requestId: "authored_b0_exact_identity",
@@ -765,6 +954,102 @@ test("external solve-reaction CLI keeps neutral b meson identities distinct", ()
   );
   assert.equal(swappedResult.summary.outcome, "no-solution");
   assert.equal(swappedResult.summary.exact, false);
+});
+
+test("external solve-reaction CLI closes neutral B to neutral pion plus electron pair through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_neutral_b_pion_electron_pair",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_db0_authored",
+          side: "reactant",
+          templateId: "dB0",
+          label: "Neutral B Meson (d anti-b)",
+        }),
+        createAuthoredParticipant({
+          id: "product_pi_zero_authored",
+          side: "product",
+          templateId: "upi0",
+          label: "Neutral Pion",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "pro",
+          label: "Pro Electron",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "weak-meson-neutral-b-pion-electron-pair-decay"),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes neutral B to radiative electron pair through the generic meson path", () => {
+  const request = buildReactionSolverRequestDocument({
+    requestId: "authored_neutral_b_radiative_electron_pair",
+    snapshot: {
+      participants: [
+        createAuthoredParticipant({
+          id: "reactant_db0_authored",
+          side: "reactant",
+          templateId: "dB0",
+          label: "Neutral B Meson (d anti-b)",
+        }),
+        createAuthoredParticipant({
+          id: "product_anti_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "anti",
+          label: "Anti Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_pro_electron_authored",
+          side: "product",
+          templateId: "electron",
+          polarity: "pro",
+          label: "Pro Electron",
+        }),
+        createAuthoredParticipant({
+          id: "product_photon_authored",
+          side: "product",
+          templateId: "photon",
+          label: "Photon",
+        }),
+      ],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory: inventoryRuntime.resolveBinaryChoiceInventory,
+  });
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "weak-meson-neutral-b-electron-pair-decay-radiative"),
+    true
+  );
 });
 
 test("external solve-reaction CLI closes charged pion to positron plus electron neutrino through the generic meson path", () => {

@@ -325,6 +325,11 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "productSignatures": Counter(),
                 "ruleFamily": "weak-meson-charged-kaon-decay",
             },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-decay-radiative",
+            },
         ),
         "implicitCenterPolarity": "pro",
     },
@@ -342,6 +347,11 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "key": "base",
                 "productSignatures": Counter(),
                 "ruleFamily": "weak-meson-charged-kaon-electron-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-electron-decay-radiative",
             },
         ),
         "implicitCenterPolarity": "pro",
@@ -361,6 +371,11 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "productSignatures": Counter(),
                 "ruleFamily": "weak-meson-charged-kaon-decay-conjugate",
             },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-decay-conjugate-radiative",
+            },
         ),
         "implicitCenterPolarity": "pro",
     },
@@ -378,6 +393,107 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "key": "base",
                 "productSignatures": Counter(),
                 "ruleFamily": "weak-meson-charged-kaon-electron-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-electron-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-neutral-pion-muon-decay",
+        "sourceSignatures": Counter({("k_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-muon-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-muon-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-neutral-pion-electron-decay",
+        "sourceSignatures": Counter({("k_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("neutrino", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-electron-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-electron-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-neutral-pion-muon-decay-conjugate",
+        "sourceSignatures": Counter({("k_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "pro", "2"): 1,
+                ("neutrino", "anti", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-muon-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-muon-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-neutral-pion-electron-decay-conjugate",
+        "sourceSignatures": Counter({("k_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "pro", "1"): 1,
+                ("neutrino", "anti", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-electron-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-charged-kaon-neutral-pion-electron-decay-conjugate-radiative",
             },
         ),
         "implicitCenterPolarity": "pro",
@@ -539,6 +655,44 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         "implicitCenterPolarity": "pro",
     },
     {
+        "key": "weak-meson-charged-b-neutral-pion-electron-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("neutrino", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-neutral-pion-electron-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-neutral-pion-muon-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-neutral-pion-muon-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
         "key": "weak-meson-charged-b-kaon-pion-decay",
         "sourceSignatures": Counter({("b_plus", "", ""): 1}),
         "requiredProductSignatures": Counter(
@@ -557,6 +711,82 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         "implicitCenterPolarity": "pro",
     },
     {
+        "key": "weak-meson-charged-b-pion-electron-pair-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_plus", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-pion-electron-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-pion-muon-pair-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi_plus", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-pion-muon-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-kaon-electron-pair-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("k_plus", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-kaon-electron-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-b-kaon-muon-pair-decay",
+        "sourceSignatures": Counter({("b_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("k_plus", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-b-kaon-muon-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
         "key": "weak-meson-charged-b-neutral-kaon-pion-decay",
         "sourceSignatures": Counter({("b_plus", "", ""): 1}),
         "requiredProductSignatures": Counter(
@@ -570,6 +800,174 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
                 "key": "base",
                 "productSignatures": Counter(),
                 "ruleFamily": "weak-meson-charged-b-neutral-kaon-pion-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-pion-electron-pair-decay",
+        "sourceSignatures": Counter({("db0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-pion-electron-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-pion-muon-pair-decay",
+        "sourceSignatures": Counter({("db0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-pion-muon-pair-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-electron-pair-decay",
+        "sourceSignatures": Counter({("db0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-electron-pair-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-neutral-b-electron-pair-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-muon-pair-decay",
+        "sourceSignatures": Counter({("db0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-muon-pair-decay",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-neutral-b-muon-pair-decay-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-pion-electron-pair-decay-conjugate",
+        "sourceSignatures": Counter({("bb0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-pion-electron-pair-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-pion-muon-pair-decay-conjugate",
+        "sourceSignatures": Counter({("bb0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("pi0", "", ""): 1,
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-pion-muon-pair-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-electron-pair-decay-conjugate",
+        "sourceSignatures": Counter({("bb0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "1"): 1,
+                ("electron", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-electron-pair-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-neutral-b-electron-pair-decay-conjugate-radiative",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-neutral-b-muon-pair-decay-conjugate",
+        "sourceSignatures": Counter({("bb0", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "2"): 1,
+                ("electron", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-neutral-b-muon-pair-decay-conjugate",
+            },
+            {
+                "key": "radiative",
+                "productSignatures": Counter({("photon", "", ""): 1}),
+                "ruleFamily": "weak-meson-neutral-b-muon-pair-decay-conjugate-radiative",
             },
         ),
         "implicitCenterPolarity": "pro",
