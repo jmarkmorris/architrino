@@ -38,8 +38,8 @@ It does not own:
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron, muon, and charged-pion fixture cases.
-- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, and charged-pion-to-muon-neutrino cases when a local `pdg` installation is present.
-- Charged pion now has an explicit solver-facing mapping in the locked v1 registry, so `charged_pion_to_muon_neutrino` no longer stops at proposal-only classification.
+- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, and neutral-pion-discovery cases when a local `pdg` installation is present.
+- Charged and neutral pion now have explicit solver-facing mappings in the locked v1 registry, so pion channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -131,6 +131,8 @@ The intended handoff modes are:
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
 
+Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized participants instead of being rejected wholesale. That means channels like `pi0 -> 2gamma` can cross the request seam as two photon participants, while generic/textual items still remain proposal-only.
+
 For developer closure sweeps across many cases, use `node scripts/pdg-closure-sweep.mjs`. The sweep runner can either enumerate fixture/live cases directly or consume a frozen manifest built by `python3 pdgfeed.py build-live-manifest`. In direct mode it classifies unsupported-input cases from `pdg-proposal/v1` before solving, feeds only exportable requests through `pdgfeed.py` plus `solve-reaction.mjs`, writes a per-run log directory under `/tmp` by default, and finishes with a report containing reactions tested, analyzable reactions, exact-closure percentage over analyzable reactions only, reactions not yet analyzable, and the top unsupported particles ranked by appearance count in unsupported reactions.
 
 For batch work over every exportable discovered live decay, first freeze a manifest, then advance through it with a cursor:
@@ -174,15 +176,16 @@ The locked canonical v1 PDG-to-solver mapping table is:
 | `gamma` | exportable | `photon` | `Photon` | boson |
 | `pi+` | exportable | `pi_plus` | `Positive Pion` | meson, `u + anti-d` |
 | `pi-` | exportable | `pi_minus` | `Negative Pion` | meson, `d + anti-u` |
-| `pi0` | proposal-only | none | `Neutral Pion` | neutral-pion option handling is not yet locked in PDG ingest |
+| `pi0` | exportable | `upi0` | `Neutral Pion` | PDG ingest normalizes neutral pion to one canonical authored form, while the solver treats `upi0` and `dpi0` as equivalent |
 
 The v1 unsupported-particle policy is:
 
 - only canonical PDG names in the exportable rows above may be emitted into `solver-request/v1`;
 - local aliases may canonicalize into those names, but aliases do not define new solver mappings;
-- a particle explicitly marked proposal-only, such as `pi0`, must remain in proposal metadata and notes only;
+- a particle explicitly marked proposal-only must remain in proposal metadata and notes only;
 - any particle absent from the table is also proposal-only by default;
-- and any decay product that arrives as a generic/textual PDG item, requires multiplicity expansion, or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
+- decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
+- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
 
 The first solver-facing target should be one `solver-request/v1` document per candidate, with:
 

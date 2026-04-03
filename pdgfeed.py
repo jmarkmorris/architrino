@@ -225,6 +225,18 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         positrino_count=11,
         tags=("pdg:species:pi-minus",),
     ),
+    PdgV1ParticleMapping(
+        canonical_name="pi0",
+        aliases=("pi0",),
+        template_id="upi0",
+        label="Neutral Pion",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=8,
+        positrino_count=16,
+        tags=("pdg:species:pi0",),
+    ),
 )
 
 PDG_V1_MAPPING_BY_NAME = {mapping.canonical_name: mapping for mapping in PDG_V1_PARTICLE_MAPPINGS}
@@ -746,9 +758,6 @@ def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list
         item_name = getattr(item, "name", None)
         item_particle = safe_decay_item_particle(item) if item is not None else None
         item_type = getattr(item, "item_type", None) if item is not None else None
-        if multiplier != 1:
-            notes.append(f"unsupported:product:{item_name or 'unknown'}:multiplier-{multiplier}")
-            continue
         if not item_name:
             notes.append("unsupported:product:unknown:missing-name")
             continue
@@ -756,7 +765,11 @@ def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list
             suffix = f"generic-or-textual-item:{item_type}" if item_type else "generic-or-textual-item"
             notes.append(f"unsupported:product:{item_name}:{suffix}")
             continue
-        particles.append(FixtureParticle(name=str(item_name), pdg_id=str(item_name)))
+        if multiplier <= 0:
+            notes.append(f"unsupported:product:{item_name}:multiplier-{multiplier}")
+            continue
+        for _ in range(multiplier):
+            particles.append(FixtureParticle(name=str(item_name), pdg_id=str(item_name)))
     return particles, notes
 
 

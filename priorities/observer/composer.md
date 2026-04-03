@@ -384,6 +384,34 @@ Next steps:
 - add at least one downstream handoff/import check once Reaction export can emit pion structures;
 - and keep Composer as a consumer of accepted pion output rather than a second particle-authoring surface.
 
+### 9. Accept Kaon Structures From Reaction
+
+Status: `pending`
+
+Goal:
+
+- make sure downstream Composer import and display paths can accept accepted kaon-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
+
+Why it matters:
+
+- kaon support should flow through the same downstream contract shape that now carries pion content, so Composer stays a consumer of accepted particle structure rather than the place where kaon semantics are invented;
+- the neutral kaon pair needs to remain legible downstream as distinct authored structures with different strangeness, even though both are charge-neutral;
+- and calling this out now keeps downstream expectations aligned with the next light-meson expansion after pions.
+
+Required particle content:
+
+- accepted `K+` structures based on `u + anti-s`;
+- accepted `K-` structures based on `s + anti-u`;
+- accepted `K0` structures based on `d + anti-s`;
+- and accepted `anti-K0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream.
+
+Next steps:
+
+- confirm that Composer accepts kaon-bearing downstream contracts without runtime coupling back into Reaction or solver internals;
+- keep kaon rendering, labels, and neutral-pair distinction data-driven from accepted upstream output rather than Composer-local particle policy;
+- add at least one downstream handoff/import check once Reaction export can emit kaon structures;
+- and keep Composer as a consumer of accepted kaon output rather than a second particle-authoring surface.
+
 ## Related Priorities
 
 - [composer-reaction](./observer.md)

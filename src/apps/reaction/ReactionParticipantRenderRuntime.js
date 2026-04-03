@@ -565,7 +565,8 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       String(rowNode?.templateId ?? "").trim().toLowerCase() ||
       (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID ? "noether_core" : "");
     const polarity = String(rowNode?.polarity ?? "").trim().toLowerCase();
-    const baseLabel = getDefaultParticipantBaseLabel(templateId, rowNode?.label);
+    const explicitRowLabel = String(rowNode?.label ?? "").trim();
+    const baseLabel = explicitRowLabel || getDefaultParticipantBaseLabel(templateId, rowNode?.label);
     const cardParticipant = {
       templateId,
       polarity:

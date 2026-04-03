@@ -176,6 +176,31 @@ export const reactionAddPickerColumns = Object.freeze([
     ]),
   }),
   Object.freeze({
+    id: "kaon_bridge",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "k_minus",
+        label: "Negative Kaon",
+        templateId: "k_minus",
+      }),
+      createPickerEntry({
+        id: "k_plus",
+        label: "Positive Kaon",
+        templateId: "k_plus",
+      }),
+      createPickerEntry({
+        id: "anti_k0",
+        label: "Neutral Kaon (s anti-d)",
+        templateId: "anti_k0",
+      }),
+      createPickerEntry({
+        id: "k0",
+        label: "Neutral Kaon (d anti-s)",
+        templateId: "k0",
+      }),
+    ]),
+  }),
+  Object.freeze({
     id: "composite_bridge",
     entries: Object.freeze([
       createPickerEntry({

@@ -50,6 +50,28 @@ test("reaction add picker prefixes pro labels for reduced binary cores and baryo
   assert.equal(neutronCell.label, "Pro Neutron");
 });
 
+test("reaction add picker exposes kaons on the row directly below the pions", () => {
+  const pickerCells = getReactionAddPickerCells();
+  const kMinusCell = pickerCells.find((cell) => cell.id === "k_minus");
+  const kPlusCell = pickerCells.find((cell) => cell.id === "k_plus");
+  const antiK0Cell = pickerCells.find((cell) => cell.id === "anti_k0");
+  const k0Cell = pickerCells.find((cell) => cell.id === "k0");
+
+  assert.ok(kMinusCell);
+  assert.ok(kPlusCell);
+  assert.ok(antiK0Cell);
+  assert.ok(k0Cell);
+  assert.deepEqual(
+    [kMinusCell?.label, kPlusCell?.label, antiK0Cell?.label, k0Cell?.label],
+    [
+      "Negative Kaon",
+      "Positive Kaon",
+      "Neutral Kaon (s anti-d)",
+      "Neutral Kaon (d anti-s)",
+    ]
+  );
+});
+
 test("full pro and anti noether cores resolve as Noether-core labels instead of Tri Binary", () => {
   const proCore = buildReactionParticipantStructure("noether_core", {
     id: "pro_core",

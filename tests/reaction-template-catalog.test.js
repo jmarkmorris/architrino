@@ -22,5 +22,11 @@ test("reaction template catalog exposes the current manual-authoring picker rows
       { template: "upi0", label: "Neutral Pion (u anti-u)" },
       { template: "dpi0", label: "Neutral Pion (d anti-d)" },
     ],
+    [
+      { template: "k_minus", label: "Negative Kaon" },
+      { template: "k_plus", label: "Positive Kaon" },
+      { template: "anti_k0", label: "Neutral Kaon (s anti-d)" },
+      { template: "k0", label: "Neutral Kaon (d anti-s)" },
+    ],
   ]);
 });

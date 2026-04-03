@@ -119,6 +119,45 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(manifest["entries"][1]["lookupParticleName"], "n")
         self.assertEqual(manifest["topUnsupportedParticles"], [])
 
+    def test_manifest_expands_exportable_particle_multipliers_for_neutral_pion_decay(self):
+        neutral_pion_particle = FakeParticle(
+            "pi0",
+            "S009/2025",
+            [
+                FakeDecay(
+                    "S009.1/2025",
+                    "pi0 -> 2gamma",
+                    [
+                        FakeDecayProduct("gamma", multiplier=2),
+                    ],
+                    mode_number=1,
+                    display_value_text="(98.8)",
+                )
+            ],
+        )
+        api = FakeApi(
+            [
+                FakeParticleList("S009/2025", "neutral pion", [neutral_pion_particle]),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+
+        self.assertEqual(manifest["exportableCount"], 1)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S009.1/2025")
+        self.assertEqual(
+            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
+            "upi0",
+        )
+        self.assertEqual(
+            [
+                participant["templateId"]
+                for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]
+            ],
+            ["photon", "photon"],
+        )
+
     def test_extract_unsupported_particle_names_ignores_non_particle_text_tokens(self):
         notes = [
             "unsupported:product:pi+:no-v1-mapping",

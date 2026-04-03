@@ -101,6 +101,10 @@ const solverTemplateMeta = Object.freeze({
   pi_minus: { shortLabel: "Pi-", accent: "#2d8cff" },
   upi0: { shortLabel: "Pi0", accent: "#a259ff" },
   dpi0: { shortLabel: "Pi0", accent: "#a259ff" },
+  k_plus: { shortLabel: "K+", accent: "#ff5a4a" },
+  k_minus: { shortLabel: "K-", accent: "#2d8cff" },
+  k0: { shortLabel: "K0", accent: "#a259ff" },
+  anti_k0: { shortLabel: "K0b", accent: "#a259ff" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -411,6 +415,18 @@ function getParticipantCardMeta(participant = null) {
       accent: templateId === "pi_minus" ? "#2d8cff" : "#a259ff",
     };
   }
+  if (templateId === "k_plus" || templateId === "k0") {
+    return {
+      ...baseMeta,
+      accent: templateId === "k_plus" ? "#ff5a4a" : "#a259ff",
+    };
+  }
+  if (templateId === "k_minus" || templateId === "anti_k0") {
+    return {
+      ...baseMeta,
+      accent: templateId === "k_minus" ? "#2d8cff" : "#a259ff",
+    };
+  }
   return baseMeta;
 }
 
@@ -503,6 +519,18 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "dpi0") {
     return "Neutral Pion (d anti-d)";
   }
+  if (normalizedTemplateId === "k_plus") {
+    return "Positive Kaon";
+  }
+  if (normalizedTemplateId === "k_minus") {
+    return "Negative Kaon";
+  }
+  if (normalizedTemplateId === "k0") {
+    return "Neutral Kaon (d anti-s)";
+  }
+  if (normalizedTemplateId === "anti_k0") {
+    return "Neutral Kaon (s anti-d)";
+  }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
 }
 
@@ -515,6 +543,7 @@ function getTemplateGridPickerLayout(pickerCells = []) {
     ["bi_binary", "strange", "charm", "muon", "muon_neutrino"],
     ["tri_binary", "down", "up", "electron", "neutrino"],
     ["photon", "pi_minus", "pi_plus", "dpi0", "upi0"],
+    ["", "k_minus", "k_plus", "anti_k0", "k0"],
     ["higgs", "", "proton", "", "neutron"],
   ].flatMap((row, rowIndex) =>
     row.map((cellId, columnIndex) => ({
@@ -3052,7 +3081,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
           participant.templateId === "pi_plus" ||
           participant.templateId === "pi_minus" ||
           participant.templateId === "upi0" ||
-          participant.templateId === "dpi0"
+          participant.templateId === "dpi0" ||
+          participant.templateId === "k_plus" ||
+          participant.templateId === "k_minus" ||
+          participant.templateId === "k0" ||
+          participant.templateId === "anti_k0"
         )
       ) {
         renderMenuButton("Dissociate", {

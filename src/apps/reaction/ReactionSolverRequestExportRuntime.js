@@ -152,7 +152,13 @@ function detectParticipantFamily(participant = null) {
   if (templateId.includes("quark")) {
     return "quark";
   }
-  if (templateId.includes("pi")) {
+  if (
+    templateId.includes("pi") ||
+    templateId === "k_plus" ||
+    templateId === "k_minus" ||
+    templateId === "k0" ||
+    templateId === "anti_k0"
+  ) {
     return "meson";
   }
   if (templateId.includes("neutron") || templateId.includes("proton")) {

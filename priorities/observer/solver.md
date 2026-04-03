@@ -1555,9 +1555,9 @@ Current state:
 - the external CLI accepts either a request file path or one raw `solver-request/v1` JSON document on `stdin`, so file-based and pipe-based handoff can use the same contract boundary;
 - the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
 - the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
-- the external core now closes the current supported generated PDG weak-channel request set exactly through a generic weak-channel operator path with implicit `Noether core` provenance, including neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, and charged-pion-to-muon-neutrino;
-- charged-pion support now promotes a much larger frozen live manifest into the analyzable denominator: the current recomputed manifest reaches `42` exportable reactions with `28` exact, `1` partial, and `13` no-solution in the sweep;
-- the top unsupported-particle pressure has therefore shifted from charged pions to `pi0`, kaons, and heavier mesons/baryons, while the solver-completion pressure has shifted toward the newly analyzable pion-bearing families that still return `partial` or `no-solution`;
+- the external core now closes the current supported generated PDG weak-channel request set exactly through a generic weak-channel operator path, and pion lepton-only channels now emit explicit meson provenance steps with solve-generated quark constituents, `Noether core` intermediates, a shared `Free Architrinos` pool, and a `Higgs cluster` supplement when the requested lepton multiplicity exceeds the meson's own core supply;
+- charged and neutral pion support plus repeated-particle expansion now promote a larger frozen live manifest into the analyzable denominator: the current recomputed manifest reaches `64` exportable reactions with `37` exact, `2` partial, and `25` no-solution in the sweep;
+- the top unsupported-particle pressure has therefore shifted away from pion vocabulary and toward kaons, heavier mesons/baryons, and generic textual hadron tokens such as bare `pi`, while the solver-completion pressure has shifted toward the newly analyzable pion-bearing families that still return `partial` or `no-solution`;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
 - and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
@@ -1573,29 +1573,57 @@ Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
 
-### 2. Expand Pion Support Beyond The Dominant Charged-Pion Channel
+### 2. Close The Newly Analyzable Pion Families
 
 Status: `in_progress`
 
 Objective:
 
-- finish the pion family beyond the now-supported dominant charged-pion channel so the sweep closes more of the newly analyzable meson-bearing reactions instead of leaving them in `partial` / `no-solution`.
+- close the newly analyzable pion-bearing solver families so the sweep turns current `partial` / `no-solution` pion cases into exact closures.
 
 Why it matters:
 
-- adding charged-pion mapping already promoted a broader live manifest into the analyzable denominator, which exposed the next solver gaps concretely instead of hiding them behind unsupported-input classification;
-- neutral pion remains the highest-frequency unsupported light meson in the live discovery sweep, and additional pion-bearing weak channels are now visible as explicit solver gaps;
+- adding charged-pion and neutral-pion mapping already promoted a broader live manifest into the analyzable denominator, which exposed the next solver gaps concretely instead of hiding them behind unsupported-input classification;
+- the remaining uncovered pion cases are now solver-behavior gaps rather than PDG vocabulary gaps;
 - and pion content is still simple enough to extend without reopening the larger boson-policy questions.
 
 Required particle content:
 
 - `pi+` is now supported as `u + anti-d`;
 - `pi-` is now supported as `d + anti-u`;
-- `pi0` should offer both `u + anti-u` and `d + anti-d` authored options, while the solver treats those two neutral-pion forms as equivalent for closure purposes.
+- `pi0` now exports through one canonical PDG-facing form and the solver treats `u + anti-u` and `d + anti-d` authored options as equivalent for closure purposes.
 
 Next steps:
 
-- add focused external-solver rules and tests for the newly analyzable charged-pion side channels now visible in the sweep, such as `pi+ -> e+ nu_e`, radiative charged-pion decay, and pion-pair-bearing proton-decay products;
-- make neutral-pion option handling explicit in the solver request/result path without turning `pi0` into a special superposition concept;
-- add `pi0` particle mappings and PDG export support so the highest-frequency remaining light-meson unsupported cases move into the analyzable denominator;
-- and use the closure sweep to confirm that each added pion family either improves exact-closure percentage or becomes the next concrete solver gap to close.
+- add focused external-solver rules and tests for the remaining newly analyzable charged-pion side channels now visible in the sweep, such as radiative charged-pion decay, `pi+ -> e+ nu_e + pi0`, and pion-pair-bearing proton-decay products;
+- carry the new meson provenance technique into the remaining neutral-pion electromagnetic side channels still open in the sweep, especially `pi0 -> 3gamma` and `pi0 -> 4gamma`, without falling back to PDG-id-specific shortcuts;
+- decide whether the remaining `3gamma` and `4gamma` neutral-pion channels should be solved through a more general repeated-photon meson rule or left as later electromagnetic-family work;
+- and use the closure sweep to confirm that each added pion family improves exact-closure percentage rather than merely increasing the analyzable denominator.
+
+### 3. Add Kaon Support After The Pion Family
+
+Status: `pending`
+
+Objective:
+
+- add the four kaons as supported light-meson content, using the same explicit particle-mapping discipline that just expanded pion coverage.
+
+Why it matters:
+
+- the sweep pressure has already shifted toward kaons once charged-pion support moved more reactions into the analyzable denominator;
+- kaons are the next small, concrete meson family that can expand supported input vocabulary without jumping immediately to broader heavier-hadron policy;
+- and the neutral kaon pair shares charge while differing by strangeness, so the solver contract and closure logic need explicit identity handling rather than a single neutral-kaon placeholder.
+
+Required particle content:
+
+- `K+` as `u + anti-s`;
+- `K-` as `s + anti-u`;
+- `K0` as `d + anti-s`;
+- and `anti-K0` as `s + anti-d`.
+
+Next steps:
+
+- add kaon particle mappings and request/result support so kaon-bearing reactions move from unsupported-input classification into the analyzable denominator;
+- make charge and strangeness distinctions explicit in the solver path, especially for the neutral `K0` / `anti-K0` pair;
+- add focused external-solver rules and tests for the first kaon-bearing channels exposed by the sweep;
+- and use the closure sweep to measure whether kaon support improves exact or partial closure rather than only increasing supported-input count.

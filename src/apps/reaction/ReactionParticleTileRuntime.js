@@ -30,6 +30,18 @@ export function getReactionParticleTileLabelLines(
   if (normalizedTemplateId === "upi0") {
     return ["Neutral", "Pion", "u !u"];
   }
+  if (normalizedTemplateId === "k_minus") {
+    return ["Negative", "Kaon", "s !u"];
+  }
+  if (normalizedTemplateId === "k_plus") {
+    return ["Positive", "Kaon", "u !s"];
+  }
+  if (normalizedTemplateId === "anti_k0") {
+    return ["Neutral", "Kaon", "s !d"];
+  }
+  if (normalizedTemplateId === "k0") {
+    return ["Neutral", "Kaon", "d !s"];
+  }
   if (normalizedTemplateId === "proton" && options.includeCompositePreviewLines === true) {
     return ["Pro", "Proton", "u d u"];
   }

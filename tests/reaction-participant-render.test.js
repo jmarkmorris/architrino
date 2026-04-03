@@ -92,6 +92,21 @@ test("pion canvas cards use the same three-line text format as picker tiles", ()
   );
 });
 
+test("kaon canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative Kaon", { templateId: "k_minus" }),
+    ["Negative", "Kaon", "s !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Kaon (d anti-s)", { templateId: "k0" }),
+    ["Neutral", "Kaon", "d !s"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Kaon (s anti-d)", { templateId: "anti_k0" }),
+    ["Neutral", "Kaon", "s !d"]
+  );
+});
+
 test("shared particle tile label helper preserves picker-only baryon preview text", () => {
   assert.deepEqual(
     getReactionParticleTileLabelLines("Pro Proton", { templateId: "proton" }, {
@@ -113,6 +128,17 @@ test("picker and canvas use the shared particle tile helper module", () => {
   assert.match(solverUiRuntimeSource, /createReactionParticleTileElement/);
   assert.match(solverUiRuntimeSource, /getReactionParticleTileLabelLines/);
   assert.match(participantRenderRuntimeSource, /createReactionParticleTileElement/);
+});
+
+test("composite quark row cards preserve explicit row labels instead of falling back to generic quark defaults", () => {
+  const participantRenderRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    participantRenderRuntimeSource,
+    /const explicitRowLabel = String\(rowNode\?\.label \?\? ""\)\.trim\(\);\s*const baseLabel = explicitRowLabel \|\| getDefaultParticipantBaseLabel\(templateId, rowNode\?\.label\);/
+  );
 });
 
 test("center assembly column group uses the shared surface grid column and centered participant alignment", () => {

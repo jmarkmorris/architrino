@@ -52,6 +52,17 @@ test("reaction solver center assembly lane exposes Noether core, weak bosons, an
   );
 });
 
+test("reaction solver template-grid picker places kaons on a new row below pions", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "anti_k0", "k0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
+  );
+});
+
 test("center-column Noether core title click toggles polarity directly", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),

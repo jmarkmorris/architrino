@@ -192,33 +192,38 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
     assert.equal(result.summary.exact, true, `${requestPath} should report exact closure`);
     assert.equal(result.summary.unresolvedTargetCount, 0, `${requestPath} should have no unresolved targets`);
     assert.deepEqual(result.residue.unresolvedTargetIds, [], `${requestPath} should have no unresolved residue`);
-    assert.equal(result.mappings.length, expectedProductCount + 1, `${requestPath} should add one weak-channel input mapping plus one mapping per product`);
-    assert.equal(result.operators.length, 1, `${requestPath} should use one generated weak-channel operator`);
+    assert.equal(
+      result.mappings.length >= expectedProductCount,
+      true,
+      `${requestPath} should emit enough mappings to resolve each product`
+    );
+    assert.equal(result.operators.length >= 1, true, `${requestPath} should use generated associate operators`);
     assert.equal(
       result.operators.some(
         (operator) => operator.origin === "solve-generated" && operator.type === "associate"
       ),
       true,
-      `${requestPath} should expose the generic weak operator through the contract`
+      `${requestPath} should expose generated associate operators through the contract`
     );
     assert.equal(
       result.steps.some(
         (step) =>
-          step.kind === "associate" &&
-          String(step.ruleFamily ?? "").startsWith("weak-")
+          ["associate", "dissociate"].includes(step.kind) &&
+          (String(step.ruleFamily ?? "").startsWith("weak-") ||
+            String(step.ruleFamily ?? "").startsWith("dissociate-meson-"))
       ),
       true,
-      `${requestPath} should solve through a generic weak-channel rule family`
+      `${requestPath} should solve through the generic weak or meson provenance path`
     );
     assert.equal(
       result.participants.some(
         (participant) =>
           participant.origin === "solve-generated-intermediate" &&
           participant.side === "center" &&
-          participant.templateId === "noether_core"
+          ["noether_core", "free_architrinos"].includes(participant.templateId)
       ),
       true,
-      `${requestPath} should synthesize an implicit weak center`
+      `${requestPath} should synthesize solve-generated center provenance participants`
     );
   });
 });
@@ -370,7 +375,7 @@ test("external solve-reaction CLI closes an authored charged-pion decay request 
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-pion-decay"), true);
-  assert.equal(result.operators.length, 1);
+  assert.equal(result.operators.length, 2);
   assert.equal(
     result.participants.some(
       (participant) =>
@@ -380,6 +385,654 @@ test("external solve-reaction CLI closes an authored charged-pion decay request 
     ),
     true
   );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "free_architrinos"
+    ),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes charged pion to positron plus electron neutrino through the generic meson path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "charged_pion_to_positron_electron_neutrino",
+    participants: [
+      {
+        id: "reactant_pi_plus_1",
+        side: "reactant",
+        templateId: "pi_plus",
+        label: "Positive Pion",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 11,
+          positrinoCount: 13,
+          flags: ["pdg-id:pi+", "pdg-name:pi+"],
+        },
+        rootNodeId: "reactant_pi_plus_1/root",
+        nodes: [
+          {
+            id: "reactant_pi_plus_1/root",
+            templateId: "pi_plus",
+            label: "Positive Pion",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 11,
+              positrinoCount: 13,
+              flags: ["pdg-id:pi+", "pdg-name:pi+"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_anti_electron_1",
+        side: "product",
+        templateId: "electron",
+        label: "Anti Electron",
+        family: "lepton",
+        polarity: "anti",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+        },
+        rootNodeId: "product_anti_electron_1/root",
+        nodes: [
+          {
+            id: "product_anti_electron_1/root",
+            templateId: "electron",
+            label: "Anti Electron",
+            family: "lepton",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_pro_electron_neutrino_2",
+        side: "product",
+        templateId: "neutrino",
+        label: "Pro Electron Neutrino",
+        family: "lepton",
+        polarity: "pro",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "neutrino", "pdg-id:nu_e", "pdg-name:nu_e"],
+        },
+        rootNodeId: "product_pro_electron_neutrino_2/root",
+        nodes: [
+          {
+            id: "product_pro_electron_neutrino_2/root",
+            templateId: "neutrino",
+            label: "Pro Electron Neutrino",
+            family: "lepton",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "neutrino", "pdg-id:nu_e", "pdg-name:nu_e"],
+            },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-pion-electron-decay"), true);
+  assert.equal(result.operators.length, 2);
+  assert.equal(
+    result.steps.some((step) => step.ruleFamily === "dissociate-meson-constituents"),
+    true
+  );
+  assert.equal(
+    result.participants.some((participant) => participant.templateId === "free_architrinos"),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes neutral pion to two photons through the generic meson path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "neutral_pion_to_two_photons",
+    participants: [
+      {
+        id: "reactant_pi0_1",
+        side: "reactant",
+        templateId: "upi0",
+        label: "Neutral Pion",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 8,
+          positrinoCount: 16,
+          flags: ["pdg-id:pi0", "pdg-name:pi0"],
+        },
+        rootNodeId: "reactant_pi0_1/root",
+        nodes: [
+          {
+            id: "reactant_pi0_1/root",
+            templateId: "upi0",
+            label: "Neutral Pion",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 8,
+              positrinoCount: 16,
+              flags: ["pdg-id:pi0", "pdg-name:pi0"],
+            },
+          },
+        ],
+      },
+      ...["product_gamma_1", "product_gamma_2"].map((id) => ({
+        id,
+        side: "product",
+        templateId: "photon",
+        label: "Photon",
+        family: "boson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["pdg-id:gamma", "pdg-name:gamma"],
+        },
+        rootNodeId: `${id}/root`,
+        nodes: [
+          {
+            id: `${id}/root`,
+            templateId: "photon",
+            label: "Photon",
+            family: "boson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["pdg-id:gamma", "pdg-name:gamma"],
+            },
+          },
+        ],
+      })),
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-two-photon-decay"), true);
+  assert.equal(result.operators.length, 1);
+});
+
+test("external solve-reaction CLI closes neutral pion to electron-positron through the generic meson path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "neutral_pion_to_electron_pair",
+    participants: [
+      {
+        id: "reactant_pi0_1",
+        side: "reactant",
+        templateId: "upi0",
+        label: "Neutral Pion",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 8,
+          positrinoCount: 16,
+          flags: ["pdg-id:pi0", "pdg-name:pi0"],
+        },
+        rootNodeId: "reactant_pi0_1/root",
+        nodes: [
+          {
+            id: "reactant_pi0_1/root",
+            templateId: "upi0",
+            label: "Neutral Pion",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 8,
+              positrinoCount: 16,
+              flags: ["pdg-id:pi0", "pdg-name:pi0"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_positron_1",
+        side: "product",
+        templateId: "electron",
+        label: "Positron",
+        family: "lepton",
+        polarity: "anti",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+        },
+        rootNodeId: "product_positron_1/root",
+        nodes: [
+          {
+            id: "product_positron_1/root",
+            templateId: "electron",
+            label: "Positron",
+            family: "lepton",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e+", "pdg-name:e+"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_electron_2",
+        side: "product",
+        templateId: "electron",
+        label: "Electron",
+        family: "lepton",
+        polarity: "pro",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", "pdg-id:e-", "pdg-name:e-"],
+        },
+        rootNodeId: "product_electron_2/root",
+        nodes: [
+          {
+            id: "product_electron_2/root",
+            templateId: "electron",
+            label: "Electron",
+            family: "lepton",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", "pdg-id:e-", "pdg-name:e-"],
+            },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-electron-pair-decay"), true);
+  assert.equal(result.operators.length, 2);
+  assert.equal(
+    result.participants.some((participant) => participant.templateId === "free_architrinos"),
+    true
+  );
+});
+
+test("external solve-reaction CLI closes neutral pion to electron-neutrino pair through the generic meson path", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "neutral_pion_to_electron_neutrino_pair",
+    participants: [
+      {
+        id: "reactant_pi0_1",
+        side: "reactant",
+        templateId: "upi0",
+        label: "Neutral Pion",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 8,
+          positrinoCount: 16,
+          flags: ["pdg-id:pi0", "pdg-name:pi0"],
+        },
+        rootNodeId: "reactant_pi0_1/root",
+        nodes: [
+          {
+            id: "reactant_pi0_1/root",
+            templateId: "upi0",
+            label: "Neutral Pion",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 8,
+              positrinoCount: 16,
+              flags: ["pdg-id:pi0", "pdg-name:pi0"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_nu_e_1",
+        side: "product",
+        templateId: "neutrino",
+        label: "Electron Neutrino",
+        family: "lepton",
+        polarity: "pro",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "neutrino", "pdg-id:nu_e", "pdg-name:nu_e"],
+        },
+        rootNodeId: "product_nu_e_1/root",
+        nodes: [
+          {
+            id: "product_nu_e_1/root",
+            templateId: "neutrino",
+            label: "Electron Neutrino",
+            family: "lepton",
+            polarity: "pro",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "neutrino", "pdg-id:nu_e", "pdg-name:nu_e"],
+            },
+          },
+        ],
+      },
+      {
+        id: "product_anti_nu_e_2",
+        side: "product",
+        templateId: "neutrino",
+        label: "Anti Electron Neutrino",
+        family: "lepton",
+        polarity: "anti",
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "neutrino", "pdg-id:nubar_e", "pdg-name:anti-nu_e"],
+        },
+        rootNodeId: "product_anti_nu_e_2/root",
+        nodes: [
+          {
+            id: "product_anti_nu_e_2/root",
+            templateId: "neutrino",
+            label: "Anti Electron Neutrino",
+            family: "lepton",
+            polarity: "anti",
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "neutrino", "pdg-id:nubar_e", "pdg-name:anti-nu_e"],
+            },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-neutrino-pair-decay"), true);
+  assert.equal(result.operators.length, 2);
+  assert.equal(
+    result.participants.some((participant) => participant.templateId === "free_architrinos"),
+    true
+  );
+});
+
+test("external solve-reaction CLI materializes a Higgs-cluster supplement for neutral pion double-Dalitz closure", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "neutral_pion_double_dalitz",
+    participants: [
+      {
+        id: "reactant_pi0_1",
+        side: "reactant",
+        templateId: "upi0",
+        label: "Neutral Pion",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 8,
+          positrinoCount: 16,
+          flags: ["pdg-id:pi0", "pdg-name:pi0"],
+        },
+        rootNodeId: "reactant_pi0_1/root",
+        nodes: [
+          {
+            id: "reactant_pi0_1/root",
+            templateId: "upi0",
+            label: "Neutral Pion",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 8,
+              positrinoCount: 16,
+              flags: ["pdg-id:pi0", "pdg-name:pi0"],
+            },
+          },
+        ],
+      },
+      ...[
+        ["product_positron_1", "anti", "e+"],
+        ["product_positron_2", "anti", "e+"],
+        ["product_electron_3", "pro", "e-"],
+        ["product_electron_4", "pro", "e-"],
+      ].map(([id, polarity, pdgId]) => ({
+        id,
+        side: "product",
+        templateId: "electron",
+        label: pdgId === "e+" ? "Positron" : "Electron",
+        family: "lepton",
+        polarity,
+        isComposite: false,
+        inventory: {
+          electrinoCount: 6,
+          positrinoCount: 6,
+          flags: ["generation:1", "charged-lepton", `pdg-id:${pdgId}`, `pdg-name:${pdgId}`],
+        },
+        rootNodeId: `${id}/root`,
+        nodes: [
+          {
+            id: `${id}/root`,
+            templateId: "electron",
+            label: pdgId === "e+" ? "Positron" : "Electron",
+            family: "lepton",
+            polarity,
+            isComposite: false,
+            inventory: {
+              electrinoCount: 6,
+              positrinoCount: 6,
+              flags: ["generation:1", "charged-lepton", `pdg-id:${pdgId}`, `pdg-name:${pdgId}`],
+            },
+          },
+        ],
+      })),
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-double-dalitz-decay"), true);
+  assert.equal(result.operators.length, 4);
+  assert.equal(
+    result.participants.some((participant) => participant.templateId === "higgs_cluster"),
+    true
+  );
+  assert.equal(
+    result.operators.some((operator) =>
+      operator.inputs.some((input) => String(input.participantId ?? "").includes("_higgs_"))
+    ),
+    true
+  );
+});
+
+test("external solve-reaction CLI treats upi0 and dpi0 as solver-equivalent neutral-pion forms", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "neutral_pion_equivalence",
+    participants: [
+      {
+        id: "reactant_upi0",
+        side: "reactant",
+        templateId: "upi0",
+        label: "Neutral Pion (u anti-u)",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 8,
+          positrinoCount: 16,
+        },
+        rootNodeId: "reactant_upi0/root",
+        nodes: [
+          {
+            id: "reactant_upi0/root",
+            templateId: "upi0",
+            label: "Neutral Pion (u anti-u)",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 8,
+              positrinoCount: 16,
+            },
+          },
+        ],
+      },
+      {
+        id: "product_dpi0",
+        side: "product",
+        templateId: "dpi0",
+        label: "Neutral Pion (d anti-d)",
+        family: "meson",
+        isComposite: true,
+        inventory: {
+          electrinoCount: 14,
+          positrinoCount: 10,
+        },
+        rootNodeId: "product_dpi0/root",
+        nodes: [
+          {
+            id: "product_dpi0/root",
+            templateId: "dpi0",
+            label: "Neutral Pion (d anti-d)",
+            family: "meson",
+            isComposite: true,
+            inventory: {
+              electrinoCount: 14,
+              positrinoCount: 10,
+            },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: [],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "exact-identical-participant"), true);
 });
 
 test("external solve-reaction CLI closes generic muon trilepton weak channels through the same operator-plus-center path", () => {

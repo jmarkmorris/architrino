@@ -31,6 +31,10 @@ const displayLabelsBySpecies = Object.freeze({
   pi_minus: "Negative Pion",
   upi0: "Neutral Pion (u anti-u)",
   dpi0: "Neutral Pion (d anti-d)",
+  k_plus: "Positive Kaon",
+  k_minus: "Negative Kaon",
+  k0: "Neutral Kaon (d anti-s)",
+  anti_k0: "Neutral Kaon (s anti-d)",
 });
 
 const polarityQualifiedSpecies = new Set([

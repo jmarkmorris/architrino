@@ -357,6 +357,9 @@ function compactTokenFromProposalParticipant(participant) {
   if (templateId === "neutron") {
     return polarity === "anti" ? "aN" : "N";
   }
+  if (templateId === "upi0" || templateId === "dpi0") {
+    return "pi0";
+  }
 
   return String(participant?.templateId || participant?.label || participant?.id || "?");
 }

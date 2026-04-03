@@ -263,7 +263,12 @@ function buildFreeArchitrinosDescriptorTree(structureRoot) {
   }];
 }
 
-function getQuarkDescriptorLabel(family = "") {
+function getQuarkDescriptorLabel(node = null) {
+  const normalizedLabel = String(node?.label ?? "").trim();
+  if (normalizedLabel) {
+    return normalizedLabel.replace(/^(Pro|Anti)\s+/i, "");
+  }
+  const family = String(node?.classification?.family ?? "").trim();
   return family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "Up quark" : "Down quark";
 }
 
@@ -318,7 +323,7 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
         const childPolarity = String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase();
         return {
           id: childNode.id || `quark_${index + 1}`,
-          label: getQuarkDescriptorLabel(childFamily),
+          label: getQuarkDescriptorLabel(childNode),
           templateId:
             childFamily === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "up_quark" : "down_quark",
           polarity: childPolarity === "anti" ? "anti" : "pro",
