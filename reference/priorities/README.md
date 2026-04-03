@@ -1,5 +1,5 @@
 # Priorities
 
-This directory is for reference material about how priorities are organized and maintained.
+This directory holds the repo's developer-facing priority material.
 
-Use it for guidance on priority-list structure, triage practice, ranking conventions, and related developer workflow, not for the live workstream priority lists themselves.
+Use it for live workstream priority lists and for supporting guidance on priority-list structure, triage practice, ranking conventions, and related developer workflow.

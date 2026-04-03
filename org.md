@@ -54,11 +54,11 @@ The current preferred style for live priority docs is:
 
 This pattern was applied across:
 
-- `priorities/observer/app-architecture.md`
-- `priorities/observer/composer.md`
-- `priorities/observer/reaction.md`
-- `priorities/observer/solver.md`
-- `priorities/observer/pdgfeed.md`
+- `reference/priorities/observer/app-architecture.md`
+- `reference/priorities/observer/composer.md`
+- `reference/priorities/observer/reaction.md`
+- `reference/priorities/observer/solver.md`
+- `reference/priorities/observer/pdgfeed.md`
 
 ## Developer-Meta Storage Guidance
 
@@ -66,9 +66,9 @@ We clarified the repo-local best-fit split for developer meta:
 
 - `AGENTS.md`:
   stable repo-wide operating rules and constraints;
-- `priorities/<workstream>/`:
+- `reference/priorities/<workstream>/`:
   live backlog and current-state tracking;
-- `priorities/codex/`:
+- `reference/priorities/codex/`:
   Codex/operator-specific process notes;
 - `content/`:
   app-facing content, not developer process;
@@ -95,10 +95,10 @@ For this repo specifically:
 
 The best current repo-local home for the Codex thread-orchestration process is:
 
-- `priorities/codex/`, likely as a focused file such as `priorities/codex/thread-orchestration.md`.
+- `reference/priorities/codex/`, likely as a focused file such as `reference/priorities/codex/thread-orchestration.md`.
 
 That keeps:
 
 - durable agent constraints in `AGENTS.md`,
-- live work in `priorities/observer/*.md`,
+- live work in `reference/priorities/observer/*.md`,
 - and Codex operating procedure in one developer-oriented place without mixing it into app-facing content.
