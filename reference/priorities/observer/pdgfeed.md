@@ -462,7 +462,20 @@ Objective:
 
 - define the explicit PDG-to-Reaction seam so candidates become reviewable upstream input instead of file-only artifacts.
 
-### 2. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
+### 2. Move `pdgfeed.py` Out Of The Repo Root Without Breaking Callers
+
+Status: `active`
+
+Current:
+
+- `pdgfeed.py` still sits at the repo root even though it is operationally a PDG CLI and script entrypoint;
+- the same file is also imported directly by Python tests and is invoked by JS tests, sweep tooling, and docs through `python3 pdgfeed.py ...`.
+
+Objective:
+
+- move the real implementation under `scripts/` or another explicit PDG-owned runtime location while preserving a compatibility shim at the repo root until tests, tooling, and docs no longer depend on the old path.
+
+### 3. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
 
 Status: `active`
 
