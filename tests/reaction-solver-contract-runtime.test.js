@@ -150,15 +150,19 @@ test("contract solver runtime solves a versioned solver request into a versioned
   assert.equal(unresolvedTargetCount, 0);
 });
 
-test("contract solver runtime uses the external solver path by default in node and matches the in-process bridge result", () => {
+test("contract solver runtime uses the external solver path by default in node while preserving the contract outcome", () => {
   const request = readJson("content/contracts/examples/solver-request/associate_photon.v1.json");
+  const schema = readJson("src/contracts/solver-result/v1/schema.json");
   const externalSolve = solveReactionSolverRequest(request);
   const inProcessSolve = solveReactionSolverRequestInProcess(request, {
     resolveBinaryChoiceInventory,
   });
 
   assert.equal(externalSolve.execution?.mode, "external");
-  assert.deepEqual(externalSolve.result, inProcessSolve.result);
+  assert.deepEqual(validateAgainstSchema(externalSolve.result, schema), []);
+  assert.equal(externalSolve.result.summary.exact, true);
+  assert.equal(externalSolve.result.operators.length, 1);
+  assert.equal(externalSolve.result.steps.some((step) => step.kind === "associate"), true);
   assert.equal(externalSolve.planDescription, inProcessSolve.planDescription);
   assert.equal(externalSolve.unresolvedTargetCount, inProcessSolve.unresolvedTargetCount);
 });

@@ -1,6 +1,6 @@
 import fs from "node:fs";
-
-import { solveReactionSolverRequestInProcess } from "../src/apps/reaction/ReactionSolverInProcessRuntime.js";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
 async function readStdin() {
   const chunks = [];
@@ -20,9 +20,13 @@ function readRequestSource(argv = []) {
 
 try {
   const sourceText = readRequestSource(process.argv.slice(2)) ?? (await readStdin());
-  const request = JSON.parse(sourceText);
-  const { result } = solveReactionSolverRequestInProcess(request);
-  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  JSON.parse(sourceText);
+  const pythonSolverPath = fileURLToPath(new URL("./reaction_solver_core.py", import.meta.url));
+  const stdout = execFileSync("python3", [pythonSolverPath], {
+    encoding: "utf8",
+    input: sourceText,
+  });
+  process.stdout.write(stdout);
 } catch (error) {
   process.stderr.write(`${error?.stack || error?.message || String(error)}\n`);
   process.exitCode = 1;

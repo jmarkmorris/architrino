@@ -1565,11 +1565,14 @@ This pass now also adds:
 - an external execution runtime in [`ReactionSolverExternalRuntime.js`](../../src/apps/reaction/ReactionSolverExternalRuntime.js) that invokes the headless solver through the existing CLI boundary;
 - a cutover in [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) so Node-side contract solves now use the external command path by default and leave the in-process path as an explicit fallback for runtimes that cannot execute external commands;
 - a `solve-reaction.mjs` implementation that executes the headless solver directly instead of recursing back through the contract facade;
-- and focused parity/fallback coverage in [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js) that verifies the external path remains contract-compatible with the extracted in-process reference implementation.
+- a fresh Python external solver core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) that reads `solver-request/v1` directly, preserves authored manual operator and mapping state, and independently solves the current supported golden-corpus families behind the stable CLI boundary;
+- focused parity/fallback coverage in [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js) that verifies the external path remains contract-compatible with the extracted in-process reference implementation at the contract level rather than by byte-for-byte JS-plan identity;
+- and corpus-level regression coverage in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) that verifies the external CLI preserves the frozen supported-result summaries and manual authored-state passthrough rules.
 
 Next focus:
 
-- keep the `solver-request/v1` / `solver-result/v1` seam stable while replacing the extracted JS reference core behind the external CLI with the intended fresh solver core;
+- keep the `solver-request/v1` / `solver-result/v1` seam stable while broadening the fresh external solver core beyond the current supported golden-corpus families and remaining authored-state edge cases;
+- use the extracted JS bridge only as a shrinking reference path while new external-core coverage reaches the remaining accepted solver behavior;
 - and then remove the remaining browser-safe in-process fallback once the app host can rely on the external solve path in every supported runtime without changing the contract seam again.
 
 Deferred idea:
