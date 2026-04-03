@@ -1540,172 +1540,72 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Finish External Solver Cut-Over
+### 1. Finish The External Solver Cut-Over And Remove The Legacy In-Process Bridge
 
-Status: `in_progress`
+Status: `active`
 
-Objective:
+Current:
 
-- finish the cut-over onto the fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
-
-Current state:
-
-- the `solver-request/v1` / `solver-result/v1` seam is in place and Reaction UI already solves through that boundary;
-- Node-side contract solves default to the external CLI path in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs);
-- the external CLI accepts either a request file path or one raw `solver-request/v1` JSON document on `stdin`, so file-based and pipe-based handoff can use the same contract boundary;
-- the external CLI runs the Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of treating the old JS planner as the primary implementation;
-- the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
-- the external core closes the current live PDG closure-sweep set exactly: the latest local run reports `7` analyzable reactions and `7` exact closures with `0` partial, `0` no-solution, and `0` unsupported inputs;
-- the external core also closes the current supported generated weak-channel request set through the generic weak-channel operator path, and pion lepton-only channels emit explicit meson provenance steps with solve-generated quark constituents, `Noether core` intermediates, a shared `Free Architrinos` pool, and a `Higgs cluster` supplement when the requested lepton multiplicity exceeds the meson's own core supply;
-- charged and neutral pion support, repeated-particle expansion, kaon mappings, and first-pass charged and neutral B-meson mappings are now covered in the request/export path and in external-solver regression coverage;
-- the external core closes the first kaon and B-meson leptonic families exactly, while keeping the neutral `dk0` / `sk0` and `dB0` / `bB0` pairs distinct;
-- the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
-- and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
-
-Next focus:
-
-- treat every supported particle family that still fails the external core as a concrete implementation gap and add focused regression tests for each family as it is closed;
-- keep expanding external-core coverage beyond the current exact live set and golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
-- keep unsupported-particle cases out of the solver-completion denominator and use sweep reports to prioritize future mapping work without conflating it with solver behavior;
-- use the extracted JS bridge only as a shrinking reference path while the external core reaches the remaining accepted solver behavior;
-- and then remove the remaining browser-safe in-process fallback once the external path fully owns the supported reaction set through the stable `solver-request/v1` / `solver-result/v1` boundary.
-
-Deferred idea:
-
-- add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
-
-### 2. Expand Pion Coverage Beyond The Current Exact Live Set
-
-Status: `in_progress`
+- `solver-request/v1` and `solver-result/v1` are now the live seam;
+- `solve-reaction.mjs` already runs the Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py);
+- Node-side contract solves default to the external path;
+- but [`ReactionSolverContractRuntime.js`](../../src/apps/reaction/ReactionSolverContractRuntime.js) still allows the legacy in-process bridge when external solving is disabled, and the UI still exposes that fallback as legacy execution.
 
 Objective:
 
-- expand pion-bearing solver families beyond the current exact live set so broader exported or fixture-backed pion channels close through the external core.
+- make the external solver the only supported solve path for normal runtime use and delete the remaining in-process bridge once parity and reviewability are sufficient.
 
-Why it matters:
+### 2. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
 
-- the current live sweep no longer shows an open pion case, so the remaining pion work is now broader family expansion rather than fixing the current small live set;
-- the remaining uncovered pion cases are solver-behavior gaps rather than PDG vocabulary gaps;
-- and pion content is still simple enough to extend without reopening the larger boson-policy questions.
+Status: `active`
 
-Required particle content:
+Current:
 
-- `pi+` is now supported as `u + anti-d`;
-- `pi-` is now supported as `d + anti-u`;
-- `pi0` now exports through one canonical PDG-facing form and the solver treats `u + anti-u` and `d + anti-d` authored options as equivalent for closure purposes.
-
-Next steps:
-
-- add focused external-solver rules and tests for the remaining newly analyzable charged-pion side channels now visible in the sweep, such as radiative charged-pion decay, `pi+ -> e+ nu_e + pi0`, and pion-pair-bearing proton-decay products;
-- carry the new meson provenance technique into the remaining neutral-pion electromagnetic side channels still open in the sweep, especially `pi0 -> 3gamma` and `pi0 -> 4gamma`, without falling back to PDG-id-specific shortcuts;
-- decide whether the remaining `3gamma` and `4gamma` neutral-pion channels should be solved through a more general repeated-photon meson rule or left as later electromagnetic-family work;
-- and use the closure sweep to confirm that each added pion family improves exact-closure percentage rather than merely increasing the analyzable denominator.
-
-### 3. Expand Kaon Solver Coverage Beyond The First Exact Closures
-
-Status: `in_progress`
+- the sweep/report path already distinguishes `generic-profile` exact closures from `full-provenance` exact closures;
+- full constituent provenance is already covered for some lepton-heavy meson channels and neutral-pion paths;
+- but many exact kaon and B-meson results still close through generic weak-meson profiles rather than a full constituent-by-constituent derivation.
 
 Objective:
 
-- expand kaon coverage now that the four kaons are supported light-meson content in both the solver path and PDG-side mapping registry, and the first charged-kaon lepton closures already work.
+- make exact closure carry the strongest defensible explanatory meaning by expanding full constituent provenance wherever the solver already has enough particle-content knowledge to derive it.
 
-Why it matters:
+### 3. Close The Remaining Analyzable Frozen-Manifest Outliers
 
-- kaons now materially widen the analyzable live manifest, so their remaining unsolved channels are solver gaps rather than unsupported-input bookkeeping;
-- kaons are still a small, concrete meson family, so expanding their rule coverage is a tractable next step before jumping to broader heavier-hadron policy;
-- and the neutral kaon pair shares charge while differing by strangeness, so the solver contract and closure logic need explicit identity handling rather than a single neutral-kaon placeholder.
+Status: `active`
 
-Required particle content:
+Current:
 
-- `K+` as `u + anti-s`;
-- `K-` as `s + anti-u`;
-- `dk0` as `d + anti-s`;
-- and `sk0` as `s + anti-d`.
-
-Next steps:
-
-- preserve kaon constituent identity through the solver path, especially the `generation:2` strange-quark distinction that currently rides on the existing quark template surface;
-- keep the neutral `dk0` / `sk0` pair distinct in solver behavior rather than collapsing them into one neutral-kaon placeholder;
-- expand beyond the first charged-kaon lepton closures already covered in the external solver, such as `K+ -> mu+ nu_mu` and `K+ -> e+ nu_e`, and add the next kaon-bearing channels exposed by PDG export;
-- prioritize the newly analyzable kaon families now visible in the sweep, such as `K+ -> pi+ pi0`, radiative kaon channels, and kaon-bearing proton-decay products;
-- and use the closure sweep to measure whether each added kaon family improves exact or partial closure rather than merely increasing the analyzable denominator.
-
-### 4. Expand B-Meson Solver Coverage Beyond The First Exact Closures
-
-Status: `in_progress`
+- external-solver regression now covers a broad meson surface, including charged and neutral pion behavior, many charged-kaon families, and a large charged/neutral B-meson family set while preserving `dk0` / `sk0` and `dB0` / `bB0` identity;
+- the remaining open work is no longer "first pion / kaon / B support";
+- local frozen-manifest sweep artifacts still show analyzable misses and partials, including proton-decay-plus-meson families and the neutral-B outlier `S042.624/2025` (`dB0 -> P.e2`).
 
 Objective:
 
-- finish the remaining analyzable B-meson outliers on the current frozen manifest and make explicit when further gains will require widening PDG particle vocabulary rather than only adding more rules for the current B set.
+- treat every remaining analyzable miss as a concrete solver gap, close it with focused regression coverage, and keep unsupported-particle discovery separate from supported-but-unsolved behavior.
 
-Why it matters:
+### 4. Promote `Noether Pair` Beyond A Solve-Generated Supplement
 
-- the B-meson families are now mostly closed on the current analyzable frozen-manifest set, so the remaining misses are much more specific than when this priority started;
-- that means this priority should now separate true remaining B-family solver gaps from future manifest-growth work that will come from supporting more PDG particles and more exotic hadron families;
-- and the neutral `dB0` / `bB0` pair must stay identity-distinct in solver behavior because they differ by constituent content even though both are neutral.
+Status: `next`
 
-Required particle content:
+Current:
 
-- `B+` as `u + anti-b`;
-- `B-` as `b + anti-u`;
-- `dB0` as `d + anti-b`;
-- and `bB0` as `b + anti-d`.
+- the external core can already generate `Noether Pair` and `Noether Quad` supplements;
+- regression coverage already proves `Noether Pair` appears in neutral-pion double-Dalitz closure;
+- but current coverage is still centered on solve-generated supplementation rather than general authored/input-visible use as a solver-visible assembly.
 
-Next steps:
+Objective:
 
-- preserve bottom-quark constituent identity through the solver path using the existing `down_quark` plus `generation:3` surface rather than inventing a parallel quark template family;
-- keep the neutral `dB0` / `bB0` pair distinct in exact-identity and downstream handoff behavior;
-- finish the remaining current frozen-manifest B-family outlier `S042.624/2025` (`dB0 -> P.e2`) and decide whether it belongs to a generic neutral-B baryon-lepton family or a separate heavier-baryon policy path;
-- keep using the sweep split to distinguish generic-profile exact B closures from full-provenance exact closures, so B coverage gains do not hide the provenance gap;
-- treat the now-closed baryonic B-family set as covered baseline behavior and only widen B-specific rule families further when a concrete analyzable miss still remains on the frozen manifest;
-- note explicitly that many more exotic PDG particles and channels remain outside the current analyzable set, so future solve-rate gains will also come from adding new particle vocabulary and mapping support rather than only squeezing the existing `B+` / `dB0` families;
-- and confirm with the closure sweep that any further B-focused change improves exact closure on the same analyzable denominator.
+- make `Noether Pair` a general solver-visible assembly where it genuinely improves closure, residue handling, or intermediate legibility, not just a generated supplement.
 
-### 5. Add `Noether Pair` As A Solver-Visible Assembly
+### 5. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 
-Objective:
+Current:
 
-- add `Noether Pair` as a first-class solver-visible assembly in the shared collection and use it to open new solve routes on both the reactant and product sides.
-
-Why it matters:
-
-- `Noether Pair` gives the solver a reusable intermediate between the current planar photon path and the full `Higgs Cluster`, so more reactions can be routed through explicit spacetime assemblies instead of forcing every path to choose between `2h` and a full quad-like cluster;
-- it should provide new reactant and product routes that help the solver close more reactions, especially channels where a pro/anti `Noether Core` pair is the natural intermediate or residue-bearing assembly;
-- and adding it now is also a good time to consider whether `Higgs Cluster` should eventually be renamed to `Noether Quad`, so the cluster vocabulary stays internally coherent as the collection grows.
-
-Next steps:
-
-- define the `Noether Pair` assembly explicitly in the shared authored/solver-facing structure surface;
-- add focused solver rules and tests that use `Noether Pair` as an intermediate, reactant, and product where it genuinely improves closure rather than acting as a mere alias;
-- keep the request/result seam stable while widening the solver's assembly vocabulary;
-- and evaluate the terminology relationship between `Noether Pair` and a possible future `Noether Quad` rename for `Higgs Cluster` before more rules and artifacts depend on the current name.
-
-### 6. Upgrade Exact Meson Closures To Full Constituent Provenance
-
-Status: `pending`
+- [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) already separates unsupported-input cases from analyzable solver misses and reports exact-closure kind counts;
+- the contract seam, golden corpus, and external-core tests already give the solver a durable regression surface.
 
 Objective:
 
-- upgrade profile-driven exact meson closures into full constituent-by-constituent provenance derivations so exact closure means the solver explicitly shows how the source meson content becomes the final products.
-
-Why it matters:
-
-- the current generic weak-channel profiles improve closure statistics, but they still close many kaon and B-meson channels by matching whole-family patterns rather than by deriving the full microscopic ledger step by step;
-- that means an exact closure can currently be solver-exact at the contract level without yet being a full explanatory derivation;
-- and making this distinction explicit will keep solve-rate gains honest while strengthening the solver's proof value and future reviewability.
-
-Current gap:
-
-- many newly exact kaon and B-meson channels now close through one generic weak-channel `Associate` step plus a solve-generated `Noether core` center;
-- those closures do not currently dump everything into a middle-lane `Free Architrinos` bucket, but they also do not yet show the full source-meson constituent release, weak transformation, intermediate ledger, and final reassembly path;
-- and the richer meson provenance path that does explicit constituent work is currently focused on lepton-bearing meson channels rather than the broader hadronic family set.
-
-Next steps:
-
-- define which families are allowed to remain profile-level exact closures temporarily and which must graduate to full constituent provenance before being treated as canonically solved;
-- extend the explicit meson provenance machinery from pion and lepton-heavy channels into kaon and B-meson hadronic families without collapsing distinct strange and bottom identities;
-- add regression tests that distinguish profile-matched exact closure from fully derived constituent closure, including whether `Free Architrinos`, `Noether Pair`, or `Noether Quad` appear and why;
-- expose sweep or report labels that separate generic-profile exact closures from provenance-backed exact closures so statistics can be read honestly;
-- and prefer explicit constituent release, weak transformation, and product reassembly over one-step pattern closure whenever the solver has enough particle-content knowledge to do so.
+- rank solver work by the frozen-manifest analyzable denominator and the contract-facing regression surface, so progress stays honest as particle vocabulary and rule families expand.
