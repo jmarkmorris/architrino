@@ -565,16 +565,22 @@ function getParticipantCardLabelLines(label = "", participant = null) {
 function getPickerTileLabelLines(pickerCell = null, participant = null) {
   const templateId = String(pickerCell?.templateId ?? participant?.templateId ?? "").trim().toLowerCase();
   if (templateId === "pi_minus") {
-    return ["Negative", "Pion", "D !U"];
+    return ["Negative", "Pion", "d !u"];
   }
   if (templateId === "pi_plus") {
-    return ["Positive", "Pion", "!D U"];
+    return ["Positive", "Pion", "!d u"];
   }
   if (templateId === "dpi0") {
-    return ["Neutral", "Pion", "D !D"];
+    return ["Neutral", "Pion", "d !d"];
   }
   if (templateId === "upi0") {
-    return ["Neutral", "Pion", "U !U"];
+    return ["Neutral", "Pion", "u !u"];
+  }
+  if (templateId === "proton") {
+    return ["Pro", "Proton", "u d u"];
+  }
+  if (templateId === "neutron") {
+    return ["Pro", "Neutron", "d u d"];
   }
   return getParticipantCardLabelLines(pickerCell?.label, participant);
 }
