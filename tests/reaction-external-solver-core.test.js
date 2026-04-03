@@ -368,3 +368,82 @@ test("external solve-reaction CLI counts authored manual mappings toward resolve
   assert.deepEqual(result.residue.unusedSourceIds, []);
   assert.equal(result.mappings.some((mapping) => mapping.id === "mapping_manual_direct"), true);
 });
+
+test("external solve-reaction CLI preserves manual dissociation separately from auto dissociation", () => {
+  const request = {
+    schema: "solver-request/v1",
+    requestId: "manual_dissociation_passthrough",
+    participants: [
+      {
+        id: "reactant_higgs_manual_open",
+        side: "reactant",
+        templateId: "higgs_cluster",
+        label: "Higgs Cluster",
+        family: "boson",
+        isComposite: true,
+        inventory: { electrinoCount: 12, positrinoCount: 12 },
+        rootNodeId: "reactant_higgs_manual_open_root",
+        nodes: [
+          {
+            id: "reactant_higgs_manual_open_root",
+            templateId: "higgs_cluster",
+            label: "Higgs Cluster",
+            family: "boson",
+            isComposite: true,
+            inventory: { electrinoCount: 12, positrinoCount: 12 },
+          },
+          {
+            id: "reactant_higgs_manual_open_root/core_pro_1",
+            parentId: "reactant_higgs_manual_open_root",
+            templateId: "noether_core",
+            label: "Pro Noether core",
+            family: "noether-core",
+            polarity: "pro",
+            isComposite: false,
+            inventory: { electrinoCount: 3, positrinoCount: 3 },
+          },
+        ],
+      },
+      {
+        id: "product_downstream",
+        side: "product",
+        templateId: "down_quark",
+        label: "Down Quark",
+        family: "quark",
+        polarity: "pro",
+        isComposite: false,
+        inventory: { electrinoCount: 2, positrinoCount: 2 },
+        rootNodeId: "product_downstream_root",
+        nodes: [
+          {
+            id: "product_downstream_root",
+            templateId: "down_quark",
+            label: "Down Quark",
+            family: "quark",
+            polarity: "pro",
+            isComposite: false,
+            inventory: { electrinoCount: 2, positrinoCount: 2 },
+          },
+        ],
+      },
+    ],
+    manualOperators: [],
+    manualMappings: [],
+    dissociation: {
+      manuallyOpenedParticipantIds: ["reactant_higgs_manual_open"],
+      manuallyOpenedNodeIds: [],
+      preserveManualState: true,
+    },
+    policy: {
+      recruitmentMode: "forbid",
+      lateBosonCollapseMode: "allow-exact",
+      weakChannelMode: "v1-core-provenance-only",
+      carryThroughMode: "exact-first",
+    },
+  };
+
+  const result = runSolveReactionCli(request);
+
+  assert.deepEqual(result.dissociation.openedParticipantIds, ["reactant_higgs_manual_open"]);
+  assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, []);
+});

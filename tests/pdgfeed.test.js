@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { execFileSync } from "node:child_process";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -233,4 +234,38 @@ test("unsupported live PDG channel remains proposal-only with no solver-request 
     ),
     false
   );
+});
+
+test("pdgfeed can print fixture solver-request json to stdout for piping", () => {
+  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+  const fixtureRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
+  const stdout = execFileSync("python3", ["pdgfeed.py", "print-fixture-solver-request", "free_neutron_beta_decay"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+  const request = JSON.parse(stdout);
+
+  assert.deepEqual(validateAgainstSchema(request, schema), []);
+  assert.deepEqual(request, fixtureRequest);
+});
+
+test("pdgfeed stdout solver-request can be piped directly into solve-reaction stdin", () => {
+  const requestStdout = execFileSync(
+    "python3",
+    ["pdgfeed.py", "print-fixture-solver-request", "free_neutron_beta_decay"],
+    {
+      cwd: new URL("..", import.meta.url),
+      encoding: "utf8",
+    }
+  );
+  const resultStdout = execFileSync(process.execPath, ["scripts/solve-reaction.mjs"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+    input: requestStdout,
+  });
+  const resultSchema = readJson("src/contracts/solver-result/v1/schema.json");
+  const result = JSON.parse(resultStdout);
+
+  assert.deepEqual(validateAgainstSchema(result, resultSchema), []);
+  assert.equal(result.request.requestId, "free_neutron_beta_decay");
 });

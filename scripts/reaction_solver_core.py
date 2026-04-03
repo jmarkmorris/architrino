@@ -424,6 +424,11 @@ def find_associate_inputs_for_standalone(product, source_entries):
 def build_result(request, generated_steps, generated_mappings, generated_operators, operator_placements, auto_dissociated_participant_ids):
     request_id = normalize_text(request.get("requestId")) or "solver_request"
     participants = [serialize_result_participant(participant) for participant in request.get("participants", [])]
+    manually_opened_participant_ids = [
+        normalize_text(participant_id)
+        for participant_id in ((request.get("dissociation") or {}).get("manuallyOpenedParticipantIds") or [])
+        if normalize_text(participant_id)
+    ]
     manual_operators = [
         serialize_manual_operator(operator) for operator in request.get("manualOperators", [])
     ]
@@ -485,7 +490,9 @@ def build_result(request, generated_steps, generated_mappings, generated_operato
         "mappings": all_result_mappings,
         "operators": manual_operators + generated_operators,
         "dissociation": {
-            "openedParticipantIds": list(auto_dissociated_participant_ids),
+            "openedParticipantIds": list(
+                dict.fromkeys(manually_opened_participant_ids + list(auto_dissociated_participant_ids))
+            ),
             "autoDissociatedParticipantIds": list(auto_dissociated_participant_ids),
             "releasedParticipantIds": [],
             "notes": (

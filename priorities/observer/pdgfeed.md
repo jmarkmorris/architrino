@@ -33,6 +33,7 @@ It does not own:
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
+- `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and piping into the solver CLI.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
@@ -112,10 +113,19 @@ The current CLI surface is:
 - `python3 pdgfeed.py list-fixtures`
 - `python3 pdgfeed.py emit-fixture <fixture-id>`
 - `python3 pdgfeed.py emit-all-fixtures`
+- `python3 pdgfeed.py print-fixture-solver-request <fixture-id>`
 - `python3 pdgfeed.py list-live-cases`
 - `python3 pdgfeed.py emit-live-case <case-id>`
 - `python3 pdgfeed.py emit-all-live-cases`
+- `python3 pdgfeed.py print-live-solver-request <case-id>`
 - optional `--database-url <sqlalchemy-url>` for the live commands
+
+The intended handoff modes are:
+
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay` followed by `node scripts/solve-reaction.mjs content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json`;
+- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay | node scripts/solve-reaction.mjs`.
+
+The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
 
 The first local fixture corpus is:
 

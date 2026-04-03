@@ -1552,14 +1552,14 @@ Current state:
 
 - the `solver-request/v1` / `solver-result/v1` seam is in place and Reaction UI already solves through that boundary;
 - Node-side contract solves default to the external CLI path in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs);
+- the external CLI accepts either a request file path or one raw `solver-request/v1` JSON document on `stdin`, so file-based and pipe-based handoff can use the same contract boundary;
 - the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
-- and regression coverage exists for the current supported golden-corpus families plus authored manual-state passthrough in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
+- and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
 Next focus:
 
 - broaden the fresh external solver core beyond the current supported golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
-- close the remaining authored-state edge cases so manual operators, manual mappings, and manual dissociation behave as first-class solver inputs rather than mere passthrough records;
 - use the extracted JS bridge only as a shrinking reference path while external-core coverage reaches the remaining accepted solver behavior;
 - and then remove the remaining browser-safe in-process fallback once the app host can rely on the external solve path in every supported runtime without changing the contract seam again.
 

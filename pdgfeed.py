@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from dataclasses import dataclass
 from functools import lru_cache
@@ -844,6 +845,37 @@ def emit_case(case: PdgCase, output_dir: Path) -> list[Path]:
     return written_paths
 
 
+def build_fixture_solver_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    fixture = fixtures_by_id.get(fixture_id)
+    if fixture is None:
+        available = ", ".join(sorted(fixtures_by_id))
+        raise SystemExit(f"Unknown fixture id {fixture_id!r}. Available: {available}")
+    solver_request = build_solver_request(build_proposal(fixture))
+    if solver_request is None:
+        raise SystemExit(f"Fixture {fixture_id!r} does not currently emit solver-request/v1.")
+    return solver_request
+
+
+def build_live_case_solver_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    spec = LIVE_CHANNEL_SPEC_BY_ID.get(case_id)
+    if spec is None:
+        available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
+        raise SystemExit(f"Unknown live case id {case_id!r}. Available: {available}")
+    try:
+        live_case = load_live_case(spec, database_url)
+    except (LookupError, RuntimeError) as exc:
+        raise SystemExit(str(exc)) from exc
+    solver_request = build_solver_request(build_proposal(live_case))
+    if solver_request is None:
+        raise SystemExit(f"Live case {case_id!r} does not currently emit solver-request/v1.")
+    return solver_request
+
+
+def print_json(payload: dict[str, Any]) -> None:
+    json.dump(payload, sys.stdout, indent=2)
+    sys.stdout.write("\n")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and solver-request candidates.")
     parser.add_argument(
@@ -870,10 +902,22 @@ def parse_args() -> argparse.Namespace:
     emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and solver-request artifacts for one fixture.")
     emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
+    print_fixture_request_parser = subparsers.add_parser(
+        "print-fixture-solver-request",
+        help="Print one fixture solver-request/v1 JSON payload to stdout for piping.",
+    )
+    print_fixture_request_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+
     subparsers.add_parser("emit-all-fixtures", help="Emit proposal and solver-request artifacts for all fixtures.")
 
     emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and solver-request artifacts for one live PDG channel.")
     emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+
+    print_live_request_parser = subparsers.add_parser(
+        "print-live-solver-request",
+        help="Print one live-case solver-request/v1 JSON payload to stdout for piping.",
+    )
+    print_live_request_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
     subparsers.add_parser("emit-all-live-cases", help="Emit proposal and solver-request artifacts for all built-in live PDG channels.")
     return parser.parse_args()
@@ -903,6 +947,10 @@ def main() -> int:
             print(path.relative_to(REPO_ROOT))
         return 0
 
+    if args.command == "print-fixture-solver-request":
+        print_json(build_fixture_solver_request(fixtures_by_id, args.fixture_id))
+        return 0
+
     if args.command == "emit-all-fixtures":
         for fixture in fixtures:
             for path in emit_case(fixture, args.output_dir):
@@ -920,6 +968,10 @@ def main() -> int:
             raise SystemExit(str(exc)) from exc
         for path in emit_case(live_case, args.output_dir):
             print(path.relative_to(REPO_ROOT))
+        return 0
+
+    if args.command == "print-live-solver-request":
+        print_json(build_live_case_solver_request(args.case_id, args.database_url))
         return 0
 
     if args.command == "emit-all-live-cases":
