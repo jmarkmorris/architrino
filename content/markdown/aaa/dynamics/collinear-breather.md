@@ -44,8 +44,8 @@ Readers looking for the main structural bottlenecks can use the following map.
 - The sign and physical interpretation caveat appears in [Signed-branch caution](#signed-branch-caution).
 - The return-map setup begins in [Regularized Return Map](#regularized-return-map).
 - The compactness and fixed-point architecture begins in [Global Existence via Arzela-Ascoli](#global-existence-via-arzela-ascoli).
-- The coupled-envelope bottleneck appears in [Invariant-envelope closure](#invariant-envelope-closure) and the later [Target Proposition (Coupled admissible parameter regime)](#target-proposition-coupled-admissible-parameter-regime).
-- The outer-turn program is developed in [Outer-turn recapture target](#outer-turn-recapture-target), [Deep-past outer self suppression target](#deep-past-outer-self-suppression-target), [z-map descent target](#z-map-descent-target), and the [Proposition (Unified trimmed-apocenter outer-turn criterion)](#proposition-unified-trimmed-apocenter-outer-turn-criterion).
+- The coupled-envelope bottleneck appears in [Invariant-envelope closure](#invariant-envelope-closure) and the later [Capstone Statement](#capstone-statement).
+- The outer-turn program is developed in [Outer-turn recapture target](#outer-turn-recapture-target), [Deep-past outer self suppression target](#deep-past-outer-self-suppression-target), [z-map descent target](#z-map-descent-target), and the [Capstone Statement](#capstone-statement).
 - The compressed endpoint appears in [Capstone Statement](#capstone-statement).
 
 ## Proof-Program Dependency Map

@@ -1,8 +1,8 @@
-import { REACTION_SOLVER_SURFACE_ROW_COUNT } from "./ReactionSolverLayoutRuntime.js";
+import { REACTION_CANVAS_SURFACE_ROW_COUNT } from "./ReactionCanvasLayoutRuntime.js";
 
 function normalizeSurfaceRowIndex(rowIndex = 0) {
   const normalizedRowIndex = Math.round(Number(rowIndex) || 0);
-  return Math.max(0, Math.min(REACTION_SOLVER_SURFACE_ROW_COUNT - 1, normalizedRowIndex));
+  return Math.max(0, Math.min(REACTION_CANVAS_SURFACE_ROW_COUNT - 1, normalizedRowIndex));
 }
 
 function getParticipantSurfaceRowSpan(entry = null) {
@@ -173,7 +173,7 @@ function findNearestAvailableRowIndex(
   directionBias = 0
 ) {
   const resolvedTargetRowIndex = normalizeSurfaceRowIndex(targetRowIndex);
-  for (let distance = 0; distance < REACTION_SOLVER_SURFACE_ROW_COUNT; distance += 1) {
+  for (let distance = 0; distance < REACTION_CANVAS_SURFACE_ROW_COUNT; distance += 1) {
     if (distance === 0) {
       if (!occupiedRowIndexes.has(resolvedTargetRowIndex)) {
         return resolvedTargetRowIndex;
@@ -189,7 +189,7 @@ function findNearestAvailableRowIndex(
     for (const candidate of orderedCandidates) {
       if (
         candidate >= 0 &&
-        candidate < REACTION_SOLVER_SURFACE_ROW_COUNT &&
+        candidate < REACTION_CANVAS_SURFACE_ROW_COUNT &&
         !occupiedRowIndexes.has(candidate)
       ) {
         return candidate;

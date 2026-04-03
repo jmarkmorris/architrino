@@ -27,6 +27,18 @@ const displayLabelsBySpecies = Object.freeze({
   down_quark: "Down Quark",
   strange_quark: "Strange Quark",
   bottom_quark: "Bottom Quark",
+  pi_plus: "Positive Pion",
+  pi_minus: "Negative Pion",
+  upi0: "Neutral Pion (u anti-u)",
+  dpi0: "Neutral Pion (d anti-d)",
+  k_plus: "Positive Kaon",
+  k_minus: "Negative Kaon",
+  dk0: "Neutral Kaon (d anti-s)",
+  sk0: "Neutral Kaon (s anti-d)",
+  b_plus: "Positive B Meson",
+  b_minus: "Negative B Meson",
+  db0: "Neutral B Meson (d anti-b)",
+  bb0: "Neutral B Meson (b anti-d)",
 });
 
 const polarityQualifiedSpecies = new Set([

@@ -24,7 +24,7 @@
     <div class="reaction-app-shell">
       <header class="reaction-app-header">
         <div class="reaction-app-title-row">
-          <h1 class="reaction-app-title">Reaction Designer and Solver</h1>
+          <h1 class="reaction-app-title">Reaction Designer</h1>
           <div class="reaction-app-actions">
             <a class="reaction-app-link" href="./index.html">Navigator</a>
             <button
@@ -39,7 +39,7 @@
               id="reaction-solve-button"
               class="reaction-app-action"
               type="button"
-              aria-label="Run the reaction solver"
+              aria-label="Run reaction solve"
             >
               Solve
             </button>
@@ -57,50 +57,50 @@
       </header>
       <main class="reaction-app-main">
         <section
-          id="reaction-solver"
-          class="composer-reaction-solver"
+          id="reaction-canvas"
+          class="composer-reaction-canvas"
           aria-hidden="false"
           tabindex="0"
         >
           <div
-            id="reaction-solver-surface"
-            class="composer-reaction-solver-surface"
+            id="reaction-canvas-surface"
+            class="composer-reaction-canvas-surface"
           >
             <svg
-              id="reaction-solver-svg"
-              class="composer-reaction-solver-svg"
+              id="reaction-canvas-svg"
+              class="composer-reaction-canvas-svg"
               aria-hidden="true"
             ></svg>
             <div
-              id="reaction-solver-empty"
-              class="composer-reaction-solver-empty"
+              id="reaction-canvas-empty"
+              class="composer-reaction-canvas-empty"
               aria-hidden="false"
             >
-              Use the + controls to start a manual reaction solve.
+              Use the + controls to start building a reaction.
             </div>
             <div
-              id="reaction-solver-reactants"
-              class="composer-reaction-solver-column is-reactants"
+              id="reaction-canvas-reactants"
+              class="composer-reaction-canvas-column is-reactants"
             ></div>
             <div
-              class="composer-reaction-solver-column-group-slot is-operator-left"
+              class="composer-reaction-canvas-column-group-slot is-operator-left"
               data-operator-lane-index="0"
               aria-hidden="true"
             ></div>
-            <div class="composer-reaction-solver-operator-layer" aria-hidden="false"></div>
+            <div class="composer-reaction-canvas-operator-layer" aria-hidden="false"></div>
             <div
-              class="composer-reaction-solver-column-group-slot is-operator-right"
+              class="composer-reaction-canvas-column-group-slot is-operator-right"
               data-operator-lane-index="1"
               aria-hidden="true"
             ></div>
             <div
-              id="reaction-solver-products"
-              class="composer-reaction-solver-column is-products"
+              id="reaction-canvas-products"
+              class="composer-reaction-canvas-column is-products"
             ></div>
           </div>
           <div
-            id="reaction-solver-menu"
-            class="composer-reaction-solver-menu"
+            id="reaction-canvas-menu"
+            class="composer-reaction-canvas-menu"
             hidden
             aria-hidden="true"
           ></div>

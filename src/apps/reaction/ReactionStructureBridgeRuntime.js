@@ -243,6 +243,37 @@ function createBaryonNode(id, species, quarkFamilies, options = {}) {
   });
 }
 
+function createMesonNode(id, species, constituents = [], options = {}) {
+  const { label = species } = options;
+  return createStructureNode({
+    id,
+    kind: STRUCTURE_KINDS.PARTICLE,
+    species,
+    label,
+    classification: {
+      family: STRUCTURE_CLASSIFICATION_FAMILIES.MESON,
+      source: "authored_override",
+    },
+    children: constituents.map((constituent, index) =>
+      createQuarkNode(
+        `${id}/quark_${index + 1}`,
+        constituent.family,
+        constituent.label ||
+          formatPolarityQualifiedLabel(
+            constituent.family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK
+              ? "Up Quark"
+              : "Down Quark",
+            constituent.polarity
+          ),
+        {
+          polarity: constituent.polarity,
+          occupiedSlots: constituent.occupiedSlots,
+        }
+      )
+    ),
+  });
+}
+
 function createHiggsClusterNode(id, options = {}) {
   const { label = "Higgs cluster" } = options;
   return createStructureNode({
@@ -409,6 +440,230 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
         STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
       ],
       { label: label || "Pro Neutron" }
+    );
+  } else if (normalizedTemplateId === "pi_plus") {
+    root = createMesonNode(
+      structureId,
+      "pi_plus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Positive Pion" }
+    );
+  } else if (normalizedTemplateId === "pi_minus") {
+    root = createMesonNode(
+      structureId,
+      "pi_minus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Negative Pion" }
+    );
+  } else if (normalizedTemplateId === "upi0") {
+    root = createMesonNode(
+      structureId,
+      "upi0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Neutral Pion (u anti-u)" }
+    );
+  } else if (normalizedTemplateId === "dpi0") {
+    root = createMesonNode(
+      structureId,
+      "dpi0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+        },
+      ],
+      { label: label || "Neutral Pion (d anti-d)" }
+    );
+  } else if (normalizedTemplateId === "k_plus") {
+    root = createMesonNode(
+      structureId,
+      "k_plus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Up Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Strange Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
+        },
+      ],
+      { label: label || "Positive Kaon" }
+    );
+  } else if (normalizedTemplateId === "k_minus") {
+    root = createMesonNode(
+      structureId,
+      "k_minus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Strange Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Up Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+      ],
+      { label: label || "Negative Kaon" }
+    );
+  } else if (normalizedTemplateId === "dk0") {
+    root = createMesonNode(
+      structureId,
+      "dk0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Down Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Strange Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
+        },
+      ],
+      { label: label || "Neutral Kaon (d anti-s)" }
+    );
+  } else if (normalizedTemplateId === "sk0") {
+    root = createMesonNode(
+      structureId,
+      "sk0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Strange Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Down Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+      ],
+      { label: label || "Neutral Kaon (s anti-d)" }
+    );
+  } else if (normalizedTemplateId === "b_plus") {
+    root = createMesonNode(
+      structureId,
+      "b_plus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Up Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Bottom Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
+        },
+      ],
+      { label: label || "Positive B Meson" }
+    );
+  } else if (normalizedTemplateId === "b_minus") {
+    root = createMesonNode(
+      structureId,
+      "b_minus",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Bottom Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Up Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+      ],
+      { label: label || "Negative B Meson" }
+    );
+  } else if (normalizedTemplateId === "db0") {
+    root = createMesonNode(
+      structureId,
+      "db0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Down Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Bottom Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
+        },
+      ],
+      { label: label || "Neutral B Meson (d anti-b)" }
+    );
+  } else if (normalizedTemplateId === "bb0") {
+    root = createMesonNode(
+      structureId,
+      "bb0",
+      [
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "pro",
+          label: "Pro Bottom Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
+        },
+        {
+          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+          polarity: "anti",
+          label: "Anti Down Quark",
+          occupiedSlots: STRUCTURE_SLOT_ORDER,
+        },
+      ],
+      { label: label || "Neutral B Meson (b anti-d)" }
     );
   } else if (normalizedTemplateId === "higgs_cluster") {
     root = createHiggsClusterNode(structureId, { label: label || "Higgs cluster" });

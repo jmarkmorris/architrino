@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import sys
 from collections import Counter
 from dataclasses import dataclass
 from functools import lru_cache
@@ -26,6 +28,8 @@ SOLVER_REQUEST_SCHEMA = "solver-request/v1"
 PDG_FIXTURE_CORPUS_SCHEMA = "pdg-fixture-corpus/v1"
 PDG_FIXTURE_SOURCE_SCHEMA = "pdg-fixture-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
+PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
+PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
 DEFAULT_POLICY = {
     "recruitmentMode": "forbid",
@@ -70,6 +74,18 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         tags=("pdg:species:neutron",),
     ),
     PdgV1ParticleMapping(
+        canonical_name="anti-n",
+        aliases=("anti-n", "nbar", "anti-neutron"),
+        template_id="neutron",
+        label="Anti Neutron",
+        family="baryon",
+        polarity="anti",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=6,
+        tags=("pdg:species:anti-neutron",),
+    ),
+    PdgV1ParticleMapping(
         canonical_name="p",
         aliases=("p", "proton"),
         template_id="proton",
@@ -80,6 +96,18 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         tags=("pdg:species:proton",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-p",
+        aliases=("anti-p", "pbar", "anti-proton"),
+        template_id="proton",
+        label="Anti Proton",
+        family="baryon",
+        polarity="anti",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=6,
+        tags=("pdg:species:anti-proton",),
     ),
     PdgV1ParticleMapping(
         canonical_name="e-",
@@ -200,28 +228,134 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
     PdgV1ParticleMapping(
         canonical_name="pi+",
         aliases=("pi+",),
-        template_id="",
-        label="Pi Plus",
+        template_id="pi_plus",
+        label="Positive Pion",
         family="meson",
-        polarity="pro",
+        polarity="",
         is_composite=True,
-        electrino_count=0,
-        positrino_count=0,
-        export_policy="proposal-only",
-        policy_reason="no-v1-solver-template",
+        electrino_count=11,
+        positrino_count=13,
+        tags=("pdg:species:pi-plus",),
     ),
     PdgV1ParticleMapping(
         canonical_name="pi-",
         aliases=("pi-",),
-        template_id="",
-        label="Pi Minus",
+        template_id="pi_minus",
+        label="Negative Pion",
         family="meson",
-        polarity="anti",
+        polarity="",
         is_composite=True,
-        electrino_count=0,
-        positrino_count=0,
-        export_policy="proposal-only",
-        policy_reason="no-v1-solver-template",
+        electrino_count=13,
+        positrino_count=11,
+        tags=("pdg:species:pi-minus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="pi0",
+        aliases=("pi0",),
+        template_id="upi0",
+        label="Neutral Pion",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=8,
+        positrino_count=16,
+        tags=("pdg:species:pi0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K+",
+        aliases=("K+", "k+", "kaon+", "positive-kaon"),
+        template_id="k_plus",
+        label="Positive Kaon",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=11,
+        tags=("pdg:species:k-plus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K-",
+        aliases=("K-", "k-", "kaon-", "negative-kaon"),
+        template_id="k_minus",
+        label="Negative Kaon",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=11,
+        tags=("pdg:species:k-minus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="K0",
+        aliases=("K0", "k0", "kaon0", "neutral-kaon"),
+        template_id="dk0",
+        label="Neutral Kaon (d anti-s)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=12,
+        positrino_count=8,
+        tags=("pdg:species:k0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-K0",
+        aliases=("anti-K0", "anti-k0", "Kbar0", "kbar0", "anti-kaon0"),
+        template_id="sk0",
+        label="Neutral Kaon (s anti-d)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=12,
+        positrino_count=8,
+        tags=("pdg:species:anti-k0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B+",
+        aliases=("B+", "b+", "positive-b-meson"),
+        template_id="b_plus",
+        label="Positive B Meson",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=10,
+        tags=("pdg:species:b-plus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B-",
+        aliases=("B-", "b-", "negative-b-meson"),
+        template_id="b_minus",
+        label="Negative B Meson",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=6,
+        positrino_count=10,
+        tags=("pdg:species:b-minus",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="B0",
+        aliases=("B0", "b0", "neutral-b-meson"),
+        template_id="dB0",
+        label="Neutral B Meson (d anti-b)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=7,
+        tags=("pdg:species:b0",),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-B0",
+        aliases=("anti-B0", "anti-b0", "Bbar0", "bbar0", "anti-b-meson"),
+        template_id="bB0",
+        label="Neutral B Meson (b anti-d)",
+        family="meson",
+        polarity="",
+        is_composite=True,
+        electrino_count=9,
+        positrino_count=7,
+        tags=("pdg:species:anti-b0",),
     ),
 )
 
@@ -691,6 +825,32 @@ def normalize_channel_description(text: str) -> str:
     return " ".join(str(text).replace("-->", "->").split())
 
 
+def infer_reactant_name_from_description(api: Any, particle: Any, description: str) -> str:
+    normalized_description = normalize_channel_description(description)
+    left_side = normalized_description.partition("->")[0].strip()
+    if left_side and " " not in left_side:
+        canonical_left = canonicalize_api_particle_name(api, left_side)
+        if canonical_left in PDG_V1_MAPPING_BY_NAME:
+            return canonical_left
+    return canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+
+
+def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> list[str]:
+    names: list[str] = []
+    for note in notes:
+        parts = str(note).split(":")
+        if len(parts) < 4 or parts[0] != "unsupported":
+            continue
+        side = parts[1]
+        particle_name = parts[2]
+        if side not in ("reactant", "product") or particle_name in ("", "unknown"):
+            continue
+        if not PARTICLE_NAME_PATTERN.match(particle_name):
+            continue
+        names.append(particle_name)
+    return names
+
+
 def safe_api_info(api: Any, key: str) -> str | None:
     try:
         value = api.info(key)
@@ -728,9 +888,6 @@ def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list
         item_name = getattr(item, "name", None)
         item_particle = safe_decay_item_particle(item) if item is not None else None
         item_type = getattr(item, "item_type", None) if item is not None else None
-        if multiplier != 1:
-            notes.append(f"unsupported:product:{item_name or 'unknown'}:multiplier-{multiplier}")
-            continue
         if not item_name:
             notes.append("unsupported:product:unknown:missing-name")
             continue
@@ -738,7 +895,11 @@ def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list
             suffix = f"generic-or-textual-item:{item_type}" if item_type else "generic-or-textual-item"
             notes.append(f"unsupported:product:{item_name}:{suffix}")
             continue
-        particles.append(FixtureParticle(name=str(item_name), pdg_id=str(item_name)))
+        if multiplier <= 0:
+            notes.append(f"unsupported:product:{item_name}:multiplier-{multiplier}")
+            continue
+        for _ in range(multiplier):
+            particles.append(FixtureParticle(name=str(item_name), pdg_id=str(item_name)))
     return particles, notes
 
 
@@ -776,6 +937,133 @@ def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
                 pass
 
     return decays
+
+
+def iter_live_particles(api: Any) -> list[Any]:
+    particles: list[Any] = []
+    for particle_group in api.get_particles():
+        try:
+            group_particles = list(particle_group)
+        except Exception:  # pragma: no cover - external API dependent
+            continue
+        for particle in group_particles:
+            if hasattr(particle, "exclusive_branching_fractions"):
+                particles.append(particle)
+    return particles
+
+
+def build_live_decay_discovery_key(particle: Any, decay: Any) -> str:
+    decay_pdgid = getattr(decay, "pdgid", None)
+    if decay_pdgid:
+        return f"pdgid:{decay_pdgid}"
+    return "|".join(
+        [
+            normalize_text(getattr(particle, "name", "")),
+            normalize_channel_description(getattr(decay, "description", "")),
+            str(getattr(decay, "mode_number", "") or ""),
+        ]
+    )
+
+
+def build_live_case_from_decay(api: Any, particle: Any, decay: Any) -> PdgCase:
+    description = normalize_channel_description(getattr(decay, "description", ""))
+    products, notes = extract_live_decay_products(decay)
+    subdecay_count = sum(
+        1 for product in getattr(decay, "decay_products", ()) or () if getattr(product, "subdecay", None)
+    )
+    if subdecay_count:
+        notes.append(f"unsupported:channel-subdecays:{subdecay_count}")
+
+    particle_name = infer_reactant_name_from_description(api, particle, description)
+    decay_pdgid = getattr(decay, "pdgid", None)
+    case_token = str(decay_pdgid or description or particle_name or "pdg_decay")
+    case_id = slugify(case_token)
+    source: dict[str, Any] = {
+        "edition": str(getattr(api, "edition", "")),
+        "channelDescription": description or f"{particle_name} decay",
+        "citation": safe_api_info(api, "citation") or "PDG Python API live read",
+        "branchingDisplay": str(getattr(decay, "display_value_text", "") or ""),
+        "sourceMode": "pdg.connect",
+        "lookupParticleName": particle_name,
+    }
+    if decay_pdgid:
+        source["pdgIdentifier"] = str(decay_pdgid)
+
+    return PdgCase(
+        case_id=case_id,
+        proposal_id=f"{case_id}.live-pdg",
+        title=description or f"{particle_name} decay",
+        source_kind="pdg-live",
+        source=source,
+        reactants=(FixtureParticle(name=particle_name, pdg_id=particle_name),),
+        products=tuple(products),
+        notes=tuple(notes),
+    )
+
+
+def build_live_manifest_payload(database_url: str | None = None, *, api: Any | None = None) -> dict[str, Any]:
+    api = api or connect_pdg(database_url, pedantic=False)
+    seen_keys: set[str] = set()
+    exportable_entries: list[dict[str, Any]] = []
+    unsupported_particle_counts: Counter[str] = Counter()
+    unsupported_entries: list[dict[str, Any]] = []
+
+    for particle in iter_live_particles(api):
+        for decay in iter_candidate_branching_fractions(particle):
+            discovery_key = build_live_decay_discovery_key(particle, decay)
+            if discovery_key in seen_keys:
+                continue
+            seen_keys.add(discovery_key)
+            live_case = build_live_case_from_decay(api, particle, decay)
+            proposal = build_proposal(live_case)
+            solver_request = build_solver_request(proposal)
+            unsupported_names = extract_unsupported_particle_names(proposal.notes)
+            unsupported_particle_counts.update(unsupported_names)
+            entry = {
+                "batchId": 0,
+                "caseId": live_case.case_id,
+                "proposalId": proposal.proposal_id,
+                "title": live_case.title,
+                "lookupParticleName": str(live_case.source.get("lookupParticleName", "")),
+                "pdgIdentifier": str(live_case.source.get("pdgIdentifier", "")),
+                "channelDescription": str(live_case.source.get("channelDescription", "")),
+                "branchingDisplay": str(live_case.source.get("branchingDisplay", "")),
+                "unsupportedParticles": unsupported_names,
+                "proposal": proposal.to_dict(),
+            }
+            if solver_request is None:
+                unsupported_entries.append(entry)
+                continue
+            entry["solverRequest"] = solver_request
+            exportable_entries.append(entry)
+
+    exportable_entries.sort(
+        key=lambda entry: (
+            str(entry.get("pdgIdentifier", "")),
+            str(entry.get("lookupParticleName", "")),
+            str(entry.get("channelDescription", "")),
+            str(entry.get("proposalId", "")),
+        )
+    )
+    for index, entry in enumerate(exportable_entries, start=1):
+        entry["batchId"] = index
+
+    top_unsupported_particles = [
+        {"particle": particle_name, "count": count}
+        for particle_name, count in sorted(
+            unsupported_particle_counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:5]
+    ]
+
+    return {
+        "schema": PDG_LIVE_MANIFEST_SCHEMA,
+        "edition": str(getattr(api, "edition", "")),
+        "exportableCount": len(exportable_entries),
+        "unsupportedDiscoveryCount": len(unsupported_entries),
+        "topUnsupportedParticles": top_unsupported_particles,
+        "entries": exportable_entries,
+    }
 
 
 def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[FixtureParticle], list[str]]:
@@ -844,6 +1132,53 @@ def emit_case(case: PdgCase, output_dir: Path) -> list[Path]:
     return written_paths
 
 
+def build_fixture_proposal_object(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> Proposal:
+    fixture = fixtures_by_id.get(fixture_id)
+    if fixture is None:
+        available = ", ".join(sorted(fixtures_by_id))
+        raise SystemExit(f"Unknown fixture id {fixture_id!r}. Available: {available}")
+    return build_proposal(fixture)
+
+
+def build_fixture_proposal(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    return build_fixture_proposal_object(fixtures_by_id, fixture_id).to_dict()
+
+
+def build_fixture_solver_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    solver_request = build_solver_request(build_fixture_proposal_object(fixtures_by_id, fixture_id))
+    if solver_request is None:
+        raise SystemExit(f"Fixture {fixture_id!r} does not currently emit solver-request/v1.")
+    return solver_request
+
+
+def build_live_case_proposal_object(case_id: str, database_url: str | None = None) -> Proposal:
+    spec = LIVE_CHANNEL_SPEC_BY_ID.get(case_id)
+    if spec is None:
+        available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
+        raise SystemExit(f"Unknown live case id {case_id!r}. Available: {available}")
+    try:
+        live_case = load_live_case(spec, database_url)
+    except (LookupError, RuntimeError) as exc:
+        raise SystemExit(str(exc)) from exc
+    return build_proposal(live_case)
+
+
+def build_live_case_proposal(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    return build_live_case_proposal_object(case_id, database_url).to_dict()
+
+
+def build_live_case_solver_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    solver_request = build_solver_request(build_live_case_proposal_object(case_id, database_url))
+    if solver_request is None:
+        raise SystemExit(f"Live case {case_id!r} does not currently emit solver-request/v1.")
+    return solver_request
+
+
+def print_json(payload: dict[str, Any]) -> None:
+    json.dump(payload, sys.stdout, indent=2)
+    sys.stdout.write("\n")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and solver-request candidates.")
     parser.add_argument(
@@ -866,14 +1201,42 @@ def parse_args() -> argparse.Namespace:
 
     subparsers.add_parser("list-fixtures", help="List available local PDG fixtures.")
     subparsers.add_parser("list-live-cases", help="List the first live PDG channels supported by this script.")
+    subparsers.add_parser(
+        "build-live-manifest",
+        help="Discover exportable live PDG decays and print a frozen batch manifest JSON payload.",
+    )
 
     emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and solver-request artifacts for one fixture.")
     emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+
+    print_fixture_proposal_parser = subparsers.add_parser(
+        "print-fixture-proposal",
+        help="Print one fixture pdg-proposal/v1 JSON payload to stdout.",
+    )
+    print_fixture_proposal_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+
+    print_fixture_request_parser = subparsers.add_parser(
+        "print-fixture-solver-request",
+        help="Print one fixture solver-request/v1 JSON payload to stdout for piping.",
+    )
+    print_fixture_request_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
     subparsers.add_parser("emit-all-fixtures", help="Emit proposal and solver-request artifacts for all fixtures.")
 
     emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and solver-request artifacts for one live PDG channel.")
     emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+
+    print_live_proposal_parser = subparsers.add_parser(
+        "print-live-proposal",
+        help="Print one live-case pdg-proposal/v1 JSON payload to stdout.",
+    )
+    print_live_proposal_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+
+    print_live_request_parser = subparsers.add_parser(
+        "print-live-solver-request",
+        help="Print one live-case solver-request/v1 JSON payload to stdout for piping.",
+    )
+    print_live_request_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
     subparsers.add_parser("emit-all-live-cases", help="Emit proposal and solver-request artifacts for all built-in live PDG channels.")
     return parser.parse_args()
@@ -894,6 +1257,10 @@ def main() -> int:
             print(f"{spec.case_id}\t{spec.title}")
         return 0
 
+    if args.command == "build-live-manifest":
+        print_json(build_live_manifest_payload(args.database_url))
+        return 0
+
     if args.command == "emit-fixture":
         fixture = fixtures_by_id.get(args.fixture_id)
         if fixture is None:
@@ -901,6 +1268,14 @@ def main() -> int:
             raise SystemExit(f"Unknown fixture id {args.fixture_id!r}. Available: {available}")
         for path in emit_case(fixture, args.output_dir):
             print(path.relative_to(REPO_ROOT))
+        return 0
+
+    if args.command == "print-fixture-proposal":
+        print_json(build_fixture_proposal(fixtures_by_id, args.fixture_id))
+        return 0
+
+    if args.command == "print-fixture-solver-request":
+        print_json(build_fixture_solver_request(fixtures_by_id, args.fixture_id))
         return 0
 
     if args.command == "emit-all-fixtures":
@@ -920,6 +1295,14 @@ def main() -> int:
             raise SystemExit(str(exc)) from exc
         for path in emit_case(live_case, args.output_dir):
             print(path.relative_to(REPO_ROOT))
+        return 0
+
+    if args.command == "print-live-proposal":
+        print_json(build_live_case_proposal(args.case_id, args.database_url))
+        return 0
+
+    if args.command == "print-live-solver-request":
+        print_json(build_live_case_solver_request(args.case_id, args.database_url))
         return 0
 
     if args.command == "emit-all-live-cases":

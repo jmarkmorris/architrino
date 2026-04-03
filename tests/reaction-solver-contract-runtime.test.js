@@ -9,6 +9,7 @@ import {
 } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
 import { createReactionBinaryInventoryRuntime } from "../src/apps/reaction/ReactionBinaryInventoryRuntime.js";
 import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
+import { solveReactionSolverRequestInProcess } from "../src/apps/reaction/ReactionSolverInProcessRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
@@ -149,6 +150,35 @@ test("contract solver runtime solves a versioned solver request into a versioned
   assert.equal(unresolvedTargetCount, 0);
 });
 
+test("contract solver runtime uses the external solver path by default in node while preserving the contract outcome", () => {
+  const request = readJson("content/contracts/examples/solver-request/associate_photon.v1.json");
+  const schema = readJson("src/contracts/solver-result/v1/schema.json");
+  const externalSolve = solveReactionSolverRequest(request);
+  const inProcessSolve = solveReactionSolverRequestInProcess(request, {
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(externalSolve.execution?.mode, "external");
+  assert.deepEqual(validateAgainstSchema(externalSolve.result, schema), []);
+  assert.equal(externalSolve.result.summary.exact, true);
+  assert.equal(externalSolve.result.operators.length, 1);
+  assert.equal(externalSolve.result.steps.some((step) => step.kind === "associate"), true);
+  assert.equal(externalSolve.planDescription, inProcessSolve.planDescription);
+  assert.equal(externalSolve.unresolvedTargetCount, inProcessSolve.unresolvedTargetCount);
+});
+
+test("contract solver runtime can fall back to the in-process bridge when external solving is disabled", () => {
+  const request = readJson("content/contracts/examples/solver-request/associate_photon.v1.json");
+  const solution = solveReactionSolverRequest(request, {
+    useExternalSolver: false,
+    resolveBinaryChoiceInventory,
+  });
+
+  assert.equal(solution.execution?.mode, "in-process");
+  assert.equal(solution.result.summary.exact, true);
+  assert.equal(solution.planDescription, "1 associated product");
+});
+
 test("contract solver runtime can round-trip a live snapshot through request and result contracts", () => {
   const reactantProCore = createParticipant({
     id: "reactant_pro_core_roundtrip",
@@ -188,6 +218,7 @@ test("contract solver runtime can round-trip a live snapshot through request and
   assert.equal(solution.request.requestId, "roundtrip_photon");
   assert.equal(solution.result.request.requestId, "roundtrip_photon");
   assert.equal(solution.result.summary.exact, true);
+  assert.equal(solution.execution?.mode, "external");
 });
 
 test("solve-reaction script emits solver-result json from a solver-request fixture", () => {

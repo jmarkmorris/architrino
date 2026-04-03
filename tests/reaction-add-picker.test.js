@@ -50,6 +50,50 @@ test("reaction add picker prefixes pro labels for reduced binary cores and baryo
   assert.equal(neutronCell.label, "Pro Neutron");
 });
 
+test("reaction add picker exposes kaons on the row directly below the pions", () => {
+  const pickerCells = getReactionAddPickerCells();
+  const kMinusCell = pickerCells.find((cell) => cell.id === "k_minus");
+  const kPlusCell = pickerCells.find((cell) => cell.id === "k_plus");
+  const antiK0Cell = pickerCells.find((cell) => cell.id === "sk0");
+  const k0Cell = pickerCells.find((cell) => cell.id === "dk0");
+
+  assert.ok(kMinusCell);
+  assert.ok(kPlusCell);
+  assert.ok(antiK0Cell);
+  assert.ok(k0Cell);
+  assert.deepEqual(
+    [kMinusCell?.label, kPlusCell?.label, antiK0Cell?.label, k0Cell?.label],
+    [
+      "Negative Kaon",
+      "Positive Kaon",
+      "Neutral Kaon (s anti-d)",
+      "Neutral Kaon (d anti-s)",
+    ]
+  );
+});
+
+test("reaction add picker exposes b mesons on the row directly below the kaons", () => {
+  const pickerCells = getReactionAddPickerCells();
+  const bMinusCell = pickerCells.find((cell) => cell.id === "b_minus");
+  const bPlusCell = pickerCells.find((cell) => cell.id === "b_plus");
+  const bB0Cell = pickerCells.find((cell) => cell.id === "bB0");
+  const dB0Cell = pickerCells.find((cell) => cell.id === "dB0");
+
+  assert.ok(bMinusCell);
+  assert.ok(bPlusCell);
+  assert.ok(bB0Cell);
+  assert.ok(dB0Cell);
+  assert.deepEqual(
+    [bMinusCell?.label, bPlusCell?.label, bB0Cell?.label, dB0Cell?.label],
+    [
+      "Negative B Meson",
+      "Positive B Meson",
+      "Neutral B Meson (b anti-d)",
+      "Neutral B Meson (d anti-b)",
+    ]
+  );
+});
+
 test("full pro and anti noether cores resolve as Noether-core labels instead of Tri Binary", () => {
   const proCore = buildReactionParticipantStructure("noether_core", {
     id: "pro_core",

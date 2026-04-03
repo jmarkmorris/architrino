@@ -1,0 +1,169 @@
+{
+  "schema": "solver-request/v1",
+  "requestId": "charged_pion_to_muon_neutrino",
+  "origin": {
+    "sourceKind": "pdg-ingest",
+    "sourceDocumentId": "charged_pion_to_muon_neutrino",
+    "title": "Charged pion to muon neutrino"
+  },
+  "participants": [
+    {
+      "id": "reactant_positive_pion_1",
+      "side": "reactant",
+      "templateId": "pi_plus",
+      "label": "Positive Pion",
+      "family": "meson",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 11,
+        "positrinoCount": 13,
+        "flags": [
+          "pdg-id:pi+",
+          "pdg-name:pi+"
+        ]
+      },
+      "rootNodeId": "reactant_positive_pion_1/root",
+      "nodes": [
+        {
+          "id": "reactant_positive_pion_1/root",
+          "templateId": "pi_plus",
+          "label": "Positive Pion",
+          "family": "meson",
+          "isComposite": true,
+          "inventory": {
+            "electrinoCount": 11,
+            "positrinoCount": 13,
+            "flags": [
+              "pdg-id:pi+",
+              "pdg-name:pi+"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:pi-plus",
+            "pdg-id:pi+"
+          ]
+        }
+      ],
+      "tags": [
+        "pdg:species:pi-plus",
+        "pdg-id:pi+"
+      ]
+    },
+    {
+      "id": "product_anti_muon_1",
+      "side": "product",
+      "templateId": "electron",
+      "label": "Anti Muon",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "charged-lepton",
+          "pdg-id:mu+",
+          "pdg-name:mu+"
+        ]
+      },
+      "rootNodeId": "product_anti_muon_1/root",
+      "nodes": [
+        {
+          "id": "product_anti_muon_1/root",
+          "templateId": "electron",
+          "label": "Anti Muon",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:2",
+              "charged-lepton",
+              "pdg-id:mu+",
+              "pdg-name:mu+"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:anti-muon",
+            "pdg:generation:2",
+            "pdg-id:mu+"
+          ],
+          "polarity": "anti"
+        }
+      ],
+      "tags": [
+        "pdg:species:anti-muon",
+        "pdg:generation:2",
+        "pdg-id:mu+"
+      ],
+      "polarity": "anti"
+    },
+    {
+      "id": "product_pro_muon_neutrino_2",
+      "side": "product",
+      "templateId": "neutrino",
+      "label": "Pro Muon Neutrino",
+      "family": "lepton",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 6,
+        "positrinoCount": 6,
+        "flags": [
+          "generation:2",
+          "neutrino",
+          "pdg-id:nu_mu",
+          "pdg-name:nu_mu"
+        ]
+      },
+      "rootNodeId": "product_pro_muon_neutrino_2/root",
+      "nodes": [
+        {
+          "id": "product_pro_muon_neutrino_2/root",
+          "templateId": "neutrino",
+          "label": "Pro Muon Neutrino",
+          "family": "lepton",
+          "isComposite": false,
+          "inventory": {
+            "electrinoCount": 6,
+            "positrinoCount": 6,
+            "flags": [
+              "generation:2",
+              "neutrino",
+              "pdg-id:nu_mu",
+              "pdg-name:nu_mu"
+            ]
+          },
+          "tags": [
+            "root",
+            "pdg:species:muon-neutrino",
+            "pdg:generation:2",
+            "pdg-id:nu_mu"
+          ],
+          "polarity": "pro"
+        }
+      ],
+      "tags": [
+        "pdg:species:muon-neutrino",
+        "pdg:generation:2",
+        "pdg-id:nu_mu"
+      ],
+      "polarity": "pro"
+    }
+  ],
+  "manualOperators": [],
+  "manualMappings": [],
+  "dissociation": {
+    "manuallyOpenedParticipantIds": [],
+    "manuallyOpenedNodeIds": [],
+    "preserveManualState": true
+  },
+  "policy": {
+    "recruitmentMode": "forbid",
+    "lateBosonCollapseMode": "allow-exact",
+    "weakChannelMode": "v1-core-provenance-only",
+    "carryThroughMode": "exact-first"
+  }
+}

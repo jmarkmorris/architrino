@@ -7,6 +7,7 @@ import {
   getReactionParticipantCardSectionOrder,
   getRenderedSlotCodesForSide,
 } from "../src/apps/reaction/ReactionParticipantRenderRuntime.js";
+import { getReactionParticleTileLabelLines } from "../src/apps/reaction/ReactionParticleTileRuntime.js";
 
 test("render slot codes mirror on product side only", () => {
   assert.deepEqual(getRenderedSlotCodesForSide("reactant"), ["I", "M", "O"]);
@@ -72,11 +73,90 @@ test("side slot headers align from the track-side edge, not the outer participan
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-side-slot-header\.is-reactant\s*\{[\s\S]*?justify-self:\s*end;[\s\S]*?margin-right:\s*var\(--solver-slot-header-offset,\s*0px\);/
+    /\.composer-reaction-canvas-side-slot-header\.is-reactant\s*\{[\s\S]*?justify-self:\s*end;[\s\S]*?margin-right:\s*var\(--reaction-canvas-slot-header-offset,\s*0px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-side-slot-header\.is-product\s*\{[\s\S]*?justify-self:\s*start;[\s\S]*?margin-left:\s*var\(--solver-slot-header-offset,\s*0px\);/
+    /\.composer-reaction-canvas-side-slot-header\.is-product\s*\{[\s\S]*?justify-self:\s*start;[\s\S]*?margin-left:\s*var\(--reaction-canvas-slot-header-offset,\s*0px\);/
+  );
+});
+
+test("pion canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative Pion", { templateId: "pi_minus" }),
+    ["Negative", "Pion", "d !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Positive Pion", { templateId: "pi_plus" }),
+    ["Positive", "Pion", "u !d"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Pion (u anti-u)", { templateId: "upi0" }),
+    ["Neutral", "Pion", "u !u"]
+  );
+});
+
+test("kaon canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative Kaon", { templateId: "k_minus" }),
+    ["Negative", "Kaon", "s !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Kaon (d anti-s)", { templateId: "dk0" }),
+    ["Neutral", "Kaon", "d !s"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral Kaon (s anti-d)", { templateId: "sk0" }),
+    ["Neutral", "Kaon", "s !d"]
+  );
+});
+
+test("b meson canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative B Meson", { templateId: "b_minus" }),
+    ["Negative", "B Meson", "b !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral B Meson (d anti-b)", { templateId: "dB0" }),
+    ["Neutral", "B Meson", "d !b"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral B Meson (b anti-d)", { templateId: "bB0" }),
+    ["Neutral", "B Meson", "b !d"]
+  );
+});
+
+test("shared particle tile label helper preserves picker-only baryon preview text", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Pro Proton", { templateId: "proton" }, {
+      includeCompositePreviewLines: true,
+    }),
+    ["Pro", "Proton", "u d u"]
+  );
+});
+
+test("picker and canvas use the shared particle tile helper module", () => {
+  const canvasUiRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const participantRenderRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(canvasUiRuntimeSource, /createReactionParticleTileElement/);
+  assert.match(canvasUiRuntimeSource, /getReactionParticleTileLabelLines/);
+  assert.match(participantRenderRuntimeSource, /createReactionParticleTileElement/);
+});
+
+test("composite quark row cards preserve explicit row labels instead of falling back to generic quark defaults", () => {
+  const participantRenderRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    participantRenderRuntimeSource,
+    /const explicitRowLabel = String\(rowNode\?\.label \?\? ""\)\.trim\(\);\s*const baseLabel = explicitRowLabel \|\| getDefaultParticipantBaseLabel\(templateId, rowNode\?\.label\);/
   );
 });
 
@@ -84,25 +164,25 @@ test("center assembly column group uses the shared surface grid column and cente
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\.is-center-assemblies\s*\{[\s\S]*?grid-column:\s*var\(--solver-center-assemblies-grid-column,\s*7 \/ span 4\);/
+    /\.composer-reaction-canvas-column\.is-center-assemblies\s*\{[\s\S]*?grid-column:\s*var\(--reaction-canvas-center-assemblies-grid-column,\s*7 \/ span 4\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-canvas-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\.is-center-assemblies\s*>\s*\.composer-reaction-solver-participant\s*\{[\s\S]*?justify-self:\s*center;/
+    /\.composer-reaction-canvas-column\.is-center-assemblies\s*>\s*\.composer-reaction-canvas-participant\s*\{[\s\S]*?justify-self:\s*center;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-side-slot-header\.is-center\s*\{[\s\S]*?justify-self:\s*center;[\s\S]*?margin-left:\s*var\(--solver-slot-header-offset,\s*0px\);/
+    /\.composer-reaction-canvas-side-slot-header\.is-center\s*\{[\s\S]*?justify-self:\s*center;[\s\S]*?margin-left:\s*var\(--reaction-canvas-slot-header-offset,\s*0px\);/
   );
 });
 
 test("center assembly column group reserves the same slot-header row as the side columns", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -120,8 +200,8 @@ test("center bosons expose a left-side input attachment frame", () => {
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
-  const solverRuntimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+  const canvasRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -141,10 +221,10 @@ test("center bosons expose a left-side input attachment frame", () => {
     runtimeSource,
     /isCenterAssemblyParticipant\(participant\)\s*\?\s*createCenterAssemblyInputFrame\(\s*[\s\S]*?content,\s*\}\)\s*:\s*content/
   );
-  assert.match(solverRuntimeSource, /isCenterAssemblyParticipant,/);
+  assert.match(canvasRuntimeSource, /isCenterAssemblyParticipant,/);
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-center-assembly-frame\s*>\s*\.composer-reaction-solver-anchor\.is-center-assembly-input\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-size,\s*16px\)\s*\*\s*-1\);[\s\S]*?top:\s*50%;/
+    /\.composer-reaction-canvas-center-assembly-frame\s*>\s*\.composer-reaction-canvas-anchor\.is-center-assembly-input\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-anchor-size,\s*16px\)\s*\*\s*-1\);[\s\S]*?top:\s*50%;/
   );
 });
 
@@ -155,11 +235,11 @@ test("disabled noether-core tiles keep their static tile styling instead of dark
   );
   assert.match(
     cssSource,
-    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile:disabled\s*\{[\s\S]*?opacity:\s*1;[\s\S]*?background:\s*rgba\(12,\s*16,\s*30,\s*0\.9\);[\s\S]*?box-shadow:\s*[\s\S]*?0 0 0 1px rgba\(255,\s*255,\s*255,\s*0\.02\);/
+    /\.composer-reaction-canvas-anchor\.composer-reaction-canvas-noether-core-grid-tile:disabled\s*\{[\s\S]*?opacity:\s*1;[\s\S]*?background:\s*rgba\(12,\s*16,\s*30,\s*0\.9\);[\s\S]*?box-shadow:\s*[\s\S]*?0 0 0 1px rgba\(255,\s*255,\s*255,\s*0\.02\);/
   );
   assert.match(
     cssSource,
-    /\.composer-reaction-solver-anchor\.composer-reaction-solver-noether-core-grid-tile\.is-mapped:disabled\s*\{[\s\S]*?background:\s*color-mix\(in srgb,\s*rgba\(24,\s*92,\s*64,\s*0\.32\)\s*18%,\s*rgba\(12,\s*16,\s*30,\s*0\.94\)\);/
+    /\.composer-reaction-canvas-anchor\.composer-reaction-canvas-noether-core-grid-tile\.is-mapped:disabled\s*\{[\s\S]*?background:\s*color-mix\(in srgb,\s*rgba\(24,\s*92,\s*64,\s*0\.32\)\s*18%,\s*rgba\(12,\s*16,\s*30,\s*0\.94\)\);/
   );
 });
 
@@ -167,19 +247,19 @@ test("composite assembly rows use the standard tile gap between the title tile a
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-row-body\s*\{[\s\S]*?gap:\s*var\(--solver-tile-gap\);/
+    /\.composer-reaction-canvas-composite-row-body\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-tile-gap\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-inline-track-body,\s*[\s\S]*?\.composer-reaction-solver-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--solver-attachment-gap\);/
+    /\.composer-reaction-canvas-inline-track-body,\s*[\s\S]*?\.composer-reaction-canvas-composite-row-track-body\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-attachment-gap\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+    /\.composer-reaction-canvas-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--solver-stack-gap,\s*10px\);/
+    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
   );
 });
 
@@ -187,19 +267,19 @@ test("side anchors use the shared attachment offset so connectors abut tile edge
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+    /\.composer-reaction-canvas-tree-row\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-tree-row\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
+    /\.composer-reaction-canvas-tree-row\.is-product\s*>\s*\.composer-reaction-canvas-anchor\s*\{[\s\S]*?left:\s*var\(--reaction-canvas-anchor-attachment-offset,\s*3px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-inline-anchor-slot\.is-reactant\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--solver-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
+    /\.composer-reaction-canvas-inline-anchor-slot\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-anchor-attachment-offset,\s*3px\)\s*\*\s*-1\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-inline-anchor-slot\.is-product\s*>\s*\.composer-reaction-solver-anchor\s*\{[\s\S]*?left:\s*var\(--solver-anchor-attachment-offset,\s*3px\);/
+    /\.composer-reaction-canvas-inline-anchor-slot\.is-product\s*>\s*\.composer-reaction-canvas-anchor\s*\{[\s\S]*?left:\s*var\(--reaction-canvas-anchor-attachment-offset,\s*3px\);/
   );
 });
 
@@ -254,11 +334,11 @@ test("free architrinos root exposes multiple reactant output anchors and uses th
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-particle\.is-free-architrinos\s+\.composer-reaction-solver-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
+    /\.composer-reaction-canvas-particle\.is-free-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-tree-row\.is-reactant\s*>\s*\.composer-reaction-solver-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
+    /\.composer-reaction-canvas-tree-row\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
   );
 });
 
@@ -266,7 +346,7 @@ test("operator tiles expose an open-ledger state", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-operator\.is-ledger-open\s+\.composer-reaction-solver-particle\s*\{/
+    /\.composer-reaction-canvas-participant\.is-operator\.is-ledger-open\s+\.composer-reaction-canvas-particle\s*\{/
   );
 });
 
@@ -286,13 +366,13 @@ test("operator tiles use explicit lane and row center positioning from the share
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-operator\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?transform:\s*translate\(-50%,\s*-50%\);/
+    /\.composer-reaction-canvas-participant\.is-operator\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?transform:\s*translate\(-50%,\s*-50%\);/
   );
 });
 
 test("reactant and product participants also render on explicit surface grid rows", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
@@ -306,11 +386,11 @@ test("reactant and product participants also render on explicit surface grid row
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-canvas-column\s*\{[\s\S]*?grid-template-rows:\s*auto;[\s\S]*?grid-auto-rows:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant:not\(\.is-operator\)\s*\{[\s\S]*?align-self:\s*start;/
+    /\.composer-reaction-canvas-participant:not\(\.is-operator\)\s*\{[\s\S]*?align-self:\s*start;/
   );
 });
 
@@ -318,7 +398,7 @@ test("surface add controls remain pinned to the top overlay above the operator g
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-surface-add-controls\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?inset:\s*0 0 auto 0;/
+    /\.composer-reaction-canvas-surface-add-controls\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?inset:\s*0 0 auto 0;/
   );
 });
 
@@ -326,23 +406,23 @@ test("binary choice tiles use a shared border-box sizing model", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-binary-choice\s*\{[\s\S]*?box-sizing:\s*border-box;/
+    /\.composer-reaction-canvas-binary-choice\s*\{[\s\S]*?box-sizing:\s*border-box;/
   );
 });
 
-test("solver particle tiles are locked to a single shared size", () => {
+test("canvas particle tiles are locked to a single shared size", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-particle\s*\{[\s\S]*?width:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-canvas-particle\s*\{[\s\S]*?width:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-particle\s*\{[\s\S]*?max-width:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-canvas-particle\s*\{[\s\S]*?max-width:\s*var\(--binary-choice-size,\s*72px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-particle\s*\{[\s\S]*?min-height:\s*var\(--binary-choice-size,\s*72px\);/
+    /\.composer-reaction-canvas-particle\s*\{[\s\S]*?min-height:\s*var\(--binary-choice-size,\s*72px\);/
   );
 });
 
@@ -350,7 +430,7 @@ test("composite participants collapse the outer gap into a single connector span
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--solver-composite-participant-gap,\s*0px\);/
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-composite-participant-gap,\s*0px\);/
   );
 });
 
@@ -358,15 +438,15 @@ test("composite participant connector rails are removed from the row flow", () =
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-visual-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
+    /\.composer-reaction-canvas-composite-visual-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
+    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
   );
   assert.doesNotMatch(
     styleSheet,
-    /\.composer-reaction-solver-composite-visual-rail::after\s*\{/
+    /\.composer-reaction-canvas-composite-visual-rail::after\s*\{/
   );
 });
 
@@ -378,15 +458,15 @@ test("composite title rail side anchoring survives the nested participant-conten
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /content\.className = "composer-reaction-solver-participant-content";/
+    /content\.className = "composer-reaction-canvas-participant-content";/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-reactant\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s+\.composer-reaction-canvas-composite-visual-rail\.is-reactant\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\s+\.composer-reaction-solver-composite-visual-rail\.is-product\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--solver-tile-gap,\s*7px\)\);/
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s+\.composer-reaction-canvas-composite-visual-rail\.is-product\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
   );
 });
 
@@ -402,7 +482,7 @@ test("dissociated composites keep the title tile and render it with a dotted bor
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-solver-composite-visual-rail[\s\S]*?\.composer-reaction-solver-particle\s*\{[\s\S]*?border-style:\s*dotted;/
+    /\.composer-reaction-canvas-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-canvas-composite-visual-rail[\s\S]*?\.composer-reaction-canvas-particle\s*\{[\s\S]*?border-style:\s*dotted;/
   );
 });
 
@@ -410,11 +490,11 @@ test("composite collector uses the shared centered connector inset", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-visual-rail\.is-reactant\s+\.composer-reaction-solver-composite-collector\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--solver-composite-node-inset\)\);/
+    /\.composer-reaction-canvas-composite-visual-rail\.is-reactant\s+\.composer-reaction-canvas-composite-collector\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-composite-node-inset\)\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--solver-composite-node-inset\)\);/
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-composite-node-inset\)\);/
   );
 });
 
@@ -426,15 +506,15 @@ test("composite collector and span rail use the same connector dot type", () => 
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /composer-reaction-solver-composite-collector composer-reaction-solver-composite-connector-dot/
+    /composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot/
   );
   assert.match(
     runtimeSource,
-    /composer-reaction-solver-composite-span-node composer-reaction-solver-composite-connector-dot/
+    /composer-reaction-canvas-composite-span-node composer-reaction-canvas-composite-connector-dot/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-connector-dot,\s*\.composer-reaction-solver-composite-span-node\s*\{/
+    /\.composer-reaction-canvas-composite-connector-dot,\s*\.composer-reaction-canvas-composite-span-node\s*\{/
   );
 });
 
@@ -442,7 +522,7 @@ test("template picker grid uses the shared canvas tile gap", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-menu\[data-menu-mode="template-grid-picker"\]\s*\{[\s\S]*?gap:\s*var\(--solver-tile-gap,\s*7px\);/
+    /\.composer-reaction-canvas-menu\[data-menu-mode="template-grid-picker"\]\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-tile-gap,\s*7px\);/
   );
 });
 
@@ -450,17 +530,17 @@ test("composite span stem uses the shared centered connector span geometry", () 
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-stem\s*\{[\s\S]*?left:\s*calc\(var\(--solver-composite-node-inset,\s*0\.5px\)\s*\+\s*var\(--solver-composite-node-center,\s*3px\)\);/
+    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-composite-node-inset,\s*0\.5px\)\s*\+\s*var\(--reaction-canvas-composite-node-center,\s*3px\)\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--solver-composite-connector-span\);/
+    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--reaction-canvas-composite-connector-span\);/
   );
 });
 
 test("composite connector path uses a direct line segment", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
@@ -476,11 +556,11 @@ test("composite and standalone track rows share the same inline track-body helpe
   );
   assert.match(
     runtimeSource,
-    /createInlineTrackBody\(participant,\s*node,\s*nodeKey,\s*tiles,\s*\{[\s\S]*?composer-reaction-solver-noether-core-grid-body/
+    /createInlineTrackBody\(participant,\s*node,\s*nodeKey,\s*tiles,\s*\{[\s\S]*?composer-reaction-canvas-noether-core-grid-body/
   );
   assert.match(
     runtimeSource,
-    /createInlineTrackBody\(participant,\s*rowNode,\s*rowNodeKey,\s*track,\s*\{[\s\S]*?composer-reaction-solver-composite-row-track-body/
+    /createInlineTrackBody\(participant,\s*rowNode,\s*rowNodeKey,\s*track,\s*\{[\s\S]*?composer-reaction-canvas-composite-row-track-body/
   );
 });
 
@@ -496,7 +576,7 @@ test("branch operators use single centered input and output attachments", () => 
   );
   assert.match(
     runtimeSource,
-    /composer-reaction-solver-branch-anchor-frame/
+    /composer-reaction-canvas-branch-anchor-frame/
   );
   assert.match(
     runtimeSource,
@@ -520,18 +600,18 @@ test("branch operators use single centered input and output attachments", () => 
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*var\(--solver-anchor-center-offset,\s*8px\);/
+    /\.composer-reaction-canvas-branch-anchor-frame\s*>\s*\.composer-reaction-canvas-anchor\.is-branch-left-attachment,\s*[\s\S]*?left:\s*var\(--reaction-canvas-anchor-center-offset,\s*8px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--solver-anchor-center-offset,\s*8px\)\);/
+    /\.composer-reaction-canvas-branch-anchor-frame\s*>\s*\.composer-reaction-canvas-anchor\.is-branch-right-attachment,\s*[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--reaction-canvas-anchor-center-offset,\s*8px\)\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\s*>\s*\.composer-reaction-solver-anchor\.is-associate-input,\s*[\s\S]*?top:\s*50%;/
+    /\.composer-reaction-canvas-branch-anchor-frame\s*>\s*\.composer-reaction-canvas-anchor\.is-associate-input,\s*[\s\S]*?top:\s*50%;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-solver-branch-anchor-frame\.is-dissociate\s*>\s*\.composer-reaction-solver-anchor\.is-dissociate-output,\s*[\s\S]*?top:\s*50%;/
+    /\.composer-reaction-canvas-branch-anchor-frame\.is-dissociate\s*>\s*\.composer-reaction-canvas-anchor\.is-dissociate-output,\s*[\s\S]*?top:\s*50%;/
   );
 });

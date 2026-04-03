@@ -1,8 +1,9 @@
 import { getBinaryPersonalityChoice } from "./ReactionBinarySelectionRuntime.js";
+import { createReactionParticleTileElement } from "./ReactionParticleTileRuntime.js";
 import {
   getReactionParticipantTrackHeaderInsetCss,
   getReactionParticipantTrackStartOffsetPx,
-} from "./ReactionSolverLayoutRuntime.js";
+} from "./ReactionCanvasLayoutRuntime.js";
 import {
   getReactionStructureTrackSlotCodes,
   isReactionStructureCompositeGridRenderMode,
@@ -123,7 +124,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   } = {}) {
     const frame = document.createElement("div");
     frame.className =
-      "composer-reaction-solver-branch-anchor-frame composer-reaction-solver-associate-anchor-frame";
+      "composer-reaction-canvas-branch-anchor-frame composer-reaction-canvas-associate-anchor-frame";
     const isDissociate = participant?.templateId === "dissociate";
     if (isDissociate) {
       frame.classList.add("is-dissociate");
@@ -138,7 +139,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
         anchorRole: "operator-input",
         anchorInstanceIndex: 0,
         extraClassNames: [
-          "composer-reaction-solver-operator-anchor",
+          "composer-reaction-canvas-operator-anchor",
           "is-input",
           "is-branch-left-attachment",
           "is-dissociate-input",
@@ -148,7 +149,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
         anchorRole: "operator-output",
         anchorInstanceIndex: 0,
         extraClassNames: [
-          "composer-reaction-solver-operator-anchor",
+          "composer-reaction-canvas-operator-anchor",
           "is-output",
           "is-branch-right-attachment",
           "is-dissociate-output",
@@ -162,7 +163,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       anchorRole: "operator-input",
       anchorInstanceIndex: 0,
       extraClassNames: [
-        "composer-reaction-solver-operator-anchor",
+        "composer-reaction-canvas-operator-anchor",
         "is-input",
         "is-branch-left-attachment",
         "is-associate-input",
@@ -172,7 +173,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       anchorRole: "operator-output",
       anchorInstanceIndex: 0,
       extraClassNames: [
-        "composer-reaction-solver-operator-anchor",
+        "composer-reaction-canvas-operator-anchor",
         "is-output",
         "is-branch-right-attachment",
         "is-associate-output",
@@ -190,7 +191,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     content,
   } = {}) {
     const frame = document.createElement("div");
-    frame.className = "composer-reaction-solver-center-assembly-frame";
+    frame.className = "composer-reaction-canvas-center-assembly-frame";
     if (content) {
       frame.appendChild(content);
     }
@@ -200,7 +201,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     const inputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
       anchorRole: "operator-input",
       extraClassNames: [
-        "composer-reaction-solver-operator-anchor",
+        "composer-reaction-canvas-operator-anchor",
         "is-center-assembly-input",
       ],
     });
@@ -236,7 +237,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createBinaryChoicePlaceholder() {
     const placeholder = document.createElement("div");
-    placeholder.className = "composer-reaction-solver-binary-choice is-static is-placeholder";
+    placeholder.className = "composer-reaction-canvas-binary-choice is-static is-placeholder";
     placeholder.setAttribute("aria-hidden", "true");
     return placeholder;
   }
@@ -244,11 +245,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   function createSideSlotHeader(participants, side) {
     const profile = getReactionSideSlotHeaderProfile(participants, side);
     const header = document.createElement("div");
-    header.className = `composer-reaction-solver-side-slot-header is-${profile.side}`;
-    header.style.setProperty("--solver-slot-header-offset", profile.offset);
+    header.className = `composer-reaction-canvas-side-slot-header is-${profile.side}`;
+    header.style.setProperty("--reaction-canvas-slot-header-offset", profile.offset);
     profile.slotCodes.forEach((slotCode) => {
       const slot = document.createElement("span");
-      slot.className = "composer-reaction-solver-side-slot-header-slot";
+      slot.className = "composer-reaction-canvas-side-slot-header-slot";
       slot.textContent = slotCode;
       header.appendChild(slot);
     });
@@ -256,26 +257,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createParticipantVisual(participant, extraClassNames = []) {
-    const visual = document.createElement("div");
-    visual.className = "composer-reaction-solver-particle";
-    extraClassNames.filter(Boolean).forEach((className) => visual.classList.add(className));
-    if (participant?.templateId === "free_architrinos") {
-      visual.classList.add("is-free-architrinos");
-    }
-    if (participant.polarity === "anti") {
-      visual.classList.add("is-anti-polarity");
-    }
-    const meta = getParticipantCardMeta(participant);
-    visual.style.setProperty("--solver-accent", meta.accent);
-    const visualLabel = document.createElement("div");
-    visualLabel.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(participant.label, participant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      visualLabel.appendChild(lineElement);
+    const visual = createReactionParticleTileElement(participant, {
+      classNames: extraClassNames,
+      getParticipantCardMeta,
+      getParticipantCardLabelLines,
     });
-    visual.appendChild(visualLabel);
     visual.addEventListener("click", (event) => {
       if (handleParticipantVisualClick(participant, event)) {
         event.preventDefault();
@@ -292,16 +278,16 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createBareBinaryContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-binary-selector is-${participant.side}`;
     const slot = document.createElement("span");
-    slot.className = "composer-reaction-solver-binary-slot";
+    slot.className = "composer-reaction-canvas-binary-slot";
     slot.textContent = node.slotCode || "?";
     const choices = document.createElement("div");
-    choices.className = "composer-reaction-solver-binary-choices is-single";
+    choices.className = "composer-reaction-canvas-binary-choices is-single";
     choices.style.setProperty("--binary-choice-columns", "1");
 
     const chip = document.createElement("div");
-    chip.className = "composer-reaction-solver-binary-choice is-static";
+    chip.className = "composer-reaction-canvas-binary-choice is-static";
     chip.style.setProperty("--binary-choice-accent", "#b889ff");
     chip.appendChild(
       createBinaryGlyph(null, {
@@ -326,7 +312,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       String(node?.id ?? "") === String(getParticipantRootNode(participant)?.id ?? "")
     ) {
       const anchorSet = document.createElement("div");
-      anchorSet.className = "composer-reaction-solver-anchor-set is-reactant is-free-architrinos-root";
+      anchorSet.className = "composer-reaction-canvas-anchor-set is-reactant is-free-architrinos-root";
       [0, 1, 2].forEach((anchorInstanceIndex) => {
         anchorSet.appendChild(
           createAnchorButton(participant, node, nodeKey, {
@@ -343,7 +329,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   function createNoetherCoreGridSections(participant, node, options = {}) {
     const { interactiveBinaryAnchors = true } = options;
     const tiles = document.createElement("div");
-    tiles.className = "composer-reaction-solver-noether-core-grid-track";
+    tiles.className = "composer-reaction-canvas-noether-core-grid-track";
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       if (!childNode) {
@@ -358,15 +344,15 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const tile = interactiveBinaryAnchors
         ? createAnchorButton(participant, childNode, nodeKey, {
             extraClassNames: [
-              "composer-reaction-solver-binary-choice",
-              "composer-reaction-solver-binary-choice-is-anchor",
-              "composer-reaction-solver-noether-core-grid-tile",
+              "composer-reaction-canvas-binary-choice",
+              "composer-reaction-canvas-binary-choice-is-anchor",
+              "composer-reaction-canvas-noether-core-grid-tile",
               "is-static",
             ],
           })
         : Object.assign(document.createElement("div"), {
             className:
-              "composer-reaction-solver-binary-choice composer-reaction-solver-noether-core-grid-tile is-static",
+              "composer-reaction-canvas-binary-choice composer-reaction-canvas-noether-core-grid-tile is-static",
           });
       tile.style.setProperty("--binary-choice-accent", choice?.accent ?? "#b889ff");
       tile.appendChild(
@@ -384,10 +370,10 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   function createNoetherCoreGridContent(participant, node) {
     const nodeKey = buildNodeKey(participant.id, node.id);
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-noether-core-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-noether-core-grid is-${participant.side}`;
     const { tiles } = createNoetherCoreGridSections(participant, node);
     const body = createInlineTrackBody(participant, node, nodeKey, tiles, {
-      className: "composer-reaction-solver-noether-core-grid-body",
+      className: "composer-reaction-canvas-noether-core-grid-body",
     });
     wrapper.appendChild(body);
     return wrapper;
@@ -395,7 +381,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createInlineTrackBody(participant, node, nodeKey, track, options = {}) {
     const body = document.createElement("div");
-    body.className = `composer-reaction-solver-inline-track-body is-${participant.side}`;
+    body.className = `composer-reaction-canvas-inline-track-body is-${participant.side}`;
     if (options.className) {
       body.classList.add(options.className);
     }
@@ -413,18 +399,18 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createBinarySelectorGridTrack(participant, node) {
     const track = document.createElement("div");
-    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    track.className = "composer-reaction-canvas-binary-selector-grid-track";
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       const column = document.createElement("div");
-      column.className = "composer-reaction-solver-binary-selector-column";
+      column.className = "composer-reaction-canvas-binary-selector-column";
       if (!childNode) {
         column.classList.add("is-placeholder");
         track.appendChild(column);
         return;
       }
       const choices = document.createElement("div");
-      choices.className = "composer-reaction-solver-binary-selector-grid-options";
+      choices.className = "composer-reaction-canvas-binary-selector-grid-options";
       const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
       const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, childNode, node);
 
@@ -432,7 +418,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
         const choice = getBinaryPersonalityChoice(choiceId);
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "composer-reaction-solver-binary-choice";
+        button.className = "composer-reaction-canvas-binary-choice";
         button.dataset.choiceId = choice.id;
         button.style.setProperty("--binary-choice-accent", choice.accent);
         button.setAttribute("aria-label", `${childNode.label}: ${choice.label}`);
@@ -460,7 +446,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createQuarkPresetRowTrack(participant, node) {
     const track = document.createElement("div");
-    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    track.className = "composer-reaction-canvas-binary-selector-grid-track";
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       if (!childNode) {
@@ -470,7 +456,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
       const button = document.createElement("button");
       button.type = "button";
-      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.className = "composer-reaction-canvas-binary-choice is-selected";
       button.dataset.choiceId = selectedChoice.id;
       button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
       button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
@@ -489,11 +475,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createQuarkPresetRowContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
     const track = createQuarkPresetRowTrack(participant, node);
     const body = createInlineTrackBody(participant, node, nodeKey, track, {
-      className: "composer-reaction-solver-binary-selector-grid-body",
+      className: "composer-reaction-canvas-binary-selector-grid-body",
     });
     wrapper.appendChild(body);
     return wrapper;
@@ -501,7 +487,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createFreeArchitrinosGridTrack(participant, node) {
     const track = document.createElement("div");
-    track.className = "composer-reaction-solver-binary-selector-grid-track";
+    track.className = "composer-reaction-canvas-binary-selector-grid-track";
     const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
     getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
       if (!childNode) {
@@ -511,7 +497,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
       const button = document.createElement("button");
       button.type = "button";
-      button.className = "composer-reaction-solver-binary-choice is-selected";
+      button.className = "composer-reaction-canvas-binary-choice is-selected";
       button.dataset.choiceId = selectedChoice.id;
       button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
       button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
@@ -532,11 +518,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createFreeArchitrinosGridContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
     const track = createFreeArchitrinosGridTrack(participant, node);
     const body = createInlineTrackBody(participant, node, nodeKey, track, {
-      className: "composer-reaction-solver-binary-selector-grid-body",
+      className: "composer-reaction-canvas-binary-selector-grid-body",
     });
     wrapper.appendChild(body);
     return wrapper;
@@ -550,11 +536,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       return createQuarkPresetRowContent(participant, node);
     }
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-binary-selector-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-binary-selector-grid is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
     const track = createBinarySelectorGridTrack(participant, node);
     const body = createInlineTrackBody(participant, node, nodeKey, track, {
-      className: "composer-reaction-solver-binary-selector-grid-body",
+      className: "composer-reaction-canvas-binary-selector-grid-body",
     });
     wrapper.appendChild(body);
     return wrapper;
@@ -579,7 +565,8 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       String(rowNode?.templateId ?? "").trim().toLowerCase() ||
       (rowNode?.renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID ? "noether_core" : "");
     const polarity = String(rowNode?.polarity ?? "").trim().toLowerCase();
-    const baseLabel = getDefaultParticipantBaseLabel(templateId, rowNode?.label);
+    const explicitRowLabel = String(rowNode?.label ?? "").trim();
+    const baseLabel = explicitRowLabel || getDefaultParticipantBaseLabel(templateId, rowNode?.label);
     const cardParticipant = {
       templateId,
       polarity:
@@ -593,34 +580,22 @@ export function createReactionParticipantRenderRuntime(options = {}) {
             ? formatParticipantLabel(baseLabel, templateId, polarity || "pro")
             : baseLabel,
     };
-    const card = document.createElement("div");
-    card.className = "composer-reaction-solver-particle composer-reaction-solver-composite-row-card";
-    if (cardParticipant.polarity === "anti") {
-      card.classList.add("is-anti-polarity");
-    }
-    const meta = getParticipantCardMeta(cardParticipant);
-    card.style.setProperty("--solver-accent", meta.accent);
-    const label = document.createElement("div");
-    label.className = "composer-reaction-solver-particle-label";
-    getParticipantCardLabelLines(cardParticipant.label, cardParticipant).forEach((line) => {
-      const lineElement = document.createElement("span");
-      lineElement.className = "composer-reaction-solver-particle-label-line";
-      lineElement.textContent = line;
-      label.appendChild(lineElement);
+    return createReactionParticleTileElement(cardParticipant, {
+      classNames: ["composer-reaction-canvas-composite-row-card"],
+      getParticipantCardMeta,
+      getParticipantCardLabelLines,
     });
-    card.appendChild(label);
-    return card;
   }
 
   function createCompositeAssemblyRowBody(participant, rowNode) {
     const rowNodeKey = buildNodeKey(participant.id, rowNode.id);
     const body = document.createElement("div");
-    body.className = `composer-reaction-solver-composite-row-body is-${participant.side}`;
+    body.className = `composer-reaction-canvas-composite-row-body is-${participant.side}`;
     const card = createCompositeAssemblyRowCard(participant, rowNode);
     const track = createCompositeAssemblyRowTrack(participant, rowNode);
     const trackBody = createInlineTrackBody(participant, rowNode, rowNodeKey, track, {
-      className: "composer-reaction-solver-composite-row-track-body",
-      selectorLaneClassName: "composer-reaction-solver-composite-row-selector-slot",
+      className: "composer-reaction-canvas-composite-row-track-body",
+      selectorLaneClassName: "composer-reaction-canvas-composite-row-selector-slot",
     });
     if (participant.side === "product") {
       body.append(trackBody, card);
@@ -632,17 +607,17 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createCompositeSpanRail(participant, rowNodes = []) {
     const rail = document.createElement("div");
-    rail.className = `composer-reaction-solver-composite-span-rail is-${participant.side}`;
+    rail.className = `composer-reaction-canvas-composite-span-rail is-${participant.side}`;
     const stem = document.createElement("span");
-    stem.className = "composer-reaction-solver-composite-span-stem";
+    stem.className = "composer-reaction-canvas-composite-span-stem";
     stem.dataset.compositeSpanParticipantId = participant.id;
     rail.appendChild(stem);
     rowNodes.forEach(() => {
       const slot = document.createElement("div");
-      slot.className = "composer-reaction-solver-composite-span-slot";
+      slot.className = "composer-reaction-canvas-composite-span-slot";
       const node = document.createElement("span");
       node.className =
-        "composer-reaction-solver-composite-span-node composer-reaction-solver-composite-connector-dot";
+        "composer-reaction-canvas-composite-span-node composer-reaction-canvas-composite-connector-dot";
       node.setAttribute("aria-hidden", "true");
       slot.appendChild(node);
       rail.appendChild(slot);
@@ -652,13 +627,13 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createCompositeAssemblyGridContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-higgs-cluster-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-higgs-cluster-grid is-${participant.side}`;
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
     const rows = document.createElement("div");
-    rows.className = "composer-reaction-solver-higgs-cluster-grid-rows";
+    rows.className = "composer-reaction-canvas-higgs-cluster-grid-rows";
     coreNodes.forEach((coreNode) => {
       const row = document.createElement("div");
-      row.className = `composer-reaction-solver-higgs-cluster-grid-row is-${participant.side}`;
+      row.className = `composer-reaction-canvas-higgs-cluster-grid-row is-${participant.side}`;
       const rowBody = createCompositeAssemblyRowBody(participant, coreNode);
       row.appendChild(rowBody);
       rows.appendChild(row);
@@ -674,11 +649,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createCompositeVisualRail(participant) {
     const rail = document.createElement("div");
-    rail.className = `composer-reaction-solver-composite-visual-rail is-${participant.side}`;
+    rail.className = `composer-reaction-canvas-composite-visual-rail is-${participant.side}`;
 
     const collector = document.createElement("span");
     collector.className =
-      "composer-reaction-solver-composite-collector composer-reaction-solver-composite-connector-dot";
+      "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
     collector.dataset.compositeCollectorId = participant.id;
     collector.setAttribute("aria-hidden", "true");
 
@@ -693,12 +668,12 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createBinarySelectorContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-solver-binary-selector is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-binary-selector is-${participant.side}`;
     const slot = document.createElement("span");
-    slot.className = "composer-reaction-solver-binary-slot";
+    slot.className = "composer-reaction-canvas-binary-slot";
     slot.textContent = node.slotCode || "?";
     const choices = document.createElement("div");
-    choices.className = "composer-reaction-solver-binary-choices";
+    choices.className = "composer-reaction-canvas-binary-choices";
     choices.style.setProperty("--binary-choice-columns", String(reducedBinaryPersonalityChoiceIds.length));
     const selectedChoice = getBinaryPersonalitySelection(participant, node);
     const allowedChoiceIds = getAllowedBinaryChoiceIds(participant, node);
@@ -708,7 +683,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const choice = getBinaryPersonalityChoice(choiceId);
       const button = document.createElement("button");
       button.type = "button";
-      button.className = "composer-reaction-solver-binary-choice";
+      button.className = "composer-reaction-canvas-binary-choice";
       button.dataset.choiceId = choice.id;
       button.style.setProperty("--binary-choice-accent", choice.accent);
       button.setAttribute("aria-label", `${node.label}: ${choice.label}`);
@@ -751,8 +726,8 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
       const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
       const row = document.createElement("div");
-      row.className = "composer-reaction-solver-tree-row";
-      row.style.setProperty("--solver-depth", String(depth));
+      row.className = "composer-reaction-canvas-tree-row";
+      row.style.setProperty("--reaction-canvas-depth", String(depth));
       row.classList.add(`is-${participant.side}`);
       if (anchorAvailability.disabled) {
         row.classList.add("is-disabled");
@@ -764,11 +739,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
         row.classList.add("is-collapsed");
       }
       const label = document.createElement("span");
-      label.className = "composer-reaction-solver-tree-label";
+      label.className = "composer-reaction-canvas-tree-label";
       label.textContent = node.label;
       const content = document.createElement("div");
-      content.className = "composer-reaction-solver-tree-content";
-      content.style.setProperty("--solver-depth", String(depth));
+      content.className = "composer-reaction-canvas-tree-content";
+      content.style.setProperty("--reaction-canvas-depth", String(depth));
       const usesInlineAnchor = isReactionStructureInlineAnchorRenderMode(node.renderMode);
       if (usesInlineAnchor) {
         row.classList.add("is-inline-anchor");
@@ -777,7 +752,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const collapsedNote =
         hiddenDescendantCount > 0
           ? Object.assign(document.createElement("span"), {
-              className: "composer-reaction-solver-tree-note",
+              className: "composer-reaction-canvas-tree-note",
               textContent: `${hiddenDescendantCount} hidden`,
             })
           : null;
@@ -821,7 +796,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function renderParticipantCard(participant) {
     const card = document.createElement("article");
-    card.className = `composer-reaction-solver-participant is-${participant.side}`;
+    card.className = `composer-reaction-canvas-participant is-${participant.side}`;
     card.dataset.participantId = participant.id;
     const rootNode = getParticipantRootNode(participant);
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
@@ -858,11 +833,11 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       : createParticipantVisual(participant);
 
     const hierarchy = document.createElement("div");
-    hierarchy.className = `composer-reaction-solver-tree is-${participant.side}`;
+    hierarchy.className = `composer-reaction-canvas-tree is-${participant.side}`;
     renderParticipantTreeRows(hierarchy, participant, participant.hierarchy, 0);
 
     const content = document.createElement("div");
-    content.className = "composer-reaction-solver-participant-content";
+    content.className = "composer-reaction-canvas-participant-content";
     getReactionParticipantCardSectionOrder({
       side: participant.side,
       isReactantComposite,
@@ -891,7 +866,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
 
   function createOperatorParticipantCard(participant) {
     const card = document.createElement("article");
-    card.className = "composer-reaction-solver-participant is-operator is-operator-participant";
+    card.className = "composer-reaction-canvas-participant is-operator is-operator-participant";
     card.dataset.participantId = participant.id;
     card.style.left = getOperatorCardLeft(participant.operatorLaneIndex);
     card.style.top = getOperatorCardTop(participant.operatorSlotIndex);
@@ -905,7 +880,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const ledgerSummary = getOperatorLedgerSummary(participant.id);
     const visual = createParticipantVisual(participant, [
-      "composer-reaction-solver-operator-tile",
+      "composer-reaction-canvas-operator-tile",
     ]);
     if (ledgerSummary.isInvalid) {
       card.classList.add("is-ledger-invalid");
@@ -952,7 +927,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       },
     ].forEach((entry) => {
       const badge = document.createElement("span");
-      badge.className = `composer-reaction-solver-operator-ledger ${entry.className}`;
+      badge.className = `composer-reaction-canvas-operator-ledger ${entry.className}`;
       badge.textContent = `${Number(entry.count ?? 0)} ${entry.label}`;
       badge.title = entry.title;
       visual.appendChild(badge);
@@ -973,13 +948,13 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const inputAnchor = rootNode
         ? createAnchorButton(participant, rootNode, rootNodeKey, {
             anchorRole: "operator-input",
-            extraClassNames: ["composer-reaction-solver-operator-anchor", "is-input"],
+            extraClassNames: ["composer-reaction-canvas-operator-anchor", "is-input"],
           })
         : null;
       const outputAnchor = rootNode
         ? createAnchorButton(participant, rootNode, rootNodeKey, {
             anchorRole: "operator-output",
-            extraClassNames: ["composer-reaction-solver-operator-anchor", "is-output"],
+            extraClassNames: ["composer-reaction-canvas-operator-anchor", "is-output"],
           })
         : null;
       card.append(inputAnchor, visual, outputAnchor);

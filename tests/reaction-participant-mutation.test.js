@@ -131,3 +131,25 @@ test("split helper derives photon children as pro and anti Noether cores", () =>
     ["pro", "anti"]
   );
 });
+
+test("split helper derives pi0 authored form children with preserved quark polarity", () => {
+  const participant = createParticipant("upi0", "Pi0 (u anti-u)", "pro");
+  const children = mutationRuntime.buildSplitParticipantsFromChildStructures(
+    participant,
+    participant.structure.children,
+    ({ templateId, structure, extraFields }) => ({
+      templateId,
+      structure: structure.root ?? structure,
+      polarity: extraFields?.polarity ?? "",
+    })
+  );
+
+  assert.deepEqual(
+    children.map((child) => child.templateId),
+    ["up_quark", "up_quark"]
+  );
+  assert.deepEqual(
+    children.map((child) => child.polarity),
+    ["pro", "anti"]
+  );
+});

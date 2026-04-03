@@ -12,7 +12,31 @@
     "pdgIdentifier": "S008.1/2025",
     "liveCaseId": "charged_pion_to_muon_neutrino"
   },
-  "reactants": [],
+  "reactants": [
+    {
+      "id": "reactant_positive_pion_1",
+      "side": "reactant",
+      "templateId": "pi_plus",
+      "label": "Positive Pion",
+      "family": "meson",
+      "polarity": "",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 11,
+        "positrinoCount": 13,
+        "flags": [
+          "pdg-id:pi+",
+          "pdg-name:pi+"
+        ]
+      },
+      "pdgName": "pi+",
+      "pdgId": "pi+",
+      "tags": [
+        "pdg:species:pi-plus",
+        "pdg-id:pi+"
+      ]
+    }
+  ],
   "products": [
     {
       "id": "product_anti_muon_1",
@@ -70,14 +94,12 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 70,
+    "score": 100,
     "reasons": [
       "pdg-live-source",
-      "contains-unsupported-participants"
+      "all-participants-supported"
     ]
   },
-  "notes": [
-    "unsupported:reactant:pi+:no-v1-solver-template"
-  ],
-  "exportable": false
+  "notes": [],
+  "exportable": true
 }

@@ -493,7 +493,7 @@ The Hyde periodic table became a meaningful part of the project’s reader-facin
 Relevant files:
 
 - [Hyde geometry and periodic structure](../nuclear-atomic/hyde-info.md#5-how-the-hyde-geometry-encodes-periodic-structure)
-- [Hyde working hypotheses](../nuclear-atomic/hyde-info.md#7-aaa-working-hypothesis-collection-draft)
+- [Hyde working hypotheses](../nuclear-atomic/hyde-info.md)
 - [Periodic-table navigation and controls](navigation-and-controls.md#periodic-table-scene)
 
 What matters about the Hyde form is not only its historical novelty. It is a spiral layout that works well for intuitive thinkers because it preserves a near-continuous path through atomic number while making shell progression and family resemblance visually legible in one sweep. In the current writeup, the Hyde geometry is treated as a structural representation that reduces the topological breaks of the detached rectangular table and makes periodic recurrence feel spatially continuous rather than block-fragmented.

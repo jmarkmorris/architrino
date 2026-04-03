@@ -10,7 +10,31 @@
     "fixtureId": "charged_pion_to_muon_neutrino",
     "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json"
   },
-  "reactants": [],
+  "reactants": [
+    {
+      "id": "reactant_positive_pion_1",
+      "side": "reactant",
+      "templateId": "pi_plus",
+      "label": "Positive Pion",
+      "family": "meson",
+      "polarity": "",
+      "isComposite": true,
+      "inventory": {
+        "electrinoCount": 11,
+        "positrinoCount": 13,
+        "flags": [
+          "pdg-id:pi+",
+          "pdg-name:pi+"
+        ]
+      },
+      "pdgName": "pi+",
+      "pdgId": "pi+",
+      "tags": [
+        "pdg:species:pi-plus",
+        "pdg-id:pi+"
+      ]
+    }
+  ],
   "products": [
     {
       "id": "product_anti_muon_1",
@@ -68,15 +92,14 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 65,
+    "score": 95,
     "reasons": [
       "fixture-source",
-      "contains-unsupported-participants"
+      "all-participants-supported"
     ]
   },
   "notes": [
-    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
-    "unsupported:reactant:pi+:no-v1-solver-template"
+    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
   ],
-  "exportable": false
+  "exportable": true
 }

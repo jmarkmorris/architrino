@@ -10,13 +10,13 @@
 - For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
-- Documents in `content/markdown/aaa` must not refer or link to documents in `action-items`. If action-item material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+- Documents in `content/markdown/aaa` must not refer or link to documents in `priorities`. If priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 - For textbook-facing prose, notation, and terminology in `content/markdown/aaa`, follow the Archie guides and glossaries rather than restating glossary-style rules in this file.
 - Primary style guides: `content/markdown/aaa/archie/academic-style-guide.md` and `content/markdown/aaa/archie/mathematics-style-guide.md`.
 - Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
-- For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `action-items`.
+- For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `priorities`.
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow `content/markdown/aaa/archie/software-architecture-and-maintenance.md`.
-- For the live backlog of known cruft and sprawl reduction work, see `action-items/cruft-sprawl/cruft-sprawl.md`.
+- For the live backlog of known cruft and sprawl reduction work, see `priorities/cruft-sprawl/cruft-sprawl.md`.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:

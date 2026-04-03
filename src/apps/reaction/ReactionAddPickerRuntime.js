@@ -149,19 +149,79 @@ export const reactionAddPickerColumns = Object.freeze([
     id: "boson_bridge",
     entries: Object.freeze([
       createPickerEntry({
-        id: "boson_bridge_vacant_top",
-        label: "Vacant",
-        vacant: true,
-      }),
-      createPickerEntry({
-        id: "boson_bridge_vacant",
-        label: "Vacant",
-        vacant: true,
-      }),
-      createPickerEntry({
         id: "photon",
         label: "Photon",
         templateId: "photon",
+      }),
+      createPickerEntry({
+        id: "pi_minus",
+        label: "Negative Pion",
+        templateId: "pi_minus",
+      }),
+      createPickerEntry({
+        id: "pi_plus",
+        label: "Positive Pion",
+        templateId: "pi_plus",
+      }),
+      createPickerEntry({
+        id: "dpi0",
+        label: "Neutral Pion (d anti-d)",
+        templateId: "dpi0",
+      }),
+      createPickerEntry({
+        id: "upi0",
+        label: "Neutral Pion (u anti-u)",
+        templateId: "upi0",
+      }),
+    ]),
+  }),
+  Object.freeze({
+    id: "kaon_bridge",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "k_minus",
+        label: "Negative Kaon",
+        templateId: "k_minus",
+      }),
+      createPickerEntry({
+        id: "k_plus",
+        label: "Positive Kaon",
+        templateId: "k_plus",
+      }),
+      createPickerEntry({
+        id: "sk0",
+        label: "Neutral Kaon (s anti-d)",
+        templateId: "sk0",
+      }),
+      createPickerEntry({
+        id: "dk0",
+        label: "Neutral Kaon (d anti-s)",
+        templateId: "dk0",
+      }),
+    ]),
+  }),
+  Object.freeze({
+    id: "b_meson_bridge",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "b_minus",
+        label: "Negative B Meson",
+        templateId: "b_minus",
+      }),
+      createPickerEntry({
+        id: "b_plus",
+        label: "Positive B Meson",
+        templateId: "b_plus",
+      }),
+      createPickerEntry({
+        id: "bB0",
+        label: "Neutral B Meson (b anti-d)",
+        templateId: "bB0",
+      }),
+      createPickerEntry({
+        id: "dB0",
+        label: "Neutral B Meson (d anti-b)",
+        templateId: "dB0",
       }),
     ]),
   }),

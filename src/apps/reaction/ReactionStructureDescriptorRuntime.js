@@ -263,7 +263,12 @@ function buildFreeArchitrinosDescriptorTree(structureRoot) {
   }];
 }
 
-function getQuarkDescriptorLabel(family = "") {
+function getQuarkDescriptorLabel(node = null) {
+  const normalizedLabel = String(node?.label ?? "").trim();
+  if (normalizedLabel) {
+    return normalizedLabel.replace(/^(Pro|Anti)\s+/i, "");
+  }
+  const family = String(node?.classification?.family ?? "").trim();
   return family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "Up quark" : "Down quark";
 }
 
@@ -304,7 +309,10 @@ function buildCoreAssemblyDescriptorTree(structureRoot, fallbackLabel) {
 function buildCompositeParticleDescriptorTree(structureRoot) {
   const normalizedSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
   const family = String(structureRoot?.classification?.family ?? "").trim();
-  if (family === STRUCTURE_CLASSIFICATION_FAMILIES.BARYON) {
+  if (
+    family === STRUCTURE_CLASSIFICATION_FAMILIES.BARYON ||
+    family === STRUCTURE_CLASSIFICATION_FAMILIES.MESON
+  ) {
     return [{
       id: String(structureRoot?.id ?? "root"),
       label: String(structureRoot?.label ?? structureRoot?.species ?? "Composite").trim() || "Composite",
@@ -312,12 +320,13 @@ function buildCompositeParticleDescriptorTree(structureRoot) {
       children: getStructureNodeChildren(structureRoot).map((childNode, index) => {
         const childFamily = String(childNode?.classification?.family ?? "").trim();
         const childBinaryPresence = getNoetherCoreSlotBinaryPresence(getPrimaryNoetherCore(childNode));
+        const childPolarity = String(getStructureTrait(childNode, "polarity", "")).trim().toLowerCase();
         return {
           id: childNode.id || `quark_${index + 1}`,
-          label: getQuarkDescriptorLabel(childFamily),
+          label: getQuarkDescriptorLabel(childNode),
           templateId:
             childFamily === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK ? "up_quark" : "down_quark",
-          polarity: "pro",
+          polarity: childPolarity === "anti" ? "anti" : "pro",
           renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
           layoutRole: "composite-row",
           children: STRUCTURE_SLOT_ORDER.map((slotName) =>
