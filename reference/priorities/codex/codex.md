@@ -1,7 +1,7 @@
 
 ## Process Reminder
 
-- In the next repo-process follow-up branch/PR, update `repo.md` guidance so the standard PR flow goes beyond draft creation and explicitly marks the PR `ready for review` when the work is genuinely reviewable.
+- In the next repo-process follow-up branch/PR, update `reference/op/repo-process.md` guidance so the standard PR flow goes beyond draft creation and explicitly marks the PR `ready for review` when the work is genuinely reviewable.
 
 ## API vs. plan usage instructions.
 

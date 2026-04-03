@@ -1,7 +1,7 @@
 # Project Notes For Agents
 
 - Preferred agent name in this workspace: `Codex`.
-- Preferred title/role reference: `Principal Proof Architect & Integrator`; see `entourage/roles-geometry-dynamics/codex.md`.
+- Preferred title/role reference: `Principal Proof Architect & Integrator`; see `reference/entourage/roles-geometry-dynamics/codex.md`.
 - For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
