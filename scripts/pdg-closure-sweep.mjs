@@ -237,7 +237,7 @@ function summarizeOutcomeCounts(results) {
   return counts;
 }
 
-function extractUnsupportedParticleNames(notes) {
+function extractUnsupportedParticipantMentions(notes) {
   if (!Array.isArray(notes)) {
     return [];
   }
@@ -251,8 +251,12 @@ function extractUnsupportedParticleNames(notes) {
       if ((side !== "reactant" && side !== "product") || !particle || particle === "unknown") {
         return [];
       }
-      return [particle];
+      return [{ side, particle }];
     });
+}
+
+function extractUnsupportedParticleNames(notes) {
+  return extractUnsupportedParticipantMentions(notes).map((entry) => entry.particle);
 }
 
 function accumulateUnsupportedParticleCounts(counts, particleNames) {
@@ -271,6 +275,96 @@ function buildTopUnsupportedParticles(unsupportedParticleCounts, limit = 5) {
     })
     .slice(0, limit)
     .map(([particle, count]) => ({ particle, count }));
+}
+
+function getParticipantInventoryFlags(participant) {
+  return Array.isArray(participant?.inventory?.flags) ? participant.inventory.flags : [];
+}
+
+function getFlagValue(flags, prefix) {
+  const match = flags.find((flag) => typeof flag === "string" && flag.startsWith(prefix));
+  return match ? match.slice(prefix.length) : "";
+}
+
+function compactTokenFromProposalParticipant(participant) {
+  const flags = getParticipantInventoryFlags(participant);
+  const pdgName = String(participant?.pdgName || getFlagValue(flags, "pdg-name:") || "").trim();
+  switch (pdgName) {
+    case "p":
+      return "P";
+    case "anti-p":
+      return "aP";
+    case "n":
+      return "N";
+    case "anti-n":
+      return "aN";
+    case "e-":
+      return "e";
+    case "e+":
+      return "ae";
+    case "mu-":
+      return "e2";
+    case "mu+":
+      return "ae2";
+    case "tau-":
+      return "e3";
+    case "tau+":
+      return "ae3";
+    case "nu_e":
+      return "v";
+    case "anti-nu_e":
+      return "av";
+    case "nu_mu":
+      return "v2";
+    case "anti-nu_mu":
+      return "av2";
+    case "nu_tau":
+      return "v3";
+    case "anti-nu_tau":
+      return "av3";
+    case "gamma":
+      return "2h";
+    case "W+":
+    case "W-":
+    case "Z":
+      return pdgName;
+    default:
+      break;
+  }
+
+  const generation = String(getFlagValue(flags, "generation:") || "").trim();
+  const family = String(participant?.family || "").trim();
+  const polarity = String(participant?.polarity || "").trim();
+  const templateId = String(participant?.templateId || "").trim();
+
+  if (family === "lepton" && templateId === "electron") {
+    const generationSuffix = generation && generation !== "1" ? generation : "";
+    return `${polarity === "anti" ? "ae" : "e"}${generationSuffix}`;
+  }
+  if (family === "lepton" && templateId === "neutrino") {
+    const generationSuffix = generation && generation !== "1" ? generation : "";
+    return `${polarity === "anti" ? "av" : "v"}${generationSuffix}`;
+  }
+  if (templateId === "proton") {
+    return polarity === "anti" ? "aP" : "P";
+  }
+  if (templateId === "neutron") {
+    return polarity === "anti" ? "aN" : "N";
+  }
+
+  return String(participant?.templateId || participant?.label || participant?.id || "?");
+}
+
+function buildCompactSideNotation(proposal, sideKey) {
+  const singularSide = sideKey === "reactants" ? "reactant" : "product";
+  const participantTokens = Array.isArray(proposal?.[sideKey])
+    ? proposal[sideKey].map((participant) => compactTokenFromProposalParticipant(participant))
+    : [];
+  const unsupportedTokens = extractUnsupportedParticipantMentions(proposal?.notes)
+    .filter((entry) => entry.side === singularSide)
+    .map((entry) => entry.particle);
+  const tokens = [...participantTokens, ...unsupportedTokens].filter(Boolean);
+  return tokens.length > 0 ? tokens.join(".") : "-";
 }
 
 function loadCursor(cursorPath) {
@@ -334,12 +428,22 @@ function buildReport(summary) {
   }
 
   lines.push("", "Per case:");
+  lines.push("batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier");
 
   for (const entry of summary.cases) {
-    const batchPrefix = Number.isInteger(entry.batchId) ? `${entry.batchId}\t` : "";
-    const pdgLabel = entry.pdgIdentifier ? `\tpdg=${entry.pdgIdentifier}` : "";
+    const batchLabel = Number.isInteger(entry.batchId) ? String(entry.batchId) : "";
     lines.push(
-      `${batchPrefix}${entry.caseId}\t${entry.status}\texact=${entry.exact}\tunresolved=${entry.unresolvedTargetCount}\tunsupported=${entry.unsupportedParticles.join(",")}${pdgLabel}`
+      [
+        batchLabel,
+        entry.caseId,
+        entry.status,
+        `exact=${entry.exact}`,
+        `unresolved=${entry.unresolvedTargetCount}`,
+        entry.reactantsCompact || "-",
+        entry.productsCompact || "-",
+        entry.unsupportedParticles.join(","),
+        entry.pdgIdentifier || "",
+      ].join("\t")
     );
   }
   return `${lines.join("\n")}\n`;
@@ -461,6 +565,8 @@ function main() {
 
     writeJson(proposalPath, proposal);
     const unsupportedParticles = extractUnsupportedParticleNames(proposal?.notes);
+    const reactantsCompact = buildCompactSideNotation(proposal, "reactants");
+    const productsCompact = buildCompactSideNotation(proposal, "products");
     accumulateUnsupportedParticleCounts(unsupportedParticleCounts, unsupportedParticles);
 
     if (proposal?.exportable !== true) {
@@ -472,6 +578,8 @@ function main() {
         status: "unsupported-input",
         exact: false,
         unresolvedTargetCount: null,
+        reactantsCompact,
+        productsCompact,
         unsupportedParticles,
         proposalPath,
         requestPath: null,
@@ -497,6 +605,8 @@ function main() {
           status: "request-error",
           exact: false,
           unresolvedTargetCount: null,
+          reactantsCompact,
+          productsCompact,
           unsupportedParticles,
           proposalPath,
           requestPath: null,
@@ -516,6 +626,8 @@ function main() {
         status: "request-error",
         exact: false,
         unresolvedTargetCount: null,
+        reactantsCompact,
+        productsCompact,
         unsupportedParticles,
         proposalPath,
         requestPath: null,
@@ -542,6 +654,8 @@ function main() {
         status: "solve-error",
         exact: false,
         unresolvedTargetCount: null,
+        reactantsCompact,
+        productsCompact,
         unsupportedParticles,
         proposalPath,
         requestPath,
@@ -564,6 +678,8 @@ function main() {
       unresolvedTargetCount: Number.isInteger(result?.summary?.unresolvedTargetCount)
         ? result.summary.unresolvedTargetCount
         : null,
+      reactantsCompact,
+      productsCompact,
       unsupportedParticles,
       proposalPath,
       requestPath,

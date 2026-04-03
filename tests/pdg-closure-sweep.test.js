@@ -33,10 +33,17 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
   assert.equal(summary.outcomeCounts["unsupported-input"], 1);
   assert.deepEqual(summary.topUnsupportedParticles, [{ particle: "pi+", count: 1 }]);
   assert.equal(summary.cases.length, 3);
+  assert.equal(summary.cases[0].reactantsCompact, "N");
+  assert.equal(summary.cases[0].productsCompact, "P.e.av");
+  assert.equal(summary.cases[1].reactantsCompact, "e2");
+  assert.equal(summary.cases[1].productsCompact, "e.av.v2");
+  assert.equal(summary.cases[2].reactantsCompact, "pi+");
+  assert.equal(summary.cases[2].productsCompact, "ae2.v2");
   assert.match(report, /Top unsupported particles:\npi\+\t1/);
-  assert.match(report, /free_neutron_beta_decay\s+exact/);
-  assert.match(report, /muon_decay\s+exact/);
-  assert.match(report, /charged_pion_to_muon_neutrino\s+unsupported-input/);
+  assert.match(report, /batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
+  assert.match(report, /\tfree_neutron_beta_decay\texact\texact=true\tunresolved=0\tN\tP\.e\.av\t\t/);
+  assert.match(report, /\tmuon_decay\texact\texact=true\tunresolved=0\te2\te\.av\.v2\t\t/);
+  assert.match(report, /\tcharged_pion_to_muon_neutrino\tunsupported-input\texact=false\tunresolved=null\tpi\+\tae2\.v2\tpi\+\t/);
   assert.equal(fs.existsSync(path.join(outDir, "run.log")), true);
   assert.equal(
     fs.existsSync(
@@ -134,8 +141,12 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
 
   assert.match(stdoutOne, /startBatchId: 1/);
   assert.match(stdoutOne, /endBatchId: 1/);
+  assert.match(stdoutOne, /batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier/);
+  assert.match(stdoutOne, /1\tfree_neutron_beta_decay\texact\texact=true\tunresolved=0\tN\tP\.e\.av\t\tS017\.1\/2025/);
   assert.equal(summaryOne.reactionsTested, 1);
   assert.equal(summaryOne.exactClosureCount, 1);
+  assert.equal(summaryOne.cases[0].reactantsCompact, "N");
+  assert.equal(summaryOne.cases[0].productsCompact, "P.e.av");
   assert.equal(cursorAfterOne.nextBatchId, 2);
   assert.equal(cursorAfterOne.lastProcessedBatchId, 1);
 
@@ -159,9 +170,12 @@ test("pdg closure sweep can process a frozen manifest in numbered batches and ad
 
   assert.match(stdoutTwo, /startBatchId: 2/);
   assert.match(stdoutTwo, /endBatchId: 2/);
+  assert.match(stdoutTwo, /2\tmuon_decay\texact\texact=true\tunresolved=0\te2\te\.av\.v2\t\tS004\.1\/2025/);
   assert.equal(summaryTwo.reactionsTested, 1);
   assert.equal(summaryTwo.exactClosureCount, 1);
   assert.equal(summaryTwo.cases[0].batchId, 2);
+  assert.equal(summaryTwo.cases[0].reactantsCompact, "e2");
+  assert.equal(summaryTwo.cases[0].productsCompact, "e.av.v2");
   assert.equal(cursorAfterTwo.nextBatchId, 3);
   assert.equal(cursorAfterTwo.lastProcessedBatchId, 2);
 });
