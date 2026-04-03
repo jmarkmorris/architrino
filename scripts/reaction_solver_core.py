@@ -835,7 +835,7 @@ def build_generated_free_architrino_pool(
     )
 
 
-def build_generated_higgs_cluster(
+def build_generated_noether_quad(
     participant_id, *, source_participant_id="", source_step_id=""
 ):
     root_id = f"{normalize_text(participant_id)}/root"
@@ -863,8 +863,8 @@ def build_generated_higgs_cluster(
         )
     return build_generated_participant(
         participant_id=participant_id,
-        template_id="higgs_cluster",
-        label="Higgs cluster",
+        template_id="noether_quad",
+        label="Noether Quad",
         family="boson",
         inventory={"electrinoCount": 12, "positrinoCount": 12},
         side="center",
@@ -873,7 +873,7 @@ def build_generated_higgs_cluster(
         source_step_id=source_step_id,
         root_node_id=root_id,
         child_nodes=child_nodes,
-        tags=["solve-generated", "higgs-cluster-supplement"],
+        tags=["solve-generated", "noether-quad-supplement"],
     )
 
 
@@ -1077,25 +1077,25 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
 
     deficit_pro = max(0, needed_core_counts["pro"] - len(source_core_refs["pro"]))
     deficit_anti = max(0, needed_core_counts["anti"] - len(source_core_refs["anti"]))
-    higgs_cluster_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
-    higgs_core_refs = {"pro": [], "anti": []}
-    generated_higgs_ids = []
-    for cluster_index in range(1, higgs_cluster_count + 1):
-        higgs_cluster = build_generated_higgs_cluster(
-            participant_id=f"center_{variant_prefix}_higgs_{cluster_index}",
+    noether_quad_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
+    noether_quad_core_refs = {"pro": [], "anti": []}
+    generated_noether_quad_ids = []
+    for cluster_index in range(1, noether_quad_count + 1):
+        noether_quad = build_generated_noether_quad(
+            participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
             source_participant_id=source_id,
             source_step_id=ledger_step_id,
         )
-        generated_participants.append(higgs_cluster)
-        generated_higgs_ids.append(normalize_text(higgs_cluster.get("id")))
-        for node in get_child_nodes(higgs_cluster):
+        generated_participants.append(noether_quad)
+        generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
+        for node in get_child_nodes(noether_quad):
             node_polarity = normalize_text(node.get("polarity")).lower()
             if node_polarity in {"pro", "anti"}:
-                higgs_core_refs[node_polarity].append(
+                noether_quad_core_refs[node_polarity].append(
                     {
-                        "participantId": normalize_text(higgs_cluster.get("id")),
+                        "participantId": normalize_text(noether_quad.get("id")),
                         "anchorId": normalize_text(node.get("id")),
-                        "sourceKind": "higgs-cluster",
+                        "sourceKind": "noether-quad",
                     }
                 )
 
@@ -1120,12 +1120,12 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
             "consumedParticipantIds": [
                 normalize_text(participant.get("id")) for participant in quark_participants
             ],
-            "producedParticipantIds": generated_core_ids + [free_pool_id] + generated_higgs_ids,
+            "producedParticipantIds": generated_core_ids + [free_pool_id] + generated_noether_quad_ids,
             "resolvedTargetIds": [],
             "mappingIds": [],
             "operatorIds": [],
             "diagnosticLabels": ["shared-free-architrino-pool"]
-            + (["higgs-cluster-supplement"] if generated_higgs_ids else []),
+            + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
         },
     ]
     mappings = []
@@ -1135,9 +1135,9 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         "pro": list(source_core_refs["pro"]),
         "anti": list(source_core_refs["anti"]),
     }
-    available_higgs_refs = {
-        "pro": list(higgs_core_refs["pro"]),
-        "anti": list(higgs_core_refs["anti"]),
+    available_noether_quad_refs = {
+        "pro": list(noether_quad_core_refs["pro"]),
+        "anti": list(noether_quad_core_refs["anti"]),
     }
 
     for index, requirement in enumerate(product_requirements, start=1):
@@ -1148,8 +1148,8 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         core_ref = None
         if available_core_refs[product_polarity]:
             core_ref = available_core_refs[product_polarity].pop(0)
-        elif available_higgs_refs[product_polarity]:
-            core_ref = available_higgs_refs[product_polarity].pop(0)
+        elif available_noether_quad_refs[product_polarity]:
+            core_ref = available_noether_quad_refs[product_polarity].pop(0)
         if core_ref is None:
             return None
 
@@ -1253,8 +1253,8 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 "operatorIds": [operator_id],
                 "diagnosticLabels": ["shared-free-architrino-pool", "associate-lepton-from-core-pool"]
                 + (
-                    ["higgs-cluster-supplement"]
-                    if core_ref["sourceKind"] == "higgs-cluster"
+                    ["noether-quad-supplement"]
+                    if core_ref["sourceKind"] == "noether-quad"
                     else ["meson-core-provenance"]
                 ),
             }

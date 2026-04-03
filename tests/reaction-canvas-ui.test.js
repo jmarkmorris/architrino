@@ -47,8 +47,32 @@ test("reaction canvas operator layout assigns dissociate to the inner-left group
 
 test("reaction canvas center assembly lane exposes Noether core, weak bosons, and Free Architrinos", () => {
   assert.deepEqual(
-    REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => entry.templateId),
-    ["noether_core", "w_minus_boson", "w_plus_boson", "z_boson", "free_architrinos"]
+    REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => ({
+      templateId: entry.templateId,
+      label: entry.label,
+    })),
+    [
+      { templateId: "noether_core", label: "Noether Core" },
+      { templateId: "w_minus_boson", label: "Negative W Boson" },
+      { templateId: "z_boson", label: "Neutral Z Boson" },
+      { templateId: "w_plus_boson", label: "Positive W Boson" },
+      { templateId: "free_architrinos", label: "Free Architrinos" },
+    ]
+  );
+});
+
+test("center assembly picker renders as a single tile row matching the main picker style", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /function createCenterAssemblyPickerCell\(entry = null\) \{[\s\S]*?templateId: String\(entry\.templateId\),[\s\S]*?disabled: false,[\s\S]*?\}/s
+  );
+  assert.match(
+    runtimeSource,
+    /state\.menuMode === "center-assembly-picker"[\s\S]*?renderMenuTitle\("Add Assembly"\);[\s\S]*?REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES\.forEach\(\(entry\) => \{[\s\S]*?tileButton\.className = "composer-reaction-canvas-picker-tile";[\s\S]*?tileButton\.style\.gridColumn = String\(REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES\.indexOf\(entry\) \+ 1\);[\s\S]*?tileButton\.style\.gridRow = "2";[\s\S]*?tileButton\.setAttribute\("aria-label", `Add center assembly \$\{pickerCell\.label\}`\);[\s\S]*?createPickerTilePreview\(pickerCell\)[\s\S]*?addCenterAssemblyParticipant\(entry\.templateId\)/s
   );
 });
 
@@ -59,7 +83,15 @@ test("reaction canvas template-grid picker places b mesons on a new row below ka
   );
   assert.match(
     runtimeSource,
-    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "sk0", "dk0"\],\s*\["", "b_minus", "b_plus", "bB0", "dB0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
+    /\["uni_binary", "tau_neutrino", "tau", "bottom", "top"\],\s*\["bi_binary", "muon_neutrino", "muon", "strange", "charm"\],\s*\["tri_binary", "neutrino", "electron", "down", "up"\],\s*\["noether_pair", "upi0", "dpi0", "pi_minus", "pi_plus"\],\s*\["noether_quad", "dk0", "sk0", "k_minus", "k_plus"\],\s*\["neutron", "dB0", "bB0", "b_minus", "b_plus"\],\s*\["photon", "proton", "side_disabled_z_boson", "side_disabled_w_minus_boson", "side_disabled_w_plus_boson"\]/
+  );
+  assert.match(
+    runtimeSource,
+    /SIDE_DISABLED_TEMPLATE_GRID_PICKER_CELLS = Object\.freeze\(\[[\s\S]*?label: "Neutral Z Boson"[\s\S]*?templateId: "z_boson"[\s\S]*?disabled: true[\s\S]*?label: "Negative W Boson"[\s\S]*?templateId: "w_minus_boson"[\s\S]*?disabled: true[\s\S]*?label: "Positive W Boson"[\s\S]*?templateId: "w_plus_boson"[\s\S]*?disabled: true/s
+  );
+  assert.match(
+    runtimeSource,
+    /if \(pickerCell\.disabled\) \{[\s\S]*?tileButton\.disabled = true;[\s\S]*?tileButton\.setAttribute\("aria-disabled", "true"\);[\s\S]*?tileButton\.style\.opacity = "0\.5";/s
   );
 });
 
@@ -320,7 +352,7 @@ test("composite right-click dissociation marks the existing composite instead of
   );
   assert.match(
     runtimeSource,
-    /function splitHiggsParticipantById\(participantId\)/
+    /function splitNoetherAssemblyParticipantById\(participantId\)/
   );
   assert.match(
     runtimeSource,
@@ -329,10 +361,6 @@ test("composite right-click dissociation marks the existing composite instead of
   assert.doesNotMatch(
     runtimeSource,
     /state\.participants\.splice\(participantIndex,\s*1,\s*\.\.\.replacementParticipants\);/
-  );
-  assert.match(
-    runtimeSource,
-    /Higgs cluster marked dissociated\./
   );
   assert.match(
     runtimeSource,
@@ -548,7 +576,7 @@ test("participant menu exposes dissociate only for reactant composites", () => {
   );
   assert.match(
     runtimeSource,
-    /participant\.side === "reactant"[\s\S]*?participant\.templateId === "higgs_cluster"[\s\S]*?participant\.templateId === "photon"[\s\S]*?participant\.templateId === "neutron"[\s\S]*?participant\.templateId === "proton"/
+    /participant\.side === "reactant"[\s\S]*?isNoetherAssemblyTemplateId\(participant\.templateId\)[\s\S]*?participant\.templateId === "photon"[\s\S]*?participant\.templateId === "neutron"[\s\S]*?participant\.templateId === "proton"/
   );
 });
 

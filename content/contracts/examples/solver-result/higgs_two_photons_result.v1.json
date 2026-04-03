@@ -18,8 +18,8 @@
       "id": "reactant_higgs",
       "origin": "authored-reactant",
       "side": "reactant",
-      "templateId": "higgs_cluster",
-      "label": "Higgs Cluster",
+      "templateId": "noether_quad",
+      "label": "Noether Quad",
       "family": "boson",
       "isComposite": true,
       "inventory": {
@@ -30,8 +30,8 @@
       "nodes": [
         {
           "id": "reactant_higgs_structure",
-          "templateId": "higgs_cluster",
-          "label": "Higgs Cluster",
+          "templateId": "noether_quad",
+          "label": "Noether Quad",
           "family": "boson",
           "isComposite": true,
           "inventory": {

@@ -37,15 +37,21 @@ test("reaction add picker prefixes pro labels for reduced binary cores and baryo
   const pickerCells = getReactionAddPickerCells();
   const uniBinaryCell = pickerCells.find((cell) => cell.id === "uni_binary");
   const biBinaryCell = pickerCells.find((cell) => cell.id === "bi_binary");
+  const noetherPairCell = pickerCells.find((cell) => cell.id === "noether_pair");
+  const noetherQuadCell = pickerCells.find((cell) => cell.id === "noether_quad");
   const protonCell = pickerCells.find((cell) => cell.id === "proton");
   const neutronCell = pickerCells.find((cell) => cell.id === "neutron");
 
   assert.ok(uniBinaryCell);
   assert.ok(biBinaryCell);
+  assert.ok(noetherPairCell);
+  assert.ok(noetherQuadCell);
   assert.ok(protonCell);
   assert.ok(neutronCell);
   assert.equal(uniBinaryCell.label, "Pro Uni Binary");
   assert.equal(biBinaryCell.label, "Pro Bi Binary");
+  assert.equal(noetherPairCell.label, "Noether Pair");
+  assert.equal(noetherQuadCell.label, "Noether Quad");
   assert.equal(protonCell.label, "Pro Proton");
   assert.equal(neutronCell.label, "Pro Neutron");
 });

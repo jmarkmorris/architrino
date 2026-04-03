@@ -75,6 +75,11 @@ import {
   STRUCTURE_CLASSIFICATION_FAMILIES,
   STRUCTURE_KINDS,
 } from "../../domain/structure/StructureSchema.js";
+import {
+  getStructureAssemblyDisplayLabel,
+  isNoetherAssemblyTemplateId,
+  normalizeStructureAssemblyTemplateId,
+} from "../../domain/structure/StructureAssemblyCatalog.js";
 import { findStructureNodeById } from "../../domain/structure/StructureTraversal.js";
 import {
   applyStructurePolarity,
@@ -83,7 +88,8 @@ import { validateStructureTree } from "../../domain/structure/StructureValidatio
 
 const canvasTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
-  higgs_cluster: { shortLabel: "HC", accent: "#a259ff" },
+  noether_pair: { shortLabel: "NP", accent: "#a259ff" },
+  noether_quad: { shortLabel: "NQ", accent: "#a259ff" },
   photon: { shortLabel: "Ph", accent: "#a259ff" },
   neutron: { shortLabel: "N", accent: "#a259ff" },
   proton: { shortLabel: "P", accent: "#ff5a4a" },
@@ -124,15 +130,15 @@ export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
   }),
   Object.freeze({
     templateId: "w_minus_boson",
-    label: "W- Boson",
-  }),
-  Object.freeze({
-    templateId: "w_plus_boson",
-    label: "W+ Boson",
+    label: "Negative W Boson",
   }),
   Object.freeze({
     templateId: "z_boson",
-    label: "Z Boson",
+    label: "Neutral Z Boson",
+  }),
+  Object.freeze({
+    templateId: "w_plus_boson",
+    label: "Positive W Boson",
   }),
   Object.freeze({
     templateId: "free_architrinos",
@@ -169,6 +175,41 @@ export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
 const operatorTemplateIds = new Set(
   operatorEntries.map((entry) => entry.templateId)
 );
+const SIDE_DISABLED_TEMPLATE_GRID_PICKER_CELLS = Object.freeze([
+  Object.freeze({
+    id: "side_disabled_z_boson",
+    label: "Neutral Z Boson",
+    templateId: "z_boson",
+    vacant: false,
+    disabled: true,
+    columnId: "side_disabled_bosons",
+    columnIndex: -1,
+    rowIndex: -1,
+    structureBuildOptions: null,
+  }),
+  Object.freeze({
+    id: "side_disabled_w_minus_boson",
+    label: "Negative W Boson",
+    templateId: "w_minus_boson",
+    vacant: false,
+    disabled: true,
+    columnId: "side_disabled_bosons",
+    columnIndex: -1,
+    rowIndex: -1,
+    structureBuildOptions: null,
+  }),
+  Object.freeze({
+    id: "side_disabled_w_plus_boson",
+    label: "Positive W Boson",
+    templateId: "w_plus_boson",
+    vacant: false,
+    disabled: true,
+    columnId: "side_disabled_bosons",
+    columnIndex: -1,
+    rowIndex: -1,
+    structureBuildOptions: null,
+  }),
+]);
 
 const reducedBinaryPersonalityChoiceIds = Object.freeze(["ee", "pe", "pp"]);
 const binarySlotRankByCode = Object.freeze({
@@ -477,7 +518,10 @@ function getParticipantCompositeModeLabel(participant) {
 }
 
 function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
-  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
+  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
+  if (isNoetherAssemblyTemplateId(normalizedTemplateId)) {
+    return getStructureAssemblyDisplayLabel(normalizedTemplateId);
+  }
   if (normalizedTemplateId === "noether_core") {
     return "Pro Noether Core";
   }
@@ -491,16 +535,16 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
     return "Pro Electron";
   }
   if (normalizedTemplateId === "w_minus_boson") {
-    return "W- Boson";
+    return "Negative W Boson";
   }
   if (normalizedTemplateId === "w_plus_boson") {
-    return "W+ Boson";
+    return "Positive W Boson";
   }
   if (normalizedTemplateId === "neutrino") {
     return "Pro Neutrino";
   }
   if (normalizedTemplateId === "z_boson") {
-    return "Z Boson";
+    return "Neutral Z Boson";
   }
   if (normalizedTemplateId === "free_architrinos") {
     return "Free Architrinos";
@@ -519,9 +563,6 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   }
   if (normalizedTemplateId === "neutron") {
     return "Pro Neutron";
-  }
-  if (normalizedTemplateId === "higgs_cluster") {
-    return "Higgs cluster";
   }
   if (normalizedTemplateId === "pi_plus") {
     return "Positive Pion";
@@ -564,16 +605,17 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
 
 function getTemplateGridPickerLayout(pickerCells = []) {
   const cellById = new Map(
-    (Array.isArray(pickerCells) ? pickerCells : []).map((cell) => [String(cell?.id ?? ""), cell])
+    [...(Array.isArray(pickerCells) ? pickerCells : []), ...SIDE_DISABLED_TEMPLATE_GRID_PICKER_CELLS]
+      .map((cell) => [String(cell?.id ?? ""), cell])
   );
   return [
-    ["uni_binary", "bottom", "top", "tau", "tau_neutrino"],
-    ["bi_binary", "strange", "charm", "muon", "muon_neutrino"],
-    ["tri_binary", "down", "up", "electron", "neutrino"],
-    ["photon", "pi_minus", "pi_plus", "dpi0", "upi0"],
-    ["", "k_minus", "k_plus", "sk0", "dk0"],
-    ["", "b_minus", "b_plus", "bB0", "dB0"],
-    ["higgs", "", "proton", "", "neutron"],
+    ["uni_binary", "tau_neutrino", "tau", "bottom", "top"],
+    ["bi_binary", "muon_neutrino", "muon", "strange", "charm"],
+    ["tri_binary", "neutrino", "electron", "down", "up"],
+    ["noether_pair", "upi0", "dpi0", "pi_minus", "pi_plus"],
+    ["noether_quad", "dk0", "sk0", "k_minus", "k_plus"],
+    ["neutron", "dB0", "bB0", "b_minus", "b_plus"],
+    ["photon", "proton", "side_disabled_z_boson", "side_disabled_w_minus_boson", "side_disabled_w_plus_boson"],
   ].flatMap((row, rowIndex) =>
     row.map((cellId, columnIndex) => ({
       rowIndex,
@@ -1088,7 +1130,9 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     structureFactory = null,
     extraFields = {},
   }) {
-    const resolvedTemplateId = templateId || inferTemplateIdFromStructure(structure?.root ?? structure);
+    const resolvedTemplateId = normalizeStructureAssemblyTemplateId(
+      templateId || inferTemplateIdFromStructure(structure?.root ?? structure)
+    );
     const resolvedPolarity = supportsParticipantPolarity(resolvedTemplateId)
       ? normalizeParticipantPolarity(
           extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
@@ -1705,13 +1749,14 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     return true;
   }
 
-  function splitHiggsParticipantById(participantId) {
+  function splitNoetherAssemblyParticipantById(participantId) {
     const participantIndex = state.participants.findIndex(
       (entry) => String(entry?.id ?? "") === participantId
     );
     const participant =
       participantIndex >= 0 ? state.participants[participantIndex] ?? null : null;
-    if (!participant || participant.templateId !== "higgs_cluster") {
+    const assemblyTemplateId = normalizeStructureAssemblyTemplateId(participant?.templateId);
+    if (!participant || !isNoetherAssemblyTemplateId(assemblyTemplateId)) {
       return false;
     }
     if (participant.side !== "reactant") {
@@ -1721,7 +1766,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
 
     if (participant.isDissociatedComposite) {
       setStatus(
-        `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster is already marked dissociated.`
+        `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} is already marked dissociated.`
       );
       return false;
     }
@@ -1730,7 +1775,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     closeMenu();
     render();
     setStatus(
-      `${participant.side === "reactant" ? "Reactant" : "Product"} Higgs cluster marked dissociated.`
+      `${participant.side === "reactant" ? "Reactant" : "Product"} ${participant.label} marked dissociated.`
     );
     return true;
   }
@@ -1744,8 +1789,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       setStatus("Only reactant composites can be marked dissociated.");
       return false;
     }
-    if (participant.templateId === "higgs_cluster") {
-      return splitHiggsParticipantById(participantId);
+    if (isNoetherAssemblyTemplateId(participant.templateId)) {
+      return splitNoetherAssemblyParticipantById(participantId);
     }
     if (
       participant.templateId !== "neutron" &&
@@ -2409,6 +2454,19 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     });
   }
 
+  function createCenterAssemblyPickerCell(entry = null) {
+    if (!entry?.templateId) {
+      return null;
+    }
+    return {
+      id: String(entry.templateId),
+      label: String(entry.label ?? ""),
+      templateId: String(entry.templateId),
+      vacant: false,
+      disabled: false,
+    };
+  }
+
   function createColumnAddButton(side, options = {}) {
     const operatorLaneIndex = normalizeOperatorLaneIndex(options.operatorLaneIndex);
     const operatorLayerEntry =
@@ -2946,7 +3004,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   }
 
   function addParticipantFromPickerCell(side, pickerCell = null) {
-    if (!pickerCell?.templateId || pickerCell.vacant) {
+    if (!pickerCell?.templateId || pickerCell.vacant || pickerCell.disabled) {
       return;
     }
     const participant = createParticipantRecord({
@@ -3048,13 +3106,19 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     } else if (state.menuMode === "center-assembly-picker") {
       renderMenuTitle("Add Assembly");
       REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.forEach((entry) => {
-        renderMenuButton(entry.label, {
-          onClick: () => addCenterAssemblyParticipant(entry.templateId),
-        });
-      });
-      renderMenuButton("Close", {
-        kind: "secondary",
-        onClick: () => closeMenu(),
+        const pickerCell = createCenterAssemblyPickerCell(entry);
+        if (!pickerCell) {
+          return;
+        }
+        const tileButton = document.createElement("button");
+        tileButton.type = "button";
+        tileButton.className = "composer-reaction-canvas-picker-tile";
+        tileButton.style.gridColumn = String(REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.indexOf(entry) + 1);
+        tileButton.style.gridRow = "2";
+        tileButton.setAttribute("aria-label", `Add center assembly ${pickerCell.label}`);
+        tileButton.appendChild(createPickerTilePreview(pickerCell));
+        tileButton.addEventListener("click", () => addCenterAssemblyParticipant(entry.templateId));
+        menu.appendChild(tileButton);
       });
     } else if (state.menuMode === "template-grid-picker") {
       renderMenuTitle(state.menuSide === "product" ? "Add Product" : "Add Reactant");
@@ -3076,14 +3140,22 @@ export function createReactionCanvasUiRuntime(deps = {}) {
         tileButton.className = "composer-reaction-canvas-picker-tile";
         tileButton.style.gridColumn = gridColumn;
         tileButton.style.gridRow = gridRow;
+        if (pickerCell.disabled) {
+          tileButton.disabled = true;
+          tileButton.setAttribute("aria-disabled", "true");
+          tileButton.style.opacity = "0.5";
+          tileButton.style.cursor = "not-allowed";
+        }
         tileButton.setAttribute(
           "aria-label",
           `${state.menuSide === "product" ? "Add product" : "Add reactant"} ${pickerCell.label}`
         );
         tileButton.appendChild(createPickerTilePreview(pickerCell));
-        tileButton.addEventListener("click", () =>
-          addParticipantFromPickerCell(state.menuSide, pickerCell)
-        );
+        if (!pickerCell.disabled) {
+          tileButton.addEventListener("click", () =>
+            addParticipantFromPickerCell(state.menuSide, pickerCell)
+          );
+        }
         menu.appendChild(tileButton);
       });
     } else if (state.menuMode === "participant-actions") {
@@ -3103,7 +3175,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       if (
         participant.side === "reactant" &&
         (
-          participant.templateId === "higgs_cluster" ||
+          isNoetherAssemblyTemplateId(participant.templateId) ||
           participant.templateId === "photon" ||
           participant.templateId === "neutron" ||
           participant.templateId === "proton" ||

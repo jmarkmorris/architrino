@@ -34,7 +34,7 @@ test("solve layout places inserted operators near the midpoint of their connecte
   const reactantHiggs = createEntry({
     participantId: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     surfaceRowIndex: 0,
     rootId: "reactant_higgs_root",
     childIds: [
@@ -146,7 +146,7 @@ test("solve layout anchors associate operators on their product-side row centers
   const reactantHiggs = createEntry({
     participantId: "reactant_higgs",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     surfaceRowIndex: 0,
     rootId: "reactant_higgs_root",
     childIds: [
@@ -258,7 +258,7 @@ test("solve layout preserves source-side vertical order when multiple associates
   const reactantMid = createEntry({
     participantId: "reactant_mid",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     surfaceRowIndex: 6,
     rootId: "reactant_mid_root",
     childIds: ["reactant_mid_pro", "reactant_mid_anti"],
@@ -266,7 +266,7 @@ test("solve layout preserves source-side vertical order when multiple associates
   const reactantLow = createEntry({
     participantId: "reactant_low",
     side: "reactant",
-    templateId: "higgs_cluster",
+    templateId: "noether_quad",
     surfaceRowIndex: 8,
     rootId: "reactant_low_root",
     childIds: ["reactant_low_pro", "reactant_low_anti"],

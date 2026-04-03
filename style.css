@@ -3140,7 +3140,16 @@ body {
   max-width: min(196px, calc(100vw - 32px));
 }
 
+.composer-reaction-canvas-menu[data-menu-mode="center-assembly-picker"] {
+  min-width: auto;
+  max-width: min(860px, calc(100vw - 24px));
+  grid-template-columns: repeat(5, var(--binary-choice-size, 72px));
+  gap: var(--reaction-canvas-tile-gap, 7px);
+  padding: 12px 14px 14px;
+}
+
 .composer-reaction-canvas-menu[data-menu-mode="template-grid-picker"] {
+  position: fixed;
   min-width: auto;
   max-width: min(860px, calc(100vw - 24px));
   grid-template-columns: repeat(5, var(--binary-choice-size, 72px));

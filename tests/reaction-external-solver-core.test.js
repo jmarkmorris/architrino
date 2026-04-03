@@ -1059,7 +1059,7 @@ test("external solve-reaction CLI closes neutral pion to electron-neutrino pair 
   );
 });
 
-test("external solve-reaction CLI materializes a Higgs-cluster supplement for neutral pion double-Dalitz closure", () => {
+test("external solve-reaction CLI materializes a Noether Quad supplement for neutral pion double-Dalitz closure", () => {
   const request = {
     schema: "solver-request/v1",
     requestId: "neutral_pion_double_dalitz",
@@ -1151,12 +1151,12 @@ test("external solve-reaction CLI materializes a Higgs-cluster supplement for ne
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-double-dalitz-decay"), true);
   assert.equal(result.operators.length, 4);
   assert.equal(
-    result.participants.some((participant) => participant.templateId === "higgs_cluster"),
+    result.participants.some((participant) => participant.templateId === "noether_quad"),
     true
   );
   assert.equal(
     result.operators.some((operator) =>
-      operator.inputs.some((input) => String(input.participantId ?? "").includes("_higgs_"))
+      operator.inputs.some((input) => String(input.participantId ?? "").includes("_noether_quad_"))
     ),
     true
   );
@@ -1606,8 +1606,8 @@ test("external solve-reaction CLI preserves manual dissociation separately from 
       {
         id: "reactant_higgs_manual_open",
         side: "reactant",
-        templateId: "higgs_cluster",
-        label: "Higgs Cluster",
+        templateId: "noether_quad",
+        label: "Noether Quad",
         family: "boson",
         isComposite: true,
         inventory: { electrinoCount: 12, positrinoCount: 12 },
@@ -1615,8 +1615,8 @@ test("external solve-reaction CLI preserves manual dissociation separately from 
         nodes: [
           {
             id: "reactant_higgs_manual_open_root",
-            templateId: "higgs_cluster",
-            label: "Higgs Cluster",
+            templateId: "noether_quad",
+            label: "Noether Quad",
             family: "boson",
             isComposite: true,
             inventory: { electrinoCount: 12, positrinoCount: 12 },

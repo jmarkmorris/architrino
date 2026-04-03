@@ -2,6 +2,11 @@ import {
   deriveStructureClassification,
   getNoetherCoreBinaryPresenceKey,
 } from "./StructureClassification.js";
+import {
+  getStructureAssemblyDisplayLabel,
+  isNoetherAssemblyTemplateId,
+  normalizeStructureAssemblyTemplateId,
+} from "./StructureAssemblyCatalog.js";
 import { getStructureTrait, STRUCTURE_KINDS } from "./StructureSchema.js";
 
 const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
@@ -11,13 +16,17 @@ const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
 
 const displayLabelsBySpecies = Object.freeze({
   noether_core: "Noether Core",
-  higgs_cluster: "Higgs Cluster",
+  noether_pair: "Noether Pair",
+  noether_quad: "Noether Quad",
   photon: "Photon",
   proton: "Proton",
   neutron: "Neutron",
   electron: "Electron",
   muon: "Muon",
   tau: "Tau",
+  w_minus_boson: "Negative W Boson",
+  z_boson: "Neutral Z Boson",
+  w_plus_boson: "Positive W Boson",
   electron_neutrino: "Neutrino",
   muon_neutrino: "Muon Neutrino",
   tau_neutrino: "Tau Neutrino",
@@ -107,6 +116,10 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
       ? deriveStructureClassification(structureRoot)?.species ?? structureRoot?.species
       : structureRoot?.species;
   const normalizedSpecies = String(derivedSpecies ?? "").trim().toLowerCase();
+
+  if (isNoetherAssemblyTemplateId(normalizedSpecies)) {
+    return getStructureAssemblyDisplayLabel(normalizeStructureAssemblyTemplateId(normalizedSpecies));
+  }
 
   if (displayLabelsBySpecies[normalizedSpecies]) {
     const baseLabel = displayLabelsBySpecies[normalizedSpecies];

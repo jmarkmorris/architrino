@@ -16,12 +16,14 @@ function createPickerEntry({
   templateId = "",
   occupiedCount = null,
   vacant = false,
+  disabled = false,
 }) {
   return Object.freeze({
     id: String(id ?? "").trim(),
     label: String(label ?? "").trim(),
     templateId: String(templateId ?? "").trim(),
     vacant: vacant === true,
+    disabled: disabled === true,
     structureBuildOptions:
       Number.isFinite(Number(occupiedCount)) && Number(occupiedCount) > 0
         ? Object.freeze({ occupiedSlots: Object.freeze(getOccupiedSlots(occupiedCount)) })
@@ -49,6 +51,52 @@ export const reactionAddPickerColumns = Object.freeze([
         id: "tri_binary",
         label: "Pro Noether Core",
         templateId: "noether_core",
+        occupiedCount: 3,
+      }),
+    ]),
+  }),
+  Object.freeze({
+    id: "neutrinos",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "tau_neutrino",
+        label: "Pro Tau Neutrino",
+        templateId: "neutrino",
+        occupiedCount: 1,
+      }),
+      createPickerEntry({
+        id: "muon_neutrino",
+        label: "Pro Muon Neutrino",
+        templateId: "neutrino",
+        occupiedCount: 2,
+      }),
+      createPickerEntry({
+        id: "neutrino",
+        label: "Pro Neutrino",
+        templateId: "neutrino",
+        occupiedCount: 3,
+      }),
+    ]),
+  }),
+  Object.freeze({
+    id: "charged_leptons",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "tau",
+        label: "Pro Tau",
+        templateId: "electron",
+        occupiedCount: 1,
+      }),
+      createPickerEntry({
+        id: "muon",
+        label: "Pro Muon",
+        templateId: "electron",
+        occupiedCount: 2,
+      }),
+      createPickerEntry({
+        id: "electron",
+        label: "Pro Electron",
+        templateId: "electron",
         occupiedCount: 3,
       }),
     ]),
@@ -95,52 +143,6 @@ export const reactionAddPickerColumns = Object.freeze([
         id: "up",
         label: "Pro Up Quark",
         templateId: "up_quark",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "charged_leptons",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "tau",
-        label: "Pro Tau",
-        templateId: "electron",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "muon",
-        label: "Pro Muon",
-        templateId: "electron",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "electron",
-        label: "Pro Electron",
-        templateId: "electron",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "neutrinos",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "tau_neutrino",
-        label: "Pro Tau Neutrino",
-        templateId: "neutrino",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "muon_neutrino",
-        label: "Pro Muon Neutrino",
-        templateId: "neutrino",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "neutrino",
-        label: "Pro Neutrino",
-        templateId: "neutrino",
         occupiedCount: 3,
       }),
     ]),
@@ -229,6 +231,16 @@ export const reactionAddPickerColumns = Object.freeze([
     id: "composite_bridge",
     entries: Object.freeze([
       createPickerEntry({
+        id: "noether_pair",
+        label: "Noether Pair",
+        templateId: "noether_pair",
+      }),
+      createPickerEntry({
+        id: "noether_quad",
+        label: "Noether Quad",
+        templateId: "noether_quad",
+      }),
+      createPickerEntry({
         id: "proton",
         label: "Pro Proton",
         templateId: "proton",
@@ -237,11 +249,6 @@ export const reactionAddPickerColumns = Object.freeze([
         id: "neutron",
         label: "Pro Neutron",
         templateId: "neutron",
-      }),
-      createPickerEntry({
-        id: "higgs",
-        label: "Higgs",
-        templateId: "higgs_cluster",
       }),
     ]),
   }),

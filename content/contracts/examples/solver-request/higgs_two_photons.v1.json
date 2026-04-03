@@ -4,14 +4,14 @@
   "origin": {
     "sourceKind": "fixture",
     "sourceDocumentId": "higgs_two_photons_fixture",
-    "title": "Higgs Cluster To Two Photons"
+    "title": "Noether Quad To Two Photons"
   },
   "participants": [
     {
       "id": "reactant_higgs",
       "side": "reactant",
-      "templateId": "higgs_cluster",
-      "label": "Higgs Cluster",
+      "templateId": "noether_quad",
+      "label": "Noether Quad",
       "family": "boson",
       "isComposite": true,
       "inventory": {
@@ -22,8 +22,8 @@
       "nodes": [
         {
           "id": "reactant_higgs_structure",
-          "templateId": "higgs_cluster",
-          "label": "Higgs Cluster",
+          "templateId": "noether_quad",
+          "label": "Noether Quad",
           "family": "boson",
           "isComposite": true,
           "inventory": {

@@ -13,6 +13,7 @@ import {
 } from "../../domain/structure/StructureTransforms.js";
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
 import { resolveStructureDisplayLabel } from "../../domain/structure/StructureDisplayLabel.js";
+import { normalizeStructureAssemblyTemplateId } from "../../domain/structure/StructureAssemblyCatalog.js";
 
 export function createReactionParticipantMutationRuntime(options = {}) {
   const supportsParticipantPolarity =
@@ -42,8 +43,8 @@ export function createReactionParticipantMutationRuntime(options = {}) {
     if (structureKind === STRUCTURE_KINDS.NOETHER_CORE) {
       return "noether_core";
     }
-    if (structureSpecies === "higgs_cluster") {
-      return "higgs_cluster";
+    if (structureSpecies === "noether_pair" || structureSpecies === "noether_quad") {
+      return normalizeStructureAssemblyTemplateId(structureSpecies);
     }
     if (structureSpecies === "photon") {
       return "photon";

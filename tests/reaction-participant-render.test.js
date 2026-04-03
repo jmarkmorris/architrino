@@ -293,7 +293,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
     "utf8"
   );
   assert.match(descriptorSource, /templateId:\s*"z_boson"/);
-  assert.match(descriptorSource, /label:\s*String\(structureRoot\?\.label \?\? "Z Boson"\)/);
+  assert.match(descriptorSource, /label:\s*String\(structureRoot\?\.label \?\? "Neutral Z Boson"\)/);
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
@@ -520,6 +520,10 @@ test("composite collector and span rail use the same connector dot type", () => 
 
 test("template picker grid uses the shared canvas tile gap", () => {
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-menu\[data-menu-mode="center-assembly-picker"\]\s*\{[\s\S]*?grid-template-columns:\s*repeat\(5,\s*var\(--binary-choice-size,\s*72px\)\);[\s\S]*?gap:\s*var\(--reaction-canvas-tile-gap,\s*7px\);/s
+  );
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-menu\[data-menu-mode="template-grid-picker"\]\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-tile-gap,\s*7px\);/
