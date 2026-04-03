@@ -49,3 +49,119 @@ test("pdg closure sweep writes a /tmp-style run report and summary for fixture c
     true
   );
 });
+
+test("pdg closure sweep can process a frozen manifest in numbered batches and advance a cursor", () => {
+  const workspaceDir = new URL("..", import.meta.url);
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "pdg-closure-manifest-test-"));
+  const manifestPath = path.join(tempDir, "manifest.json");
+  const cursorPath = path.join(tempDir, "cursor.json");
+  const outDirOne = path.join(tempDir, "run-1");
+  const outDirTwo = path.join(tempDir, "run-2");
+  const manifest = {
+    schema: "pdg-live-manifest/v1",
+    edition: "test",
+    exportableCount: 2,
+    unsupportedDiscoveryCount: 0,
+    topUnsupportedParticles: [],
+    entries: [
+      {
+        batchId: 1,
+        caseId: "free_neutron_beta_decay",
+        proposalId: "free_neutron_beta_decay",
+        title: "Free neutron beta decay",
+        lookupParticleName: "n",
+        pdgIdentifier: "S017.1/2025",
+        channelDescription: "n -> p e- anti-nu_e",
+        branchingDisplay: "(100)",
+        unsupportedParticles: [],
+        proposal: JSON.parse(
+          fs.readFileSync(
+            new URL("../content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.proposal.v1.json", import.meta.url),
+            "utf8"
+          )
+        ),
+        solverRequest: JSON.parse(
+          fs.readFileSync(
+            new URL("../content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json", import.meta.url),
+            "utf8"
+          )
+        ),
+      },
+      {
+        batchId: 2,
+        caseId: "muon_decay",
+        proposalId: "muon_decay",
+        title: "Muon decay",
+        lookupParticleName: "mu-",
+        pdgIdentifier: "S004.1/2025",
+        channelDescription: "mu- -> e- anti-nu_e nu_mu",
+        branchingDisplay: "(100)",
+        unsupportedParticles: [],
+        proposal: JSON.parse(
+          fs.readFileSync(
+            new URL("../content/contracts/examples/pdg/v1/generated/muon_decay.proposal.v1.json", import.meta.url),
+            "utf8"
+          )
+        ),
+        solverRequest: JSON.parse(
+          fs.readFileSync(
+            new URL("../content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json", import.meta.url),
+            "utf8"
+          )
+        ),
+      },
+    ],
+  };
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+
+  const stdoutOne = execFileSync(
+    process.execPath,
+    [
+      "scripts/pdg-closure-sweep.mjs",
+      "--manifest",
+      manifestPath,
+      "--cursor",
+      cursorPath,
+      "--limit",
+      "1",
+      "--out-dir",
+      outDirOne,
+    ],
+    { cwd: workspaceDir, encoding: "utf8" }
+  );
+  const cursorAfterOne = JSON.parse(fs.readFileSync(cursorPath, "utf8"));
+  const summaryOne = JSON.parse(fs.readFileSync(path.join(outDirOne, "summary.json"), "utf8"));
+
+  assert.match(stdoutOne, /startBatchId: 1/);
+  assert.match(stdoutOne, /endBatchId: 1/);
+  assert.equal(summaryOne.reactionsTested, 1);
+  assert.equal(summaryOne.exactClosureCount, 1);
+  assert.equal(cursorAfterOne.nextBatchId, 2);
+  assert.equal(cursorAfterOne.lastProcessedBatchId, 1);
+
+  const stdoutTwo = execFileSync(
+    process.execPath,
+    [
+      "scripts/pdg-closure-sweep.mjs",
+      "--manifest",
+      manifestPath,
+      "--cursor",
+      cursorPath,
+      "--limit",
+      "1",
+      "--out-dir",
+      outDirTwo,
+    ],
+    { cwd: workspaceDir, encoding: "utf8" }
+  );
+  const cursorAfterTwo = JSON.parse(fs.readFileSync(cursorPath, "utf8"));
+  const summaryTwo = JSON.parse(fs.readFileSync(path.join(outDirTwo, "summary.json"), "utf8"));
+
+  assert.match(stdoutTwo, /startBatchId: 2/);
+  assert.match(stdoutTwo, /endBatchId: 2/);
+  assert.equal(summaryTwo.reactionsTested, 1);
+  assert.equal(summaryTwo.exactClosureCount, 1);
+  assert.equal(summaryTwo.cases[0].batchId, 2);
+  assert.equal(cursorAfterTwo.nextBatchId, 3);
+  assert.equal(cursorAfterTwo.lastProcessedBatchId, 2);
+});

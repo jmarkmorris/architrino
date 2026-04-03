@@ -27,6 +27,7 @@ SOLVER_REQUEST_SCHEMA = "solver-request/v1"
 PDG_FIXTURE_CORPUS_SCHEMA = "pdg-fixture-corpus/v1"
 PDG_FIXTURE_SOURCE_SCHEMA = "pdg-fixture-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
+PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 
 DEFAULT_POLICY = {
     "recruitmentMode": "forbid",
@@ -692,6 +693,20 @@ def normalize_channel_description(text: str) -> str:
     return " ".join(str(text).replace("-->", "->").split())
 
 
+def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> list[str]:
+    names: list[str] = []
+    for note in notes:
+        parts = str(note).split(":")
+        if len(parts) < 4 or parts[0] != "unsupported":
+            continue
+        side = parts[1]
+        particle_name = parts[2]
+        if side not in ("reactant", "product") or particle_name in ("", "unknown"):
+            continue
+        names.append(particle_name)
+    return names
+
+
 def safe_api_info(api: Any, key: str) -> str | None:
     try:
         value = api.info(key)
@@ -777,6 +792,133 @@ def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
                 pass
 
     return decays
+
+
+def iter_live_particles(api: Any) -> list[Any]:
+    particles: list[Any] = []
+    for particle_group in api.get_particles():
+        try:
+            group_particles = list(particle_group)
+        except Exception:  # pragma: no cover - external API dependent
+            continue
+        for particle in group_particles:
+            if hasattr(particle, "exclusive_branching_fractions"):
+                particles.append(particle)
+    return particles
+
+
+def build_live_decay_discovery_key(particle: Any, decay: Any) -> str:
+    decay_pdgid = getattr(decay, "pdgid", None)
+    if decay_pdgid:
+        return f"pdgid:{decay_pdgid}"
+    return "|".join(
+        [
+            normalize_text(getattr(particle, "name", "")),
+            normalize_channel_description(getattr(decay, "description", "")),
+            str(getattr(decay, "mode_number", "") or ""),
+        ]
+    )
+
+
+def build_live_case_from_decay(api: Any, particle: Any, decay: Any) -> PdgCase:
+    description = normalize_channel_description(getattr(decay, "description", ""))
+    products, notes = extract_live_decay_products(decay)
+    subdecay_count = sum(
+        1 for product in getattr(decay, "decay_products", ()) or () if getattr(product, "subdecay", None)
+    )
+    if subdecay_count:
+        notes.append(f"unsupported:channel-subdecays:{subdecay_count}")
+
+    particle_name = str(getattr(particle, "name", "") or "")
+    decay_pdgid = getattr(decay, "pdgid", None)
+    case_token = str(decay_pdgid or description or particle_name or "pdg_decay")
+    case_id = slugify(case_token)
+    source: dict[str, Any] = {
+        "edition": str(getattr(api, "edition", "")),
+        "channelDescription": description or f"{particle_name} decay",
+        "citation": safe_api_info(api, "citation") or "PDG Python API live read",
+        "branchingDisplay": str(getattr(decay, "display_value_text", "") or ""),
+        "sourceMode": "pdg.connect",
+        "lookupParticleName": particle_name,
+    }
+    if decay_pdgid:
+        source["pdgIdentifier"] = str(decay_pdgid)
+
+    return PdgCase(
+        case_id=case_id,
+        proposal_id=f"{case_id}.live-pdg",
+        title=description or f"{particle_name} decay",
+        source_kind="pdg-live",
+        source=source,
+        reactants=(FixtureParticle(name=particle_name, pdg_id=particle_name),),
+        products=tuple(products),
+        notes=tuple(notes),
+    )
+
+
+def build_live_manifest_payload(database_url: str | None = None, *, api: Any | None = None) -> dict[str, Any]:
+    api = api or connect_pdg(database_url, pedantic=False)
+    seen_keys: set[str] = set()
+    exportable_entries: list[dict[str, Any]] = []
+    unsupported_particle_counts: Counter[str] = Counter()
+    unsupported_entries: list[dict[str, Any]] = []
+
+    for particle in iter_live_particles(api):
+        for decay in iter_candidate_branching_fractions(particle):
+            discovery_key = build_live_decay_discovery_key(particle, decay)
+            if discovery_key in seen_keys:
+                continue
+            seen_keys.add(discovery_key)
+            live_case = build_live_case_from_decay(api, particle, decay)
+            proposal = build_proposal(live_case)
+            solver_request = build_solver_request(proposal)
+            unsupported_names = extract_unsupported_particle_names(proposal.notes)
+            unsupported_particle_counts.update(unsupported_names)
+            entry = {
+                "batchId": 0,
+                "caseId": live_case.case_id,
+                "proposalId": proposal.proposal_id,
+                "title": live_case.title,
+                "lookupParticleName": str(live_case.source.get("lookupParticleName", "")),
+                "pdgIdentifier": str(live_case.source.get("pdgIdentifier", "")),
+                "channelDescription": str(live_case.source.get("channelDescription", "")),
+                "branchingDisplay": str(live_case.source.get("branchingDisplay", "")),
+                "unsupportedParticles": unsupported_names,
+                "proposal": proposal.to_dict(),
+            }
+            if solver_request is None:
+                unsupported_entries.append(entry)
+                continue
+            entry["solverRequest"] = solver_request
+            exportable_entries.append(entry)
+
+    exportable_entries.sort(
+        key=lambda entry: (
+            str(entry.get("pdgIdentifier", "")),
+            str(entry.get("lookupParticleName", "")),
+            str(entry.get("channelDescription", "")),
+            str(entry.get("proposalId", "")),
+        )
+    )
+    for index, entry in enumerate(exportable_entries, start=1):
+        entry["batchId"] = index
+
+    top_unsupported_particles = [
+        {"particle": particle_name, "count": count}
+        for particle_name, count in sorted(
+            unsupported_particle_counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:5]
+    ]
+
+    return {
+        "schema": PDG_LIVE_MANIFEST_SCHEMA,
+        "edition": str(getattr(api, "edition", "")),
+        "exportableCount": len(exportable_entries),
+        "unsupportedDiscoveryCount": len(unsupported_entries),
+        "topUnsupportedParticles": top_unsupported_particles,
+        "entries": exportable_entries,
+    }
 
 
 def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[FixtureParticle], list[str]]:
@@ -914,6 +1056,10 @@ def parse_args() -> argparse.Namespace:
 
     subparsers.add_parser("list-fixtures", help="List available local PDG fixtures.")
     subparsers.add_parser("list-live-cases", help="List the first live PDG channels supported by this script.")
+    subparsers.add_parser(
+        "build-live-manifest",
+        help="Discover exportable live PDG decays and print a frozen batch manifest JSON payload.",
+    )
 
     emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and solver-request artifacts for one fixture.")
     emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
@@ -964,6 +1110,10 @@ def main() -> int:
     if args.command == "list-live-cases":
         for spec in LIVE_CHANNEL_SPECS:
             print(f"{spec.case_id}\t{spec.title}")
+        return 0
+
+    if args.command == "build-live-manifest":
+        print_json(build_live_manifest_payload(args.database_url))
         return 0
 
     if args.command == "emit-fixture":

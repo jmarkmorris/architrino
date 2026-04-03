@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 
 const SOURCE_COMMANDS = {
@@ -22,6 +23,10 @@ function parseArgs(argv) {
     outDir: "",
     databaseUrl: "",
     caseIds: [],
+    manifestPath: "",
+    cursorPath: "",
+    limit: null,
+    startBatchId: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -46,6 +51,26 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === "--manifest") {
+      options.manifestPath = argv[index + 1] ?? "";
+      index += 1;
+      continue;
+    }
+    if (arg === "--cursor") {
+      options.cursorPath = argv[index + 1] ?? "";
+      index += 1;
+      continue;
+    }
+    if (arg === "--limit") {
+      options.limit = Number.parseInt(argv[index + 1] ?? "", 10);
+      index += 1;
+      continue;
+    }
+    if (arg === "--start-batch-id") {
+      options.startBatchId = Number.parseInt(argv[index + 1] ?? "", 10);
+      index += 1;
+      continue;
+    }
     if (arg === "--help" || arg === "-h") {
       printUsage();
       process.exit(0);
@@ -53,8 +78,17 @@ function parseArgs(argv) {
     throw new Error(`Unknown argument: ${arg}`);
   }
 
-  if (!Object.prototype.hasOwnProperty.call(SOURCE_COMMANDS, options.source)) {
+  if (!options.manifestPath && !Object.prototype.hasOwnProperty.call(SOURCE_COMMANDS, options.source)) {
     throw new Error(`Unsupported --source ${JSON.stringify(options.source)}. Use fixtures or live.`);
+  }
+  if (options.limit !== null && (!Number.isInteger(options.limit) || options.limit <= 0)) {
+    throw new Error(`--limit must be a positive integer.`);
+  }
+  if (
+    options.startBatchId !== null &&
+    (!Number.isInteger(options.startBatchId) || options.startBatchId <= 0)
+  ) {
+    throw new Error(`--start-batch-id must be a positive integer.`);
   }
 
   options.caseIds = options.caseIds.filter(Boolean);
@@ -65,9 +99,12 @@ function printUsage() {
   process.stdout.write(
     [
       "Usage: node scripts/pdg-closure-sweep.mjs [--source live|fixtures] [--case <id>] [--database-url <url>] [--out-dir <dir>]",
+      "   or: node scripts/pdg-closure-sweep.mjs --manifest <path> [--cursor <path>] [--start-batch-id <n>] [--limit <n>] [--out-dir <dir>]",
       "",
       "Runs one PDG case at a time through:",
       "  pdgfeed.py -> solver-request/v1 -> solve-reaction.mjs -> solver-result/v1",
+      "",
+      "In manifest mode, consumes frozen manifest rows with sequential batch ids and optional cursor advancement.",
       "",
       "Defaults:",
       "  --source live",
@@ -105,6 +142,14 @@ function runCommand(command, args, input = "") {
     stderr: result.stderr ?? "",
     error: result.error ? String(result.error) : "",
   };
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function computeFileHash(filePath) {
+  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
 }
 
 function sanitizeCaseId(caseId) {
@@ -228,11 +273,44 @@ function buildTopUnsupportedParticles(unsupportedParticleCounts, limit = 5) {
     .map(([particle, count]) => ({ particle, count }));
 }
 
+function loadCursor(cursorPath) {
+  if (!cursorPath || !fs.existsSync(cursorPath)) {
+    return null;
+  }
+  return readJson(cursorPath);
+}
+
+function writeCursor(cursorPath, payload) {
+  if (!cursorPath) {
+    return;
+  }
+  writeJson(cursorPath, payload);
+}
+
+function resolveManifestSelection(manifest, options) {
+  const manifestEntries = Array.isArray(manifest?.entries) ? [...manifest.entries] : [];
+  manifestEntries.sort((left, right) => Number(left?.batchId ?? 0) - Number(right?.batchId ?? 0));
+  const cursor = loadCursor(options.cursorPath);
+  const cursorStartBatchId = Number.isInteger(cursor?.nextBatchId) ? cursor.nextBatchId : null;
+  const requestedStartBatchId = Number.isInteger(options.startBatchId) ? options.startBatchId : null;
+  const startBatchId = requestedStartBatchId ?? cursorStartBatchId ?? Number(manifestEntries[0]?.batchId ?? 1);
+  const selectedEntries = manifestEntries.filter((entry) => Number(entry?.batchId ?? 0) >= startBatchId);
+  const limitedEntries = options.limit === null ? selectedEntries : selectedEntries.slice(0, options.limit);
+  return {
+    cursor,
+    startBatchId,
+    entries: limitedEntries,
+  };
+}
+
 function buildReport(summary) {
   const lines = [
     `PDG closure sweep`,
     `runDir: ${summary.runDir}`,
     `source: ${summary.source}`,
+    summary.manifestPath ? `manifest: ${summary.manifestPath}` : "",
+    Number.isInteger(summary.startBatchId) ? `startBatchId: ${summary.startBatchId}` : "",
+    Number.isInteger(summary.endBatchId) ? `endBatchId: ${summary.endBatchId}` : "",
     `reactionsTested: ${summary.reactionsTested}`,
     `analyzableReactions: ${summary.analyzableReactionCount}`,
     `reactionsNotYetAnalyzed: ${summary.reactionsNotYetAnalyzed}`,
@@ -245,7 +323,7 @@ function buildReport(summary) {
     `solveErrors: ${summary.outcomeCounts["solve-error"]}`,
     "",
     "Top unsupported particles:",
-  ];
+  ].filter(Boolean);
 
   if (summary.topUnsupportedParticles.length === 0) {
     lines.push("(none)");
@@ -255,72 +333,142 @@ function buildReport(summary) {
     }
   }
 
-  lines.push(
-    "",
-    "Per case:",
-  );
+  lines.push("", "Per case:");
 
   for (const entry of summary.cases) {
+    const batchPrefix = Number.isInteger(entry.batchId) ? `${entry.batchId}\t` : "";
+    const pdgLabel = entry.pdgIdentifier ? `\tpdg=${entry.pdgIdentifier}` : "";
     lines.push(
-      `${entry.caseId}\t${entry.status}\texact=${entry.exact}\tunresolved=${entry.unresolvedTargetCount}\tunsupported=${entry.unsupportedParticles.join(",")}`
+      `${batchPrefix}${entry.caseId}\t${entry.status}\texact=${entry.exact}\tunresolved=${entry.unresolvedTargetCount}\tunsupported=${entry.unsupportedParticles.join(",")}${pdgLabel}`
     );
   }
   return `${lines.join("\n")}\n`;
 }
 
-function main() {
-  const options = parseArgs(process.argv.slice(2));
-  const runDir = buildRunDir(options.outDir);
+function buildManifestItems(options) {
+  const manifestPath = path.resolve(process.cwd(), options.manifestPath);
+  const manifest = readJson(manifestPath);
+  if (manifest?.schema !== "pdg-live-manifest/v1") {
+    throw new Error(`Unsupported manifest schema in ${manifestPath}`);
+  }
+  const manifestHash = computeFileHash(manifestPath);
+  const selection = resolveManifestSelection(manifest, options);
+  if (selection.cursor && selection.cursor.manifestHash && selection.cursor.manifestHash !== manifestHash) {
+    throw new Error(`Cursor manifest hash does not match ${manifestPath}`);
+  }
+  return {
+    manifestPath,
+    manifestHash,
+    startBatchId: Number.isInteger(selection.startBatchId) ? selection.startBatchId : null,
+    items: selection.entries.map((entry) => ({
+      batchId: Number(entry.batchId),
+      caseId: String(entry.caseId || entry.pdgIdentifier || `batch_${entry.batchId}`),
+      title: String(entry.title || entry.channelDescription || entry.pdgIdentifier || `Batch ${entry.batchId}`),
+      pdgIdentifier: String(entry.pdgIdentifier || ""),
+      proposal: entry.proposal ?? null,
+      request: entry.solverRequest ?? null,
+    })),
+  };
+}
+
+function buildSourceItems(options) {
   const commandSet = SOURCE_COMMANDS[options.source];
   const databaseArgs = options.databaseUrl ? ["--database-url", options.databaseUrl] : [];
   const pythonCommand = resolvePythonCommand();
-
   const listExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.list, ...databaseArgs]);
-  if (listExecution.status !== 0) {
-    writeText(path.join(runDir, "list.log"), formatCommandLog("list", listExecution));
-    throw new Error(`Failed to list ${options.source} PDG cases. See ${path.join(runDir, "list.log")}`);
-  }
+  return {
+    listExecution,
+    items: selectCases(parseListedCases(listExecution.stdout), options.caseIds).map((entry) => ({
+      batchId: null,
+      caseId: entry.caseId,
+      title: entry.title,
+      pdgIdentifier: "",
+      proposal: null,
+      request: null,
+      pythonCommand,
+      commandSet,
+      databaseArgs,
+    })),
+  };
+}
 
-  const listedCases = parseListedCases(listExecution.stdout);
-  const selectedCases = selectCases(listedCases, options.caseIds);
+function main() {
+  const options = parseArgs(process.argv.slice(2));
+  const runDir = buildRunDir(options.outDir);
   const results = [];
-  const runLogParts = [formatCommandLog("list", listExecution)];
+  const runLogParts = [];
   const unsupportedParticleCounts = {};
 
-  for (const entry of selectedCases) {
+  let selectedItems = [];
+  let manifestPath = "";
+  let manifestHash = "";
+  let startBatchId = null;
+
+  if (options.manifestPath) {
+    const manifestSelection = buildManifestItems(options);
+    manifestPath = manifestSelection.manifestPath;
+    manifestHash = manifestSelection.manifestHash;
+    startBatchId = manifestSelection.startBatchId;
+    selectedItems = manifestSelection.items;
+  } else {
+    const sourceSelection = buildSourceItems(options);
+    if (sourceSelection.listExecution.status !== 0) {
+      writeText(path.join(runDir, "list.log"), formatCommandLog("list", sourceSelection.listExecution));
+      throw new Error(
+        `Failed to list ${options.source} PDG cases. See ${path.join(runDir, "list.log")}`
+      );
+    }
+    runLogParts.push(formatCommandLog("list", sourceSelection.listExecution));
+    selectedItems = sourceSelection.items;
+  }
+
+  for (const entry of selectedItems) {
     const safeCaseId = sanitizeCaseId(entry.caseId);
     const caseDir = path.join(runDir, safeCaseId);
     ensureDir(caseDir);
 
-    const proposalExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.printProposal, entry.caseId, ...databaseArgs]);
-    runLogParts.push(formatCommandLog(`${entry.caseId}:proposal`, proposalExecution));
-    writeText(path.join(caseDir, "proposal.log"), formatCommandLog("proposal", proposalExecution));
+    let proposal = entry.proposal;
+    let request = entry.request;
+    const proposalPath = path.join(caseDir, `${safeCaseId}.proposal.v1.json`);
+    const requestPath = path.join(caseDir, `${safeCaseId}.solver-request.v1.json`);
 
-    if (proposalExecution.status !== 0) {
-      results.push({
-        caseId: entry.caseId,
-        title: entry.title,
-        status: "request-error",
-        exact: false,
-        unresolvedTargetCount: null,
-        unsupportedParticles: [],
-        proposalPath: null,
-        requestPath: null,
-        resultPath: null,
-      });
-      continue;
+    if (!options.manifestPath) {
+      const proposalExecution = runCommand(
+        entry.pythonCommand,
+        ["pdgfeed.py", entry.commandSet.printProposal, entry.caseId, ...entry.databaseArgs]
+      );
+      runLogParts.push(formatCommandLog(`${entry.caseId}:proposal`, proposalExecution));
+      writeText(path.join(caseDir, "proposal.log"), formatCommandLog("proposal", proposalExecution));
+
+      if (proposalExecution.status !== 0) {
+        results.push({
+          batchId: null,
+          caseId: entry.caseId,
+          title: entry.title,
+          pdgIdentifier: "",
+          status: "request-error",
+          exact: false,
+          unresolvedTargetCount: null,
+          unsupportedParticles: [],
+          proposalPath: null,
+          requestPath: null,
+          resultPath: null,
+        });
+        continue;
+      }
+      proposal = JSON.parse(proposalExecution.stdout);
     }
 
-    const proposal = JSON.parse(proposalExecution.stdout);
-    const proposalPath = path.join(caseDir, `${safeCaseId}.proposal.v1.json`);
     writeJson(proposalPath, proposal);
-    const unsupportedParticles = extractUnsupportedParticleNames(proposal.notes);
+    const unsupportedParticles = extractUnsupportedParticleNames(proposal?.notes);
     accumulateUnsupportedParticleCounts(unsupportedParticleCounts, unsupportedParticles);
 
-    if (proposal.exportable !== true) {
+    if (proposal?.exportable !== true) {
       results.push({
+        batchId: entry.batchId,
         caseId: entry.caseId,
         title: entry.title,
+        pdgIdentifier: entry.pdgIdentifier,
         status: "unsupported-input",
         exact: false,
         unresolvedTargetCount: null,
@@ -332,14 +480,39 @@ function main() {
       continue;
     }
 
-    const requestExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.printRequest, entry.caseId, ...databaseArgs]);
-    runLogParts.push(formatCommandLog(`${entry.caseId}:request`, requestExecution));
-    writeText(path.join(caseDir, "request.log"), formatCommandLog("request", requestExecution));
+    if (!request && !options.manifestPath) {
+      const requestExecution = runCommand(
+        entry.pythonCommand,
+        ["pdgfeed.py", entry.commandSet.printRequest, entry.caseId, ...entry.databaseArgs]
+      );
+      runLogParts.push(formatCommandLog(`${entry.caseId}:request`, requestExecution));
+      writeText(path.join(caseDir, "request.log"), formatCommandLog("request", requestExecution));
 
-    if (requestExecution.status !== 0) {
+      if (requestExecution.status !== 0) {
+        results.push({
+          batchId: entry.batchId,
+          caseId: entry.caseId,
+          title: entry.title,
+          pdgIdentifier: entry.pdgIdentifier,
+          status: "request-error",
+          exact: false,
+          unresolvedTargetCount: null,
+          unsupportedParticles,
+          proposalPath,
+          requestPath: null,
+          resultPath: null,
+        });
+        continue;
+      }
+      request = JSON.parse(requestExecution.stdout);
+    }
+
+    if (!request) {
       results.push({
+        batchId: entry.batchId,
         caseId: entry.caseId,
         title: entry.title,
+        pdgIdentifier: entry.pdgIdentifier,
         status: "request-error",
         exact: false,
         unresolvedTargetCount: null,
@@ -351,18 +524,21 @@ function main() {
       continue;
     }
 
-    const request = JSON.parse(requestExecution.stdout);
-    const requestPath = path.join(caseDir, `${safeCaseId}.solver-request.v1.json`);
     writeJson(requestPath, request);
-
-    const solveExecution = runCommand(process.execPath, ["scripts/solve-reaction.mjs"], requestExecution.stdout);
+    const solveExecution = runCommand(
+      process.execPath,
+      ["scripts/solve-reaction.mjs"],
+      JSON.stringify(request)
+    );
     runLogParts.push(formatCommandLog(`${entry.caseId}:solve`, solveExecution));
     writeText(path.join(caseDir, "solve.log"), formatCommandLog("solve", solveExecution));
 
     if (solveExecution.status !== 0) {
       results.push({
+        batchId: entry.batchId,
         caseId: entry.caseId,
         title: entry.title,
+        pdgIdentifier: entry.pdgIdentifier,
         status: "solve-error",
         exact: false,
         unresolvedTargetCount: null,
@@ -379,8 +555,10 @@ function main() {
     writeJson(resultPath, result);
 
     results.push({
+      batchId: entry.batchId,
       caseId: entry.caseId,
       title: entry.title,
+      pdgIdentifier: entry.pdgIdentifier,
       status: result?.summary?.outcome ?? "solve-error",
       exact: result?.summary?.exact === true,
       unresolvedTargetCount: Number.isInteger(result?.summary?.unresolvedTargetCount)
@@ -401,8 +579,14 @@ function main() {
   const analyzableReactionCount = analyzableResults.length;
   const exactClosureCount = analyzableResults.filter((entry) => entry.exact).length;
   const summary = {
-    source: options.source,
+    source: options.manifestPath ? "manifest" : options.source,
     runDir,
+    manifestPath,
+    startBatchId,
+    endBatchId:
+      results.length > 0 && results.every((entry) => Number.isInteger(entry.batchId))
+        ? Math.max(...results.map((entry) => entry.batchId))
+        : null,
     reactionsTested,
     analyzableReactionCount,
     reactionsNotYetAnalyzed,
@@ -413,6 +597,23 @@ function main() {
     topUnsupportedParticles: buildTopUnsupportedParticles(unsupportedParticleCounts),
     cases: results,
   };
+
+  if (options.manifestPath && options.cursorPath) {
+    const processedBatchIds = results
+      .filter((entry) => Number.isInteger(entry.batchId))
+      .map((entry) => entry.batchId);
+    const nextBatchId =
+      processedBatchIds.length > 0
+        ? Math.max(...processedBatchIds) + 1
+        : startBatchId ?? 1;
+    writeCursor(options.cursorPath, {
+      schema: "pdg-live-batch-cursor/v1",
+      manifestPath,
+      manifestHash,
+      nextBatchId,
+      lastProcessedBatchId: processedBatchIds.length > 0 ? Math.max(...processedBatchIds) : null,
+    });
+  }
 
   writeJson(path.join(runDir, "summary.json"), summary);
   const report = buildReport(summary);

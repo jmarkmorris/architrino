@@ -121,6 +121,7 @@ The current CLI surface is:
 - `python3 pdgfeed.py emit-all-live-cases`
 - `python3 pdgfeed.py print-live-proposal <case-id>`
 - `python3 pdgfeed.py print-live-solver-request <case-id>`
+- `python3 pdgfeed.py build-live-manifest`
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
 The intended handoff modes are:
@@ -130,7 +131,15 @@ The intended handoff modes are:
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
 
-For developer closure sweeps across many cases, use `node scripts/pdg-closure-sweep.mjs`. The sweep runner enumerates fixture or live cases, classifies unsupported-input cases from `pdg-proposal/v1` before solving, feeds only exportable requests through `pdgfeed.py` plus `solve-reaction.mjs`, writes a per-run log directory under `/tmp` by default, and finishes with a report containing reactions tested, analyzable reactions, exact-closure percentage over analyzable reactions only, reactions not yet analyzable, and the top unsupported particles ranked by appearance count in unsupported reactions.
+For developer closure sweeps across many cases, use `node scripts/pdg-closure-sweep.mjs`. The sweep runner can either enumerate fixture/live cases directly or consume a frozen manifest built by `python3 pdgfeed.py build-live-manifest`. In direct mode it classifies unsupported-input cases from `pdg-proposal/v1` before solving, feeds only exportable requests through `pdgfeed.py` plus `solve-reaction.mjs`, writes a per-run log directory under `/tmp` by default, and finishes with a report containing reactions tested, analyzable reactions, exact-closure percentage over analyzable reactions only, reactions not yet analyzable, and the top unsupported particles ranked by appearance count in unsupported reactions.
+
+For batch work over every exportable discovered live decay, first freeze a manifest, then advance through it with a cursor:
+
+- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `node scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --cursor /tmp/pdg-live-cursor.json --limit 20`
+- `node scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --cursor /tmp/pdg-live-cursor.json --limit 34`
+
+The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery. The cursor stores the next `batchId`, so phrases like "the first 20" and "the next 34" can map to a frozen ordered list rather than agent memory.
 
 The first local fixture corpus is:
 
