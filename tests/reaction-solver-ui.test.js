@@ -52,14 +52,14 @@ test("reaction solver center assembly lane exposes Noether core, weak bosons, an
   );
 });
 
-test("reaction solver template-grid picker places kaons on a new row below pions", () => {
+test("reaction solver template-grid picker places b mesons on a new row below kaons and shifts composites down", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionSolverUiRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "anti_k0", "k0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
+    /\["photon", "pi_minus", "pi_plus", "dpi0", "upi0"\],\s*\["", "k_minus", "k_plus", "anti_k0", "k0"\],\s*\["", "b_minus", "b_plus", "anti_b0", "b0"\],\s*\["higgs", "", "proton", "", "neutron"\]/
   );
 });
 

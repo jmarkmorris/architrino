@@ -157,7 +157,11 @@ function detectParticipantFamily(participant = null) {
     templateId === "k_plus" ||
     templateId === "k_minus" ||
     templateId === "k0" ||
-    templateId === "anti_k0"
+    templateId === "anti_k0" ||
+    templateId === "b_plus" ||
+    templateId === "b_minus" ||
+    templateId === "b0" ||
+    templateId === "anti_b0"
   ) {
     return "meson";
   }

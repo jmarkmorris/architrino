@@ -1623,7 +1623,8 @@ Required particle content:
 
 Next steps:
 
-- add kaon particle mappings and request/result support so kaon-bearing reactions move from unsupported-input classification into the analyzable denominator;
-- make charge and strangeness distinctions explicit in the solver path, especially for the neutral `K0` / `anti-K0` pair;
-- add focused external-solver rules and tests for the first kaon-bearing channels exposed by the sweep;
-- and use the closure sweep to measure whether kaon support improves exact or partial closure rather than only increasing supported-input count.
+- preserve authored kaon constituent identity through the solver path, especially the `generation:2` strange-quark distinction that currently rides on the existing quark template surface;
+- keep the neutral `K0` / `anti-K0` pair distinct in solver behavior rather than collapsing them into one neutral-kaon placeholder;
+- expand beyond the first authored charged-kaon lepton closures now covered in the external solver and add the next kaon-bearing channels exposed by PDG export;
+- add PDG-side kaon particle mappings so kaon-bearing reactions move from unsupported-input classification into the analyzable denominator;
+- and use the closure sweep to measure whether PDG-visible kaon support improves exact or partial closure rather than only increasing supported-input count.

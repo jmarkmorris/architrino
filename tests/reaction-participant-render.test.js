@@ -87,6 +87,10 @@ test("pion canvas cards use the same three-line text format as picker tiles", ()
     ["Negative", "Pion", "d !u"]
   );
   assert.deepEqual(
+    getReactionParticleTileLabelLines("Positive Pion", { templateId: "pi_plus" }),
+    ["Positive", "Pion", "u !d"]
+  );
+  assert.deepEqual(
     getReactionParticleTileLabelLines("Neutral Pion (u anti-u)", { templateId: "upi0" }),
     ["Neutral", "Pion", "u !u"]
   );
@@ -104,6 +108,21 @@ test("kaon canvas cards use the same three-line text format as picker tiles", ()
   assert.deepEqual(
     getReactionParticleTileLabelLines("Neutral Kaon (s anti-d)", { templateId: "anti_k0" }),
     ["Neutral", "Kaon", "s !d"]
+  );
+});
+
+test("b meson canvas cards use the same three-line text format as picker tiles", () => {
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Negative B Meson", { templateId: "b_minus" }),
+    ["Negative", "B Meson", "b !u"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral B Meson (d anti-b)", { templateId: "b0" }),
+    ["Neutral", "B Meson", "d !b"]
+  );
+  assert.deepEqual(
+    getReactionParticleTileLabelLines("Neutral B Meson (b anti-d)", { templateId: "anti_b0" }),
+    ["Neutral", "B Meson", "b !d"]
   );
 });
 

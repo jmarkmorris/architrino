@@ -28,5 +28,11 @@ test("reaction template catalog exposes the current manual-authoring picker rows
       { template: "anti_k0", label: "Neutral Kaon (s anti-d)" },
       { template: "k0", label: "Neutral Kaon (d anti-s)" },
     ],
+    [
+      { template: "b_minus", label: "Negative B Meson" },
+      { template: "b_plus", label: "Positive B Meson" },
+      { template: "anti_b0", label: "Neutral B Meson (b anti-d)" },
+      { template: "b0", label: "Neutral B Meson (d anti-b)" },
+    ],
   ]);
 });

@@ -22,7 +22,7 @@ export function getReactionParticleTileLabelLines(
     return ["Negative", "Pion", "d !u"];
   }
   if (normalizedTemplateId === "pi_plus") {
-    return ["Positive", "Pion", "!d u"];
+    return ["Positive", "Pion", "u !d"];
   }
   if (normalizedTemplateId === "dpi0") {
     return ["Neutral", "Pion", "d !d"];
@@ -41,6 +41,18 @@ export function getReactionParticleTileLabelLines(
   }
   if (normalizedTemplateId === "k0") {
     return ["Neutral", "Kaon", "d !s"];
+  }
+  if (normalizedTemplateId === "b_minus") {
+    return ["Negative", "B Meson", "b !u"];
+  }
+  if (normalizedTemplateId === "b_plus") {
+    return ["Positive", "B Meson", "u !b"];
+  }
+  if (normalizedTemplateId === "anti_b0") {
+    return ["Neutral", "B Meson", "b !d"];
+  }
+  if (normalizedTemplateId === "b0") {
+    return ["Neutral", "B Meson", "d !b"];
   }
   if (normalizedTemplateId === "proton" && options.includeCompositePreviewLines === true) {
     return ["Pro", "Proton", "u d u"];

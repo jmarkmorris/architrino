@@ -87,6 +87,18 @@ export function createReactionParticipantMutationRuntime(options = {}) {
     if (structureSpecies === "anti_k0") {
       return "anti_k0";
     }
+    if (structureSpecies === "b_plus") {
+      return "b_plus";
+    }
+    if (structureSpecies === "b_minus") {
+      return "b_minus";
+    }
+    if (structureSpecies === "b0") {
+      return "b0";
+    }
+    if (structureSpecies === "anti_b0") {
+      return "anti_b0";
+    }
     if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
       return "electron";
     }

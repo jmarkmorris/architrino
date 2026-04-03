@@ -201,6 +201,31 @@ export const reactionAddPickerColumns = Object.freeze([
     ]),
   }),
   Object.freeze({
+    id: "b_meson_bridge",
+    entries: Object.freeze([
+      createPickerEntry({
+        id: "b_minus",
+        label: "Negative B Meson",
+        templateId: "b_minus",
+      }),
+      createPickerEntry({
+        id: "b_plus",
+        label: "Positive B Meson",
+        templateId: "b_plus",
+      }),
+      createPickerEntry({
+        id: "anti_b0",
+        label: "Neutral B Meson (b anti-d)",
+        templateId: "anti_b0",
+      }),
+      createPickerEntry({
+        id: "b0",
+        label: "Neutral B Meson (d anti-b)",
+        templateId: "b0",
+      }),
+    ]),
+  }),
+  Object.freeze({
     id: "composite_bridge",
     entries: Object.freeze([
       createPickerEntry({

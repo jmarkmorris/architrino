@@ -105,6 +105,10 @@ const solverTemplateMeta = Object.freeze({
   k_minus: { shortLabel: "K-", accent: "#2d8cff" },
   k0: { shortLabel: "K0", accent: "#a259ff" },
   anti_k0: { shortLabel: "K0b", accent: "#a259ff" },
+  b_plus: { shortLabel: "B+", accent: "#ff5a4a" },
+  b_minus: { shortLabel: "B-", accent: "#2d8cff" },
+  b0: { shortLabel: "B0", accent: "#a259ff" },
+  anti_b0: { shortLabel: "B0b", accent: "#a259ff" },
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
@@ -427,6 +431,18 @@ function getParticipantCardMeta(participant = null) {
       accent: templateId === "k_minus" ? "#2d8cff" : "#a259ff",
     };
   }
+  if (templateId === "b_plus" || templateId === "b0") {
+    return {
+      ...baseMeta,
+      accent: templateId === "b_plus" ? "#ff5a4a" : "#a259ff",
+    };
+  }
+  if (templateId === "b_minus" || templateId === "anti_b0") {
+    return {
+      ...baseMeta,
+      accent: templateId === "b_minus" ? "#2d8cff" : "#a259ff",
+    };
+  }
   return baseMeta;
 }
 
@@ -531,6 +547,18 @@ function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
   if (normalizedTemplateId === "anti_k0") {
     return "Neutral Kaon (s anti-d)";
   }
+  if (normalizedTemplateId === "b_plus") {
+    return "Positive B Meson";
+  }
+  if (normalizedTemplateId === "b_minus") {
+    return "Negative B Meson";
+  }
+  if (normalizedTemplateId === "b0") {
+    return "Neutral B Meson (d anti-b)";
+  }
+  if (normalizedTemplateId === "anti_b0") {
+    return "Neutral B Meson (b anti-d)";
+  }
   return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
 }
 
@@ -544,6 +572,7 @@ function getTemplateGridPickerLayout(pickerCells = []) {
     ["tri_binary", "down", "up", "electron", "neutrino"],
     ["photon", "pi_minus", "pi_plus", "dpi0", "upi0"],
     ["", "k_minus", "k_plus", "anti_k0", "k0"],
+    ["", "b_minus", "b_plus", "anti_b0", "b0"],
     ["higgs", "", "proton", "", "neutron"],
   ].flatMap((row, rowIndex) =>
     row.map((cellId, columnIndex) => ({
@@ -3085,7 +3114,11 @@ export function createReactionSolverUiRuntime(deps = {}) {
           participant.templateId === "k_plus" ||
           participant.templateId === "k_minus" ||
           participant.templateId === "k0" ||
-          participant.templateId === "anti_k0"
+          participant.templateId === "anti_k0" ||
+          participant.templateId === "b_plus" ||
+          participant.templateId === "b_minus" ||
+          participant.templateId === "b0" ||
+          participant.templateId === "anti_b0"
         )
       ) {
         renderMenuButton("Dissociate", {

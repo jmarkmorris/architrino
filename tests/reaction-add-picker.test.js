@@ -72,6 +72,28 @@ test("reaction add picker exposes kaons on the row directly below the pions", ()
   );
 });
 
+test("reaction add picker exposes b mesons on the row directly below the kaons", () => {
+  const pickerCells = getReactionAddPickerCells();
+  const bMinusCell = pickerCells.find((cell) => cell.id === "b_minus");
+  const bPlusCell = pickerCells.find((cell) => cell.id === "b_plus");
+  const antiB0Cell = pickerCells.find((cell) => cell.id === "anti_b0");
+  const b0Cell = pickerCells.find((cell) => cell.id === "b0");
+
+  assert.ok(bMinusCell);
+  assert.ok(bPlusCell);
+  assert.ok(antiB0Cell);
+  assert.ok(b0Cell);
+  assert.deepEqual(
+    [bMinusCell?.label, bPlusCell?.label, antiB0Cell?.label, b0Cell?.label],
+    [
+      "Negative B Meson",
+      "Positive B Meson",
+      "Neutral B Meson (b anti-d)",
+      "Neutral B Meson (d anti-b)",
+    ]
+  );
+});
+
 test("full pro and anti noether cores resolve as Noether-core labels instead of Tri Binary", () => {
   const proCore = buildReactionParticipantStructure("noether_core", {
     id: "pro_core",

@@ -311,6 +311,78 @@ GENERIC_WEAK_CHANNEL_PROFILES = (
         "implicitCenterPolarity": "pro",
     },
     {
+        "key": "weak-meson-charged-kaon-decay",
+        "sourceSignatures": Counter({("k_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "2"): 1,
+                ("neutrino", "pro", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-electron-decay",
+        "sourceSignatures": Counter({("k_plus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "anti", "1"): 1,
+                ("neutrino", "pro", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-electron-decay",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-decay-conjugate",
+        "sourceSignatures": Counter({("k_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "2"): 1,
+                ("neutrino", "anti", "2"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
+        "key": "weak-meson-charged-kaon-electron-decay-conjugate",
+        "sourceSignatures": Counter({("k_minus", "", ""): 1}),
+        "requiredProductSignatures": Counter(
+            {
+                ("electron", "pro", "1"): 1,
+                ("neutrino", "anti", "1"): 1,
+            }
+        ),
+        "optionalProductVariants": (
+            {
+                "key": "base",
+                "productSignatures": Counter(),
+                "ruleFamily": "weak-meson-charged-kaon-electron-decay-conjugate",
+            },
+        ),
+        "implicitCenterPolarity": "pro",
+    },
+    {
         "key": "meson-neutral-pion-decay",
         "sourceSignatures": Counter({("pi0", "", ""): 1}),
         "requiredProductSignatures": Counter(),
@@ -718,25 +790,30 @@ def build_generated_quark_participant(
     template_id,
     polarity,
     *,
+    label="",
+    inventory=None,
+    tags=None,
     source_participant_id="",
     source_step_id="",
 ):
     normalized_template_id = canonical_template_id(template_id)
     normalized_polarity = "anti" if normalize_text(polarity).lower() == "anti" else "pro"
     base_label = "Up Quark" if normalized_template_id == "up_quark" else "Down Quark"
-    label = f"Anti {base_label}" if normalized_polarity == "anti" else base_label
+    resolved_label = normalize_text(label) or (
+        f"Anti {base_label}" if normalized_polarity == "anti" else base_label
+    )
     return build_generated_participant(
         participant_id=participant_id,
         template_id=normalized_template_id,
-        label=label,
+        label=resolved_label,
         family="quark",
         polarity=normalized_polarity,
-        inventory={"electrinoCount": 2, "positrinoCount": 2},
+        inventory=inventory or {"electrinoCount": 2, "positrinoCount": 2},
         side="center",
         is_composite=True,
         source_participant_id=source_participant_id,
         source_step_id=source_step_id,
-        tags=["solve-generated", "meson-constituent"],
+        tags=["solve-generated", "meson-constituent"] + list(tags or []),
     )
 
 
@@ -764,7 +841,43 @@ def get_meson_quark_constituents(source_participant=None):
             {"templateId": "up_quark", "polarity": "pro"},
             {"templateId": "up_quark", "polarity": "anti"},
         )
+    if raw_template_id == "k_plus":
+        return (
+            {"templateId": "up_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "anti", "label": "Strange Quark"},
+        )
+    if raw_template_id == "k_minus":
+        return (
+            {"templateId": "down_quark", "polarity": "pro", "label": "Strange Quark"},
+            {"templateId": "up_quark", "polarity": "anti"},
+        )
+    if raw_template_id == "k0":
+        return (
+            {"templateId": "down_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "anti", "label": "Strange Quark"},
+        )
+    if raw_template_id == "anti_k0":
+        return (
+            {"templateId": "down_quark", "polarity": "pro", "label": "Strange Quark"},
+            {"templateId": "down_quark", "polarity": "anti"},
+        )
     return ()
+
+
+def get_meson_constituent_specs(source_participant=None):
+    child_nodes = [node for node in get_child_nodes(source_participant) if get_effective_template_id(node) in {"up_quark", "down_quark"}]
+    if child_nodes:
+        return tuple(
+            {
+                "templateId": get_effective_template_id(node),
+                "polarity": get_effective_polarity(node, get_effective_template_id(node)),
+                "label": normalize_text(node.get("label")),
+                "inventory": node.get("inventory"),
+                "tags": list(node.get("tags") or []),
+            }
+            for node in child_nodes
+        )
+    return get_meson_quark_constituents(source_participant)
 
 
 def product_requires_lepton_core(participant=None):
@@ -776,7 +889,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
     source_participant = source_participants[0]
     source_id = normalize_text(source_participant.get("id"))
     source_root = get_root_node(source_participant)
-    quark_constituents = get_meson_quark_constituents(source_participant)
+    quark_constituents = get_meson_constituent_specs(source_participant)
     if source_root is None or not quark_constituents:
         return None
 
@@ -792,6 +905,9 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 participant_id=f"center_{variant_prefix}_quark_{index}",
                 template_id=constituent["templateId"],
                 polarity=constituent["polarity"],
+                label=constituent.get("label", ""),
+                inventory=constituent.get("inventory"),
+                tags=constituent.get("tags"),
                 source_participant_id=source_id,
                 source_step_id=quark_step_id,
             )
@@ -1049,7 +1165,8 @@ def solve_generic_weak_channel(request, source_participants, product_participant
     if source_root is None:
         return None
     if (
-        get_effective_template_id(source_root or source_participant) in {"pi_plus", "pi_minus", "pi0"}
+        get_effective_template_id(source_root or source_participant)
+        in {"pi_plus", "pi_minus", "pi0", "k_plus", "k_minus", "k0", "anti_k0"}
         and product_participants
         and all(product_requires_lepton_core(product) for product in product_participants)
     ):

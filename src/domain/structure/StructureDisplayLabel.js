@@ -35,6 +35,10 @@ const displayLabelsBySpecies = Object.freeze({
   k_minus: "Negative Kaon",
   k0: "Neutral Kaon (d anti-s)",
   anti_k0: "Neutral Kaon (s anti-d)",
+  b_plus: "Positive B Meson",
+  b_minus: "Negative B Meson",
+  b0: "Neutral B Meson (d anti-b)",
+  anti_b0: "Neutral B Meson (b anti-d)",
 });
 
 const polarityQualifiedSpecies = new Set([
