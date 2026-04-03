@@ -170,130 +170,66 @@ Reaction should not:
 
 ## Priorities
 
-### 1. Replace Free-Architrino Tile Group With One Aggregate Ledger Tile
+### 1. Replace The `Free Architrinos` Tri-Slot Card With One Aggregate Ledger Tile
 
 Status: `active`
 
-Goal:
+Current:
 
-- stop implying that center-lane `Free Architrinos` are attached to specific `I` / `M` / `O` binaries and present them instead as one aggregate bucket tile with visible corner counts.
+- the structure descriptor still renders `free_architrinos` as an `I` / `M` / `O` binary-selector grid with no-binary children.
 
-Why it matters:
+Objective:
 
-- the current grouped binary-style depiction overcommits the app to a solver story we do not actually know, while the solving model only needs available free-architrino ledger content rather than fixed per-binary identity.
+- show one center-lane aggregate ledger tile whose counts match the solver model without implying fixed per-slot identity.
 
-Next steps:
-
-- replace the current grouped `Free Architrinos` center tile with a single tile presentation;
-- show the available electrino and positrino counts directly on that tile, such as corner-count treatment rather than binary-slot assignment;
-- keep the solver-facing meaning as an aggregate usable ledger rather than as three authored binary-coupled subunits;
-- and preserve clear balanced versus unbalanced state in the new tile grammar.
-
-### 2. Finish Manual Workflow Legibility
+### 2. Add An Explicit Accept / Commit State On Top Of `reaction-flow/v1` Export
 
 Status: `next`
 
-Goal:
+Current:
 
-- make conservative mapping, operator use, and state legibility reliable in the live Reaction UI.
+- Reaction already exports a versioned handoff document through a dedicated export runtime;
+- the standalone app still has no reviewed/accepted state that marks a reaction as downstream-ready.
 
-Why it matters:
+Objective:
 
-- Reaction is the upstream authoring truth for provenance and conservation, so the manual workflow must be trustworthy and understandable.
+- separate "still editing" from "accepted for handoff" inside Reaction itself.
 
-Next steps:
-
-- make operator and center-assembly state self-explanatory;
-- improve anchor-role legibility and path tracing;
-- and keep learning the app possible from the visible surface grammar.
-
-### 3. Unify Dissociate And Associate As One Grammar
+### 3. Finish Manual Workflow Legibility And Operator Grammar
 
 Status: `active`
 
-Goal:
+Current:
 
-- make the operator set read as one coherent reaction language rather than partially split UI behaviors.
+- the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
+- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and `Dissociate` / `Associate` still read as separate controls more than one explanation flow.
 
-Why it matters:
+Objective:
 
-- the app is strongest when authors can understand disassembly, handoff, and reassembly as one workflow instead of unrelated controls.
+- make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
 
-Next steps:
-
-- align menus, labels, and guidance across the operator set;
-- keep conservation semantics centralized;
-- and remove leftover wording or behavior that makes the grammar feel fragmented.
-
-### 4. Add Explicit Accept / Commit Workflow On Top Of The Existing Export Boundary
+### 4. Complete The Solver Cut-Over And Remove The In-Process Fallback
 
 Status: `pending`
 
-Goal:
+Current:
 
-- add a clear accept / commit path that marks reviewed Reaction work as downstream-ready on top of the existing `reaction-flow/v1` export boundary.
+- the solve contract already prefers the external solver when available;
+- `ReactionSolverContractRuntime.js` still falls back to the legacy in-process path.
 
-Why it matters:
+Objective:
 
-- Reaction already has a durable versioned export path, but the live authoring workflow still does not clearly distinguish "still editing" from "accepted for downstream use."
+- finish the flash cut-over so Reaction ships one solver path, one adapter surface, and one test story.
 
-Next steps:
-
-- add an explicit reviewed / accepted state or action in the Reaction app shell;
-- make accepted result ownership explicit inside Reaction rather than leaving export as the only implied completion signal;
-- and keep the downstream boundary data-first rather than runtime-coupled.
-
-### 5. Keep Conservation And Layout Rules Centralized
+### 5. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
 
 Status: `pending`
 
-Goal:
+Current:
 
-- keep lane geometry, anchor semantics, and conservation rules as explicit Reaction-owned sources of truth.
+- lane geometry and mapping rules already live in dedicated runtimes;
+- large UI surfaces can still re-accumulate those semantics if new work lands in the wrong place.
 
-Why it matters:
+Objective:
 
-- the app becomes harder to trust and maintain when those rules leak into CSS, DOM heuristics, or ad hoc menu code.
-
-Next steps:
-
-- keep rule logic in dedicated Reaction-owned runtimes;
-- keep lane geometry derived from the explicit layout model;
-- and keep mapping semantics out of incidental render behavior.
-
-### 6. Keep Reaction As The Primary Provenance Authoring Surface
-
-Status: `pending`
-
-Goal:
-
-- keep Reaction, not downstream or launcher-era surfaces, as the primary place where conservative provenance is authored and reviewed.
-
-Why it matters:
-
-- the clearer this ownership becomes, the easier it is to keep upstream and downstream boundaries honest without provenance work drifting back into older surfaces.
-
-Next steps:
-
-- keep Reaction-side review and correction explicit;
-- keep provenance authoring out of downstream Composer tooling;
-- and continue reducing launcher-era coupling as the standalone app boundary hardens.
-
-### 7. Delete The Old Browser Solver After Flash Cut-Over
-
-Status: `pending`
-
-Goal:
-
-- remove the old Reaction-app solver code completely once the external Python solver core is complete, integrated, and validated well enough for the flash migration.
-
-Why it matters:
-
-- there are no compatibility requirements for a long dual-run period, and keeping both solvers in-tree after cut-over will only preserve confusion, duplicate maintenance, and stale architecture.
-
-Next steps:
-
-- switch the Reaction app fully onto the new solver contract and adapter path;
-- remove the old browser-side solver modules, wiring, and tests that only exist for the retired implementation;
-- keep any needed historical reference in git history rather than in active source files;
-- and then work through post-cut-over issues directly on the new solver path instead of preserving fallback runtime coupling.
+- keep Reaction as the single provenance-authoring surface with one source of truth for geometry, anchors, and conservation.

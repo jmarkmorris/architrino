@@ -204,213 +204,69 @@ The Composer-side intake should be strong enough to receive:
 
 ## Priorities
 
-### 1. Finish Authored Framing And Autoscale UI
+### 1. Finish The Composer-Owned Runtime Cut-Over From `app.js`
 
 Status: `active`
 
-Goal:
+Current:
 
-- finish the authored viewport-framing model around required versus optional assemblies and interval-level overrides.
+- `src/apps/composer/` now covers import, draft state, document workspace, playback, pointer, viewport, and authoring runtimes;
+- but `src/apps/composer/main.js` still imports `app.js`, and `app.js` still holds substantial Composer behavior at about 7.1k lines.
 
-Why it matters:
+Objective:
 
-- observer framing is one of Composer's core teaching surfaces, and the runtime groundwork already exists.
+- leave `app.js` as thin shell glue and give Composer a fully app-owned bootstrap/runtime path.
 
-Next steps:
-
-- expose authored framing state in a compact observer/viewport UI;
-- keep autoscale focused on the required set rather than "everything";
-- and preserve author control over framing intent.
-
-### 2. Replace Placeholder Observer Timeline Blocks
-
-Status: `pending`
-
-Goal:
-
-- turn `Observer` into a true timeline item with authored spans, observer-path behavior, and framing intent.
-
-Why it matters:
-
-- the author-facing observer model is ahead of the actual timeline object model.
-
-Next steps:
-
-- define one concrete observer object model shared across the design view and observer path;
-- finish observer transitions and framing behavior;
-- and keep visible observer-language cleanup moving forward.
-
-### 3. Move More Editing Onto Canonical Structure Transforms
-
-Status: `pending`
-
-Goal:
-
-- keep migrating real editing paths onto the canonical structure model rather than composer-only mutations.
-
-Why it matters:
-
-- deeper Composer editing becomes more coherent and maintainable when structure reads and mutations share one model.
-
-Next steps:
-
-- move at least one additional real mutation path onto shared transforms;
-- extend structure summaries into more viewport/editor surfaces;
-- and keep scale and nesting behavior legible in-scene.
-
-### 4. Keep New Composer Logic Out Of The Composition Root
-
-Status: `pending`
-
-Goal:
-
-- keep new reaction-import, observer, and editorial logic in focused Composer runtimes rather than a growing coordinator.
-
-Why it matters:
-
-- Composer still carries too much structural debt in large top-level wiring paths.
-
-Next steps:
-
-- keep framing logic, editorial behavior, and any remaining handoff-adjacent logic in focused modules;
-- keep the composition root thin;
-- and use [app-architecture](./app-architecture.md) for the cross-cutting enforcement standard.
-
-### 5. Retire Remaining Composer State And Authoring Logic From `app.js`
+### 2. Finish Authored Observer Framing And Autoscale UI
 
 Status: `active`
 
-Goal:
+Current:
 
-- move the remaining Composer draft, selection, transfer, and authoring helpers out of `app.js` and into Composer-owned runtimes.
+- framing normalization, required/optional assembly targeting, autoscale math, and Reaction observer-hint import are already live;
+- but there is still no compact author-facing UI for editing that model.
 
-Why it matters:
+Objective:
 
-- Composer still depends too much on a shared composition root for app-owned state and authoring behavior.
+- let authors set and inspect observer framing intent directly instead of relying on defaults and imported hints.
 
-Progress update:
+### 3. Replace Placeholder `Observer` And `Audio` Timeline Blocks
 
-- Composer draft-state, authoring-state, viewport-display, and assembly-label runtimes now exist under `src/apps/composer/`, and the matching helper blocks have been removed from `app.js`.
-- The remaining Composer debt in `app.js` is still large, but it is concentrated rather than evenly spread: about 205 Composer-named routines remain, totaling about 6.4k LOC, with the top 20 routines accounting for about 2.8k LOC.
-- Current estimate: about 5.0k-5.8k LOC still look worth extracting into Composer-owned runtimes, while about 0.6k-1.4k LOC likely remain acceptable as thin composition-root glue after the larger migrations land.
+Status: `next`
 
-Next steps:
+Current:
 
-- keep the new state/authoring runtimes stable and avoid reintroducing direct store wrappers into `app.js`;
-- treat items 6 and 7 as batch extractions rather than one helper at a time;
-- prioritize the largest remaining seams first so each pass removes hundreds of lines instead of dozens;
-- and leave only thin launch, wiring, and cross-runtime glue in `app.js` once the larger Composer-owned families have moved.
+- the timeline menu still inserts placeholder `Observer` and `Audio` blocks instead of real authored objects.
 
-### 6. Extract Composer Viewport Geometry, Assets, And Authoring Modules
+Objective:
 
-Status: `active`
+- turn `Observer` into a true timeline object and either implement `Audio` or remove its placeholder path until it is real.
 
-Goal:
+### 4. Expand Contract-Driven Import Coverage For Downstream Reaction Content
 
-- continue extracting Composer-owned geometry, asset, observer-path, and inspector logic into focused modules.
+Status: `next`
 
-Why it matters:
+Current:
 
-- these behaviors are clearly Composer-owned, but too many of them are still grouped together in broad legacy surfaces.
+- Composer already consumes `reaction-flow/v1`, and the neutron baseline is covered by schema and import tests;
+- downstream coverage is still thin for mesons and newer assemblies such as `Noether Pair`.
 
-Progress update:
+Objective:
 
-- Composer render-asset builders for textures, sprites, and overlay text now live in a dedicated Composer render-assets runtime rather than inlined inside `app.js`.
-- Composer orbit/member/anchor math, member-anchor state, path/base-position sampling, and autoscale geometry helpers now live in a dedicated Composer structure-geometry runtime rather than inlined inside `app.js`.
-- Composer camera/path authoring now lives in a dedicated camera-path runtime, and assembly editor plus hover-inspector behavior now live in a dedicated assembly-inspector runtime rather than inlined inside `app.js`.
-- The remaining work in this item is now mostly the broader canvas/playback/interaction stack rather than the already-separated geometry, asset, camera-path, and inspector seams.
+- prove that Composer stays a pure contract consumer as upstream particle and assembly coverage grows.
 
-Next steps:
-
-- keep those new camera-path and inspector seams stable while the remaining viewport stack moves out;
-- start item 7 extractions with the path-point info pill and related overlay helpers;
-- and keep `app.js` changes to wiring only as those focused runtimes land.
-
-### 7. Split The Remaining Composer Canvas, Playback, And Interaction Stack
-
-Status: `active`
-
-Goal:
-
-- break the remaining large Composer viewport stack into explicit runtime families instead of one broad canvas-heavy surface.
-
-Why it matters:
-
-- viewport render, playback, menus, media overlays, and pointer interaction are still a major concentration of Composer structural debt.
-
-Progress update:
-
-- The path-point info pill now lives in a dedicated Composer viewport-overlay-pill runtime rather than inlined inside `app.js`.
-- Composer pointer-hit resolution now lives in a dedicated Composer pointer-hit runtime rather than inlined inside `app.js`.
-- Composer pointer, drag, hover, wheel, and timeline-context interaction handling now live in a dedicated Composer pointer-interaction runtime rather than inlined inside `app.js`.
-- Composer canvas bootstrap now lives in a dedicated Composer canvas-bootstrap runtime rather than inlined inside `app.js`.
-- Composer playback, playhead, marker navigation, timeline rendering, and viewport-mode transport logic now live in a dedicated Composer playback-timeline runtime rather than inlined inside `app.js`.
-- Composer canvas resize, frame-scale, observer-camera, and render-loop wiring now live in a dedicated Composer viewport-render runtime rather than inlined inside `app.js`.
-- `app.js` is now down to about 7.1k lines, so the remaining structural debt is increasingly concentrated in a smaller set of larger viewport-facing seams.
-- The remaining work in this item is now mostly the viewport visuals, media-overlay, and canvas-menu stack rather than the already-separated playback, bootstrap, pointer, and render loops.
-- A refresh-time white flash still appears intermittently before the scene populates, so the remaining viewport/bootstrap work also needs a first-paint audit rather than only structural extraction.
-
-Next steps:
-
-- take the next larger pass through viewport visuals and media overlays so the next turn can remove another substantial chunk from `app.js`;
-- move canvas/menu behavior into a Composer canvas-menu shell runtime once the viewport-visuals boundary is settled;
-- trace and eliminate the refresh-time white flash so Composer and Reaction hold a stable dark first paint on browser reload;
-- keep scene glue thin until the end;
-- and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
-
-### 8. Accept Meson-Bearing Reaction Structures From Reaction
+### 5. Move More Editing Onto Canonical Structure Transforms
 
 Status: `pending`
 
-Goal:
+Current:
 
-- make sure downstream Composer import and display paths can accept accepted meson-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
+- Composer can already carry imported `structureKey` and stage data, and a narrow canonical edit path exists;
+- more authoring flows still depend on Composer-local mutations.
 
-Why it matters:
+Objective:
 
-- pion, kaon, and first-pass B-meson support already exist upstream in Reaction export and solver coverage, but Composer-side downstream checks are still sparse;
-- neutral authored variants such as `upi0` / `dpi0`, `dk0` / `sk0`, and `dB0` / `bB0` need to stay legible after handoff even when some upstream solve paths treat them as closure-equivalent families or closely related mesons;
-- and adding this explicitly now keeps downstream expectations aligned with the current upstream particle-vocabulary expansion.
-
-Required particle content:
-
-- accepted `pi+` structures based on `u + anti-d`;
-- accepted `pi-` structures based on `d + anti-u`;
-- accepted `pi0` structures based on either `u + anti-u` or `d + anti-d`, with both remaining display-valid downstream;
-- accepted `K+` structures based on `u + anti-s`;
-- accepted `K-` structures based on `s + anti-u`;
-- accepted `dk0` structures based on `d + anti-s`;
-- accepted `sk0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream;
-- accepted `B+` structures based on `u + anti-b`;
-- accepted `B-` structures based on `b + anti-u`;
-- accepted `dB0` structures based on `d + anti-b`;
-- and accepted `bB0` structures based on `b + anti-d`, with the neutral pair staying visually distinguishable downstream.
-
-Next steps:
-
-- add downstream handoff/import checks for pion-, kaon-, and B-bearing `reaction-flow/v1` documents rather than relying only on the baseline neutron fixture;
-- keep meson rendering, labels, and neutral-pair distinction data-driven from accepted upstream output rather than Composer-local particle policy;
-- confirm that Composer accepts those downstream contracts without runtime coupling back into Reaction or solver internals;
-- and keep Composer as a consumer of accepted upstream meson output rather than a second particle-authoring surface.
-
-### 9. Accept `Noether Pair` Assemblies From Reaction
-
-Status: `pending`
-
-Goal:
-
-- make sure Composer can accept and display accepted `Noether Pair` assemblies downstream once Reaction and solver add them to the shared contract surface.
-
-Why it matters:
-
-- `Noether Pair` is intended to become a reusable assembly in the same collection as the current clusters and particles, so downstream import/render paths should be ready for it without Composer inventing its own semantics;
-- it also gives us a clean place to consider whether `Higgs Cluster` should eventually be renamed to `Noether Quad`, while keeping Composer data-driven from upstream accepted output rather than hard-coding terminology locally.
-
-Next steps:
-
-- add downstream handoff/import coverage once `Noether Pair` appears in accepted `reaction-flow/v1` output;
-- keep the new assembly's labels and rendering data-driven from upstream contracts rather than Composer-local particle policy;
-- and be prepared to absorb a future naming change from `Higgs Cluster` to `Noether Quad` without creating a second downstream terminology fork.
+- make structure reads and edits share one canonical model so nesting, scale, and transfer staging stay coherent.
 
 ## Related Priorities
 

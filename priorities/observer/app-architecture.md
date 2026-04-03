@@ -210,97 +210,71 @@ The architecture should keep the following checks in place:
 
 ## Priorities
 
-### 1. Keep The Main Web App As Discovery Surface, Not Shared App Runtime
+### 1. Finish The Standalone App Cut-Over For Composer
 
 Status: `active`
 
-Goal:
+Current:
 
-- keep the main Architrino app as launcher and discovery surface while dedicated tools continue moving into their own runtimes.
+- standalone launch routing already exists for `composer` and `reaction_designer`;
+- Reaction already boots through `src/apps/reaction/main.js`;
+- but `src/apps/composer/main.js` still hands control back to `app.js`.
 
-Why it matters:
+Objective:
 
-- the whole architecture depends on users entering a tool's own runtime rather than staying inside one expanding shared shell.
+- make the main web app a launcher and discovery surface only, with Composer and Reaction each owning their own runtime path.
 
-Next steps:
+### 2. Keep Cross-App Exchange Contract-First
 
-- keep app entrypoints explicit;
-- avoid routing new app behavior back into generic launcher code;
-- and treat launcher-state coupling as architectural debt rather than convenience.
+Status: `active`
 
-### 2. Harden Explicit Data Boundaries Between Apps
+Current:
+
+- `reaction-flow/v1` export/import runtimes, schemas, examples, and contract tests are already in place;
+- Composer consumes the handoff without importing Reaction runtime code.
+
+Objective:
+
+- keep app-to-app exchange versioned and data-first as the contract grows.
+
+### 3. Add Architectural Enforcement That Blocks Regressions
 
 Status: `next`
 
-Goal:
+Current:
 
-- make app-to-app exchange rely on versioned contracts instead of shared executable behavior.
+- standalone launch tests, contract tests, and the Composer/Reaction boundary checker already exist;
+- but the boundary checker is not part of the git-hook audit path.
 
-Why it matters:
+Objective:
 
-- explicit boundaries are what let apps evolve independently without surprise regressions.
+- make cross-import and shared-runtime backsliding harder to land than to avoid.
 
-Next steps:
+### 4. Reduce The Remaining Oversized Composition Roots
 
-- keep Reaction-to-Composer exchange data-first;
-- keep contract fixtures and validation close to those boundaries;
-- and refuse new convenience coupling that crosses runtime seams.
+Status: `active`
 
-### 3. Continue Moving App Logic Under App-Owned Module Trees
+Current:
 
-Status: `pending`
+- `app.js` is still about 7.1k lines;
+- `ReactionCanvasUiRuntime.js` is still a 4.3k-line concentration point.
 
-Goal:
+Objective:
 
-- keep Composer and Reaction behavior landing in app-owned modules rather than in generic coordinators or legacy shared roots.
+- move app-owned behavior into smaller modules and leave composition roots with wiring only.
 
-Why it matters:
-
-- architectural clarity comes from ownership being obvious in the codebase, not just in documents.
-
-Next steps:
-
-- keep new app logic out of `app.js`;
-- keep app-specific imports local to app trees;
-- and keep ownership obvious in canonical app-owned modules as new work lands.
-
-### 4. Shrink Large Composition Roots And Collapsed Subsystems
+### 5. Keep New Work Landing In App-Owned Trees
 
 Status: `pending`
 
-Goal:
+Current:
 
-- reduce the remaining oversized shared roots and collapsed runtime files that still blur boundaries and responsibilities.
+- both apps now have substantial `src/apps/*` module families;
+- Composer still relies more heavily on shared `src/runtime/` surfaces than Reaction does.
 
-Why it matters:
+Objective:
 
-- these files are still the biggest risk to readability, testability, and boundary leakage.
-
-Next steps:
-
-- keep `app.js` as wiring rather than behavior;
-- keep shrinking `ReactionSolverUiRuntime.js` toward composition-only wiring;
-- and split remaining large subsystems by responsibility rather than by accidental grouping.
-
-### 5. Add Enforcement That Prevents Architectural Backsliding
-
-Status: `pending`
-
-Goal:
-
-- make the intended app architecture mechanically harder to violate.
-
-Why it matters:
-
-- without checks, the codebase will naturally drift back toward shared-runtime convenience.
-
-Next steps:
-
-- keep contract fixture validation in place;
-- add or preserve app-boot smoke tests;
-- add checks that catch forbidden cross-imports and backsliding into shared app logic;
-- keep Reaction export tests and Composer import tests close to the contract boundary;
-- and prefer behavioral tests that match the real architecture seams.
+- make ownership obvious in the codebase by defaulting new app behavior to the app tree, not the legacy shared root.
 
 ## Refactoring Guidance
 

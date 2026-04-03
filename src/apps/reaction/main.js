@@ -1,4 +1,12 @@
 import { createReactionAppRuntime } from "./ReactionAppRuntime.js";
+import { createBrowserReactionSolveSnapshot } from "./ReactionSolverBrowserRuntime.js";
+
+const reactionAppRuntimeDeps = globalThis.__ARCHITRINO_REACTION_APP_DEPS__ ?? {};
+const defaultBrowserSolveSnapshot = createBrowserReactionSolveSnapshot({
+  windowLike: globalThis.window,
+  fetchImpl: typeof globalThis.fetch === "function" ? globalThis.fetch.bind(globalThis) : null,
+  endpoint: reactionAppRuntimeDeps.solveEndpoint,
+});
 
 const reactionAppRuntime = createReactionAppRuntime({
   statusElement: document.getElementById("reaction-status"),
@@ -13,6 +21,10 @@ const reactionAppRuntime = createReactionAppRuntime({
   clearButton: document.getElementById("reaction-clear-button"),
   solveButton: document.getElementById("reaction-solve-button"),
   exitButton: document.getElementById("reaction-exit-button"),
+  solveSnapshot:
+    typeof reactionAppRuntimeDeps.solveSnapshot === "function"
+      ? reactionAppRuntimeDeps.solveSnapshot
+      : defaultBrowserSolveSnapshot,
 });
 
 reactionAppRuntime.init();

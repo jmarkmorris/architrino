@@ -19,6 +19,7 @@ export function createReactionAppRuntime(deps) {
     clearButton = null,
     solveButton = null,
     exitButton = null,
+    solveSnapshot = null,
   } = deps;
 
   function setStatus(message = "") {
@@ -48,6 +49,8 @@ export function createReactionAppRuntime(deps) {
     closeExternalMenus: () => {},
     storage: globalThis.window?.sessionStorage ?? null,
     storageKey: reactionCanvasStorageKey,
+    solveSnapshot:
+      typeof solveSnapshot === "function" ? solveSnapshot : undefined,
   });
   const exportRuntime = createReactionFlowExportRuntime({
     getSnapshot: canvasRuntime.getSnapshot,

@@ -411,50 +411,66 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Lock The V1 Mapping Table And Unsupported-Particle Policy
+### 1. Project Accepted PDG Proposals Into Reaction
 
-Status: `completed`
+Status: `active`
 
-- decide the canonical v1 PDG-to-solver mapping table that `pdgfeed.py` is allowed to export;
-- keep unsupported particles proposal-only until a solver-facing mapping exists;
-- and make the supported/unsupported boundary explicit in the note and in code.
+Current:
 
-### 2. Verify Against The Solver Boundary
+- `pdgfeed.py` already emits normalized `pdg-proposal/v1`, `solver-request/v1`, and frozen live manifests;
+- there is still no accepted proposal path into Reaction.
 
-Status: `completed`
+Objective:
 
-- validate emitted candidate payloads against `solver-request/v1`;
-- compare candidate shape against real solver needs before widening scope;
-- and keep downstream integration based on explicit contracts only.
+- define the explicit PDG-to-Reaction seam so candidates become reviewable upstream input instead of file-only artifacts.
 
-### 3. Add Live PDG Package Reads Alongside Fixtures
+### 2. Add Proposal Review And Alternatives
 
-Status: `completed`
+Status: `next`
 
-- add real `pdg.connect(...)` reads for the first supported channel lookups;
-- keep the local fixture corpus as the stable development and regression path;
-- and ensure live reads normalize into the same proposal and export shapes as fixtures while preserving live PDG provenance fields.
+Current:
 
-### 4. Add Proposal Review And Alternatives
+- proposals already carry ranking and notes;
+- there is still no stored alternative set and no `pin` / `forbid` review state.
 
-Status: `pending`
+Objective:
 
-- create a PDG-facing proposal-review flow with stored candidate alternatives;
-- add review controls such as pin or forbid;
-- keep proposal review upstream of Reaction acceptance.
+- make the upstream choice explicit before Reaction acceptance.
 
-### 5. Project Accepted Proposals Into Reaction
+### 3. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
 
-Status: `pending`
+Status: `active`
 
-- project chosen proposals into Reaction through explicit normalized state;
-- preserve useful provenance-review context;
-- avoid direct shared runtime code across the boundary.
+Current:
 
-### 6. Stay Downstream-Compatible With Reaction Export
+- `build-live-manifest` and `scripts/pdg-closure-sweep.mjs` already separate exportable/analyzable cases from unsupported discovery cases.
+
+Objective:
+
+- keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
+
+### 4. Expand The Locked Mapping Registry Deliberately
 
 Status: `pending`
 
-- align proposal material with the Reaction-owned handoff/export direction;
-- avoid Composer-specific shortcut payloads;
-- treat Composer integration as downstream of accepted Reaction output.
+Current:
+
+- the v1 registry already covers neutron, muon, pion, kaon, and first B-meson families;
+- unsupported particles still remain proposal-only.
+
+Objective:
+
+- widen exportable vocabulary only through explicit mapping entries, provenance rules, and regression tests.
+
+### 5. Stay Aligned With The Reaction/Composer Contract Story
+
+Status: `pending`
+
+Current:
+
+- PDG exports target `solver-request/v1` and avoid Composer-specific shortcut payloads;
+- the accepted handoff path through Reaction is still unfinished.
+
+Objective:
+
+- keep PDG strictly upstream of Reaction acceptance and preserve explicit downstream contracts.

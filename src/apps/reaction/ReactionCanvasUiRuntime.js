@@ -34,6 +34,7 @@ import {
 } from "./ReactionSolveProposalRuntime.js";
 import { applyReactionSolvePlan as defaultApplySolvePlan } from "./ReactionSolveProjectionRuntime.js";
 import { solveReactionSnapshot as defaultSolveSnapshot } from "./ReactionSolverContractRuntime.js";
+import { buildReactionSolverExecutionStatusNote } from "./ReactionSolverExecutionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -979,6 +980,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     dragPointerId: null,
     hoveredMappingIds: [],
     recentMappingIds: [],
+    isSolving: false,
   };
 
   let drawFrameId = 0;
@@ -1589,9 +1591,13 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     return true;
   }
 
-  function solveReactionCanvas() {
+  async function solveReactionCanvas() {
     if (!state.active) {
       setStatus("Open the reaction app before running solve.");
+      return false;
+    }
+    if (state.isSolving) {
+      setStatus("Reaction solve is already running.");
       return false;
     }
     let solveState = buildSolveState({
@@ -1622,57 +1628,72 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       isOperatorParticipant,
     });
 
-    const solution = solveSnapshot(
-      {
-        participants: cloneSerializableValue(state.participants),
-        mappings: cloneSerializableValue(state.mappings),
-      },
-      {
-        requestId: "reaction_canvas",
-        origin: {
-          sourceKind: "reaction",
-          sourceDocumentId: "reaction_canvas",
-          title: "Reaction Canvas",
-        },
-        buildNodeKey,
-        resolveBinaryChoiceInventory,
+    state.isSolving = true;
+    syncHeaderActionButtons();
+    setStatus("Running external Reaction solve...");
+
+    try {
+      const solution = await Promise.resolve(
+        solveSnapshot(
+          {
+            participants: cloneSerializableValue(state.participants),
+            mappings: cloneSerializableValue(state.mappings),
+          },
+          {
+            requestId: "reaction_canvas",
+            origin: {
+              sourceKind: "reaction",
+              sourceDocumentId: "reaction_canvas",
+              title: "Reaction Canvas",
+            },
+            buildNodeKey,
+            resolveBinaryChoiceInventory,
+          }
+        )
+      );
+      const result = solution?.result ?? null;
+      if (!Array.isArray(result?.mappings) || !result.mappings.length) {
+        setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
+        return false;
       }
-    );
-    const result = solution?.result ?? null;
-    if (!Array.isArray(result?.mappings) || !result.mappings.length) {
-      setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
+
+      clearDragState();
+      closeMenu();
+      state.pendingSourceKey = "";
+      state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
+      state.hoveredMappingIds = [];
+      state.mappings = [];
+      clearAllRecentRouteState();
+      const { appliedMappingIds } = applySolvePlan({
+        result,
+        createOperatorParticipant,
+        getParticipantRootNode,
+        buildNodeKey,
+        markParticipantAutoDissociated,
+        addOrReplaceMapping,
+      });
+      markMappingsRecent(appliedMappingIds);
+      render();
+
+      const unresolvedProductCount = Number(solution?.unresolvedTargetCount ?? 0);
+      const unresolvedReactantCount = Number(solution?.unresolvedReactantCount ?? 0);
+      const executionStatusNote = buildReactionSolverExecutionStatusNote(solution?.execution);
+      setStatus(
+        `Solve v1 mapped ${normalizeText(solution?.planDescription) || describeSolvePlan({})}. ${unresolvedProductCount} product${
+          unresolvedProductCount === 1 ? "" : "s"
+        } and ${unresolvedReactantCount} reactant${
+          unresolvedReactantCount === 1 ? "" : "s"
+        } remain unresolved.${executionStatusNote ? ` ${executionStatusNote}` : ""}`
+      );
+      return true;
+    } catch (error) {
+      setStatus(normalizeText(error?.message) || "Reaction solve failed.");
       return false;
+    } finally {
+      state.isSolving = false;
+      syncHeaderActionButtons();
     }
-
-    clearDragState();
-    closeMenu();
-    state.pendingSourceKey = "";
-    state.pendingSourceRole = "";
-    state.pendingSourceAnchorInstanceIndex = null;
-    state.hoveredMappingIds = [];
-    state.mappings = [];
-    clearAllRecentRouteState();
-    const { appliedMappingIds } = applySolvePlan({
-      result,
-      createOperatorParticipant,
-      getParticipantRootNode,
-      buildNodeKey,
-      markParticipantAutoDissociated,
-      addOrReplaceMapping,
-    });
-    markMappingsRecent(appliedMappingIds);
-    render();
-
-    const unresolvedProductCount = Number(solution?.unresolvedTargetCount ?? 0);
-    const unresolvedReactantCount = Number(solution?.unresolvedReactantCount ?? 0);
-    setStatus(
-      `Solve v1 mapped ${normalizeText(solution?.planDescription) || describeSolvePlan({})}. ${unresolvedProductCount} product${
-        unresolvedProductCount === 1 ? "" : "s"
-      } and ${unresolvedReactantCount} reactant${
-        unresolvedReactantCount === 1 ? "" : "s"
-      } remain unresolved.`
-    );
-    return true;
   }
 
   function resetSolveDerivedArtifacts() {
@@ -2359,6 +2380,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   function syncHeaderActionButtons() {
     const canClear =
       state.active &&
+      !state.isSolving &&
       (state.participants.length > 0 ||
         state.mappings.length > 0 ||
         !!state.pendingSourceKey ||
@@ -2368,8 +2390,9 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       clearButton.setAttribute("aria-disabled", canClear ? "false" : "true");
     }
     if (solveButton instanceof HTMLButtonElement) {
-      solveButton.disabled = !state.active;
-      solveButton.setAttribute("aria-disabled", state.active ? "false" : "true");
+      const canSolve = state.active && !state.isSolving;
+      solveButton.disabled = !canSolve;
+      solveButton.setAttribute("aria-disabled", canSolve ? "false" : "true");
     }
   }
 
@@ -4281,8 +4304,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     }
     if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.canvasBound) {
       solveButton.dataset.canvasBound = "true";
-      solveButton.addEventListener("click", () => {
-        solveReactionCanvas();
+      solveButton.addEventListener("click", async () => {
+        await solveReactionCanvas();
       });
     }
     if (!document.body.dataset.composerReactionCanvasDocumentBound) {
