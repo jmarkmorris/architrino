@@ -30,7 +30,7 @@ It does not own:
 
 ## Current State
 
-- The repository already has a dedicated `Reaction Designer` scene and a first-class reaction-solver runtime.
+- The repository already has a dedicated `Reaction Designer` scene and a first-class standalone Reaction app runtime built around the reaction canvas.
 - The current deployment already has a dedicated Reaction entrypoint, though some launcher-era shared-root cleanup still remains.
 - The live manual workflow is lane-based, with reactants on the left, products on the right, and operator lanes between them.
 - The current add flow visibly supports reactants, products, polarity transforms, dissociate, associate, and center-assembly additions.
@@ -38,8 +38,8 @@ It does not own:
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
-- The canonical implementation for Reaction helper, solver, structure, and layout runtimes now lives under `src/apps/reaction/`.
-- The Reaction app is already useful for manual provenance work, but it still lacks a production-hardened accept-and-export path downstream.
+- The canonical implementation for Reaction helper, canvas, solve, structure, export, and layout runtimes now lives under `src/apps/reaction/`.
+- Reaction already exports a versioned `reaction-flow/v1` handoff document through a dedicated export runtime, but the live app still lacks an explicit accept / commit step that marks reviewed work as downstream-ready.
 
 ## Design
 
@@ -71,7 +71,7 @@ These terms should remain distinct rather than collapsing into loose synonyms.
 
 ### Manual Workflow And Surface Grammar
 
-The near-term baseline should remain the current left / center / right hierarchy solver surface rather than jumping immediately to full free placement.
+The near-term baseline should remain the current left / center / right hierarchy reaction-canvas surface rather than jumping immediately to full free placement.
 
 Current intended interaction model:
 
@@ -225,22 +225,22 @@ Next steps:
 - keep conservation semantics centralized;
 - and remove leftover wording or behavior that makes the grammar feel fragmented.
 
-### 4. Add Explicit Accept And Downstream Export
+### 4. Add Explicit Accept / Commit Workflow On Top Of The Existing Export Boundary
 
 Status: `pending`
 
 Goal:
 
-- add a clear accept / commit path that turns accepted Reaction work into stable downstream output.
+- add a clear accept / commit path that marks reviewed Reaction work as downstream-ready on top of the existing `reaction-flow/v1` export boundary.
 
 Why it matters:
 
-- Reaction is already useful for manual provenance work, but it still needs a durable way to hand accepted results downstream.
+- Reaction already has a durable versioned export path, but the live authoring workflow still does not clearly distinguish "still editing" from "accepted for downstream use."
 
 Next steps:
 
-- define the accepted-output path in a versioned way;
-- make accepted result ownership explicit inside Reaction;
+- add an explicit reviewed / accepted state or action in the Reaction app shell;
+- make accepted result ownership explicit inside Reaction rather than leaving export as the only implied completion signal;
 - and keep the downstream boundary data-first rather than runtime-coupled.
 
 ### 5. Keep Conservation And Layout Rules Centralized
@@ -279,32 +279,13 @@ Next steps:
 - keep provenance authoring out of downstream Composer tooling;
 - and continue reducing launcher-era coupling as the standalone app boundary hardens.
 
-### 7. Harden Reaction Export And Contract Ownership
+### 7. Delete The Old Browser Solver After Flash Cut-Over
 
 Status: `pending`
 
 Goal:
 
-- keep Reaction clearly responsible for the export side of the handoff contract.
-
-Why it matters:
-
-- Reaction is the upstream authoring and acceptance surface, so the contract has to track current solver and app output honestly.
-
-Next steps:
-
-- keep `reaction-flow/v1` as the only intended bridge;
-- refresh the schema against current solver output;
-- add or keep Reaction export tests around that contract;
-- and keep the Reaction side of the boundary explicit before deeper downstream integration.
-
-### 8. Delete The Old Browser Solver After Flash Cut-Over
-
-Status: `pending`
-
-Goal:
-
-- remove the old Reaction-app solver code completely once `solver.py` is complete, integrated, and validated well enough for the flash migration.
+- remove the old Reaction-app solver code completely once the external Python solver core is complete, integrated, and validated well enough for the flash migration.
 
 Why it matters:
 

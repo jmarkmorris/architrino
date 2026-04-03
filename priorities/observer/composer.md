@@ -49,6 +49,7 @@ It does not own:
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
 - The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
 - The `reaction-flow/v1` intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
+- The current import and contract coverage is still centered on the baseline reaction-flow fixture, so downstream particle-family-specific coverage remains thinner than the upstream Reaction and solver tests.
 
 ## Design
 
@@ -357,60 +358,40 @@ Next steps:
 - keep scene glue thin until the end;
 - and flatten the Composer canvas framing so the canvas uses the full available area without redundant nested frames.
 
-### 8. Accept Pion Structures From Reaction
+### 8. Accept Meson-Bearing Reaction Structures From Reaction
 
 Status: `pending`
 
 Goal:
 
-- make sure downstream Composer import and display paths can accept accepted pion-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
+- make sure downstream Composer import and display paths can accept accepted meson-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
 
 Why it matters:
 
-- pion support should eventually flow cleanly from solver and Reaction into Composer review/output without Composer becoming the place where pion semantics are invented;
-- neutral-pion authored variants need to stay legible after handoff even though the solver treats them as closure-equivalent;
-- and adding this explicitly now keeps downstream expectations aligned with the upstream particle-vocabulary expansion.
+- pion, kaon, and first-pass B-meson support already exist upstream in Reaction export and solver coverage, but Composer-side downstream checks are still sparse;
+- neutral authored variants such as `upi0` / `dpi0`, `dk0` / `sk0`, and `dB0` / `bB0` need to stay legible after handoff even when some upstream solve paths treat them as closure-equivalent families or closely related mesons;
+- and adding this explicitly now keeps downstream expectations aligned with the current upstream particle-vocabulary expansion.
 
 Required particle content:
 
 - accepted `pi+` structures based on `u + anti-d`;
 - accepted `pi-` structures based on `d + anti-u`;
-- and accepted `pi0` structures based on either `u + anti-u` or `d + anti-d`, with both remaining display-valid downstream.
-
-Next steps:
-
-- confirm that Composer accepts pion-bearing downstream contracts without runtime coupling back into Reaction or solver internals;
-- keep pion rendering and labels data-driven from accepted upstream output rather than Composer-local particle policy;
-- add at least one downstream handoff/import check once Reaction export can emit pion structures;
-- and keep Composer as a consumer of accepted pion output rather than a second particle-authoring surface.
-
-### 9. Accept Kaon Structures From Reaction
-
-Status: `pending`
-
-Goal:
-
-- make sure downstream Composer import and display paths can accept accepted kaon-bearing Reaction output without adding Composer-owned particle logic that belongs upstream.
-
-Why it matters:
-
-- kaon support should flow through the same downstream contract shape that now carries pion content, so Composer stays a consumer of accepted particle structure rather than the place where kaon semantics are invented;
-- the neutral kaon pair needs to remain legible downstream as distinct authored structures with different strangeness, even though both are charge-neutral;
-- and calling this out now keeps downstream expectations aligned with the next light-meson expansion after pions.
-
-Required particle content:
-
+- accepted `pi0` structures based on either `u + anti-u` or `d + anti-d`, with both remaining display-valid downstream;
 - accepted `K+` structures based on `u + anti-s`;
 - accepted `K-` structures based on `s + anti-u`;
 - accepted `dk0` structures based on `d + anti-s`;
-- and accepted `sk0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream.
+- accepted `sk0` structures based on `s + anti-d`, with the neutral pair staying visually distinguishable downstream;
+- accepted `B+` structures based on `u + anti-b`;
+- accepted `B-` structures based on `b + anti-u`;
+- accepted `dB0` structures based on `d + anti-b`;
+- and accepted `bB0` structures based on `b + anti-d`, with the neutral pair staying visually distinguishable downstream.
 
 Next steps:
 
-- confirm that Composer accepts kaon-bearing downstream contracts without runtime coupling back into Reaction or solver internals;
-- keep kaon rendering, labels, and neutral-pair distinction data-driven from accepted upstream output rather than Composer-local particle policy;
-- add at least one downstream handoff/import check once Reaction export can emit kaon structures;
-- and keep Composer as a consumer of accepted kaon output rather than a second particle-authoring surface.
+- add downstream handoff/import checks for pion-, kaon-, and B-bearing `reaction-flow/v1` documents rather than relying only on the baseline neutron fixture;
+- keep meson rendering, labels, and neutral-pair distinction data-driven from accepted upstream output rather than Composer-local particle policy;
+- confirm that Composer accepts those downstream contracts without runtime coupling back into Reaction or solver internals;
+- and keep Composer as a consumer of accepted upstream meson output rather than a second particle-authoring surface.
 
 ## Related Priorities
 

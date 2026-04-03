@@ -31,9 +31,9 @@ It does not own:
 
 ### Solver
 
-The main solver design is now a fresh headless implementation path, not an extension of the current browser implementation.
+The main solver implementation path is now the external headless core centered on [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py), not an extension of the browser runtime.
 
-`solver.py` should be treated as a new solver designed on its own terms around a headless planning core plus app-side adapters. The browser should not remain the only place where solving can happen. The current JavaScript planner is still a useful behavioral reference, fixture source, and functionality checklist, but it is not the implementation to port and it should not define the architecture of the new solver.
+That Python core should be treated as the primary solver implementation around a headless planning core plus app-side adapters. The browser should not remain the only place where solving can happen. The current JavaScript planner is still a useful behavioral reference, fixture source, and functionality checklist, but it is not the implementation to port and it should not define the architecture of the live solver.
 
 The intended solve flow remains:
 
@@ -110,7 +110,7 @@ Implementation stance:
 
 ### Reference Behavior And Assets
 
-The current browser solver should no longer drive architecture, but it still provides a narrow remaining reference value for `solver.py`:
+The current browser solver should no longer drive architecture, but it still provides a narrow remaining reference value for [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py):
 
 - covered behavior that the new solver should preserve unless intentionally changed;
 - and Reaction-side adapter expectations around rerun, layout, and projection.
@@ -275,7 +275,7 @@ Recommended scoring posture:
 
 #### Practical Search Discipline
 
-The first version of `solver.py` should be designed for disciplined bounded search, not global exhaustive enumeration.
+The first version of [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) should be designed for disciplined bounded search, not global exhaustive enumeration.
 
 That means:
 
@@ -423,7 +423,7 @@ On libraries:
 
 #### Current Recommendation
 
-My first recommendation for `solver.py` is:
+My first recommendation for [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) is:
 
 1. external request/result schemas for I/O;
 2. frozen dataclass records for internal entries, steps, and branch state;
@@ -686,7 +686,7 @@ Guardrail:
 
 ### Solver Rules
 
-This is the first-draft normative rule set for the new solver. The point of this section is to make implementation decisions explicit enough that `solver.py` can be designed deliberately instead of filling gaps by convenience.
+This is the first-draft normative rule set for the new solver. The point of this section is to make implementation decisions explicit enough that [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) can be designed deliberately instead of filling gaps by convenience.
 
 #### Rule Scope
 
@@ -1063,7 +1063,7 @@ If two branches are truly equivalent, the solver must still pick one determinist
 
 ### External Solver Core
 
-The intended rebuilt solver core is an external command-line tool, likely implemented in Python.
+The rebuilt solver core is now an external command-line tool implemented in Python.
 
 That core should own:
 
@@ -1366,7 +1366,7 @@ The Reaction app should consume that output through a projection adapter that ma
 
 The reviewed v1 boundary is now:
 
-- `solver.py` returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
+- [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
 - the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time;
 - solve-created operator placements cross the boundary only as advisory lane / row / slot records under `placement.operatorPlacements`;
 - and Reaction keeps ownership of live operator creation, node-key packing, auto-dissociation marking, and any local row-slot fallback behavior.
@@ -1432,7 +1432,7 @@ Required contract rules:
 
 ### Identity And Tie-Break Semantics
 
-Before `solver.py` starts, the identity and selection rules need to be treated as normative rather than as scattered browser behavior.
+Before [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) starts, the identity and selection rules need to be treated as normative rather than as scattered browser behavior.
 
 External identity rules:
 
@@ -1440,7 +1440,7 @@ External identity rules:
 - node or anchor identity in the external request/result contracts stays unpacked as `participantId` plus `anchorId`, not as one packed node-key string;
 - the packed Reaction adapter key remains `participantId::nodeId` through [`ReactionNodeKeyRuntime`](../../src/apps/reaction/ReactionNodeKeyRuntime.js), but that packing is a Reaction-side adapter concern rather than the external solver contract;
 - solve-generated operator ids in `solver-result/v1` should use compact deterministic ids such as `associate:1`, `associate:2`, and later `dissociate:1`, assigned in selected-step order within the final result;
-- and the current browser solver's verbose structural refs are acceptable browser-local reference behavior, but they should not become the canonical external operator-id scheme for `solver.py`.
+- and the current browser solver's verbose structural refs are acceptable browser-local reference behavior, but they should not become the canonical external operator-id scheme for [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py).
 
 Deterministic candidate identity rules:
 
@@ -1540,52 +1540,52 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Solver Rearchitecture
+### 1. Finish External Solver Cut-Over
 
 Status: `in_progress`
 
 Objective:
 
-- build the new solver as a fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
+- finish the cut-over onto the fast external headless core with explicit JSON and compact CLI inputs, while preserving clean Reaction review and Composer handoff boundaries.
 
 Current state:
 
 - the `solver-request/v1` / `solver-result/v1` seam is in place and Reaction UI already solves through that boundary;
 - Node-side contract solves default to the external CLI path in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs);
 - the external CLI accepts either a request file path or one raw `solver-request/v1` JSON document on `stdin`, so file-based and pipe-based handoff can use the same contract boundary;
-- the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
+- the external CLI runs the Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of treating the old JS planner as the primary implementation;
 - the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
-- the external core now closes the current supported generated PDG weak-channel request set exactly through a generic weak-channel operator path, and pion lepton-only channels now emit explicit meson provenance steps with solve-generated quark constituents, `Noether core` intermediates, a shared `Free Architrinos` pool, and a `Higgs cluster` supplement when the requested lepton multiplicity exceeds the meson's own core supply;
-- charged and neutral pion support, repeated-particle expansion, PDG-side kaon mappings, and the first charged/neutral B-meson mappings now promote a larger frozen live manifest into the analyzable denominator: the current recomputed manifest reaches `191` exportable reactions with `43` exact, `3` partial, and `145` no-solution in the sweep;
-- the external core now closes the first B-meson leptonic families exactly, including `B+ -> e+ nu_e`, `B+ -> mu+ nu_mu`, and the corresponding radiative channels, while keeping the neutral `dB0` / `bB0` pair distinct;
-- the top unsupported-particle pressure has therefore shifted further away from pions, kaons, and B mesons toward generic or heavier hadron vocabulary such as bare `pi`, `eta`, `K0S`, `D0`, and `phi`, while the solver-completion pressure has shifted toward the newly analyzable kaon- and B-bearing families that now return `partial` or `no-solution`;
+- the external core closes the current live PDG closure-sweep set exactly: the latest local run reports `7` analyzable reactions and `7` exact closures with `0` partial, `0` no-solution, and `0` unsupported inputs;
+- the external core also closes the current supported generated weak-channel request set through the generic weak-channel operator path, and pion lepton-only channels emit explicit meson provenance steps with solve-generated quark constituents, `Noether core` intermediates, a shared `Free Architrinos` pool, and a `Higgs cluster` supplement when the requested lepton multiplicity exceeds the meson's own core supply;
+- charged and neutral pion support, repeated-particle expansion, kaon mappings, and first-pass charged and neutral B-meson mappings are now covered in the request/export path and in external-solver regression coverage;
+- the external core closes the first kaon and B-meson leptonic families exactly, while keeping the neutral `dk0` / `sk0` and `dB0` / `bB0` pairs distinct;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
 - and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
 Next focus:
 
-- treat every newly added supported particle assembly that fails the sweep as a concrete implementation gap in the fresh solver core and add focused regression tests for each family as it is closed;
-- keep expanding external-core coverage beyond the current supported PDG request set and golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
-- keep unsupported-particle cases out of the solver-completion denominator and use the sweep report's unsupported-particle counts to prioritize future mapping work without conflating it with solver behavior;
-- use the extracted JS bridge only as a shrinking reference path while the external core reaches the remaining accepted solver behavior exposed by the sweep;
-- and then remove the remaining browser-safe in-process fallback once the external path closes the supported reaction set through the stable `solver-request/v1` / `solver-result/v1` boundary.
+- treat every supported particle family that still fails the external core as a concrete implementation gap and add focused regression tests for each family as it is closed;
+- keep expanding external-core coverage beyond the current exact live set and golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
+- keep unsupported-particle cases out of the solver-completion denominator and use sweep reports to prioritize future mapping work without conflating it with solver behavior;
+- use the extracted JS bridge only as a shrinking reference path while the external core reaches the remaining accepted solver behavior;
+- and then remove the remaining browser-safe in-process fallback once the external path fully owns the supported reaction set through the stable `solver-request/v1` / `solver-result/v1` boundary.
 
 Deferred idea:
 
 - add a command-line option that emits all exact full-closure alternatives for review instead of only the final selected closure, so ranking and late-stage `W` / `Z` preference can be inspected directly when needed.
 
-### 2. Close The Newly Analyzable Pion Families
+### 2. Expand Pion Coverage Beyond The Current Exact Live Set
 
 Status: `in_progress`
 
 Objective:
 
-- close the newly analyzable pion-bearing solver families so the sweep turns current `partial` / `no-solution` pion cases into exact closures.
+- expand pion-bearing solver families beyond the current exact live set so broader exported or fixture-backed pion channels close through the external core.
 
 Why it matters:
 
-- adding charged-pion and neutral-pion mapping already promoted a broader live manifest into the analyzable denominator, which exposed the next solver gaps concretely instead of hiding them behind unsupported-input classification;
-- the remaining uncovered pion cases are now solver-behavior gaps rather than PDG vocabulary gaps;
+- the current live sweep no longer shows an open pion case, so the remaining pion work is now broader family expansion rather than fixing the current small live set;
+- the remaining uncovered pion cases are solver-behavior gaps rather than PDG vocabulary gaps;
 - and pion content is still simple enough to extend without reopening the larger boson-policy questions.
 
 Required particle content:
@@ -1601,13 +1601,13 @@ Next steps:
 - decide whether the remaining `3gamma` and `4gamma` neutral-pion channels should be solved through a more general repeated-photon meson rule or left as later electromagnetic-family work;
 - and use the closure sweep to confirm that each added pion family improves exact-closure percentage rather than merely increasing the analyzable denominator.
 
-### 3. Expand Kaon Solver Coverage After The First PDG Cutover
+### 3. Expand Kaon Solver Coverage Beyond The First Exact Closures
 
 Status: `in_progress`
 
 Objective:
 
-- expand kaon coverage now that the four kaons are supported light-meson content in both the solver path and PDG-side mapping registry.
+- expand kaon coverage now that the four kaons are supported light-meson content in both the solver path and PDG-side mapping registry, and the first charged-kaon lepton closures already work.
 
 Why it matters:
 
@@ -1626,11 +1626,11 @@ Next steps:
 
 - preserve kaon constituent identity through the solver path, especially the `generation:2` strange-quark distinction that currently rides on the existing quark template surface;
 - keep the neutral `dk0` / `sk0` pair distinct in solver behavior rather than collapsing them into one neutral-kaon placeholder;
-- expand beyond the first charged-kaon lepton closures now covered in the external solver, such as `K+ -> mu+ nu_mu` and `K+ -> e+ nu_e`, and add the next kaon-bearing channels exposed by PDG export;
+- expand beyond the first charged-kaon lepton closures already covered in the external solver, such as `K+ -> mu+ nu_mu` and `K+ -> e+ nu_e`, and add the next kaon-bearing channels exposed by PDG export;
 - prioritize the newly analyzable kaon families now visible in the sweep, such as `K+ -> pi+ pi0`, radiative kaon channels, and kaon-bearing proton-decay products;
 - and use the closure sweep to measure whether each added kaon family improves exact or partial closure rather than merely increasing the analyzable denominator.
 
-### 4. Expand B-Meson Solver Coverage After The First PDG Cutover
+### 4. Expand B-Meson Solver Coverage Beyond The First Exact Closures
 
 Status: `in_progress`
 
