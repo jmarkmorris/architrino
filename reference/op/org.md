@@ -54,21 +54,21 @@ The current preferred style for live priority docs is:
 
 This pattern was applied across:
 
-- `reference/priorities/observer/app-architecture.md`
-- `reference/priorities/observer/composer.md`
-- `reference/priorities/observer/reaction.md`
-- `reference/priorities/observer/solver.md`
-- `reference/priorities/observer/pdgfeed.md`
+- [reference/priorities/observer/app-architecture.md](../priorities/observer/app-architecture.md)
+- [reference/priorities/observer/composer.md](../priorities/observer/composer.md)
+- [reference/priorities/observer/reaction.md](../priorities/observer/reaction.md)
+- [reference/priorities/observer/solver.md](../priorities/observer/solver.md)
+- [reference/priorities/observer/pdgfeed.md](../priorities/observer/pdgfeed.md)
 
 ## Developer-Meta Storage Guidance
 
 We clarified the repo-local best-fit split for developer meta:
 
-- `AGENTS.md`:
+- [AGENTS.md](../../AGENTS.md):
   stable repo-wide operating rules and constraints;
-- `reference/priorities/<workstream>/`:
+- [reference/priorities](../priorities/README.md):
   live backlog and current-state tracking;
-- `reference/priorities/codex/`:
+- [reference/priorities/codex/codex.md](../priorities/codex/codex.md):
   Codex/operator-specific process notes;
 - `content/`:
   app-facing content, not developer process;
@@ -79,7 +79,7 @@ We clarified the repo-local best-fit split for developer meta:
 
 We also clarified the broader conventional structure for repos with many contributors:
 
-- `README.md` for project overview and setup;
+- [README.md](../../README.md) for project overview and setup;
 - `CONTRIBUTING.md` for contributor workflow;
 - `docs/` for durable human-facing technical documentation;
 - `docs/adr/` for Architecture Decision Records;
@@ -95,10 +95,10 @@ For this repo specifically:
 
 The best current repo-local home for the Codex thread-orchestration process is:
 
-- `reference/priorities/codex/`, likely as a focused file such as `reference/priorities/codex/thread-orchestration.md`.
+- [reference/priorities/codex/codex.md](../priorities/codex/codex.md), likely as a focused file such as `reference/priorities/codex/thread-orchestration.md`.
 
 That keeps:
 
-- durable agent constraints in `AGENTS.md`,
-- live work in `reference/priorities/observer/*.md`,
+- durable agent constraints in [AGENTS.md](../../AGENTS.md),
+- live work in the [observer priority docs](../priorities/observer/observer.md),
 - and Codex operating procedure in one developer-oriented place without mixing it into app-facing content.
