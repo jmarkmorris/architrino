@@ -845,18 +845,26 @@ def emit_case(case: PdgCase, output_dir: Path) -> list[Path]:
     return written_paths
 
 
-def build_fixture_solver_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+def build_fixture_proposal_object(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> Proposal:
     fixture = fixtures_by_id.get(fixture_id)
     if fixture is None:
         available = ", ".join(sorted(fixtures_by_id))
         raise SystemExit(f"Unknown fixture id {fixture_id!r}. Available: {available}")
-    solver_request = build_solver_request(build_proposal(fixture))
+    return build_proposal(fixture)
+
+
+def build_fixture_proposal(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    return build_fixture_proposal_object(fixtures_by_id, fixture_id).to_dict()
+
+
+def build_fixture_solver_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    solver_request = build_solver_request(build_fixture_proposal_object(fixtures_by_id, fixture_id))
     if solver_request is None:
         raise SystemExit(f"Fixture {fixture_id!r} does not currently emit solver-request/v1.")
     return solver_request
 
 
-def build_live_case_solver_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+def build_live_case_proposal_object(case_id: str, database_url: str | None = None) -> Proposal:
     spec = LIVE_CHANNEL_SPEC_BY_ID.get(case_id)
     if spec is None:
         available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
@@ -865,7 +873,15 @@ def build_live_case_solver_request(case_id: str, database_url: str | None = None
         live_case = load_live_case(spec, database_url)
     except (LookupError, RuntimeError) as exc:
         raise SystemExit(str(exc)) from exc
-    solver_request = build_solver_request(build_proposal(live_case))
+    return build_proposal(live_case)
+
+
+def build_live_case_proposal(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    return build_live_case_proposal_object(case_id, database_url).to_dict()
+
+
+def build_live_case_solver_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    solver_request = build_solver_request(build_live_case_proposal_object(case_id, database_url))
     if solver_request is None:
         raise SystemExit(f"Live case {case_id!r} does not currently emit solver-request/v1.")
     return solver_request
@@ -902,6 +918,12 @@ def parse_args() -> argparse.Namespace:
     emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and solver-request artifacts for one fixture.")
     emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
+    print_fixture_proposal_parser = subparsers.add_parser(
+        "print-fixture-proposal",
+        help="Print one fixture pdg-proposal/v1 JSON payload to stdout.",
+    )
+    print_fixture_proposal_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+
     print_fixture_request_parser = subparsers.add_parser(
         "print-fixture-solver-request",
         help="Print one fixture solver-request/v1 JSON payload to stdout for piping.",
@@ -912,6 +934,12 @@ def parse_args() -> argparse.Namespace:
 
     emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and solver-request artifacts for one live PDG channel.")
     emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+
+    print_live_proposal_parser = subparsers.add_parser(
+        "print-live-proposal",
+        help="Print one live-case pdg-proposal/v1 JSON payload to stdout.",
+    )
+    print_live_proposal_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
     print_live_request_parser = subparsers.add_parser(
         "print-live-solver-request",
@@ -947,6 +975,10 @@ def main() -> int:
             print(path.relative_to(REPO_ROOT))
         return 0
 
+    if args.command == "print-fixture-proposal":
+        print_json(build_fixture_proposal(fixtures_by_id, args.fixture_id))
+        return 0
+
     if args.command == "print-fixture-solver-request":
         print_json(build_fixture_solver_request(fixtures_by_id, args.fixture_id))
         return 0
@@ -968,6 +1000,10 @@ def main() -> int:
             raise SystemExit(str(exc)) from exc
         for path in emit_case(live_case, args.output_dir):
             print(path.relative_to(REPO_ROOT))
+        return 0
+
+    if args.command == "print-live-proposal":
+        print_json(build_live_case_proposal(args.case_id, args.database_url))
         return 0
 
     if args.command == "print-live-solver-request":

@@ -1554,14 +1554,18 @@ Current state:
 - Node-side contract solves default to the external CLI path in [`solve-reaction.mjs`](../../scripts/solve-reaction.mjs);
 - the external CLI accepts either a request file path or one raw `solver-request/v1` JSON document on `stdin`, so file-based and pipe-based handoff can use the same contract boundary;
 - the external CLI now runs the fresh Python core in [`reaction_solver_core.py`](../../scripts/reaction_solver_core.py) instead of the old JS bridge;
+- the PDG closure sweep in [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) now distinguishes unsupported-input cases from supported-but-unsolved solver cases and reports exact-closure percentage only over analyzable reactions;
 - the extracted JS bridge remains available as a shrinking in-process fallback and reference path;
 - and regression coverage exists for the current supported golden-corpus families plus authored manual operators, manual mappings, and manual dissociation accounting/preservation in [`reaction-external-solver-core.test.js`](../../tests/reaction-external-solver-core.test.js) and [`reaction-solver-contract-runtime.test.js`](../../tests/reaction-solver-contract-runtime.test.js).
 
 Next focus:
 
-- broaden the fresh external solver core beyond the current supported golden-corpus families while keeping the `solver-request/v1` / `solver-result/v1` seam stable;
-- use the extracted JS bridge only as a shrinking reference path while external-core coverage reaches the remaining accepted solver behavior;
-- and then remove the remaining browser-safe in-process fallback once the app host can rely on the external solve path in every supported runtime without changing the contract seam again.
+- add explicit external-core solve families for supported-but-currently-unsolved weak channels, starting with neutron beta decay so `n -> p + e- + anti-nu_e` closes from a fresh authored request instead of returning `no-solution`;
+- expand that same weak-channel coverage to the remaining included supported PDG cases, using the closure sweep as the running harness for exact, partial, unsupported-input, and request-error classification;
+- treat every supported particle assembly that still fails the sweep as a concrete implementation gap in the fresh solver core and add focused regression tests for each family as it is closed;
+- keep unsupported-particle cases out of the solver-completion denominator and use the sweep report's unsupported-particle counts to prioritize future mapping work without conflating it with solver behavior;
+- use the extracted JS bridge only as a shrinking reference path while the external core reaches the remaining accepted solver behavior exposed by the sweep;
+- and then remove the remaining browser-safe in-process fallback once the external path closes the supported reaction set through the stable `solver-request/v1` / `solver-result/v1` boundary.
 
 Deferred idea:
 

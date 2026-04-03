@@ -34,6 +34,7 @@ It does not own:
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
 - `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and piping into the solver CLI.
+- `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron and muon fixture cases.
@@ -113,10 +114,12 @@ The current CLI surface is:
 - `python3 pdgfeed.py list-fixtures`
 - `python3 pdgfeed.py emit-fixture <fixture-id>`
 - `python3 pdgfeed.py emit-all-fixtures`
+- `python3 pdgfeed.py print-fixture-proposal <fixture-id>`
 - `python3 pdgfeed.py print-fixture-solver-request <fixture-id>`
 - `python3 pdgfeed.py list-live-cases`
 - `python3 pdgfeed.py emit-live-case <case-id>`
 - `python3 pdgfeed.py emit-all-live-cases`
+- `python3 pdgfeed.py print-live-proposal <case-id>`
 - `python3 pdgfeed.py print-live-solver-request <case-id>`
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
@@ -126,6 +129,8 @@ The intended handoff modes are:
 - and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay | node scripts/solve-reaction.mjs`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
+
+For developer closure sweeps across many cases, use `node scripts/pdg-closure-sweep.mjs`. The sweep runner enumerates fixture or live cases, classifies unsupported-input cases from `pdg-proposal/v1` before solving, feeds only exportable requests through `pdgfeed.py` plus `solve-reaction.mjs`, writes a per-run log directory under `/tmp` by default, and finishes with a report containing reactions tested, analyzable reactions, exact-closure percentage over analyzable reactions only, reactions not yet analyzable, and the top unsupported particles ranked by appearance count in unsupported reactions.
 
 The first local fixture corpus is:
 

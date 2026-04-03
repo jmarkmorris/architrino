@@ -249,6 +249,17 @@ test("pdgfeed can print fixture solver-request json to stdout for piping", () =>
   assert.deepEqual(request, fixtureRequest);
 });
 
+test("pdgfeed can print fixture proposal json to stdout", () => {
+  const fixtureProposal = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.proposal.v1.json");
+  const stdout = execFileSync("python3", ["pdgfeed.py", "print-fixture-proposal", "free_neutron_beta_decay"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+  const proposal = JSON.parse(stdout);
+
+  assert.deepEqual(proposal, fixtureProposal);
+});
+
 test("pdgfeed stdout solver-request can be piped directly into solve-reaction stdin", () => {
   const requestStdout = execFileSync(
     "python3",
