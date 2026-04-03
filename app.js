@@ -56,7 +56,6 @@ import { createScenePanelUiRuntime } from "./src/runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "./src/runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "./src/runtime/AppSceneChromeRuntime.js";
 import { wireComposerCanvasUiListeners } from "./src/runtime/ComposerCanvasUiRuntime.js";
-import { createComposerHeaderTimestampRuntime } from "./src/runtime/ComposerHeaderTimestampRuntime.js";
 import {
   computeComposerViewportAutoscaleCameraState,
   getComposerActiveCameraShot,
@@ -210,7 +209,6 @@ const elementNavLeftButton = document.getElementById("element-nav-left");
 const elementNavRightButton = document.getElementById("element-nav-right");
 const {
   composerOverlay,
-  composerTitle,
   composerViewDesignButton,
   composerViewObserverButton,
   composerSceneButton,
@@ -7104,18 +7102,12 @@ const appShellUiRuntime = createAppShellUiRuntime({
   periodicOverlayRuntime,
   appDirector,
 });
-// The composer header reads generated repo signature metadata. Do not hand-edit header text here.
-const composerHeaderTimestampRuntime = createComposerHeaderTimestampRuntime({
-  element: composerTitle,
-  signatureUrl: "./.tmp/composer-header-signature.json",
-});
 
 appDirector.init();
 appShellUiRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 composerAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
-composerHeaderTimestampRuntime.init();
 updateComposerViewportModeButtons();
 window.addEventListener("keydown", (event) => {
   if (

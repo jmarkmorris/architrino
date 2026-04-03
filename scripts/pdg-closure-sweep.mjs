@@ -237,6 +237,50 @@ function summarizeOutcomeCounts(results) {
   return counts;
 }
 
+function collectStepDiagnosticLabels(result) {
+  const labels = new Set();
+  const steps = Array.isArray(result?.steps) ? result.steps : [];
+  for (const step of steps) {
+    const diagnosticLabels = Array.isArray(step?.diagnosticLabels) ? step.diagnosticLabels : [];
+    for (const label of diagnosticLabels) {
+      const normalized = String(label ?? "").trim();
+      if (normalized) {
+        labels.add(normalized);
+      }
+    }
+  }
+  return labels;
+}
+
+function classifyExactClosureKind(result) {
+  if (result?.summary?.exact !== true) {
+    return null;
+  }
+  const labels = collectStepDiagnosticLabels(result);
+  if (labels.has("meson-constituent-provenance")) {
+    return "full-provenance";
+  }
+  if (labels.has("generic-weak-channel")) {
+    return "generic-profile";
+  }
+  return "other";
+}
+
+function summarizeExactClosureKinds(results) {
+  const counts = {
+    "generic-profile": 0,
+    "full-provenance": 0,
+    other: 0,
+  };
+  for (const entry of results) {
+    if (!entry.exactClosureKind) {
+      continue;
+    }
+    counts[entry.exactClosureKind] = (counts[entry.exactClosureKind] ?? 0) + 1;
+  }
+  return counts;
+}
+
 function extractUnsupportedParticipantMentions(notes) {
   if (!Array.isArray(notes)) {
     return [];
@@ -368,6 +412,18 @@ function compactTokenFromProposalParticipant(participant) {
   if (templateId === "upi0" || templateId === "dpi0") {
     return "pi0";
   }
+  if (pdgName === "K+") {
+    return "K+";
+  }
+  if (pdgName === "K-") {
+    return "K-";
+  }
+  if (pdgName === "K0") {
+    return "dk0";
+  }
+  if (pdgName === "anti-K0") {
+    return "sk0";
+  }
   if (templateId === "b_plus") {
     return "B+";
   }
@@ -379,6 +435,18 @@ function compactTokenFromProposalParticipant(participant) {
   }
   if (templateId === "bB0" || templateId === "bb0") {
     return "bB0";
+  }
+  if (templateId === "k_plus") {
+    return "K+";
+  }
+  if (templateId === "k_minus") {
+    return "K-";
+  }
+  if (templateId === "dk0") {
+    return "dk0";
+  }
+  if (templateId === "sk0") {
+    return "sk0";
   }
 
   return String(participant?.templateId || participant?.label || participant?.id || "?");
@@ -439,6 +507,9 @@ function buildReport(summary) {
     `reactionsNotYetAnalyzed: ${summary.reactionsNotYetAnalyzed}`,
     `exactClosures: ${summary.exactClosureCount}`,
     `exactClosurePercent: ${summary.exactClosurePercent}%`,
+    `genericProfileExactClosures: ${summary.exactClosureKindCounts["generic-profile"]}`,
+    `fullProvenanceExactClosures: ${summary.exactClosureKindCounts["full-provenance"]}`,
+    `otherExactClosures: ${summary.exactClosureKindCounts.other}`,
     `partialClosures: ${summary.outcomeCounts.partial}`,
     `noSolution: ${summary.outcomeCounts["no-solution"]}`,
     `unsupportedInputs: ${summary.outcomeCounts["unsupported-input"]}`,
@@ -472,7 +543,7 @@ function buildReport(summary) {
   }
 
   lines.push("", "Per case:");
-  lines.push("batchId\tcaseId\tstatus\texact\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier");
+  lines.push("batchId\tcaseId\tstatus\texact\texactKind\tunresolved\treactants\tproducts\tunsupported\tpdgIdentifier");
 
   for (const entry of summary.cases) {
     const batchLabel = Number.isInteger(entry.batchId) ? String(entry.batchId) : "";
@@ -482,6 +553,7 @@ function buildReport(summary) {
         entry.caseId,
         entry.status,
         `exact=${entry.exact}`,
+        entry.exactClosureKind || "-",
         `unresolved=${entry.unresolvedTargetCount}`,
         entry.reactantsCompact || "-",
         entry.productsCompact || "-",
@@ -489,6 +561,59 @@ function buildReport(summary) {
         entry.pdgIdentifier || "",
       ].join("\t")
     );
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function buildExactClosuresCompactArtifact(summary) {
+  const sections = [
+    {
+      key: "full-provenance",
+      title: "Full-Provenance Exact Closures",
+    },
+    {
+      key: "generic-profile",
+      title: "Generic-Profile Exact Closures",
+    },
+    {
+      key: "other",
+      title: "Other Exact Closures",
+    },
+  ];
+  const lines = [
+    "PDG closure sweep exact closures in compact notation",
+    `runDir: ${summary.runDir}`,
+    `source: ${summary.source}`,
+    `analyzableReactions: ${summary.analyzableReactionCount}`,
+    `exactClosures: ${summary.exactClosureCount}`,
+    `genericProfileExactClosures: ${summary.exactClosureKindCounts["generic-profile"]}`,
+    `fullProvenanceExactClosures: ${summary.exactClosureKindCounts["full-provenance"]}`,
+    `otherExactClosures: ${summary.exactClosureKindCounts.other}`,
+    "",
+    "Notation format:",
+    "reactants->products",
+    "participants on each side are separated by '.'",
+    "tokens use the sweep's current compact notation surface",
+  ];
+
+  for (const section of sections) {
+    lines.push("", `${section.title}:`);
+    const cases = summary.cases.filter(
+      (entry) => entry.exact === true && entry.exactClosureKind === section.key
+    );
+    if (cases.length === 0) {
+      lines.push("(none)");
+      continue;
+    }
+    for (const entry of cases) {
+      lines.push(
+        [
+          entry.pdgIdentifier || entry.caseId,
+          `${entry.reactantsCompact || "-"}->${entry.productsCompact || "-"}`,
+          entry.title || "",
+        ].join("\t")
+      );
+    }
   }
   return `${lines.join("\n")}\n`;
 }
@@ -714,6 +839,7 @@ function main() {
     const result = JSON.parse(solveExecution.stdout);
     const resultPath = path.join(caseDir, `${safeCaseId}.solver-result.v1.json`);
     writeJson(resultPath, result);
+    const exactClosureKind = classifyExactClosureKind(result);
 
     results.push({
       batchId: entry.batchId,
@@ -722,6 +848,7 @@ function main() {
       pdgIdentifier: entry.pdgIdentifier,
       status: result?.summary?.outcome ?? "solve-error",
       exact: result?.summary?.exact === true,
+      exactClosureKind,
       unresolvedTargetCount: Number.isInteger(result?.summary?.unresolvedTargetCount)
         ? result.summary.unresolvedTargetCount
         : null,
@@ -741,6 +868,7 @@ function main() {
   const reactionsNotYetAnalyzed = results.filter((entry) => entry.status === "unsupported-input").length;
   const analyzableReactionCount = analyzableResults.length;
   const exactClosureCount = analyzableResults.filter((entry) => entry.exact).length;
+  const exactClosureKindCounts = summarizeExactClosureKinds(analyzableResults);
   const summary = {
     source: options.manifestPath ? "manifest" : options.source,
     runDir,
@@ -755,6 +883,7 @@ function main() {
     reactionsNotYetAnalyzed,
     exactClosureCount,
     exactClosurePercent: exactPercent(exactClosureCount, analyzableReactionCount),
+    exactClosureKindCounts,
     outcomeCounts: summarizeOutcomeCounts(results),
     unsupportedParticleCounts,
     topUnsupportedParticles: buildTopUnsupportedParticles(unsupportedParticleCounts),
@@ -787,6 +916,7 @@ function main() {
   writeJson(path.join(runDir, "summary.json"), summary);
   const report = buildReport(summary);
   writeText(path.join(runDir, "report.txt"), report);
+  writeText(path.join(runDir, "exact-closures-compact.txt"), buildExactClosuresCompactArtifact(summary));
   process.stdout.write(report);
 }
 

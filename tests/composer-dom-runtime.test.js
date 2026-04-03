@@ -31,7 +31,6 @@ test("composer dom runtime collects composer shell elements and bindings", () =>
   elementMap.set("composer-hud-history-toggle", { id: "history" });
   elementMap.set("composer-hud-envelopes-toggle", { id: "envelopes" });
   elementMap.set("composer-hud-observer-toggle", { id: "observer" });
-  elementMap.set("composer-title", { id: "title" });
 
   const dom = getComposerDomElements({
     getElementById(id) {

@@ -1636,12 +1636,12 @@ Status: `in_progress`
 
 Objective:
 
-- expand B-meson coverage now that `B+`, `B-`, `dB0`, and `bB0` are supported in the solver path and PDG-side mapping registry.
+- finish the remaining analyzable B-meson outliers on the current frozen manifest and make explicit when further gains will require widening PDG particle vocabulary rather than only adding more rules for the current B set.
 
 Why it matters:
 
-- B-meson mappings materially widened the analyzable live manifest again, so their remaining failures are now solver gaps rather than unsupported-input bookkeeping;
-- the first charged-B leptonic and radiative channels already close exactly, which means the seam is good and the next work is concrete family expansion rather than more contract surgery;
+- the B-meson families are now mostly closed on the current analyzable frozen-manifest set, so the remaining misses are much more specific than when this priority started;
+- that means this priority should now separate true remaining B-family solver gaps from future manifest-growth work that will come from supporting more PDG particles and more exotic hadron families;
 - and the neutral `dB0` / `bB0` pair must stay identity-distinct in solver behavior because they differ by constituent content even though both are neutral.
 
 Required particle content:
@@ -1655,9 +1655,11 @@ Next steps:
 
 - preserve bottom-quark constituent identity through the solver path using the existing `down_quark` plus `generation:3` surface rather than inventing a parallel quark template family;
 - keep the neutral `dB0` / `bB0` pair distinct in exact-identity and downstream handoff behavior;
-- expand beyond the first charged-B leptonic closures now covered in the external solver, especially the newly analyzable B families visible in the sweep such as `B+ -> pi+ pi0`, `B+ -> K+ pi0`, `B+ -> dk0 pi+`, and the first neutral-B electromagnetic or dilepton channels;
-- use the sweep to separate simple meson-family rule gaps from genuinely heavier-hadron policy questions before widening beyond the current B vocabulary;
-- and confirm that each added B family improves exact or partial closure rather than merely increasing the analyzable denominator.
+- finish the remaining current frozen-manifest B-family outlier `S042.624/2025` (`dB0 -> P.e2`) and decide whether it belongs to a generic neutral-B baryon-lepton family or a separate heavier-baryon policy path;
+- keep using the sweep split to distinguish generic-profile exact B closures from full-provenance exact closures, so B coverage gains do not hide the provenance gap;
+- treat the now-closed baryonic B-family set as covered baseline behavior and only widen B-specific rule families further when a concrete analyzable miss still remains on the frozen manifest;
+- note explicitly that many more exotic PDG particles and channels remain outside the current analyzable set, so future solve-rate gains will also come from adding new particle vocabulary and mapping support rather than only squeezing the existing `B+` / `dB0` families;
+- and confirm with the closure sweep that any further B-focused change improves exact closure on the same analyzable denominator.
 
 ### 5. Add `Noether Pair` As A Solver-Visible Assembly
 
@@ -1679,3 +1681,31 @@ Next steps:
 - add focused solver rules and tests that use `Noether Pair` as an intermediate, reactant, and product where it genuinely improves closure rather than acting as a mere alias;
 - keep the request/result seam stable while widening the solver's assembly vocabulary;
 - and evaluate the terminology relationship between `Noether Pair` and a possible future `Noether Quad` rename for `Higgs Cluster` before more rules and artifacts depend on the current name.
+
+### 6. Upgrade Exact Meson Closures To Full Constituent Provenance
+
+Status: `pending`
+
+Objective:
+
+- upgrade profile-driven exact meson closures into full constituent-by-constituent provenance derivations so exact closure means the solver explicitly shows how the source meson content becomes the final products.
+
+Why it matters:
+
+- the current generic weak-channel profiles improve closure statistics, but they still close many kaon and B-meson channels by matching whole-family patterns rather than by deriving the full microscopic ledger step by step;
+- that means an exact closure can currently be solver-exact at the contract level without yet being a full explanatory derivation;
+- and making this distinction explicit will keep solve-rate gains honest while strengthening the solver's proof value and future reviewability.
+
+Current gap:
+
+- many newly exact kaon and B-meson channels now close through one generic weak-channel `Associate` step plus a solve-generated `Noether core` center;
+- those closures do not currently dump everything into a middle-lane `Free Architrinos` bucket, but they also do not yet show the full source-meson constituent release, weak transformation, intermediate ledger, and final reassembly path;
+- and the richer meson provenance path that does explicit constituent work is currently focused on lepton-bearing meson channels rather than the broader hadronic family set.
+
+Next steps:
+
+- define which families are allowed to remain profile-level exact closures temporarily and which must graduate to full constituent provenance before being treated as canonically solved;
+- extend the explicit meson provenance machinery from pion and lepton-heavy channels into kaon and B-meson hadronic families without collapsing distinct strange and bottom identities;
+- add regression tests that distinguish profile-matched exact closure from fully derived constituent closure, including whether `Free Architrinos`, `Noether Pair`, or `Noether Quad` appear and why;
+- expose sweep or report labels that separate generic-profile exact closures from provenance-backed exact closures so statistics can be read honestly;
+- and prefer explicit constituent release, weak transformation, and product reassembly over one-step pattern closure whenever the solver has enough particle-content knowledge to do so.
