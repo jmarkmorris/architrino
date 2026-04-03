@@ -80,6 +80,17 @@ function ensureDir(targetPath) {
   fs.mkdirSync(targetPath, { recursive: true });
 }
 
+function resolvePythonCommand() {
+  const virtualEnv = String(process.env.VIRTUAL_ENV ?? "").trim();
+  if (virtualEnv) {
+    const virtualEnvPython = path.join(virtualEnv, "bin", "python");
+    if (fs.existsSync(virtualEnvPython)) {
+      return virtualEnvPython;
+    }
+  }
+  return "python3";
+}
+
 function runCommand(command, args, input = "") {
   const result = spawnSync(command, args, {
     cwd: process.cwd(),
@@ -262,8 +273,9 @@ function main() {
   const runDir = buildRunDir(options.outDir);
   const commandSet = SOURCE_COMMANDS[options.source];
   const databaseArgs = options.databaseUrl ? ["--database-url", options.databaseUrl] : [];
+  const pythonCommand = resolvePythonCommand();
 
-  const listExecution = runCommand("python3", ["pdgfeed.py", commandSet.list, ...databaseArgs]);
+  const listExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.list, ...databaseArgs]);
   if (listExecution.status !== 0) {
     writeText(path.join(runDir, "list.log"), formatCommandLog("list", listExecution));
     throw new Error(`Failed to list ${options.source} PDG cases. See ${path.join(runDir, "list.log")}`);
@@ -280,7 +292,7 @@ function main() {
     const caseDir = path.join(runDir, safeCaseId);
     ensureDir(caseDir);
 
-    const proposalExecution = runCommand("python3", ["pdgfeed.py", commandSet.printProposal, entry.caseId, ...databaseArgs]);
+    const proposalExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.printProposal, entry.caseId, ...databaseArgs]);
     runLogParts.push(formatCommandLog(`${entry.caseId}:proposal`, proposalExecution));
     writeText(path.join(caseDir, "proposal.log"), formatCommandLog("proposal", proposalExecution));
 
@@ -320,7 +332,7 @@ function main() {
       continue;
     }
 
-    const requestExecution = runCommand("python3", ["pdgfeed.py", commandSet.printRequest, entry.caseId, ...databaseArgs]);
+    const requestExecution = runCommand(pythonCommand, ["pdgfeed.py", commandSet.printRequest, entry.caseId, ...databaseArgs]);
     runLogParts.push(formatCommandLog(`${entry.caseId}:request`, requestExecution));
     writeText(path.join(caseDir, "request.log"), formatCommandLog("request", requestExecution));
 
