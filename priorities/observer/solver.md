@@ -1679,3 +1679,31 @@ Next steps:
 - add focused solver rules and tests that use `Noether Pair` as an intermediate, reactant, and product where it genuinely improves closure rather than acting as a mere alias;
 - keep the request/result seam stable while widening the solver's assembly vocabulary;
 - and evaluate the terminology relationship between `Noether Pair` and a possible future `Noether Quad` rename for `Higgs Cluster` before more rules and artifacts depend on the current name.
+
+### 6. Upgrade Exact Meson Closures To Full Constituent Provenance
+
+Status: `pending`
+
+Objective:
+
+- upgrade profile-driven exact meson closures into full constituent-by-constituent provenance derivations so exact closure means the solver explicitly shows how the source meson content becomes the final products.
+
+Why it matters:
+
+- the current generic weak-channel profiles improve closure statistics, but they still close many kaon and B-meson channels by matching whole-family patterns rather than by deriving the full microscopic ledger step by step;
+- that means an exact closure can currently be solver-exact at the contract level without yet being a full explanatory derivation;
+- and making this distinction explicit will keep solve-rate gains honest while strengthening the solver's proof value and future reviewability.
+
+Current gap:
+
+- many newly exact kaon and B-meson channels now close through one generic weak-channel `Associate` step plus a solve-generated `Noether core` center;
+- those closures do not currently dump everything into a middle-lane `Free Architrinos` bucket, but they also do not yet show the full source-meson constituent release, weak transformation, intermediate ledger, and final reassembly path;
+- and the richer meson provenance path that does explicit constituent work is currently focused on lepton-bearing meson channels rather than the broader hadronic family set.
+
+Next steps:
+
+- define which families are allowed to remain profile-level exact closures temporarily and which must graduate to full constituent provenance before being treated as canonically solved;
+- extend the explicit meson provenance machinery from pion and lepton-heavy channels into kaon and B-meson hadronic families without collapsing distinct strange and bottom identities;
+- add regression tests that distinguish profile-matched exact closure from fully derived constituent closure, including whether `Free Architrinos`, `Noether Pair`, or `Noether Quad` appear and why;
+- expose sweep or report labels that separate generic-profile exact closures from provenance-backed exact closures so statistics can be read honestly;
+- and prefer explicit constituent release, weak transformation, and product reassembly over one-step pattern closure whenever the solver has enough particle-content knowledge to do so.
