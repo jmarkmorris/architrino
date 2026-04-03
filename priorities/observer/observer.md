@@ -78,7 +78,7 @@ Purpose:
 
 Input:
 
-- command-line input for a direct solve run;
+- command-line input that points to or contains a `solver-request/v1` JSON payload for a direct solve run;
 - or a `solver-request/v1` JSON file, including one produced by `pdgfeed`.
 
 Output:
@@ -147,14 +147,24 @@ These are the practical entry workflows, with the intended audience called out f
 Audience:
 
 - developer
+- advanced user
 
 Use this when the source of truth is PDG data and you want to begin upstream.
+
+This path should support two modes:
+
+- built-in PDG fixture or live-case selection for the guided path;
+- user-specified PDG reaction or channel selection for the advanced path.
+
+Boundary rule:
+
+- every PDG-selected case, whether built in or user specified, should be normalized into `solver-request/v1` JSON before entering the solver.
 
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
-2. Choose a fixture or live PDG case.
-3. Inspect the generated proposal artifacts.
+2. Choose a built-in fixture, a built-in live PDG case, or a user-specified PDG reaction or channel.
+3. Inspect the generated proposal JSON artifacts.
 4. Emit a `solver-request/v1` JSON candidate.
 5. Pass that JSON into the solver.
 6. Pass solver output JSON into `reaction` for review and acceptance.
@@ -170,8 +180,18 @@ Short form:
 Audience:
 
 - developer
+- advanced user
 
 Use this when you already know the reaction you want to solve and do not need PDG ingest first.
+
+This path should support two modes:
+
+- built-in `solver-request/v1` JSON fixtures for the guided path;
+- loaded `solver-request/v1` JSON files for the advanced path, including files emitted by `pdgfeed`.
+
+Boundary rule:
+
+- `solver` should consume explicit request JSON rather than hidden app state or ad hoc text commands.
 
 Workflow:
 
@@ -181,7 +201,7 @@ Workflow:
 4. Inspect the solver JSON result.
 5. Open that result in `reaction`.
 6. Accept or manually correct the reaction in `reaction`.
-7. Export the accepted handoff to `composer`.
+7. Export the accepted handoff JSON to `composer`.
 8. Build the final observer-facing scene in `composer`.
 
 Short form:
@@ -191,6 +211,7 @@ Short form:
 Note:
 
 - if built-in solver requests exist, they should be treated as developer fixtures or canned examples, not as a replacement for the explicit request format.
+- advanced users may also enter here by loading a `solver-request/v1` JSON file directly, including one generated from a user-specified PDG channel upstream.
 
 ### C. Start With `reaction` Using A Built-In Or Loaded Spec
 
@@ -204,12 +225,11 @@ Use this when you want to work at the reaction-authoring level without running P
 Workflow:
 
 1. Open `reaction`.
-2. Choose a built-in reaction spec from the library, or load one from a file.
 2. Choose a built-in reaction spec JSON document from the library, or load one from a reaction JSON file.
 3. Review and edit participants, mappings, and operators in `reaction`.
 4. Run the solver from inside `reaction` if helpful, or stay manual.
 5. Accept the reaction once the provenance story is correct.
-6. Export the accepted handoff JSON.
+6. Export the accepted handoff JSON from `reaction`.
 7. Open that handoff in `composer`.
 8. Stage and refine the final visualization.
 
@@ -263,7 +283,61 @@ Short form:
 
 - load reaction-derived scene data -> stage in `composer` -> preview -> export or record.
 
+### F. Developer Closure Sweep Across Many PDG Reactions
+
+Audience:
+
+- developer
+
+Use this when the goal is not to author one reaction, but to measure solver coverage across many PDG reactions and see which cases reach conservative closure.
+
+Core tools:
+
+- `pdgfeed.py`
+- `solver.py`
+
+Optional inspection tools:
+
+- `reaction` for inspecting selected failures, borderline cases, or unexpectedly strong closures;
+- `composer` is not part of the closure-sweep loop.
+
+Workflow:
+
+1. Run `pdgfeed.py` in a batch mode over many built-in or user-selected PDG reactions or channels.
+2. Emit one `solver-request/v1` JSON file per candidate case.
+3. Run `solver.py` over that batch of `solver-request/v1` JSON files.
+4. Record one solver result JSON file per case.
+5. Compute a summary report that says how many cases were attempted, how many reached closure, how many failed, and why they failed.
+6. Group failures by reason, such as unsupported particle mapping, missing operator family, conservation mismatch, or incomplete projection rule.
+7. Open selected result JSON files in `reaction` only when a human needs to inspect the provenance story or decide whether a failure is expected.
+
+Short form:
+
+- batch PDG cases -> emit `solver-request/v1` JSON -> batch solve -> summarize closure coverage.
+
+Design rule:
+
+- this workstream should stay easy to run from the command line and should not require opening `reaction` or `composer` for routine coverage measurement.
+
+Desired output:
+
+- a machine-readable summary JSON report;
+- and a human-readable coverage summary showing total cases, closure count, non-closure count, and the main failure buckets.
+
 Important boundary:
 
 - `composer` should start from accepted reaction data whenever the task depends on reaction correctness.
 - `composer` may visualize and refine presentation, but it should not become the place where reaction solving or provenance correction happens.
+
+## Workflow Rule
+
+If a reaction begins from PDG data, whether that PDG case is built in or user specified, the workflow should be:
+
+- choose PDG reaction or channel;
+- normalize it in `pdgfeed`;
+- emit `solver-request/v1` JSON;
+- solve from that JSON in `solver`;
+- review and accept the solver result JSON in `reaction`;
+- and only then hand accepted reaction JSON into `composer`.
+
+That keeps user flexibility high without collapsing the app boundaries.
