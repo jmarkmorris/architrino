@@ -34,6 +34,7 @@ import {
 } from "./ReactionSolveProposalRuntime.js";
 import { applyReactionSolvePlan as defaultApplySolvePlan } from "./ReactionSolveProjectionRuntime.js";
 import { solveReactionSnapshot as defaultSolveSnapshot } from "./ReactionSolverContractRuntime.js";
+import { buildReactionSolverExecutionStatusNote } from "./ReactionSolverExecutionRuntime.js";
 import {
   getReactionCompositeModeLabel,
   normalizeReactionCompositeMode,
@@ -57,6 +58,7 @@ import {
   REACTION_CANVAS_LAYOUT,
   REACTION_CANVAS_SURFACE_ROW_COUNT,
 } from "./ReactionCanvasLayoutRuntime.js";
+import { buildReactionLegibilitySnapshot } from "./ReactionCanvasLegibilityRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -871,6 +873,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     reactantsColumn,
     productsColumn,
     mapHint,
+    legibilityPanel = null,
     emptyState,
     mapSvg,
     menu,
@@ -879,6 +882,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     templateMenuRows = [],
     extraTemplateEntries = [],
     setStatus = () => {},
+    onSnapshotChange = () => {},
     closeExternalMenus = () => {},
     onActiveChange = () => {},
     storage = null,
@@ -979,7 +983,9 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     dragPointerId: null,
     hoveredMappingIds: [],
     recentMappingIds: [],
+    isSolving: false,
   };
+  let lastSnapshotChangeSignature = "";
 
   let drawFrameId = 0;
   let operatorLayoutFrameId = 0;
@@ -1094,6 +1100,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     handleParticipantVisualClick,
     reducedBinaryPersonalityChoiceIds,
     resolveBinaryGlyphPolarity,
+    resolveBinaryChoiceInventory,
     setBinaryPersonalitySelection,
     shouldRenderChildNodes,
     startOperatorDrag,
@@ -1190,6 +1197,24 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     participant.binarySelections = getInitialParticipantBinarySelections(participant);
     syncParticipantCompositeMode(participant);
     return participant;
+  }
+
+  function buildSerializableSnapshot() {
+    return {
+      participants: cloneSerializableValue(state.participants),
+      mappings: cloneSerializableValue(state.mappings),
+    };
+  }
+
+  function notifySnapshotChange() {
+    const snapshot = buildSerializableSnapshot();
+    const nextSnapshotSignature = JSON.stringify(snapshot);
+    if (nextSnapshotSignature === lastSnapshotChangeSignature) {
+      return snapshot;
+    }
+    lastSnapshotChangeSignature = nextSnapshotSignature;
+    onSnapshotChange(snapshot);
+    return snapshot;
   }
 
   function getNodeContext(nodeKey) {
@@ -1316,6 +1341,17 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       parts.push(`${positrinoCount} positrino`);
     }
     return parts.join(" + ") || "empty ledger";
+  }
+
+  function getLedgerFromBinaryAssignment(assignment = {}, nodes = []) {
+    return nodes.reduce(
+      (ledger, node) => addLedgers(ledger, getBinaryChoiceInventory(assignment?.[node?.id])),
+      createEmptyLedger()
+    );
+  }
+
+  function getLedgerSignature(ledger = null) {
+    return `${Number(ledger?.electrino ?? 0)}:${Number(ledger?.positrino ?? 0)}`;
   }
 
   function getOperatorOutputLedgerForAnchor(participantOrId, operatorSummary = null, anchorInstanceIndex = null) {
@@ -1589,9 +1625,13 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     return true;
   }
 
-  function solveReactionCanvas() {
+  async function solveReactionCanvas() {
     if (!state.active) {
       setStatus("Open the reaction app before running solve.");
+      return false;
+    }
+    if (state.isSolving) {
+      setStatus("Reaction solve is already running.");
       return false;
     }
     let solveState = buildSolveState({
@@ -1622,57 +1662,72 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       isOperatorParticipant,
     });
 
-    const solution = solveSnapshot(
-      {
-        participants: cloneSerializableValue(state.participants),
-        mappings: cloneSerializableValue(state.mappings),
-      },
-      {
-        requestId: "reaction_canvas",
-        origin: {
-          sourceKind: "reaction",
-          sourceDocumentId: "reaction_canvas",
-          title: "Reaction Canvas",
-        },
-        buildNodeKey,
-        resolveBinaryChoiceInventory,
+    state.isSolving = true;
+    syncHeaderActionButtons();
+    setStatus("Running external Reaction solve...");
+
+    try {
+      const solution = await Promise.resolve(
+        solveSnapshot(
+          {
+            participants: cloneSerializableValue(state.participants),
+            mappings: cloneSerializableValue(state.mappings),
+          },
+          {
+            requestId: "reaction_canvas",
+            origin: {
+              sourceKind: "reaction",
+              sourceDocumentId: "reaction_canvas",
+              title: "Reaction Canvas",
+            },
+            buildNodeKey,
+            resolveBinaryChoiceInventory,
+          }
+        )
+      );
+      const result = solution?.result ?? null;
+      if (!Array.isArray(result?.mappings) || !result.mappings.length) {
+        setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
+        return false;
       }
-    );
-    const result = solution?.result ?? null;
-    if (!Array.isArray(result?.mappings) || !result.mappings.length) {
-      setStatus("Solve v1 could not find any conservative reactant-to-product matches.");
+
+      clearDragState();
+      closeMenu();
+      state.pendingSourceKey = "";
+      state.pendingSourceRole = "";
+      state.pendingSourceAnchorInstanceIndex = null;
+      state.hoveredMappingIds = [];
+      state.mappings = [];
+      clearAllRecentRouteState();
+      const { appliedMappingIds } = applySolvePlan({
+        result,
+        createOperatorParticipant,
+        getParticipantRootNode,
+        buildNodeKey,
+        markParticipantAutoDissociated,
+        addOrReplaceMapping,
+      });
+      markMappingsRecent(appliedMappingIds);
+      render();
+
+      const unresolvedProductCount = Number(solution?.unresolvedTargetCount ?? 0);
+      const unresolvedReactantCount = Number(solution?.unresolvedReactantCount ?? 0);
+      const executionStatusNote = buildReactionSolverExecutionStatusNote(solution?.execution);
+      setStatus(
+        `Solve v1 mapped ${normalizeText(solution?.planDescription) || describeSolvePlan({})}. ${unresolvedProductCount} product${
+          unresolvedProductCount === 1 ? "" : "s"
+        } and ${unresolvedReactantCount} reactant${
+          unresolvedReactantCount === 1 ? "" : "s"
+        } remain unresolved.${executionStatusNote ? ` ${executionStatusNote}` : ""}`
+      );
+      return true;
+    } catch (error) {
+      setStatus(normalizeText(error?.message) || "Reaction solve failed.");
       return false;
+    } finally {
+      state.isSolving = false;
+      syncHeaderActionButtons();
     }
-
-    clearDragState();
-    closeMenu();
-    state.pendingSourceKey = "";
-    state.pendingSourceRole = "";
-    state.pendingSourceAnchorInstanceIndex = null;
-    state.hoveredMappingIds = [];
-    state.mappings = [];
-    clearAllRecentRouteState();
-    const { appliedMappingIds } = applySolvePlan({
-      result,
-      createOperatorParticipant,
-      getParticipantRootNode,
-      buildNodeKey,
-      markParticipantAutoDissociated,
-      addOrReplaceMapping,
-    });
-    markMappingsRecent(appliedMappingIds);
-    render();
-
-    const unresolvedProductCount = Number(solution?.unresolvedTargetCount ?? 0);
-    const unresolvedReactantCount = Number(solution?.unresolvedReactantCount ?? 0);
-    setStatus(
-      `Solve v1 mapped ${normalizeText(solution?.planDescription) || describeSolvePlan({})}. ${unresolvedProductCount} product${
-        unresolvedProductCount === 1 ? "" : "s"
-      } and ${unresolvedReactantCount} reactant${
-        unresolvedReactantCount === 1 ? "" : "s"
-      } remain unresolved.`
-    );
-    return true;
   }
 
   function resetSolveDerivedArtifacts() {
@@ -2284,8 +2339,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return;
     }
     const nodes = getBinarySelectorNodes(participant, groupNode);
-    const clickedNode = nodes.find((node) => node.id === nodeId);
-    if (!clickedNode) {
+    if (!nodes.length) {
       return;
     }
     const currentSelections = getResolvedBinarySelectionMap(participant, groupNode);
@@ -2294,31 +2348,47 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return;
     }
 
-    const choiceCycle = getBinarySelectorRuleForParticipant({
-      ...participant,
-      templateId: groupNode.templateId,
-    }).visibleChoiceIds
-      .filter((choiceId) =>
-        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
-      );
-    if (!choiceCycle.length) {
+    const assignmentsByLedgerSignature = new Map();
+    validAssignments.forEach((assignment) => {
+      const signature = getLedgerSignature(getLedgerFromBinaryAssignment(assignment, nodes));
+      const existingAssignments = assignmentsByLedgerSignature.get(signature) ?? [];
+      existingAssignments.push(assignment);
+      assignmentsByLedgerSignature.set(signature, existingAssignments);
+    });
+
+    const uniqueLedgerAssignments = [...assignmentsByLedgerSignature.entries()]
+      .map(([signature, assignments]) => ({
+        signature,
+        ledger: getLedgerFromBinaryAssignment(assignments[0], nodes),
+        assignment:
+          pickBestBinaryAssignmentCandidate({
+            participant,
+            groupNode,
+            assignments,
+            currentSelections,
+          }) ?? assignments[0],
+      }))
+      .sort((left, right) => {
+        const electrinoDelta =
+          Number(left.ledger?.electrino ?? 0) - Number(right.ledger?.electrino ?? 0);
+        if (electrinoDelta !== 0) {
+          return electrinoDelta;
+        }
+        return Number(left.ledger?.positrino ?? 0) - Number(right.ledger?.positrino ?? 0);
+      });
+    if (!uniqueLedgerAssignments.length) {
       return;
     }
-    const currentChoiceId = currentSelections[clickedNode.id];
-    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
-    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
-    const candidateAssignments = validAssignments.filter(
-      (assignment) =>
-        assignment[clickedNode.id] === nextChoiceId &&
-        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+
+    const currentLedgerSignature = getLedgerSignature(
+      getLedgerFromBinaryAssignment(currentSelections, nodes)
     );
-    const nextSelections = pickBestBinaryAssignmentCandidate({
-      participant,
-      groupNode,
-      assignments: candidateAssignments,
-      currentSelections,
-      pinnedNodeId: clickedNode.id,
-    });
+    const currentLedgerIndex = Math.max(
+      0,
+      uniqueLedgerAssignments.findIndex((entry) => entry.signature === currentLedgerSignature)
+    );
+    const nextSelections =
+      uniqueLedgerAssignments[(currentLedgerIndex + 1) % uniqueLedgerAssignments.length]?.assignment ?? null;
     if (!nextSelections) {
       return;
     }
@@ -2359,6 +2429,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   function syncHeaderActionButtons() {
     const canClear =
       state.active &&
+      !state.isSolving &&
       (state.participants.length > 0 ||
         state.mappings.length > 0 ||
         !!state.pendingSourceKey ||
@@ -2368,8 +2439,9 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       clearButton.setAttribute("aria-disabled", canClear ? "false" : "true");
     }
     if (solveButton instanceof HTMLButtonElement) {
-      solveButton.disabled = !state.active;
-      solveButton.setAttribute("aria-disabled", state.active ? "false" : "true");
+      const canSolve = state.active && !state.isSolving;
+      solveButton.disabled = !canSolve;
+      solveButton.setAttribute("aria-disabled", canSolve ? "false" : "true");
     }
   }
 
@@ -3757,6 +3829,95 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
   }
 
+  function createLegibilityCard(title = "", summary = "") {
+    const card = document.createElement("article");
+    card.className = "reaction-app-legibility-card";
+    const titleElement = document.createElement("h2");
+    titleElement.className = "reaction-app-legibility-title";
+    titleElement.textContent = title;
+    card.appendChild(titleElement);
+    if (summary) {
+      const summaryElement = document.createElement("p");
+      summaryElement.className = "reaction-app-legibility-summary";
+      summaryElement.textContent = summary;
+      card.appendChild(summaryElement);
+    }
+    return card;
+  }
+
+  function createLegibilityList(lines = [], className = "reaction-app-legibility-list") {
+    const list = document.createElement("ul");
+    list.className = className;
+    lines.filter(Boolean).forEach((line) => {
+      const item = document.createElement("li");
+      item.textContent = line;
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  function createLegibilityPillList(entries = []) {
+    const list = document.createElement("ul");
+    list.className = "reaction-app-legibility-pills";
+    entries.filter((entry) => entry?.label).forEach((entry) => {
+      const item = document.createElement("li");
+      item.className = "reaction-app-legibility-pill";
+      item.classList.add(`is-${String(entry?.tone ?? "neutral").trim() || "neutral"}`);
+      item.textContent = entry.label;
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  function syncLegibilityPanel() {
+    if (!(legibilityPanel instanceof HTMLElement)) {
+      return;
+    }
+    const snapshot = buildReactionLegibilitySnapshot({
+      participants: state.participants,
+      mappings: state.mappings,
+      pendingSourceKey: state.pendingSourceKey,
+      pendingSourceRole: state.pendingSourceRole,
+      getMappingValidation,
+      getOperatorLedgerSummary,
+    });
+    legibilityPanel.dataset.focusKind = snapshot.focusState.kind;
+    const fragment = document.createDocumentFragment();
+
+    const workflowCard = createLegibilityCard("Corridor grammar", snapshot.focusState.summary);
+    workflowCard.appendChild(createLegibilityList(snapshot.workflowLines));
+    fragment.appendChild(workflowCard);
+
+    const operatorCard = createLegibilityCard(
+      "Operator lanes",
+      "The center lanes mean different authored moves. Keep that grammar explicit on the visible surface."
+    );
+    operatorCard.appendChild(
+      createLegibilityList(
+        snapshot.operatorGrammarEntries.map(
+          (entry) => `${entry.laneLabel}: ${entry.title}. ${entry.detail}`
+        )
+      )
+    );
+    fragment.appendChild(operatorCard);
+
+    const stateCard = createLegibilityCard(
+      "Visible state",
+      "Anchor color and route state should be legible enough to review without hidden side knowledge."
+    );
+    stateCard.appendChild(createLegibilityPillList(snapshot.corridorState.pillEntries));
+    stateCard.appendChild(createLegibilityPillList(snapshot.operatorState.pillEntries));
+    stateCard.appendChild(
+      createLegibilityList(
+        snapshot.corridorLegendEntries.map((entry) => `${entry.label}: ${entry.detail}`),
+        "reaction-app-legibility-list is-legend"
+      )
+    );
+    fragment.appendChild(stateCard);
+
+    legibilityPanel.replaceChildren(fragment);
+  }
+
   function getElementCenterWithinSurface(element, bounds) {
     const rect = element.getBoundingClientRect();
     return {
@@ -4137,6 +4298,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     if (!root || !reactantsColumn || !centerAssembliesColumn || !productsColumn || !operatorLayer) {
       return;
     }
+    notifySnapshotChange();
     syncHeaderActionButtons();
     root.classList.toggle("is-open", state.active);
     root.setAttribute("aria-hidden", state.active ? "false" : "true");
@@ -4150,6 +4312,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       }
       state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
+      syncLegibilityPanel();
       return;
     }
     rebuildAnchorRegistry();
@@ -4198,6 +4361,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       operatorLayer.appendChild(createOperatorParticipantCard(participant));
     });
     updateHint();
+    syncLegibilityPanel();
     scheduleSideColumnGeometry();
     scheduleMappingDraw();
     scheduleOperatorLaneLayout();
@@ -4281,8 +4445,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     }
     if (solveButton instanceof HTMLButtonElement && !solveButton.dataset.canvasBound) {
       solveButton.dataset.canvasBound = "true";
-      solveButton.addEventListener("click", () => {
-        solveReactionCanvas();
+      solveButton.addEventListener("click", async () => {
+        await solveReactionCanvas();
       });
     }
     if (!document.body.dataset.composerReactionCanvasDocumentBound) {
@@ -4311,10 +4475,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   return {
     isActive: () => state.active,
     clearCanvas: clearReactionCanvas,
-    getSnapshot: () => ({
-      participants: cloneSerializableValue(state.participants),
-      mappings: cloneSerializableValue(state.mappings),
-    }),
+    getSnapshot: buildSerializableSnapshot,
     solveCanvas: solveReactionCanvas,
     setActive,
     toggleActive,

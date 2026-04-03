@@ -159,7 +159,7 @@ The effective gravitational coupling is set by how efficiently a local overdensi
 | $\lambda \sim \bar{R}_{\text{core}}$ | Discrete medium effects | Continuum description breaks down |
 | High $\rho$ (near Planck cores) | Self-hit regime | $G_{\text{eff}}$ changes qualitatively |
 
-### Parametrization
+### Parameterization
 
 For phenomenological work, write:
 

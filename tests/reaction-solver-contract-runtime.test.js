@@ -175,8 +175,23 @@ test("contract solver runtime can fall back to the in-process bridge when extern
   });
 
   assert.equal(solution.execution?.mode, "in-process");
+  assert.equal(solution.execution?.target, "legacy-in-process-bridge");
+  assert.equal(solution.execution?.fallback, true);
   assert.equal(solution.result.summary.exact, true);
   assert.equal(solution.planDescription, "1 associated product");
+});
+
+test("contract solver runtime refuses the legacy in-process bridge when the runtime disallows it", () => {
+  const request = readJson("content/contracts/examples/solver-request/associate_photon.v1.json");
+
+  assert.throws(
+    () =>
+      solveReactionSolverRequest(request, {
+        useExternalSolver: false,
+        allowLegacyInProcessSolver: false,
+      }),
+    /External Reaction solver is unavailable in this runtime/
+  );
 });
 
 test("contract solver runtime can round-trip a live snapshot through request and result contracts", () => {

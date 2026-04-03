@@ -8,7 +8,16 @@
     "citation": "Local PDG fixture seed",
     "branchingDisplay": "dominant charged pion decay channel",
     "fixtureId": "charged_pion_to_muon_neutrino",
-    "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json"
+    "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    }
   },
   "reactants": [
     {

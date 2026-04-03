@@ -3,7 +3,7 @@
   "requestId": "radiative_muon_decay.live-pdg",
   "origin": {
     "sourceKind": "pdg-ingest",
-    "sourceDocumentId": "radiative_muon_decay",
+    "sourceDocumentId": "pdg-proposal:radiative_muon_decay.live-pdg",
     "title": "Radiative muon decay"
   },
   "participants": [

@@ -8,7 +8,16 @@
     "citation": "Local PDG fixture seed",
     "branchingDisplay": "dominant neutron decay channel",
     "fixtureId": "free_neutron_beta_decay",
-    "fixturePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json"
+    "fixturePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    }
   },
   "reactants": [
     {

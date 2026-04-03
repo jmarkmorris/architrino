@@ -28,6 +28,22 @@
           <div class="reaction-app-actions">
             <a class="reaction-app-link" href="./index.html">Navigator</a>
             <button
+              id="reaction-accept-button"
+              class="reaction-app-action is-primary"
+              type="button"
+              aria-label="Accept the current reaction for handoff"
+            >
+              Accept
+            </button>
+            <button
+              id="reaction-export-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Export accepted reaction-flow JSON"
+            >
+              Export JSON
+            </button>
+            <button
               id="reaction-clear-button"
               class="reaction-app-action"
               type="button"
@@ -53,7 +69,14 @@
             </button>
           </div>
         </div>
+        <div id="reaction-review-state" class="reaction-app-review-state" aria-live="polite"></div>
         <div id="reaction-status" class="reaction-app-status" aria-live="polite"></div>
+        <div id="reaction-hint" class="reaction-app-hint" aria-live="polite"></div>
+        <section
+          id="reaction-legibility-panel"
+          class="reaction-app-legibility"
+          aria-label="Reaction workflow grammar and visible surface state"
+        ></section>
       </header>
       <main class="reaction-app-main">
         <section

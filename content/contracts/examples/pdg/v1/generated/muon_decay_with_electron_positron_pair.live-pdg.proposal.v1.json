@@ -10,7 +10,16 @@
     "sourceMode": "pdg.connect",
     "lookupParticleName": "mu-",
     "pdgIdentifier": "S004.7/2025",
-    "liveCaseId": "muon_decay_with_electron_positron_pair"
+    "liveCaseId": "muon_decay_with_electron_positron_pair",
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    }
   },
   "reactants": [
     {

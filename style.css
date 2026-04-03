@@ -1189,6 +1189,111 @@ body {
   line-height: 1.35;
 }
 
+.reaction-app-hint {
+  min-height: 1.35em;
+  font-size: 12px;
+  color: rgba(205, 221, 255, 0.72);
+  line-height: 1.4;
+}
+
+.reaction-app-review-state {
+  min-height: 1.35em;
+  font-size: 12px;
+  color: rgba(167, 214, 255, 0.88);
+  line-height: 1.35;
+}
+
+.reaction-app-legibility {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.reaction-app-legibility-card {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(138, 169, 224, 0.18);
+  background:
+    linear-gradient(180deg, rgba(13, 19, 36, 0.96), rgba(10, 15, 30, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+.reaction-app-legibility-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(188, 206, 245, 0.9);
+}
+
+.reaction-app-legibility-summary {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(237, 242, 255, 0.92);
+}
+
+.reaction-app-legibility-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.42;
+  color: rgba(219, 228, 250, 0.82);
+}
+
+.reaction-app-legibility-list.is-legend {
+  color: rgba(206, 219, 248, 0.76);
+}
+
+.reaction-app-legibility-pills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reaction-app-legibility-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 169, 224, 0.22);
+  background: rgba(18, 26, 46, 0.88);
+  color: rgba(229, 236, 252, 0.9);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.reaction-app-legibility-pill.is-valid {
+  border-color: rgba(121, 221, 170, 0.34);
+  background: rgba(18, 58, 44, 0.9);
+  color: rgba(193, 249, 221, 0.95);
+}
+
+.reaction-app-legibility-pill.is-warning {
+  border-color: rgba(247, 206, 109, 0.34);
+  background: rgba(64, 49, 18, 0.9);
+  color: rgba(255, 231, 168, 0.95);
+}
+
+.reaction-app-legibility-pill.is-danger {
+  border-color: rgba(255, 132, 132, 0.34);
+  background: rgba(66, 24, 28, 0.9);
+  color: rgba(255, 206, 206, 0.96);
+}
+
 .reaction-app-actions {
   display: flex;
   align-items: center;
@@ -1220,6 +1325,22 @@ body {
 .reaction-app-action:focus-visible {
   border-color: rgba(172, 195, 235, 0.56);
   background: rgba(24, 32, 58, 0.94);
+}
+
+.reaction-app-action.is-primary {
+  border-color: rgba(118, 198, 154, 0.48);
+  background: linear-gradient(135deg, rgba(18, 47, 38, 0.96), rgba(34, 96, 73, 0.92));
+}
+
+.reaction-app-action.is-primary:hover,
+.reaction-app-action.is-primary:focus-visible {
+  border-color: rgba(157, 226, 186, 0.62);
+  background: linear-gradient(135deg, rgba(24, 64, 49, 0.98), rgba(42, 118, 88, 0.96));
+}
+
+.reaction-app-action:disabled {
+  cursor: default;
+  opacity: 0.56;
 }
 
 .reaction-app-main {
@@ -1264,6 +1385,10 @@ body {
 
   .reaction-app-main {
     padding: 0;
+  }
+
+  .reaction-app-legibility {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .reaction-app-main .composer-reaction-canvas-surface {
@@ -2580,6 +2705,11 @@ body {
   padding-inline-start: 0;
 }
 
+.composer-reaction-canvas-tree-content.is-aggregate-ledger-tile {
+  align-items: flex-start;
+  padding-inline-start: 0;
+}
+
 .composer-reaction-canvas-tree-content.is-higgs-cluster-grid {
   align-items: flex-start;
   padding-inline-start: 0;
@@ -2590,6 +2720,11 @@ body {
 }
 
 .composer-reaction-canvas-tree-row.is-binary-selector-grid {
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.composer-reaction-canvas-tree-row.is-aggregate-ledger-tile {
   align-items: flex-start;
   min-height: 0;
 }
@@ -2678,6 +2813,12 @@ body {
 .composer-reaction-canvas-binary-selector-grid {
   display: grid;
   gap: var(--reaction-canvas-stack-gap, 10px);
+  min-width: 0;
+  width: fit-content;
+}
+
+.composer-reaction-canvas-aggregate-ledger-track {
+  display: grid;
   min-width: 0;
   width: fit-content;
 }
@@ -2865,6 +3006,35 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     0 0 0 1px color-mix(in srgb, var(--binary-choice-accent) 36%, transparent),
     0 0 22px color-mix(in srgb, var(--binary-choice-accent) 18%, transparent);
+}
+
+.composer-reaction-canvas-aggregate-ledger-tile {
+  display: grid;
+  place-items: center;
+  padding: 12px 10px;
+}
+
+.composer-reaction-canvas-aggregate-ledger-title {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 247, 255, 0.9);
+}
+
+.composer-reaction-canvas-aggregate-ledger-count {
+  font-size: 11px;
+}
+
+.composer-reaction-canvas-aggregate-ledger-count.is-top-right {
+  top: 8px;
+  right: 8px;
+}
+
+.composer-reaction-canvas-aggregate-ledger-count.is-bottom-left {
+  bottom: 8px;
+  left: 8px;
 }
 
 .composer-reaction-canvas-binary-choice:hover,

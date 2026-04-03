@@ -1,7 +1,8 @@
 # Project Notes For Agents
 
-- Preferred agent name in this workspace: `Codex`.
-- Preferred title/role reference: `Principal Proof Architect & Integrator`; see `entourage/roles-geometry-dynamics/codex.md`.
+- Preferred agent name in this workspace: `Cody`.
+- Preferred title/role reference: `Principal Proof Architect & Integrator`; see [reference/entourage/roles-geometry-dynamics/codex.md](reference/entourage/roles-geometry-dynamics/codex.md).
+- For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
@@ -10,13 +11,14 @@
 - For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 - In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
-- Documents in `content/markdown/aaa` must not refer or link to documents in `priorities`. If priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+- Documents in `content/markdown/aaa` must not refer or link to documents in [reference/priorities](reference/priorities/README.md). If priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 - For textbook-facing prose, notation, and terminology in `content/markdown/aaa`, follow the Archie guides and glossaries rather than restating glossary-style rules in this file.
-- Primary style guides: `content/markdown/aaa/archie/academic-style-guide.md` and `content/markdown/aaa/archie/mathematics-style-guide.md`.
-- Primary glossary/terminology references: `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
-- For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `priorities`.
-- For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow `content/markdown/aaa/archie/software-architecture-and-maintenance.md`.
-- For the live backlog of known cruft and sprawl reduction work, see `priorities/cruft-sprawl/cruft-sprawl.md`.
+- Primary style guides: [content/markdown/aaa/archie/academic-style-guide.md](content/markdown/aaa/archie/academic-style-guide.md) and [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md).
+- Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md) and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
+- For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in [reference/priorities](reference/priorities/README.md).
+- For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
+- For the live backlog of known cruft and sprawl reduction work, see [reference/priorities/cruft-sprawl/cruft-sprawl.md](reference/priorities/cruft-sprawl/cruft-sprawl.md).
+- If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:

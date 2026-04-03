@@ -38,6 +38,16 @@ DEFAULT_POLICY = {
     "carryThroughMode": "exact-first",
 }
 
+PDG_SOURCE_CONTRACT = {
+    "upstreamSchema": PDG_PROPOSAL_SCHEMA,
+    "downstreamSchema": SOLVER_REQUEST_SCHEMA,
+    "handoffMode": "upstream-only",
+    "reactionAcceptanceRequired": True,
+    "reactionAcceptanceBoundary": "reaction-review",
+    "acceptedReactionHandoff": "reaction-owned",
+    "composerHandoff": "accepted-reaction-only",
+}
+
 
 @dataclass(frozen=True)
 class PdgV1ParticleMapping:
@@ -629,6 +639,18 @@ def build_inventory(mapping: PdgV1ParticleMapping, particle: FixtureParticle) ->
     return inventory
 
 
+def build_proposal_source(case: PdgCase) -> dict[str, Any]:
+    source = dict(case.source)
+    if case.source_kind == "fixture":
+        source["fixtureId"] = case.case_id
+        if case.source_path is not None:
+            source["fixturePath"] = str(case.source_path.relative_to(REPO_ROOT))
+    elif case.source_kind == "pdg-live":
+        source["liveCaseId"] = case.case_id
+    source["contract"] = dict(PDG_SOURCE_CONTRACT)
+    return source
+
+
 def normalize_particle(particle: FixtureParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
     canonical_name = canonicalize_pdg_name(particle.name)
     mapping = PDG_V1_MAPPING_BY_NAME.get(canonical_name)
@@ -684,14 +706,6 @@ def build_proposal(case: PdgCase) -> Proposal:
     else:
         ranking_reasons.append("contains-unsupported-participants")
 
-    source = dict(case.source)
-    if case.source_kind == "fixture":
-        source["fixtureId"] = case.case_id
-        if case.source_path is not None:
-            source["fixturePath"] = str(case.source_path.relative_to(REPO_ROOT))
-    elif case.source_kind == "pdg-live":
-        source["liveCaseId"] = case.case_id
-
     ranking = {
         "rank": 1,
         "score": max(0, 100 - unsupported_count * 25 - len(notes) * 5),
@@ -700,7 +714,7 @@ def build_proposal(case: PdgCase) -> Proposal:
     return Proposal(
         proposal_id=case.proposal_id,
         title=case.title,
-        source=source,
+        source=build_proposal_source(case),
         reactants=tuple(reactants),
         products=tuple(products),
         centers=(),
@@ -709,22 +723,21 @@ def build_proposal(case: PdgCase) -> Proposal:
     )
 
 
+def build_solver_request_origin(proposal: Proposal) -> dict[str, str]:
+    return {
+        "sourceKind": "pdg-ingest",
+        "sourceDocumentId": f"pdg-proposal:{proposal.proposal_id}",
+        "title": proposal.title,
+    }
+
+
 def build_solver_request(proposal: Proposal) -> dict[str, Any] | None:
     if not proposal.exportable:
         return None
     request = {
         "schema": SOLVER_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
-        "origin": {
-            "sourceKind": "pdg-ingest",
-            "sourceDocumentId": (
-                proposal.source.get("fixtureId")
-                or proposal.source.get("liveCaseId")
-                or proposal.source.get("pdgIdentifier")
-                or proposal.proposal_id
-            ),
-            "title": proposal.title,
-        },
+        "origin": build_solver_request_origin(proposal),
         "participants": [
             participant.to_solver_participant()
             for participant in (*proposal.reactants, *proposal.products, *proposal.centers)

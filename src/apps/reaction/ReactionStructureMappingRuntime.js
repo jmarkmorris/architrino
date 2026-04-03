@@ -325,7 +325,7 @@ export function classifyReactionNode(participant = null, node = null, options = 
     return classifyBareBinaryNode(node);
   }
   if (
-    renderMode === "binary-selector-grid" &&
+    (renderMode === "binary-selector-grid" || renderMode === "aggregate-ledger-tile") &&
     normalizeText(node?.templateId) === "free_architrinos"
   ) {
     return classifyAggregateHierarchyNode(participant, node, options);

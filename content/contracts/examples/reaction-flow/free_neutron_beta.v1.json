@@ -2,6 +2,10 @@
   "schema": "reaction-flow/v1",
   "reactionId": "free_neutron_beta_001",
   "title": "Free Neutron Beta Reaction",
+  "review": {
+    "status": "accepted",
+    "acceptedAt": "2026-04-03T09:00:00.000Z"
+  },
   "participants": [
     {
       "id": "reactant_neutron",

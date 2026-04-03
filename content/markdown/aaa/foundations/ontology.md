@@ -1570,7 +1570,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 
 | **Deprecated Term** | **Reason** | **Use Instead** |
 |:--------------------|:-----------|:----------------|
-| **Causal Propogating Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
+| **Causal Propagating Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
 | **Vacuum** (alone) | Ambiguous; connotes emptiness (void) or QFT vacuum energy | **Noether Sea** / **Spacetime Medium** |
 | **Aether** (as default ontology term) | Historical baggage; obscures the distinction between canon and bridge language | **Noether Sea** / **Spacetime Medium** |
 | **Curved Space** | The void is flat; only the medium's effective geometry curves | **Effective Metric** / **Refractive Gravity** |

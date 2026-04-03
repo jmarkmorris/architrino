@@ -153,6 +153,18 @@ test("reaction canvas no longer exposes a right-click root menu", () => {
 });
 
 test("reaction canvas exposes clear and solve actions in the reaction app shell and keeps them runtime-owned", () => {
+  const reactionSolverExecutionSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionSolverExecutionRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const reactionCommitStateSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCommitStateRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const reactionAppRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionAppRuntime.js", import.meta.url),
+    "utf8"
+  );
   const reactionMainSource = readFileSync(
     new URL("../src/apps/reaction/main.js", import.meta.url),
     "utf8"
@@ -160,6 +172,90 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /reviewStateElement = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /acceptButton = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /legibilityPanel = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /exportButton = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /solveSnapshot = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /createReactionCommitStateRuntime\(\{/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /getReview:\s*\(\)\s*=> commitRuntime\.buildExportReview\(\),/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function acceptReactionFlowDocument\(\)/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function downloadReactionFlowDocument\(\)/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /setStatus\("Reaction changed after acceptance\. Accept again to commit the latest handoff\."\);/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /setStatus\("Reaction accepted for handoff\. Export now emits accepted reaction-flow\/v1 JSON\."\);/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /solveSnapshot:\s*typeof solveSnapshot === "function" \? solveSnapshot : undefined,/
+  );
+  assert.match(
+    reactionMainSource,
+    /globalThis\.__ARCHITRINO_REACTION_APP_DEPS__ \?\? \{\}/
+  );
+  assert.match(
+    reactionMainSource,
+    /createBrowserReactionSolveSnapshot\(\{/
+  );
+  assert.match(
+    reactionMainSource,
+    /solveSnapshot:\s*typeof reactionAppRuntimeDeps\.solveSnapshot === "function"[\s\S]*?reactionAppRuntimeDeps\.solveSnapshot[\s\S]*?: defaultBrowserSolveSnapshot,/s
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-review-state"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-status"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-hint"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-legibility-panel"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-accept-button"\)/
+  );
+  assert.match(
+    reactionMainSource,
+    /document\.getElementById\("reaction-export-button"\)/
   );
   assert.match(
     reactionMainSource,
@@ -170,12 +266,24 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
     /document\.getElementById\("reaction-solve-button"\)/
   );
   assert.match(
+    reactionCommitStateSource,
+    /export function createReactionCommitStateRuntime/
+  );
+  assert.match(
+    reactionCommitStateSource,
+    /needsReaccept:\s*false,/
+  );
+  assert.match(
+    reactionCommitStateSource,
+    /reset\(\{\s*needsReaccept:\s*true\s*\}\);/
+  );
+  assert.match(
     runtimeSource,
     /function clearReactionCanvas\(\)/
   );
   assert.match(
     runtimeSource,
-    /function solveReactionCanvas\(\)/
+    /async function solveReactionCanvas\(\)/
   );
   assert.match(
     runtimeSource,
@@ -183,7 +291,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /solveButton\.addEventListener\("click",\s*\(\) => \{\s*solveReactionCanvas\(\);/s
+    /solveButton\.addEventListener\("click",\s*async \(\) => \{\s*await solveReactionCanvas\(\);/s
   );
   assert.match(
     runtimeSource,
@@ -191,7 +299,15 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /const solution = solveSnapshot\(\s*\{\s*participants:\s*cloneSerializableValue\(state\.participants\),\s*mappings:\s*cloneSerializableValue\(state\.mappings\),/s
+    /const solution = await Promise\.resolve\(\s*solveSnapshot\(\s*\{\s*participants:\s*cloneSerializableValue\(state\.participants\),\s*mappings:\s*cloneSerializableValue\(state\.mappings\),/s
+  );
+  assert.match(
+    runtimeSource,
+    /buildReactionLegibilitySnapshot/
+  );
+  assert.match(
+    runtimeSource,
+    /function syncLegibilityPanel\(\)/
   );
   assert.match(
     runtimeSource,
@@ -223,7 +339,23 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
+    /buildReactionSolverExecutionStatusNote\(solution\?\.execution\)/
+  );
+  assert.match(
+    runtimeSource,
+    /state\.isSolving = true;/
+  );
+  assert.match(
+    runtimeSource,
+    /setStatus\("Running external Reaction solve\.\.\."\);/
+  );
+  assert.match(
+    runtimeSource,
     /normalizeText\(solution\?\.planDescription\) \|\| describeSolvePlan\(\{\}\)/
+  );
+  assert.match(
+    reactionSolverExecutionSource,
+    /Legacy in-process solver bridge remains active for this solve\./
   );
   assert.match(
     runtimeSource,

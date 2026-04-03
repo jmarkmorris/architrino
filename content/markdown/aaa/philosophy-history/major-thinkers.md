@@ -981,7 +981,7 @@ If the framework works, the historical result is not that prior thinkers were si
 ### **Lucien Hardy (1966–) — Quantum Foundations**
 **Subject:** Lucien Hardy, representing operational and $\psi$-epistemic quantum-foundations programs.
 
-**Acknowledgement of Adjacent Work:** This section also draws directly on the closely related contributions of Rob Spekkens and Matthew Leifer, whose work sharpened epistemic-state models, ontology constraints, and theorem-level limits on what an operational quantum description can mean.
+**Acknowledgment of Adjacent Work:** This section also draws directly on the closely related contributions of Rob Spekkens and Matthew Leifer, whose work sharpened epistemic-state models, ontology constraints, and theorem-level limits on what an operational quantum description can mean.
 
 **Era / Context**: Their work developed in a mature quantum-foundations era seeking reconstruction principles and ontology-sensitive distinctions beyond textbook interpretation slogans.
 

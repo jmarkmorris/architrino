@@ -15,6 +15,7 @@ import {
 } from "../../domain/structure/StructureAssemblyCatalog.js";
 
 export const REACTION_STRUCTURE_RENDER_MODES = Object.freeze({
+  AGGREGATE_LEDGER_TILE: "aggregate-ledger-tile",
   BINARY_SELECTOR: "binary-selector",
   BINARY_SELECTOR_GRID: "binary-selector-grid",
   BINARY_BARE: "binary-bare",
@@ -254,7 +255,7 @@ function buildFreeArchitrinosDescriptorTree(structureRoot) {
     id: String(structureRoot?.id ?? "root"),
     label: String(structureRoot?.label ?? "Free Architrinos").trim() || "Free Architrinos",
     templateId: "free_architrinos",
-    renderMode: REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID,
+    renderMode: REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE,
     layoutRole: "track-row",
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
@@ -385,6 +386,7 @@ export function isReactionStructureCompositeGridRenderMode(renderMode = "") {
 
 export function isReactionStructureInlineAnchorRenderMode(renderMode = "") {
   return (
+    renderMode === REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE ||
     renderMode === REACTION_STRUCTURE_RENDER_MODES.NOETHER_CORE_GRID ||
     renderMode === REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID ||
     renderMode === REACTION_STRUCTURE_RENDER_MODES.HIGGS_CLUSTER_GRID ||
@@ -419,6 +421,7 @@ export function findReactionStructureDescriptorNode(nodes = [], nodeId = "") {
 export function shouldRenderReactionStructureDescriptorChildren(node = null) {
   const renderMode = String(node?.renderMode ?? "").trim();
   return (
+    renderMode !== REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE &&
     renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR &&
     renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID &&
     renderMode !== REACTION_STRUCTURE_RENDER_MODES.HIGGS_CLUSTER_GRID &&
@@ -495,7 +498,10 @@ export function getReactionBinarySelectorGroups(structureRoot) {
   const descriptorTree = buildReactionStructureDescriptorTree(structureRoot);
   const groups = [];
   walkReactionStructureDescriptorTree(descriptorTree, (node) => {
-    if (node?.renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID) {
+    if (
+      node?.renderMode !== REACTION_STRUCTURE_RENDER_MODES.BINARY_SELECTOR_GRID &&
+      node?.renderMode !== REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE
+    ) {
       return;
     }
     const slotNodes = Array.isArray(node?.children)

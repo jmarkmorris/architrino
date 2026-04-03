@@ -62,6 +62,71 @@ class FakeApi:
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
+    def test_build_proposal_marks_the_pdg_to_solver_boundary_explicitly(self):
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="fixture",
+            source={
+                "edition": "2025",
+                "channelDescription": "n -> p e- anti-nu_e",
+                "citation": "Local PDG fixture seed",
+                "branchingDisplay": "dominant neutron decay channel",
+            },
+            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
+                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
+                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            proposal.source["contract"],
+            {
+                "upstreamSchema": "pdg-proposal/v1",
+                "downstreamSchema": "solver-request/v1",
+                "handoffMode": "upstream-only",
+                "reactionAcceptanceRequired": True,
+                "reactionAcceptanceBoundary": "reaction-review",
+                "acceptedReactionHandoff": "reaction-owned",
+                "composerHandoff": "accepted-reaction-only",
+            },
+        )
+        self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
+        self.assertEqual(proposal.exportable, True)
+
+    def test_solver_request_origin_points_back_to_the_pdg_proposal_surface(self):
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="fixture",
+            source={"edition": "2025"},
+            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
+                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
+                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        solver_request = pdgfeed.build_solver_request(proposal)
+
+        self.assertIsNotNone(solver_request)
+        self.assertEqual(
+            solver_request["origin"],
+            {
+                "sourceKind": "pdg-ingest",
+                "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
+                "title": "Free neutron beta decay",
+            },
+        )
+
     def test_manifest_assigns_incrementing_batch_ids_to_exportable_discoveries(self):
         neutron_particle = FakeParticle(
             "n",
@@ -113,10 +178,18 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(manifest["entries"][0]["batchId"], 1)
         self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S008.1/2025")
         self.assertEqual(manifest["entries"][0]["lookupParticleName"], "pi+")
+        self.assertEqual(
+            manifest["entries"][0]["solverRequest"]["origin"]["sourceDocumentId"],
+            "pdg-proposal:s008_1_2025.live-pdg",
+        )
         self.assertEqual(manifest["entries"][0]["solverRequest"]["schema"], "solver-request/v1")
         self.assertEqual(manifest["entries"][1]["batchId"], 2)
         self.assertEqual(manifest["entries"][1]["pdgIdentifier"], "S017.1/2025")
         self.assertEqual(manifest["entries"][1]["lookupParticleName"], "n")
+        self.assertEqual(
+            manifest["entries"][1]["solverRequest"]["origin"]["sourceDocumentId"],
+            "pdg-proposal:s017_1_2025.live-pdg",
+        )
         self.assertEqual(manifest["topUnsupportedParticles"], [])
 
     def test_manifest_expands_exportable_particle_multipliers_for_neutral_pion_decay(self):
