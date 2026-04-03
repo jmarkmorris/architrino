@@ -1096,6 +1096,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     handleParticipantVisualClick,
     reducedBinaryPersonalityChoiceIds,
     resolveBinaryGlyphPolarity,
+    resolveBinaryChoiceInventory,
     setBinaryPersonalitySelection,
     shouldRenderChildNodes,
     startOperatorDrag,
@@ -1318,6 +1319,17 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       parts.push(`${positrinoCount} positrino`);
     }
     return parts.join(" + ") || "empty ledger";
+  }
+
+  function getLedgerFromBinaryAssignment(assignment = {}, nodes = []) {
+    return nodes.reduce(
+      (ledger, node) => addLedgers(ledger, getBinaryChoiceInventory(assignment?.[node?.id])),
+      createEmptyLedger()
+    );
+  }
+
+  function getLedgerSignature(ledger = null) {
+    return `${Number(ledger?.electrino ?? 0)}:${Number(ledger?.positrino ?? 0)}`;
   }
 
   function getOperatorOutputLedgerForAnchor(participantOrId, operatorSummary = null, anchorInstanceIndex = null) {
@@ -2305,8 +2317,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return;
     }
     const nodes = getBinarySelectorNodes(participant, groupNode);
-    const clickedNode = nodes.find((node) => node.id === nodeId);
-    if (!clickedNode) {
+    if (!nodes.length) {
       return;
     }
     const currentSelections = getResolvedBinarySelectionMap(participant, groupNode);
@@ -2315,31 +2326,47 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return;
     }
 
-    const choiceCycle = getBinarySelectorRuleForParticipant({
-      ...participant,
-      templateId: groupNode.templateId,
-    }).visibleChoiceIds
-      .filter((choiceId) =>
-        validAssignments.some((assignment) => assignment[clickedNode.id] === choiceId)
-      );
-    if (!choiceCycle.length) {
+    const assignmentsByLedgerSignature = new Map();
+    validAssignments.forEach((assignment) => {
+      const signature = getLedgerSignature(getLedgerFromBinaryAssignment(assignment, nodes));
+      const existingAssignments = assignmentsByLedgerSignature.get(signature) ?? [];
+      existingAssignments.push(assignment);
+      assignmentsByLedgerSignature.set(signature, existingAssignments);
+    });
+
+    const uniqueLedgerAssignments = [...assignmentsByLedgerSignature.entries()]
+      .map(([signature, assignments]) => ({
+        signature,
+        ledger: getLedgerFromBinaryAssignment(assignments[0], nodes),
+        assignment:
+          pickBestBinaryAssignmentCandidate({
+            participant,
+            groupNode,
+            assignments,
+            currentSelections,
+          }) ?? assignments[0],
+      }))
+      .sort((left, right) => {
+        const electrinoDelta =
+          Number(left.ledger?.electrino ?? 0) - Number(right.ledger?.electrino ?? 0);
+        if (electrinoDelta !== 0) {
+          return electrinoDelta;
+        }
+        return Number(left.ledger?.positrino ?? 0) - Number(right.ledger?.positrino ?? 0);
+      });
+    if (!uniqueLedgerAssignments.length) {
       return;
     }
-    const currentChoiceId = currentSelections[clickedNode.id];
-    const currentChoiceIndex = Math.max(0, choiceCycle.indexOf(currentChoiceId));
-    const nextChoiceId = choiceCycle[(currentChoiceIndex + 1) % choiceCycle.length];
-    const candidateAssignments = validAssignments.filter(
-      (assignment) =>
-        assignment[clickedNode.id] === nextChoiceId &&
-        !binaryAssignmentsMatch(assignment, currentSelections, nodes)
+
+    const currentLedgerSignature = getLedgerSignature(
+      getLedgerFromBinaryAssignment(currentSelections, nodes)
     );
-    const nextSelections = pickBestBinaryAssignmentCandidate({
-      participant,
-      groupNode,
-      assignments: candidateAssignments,
-      currentSelections,
-      pinnedNodeId: clickedNode.id,
-    });
+    const currentLedgerIndex = Math.max(
+      0,
+      uniqueLedgerAssignments.findIndex((entry) => entry.signature === currentLedgerSignature)
+    );
+    const nextSelections =
+      uniqueLedgerAssignments[(currentLedgerIndex + 1) % uniqueLedgerAssignments.length]?.assignment ?? null;
     if (!nextSelections) {
       return;
     }

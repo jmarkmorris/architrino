@@ -170,17 +170,18 @@ Reaction should not:
 
 ## Priorities
 
-### 1. Replace The `Free Architrinos` Tri-Slot Card With One Aggregate Ledger Tile
+### 1. Finish Manual Workflow Legibility And Operator Grammar
 
 Status: `active`
 
 Current:
 
-- the structure descriptor still renders `free_architrinos` as an `I` / `M` / `O` binary-selector grid with no-binary children.
+- the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
+- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and `Dissociate` / `Associate` still read as separate controls more than one explanation flow.
 
 Objective:
 
-- show one center-lane aggregate ledger tile whose counts match the solver model without implying fixed per-slot identity.
+- make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
 
 ### 2. Add An Explicit Accept / Commit State On Top Of `reaction-flow/v1` Export
 
@@ -195,20 +196,7 @@ Objective:
 
 - separate "still editing" from "accepted for handoff" inside Reaction itself.
 
-### 3. Finish Manual Workflow Legibility And Operator Grammar
-
-Status: `active`
-
-Current:
-
-- the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
-- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and `Dissociate` / `Associate` still read as separate controls more than one explanation flow.
-
-Objective:
-
-- make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
-
-### 4. Complete The Solver Cut-Over And Remove The In-Process Fallback
+### 3. Complete The Solver Cut-Over And Remove The In-Process Fallback
 
 Status: `pending`
 
@@ -221,7 +209,7 @@ Objective:
 
 - finish the flash cut-over so Reaction ships one solver path, one adapter surface, and one test story.
 
-### 5. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
+### 4. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
 
 Status: `pending`
 

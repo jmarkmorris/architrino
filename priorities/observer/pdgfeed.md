@@ -361,12 +361,36 @@ The first PDG version should also stay within these scope limits:
 
 ### Proposal Review
 
-PDG may eventually need an upstream review boundary with:
+PDG needs an explicit upstream review boundary between raw proposal generation and Reaction acceptance.
 
-- multiple stored alternatives;
-- ranking explanation;
-- provenance visibility;
-- and controls such as pin or forbid.
+That boundary should let ingest keep more than one normalized interpretation of the same PDG channel without pretending that rank alone is acceptance. The top-ranked candidate may be the default exportable choice, but review must still be able to preserve the rest of the candidate set, explain why the default was chosen, and mark certain alternatives as intentionally preferred or intentionally excluded.
+
+The first durable shape should be a repo-owned `pdg-review/v1` record with:
+
+- a stable `reviewId` for one source channel or decay selection;
+- source provenance copied from the PDG proposal layer rather than re-derived later;
+- an `alternatives` array stored in stable rank order;
+- explicit review state such as `selectedAlternativeId`, `pinnedAlternativeId`, and `forbiddenAlternativeIds`;
+- and enough summary fields to understand the choice without re-querying PDG.
+
+Each stored alternative should carry:
+
+- its normalized `proposalId`;
+- whether it is exportable to `solver-request/v1`;
+- ranking score, rank, and reason codes;
+- proposal notes, especially unsupported-particle or ambiguity notes;
+- a concise reactant/product summary suitable for CLI or future UI review;
+- and either the embedded `solver-request/v1` candidate or a stable reference to the generated request artifact.
+
+The first review semantics should be:
+
+- ranking provides the provisional default, not final acceptance;
+- `pin` makes one alternative the explicit preferred export while leaving siblings visible;
+- `forbid` removes an alternative from default selection without erasing its provenance trail;
+- reranking after new ingest should preserve explicit review decisions where they still apply;
+- and unsupported alternatives may remain visible in review but must not cross the solver seam.
+
+This review layer is still upstream of Reaction. It chooses among PDG-derived alternatives and preserves provenance; it does not author manual mappings, operator grammar, or Composer-facing output.
 
 ## Interfaces
 
@@ -424,20 +448,7 @@ Objective:
 
 - define the explicit PDG-to-Reaction seam so candidates become reviewable upstream input instead of file-only artifacts.
 
-### 2. Add Proposal Review And Alternatives
-
-Status: `next`
-
-Current:
-
-- proposals already carry ranking and notes;
-- there is still no stored alternative set and no `pin` / `forbid` review state.
-
-Objective:
-
-- make the upstream choice explicit before Reaction acceptance.
-
-### 3. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
+### 2. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
 
 Status: `active`
 
@@ -449,7 +460,7 @@ Objective:
 
 - keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
 
-### 4. Expand The Locked Mapping Registry Deliberately
+### 3. Expand The Locked Mapping Registry Deliberately
 
 Status: `pending`
 
@@ -462,7 +473,7 @@ Objective:
 
 - widen exportable vocabulary only through explicit mapping entries, provenance rules, and regression tests.
 
-### 5. Stay Aligned With The Reaction/Composer Contract Story
+### 4. Stay Aligned With The Reaction/Composer Contract Story
 
 Status: `pending`
 

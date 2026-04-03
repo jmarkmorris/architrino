@@ -297,7 +297,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
-test("free architrinos reuse the grid layout but render personality-only tiles with no binary orbit or axis", () => {
+test("free architrinos render as one aggregate ledger tile instead of a tri-slot selector grid", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -307,14 +307,21 @@ test("free architrinos reuse the grid layout but render personality-only tiles w
     "utf8"
   );
   assert.match(descriptorSource, /templateId:\s*"free_architrinos"/);
-  assert.match(runtimeSource, /function createFreeArchitrinosGridTrack\(/);
   assert.match(
-    runtimeSource,
-    /String\(node\?\.templateId \?\? participant\?\.templateId \?\? ""\)\.trim\(\)\.toLowerCase\(\) === "free_architrinos"/
+    descriptorSource,
+    /renderMode:\s*REACTION_STRUCTURE_RENDER_MODES\.AGGREGATE_LEDGER_TILE/
   );
   assert.match(
     runtimeSource,
-    /createBinaryGlyph\(selectedChoice,\s*\{[\s\S]*?showBinary:\s*false,/s
+    /function createAggregateLedgerTileContent\(participant,\s*node\)/
+  );
+  assert.match(
+    runtimeSource,
+    /resolveBinaryChoiceInventory\(participant,\s*childNode,\s*node\)/
+  );
+  assert.match(
+    runtimeSource,
+    /tile\.title = `\$\{node\.label\}: \$\{formatLedger\(ledger\)\}\. Click to cycle the aggregate ledger\.`;/
   );
 });
 

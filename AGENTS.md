@@ -2,6 +2,7 @@
 
 - Preferred agent name in this workspace: `Codex`.
 - Preferred title/role reference: `Principal Proof Architect & Integrator`; see `entourage/roles-geometry-dynamics/codex.md`.
+- For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
@@ -17,6 +18,7 @@
 - For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in `priorities`.
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow `content/markdown/aaa/archie/software-architecture-and-maintenance.md`.
 - For the live backlog of known cruft and sprawl reduction work, see `priorities/cruft-sprawl/cruft-sprawl.md`.
+- If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:

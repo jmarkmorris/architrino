@@ -109,12 +109,42 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   const handleParticipantVisualClick = options.handleParticipantVisualClick ?? (() => false);
   const reducedBinaryPersonalityChoiceIds = options.reducedBinaryPersonalityChoiceIds ?? [];
   const resolveBinaryGlyphPolarity = options.resolveBinaryGlyphPolarity ?? (() => "pro");
+  const resolveBinaryChoiceInventory = options.resolveBinaryChoiceInventory ?? (() => ({
+    electrino: 0,
+    positrino: 0,
+  }));
   const setBinaryPersonalitySelection = options.setBinaryPersonalitySelection ?? (() => {});
   const shouldRenderChildNodes = options.shouldRenderChildNodes ?? (() => true);
   const startOperatorDrag = options.startOperatorDrag ?? (() => {});
   const startSideParticipantDrag = options.startSideParticipantDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
+
+  function createEmptyLedger() {
+    return {
+      electrino: 0,
+      positrino: 0,
+    };
+  }
+
+  function addLedgerEntry(totalLedger = null, entryLedger = null) {
+    return {
+      electrino: Number(totalLedger?.electrino ?? 0) + Number(entryLedger?.electrino ?? 0),
+      positrino: Number(totalLedger?.positrino ?? 0) + Number(entryLedger?.positrino ?? 0),
+    };
+  }
+
+  function getAggregateLedgerTileAccent(ledger = null) {
+    const electrinoCount = Number(ledger?.electrino ?? 0);
+    const positrinoCount = Number(ledger?.positrino ?? 0);
+    if (electrinoCount > positrinoCount) {
+      return "#2f6fff";
+    }
+    if (positrinoCount > electrinoCount) {
+      return "#ff4a1f";
+    }
+    return "#9a47d1";
+  }
 
   function createBranchAnchorFrame({
     participant,
@@ -240,6 +270,14 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     placeholder.className = "composer-reaction-canvas-binary-choice is-static is-placeholder";
     placeholder.setAttribute("aria-hidden", "true");
     return placeholder;
+  }
+
+  function getAggregateLedgerForNode(participant, node) {
+    return (Array.isArray(node?.children) ? node.children : []).reduce(
+      (ledger, childNode) =>
+        addLedgerEntry(ledger, resolveBinaryChoiceInventory(participant, childNode, node)),
+      createEmptyLedger()
+    );
   }
 
   function createSideSlotHeader(participants, side) {
@@ -485,43 +523,53 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     return wrapper;
   }
 
-  function createFreeArchitrinosGridTrack(participant, node) {
-    const track = document.createElement("div");
-    track.className = "composer-reaction-canvas-binary-selector-grid-track";
-    const glyphPolarity = resolveBinaryGlyphPolarity(participant, node);
-    getRenderedCoreBinarySlots(participant, node).forEach((childNode) => {
-      if (!childNode) {
-        track.appendChild(createBinaryChoicePlaceholder());
-        return;
-      }
-      const selectedChoice = getBinaryPersonalitySelection(participant, childNode, node);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "composer-reaction-canvas-binary-choice is-selected";
-      button.dataset.choiceId = selectedChoice.id;
-      button.style.setProperty("--binary-choice-accent", selectedChoice.accent);
-      button.setAttribute("aria-label", `${childNode.label}: ${selectedChoice.label}`);
-      button.title = `${childNode.label}: ${selectedChoice.label}`;
-      button.appendChild(
-        createBinaryGlyph(selectedChoice, {
-          showBinary: false,
-          polarity: glyphPolarity,
-        })
-      );
-      button.addEventListener("click", () =>
-        cycleFreeArchitrinoPreset(participant.id, childNode.id)
-      );
-      track.appendChild(button);
-    });
-    return track;
-  }
-
-  function createFreeArchitrinosGridContent(participant, node) {
+  function createAggregateLedgerTileContent(participant, node) {
     const wrapper = document.createElement("div");
-    wrapper.className = `composer-reaction-canvas-binary-selector-grid is-${participant.side}`;
+    wrapper.className = `composer-reaction-canvas-aggregate-ledger-track is-${participant.side}`;
     const nodeKey = buildNodeKey(participant.id, node.id);
-    const track = createFreeArchitrinosGridTrack(participant, node);
-    const body = createInlineTrackBody(participant, node, nodeKey, track, {
+    const ledger = getAggregateLedgerForNode(participant, node);
+    const electrinoCount = Number(ledger.electrino ?? 0);
+    const positrinoCount = Number(ledger.positrino ?? 0);
+    const tile = document.createElement("button");
+    tile.type = "button";
+    tile.className =
+      "composer-reaction-canvas-binary-choice composer-reaction-canvas-aggregate-ledger-tile is-selected";
+    tile.style.setProperty("--binary-choice-accent", getAggregateLedgerTileAccent(ledger));
+    tile.setAttribute(
+      "aria-label",
+      `${node.label}: ${electrinoCount} electrino and ${positrinoCount} positrino`
+    );
+    tile.title = `${node.label}: ${formatLedger(ledger)}. Click to cycle the aggregate ledger.`;
+
+    const title = document.createElement("span");
+    title.className = "composer-reaction-canvas-aggregate-ledger-title";
+    title.textContent = "Ledger";
+    tile.appendChild(title);
+
+    [
+      {
+        className: "is-top-right is-positrino",
+        count: positrinoCount,
+        label: "e+",
+        title: "Aggregate positrino count",
+      },
+      {
+        className: "is-bottom-left is-electrino",
+        count: electrinoCount,
+        label: "e-",
+        title: "Aggregate electrino count",
+      },
+    ].forEach((entry) => {
+      const badge = document.createElement("span");
+      badge.className = `composer-reaction-canvas-operator-ledger composer-reaction-canvas-aggregate-ledger-count ${entry.className}`;
+      badge.textContent = `${entry.count} ${entry.label}`;
+      badge.title = entry.title;
+      tile.appendChild(badge);
+    });
+
+    tile.addEventListener("click", () => cycleFreeArchitrinoPreset(participant.id, node.id));
+
+    const body = createInlineTrackBody(participant, node, nodeKey, tile, {
       className: "composer-reaction-canvas-binary-selector-grid-body",
     });
     wrapper.appendChild(body);
@@ -529,9 +577,6 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createBinarySelectorGridContent(participant, node) {
-    if (String(node?.templateId ?? participant?.templateId ?? "").trim().toLowerCase() === "free_architrinos") {
-      return createFreeArchitrinosGridContent(participant, node);
-    }
     if (isQuarkTemplateId(node.templateId ?? participant.templateId)) {
       return createQuarkPresetRowContent(participant, node);
     }
@@ -760,6 +805,10 @@ export function createReactionParticipantRenderRuntime(options = {}) {
         row.classList.add("is-noether-core-grid");
         content.classList.add("is-noether-core-grid");
         content.appendChild(createNoetherCoreGridContent(participant, node));
+      } else if (node.renderMode === REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE) {
+        row.classList.add("is-aggregate-ledger-tile");
+        content.classList.add("is-aggregate-ledger-tile");
+        content.appendChild(createAggregateLedgerTileContent(participant, node));
       } else if (isReactionStructureCompositeGridRenderMode(node.renderMode)) {
         row.classList.add("is-higgs-cluster-grid");
         content.classList.add("is-higgs-cluster-grid");

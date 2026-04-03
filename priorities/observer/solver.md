@@ -1569,21 +1569,7 @@ Objective:
 
 - make exact closure carry the strongest defensible explanatory meaning by expanding full constituent provenance wherever the solver already has enough particle-content knowledge to derive it.
 
-### 3. Close The Remaining Analyzable Frozen-Manifest Outliers
-
-Status: `active`
-
-Current:
-
-- external-solver regression now covers a broad meson surface, including charged and neutral pion behavior, many charged-kaon families, and a large charged/neutral B-meson family set while preserving `dk0` / `sk0` and `dB0` / `bB0` identity;
-- the remaining open work is no longer "first pion / kaon / B support";
-- local frozen-manifest sweep artifacts still show analyzable misses and partials, including proton-decay-plus-meson families and the neutral-B outlier `S042.624/2025` (`dB0 -> P.e2`).
-
-Objective:
-
-- treat every remaining analyzable miss as a concrete solver gap, close it with focused regression coverage, and keep unsupported-particle discovery separate from supported-but-unsolved behavior.
-
-### 4. Promote `Noether Pair` Beyond A Solve-Generated Supplement
+### 3. Promote `Noether Pair` Beyond A Solve-Generated Supplement
 
 Status: `next`
 
@@ -1597,7 +1583,7 @@ Objective:
 
 - make `Noether Pair` a general solver-visible assembly where it genuinely improves closure, residue handling, or intermediate legibility, not just a generated supplement.
 
-### 5. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
+### 4. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 
@@ -1605,7 +1591,8 @@ Current:
 
 - [`pdg-closure-sweep.mjs`](../../scripts/pdg-closure-sweep.mjs) already separates unsupported-input cases from analyzable solver misses and reports exact-closure kind counts;
 - the contract seam, golden corpus, and external-core tests already give the solver a durable regression surface.
+- targeted external-core regression now covers the previously cited analyzable frozen-manifest gaps, including proton-decay-plus-meson families and the former neutral-B outlier `S042.624/2025` (`dB0 -> P.e2`).
 
 Objective:
 
-- rank solver work by the frozen-manifest analyzable denominator and the contract-facing regression surface, so progress stays honest as particle vocabulary and rule families expand.
+- keep the analyzable outlier list empty by ranking solver work against the frozen-manifest denominator and the contract-facing regression surface, so newly discovered misses become fresh regressions rather than lingering backlog as particle vocabulary and rule families expand.
