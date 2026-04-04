@@ -1556,22 +1556,37 @@ Objective:
 
 - make the external solver the only supported solve path for normal runtime use and delete the remaining in-process bridge once parity and reviewability are sufficient.
 
-### 2. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
+### 2. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
 
 Status: `active`
 
 Current:
 
-- the sweep/report path already distinguishes `generic-profile` exact closures from `full-provenance` exact closures;
-- exact composite meson carry-through now emits meson-constituent provenance when the source tree exposes child constituents;
-- lepton-heavy meson channels, neutral-pion paths, and weak-lepton all-lepton closures now have full constituent provenance coverage;
-- but some remaining exact closures, especially baryon weak-channel families and radiative weak profiles, still close through generic profiles because the solver does not yet spell out a stronger constituent ledger for them.
+- radiative weak lepton profiles now close through the lepton constituent provenance path rather than the generic weak profile;
+- the fixture sweep's remaining analyzable `generic-profile` exact closure is still `free_neutron_beta_decay`;
+- proton and neutron constituent content already exists in the app-side structure model, so the particle content is not the missing piece;
+- but [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py) still has no explicit baryon weak constituent-transformation ledger that justifies promoting neutron beta-family closure from generic weak-channel shorthand to full provenance.
 
 Objective:
 
-- keep shrinking the generic-profile bucket by upgrading the remaining exact weak-channel families only where the solver already has enough particle-content knowledge to justify a stronger provenance story.
+- define the conservative baryon weak constituent provenance rule needed for neutron beta-family closure before claiming the remaining generic-profile exact closures can be finished safely.
 
-### 3. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
+### 3. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
+
+Status: `pending`
+
+Current:
+
+- the sweep/report path already distinguishes `generic-profile` exact closures from `full-provenance` exact closures;
+- exact composite meson carry-through now emits meson-constituent provenance when the source tree exposes child constituents;
+- lepton-heavy meson channels, neutral-pion paths, weak-lepton all-lepton closures, and radiative muon weak profiles now have full constituent provenance coverage;
+- but the remaining exact generic-profile closures now sit behind the unresolved baryon weak-family provenance rule rather than behind missing radiative lepton coverage.
+
+Objective:
+
+- once the baryon weak constituent rule is explicit, finish shrinking the generic-profile bucket by upgrading the remaining exact weak-channel families only where the solver already has enough particle-content knowledge to justify a stronger provenance story.
+
+### 4. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 
