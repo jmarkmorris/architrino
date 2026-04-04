@@ -43,7 +43,7 @@ This workstream tracks high-priority cases where the repo shows duplicate implem
 - [composer](../observer/composer.md)
 - [reaction](../observer/reaction.md)
 - [viewports](../viewports/viewports.md)
-- [codex](../codex/codex.md)
+- [codex](../../op/codex.md)
 
 ## Related AAA Notes
 

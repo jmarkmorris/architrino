@@ -68,7 +68,7 @@ We clarified the repo-local best-fit split for developer meta:
   stable repo-wide operating rules and constraints;
 - [reference/priorities](../priorities/README.md):
   live backlog and current-state tracking;
-- [reference/priorities/codex/codex.md](../priorities/codex/codex.md):
+- [reference/op/codex.md](./codex.md):
   Codex/operator-specific process notes;
 - `content/`:
   app-facing content, not developer process;
@@ -95,7 +95,7 @@ For this repo specifically:
 
 The best current repo-local home for the Codex thread-orchestration process is:
 
-- [reference/priorities/codex/codex.md](../priorities/codex/codex.md), likely as a focused file such as `reference/priorities/codex/thread-orchestration.md`.
+- [reference/op/codex.md](./codex.md), likely as a focused file such as `reference/op/thread-orchestration.md`.
 
 That keeps:
 
