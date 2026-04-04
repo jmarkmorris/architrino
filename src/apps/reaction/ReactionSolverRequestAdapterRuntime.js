@@ -1,4 +1,5 @@
 import { createReactionBinarySelectionRuntime } from "./ReactionBinarySelectionRuntime.js";
+import { getReactionCanonicalLabel } from "./ReactionLabelCatalogRuntime.js";
 import { buildReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import {
@@ -22,6 +23,10 @@ function supportsParticipantPolarity(templateId = "") {
 
 function normalizeParticipantPolarity(polarity = "") {
   return normalizeLowerText(polarity) === "anti" ? "anti" : "pro";
+}
+
+function buildTagList(values = []) {
+  return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
 }
 
 function toLedgerCounts(inventory = null) {
@@ -128,21 +133,31 @@ function createParticipantFromRequestRecord(
 ) {
   const binarySelectionRuntime = options?.binarySelectionRuntime ?? {};
   const side = normalizeLowerText(requestParticipant?.side);
+  const templateId = normalizeText(requestParticipant?.templateId);
   const polarity = supportsParticipantPolarity(requestParticipant?.templateId)
     ? normalizeParticipantPolarity(requestParticipant?.polarity)
     : "";
-  const structure = buildReactionParticipantStructure(normalizeText(requestParticipant?.templateId), {
+  const canonicalLabel = getReactionCanonicalLabel(templateId, {
+    polarity,
+    fallbackLabel: normalizeText(requestParticipant?.label) || templateId,
+  });
+  const structure = buildReactionParticipantStructure(templateId, {
     id: normalizeText(requestParticipant?.rootNodeId) || `${normalizeText(requestParticipant?.id)}_structure`,
-    label: normalizeText(requestParticipant?.label) || normalizeText(requestParticipant?.templateId),
+    label: canonicalLabel,
     polarity,
   });
   const participant = {
     id: normalizeText(requestParticipant?.id),
     side: side === "product" ? "product" : "reactant",
-    templateId: normalizeText(requestParticipant?.templateId),
+    templateId,
     polarity,
-    baseLabel: normalizeText(requestParticipant?.label) || normalizeText(requestParticipant?.templateId),
-    label: normalizeText(requestParticipant?.label) || normalizeText(requestParticipant?.templateId),
+    baseLabel: canonicalLabel,
+    label: canonicalLabel,
+    provenanceId: `solver-request-participant:${normalizeText(requestParticipant?.id)}`,
+    tags: buildTagList([
+      ...(Array.isArray(requestParticipant?.tags) ? requestParticipant.tags : []),
+      ...(Array.isArray(requestParticipant?.inventory?.flags) ? requestParticipant.inventory.flags : []),
+    ]),
     structure: structure.root,
     hierarchy: buildReactionStructureDescriptorTree(structure.root),
     binarySelections: {},
@@ -172,6 +187,8 @@ function createOperatorParticipantFromRequestRecord(
     side: "operator",
     templateId: normalizeLowerText(requestOperator?.type) || "associate",
     label: normalizeText(requestOperator?.label) || normalizeText(requestOperator?.type) || "Operator",
+    provenanceId: `solver-request-operator:${operatorId}`,
+    tags: buildTagList(Array.isArray(requestOperator?.tags) ? requestOperator.tags : []),
     operatorLaneIndex: Math.max(0, Math.round(Number(requestOperator?.placement?.lane ?? 0) || 0)),
     operatorSlotIndex: Math.max(0, Math.round(Number(requestOperator?.placement?.slot ?? 0) || 0)),
     surfaceRowIndex: Math.max(0, Math.round(Number(requestOperator?.placement?.row ?? 0) || 0)),

@@ -287,7 +287,7 @@ function buildRuntimeParticipants(caseId) {
         side: "product",
         templateId: "neutrino",
         polarity: "pro",
-        label: "Pro Neutrino",
+        label: "Pro Electron Neutrino",
         surfaceRowIndex: 0,
       }),
     ];

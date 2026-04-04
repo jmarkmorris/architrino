@@ -41,6 +41,7 @@ It does not own:
 - The canonical implementation for Reaction helper, canvas, solve, structure, export, and layout runtimes now lives under `src/apps/reaction/`.
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 - The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
+- The standalone Reaction app now has a first built-in solved-reaction library seed, with free neutron beta decay loading by default when startup finds no authored canvas state to preserve.
 
 ## Design
 
@@ -210,7 +211,3 @@ Current:
 Objective:
 
 - keep Reaction as the single provenance-authoring surface with one source of truth for geometry, anchors, and conservation.
-
-### 4. Populate Library with Known Solved Reactions and Set Default Reaction
-
-- do this

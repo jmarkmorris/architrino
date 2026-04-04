@@ -27,7 +27,7 @@ const displayLabelsBySpecies = Object.freeze({
   w_minus_boson: "Negative W Boson",
   z_boson: "Neutral Z Boson",
   w_plus_boson: "Positive W Boson",
-  electron_neutrino: "Neutrino",
+  electron_neutrino: "Electron Neutrino",
   muon_neutrino: "Muon Neutrino",
   tau_neutrino: "Tau Neutrino",
   up_quark: "Up Quark",

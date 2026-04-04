@@ -183,10 +183,6 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
-    /legibilityPanel = null,/
-  );
-  assert.match(
-    reactionAppRuntimeSource,
     /exportButton = null,/
   );
   assert.match(
@@ -195,11 +191,23 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
-    /createReactionCommitStateRuntime\(\{/
+    /initialSolverRequest = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /createCommitRuntime = createReactionCommitStateRuntime,/
   );
   assert.match(
     reactionAppRuntimeSource,
     /getReview:\s*\(\)\s*=> commitRuntime\.buildExportReview\(\),/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /getDocumentOptions:\s*\(\)\s*=> currentDocumentOptions \?\? \{\},/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function loadSolverRequestReviewCandidate\(request = \{\}, options = \{\}\)/
   );
   assert.match(
     reactionAppRuntimeSource,
@@ -239,15 +247,15 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionMainSource,
+    /initialSolverRequest:\s*reactionAppRuntimeDeps\.initialSolverRequest \?\? null,/
+  );
+  assert.match(
+    reactionMainSource,
     /document\.getElementById\("reaction-status"\)/
   );
   assert.match(
     reactionMainSource,
     /document\.getElementById\("reaction-hint"\)/
-  );
-  assert.match(
-    reactionMainSource,
-    /document\.getElementById\("reaction-legibility-panel"\)/
   );
   assert.match(
     reactionMainSource,
@@ -283,6 +291,10 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
+    /function replaceSnapshot\(snapshot = \{\}, options = \{\}\)/
+  );
+  assert.match(
+    runtimeSource,
     /async function solveReactionCanvas\(\)/
   );
   assert.match(
@@ -303,11 +315,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /buildReactionLegibilitySnapshot/
-  );
-  assert.match(
-    runtimeSource,
-    /function syncLegibilityPanel\(\)/
+    /replaceSnapshot,/
   );
   assert.match(
     runtimeSource,

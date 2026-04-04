@@ -510,7 +510,7 @@ test("solve plan can use associate to build a standalone neutrino from Noether c
     side: "product",
     templateId: "neutrino",
     polarity: "pro",
-    label: "Pro Neutrino",
+    label: "Pro Electron Neutrino",
   });
 
   const plan = buildReactionSolvePlan({
@@ -742,7 +742,7 @@ test("solve plan still prefers direct standalone reuse over associative primitiv
     side: "reactant",
     templateId: "neutrino",
     polarity: "pro",
-    label: "Pro Neutrino",
+    label: "Pro Electron Neutrino",
   });
   const centerNoetherCore = {
     ...createParticipant({
@@ -773,7 +773,7 @@ test("solve plan still prefers direct standalone reuse over associative primitiv
     side: "product",
     templateId: "neutrino",
     polarity: "pro",
-    label: "Pro Neutrino",
+    label: "Pro Electron Neutrino",
   });
 
   const plan = buildReactionSolvePlan({

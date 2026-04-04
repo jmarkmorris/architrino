@@ -33,6 +33,14 @@ test("reaction add picker uses full quark labels", () => {
   assert.equal(upCell.label, "Pro Up Quark");
 });
 
+test("reaction add picker uses picker-canonical electron-neutrino labels", () => {
+  const pickerCells = getReactionAddPickerCells();
+  const neutrinoCell = pickerCells.find((cell) => cell.id === "neutrino");
+
+  assert.ok(neutrinoCell);
+  assert.equal(neutrinoCell.label, "Pro Electron Neutrino");
+});
+
 test("reaction add picker prefixes pro labels for reduced binary cores and baryons", () => {
   const pickerCells = getReactionAddPickerCells();
   const uniBinaryCell = pickerCells.find((cell) => cell.id === "uni_binary");

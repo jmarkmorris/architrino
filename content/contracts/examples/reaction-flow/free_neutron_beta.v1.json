@@ -46,7 +46,7 @@
     {
       "id": "product_antineutrino",
       "side": "product",
-      "label": "Electron Antineutrino",
+      "label": "Anti Electron Neutrino",
       "structureKey": "anti_neutrino",
       "provenanceId": "prov_antineutrino",
       "tags": ["outgoing", "lepton"],

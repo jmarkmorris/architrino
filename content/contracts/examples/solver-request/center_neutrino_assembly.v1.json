@@ -67,7 +67,7 @@
       "id": "product_neutrino",
       "side": "product",
       "templateId": "neutrino",
-      "label": "Pro Neutrino",
+      "label": "Pro Electron Neutrino",
       "family": "lepton",
       "polarity": "pro",
       "isComposite": false,
@@ -80,7 +80,7 @@
         {
           "id": "product_neutrino_structure",
           "templateId": "neutrino",
-          "label": "Pro Neutrino",
+          "label": "Pro Electron Neutrino",
           "family": "lepton",
           "polarity": "pro",
           "isComposite": false,

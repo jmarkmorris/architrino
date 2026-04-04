@@ -58,7 +58,6 @@ import {
   REACTION_CANVAS_LAYOUT,
   REACTION_CANVAS_SURFACE_ROW_COUNT,
 } from "./ReactionCanvasLayoutRuntime.js";
-import { buildReactionLegibilitySnapshot } from "./ReactionCanvasLegibilityRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -82,6 +81,7 @@ import {
   isNoetherAssemblyTemplateId,
   normalizeStructureAssemblyTemplateId,
 } from "../../domain/structure/StructureAssemblyCatalog.js";
+import { getReactionCanonicalBaseLabel } from "./ReactionLabelCatalogRuntime.js";
 import { findStructureNodeById } from "../../domain/structure/StructureTraversal.js";
 import {
   applyStructurePolarity,
@@ -262,10 +262,14 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const seen = new Set();
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
-    { template: "neutron", label: "Pro Neutron" },
-    { template: "proton", label: "Pro Proton" },
-    { template: "photon", label: "Photon" },
-    { template: "neutrino", label: "Pro Neutrino", initialPolarity: "pro" },
+    { template: "neutron", label: getReactionCanonicalBaseLabel("neutron") },
+    { template: "proton", label: getReactionCanonicalBaseLabel("proton") },
+    { template: "photon", label: getReactionCanonicalBaseLabel("photon") },
+    {
+      template: "neutrino",
+      label: getReactionCanonicalBaseLabel("neutrino"),
+      initialPolarity: "pro",
+    },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
@@ -520,89 +524,12 @@ function getParticipantCompositeModeLabel(participant) {
 }
 
 function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
-  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
-  if (isNoetherAssemblyTemplateId(normalizedTemplateId)) {
-    return getStructureAssemblyDisplayLabel(normalizedTemplateId);
-  }
-  if (normalizedTemplateId === "noether_core") {
-    return "Pro Noether Core";
-  }
-  if (normalizedTemplateId === "up_quark") {
-    return "Pro Up Quark";
-  }
-  if (normalizedTemplateId === "down_quark") {
-    return "Pro Down Quark";
-  }
-  if (normalizedTemplateId === "electron") {
-    return "Pro Electron";
-  }
-  if (normalizedTemplateId === "w_minus_boson") {
-    return "Negative W Boson";
-  }
-  if (normalizedTemplateId === "w_plus_boson") {
-    return "Positive W Boson";
-  }
-  if (normalizedTemplateId === "neutrino") {
-    return "Pro Neutrino";
-  }
-  if (normalizedTemplateId === "z_boson") {
-    return "Neutral Z Boson";
-  }
-  if (normalizedTemplateId === "free_architrinos") {
-    return "Free Architrinos";
-  }
-  if (normalizedTemplateId === "proton") {
-    return "Pro Proton";
-  }
-  if (normalizedTemplateId === "photon") {
-    return "Photon";
-  }
-  if (normalizedTemplateId === "associate") {
-    return "Associate";
-  }
-  if (normalizedTemplateId === "dissociate") {
-    return "Dissociate";
-  }
-  if (normalizedTemplateId === "neutron") {
-    return "Pro Neutron";
-  }
-  if (normalizedTemplateId === "pi_plus") {
-    return "Positive Pion";
-  }
-  if (normalizedTemplateId === "pi_minus") {
-    return "Negative Pion";
-  }
-  if (normalizedTemplateId === "upi0") {
-    return "Neutral Pion (u anti-u)";
-  }
-  if (normalizedTemplateId === "dpi0") {
-    return "Neutral Pion (d anti-d)";
-  }
-  if (normalizedTemplateId === "k_plus") {
-    return "Positive Kaon";
-  }
-  if (normalizedTemplateId === "k_minus") {
-    return "Negative Kaon";
-  }
-  if (normalizedTemplateId === "dk0") {
-    return "Neutral Kaon (d anti-s)";
-  }
-  if (normalizedTemplateId === "sk0") {
-    return "Neutral Kaon (s anti-d)";
-  }
-  if (normalizedTemplateId === "b_plus") {
-    return "Positive B Meson";
-  }
-  if (normalizedTemplateId === "b_minus") {
-    return "Negative B Meson";
-  }
-  if (normalizedTemplateId === "db0") {
-    return "Neutral B Meson (d anti-b)";
-  }
-  if (normalizedTemplateId === "bb0") {
-    return "Neutral B Meson (b anti-d)";
-  }
-  return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
+  return getReactionCanonicalBaseLabel(templateId, {
+    fallbackLabel:
+      isNoetherAssemblyTemplateId(normalizeStructureAssemblyTemplateId(templateId))
+        ? getStructureAssemblyDisplayLabel(normalizeStructureAssemblyTemplateId(templateId))
+        : fallbackLabel,
+  });
 }
 
 function getTemplateGridPickerLayout(pickerCells = []) {
@@ -873,7 +800,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     reactantsColumn,
     productsColumn,
     mapHint,
-    legibilityPanel = null,
     emptyState,
     mapSvg,
     menu,
@@ -1204,6 +1130,18 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       participants: cloneSerializableValue(state.participants),
       mappings: cloneSerializableValue(state.mappings),
     };
+  }
+
+  function inferNextSequenceValue(values = [], prefix = "") {
+    return (
+      values.reduce((maxValue, value) => {
+        const match = String(value ?? "").match(new RegExp(`^${prefix}(\\d+)$`));
+        if (!match) {
+          return maxValue;
+        }
+        return Math.max(maxValue, Number(match[1]) || 0);
+      }, 0) + 1
+    );
   }
 
   function notifySnapshotChange() {
@@ -1623,6 +1561,39 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     render();
     setStatus("Reaction canvas cleared.");
     return true;
+  }
+
+  function replaceSnapshot(snapshot = {}, options = {}) {
+    const nextParticipants = cloneSerializableValue(
+      Array.isArray(snapshot?.participants) ? snapshot.participants : []
+    );
+    const nextMappings = cloneSerializableValue(Array.isArray(snapshot?.mappings) ? snapshot.mappings : []);
+    clearDragState();
+    state.participants = nextParticipants;
+    state.mappings = nextMappings;
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    state.isSolving = false;
+    clearAllRecentRouteState();
+    state.nextParticipantId = inferNextSequenceValue(
+      nextParticipants.map((participant) => participant?.id),
+      "canvas_participant_"
+    );
+    state.nextMappingId = inferNextSequenceValue(
+      nextMappings.map((mapping) => mapping?.id),
+      "canvas_mapping_"
+    );
+    closeMenu();
+    render();
+    notifySnapshotChange();
+    if (options?.announce) {
+      setStatus(
+        normalizeText(options?.statusMessage) || "Reaction review candidate loaded into the canvas."
+      );
+    }
+    return buildSerializableSnapshot();
   }
 
   async function solveReactionCanvas() {
@@ -3829,95 +3800,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
   }
 
-  function createLegibilityCard(title = "", summary = "") {
-    const card = document.createElement("article");
-    card.className = "reaction-app-legibility-card";
-    const titleElement = document.createElement("h2");
-    titleElement.className = "reaction-app-legibility-title";
-    titleElement.textContent = title;
-    card.appendChild(titleElement);
-    if (summary) {
-      const summaryElement = document.createElement("p");
-      summaryElement.className = "reaction-app-legibility-summary";
-      summaryElement.textContent = summary;
-      card.appendChild(summaryElement);
-    }
-    return card;
-  }
-
-  function createLegibilityList(lines = [], className = "reaction-app-legibility-list") {
-    const list = document.createElement("ul");
-    list.className = className;
-    lines.filter(Boolean).forEach((line) => {
-      const item = document.createElement("li");
-      item.textContent = line;
-      list.appendChild(item);
-    });
-    return list;
-  }
-
-  function createLegibilityPillList(entries = []) {
-    const list = document.createElement("ul");
-    list.className = "reaction-app-legibility-pills";
-    entries.filter((entry) => entry?.label).forEach((entry) => {
-      const item = document.createElement("li");
-      item.className = "reaction-app-legibility-pill";
-      item.classList.add(`is-${String(entry?.tone ?? "neutral").trim() || "neutral"}`);
-      item.textContent = entry.label;
-      list.appendChild(item);
-    });
-    return list;
-  }
-
-  function syncLegibilityPanel() {
-    if (!(legibilityPanel instanceof HTMLElement)) {
-      return;
-    }
-    const snapshot = buildReactionLegibilitySnapshot({
-      participants: state.participants,
-      mappings: state.mappings,
-      pendingSourceKey: state.pendingSourceKey,
-      pendingSourceRole: state.pendingSourceRole,
-      getMappingValidation,
-      getOperatorLedgerSummary,
-    });
-    legibilityPanel.dataset.focusKind = snapshot.focusState.kind;
-    const fragment = document.createDocumentFragment();
-
-    const workflowCard = createLegibilityCard("Corridor grammar", snapshot.focusState.summary);
-    workflowCard.appendChild(createLegibilityList(snapshot.workflowLines));
-    fragment.appendChild(workflowCard);
-
-    const operatorCard = createLegibilityCard(
-      "Operator lanes",
-      "The center lanes mean different authored moves. Keep that grammar explicit on the visible surface."
-    );
-    operatorCard.appendChild(
-      createLegibilityList(
-        snapshot.operatorGrammarEntries.map(
-          (entry) => `${entry.laneLabel}: ${entry.title}. ${entry.detail}`
-        )
-      )
-    );
-    fragment.appendChild(operatorCard);
-
-    const stateCard = createLegibilityCard(
-      "Visible state",
-      "Anchor color and route state should be legible enough to review without hidden side knowledge."
-    );
-    stateCard.appendChild(createLegibilityPillList(snapshot.corridorState.pillEntries));
-    stateCard.appendChild(createLegibilityPillList(snapshot.operatorState.pillEntries));
-    stateCard.appendChild(
-      createLegibilityList(
-        snapshot.corridorLegendEntries.map((entry) => `${entry.label}: ${entry.detail}`),
-        "reaction-app-legibility-list is-legend"
-      )
-    );
-    fragment.appendChild(stateCard);
-
-    legibilityPanel.replaceChildren(fragment);
-  }
-
   function getElementCenterWithinSurface(element, bounds) {
     const rect = element.getBoundingClientRect();
     return {
@@ -4312,7 +4194,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       }
       state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
-      syncLegibilityPanel();
       return;
     }
     rebuildAnchorRegistry();
@@ -4361,7 +4242,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       operatorLayer.appendChild(createOperatorParticipantCard(participant));
     });
     updateHint();
-    syncLegibilityPanel();
     scheduleSideColumnGeometry();
     scheduleMappingDraw();
     scheduleOperatorLaneLayout();
@@ -4476,6 +4356,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     isActive: () => state.active,
     clearCanvas: clearReactionCanvas,
     getSnapshot: buildSerializableSnapshot,
+    replaceSnapshot,
     solveCanvas: solveReactionCanvas,
     setActive,
     toggleActive,
