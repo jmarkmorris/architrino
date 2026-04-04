@@ -26,7 +26,23 @@
         <div class="reaction-app-title-row">
           <h1 class="reaction-app-title">Reaction Designer</h1>
           <div class="reaction-app-actions">
-            <a class="reaction-app-link" href="./index.html">Navigator</a>
+            <a
+              class="reaction-app-home-link"
+              href="./index.html"
+              aria-label="Go to home"
+              title="Go to home"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </a>
             <button
               id="reaction-accept-button"
               class="reaction-app-action is-primary"
@@ -58,14 +74,6 @@
               aria-label="Run reaction solve"
             >
               Solve
-            </button>
-            <button
-              id="reaction-exit-button"
-              class="reaction-app-action"
-              type="button"
-              aria-label="Exit reaction designer"
-            >
-              Exit
             </button>
           </div>
         </div>

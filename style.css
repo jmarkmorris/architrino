@@ -291,7 +291,8 @@ body {
   border-color: rgba(213, 220, 255, 0.6);
 }
 
-#home-button {
+#home-button,
+.reaction-app-home-link {
   width: 32px;
   height: 32px;
   border-radius: 999px;
@@ -304,7 +305,8 @@ body {
   cursor: pointer;
 }
 
-#home-button svg {
+#home-button svg,
+.reaction-app-home-link svg {
   width: 18px;
   height: 18px;
 }
@@ -1299,6 +1301,17 @@ body {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.reaction-app-home-link {
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.reaction-app-home-link:hover,
+.reaction-app-home-link:focus-visible {
+  border-color: rgba(172, 195, 235, 0.56);
+  background: rgba(24, 32, 58, 0.94);
 }
 
 .reaction-app-link,
