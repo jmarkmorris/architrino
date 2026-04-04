@@ -74,7 +74,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |
 | — | [`phenomenological-heuristics`](../phenomenological-heuristics/phenomenological-heuristics.md) | Dyadic resonance lock archive | — | — | — |
 | — | [`dynamo-team-insights`](../dynamo-team-insights/dynamo-team-insights.md) | Consolidated geometry and dynamics observations | — | — | — |
-| — | [`codex`](../codex/codex.md) | Codex operator notes | — | — | — |
+| — | [`codex`](../../op/codex.md) | Codex operator notes | — | — | — |
 
 ## Current Focus
 

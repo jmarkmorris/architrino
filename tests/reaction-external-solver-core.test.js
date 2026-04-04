@@ -258,6 +258,55 @@ test("external solve-reaction CLI upgrades muon decay to the lepton constituent 
   );
 });
 
+test("external solve-reaction CLI upgrades radiative muon weak channels to the lepton constituent provenance path", () => {
+  const requestPaths = [
+    "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.solver-request.v1.json",
+    "content/contracts/examples/pdg/v1/generated/muon_to_electron_photon.live-pdg.solver-request.v1.json",
+  ];
+
+  requestPaths.forEach((requestPath) => {
+    const result = runSolveReactionCli(requestPath);
+
+    assert.equal(result.summary.outcome, "exact");
+    assert.equal(result.summary.exact, true);
+    assert.equal(
+      result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
+      true,
+      `${requestPath} should retain the lepton provenance dissociation step`
+    );
+    assert.equal(
+      result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
+      false,
+      `${requestPath} should no longer fall back to the generic weak profile`
+    );
+    assert.equal(
+      result.steps.some((step) => step.diagnosticLabels?.includes("associate-photon-from-core-pair")),
+      true,
+      `${requestPath} should assemble the photon from an explicit core pair`
+    );
+    assert.equal(
+      result.participants.some(
+        (participant) =>
+          participant.origin === "solve-generated-intermediate" &&
+          participant.templateId === "noether_pair" &&
+          participant.tags?.includes("noether-pair-supplement")
+      ),
+      true,
+      `${requestPath} should materialize a Noether Pair supplement for the photon branch`
+    );
+    assert.equal(
+      result.participants.some((participant) => participant.tags?.includes("implicit-weak-center")),
+      false,
+      `${requestPath} should not synthesize the generic implicit weak center`
+    );
+    assert.equal(
+      result.diagnostics.some((diagnostic) => diagnostic.code === "lepton-constituent-provenance"),
+      true,
+      `${requestPath} should report the lepton provenance diagnostic`
+    );
+  });
+});
+
 test("external solve-reaction CLI closes generic proton radiative weak channels through the same operator-plus-center path", () => {
   const request = {
     schema: "solver-request/v1",
