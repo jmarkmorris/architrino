@@ -39,7 +39,7 @@ This bucket includes:
 
 ## Related Priorities
 
-- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+- [chapter-authoring](../../op/chapter-authoring.md)
 - [composer-reaction](../observer/observer.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 

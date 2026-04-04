@@ -22,7 +22,7 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 ## Scorecard Use
 
 - For scorecard purposes, this is the main Coverage bucket.
-- If the goal is the fastest score increase, pair this workstream with [mass-map](../mass-map/mass-map.md) for Coverage + Parameter Closure first.
+- If the goal is the fastest score increase, pair this workstream with [mass-map](../priorities/mass-map/mass-map.md) for Coverage + Parameter Closure first.
 - Rule of thumb to retain: each `+10` points in one category adds about `+0.56` to the total 18-category mean.
 
 ## Fast Lift
@@ -69,14 +69,14 @@ This is the ranked queue for chapter-writing work and legacy-material recovery. 
 
 ## Related Priorities
 
-- [breather-proof](../breather-proof/breather-proof.md)
-- [mass-map](../mass-map/mass-map.md)
-- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [breather-proof](../priorities/breather-proof/breather-proof.md)
+- [mass-map](../priorities/mass-map/mass-map.md)
+- [master-equation-closure](../priorities/master-equation-closure/master-equation-closure.md)
+- [standard-model-closure](../priorities/standard-model-closure/standard-model-closure.md)
 
 ## Related AAA Notes
 
-- [textbook-file-structure](../../../content/markdown/aaa/archie/textbook-file-structure.md)
-- [academic-style-guide](../../../content/markdown/aaa/archie/academic-style-guide.md)
-- [mathematics-style-guide](../../../content/markdown/aaa/archie/mathematics-style-guide.md)
-- [mathematics-terminology](../../../content/markdown/aaa/archie/mathematics-terminology.md)
+- [textbook-file-structure](../../content/markdown/aaa/archie/textbook-file-structure.md)
+- [academic-style-guide](../../content/markdown/aaa/archie/academic-style-guide.md)
+- [mathematics-style-guide](../../content/markdown/aaa/archie/mathematics-style-guide.md)
+- [mathematics-terminology](../../content/markdown/aaa/archie/mathematics-terminology.md)

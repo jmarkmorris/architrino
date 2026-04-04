@@ -17,7 +17,7 @@
 - Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md) and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
 - For terminology canon and usage guidance, rely on the Archie references in `content/markdown/aaa/archie/` rather than transition notes in [reference/priorities](reference/priorities/README.md).
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
-- For the live backlog of known cruft and sprawl reduction work, see [reference/priorities/cruft-sprawl/cruft-sprawl.md](reference/priorities/cruft-sprawl/cruft-sprawl.md).
+- For the live backlog of known cruft and sprawl reduction work, see [reference/priorities/SUMMARY/priorities.md](reference/priorities/SUMMARY/priorities.md).
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.

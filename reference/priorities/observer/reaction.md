@@ -167,7 +167,7 @@ Reaction should not:
 - [solver](./solver.md) owns the Reaction-side solve engine and algorithmic constraints.
 - [pdgfeed](./pdgfeed.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
 - [composer](./composer.md) is the downstream staging and explanation surface.
-- [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
+- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 
@@ -210,3 +210,7 @@ Current:
 Objective:
 
 - keep Reaction as the single provenance-authoring surface with one source of truth for geometry, anchors, and conservation.
+
+### 4. Populate Library with Known Solved Reactions and Set Default Reaction
+
+- do this

@@ -22,7 +22,7 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 ## Program Notes
 
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
-- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../chapter-authoring/chapter-authoring.md) for Parameter Closure + Coverage.
+- If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../../op/chapter-authoring.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
 
 ## Concrete Deliverables
@@ -48,7 +48,7 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../simulations/simulations.md)
+- [simulations](../deferred/simulations.md)
 - [3x3](../3x3/3x3.md)
 
 ## Related AAA Notes

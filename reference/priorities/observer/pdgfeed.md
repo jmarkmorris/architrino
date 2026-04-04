@@ -428,7 +428,7 @@ This review layer is still upstream of Reaction. It chooses among PDG-derived al
 - [solver](./solver.md) is the planning core this component should feed.
 - [reaction](./reaction.md) owns inspection, correction, manual override, and acceptance after PDG proposals are generated.
 - [composer](./composer.md) remains downstream of accepted Reaction output only.
-- [app-architecture](./app-architecture.md) defines the app-boundary rule this component must respect.
+- [app-architecture](app-architecture.md) defines the app-boundary rule this component must respect.
 
 ### Deferred Feature: Package And Database Maintenance
 
@@ -486,3 +486,5 @@ Current:
 Objective:
 
 - keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
+
+### 4. migrate ~3 archie docs to reference.  there is one about the pdg package, and others that are development specific, like github, etc....

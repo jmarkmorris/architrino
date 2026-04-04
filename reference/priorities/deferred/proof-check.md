@@ -471,7 +471,7 @@ If you're interested, there is another emerging development that matters for wor
 
 - [breather-proof](../breather-proof/breather-proof.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+- [chapter-authoring](../../op/chapter-authoring.md)
 
 ## Related AAA Notes
 

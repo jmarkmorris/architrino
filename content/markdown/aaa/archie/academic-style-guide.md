@@ -21,7 +21,7 @@ Apply this guide to the following content classes unless a more specific local t
 - explanatory theory summaries
 - methodology and meta-reference documents intended for readers
 
-Do not apply this guide mechanically to interface help text, legal notices, or ultra-short glossary entries where brevity is the dominant requirement.
+Do not apply this guide mechanically to interface help text or ultra-short glossary entries where brevity is the dominant requirement.
 
 ## Core Aim
 
@@ -49,7 +49,7 @@ Use:
 Avoid:
 
 - hype
-- conversational filler
+- conversational filler, fluff, or cruft
 - motivational language
 - unexplained intensifiers
 - vague gestures such as "obviously," "clearly," or "of course" when an argument is actually needed
@@ -219,6 +219,8 @@ Prefer:
 - effective closure
 - wake
 
+Avoid outdated terminology built from `retard` or `retarded` outside literal historical quotations.
+
 ### Quantum-comparison terminology
 
 When a chapter is translating standard quantum language, preserve the historical phrase `particle-wave duality` as a comparative label when needed. But do not let that phrase become the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
@@ -228,6 +230,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$-first prose, prefer `assembly and wake`:
 - `assembly` for the localized ontological object or bound hierarchy,
 - `wake` for the emitted distributed causal structure,
 - `particle` and `wave` for standard comparative or observer-level discussion.
+
+Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ structure, prefer `wake` so the emission order and ontological level remain explicit.
 
 The important editorial point is that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not frame the issue as one thing being either particle or wave depending on circumstance. The localized assembly and the distributed wake are both part of the same causal account.
 
@@ -240,7 +244,7 @@ Preferred prose discipline:
 - `reaction` as the default channel label when mechanism detail is not yet specified,
 - `associate` / `association` for reaction-built sub-assemblies or corridors forming,
 - `dissociate` / `dissociation` for unstable assemblies or sub-assemblies breaking apart,
-- `reconfigure`, `convert`, or more specific mechanism terms when they say more.
+- `reconfigure`, `transmute`, or more specific mechanism terms when they say more.
 
 Use `decay` only for fixed historical or canonical Standard Model labels, and translate immediately at first mention, for example `beta reaction` (SM label: `beta decay`).
 
@@ -258,23 +262,6 @@ Preferred prose discipline:
 - `spacetime` for emergent or observer-level geometry
 
 If a sentence could refer either to the background, the contents, or the emergent geometry, rewrite it until the level is explicit.
-- causal wake
-
-Reserve `field` for effective, continuum, or explicitly comparative discussion. When the prose is naming emitted substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ structure, prefer `wake` so the emission order and ontological level remain explicit.
-
-### Background vs Contents
-
-Keep the 3D container distinct from what occupies it.
-
-Prefer:
-
-- `Euclidean void` for the fixed background container
-- `Noether Sea` for the ambient substrate contents
-- `spacetime medium` only as a neutral bridge term when translating toward effective spacetime language
-
-Avoid letting `background`, `space`, `spacetime`, and `medium` drift into one another without an explicit level shift. In ontology-first prose, `background` should normally mean the fixed container, not the contents.
-
-Avoid outdated terminology built from `retard` or `retarded` outside literal quotation or code identifiers.
 
 ### Reader-facing posture
 
