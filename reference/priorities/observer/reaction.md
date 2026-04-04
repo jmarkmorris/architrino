@@ -172,21 +172,7 @@ Reaction should not:
 
 ## Priorities
 
-### 1. Finish Manual Workflow Legibility And Operator Grammar
-
-Status: `active`
-
-Current:
-
-- the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
-- the standalone shell now keeps corridor grammar, operator-lane meaning, and live surface-state counts visible without reusing the transient status line;
-- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and path emphasis plus deeper object-local legibility still need more focused extraction.
-
-Objective:
-
-- make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
-
-### 2. Complete The Solver Cut-Over And Remove The In-Process Fallback
+### 1. Complete The Solver Cut-Over And Remove The In-Process Fallback
 
 Status: `pending`
 
@@ -199,7 +185,7 @@ Objective:
 
 - finish the flash cut-over so Reaction ships one solver path, one adapter surface, and one test story.
 
-### 3. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
+### 2. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
 
 Status: `pending`
 

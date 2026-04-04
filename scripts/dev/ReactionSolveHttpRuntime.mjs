@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 
 const MAX_REQUEST_BODY_BYTES = 4 * 1024 * 1024;
+const DEFAULT_REACTION_SOLVE_TIMEOUT_MS = 30000;
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -50,8 +51,20 @@ export function executeReactionSolveRequest(sourceText, options = {}) {
     encoding: "utf8",
     input: sourceText,
     maxBuffer: Number(options?.maxBuffer ?? 16 * 1024 * 1024),
+    timeout: Number(options?.timeoutMs ?? DEFAULT_REACTION_SOLVE_TIMEOUT_MS),
   });
   return JSON.parse(stdout);
+}
+
+function isReactionSolveTimeoutError(error = null) {
+  const code = normalizeText(error?.code).toUpperCase();
+  const signal = normalizeText(error?.signal).toUpperCase();
+  const message = normalizeText(error?.message).toLowerCase();
+  return (
+    code === "ETIMEDOUT" ||
+    signal === "SIGTERM" ||
+    message.includes("timed out")
+  );
 }
 
 export async function handleReactionSolveApiRequest(request, response, options = {}) {
@@ -67,9 +80,15 @@ export async function handleReactionSolveApiRequest(request, response, options =
     const result = await Promise.resolve(executeSolveRequest(sourceText, options));
     sendJson(response, 200, result);
   } catch (error) {
-    sendJson(response, 400, {
-      error: normalizeText(error?.message) || "Reaction solve request failed.",
-    });
+    sendJson(
+      response,
+      isReactionSolveTimeoutError(error) ? 504 : 400,
+      {
+        error: isReactionSolveTimeoutError(error)
+          ? "Reaction solve timed out. The local solve bridge may be stalled."
+          : normalizeText(error?.message) || "Reaction solve request failed.",
+      }
+    );
   }
   return true;
 }

@@ -363,7 +363,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionSolverExecutionSource,
-    /Legacy in-process solver bridge remains active for this solve\./
+    /export function buildReactionSolverExecutionStatusNote\(_execution = null\)\s*\{\s*return "";\s*\}/
   );
   assert.match(
     runtimeSource,

@@ -4,34 +4,21 @@ import {
   canExecuteExternalReactionSolver,
   executeExternalReactionSolverRequest,
 } from "./ReactionSolverExternalRuntime.js";
-import { solveReactionSolverRequestInProcess } from "./ReactionSolverInProcessRuntime.js";
-import { shouldAllowLegacyReactionSolverExecution } from "./ReactionSolverExecutionRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
 
 export function solveReactionSolverRequest(request = {}, options = {}) {
-  if (canExecuteExternalReactionSolver(options)) {
-    const externalSolve = executeExternalReactionSolverRequest(request, options);
-    return buildReactionSolverContractResponse(request, externalSolve.result, {
-      execution: externalSolve.execution,
-    });
-  }
-  if (!shouldAllowLegacyReactionSolverExecution(options)) {
+  if (!canExecuteExternalReactionSolver(options)) {
     throw new Error(
-      "External Reaction solver is unavailable in this runtime. Configure an external solver bridge instead of using the legacy in-process planner."
+      "External Reaction solver is unavailable in this runtime. Configure an external solver bridge."
     );
   }
-  const inProcessSolve = solveReactionSolverRequestInProcess(request, options);
-  return {
-    ...inProcessSolve,
-    execution: {
-      mode: "in-process",
-      target: "legacy-in-process-bridge",
-      fallback: true,
-    },
-  };
+  const externalSolve = executeExternalReactionSolverRequest(request, options);
+  return buildReactionSolverContractResponse(request, externalSolve.result, {
+    execution: externalSolve.execution,
+  });
 }
 
 export function solveReactionSnapshot(snapshot = {}, options = {}) {
