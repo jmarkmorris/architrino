@@ -258,6 +258,45 @@ test("external solve-reaction CLI upgrades muon decay to the lepton constituent 
   );
 });
 
+test("external solve-reaction CLI upgrades neutron beta decay to the baryon constituent provenance path", () => {
+  const result = runSolveReactionCli("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-constituents"), true);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-weak-core-pool"), true);
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("baryon-constituent-provenance")),
+    true
+  );
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
+    false
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "free_architrinos"
+    ),
+    true
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "up_quark" &&
+        participant.tags?.includes("weak-transform-product")
+    ),
+    true
+  );
+  assert.equal(
+    result.diagnostics.some((diagnostic) => diagnostic.code === "baryon-constituent-provenance"),
+    true
+  );
+});
+
 test("external solve-reaction CLI upgrades radiative muon weak channels to the lepton constituent provenance path", () => {
   const requestPaths = [
     "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.solver-request.v1.json",

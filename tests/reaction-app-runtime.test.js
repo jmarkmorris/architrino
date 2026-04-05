@@ -211,8 +211,8 @@ function createReactionAppRuntimeHarness(options = {}) {
 
 const defaultLibraryPayload = {
   entry: {
-    id: "free_neutron_beta",
-    title: "Free neutron beta decay",
+    id: "muon_decay",
+    title: "Muon decay",
   },
   snapshot: {
     participants: [
@@ -226,8 +226,8 @@ const defaultLibraryPayload = {
     mappings: [],
   },
   exportOverrides: {
-    reactionId: "free_neutron_beta_001",
-    title: "Free Neutron Beta Reaction",
+    reactionId: "muon_decay",
+    title: "Muon decay",
   },
 };
 
@@ -247,13 +247,13 @@ test(
     assert.deepEqual(harness.canvasRuntimeStub.replaceCalls[0], defaultLibraryPayload.snapshot);
     assert.deepEqual(
       harness.librarySelect.options.map((option) => option.value),
-      ["free_neutron_beta", "muon_decay", "charged_pion_to_muon_neutrino"]
+      ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
     );
-    assert.equal(harness.librarySelect.value, "free_neutron_beta");
+    assert.equal(harness.librarySelect.value, "muon_decay");
     assert.equal(harness.libraryLoadButton.disabled, false);
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
     assert.equal(
       harness.reviewStateElement.textContent,

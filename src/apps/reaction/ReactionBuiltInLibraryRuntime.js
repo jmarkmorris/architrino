@@ -4,6 +4,7 @@ import {
   getReactionCanonicalLabel,
 } from "./ReactionLabelCatalogRuntime.js";
 import { buildReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
+import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "./ReactionStructureDescriptorRuntime.js";
 import { buildReactionLibraryExportOverrides } from "./ReactionFlowLibrarySupportRuntime.js";
@@ -19,17 +20,17 @@ const CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH =
 
 export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([
   Object.freeze({
-    id: "free_neutron_beta",
-    title: "Free neutron beta decay",
-    description: "Known solved free neutron beta decay reaction-flow fixture.",
-    documentPath: FREE_NEUTRON_BETA_DOCUMENT_PATH,
-    isDefault: true,
-  }),
-  Object.freeze({
     id: "muon_decay",
     title: "Muon decay",
     description: "Accepted PDG-backed solved muon decay library entry.",
     documentPath: MUON_DECAY_DOCUMENT_PATH,
+    isDefault: true,
+  }),
+  Object.freeze({
+    id: "free_neutron_beta",
+    title: "Free neutron beta decay",
+    description: "Accepted PDG-backed solved free neutron beta decay library entry.",
+    documentPath: FREE_NEUTRON_BETA_DOCUMENT_PATH,
   }),
   Object.freeze({
     id: "charged_pion_to_muon_neutrino",
@@ -251,6 +252,21 @@ function buildDocumentOperatorsById(operators = []) {
   );
 }
 
+function resolveImportedParticipantAnchorId(participant = {}, anchorId = "") {
+  const normalizedAnchorId = normalizeText(anchorId);
+  const rootId = normalizeText(participant?.hierarchy?.[0]?.id) || "root";
+  if (!normalizedAnchorId) {
+    return rootId;
+  }
+  if (normalizedAnchorId === rootId) {
+    return rootId;
+  }
+  if (findReactionStructureDescriptorNode(participant?.hierarchy, normalizedAnchorId)) {
+    return normalizedAnchorId;
+  }
+  return rootId;
+}
+
 function buildSnapshotMappingsFromReactionFlowDocument(
   document = {},
   options = {}
@@ -279,8 +295,14 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       }
       snapshotMappings.push({
         id: normalizeText(mapping?.id) || `reaction_flow_mapping_${mappingIndex + 1}`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(mapping?.from?.anchorId) || "root"),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(mapping?.to?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,
@@ -293,14 +315,49 @@ function buildSnapshotMappingsFromReactionFlowDocument(
     const operatorRootId = importedOperatorsById.get(operatorId) || "root";
     const sourceParticipant = participantsById.get(normalizeText(mapping?.from?.participantId)) ?? null;
     const targetParticipant = participantsById.get(normalizeText(mapping?.to?.participantId)) ?? null;
+    const sourceIsOperator = sourceParticipant?.side === "operator";
+    const targetIsOperator = targetParticipant?.side === "operator";
     if (!sourceParticipant || !targetParticipant) {
       return;
     }
     const mappingId = normalizeText(mapping?.id) || `reaction_flow_mapping_${mappingIndex + 1}`;
+    if (targetIsOperator && !sourceIsOperator) {
+      snapshotMappings.push({
+        id: mappingId,
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
+        targetKey: buildReactionNodeKey(operatorId, operatorRootId),
+        sourceRole: buildParticipantRole(sourceParticipant),
+        targetRole: "operator-input",
+        sourceAnchorInstanceIndex: null,
+        targetAnchorInstanceIndex: null,
+      });
+      return;
+    }
+    if (sourceIsOperator && !targetIsOperator) {
+      snapshotMappings.push({
+        id: mappingId,
+        sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
+        sourceRole: "operator-output",
+        targetRole: buildParticipantRole(targetParticipant),
+        sourceAnchorInstanceIndex: null,
+        targetAnchorInstanceIndex: null,
+      });
+      return;
+    }
     snapshotMappings.push(
       {
         id: `${mappingId}__input`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(mapping?.from?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
         targetKey: buildReactionNodeKey(operatorId, operatorRootId),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: "operator-input",
@@ -310,7 +367,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       {
         id: `${mappingId}__output`,
         sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(mapping?.to?.anchorId) || "root"),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
         sourceRole: "operator-output",
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,
@@ -332,7 +392,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       }
       snapshotMappings.push({
         id: `reaction_flow_operator_${operatorIndex + 1}_input_${endpointIndex + 1}`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(endpoint?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, endpoint?.anchorId)
+        ),
         targetKey: buildReactionNodeKey(operatorId, operatorRootId),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: "operator-input",
@@ -348,7 +411,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       snapshotMappings.push({
         id: `reaction_flow_operator_${operatorIndex + 1}_output_${endpointIndex + 1}`,
         sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(endpoint?.anchorId) || "root"),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, endpoint?.anchorId)
+        ),
         sourceRole: "operator-output",
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,

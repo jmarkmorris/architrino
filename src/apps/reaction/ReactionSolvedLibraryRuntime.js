@@ -45,6 +45,39 @@ function createOperatorParticipantFactory(snapshot = {}) {
   };
 }
 
+function createGeneratedCenterParticipant(resultParticipant = {}) {
+  const participantId = normalizeText(resultParticipant?.id);
+  const templateId = normalizeText(resultParticipant?.templateId) || "particle";
+  const polarity = normalizeText(resultParticipant?.polarity).toLowerCase() === "anti" ? "anti" : "pro";
+  const rootNodeId = normalizeText(resultParticipant?.rootNodeId) || `${participantId}_structure`;
+  const label = normalizeText(resultParticipant?.label) || getReactionCanonicalBaseLabel(templateId, {
+    fallbackLabel: "Participant",
+  });
+  const structure = buildReactionParticipantStructure(templateId, {
+    id: rootNodeId,
+    label,
+    polarity,
+  });
+  return {
+    id: participantId,
+    side: "reactant",
+    surfaceColumn: "center-assembly",
+    templateId,
+    polarity: ["electron", "neutrino", "up_quark", "down_quark", "noether_core"].includes(templateId)
+      ? polarity
+      : "",
+    label,
+    baseLabel: label,
+    provenanceId: `solver-result-participant:${participantId}`,
+    surfaceRowIndex: 0,
+    isSolveGenerated: true,
+    structure: structure.root,
+    structureValidation: structure.validation,
+    hierarchy: buildReactionStructureDescriptorTree(structure.root),
+    tags: Array.isArray(resultParticipant?.tags) ? [...resultParticipant.tags] : [],
+  };
+}
+
 function addOrReplaceSnapshotMapping(snapshot = {}, sourceKey = "", sourceRole = "", targetKey = "", targetRole = "", mappingOptions = {}) {
   const mappings = Array.isArray(snapshot?.mappings) ? snapshot.mappings : [];
   const mappingId = `mapping_${mappings.length + 1}`;
@@ -74,6 +107,18 @@ export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options
   const result = options?.result ?? {};
   const reviewCandidate = options?.reviewCandidate ?? null;
   const snapshot = buildReactionSnapshotFromSolverRequest(request);
+  const generatedCenterParticipants = (Array.isArray(result?.participants) ? result.participants : [])
+    .filter(
+      (participant) =>
+        normalizeText(participant?.origin) === "solve-generated-intermediate" &&
+        normalizeText(participant?.side) === "center"
+    )
+    .map((participant, index) => {
+      const generatedParticipant = createGeneratedCenterParticipant(participant);
+      generatedParticipant.surfaceRowIndex = index;
+      return generatedParticipant;
+    });
+  snapshot.participants = [...snapshot.participants, ...generatedCenterParticipants];
   applyReactionSolvePlan({
     result,
     plan: options?.plan,

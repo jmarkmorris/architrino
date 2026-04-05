@@ -49,6 +49,9 @@ function resolveParticipantAnchorNode(endpoint = {}, participant = null, options
   if (anchoredNode) {
     return anchoredNode;
   }
+  if (participant?.isSolveGenerated && rootNode) {
+    return rootNode;
+  }
   if (endpoint?.participantRef) {
     return rootNode;
   }

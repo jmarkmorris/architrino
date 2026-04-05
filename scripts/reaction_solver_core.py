@@ -3369,6 +3369,37 @@ def get_meson_constituent_specs(source_participant=None):
     return get_meson_quark_constituents(source_participant)
 
 
+def get_baryon_constituent_specs(source_participant=None):
+    child_nodes = [
+        node for node in get_child_nodes(source_participant) if get_effective_template_id(node) in {"up_quark", "down_quark"}
+    ]
+    if child_nodes:
+        return tuple(
+            {
+                "templateId": get_effective_template_id(node),
+                "polarity": get_effective_polarity(node, get_effective_template_id(node)) or "pro",
+                "label": normalize_text(node.get("label")),
+                "inventory": node.get("inventory"),
+                "tags": list(node.get("tags") or []),
+            }
+            for node in child_nodes
+        )
+    source_template_id = get_effective_template_id(get_participant_root_or_self(source_participant))
+    if source_template_id == "neutron":
+        return (
+            {"templateId": "up_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "pro"},
+        )
+    if source_template_id == "proton":
+        return (
+            {"templateId": "up_quark", "polarity": "pro"},
+            {"templateId": "up_quark", "polarity": "pro"},
+            {"templateId": "down_quark", "polarity": "pro"},
+        )
+    return ()
+
+
 def product_requires_lepton_core(participant=None):
     template_id = get_effective_template_id(get_participant_root_or_self(participant))
     return template_id in {"electron", "neutrino"}
@@ -3430,6 +3461,26 @@ def build_lepton_constituent_provenance_diagnostic(
         "message": (
             f"{context_label} preserves lepton constituent provenance for {subject_label}: "
             f"{core_label} + Free Architrinos."
+        ),
+        "path": "steps[0]",
+    }
+
+
+def build_baryon_constituent_provenance_diagnostic(
+    subject_participant=None,
+    context_label="Exact baryon weak closure",
+):
+    subject_participant = subject_participant or {}
+    subject_root = get_root_node(subject_participant) or subject_participant
+    subject_label = normalize_text(subject_root.get("label")) or normalize_text(subject_root.get("templateId"))
+    if not subject_label:
+        return None
+    return {
+        "code": "baryon-constituent-provenance",
+        "severity": "info",
+        "message": (
+            f"{context_label} preserves baryon constituent provenance for {subject_label}: "
+            "spectator quarks carry into the product baryon while the transforming down quark closes the weak lepton channel."
         ),
         "path": "steps[0]",
     }
@@ -4084,6 +4135,433 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
     )
 
 
+def solve_baryon_constituent_provenance_channel(request, source_participants, product_participants, family):
+    source_participant = source_participants[0]
+    source_id = normalize_text(source_participant.get("id"))
+    source_root = get_root_node(source_participant)
+    source_template_id = get_effective_template_id(source_root or source_participant)
+    if source_root is None or source_template_id != "neutron":
+        return None
+
+    baryon_products = [
+        product for product in product_participants if get_effective_template_id(get_root_node(product) or product) == "proton"
+    ]
+    electron_products = [
+        product
+        for product in product_participants
+        if get_effective_template_id(get_root_node(product) or product) == "electron"
+        and get_effective_polarity(get_root_node(product) or product, "electron") == "pro"
+    ]
+    antineutrino_products = [
+        product
+        for product in product_participants
+        if get_effective_template_id(get_root_node(product) or product) == "neutrino"
+        and get_effective_polarity(get_root_node(product) or product, "neutrino") == "anti"
+    ]
+    photon_products = [
+        product for product in product_participants if get_effective_template_id(get_root_node(product) or product) == "photon"
+    ]
+    if len(baryon_products) != 1 or len(electron_products) != 1 or len(antineutrino_products) != 1 or len(photon_products) > 1:
+        return None
+    if len(product_participants) != 3 + len(photon_products):
+        return None
+
+    quark_constituents = list(get_baryon_constituent_specs(source_participant))
+    if len(quark_constituents) != 3:
+        return None
+    transforming_index = next(
+        (index for index, constituent in enumerate(quark_constituents) if constituent["templateId"] == "down_quark"),
+        -1,
+    )
+    if transforming_index < 0:
+        return None
+
+    variant_prefix = f"{family['key']}_{family['variantKey']}"
+    quark_step_id = f"step_{variant_prefix}_baryon_quarks"
+    ledger_step_id = f"step_{variant_prefix}_weak_quark_transform"
+    generated_participants = []
+
+    quark_participants = []
+    for index, constituent in enumerate(quark_constituents, start=1):
+        participant = build_generated_quark_participant(
+            participant_id=f"center_{variant_prefix}_quark_{index}",
+            template_id=constituent["templateId"],
+            polarity=constituent["polarity"],
+            label=constituent.get("label", ""),
+            inventory=constituent.get("inventory"),
+            tags=["baryon-constituent"] + list(constituent.get("tags") or []),
+            source_participant_id=source_id,
+            source_step_id=quark_step_id,
+        )
+        quark_participants.append(participant)
+    generated_participants.extend(quark_participants)
+
+    transforming_quark = quark_participants[transforming_index]
+    spectator_quarks = [participant for index, participant in enumerate(quark_participants) if index != transforming_index]
+
+    transformed_up_quark = build_generated_quark_participant(
+        participant_id=f"center_{variant_prefix}_transformed_up_quark",
+        template_id="up_quark",
+        polarity="pro",
+        label="Up Quark",
+        tags=["baryon-constituent", "weak-transform-product"],
+        source_participant_id=normalize_text(transforming_quark.get("id")),
+        source_step_id=ledger_step_id,
+    )
+    generated_participants.append(transformed_up_quark)
+
+    source_core = build_generated_noether_core_participant(
+        participant_id=f"center_{variant_prefix}_source_core",
+        polarity="pro",
+        source_participant_id=normalize_text(transforming_quark.get("id")),
+        source_step_id=ledger_step_id,
+    )
+    generated_participants.append(source_core)
+    generated_core_ids = [normalize_text(source_core.get("id"))]
+    source_core_refs = {
+        "pro": [
+            {
+                "participantId": normalize_text(source_core.get("id")),
+                "anchorId": normalize_text(source_core.get("rootNodeId")),
+                "sourceKind": "source-core",
+            }
+        ],
+        "anti": [],
+    }
+
+    free_pool = build_generated_free_architrino_pool(
+        participant_id=f"center_{variant_prefix}_free_architrinos",
+        product_count=max(2, len(product_participants)),
+        source_participant_id=normalize_text(transforming_quark.get("id")),
+        source_step_id=ledger_step_id,
+    )
+    generated_participants.append(free_pool)
+    free_pool_id = normalize_text(free_pool.get("id"))
+    free_pool_root_id = normalize_text(free_pool.get("rootNodeId"))
+
+    needed_core_counts = {"pro": len(electron_products) + len(photon_products), "anti": len(antineutrino_products) + len(photon_products)}
+    deficit_pro = max(0, needed_core_counts["pro"] - len(source_core_refs["pro"]))
+    deficit_anti = max(0, needed_core_counts["anti"] - len(source_core_refs["anti"]))
+    noether_pair_count = min(deficit_pro, deficit_anti)
+    deficit_pro = max(0, deficit_pro - noether_pair_count)
+    deficit_anti = max(0, deficit_anti - noether_pair_count)
+    noether_pair_core_refs = {"pro": [], "anti": []}
+    generated_noether_pair_ids = []
+    for pair_index in range(1, noether_pair_count + 1):
+        noether_pair = build_generated_noether_pair(
+            participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
+            source_participant_id=normalize_text(transforming_quark.get("id")),
+            source_step_id=ledger_step_id,
+        )
+        generated_participants.append(noether_pair)
+        generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
+        for node in get_child_nodes(noether_pair):
+            node_polarity = normalize_text(node.get("polarity")).lower()
+            if node_polarity in {"pro", "anti"}:
+                noether_pair_core_refs[node_polarity].append(
+                    {
+                        "participantId": normalize_text(noether_pair.get("id")),
+                        "anchorId": normalize_text(node.get("id")),
+                        "sourceKind": "noether-pair",
+                    }
+                )
+
+    noether_quad_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
+    noether_quad_core_refs = {"pro": [], "anti": []}
+    generated_noether_quad_ids = []
+    for cluster_index in range(1, noether_quad_count + 1):
+        noether_quad = build_generated_noether_quad(
+            participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
+            source_participant_id=normalize_text(transforming_quark.get("id")),
+            source_step_id=ledger_step_id,
+        )
+        generated_participants.append(noether_quad)
+        generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
+        for node in get_child_nodes(noether_quad):
+            node_polarity = normalize_text(node.get("polarity")).lower()
+            if node_polarity in {"pro", "anti"}:
+                noether_quad_core_refs[node_polarity].append(
+                    {
+                        "participantId": normalize_text(noether_quad.get("id")),
+                        "anchorId": normalize_text(node.get("id")),
+                        "sourceKind": "noether-quad",
+                    }
+                )
+
+    steps = [
+        {
+            "stepId": quark_step_id,
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-baryon-constituents",
+            "consumedParticipantIds": [source_id],
+            "producedParticipantIds": [normalize_text(participant.get("id")) for participant in quark_participants],
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": ["baryon-constituent-provenance", "baryon-spectator-quark-carry"],
+        },
+        {
+            "stepId": ledger_step_id,
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-baryon-weak-core-pool",
+            "consumedParticipantIds": [normalize_text(transforming_quark.get("id"))],
+            "producedParticipantIds": generated_core_ids
+            + [free_pool_id, normalize_text(transformed_up_quark.get("id"))]
+            + generated_noether_pair_ids
+            + generated_noether_quad_ids,
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": ["baryon-constituent-provenance", "shared-free-architrino-pool", "weak-baryon-quark-transform"]
+            + (["noether-pair-supplement"] if generated_noether_pair_ids else [])
+            + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
+        },
+    ]
+    mappings = []
+    operators = []
+    operator_placements = []
+
+    available_core_refs = {"pro": list(source_core_refs["pro"]), "anti": list(source_core_refs["anti"])}
+    available_noether_pair_refs = {"pro": list(noether_pair_core_refs["pro"]), "anti": list(noether_pair_core_refs["anti"])}
+    available_noether_quad_refs = {"pro": list(noether_quad_core_refs["pro"]), "anti": list(noether_quad_core_refs["anti"])}
+
+    def claim_core_ref(polarity):
+        normalized_polarity = "anti" if normalize_text(polarity).lower() == "anti" else "pro"
+        if available_core_refs[normalized_polarity]:
+            return available_core_refs[normalized_polarity].pop(0)
+        if available_noether_pair_refs[normalized_polarity]:
+            return available_noether_pair_refs[normalized_polarity].pop(0)
+        if available_noether_quad_refs[normalized_polarity]:
+            return available_noether_quad_refs[normalized_polarity].pop(0)
+        return None
+
+    proton_product = baryon_products[0]
+    proton_root = get_root_node(proton_product)
+    proton_id = normalize_text(proton_product.get("id"))
+    proton_operator_id = f"associate:{variant_prefix}:proton"
+    proton_mapping_ids = []
+    proton_inputs = spectator_quarks + [transformed_up_quark]
+    for index, quark in enumerate(proton_inputs, start=1):
+        mapping_id = f"map_{variant_prefix}_{proton_id}_quark_{index}"
+        quark_root = get_root_node(quark) or quark
+        mappings.append(
+            build_mapping(
+                mapping_id=mapping_id,
+                kind="operator-path",
+                from_participant_id=normalize_text(quark.get("id")),
+                from_anchor_id=normalize_text(quark_root.get("id")) or "root",
+                from_role="reactant",
+                to_participant_id=proton_operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=quark_root.get("inventory"),
+                provenance_mode="operator-mediated",
+                via_operator_id=proton_operator_id,
+            )
+        )
+        proton_mapping_ids.append(mapping_id)
+    proton_output_mapping_id = f"map_{variant_prefix}_{proton_id}_out"
+    mappings.append(
+        build_mapping(
+            mapping_id=proton_output_mapping_id,
+            kind="operator-path",
+            from_participant_id=proton_operator_id,
+            from_anchor_id="root",
+            from_role="operator-output",
+            to_participant_id=proton_id,
+            to_anchor_id=normalize_text(proton_root.get("id")) or "root",
+            to_role="product",
+            conserved_ledger=proton_root.get("inventory"),
+            provenance_mode="operator-mediated",
+            via_operator_id=proton_operator_id,
+        )
+    )
+    proton_mapping_ids.append(proton_output_mapping_id)
+    operators.append(
+        {
+            "id": proton_operator_id,
+            "type": "associate",
+            "origin": "solve-generated",
+            "label": "Associate",
+            "inputs": [
+                {
+                    "participantId": normalize_text(quark.get("id")),
+                    "anchorId": normalize_text((get_root_node(quark) or quark).get("id")) or "root",
+                    "role": "reactant",
+                }
+                for quark in proton_inputs
+            ],
+            "outputs": [
+                {
+                    "participantId": proton_id,
+                    "anchorId": normalize_text(proton_root.get("id")) or "root",
+                    "role": "product",
+                }
+            ],
+        }
+    )
+    operator_placements.append({"operatorId": proton_operator_id, "lane": 1, "row": 1, "slot": 1})
+    steps.append(
+        {
+            "stepId": f"step_{variant_prefix}_associate_proton",
+            "kind": "associate",
+            "ruleFamily": family["ruleFamily"],
+            "consumedParticipantIds": [normalize_text(quark.get("id")) for quark in proton_inputs],
+            "producedParticipantIds": [],
+            "resolvedTargetIds": [proton_id],
+            "mappingIds": proton_mapping_ids,
+            "operatorIds": [proton_operator_id],
+            "diagnosticLabels": ["baryon-constituent-provenance", "baryon-spectator-quark-carry", "weak-baryon-quark-transform"],
+        }
+    )
+
+    product_requirements = (
+        [{"kind": "lepton", "participant": electron_products[0], "root": get_root_node(electron_products[0]), "polarity": "pro"}]
+        + [{"kind": "lepton", "participant": antineutrino_products[0], "root": get_root_node(antineutrino_products[0]), "polarity": "anti"}]
+        + [
+            {"kind": "photon", "participant": photon_products[0], "root": get_root_node(photon_products[0])}
+            for _ in photon_products
+        ]
+    )
+
+    for index, requirement in enumerate(product_requirements, start=1):
+        product = requirement["participant"]
+        product_root = requirement["root"]
+        product_id = normalize_text(product.get("id"))
+        operator_id = f"associate:{variant_prefix}:product_{index}"
+        mapping_ids = []
+        operator_inputs = []
+        consumed_participant_ids = []
+        diagnostic_labels = ["baryon-constituent-provenance", "weak-baryon-quark-transform"]
+
+        if requirement["kind"] == "lepton":
+            core_ref = claim_core_ref(requirement["polarity"])
+            if core_ref is None:
+                return None
+            core_mapping_id = f"map_{variant_prefix}_{product_id}_core"
+            mappings.append(
+                build_mapping(
+                    mapping_id=core_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=core_ref["participantId"],
+                    from_anchor_id=core_ref["anchorId"],
+                    from_role="reactant",
+                    to_participant_id=operator_id,
+                    to_anchor_id="root",
+                    to_role="operator-input",
+                    conserved_ledger={"electrinoCount": 3, "positrinoCount": 3},
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(core_mapping_id)
+            operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": "reactant"})
+            consumed_participant_ids.append(core_ref["participantId"])
+            pool_mapping_id = f"map_{variant_prefix}_{product_id}_free"
+            mappings.append(
+                build_mapping(
+                    mapping_id=pool_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=free_pool_id,
+                    from_anchor_id=free_pool_root_id,
+                    from_role="reactant",
+                    to_participant_id=operator_id,
+                    to_anchor_id="root",
+                    to_role="operator-input",
+                    conserved_ledger=free_pool.get("inventory"),
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(pool_mapping_id)
+            operator_inputs.append({"participantId": free_pool_id, "anchorId": free_pool_root_id, "role": "reactant"})
+            consumed_participant_ids.append(free_pool_id)
+            diagnostic_labels.extend(["shared-free-architrino-pool", "associate-lepton-from-core-pool"])
+            diagnostic_labels.extend(get_core_source_diagnostic_labels(core_ref["sourceKind"], "baryon-core-provenance"))
+        else:
+            pro_core_ref = claim_core_ref("pro")
+            anti_core_ref = claim_core_ref("anti")
+            if pro_core_ref is None or anti_core_ref is None:
+                return None
+            for polarity, core_ref in (("pro", pro_core_ref), ("anti", anti_core_ref)):
+                core_mapping_id = f"map_{variant_prefix}_{product_id}_core_{polarity}"
+                mappings.append(
+                    build_mapping(
+                        mapping_id=core_mapping_id,
+                        kind="operator-path",
+                        from_participant_id=core_ref["participantId"],
+                        from_anchor_id=core_ref["anchorId"],
+                        from_role="reactant",
+                        to_participant_id=operator_id,
+                        to_anchor_id="root",
+                        to_role="operator-input",
+                        conserved_ledger={"electrinoCount": 3, "positrinoCount": 3},
+                        provenance_mode="operator-mediated",
+                        via_operator_id=operator_id,
+                    )
+                )
+                mapping_ids.append(core_mapping_id)
+                operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": "reactant"})
+                consumed_participant_ids.append(core_ref["participantId"])
+            diagnostic_labels.append("associate-photon-from-core-pair")
+
+        output_mapping_id = f"map_{variant_prefix}_{product_id}_out"
+        mappings.append(
+            build_mapping(
+                mapping_id=output_mapping_id,
+                kind="operator-path",
+                from_participant_id=operator_id,
+                from_anchor_id="root",
+                from_role="operator-output",
+                to_participant_id=product_id,
+                to_anchor_id=normalize_text(product_root.get("id")) or "root",
+                to_role="product",
+                conserved_ledger=product_root.get("inventory"),
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(output_mapping_id)
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "associate",
+                "origin": "solve-generated",
+                "label": "Associate",
+                "inputs": operator_inputs,
+                "outputs": [{"participantId": product_id, "anchorId": normalize_text(product_root.get("id")) or "root", "role": "product"}],
+            }
+        )
+        operator_placements.append({"operatorId": operator_id, "lane": 1, "row": index * 2 + 1, "slot": index * 2 + 1})
+        steps.append(
+            {
+                "stepId": f"step_{variant_prefix}_associate_{index}",
+                "kind": "associate",
+                "ruleFamily": family["ruleFamily"],
+                "consumedParticipantIds": list(dict.fromkeys(consumed_participant_ids)),
+                "producedParticipantIds": [],
+                "resolvedTargetIds": [product_id],
+                "mappingIds": mapping_ids,
+                "operatorIds": [operator_id],
+                "diagnosticLabels": list(dict.fromkeys(diagnostic_labels)),
+            }
+        )
+
+    baryon_diagnostic = build_baryon_constituent_provenance_diagnostic(source_participant)
+    diagnostics = [baryon_diagnostic] if baryon_diagnostic is not None else []
+
+    return build_result(
+        request=request,
+        generated_steps=steps,
+        generated_mappings=mappings,
+        generated_operators=operators,
+        operator_placements=operator_placements,
+        auto_dissociated_participant_ids=[source_id],
+        generated_participants=generated_participants,
+        diagnostics=diagnostics,
+    )
+
+
 def solve_generic_weak_channel(request, source_participants, product_participants, family):
     source_participant = source_participants[0]
     source_root = get_root_node(source_participant)
@@ -4120,6 +4598,15 @@ def solve_generic_weak_channel(request, source_participants, product_participant
         )
         if meson_result is not None:
             return meson_result
+    if get_effective_template_id(source_root or source_participant) == "neutron" and product_participants:
+        baryon_result = solve_baryon_constituent_provenance_channel(
+            request,
+            source_participants,
+            product_participants,
+            family,
+        )
+        if baryon_result is not None:
+            return baryon_result
     operator_id = f"associate:{family['key']}"
     step_id = f"step_{family['key']}_{family['variantKey']}"
     mappings = [

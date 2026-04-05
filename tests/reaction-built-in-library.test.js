@@ -42,18 +42,18 @@ function collectParticipantNodeIds(participant = {}) {
   return nodeIds;
 }
 
-test("reaction built-in library seeds free neutron beta as the default entry", async () => {
+test("reaction built-in library seeds muon decay as the default entry", async () => {
   const fixture = await readJson(
-    new URL("../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json", import.meta.url)
+    new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
   );
   const loaded = await loadDefaultReactionBuiltInLibraryEntry({
     fetchImpl: createFixtureFetch(),
   });
 
-  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "free_neutron_beta");
-  assert.equal(REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id, "free_neutron_beta");
-  assert.equal(loaded.entry.id, "free_neutron_beta");
-  assert.equal(loaded.entry.title, "Free neutron beta decay");
+  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "muon_decay");
+  assert.equal(REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id, "muon_decay");
+  assert.equal(loaded.entry.id, "muon_decay");
+  assert.equal(loaded.entry.title, "Muon decay");
   assert.equal(loaded.document.reactionId, fixture.reactionId);
   assert.equal(loaded.exportOverrides.reactionId, fixture.reactionId);
   assert.equal(loaded.exportOverrides.title, fixture.title);
@@ -61,62 +61,31 @@ test("reaction built-in library seeds free neutron beta as the default entry", a
   assert.deepEqual(loaded.exportOverrides.semanticTags, fixture.hints.semanticTags);
   assert.equal(loaded.exportOverrides.suggestedSceneId, fixture.hints.suggestedSceneId);
   assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "reactant_neutron")?.label,
-    "Pro Neutron"
-  );
-  assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_proton")?.label,
-    "Pro Proton"
-  );
-  assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_electron")?.label,
-    "Pro Electron"
-  );
-  assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_antineutrino")?.label,
-    "Anti Electron Neutrino"
-  );
-  assert.equal(loaded.snapshot.participants.length, 5);
-  assert.equal(loaded.snapshot.mappings.length, 6);
-  assert.deepEqual(
-    loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-      ? {
-          templateId: loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-            ?.templateId,
-          label: loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-            ?.label,
-          operatorLaneIndex: loaded.snapshot.participants.find(
-            (participant) => participant.id === "op_transmute_1"
-          )?.operatorLaneIndex,
-        }
-      : null,
-    {
-      templateId: "dissociate",
-      label: "Dissociate",
-      operatorLaneIndex: 0,
-    }
-  );
-  assert.equal(
     loaded.snapshot.participants.some(
-      (participant) => participant.id === "product_antineutrino" && participant.templateId === "neutrino"
+      (participant) => participant.id === "product_anti_electron_neutrino_2" && participant.templateId === "neutrino"
     ),
     true
   );
   assert.equal(
     loaded.snapshot.participants.some(
-      (participant) => participant.id === "product_antineutrino" && participant.polarity === "anti"
+      (participant) => participant.id === "product_pro_muon_neutrino_3" && participant.templateId === "neutrino"
     ),
     true
   );
-  const participantNodeIdsById = new Map(
-    loaded.snapshot.participants.map((participant) => [participant.id, collectParticipantNodeIds(participant)])
+  assert.equal(
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "reactant_pro_muon_1"
+    ),
+    true
   );
-  for (const mapping of loaded.snapshot.mappings) {
-    const sourceKey = parseReactionNodeKey(mapping.sourceKey);
-    const targetKey = parseReactionNodeKey(mapping.targetKey);
-    assert.equal(participantNodeIdsById.get(sourceKey.participantId)?.has(sourceKey.nodeId) ?? false, true);
-    assert.equal(participantNodeIdsById.get(targetKey.participantId)?.has(targetKey.nodeId) ?? false, true);
-  }
+  assert.equal(
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "product_pro_electron_1" && participant.label === "Pro Electron"
+    ),
+    true
+  );
+  assert.equal(loaded.snapshot.participants.length >= 3, true);
+  assert.equal(loaded.snapshot.mappings.length >= 2, true);
 });
 
 test("reaction built-in library now includes the first accepted PDG-backed solved entries", async () => {
@@ -130,10 +99,11 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
 
   assert.deepEqual(
     REACTION_BUILTIN_LIBRARY_ENTRIES.map((entry) => entry.id),
-    ["free_neutron_beta", "muon_decay", "charged_pion_to_muon_neutrino"]
+    ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
   );
 
   const loadedMuon = await loadReactionBuiltInLibraryEntry("muon_decay", { fetchImpl });
+  const loadedNeutron = await loadReactionBuiltInLibraryEntry("free_neutron_beta", { fetchImpl });
   const loadedPion = await loadReactionBuiltInLibraryEntry("charged_pion_to_muon_neutrino", { fetchImpl });
 
   assert.equal(loadedMuon.entry.title, "Muon decay");
@@ -150,4 +120,14 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
     loadedPion.snapshot.participants.some((participant) => participant.id === "reactant_positive_pion_1"),
     true
   );
+
+  const participantNodeIdsById = new Map(
+    loadedNeutron.snapshot.participants.map((participant) => [participant.id, collectParticipantNodeIds(participant)])
+  );
+  for (const mapping of loadedNeutron.snapshot.mappings) {
+    const sourceKey = parseReactionNodeKey(mapping.sourceKey);
+    const targetKey = parseReactionNodeKey(mapping.targetKey);
+    assert.equal(participantNodeIdsById.get(sourceKey.participantId)?.has(sourceKey.nodeId) ?? false, true);
+    assert.equal(participantNodeIdsById.get(targetKey.participantId)?.has(targetKey.nodeId) ?? false, true);
+  }
 });

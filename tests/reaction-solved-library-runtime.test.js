@@ -59,3 +59,28 @@ test("solved library runtime converts PDG-backed charged pion decay solve output
     "pdg-proposal:charged_pion_to_muon_neutrino"
   );
 });
+
+test("solved library runtime preserves generated center participants and operator inputs for neutron beta decay", () => {
+  const request = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
+  const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
+  const { result } = solveReactionSolverRequest(request);
+  const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+    request,
+    result,
+    reviewCandidate,
+    acceptedAt: "2026-04-05T12:00:00.000Z",
+    entryId: "free_neutron_beta",
+    description: "Accepted PDG-backed solved free neutron beta decay library entry.",
+  });
+
+  assert.equal(candidate.entry.id, "free_neutron_beta");
+  assert.equal(candidate.document.review.status, "accepted");
+  assert.equal(
+    candidate.document.participants.some((participant) => participant.side === "intermediate" && participant.structureKey === "free_architrinos"),
+    true
+  );
+  assert.equal(
+    candidate.document.operators.every((operator) => Array.isArray(operator.inputs) && operator.inputs.length >= 1),
+    true
+  );
+});
