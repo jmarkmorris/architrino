@@ -58,6 +58,9 @@ function buildReactionFlowReviewInput(reviewInput = {}) {
   if (!requestId || !sourceKind || !sourceDocumentId) {
     return null;
   }
+  const upstreamContext = reviewInput?.upstreamContext && typeof reviewInput.upstreamContext === "object"
+    ? structuredClone(reviewInput.upstreamContext)
+    : null;
   return {
     schema: SOLVER_REQUEST_SCHEMA,
     requestId,
@@ -68,6 +71,7 @@ function buildReactionFlowReviewInput(reviewInput = {}) {
         title,
       }).filter(([, value]) => value !== "")
     ),
+    ...(upstreamContext ? { upstreamContext } : {}),
   };
 }
 

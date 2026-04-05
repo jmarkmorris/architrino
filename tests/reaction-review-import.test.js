@@ -107,6 +107,9 @@ test("PDG solver-request review import yields a reviewable snapshot plus accepte
   assert.deepEqual(validateAgainstSchema(document, schema), []);
   assert.equal(candidate.reviewInput.origin.sourceKind, "pdg-ingest");
   assert.equal(candidate.reviewInput.origin.sourceDocumentId, "pdg-proposal:muon_decay");
+  assert.equal(candidate.reviewInput.upstreamContext.sourceSchema, "pdg-proposal/v1");
+  assert.equal(candidate.reviewInput.upstreamContext.proposalId, "muon_decay");
+  assert.equal(candidate.reviewInput.upstreamContext.reviewBoundary, "reaction-review");
   assert.equal(candidate.exportOverrides.reactionId, "reaction_review_muon_decay");
   assert.equal(candidate.exportOverrides.title, "Reaction Review: Muon decay");
   assert.equal(candidate.exportOverrides.semanticTags.includes("pdg-review"), true);
@@ -124,6 +127,7 @@ test("PDG solver-request review import yields a reviewable snapshot plus accepte
       sourceDocumentId: "pdg-proposal:muon_decay",
       title: "Muon decay",
     },
+    upstreamContext: request.upstreamContext,
   });
   assert.equal(document.participants[0].provenanceId, "solver-request-participant:reactant_pro_muon_1");
   assert.equal(document.participants[0].tags.includes("pdg:species:muon"), true);

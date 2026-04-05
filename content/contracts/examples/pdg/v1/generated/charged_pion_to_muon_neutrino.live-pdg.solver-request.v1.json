@@ -165,5 +165,47 @@
     "lateBosonCollapseMode": "allow-exact",
     "weakChannelMode": "v1-core-provenance-only",
     "carryThroughMode": "exact-first"
+  },
+  "upstreamContext": {
+    "sourceSchema": "pdg-proposal/v1",
+    "proposalId": "charged_pion_to_muon_neutrino.live-pdg",
+    "reviewBoundary": "reaction-review",
+    "source": {
+      "edition": "2025",
+      "channelDescription": "pi+ -> mu+ nu_mu",
+      "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+      "branchingDisplay": "99.98770+-0.00004",
+      "sourceMode": "pdg.connect",
+      "lookupParticleName": "pi+",
+      "pdgIdentifier": "S008.1/2025",
+      "liveCaseId": "charged_pion_to_muon_neutrino",
+      "contract": {
+        "upstreamSchema": "pdg-proposal/v1",
+        "downstreamSchema": "solver-request/v1",
+        "handoffMode": "upstream-only",
+        "reactionAcceptanceRequired": true,
+        "reactionAcceptanceBoundary": "reaction-review",
+        "acceptedReactionHandoff": "reaction-owned",
+        "composerHandoff": "accepted-reaction-only"
+      }
+    },
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    },
+    "ranking": {
+      "rank": 1,
+      "score": 100.0,
+      "reasons": [
+        "pdg-live-source",
+        "all-participants-supported"
+      ]
+    },
+    "notes": []
   }
 }

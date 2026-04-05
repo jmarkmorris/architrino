@@ -731,6 +731,24 @@ def build_solver_request_origin(proposal: Proposal) -> dict[str, str]:
     }
 
 
+def build_solver_request_upstream_context(proposal: Proposal) -> dict[str, Any]:
+    source = dict(proposal.source)
+    contract = source.get("contract")
+    return {
+        "sourceSchema": PDG_PROPOSAL_SCHEMA,
+        "proposalId": proposal.proposal_id,
+        "reviewBoundary": "reaction-review",
+        "source": source,
+        **({"contract": dict(contract)} if isinstance(contract, dict) else {}),
+        "ranking": {
+            "rank": int(proposal.ranking.get("rank", 0) or 0),
+            "score": float(proposal.ranking.get("score", 0) or 0),
+            "reasons": [str(reason) for reason in proposal.ranking.get("reasons", ()) if str(reason).strip()],
+        },
+        "notes": [str(note) for note in proposal.notes if str(note).strip()],
+    }
+
+
 def build_solver_request(proposal: Proposal) -> dict[str, Any] | None:
     if not proposal.exportable:
         return None
@@ -738,6 +756,7 @@ def build_solver_request(proposal: Proposal) -> dict[str, Any] | None:
         "schema": SOLVER_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
         "origin": build_solver_request_origin(proposal),
+        "upstreamContext": build_solver_request_upstream_context(proposal),
         "participants": [
             participant.to_solver_participant()
             for participant in (*proposal.reactants, *proposal.products, *proposal.centers)

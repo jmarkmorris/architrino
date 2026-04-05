@@ -1599,3 +1599,45 @@ Current:
 Objective:
 
 - keep the analyzable outlier list empty by ranking solver work against the frozen-manifest denominator and the contract-facing regression surface, so newly discovered misses become fresh regressions rather than lingering backlog as particle vocabulary and rule families expand.
+
+### 5. Make Solver Results Complete Enough For Reaction Review Rather Than Browser Repair
+
+Status: `pending`
+
+Current:
+
+- `solver-result/v1` already returns structured mappings, operator additions, and unresolved reporting for the Reaction adapter;
+- Reaction can already project solve results and host manual review;
+- but the long-term full-path goal still requires the solver result to stand on its own as the authoritative conservative solve output rather than relying on Reaction-side guesswork, repair logic, or hidden browser-local reconstruction.
+
+Objective:
+
+- finish the solver-owned result contract so the selected plan reaches Reaction with complete provenance, explicit operator placement intent, dissociation intent, recruited-source provenance, and stable ids, leaving Reaction to review, correct, accept, and export rather than to infer missing solver semantics.
+
+### 6. Finish The Accepted Reaction Handoff From Solved Output To Library Entry
+
+Status: `pending`
+
+Current:
+
+- Reaction already has accepted commit state and a first built-in solved-reaction library seed;
+- Reaction also already exports accepted `reaction-flow/v1` handoff JSON downstream;
+- but there is not yet one fully explicit path that starts from a PDG-backed solver request, produces a fully complete solved reaction the proper way, passes through Reaction acceptance, and lands as a canonical reusable library entry.
+
+Objective:
+
+- establish the full accepted path from PDG-backed `solver-request/v1`, through fully-provenanced `solver-result/v1`, through Reaction review and acceptance, into canonical library-ready reaction artifacts, so the Reaction library is populated from properly solved and accepted reactions instead of from shortcut fixtures or browser-local state.
+
+### 7. Use Library Population As The Proof That The Full Solver Path Is Real
+
+Status: `pending`
+
+Current:
+
+- the Reaction library now proves the shell path exists;
+- the sweep path proves large sets of PDG cases can be measured;
+- but the repo still needs a disciplined program for turning exact, fully-provenanced solved cases into accepted library entries without weakening the contract boundary or bypassing review.
+
+Objective:
+
+- treat library population as the final acceptance test for the whole pipeline: PDG normalization, external solve, Reaction review, accepted handoff, and reusable library entry should all succeed on the same case before that case counts as complete.

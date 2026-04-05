@@ -25,6 +25,9 @@ function buildReviewInput(request = {}) {
   const sourceDocumentId =
     normalizeText(request?.origin?.sourceDocumentId) || `solver-request:${requestId}`;
   const title = normalizeText(request?.origin?.title);
+  const upstreamContext = request?.upstreamContext && typeof request.upstreamContext === "object"
+    ? structuredClone(request.upstreamContext)
+    : null;
   return {
     schema: SOLVER_REQUEST_SCHEMA,
     requestId,
@@ -35,6 +38,7 @@ function buildReviewInput(request = {}) {
         title,
       }).filter(([, value]) => value !== "")
     ),
+    ...(upstreamContext ? { upstreamContext } : {}),
   };
 }
 

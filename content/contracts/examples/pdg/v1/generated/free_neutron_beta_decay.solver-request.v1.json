@@ -6,6 +6,46 @@
     "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
     "title": "Free neutron beta decay"
   },
+  "upstreamContext": {
+    "sourceSchema": "pdg-proposal/v1",
+    "proposalId": "free_neutron_beta_decay",
+    "reviewBoundary": "reaction-review",
+    "source": {
+      "edition": "2026",
+      "channelDescription": "n -> p e- anti-nu_e",
+      "citation": "Local PDG fixture seed",
+      "branchingDisplay": "dominant neutron decay channel",
+      "fixtureId": "free_neutron_beta_decay",
+      "fixturePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json",
+      "contract": {
+        "upstreamSchema": "pdg-proposal/v1",
+        "downstreamSchema": "solver-request/v1",
+        "handoffMode": "upstream-only",
+        "reactionAcceptanceRequired": true,
+        "reactionAcceptanceBoundary": "reaction-review",
+        "acceptedReactionHandoff": "reaction-owned",
+        "composerHandoff": "accepted-reaction-only"
+      }
+    },
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    },
+    "ranking": {
+      "rank": 1,
+      "score": 100.0,
+      "reasons": [
+        "fixture-source",
+        "all-participants-supported"
+      ]
+    },
+    "notes": []
+  },
   "participants": [
     {
       "id": "reactant_neutron_1",
