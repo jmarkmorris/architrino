@@ -29,6 +29,16 @@ function buildTagList(values = []) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
 }
 
+function resolveParticipantDisplayLabel(requestParticipant = {}, templateId = "", polarity = "") {
+  const explicitLabel = normalizeText(requestParticipant?.label);
+  if (explicitLabel) {
+    return explicitLabel;
+  }
+  return getReactionCanonicalLabel(templateId, {
+    polarity,
+  });
+}
+
 function toLedgerCounts(inventory = null) {
   return {
     electrinoCount: Math.max(
@@ -137,10 +147,7 @@ function createParticipantFromRequestRecord(
   const polarity = supportsParticipantPolarity(requestParticipant?.templateId)
     ? normalizeParticipantPolarity(requestParticipant?.polarity)
     : "";
-  const canonicalLabel = getReactionCanonicalLabel(templateId, {
-    polarity,
-    fallbackLabel: normalizeText(requestParticipant?.label) || templateId,
-  });
+  const canonicalLabel = resolveParticipantDisplayLabel(requestParticipant, templateId, polarity);
   const structure = buildReactionParticipantStructure(templateId, {
     id: normalizeText(requestParticipant?.rootNodeId) || `${normalizeText(requestParticipant?.id)}_structure`,
     label: canonicalLabel,

@@ -43,11 +43,29 @@ test("build-reaction-library CLI writes accepted reaction-flow docs and a summar
   assert.equal(muonDecay.title, "Muon decay");
   assert.equal(
     muonDecay.participants.some(
+      (participant) => participant.id === "reactant_pro_muon_1" && participant.label === "Pro Muon"
+    ),
+    true
+  );
+  assert.equal(
+    muonDecay.participants.some(
+      (participant) =>
+        participant.id === "product_pro_muon_neutrino_3" &&
+        participant.label === "Pro Muon Neutrino"
+    ),
+    true
+  );
+  assert.equal(
+    muonDecay.participants.some(
       (participant) =>
         participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
         participant.side === "intermediate" &&
         participant.layout?.column === "center"
     ),
+    true
+  );
+  assert.equal(
+    muonDecay.operators.some((operator) => operator.type === "dissociate"),
     true
   );
   assert.equal(

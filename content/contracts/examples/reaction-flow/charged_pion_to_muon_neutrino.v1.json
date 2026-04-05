@@ -28,7 +28,7 @@
     {
       "id": "product_anti_muon_1",
       "side": "product",
-      "label": "Anti Electron",
+      "label": "Anti Muon",
       "structureKey": "electron",
       "provenanceId": "solver-request-participant:product_anti_muon_1",
       "tags": [
@@ -49,7 +49,7 @@
     {
       "id": "product_pro_muon_neutrino_2",
       "side": "product",
-      "label": "Pro Electron Neutrino",
+      "label": "Pro Muon Neutrino",
       "structureKey": "neutrino",
       "provenanceId": "solver-request-participant:product_pro_muon_neutrino_2",
       "tags": [
@@ -206,6 +206,68 @@
         "associate",
         "solve-generated"
       ]
+    },
+    {
+      "id": "solve_generated_operator_11",
+      "type": "dissociate",
+      "label": "Dissociate",
+      "stageId": "stage_manual_authoring",
+      "inputs": [
+        {
+          "participantId": "reactant_positive_pion_1",
+          "anchorId": "reactant_positive_pion_1/root"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_quark_1",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_quark_1/root"
+        },
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_quark_2",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_quark_2/root"
+        }
+      ],
+      "tags": [
+        "operator",
+        "dissociate",
+        "solve-generated"
+      ]
+    },
+    {
+      "id": "solve_generated_operator_12",
+      "type": "dissociate",
+      "label": "Dissociate",
+      "stageId": "stage_manual_authoring",
+      "inputs": [
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_quark_1",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_quark_1/root"
+        },
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_quark_2",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_quark_2/root"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_core_1",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_core_1/root"
+        },
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_core_2",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_core_2/root"
+        },
+        {
+          "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos/root"
+        }
+      ],
+      "tags": [
+        "operator",
+        "dissociate",
+        "solve-generated"
+      ]
     }
   ],
   "mappings": [
@@ -286,6 +348,110 @@
       },
       "viaOperatorId": "solve_generated_operator_10",
       "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_7",
+      "from": {
+        "participantId": "reactant_positive_pion_1",
+        "anchorId": "reactant_positive_pion_1/root"
+      },
+      "to": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_8",
+      "from": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "to": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_quark_1",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_quark_1/root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_9",
+      "from": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "to": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_quark_2",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_quark_2/root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_10",
+      "from": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_quark_1",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_quark_1/root"
+      },
+      "to": {
+        "participantId": "solve_generated_operator_12",
+        "anchorId": "solve_generated_operator_12_root"
+      },
+      "viaOperatorId": "solve_generated_operator_12",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_11",
+      "from": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_quark_2",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_quark_2/root"
+      },
+      "to": {
+        "participantId": "solve_generated_operator_12",
+        "anchorId": "solve_generated_operator_12_root"
+      },
+      "viaOperatorId": "solve_generated_operator_12",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_12",
+      "from": {
+        "participantId": "solve_generated_operator_12",
+        "anchorId": "solve_generated_operator_12_root"
+      },
+      "to": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_core_1",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_core_1/root"
+      },
+      "viaOperatorId": "solve_generated_operator_12",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_13",
+      "from": {
+        "participantId": "solve_generated_operator_12",
+        "anchorId": "solve_generated_operator_12_root"
+      },
+      "to": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_core_2",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_core_2/root"
+      },
+      "viaOperatorId": "solve_generated_operator_12",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_14",
+      "from": {
+        "participantId": "solve_generated_operator_12",
+        "anchorId": "solve_generated_operator_12_root"
+      },
+      "to": {
+        "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos/root"
+      },
+      "viaOperatorId": "solve_generated_operator_12",
+      "stageId": "stage_manual_authoring"
     }
   ],
   "stages": [
@@ -315,7 +481,15 @@
       "mapping_3",
       "mapping_4",
       "mapping_5",
-      "mapping_6"
+      "mapping_6",
+      "mapping_7",
+      "mapping_8",
+      "mapping_9",
+      "mapping_10",
+      "mapping_11",
+      "mapping_12",
+      "mapping_13",
+      "mapping_14"
     ],
     "reviewInput": {
       "schema": "solver-request/v1",

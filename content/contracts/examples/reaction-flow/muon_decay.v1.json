@@ -10,7 +10,7 @@
     {
       "id": "reactant_pro_muon_1",
       "side": "reactant",
-      "label": "Pro Electron",
+      "label": "Pro Muon",
       "structureKey": "electron",
       "provenanceId": "solver-request-participant:reactant_pro_muon_1",
       "tags": [
@@ -72,7 +72,7 @@
     {
       "id": "product_pro_muon_neutrino_3",
       "side": "product",
-      "label": "Pro Electron Neutrino",
+      "label": "Pro Muon Neutrino",
       "structureKey": "neutrino",
       "provenanceId": "solver-request-participant:product_pro_muon_neutrino_3",
       "tags": [
@@ -222,6 +222,37 @@
         "associate",
         "solve-generated"
       ]
+    },
+    {
+      "id": "solve_generated_operator_11",
+      "type": "dissociate",
+      "label": "Dissociate",
+      "stageId": "stage_manual_authoring",
+      "inputs": [
+        {
+          "participantId": "reactant_pro_muon_1",
+          "anchorId": "reactant_pro_muon_1/root"
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "center_weak-lepton-decay_base_source_core",
+          "anchorId": "center_weak-lepton-decay_base_source_core/root"
+        },
+        {
+          "participantId": "center_weak-lepton-decay_base_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_base_free_architrinos/root"
+        },
+        {
+          "participantId": "center_weak-lepton-decay_base_noether_pair_1",
+          "anchorId": "center_weak-lepton-decay_base_noether_pair_1/root"
+        }
+      ],
+      "tags": [
+        "operator",
+        "dissociate",
+        "solve-generated"
+      ]
     }
   ],
   "mappings": [
@@ -341,6 +372,58 @@
       },
       "viaOperatorId": "solve_generated_operator_10",
       "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_10",
+      "from": {
+        "participantId": "reactant_pro_muon_1",
+        "anchorId": "reactant_pro_muon_1/root"
+      },
+      "to": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_11",
+      "from": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "to": {
+        "participantId": "center_weak-lepton-decay_base_source_core",
+        "anchorId": "center_weak-lepton-decay_base_source_core/root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_12",
+      "from": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "to": {
+        "participantId": "center_weak-lepton-decay_base_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_base_free_architrinos/root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_13",
+      "from": {
+        "participantId": "solve_generated_operator_11",
+        "anchorId": "solve_generated_operator_11_root"
+      },
+      "to": {
+        "participantId": "center_weak-lepton-decay_base_noether_pair_1",
+        "anchorId": "center_weak-lepton-decay_base_noether_pair_1/root"
+      },
+      "viaOperatorId": "solve_generated_operator_11",
+      "stageId": "stage_manual_authoring"
     }
   ],
   "stages": [
@@ -372,7 +455,11 @@
       "mapping_6",
       "mapping_7",
       "mapping_8",
-      "mapping_9"
+      "mapping_9",
+      "mapping_10",
+      "mapping_11",
+      "mapping_12",
+      "mapping_13"
     ],
     "reviewInput": {
       "schema": "solver-request/v1",

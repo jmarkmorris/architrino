@@ -2,6 +2,13 @@ function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
 
+function buildSynthesizedDissociateOperatorId(stepId = "", index = 0) {
+  const normalizedStepId = normalizeText(stepId);
+  return normalizedStepId
+    ? `dissociate:${normalizedStepId}`
+    : `dissociate:solve_step:${index + 1}`;
+}
+
 function normalizeOperatorPlacementRecord(record = {}) {
   const operatorId = normalizeText(record?.operatorId);
   if (!operatorId) {
@@ -39,6 +46,7 @@ function normalizeProjectionEndpoint(
 
 export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
   const operators = Array.isArray(result?.operators) ? result.operators : [];
+  const steps = Array.isArray(result?.steps) ? result.steps : [];
   const operatorPlacements = Array.isArray(result?.placement?.operatorPlacements)
     ? result.placement.operatorPlacements
     : [];
@@ -52,8 +60,37 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
     (operator) =>
       normalizeText(operator?.id) && normalizeText(operator?.origin) === "solve-generated"
   );
+  const synthesizedDissociateOperators = steps
+    .map((step, index) => {
+      if (normalizeText(step?.kind) !== "dissociate") {
+        return null;
+      }
+      const consumedParticipantIds = Array.isArray(step?.consumedParticipantIds)
+        ? step.consumedParticipantIds.map((participantId) => normalizeText(participantId)).filter(Boolean)
+        : [];
+      const producedParticipantIds = Array.isArray(step?.producedParticipantIds)
+        ? step.producedParticipantIds.map((participantId) => normalizeText(participantId)).filter(Boolean)
+        : [];
+      if (consumedParticipantIds.length === 0 || producedParticipantIds.length === 0) {
+        return null;
+      }
+      const operatorId = buildSynthesizedDissociateOperatorId(step?.stepId, index);
+      return {
+        id: operatorId,
+        type: "dissociate",
+        origin: "solve-generated",
+        placement: {
+          lane: 0,
+          row: index * 2 + 1,
+          slot: index * 2 + 1,
+        },
+        consumedParticipantIds,
+        producedParticipantIds,
+      };
+    })
+    .filter(Boolean);
   const solveGeneratedOperatorIds = new Set(
-    solveGeneratedOperators.map((operator) => normalizeText(operator.id))
+    [...solveGeneratedOperators, ...synthesizedDissociateOperators].map((operator) => normalizeText(operator.id))
   );
   const autoDissociatedParticipantIds = Array.isArray(
     result?.dissociation?.autoDissociatedParticipantIds
@@ -64,9 +101,9 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
     : [];
 
   return {
-    participantAdditions: solveGeneratedOperators.map((operator) => {
+    participantAdditions: [...solveGeneratedOperators, ...synthesizedDissociateOperators].map((operator) => {
       const operatorId = normalizeText(operator.id);
-      const placement = placementByOperatorId.get(operatorId) ?? null;
+      const placement = placementByOperatorId.get(operatorId) ?? operator.placement ?? null;
       return {
         ref: operatorId,
         kind: "operator",
@@ -80,7 +117,35 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
     dissociation: {
       autoDissociatedParticipantIds,
     },
-    selectedMappings: (Array.isArray(result?.mappings) ? result.mappings : [])
+    selectedMappings: [
+      ...(Array.isArray(result?.mappings) ? result.mappings : []),
+      ...synthesizedDissociateOperators.flatMap((operator) => [
+        ...operator.consumedParticipantIds.map((participantId) => ({
+          from: {
+            participantId,
+            anchorId: "",
+            role: "reactant",
+          },
+          to: {
+            participantId: operator.id,
+            anchorId: "",
+            role: "operator-input",
+          },
+        })),
+        ...operator.producedParticipantIds.map((participantId) => ({
+          from: {
+            participantId: operator.id,
+            anchorId: "",
+            role: "operator-output",
+          },
+          to: {
+            participantId,
+            anchorId: "",
+            role: "reactant",
+          },
+        })),
+      ]),
+    ]
       .map((mapping) => {
         const sourceEndpoint = normalizeProjectionEndpoint(
           mapping?.from,

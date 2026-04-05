@@ -26,11 +26,31 @@ test("solved library runtime converts PDG-backed muon decay solve output into an
   assert.equal(candidate.entry.id, "muon_decay");
   assert.equal(candidate.entry.reviewStatus, "accepted");
   assert.equal(candidate.document.review.status, "accepted");
-  assert.equal(candidate.document.operators.length >= 1, true);
+  assert.equal(candidate.document.operators.length >= 4, true);
   assert.equal(candidate.document.mappings.length >= 1, true);
   assert.equal(candidate.document.provenance.reviewInput.origin.sourceDocumentId, "pdg-proposal:muon_decay");
   assert.equal(
     candidate.document.hints.semanticTags.includes("pdg-review"),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "reactant_pro_muon_1" &&
+        participant.label === "Pro Muon"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "product_pro_muon_neutrino_3" &&
+        participant.label === "Pro Muon Neutrino"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.operators.some((operator) => operator.type === "dissociate"),
     true
   );
   assert.equal(

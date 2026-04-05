@@ -58,6 +58,16 @@ function buildTagList(values = []) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
 }
 
+function resolveImportedParticipantLabel(documentParticipant = {}, templateId = "", polarity = "") {
+  const explicitLabel = normalizeText(documentParticipant?.label);
+  if (explicitLabel) {
+    return explicitLabel;
+  }
+  return getReactionCanonicalLabel(templateId, {
+    polarity,
+  });
+}
+
 function supportsParticipantPolarity(templateId = "") {
   return new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(
     normalizeLowerText(templateId)
@@ -112,13 +122,7 @@ function createParticipantFromReactionFlowDocumentRecord(documentParticipant = {
   } = binarySelectionRuntime;
   const participantId = normalizeText(documentParticipant?.id);
   const { templateId, polarity } = resolveParticipantIdentity(documentParticipant);
-  const baseLabel = getReactionCanonicalLabel(templateId, {
-    polarity,
-    fallbackLabel:
-      normalizeText(documentParticipant?.label) ||
-      normalizeText(documentParticipant?.structureKey) ||
-      "Participant",
-  });
+  const baseLabel = resolveImportedParticipantLabel(documentParticipant, templateId, polarity);
   const isCenterAssembly =
     normalizeLowerText(documentParticipant?.side) === "intermediate" ||
     normalizeLowerText(documentParticipant?.layout?.column) === "center";

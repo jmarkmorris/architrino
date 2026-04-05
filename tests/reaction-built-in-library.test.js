@@ -113,6 +113,19 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
   assert.equal(loadedMuon.snapshot.participants.some((participant) => participant.id === "reactant_pro_muon_1"), true);
   assert.equal(
     loadedMuon.snapshot.participants.some(
+      (participant) => participant.id === "reactant_pro_muon_1" && participant.label === "Pro Muon"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "product_pro_muon_neutrino_3" && participant.label === "Pro Muon Neutrino"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
       (participant) =>
         participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
         participant.surfaceColumn === "center-assembly"
@@ -132,6 +145,12 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
       (participant) =>
         participant.id === "center_weak-lepton-decay_base_source_core" &&
         participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) => participant.side === "operator" && participant.templateId === "dissociate"
     ),
     true
   );
