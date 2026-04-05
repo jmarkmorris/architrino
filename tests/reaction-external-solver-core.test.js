@@ -3601,6 +3601,17 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
   assert.equal(result.summary.unresolvedTargetCount, 0);
   assert.deepEqual(result.residue.unresolvedTargetIds, []);
   assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, ["center_noether_pair_authored"]);
+  assert.deepEqual(result.dissociation.autoDissociatedParticipants, [
+    {
+      participantId: "center_noether_pair_authored",
+      rootNodeId: "center_noether_pair_authored/root",
+      consumedNodeIds: [
+        "center_noether_pair_authored/root/core_anti_1",
+        "center_noether_pair_authored/root/core_pro_1",
+      ],
+      remainingNodeIds: [],
+    },
+  ]);
   assert.equal(
     result.steps.some((step) => step.ruleFamily === "associate-standalone"),
     true

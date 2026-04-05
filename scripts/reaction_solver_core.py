@@ -4353,6 +4353,86 @@ def serialize_manual_mapping(mapping=None):
     return record
 
 
+def serialize_request_metadata(request=None):
+    request = request or {}
+    record = {
+        "schema": "solver-request/v1",
+        "requestId": normalize_text(request.get("requestId")) or "solver_request",
+    }
+    origin = request.get("origin")
+    if isinstance(origin, dict):
+        normalized_origin = {}
+        source_kind = normalize_text(origin.get("sourceKind"))
+        source_document_id = normalize_text(origin.get("sourceDocumentId"))
+        title = normalize_text(origin.get("title"))
+        if source_kind:
+            normalized_origin["sourceKind"] = source_kind
+        if source_document_id:
+            normalized_origin["sourceDocumentId"] = source_document_id
+        if title:
+            normalized_origin["title"] = title
+        if normalized_origin:
+            record["origin"] = normalized_origin
+    upstream_context = request.get("upstreamContext")
+    if isinstance(upstream_context, dict):
+        normalized_upstream_context = {}
+        for key in (
+            "sourceSchema",
+            "proposalId",
+            "reviewBoundary",
+            "source",
+            "contract",
+            "ranking",
+            "notes",
+        ):
+            value = upstream_context.get(key)
+            if value is None:
+                continue
+            normalized_upstream_context[key] = deepcopy(value)
+        if normalized_upstream_context:
+            record["upstreamContext"] = normalized_upstream_context
+    return record
+
+
+def build_auto_dissociated_participant_records(request=None, auto_dissociated_participant_ids=None, result_mappings=None):
+    request = request or {}
+    auto_dissociated_participant_ids = auto_dissociated_participant_ids or []
+    result_mappings = result_mappings or []
+    participant_by_id = {
+        normalize_text(participant.get("id")): participant
+        for participant in request.get("participants", [])
+        if normalize_text(participant.get("id"))
+    }
+    records = []
+    for participant_id in auto_dissociated_participant_ids:
+        normalized_participant_id = normalize_text(participant_id)
+        participant = participant_by_id.get(normalized_participant_id)
+        if not participant:
+            continue
+        root_node = get_root_node(participant)
+        root_node_id = normalize_text((root_node or {}).get("id"))
+        if not root_node_id:
+            continue
+        child_nodes = get_child_nodes(participant)
+        child_node_ids = [normalize_text(node.get("id")) for node in child_nodes if normalize_text(node.get("id"))]
+        consumed_node_ids = sorted(build_matched_source_node_ids(result_mappings, normalized_participant_id))
+        if child_node_ids:
+            consumed_node_ids = [node_id for node_id in consumed_node_ids if node_id in child_node_ids]
+            remaining_node_ids = [node_id for node_id in child_node_ids if node_id not in consumed_node_ids]
+        else:
+            consumed_node_ids = [node_id for node_id in consumed_node_ids if node_id == root_node_id]
+            remaining_node_ids = [] if consumed_node_ids else [root_node_id]
+        records.append(
+            {
+                "participantId": normalized_participant_id,
+                "rootNodeId": root_node_id,
+                "consumedNodeIds": consumed_node_ids,
+                "remainingNodeIds": remaining_node_ids,
+            }
+        )
+    return records
+
+
 class SourceEntry:
     def __init__(self, participant, node, side, root_source=False, fragment_source=False):
         self.participant = participant
@@ -4841,6 +4921,11 @@ def build_result(
         serialize_manual_mapping(mapping) for mapping in request.get("manualMappings", [])
     ]
     all_result_mappings = manual_mappings + generated_mappings
+    auto_dissociated_participants = build_auto_dissociated_participant_records(
+        request=request,
+        auto_dissociated_participant_ids=auto_dissociated_participant_ids,
+        result_mappings=all_result_mappings,
+    )
     unresolved_target_ids = collect_unresolved_target_ids(request, all_result_mappings)
     unused_source_ids = collect_unused_source_ids(
         request,
@@ -4865,10 +4950,7 @@ def build_result(
     return {
         "schema": "solver-result/v1",
         "resultId": f"{request_id}_result",
-        "request": {
-            "schema": "solver-request/v1",
-            "requestId": request_id,
-        },
+        "request": serialize_request_metadata(request),
         "summary": {
             "outcome": outcome,
             "exact": len(unresolved_target_ids) == 0,
@@ -4886,6 +4968,7 @@ def build_result(
                 dict.fromkeys(manually_opened_participant_ids + list(auto_dissociated_participant_ids))
             ),
             "autoDissociatedParticipantIds": list(auto_dissociated_participant_ids),
+            "autoDissociatedParticipants": auto_dissociated_participants,
             "releasedParticipantIds": [],
             "notes": (
                 [

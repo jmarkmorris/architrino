@@ -216,6 +216,14 @@ test("contract solver runtime can round-trip a live snapshot through request and
   assert.equal(solution.execution?.mode, "external");
 });
 
+test("contract solver runtime preserves request provenance metadata inside the solver result", () => {
+  const request = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
+  const { result } = solveReactionSolverRequest(request);
+
+  assert.deepEqual(result.request.origin, request.origin);
+  assert.deepEqual(result.request.upstreamContext, request.upstreamContext);
+});
+
 test("solve-reaction script emits solver-result json from a solver-request fixture", () => {
   const stdout = execFileSync(
     process.execPath,
