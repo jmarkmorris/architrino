@@ -174,4 +174,181 @@ Reaction should not:
 
 ## Priorities
 
-No active priorities currently listed.
+These Reaction follow-ups are intentionally deferred until [solver](./solver.md) priority 1 lands. The next Reaction pass should consume the canonical registry from [solver](./solver.md) rather than adding another layer of local heuristics.
+
+### 1. Replace Reaction-Side Object Heuristics With Canonical Registry Reads
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- Reaction still derives too much object behavior from scattered label, structure, import, and rendering logic;
+- charged leptons and neutrinos can still collapse through local heuristics rather than through one canonical object definition;
+- and properties such as outer-shell depiction, core family, allowed lanes, and connector policy are not yet owned by one shared source of truth.
+
+Objective:
+
+- make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./solver.md);
+- remove local object-type guesses from the built-in library path, render path, and test helpers;
+- and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Free Architrinos come directly from the registry rather than from app-specific fallback logic.
+
+This should include, at minimum, registry-driven behavior for:
+
+- object/template identity;
+- core form and family characteristics, including the `h1` / `h2` / `h3`-style basis where applicable;
+- whether the object is a particle, core, composite assembly, operator-adjacent special participant, or other screenable type;
+- which lanes or placement classes the object may occupy;
+- whether it has an internal connector, an output connector, both, or neither in each allowed lane;
+- and which visual shell or outer structure belongs to that object type.
+
+Done when:
+
+- Reaction no longer decides object structure or connector behavior by object-name heuristics;
+- lane legality and connector availability are derived from the shared registry;
+- and the render surface shows the correct object shell and family characteristics because the registry says so, not because Reaction guessed correctly.
+
+### 2. Make Reaction Treat `solver-result/v1` As A Full Render Specification
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- the intended contract already says the solver result should be a render-specification boundary;
+- but Reaction still has code paths that can repair, infer, or smooth over missing structure when the solve payload is not explicit enough;
+- and that makes it too easy to accept partial solves that only happen to draw something plausible.
+
+Objective:
+
+- make the Reaction app a renderer and reviewer of solver-owned solved JSON rather than a place that reconstructs omitted placement, staging, or connectivity;
+- require `solver-result/v1` and accepted `reaction-flow/v1` handoff docs to explicitly carry the full participant set, operator set, dissociation state, placement, connector roles, and connectivity needed to render the image;
+- and remove any remaining adapter or import shims that invent missing intermediate objects, lane placements, or route attachments.
+
+This should mean:
+
+- if the solver expects a Noether Pair or Noether Quad recruitment assembly, the solved JSON must place it in the reactant or product column explicitly;
+- if the solver expects Free Architrinos, the solved JSON must place them in the middle lane explicitly;
+- if a composite is opened, the solved JSON must explicitly mark its dissociated-composite state;
+- and if an operator or participant appears on screen, the solved JSON must already specify how it is connected.
+
+Done when:
+
+- Reaction can load a solved document and render it without inferring missing stages;
+- any solve that omits required staging or connectivity fails validation instead of being patched in-app;
+- and built-in library entries are true renderable handoff documents, not corrected imports.
+
+### 3. Add First-Class Center-Lane Connector Semantics To The Reaction Runtime
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- center-lane assemblies and special participants still do not have one first-class connector model spanning anchor creation, route rendering, import/export, and accessibility metadata;
+- there is still too much chance of using the wrong side of a center object as though it were a reactant or product connector;
+- and that makes it possible to draw routes from an input-side connector when the rendered object is supposed to emit from its right-side output connector.
+
+Objective:
+
+- introduce first-class connector roles for center-lane participants and assemblies so input-side versus output-side attachment is explicit everywhere in Reaction;
+- make route geometry, anchor rendering, hit targets, and aria labeling read those connector roles directly;
+- and ensure center-lane participants never rely on reactant/product fallback semantics.
+
+This should cover at least:
+
+- center-lane assemblies whose internal/input connector is on the left and whose output connector is on the right;
+- special middle-lane participants such as Free Architrinos that must accept routed input on the correct side and emit through the correct side when their ledger is forwarded;
+- and operator-to-center plus center-to-operator attachments that should be unambiguous at render time.
+
+Done when:
+
+- the render runtime can tell, from the object definition and placement alone, which connector side is valid for each mapping endpoint;
+- routes no longer appear to leave a center object from the wrong side;
+- and connector semantics are enforced uniformly in runtime code, import/export, and tests.
+
+### 4. Make Dissociation, Recruitment, And Composite State Fully Explicit In Reaction Documents
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- dissociation and recruitment staging can still be under-specified or only partially enforced once the solved document reaches Reaction;
+- composite-open state is not yet treated as a fully validated part of the Reaction-side document contract;
+- and the intended lane grammar for assemblies versus middle-lane special participants still needs stricter enforcement.
+
+Objective:
+
+- make the accepted Reaction-side document carry enough explicit state to render composite opening, per-core dissociation, recruited middle-lane pools, and downstream association without interpretation;
+- enforce the lane grammar that spacetime-style assemblies such as Noether Pair and Noether Quad belong only in the reactant or product columns;
+- enforce the lane grammar that Free Architrinos belong only in the middle lane;
+- and ensure that when a composite is drawn as opened, its dotted dissociated state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
+
+For the current weak-reaction cases, this should specifically mean:
+
+- a recruited Noether Pair stays in column 1 or column 5, never in the middle lanes;
+- the Noether Pair can dissociate at the composite level to expose pro and anti Noether cores;
+- each exposed Noether core can then route to its own dissociate operator when the solve requires that stage;
+- the resulting Free Architrinos feed the middle-lane Free Architrinos object and update its ledger there;
+- and the resulting middle-lane cores or other surviving intermediates route onward to the appropriate associate operators.
+
+Done when:
+
+- the accepted Reaction document says exactly which composites are opened, which dissociate stages occur, and which recruited middle-lane pools receive the resulting flow;
+- the lane grammar for assemblies and Free Architrinos is validated, not merely preferred;
+- and the rendered reaction image is a direct consequence of the document rather than of viewer-side inference.
+
+### 5. Replace Participant-Level Connectivity Checks With Connector-Level Full-Solve Validation
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- the current connectivity tests are still too weak because they mostly prove that a participant has some mapping, not that every visible connector that should be wired is actually wired;
+- this is why an incorrect solve can still pass despite missing first-lane outputs, wrong-side attachments, or partially connected middle-lane objects;
+- and the current tests do not enforce the user-facing lane contract tightly enough.
+
+Objective:
+
+- replace the current participant/role counting tests with connector-level validation over the rendered reaction model or an equivalent normalized surface description;
+- enumerate every visible connector for each tile and assert whether it must be connected based on tile type and lane;
+- and fail the solve if even one required connector is left unconnected or connected on the wrong side.
+
+The minimum lane contract to enforce is:
+
+- lane 1 objects that expose outputs must have every required output connector connected forward into lane 2, 3, 4, or 5;
+- lane 2, 3, and 4 objects that expose both inputs and outputs must have every required input connector connected and every required output connector connected;
+- lane 5 objects that expose inputs must have every required input connector connected;
+- and tiles that do not legally expose a connector in a given lane must not accidentally pass because a different connector on the same participant happened to be wired.
+
+The validation should also catch:
+
+- routes attached to the wrong side of center-lane assemblies or middle-lane special participants;
+- composites shown as opened without the required downstream dissociate path;
+- and library entries whose visible canvas tiles imply a fuller solve than the document actually contains.
+
+Done when:
+
+- the tests fail on the exact kinds of incorrect images that previously slipped through;
+- every required visible connector is validated directly rather than inferred from participant presence;
+- and a built-in reaction is considered a full solve only when its rendered connector contract is completely satisfied.
+
+### 6. Add Durable Reaction Regressions For Built-In Library Surface Behavior
+
+Status: `deferred until solver priority 1`
+
+Current:
+
+- several cobalt-session failures were UI-surface failures rather than pure solver failures;
+- built-in reaction selection, labeling, connector-side rendering, and composite-state rendering need durable regression coverage;
+- and the Reaction library surface should make it obvious which built-ins are available without relying on a fragile native dropdown alone.
+
+Objective:
+
+- add regression coverage for the built-in library surface, built-in loading path, and accepted solved-document rendering behavior;
+- verify that all built-in reactions appear in the visible library controls and load the correct document;
+- verify that registry-defined objects such as muons and muon neutrinos preserve the correct displayed identity and structure on load;
+- and verify that dissociated composites, center-lane connector roles, and solver-owned dissociate stages all remain visible after import/export and page reload.
+
+Done when:
+
+- the built-in library UI consistently exposes the full available set of reactions;
+- loading a built-in reaction preserves the correct object identity, structure, connector orientation, and composite state;
+- and future regressions of the cobalt-session failures are caught by focused Reaction tests rather than by manual screenshot review.
