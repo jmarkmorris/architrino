@@ -6,6 +6,12 @@ import {
   buildReactionStructureDescriptorTree,
   getReactionStructureTrackSlotCodes,
 } from "./ReactionStructureDescriptorRuntime.js";
+import {
+  getReactionParticipantPlacementClass,
+  isReactionObjectPlacementAllowed,
+  normalizeReactionObjectPolarity,
+  supportsReactionObjectPolarity,
+} from "./ReactionObjectRegistryRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -16,13 +22,11 @@ function normalizeLowerText(value = "") {
 }
 
 function supportsParticipantPolarity(templateId = "") {
-  return new Set(["noether_core", "electron", "neutrino", "down_quark", "up_quark", "fermion_gen1"]).has(
-    normalizeLowerText(templateId)
-  );
+  return supportsReactionObjectPolarity(templateId);
 }
 
 function normalizeParticipantPolarity(polarity = "") {
-  return normalizeLowerText(polarity) === "anti" ? "anti" : "pro";
+  return normalizeReactionObjectPolarity(polarity);
 }
 
 function buildTagList(values = []) {
@@ -168,6 +172,10 @@ function createParticipantFromRequestRecord(
     structure: structure.root,
     hierarchy: buildReactionStructureDescriptorTree(structure.root),
     binarySelections: {},
+    surfaceRowIndex: Math.max(
+      0,
+      Math.round(Number(requestParticipant?.placement?.row ?? 0) || 0)
+    ),
     ...(side === "center"
       ? {
           surfaceColumn: "center-assembly",
@@ -175,6 +183,11 @@ function createParticipantFromRequestRecord(
         }
       : {}),
   };
+  if (!isReactionObjectPlacementAllowed(participant.templateId, getReactionParticipantPlacementClass(participant))) {
+    throw new Error(
+      `Solver request participant ${participant.id || "(missing id)"} uses invalid placement ${getReactionParticipantPlacementClass(participant)} for ${participant.templateId}.`
+    );
+  }
   return applyBinarySelectionsFromRequestParticipant(
     participant,
     requestParticipant,
@@ -238,8 +251,10 @@ function buildMappingsFromRequest(request = {}, participantsById = new Map()) {
         targetKey: buildReactionNodeKey(toParticipantId, normalizeText(mapping?.to?.anchorId) || "root"),
         sourceRole: normalizeText(mapping?.from?.role),
         targetRole: normalizeText(mapping?.to?.role),
-        sourceAnchorInstanceIndex: null,
-        targetAnchorInstanceIndex: null,
+        sourceAnchorInstanceIndex:
+          mapping?.from?.anchorInstanceIndex ?? null,
+        targetAnchorInstanceIndex:
+          mapping?.to?.anchorInstanceIndex ?? null,
       };
     })
     .filter(Boolean);

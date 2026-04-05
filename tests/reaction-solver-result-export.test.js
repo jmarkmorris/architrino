@@ -581,3 +581,57 @@ test("solver result exporter emits multiple disjoint collapse-boson steps for on
     ["w_minus_boson", "z_boson"]
   );
 });
+
+test("solver result exporter marks open required connectors as non-exact", () => {
+  const reactantElectron = createParticipant({
+    id: "reactant_open_connector_electron",
+    side: "reactant",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+  const productElectron = createParticipant({
+    id: "product_open_connector_electron",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+
+  const solveState = buildSolveState([reactantElectron, productElectron]);
+  const result = buildReactionSolverResultDocument({
+    request: {
+      requestId: "open_connector_result",
+    },
+    solveState,
+    plan: {
+      selectedMappings: [],
+      selectedAssociateCandidates: [],
+      selectedCandidates: [],
+      selectedFragmentCandidates: [],
+      selectedPartialCandidates: [],
+      selectedProductChildCandidates: [],
+      participantAdditions: [],
+      unresolvedReactants: [],
+      unresolvedProducts: [],
+      dissociation: {
+        autoDissociatedParticipantIds: [],
+      },
+      residue: {
+        source: [],
+        target: [],
+      },
+    },
+  });
+
+  assert.equal(result.summary.exact, false);
+  assert.equal(result.summary.outcome, "partial");
+  assert.equal(
+    result.diagnostics.some(
+      (diagnostic) =>
+        diagnostic.code === "connector-required-open" &&
+        diagnostic.severity === "error"
+    ),
+    true
+  );
+});

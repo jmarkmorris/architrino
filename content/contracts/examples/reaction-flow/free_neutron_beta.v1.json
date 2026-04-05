@@ -1,7 +1,7 @@
 {
   "schema": "reaction-flow/v1",
   "reactionId": "reaction_review_free_neutron_beta_decay",
-  "title": "Reaction Review: Free neutron beta decay",
+  "title": "Free neutron beta decay",
   "review": {
     "status": "accepted",
     "acceptedAt": "2026-04-05T12:00:00.000Z"
@@ -21,6 +21,9 @@
         "pdg-id:n",
         "pdg-name:n"
       ],
+      "state": {
+        "dissociation": "auto-dissociated"
+      },
       "layout": {
         "column": "left",
         "row": 0
@@ -62,7 +65,7 @@
       ],
       "layout": {
         "column": "right",
-        "row": 0
+        "row": 1
       }
     },
     {
@@ -82,7 +85,7 @@
       ],
       "layout": {
         "column": "right",
-        "row": 0
+        "row": 2
       }
     },
     {
@@ -98,6 +101,9 @@
         "meson-constituent",
         "baryon-constituent"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 0
@@ -116,6 +122,9 @@
         "meson-constituent",
         "baryon-constituent"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 1
@@ -134,6 +143,9 @@
         "meson-constituent",
         "baryon-constituent"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 2
@@ -153,6 +165,9 @@
         "baryon-constituent",
         "weak-transform-product"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 3
@@ -170,6 +185,9 @@
         "solve-generated",
         "noether-core-provenance"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 4
@@ -187,6 +205,9 @@
         "solve-generated",
         "shared-free-architrino-pool"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "center",
         "row": 5
@@ -204,36 +225,51 @@
         "solve-generated",
         "noether-quad-supplement"
       ],
+      "state": {
+        "solveGenerated": true
+      },
       "layout": {
         "column": "left",
-        "row": 6
+        "row": 1
       }
     }
   ],
   "operators": [
     {
-      "id": "solve_generated_operator_12",
+      "id": "dissociate:weak-baryon-beta-decay_base:source",
       "type": "dissociate",
       "label": "Dissociate",
+      "layout": {
+        "lane": 0,
+        "row": 0,
+        "slot": 1
+      },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "reactant_neutron_1",
-          "anchorId": "reactant_neutron_1/root"
+          "anchorId": "reactant_neutron_1/root",
+          "role": "reactant"
         }
       ],
       "outputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_1",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_2",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_3",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         }
       ],
       "tags": [
@@ -243,32 +279,41 @@
       ]
     },
     {
-      "id": "solve_generated_operator_13",
+      "id": "dissociate:weak-baryon-beta-decay_base:weak_transform",
       "type": "dissociate",
       "label": "Dissociate",
+      "layout": {
+        "lane": 0,
+        "row": 0,
+        "slot": 3
+      },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_2",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         }
       ],
       "outputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_source_core",
-          "anchorId": "center_weak-baryon-beta-decay_base_source_core/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_source_core/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
-          "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root"
-        },
-        {
-          "participantId": "center_weak-baryon-beta-decay_base_noether_quad_1",
-          "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root",
+          "role": "center",
+          "anchorInstanceIndex": 0
         }
       ],
       "tags": [
@@ -278,28 +323,40 @@
       ]
     },
     {
-      "id": "solve_generated_operator_14",
+      "id": "associate:weak-baryon-beta-decay_base:proton",
       "type": "associate",
       "label": "Associate",
+      "layout": {
+        "lane": 1,
+        "row": 0,
+        "slot": 1
+      },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_1",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_quark_3",
-          "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
-          "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         }
       ],
       "outputs": [
         {
           "participantId": "product_proton_1",
-          "anchorId": "product_proton_1/root"
+          "anchorId": "product_proton_1/root",
+          "role": "product"
         }
       ],
       "tags": [
@@ -309,24 +366,34 @@
       ]
     },
     {
-      "id": "solve_generated_operator_15",
+      "id": "associate:weak-baryon-beta-decay_base:product_1",
       "type": "associate",
       "label": "Associate",
+      "layout": {
+        "lane": 1,
+        "row": 0,
+        "slot": 3
+      },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_source_core",
-          "anchorId": "center_weak-baryon-beta-decay_base_source_core/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_source_core/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+          "role": "center",
+          "anchorInstanceIndex": 1
         }
       ],
       "outputs": [
         {
           "participantId": "product_pro_electron_2",
-          "anchorId": "product_pro_electron_2/root"
+          "anchorId": "product_pro_electron_2/root",
+          "role": "product"
         }
       ],
       "tags": [
@@ -336,24 +403,33 @@
       ]
     },
     {
-      "id": "solve_generated_operator_16",
+      "id": "associate:weak-baryon-beta-decay_base:product_2",
       "type": "associate",
       "label": "Associate",
+      "layout": {
+        "lane": 1,
+        "row": 0,
+        "slot": 5
+      },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_noether_quad_1",
-          "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root",
+          "role": "reactant"
         },
         {
           "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
+          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+          "role": "center",
+          "anchorInstanceIndex": 2
         }
       ],
       "outputs": [
         {
           "participantId": "product_anti_electron_neutrino_3",
-          "anchorId": "product_anti_electron_neutrino_3/root"
+          "anchorId": "product_anti_electron_neutrino_3/root",
+          "role": "product"
         }
       ],
       "tags": [
@@ -368,247 +444,301 @@
       "id": "mapping_1",
       "from": {
         "participantId": "reactant_neutron_1",
-        "anchorId": "reactant_neutron_1/root"
+        "anchorId": "reactant_neutron_1/root",
+        "role": "reactant"
       },
       "to": {
-        "participantId": "solve_generated_operator_12",
-        "anchorId": "solve_generated_operator_12_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:source",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_12",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_2",
       "from": {
-        "participantId": "solve_generated_operator_12",
-        "anchorId": "solve_generated_operator_12_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:source",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_quark_1",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_12",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_3",
       "from": {
-        "participantId": "solve_generated_operator_12",
-        "anchorId": "solve_generated_operator_12_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:source",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_quark_2",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_12",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_4",
       "from": {
-        "participantId": "solve_generated_operator_12",
-        "anchorId": "solve_generated_operator_12_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:source",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_quark_3",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_12",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_5",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_quark_2",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_2/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "solve_generated_operator_13",
-        "anchorId": "solve_generated_operator_13_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:weak_transform_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_13",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_6",
       "from": {
-        "participantId": "solve_generated_operator_13",
-        "anchorId": "solve_generated_operator_13_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:weak_transform_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_source_core",
-        "anchorId": "center_weak-baryon-beta-decay_base_source_core/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_source_core/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_13",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_7",
       "from": {
-        "participantId": "solve_generated_operator_13",
-        "anchorId": "solve_generated_operator_13_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:weak_transform_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_13",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_8",
       "from": {
-        "participantId": "solve_generated_operator_13",
-        "anchorId": "solve_generated_operator_13_root"
+        "participantId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
+        "anchorId": "dissociate:weak-baryon-beta-decay_base:weak_transform_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
-        "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root"
+        "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root",
+        "role": "center",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_13",
+      "viaOperatorId": "dissociate:weak-baryon-beta-decay_base:weak_transform",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_9",
       "from": {
-        "participantId": "solve_generated_operator_13",
-        "anchorId": "solve_generated_operator_13_root"
+        "participantId": "center_weak-baryon-beta-decay_base_quark_1",
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "center_weak-baryon-beta-decay_base_noether_quad_1",
-        "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root"
+        "participantId": "associate:weak-baryon-beta-decay_base:proton",
+        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_13",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:proton",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_10",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_quark_1",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_1/root"
+        "participantId": "center_weak-baryon-beta-decay_base_quark_3",
+        "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "solve_generated_operator_14",
-        "anchorId": "solve_generated_operator_14_root"
+        "participantId": "associate:weak-baryon-beta-decay_base:proton",
+        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_14",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:proton",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_11",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_quark_3",
-        "anchorId": "center_weak-baryon-beta-decay_base_quark_3/root"
+        "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
+        "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "solve_generated_operator_14",
-        "anchorId": "solve_generated_operator_14_root"
+        "participantId": "associate:weak-baryon-beta-decay_base:proton",
+        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_14",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:proton",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_12",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
-        "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root"
+        "participantId": "associate:weak-baryon-beta-decay_base:proton",
+        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "solve_generated_operator_14",
-        "anchorId": "solve_generated_operator_14_root"
+        "participantId": "product_proton_1",
+        "anchorId": "product_proton_1/root",
+        "role": "product"
       },
-      "viaOperatorId": "solve_generated_operator_14",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:proton",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_13",
       "from": {
-        "participantId": "solve_generated_operator_14",
-        "anchorId": "solve_generated_operator_14_root"
+        "participantId": "center_weak-baryon-beta-decay_base_source_core",
+        "anchorId": "center_weak-baryon-beta-decay_base_source_core/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "product_proton_1",
-        "anchorId": "product_proton_1/root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_1",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_14",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_14",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_source_core",
-        "anchorId": "center_weak-baryon-beta-decay_base_source_core/root"
+        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
+        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+        "role": "center",
+        "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "solve_generated_operator_15",
-        "anchorId": "solve_generated_operator_15_root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_1",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_15",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_15",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_1",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "solve_generated_operator_15",
-        "anchorId": "solve_generated_operator_15_root"
+        "participantId": "product_pro_electron_2",
+        "anchorId": "product_pro_electron_2/root",
+        "role": "product"
       },
-      "viaOperatorId": "solve_generated_operator_15",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_16",
       "from": {
-        "participantId": "solve_generated_operator_15",
-        "anchorId": "solve_generated_operator_15_root"
+        "participantId": "center_weak-baryon-beta-decay_base_noether_quad_1",
+        "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root",
+        "role": "reactant"
       },
       "to": {
-        "participantId": "product_pro_electron_2",
-        "anchorId": "product_pro_electron_2/root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_2",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_15",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_2",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_17",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_noether_quad_1",
-        "anchorId": "center_weak-baryon-beta-decay_base_noether_quad_1/root"
+        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
+        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
+        "role": "center",
+        "anchorInstanceIndex": 2
       },
       "to": {
-        "participantId": "solve_generated_operator_16",
-        "anchorId": "solve_generated_operator_16_root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_2",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "solve_generated_operator_16",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_2",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_18",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root"
-      },
-      "to": {
-        "participantId": "solve_generated_operator_16",
-        "anchorId": "solve_generated_operator_16_root"
-      },
-      "viaOperatorId": "solve_generated_operator_16",
-      "stageId": "stage_manual_authoring"
-    },
-    {
-      "id": "mapping_19",
-      "from": {
-        "participantId": "solve_generated_operator_16",
-        "anchorId": "solve_generated_operator_16_root"
+        "participantId": "associate:weak-baryon-beta-decay_base:product_2",
+        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
       },
       "to": {
         "participantId": "product_anti_electron_neutrino_3",
-        "anchorId": "product_anti_electron_neutrino_3/root"
+        "anchorId": "product_anti_electron_neutrino_3/root",
+        "role": "product"
       },
-      "viaOperatorId": "solve_generated_operator_16",
+      "viaOperatorId": "associate:weak-baryon-beta-decay_base:product_2",
       "stageId": "stage_manual_authoring"
     }
   ],
@@ -654,8 +784,7 @@
       "mapping_15",
       "mapping_16",
       "mapping_17",
-      "mapping_18",
-      "mapping_19"
+      "mapping_18"
     ],
     "reviewInput": {
       "schema": "solver-request/v1",

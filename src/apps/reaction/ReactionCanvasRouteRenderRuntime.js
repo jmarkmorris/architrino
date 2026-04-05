@@ -1,3 +1,5 @@
+import { getReactionAnchorAttachmentSide } from "./ReactionObjectRegistryRuntime.js";
+
 function isElement(value) {
   return typeof globalThis.Element === "function" && value instanceof globalThis.Element;
 }
@@ -64,20 +66,26 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
     return Math.max(0, Math.min(rect.width, rect.height) / 2);
   }
 
-  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = canvasRouteAnchorGapPx) {
+  function getFixedAnchorAttachmentPoint(
+    element,
+    bounds,
+    edgeInset = canvasRouteAnchorGapPx,
+    endpointKind = "source"
+  ) {
     if (!isElement(element)) {
       return null;
     }
     const anchorRole = String(element.getAttribute("data-anchor-side") ?? "").trim();
     const center = getElementCenterWithinSurface(element, bounds);
     const radius = Math.max(0, getAnchorRadiusFromBounds(element) - edgeInset);
-    if (anchorRole === "reactant" || anchorRole === "operator-output") {
+    const attachmentSide = getReactionAnchorAttachmentSide(anchorRole, endpointKind);
+    if (attachmentSide === "right") {
       return {
         x: center.x + radius,
         y: center.y,
       };
     }
-    if (anchorRole === "product" || anchorRole === "operator-input") {
+    if (attachmentSide === "left") {
       return {
         x: center.x - radius,
         y: center.y,
@@ -96,7 +104,7 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
       getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
       getElementCenterWithinSurface(sourceElement, bounds);
     const targetPoint =
-      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset) ??
+      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset, "target") ??
       getElementCenterWithinSurface(targetElement, bounds);
     return {
       startX: sourcePoint.x,

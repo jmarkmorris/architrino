@@ -138,6 +138,7 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
           targetKey: "op_dissociate_1::dissociate_root",
           sourceRole: "reactant",
           targetRole: "operator-input",
+          targetAnchorInstanceIndex: 0,
         },
         {
           id: "map_operator_to_product",
@@ -145,6 +146,7 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
           targetKey: "product_proton::proton_root",
           sourceRole: "operator-output",
           targetRole: "product",
+          sourceAnchorInstanceIndex: 0,
         },
       ],
     },
@@ -157,13 +159,33 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
   assert.deepEqual(reactionFlow.review, { status: "draft" });
   assert.equal(reactionFlow.operators.length, 1);
   assert.deepEqual(reactionFlow.operators[0].inputs, [
-    { participantId: "reactant_neutron", anchorId: "neutron_root" },
+    { participantId: "reactant_neutron", anchorId: "neutron_root", role: "reactant" },
   ]);
   assert.deepEqual(reactionFlow.operators[0].outputs, [
-    { participantId: "product_proton", anchorId: "proton_root" },
+    {
+      participantId: "product_proton",
+      anchorId: "proton_root",
+      role: "product",
+    },
   ]);
+  assert.deepEqual(reactionFlow.operators[0].layout, {
+    lane: 0,
+    row: 0,
+    slot: 0,
+  });
   assert.equal(reactionFlow.participants[1].side, "intermediate");
   assert.equal(reactionFlow.participants[1].layout.column, "center");
+  assert.deepEqual(reactionFlow.mappings[0].from, {
+    participantId: "reactant_neutron",
+    anchorId: "neutron_root",
+    role: "reactant",
+  });
+  assert.deepEqual(reactionFlow.mappings[0].to, {
+    participantId: "op_dissociate_1",
+    anchorId: "dissociate_root",
+    role: "operator-input",
+    anchorInstanceIndex: 0,
+  });
   assert.equal(reactionFlow.mappings[0].viaOperatorId, "op_dissociate_1");
   assert.equal(reactionFlow.mappings[1].viaOperatorId, "op_dissociate_1");
 });
@@ -193,4 +215,41 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
     status: "accepted",
     acceptedAt: "2026-04-03T09:00:00.000Z",
   });
+});
+
+test("reaction flow exporter rejects unsupported sink-side-only connector mappings", () => {
+  assert.throws(
+    () =>
+      buildReactionFlowDocument({
+        reactionId: "invalid_sink_mapping",
+        snapshot: {
+          participants: [
+            {
+              id: "reactant_muon",
+              side: "reactant",
+              templateId: "electron",
+              label: "Pro Muon",
+              surfaceRowIndex: 0,
+            },
+            {
+              id: "reactant_noether_pair",
+              side: "reactant",
+              templateId: "noether_pair",
+              label: "Noether Pair",
+              surfaceRowIndex: 1,
+            },
+          ],
+          mappings: [
+            {
+              id: "map_invalid_sink_target",
+              sourceKey: "reactant_muon::electron_root",
+              targetKey: "reactant_noether_pair::noether_pair_root",
+              sourceRole: "reactant",
+              targetRole: "reactant",
+            },
+          ],
+        },
+      }),
+    /cannot use input endpoint/i
+  );
 });

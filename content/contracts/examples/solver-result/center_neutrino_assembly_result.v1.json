@@ -105,15 +105,22 @@
       "stepId": "step_center_neutrino_assembly",
       "kind": "associate",
       "ruleFamily": "associate-standalone",
-      "consumedParticipantIds": ["center_noether_core", "center_free_architrinos"],
+      "consumedParticipantIds": [
+        "center_noether_core",
+        "center_free_architrinos"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_neutrino"],
+      "resolvedTargetIds": [
+        "product_neutrino"
+      ],
       "mappingIds": [
         "map_center_neutrino_in_core",
         "map_center_neutrino_in_free",
         "map_center_neutrino_out"
       ],
-      "operatorIds": ["associate:1"]
+      "operatorIds": [
+        "associate:1"
+      ]
     }
   ],
   "mappings": [
@@ -218,6 +225,23 @@
         "lane": 1,
         "row": 1,
         "slot": 1
+      }
+    ],
+    "participantPlacements": [
+      {
+        "participantId": "center_noether_core",
+        "placementClass": "center",
+        "row": 0
+      },
+      {
+        "participantId": "center_free_architrinos",
+        "placementClass": "center",
+        "row": 1
+      },
+      {
+        "participantId": "product_neutrino",
+        "placementClass": "product",
+        "row": 0
       }
     ]
   },

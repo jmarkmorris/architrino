@@ -1,5 +1,7 @@
 import { createReactionAppRuntime } from "./ReactionAppRuntime.js";
 import { createBrowserReactionSolveSnapshot } from "./ReactionSolverBrowserRuntime.js";
+import { solveReactionSnapshot as solveReactionSnapshotViaExternalRuntime } from "./ReactionSolverContractRuntime.js";
+import { canExecuteExternalReactionSolver } from "./ReactionSolverExternalRuntime.js";
 
 const reactionAppRuntimeDeps = globalThis.__ARCHITRINO_REACTION_APP_DEPS__ ?? {};
 const defaultBrowserSolveSnapshot = createBrowserReactionSolveSnapshot({
@@ -7,6 +9,9 @@ const defaultBrowserSolveSnapshot = createBrowserReactionSolveSnapshot({
   fetchImpl: typeof globalThis.fetch === "function" ? globalThis.fetch.bind(globalThis) : null,
   endpoint: reactionAppRuntimeDeps.solveEndpoint,
 });
+const defaultSolveSnapshot = canExecuteExternalReactionSolver()
+  ? solveReactionSnapshotViaExternalRuntime
+  : defaultBrowserSolveSnapshot;
 
 const reactionAppRuntime = createReactionAppRuntime({
   reviewStateElement: document.getElementById("reaction-review-state"),
@@ -31,7 +36,7 @@ const reactionAppRuntime = createReactionAppRuntime({
   solveSnapshot:
     typeof reactionAppRuntimeDeps.solveSnapshot === "function"
       ? reactionAppRuntimeDeps.solveSnapshot
-      : defaultBrowserSolveSnapshot,
+      : defaultSolveSnapshot,
 });
 
 void reactionAppRuntime.init();

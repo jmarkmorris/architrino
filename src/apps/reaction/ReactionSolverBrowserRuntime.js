@@ -2,6 +2,8 @@ import { buildReactionSolverContractResponse } from "./ReactionSolverContractRes
 import { buildReactionSolverRequestDocument } from "./ReactionSolverRequestExportRuntime.js";
 
 const DEFAULT_BROWSER_REACTION_SOLVE_TIMEOUT_MS = 30000;
+const DEFAULT_LOCAL_DEV_SERVER_HINT =
+  "Start `node scripts/dev/start-local-dev.mjs` and open `http://127.0.0.1:5173/reaction.html`.";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -17,7 +19,15 @@ function resolveReactionSolveEndpoint(windowLike = globalThis.window, endpoint =
     return "";
   }
   try {
-    return new URL("/api/reaction/solve", href).toString();
+    const currentUrl = new URL(href);
+    const endpointUrl = new URL("/api/reaction/solve", currentUrl);
+    if (
+      normalizeText(currentUrl.hostname).toLowerCase() === "localhost" ||
+      normalizeText(currentUrl.hostname).toLowerCase() === "[::1]"
+    ) {
+      endpointUrl.hostname = "127.0.0.1";
+    }
+    return endpointUrl.toString();
   } catch (_error) {
     return "";
   }
@@ -34,8 +44,9 @@ function resolveBrowserFetch(fetchImpl = null) {
 }
 
 function readReactionSolveErrorMessage(responseText = "", status = 0) {
+  const normalizedResponseText = normalizeText(responseText);
   try {
-    const payload = JSON.parse(responseText);
+    const payload = JSON.parse(normalizedResponseText);
     const message = normalizeText(payload?.error);
     if (message) {
       return message;
@@ -43,7 +54,21 @@ function readReactionSolveErrorMessage(responseText = "", status = 0) {
   } catch (_error) {
     // Fall back to plain-text handling below.
   }
-  return normalizeText(responseText) || `Reaction solve request failed (${status}).`;
+  if (
+    status === 404 ||
+    status === 405 ||
+    status === 501 ||
+    /^<!doctype html/i.test(normalizedResponseText) ||
+    /^<html/i.test(normalizedResponseText) ||
+    normalizedResponseText.includes("Unsupported method ('POST')")
+  ) {
+    return (
+      "Reaction solve bridge is unavailable at `/api/reaction/solve`. " +
+      "This page is being served without the local solve API. " +
+      DEFAULT_LOCAL_DEV_SERVER_HINT
+    );
+  }
+  return normalizedResponseText || `Reaction solve request failed (${status}).`;
 }
 
 function resolveReactionSolveTimeoutMs(options = {}) {
@@ -73,7 +98,9 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
   const endpoint = resolveReactionSolveEndpoint(options?.windowLike, options?.endpoint);
   if (typeof fetchImpl !== "function" || !endpoint) {
     throw new Error(
-      "Browser Reaction solver bridge is unavailable. Start the local dev server with the solve API or inject a solveSnapshot bridge explicitly."
+      "Browser Reaction solver bridge is unavailable. " +
+        DEFAULT_LOCAL_DEV_SERVER_HINT +
+        " You can also inject a solveSnapshot bridge explicitly."
     );
   }
   const timeoutMs = resolveReactionSolveTimeoutMs(options);

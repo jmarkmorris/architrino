@@ -392,8 +392,13 @@ export function createReactionAppRuntime(deps) {
         syncReviewControls();
         setStatus(buildBuiltInLibraryStatusMessage(libraryPayload?.entry));
         return;
-      } catch (_error) {
+      } catch (error) {
+        const message = normalizeText(error?.message);
+        if (message) {
+          setStatus(`Built-in reaction auto-load failed: ${message}. Manual authoring is still available.`);
+        }
         // Keep manual authoring available even if the built-in library fixture is unavailable.
+        return;
       }
     }
     syncReviewControls();

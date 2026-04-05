@@ -1,15 +1,4 @@
-function getAnchorAriaLabel(anchorRole, nodeLabel) {
-  if (anchorRole === "product") {
-    return `Product attach point for ${nodeLabel}`;
-  }
-  if (anchorRole === "operator-input") {
-    return `Operator input attach point for ${nodeLabel}`;
-  }
-  if (anchorRole === "operator-output") {
-    return `Operator output attach point for ${nodeLabel}`;
-  }
-  return `Reactant attach point for ${nodeLabel}`;
-}
+import { getReactionAnchorAriaLabel } from "./ReactionObjectRegistryRuntime.js";
 
 function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
   if (
@@ -176,7 +165,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     if (normalizedAnchorInstanceIndex !== null) {
       anchor.dataset.anchorInstanceIndex = String(normalizedAnchorInstanceIndex);
     }
-    anchor.setAttribute("aria-label", getAnchorAriaLabel(anchorRole, node.label));
+    anchor.setAttribute("aria-label", getReactionAnchorAriaLabel(anchorRole, node.label));
     anchor.disabled = anchorAvailability.disabled;
     if (anchorAvailability.reason) {
       anchor.title = anchorAvailability.reason;

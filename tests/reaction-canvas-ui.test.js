@@ -243,7 +243,11 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionMainSource,
-    /solveSnapshot:\s*typeof reactionAppRuntimeDeps\.solveSnapshot === "function"[\s\S]*?reactionAppRuntimeDeps\.solveSnapshot[\s\S]*?: defaultBrowserSolveSnapshot,/s
+    /const defaultSolveSnapshot = canExecuteExternalReactionSolver\(\)\s*\?\s*solveReactionSnapshotViaExternalRuntime\s*:\s*defaultBrowserSolveSnapshot;/
+  );
+  assert.match(
+    reactionMainSource,
+    /solveSnapshot:\s*typeof reactionAppRuntimeDeps\.solveSnapshot === "function"[\s\S]*?reactionAppRuntimeDeps\.solveSnapshot[\s\S]*?: defaultSolveSnapshot,/s
   );
   assert.match(
     reactionMainSource,
@@ -408,13 +412,14 @@ test("W and Z bosons are not treated as polarity-toggling templates", () => {
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
-  const setStart = runtimeSource.indexOf("const participantPolarityTemplateIds = new Set([");
-  const setEnd = runtimeSource.indexOf("]);", setStart);
-  const polaritySetSource = runtimeSource.slice(setStart, setEnd);
-  assert.ok(setStart >= 0 && setEnd > setStart);
-  assert.equal(polaritySetSource.includes('"w_minus_boson"'), false);
-  assert.equal(polaritySetSource.includes('"w_plus_boson"'), false);
-  assert.equal(polaritySetSource.includes('"z_boson"'), false);
+  assert.match(
+    runtimeSource,
+    /supportsReactionObjectPolarity/
+  );
+  assert.doesNotMatch(
+    runtimeSource,
+    /participantPolarityTemplateIds = new Set/
+  );
 });
 
 test("side-column dragging places participants on explicit shared surface rows instead of collection order", () => {
@@ -571,7 +576,7 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
   );
 });
 
-test("solve resets only canvas-generated operators and auto dissociation before rebuilding mappings", () => {
+test("solve resets all solver-generated participants and auto dissociation before rebuilding mappings", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
@@ -582,7 +587,7 @@ test("solve resets only canvas-generated operators and auto dissociation before 
   );
   assert.match(
     runtimeSource,
-    /state\.participants = state\.participants\.filter\(\s*\(participant\) => !\(participant\?\.side === "operator" && participant\?\.isSolveGenerated\)\s*\);/
+    /state\.participants = state\.participants\.filter\(\(participant\) => !participant\?\.isSolveGenerated\);/
   );
   assert.match(
     runtimeSource,
@@ -686,15 +691,19 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /function getFixedAnchorAttachmentPoint\(element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx\) \{/
+    /function getFixedAnchorAttachmentPoint\(\s*element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx,\s*endpointKind = "source"\s*\) \{/
   );
   assert.match(
     runtimeSource,
-    /if \(anchorRole === "reactant" \|\| anchorRole === "operator-output"\) \{\s*return \{\s*x: center\.x \+ radius,\s*y: center\.y,\s*\};/
+    /const attachmentSide = getReactionAnchorAttachmentSide\(anchorRole,\s*endpointKind\);/
   );
   assert.match(
     runtimeSource,
-    /if \(anchorRole === "product" \|\| anchorRole === "operator-input"\) \{\s*return \{\s*x: center\.x - radius,\s*y: center\.y,\s*\};/
+    /if \(attachmentSide === "right"\) \{\s*return \{\s*x: center\.x \+ radius,\s*y: center\.y,\s*\};/
+  );
+  assert.match(
+    runtimeSource,
+    /if \(attachmentSide === "left"\) \{\s*return \{\s*x: center\.x - radius,\s*y: center\.y,\s*\};/
   );
   assert.match(
     runtimeSource,
@@ -702,7 +711,7 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
+    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset,\s*"target"\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
   );
   assert.doesNotMatch(
     runtimeSource,

@@ -13,17 +13,53 @@ import {
   normalizeStructureAssemblyTemplateId,
 } from "../../domain/structure/StructureAssemblyCatalog.js";
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
+import {
+  getReactionCanonicalLabel,
+  getReactionObjectOccupiedSlots,
+  getReactionObjectSpec,
+  normalizeReactionObjectPolarity,
+  normalizeReactionObjectTemplateId,
+} from "./ReactionObjectRegistryRuntime.js";
+
+const STRUCTURE_FAMILY_BY_REGISTRY_FAMILY = Object.freeze({
+  charged_lepton: STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
+  neutrino: STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
+  up_type_quark: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
+  down_type_quark: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
+  baryon: STRUCTURE_CLASSIFICATION_FAMILIES.BARYON,
+  meson: STRUCTURE_CLASSIFICATION_FAMILIES.MESON,
+  boson: STRUCTURE_CLASSIFICATION_FAMILIES.BOSON,
+  exotic: STRUCTURE_CLASSIFICATION_FAMILIES.EXOTIC,
+});
 
 function formatNoetherCoreLabel(polarity = "pro") {
-  return String(polarity ?? "").trim().toLowerCase() === "anti"
-    ? "Anti Noether Core"
-    : "Pro Noether Core";
+  return getReactionCanonicalLabel("noether_core", {
+    polarity,
+    occupiedCount: 3,
+  });
 }
 
 function formatPolarityQualifiedLabel(baseLabel = "", polarity = "pro") {
   return `${
     String(polarity ?? "").trim().toLowerCase() === "anti" ? "Anti" : "Pro"
   } ${String(baseLabel ?? "").trim()}`.trim();
+}
+
+function resolveClassificationFamily(registryFamily = "") {
+  return (
+    STRUCTURE_FAMILY_BY_REGISTRY_FAMILY[String(registryFamily ?? "").trim().toLowerCase()] ??
+    STRUCTURE_CLASSIFICATION_FAMILIES.EXOTIC
+  );
+}
+
+function resolveRegistryConstituentLabel(constituent = {}) {
+  return (
+    constituent?.label ||
+    getReactionCanonicalLabel(constituent?.templateId, {
+      polarity: constituent?.polarity,
+      occupiedCount: constituent?.occupiedCount,
+    })
+  );
 }
 
 function createArchitrinoNode(id, charge, role, label) {
@@ -264,12 +300,7 @@ function createMesonNode(id, species, constituents = [], options = {}) {
         `${id}/quark_${index + 1}`,
         constituent.family,
         constituent.label ||
-          formatPolarityQualifiedLabel(
-            constituent.family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK
-              ? "Up Quark"
-              : "Down Quark",
-            constituent.polarity
-          ),
+          resolveRegistryConstituentLabel(constituent),
         {
           polarity: constituent.polarity,
           occupiedSlots: constituent.occupiedSlots,
@@ -366,18 +397,32 @@ function createGenericParticleNode(id, templateId, options = {}) {
 }
 
 export function buildReactionParticipantStructure(templateId, options = {}) {
-  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
+  const normalizedTemplateId = normalizeReactionObjectTemplateId(
+    normalizeStructureAssemblyTemplateId(templateId)
+  );
+  const objectSpec = getReactionObjectSpec(normalizedTemplateId);
   const structureId = String(options.id ?? `structure_${normalizedTemplateId || "node"}`).trim();
   const label = String(options.label ?? "").trim();
-  const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
-  const occupiedSlots = Array.isArray(options.occupiedSlots) ? options.occupiedSlots : undefined;
+  const polarity = normalizeReactionObjectPolarity(options.polarity);
+  const occupiedSlots = getReactionObjectOccupiedSlots(normalizedTemplateId, {
+    occupiedSlots: Array.isArray(options.occupiedSlots) ? options.occupiedSlots : undefined,
+    label,
+    templateId: normalizedTemplateId,
+  });
+  const resolvedLabel =
+    label ||
+    getReactionCanonicalLabel(normalizedTemplateId, {
+      polarity,
+      occupiedSlots,
+    });
+  const structureSpec = objectSpec?.structure ?? null;
 
   let root = null;
-  if (normalizedTemplateId === "electron") {
+  if (structureSpec?.kind === "family_particle") {
     root = createFamilyParticleNode(
       structureId,
-      STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON,
-      label || formatPolarityQualifiedLabel("Electron", polarity),
+      resolveClassificationFamily(structureSpec.family),
+      resolvedLabel,
       { polarity, occupiedSlots }
     );
   } else if (normalizedTemplateId === "w_minus_boson") {
@@ -393,311 +438,58 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       label: label || "Neutral Z Boson",
       occupiedSlots,
     });
-  } else if (normalizedTemplateId === "neutrino") {
-    root = createFamilyParticleNode(
-      structureId,
-      STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO,
-      label || formatPolarityQualifiedLabel("Neutrino", polarity),
-      { polarity, occupiedSlots }
-    );
-  } else if (normalizedTemplateId === "up_quark") {
-    root = createFamilyParticleNode(
-      structureId,
-      STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-      label || formatPolarityQualifiedLabel("Up Quark", polarity),
-      { polarity, occupiedSlots }
-    );
-  } else if (normalizedTemplateId === "down_quark") {
-    root = createFamilyParticleNode(
-      structureId,
-      STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-      label || formatPolarityQualifiedLabel("Down Quark", polarity),
-      { polarity, occupiedSlots }
-    );
-  } else if (normalizedTemplateId === "proton") {
+  } else if (structureSpec?.kind === "baryon") {
     root = createBaryonNode(
       structureId,
-      "proton",
-      [
-        STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-        STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-        STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-      ],
-      { label: label || "Pro Proton" }
+      normalizedTemplateId,
+      (Array.isArray(structureSpec.constituents) ? structureSpec.constituents : []).map((constituent) =>
+        resolveClassificationFamily(getReactionObjectSpec(constituent?.templateId)?.structure?.family)
+      ),
+      { label: resolvedLabel }
     );
-  } else if (normalizedTemplateId === "neutron") {
-    root = createBaryonNode(
-      structureId,
-      "neutron",
-      [
-        STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-        STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-        STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-      ],
-      { label: label || "Pro Neutron" }
-    );
-  } else if (normalizedTemplateId === "pi_plus") {
+  } else if (structureSpec?.kind === "meson") {
     root = createMesonNode(
       structureId,
-      "pi_plus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "pro",
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-        },
-      ],
-      { label: label || "Positive Pion" }
+      normalizedTemplateId,
+      (Array.isArray(structureSpec.constituents) ? structureSpec.constituents : []).map((constituent) => ({
+        family: resolveClassificationFamily(getReactionObjectSpec(constituent?.templateId)?.structure?.family),
+        polarity: normalizeReactionObjectPolarity(constituent?.polarity),
+        label: resolveRegistryConstituentLabel(constituent),
+        occupiedSlots: getReactionObjectOccupiedSlots(constituent?.templateId, {
+          occupiedCount: constituent?.occupiedCount,
+        }),
+      })),
+      { label: resolvedLabel }
     );
-  } else if (normalizedTemplateId === "pi_minus") {
-    root = createMesonNode(
-      structureId,
-      "pi_minus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "anti",
-        },
-      ],
-      { label: label || "Negative Pion" }
-    );
-  } else if (normalizedTemplateId === "upi0") {
-    root = createMesonNode(
-      structureId,
-      "upi0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "pro",
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "anti",
-        },
-      ],
-      { label: label || "Neutral Pion (u anti-u)" }
-    );
-  } else if (normalizedTemplateId === "dpi0") {
-    root = createMesonNode(
-      structureId,
-      "dpi0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-        },
-      ],
-      { label: label || "Neutral Pion (d anti-d)" }
-    );
-  } else if (normalizedTemplateId === "k_plus") {
-    root = createMesonNode(
-      structureId,
-      "k_plus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Up Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Strange Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
-        },
-      ],
-      { label: label || "Positive Kaon" }
-    );
-  } else if (normalizedTemplateId === "k_minus") {
-    root = createMesonNode(
-      structureId,
-      "k_minus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Strange Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Up Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-      ],
-      { label: label || "Negative Kaon" }
-    );
-  } else if (normalizedTemplateId === "dk0") {
-    root = createMesonNode(
-      structureId,
-      "dk0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Down Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Strange Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
-        },
-      ],
-      { label: label || "Neutral Kaon (d anti-s)" }
-    );
-  } else if (normalizedTemplateId === "sk0") {
-    root = createMesonNode(
-      structureId,
-      "sk0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Strange Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 2),
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Down Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-      ],
-      { label: label || "Neutral Kaon (s anti-d)" }
-    );
-  } else if (normalizedTemplateId === "b_plus") {
-    root = createMesonNode(
-      structureId,
-      "b_plus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Up Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Bottom Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
-        },
-      ],
-      { label: label || "Positive B Meson" }
-    );
-  } else if (normalizedTemplateId === "b_minus") {
-    root = createMesonNode(
-      structureId,
-      "b_minus",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Bottom Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Up Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-      ],
-      { label: label || "Negative B Meson" }
-    );
-  } else if (normalizedTemplateId === "db0") {
-    root = createMesonNode(
-      structureId,
-      "db0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Down Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Bottom Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
-        },
-      ],
-      { label: label || "Neutral B Meson (d anti-b)" }
-    );
-  } else if (normalizedTemplateId === "bb0") {
-    root = createMesonNode(
-      structureId,
-      "bb0",
-      [
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "pro",
-          label: "Pro Bottom Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER.slice(0, 1),
-        },
-        {
-          family: STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
-          polarity: "anti",
-          label: "Anti Down Quark",
-          occupiedSlots: STRUCTURE_SLOT_ORDER,
-        },
-      ],
-      { label: label || "Neutral B Meson (b anti-d)" }
-    );
-  } else if (normalizedTemplateId === "noether_pair" || normalizedTemplateId === "noether_quad") {
-    root = createNoetherAssemblyNode(structureId, normalizedTemplateId, {
-      label: label || getStructureAssemblyDisplayLabel(normalizedTemplateId),
+  } else if (structureSpec?.kind === "assembly") {
+    root = createNoetherAssemblyNode(structureId, structureSpec.assemblyTemplateId || normalizedTemplateId, {
+      label: resolvedLabel || getStructureAssemblyDisplayLabel(normalizedTemplateId),
     });
-  } else if (normalizedTemplateId === "photon") {
-    root = createPhotonNode(structureId, { label: label || "Photon" });
-  } else if (normalizedTemplateId === "noether_core") {
+  } else if (structureSpec?.kind === "photon") {
+    root = createPhotonNode(structureId, { label: resolvedLabel || "Photon" });
+  } else if (structureSpec?.kind === "noether_core") {
     root = createNoetherCoreNode(structureId, {
-      label: label || formatNoetherCoreLabel(polarity),
+      label: resolvedLabel || formatNoetherCoreLabel(polarity),
       polarity,
       occupiedSlots,
     });
-  } else if (normalizedTemplateId === "free_architrinos") {
+  } else if (structureSpec?.kind === "free_architrinos") {
     root = createFreeArchitrinosNode(structureId, {
-      label: label || "Free Architrinos",
+      label: resolvedLabel || "Free Architrinos",
       occupiedSlots,
     });
-  } else if (
-    normalizedTemplateId === "associate" ||
-    normalizedTemplateId === "dissociate"
-  ) {
+  } else if (structureSpec?.kind === "operator") {
     root = createOperatorNode(structureId, normalizedTemplateId, {
-      label:
-        label ||
-        (normalizedTemplateId === "associate"
-          ? "Associate"
-          : normalizedTemplateId === "dissociate"
-            ? "Dissociate"
-            : "Operator"),
+      label: resolvedLabel || "Operator",
     });
-  } else if (normalizedTemplateId === "fermion_gen1") {
+  } else if (structureSpec?.kind === "generic_particle" && normalizedTemplateId === "fermion_gen1") {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {
-      label: label || "Gen I Fermion",
+      label: resolvedLabel || "Gen I Fermion",
       polarity,
     });
   } else {
     root = createGenericParticleNode(structureId, normalizedTemplateId, {
-      label: label || normalizedTemplateId || "Particle",
+      label: resolvedLabel || normalizedTemplateId || "Particle",
       polarity,
     });
   }

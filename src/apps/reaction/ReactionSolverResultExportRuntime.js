@@ -1,5 +1,10 @@
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "./ReactionStructureDescriptorRuntime.js";
+import {
+  getReactionCanonicalBaseLabel,
+  getReactionObjectConnectorPolicy,
+  getReactionParticipantFamilyTag,
+} from "./ReactionObjectRegistryRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -59,29 +64,7 @@ function flattenDescriptorNodes(rootNode = null, parentId = "") {
 }
 
 function detectParticipantFamily(participant = null) {
-  const templateId = normalizeLowerText(participant?.templateId);
-  if (templateId.includes("noether_core")) {
-    return "noether-core";
-  }
-  if (templateId === "noether_pair" || templateId === "noether_quad") {
-    return "boson";
-  }
-  if (templateId.includes("photon") || templateId.includes("boson")) {
-    return "boson";
-  }
-  if (templateId.includes("architrino")) {
-    return "free-architrinos";
-  }
-  if (templateId.includes("neutrino") || templateId.includes("electron")) {
-    return "lepton";
-  }
-  if (templateId.includes("quark")) {
-    return "quark";
-  }
-  if (templateId.includes("pi")) {
-    return "meson";
-  }
-  return "";
+  return getReactionParticipantFamilyTag(participant?.templateId);
 }
 
 function buildParticipantOrigin(entry = null) {
@@ -116,16 +99,9 @@ function serializeSolveStateParticipant(entry = null) {
 }
 
 function buildRecognizedBosonLabel(templateId = "") {
-  if (normalizeLowerText(templateId) === "w_minus_boson") {
-    return "Negative W Boson";
-  }
-  if (normalizeLowerText(templateId) === "w_plus_boson") {
-    return "Positive W Boson";
-  }
-  if (normalizeLowerText(templateId) === "z_boson") {
-    return "Neutral Z Boson";
-  }
-  return normalizeText(templateId) || "Boson";
+  return getReactionCanonicalBaseLabel(templateId, {
+    fallbackLabel: normalizeText(templateId) || "Boson",
+  });
 }
 
 function buildRecognizedBosonParticipant(recognition = {}, index = 0) {
@@ -410,6 +386,10 @@ function buildEndpointFromMappingSide(mapping = {}, side = "source") {
         participantId,
         anchorId,
         role,
+        ...(endpoint?.anchorInstanceIndex !== null &&
+        endpoint?.anchorInstanceIndex !== undefined
+          ? { anchorInstanceIndex: endpoint.anchorInstanceIndex }
+          : {}),
       }
     : null;
 }
@@ -583,6 +563,141 @@ function buildResidue(plan = {}) {
   };
 }
 
+function buildParticipantPlacements(participants = []) {
+  const nextRowByPlacementClass = {
+    reactant: 0,
+    center: 0,
+    product: 0,
+  };
+  return (Array.isArray(participants) ? participants : [])
+    .filter((participant) => normalizeText(participant?.id))
+    .map((participant) => {
+      const placementClass =
+        normalizeLowerText(participant?.side) === "center"
+          ? "center"
+          : normalizeLowerText(participant?.side) === "product"
+            ? "product"
+            : "reactant";
+      const row = nextRowByPlacementClass[placementClass]++;
+      return {
+        participantId: normalizeText(participant.id),
+        placementClass,
+        row,
+      };
+    });
+}
+
+function inferParticipantPlacementClass(participant = {}, placementByParticipantId = new Map()) {
+  const participantId = normalizeText(participant?.id);
+  const explicitPlacementClass = normalizeLowerText(placementByParticipantId.get(participantId));
+  if (explicitPlacementClass === "center" || explicitPlacementClass === "product") {
+    return explicitPlacementClass;
+  }
+  if (explicitPlacementClass === "reactant") {
+    return "reactant";
+  }
+  const side = normalizeLowerText(participant?.side);
+  if (side === "center") {
+    return "center";
+  }
+  if (side === "product") {
+    return "product";
+  }
+  return "reactant";
+}
+
+function countMappingsForEndpoint(mappings = [], participantId = "", role = "", direction = "source") {
+  const normalizedParticipantId = normalizeText(participantId);
+  const normalizedRole = normalizeLowerText(role);
+  if (!normalizedParticipantId || !normalizedRole) {
+    return 0;
+  }
+  const endpointKey = direction === "target" ? "to" : "from";
+  return (Array.isArray(mappings) ? mappings : []).reduce((count, mapping) => {
+    const endpoint = mapping?.[endpointKey] ?? null;
+    return normalizeText(endpoint?.participantId) === normalizedParticipantId &&
+      normalizeLowerText(endpoint?.role) === normalizedRole
+      ? count + 1
+      : count;
+  }, 0);
+}
+
+function buildConnectorCompletenessDiagnostics({
+  participants = [],
+  operators = [],
+  mappings = [],
+  participantPlacements = [],
+} = {}) {
+  const diagnostics = [];
+  const placementByParticipantId = new Map(
+    (Array.isArray(participantPlacements) ? participantPlacements : [])
+      .map((placement) => [
+        normalizeText(placement?.participantId),
+        normalizeLowerText(placement?.placementClass),
+      ])
+      .filter(([participantId, placementClass]) => participantId && placementClass)
+  );
+
+  (Array.isArray(participants) ? participants : []).forEach((participant) => {
+    const participantId = normalizeText(participant?.id);
+    const templateId = normalizeText(participant?.templateId);
+    const placementClass = inferParticipantPlacementClass(participant, placementByParticipantId);
+    const connectorPolicy = getReactionObjectConnectorPolicy(templateId, placementClass);
+    if (!participantId || !connectorPolicy) {
+      return;
+    }
+    const inputRole = normalizeLowerText(connectorPolicy?.inputRole);
+    const outputRole = normalizeLowerText(connectorPolicy?.outputRole);
+    if (inputRole && countMappingsForEndpoint(mappings, participantId, inputRole, "target") < 1) {
+      diagnostics.push({
+        code: "connector-required-open",
+        severity: "error",
+        message: `Result participant ${participantId} leaves required ${inputRole} input open in ${placementClass} placement.`,
+        path: "participants",
+      });
+    }
+    if (outputRole && countMappingsForEndpoint(mappings, participantId, outputRole, "source") < 1) {
+      diagnostics.push({
+        code: "connector-required-open",
+        severity: "error",
+        message: `Result participant ${participantId} leaves required ${outputRole} output open in ${placementClass} placement.`,
+        path: "participants",
+      });
+    }
+  });
+
+  (Array.isArray(operators) ? operators : []).forEach((operator) => {
+    const operatorId = normalizeText(operator?.id);
+    if (!operatorId) {
+      return;
+    }
+    if (countMappingsForEndpoint(mappings, operatorId, "operator-input", "target") < 1) {
+      diagnostics.push({
+        code: "connector-required-open",
+        severity: "error",
+        message: `Result operator ${operatorId} leaves required operator-input open.`,
+        path: "operators",
+      });
+    }
+    if (countMappingsForEndpoint(mappings, operatorId, "operator-output", "source") < 1) {
+      diagnostics.push({
+        code: "connector-required-open",
+        severity: "error",
+        message: `Result operator ${operatorId} leaves required operator-output open.`,
+        path: "operators",
+      });
+    }
+  });
+
+  return diagnostics;
+}
+
+function hasErrorDiagnostics(diagnostics = []) {
+  return (Array.isArray(diagnostics) ? diagnostics : []).some(
+    (diagnostic) => normalizeLowerText(diagnostic?.severity) === "error"
+  );
+}
+
 export function buildReactionSolverResultDocument(options = {}) {
   const request = options?.request ?? {};
   const solveState = options?.solveState ?? {};
@@ -612,7 +727,15 @@ export function buildReactionSolverResultDocument(options = {}) {
     ...recognizedBosonArtifacts.steps,
   ];
   const unresolvedTargetCount = Array.isArray(plan?.unresolvedProducts) ? plan.unresolvedProducts.length : 0;
-  const exact = unresolvedTargetCount === 0;
+  const participantPlacements = buildParticipantPlacements(participants);
+  const diagnostics = buildConnectorCompletenessDiagnostics({
+    participants,
+    operators,
+    mappings,
+    participantPlacements,
+  });
+  const exact = unresolvedTargetCount === 0 && !hasErrorDiagnostics(diagnostics);
+  const outcome = exact ? "exact" : "partial";
 
   return {
     schema: "solver-result/v1",
@@ -622,7 +745,7 @@ export function buildReactionSolverResultDocument(options = {}) {
       requestId,
     },
     summary: {
-      outcome: exact ? "exact" : "partial",
+      outcome,
       exact,
       selectedPlanId: `plan_${requestId}`,
       unresolvedTargetCount,
@@ -642,6 +765,7 @@ export function buildReactionSolverResultDocument(options = {}) {
       notes: [],
     },
     placement: {
+      participantPlacements,
       operatorPlacements: (Array.isArray(plan?.participantAdditions) ? plan.participantAdditions : [])
         .filter((addition) => addition?.kind === "operator" && normalizeText(addition?.ref))
         .map((addition) => ({
@@ -652,6 +776,6 @@ export function buildReactionSolverResultDocument(options = {}) {
         })),
     },
     residue: buildResidue(plan),
-    diagnostics: [],
+    diagnostics,
   };
 }

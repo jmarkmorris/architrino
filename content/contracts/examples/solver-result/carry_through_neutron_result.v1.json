@@ -40,10 +40,14 @@
             "electrinoCount": 6,
             "positrinoCount": 6
           },
-          "tags": ["root"]
+          "tags": [
+            "root"
+          ]
         }
       ],
-      "tags": ["authored"]
+      "tags": [
+        "authored"
+      ]
     },
     {
       "id": "product_neutron_1",
@@ -71,10 +75,14 @@
             "electrinoCount": 6,
             "positrinoCount": 6
           },
-          "tags": ["root"]
+          "tags": [
+            "root"
+          ]
         }
       ],
-      "tags": ["authored"]
+      "tags": [
+        "authored"
+      ]
     }
   ],
   "steps": [
@@ -82,12 +90,20 @@
       "stepId": "step_1",
       "kind": "carry-through",
       "ruleFamily": "exact-identical-participant",
-      "consumedParticipantIds": ["reactant_neutron_1"],
+      "consumedParticipantIds": [
+        "reactant_neutron_1"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_neutron_1"],
-      "mappingIds": ["map_1"],
+      "resolvedTargetIds": [
+        "product_neutron_1"
+      ],
+      "mappingIds": [
+        "map_1"
+      ],
       "operatorIds": [],
-      "diagnosticLabels": ["exact-carry-through"]
+      "diagnosticLabels": [
+        "exact-carry-through"
+      ]
     }
   ],
   "mappings": [
@@ -119,7 +135,19 @@
     "notes": []
   },
   "placement": {
-    "operatorPlacements": []
+    "operatorPlacements": [],
+    "participantPlacements": [
+      {
+        "participantId": "reactant_neutron_1",
+        "placementClass": "reactant",
+        "row": 0
+      },
+      {
+        "participantId": "product_neutron_1",
+        "placementClass": "product",
+        "row": 0
+      }
+    ]
   },
   "residue": {
     "unresolvedTargetIds": [],

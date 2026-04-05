@@ -157,6 +157,12 @@ function summarizeResult(result) {
   };
 }
 
+function hasConnectionPolicyErrors(result) {
+  return Array.isArray(result?.diagnostics)
+    ? result.diagnostics.some((diagnostic) => diagnostic?.code === "registry-connection-policy-invalid")
+    : false;
+}
+
 test("external solve-reaction CLI preserves the supported golden corpus summaries", () => {
   const corpus = readJson("content/contracts/examples/solver-corpus/v1/index.json");
   const resultSchema = readJson("src/contracts/solver-result/v1/schema.json");
@@ -192,6 +198,7 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
     assert.equal(result.summary.exact, true, `${requestPath} should report exact closure`);
     assert.equal(result.summary.unresolvedTargetCount, 0, `${requestPath} should have no unresolved targets`);
     assert.deepEqual(result.residue.unresolvedTargetIds, [], `${requestPath} should have no unresolved residue`);
+    assert.equal(hasConnectionPolicyErrors(result), false, `${requestPath} should not violate the forward lane policy`);
     assert.equal(
       result.mappings.length >= expectedProductCount,
       true,
@@ -228,57 +235,55 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
   });
 });
 
-test("external solve-reaction CLI upgrades muon decay to the lepton constituent provenance path", () => {
+test("external solve-reaction CLI falls back to the generic weak profile when muon provenance staging violates the lane policy", () => {
   const result = runSolveReactionCli("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
-  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-lepton-core-pool"), true);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(
     result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
-    true
+    false
   );
   assert.equal(
     result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
-    false
+    true
   );
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
-        participant.templateId === "noether_pair" &&
-        participant.tags?.includes("noether-pair-supplement")
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );
   assert.equal(
     result.diagnostics.some((diagnostic) => diagnostic.code === "lepton-constituent-provenance"),
-    true
+    false
   );
 });
 
-test("external solve-reaction CLI upgrades neutron beta decay to the baryon constituent provenance path", () => {
+test("external solve-reaction CLI falls back to the generic weak profile when neutron provenance staging violates the lane policy", () => {
   const result = runSolveReactionCli("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
-  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-constituents"), true);
-  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-weak-core-pool"), true);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(
     result.steps.some((step) => step.diagnosticLabels?.includes("baryon-constituent-provenance")),
-    true
+    false
   );
   assert.equal(
     result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
-    false
+    true
   );
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
-        participant.templateId === "free_architrinos"
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );
@@ -289,15 +294,15 @@ test("external solve-reaction CLI upgrades neutron beta decay to the baryon cons
         participant.templateId === "up_quark" &&
         participant.tags?.includes("weak-transform-product")
     ),
-    true
+    false
   );
   assert.equal(
     result.diagnostics.some((diagnostic) => diagnostic.code === "baryon-constituent-provenance"),
-    true
+    false
   );
 });
 
-test("external solve-reaction CLI upgrades radiative muon weak channels to the lepton constituent provenance path", () => {
+test("external solve-reaction CLI keeps searching past invalid muon provenance plans and lands on a policy-clean generic weak profile", () => {
   const requestPaths = [
     "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.solver-request.v1.json",
     "content/contracts/examples/pdg/v1/generated/muon_to_electron_photon.live-pdg.solver-request.v1.json",
@@ -308,40 +313,40 @@ test("external solve-reaction CLI upgrades radiative muon weak channels to the l
 
     assert.equal(result.summary.outcome, "exact");
     assert.equal(result.summary.exact, true);
+    assert.equal(hasConnectionPolicyErrors(result), false, `${requestPath} should not violate the forward lane policy`);
     assert.equal(
       result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
-      true,
-      `${requestPath} should retain the lepton provenance dissociation step`
+      false,
+      `${requestPath} should reject the invalid lepton provenance staging`
     );
     assert.equal(
       result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
-      false,
-      `${requestPath} should no longer fall back to the generic weak profile`
+      true,
+      `${requestPath} should fall back to the generic weak profile`
     );
     assert.equal(
       result.steps.some((step) => step.diagnosticLabels?.includes("associate-photon-from-core-pair")),
-      true,
-      `${requestPath} should assemble the photon from an explicit core pair`
+      false,
+      `${requestPath} should not keep the invalid provenance-only photon assembly path`
     );
     assert.equal(
       result.participants.some(
         (participant) =>
           participant.origin === "solve-generated-intermediate" &&
-          participant.templateId === "noether_pair" &&
-          participant.tags?.includes("noether-pair-supplement")
+          participant.tags?.includes("implicit-weak-center")
       ),
       true,
-      `${requestPath} should materialize a Noether Pair supplement for the photon branch`
+      `${requestPath} should materialize the generic weak center instead`
     );
     assert.equal(
       result.participants.some((participant) => participant.tags?.includes("implicit-weak-center")),
-      false,
-      `${requestPath} should not synthesize the generic implicit weak center`
+      true,
+      `${requestPath} should synthesize the generic implicit weak center`
     );
     assert.equal(
       result.diagnostics.some((diagnostic) => diagnostic.code === "lepton-constituent-provenance"),
-      true,
-      `${requestPath} should report the lepton provenance diagnostic`
+      false,
+      `${requestPath} should not report the rejected lepton provenance diagnostic`
     );
   });
 });
@@ -621,7 +626,7 @@ test("external solve-reaction CLI closes proton to positive kaon plus anti-muon-
   );
 });
 
-test("external solve-reaction CLI closes an authored charged-pion decay request exported from Reaction structures", () => {
+test("external solve-reaction CLI falls back to the generic weak profile for authored charged-pion weak decay requests", () => {
   const request = buildReactionSolverRequestDocument({
     requestId: "authored_charged_pion_decay",
     snapshot: {
@@ -657,28 +662,23 @@ test("external solve-reaction CLI closes an authored charged-pion decay request 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-pion-decay"), true);
-  assert.equal(result.operators.length, 2);
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
         participant.side === "center" &&
-        participant.templateId === "noether_core"
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );
-  assert.equal(
-    result.participants.some(
-      (participant) =>
-        participant.origin === "solve-generated-intermediate" &&
-        participant.templateId === "free_architrinos"
-    ),
-    true
-  );
+  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
 });
 
-test("external solve-reaction CLI closes an authored charged-kaon decay request while preserving strange-quark provenance", () => {
+test("external solve-reaction CLI falls back to the generic weak profile for authored charged-kaon weak decay requests", () => {
   const request = buildReactionSolverRequestDocument({
     requestId: "authored_charged_kaon_decay",
     snapshot: {
@@ -714,14 +714,15 @@ test("external solve-reaction CLI closes an authored charged-kaon decay request 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-kaon-decay"), true);
-  assert.equal(result.operators.length, 2);
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
-        participant.templateId === "down_quark" &&
-        String(participant.label ?? "").includes("Strange Quark")
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );
@@ -1678,7 +1679,7 @@ test("external solve-reaction CLI keeps neutral kaon identities distinct", () =>
   assert.equal(swappedResult.summary.exact, false);
 });
 
-test("external solve-reaction CLI closes an authored charged-b decay request while preserving bottom-quark provenance", () => {
+test("external solve-reaction CLI falls back to the generic weak profile for authored charged-B weak decay requests", () => {
   const request = buildReactionSolverRequestDocument({
     requestId: "authored_charged_b_decay",
     snapshot: {
@@ -1714,14 +1715,15 @@ test("external solve-reaction CLI closes an authored charged-b decay request whi
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-b-muon-decay"), true);
-  assert.equal(result.operators.length, 2);
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
-        participant.templateId === "down_quark" &&
-        String(participant.label ?? "").includes("Bottom Quark")
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );
@@ -3003,16 +3005,12 @@ test("external solve-reaction CLI closes charged pion to positron plus electron 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-meson-charged-pion-electron-decay"), true);
-  assert.equal(result.operators.length, 2);
-  assert.equal(
-    result.steps.some((step) => step.ruleFamily === "dissociate-meson-constituents"),
-    true
-  );
-  assert.equal(
-    result.participants.some((participant) => participant.templateId === "free_architrinos"),
-    true
-  );
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-meson-constituents"), false);
+  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
 });
 
 test("external solve-reaction CLI closes neutral pion to two photons through the generic meson path", () => {
@@ -3215,12 +3213,11 @@ test("external solve-reaction CLI closes neutral pion to electron-positron throu
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-electron-pair-decay"), true);
-  assert.equal(result.operators.length, 2);
-  assert.equal(
-    result.participants.some((participant) => participant.templateId === "free_architrinos"),
-    true
-  );
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
 });
 
 test("external solve-reaction CLI closes neutral pion to electron-neutrino pair through the generic meson path", () => {
@@ -3337,15 +3334,14 @@ test("external solve-reaction CLI closes neutral pion to electron-neutrino pair 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-neutrino-pair-decay"), true);
-  assert.equal(result.operators.length, 2);
-  assert.equal(
-    result.participants.some((participant) => participant.templateId === "free_architrinos"),
-    true
-  );
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
 });
 
-test("external solve-reaction CLI materializes a Noether Pair supplement for neutral pion double-Dalitz closure", () => {
+test("external solve-reaction CLI falls back to a generic weak profile for neutral pion double-Dalitz closure when provenance staging is policy-invalid", () => {
   const request = {
     schema: "solver-request/v1",
     requestId: "neutral_pion_double_dalitz",
@@ -3434,28 +3430,21 @@ test("external solve-reaction CLI materializes a Noether Pair supplement for neu
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-double-dalitz-decay"), true);
-  assert.equal(result.operators.length, 4);
-  assert.equal(
-    result.participants.some((participant) => participant.templateId === "noether_pair"),
-    true
-  );
-  assert.equal(
-    result.operators.some((operator) =>
-      operator.inputs.some((input) => String(input.participantId ?? "").includes("_noether_pair_"))
-    ),
-    true
-  );
+  assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
+  assert.equal(result.operators.length, 1);
+  assert.equal(result.participants.some((participant) => participant.templateId === "noether_pair"), false);
 });
 
-test("external solve-reaction CLI uses an authored Noether Pair as a normal source assembly for electron-positron closure", () => {
+test("external solve-reaction CLI uses an authored reactant Noether Pair as a normal source assembly for electron-positron closure", () => {
   const request = {
     schema: "solver-request/v1",
     requestId: "authored_noether_pair_electron_positron",
     participants: [
       {
-        id: "center_noether_pair_authored",
-        side: "center",
+        id: "reactant_noether_pair_authored",
+        side: "reactant",
         templateId: "noether_pair",
         label: "Noether Pair",
         family: "boson",
@@ -3464,10 +3453,10 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
           electrinoCount: 6,
           positrinoCount: 6,
         },
-        rootNodeId: "center_noether_pair_authored/root",
+        rootNodeId: "reactant_noether_pair_authored/root",
         nodes: [
           {
-            id: "center_noether_pair_authored/root",
+            id: "reactant_noether_pair_authored/root",
             templateId: "noether_pair",
             label: "Noether Pair",
             family: "boson",
@@ -3478,8 +3467,8 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
             },
           },
           {
-            id: "center_noether_pair_authored/root/core_pro_1",
-            parentId: "center_noether_pair_authored/root",
+            id: "reactant_noether_pair_authored/root/core_pro_1",
+            parentId: "reactant_noether_pair_authored/root",
             templateId: "noether_core",
             label: "Pro Noether core",
             family: "noether-core",
@@ -3491,8 +3480,8 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
             },
           },
           {
-            id: "center_noether_pair_authored/root/core_anti_1",
-            parentId: "center_noether_pair_authored/root",
+            id: "reactant_noether_pair_authored/root/core_anti_1",
+            parentId: "reactant_noether_pair_authored/root",
             templateId: "noether_core",
             label: "Anti Noether core",
             family: "noether-core",
@@ -3638,15 +3627,16 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
   assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(hasConnectionPolicyErrors(result), false);
   assert.deepEqual(result.residue.unresolvedTargetIds, []);
-  assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, ["center_noether_pair_authored"]);
+  assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, ["reactant_noether_pair_authored"]);
   assert.deepEqual(result.dissociation.autoDissociatedParticipants, [
     {
-      participantId: "center_noether_pair_authored",
-      rootNodeId: "center_noether_pair_authored/root",
+      participantId: "reactant_noether_pair_authored",
+      rootNodeId: "reactant_noether_pair_authored/root",
       consumedNodeIds: [
-        "center_noether_pair_authored/root/core_anti_1",
-        "center_noether_pair_authored/root/core_pro_1",
+        "reactant_noether_pair_authored/root/core_anti_1",
+        "reactant_noether_pair_authored/root/core_pro_1",
       ],
       remainingNodeIds: [],
     },
@@ -3660,7 +3650,7 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
     result.operators.every((operator) =>
       operator.inputs.some(
         (input) =>
-          input.participantId === "center_noether_pair_authored" &&
+          input.participantId === "reactant_noether_pair_authored" &&
           String(input.anchorId ?? "").includes("/core_")
       )
     ),
@@ -3681,7 +3671,7 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
   assert.equal(
     result.participants.some(
       (participant) =>
-        participant.id === "center_noether_pair_authored" && participant.origin === "authored-center"
+        participant.id === "reactant_noether_pair_authored" && participant.origin === "authored-reactant"
     ),
     true
   );
@@ -3768,7 +3758,7 @@ test("external solve-reaction CLI treats upi0 and dpi0 as solver-equivalent neut
   assert.equal(result.steps.some((step) => step.ruleFamily === "exact-identical-participant"), true);
 });
 
-test("external solve-reaction CLI closes muon trilepton weak channels through the lepton constituent provenance path", () => {
+test("external solve-reaction CLI falls back to the generic weak profile for muon trilepton weak channels when provenance staging is policy-invalid", () => {
   const request = {
     schema: "solver-request/v1",
     requestId: "muon_to_three_electrons",
@@ -3867,18 +3857,18 @@ test("external solve-reaction CLI closes muon trilepton weak channels through th
 
   assert.equal(result.summary.outcome, "exact");
   assert.equal(result.summary.exact, true);
-  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-lepton-core-pool"), true);
+  assert.equal(hasConnectionPolicyErrors(result), false);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-lepton-core-pool"), false);
   assert.equal(result.steps.some((step) => step.ruleFamily === "weak-lepton-trilepton-conversion"), true);
   assert.equal(
     result.steps.some((step) => step.diagnosticLabels?.includes("lepton-constituent-provenance")),
-    true
+    false
   );
   assert.equal(
     result.participants.some(
       (participant) =>
         participant.origin === "solve-generated-intermediate" &&
-        participant.side === "center" &&
-        participant.templateId === "noether_pair"
+        participant.tags?.includes("implicit-weak-center")
     ),
     true
   );

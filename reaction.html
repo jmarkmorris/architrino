@@ -159,6 +159,24 @@
         </section>
       </main>
     </div>
-    <script type="module" src="./src/apps/reaction/main.js?v=2026-04-05-reaction-app-v2"></script>
+    <script>
+      window.addEventListener("error", (event) => {
+        const message = String(event?.message || "").trim();
+        const status = document.getElementById("reaction-status");
+        if (status) {
+          status.textContent = `Reaction runtime error: ${message}`;
+        }
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        const status = document.getElementById("reaction-status");
+        const reason = event?.reason;
+        const message =
+          (typeof reason === "object" && reason && "message" in reason ? reason.message : reason) ?? "";
+        if (status) {
+          status.textContent = `Reaction runtime error: ${String(message || "Unhandled promise rejection").trim()}`;
+        }
+      });
+    </script>
+    <script type="module" src="./src/apps/reaction/main.js?v=2026-04-05-reaction-app-v4"></script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "schema": "composer-import-result/v1",
   "sourceSchema": "reaction-flow/v1",
-  "importedReactionId": "free_neutron_beta_001",
-  "sceneId": "free_neutron_beta_scene",
+  "importedReactionId": "reaction_review_free_neutron_beta_decay",
+  "sceneId": "reaction_review_free_neutron_beta_decay_scene",
   "warnings": [],
   "rejectedFeatures": [],
   "fallbacks": [

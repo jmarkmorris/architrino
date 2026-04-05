@@ -6,6 +6,7 @@ import { buildReactionSnapshotFromSolverRequest } from "./ReactionSolverRequestA
 import { applyReactionSolvePlan } from "./ReactionSolveProjectionRuntime.js";
 import { buildReactionFlowDocument } from "./ReactionFlowExportRuntime.js";
 import { buildReactionLibraryCandidateFromDocument } from "./ReactionLibraryCandidateRuntime.js";
+import { supportsReactionObjectPolarity } from "./ReactionObjectRegistryRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -15,13 +16,21 @@ function normalizeLowerText(value = "") {
   return normalizeText(value).toLowerCase();
 }
 
+function resultHasErrorDiagnostics(result = {}) {
+  return (Array.isArray(result?.diagnostics) ? result.diagnostics : []).some(
+    (diagnostic) => normalizeLowerText(diagnostic?.severity) === "error"
+  );
+}
+
 function getParticipantRootNode(participant = null) {
   return participant?.hierarchy?.[0] ?? null;
 }
 
 function createOperatorParticipantFactory(snapshot = {}) {
   return function createOperatorParticipant(templateId = "associate", operatorLaneIndex = 1, options = {}) {
-    const operatorId = `solve_generated_operator_${(Array.isArray(snapshot?.participants) ? snapshot.participants.length : 0) + 1}`;
+    const operatorId =
+      normalizeText(options?.participantId) ||
+      `solve_generated_operator_${(Array.isArray(snapshot?.participants) ? snapshot.participants.length : 0) + 1}`;
     const label = getReactionCanonicalBaseLabel(templateId, {
       fallbackLabel: normalizeText(templateId) || "Operator",
     });
@@ -49,43 +58,63 @@ function createOperatorParticipantFactory(snapshot = {}) {
   };
 }
 
-function createGeneratedCenterParticipant(resultParticipant = {}) {
-  const participantId = normalizeText(resultParticipant?.id);
-  const templateId = normalizeText(resultParticipant?.templateId) || "particle";
-  const polarity = normalizeText(resultParticipant?.polarity).toLowerCase() === "anti" ? "anti" : "pro";
-  const rootNodeId = normalizeText(resultParticipant?.rootNodeId) || `${participantId}_structure`;
-  const normalizedTags = Array.isArray(resultParticipant?.tags)
-    ? resultParticipant.tags.map((tag) => normalizeLowerText(tag)).filter(Boolean)
-    : [];
-  const shouldRenderAsLeftReactant =
-    templateId !== "free_architrinos" &&
-    normalizedTags.some((tag) => tag.endsWith("-supplement"));
-  const label = normalizeText(resultParticipant?.label) || getReactionCanonicalBaseLabel(templateId, {
-    fallbackLabel: "Participant",
-  });
-  const structure = buildReactionParticipantStructure(templateId, {
-    id: rootNodeId,
-    label,
-    polarity,
-  });
-  return {
-    id: participantId,
-    side: "reactant",
-    ...(shouldRenderAsLeftReactant ? {} : { surfaceColumn: "center-assembly" }),
-    templateId,
-    polarity: ["electron", "neutrino", "up_quark", "down_quark", "noether_core"].includes(templateId)
-      ? polarity
-      : "",
-    label,
-    baseLabel: label,
-    provenanceId: `solver-result-participant:${participantId}`,
-    surfaceRowIndex: 0,
-    isSolveGenerated: true,
-    structure: structure.root,
-    structureValidation: structure.validation,
-    hierarchy: buildReactionStructureDescriptorTree(structure.root),
-    tags: Array.isArray(resultParticipant?.tags) ? [...resultParticipant.tags] : [],
+function createSolveGeneratedParticipantFactory(snapshot = {}) {
+  return function createSolveGeneratedParticipant(addition = {}) {
+    const participantId = normalizeText(addition?.ref);
+    const templateId = normalizeText(addition?.templateId) || "particle";
+    const polarity = normalizeText(addition?.polarity).toLowerCase() === "anti" ? "anti" : "pro";
+    const resultParticipant = addition?.participant ?? {};
+    const rootNodeId = normalizeText(resultParticipant?.rootNodeId) || `${participantId}_structure`;
+    const label = normalizeText(addition?.label) || getReactionCanonicalBaseLabel(templateId, {
+      fallbackLabel: "Participant",
+    });
+    const structure = buildReactionParticipantStructure(templateId, {
+      id: rootNodeId,
+      label,
+      polarity,
+    });
+    const placementClass = normalizeLowerText(addition?.placementClass);
+    const participant = {
+      id: participantId,
+      side: placementClass === "product" ? "product" : "reactant",
+      ...(placementClass === "center" ? { surfaceColumn: "center-assembly" } : {}),
+      templateId,
+      polarity: supportsReactionObjectPolarity(templateId) ? polarity : "",
+      label,
+      baseLabel: label,
+      provenanceId: `solver-result-participant:${participantId}`,
+      surfaceRowIndex: Math.max(0, Math.round(Number(addition?.surfaceRowIndex ?? 0) || 0)),
+      isSolveGenerated: true,
+      structure: structure.root,
+      structureValidation: structure.validation,
+      hierarchy: buildReactionStructureDescriptorTree(structure.root),
+      tags: Array.isArray(addition?.tags) ? [...addition.tags] : [],
+    };
+    snapshot.participants = [...(Array.isArray(snapshot?.participants) ? snapshot.participants : []), participant];
+    return participant;
   };
+}
+
+function applyParticipantPlacement(snapshot = {}, participantId = "", placementClass = "reactant", row = 0) {
+  const participants = Array.isArray(snapshot?.participants) ? snapshot.participants : [];
+  const participant =
+    participants.find((entry) => normalizeText(entry?.id) === normalizeText(participantId)) ?? null;
+  if (!participant) {
+    return false;
+  }
+  const normalizedPlacementClass = normalizeLowerText(placementClass);
+  if (normalizedPlacementClass === "center") {
+    participant.side = "reactant";
+    participant.surfaceColumn = "center-assembly";
+  } else if (normalizedPlacementClass === "product") {
+    participant.side = "product";
+    delete participant.surfaceColumn;
+  } else {
+    participant.side = "reactant";
+    delete participant.surfaceColumn;
+  }
+  participant.surfaceRowIndex = Math.max(0, Math.round(Number(row) || 0));
+  return true;
 }
 
 function addOrReplaceSnapshotMapping(snapshot = {}, sourceKey = "", sourceRole = "", targetKey = "", targetRole = "", mappingOptions = {}) {
@@ -116,19 +145,12 @@ export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options
   const request = options?.request ?? {};
   const result = options?.result ?? {};
   const reviewCandidate = options?.reviewCandidate ?? null;
+  if (result?.summary?.exact !== true || resultHasErrorDiagnostics(result)) {
+    throw new Error(
+      "Accepted reaction library generation requires an exact solver result with no error diagnostics."
+    );
+  }
   const snapshot = buildReactionSnapshotFromSolverRequest(request);
-  const generatedCenterParticipants = (Array.isArray(result?.participants) ? result.participants : [])
-    .filter(
-      (participant) =>
-        normalizeText(participant?.origin) === "solve-generated-intermediate" &&
-        normalizeText(participant?.side) === "center"
-    )
-    .map((participant, index) => {
-      const generatedParticipant = createGeneratedCenterParticipant(participant);
-      generatedParticipant.surfaceRowIndex = index;
-      return generatedParticipant;
-    });
-  snapshot.participants = [...snapshot.participants, ...generatedCenterParticipants];
   applyReactionSolvePlan({
     result,
     plan: options?.plan,
@@ -138,6 +160,9 @@ export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options
     getParticipantRootNode,
     buildNodeKey: buildReactionNodeKey,
     createOperatorParticipant: createOperatorParticipantFactory(snapshot),
+    createSolveGeneratedParticipant: createSolveGeneratedParticipantFactory(snapshot),
+    applyParticipantPlacement: (participantId, placementClass, row) =>
+      applyParticipantPlacement(snapshot, participantId, placementClass, row),
     addOrReplaceMapping: (sourceKey, sourceRole, targetKey, targetRole, mappingOptions = {}) =>
       addOrReplaceSnapshotMapping(snapshot, sourceKey, sourceRole, targetKey, targetRole, mappingOptions),
     markParticipantAutoDissociated,

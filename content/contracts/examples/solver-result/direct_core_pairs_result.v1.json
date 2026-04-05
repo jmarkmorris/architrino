@@ -136,20 +136,32 @@
       "stepId": "step_direct_anti",
       "kind": "direct-map",
       "ruleFamily": "direct-root",
-      "consumedParticipantIds": ["reactant_anti_core"],
+      "consumedParticipantIds": [
+        "reactant_anti_core"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_anti_core"],
-      "mappingIds": ["map_direct_anti"],
+      "resolvedTargetIds": [
+        "product_anti_core"
+      ],
+      "mappingIds": [
+        "map_direct_anti"
+      ],
       "operatorIds": []
     },
     {
       "stepId": "step_direct_pro",
       "kind": "direct-map",
       "ruleFamily": "direct-root",
-      "consumedParticipantIds": ["reactant_pro_core"],
+      "consumedParticipantIds": [
+        "reactant_pro_core"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_pro_core"],
-      "mappingIds": ["map_direct_pro"],
+      "resolvedTargetIds": [
+        "product_pro_core"
+      ],
+      "mappingIds": [
+        "map_direct_pro"
+      ],
       "operatorIds": []
     }
   ],
@@ -201,7 +213,29 @@
     "notes": []
   },
   "placement": {
-    "operatorPlacements": []
+    "operatorPlacements": [],
+    "participantPlacements": [
+      {
+        "participantId": "reactant_pro_core",
+        "placementClass": "reactant",
+        "row": 0
+      },
+      {
+        "participantId": "reactant_anti_core",
+        "placementClass": "reactant",
+        "row": 1
+      },
+      {
+        "participantId": "product_anti_core",
+        "placementClass": "product",
+        "row": 0
+      },
+      {
+        "participantId": "product_pro_core",
+        "placementClass": "product",
+        "row": 1
+      }
+    ]
   },
   "residue": {
     "unresolvedTargetIds": [],

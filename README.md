@@ -46,11 +46,18 @@ Then open `http://localhost:5173/`.
 Run these from the repo root:
 
 ```bash
+node scripts/sync-built-in-reaction-library.mjs --check
+node scripts/sync-built-in-reaction-library.mjs --write
 node scripts/validate-content.mjs --check
 node scripts/validate-content.mjs --write
 node scripts/build-scene-graph.mjs --check
 node scripts/build-scene-graph.mjs --write
 node scripts/smoke-option3.mjs
 ```
+
+`validate-content` also attempts built-in Reaction library drift checks for
+entries whose solver path still closes exactly. When a checked-in built-in
+fixture is now historical and the current solver no longer closes it exactly,
+the validator reports a note instead of failing pre-commit.
 
 If `--write` updates index or graph files intentionally, include those file changes in your commit.

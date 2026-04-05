@@ -1,13 +1,11 @@
-import { STRUCTURE_SLOT_ORDER } from "../../domain/structure/StructureSchema.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import { reactionPickerLabelColumns } from "./ReactionLabelCatalogRuntime.js";
+import { getReactionObjectOccupiedSlots } from "./ReactionObjectRegistryRuntime.js";
 
 function getOccupiedSlots(count = 0) {
-  const normalizedCount = Math.max(
-    0,
-    Math.min(STRUCTURE_SLOT_ORDER.length, Number(count) || 0)
-  );
-  return STRUCTURE_SLOT_ORDER.slice(0, normalizedCount);
+  return getReactionObjectOccupiedSlots("noether_core", {
+    occupiedCount: count,
+  });
 }
 
 function createPickerEntry({
