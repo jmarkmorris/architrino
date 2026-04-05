@@ -1,0 +1,222 @@
+{
+  "schema": "reaction-flow/v1",
+  "reactionId": "reaction_review_charged_pion_to_muon_neutrino",
+  "title": "Reaction Review: Charged pion to muon neutrino",
+  "review": {
+    "status": "accepted",
+    "acceptedAt": "2026-04-05T12:00:00.000Z"
+  },
+  "participants": [
+    {
+      "id": "reactant_positive_pion_1",
+      "side": "reactant",
+      "label": "Positive Pion",
+      "structureKey": "pi_plus",
+      "provenanceId": "solver-request-participant:reactant_positive_pion_1",
+      "tags": [
+        "incoming",
+        "pi_plus",
+        "pdg:species:pi-plus",
+        "pdg-id:pi+",
+        "pdg-name:pi+"
+      ],
+      "layout": {
+        "column": "left",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_anti_muon_1",
+      "side": "product",
+      "label": "Anti Electron",
+      "structureKey": "electron",
+      "provenanceId": "solver-request-participant:product_anti_muon_1",
+      "tags": [
+        "outgoing",
+        "electron",
+        "pdg:species:anti-muon",
+        "pdg:generation:2",
+        "pdg-id:mu+",
+        "generation:2",
+        "charged-lepton",
+        "pdg-name:mu+"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_pro_muon_neutrino_2",
+      "side": "product",
+      "label": "Pro Electron Neutrino",
+      "structureKey": "neutrino",
+      "provenanceId": "solver-request-participant:product_pro_muon_neutrino_2",
+      "tags": [
+        "outgoing",
+        "neutrino",
+        "pdg:species:muon-neutrino",
+        "pdg:generation:2",
+        "pdg-id:nu_mu",
+        "generation:2",
+        "pdg-name:nu_mu"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 0
+      }
+    }
+  ],
+  "operators": [
+    {
+      "id": "solve_generated_operator_4",
+      "type": "associate",
+      "label": "Associate",
+      "stageId": "stage_manual_authoring",
+      "inputs": [],
+      "outputs": [
+        {
+          "participantId": "product_anti_muon_1",
+          "anchorId": "product_anti_muon_1/root"
+        }
+      ],
+      "tags": [
+        "operator",
+        "associate",
+        "solve-generated"
+      ]
+    },
+    {
+      "id": "solve_generated_operator_5",
+      "type": "associate",
+      "label": "Associate",
+      "stageId": "stage_manual_authoring",
+      "inputs": [],
+      "outputs": [
+        {
+          "participantId": "product_pro_muon_neutrino_2",
+          "anchorId": "product_pro_muon_neutrino_2/root"
+        }
+      ],
+      "tags": [
+        "operator",
+        "associate",
+        "solve-generated"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "id": "mapping_1",
+      "from": {
+        "participantId": "solve_generated_operator_4",
+        "anchorId": "solve_generated_operator_4_root"
+      },
+      "to": {
+        "participantId": "product_anti_muon_1",
+        "anchorId": "product_anti_muon_1/root"
+      },
+      "viaOperatorId": "solve_generated_operator_4",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_2",
+      "from": {
+        "participantId": "solve_generated_operator_5",
+        "anchorId": "solve_generated_operator_5_root"
+      },
+      "to": {
+        "participantId": "product_pro_muon_neutrino_2",
+        "anchorId": "product_pro_muon_neutrino_2/root"
+      },
+      "viaOperatorId": "solve_generated_operator_5",
+      "stageId": "stage_manual_authoring"
+    }
+  ],
+  "stages": [
+    {
+      "id": "stage_manual_authoring",
+      "label": "Manual Authoring",
+      "order": 0
+    }
+  ],
+  "provenance": {
+    "sourceDocumentIds": [
+      "pdg-proposal:charged_pion_to_muon_neutrino"
+    ],
+    "participantIds": [
+      "reactant_positive_pion_1",
+      "product_anti_muon_1",
+      "product_pro_muon_neutrino_2"
+    ],
+    "mappingIds": [
+      "mapping_1",
+      "mapping_2"
+    ],
+    "reviewInput": {
+      "schema": "solver-request/v1",
+      "requestId": "charged_pion_to_muon_neutrino",
+      "origin": {
+        "sourceKind": "pdg-ingest",
+        "sourceDocumentId": "pdg-proposal:charged_pion_to_muon_neutrino",
+        "title": "Charged pion to muon neutrino"
+      },
+      "upstreamContext": {
+        "sourceSchema": "pdg-proposal/v1",
+        "proposalId": "charged_pion_to_muon_neutrino",
+        "reviewBoundary": "reaction-review",
+        "source": {
+          "edition": "2026",
+          "channelDescription": "pi+ -> mu+ nu_mu",
+          "citation": "Local PDG fixture seed",
+          "branchingDisplay": "dominant charged pion decay channel",
+          "fixtureId": "charged_pion_to_muon_neutrino",
+          "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json",
+          "contract": {
+            "upstreamSchema": "pdg-proposal/v1",
+            "downstreamSchema": "solver-request/v1",
+            "handoffMode": "upstream-only",
+            "reactionAcceptanceRequired": true,
+            "reactionAcceptanceBoundary": "reaction-review",
+            "acceptedReactionHandoff": "reaction-owned",
+            "composerHandoff": "accepted-reaction-only"
+          }
+        },
+        "contract": {
+          "upstreamSchema": "pdg-proposal/v1",
+          "downstreamSchema": "solver-request/v1",
+          "handoffMode": "upstream-only",
+          "reactionAcceptanceRequired": true,
+          "reactionAcceptanceBoundary": "reaction-review",
+          "acceptedReactionHandoff": "reaction-owned",
+          "composerHandoff": "accepted-reaction-only"
+        },
+        "ranking": {
+          "rank": 1,
+          "score": 95,
+          "reasons": [
+            "fixture-source",
+            "all-participants-supported"
+          ]
+        },
+        "notes": [
+          "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+        ]
+      }
+    }
+  },
+  "hints": {
+    "initialFramingTargets": [
+      "reactant_positive_pion_1",
+      "product_anti_muon_1",
+      "product_pro_muon_neutrino_2"
+    ],
+    "semanticTags": [
+      "reaction-review",
+      "solver-request-import",
+      "pdg-ingest",
+      "pdg-review"
+    ],
+    "suggestedSceneId": "reaction_review_charged_pion_to_muon_neutrino_scene"
+  }
+}

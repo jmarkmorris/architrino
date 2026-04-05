@@ -6,6 +6,7 @@ import {
   DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID,
   REACTION_BUILTIN_LIBRARY_ENTRIES,
   loadDefaultReactionBuiltInLibraryEntry,
+  loadReactionBuiltInLibraryEntry,
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
 
 async function readJson(url) {
@@ -88,6 +89,39 @@ test("reaction built-in library seeds free neutron beta as the default entry", a
     loaded.snapshot.participants.some(
       (participant) => participant.id === "product_antineutrino" && participant.polarity === "anti"
     ),
+    true
+  );
+});
+
+test("reaction built-in library now includes the first accepted PDG-backed solved entries", async () => {
+  const muonFixture = await readJson(
+    new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
+  );
+  const pionFixture = await readJson(
+    new URL("../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json", import.meta.url)
+  );
+  const fetchImpl = createFixtureFetch();
+
+  assert.deepEqual(
+    REACTION_BUILTIN_LIBRARY_ENTRIES.map((entry) => entry.id),
+    ["free_neutron_beta", "muon_decay", "charged_pion_to_muon_neutrino"]
+  );
+
+  const loadedMuon = await loadReactionBuiltInLibraryEntry("muon_decay", { fetchImpl });
+  const loadedPion = await loadReactionBuiltInLibraryEntry("charged_pion_to_muon_neutrino", { fetchImpl });
+
+  assert.equal(loadedMuon.entry.title, "Muon decay");
+  assert.equal(loadedMuon.document.reactionId, muonFixture.reactionId);
+  assert.equal(loadedMuon.document.review.status, "accepted");
+  assert.deepEqual(loadedMuon.exportOverrides.sourceDocumentIds, muonFixture.provenance.sourceDocumentIds);
+  assert.equal(loadedMuon.snapshot.participants.some((participant) => participant.id === "reactant_pro_muon_1"), true);
+
+  assert.equal(loadedPion.entry.title, "Charged pion to muon neutrino");
+  assert.equal(loadedPion.document.reactionId, pionFixture.reactionId);
+  assert.equal(loadedPion.document.review.status, "accepted");
+  assert.deepEqual(loadedPion.exportOverrides.sourceDocumentIds, pionFixture.provenance.sourceDocumentIds);
+  assert.equal(
+    loadedPion.snapshot.participants.some((participant) => participant.id === "reactant_positive_pion_1"),
     true
   );
 });

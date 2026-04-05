@@ -12,6 +12,10 @@ const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_OPERATOR_LANE_INDEX = 1;
 const FREE_NEUTRON_BETA_DOCUMENT_PATH =
   "../../../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json";
+const MUON_DECAY_DOCUMENT_PATH =
+  "../../../content/contracts/examples/reaction-flow/muon_decay.v1.json";
+const CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH =
+  "../../../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json";
 
 export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([
   Object.freeze({
@@ -20,6 +24,18 @@ export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([
     description: "Known solved free neutron beta decay reaction-flow fixture.",
     documentPath: FREE_NEUTRON_BETA_DOCUMENT_PATH,
     isDefault: true,
+  }),
+  Object.freeze({
+    id: "muon_decay",
+    title: "Muon decay",
+    description: "Accepted PDG-backed solved muon decay library entry.",
+    documentPath: MUON_DECAY_DOCUMENT_PATH,
+  }),
+  Object.freeze({
+    id: "charged_pion_to_muon_neutrino",
+    title: "Charged pion to muon neutrino",
+    description: "Accepted PDG-backed solved charged pion decay library entry.",
+    documentPath: CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH,
   }),
 ]);
 

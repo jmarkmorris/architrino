@@ -1599,17 +1599,3 @@ Current:
 Objective:
 
 - keep the analyzable outlier list empty by ranking solver work against the frozen-manifest denominator and the contract-facing regression surface, so newly discovered misses become fresh regressions rather than lingering backlog as particle vocabulary and rule families expand.
-
-### 5. Use Library Population As The Proof That The Full Solver Path Is Real
-
-Status: `pending`
-
-Current:
-
-- the Reaction library now proves the shell path exists;
-- the sweep path proves large sets of PDG cases can be measured;
-- but the repo still needs a disciplined program for turning exact, fully-provenanced solved cases into accepted library entries without weakening the contract boundary or bypassing review.
-
-Objective:
-
-- treat library population as the final acceptance test for the whole pipeline: PDG normalization, external solve, Reaction review, accepted handoff, and reusable library entry should all succeed on the same case before that case counts as complete.
