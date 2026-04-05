@@ -14,6 +14,8 @@ class FakeElement {
     this.dataset = {};
     this.attributes = new Map();
     this.listeners = new Map();
+    this.children = [];
+    this.innerHTML = "";
   }
 
   addEventListener(type, listener) {
@@ -22,6 +24,11 @@ class FakeElement {
 
   setAttribute(name, value) {
     this.attributes.set(name, String(value));
+  }
+
+  appendChild(child) {
+    this.children.push(child);
+    return child;
   }
 }
 
@@ -32,22 +39,70 @@ class FakeButtonElement extends FakeElement {
   }
 }
 
+class FakeOptionElement extends FakeElement {
+  constructor() {
+    super();
+    this.value = "";
+  }
+}
+
+class FakeSelectElement extends FakeElement {
+  constructor() {
+    super();
+    this.disabled = false;
+    this.value = "";
+    this.options = [];
+  }
+
+  set innerHTML(value) {
+    this._innerHTML = String(value ?? "");
+    this.children = [];
+    this.options = [];
+    this.value = "";
+  }
+
+  get innerHTML() {
+    return this._innerHTML ?? "";
+  }
+
+  appendChild(child) {
+    this.options.push(child);
+    if (!this.value && child?.value) {
+      this.value = child.value;
+    }
+    return super.appendChild(child);
+  }
+}
+
 function withFakeDom(testBody) {
   return async () => {
     const previousWindow = globalThis.window;
+    const previousDocument = globalThis.document;
     const previousHTMLElement = globalThis.HTMLElement;
     const previousHTMLButtonElement = globalThis.HTMLButtonElement;
+    const previousHTMLSelectElement = globalThis.HTMLSelectElement;
     globalThis.window = {
       sessionStorage: null,
     };
+    globalThis.document = {
+      createElement(tagName) {
+        if (tagName === "option") {
+          return new FakeOptionElement();
+        }
+        return new FakeElement();
+      },
+    };
     globalThis.HTMLElement = FakeElement;
     globalThis.HTMLButtonElement = FakeButtonElement;
+    globalThis.HTMLSelectElement = FakeSelectElement;
     try {
       await testBody();
     } finally {
       globalThis.window = previousWindow;
+      globalThis.document = previousDocument;
       globalThis.HTMLElement = previousHTMLElement;
       globalThis.HTMLButtonElement = previousHTMLButtonElement;
+      globalThis.HTMLSelectElement = previousHTMLSelectElement;
     }
   };
 }
@@ -109,13 +164,18 @@ function createCommitRuntimeStub() {
 function createReactionAppRuntimeHarness(options = {}) {
   const statusElement = new FakeElement();
   const reviewStateElement = new FakeElement();
+  const librarySelect = new FakeSelectElement();
+  const libraryLoadButton = new FakeButtonElement();
   const acceptButton = new FakeButtonElement();
   const exportButton = new FakeButtonElement();
   const canvasRuntimeStub = createCanvasRuntimeStub(options.initialSnapshot);
   let defaultLibraryLoadCalls = 0;
+  let specificLibraryLoadCalls = [];
   const runtime = createReactionAppRuntime({
     statusElement,
     reviewStateElement,
+    librarySelect,
+    libraryLoadButton,
     acceptButton,
     exportButton,
     initialSolverRequest: options.initialSolverRequest ?? null,
@@ -130,15 +190,22 @@ function createReactionAppRuntimeHarness(options = {}) {
       defaultLibraryLoadCalls += 1;
       return options.defaultLibraryPayload;
     },
+    loadReactionLibraryEntry: async (entryId) => {
+      specificLibraryLoadCalls.push(entryId);
+      return options.libraryPayloads?.[entryId] ?? options.defaultLibraryPayload;
+    },
   });
   return {
     runtime,
     statusElement,
     reviewStateElement,
+    librarySelect,
+    libraryLoadButton,
     acceptButton,
     exportButton,
     canvasRuntimeStub,
     getDefaultLibraryLoadCalls: () => defaultLibraryLoadCalls,
+    getSpecificLibraryLoadCalls: () => specificLibraryLoadCalls,
   };
 }
 
@@ -178,6 +245,12 @@ test(
     assert.equal(harness.canvasRuntimeStub.setActiveCalls, 1);
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
     assert.deepEqual(harness.canvasRuntimeStub.replaceCalls[0], defaultLibraryPayload.snapshot);
+    assert.deepEqual(
+      harness.librarySelect.options.map((option) => option.value),
+      ["free_neutron_beta", "muon_decay", "charged_pion_to_muon_neutrino"]
+    );
+    assert.equal(harness.librarySelect.value, "free_neutron_beta");
+    assert.equal(harness.libraryLoadButton.disabled, false);
     assert.equal(
       harness.statusElement.textContent,
       "Built-in reaction loaded: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
@@ -220,6 +293,60 @@ test(
     assert.equal(
       harness.reviewStateElement.textContent,
       "Draft. Accept this reaction to mark it downstream-ready."
+    );
+  })
+);
+
+test(
+  "reaction app runtime lets the user load a specific built-in library entry from the selector",
+  withFakeDom(async () => {
+    const harness = createReactionAppRuntimeHarness({
+      initialSnapshot: {
+        participants: [
+          {
+            id: "existing_reactant",
+            side: "reactant",
+            templateId: "neutron",
+            label: "Existing neutron",
+          },
+        ],
+        mappings: [],
+      },
+      defaultLibraryPayload,
+      libraryPayloads: {
+        muon_decay: {
+          entry: {
+            id: "muon_decay",
+            title: "Muon decay",
+          },
+          snapshot: {
+            participants: [
+              {
+                id: "reactant_pro_muon_1",
+                side: "reactant",
+                templateId: "muon",
+                label: "Pro Muon",
+              },
+            ],
+            mappings: [],
+          },
+          exportOverrides: {
+            reactionId: "muon_decay",
+            title: "Muon decay",
+          },
+        },
+      },
+    });
+
+    await harness.runtime.init();
+    harness.librarySelect.value = "muon_decay";
+    await harness.runtime.loadSelectedBuiltInReactionLibraryEntry();
+
+    assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["muon_decay"]);
+    assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
+    assert.equal(
+      harness.statusElement.textContent,
+      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
   })
 );

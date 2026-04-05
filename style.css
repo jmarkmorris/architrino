@@ -1303,6 +1303,39 @@ body {
   flex-wrap: wrap;
 }
 
+.reaction-app-library-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 169, 224, 0.24);
+  background: rgba(11, 17, 32, 0.86);
+}
+
+.reaction-app-library-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(195, 210, 242, 0.7);
+}
+
+.reaction-app-library-select {
+  min-width: 220px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #f5f7ff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reaction-app-library-select:disabled {
+  opacity: 0.56;
+}
+
 .reaction-app-home-link {
   flex: 0 0 auto;
   text-decoration: none;

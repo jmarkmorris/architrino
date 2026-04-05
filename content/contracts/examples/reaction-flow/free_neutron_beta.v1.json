@@ -90,11 +90,11 @@
       "id": "map_remainder_to_proton",
       "from": {
         "participantId": "reactant_neutron",
-        "anchorId": "neutron_remainder"
+        "anchorId": "reactant_neutron_structure/quark_1"
       },
       "to": {
         "participantId": "product_proton",
-        "anchorId": "proton_remainder"
+        "anchorId": "product_proton_structure"
       },
       "viaOperatorId": "op_transmute_1",
       "stageId": "stage_handoff",
@@ -107,11 +107,11 @@
       "id": "map_emitted_electron",
       "from": {
         "participantId": "reactant_neutron",
-        "anchorId": "emission_corridor"
+        "anchorId": "reactant_neutron_structure/quark_2"
       },
       "to": {
         "participantId": "product_electron",
-        "anchorId": "electron_root"
+        "anchorId": "product_electron_structure"
       },
       "viaOperatorId": "op_transmute_1",
       "stageId": "stage_handoff",
@@ -124,11 +124,11 @@
       "id": "map_emitted_antineutrino",
       "from": {
         "participantId": "reactant_neutron",
-        "anchorId": "emission_corridor"
+        "anchorId": "reactant_neutron_structure/quark_3"
       },
       "to": {
         "participantId": "product_antineutrino",
-        "anchorId": "antineutrino_root"
+        "anchorId": "product_antineutrino_structure"
       },
       "viaOperatorId": "op_transmute_1",
       "stageId": "stage_handoff",

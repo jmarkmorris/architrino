@@ -8,6 +8,7 @@ import {
   loadDefaultReactionBuiltInLibraryEntry,
   loadReactionBuiltInLibraryEntry,
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
+import { parseReactionNodeKey } from "../src/apps/reaction/ReactionNodeKeyRuntime.js";
 
 async function readJson(url) {
   return JSON.parse(await fs.readFile(url, "utf8"));
@@ -23,6 +24,22 @@ function createFixtureFetch() {
       },
     };
   };
+}
+
+function collectParticipantNodeIds(participant = {}) {
+  const nodeIds = new Set();
+  const queue = [...(Array.isArray(participant?.hierarchy) ? participant.hierarchy : [])];
+  while (queue.length) {
+    const node = queue.shift();
+    if (!node || typeof node !== "object") {
+      continue;
+    }
+    if (node.id) {
+      nodeIds.add(node.id);
+    }
+    queue.push(...(Array.isArray(node.children) ? node.children : []));
+  }
+  return nodeIds;
 }
 
 test("reaction built-in library seeds free neutron beta as the default entry", async () => {
@@ -91,6 +108,15 @@ test("reaction built-in library seeds free neutron beta as the default entry", a
     ),
     true
   );
+  const participantNodeIdsById = new Map(
+    loaded.snapshot.participants.map((participant) => [participant.id, collectParticipantNodeIds(participant)])
+  );
+  for (const mapping of loaded.snapshot.mappings) {
+    const sourceKey = parseReactionNodeKey(mapping.sourceKey);
+    const targetKey = parseReactionNodeKey(mapping.targetKey);
+    assert.equal(participantNodeIdsById.get(sourceKey.participantId)?.has(sourceKey.nodeId) ?? false, true);
+    assert.equal(participantNodeIdsById.get(targetKey.participantId)?.has(targetKey.nodeId) ?? false, true);
+  }
 });
 
 test("reaction built-in library now includes the first accepted PDG-backed solved entries", async () => {

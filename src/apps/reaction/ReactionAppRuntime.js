@@ -2,7 +2,11 @@ import { createReactionCommitStateRuntime } from "./ReactionCommitStateRuntime.j
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
 import { navigateStandaloneReactionHome } from "./ReactionAppModeRuntime.js";
 import { createReactionCanvasUiRuntime } from "./ReactionCanvasUiRuntime.js";
-import { loadDefaultReactionBuiltInLibraryEntry } from "./ReactionBuiltInLibraryRuntime.js";
+import {
+  REACTION_BUILTIN_LIBRARY_ENTRIES,
+  loadDefaultReactionBuiltInLibraryEntry,
+  loadReactionBuiltInLibraryEntry,
+} from "./ReactionBuiltInLibraryRuntime.js";
 import { buildReactionReviewCandidateFromSolverRequest } from "./ReactionReviewImportRuntime.js";
 import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
@@ -47,6 +51,8 @@ export function createReactionAppRuntime(deps) {
     emptyState = null,
     mapSvg = null,
     menu = null,
+    librarySelect = null,
+    libraryLoadButton = null,
     acceptButton = null,
     exportButton = null,
     clearButton = null,
@@ -57,6 +63,8 @@ export function createReactionAppRuntime(deps) {
     createCommitRuntime = createReactionCommitStateRuntime,
     createCanvasRuntime = createReactionCanvasUiRuntime,
     createFlowExportRuntime = createReactionFlowExportRuntime,
+    builtInLibraryEntries = REACTION_BUILTIN_LIBRARY_ENTRIES,
+    loadReactionLibraryEntry = loadReactionBuiltInLibraryEntry,
     loadDefaultReactionLibraryEntry = loadDefaultReactionBuiltInLibraryEntry,
   } = deps;
 
@@ -144,6 +152,36 @@ export function createReactionAppRuntime(deps) {
     } Accept it to emit accepted reaction-flow/v1 JSON downstream of review.`;
   }
 
+  function syncBuiltInLibraryControls(selectedEntryId = "") {
+    if (!(librarySelect instanceof HTMLSelectElement)) {
+      return;
+    }
+    const entries = Array.isArray(builtInLibraryEntries) ? builtInLibraryEntries : [];
+    librarySelect.innerHTML = "";
+    entries.forEach((entry) => {
+      const option = globalThis.document?.createElement?.("option") ?? null;
+      if (!option) {
+        return;
+      }
+      option.value = normalizeText(entry?.id);
+      option.textContent = normalizeText(entry?.title) || option.value;
+      librarySelect.appendChild(option);
+    });
+    const defaultSelectedId =
+      normalizeText(selectedEntryId) ||
+      normalizeText(librarySelect.value) ||
+      normalizeText(entries.find((entry) => entry?.isDefault)?.id) ||
+      normalizeText(entries[0]?.id);
+    if (defaultSelectedId) {
+      librarySelect.value = defaultSelectedId;
+    }
+    librarySelect.disabled = entries.length === 0;
+    if (libraryLoadButton instanceof HTMLButtonElement) {
+      libraryLoadButton.disabled = entries.length === 0;
+      libraryLoadButton.setAttribute("aria-disabled", entries.length === 0 ? "true" : "false");
+    }
+  }
+
   function applyLoadedSnapshot(snapshot = {}, documentOptions = null, options = {}) {
     latestSnapshot = canvasRuntime.replaceSnapshot(snapshot, {
       announce: false,
@@ -175,6 +213,7 @@ export function createReactionAppRuntime(deps) {
     const appliedSnapshot = applyLoadedSnapshot(payload?.snapshot, payload?.exportOverrides, {
       announce: false,
     });
+    syncBuiltInLibraryControls(payload?.entry?.id);
     if (options?.announce !== false) {
       setStatus(buildBuiltInLibraryStatusMessage(payload?.entry));
     }
@@ -264,9 +303,22 @@ export function createReactionAppRuntime(deps) {
     return true;
   }
 
+  async function loadSelectedBuiltInReactionLibraryEntry(entryId = "", options = {}) {
+    const resolvedEntryId =
+      normalizeText(entryId) ||
+      (librarySelect instanceof HTMLSelectElement ? normalizeText(librarySelect.value) : "");
+    if (!resolvedEntryId) {
+      setStatus("Choose a built-in reaction before loading.");
+      return null;
+    }
+    const payload = await loadReactionLibraryEntry(resolvedEntryId);
+    return loadBuiltInReactionLibraryCandidate(payload, options);
+  }
+
   async function init() {
     latestSnapshot = canvasRuntime.getSnapshot();
     syncReviewControls();
+    syncBuiltInLibraryControls();
     if (acceptButton instanceof HTMLButtonElement) {
       acceptButton.addEventListener("click", () => {
         acceptReactionFlowDocument();
@@ -275,6 +327,15 @@ export function createReactionAppRuntime(deps) {
     if (exportButton instanceof HTMLButtonElement) {
       exportButton.addEventListener("click", () => {
         downloadReactionFlowDocument();
+      });
+    }
+    if (libraryLoadButton instanceof HTMLButtonElement) {
+      libraryLoadButton.addEventListener("click", async () => {
+        try {
+          await loadSelectedBuiltInReactionLibraryEntry();
+        } catch (_error) {
+          setStatus("Built-in reaction load failed.");
+        }
       });
     }
     if (exitButton instanceof HTMLButtonElement) {
@@ -304,15 +365,16 @@ export function createReactionAppRuntime(deps) {
     setStatus("Reaction app ready. Use the left and right + controls to build a reaction.");
   }
 
-  return {
-    init,
-    setStatus,
-    exitReactionApp,
-    acceptReactionFlowDocument,
+    return {
+      init,
+      setStatus,
+      exitReactionApp,
+      acceptReactionFlowDocument,
     canvasRuntime,
-    exportReactionFlowDocument,
-    downloadReactionFlowDocument,
-    loadBuiltInReactionLibraryCandidate,
-    loadSolverRequestReviewCandidate,
-  };
+      exportReactionFlowDocument,
+      downloadReactionFlowDocument,
+      loadBuiltInReactionLibraryCandidate,
+      loadSelectedBuiltInReactionLibraryEntry,
+      loadSolverRequestReviewCandidate,
+    };
 }

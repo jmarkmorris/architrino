@@ -19,6 +19,8 @@ const reactionAppRuntime = createReactionAppRuntime({
   emptyState: document.getElementById("reaction-canvas-empty"),
   mapSvg: document.getElementById("reaction-canvas-svg"),
   menu: document.getElementById("reaction-canvas-menu"),
+  librarySelect: document.getElementById("reaction-library-select"),
+  libraryLoadButton: document.getElementById("reaction-library-load-button"),
   acceptButton: document.getElementById("reaction-accept-button"),
   exportButton: document.getElementById("reaction-export-button"),
   clearButton: document.getElementById("reaction-clear-button"),
