@@ -6,6 +6,7 @@ import {
 import { buildReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "./ReactionStructureDescriptorRuntime.js";
+import { buildReactionLibraryExportOverrides } from "./ReactionFlowLibrarySupportRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_OPERATOR_LANE_INDEX = 1;
@@ -375,28 +376,6 @@ export function buildReactionSnapshotFromReactionFlowDocument(document = {}) {
       participantsById,
     }),
   };
-}
-
-export function buildReactionLibraryExportOverrides(document = {}) {
-  const reactionId = normalizeText(document?.reactionId);
-  const title = normalizeText(document?.title);
-  const sourceDocumentIds = buildTagList(document?.provenance?.sourceDocumentIds);
-  const semanticTags = buildTagList(document?.hints?.semanticTags);
-  const suggestedSceneId = normalizeText(document?.hints?.suggestedSceneId);
-  return Object.fromEntries(
-    Object.entries({
-      reactionId,
-      title,
-      sourceDocumentIds,
-      semanticTags,
-      suggestedSceneId,
-    }).filter(([, value]) => {
-      if (Array.isArray(value)) {
-        return value.length > 0;
-      }
-      return value !== "";
-    })
-  );
 }
 
 async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {

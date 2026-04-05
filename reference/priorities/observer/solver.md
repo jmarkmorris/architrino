@@ -1600,21 +1600,7 @@ Objective:
 
 - keep the analyzable outlier list empty by ranking solver work against the frozen-manifest denominator and the contract-facing regression surface, so newly discovered misses become fresh regressions rather than lingering backlog as particle vocabulary and rule families expand.
 
-### 5. Finish The Accepted Reaction Handoff From Solved Output To Library Entry
-
-Status: `pending`
-
-Current:
-
-- Reaction already has accepted commit state and a first built-in solved-reaction library seed;
-- Reaction also already exports accepted `reaction-flow/v1` handoff JSON downstream;
-- but there is not yet one fully explicit path that starts from a PDG-backed solver request, produces a fully complete solved reaction the proper way, passes through Reaction acceptance, and lands as a canonical reusable library entry.
-
-Objective:
-
-- establish the full accepted path from PDG-backed `solver-request/v1`, through fully-provenanced `solver-result/v1`, through Reaction review and acceptance, into canonical library-ready reaction artifacts, so the Reaction library is populated from properly solved and accepted reactions instead of from shortcut fixtures or browser-local state.
-
-### 6. Use Library Population As The Proof That The Full Solver Path Is Real
+### 5. Use Library Population As The Proof That The Full Solver Path Is Real
 
 Status: `pending`
 
