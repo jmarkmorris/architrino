@@ -58,6 +58,9 @@ function buildReactionFlowReviewInput(reviewInput = {}) {
   if (!requestId || !sourceKind || !sourceDocumentId) {
     return null;
   }
+  const upstreamContext = reviewInput?.upstreamContext && typeof reviewInput.upstreamContext === "object"
+    ? structuredClone(reviewInput.upstreamContext)
+    : null;
   return {
     schema: SOLVER_REQUEST_SCHEMA,
     requestId,
@@ -68,6 +71,7 @@ function buildReactionFlowReviewInput(reviewInput = {}) {
         title,
       }).filter(([, value]) => value !== "")
     ),
+    ...(upstreamContext ? { upstreamContext } : {}),
   };
 }
 
@@ -78,6 +82,8 @@ function buildParticipantTags(participant = {}) {
       : "",
     participant?.side === "product" ? "outgoing" : "",
     participant?.surfaceColumn === "center-assembly" ? "center-assembly" : "",
+    participant?.isDissociatedComposite ? "manual-dissociated" : "",
+    participant?.isAutoDissociatedComposite ? "auto-dissociated" : "",
     participant?.templateId ?? "",
     participant?.templateId === "upi0" || participant?.templateId === "dpi0" ? "pi0" : "",
     participant?.isSolveGenerated ? "solve-generated" : "",

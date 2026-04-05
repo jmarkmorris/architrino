@@ -109,6 +109,10 @@ test("generated PDG solver-request fixtures validate against solver-request/v1",
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
     assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
     assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
+    assert.equal(request.upstreamContext?.sourceSchema, "pdg-proposal/v1", `${entry} upstream source schema drifted`);
+    assert.equal(request.upstreamContext?.proposalId, request.requestId, `${entry} upstream proposal id drifted`);
+    assert.equal(request.upstreamContext?.reviewBoundary, "reaction-review", `${entry} upstream review boundary drifted`);
+    assert.equal(request.upstreamContext?.contract?.downstreamSchema, "solver-request/v1", `${entry} upstream contract drifted`);
     assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
     assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
   });
@@ -137,6 +141,10 @@ test("generated live PDG solver-request artifacts validate against solver-reques
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
     assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
     assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
+    assert.equal(request.upstreamContext?.sourceSchema, "pdg-proposal/v1", `${entry} upstream source schema drifted`);
+    assert.equal(request.upstreamContext?.proposalId, request.requestId, `${entry} upstream proposal id drifted`);
+    assert.equal(request.upstreamContext?.reviewBoundary, "reaction-review", `${entry} upstream review boundary drifted`);
+    assert.equal(request.upstreamContext?.contract?.downstreamSchema, "solver-request/v1", `${entry} upstream contract drifted`);
     assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
     assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
   });
@@ -233,6 +241,11 @@ test("charged pion fixture now emits a solver-request artifact through the stabl
     composerHandoff: "accepted-reaction-only",
   });
   assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino");
+  assert.equal(request.upstreamContext.sourceSchema, "pdg-proposal/v1");
+  assert.equal(request.upstreamContext.proposalId, "charged_pion_to_muon_neutrino");
+  assert.equal(request.upstreamContext.reviewBoundary, "reaction-review");
+  assert.deepEqual(request.upstreamContext.contract, proposal.source.contract);
+  assert.deepEqual(request.upstreamContext.notes, proposal.notes);
   assert.deepEqual(proposal.notes, [
     "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
   ]);
@@ -259,6 +272,11 @@ test("charged pion live PDG channel now emits a solver-request artifact through 
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
   assert.deepEqual(proposal.notes, []);
   assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg");
+  assert.equal(request.upstreamContext.sourceSchema, "pdg-proposal/v1");
+  assert.equal(request.upstreamContext.proposalId, "charged_pion_to_muon_neutrino.live-pdg");
+  assert.equal(request.upstreamContext.reviewBoundary, "reaction-review");
+  assert.deepEqual(request.upstreamContext.contract, proposal.source.contract);
+  assert.deepEqual(request.upstreamContext.notes, proposal.notes);
   assert.equal(request.participants[0].templateId, "pi_plus");
   assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
   assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);

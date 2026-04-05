@@ -324,6 +324,99 @@
                   "minLength": 1
                 }
               }
+            },
+            "upstreamContext": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["sourceSchema", "reviewBoundary"],
+              "properties": {
+                "sourceSchema": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "proposalId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "reviewBoundary": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "contract": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "upstreamSchema",
+                    "downstreamSchema",
+                    "handoffMode",
+                    "reactionAcceptanceRequired",
+                    "reactionAcceptanceBoundary",
+                    "acceptedReactionHandoff",
+                    "composerHandoff"
+                  ],
+                  "properties": {
+                    "upstreamSchema": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "downstreamSchema": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "handoffMode": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "reactionAcceptanceRequired": {
+                      "type": "boolean"
+                    },
+                    "reactionAcceptanceBoundary": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "acceptedReactionHandoff": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "composerHandoff": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "ranking": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["rank", "score", "reasons"],
+                  "properties": {
+                    "rank": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "score": {
+                      "type": "number"
+                    },
+                    "reasons": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
             }
           }
         }

@@ -259,7 +259,8 @@ function classifyExactClosureKind(result) {
   const labels = collectStepDiagnosticLabels(result);
   if (
     labels.has("meson-constituent-provenance") ||
-    labels.has("lepton-constituent-provenance")
+    labels.has("lepton-constituent-provenance") ||
+    labels.has("baryon-constituent-provenance")
   ) {
     return "full-provenance";
   }

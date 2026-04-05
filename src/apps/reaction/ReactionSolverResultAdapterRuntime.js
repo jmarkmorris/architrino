@@ -20,6 +20,15 @@ function normalizeProjectionEndpoint(
   solveGeneratedOperatorIds = new Set()
 ) {
   const participantId = normalizeText(endpoint?.participantId);
+  const participantRef = normalizeText(endpoint?.participantRef);
+  if (participantRef) {
+    return {
+      participantRef,
+      anchorId: normalizeText(endpoint?.anchorId),
+      role: endpoint?.role,
+      anchorInstanceIndex: endpoint?.anchorInstanceIndex ?? null,
+    };
+  }
   if (!participantId) {
     return null;
   }

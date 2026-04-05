@@ -43,6 +43,27 @@
                 ></path>
               </svg>
             </a>
+            <label class="reaction-app-library-picker" for="reaction-library-select">
+              <span class="reaction-app-library-label">Library</span>
+              <select
+                id="reaction-library-select"
+                class="reaction-app-library-select"
+                aria-label="Choose a built-in reaction library entry"
+              ></select>
+            </label>
+            <div
+              id="reaction-library-quick-list"
+              class="reaction-app-library-quick-list"
+              aria-label="Built-in reaction library entries"
+            ></div>
+            <button
+              id="reaction-library-load-button"
+              class="reaction-app-action"
+              type="button"
+              aria-label="Load the selected built-in reaction"
+            >
+              Load Library
+            </button>
             <button
               id="reaction-accept-button"
               class="reaction-app-action is-primary"
@@ -138,6 +159,6 @@
         </section>
       </main>
     </div>
-    <script type="module" src="./src/apps/reaction/main.js"></script>
+    <script type="module" src="./src/apps/reaction/main.js?v=2026-04-05-reaction-app-v2"></script>
   </body>
 </html>

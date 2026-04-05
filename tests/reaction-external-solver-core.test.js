@@ -258,6 +258,45 @@ test("external solve-reaction CLI upgrades muon decay to the lepton constituent 
   );
 });
 
+test("external solve-reaction CLI upgrades neutron beta decay to the baryon constituent provenance path", () => {
+  const result = runSolveReactionCli("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
+
+  assert.equal(result.summary.outcome, "exact");
+  assert.equal(result.summary.exact, true);
+  assert.equal(result.summary.unresolvedTargetCount, 0);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-constituents"), true);
+  assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-baryon-weak-core-pool"), true);
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("baryon-constituent-provenance")),
+    true
+  );
+  assert.equal(
+    result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")),
+    false
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "free_architrinos"
+    ),
+    true
+  );
+  assert.equal(
+    result.participants.some(
+      (participant) =>
+        participant.origin === "solve-generated-intermediate" &&
+        participant.templateId === "up_quark" &&
+        participant.tags?.includes("weak-transform-product")
+    ),
+    true
+  );
+  assert.equal(
+    result.diagnostics.some((diagnostic) => diagnostic.code === "baryon-constituent-provenance"),
+    true
+  );
+});
+
 test("external solve-reaction CLI upgrades radiative muon weak channels to the lepton constituent provenance path", () => {
   const requestPaths = [
     "content/contracts/examples/pdg/v1/generated/radiative_muon_decay.live-pdg.solver-request.v1.json",
@@ -3601,6 +3640,17 @@ test("external solve-reaction CLI uses an authored Noether Pair as a normal sour
   assert.equal(result.summary.unresolvedTargetCount, 0);
   assert.deepEqual(result.residue.unresolvedTargetIds, []);
   assert.deepEqual(result.dissociation.autoDissociatedParticipantIds, ["center_noether_pair_authored"]);
+  assert.deepEqual(result.dissociation.autoDissociatedParticipants, [
+    {
+      participantId: "center_noether_pair_authored",
+      rootNodeId: "center_noether_pair_authored/root",
+      consumedNodeIds: [
+        "center_noether_pair_authored/root/core_anti_1",
+        "center_noether_pair_authored/root/core_pro_1",
+      ],
+      remainingNodeIds: [],
+    },
+  ]);
   assert.equal(
     result.steps.some((step) => step.ruleFamily === "associate-standalone"),
     true

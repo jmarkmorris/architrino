@@ -6,6 +6,48 @@
     "sourceDocumentId": "pdg-proposal:charged_pion_to_muon_neutrino",
     "title": "Charged pion to muon neutrino"
   },
+  "upstreamContext": {
+    "sourceSchema": "pdg-proposal/v1",
+    "proposalId": "charged_pion_to_muon_neutrino",
+    "reviewBoundary": "reaction-review",
+    "source": {
+      "edition": "2026",
+      "channelDescription": "pi+ -> mu+ nu_mu",
+      "citation": "Local PDG fixture seed",
+      "branchingDisplay": "dominant charged pion decay channel",
+      "fixtureId": "charged_pion_to_muon_neutrino",
+      "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json",
+      "contract": {
+        "upstreamSchema": "pdg-proposal/v1",
+        "downstreamSchema": "solver-request/v1",
+        "handoffMode": "upstream-only",
+        "reactionAcceptanceRequired": true,
+        "reactionAcceptanceBoundary": "reaction-review",
+        "acceptedReactionHandoff": "reaction-owned",
+        "composerHandoff": "accepted-reaction-only"
+      }
+    },
+    "contract": {
+      "upstreamSchema": "pdg-proposal/v1",
+      "downstreamSchema": "solver-request/v1",
+      "handoffMode": "upstream-only",
+      "reactionAcceptanceRequired": true,
+      "reactionAcceptanceBoundary": "reaction-review",
+      "acceptedReactionHandoff": "reaction-owned",
+      "composerHandoff": "accepted-reaction-only"
+    },
+    "ranking": {
+      "rank": 1,
+      "score": 95.0,
+      "reasons": [
+        "fixture-source",
+        "all-participants-supported"
+      ]
+    },
+    "notes": [
+      "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+    ]
+  },
   "participants": [
     {
       "id": "reactant_positive_pion_1",

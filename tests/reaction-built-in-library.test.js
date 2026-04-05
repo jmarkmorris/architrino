@@ -6,7 +6,9 @@ import {
   DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID,
   REACTION_BUILTIN_LIBRARY_ENTRIES,
   loadDefaultReactionBuiltInLibraryEntry,
+  loadReactionBuiltInLibraryEntry,
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
+import { parseReactionNodeKey } from "../src/apps/reaction/ReactionNodeKeyRuntime.js";
 
 async function readJson(url) {
   return JSON.parse(await fs.readFile(url, "utf8"));
@@ -24,18 +26,152 @@ function createFixtureFetch() {
   };
 }
 
-test("reaction built-in library seeds free neutron beta as the default entry", async () => {
+function collectParticipantNodeIds(participant = {}) {
+  const nodeIds = new Set();
+  const queue = [...(Array.isArray(participant?.hierarchy) ? participant.hierarchy : [])];
+  while (queue.length) {
+    const node = queue.shift();
+    if (!node || typeof node !== "object") {
+      continue;
+    }
+    if (node.id) {
+      nodeIds.add(node.id);
+    }
+    queue.push(...(Array.isArray(node.children) ? node.children : []));
+  }
+  return nodeIds;
+}
+
+function classifySnapshotLane(participant = {}) {
+  if (participant?.side === "product") {
+    return 5;
+  }
+  if (participant?.side === "operator") {
+    return Number(participant?.operatorLaneIndex) === 0 ? 2 : 4;
+  }
+  if (participant?.surfaceColumn === "center-assembly") {
+    return 3;
+  }
+  return 1;
+}
+
+function buildConnectivityIndex(snapshot = {}) {
+  const incomingByParticipantId = new Map();
+  const outgoingByParticipantId = new Map();
+  const incomingByParticipantRole = new Map();
+  const outgoingByParticipantRole = new Map();
+  for (const mapping of Array.isArray(snapshot?.mappings) ? snapshot.mappings : []) {
+    const source = parseReactionNodeKey(mapping.sourceKey);
+    const target = parseReactionNodeKey(mapping.targetKey);
+    outgoingByParticipantId.set(
+      source.participantId,
+      (outgoingByParticipantId.get(source.participantId) ?? 0) + 1
+    );
+    incomingByParticipantId.set(
+      target.participantId,
+      (incomingByParticipantId.get(target.participantId) ?? 0) + 1
+    );
+    const outgoingRoleKey = `${source.participantId}:${String(mapping.sourceRole ?? "")}`;
+    const incomingRoleKey = `${target.participantId}:${String(mapping.targetRole ?? "")}`;
+    outgoingByParticipantRole.set(outgoingRoleKey, (outgoingByParticipantRole.get(outgoingRoleKey) ?? 0) + 1);
+    incomingByParticipantRole.set(incomingRoleKey, (incomingByParticipantRole.get(incomingRoleKey) ?? 0) + 1);
+  }
+  return {
+    incomingByParticipantId,
+    outgoingByParticipantId,
+    incomingByParticipantRole,
+    outgoingByParticipantRole,
+  };
+}
+
+function assertFullSolveLaneConnectivity(snapshot = {}, messagePrefix = "snapshot") {
+  const participants = Array.isArray(snapshot?.participants) ? snapshot.participants : [];
+  const {
+    incomingByParticipantId,
+    outgoingByParticipantId,
+    incomingByParticipantRole,
+    outgoingByParticipantRole,
+  } = buildConnectivityIndex(snapshot);
+
+  const lane1Participants = participants.filter((participant) => classifySnapshotLane(participant) === 1);
+  for (const participant of lane1Participants) {
+    assert.equal(
+      (outgoingByParticipantRole.get(`${participant.id}:reactant`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 1 participant ${participant.id} must connect forward into lanes 2-5`
+    );
+  }
+
+  const lane2Participants = participants.filter((participant) => classifySnapshotLane(participant) === 2);
+  for (const participant of lane2Participants) {
+    assert.equal(
+      (incomingByParticipantRole.get(`${participant.id}:operator-input`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 2 participant ${participant.id} must have an operator-input connection`
+    );
+    assert.equal(
+      (outgoingByParticipantRole.get(`${participant.id}:operator-output`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 2 participant ${participant.id} must have an operator-output connection`
+    );
+  }
+
+  const lane3Participants = participants.filter((participant) => classifySnapshotLane(participant) === 3);
+  for (const participant of lane3Participants) {
+    assert.equal(
+      (incomingByParticipantRole.get(`${participant.id}:center`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 3 participant ${participant.id} must have a center input connection`
+    );
+    assert.equal(
+      (outgoingByParticipantRole.get(`${participant.id}:center`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 3 participant ${participant.id} must have a center output connection`
+    );
+  }
+
+  const lane4Participants = participants.filter((participant) => classifySnapshotLane(participant) === 4);
+  for (const participant of lane4Participants) {
+    assert.equal(
+      (incomingByParticipantRole.get(`${participant.id}:operator-input`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 4 participant ${participant.id} must have an operator-input connection`
+    );
+    assert.equal(
+      (outgoingByParticipantRole.get(`${participant.id}:operator-output`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 4 participant ${participant.id} must have an operator-output connection`
+    );
+  }
+
+  const lane5Participants = participants.filter((participant) => classifySnapshotLane(participant) === 5);
+  for (const participant of lane5Participants) {
+    assert.equal(
+      (incomingByParticipantRole.get(`${participant.id}:product`) ?? 0) > 0,
+      true,
+      `${messagePrefix}: lane 5 participant ${participant.id} must have an incoming connection`
+    );
+  }
+
+  assert.equal(
+    incomingByParticipantId.size > 0 && outgoingByParticipantId.size > 0,
+    true,
+    `${messagePrefix}: connectivity index must contain both incoming and outgoing mappings`
+  );
+}
+
+test("reaction built-in library seeds muon decay as the default entry", async () => {
   const fixture = await readJson(
-    new URL("../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json", import.meta.url)
+    new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
   );
   const loaded = await loadDefaultReactionBuiltInLibraryEntry({
     fetchImpl: createFixtureFetch(),
   });
 
-  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "free_neutron_beta");
-  assert.equal(REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id, "free_neutron_beta");
-  assert.equal(loaded.entry.id, "free_neutron_beta");
-  assert.equal(loaded.entry.title, "Free neutron beta decay");
+  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "muon_decay");
+  assert.equal(REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id, "muon_decay");
+  assert.equal(loaded.entry.id, "muon_decay");
+  assert.equal(loaded.entry.title, "Muon decay");
   assert.equal(loaded.document.reactionId, fixture.reactionId);
   assert.equal(loaded.exportOverrides.reactionId, fixture.reactionId);
   assert.equal(loaded.exportOverrides.title, fixture.title);
@@ -43,51 +179,144 @@ test("reaction built-in library seeds free neutron beta as the default entry", a
   assert.deepEqual(loaded.exportOverrides.semanticTags, fixture.hints.semanticTags);
   assert.equal(loaded.exportOverrides.suggestedSceneId, fixture.hints.suggestedSceneId);
   assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "reactant_neutron")?.label,
-    "Pro Neutron"
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "product_anti_electron_neutrino_2" && participant.templateId === "neutrino"
+    ),
+    true
   );
   assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_proton")?.label,
-    "Pro Proton"
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "product_pro_muon_neutrino_3" && participant.templateId === "neutrino"
+    ),
+    true
   );
   assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_electron")?.label,
-    "Pro Electron"
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "reactant_pro_muon_1"
+    ),
+    true
   );
   assert.equal(
-    loaded.snapshot.participants.find((participant) => participant.id === "product_antineutrino")?.label,
-    "Anti Electron Neutrino"
+    loaded.snapshot.participants.some(
+      (participant) => participant.id === "product_pro_electron_1" && participant.label === "Pro Electron"
+    ),
+    true
   );
-  assert.equal(loaded.snapshot.participants.length, 5);
-  assert.equal(loaded.snapshot.mappings.length, 6);
+  assert.equal(loaded.snapshot.participants.length >= 3, true);
+  assert.equal(loaded.snapshot.mappings.length >= 2, true);
+});
+
+test("reaction built-in library now includes the first accepted PDG-backed solved entries", async () => {
+  const muonFixture = await readJson(
+    new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
+  );
+  const pionFixture = await readJson(
+    new URL("../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json", import.meta.url)
+  );
+  const fetchImpl = createFixtureFetch();
+
   assert.deepEqual(
-    loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-      ? {
-          templateId: loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-            ?.templateId,
-          label: loaded.snapshot.participants.find((participant) => participant.id === "op_transmute_1")
-            ?.label,
-          operatorLaneIndex: loaded.snapshot.participants.find(
-            (participant) => participant.id === "op_transmute_1"
-          )?.operatorLaneIndex,
-        }
-      : null,
-    {
-      templateId: "dissociate",
-      label: "Dissociate",
-      operatorLaneIndex: 0,
-    }
+    REACTION_BUILTIN_LIBRARY_ENTRIES.map((entry) => entry.id),
+    ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
   );
+
+  const loadedMuon = await loadReactionBuiltInLibraryEntry("muon_decay", { fetchImpl });
+  const loadedNeutron = await loadReactionBuiltInLibraryEntry("free_neutron_beta", { fetchImpl });
+  const loadedPion = await loadReactionBuiltInLibraryEntry("charged_pion_to_muon_neutrino", { fetchImpl });
+
+  assert.equal(loadedMuon.entry.title, "Muon decay");
+  assert.equal(loadedMuon.document.reactionId, muonFixture.reactionId);
+  assert.equal(loadedMuon.document.review.status, "accepted");
+  assert.deepEqual(loadedMuon.exportOverrides.sourceDocumentIds, muonFixture.provenance.sourceDocumentIds);
+  assert.equal(loadedMuon.snapshot.participants.some((participant) => participant.id === "reactant_pro_muon_1"), true);
   assert.equal(
-    loaded.snapshot.participants.some(
-      (participant) => participant.id === "product_antineutrino" && participant.templateId === "neutrino"
+    loadedMuon.snapshot.participants.some(
+      (participant) => participant.id === "reactant_pro_muon_1" && participant.label === "Pro Muon"
     ),
     true
   );
   assert.equal(
-    loaded.snapshot.participants.some(
-      (participant) => participant.id === "product_antineutrino" && participant.polarity === "anti"
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "product_pro_muon_neutrino_3" && participant.label === "Pro Muon Neutrino"
     ),
     true
   );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1" &&
+        participant.surfaceColumn !== "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_source_core" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) => participant.side === "operator" && participant.templateId === "dissociate"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_anti_core" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_pro_core" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+
+  assert.equal(loadedPion.entry.title, "Charged pion to muon neutrino");
+  assert.equal(loadedPion.document.reactionId, pionFixture.reactionId);
+  assert.equal(loadedPion.document.review.status, "accepted");
+  assert.deepEqual(loadedPion.exportOverrides.sourceDocumentIds, pionFixture.provenance.sourceDocumentIds);
+  assert.equal(
+    loadedPion.snapshot.participants.some((participant) => participant.id === "reactant_positive_pion_1"),
+    true
+  );
+
+  const participantNodeIdsById = new Map(
+    loadedNeutron.snapshot.participants.map((participant) => [participant.id, collectParticipantNodeIds(participant)])
+  );
+  for (const mapping of loadedNeutron.snapshot.mappings) {
+    const sourceKey = parseReactionNodeKey(mapping.sourceKey);
+    const targetKey = parseReactionNodeKey(mapping.targetKey);
+    assert.equal(participantNodeIdsById.get(sourceKey.participantId)?.has(sourceKey.nodeId) ?? false, true);
+    assert.equal(participantNodeIdsById.get(targetKey.participantId)?.has(targetKey.nodeId) ?? false, true);
+  }
+});
+
+test("reaction built-in library solved entries satisfy full-solve lane connectivity", async () => {
+  const fetchImpl = createFixtureFetch();
+  for (const entryId of [
+    "muon_decay",
+    "free_neutron_beta",
+    "charged_pion_to_muon_neutrino",
+  ]) {
+    const loaded = await loadReactionBuiltInLibraryEntry(entryId, { fetchImpl });
+    assertFullSolveLaneConnectivity(loaded.snapshot, entryId);
+  }
 });

@@ -1,7 +1,7 @@
 {
   "schema": "reaction-flow/v1",
   "reactionId": "reaction_review_free_neutron_beta_decay",
-  "title": "Reaction Review: Free neutron beta decay",
+  "title": "Free neutron beta decay",
   "review": {
     "status": "accepted",
     "acceptedAt": "2026-04-05T12:00:00.000Z"

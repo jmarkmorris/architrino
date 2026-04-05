@@ -4,21 +4,40 @@ import {
   getReactionCanonicalLabel,
 } from "./ReactionLabelCatalogRuntime.js";
 import { buildReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
+import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "./ReactionStructureDescriptorRuntime.js";
+import { buildReactionLibraryExportOverrides } from "./ReactionFlowLibrarySupportRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_OPERATOR_LANE_INDEX = 1;
+const REACTION_BUILTIN_LIBRARY_CACHE_BUSTER = "2026-04-05-reaction-library-v2";
 const FREE_NEUTRON_BETA_DOCUMENT_PATH =
   "../../../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json";
+const MUON_DECAY_DOCUMENT_PATH =
+  "../../../content/contracts/examples/reaction-flow/muon_decay.v1.json";
+const CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH =
+  "../../../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json";
 
 export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([
   Object.freeze({
+    id: "muon_decay",
+    title: "Muon decay",
+    description: "Accepted PDG-backed solved muon decay library entry.",
+    documentPath: MUON_DECAY_DOCUMENT_PATH,
+    isDefault: true,
+  }),
+  Object.freeze({
     id: "free_neutron_beta",
     title: "Free neutron beta decay",
-    description: "Known solved free neutron beta decay reaction-flow fixture.",
+    description: "Accepted PDG-backed solved free neutron beta decay library entry.",
     documentPath: FREE_NEUTRON_BETA_DOCUMENT_PATH,
-    isDefault: true,
+  }),
+  Object.freeze({
+    id: "charged_pion_to_muon_neutrino",
+    title: "Charged pion to muon neutrino",
+    description: "Accepted PDG-backed solved charged pion decay library entry.",
+    documentPath: CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH,
   }),
 ]);
 
@@ -37,6 +56,16 @@ function normalizeLowerText(value = "") {
 
 function buildTagList(values = []) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
+}
+
+function resolveImportedParticipantLabel(documentParticipant = {}, templateId = "", polarity = "") {
+  const explicitLabel = normalizeText(documentParticipant?.label);
+  if (explicitLabel) {
+    return explicitLabel;
+  }
+  return getReactionCanonicalLabel(templateId, {
+    polarity,
+  });
 }
 
 function supportsParticipantPolarity(templateId = "") {
@@ -93,13 +122,7 @@ function createParticipantFromReactionFlowDocumentRecord(documentParticipant = {
   } = binarySelectionRuntime;
   const participantId = normalizeText(documentParticipant?.id);
   const { templateId, polarity } = resolveParticipantIdentity(documentParticipant);
-  const baseLabel = getReactionCanonicalLabel(templateId, {
-    polarity,
-    fallbackLabel:
-      normalizeText(documentParticipant?.label) ||
-      normalizeText(documentParticipant?.structureKey) ||
-      "Participant",
-  });
+  const baseLabel = resolveImportedParticipantLabel(documentParticipant, templateId, polarity);
   const isCenterAssembly =
     normalizeLowerText(documentParticipant?.side) === "intermediate" ||
     normalizeLowerText(documentParticipant?.layout?.column) === "center";
@@ -130,6 +153,14 @@ function createParticipantFromReactionFlowDocumentRecord(documentParticipant = {
         }
       : {}),
   };
+  if (Array.isArray(documentParticipant?.tags)) {
+    if (documentParticipant.tags.includes("manual-dissociated")) {
+      participant.isDissociatedComposite = true;
+      participant.isAutoDissociatedComposite = false;
+    } else if (documentParticipant.tags.includes("auto-dissociated")) {
+      participant.isAutoDissociatedComposite = true;
+    }
+  }
   participant.binarySelections = getInitialParticipantBinarySelections(participant);
   return participant;
 }
@@ -223,7 +254,13 @@ function buildParticipantsById(participants = []) {
 }
 
 function buildParticipantRole(participant = {}) {
-  return participant?.side === "product" ? "product" : "reactant";
+  if (participant?.side === "product") {
+    return "product";
+  }
+  if (participant?.surfaceColumn === "center-assembly") {
+    return "center";
+  }
+  return "reactant";
 }
 
 function buildDocumentOperatorsById(operators = []) {
@@ -232,6 +269,21 @@ function buildDocumentOperatorsById(operators = []) {
       .filter((operator) => normalizeText(operator?.id))
       .map((operator) => [normalizeText(operator.id), operator])
   );
+}
+
+function resolveImportedParticipantAnchorId(participant = {}, anchorId = "") {
+  const normalizedAnchorId = normalizeText(anchorId);
+  const rootId = normalizeText(participant?.hierarchy?.[0]?.id) || "root";
+  if (!normalizedAnchorId) {
+    return rootId;
+  }
+  if (normalizedAnchorId === rootId) {
+    return rootId;
+  }
+  if (findReactionStructureDescriptorNode(participant?.hierarchy, normalizedAnchorId)) {
+    return normalizedAnchorId;
+  }
+  return rootId;
 }
 
 function buildSnapshotMappingsFromReactionFlowDocument(
@@ -262,8 +314,14 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       }
       snapshotMappings.push({
         id: normalizeText(mapping?.id) || `reaction_flow_mapping_${mappingIndex + 1}`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(mapping?.from?.anchorId) || "root"),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(mapping?.to?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,
@@ -276,14 +334,49 @@ function buildSnapshotMappingsFromReactionFlowDocument(
     const operatorRootId = importedOperatorsById.get(operatorId) || "root";
     const sourceParticipant = participantsById.get(normalizeText(mapping?.from?.participantId)) ?? null;
     const targetParticipant = participantsById.get(normalizeText(mapping?.to?.participantId)) ?? null;
+    const sourceIsOperator = sourceParticipant?.side === "operator";
+    const targetIsOperator = targetParticipant?.side === "operator";
     if (!sourceParticipant || !targetParticipant) {
       return;
     }
     const mappingId = normalizeText(mapping?.id) || `reaction_flow_mapping_${mappingIndex + 1}`;
+    if (targetIsOperator && !sourceIsOperator) {
+      snapshotMappings.push({
+        id: mappingId,
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
+        targetKey: buildReactionNodeKey(operatorId, operatorRootId),
+        sourceRole: buildParticipantRole(sourceParticipant),
+        targetRole: "operator-input",
+        sourceAnchorInstanceIndex: null,
+        targetAnchorInstanceIndex: null,
+      });
+      return;
+    }
+    if (sourceIsOperator && !targetIsOperator) {
+      snapshotMappings.push({
+        id: mappingId,
+        sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
+        sourceRole: "operator-output",
+        targetRole: buildParticipantRole(targetParticipant),
+        sourceAnchorInstanceIndex: null,
+        targetAnchorInstanceIndex: null,
+      });
+      return;
+    }
     snapshotMappings.push(
       {
         id: `${mappingId}__input`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(mapping?.from?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, mapping?.from?.anchorId)
+        ),
         targetKey: buildReactionNodeKey(operatorId, operatorRootId),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: "operator-input",
@@ -293,7 +386,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       {
         id: `${mappingId}__output`,
         sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(mapping?.to?.anchorId) || "root"),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, mapping?.to?.anchorId)
+        ),
         sourceRole: "operator-output",
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,
@@ -315,7 +411,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       }
       snapshotMappings.push({
         id: `reaction_flow_operator_${operatorIndex + 1}_input_${endpointIndex + 1}`,
-        sourceKey: buildReactionNodeKey(sourceParticipant.id, normalizeText(endpoint?.anchorId) || "root"),
+        sourceKey: buildReactionNodeKey(
+          sourceParticipant.id,
+          resolveImportedParticipantAnchorId(sourceParticipant, endpoint?.anchorId)
+        ),
         targetKey: buildReactionNodeKey(operatorId, operatorRootId),
         sourceRole: buildParticipantRole(sourceParticipant),
         targetRole: "operator-input",
@@ -331,7 +430,10 @@ function buildSnapshotMappingsFromReactionFlowDocument(
       snapshotMappings.push({
         id: `reaction_flow_operator_${operatorIndex + 1}_output_${endpointIndex + 1}`,
         sourceKey: buildReactionNodeKey(operatorId, operatorRootId),
-        targetKey: buildReactionNodeKey(targetParticipant.id, normalizeText(endpoint?.anchorId) || "root"),
+        targetKey: buildReactionNodeKey(
+          targetParticipant.id,
+          resolveImportedParticipantAnchorId(targetParticipant, endpoint?.anchorId)
+        ),
         sourceRole: "operator-output",
         targetRole: buildParticipantRole(targetParticipant),
         sourceAnchorInstanceIndex: null,
@@ -377,28 +479,6 @@ export function buildReactionSnapshotFromReactionFlowDocument(document = {}) {
   };
 }
 
-export function buildReactionLibraryExportOverrides(document = {}) {
-  const reactionId = normalizeText(document?.reactionId);
-  const title = normalizeText(document?.title);
-  const sourceDocumentIds = buildTagList(document?.provenance?.sourceDocumentIds);
-  const semanticTags = buildTagList(document?.hints?.semanticTags);
-  const suggestedSceneId = normalizeText(document?.hints?.suggestedSceneId);
-  return Object.fromEntries(
-    Object.entries({
-      reactionId,
-      title,
-      sourceDocumentIds,
-      semanticTags,
-      suggestedSceneId,
-    }).filter(([, value]) => {
-      if (Array.isArray(value)) {
-        return value.length > 0;
-      }
-      return value !== "";
-    })
-  );
-}
-
 async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
   const fetchImpl =
     typeof options?.fetchImpl === "function"
@@ -410,6 +490,9 @@ async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
     throw new Error("Built-in reaction library loading requires fetch().");
   }
   const documentUrl = new URL(entry.documentPath, options?.baseUrl ?? import.meta.url);
+  if (!documentUrl.searchParams.has("v")) {
+    documentUrl.searchParams.set("v", REACTION_BUILTIN_LIBRARY_CACHE_BUSTER);
+  }
   const response = await fetchImpl(documentUrl);
   if (response?.ok === false) {
     throw new Error(`Built-in reaction library fetch failed for ${entry.id}.`);
