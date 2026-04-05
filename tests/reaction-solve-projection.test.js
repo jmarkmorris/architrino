@@ -201,6 +201,72 @@ test("solve projection accepts semantic dissociation records without legacy part
   assert.equal(reactantHiggs.isAutoDissociatedComposite, true);
 });
 
+test("solve projection resolves direct participant endpoints when current canvas participants are provided", () => {
+  const reactantElectron = createParticipant({
+    id: "reactant_electron",
+    side: "reactant",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Pro Electron",
+  });
+  const productElectron = createParticipant({
+    id: "product_electron",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Pro Electron",
+  });
+  const appliedMappings = [];
+
+  const projection = applyReactionSolvePlan({
+    plan: {
+      selectedMappings: [
+        {
+          sourceEndpoint: {
+            participantId: "reactant_electron",
+            anchorId: reactantElectron.hierarchy[0].id,
+            role: "reactant",
+          },
+          targetEndpoint: {
+            participantId: "product_electron",
+            anchorId: productElectron.hierarchy[0].id,
+            role: "product",
+          },
+        },
+      ],
+    },
+    participants: [reactantElectron, productElectron],
+    getParticipantById: (participantId) =>
+      [reactantElectron, productElectron].find((participant) => participant.id === participantId) ?? null,
+    getParticipantRootNode: (participant) => participant?.hierarchy?.[0] ?? null,
+    buildNodeKey: (participantId, nodeId) => `${participantId}:${nodeId}`,
+    addOrReplaceMapping: (sourceKey, sourceRole, targetKey, targetRole, mappingOptions = {}) => {
+      appliedMappings.push({
+        sourceKey,
+        sourceRole,
+        targetKey,
+        targetRole,
+        mappingOptions,
+      });
+      return "mapping_1";
+    },
+  });
+
+  assert.deepEqual(projection.appliedMappingIds, ["mapping_1"]);
+  assert.deepEqual(appliedMappings, [
+    {
+      sourceKey: `reactant_electron:${reactantElectron.hierarchy[0].id}`,
+      sourceRole: "reactant",
+      targetKey: `product_electron:${productElectron.hierarchy[0].id}`,
+      targetRole: "product",
+      mappingOptions: {
+        sourceAnchorInstanceIndex: null,
+        targetAnchorInstanceIndex: null,
+      },
+    },
+  ]);
+});
+
 test("solve projection accepts solver-result fixtures with semantic endpoints and placement hints", () => {
   const resultFixture = readJson("content/contracts/examples/solver-result/associate_photon_result.v1.json");
   const participants = [

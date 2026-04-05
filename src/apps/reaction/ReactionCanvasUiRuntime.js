@@ -1718,6 +1718,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       clearAllRecentRouteState();
       const { appliedMappingIds } = applySolvePlan({
         result,
+        participants: state.participants,
+        getParticipantById: findParticipantById,
         createOperatorParticipant,
         getParticipantRootNode,
         buildNodeKey,

@@ -347,7 +347,11 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /result,\s*createOperatorParticipant,/s
+    /result,\s*participants: state\.participants,\s*getParticipantById: findParticipantById,/s
+  );
+  assert.match(
+    runtimeSource,
+    /result,[\s\S]*?createOperatorParticipant,/s
   );
   assert.match(
     runtimeSource,
