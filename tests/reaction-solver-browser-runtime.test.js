@@ -43,9 +43,13 @@ function createParticipant({ id, side, templateId, polarity = "pro", label = tem
   return participant;
 }
 
-test("browser reaction solver runtime resolves the local solve endpoint relative to the current page", () => {
+test("browser reaction solver runtime resolves the local solve endpoint from the origin root", () => {
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/reaction.html" } }),
+    "http://127.0.0.1:5173/api/reaction/solve"
+  );
+  assert.equal(
+    resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/architrino/reaction.html" } }),
     "http://127.0.0.1:5173/api/reaction/solve"
   );
 });

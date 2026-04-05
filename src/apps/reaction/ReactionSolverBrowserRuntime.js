@@ -17,7 +17,7 @@ function resolveReactionSolveEndpoint(windowLike = globalThis.window, endpoint =
     return "";
   }
   try {
-    return new URL("./api/reaction/solve", href).toString();
+    return new URL("/api/reaction/solve", href).toString();
   } catch (_error) {
     return "";
   }
