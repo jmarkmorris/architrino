@@ -1,58 +1,86 @@
 # Reaction Registry
 
-This document is the current code-backed snapshot of the Reaction object registry. It is derived from [`reaction-object-registry.v1.json`](../../../src/apps/reaction/reaction-object-registry.v1.json) and cross-checked against the current Reaction and solver/runtime code in:
+This document is the current code-backed snapshot of the Reaction object registry.
+
+The canonical data lives in:
+
+- [`reaction-object-registry.v1.json`](../../../src/apps/reaction/reaction-object-registry.v1.json)
+- [`ReactionObjectRegistryData.js`](../../../src/apps/reaction/ReactionObjectRegistryData.js)
+
+The current runtime/helper surface that consumes that registry includes:
 
 - [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js)
-- [`ReactionCanvasLayoutRuntime.js`](../../../src/apps/reaction/ReactionCanvasLayoutRuntime.js)
 - [`ReactionCanvasUiRuntime.js`](../../../src/apps/reaction/ReactionCanvasUiRuntime.js)
 - [`ReactionFlowExportRuntime.js`](../../../src/apps/reaction/ReactionFlowExportRuntime.js)
+- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js)
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js)
+- [`ReactionSolverResultExportRuntime.js`](../../../src/apps/reaction/ReactionSolverResultExportRuntime.js)
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py)
 - [`StructureAssemblyCatalog.js`](../../../src/domain/structure/StructureAssemblyCatalog.js)
+- [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js)
+- [`reaction-object-registry.test.js`](../../../tests/reaction-object-registry.test.js)
 
-## Current Column Model
+## Current Surface Model
 
 Use the five surface columns in this left-to-right order:
 
-| Column | Name | Registry placement class | Connector policy | Current runtime note |
-| ---: | --- | --- | --- | --- |
-| 1 | `reactants` | `reactant` | no input; output role `reactant` on the right | left authored/source column |
-| 2 | `left operators` | `operator` | input role `operator-input` on the left; output role `operator-output` on the right | current lane `0`; current picker exposes `Dissociate` |
-| 3 | `intermediates` | `center` | input role `center` on the left; output role `center` on the right | center-assembly lane |
-| 4 | `right operators` | `operator` | input role `operator-input` on the left; output role `operator-output` on the right | current lane `1`; current picker exposes `Associate` |
-| 5 | `products` | `product` | input role `product` on the left; no output | right authored/target column |
+| Column | Name | Placement class | Input connector | Output connector | Current UI note |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | `reactants` | `reactant` | none | `reactant` on the right | left authored/source column |
+| 2 | `left operators` | `operator` | `operator-input` on the left | `operator-output` on the right | current lane `0`; current picker exposes `Dissociate` |
+| 3 | `intermediates` | `center` | `center` on the left | `center` on the right | center-assembly lane |
+| 4 | `right operators` | `operator` | `operator-input` on the left | `operator-output` on the right | current lane `1`; current picker exposes `Associate` |
+| 5 | `products` | `product` | `product` on the left | none | right authored/target column |
 
-When the registry lists allowed placements, read them through that five-column surface:
+The registry still models both operator lanes as one `operator` placement class. The current Reaction UI narrows them further through `REACTION_OPERATOR_LANE_LAYOUT`:
 
-- `reactant` means `reactants` only.
-- `center` means `intermediates` only.
-- `product` means `products` only.
-- `operator` means the operator placement class shared by `left operators` and `right operators`.
+- lane `0` / `left operators` currently hosts `Dissociate` only
+- lane `1` / `right operators` currently hosts `Associate` only
 
-The important split is that the canonical registry still models both operator lanes as one placement class, but the current Reaction UI narrows them further:
-
-- `left operators` currently hosts `Dissociate` only.
-- `right operators` currently hosts `Associate` only.
-
-## Registry Sections
+## Top-Level Registry Sections
 
 | Registry field | Purpose | Current shape |
 | --- | --- | --- |
 | `schema` | registry version tag | string |
-| `placementClasses` | canonical placement and connector policy | `inputRole`, `outputRole`, `inputSide`, `outputSide`, `laneNumbers` |
+| `placementClasses` | canonical placement and connector policy by placement class | `inputRole`, `outputRole`, `inputSide`, `outputSide`, `laneNumbers` |
+| `connectionPolicy` | forward-lane routing law shared by Reaction and solver validation | `policyId`, `requireForwardLaneProgress`, `requireInputTerminus`, `allowedConnections[]` |
 | `pickerColumns` | side-column picker groups for reactants/products | column: `id`, `entries`; entry: `id`, `templateId`, `label`, optional `occupiedCount` |
-| `centerAssemblyPickerEntries` | add-menu entries for `intermediates` | `templateId`, `label` |
-| `operatorEntries` | add-menu entries for operator templates | `templateId`, `label` |
+| `centerAssemblyPickerEntries` | center-lane add-menu entries | `templateId`, `label` |
+| `operatorEntries` | canonical operator picker entries | `templateId`, `label` |
 | `templates` | canonical template definitions | `defaultLabel`, `familyTag`, `supportsPolarity`, `preserveLeadingPolarityLabel`, `allowedPlacementClasses`, optional `variants`, optional `aliases`, `structure` |
 
-## Placement Classes As Columns
+## Placement Classes
 
-| Placement class | Allowed column name(s) | Lane number(s) | Input role / side | Output role / side |
+| Placement class | Allowed columns | Lane number(s) | Input role / side | Output role / side |
 | --- | --- | --- | --- | --- |
 | `reactant` | `reactants` | `1` | none | `reactant` / right |
 | `operator` | `left operators`, `right operators` | `2`, `4` | `operator-input` / left | `operator-output` / right |
 | `center` | `intermediates` | `3` | `center` / left | `center` / right |
 | `product` | `products` | `5` | `product` / left | none |
+
+## Current Connection Policy
+
+The registry now includes a first-class connection policy:
+
+- `policyId = reaction-forward-lane-policy/v1`
+- `requireForwardLaneProgress = true`
+- `requireInputTerminus = true`
+
+Allowed routed edge shapes are currently:
+
+| Source | Allowed targets |
+| --- | --- |
+| `reactant` lane `1`, role `reactant` | `operator-input` lane `2` or `4`; `center` lane `3`; `product` lane `5` |
+| `operator-output` lane `2` | `center` lane `3`; `operator-input` lane `4`; `product` lane `5` |
+| `operator-output` lane `4` | `product` lane `5` |
+| `center` lane `3`, role `center` | `operator-input` lane `4`; `product` lane `5` |
+
+Important current consequences:
+
+- `3 -> 2` is invalid
+- `4 -> 3` is invalid
+- center-lane outputs are forward-only
+- operator outputs may only connect to input-side roles
 
 ## Current Picker Surfaces
 
@@ -67,60 +95,122 @@ The important split is that the canonical registry still models both operator la
 | reactant/product side picker | `pickerColumns.kaon_bridge` | `k_minus`, `k_plus`, `sk0`, `dk0` |
 | reactant/product side picker | `pickerColumns.b_meson_bridge` | `b_minus`, `b_plus`, `bB0`, `dB0` |
 | reactant/product side picker | `pickerColumns.composite_bridge` | `noether_pair`, `noether_quad`, `proton`, `neutron` |
-| intermediate picker | `centerAssemblyPickerEntries` | `noether_core`, `w_minus_boson`, `z_boson`, `w_plus_boson`, `free_architrinos` |
+| center-lane picker | `centerAssemblyPickerEntries` | `noether_core`, `w_minus_boson`, `z_boson`, `w_plus_boson`, `free_architrinos` |
 | operator picker | `operatorEntries` | `associate`, `dissociate` |
-| lane-restricted operator UI | `REACTION_OPERATOR_LANE_LAYOUT` | lane `0` / `left operators` => `dissociate`; lane `1` / `right operators` => `associate` |
+| lane-restricted operator UI | `REACTION_OPERATOR_LANE_LAYOUT` | lane `0` => `dissociate`; lane `1` => `associate` |
 
-## Code-Backed Observations About Assemblies, Composite Assemblies, And Operators
+## Runtime Helper Surface Backed By The Registry
 
-- The canonical source of truth is the JSON registry, not scattered label heuristics. Both the browser runtime and the Python solver load and validate against the same template set.
-- The solver validates every participant placement against the registry. A solved participant in `center` must be allowed there by `allowedPlacementClasses`, and every solved operator type must be allowed in the `operator` placement class.
-- The solver result contract separates participant placement from operator placement:
-  - participants use `placement.participantPlacements` with `placementClass` in `reactant`, `center`, `product`;
-  - operators use `placement.operatorPlacements` with explicit `lane`, `row`, and `slot`.
-- `Noether Pair` and `Noether Quad` are now registry-limited to `reactants` and `products`. They are not center/intermediate registry objects.
-- `Noether Pair` and `Noether Quad` are still composite solve-visible assemblies. In [`StructureAssemblyCatalog.js`](../../../src/domain/structure/StructureAssemblyCatalog.js), `noether_pair` expands to core polarities `pro, anti`, and `noether_quad` expands to `pro, anti, pro, anti`.
-- `Noether Quad` is the only template with explicit reaction composite modes. [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js) gives it `associate` and `dissociate`; the default is `associate` on the reactant side and `dissociate` on the product side.
-- `Associate` and `Dissociate` remain the only canonical operator templates in both registry and solver output.
-- The current operator-lane UI is stricter than the registry:
-  - `Dissociate` is currently placed through `left operators`;
-  - `Associate` is currently placed through `right operators`.
-- `Dissociate` can auto-generate center/intermediate participants in the current Reaction runtime. The auto-generated targets are created as center-column participants and connected from operator output to their input side.
-- Center/intermediate participants already have contract/export semantics even where manual authoring is still being tightened:
-  - reaction-flow export requires the center input connector on anchor instance `0`;
-  - most center outputs use anchor instance `1`;
-  - `Free Architrinos` is special: its center output anchor instance must be `>= 1`.
-- The solver uses composite structure explicitly:
-  - composite products are closed through `Associate` against child nodes;
-  - fragment use of a composite source can mark that source auto-dissociated;
-  - solved outputs preserve dissociation state in `dissociation.autoDissociatedParticipantIds` and related notes.
+The current registry runtime exports these code-backed helper categories:
 
-## Full Registry Table: Operators And Assemblies
+| Helper surface | Current role |
+| --- | --- |
+| `getReactionObjectSpec`, `normalizeReactionObjectTemplateId` | canonical template lookup and alias normalization |
+| `getReactionObjectVariant`, `getReactionObjectVariants` | occupied-count variant lookup |
+| `getReactionObjectOccupiedSlots`, `getReactionObjectGeneration`, `getReactionObjectHBasis` | structure/generation/h-basis facts |
+| `supportsReactionObjectPolarity`, `normalizeReactionObjectPolarity` | polarity authority for polarized families |
+| `getReactionCanonicalBaseLabel`, `getReactionCanonicalLabel`, `formatReactionCanonicalLabel` | registry-owned label generation |
+| `getReactionObjectAllowedPlacementClasses`, `isReactionObjectPlacementAllowed` | placement validation |
+| `getReactionObjectConnectorPolicy`, `getReactionParticipantPlacementClass` | placement-aware connector validation |
+| `getReactionConnectionPolicy`, `isReactionConnectionAllowed`, `getReactionPlacementClassLaneNumbers` | connection-policy validation |
+| `getReactionAnchorAttachmentSide`, `getReactionAnchorAriaLabel` | rendered anchor-side and accessibility semantics |
+| `inferReactionOccupiedCountFromLabel`, `inferReactionGenerationFromLabel`, `inferReactionTemplateIdFromStructure` | registry-backed inference helpers used by structure and import/export paths |
 
-This is the current complete table of operator templates plus assembly/composite-assembly templates and assembly-like composite participants that the registry exposes.
+One important current render rule from the runtime helpers:
 
-| Template id | Default label | Category | `familyTag` | `structure.kind` | Allowed columns | Registry detail | Current UI / solver note | Aliases |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `associate` | Associate | operator | `operator` | `operator` | `left operators`, `right operators` | no variants; no polarity | canonical operator template; current UI exposes it in `right operators`; solver emits `type: "associate"` | none |
-| `dissociate` | Dissociate | operator | `operator` | `operator` | `left operators`, `right operators` | no variants; no polarity | canonical operator template; current UI exposes it in `left operators`; solver emits `type: "dissociate"` | none |
-| `noether_core` | Pro Noether Core | center-capable assembly | `noether-core` | `noether_core` | `reactants`, `intermediates`, `products` | `defaultOccupiedCount=3`; variants: `1 -> Pro Uni Binary [h1]`, `2 -> Pro Bi Binary [h1+h2]`, `3 -> Pro Noether Core [h1+h2+h3]` | appears in side picker and intermediate picker; solver also generates center-side Noether cores | none |
-| `w_minus_boson` | Negative W Boson | intermediate assembly | `boson` | `w_boson` | `intermediates` | `family=charged_lepton`; `defaultOccupiedCount=3` | center/intermediate-only participant | none |
-| `z_boson` | Neutral Z Boson | intermediate assembly | `boson` | `z_boson` | `intermediates` | `family=neutrino`; `defaultOccupiedCount=3` | center/intermediate-only participant | none |
-| `w_plus_boson` | Positive W Boson | intermediate assembly | `boson` | `w_boson` | `intermediates` | `family=charged_lepton`; `defaultOccupiedCount=3` | center/intermediate-only participant | none |
-| `free_architrinos` | Free Architrinos | intermediate assembly | `free-architrinos` | `free_architrinos` | `intermediates` | `defaultOccupiedCount=3` | center/intermediate-only participant; export treats its output anchor indexing specially | none |
-| `noether_pair` | Noether Pair | composite assembly | `boson` | `assembly` | `reactants`, `products` | `assemblyTemplateId=noether_pair`; structure catalog core polarities `pro, anti` | side-column composite entry; solver can recruit/generate it as composite source material and dissociate it into cores | none |
-| `noether_quad` | Noether Quad | composite assembly | `boson` | `assembly` | `reactants`, `products` | `assemblyTemplateId=noether_quad`; structure catalog core polarities `pro, anti, pro, anti` | side-column composite entry; only template with explicit reaction composite modes `associate` / `dissociate` | none |
-| `proton` | Pro Proton | composite participant | `baryon` | `baryon` | `reactants`, `products` | constituents: `pro up_quark(3) + pro down_quark(3) + pro up_quark(3)` | side-column composite entry; solver can dissociate baryons and re-associate product-side composites | none |
-| `neutron` | Pro Neutron | composite participant | `baryon` | `baryon` | `reactants`, `products` | constituents: `pro down_quark(3) + pro up_quark(3) + pro down_quark(3)` | side-column composite entry; solver has baryon dissociation / weak-core-pool paths | none |
-| `pi_plus` | Positive Pion | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro up_quark(3) + anti down_quark(3)` | side-column meson entry; composite target/source in solver | none |
-| `pi_minus` | Negative Pion | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(3) + anti up_quark(3)` | side-column meson entry; composite target/source in solver | none |
-| `upi0` | Neutral Pion (u anti-u) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro up_quark(3) + anti up_quark(3)` | side-column meson entry; canonicalized with alias support | `pi0` |
-| `dpi0` | Neutral Pion (d anti-d) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(3) + anti down_quark(3)` | side-column meson entry | none |
-| `k_plus` | Positive Kaon | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro up_quark(3) + anti down_quark(2)` | side-column meson entry | none |
-| `k_minus` | Negative Kaon | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(2) + anti up_quark(3)` | side-column meson entry | none |
-| `dk0` | Neutral Kaon (d anti-s) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(3) + anti down_quark(2)` | side-column meson entry | none |
-| `sk0` | Neutral Kaon (s anti-d) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(2) + anti down_quark(3)` | side-column meson entry | none |
-| `b_plus` | Positive B Meson | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro up_quark(3) + anti down_quark(1)` | side-column meson entry | none |
-| `b_minus` | Negative B Meson | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(1) + anti up_quark(3)` | side-column meson entry | none |
-| `db0` | Neutral B Meson (d anti-b) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(3) + anti down_quark(1)` | side-column meson entry; canonicalized with alias support | `dB0` |
-| `bb0` | Neutral B Meson (b anti-d) | composite participant | `meson` | `meson` | `reactants`, `products` | constituents: `pro down_quark(1) + anti down_quark(3)` | side-column meson entry; canonicalized with alias support | `bB0` |
+- `getReactionAnchorAttachmentSide("center", "source")` returns `right`
+- `getReactionAnchorAttachmentSide("center", "target")` returns `left`
+
+That is the current first-class rule for center-lane connector side semantics.
+
+## Canonical Template Families
+
+The registry currently contains `29` canonical templates.
+
+### Operators And Center-Lane-Only Participants
+
+| Template id | Default label | `familyTag` | `structure.kind` | Allowed placements | Current note |
+| --- | --- | --- | --- | --- | --- |
+| `associate` | Associate | `operator` | `operator` | `operator` | current UI exposes it in right operator lane only |
+| `dissociate` | Dissociate | `operator` | `operator` | `operator` | current UI exposes it in left operator lane only |
+| `w_minus_boson` | Negative W Boson | `boson` | `w_boson` | `center` | `family=charged_lepton`, `defaultOccupiedCount=3` |
+| `z_boson` | Neutral Z Boson | `boson` | `z_boson` | `center` | `family=neutrino`, `defaultOccupiedCount=3` |
+| `w_plus_boson` | Positive W Boson | `boson` | `w_boson` | `center` | `family=charged_lepton`, `defaultOccupiedCount=3` |
+| `free_architrinos` | Free Architrinos | `free-architrinos` | `free_architrinos` | `center` | center-only participant; export/import treats its output anchor indexing specially |
+
+### Variant-Driven Polarized Families
+
+| Template id | Default label | `familyTag` | Allowed placements | Variant ladder | `structure.kind` |
+| --- | --- | --- | --- | --- | --- |
+| `noether_core` | Pro Noether Core | `noether-core` | `reactant`, `product`, `center` | `1 -> Pro Uni Binary`, `2 -> Pro Bi Binary`, `3 -> Pro Noether Core` | `noether_core` |
+| `electron` | Pro Electron | `lepton` | `reactant`, `product` | `1 -> Pro Tau`, `2 -> Pro Muon`, `3 -> Pro Electron` | `family_particle` |
+| `neutrino` | Pro Electron Neutrino | `lepton` | `reactant`, `product` | `1 -> Pro Tau Neutrino`, `2 -> Pro Muon Neutrino`, `3 -> Pro Electron Neutrino` | `family_particle` |
+| `down_quark` | Pro Down Quark | `quark` | `reactant`, `product`, `center` | `1 -> Pro Bottom Quark`, `2 -> Pro Strange Quark`, `3 -> Pro Down Quark` | `family_particle` |
+| `up_quark` | Pro Up Quark | `quark` | `reactant`, `product`, `center` | `1 -> Pro Top Quark`, `2 -> Pro Charm Quark`, `3 -> Pro Up Quark` | `family_particle` |
+| `fermion_gen1` | Gen I Fermion | `fermion` | `reactant`, `product` | no explicit variants | `generic_particle` |
+
+Current code-backed notes:
+
+- `electron`, `neutrino`, `down_quark`, and `up_quark` infer occupied slots from the variant ladder
+- `inferReactionGenerationFromLabel("electron", "Pro Muon")` currently resolves to generation `"2"`
+- `supportsReactionObjectPolarity(...)` is true for these families and for polarized composites such as `proton` and `neutron`
+
+### Side-Lane Assemblies And Composite Participants
+
+| Template id | Default label | `familyTag` | `structure.kind` | Allowed placements | Current note | Aliases |
+| --- | --- | --- | --- | --- | --- | --- |
+| `photon` | Photon | `boson` | `photon` | `reactant`, `product` | simple side-lane boson | none |
+| `noether_pair` | Noether Pair | `boson` | `assembly` | `reactant`, `product` | `assemblyTemplateId=noether_pair`; not center-capable | none |
+| `noether_quad` | Noether Quad | `boson` | `assembly` | `reactant`, `product` | `assemblyTemplateId=noether_quad`; not center-capable | none |
+| `proton` | Pro Proton | `baryon` | `baryon` | `reactant`, `product` | polarized composite baryon | none |
+| `neutron` | Pro Neutron | `baryon` | `baryon` | `reactant`, `product` | polarized composite baryon | none |
+| `pi_plus` | Positive Pion | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `pi_minus` | Negative Pion | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `upi0` | Neutral Pion (u anti-u) | `meson` | `meson` | `reactant`, `product` | meson | `pi0` |
+| `dpi0` | Neutral Pion (d anti-d) | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `k_plus` | Positive Kaon | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `k_minus` | Negative Kaon | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `dk0` | Neutral Kaon (d anti-s) | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `sk0` | Neutral Kaon (s anti-d) | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `b_plus` | Positive B Meson | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `b_minus` | Negative B Meson | `meson` | `meson` | `reactant`, `product` | meson | none |
+| `db0` | Neutral B Meson (d anti-b) | `meson` | `meson` | `reactant`, `product` | meson | `dB0` |
+| `bb0` | Neutral B Meson (b anti-d) | `meson` | `meson` | `reactant`, `product` | meson | `bB0` |
+
+## Code-Backed Observations
+
+- The JSON registry and the browser-importable JS registry data are currently kept byte-identical. [`reaction-object-registry.test.js`](../../../tests/reaction-object-registry.test.js) checks that directly.
+- Placement validity is registry-owned:
+  - `ReactionFlowExportRuntime.js`, `ReactionBuiltInLibraryRuntime.js`, and `ReactionSolverRequestAdapterRuntime.js` all reject participants whose placement class is not allowed by the registry.
+- Connection validity is registry-owned:
+  - the Python solver reads the same `connectionPolicy`;
+  - `isReactionConnectionAllowed(...)` is now the shared forward-lane law in browser tests and solver validation.
+- `Noether Pair` and `Noether Quad` are not center-lane objects in the current registry.
+- `Free Architrinos` is center-only in the current registry.
+- `Associate` and `Dissociate` remain the only canonical operator templates.
+- The UI still narrows operator placement more than the registry itself:
+  - current add flow offers `Dissociate` only on the left operator lane;
+  - current add flow offers `Associate` only on the right operator lane.
+- `Noether Quad` is still the only template with explicit reaction composite modes in [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js).
+- Center-lane connector orientation is now first-class in runtime code:
+  - center targets attach on the left;
+  - center sources attach on the right;
+  - the old reactant/product fallback semantics are no longer the intended model for center-lane attachments.
+- Alias normalization is now part of the canonical registry surface:
+  - `pi0 -> upi0`
+  - `dB0 -> db0`
+  - `bB0 -> bb0`
+
+## Current Practical Interpretation
+
+Read the registry as the source of truth for:
+
+- what a screenable object is;
+- how many occupied slots it has for a given variant;
+- what generation and `h`-basis label that variant carries;
+- whether it supports polarity;
+- which placement classes it may occupy;
+- which connector roles exist in that placement;
+- and which routed edges are legal under the forward-lane connection policy.
+
+Read the current Reaction UI as a stricter consumer of that registry, especially for operator lane assignment and add-menu affordances.

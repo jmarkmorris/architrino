@@ -43,19 +43,25 @@
                 ></path>
               </svg>
             </a>
-            <label class="reaction-app-library-picker" for="reaction-library-select">
+            <div id="reaction-library-picker" class="reaction-app-library-picker">
               <span class="reaction-app-library-label">Library</span>
-              <select
-                id="reaction-library-select"
-                class="reaction-app-library-select"
+              <button
+                id="reaction-library-trigger"
+                class="reaction-app-library-trigger"
+                type="button"
                 aria-label="Choose a built-in reaction library entry"
-              ></select>
-            </label>
-            <div
-              id="reaction-library-quick-list"
-              class="reaction-app-library-quick-list"
-              aria-label="Built-in reaction library entries"
-            ></div>
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="reaction-library-menu"
+              ></button>
+              <div
+                id="reaction-library-menu"
+                class="reaction-app-library-menu"
+                role="listbox"
+                aria-label="Built-in reaction library entries"
+                hidden
+              ></div>
+            </div>
             <button
               id="reaction-library-load-button"
               class="reaction-app-action"

@@ -148,7 +148,15 @@ test("reaction-flow export keeps neutral b meson identities distinct on the shar
         label: "Neutral B Meson (b anti-d)",
       }),
     ],
-    mappings: [],
+    mappings: [
+      {
+        id: "map_b0_identity",
+        sourceKey: "reactant_b0::reactant_b0_structure",
+        targetKey: "product_anti_b0::product_anti_b0_structure",
+        sourceRole: "reactant",
+        targetRole: "product",
+      },
+    ],
   };
 
   const document = buildReactionFlowDocument({

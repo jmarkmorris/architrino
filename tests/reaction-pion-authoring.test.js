@@ -151,8 +151,22 @@ test("reaction-flow export keeps explicit neutral-pion authored form visible", (
         templateId: "upi0",
         label: "Neutral Pion (u anti-u)",
       }),
+      createParticipant({
+        id: "product_upi0",
+        side: "product",
+        templateId: "upi0",
+        label: "Neutral Pion (u anti-u)",
+      }),
     ],
-    mappings: [],
+    mappings: [
+      {
+        id: "map_upi0_identity",
+        sourceKey: "reactant_upi0::reactant_upi0_structure",
+        targetKey: "product_upi0::product_upi0_structure",
+        sourceRole: "reactant",
+        targetRole: "product",
+      },
+    ],
   };
 
   const document = buildReactionFlowDocument({

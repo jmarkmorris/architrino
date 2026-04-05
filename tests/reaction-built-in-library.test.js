@@ -5,9 +5,9 @@ import fs from "node:fs/promises";
 import { createReactionAnchorRenderRuntime } from "../src/apps/reaction/ReactionAnchorRenderRuntime.js";
 import {
   DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID,
-  REACTION_BUILTIN_LIBRARY_ENTRIES,
   buildReactionSnapshotFromReactionFlowDocument,
   loadDefaultReactionBuiltInLibraryEntry,
+  loadReactionBuiltInLibraryManifest,
   loadReactionBuiltInLibraryEntry,
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
 import { parseReactionNodeKey } from "../src/apps/reaction/ReactionNodeKeyRuntime.js";
@@ -57,8 +57,51 @@ async function readJson(url) {
   return JSON.parse(await fs.readFile(url, "utf8"));
 }
 
+const FIXTURE_LIBRARY_MANIFEST = Object.freeze({
+  schema: "reaction-built-in-library-manifest/v1",
+  defaultEntryId: "muon_decay",
+  entries: Object.freeze([
+    Object.freeze({
+      id: "muon_decay",
+      title: "Muon decay",
+      displayTitle: "Muon decay",
+      description: "Fixture muon decay entry.",
+      documentPath: "../../../content/contracts/examples/reaction-flow/muon_decay.v1.json",
+      version: "fixture-muon",
+      isDefault: true,
+      solveExact: true,
+    }),
+    Object.freeze({
+      id: "free_neutron_beta",
+      title: "Free neutron beta decay",
+      displayTitle: "Free neutron beta decay",
+      description: "Fixture neutron entry.",
+      documentPath: "../../../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json",
+      version: "fixture-neutron",
+      solveExact: true,
+    }),
+    Object.freeze({
+      id: "charged_pion_to_muon_neutrino",
+      title: "Charged pion to muon neutrino",
+      displayTitle: "Charged pion to muon neutrino",
+      description: "Fixture pion entry.",
+      documentPath: "../../../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json",
+      version: "fixture-pion",
+      solveExact: true,
+    }),
+  ]),
+});
+
 function createFixtureFetch() {
   return async function fetchFixture(url) {
+    if (String(url).endsWith("content/generated/reaction-built-in-library/manifest.v1.json")) {
+      return {
+        ok: true,
+        async json() {
+          return FIXTURE_LIBRARY_MANIFEST;
+        },
+      };
+    }
     const document = await readJson(url);
     return {
       ok: true,
@@ -373,12 +416,13 @@ test("reaction built-in library seeds muon decay as the default entry", async ()
   const fixture = await readJson(
     new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
   );
-  const loaded = await loadDefaultReactionBuiltInLibraryEntry({
-    fetchImpl: createFixtureFetch(),
-  });
+  const fetchImpl = createFixtureFetch();
+  const manifest = await loadReactionBuiltInLibraryManifest({ fetchImpl });
+  const loaded = await loadDefaultReactionBuiltInLibraryEntry({ fetchImpl });
 
-  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "muon_decay");
-  assert.equal(REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id, "muon_decay");
+  assert.equal(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, "");
+  assert.equal(manifest.defaultEntryId, "muon_decay");
+  assert.equal(manifest.entries[0]?.id, "muon_decay");
   assert.equal(loaded.entry.id, "muon_decay");
   assert.equal(loaded.entry.title, "Muon decay");
   assert.equal(loaded.document.reactionId, fixture.reactionId);
@@ -415,6 +459,56 @@ test("reaction built-in library seeds muon decay as the default entry", async ()
   assert.equal(loaded.snapshot.mappings.length >= 2, true);
 });
 
+test("reaction built-in library resolves browser-served content paths from the page base URL", async () => {
+  const previousDocument = globalThis.document;
+  const browserStyleManifest = {
+    schema: "reaction-built-in-library-manifest/v1",
+    defaultEntryId: "muon_decay",
+    entries: [
+      {
+        id: "muon_decay",
+        title: "Muon decay",
+        displayTitle: "Muon decay",
+        description: "Browser path fixture.",
+        documentPath: "content/contracts/examples/reaction-flow/muon_decay.v1.json",
+        version: "browser-fixture",
+        isDefault: true,
+        solveExact: true,
+      },
+    ],
+  };
+  let fetchedUrl = "";
+  globalThis.document = {
+    baseURI: "http://localhost:5173/reaction.html",
+  };
+
+  try {
+    const loaded = await loadDefaultReactionBuiltInLibraryEntry({
+      manifest: browserStyleManifest,
+      fetchImpl: async (url) => {
+        fetchedUrl = String(url);
+        return {
+          ok: true,
+          async json() {
+            return readJson(
+              new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
+            );
+          },
+        };
+      },
+    });
+
+    assert.equal(
+      fetchedUrl,
+      "http://localhost:5173/content/contracts/examples/reaction-flow/muon_decay.v1.json?v=browser-fixture"
+    );
+    assert.equal(loaded.entry.id, "muon_decay");
+    assert.equal(loaded.document.schema, "reaction-flow/v1");
+  } finally {
+    globalThis.document = previousDocument;
+  }
+});
+
 test("reaction built-in library now includes the first accepted PDG-backed solved entries", async () => {
   const muonFixture = await readJson(
     new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
@@ -425,7 +519,7 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
   const fetchImpl = createFixtureFetch();
 
   assert.deepEqual(
-    REACTION_BUILTIN_LIBRARY_ENTRIES.map((entry) => entry.id),
+    FIXTURE_LIBRARY_MANIFEST.entries.map((entry) => entry.id),
     ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
   );
 

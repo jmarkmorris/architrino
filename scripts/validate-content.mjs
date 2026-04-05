@@ -1272,10 +1272,13 @@ if (scenesWithNoIncomingLinks.length) {
 
 const wroteFiles = [];
 const builtInReactionLibrarySyncResult = syncBuiltInReactionLibrary({ mode });
-for (const skippedEntry of builtInReactionLibrarySyncResult.skippedEntries) {
-  notes.push(
-    `built-in reaction library sync skipped: ${skippedEntry.outputPath} no longer closes exactly in the current solver path (${skippedEntry.message}).`
-  );
+notes.push(
+  `Built-in reaction library: ${builtInReactionLibrarySyncResult.entryCount} emitted ` +
+    `(${builtInReactionLibrarySyncResult.exactEntryCount} exact, ` +
+    `${builtInReactionLibrarySyncResult.nonExactEntryCount} non-exact).`
+);
+if (builtInReactionLibrarySyncResult.defaultEntryId) {
+  notes.push(`built-in reaction library default: ${builtInReactionLibrarySyncResult.defaultEntryId}`);
 }
 for (const generationError of builtInReactionLibrarySyncResult.generationErrors) {
   errors.push(

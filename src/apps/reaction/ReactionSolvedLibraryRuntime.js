@@ -141,15 +141,11 @@ function markParticipantAutoDissociated(participant = null) {
   return true;
 }
 
-export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options = {}) {
+function buildReactionLibraryCandidateFromProjectedSolverArtifacts(options = {}) {
   const request = options?.request ?? {};
   const result = options?.result ?? {};
   const reviewCandidate = options?.reviewCandidate ?? null;
-  if (result?.summary?.exact !== true || resultHasErrorDiagnostics(result)) {
-    throw new Error(
-      "Accepted reaction library generation requires an exact solver result with no error diagnostics."
-    );
-  }
+  const exact = result?.summary?.exact === true && !resultHasErrorDiagnostics(result);
   const snapshot = buildReactionSnapshotFromSolverRequest(request);
   applyReactionSolvePlan({
     result,
@@ -169,6 +165,7 @@ export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options
   });
 
   const exportOverrides = reviewCandidate?.exportOverrides ?? {};
+  const reviewStatus = normalizeLowerText(options?.reviewStatus) === "accepted" && exact ? "accepted" : "draft";
   const document = buildReactionFlowDocument({
     ...exportOverrides,
     reactionId: normalizeText(options?.reactionId) || exportOverrides.reactionId,
@@ -181,15 +178,46 @@ export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options
       : exportOverrides.semanticTags,
     suggestedSceneId: normalizeText(options?.suggestedSceneId) || exportOverrides.suggestedSceneId,
     reviewInput: options?.reviewInput ?? reviewCandidate?.reviewInput,
-    review: {
-      status: "accepted",
-      acceptedAt: normalizeText(options?.acceptedAt) || new Date().toISOString(),
-    },
+    review:
+    reviewStatus === "accepted"
+        ? {
+            status: "accepted",
+            acceptedAt: normalizeText(options?.acceptedAt) || new Date().toISOString(),
+          }
+        : {
+            status: "draft",
+          },
+    allowIncompleteSnapshot: options?.allowIncompleteSnapshot === true,
     snapshot,
   });
 
   return buildReactionLibraryCandidateFromDocument(document, {
     entryId: options?.entryId,
     description: options?.description,
+  });
+}
+
+export function buildReactionLibraryCandidateFromSolverArtifacts(options = {}) {
+  return buildReactionLibraryCandidateFromProjectedSolverArtifacts({
+    ...options,
+    reviewStatus:
+      options?.reviewStatus !== undefined
+        ? options.reviewStatus
+        : options?.result?.summary?.exact === true && !resultHasErrorDiagnostics(options?.result)
+          ? "accepted"
+          : "draft",
+  });
+}
+
+export function buildAcceptedReactionLibraryCandidateFromSolverArtifacts(options = {}) {
+  const result = options?.result ?? {};
+  if (result?.summary?.exact !== true || resultHasErrorDiagnostics(result)) {
+    throw new Error(
+      "Accepted reaction library generation requires an exact solver result with no error diagnostics."
+    );
+  }
+  return buildReactionLibraryCandidateFromProjectedSolverArtifacts({
+    ...options,
+    reviewStatus: "accepted",
   });
 }

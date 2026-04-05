@@ -47,56 +47,17 @@ class FakeButtonElement extends FakeElement {
   }
 }
 
-class FakeOptionElement extends FakeElement {
-  constructor() {
-    super();
-    this.value = "";
-  }
-}
-
-class FakeSelectElement extends FakeElement {
-  constructor() {
-    super();
-    this.disabled = false;
-    this.value = "";
-    this.options = [];
-  }
-
-  set innerHTML(value) {
-    this._innerHTML = String(value ?? "");
-    this.children = [];
-    this.options = [];
-    this.value = "";
-  }
-
-  get innerHTML() {
-    return this._innerHTML ?? "";
-  }
-
-  appendChild(child) {
-    this.options.push(child);
-    if (!this.value && child?.value) {
-      this.value = child.value;
-    }
-    return super.appendChild(child);
-  }
-}
-
 function withFakeDom(testBody) {
   return async () => {
     const previousWindow = globalThis.window;
     const previousDocument = globalThis.document;
     const previousHTMLElement = globalThis.HTMLElement;
     const previousHTMLButtonElement = globalThis.HTMLButtonElement;
-    const previousHTMLSelectElement = globalThis.HTMLSelectElement;
     globalThis.window = {
       sessionStorage: null,
     };
     globalThis.document = {
       createElement(tagName) {
-        if (tagName === "option") {
-          return new FakeOptionElement();
-        }
         if (tagName === "button") {
           return new FakeButtonElement();
         }
@@ -105,7 +66,6 @@ function withFakeDom(testBody) {
     };
     globalThis.HTMLElement = FakeElement;
     globalThis.HTMLButtonElement = FakeButtonElement;
-    globalThis.HTMLSelectElement = FakeSelectElement;
     try {
       await testBody();
     } finally {
@@ -113,7 +73,6 @@ function withFakeDom(testBody) {
       globalThis.document = previousDocument;
       globalThis.HTMLElement = previousHTMLElement;
       globalThis.HTMLButtonElement = previousHTMLButtonElement;
-      globalThis.HTMLSelectElement = previousHTMLSelectElement;
     }
   };
 }
@@ -166,6 +125,16 @@ function createCommitRuntimeStub() {
         status: "draft",
       };
     },
+    getSnapshotValidation(snapshot = {}) {
+      const hasContent =
+        (Array.isArray(snapshot?.participants) ? snapshot.participants.length : 0) > 0 ||
+        (Array.isArray(snapshot?.mappings) ? snapshot.mappings.length : 0) > 0;
+      return {
+        valid: hasContent,
+        diagnostics: [],
+        message: "",
+      };
+    },
     acceptCurrentSnapshot() {
       return null;
     },
@@ -175,19 +144,17 @@ function createCommitRuntimeStub() {
 function createReactionAppRuntimeHarness(options = {}) {
   const statusElement = new FakeElement();
   const reviewStateElement = new FakeElement();
-  const librarySelect = new FakeSelectElement();
-  const libraryQuickList = new FakeElement();
   const libraryLoadButton = new FakeButtonElement();
   const acceptButton = new FakeButtonElement();
   const exportButton = new FakeButtonElement();
   const canvasRuntimeStub = createCanvasRuntimeStub(options.initialSnapshot);
+  let libraryEntries = [];
+  let selectedLibraryId = "";
   let defaultLibraryLoadCalls = 0;
   let specificLibraryLoadCalls = [];
   const runtime = createReactionAppRuntime({
     statusElement,
     reviewStateElement,
-    librarySelect,
-    libraryQuickList,
     libraryLoadButton,
     acceptButton,
     exportButton,
@@ -199,6 +166,23 @@ function createReactionAppRuntimeHarness(options = {}) {
         return {};
       },
     }),
+    createLibraryPickerRuntime: () => ({
+      setEntries(entries = [], pickerOptions = {}) {
+        libraryEntries = [...entries];
+        selectedLibraryId = String(pickerOptions?.selectedId ?? entries[0]?.id ?? "");
+      },
+      setSelectedId(entryId = "") {
+        selectedLibraryId = String(entryId ?? "");
+      },
+      getSelectedId() {
+        return selectedLibraryId;
+      },
+    }),
+    builtInLibraryEntries: options.builtInLibraryEntries ?? [
+      { id: "muon_decay", title: "Muon decay", isDefault: true },
+      { id: "free_neutron_beta", title: "Free neutron beta decay" },
+      { id: "charged_pion_to_muon_neutrino", title: "Charged pion to muon neutrino" },
+    ],
     loadDefaultReactionLibraryEntry: async () => {
       defaultLibraryLoadCalls += 1;
       return options.defaultLibraryPayload;
@@ -212,8 +196,12 @@ function createReactionAppRuntimeHarness(options = {}) {
     runtime,
     statusElement,
     reviewStateElement,
-    librarySelect,
-    libraryQuickList,
+    libraryEntries,
+    getLibraryEntries: () => [...libraryEntries],
+    getSelectedLibraryId: () => selectedLibraryId,
+    setSelectedLibraryId: (entryId) => {
+      selectedLibraryId = String(entryId ?? "");
+    },
     libraryLoadButton,
     acceptButton,
     exportButton,
@@ -260,14 +248,10 @@ test(
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
     assert.deepEqual(harness.canvasRuntimeStub.replaceCalls[0], defaultLibraryPayload.snapshot);
     assert.deepEqual(
-      harness.librarySelect.options.map((option) => option.value),
+      harness.getLibraryEntries().map((entry) => entry.id),
       ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
     );
-    assert.deepEqual(
-      [...new Set(harness.libraryQuickList.children.map((child) => child.textContent))],
-      ["Muon decay", "Free neutron beta decay", "Charged pion to muon neutrino"]
-    );
-    assert.equal(harness.librarySelect.value, "muon_decay");
+    assert.equal(harness.getSelectedLibraryId(), "muon_decay");
     assert.equal(harness.libraryLoadButton.disabled, false);
     assert.equal(
       harness.statusElement.textContent,
@@ -357,7 +341,7 @@ test(
     });
 
     await harness.runtime.init();
-    harness.librarySelect.value = "muon_decay";
+    harness.setSelectedLibraryId("muon_decay");
     await harness.runtime.loadSelectedBuiltInReactionLibraryEntry();
 
     assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["muon_decay"]);

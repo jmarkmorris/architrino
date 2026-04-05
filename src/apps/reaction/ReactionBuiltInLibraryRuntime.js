@@ -19,40 +19,11 @@ import {
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_OPERATOR_LANE_INDEX = 1;
-const REACTION_BUILTIN_LIBRARY_CACHE_BUSTER = "2026-04-05-reaction-library-v2";
-const FREE_NEUTRON_BETA_DOCUMENT_PATH =
-  "../../../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json";
-const MUON_DECAY_DOCUMENT_PATH =
-  "../../../content/contracts/examples/reaction-flow/muon_decay.v1.json";
-const CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH =
-  "../../../content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json";
-
-export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([
-  Object.freeze({
-    id: "muon_decay",
-    title: "Muon decay",
-    description: "Accepted PDG-backed solved muon decay library entry.",
-    documentPath: MUON_DECAY_DOCUMENT_PATH,
-    isDefault: true,
-  }),
-  Object.freeze({
-    id: "free_neutron_beta",
-    title: "Free neutron beta decay",
-    description: "Accepted PDG-backed solved free neutron beta decay library entry.",
-    documentPath: FREE_NEUTRON_BETA_DOCUMENT_PATH,
-  }),
-  Object.freeze({
-    id: "charged_pion_to_muon_neutrino",
-    title: "Charged pion to muon neutrino",
-    description: "Accepted PDG-backed solved charged pion decay library entry.",
-    documentPath: CHARGED_PION_TO_MUON_NEUTRINO_DOCUMENT_PATH,
-  }),
-]);
-
-export const DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID =
-  REACTION_BUILTIN_LIBRARY_ENTRIES.find((entry) => entry.isDefault)?.id ??
-  REACTION_BUILTIN_LIBRARY_ENTRIES[0]?.id ??
-  "";
+export const REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA = "reaction-built-in-library-manifest/v1";
+export const REACTION_BUILTIN_LIBRARY_MANIFEST_PATH =
+  "../../../content/generated/reaction-built-in-library/manifest.v1.json";
+export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([]);
+export const DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID = "";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -64,6 +35,37 @@ function normalizeLowerText(value = "") {
 
 function buildTagList(values = []) {
   return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
+}
+
+function buildBuiltInLibraryPageBaseUrl(fallbackUrl = import.meta.url, pageBaseUrl = "") {
+  const resolvedPageBaseUrl =
+    normalizeText(pageBaseUrl) ||
+    normalizeText(globalThis.document?.baseURI) ||
+    normalizeText(globalThis.window?.location?.href);
+  return new URL(resolvedPageBaseUrl || fallbackUrl, fallbackUrl);
+}
+
+function resolveBuiltInLibraryAssetUrl(assetPath = "", options = {}) {
+  const normalizedAssetPath = normalizeText(assetPath);
+  if (!normalizedAssetPath) {
+    throw new Error("Built-in reaction library asset path is required.");
+  }
+  if (/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(normalizedAssetPath)) {
+    return new URL(normalizedAssetPath);
+  }
+  if (normalizedAssetPath.startsWith("/")) {
+    return new URL(
+      normalizedAssetPath,
+      buildBuiltInLibraryPageBaseUrl(options?.baseUrl ?? import.meta.url, options?.pageBaseUrl)
+    );
+  }
+  if (normalizedAssetPath.startsWith("content/")) {
+    return new URL(
+      normalizedAssetPath,
+      buildBuiltInLibraryPageBaseUrl(options?.baseUrl ?? import.meta.url, options?.pageBaseUrl)
+    );
+  }
+  return new URL(normalizedAssetPath, options?.baseUrl ?? import.meta.url);
 }
 
 function resolveImportedParticipantLabel(documentParticipant = {}, templateId = "", polarity = "") {
@@ -100,20 +102,85 @@ function normalizeAnchorInstanceIndex(anchorInstanceIndex = null) {
   return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
 }
 
-function getBuiltInReactionLibraryEntry(entryId = "") {
+function getBuiltInReactionLibraryEntry(entryId = "", entries = []) {
   return (
-    REACTION_BUILTIN_LIBRARY_ENTRIES.find((entry) => entry.id === normalizeText(entryId)) ??
+    (Array.isArray(entries) ? entries : []).find((entry) => entry.id === normalizeText(entryId)) ??
     null
   );
 }
 
-function resolveBuiltInEntry(entryId = "") {
-  const resolvedEntryId = normalizeText(entryId) || DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID;
-  const entry = getBuiltInReactionLibraryEntry(resolvedEntryId);
+function resolveBuiltInEntry(entryId = "", entries = [], defaultEntryId = "") {
+  const resolvedEntryId =
+    normalizeText(entryId) ||
+    normalizeText(defaultEntryId) ||
+    normalizeText((Array.isArray(entries) ? entries : []).find((entry) => entry?.isDefault)?.id) ||
+    normalizeText((Array.isArray(entries) ? entries : [])[0]?.id) ||
+    DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID;
+  const entry = getBuiltInReactionLibraryEntry(resolvedEntryId, entries);
   if (!entry) {
     throw new Error(`Unknown built-in reaction library entry: ${resolvedEntryId || "(empty)"}`);
   }
   return entry;
+}
+
+function normalizeBuiltInManifest(manifest = {}) {
+  const entries = (Array.isArray(manifest?.entries) ? manifest.entries : [])
+    .map((entry) => ({
+      ...entry,
+      id: normalizeText(entry?.id),
+      title: normalizeText(entry?.title),
+      displayTitle: normalizeText(entry?.displayTitle),
+      description: normalizeText(entry?.description),
+      documentPath: normalizeText(entry?.documentPath),
+      version: normalizeText(entry?.version),
+      isDefault: Boolean(entry?.isDefault),
+      solveExact: entry?.solveExact === true,
+    }))
+    .filter((entry) => entry.id && entry.documentPath);
+  const defaultEntryId =
+    normalizeText(manifest?.defaultEntryId) ||
+    normalizeText(entries.find((entry) => entry?.isDefault)?.id) ||
+    normalizeText(entries[0]?.id);
+  return {
+    schema: REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA,
+    defaultEntryId,
+    entries,
+  };
+}
+
+export async function loadReactionBuiltInLibraryManifest(options = {}) {
+  if (Array.isArray(options?.entries) && options.entries.length) {
+    return normalizeBuiltInManifest({
+      schema: REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA,
+      defaultEntryId: options?.defaultEntryId,
+      entries: options.entries,
+    });
+  }
+  if (options?.manifest && typeof options.manifest === "object") {
+    return normalizeBuiltInManifest(options.manifest);
+  }
+  const fetchImpl =
+    typeof options?.fetchImpl === "function"
+      ? options.fetchImpl
+      : typeof globalThis.fetch === "function"
+        ? globalThis.fetch.bind(globalThis)
+        : null;
+  if (typeof fetchImpl !== "function") {
+    throw new Error("Built-in reaction library loading requires fetch().");
+  }
+  const manifestUrl = resolveBuiltInLibraryAssetUrl(
+    normalizeText(options?.manifestPath) || REACTION_BUILTIN_LIBRARY_MANIFEST_PATH,
+    options
+  );
+  const response = await fetchImpl(manifestUrl);
+  if (response?.ok === false) {
+    throw new Error("Built-in reaction library manifest fetch failed.");
+  }
+  const manifest = await response.json();
+  if (normalizeText(manifest?.schema) !== REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA) {
+    throw new Error("Built-in reaction library manifest is invalid.");
+  }
+  return normalizeBuiltInManifest(manifest);
 }
 
 function resolveParticipantIdentity(documentParticipant = {}) {
@@ -483,9 +550,9 @@ async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
   if (typeof fetchImpl !== "function") {
     throw new Error("Built-in reaction library loading requires fetch().");
   }
-  const documentUrl = new URL(entry.documentPath, options?.baseUrl ?? import.meta.url);
-  if (!documentUrl.searchParams.has("v")) {
-    documentUrl.searchParams.set("v", REACTION_BUILTIN_LIBRARY_CACHE_BUSTER);
+  const documentUrl = resolveBuiltInLibraryAssetUrl(entry.documentPath, options);
+  if (normalizeText(entry?.version) && !documentUrl.searchParams.has("v")) {
+    documentUrl.searchParams.set("v", normalizeText(entry.version));
   }
   const response = await fetchImpl(documentUrl);
   if (response?.ok === false) {
@@ -499,10 +566,12 @@ async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
 }
 
 export async function loadReactionBuiltInLibraryEntry(entryId = "", options = {}) {
-  const entry = resolveBuiltInEntry(entryId);
+  const manifest = await loadReactionBuiltInLibraryManifest(options);
+  const entry = resolveBuiltInEntry(entryId, manifest.entries, manifest.defaultEntryId);
   const document = await loadJsonDocumentFromBuiltInEntry(entry, options);
   return {
     entry,
+    manifest,
     document,
     snapshot: buildReactionSnapshotFromReactionFlowDocument(document),
     exportOverrides: buildReactionLibraryExportOverrides(document),
@@ -510,5 +579,8 @@ export async function loadReactionBuiltInLibraryEntry(entryId = "", options = {}
 }
 
 export async function loadDefaultReactionBuiltInLibraryEntry(options = {}) {
-  return loadReactionBuiltInLibraryEntry(DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID, options);
+  return loadReactionBuiltInLibraryEntry(
+    normalizeText(options?.defaultEntryId) || DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID,
+    options
+  );
 }

@@ -1,12 +1,17 @@
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
 import { buildReactionReviewCandidateFromSolverRequest } from "../src/apps/reaction/ReactionReviewImportRuntime.js";
-import { buildAcceptedReactionLibraryCandidateFromSolverArtifacts } from "../src/apps/reaction/ReactionSolvedLibraryRuntime.js";
+import { buildReactionLibraryCandidateFromSolverArtifacts } from "../src/apps/reaction/ReactionSolvedLibraryRuntime.js";
 import { solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
+}
+
+function normalizeLowerText(value = "") {
+  return normalizeText(value).toLowerCase();
 }
 
 function sanitizeToken(value = "", fallback = "reaction_library") {
@@ -26,34 +31,109 @@ function serializeJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
 
-function isNonExactAcceptedLibraryError(error) {
-  const message = normalizeText(error?.message) || String(error);
-  return /exact solver result/i.test(message);
+function buildContentVersion(value = "") {
+  return crypto.createHash("sha1").update(String(value ?? ""), "utf8").digest("hex").slice(0, 12);
+}
+
+function toPosixPath(value = "") {
+  return normalizeText(value).replaceAll(path.sep, "/");
+}
+
+function countErrorDiagnostics(result = {}) {
+  return (Array.isArray(result?.diagnostics) ? result.diagnostics : []).filter(
+    (diagnostic) => normalizeLowerText(diagnostic?.severity) === "error"
+  ).length;
+}
+
+function listErrorDiagnosticCodes(result = {}) {
+  return [
+    ...new Set(
+      (Array.isArray(result?.diagnostics) ? result.diagnostics : [])
+        .filter((diagnostic) => normalizeLowerText(diagnostic?.severity) === "error")
+        .map((diagnostic) => normalizeText(diagnostic?.code))
+        .filter(Boolean)
+    ),
+  ];
+}
+
+function getRankingScore(request = {}) {
+  const value = Number(request?.upstreamContext?.ranking?.score);
+  return Number.isFinite(value) ? value : 0;
+}
+
+function getRankingRank(request = {}) {
+  const value = Number(request?.upstreamContext?.ranking?.rank);
+  return Number.isFinite(value) ? Math.max(0, Math.round(value)) : Number.MAX_SAFE_INTEGER;
+}
+
+function isLivePdgRequest(request = {}, requestPath = "") {
+  return (
+    normalizeLowerText(request?.requestId).endsWith(".live-pdg") ||
+    normalizeLowerText(requestPath).includes(".live-pdg.")
+  );
+}
+
+function buildTitleSuffix(request = {}, requestPath = "") {
+  return isLivePdgRequest(request, requestPath) ? " (live PDG)" : "";
+}
+
+function compareRequestSummaries(left = {}, right = {}) {
+  if (Boolean(left?.solveExact) !== Boolean(right?.solveExact)) {
+    return left?.solveExact ? -1 : 1;
+  }
+  const scoreDelta = Number(right?.rankingScore ?? 0) - Number(left?.rankingScore ?? 0);
+  if (scoreDelta !== 0) {
+    return scoreDelta;
+  }
+  const rankDelta = Number(left?.rankingRank ?? 0) - Number(right?.rankingRank ?? 0);
+  if (rankDelta !== 0) {
+    return rankDelta;
+  }
+  const unresolvedDelta =
+    Number(left?.unresolvedTargetCount ?? 0) - Number(right?.unresolvedTargetCount ?? 0);
+  if (unresolvedDelta !== 0) {
+    return unresolvedDelta;
+  }
+  const errorDelta = Number(left?.errorCount ?? 0) - Number(right?.errorCount ?? 0);
+  if (errorDelta !== 0) {
+    return errorDelta;
+  }
+  return normalizeText(left?.title).localeCompare(normalizeText(right?.title));
+}
+
+function compareNonExactRequestSummaries(left = {}, right = {}) {
+  const scoreDelta = Number(right?.rankingScore ?? 0) - Number(left?.rankingScore ?? 0);
+  if (scoreDelta !== 0) {
+    return scoreDelta;
+  }
+  const rankDelta = Number(left?.rankingRank ?? 0) - Number(right?.rankingRank ?? 0);
+  if (rankDelta !== 0) {
+    return rankDelta;
+  }
+  const unresolvedDelta =
+    Number(left?.unresolvedTargetCount ?? 0) - Number(right?.unresolvedTargetCount ?? 0);
+  if (unresolvedDelta !== 0) {
+    return unresolvedDelta;
+  }
+  const errorDelta = Number(left?.errorCount ?? 0) - Number(right?.errorCount ?? 0);
+  if (errorDelta !== 0) {
+    return errorDelta;
+  }
+  return normalizeText(left?.title).localeCompare(normalizeText(right?.title));
 }
 
 export const DEFAULT_REACTION_LIBRARY_ACCEPTED_AT = "2026-04-05T12:00:00.000Z";
-
-export const BUILT_IN_REACTION_LIBRARY_SYNC_ENTRIES = Object.freeze([
-  Object.freeze({
-    entryId: "muon_decay",
-    requestPath: "content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json",
-    outputPath: "content/contracts/examples/reaction-flow/muon_decay.v1.json",
-    title: "Muon decay",
-  }),
-  Object.freeze({
-    entryId: "free_neutron_beta",
-    requestPath:
-      "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json",
-    outputPath: "content/contracts/examples/reaction-flow/free_neutron_beta.v1.json",
-    title: "Free neutron beta decay",
-  }),
-  Object.freeze({
-    entryId: "charged_pion_to_muon_neutrino",
-    requestPath:
-      "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json",
-    outputPath: "content/contracts/examples/reaction-flow/charged_pion_to_muon_neutrino.v1.json",
-    title: "Charged pion to muon neutrino",
-  }),
+export const DEFAULT_NON_EXACT_LIBRARY_ENTRY_LIMIT = 5;
+export const GENERATED_REACTION_LIBRARY_MANIFEST_PATH =
+  "content/generated/reaction-built-in-library/manifest.v1.json";
+export const GENERATED_REACTION_LIBRARY_ENTRIES_DIR =
+  "content/generated/reaction-built-in-library/entries";
+export const GENERATED_REACTION_LIBRARY_REQUEST_DIR =
+  "content/contracts/examples/pdg/v1/generated";
+export const DEFAULT_REACTION_LIBRARY_DEFAULT_ENTRY_IDS = Object.freeze([
+  "muon_decay",
+  "free_neutron_beta_decay",
+  "charged_pion_to_muon_neutrino",
 ]);
 
 export function deriveReactionLibraryEntryId(requestPath = "", request = {}) {
@@ -66,15 +146,24 @@ export function deriveReactionLibraryEntryId(requestPath = "", request = {}) {
   );
 }
 
-export function deriveReactionLibraryTitle(request = {}, entryId = "") {
-  return (
+export function deriveReactionLibraryTitle(request = {}, entryId = "", options = {}) {
+  const title =
     normalizeText(request?.origin?.title) ||
     normalizeText(request?.upstreamContext?.notes?.title) ||
     entryId
       .split("_")
       .filter(Boolean)
       .map((token) => token.charAt(0).toUpperCase() + token.slice(1))
-      .join(" ")
+      .join(" ");
+  return `${title}${buildTitleSuffix(request, options?.requestPath)}`;
+}
+
+function deriveReactionLibraryDocumentPath(entryId = "") {
+  return toPosixPath(
+    path.posix.join(
+      GENERATED_REACTION_LIBRARY_ENTRIES_DIR,
+      `${sanitizeToken(entryId, "reaction_library")}.reaction-flow.v1.json`
+    )
   );
 }
 
@@ -97,21 +186,98 @@ function resolveAcceptedAt(outputPath = "", explicitAcceptedAt = "") {
   return DEFAULT_REACTION_LIBRARY_ACCEPTED_AT;
 }
 
-export function buildAcceptedReactionLibraryDocument(requestPath = "", options = {}) {
+function discoverGeneratedSolverRequestPaths(rootDir = "", requestDir = GENERATED_REACTION_LIBRARY_REQUEST_DIR) {
+  const absoluteRequestDir = path.resolve(rootDir || process.cwd(), normalizeText(requestDir));
+  if (!fs.existsSync(absoluteRequestDir)) {
+    return [];
+  }
+  return fs.readdirSync(absoluteRequestDir)
+    .filter((entry) => entry.endsWith(".solver-request.v1.json"))
+    .sort((left, right) => left.localeCompare(right))
+    .map((entry) => toPosixPath(path.posix.join(normalizeText(requestDir), entry)));
+}
+
+function buildReactionLibrarySummary(requestPath = "", options = {}) {
+  const absoluteRequestPath = path.resolve(options?.rootDir || process.cwd(), normalizeText(requestPath));
+  const request = readJson(absoluteRequestPath);
+  const { result } = solveReactionSolverRequest(request);
+  const entryId = deriveReactionLibraryEntryId(absoluteRequestPath, request);
+  const title = deriveReactionLibraryTitle(request, entryId, {
+    requestPath: absoluteRequestPath,
+  });
+  return {
+    requestPath: toPosixPath(requestPath),
+    absoluteRequestPath,
+    request,
+    result,
+    entryId,
+    title,
+    solveExact: result?.summary?.exact === true && countErrorDiagnostics(result) === 0,
+    unresolvedTargetCount: Number(result?.summary?.unresolvedTargetCount ?? 0),
+    errorCount: countErrorDiagnostics(result),
+    diagnosticCodes: listErrorDiagnosticCodes(result),
+    rankingScore: getRankingScore(request),
+    rankingRank: getRankingRank(request),
+  };
+}
+
+function selectBuiltInReactionLibrarySummaries(requestSummaries = [], options = {}) {
+  const nonExactLimit = Math.max(
+    0,
+    Math.round(Number(options?.nonExactLimit ?? DEFAULT_NON_EXACT_LIBRARY_ENTRY_LIMIT) || 0)
+  );
+  const exactSummaries = requestSummaries
+    .filter((entry) => entry?.solveExact)
+    .sort(compareRequestSummaries);
+  const nonExactSummaries = requestSummaries
+    .filter((entry) => !entry?.solveExact)
+    .sort(compareNonExactRequestSummaries)
+    .slice(0, nonExactLimit);
+  return [...exactSummaries, ...nonExactSummaries];
+}
+
+function pickDefaultEntryId(entries = [], preferredEntryIds = DEFAULT_REACTION_LIBRARY_DEFAULT_ENTRY_IDS) {
+  const exactEntries = entries.filter((entry) => entry?.solveExact);
+  for (const preferredEntryId of preferredEntryIds) {
+    const preferred = exactEntries.find((entry) => entry?.id === preferredEntryId);
+    if (preferred) {
+      return preferred.id;
+    }
+  }
+  if (exactEntries[0]?.id) {
+    return exactEntries[0].id;
+  }
+  return normalizeText(entries[0]?.id);
+}
+
+function buildLibraryDescription(title = "", solveExact = false) {
+  return solveExact
+    ? `Build-generated exact solved reaction for ${title}.`
+    : `Build-generated non-exact solve candidate for ${title}.`;
+}
+
+export function buildGeneratedReactionLibraryDocument(requestPath = "", options = {}) {
   const request = readJson(requestPath);
   const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
   const { result } = solveReactionSolverRequest(request);
   const entryId =
     normalizeText(options?.entryId) || deriveReactionLibraryEntryId(requestPath, request);
-  const title = normalizeText(options?.title) || deriveReactionLibraryTitle(request, entryId);
-  const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+  const title =
+    normalizeText(options?.title) ||
+    deriveReactionLibraryTitle(request, entryId, {
+      requestPath,
+    });
+  const solveExact = result?.summary?.exact === true && countErrorDiagnostics(result) === 0;
+  const candidate = buildReactionLibraryCandidateFromSolverArtifacts({
     request,
     result,
     reviewCandidate,
-    acceptedAt: normalizeText(options?.acceptedAt),
+    acceptedAt: solveExact ? normalizeText(options?.acceptedAt) : "",
     entryId,
     title,
-    description: `Accepted PDG-backed solved reaction for ${title}.`,
+    reviewStatus: solveExact ? "accepted" : "draft",
+    allowIncompleteSnapshot: !solveExact,
+    description: buildLibraryDescription(title, solveExact),
   });
   return {
     request,
@@ -120,77 +286,197 @@ export function buildAcceptedReactionLibraryDocument(requestPath = "", options =
     document: candidate.document,
     entryId,
     title,
+    solveExact,
   };
 }
 
+function buildManifestEntryFromGeneratedDocument(summary = {}, built = {}) {
+  const documentPath = deriveReactionLibraryDocumentPath(summary?.entryId);
+  const document = built?.document ?? {};
+  const text = serializeJson(document);
+  const version = buildContentVersion(text);
+  return {
+    id: normalizeText(summary?.entryId),
+    requestId: normalizeText(summary?.request?.requestId),
+    title: normalizeText(summary?.title),
+    displayTitle: summary?.solveExact
+      ? normalizeText(summary?.title)
+      : `${normalizeText(summary?.title)} [non-exact]`,
+    description: normalizeText(built?.candidate?.entry?.description),
+    documentPath,
+    reviewStatus: normalizeText(document?.review?.status) || "draft",
+    solveExact: Boolean(summary?.solveExact),
+    rankingScore: Number(summary?.rankingScore ?? 0),
+    rankingRank: Number(summary?.rankingRank ?? 0),
+    unresolvedTargetCount: Number(summary?.unresolvedTargetCount ?? 0),
+    errorCount: Number(summary?.errorCount ?? 0),
+    diagnosticCodes: Array.isArray(summary?.diagnosticCodes) ? [...summary.diagnosticCodes] : [],
+    sourceDocumentId: normalizeText(summary?.request?.origin?.sourceDocumentId),
+    sourceRequestPath: normalizeText(summary?.requestPath),
+    version,
+    isDefault: false,
+  };
+}
+
+function writeTextIfChanged(filePath = "", nextText = "") {
+  const currentText = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : null;
+  if (currentText === nextText) {
+    return false;
+  }
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, nextText, "utf8");
+  return true;
+}
+
+function collectGeneratedLibraryPaths(rootDir = "") {
+  const absoluteEntriesDir = path.resolve(rootDir, GENERATED_REACTION_LIBRARY_ENTRIES_DIR);
+  if (!fs.existsSync(absoluteEntriesDir)) {
+    return [];
+  }
+  return fs.readdirSync(absoluteEntriesDir)
+    .filter((entry) => entry.endsWith(".json"))
+    .map((entry) => toPosixPath(path.posix.join(GENERATED_REACTION_LIBRARY_ENTRIES_DIR, entry)));
+}
+
 export function syncBuiltInReactionLibrary(options = {}) {
-  const mode = normalizeText(options?.mode).toLowerCase() === "write" ? "write" : "check";
+  const mode = normalizeLowerText(options?.mode) === "write" ? "write" : "check";
   const rootDir = normalizeText(options?.rootDir) || process.cwd();
-  const entries = Array.isArray(options?.entries) && options.entries.length
-    ? options.entries
-    : BUILT_IN_REACTION_LIBRARY_SYNC_ENTRIES;
+  const requestPaths = Array.isArray(options?.requestPaths) && options.requestPaths.length
+    ? options.requestPaths.map((entry) => toPosixPath(entry))
+    : discoverGeneratedSolverRequestPaths(rootDir, options?.requestDir);
   const buildDocument =
     typeof options?.buildDocument === "function"
       ? options.buildDocument
-      : buildAcceptedReactionLibraryDocument;
+      : buildGeneratedReactionLibraryDocument;
 
+  const requestSummaries =
+    Array.isArray(options?.requestSummaries) && options.requestSummaries.length
+      ? options.requestSummaries.map((entry) => ({
+          ...entry,
+          requestPath: toPosixPath(entry?.requestPath),
+          absoluteRequestPath:
+            normalizeText(entry?.absoluteRequestPath) ||
+            path.resolve(rootDir, normalizeText(entry?.requestPath)),
+          entryId: normalizeText(entry?.entryId),
+          title: normalizeText(entry?.title),
+          solveExact: entry?.solveExact === true,
+          unresolvedTargetCount: Number(entry?.unresolvedTargetCount ?? 0),
+          errorCount: Number(entry?.errorCount ?? 0),
+          rankingScore: Number(entry?.rankingScore ?? 0),
+          rankingRank: Number(entry?.rankingRank ?? 0),
+          diagnosticCodes: Array.isArray(entry?.diagnosticCodes) ? [...entry.diagnosticCodes] : [],
+          request: entry?.request ?? {},
+        }))
+      : requestPaths.map((requestPath) =>
+          buildReactionLibrarySummary(requestPath, {
+            rootDir,
+          })
+        );
+  const selectedSummaries = selectBuiltInReactionLibrarySummaries(requestSummaries, options);
   const generationErrors = [];
-  const skippedEntries = [];
   const driftPaths = [];
   const changedPaths = [];
+  const builtEntries = [];
 
-  for (const entry of entries) {
-    const requestPath = path.resolve(rootDir, normalizeText(entry?.requestPath));
-    const outputPath = path.resolve(rootDir, normalizeText(entry?.outputPath));
-    const displayOutputPath = normalizeText(entry?.outputPath) || path.relative(rootDir, outputPath);
-    const acceptedAt = resolveAcceptedAt(outputPath, options?.acceptedAt);
-
-    let built;
+  for (const summary of selectedSummaries) {
+    const displayDocumentPath = deriveReactionLibraryDocumentPath(summary.entryId);
+    const absoluteDocumentPath = path.resolve(rootDir, displayDocumentPath);
+    const acceptedAt = summary.solveExact ? resolveAcceptedAt(absoluteDocumentPath, options?.acceptedAt) : "";
     try {
-      built = buildDocument(requestPath, {
+      const built = buildDocument(summary.absoluteRequestPath, {
         ...options,
-        entry,
         acceptedAt,
-        entryId: normalizeText(entry?.entryId),
-        title: normalizeText(entry?.title),
+        entryId: summary.entryId,
+        title: summary.title,
+      });
+      builtEntries.push({
+        summary,
+        built,
       });
     } catch (error) {
-      const failure = {
-        entryId: normalizeText(entry?.entryId),
-        requestPath: normalizeText(entry?.requestPath),
-        outputPath: displayOutputPath,
+      generationErrors.push({
+        entryId: summary.entryId,
+        requestPath: summary.requestPath,
+        outputPath: displayDocumentPath,
         message: normalizeText(error?.message) || String(error),
-      };
-      if (isNonExactAcceptedLibraryError(error)) {
-        skippedEntries.push(failure);
-      } else {
-        generationErrors.push(failure);
-      }
-      continue;
+      });
     }
+  }
 
-    const document = built?.document ?? built?.candidate?.document ?? built;
-    const nextText = serializeJson(document);
-    const currentText = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : null;
+  const manifestEntries = builtEntries
+    .map(({ summary, built }) => buildManifestEntryFromGeneratedDocument(summary, built))
+    .sort(compareRequestSummaries);
+  const defaultEntryId = pickDefaultEntryId(
+    manifestEntries,
+    Array.isArray(options?.preferredDefaultEntryIds) && options.preferredDefaultEntryIds.length
+      ? options.preferredDefaultEntryIds
+      : DEFAULT_REACTION_LIBRARY_DEFAULT_ENTRY_IDS
+  );
+  const orderedManifestEntries = [
+    ...manifestEntries
+      .map((entry) => ({
+        ...entry,
+        isDefault: entry.id === defaultEntryId,
+      }))
+      .sort((left, right) => {
+        if (Boolean(left?.isDefault) !== Boolean(right?.isDefault)) {
+          return left?.isDefault ? -1 : 1;
+        }
+        return compareRequestSummaries(left, right);
+      }),
+  ];
+  const manifest = {
+    schema: "reaction-built-in-library-manifest/v1",
+    defaultEntryId,
+    exactEntryCount: orderedManifestEntries.filter((entry) => entry.solveExact).length,
+    nonExactEntryCount: orderedManifestEntries.filter((entry) => !entry.solveExact).length,
+    entries: orderedManifestEntries,
+  };
+  const manifestText = serializeJson(manifest);
+
+  const expectedTextsByPath = new Map();
+  builtEntries.forEach(({ summary, built }) => {
+    const documentPath = deriveReactionLibraryDocumentPath(summary.entryId);
+    expectedTextsByPath.set(documentPath, serializeJson(built.document));
+  });
+  expectedTextsByPath.set(GENERATED_REACTION_LIBRARY_MANIFEST_PATH, manifestText);
+
+  for (const [displayPath, nextText] of expectedTextsByPath.entries()) {
+    const absolutePath = path.resolve(rootDir, displayPath);
+    const currentText = fs.existsSync(absolutePath) ? fs.readFileSync(absolutePath, "utf8") : null;
     if (mode === "write") {
-      if (currentText !== nextText) {
-        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-        fs.writeFileSync(outputPath, nextText, "utf8");
-        changedPaths.push(displayOutputPath);
+      if (writeTextIfChanged(absolutePath, nextText)) {
+        changedPaths.push(displayPath);
       }
       continue;
     }
     if (currentText !== nextText) {
-      driftPaths.push(displayOutputPath);
+      driftPaths.push(displayPath);
     }
+  }
+
+  const staleGeneratedPaths = collectGeneratedLibraryPaths(rootDir)
+    .filter((displayPath) => !expectedTextsByPath.has(displayPath));
+  if (mode === "write") {
+    for (const staleGeneratedPath of staleGeneratedPaths) {
+      fs.rmSync(path.resolve(rootDir, staleGeneratedPath), { force: true });
+      changedPaths.push(staleGeneratedPath);
+    }
+  } else {
+    driftPaths.push(...staleGeneratedPaths);
   }
 
   return {
     mode,
-    entryCount: entries.length,
+    requestCount: requestSummaries.length,
+    entryCount: orderedManifestEntries.length,
+    exactEntryCount: manifest.exactEntryCount,
+    nonExactEntryCount: manifest.nonExactEntryCount,
+    defaultEntryId,
     generationErrors,
-    skippedEntries,
-    driftPaths,
-    changedPaths,
+    skippedEntries: [],
+    driftPaths: [...new Set(driftPaths)].sort((left, right) => left.localeCompare(right)),
+    changedPaths: [...new Set(changedPaths)].sort((left, right) => left.localeCompare(right)),
+    manifest,
   };
 }

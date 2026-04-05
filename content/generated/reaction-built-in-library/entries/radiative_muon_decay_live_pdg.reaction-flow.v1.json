@@ -1,0 +1,214 @@
+{
+  "schema": "reaction-flow/v1",
+  "reactionId": "reaction_review_radiative_muon_decay_live_pdg",
+  "title": "Radiative muon decay (live PDG)",
+  "review": {
+    "status": "draft"
+  },
+  "participants": [
+    {
+      "id": "reactant_pro_muon_1",
+      "side": "reactant",
+      "label": "Pro Muon",
+      "structureKey": "electron",
+      "provenanceId": "solver-request-participant:reactant_pro_muon_1",
+      "tags": [
+        "incoming",
+        "electron",
+        "pdg:species:muon",
+        "pdg:generation:2",
+        "pdg-id:mu-",
+        "generation:2",
+        "charged-lepton",
+        "pdg-name:mu-"
+      ],
+      "layout": {
+        "column": "left",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_pro_electron_1",
+      "side": "product",
+      "label": "Pro Electron",
+      "structureKey": "electron",
+      "provenanceId": "solver-request-participant:product_pro_electron_1",
+      "tags": [
+        "outgoing",
+        "electron",
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-",
+        "generation:1",
+        "charged-lepton",
+        "pdg-name:e-"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 0
+      }
+    },
+    {
+      "id": "product_anti_electron_neutrino_2",
+      "side": "product",
+      "label": "Anti Electron Neutrino",
+      "structureKey": "neutrino",
+      "provenanceId": "solver-request-participant:product_anti_electron_neutrino_2",
+      "tags": [
+        "outgoing",
+        "neutrino",
+        "pdg:species:anti-electron-neutrino",
+        "pdg:generation:1",
+        "pdg-id:nubar_e",
+        "generation:1",
+        "pdg-name:anti-nu_e"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 1
+      }
+    },
+    {
+      "id": "product_pro_muon_neutrino_3",
+      "side": "product",
+      "label": "Pro Muon Neutrino",
+      "structureKey": "neutrino",
+      "provenanceId": "solver-request-participant:product_pro_muon_neutrino_3",
+      "tags": [
+        "outgoing",
+        "neutrino",
+        "pdg:species:muon-neutrino",
+        "pdg:generation:2",
+        "pdg-id:nu_mu",
+        "generation:2",
+        "pdg-name:nu_mu"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 2
+      }
+    },
+    {
+      "id": "product_photon_4",
+      "side": "product",
+      "label": "Photon",
+      "structureKey": "photon",
+      "provenanceId": "solver-request-participant:product_photon_4",
+      "tags": [
+        "outgoing",
+        "photon",
+        "pdg:species:photon",
+        "pdg-id:gamma",
+        "pdg-name:gamma"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 3
+      }
+    }
+  ],
+  "operators": [],
+  "mappings": [
+    {
+      "id": "mapping_1",
+      "from": {
+        "participantId": "reactant_pro_muon_1",
+        "anchorId": "reactant_pro_muon_1/root",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "product_pro_electron_1",
+        "anchorId": "product_pro_electron_1/root",
+        "role": "product"
+      },
+      "stageId": "stage_manual_authoring"
+    }
+  ],
+  "stages": [
+    {
+      "id": "stage_manual_authoring",
+      "label": "Manual Authoring",
+      "order": 0
+    }
+  ],
+  "provenance": {
+    "sourceDocumentIds": [
+      "pdg-proposal:radiative_muon_decay.live-pdg"
+    ],
+    "participantIds": [
+      "reactant_pro_muon_1",
+      "product_pro_electron_1",
+      "product_anti_electron_neutrino_2",
+      "product_pro_muon_neutrino_3",
+      "product_photon_4"
+    ],
+    "mappingIds": [
+      "mapping_1"
+    ],
+    "reviewInput": {
+      "schema": "solver-request/v1",
+      "requestId": "radiative_muon_decay.live-pdg",
+      "origin": {
+        "sourceKind": "pdg-ingest",
+        "sourceDocumentId": "pdg-proposal:radiative_muon_decay.live-pdg",
+        "title": "Radiative muon decay"
+      },
+      "upstreamContext": {
+        "sourceSchema": "pdg-proposal/v1",
+        "proposalId": "radiative_muon_decay.live-pdg",
+        "reviewBoundary": "reaction-review",
+        "source": {
+          "edition": "2025",
+          "channelDescription": "mu- -> e- nubar_e nu_mu gamma",
+          "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
+          "branchingDisplay": "(6.0+-0.5)E-8",
+          "sourceMode": "pdg.connect",
+          "lookupParticleName": "mu-",
+          "pdgIdentifier": "S004.2/2025",
+          "liveCaseId": "radiative_muon_decay",
+          "contract": {
+            "upstreamSchema": "pdg-proposal/v1",
+            "downstreamSchema": "solver-request/v1",
+            "handoffMode": "upstream-only",
+            "reactionAcceptanceRequired": true,
+            "reactionAcceptanceBoundary": "reaction-review",
+            "acceptedReactionHandoff": "reaction-owned",
+            "composerHandoff": "accepted-reaction-only"
+          }
+        },
+        "contract": {
+          "upstreamSchema": "pdg-proposal/v1",
+          "downstreamSchema": "solver-request/v1",
+          "handoffMode": "upstream-only",
+          "reactionAcceptanceRequired": true,
+          "reactionAcceptanceBoundary": "reaction-review",
+          "acceptedReactionHandoff": "reaction-owned",
+          "composerHandoff": "accepted-reaction-only"
+        },
+        "ranking": {
+          "rank": 1,
+          "score": 100,
+          "reasons": [
+            "pdg-live-source",
+            "all-participants-supported"
+          ]
+        },
+        "notes": []
+      }
+    }
+  },
+  "hints": {
+    "initialFramingTargets": [
+      "reactant_pro_muon_1",
+      "product_pro_electron_1",
+      "product_anti_electron_neutrino_2"
+    ],
+    "semanticTags": [
+      "reaction-review",
+      "solver-request-import",
+      "pdg-ingest",
+      "pdg-review"
+    ],
+    "suggestedSceneId": "reaction_review_radiative_muon_decay_live_pdg_scene"
+  }
+}

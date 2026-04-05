@@ -94,3 +94,43 @@ test("reaction commit state clears acceptance when the canvas is emptied", () =>
     canExport: false,
   });
 });
+
+test("reaction commit state blocks acceptance when required connectors are still open", () => {
+  const runtime = createReactionCommitStateRuntime({
+    getSnapshot: () => ({
+      participants: [{ id: "reactant_neutron" }],
+      mappings: [],
+    }),
+    validateSnapshot: () => ({
+      valid: false,
+      diagnostics: [
+        {
+          code: "connector-required-open",
+          severity: "error",
+          message: "Participant reactant_neutron leaves required reactant output open.",
+        },
+      ],
+    }),
+  });
+
+  assert.deepEqual(runtime.getCommitState(), {
+    status: "draft",
+    acceptedAt: "",
+    hasContent: true,
+    needsReaccept: false,
+    canAccept: false,
+    canExport: false,
+  });
+  assert.deepEqual(runtime.getSnapshotValidation(), {
+    valid: false,
+    diagnostics: [
+      {
+        code: "connector-required-open",
+        severity: "error",
+        message: "Participant reactant_neutron leaves required reactant output open.",
+      },
+    ],
+    message: "Participant reactant_neutron leaves required reactant output open.",
+  });
+  assert.equal(runtime.acceptCurrentSnapshot(), null);
+});
