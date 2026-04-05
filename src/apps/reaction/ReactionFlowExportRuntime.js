@@ -82,6 +82,8 @@ function buildParticipantTags(participant = {}) {
       : "",
     participant?.side === "product" ? "outgoing" : "",
     participant?.surfaceColumn === "center-assembly" ? "center-assembly" : "",
+    participant?.isDissociatedComposite ? "manual-dissociated" : "",
+    participant?.isAutoDissociatedComposite ? "auto-dissociated" : "",
     participant?.templateId ?? "",
     participant?.templateId === "upi0" || participant?.templateId === "dpi0" ? "pi0" : "",
     participant?.isSolveGenerated ? "solve-generated" : "",

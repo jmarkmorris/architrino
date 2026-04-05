@@ -56,6 +56,22 @@ test("solved library runtime converts PDG-backed muon decay solve output into an
   assert.equal(
     candidate.document.participants.some(
       (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_anti_core" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_pro_core" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
         participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
         participant.layout?.column === "center"
     ),
@@ -74,6 +90,17 @@ test("solved library runtime converts PDG-backed muon decay solve output into an
       (participant) =>
         participant.id === "center_weak-lepton-decay_base_source_core" &&
         participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.operators.some(
+      (operator) =>
+        operator.type === "dissociate" &&
+        operator.inputs.some((endpoint) => endpoint.participantId === "reactant_pro_muon_1") &&
+        operator.outputs.some(
+          (endpoint) => endpoint.participantId === "center_weak-lepton-decay_base_free_architrinos"
+        )
     ),
     true
   );

@@ -3570,17 +3570,26 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
             source_step_id=ledger_step_id,
         )
         generated_participants.append(noether_pair)
-        generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
+        noether_pair_id = normalize_text(noether_pair.get("id"))
+        generated_noether_pair_ids.append(noether_pair_id)
         for node in get_child_nodes(noether_pair):
             node_polarity = normalize_text(node.get("polarity")).lower()
-            if node_polarity in {"pro", "anti"}:
-                noether_pair_core_refs[node_polarity].append(
-                    {
-                        "participantId": normalize_text(noether_pair.get("id")),
-                        "anchorId": normalize_text(node.get("id")),
-                        "sourceKind": "noether-pair",
-                    }
-                )
+            if node_polarity not in {"pro", "anti"}:
+                continue
+            core_participant = build_generated_noether_core_participant(
+                participant_id=f"{noether_pair_id}_{node_polarity}_core",
+                polarity=node_polarity,
+                source_participant_id=noether_pair_id,
+                source_step_id=f"step_{variant_prefix}_noether_pair_{pair_index}",
+            )
+            generated_participants.append(core_participant)
+            noether_pair_core_refs[node_polarity].append(
+                {
+                    "participantId": normalize_text(core_participant.get("id")),
+                    "anchorId": normalize_text(core_participant.get("rootNodeId")),
+                    "sourceKind": "noether-pair",
+                }
+            )
 
     noether_quad_count = max((deficit_pro + 1) // 2, (deficit_anti + 1) // 2)
     noether_quad_core_refs = {"pro": [], "anti": []}
@@ -3592,17 +3601,26 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
             source_step_id=ledger_step_id,
         )
         generated_participants.append(noether_quad)
-        generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
+        noether_quad_id = normalize_text(noether_quad.get("id"))
+        generated_noether_quad_ids.append(noether_quad_id)
         for node in get_child_nodes(noether_quad):
             node_polarity = normalize_text(node.get("polarity")).lower()
-            if node_polarity in {"pro", "anti"}:
-                noether_quad_core_refs[node_polarity].append(
-                    {
-                        "participantId": normalize_text(noether_quad.get("id")),
-                        "anchorId": normalize_text(node.get("id")),
-                        "sourceKind": "noether-quad",
-                    }
-                )
+            if node_polarity not in {"pro", "anti"}:
+                continue
+            core_participant = build_generated_noether_core_participant(
+                participant_id=f"{noether_quad_id}_{node_polarity}_core_{len(noether_quad_core_refs[node_polarity]) + 1}",
+                polarity=node_polarity,
+                source_participant_id=noether_quad_id,
+                source_step_id=f"step_{variant_prefix}_noether_quad_{cluster_index}",
+            )
+            generated_participants.append(core_participant)
+            noether_quad_core_refs[node_polarity].append(
+                {
+                    "participantId": normalize_text(core_participant.get("id")),
+                    "anchorId": normalize_text(core_participant.get("rootNodeId")),
+                    "sourceKind": "noether-quad",
+                }
+            )
 
     steps = [
         {
@@ -3638,6 +3656,309 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
         "anti": list(noether_quad_core_refs["anti"]),
     }
 
+    participant_records = {
+        normalize_text(participant.get("id")): participant for participant in generated_participants
+    }
+    participant_records[source_id] = source_participant
+
+    def resolve_endpoint_role(participant_id):
+        participant = participant_records.get(normalize_text(participant_id)) or {}
+        if normalize_text(participant.get("side")) == "product":
+            return "product"
+        if normalize_text(participant.get("side")) == "center":
+            return "center"
+        return "reactant"
+
+    def emit_dissociate_step(step, operator_id, input_endpoint, output_endpoints, *, lane, row, slot):
+        mapping_ids = []
+        input_role = resolve_endpoint_role(input_endpoint["participantId"])
+        input_mapping_id = f"map_{operator_id.replace(':', '_')}_input"
+        mappings.append(
+            build_mapping(
+                mapping_id=input_mapping_id,
+                kind="operator-path",
+                from_participant_id=input_endpoint["participantId"],
+                from_anchor_id=input_endpoint["anchorId"],
+                from_role=input_role,
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=input_endpoint["inventory"],
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(input_mapping_id)
+        operator_outputs = []
+        for output_index, endpoint in enumerate(output_endpoints, start=1):
+            output_role = resolve_endpoint_role(endpoint["participantId"])
+            output_mapping_id = f"map_{operator_id.replace(':', '_')}_output_{output_index}"
+            mappings.append(
+                build_mapping(
+                    mapping_id=output_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=operator_id,
+                    from_anchor_id="root",
+                    from_role="operator-output",
+                    to_participant_id=endpoint["participantId"],
+                    to_anchor_id=endpoint["anchorId"],
+                    to_role=output_role,
+                    conserved_ledger=endpoint["inventory"],
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(output_mapping_id)
+            operator_outputs.append(
+                {
+                    "participantId": endpoint["participantId"],
+                    "anchorId": endpoint["anchorId"],
+                    "role": output_role,
+                }
+            )
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "dissociate",
+                "origin": "solve-generated",
+                "label": "Dissociate",
+                "inputs": [
+                    {
+                        "participantId": input_endpoint["participantId"],
+                        "anchorId": input_endpoint["anchorId"],
+                        "role": input_role,
+                    }
+                ],
+                "outputs": operator_outputs,
+            }
+        )
+        operator_placements.append({"operatorId": operator_id, "lane": lane, "row": row, "slot": slot})
+        step["mappingIds"] = mapping_ids
+        step["operatorIds"] = [operator_id]
+
+    participant_records = {
+        normalize_text(participant.get("id")): participant for participant in generated_participants
+    }
+    participant_records[source_id] = source_participant
+
+    def resolve_endpoint_role(participant_id):
+        participant = participant_records.get(normalize_text(participant_id)) or {}
+        if normalize_text(participant.get("side")) == "product":
+            return "product"
+        if normalize_text(participant.get("side")) == "center":
+            return "center"
+        return "reactant"
+
+    def emit_dissociate_step(
+        *,
+        step,
+        operator_id,
+        lane,
+        row,
+        slot,
+        input_endpoint,
+        output_endpoints,
+    ):
+        mapping_ids = []
+        operator_inputs = []
+        operator_outputs = []
+        input_role = resolve_endpoint_role(input_endpoint["participantId"])
+        input_mapping_id = f"map_{operator_id.replace(':', '_')}_input"
+        mappings.append(
+            build_mapping(
+                mapping_id=input_mapping_id,
+                kind="operator-path",
+                from_participant_id=input_endpoint["participantId"],
+                from_anchor_id=input_endpoint["anchorId"],
+                from_role=input_role,
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=input_endpoint["inventory"],
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(input_mapping_id)
+        operator_inputs.append(
+            {
+                "participantId": input_endpoint["participantId"],
+                "anchorId": input_endpoint["anchorId"],
+                "role": input_role,
+            }
+        )
+        for output_index, endpoint in enumerate(output_endpoints, start=1):
+            output_role = resolve_endpoint_role(endpoint["participantId"])
+            output_mapping_id = f"map_{operator_id.replace(':', '_')}_output_{output_index}"
+            mappings.append(
+                build_mapping(
+                    mapping_id=output_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=operator_id,
+                    from_anchor_id="root",
+                    from_role="operator-output",
+                    to_participant_id=endpoint["participantId"],
+                    to_anchor_id=endpoint["anchorId"],
+                    to_role=output_role,
+                    conserved_ledger=endpoint["inventory"],
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(output_mapping_id)
+            operator_outputs.append(
+                {
+                    "participantId": endpoint["participantId"],
+                    "anchorId": endpoint["anchorId"],
+                    "role": output_role,
+                }
+            )
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "dissociate",
+                "origin": "solve-generated",
+                "label": "Dissociate",
+                "inputs": operator_inputs,
+                "outputs": operator_outputs,
+            }
+        )
+        operator_placements.append(
+            {
+                "operatorId": operator_id,
+                "lane": lane,
+                "row": row,
+                "slot": slot,
+            }
+        )
+        step["mappingIds"] = mapping_ids
+        step["operatorIds"] = [operator_id]
+
+    source_root = get_root_node(source_participant) or source_participant
+    emit_dissociate_step(
+        step=steps[0],
+        operator_id=f"dissociate:{variant_prefix}:source",
+        lane=0,
+        row=1,
+        slot=1,
+        input_endpoint={
+            "participantId": source_id,
+            "anchorId": normalize_text(source_root.get("id")) or "root",
+            "inventory": source_root.get("inventory"),
+        },
+        output_endpoints=[
+            {
+                "participantId": normalize_text(source_core.get("id")),
+                "anchorId": normalize_text(source_core.get("rootNodeId")),
+                "inventory": source_core.get("inventory"),
+            },
+            {
+                "participantId": free_pool_id,
+                "anchorId": free_pool_root_id,
+                "inventory": free_pool.get("inventory"),
+            },
+            *[
+                {
+                    "participantId": participant_id,
+                    "anchorId": normalize_text((participant_records.get(participant_id) or {}).get("rootNodeId"))
+                    or "root",
+                    "inventory": (participant_records.get(participant_id) or {}).get("inventory"),
+                }
+                for participant_id in generated_noether_pair_ids + generated_noether_quad_ids
+            ],
+        ],
+    )
+
+    for pair_index, pair_id in enumerate(generated_noether_pair_ids, start=1):
+        pair_step = {
+            "stepId": f"step_{variant_prefix}_noether_pair_{pair_index}",
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-noether-pair-cores",
+            "consumedParticipantIds": [pair_id],
+            "producedParticipantIds": [
+                ref["participantId"]
+                for polarity in ("pro", "anti")
+                for ref in noether_pair_core_refs[polarity]
+                if normalize_text((participant_records.get(ref["participantId"]) or {}).get("sourceParticipantId")) == pair_id
+            ],
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": ["noether-pair-supplement", "noether-core-provenance"],
+        }
+        pair_core_endpoints = []
+        for polarity in ("pro", "anti"):
+            for ref in noether_pair_core_refs[polarity]:
+                ref_participant = participant_records.get(ref["participantId"]) or {}
+                if normalize_text(ref_participant.get("sourceParticipantId")) != pair_id:
+                    continue
+                pair_core_endpoints.append(
+                    {
+                        "participantId": ref["participantId"],
+                        "anchorId": ref["anchorId"],
+                        "inventory": ref_participant.get("inventory"),
+                    }
+                )
+        emit_dissociate_step(
+            step=pair_step,
+            operator_id=f"dissociate:{variant_prefix}:noether_pair:{pair_index}",
+            lane=1,
+            row=pair_index * 2 + 1,
+            slot=pair_index * 2 + 1,
+            input_endpoint={
+                "participantId": pair_id,
+                "anchorId": normalize_text((participant_records.get(pair_id) or {}).get("rootNodeId")) or "root",
+                "inventory": (participant_records.get(pair_id) or {}).get("inventory"),
+            },
+            output_endpoints=pair_core_endpoints,
+        )
+        steps.append(pair_step)
+
+    for cluster_index, quad_id in enumerate(generated_noether_quad_ids, start=1):
+        quad_step = {
+            "stepId": f"step_{variant_prefix}_noether_quad_{cluster_index}",
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-noether-quad-cores",
+            "consumedParticipantIds": [quad_id],
+            "producedParticipantIds": [
+                ref["participantId"]
+                for polarity in ("pro", "anti")
+                for ref in noether_quad_core_refs[polarity]
+                if normalize_text((participant_records.get(ref["participantId"]) or {}).get("sourceParticipantId")) == quad_id
+            ],
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": ["noether-quad-supplement", "noether-core-provenance"],
+        }
+        quad_core_endpoints = []
+        for polarity in ("pro", "anti"):
+            for ref in noether_quad_core_refs[polarity]:
+                ref_participant = participant_records.get(ref["participantId"]) or {}
+                if normalize_text(ref_participant.get("sourceParticipantId")) != quad_id:
+                    continue
+                quad_core_endpoints.append(
+                    {
+                        "participantId": ref["participantId"],
+                        "anchorId": ref["anchorId"],
+                        "inventory": ref_participant.get("inventory"),
+                    }
+                )
+        emit_dissociate_step(
+            step=quad_step,
+            operator_id=f"dissociate:{variant_prefix}:noether_quad:{cluster_index}",
+            lane=1,
+            row=(noether_pair_count + cluster_index) * 2 + 1,
+            slot=(noether_pair_count + cluster_index) * 2 + 1,
+            input_endpoint={
+                "participantId": quad_id,
+                "anchorId": normalize_text((participant_records.get(quad_id) or {}).get("rootNodeId")) or "root",
+                "inventory": (participant_records.get(quad_id) or {}).get("inventory"),
+            },
+            output_endpoints=quad_core_endpoints,
+        )
+        steps.append(quad_step)
+
     def claim_core_ref(polarity):
         normalized_polarity = "anti" if normalize_text(polarity).lower() == "anti" else "pro"
         if available_core_refs[normalized_polarity]:
@@ -3647,6 +3968,58 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
         if available_noether_quad_refs[normalized_polarity]:
             return available_noether_quad_refs[normalized_polarity].pop(0)
         return None
+
+    core_dissociation_refs = [
+        {
+            "participantId": normalize_text(source_core.get("id")),
+            "anchorId": normalize_text(source_core.get("rootNodeId")),
+            "sourceKind": "source-core",
+        }
+    ] + [
+        ref
+        for polarity in ("pro", "anti")
+        for ref in noether_pair_core_refs[polarity] + noether_quad_core_refs[polarity]
+    ]
+
+    for core_index, core_ref in enumerate(core_dissociation_refs, start=1):
+        core_participant_id = core_ref["participantId"]
+        core_participant = participant_records.get(core_participant_id) or {}
+        core_step = {
+            "stepId": f"step_{variant_prefix}_core_pool_{core_index}",
+            "kind": "dissociate",
+            "ruleFamily": "dissociate-noether-core-architrino-pool",
+            "consumedParticipantIds": [core_participant_id],
+            "producedParticipantIds": [free_pool_id],
+            "resolvedTargetIds": [],
+            "mappingIds": [],
+            "operatorIds": [],
+            "diagnosticLabels": list(
+                dict.fromkeys(
+                    ["shared-free-architrino-pool", "noether-core-provenance"]
+                    + get_core_source_diagnostic_labels(core_ref["sourceKind"], "lepton-core-provenance")
+                )
+            ),
+        }
+        emit_dissociate_step(
+            step=core_step,
+            operator_id=f"dissociate:{variant_prefix}:core:{core_index}",
+            lane=0,
+            row=core_index * 2 + 1,
+            slot=core_index * 2 + 1,
+            input_endpoint={
+                "participantId": core_participant_id,
+                "anchorId": core_ref["anchorId"],
+                "inventory": core_participant.get("inventory"),
+            },
+            output_endpoints=[
+                {
+                    "participantId": free_pool_id,
+                    "anchorId": free_pool_root_id,
+                    "inventory": free_pool.get("inventory"),
+                }
+            ],
+        )
+        steps.append(core_step)
 
     for index, requirement in enumerate(product_requirements, start=1):
         product = requirement["participant"]
@@ -3670,7 +4043,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                     kind="operator-path",
                     from_participant_id=core_ref["participantId"],
                     from_anchor_id=core_ref["anchorId"],
-                    from_role="reactant",
+                    from_role=resolve_endpoint_role(core_ref["participantId"]),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -3684,7 +4057,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                 {
                     "participantId": core_ref["participantId"],
                     "anchorId": core_ref["anchorId"],
-                    "role": "reactant",
+                    "role": resolve_endpoint_role(core_ref["participantId"]),
                 }
             )
             consumed_participant_ids.append(core_ref["participantId"])
@@ -3695,7 +4068,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                     kind="operator-path",
                     from_participant_id=free_pool_id,
                     from_anchor_id=free_pool_root_id,
-                    from_role="reactant",
+                    from_role=resolve_endpoint_role(free_pool_id),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -3709,7 +4082,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                 {
                     "participantId": free_pool_id,
                     "anchorId": free_pool_root_id,
-                    "role": "reactant",
+                    "role": resolve_endpoint_role(free_pool_id),
                 }
             )
             consumed_participant_ids.append(free_pool_id)
@@ -3730,7 +4103,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                         kind="operator-path",
                         from_participant_id=core_ref["participantId"],
                         from_anchor_id=core_ref["anchorId"],
-                        from_role="reactant",
+                        from_role=resolve_endpoint_role(core_ref["participantId"]),
                         to_participant_id=operator_id,
                         to_anchor_id="root",
                         to_role="operator-input",
@@ -3744,7 +4117,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                     {
                         "participantId": core_ref["participantId"],
                         "anchorId": core_ref["anchorId"],
-                        "role": "reactant",
+                        "role": resolve_endpoint_role(core_ref["participantId"]),
                     }
                 )
                 consumed_participant_ids.append(core_ref["participantId"])
@@ -3819,7 +4192,11 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
         generated_mappings=mappings,
         generated_operators=operators,
         operator_placements=operator_placements,
-        auto_dissociated_participant_ids=[],
+        auto_dissociated_participant_ids=generated_noether_pair_ids
+        + generated_noether_quad_ids
+        + [normalize_text(source_core.get("id"))]
+        + [ref["participantId"] for polarity in ("pro", "anti") for ref in noether_pair_core_refs[polarity]]
+        + [ref["participantId"] for polarity in ("pro", "anti") for ref in noether_quad_core_refs[polarity]],
         generated_participants=generated_participants,
         diagnostics=diagnostics,
     )
@@ -4000,6 +4377,159 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         "anti": list(noether_quad_core_refs["anti"]),
     }
 
+    participant_records = {
+        normalize_text(participant.get("id")): participant for participant in generated_participants
+    }
+    participant_records[source_id] = source_participant
+
+    def resolve_endpoint_role(participant_id):
+        participant = participant_records.get(normalize_text(participant_id)) or {}
+        if normalize_text(participant.get("side")) == "product":
+            return "product"
+        if normalize_text(participant.get("side")) == "center":
+            return "center"
+        return "reactant"
+
+    def emit_dissociate_step(step, operator_id, input_endpoint, output_endpoints, *, lane, row, slot):
+        mapping_ids = []
+        input_role = resolve_endpoint_role(input_endpoint["participantId"])
+        input_mapping_id = f"map_{operator_id.replace(':', '_')}_input"
+        mappings.append(
+            build_mapping(
+                mapping_id=input_mapping_id,
+                kind="operator-path",
+                from_participant_id=input_endpoint["participantId"],
+                from_anchor_id=input_endpoint["anchorId"],
+                from_role=input_role,
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=input_endpoint["inventory"],
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(input_mapping_id)
+        output_records = []
+        for output_index, endpoint in enumerate(output_endpoints, start=1):
+            output_role = resolve_endpoint_role(endpoint["participantId"])
+            output_mapping_id = f"map_{operator_id.replace(':', '_')}_output_{output_index}"
+            mappings.append(
+                build_mapping(
+                    mapping_id=output_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=operator_id,
+                    from_anchor_id="root",
+                    from_role="operator-output",
+                    to_participant_id=endpoint["participantId"],
+                    to_anchor_id=endpoint["anchorId"],
+                    to_role=output_role,
+                    conserved_ledger=endpoint["inventory"],
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(output_mapping_id)
+            output_records.append(
+                {
+                    "participantId": endpoint["participantId"],
+                    "anchorId": endpoint["anchorId"],
+                    "role": output_role,
+                }
+            )
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "dissociate",
+                "origin": "solve-generated",
+                "label": "Dissociate",
+                "inputs": [
+                    {
+                        "participantId": input_endpoint["participantId"],
+                        "anchorId": input_endpoint["anchorId"],
+                        "role": input_role,
+                    }
+                ],
+                "outputs": output_records,
+            }
+        )
+        operator_placements.append({"operatorId": operator_id, "lane": lane, "row": row, "slot": slot})
+        step["mappingIds"] = mapping_ids
+        step["operatorIds"] = [operator_id]
+
+    emit_dissociate_step(
+        steps[0],
+        f"dissociate:{variant_prefix}:source",
+        {
+            "participantId": source_id,
+            "anchorId": normalize_text(source_root.get("id")) or "root",
+            "inventory": source_root.get("inventory"),
+        },
+        [
+            {
+                "participantId": normalize_text(participant.get("id")),
+                "anchorId": normalize_text(participant.get("rootNodeId")),
+                "inventory": participant.get("inventory"),
+            }
+            for participant in quark_participants
+        ],
+        lane=0,
+        row=1,
+        slot=1,
+    )
+    emit_dissociate_step(
+        steps[1],
+        f"dissociate:{variant_prefix}:quark_pool",
+        {
+            "participantId": normalize_text(quark_participants[0].get("id")),
+            "anchorId": normalize_text(quark_participants[0].get("rootNodeId")),
+            "inventory": quark_participants[0].get("inventory"),
+        },
+        [
+            {
+                "participantId": participant_id,
+                "anchorId": normalize_text((participant_records.get(participant_id) or {}).get("rootNodeId")) or "root",
+                "inventory": (participant_records.get(participant_id) or {}).get("inventory"),
+            }
+            for participant_id in generated_core_ids + [free_pool_id] + generated_noether_pair_ids + generated_noether_quad_ids
+        ],
+        lane=0,
+        row=3,
+        slot=3,
+    )
+    quark_pool_operator_id = f"dissociate:{variant_prefix}:quark_pool"
+    quark_pool_operator = next(
+        (operator for operator in operators if normalize_text(operator.get("id")) == quark_pool_operator_id),
+        None,
+    )
+    for extra_index, quark in enumerate(quark_participants[1:], start=2):
+        quark_root = get_root_node(quark) or quark
+        mapping_id = f"map_{quark_pool_operator_id.replace(':', '_')}_input_{extra_index}"
+        mappings.append(
+            build_mapping(
+                mapping_id=mapping_id,
+                kind="operator-path",
+                from_participant_id=normalize_text(quark.get("id")),
+                from_anchor_id=normalize_text(quark_root.get("id")) or "root",
+                from_role=resolve_endpoint_role(normalize_text(quark.get("id"))),
+                to_participant_id=quark_pool_operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=quark_root.get("inventory"),
+                provenance_mode="operator-mediated",
+                via_operator_id=quark_pool_operator_id,
+            )
+        )
+        steps[1]["mappingIds"].append(mapping_id)
+        if quark_pool_operator is not None:
+            quark_pool_operator.setdefault("inputs", []).append(
+                {
+                    "participantId": normalize_text(quark.get("id")),
+                    "anchorId": normalize_text(quark_root.get("id")) or "root",
+                    "role": resolve_endpoint_role(normalize_text(quark.get("id"))),
+                }
+            )
+
     for index, requirement in enumerate(product_requirements, start=1):
         product = requirement["participant"]
         product_root = requirement["root"]
@@ -4024,7 +4554,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 kind="operator-path",
                 from_participant_id=core_ref["participantId"],
                 from_anchor_id=core_ref["anchorId"],
-                from_role="reactant",
+                from_role=resolve_endpoint_role(core_ref["participantId"]),
                 to_participant_id=operator_id,
                 to_anchor_id="root",
                 to_role="operator-input",
@@ -4041,7 +4571,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 kind="operator-path",
                 from_participant_id=free_pool_id,
                 from_anchor_id=free_pool_root_id,
-                from_role="reactant",
+                from_role=resolve_endpoint_role(free_pool_id),
                 to_participant_id=operator_id,
                 to_anchor_id="root",
                 to_role="operator-input",
@@ -4078,12 +4608,12 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                     {
                         "participantId": core_ref["participantId"],
                         "anchorId": core_ref["anchorId"],
-                        "role": "reactant",
+                        "role": resolve_endpoint_role(core_ref["participantId"]),
                     },
                     {
                         "participantId": free_pool_id,
                         "anchorId": free_pool_root_id,
-                        "role": "reactant",
+                        "role": resolve_endpoint_role(free_pool_id),
                     },
                 ],
                 "outputs": [
@@ -4325,6 +4855,86 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
     available_noether_pair_refs = {"pro": list(noether_pair_core_refs["pro"]), "anti": list(noether_pair_core_refs["anti"])}
     available_noether_quad_refs = {"pro": list(noether_quad_core_refs["pro"]), "anti": list(noether_quad_core_refs["anti"])}
 
+    participant_records = {
+        normalize_text(participant.get("id")): participant for participant in generated_participants
+    }
+    participant_records[source_id] = source_participant
+
+    def resolve_endpoint_role(participant_id):
+        participant = participant_records.get(normalize_text(participant_id)) or {}
+        if normalize_text(participant.get("side")) == "product":
+            return "product"
+        if normalize_text(participant.get("side")) == "center":
+            return "center"
+        return "reactant"
+
+    def emit_dissociate_step(step, operator_id, input_endpoint, output_endpoints, *, lane, row, slot):
+        mapping_ids = []
+        input_role = resolve_endpoint_role(input_endpoint["participantId"])
+        input_mapping_id = f"map_{operator_id.replace(':', '_')}_input"
+        mappings.append(
+            build_mapping(
+                mapping_id=input_mapping_id,
+                kind="operator-path",
+                from_participant_id=input_endpoint["participantId"],
+                from_anchor_id=input_endpoint["anchorId"],
+                from_role=input_role,
+                to_participant_id=operator_id,
+                to_anchor_id="root",
+                to_role="operator-input",
+                conserved_ledger=input_endpoint["inventory"],
+                provenance_mode="operator-mediated",
+                via_operator_id=operator_id,
+            )
+        )
+        mapping_ids.append(input_mapping_id)
+        output_records = []
+        for output_index, endpoint in enumerate(output_endpoints, start=1):
+            output_role = resolve_endpoint_role(endpoint["participantId"])
+            output_mapping_id = f"map_{operator_id.replace(':', '_')}_output_{output_index}"
+            mappings.append(
+                build_mapping(
+                    mapping_id=output_mapping_id,
+                    kind="operator-path",
+                    from_participant_id=operator_id,
+                    from_anchor_id="root",
+                    from_role="operator-output",
+                    to_participant_id=endpoint["participantId"],
+                    to_anchor_id=endpoint["anchorId"],
+                    to_role=output_role,
+                    conserved_ledger=endpoint["inventory"],
+                    provenance_mode="operator-mediated",
+                    via_operator_id=operator_id,
+                )
+            )
+            mapping_ids.append(output_mapping_id)
+            output_records.append(
+                {
+                    "participantId": endpoint["participantId"],
+                    "anchorId": endpoint["anchorId"],
+                    "role": output_role,
+                }
+            )
+        operators.append(
+            {
+                "id": operator_id,
+                "type": "dissociate",
+                "origin": "solve-generated",
+                "label": "Dissociate",
+                "inputs": [
+                    {
+                        "participantId": input_endpoint["participantId"],
+                        "anchorId": input_endpoint["anchorId"],
+                        "role": input_role,
+                    }
+                ],
+                "outputs": output_records,
+            }
+        )
+        operator_placements.append({"operatorId": operator_id, "lane": lane, "row": row, "slot": slot})
+        step["mappingIds"] = mapping_ids
+        step["operatorIds"] = [operator_id]
+
     def claim_core_ref(polarity):
         normalized_polarity = "anti" if normalize_text(polarity).lower() == "anti" else "pro"
         if available_core_refs[normalized_polarity]:
@@ -4334,6 +4944,50 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
         if available_noether_quad_refs[normalized_polarity]:
             return available_noether_quad_refs[normalized_polarity].pop(0)
         return None
+
+    emit_dissociate_step(
+        steps[0],
+        f"dissociate:{variant_prefix}:source",
+        {
+            "participantId": source_id,
+            "anchorId": normalize_text(source_root.get("id")) or "root",
+            "inventory": source_root.get("inventory"),
+        },
+        [
+            {
+                "participantId": normalize_text(participant.get("id")),
+                "anchorId": normalize_text(participant.get("rootNodeId")),
+                "inventory": participant.get("inventory"),
+            }
+            for participant in quark_participants
+        ],
+        lane=0,
+        row=1,
+        slot=1,
+    )
+    emit_dissociate_step(
+        steps[1],
+        f"dissociate:{variant_prefix}:weak_transform",
+        {
+            "participantId": normalize_text(transforming_quark.get("id")),
+            "anchorId": normalize_text(transforming_quark.get("rootNodeId")),
+            "inventory": transforming_quark.get("inventory"),
+        },
+        [
+            {
+                "participantId": participant_id,
+                "anchorId": normalize_text((participant_records.get(participant_id) or {}).get("rootNodeId")) or "root",
+                "inventory": (participant_records.get(participant_id) or {}).get("inventory"),
+            }
+            for participant_id in generated_core_ids
+            + [free_pool_id, normalize_text(transformed_up_quark.get("id"))]
+            + generated_noether_pair_ids
+            + generated_noether_quad_ids
+        ],
+        lane=0,
+        row=3,
+        slot=3,
+    )
 
     proton_product = baryon_products[0]
     proton_root = get_root_node(proton_product)
@@ -4350,7 +5004,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                 kind="operator-path",
                 from_participant_id=normalize_text(quark.get("id")),
                 from_anchor_id=normalize_text(quark_root.get("id")) or "root",
-                from_role="reactant",
+                from_role=resolve_endpoint_role(normalize_text(quark.get("id"))),
                 to_participant_id=proton_operator_id,
                 to_anchor_id="root",
                 to_role="operator-input",
@@ -4387,7 +5041,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                 {
                     "participantId": normalize_text(quark.get("id")),
                     "anchorId": normalize_text((get_root_node(quark) or quark).get("id")) or "root",
-                    "role": "reactant",
+                    "role": resolve_endpoint_role(normalize_text(quark.get("id"))),
                 }
                 for quark in proton_inputs
             ],
@@ -4445,7 +5099,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                     kind="operator-path",
                     from_participant_id=core_ref["participantId"],
                     from_anchor_id=core_ref["anchorId"],
-                    from_role="reactant",
+                    from_role=resolve_endpoint_role(core_ref["participantId"]),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -4455,7 +5109,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                 )
             )
             mapping_ids.append(core_mapping_id)
-            operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": "reactant"})
+            operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": resolve_endpoint_role(core_ref["participantId"])})
             consumed_participant_ids.append(core_ref["participantId"])
             pool_mapping_id = f"map_{variant_prefix}_{product_id}_free"
             mappings.append(
@@ -4464,7 +5118,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                     kind="operator-path",
                     from_participant_id=free_pool_id,
                     from_anchor_id=free_pool_root_id,
-                    from_role="reactant",
+                    from_role=resolve_endpoint_role(free_pool_id),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -4474,7 +5128,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                 )
             )
             mapping_ids.append(pool_mapping_id)
-            operator_inputs.append({"participantId": free_pool_id, "anchorId": free_pool_root_id, "role": "reactant"})
+            operator_inputs.append({"participantId": free_pool_id, "anchorId": free_pool_root_id, "role": resolve_endpoint_role(free_pool_id)})
             consumed_participant_ids.append(free_pool_id)
             diagnostic_labels.extend(["shared-free-architrino-pool", "associate-lepton-from-core-pool"])
             diagnostic_labels.extend(get_core_source_diagnostic_labels(core_ref["sourceKind"], "baryon-core-provenance"))
@@ -4491,7 +5145,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                         kind="operator-path",
                         from_participant_id=core_ref["participantId"],
                         from_anchor_id=core_ref["anchorId"],
-                        from_role="reactant",
+                        from_role=resolve_endpoint_role(core_ref["participantId"]),
                         to_participant_id=operator_id,
                         to_anchor_id="root",
                         to_role="operator-input",
@@ -4501,7 +5155,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
                     )
                 )
                 mapping_ids.append(core_mapping_id)
-                operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": "reactant"})
+                operator_inputs.append({"participantId": core_ref["participantId"], "anchorId": core_ref["anchorId"], "role": resolve_endpoint_role(core_ref["participantId"])})
                 consumed_participant_ids.append(core_ref["participantId"])
             diagnostic_labels.append("associate-photon-from-core-pair")
 

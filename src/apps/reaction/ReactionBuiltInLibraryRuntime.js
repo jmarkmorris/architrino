@@ -153,6 +153,14 @@ function createParticipantFromReactionFlowDocumentRecord(documentParticipant = {
         }
       : {}),
   };
+  if (Array.isArray(documentParticipant?.tags)) {
+    if (documentParticipant.tags.includes("manual-dissociated")) {
+      participant.isDissociatedComposite = true;
+      participant.isAutoDissociatedComposite = false;
+    } else if (documentParticipant.tags.includes("auto-dissociated")) {
+      participant.isAutoDissociatedComposite = true;
+    }
+  }
   participant.binarySelections = getInitialParticipantBinarySelections(participant);
   return participant;
 }
@@ -246,7 +254,13 @@ function buildParticipantsById(participants = []) {
 }
 
 function buildParticipantRole(participant = {}) {
-  return participant?.side === "product" ? "product" : "reactant";
+  if (participant?.side === "product") {
+    return "product";
+  }
+  if (participant?.surfaceColumn === "center-assembly") {
+    return "center";
+  }
+  return "reactant";
 }
 
 function buildDocumentOperatorsById(operators = []) {

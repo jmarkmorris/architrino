@@ -1,7 +1,7 @@
 {
   "schema": "reaction-flow/v1",
   "reactionId": "reaction_review_muon_decay",
-  "title": "Reaction Review: Muon decay",
+  "title": "Muon decay",
   "review": {
     "status": "accepted",
     "acceptedAt": "2026-04-05T12:00:00.000Z"

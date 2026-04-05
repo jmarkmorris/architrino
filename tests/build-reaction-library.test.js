@@ -69,6 +69,36 @@ test("build-reaction-library CLI writes accepted reaction-flow docs and a summar
     true
   );
   assert.equal(
+    muonDecay.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_anti_core" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    muonDecay.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1_pro_core" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    muonDecay.operators.some(
+      (operator) =>
+        operator.type === "dissociate" &&
+        operator.inputs.some((endpoint) => endpoint.participantId === "center_weak-lepton-decay_base_noether_pair_1") &&
+        operator.outputs.some(
+          (endpoint) => endpoint.participantId === "center_weak-lepton-decay_base_noether_pair_1_anti_core"
+        ) &&
+        operator.outputs.some(
+          (endpoint) => endpoint.participantId === "center_weak-lepton-decay_base_noether_pair_1_pro_core"
+        )
+    ),
+    true
+  );
+  assert.equal(
     muonDecay.operators.every((operator) => Array.isArray(operator.inputs) && operator.inputs.length >= 1),
     true
   );

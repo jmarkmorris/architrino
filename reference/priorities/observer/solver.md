@@ -75,7 +75,11 @@ Operator semantics that should remain canonical:
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
 - center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
-- and the current solver operator vocabulary remains `Associate` plus `Dissociate`, even though explicit `Dissociate` placement is still an unfinished planner behavior rather than a committed implemented feature.
+- the current solver operator vocabulary remains `Associate` plus `Dissociate`;
+- spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
+- `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
+- when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
+- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the dotted composite framing survives projection and library handoff.
 
 Composite and dissociation requirements that should move forward into the new architecture:
 
@@ -83,8 +87,17 @@ Composite and dissociation requirements that should move forward into the new ar
 - use `Associate` to build composite products unless the solve is that direct same-composite carry-through case;
 - allow solver-created internal-row mappings to auto-dissociate a composite when the selected plan requires it;
 - preserve manual dissociated-composite state as valid authored state;
-- eventually represent selected dissociation explicitly at the plan level rather than only as an implicit projection-side effect;
+- represent selected dissociation explicitly in solver output through emitted `Dissociate` operators, mappings, placements, and dissociated-composite state rather than as a projection-side inference;
 - and do not assume that composite internals are available only when the user manually pre-dissociated the composite.
+
+Full-solve lane contract:
+
+- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2, 3, 4, or 5;
+- lane 2 dissociate operators are input-and-output and every visible input and output must be connected;
+- lane 3 center-lane participants are input-and-output and every visible input and output must be connected;
+- lane 4 associate operators are input-and-output and every visible input and output must be connected;
+- lane 5 product participants are input-only and every visible input must be connected;
+- if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
@@ -1368,9 +1381,16 @@ The Reaction app should consume that output through a projection adapter that ma
 The reviewed v1 boundary is now:
 
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py) returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
-- the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time;
+- the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time, but it must not invent missing structure or missing connectivity;
 - solve-created operator placements cross the boundary only as advisory lane / row / slot records under `placement.operatorPlacements`;
 - and Reaction keeps ownership of live operator creation, node-key packing, auto-dissociation marking, and any local row-slot fallback behavior.
+
+For accepted solver-owned solves, the result should be treated as a render-specification boundary:
+
+- when the solver receives a normalized `solver-request/v1`, it should return a `solver-result/v1` that fully specifies the solved participant set, operator set, dissociation state, placement, and connectivity needed to render the reaction image;
+- the Reaction app should be rendering the semantics that JSON defines rather than reconstructing omitted connectivity, omitted dissociation stages, omitted connector-side intent, or omitted lane eligibility from heuristics;
+- if a user authors reactants and products in Reaction and presses Solve, the app should send that normalized authored state to the solver and receive back the full solved specification in JSON form;
+- and if the returned JSON is not sufficient to determine the rendered wiring without app-side guesswork, the solve is still incomplete.
 
 ### Request Format
 
@@ -1541,7 +1561,26 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Finish The External Solver Cut-Over And Remove The Legacy In-Process Bridge
+### 1. Add A Canonical Reaction Object Registry And Make Solver/Reaction Read From It
+
+Status: `active`
+
+Current:
+
+- object identity and behavior are still split across labels, structure builders, solver rules, import/export normalization, and lane/connectivity tests;
+- charged leptons, neutrinos, quarks, cores, and assemblies already imply canonical characteristics such as occupied core slots, generation family, lane eligibility, and connector behavior;
+- but those characteristics are not yet owned by one canonical registry that both solver and Reaction consume.
+
+Objective:
+
+- add one canonical object registry that defines, for every screenable object type, at least:
+  - the template/type identity;
+  - the core form or occupied-slot basis, including the `h1` / `h2` / `h3` style generation characteristics where applicable;
+  - which lanes or placement classes the object is allowed to occupy;
+  - and the connector policy for that object in each allowed placement, including whether input/output connectors apply and where they are;
+- then make label generation, structure generation, lane validation, connector validation, solver output validation, and import/export normalization read from that registry instead of from scattered heuristics.
+
+### 2. Finish The External Solver Cut-Over And Remove The Legacy In-Process Bridge
 
 Status: `active`
 
@@ -1556,7 +1595,7 @@ Objective:
 
 - make the external solver the only supported solve path for normal runtime use and delete the remaining in-process bridge once parity and reviewability are sufficient.
 
-### 2. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
+### 3. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
 
 Status: `active`
 
@@ -1571,7 +1610,7 @@ Objective:
 
 - define the conservative baryon weak constituent provenance rule needed for neutron beta-family closure before claiming the remaining generic-profile exact closures can be finished safely.
 
-### 3. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
+### 4. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
 
 Status: `pending`
 
@@ -1586,7 +1625,7 @@ Objective:
 
 - once the baryon weak constituent rule is explicit, finish shrinking the generic-profile bucket by upgrading the remaining exact weak-channel families only where the solver already has enough particle-content knowledge to justify a stronger provenance story.
 
-### 4. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
+### 5. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 
