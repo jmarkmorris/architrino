@@ -124,9 +124,16 @@ export function applyReactionSolvePlan(options = {}) {
     : [];
   const dissociatedCompositeParticipants = collectDissociatedParticipantRefs(plan);
   const selectedMappings = Array.isArray(plan.selectedMappings) ? plan.selectedMappings : [];
+  const participantPlacements = Array.isArray(plan.participantPlacements)
+    ? plan.participantPlacements
+    : [];
   const createOperatorParticipant =
     typeof options.createOperatorParticipant === "function"
       ? options.createOperatorParticipant
+      : null;
+  const createSolveGeneratedParticipant =
+    typeof options.createSolveGeneratedParticipant === "function"
+      ? options.createSolveGeneratedParticipant
       : null;
   const getParticipantRootNode =
     typeof options.getParticipantRootNode === "function"
@@ -140,23 +147,33 @@ export function applyReactionSolvePlan(options = {}) {
     typeof options.markParticipantAutoDissociated === "function"
       ? options.markParticipantAutoDissociated
       : null;
+  const applyParticipantPlacement =
+    typeof options.applyParticipantPlacement === "function"
+      ? options.applyParticipantPlacement
+      : null;
 
   const addedParticipantMap = new Map();
   const addedParticipants = [];
   participantAdditions.forEach((addition) => {
-    if (addition?.kind !== "operator" || !createOperatorParticipant) {
-      return;
-    }
-    const participant = createOperatorParticipant(
-      addition.templateId,
-      addition.operatorLaneIndex,
-      {
+    let participant = null;
+    if (addition?.kind === "operator" && createOperatorParticipant) {
+      participant = createOperatorParticipant(
+        addition.templateId,
+        addition.operatorLaneIndex,
+        {
+          participantId: addition.ref,
+          render: false,
+          announce: false,
+          operatorSlotIndex: addition.operatorSlotIndex ?? null,
+          isSolveGenerated: true,
+        }
+      );
+    } else if (addition?.kind === "participant" && createSolveGeneratedParticipant) {
+      participant = createSolveGeneratedParticipant(addition, {
         render: false,
         announce: false,
-        operatorSlotIndex: addition.operatorSlotIndex ?? null,
-        isSolveGenerated: true,
-      }
-    );
+      });
+    }
     if (!participant) {
       return;
     }
@@ -165,6 +182,17 @@ export function applyReactionSolvePlan(options = {}) {
       addedParticipantMap.set(ref, participant);
     }
     addedParticipants.push(participant);
+  });
+
+  participantPlacements.forEach((placement) => {
+    if (!applyParticipantPlacement) {
+      return;
+    }
+    applyParticipantPlacement(
+      placement.participantId,
+      placement.placementClass,
+      placement.row
+    );
   });
 
   const markedDissociatedParticipantIds = [];

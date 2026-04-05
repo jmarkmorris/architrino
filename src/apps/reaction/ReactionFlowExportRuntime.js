@@ -1,4 +1,9 @@
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
+import {
+  getReactionObjectConnectorPolicy,
+  getReactionParticipantPlacementClass,
+  isReactionObjectPlacementAllowed,
+} from "./ReactionObjectRegistryRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_STAGE_ID = "stage_manual_authoring";
@@ -24,20 +29,22 @@ function buildReactionFlowReview(review = {}) {
 }
 
 function normalizeParticipantSide(participant = {}) {
-  if (participant?.side === "product") {
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass === "product") {
     return "product";
   }
-  if (participant?.side === "reactant" && participant?.surfaceColumn !== "center-assembly") {
+  if (placementClass === "reactant") {
     return "reactant";
   }
   return "intermediate";
 }
 
 function normalizeParticipantLayoutColumn(participant = {}) {
-  if (participant?.side === "product") {
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass === "product") {
     return "right";
   }
-  if (participant?.surfaceColumn === "center-assembly") {
+  if (placementClass === "center") {
     return "center";
   }
   return "left";
@@ -101,12 +108,134 @@ function buildOperatorTags(participant = {}) {
   ]);
 }
 
-function buildEndpoint(nodeKey = "") {
+function normalizeAnchorInstanceIndex(anchorInstanceIndex = null) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
+}
+
+function buildParticipantRole(participant = {}, direction = "output") {
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  const connectorPolicy = getReactionObjectConnectorPolicy(participant?.templateId, placementClass);
+  if (direction === "input") {
+    return normalizeText(connectorPolicy?.inputRole);
+  }
+  return normalizeText(connectorPolicy?.outputRole);
+}
+
+function getParticipantLaneNumber(participant = {}) {
+  if (participant?.side === "operator") {
+    return Math.max(0, Math.round(Number(participant?.operatorLaneIndex) || 0)) === 0 ? 2 : 4;
+  }
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass === "center") {
+    return 3;
+  }
+  if (placementClass === "product") {
+    return 5;
+  }
+  return 1;
+}
+
+function getExpectedSnapshotEndpointRole(participant = {}, direction = "output") {
+  if (participant?.side === "operator") {
+    return direction === "input" ? "operator-input" : "operator-output";
+  }
+  return buildParticipantRole(participant, direction);
+}
+
+function validateSnapshotEndpoint(participant = {}, mapping = {}, direction = "output") {
+  const expectedRole = getExpectedSnapshotEndpointRole(participant, direction);
+  const actualRole =
+    direction === "input" ? normalizeText(mapping?.targetRole) : normalizeText(mapping?.sourceRole);
+  const actualAnchorInstanceIndex = normalizeAnchorInstanceIndex(
+    direction === "input" ? mapping?.targetAnchorInstanceIndex : mapping?.sourceAnchorInstanceIndex
+  );
+  if (!expectedRole) {
+    throw new Error(
+      `Reaction flow export cannot use ${direction} endpoint for ${String(participant?.id ?? "(missing participant)")} in lane ${getParticipantLaneNumber(participant)}.`
+    );
+  }
+  if (actualRole !== expectedRole) {
+    throw new Error(
+      `Reaction flow export expected ${expectedRole} for ${String(participant?.id ?? "(missing participant)")} but got ${actualRole || "(missing role)"}.`
+    );
+  }
+  if (participant?.side === "operator" && actualAnchorInstanceIndex !== 0) {
+    throw new Error(
+      `Reaction flow export requires operator anchorInstanceIndex 0 for ${String(participant?.id ?? "(missing participant)")}.`
+    );
+  }
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass !== "center") {
+    return;
+  }
+  if (direction === "input" && actualAnchorInstanceIndex !== 0) {
+    throw new Error(
+      `Reaction flow export requires center input anchorInstanceIndex 0 for ${String(participant?.id ?? "(missing participant)")}.`
+    );
+  }
+  if (direction === "output") {
+    if (normalizeText(participant?.templateId) === "free_architrinos") {
+      if (actualAnchorInstanceIndex === null || actualAnchorInstanceIndex < 1) {
+        throw new Error(
+          `Reaction flow export requires free-architrinos output anchorInstanceIndex >= 1 for ${String(participant?.id ?? "(missing participant)")}.`
+        );
+      }
+      return;
+    }
+    if (actualAnchorInstanceIndex !== 1) {
+      throw new Error(
+        `Reaction flow export requires center output anchorInstanceIndex 1 for ${String(participant?.id ?? "(missing participant)")}.`
+      );
+    }
+  }
+}
+
+function validateSnapshotMapping(mapping = {}, participantsById = new Map()) {
+  const sourceParticipantId = normalizeText(parseReactionNodeKey(mapping?.sourceKey).participantId);
+  const targetParticipantId = normalizeText(parseReactionNodeKey(mapping?.targetKey).participantId);
+  const sourceParticipant = participantsById.get(sourceParticipantId) ?? null;
+  const targetParticipant = participantsById.get(targetParticipantId) ?? null;
+  if (!sourceParticipant || !targetParticipant) {
+    throw new Error(
+      `Reaction flow export mapping ${String(mapping?.id ?? "(missing id)")} references unknown participant(s): ${sourceParticipantId || "(missing source)"} -> ${targetParticipantId || "(missing target)"}`
+    );
+  }
+  validateSnapshotEndpoint(sourceParticipant, mapping, "output");
+  validateSnapshotEndpoint(targetParticipant, mapping, "input");
+}
+
+function buildParticipantState(participant = {}) {
+  const state = Object.fromEntries(
+    Object.entries({
+      dissociation: participant?.isDissociatedComposite
+        ? "manual-dissociated"
+        : participant?.isAutoDissociatedComposite
+          ? "auto-dissociated"
+          : undefined,
+      solveGenerated: participant?.isSolveGenerated === true ? true : undefined,
+      autoGenerated: participant?.isAutoGeneratedDissociateAssembly === true ? true : undefined,
+    }).filter(([, value]) => value !== undefined)
+  );
+  return Object.keys(state).length ? state : undefined;
+}
+
+function buildEndpoint(nodeKey = "", role = "", anchorInstanceIndex = null) {
   const { participantId = "", nodeId = "" } = parseReactionNodeKey(nodeKey);
-  return {
+  const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+  return Object.fromEntries(Object.entries({
     participantId: String(participantId ?? "").trim(),
     anchorId: String(nodeId ?? "").trim() || "root",
-  };
+    role: normalizeText(role),
+    anchorInstanceIndex: normalizedAnchorInstanceIndex ?? undefined,
+  }).filter(([, value]) => value !== undefined));
 }
 
 function getOperatorInputEndpoints(operatorId = "", mappings = []) {
@@ -118,8 +247,10 @@ function getOperatorInputEndpoints(operatorId = "", mappings = []) {
         String(mapping?.targetRole ?? "") === "operator-input"
       );
     })
-    .map((mapping) => buildEndpoint(mapping.sourceKey))
-    .filter((endpoint) => endpoint.participantId && endpoint.anchorId);
+    .map((mapping) =>
+      buildEndpoint(mapping.sourceKey, mapping?.sourceRole, mapping?.sourceAnchorInstanceIndex)
+    )
+    .filter((endpoint) => endpoint.participantId && endpoint.anchorId && endpoint.role);
 }
 
 function getOperatorOutputEndpoints(operatorId = "", mappings = []) {
@@ -131,8 +262,10 @@ function getOperatorOutputEndpoints(operatorId = "", mappings = []) {
         String(mapping?.sourceRole ?? "") === "operator-output"
       );
     })
-    .map((mapping) => buildEndpoint(mapping.targetKey))
-    .filter((endpoint) => endpoint.participantId && endpoint.anchorId);
+    .map((mapping) =>
+      buildEndpoint(mapping.targetKey, mapping?.targetRole, mapping?.targetAnchorInstanceIndex)
+    )
+    .filter((endpoint) => endpoint.participantId && endpoint.anchorId && endpoint.role);
 }
 
 function buildViaOperatorId(mapping = {}, operatorIds = new Set()) {
@@ -172,6 +305,29 @@ export function buildReactionFlowDocument(options = {}) {
   const operatorIds = new Set(
     operatorParticipants.map((participant) => String(participant?.id ?? "").trim()).filter(Boolean)
   );
+  const participantsById = new Map(
+    allParticipants
+      .filter((participant) => normalizeText(participant?.id))
+      .map((participant) => [normalizeText(participant.id), participant])
+  );
+
+  nonOperatorParticipants.forEach((participant) => {
+    if (!isReactionObjectPlacementAllowed(participant?.templateId, getReactionParticipantPlacementClass(participant))) {
+      throw new Error(
+        `Reaction flow export cannot place ${String(participant?.id ?? "(missing id)")} as ${getReactionParticipantPlacementClass(participant)} for ${String(participant?.templateId ?? "(missing template)")} .`
+      );
+    }
+  });
+  operatorParticipants.forEach((participant) => {
+    if (!isReactionObjectPlacementAllowed(participant?.templateId, "operator")) {
+      throw new Error(
+        `Reaction flow export cannot place operator ${String(participant?.id ?? "(missing id)")} as operator for ${String(participant?.templateId ?? "(missing template)")}.`
+      );
+    }
+  });
+  mappings.forEach((mapping) => {
+    validateSnapshotMapping(mapping, participantsById);
+  });
 
   const documentParticipants = nonOperatorParticipants.map((participant) => ({
     id: normalizeText(participant?.id),
@@ -180,6 +336,7 @@ export function buildReactionFlowDocument(options = {}) {
     structureKey: normalizeText(participant?.templateId) || undefined,
     provenanceId: normalizeText(participant?.provenanceId) || `prov_${normalizeText(participant?.id)}`,
     tags: buildParticipantTags(participant),
+    state: buildParticipantState(participant),
     layout: {
       column: normalizeParticipantLayoutColumn(participant),
       row: Math.max(0, Math.round(Number(participant?.surfaceRowIndex) || 0)),
@@ -192,6 +349,11 @@ export function buildReactionFlowDocument(options = {}) {
     id: normalizeText(participant?.id),
     type: normalizeText(participant?.templateId || "operator") || "operator",
     label: normalizeText(participant?.label) || "Operator",
+    layout: {
+      lane: Math.max(0, Math.round(Number(participant?.operatorLaneIndex) || 0)),
+      row: Math.max(0, Math.round(Number(participant?.surfaceRowIndex) || 0)),
+      slot: Math.max(0, Math.round(Number(participant?.operatorSlotIndex) || 0)),
+    },
     stageId: DEFAULT_STAGE_ID,
     inputs: getOperatorInputEndpoints(participant?.id, mappings),
     outputs: getOperatorOutputEndpoints(participant?.id, mappings),
@@ -200,9 +362,17 @@ export function buildReactionFlowDocument(options = {}) {
 
   const documentMappings = mappings
     .map((mapping) => {
-      const from = buildEndpoint(mapping?.sourceKey);
-      const to = buildEndpoint(mapping?.targetKey);
-      if (!from.participantId || !from.anchorId || !to.participantId || !to.anchorId) {
+      const from = buildEndpoint(
+        mapping?.sourceKey,
+        mapping?.sourceRole,
+        mapping?.sourceAnchorInstanceIndex
+      );
+      const to = buildEndpoint(
+        mapping?.targetKey,
+        mapping?.targetRole,
+        mapping?.targetAnchorInstanceIndex
+      );
+      if (!from.participantId || !from.anchorId || !from.role || !to.participantId || !to.anchorId || !to.role) {
         return null;
       }
       const viaOperatorId = buildViaOperatorId(mapping, operatorIds);

@@ -49,6 +49,10 @@ test("browser reaction solver runtime resolves the local solve endpoint from the
     "http://127.0.0.1:5173/api/reaction/solve"
   );
   assert.equal(
+    resolveReactionSolveEndpoint({ location: { href: "http://localhost:5173/reaction.html" } }),
+    "http://127.0.0.1:5173/api/reaction/solve"
+  );
+  assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/architrino/reaction.html" } }),
     "http://127.0.0.1:5173/api/reaction/solve"
   );
@@ -132,5 +136,22 @@ test("browser reaction solver runtime times out stalled solve requests", async (
   await assert.rejects(
     () => solveSnapshot({ participants: [], mappings: [] }),
     /Reaction solve timed out/
+  );
+});
+
+test("browser reaction solver runtime explains when a static server rejects POST solve requests", async () => {
+  const solveSnapshot = createBrowserReactionSolveSnapshot({
+    windowLike: { location: { href: "http://127.0.0.1:5173/reaction.html" } },
+    fetchImpl: async () => ({
+      ok: false,
+      status: 501,
+      text: async () =>
+        "<!DOCTYPE HTML><html><head><title>Error response</title></head><body><p>Message: Unsupported method ('POST').</p></body></html>",
+    }),
+  });
+
+  await assert.rejects(
+    () => solveSnapshot({ participants: [], mappings: [] }),
+    /Reaction solve bridge is unavailable at `\/api\/reaction\/solve`\./
   );
 });

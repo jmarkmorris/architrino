@@ -77,6 +77,8 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   const cycleQuarkBinaryPreset = options.cycleQuarkBinaryPreset ?? (() => {});
   const cycleFreeArchitrinoPreset = options.cycleFreeArchitrinoPreset ?? (() => {});
   const findMappingByNodeKey = options.findMappingByNodeKey ?? (() => null);
+  const findMappingsByNodeKey = options.findMappingsByNodeKey ?? (() => []);
+  const getMappings = options.getMappings ?? (() => []);
   const formatLedger = options.formatLedger ?? (() => "");
   const formatParticipantLabel = options.formatParticipantLabel ?? ((label) => label);
   const getAllowedBinaryChoiceIds = options.getAllowedBinaryChoiceIds ?? (() => []);
@@ -119,6 +121,39 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   const startSideParticipantDrag = options.startSideParticipantDrag ?? (() => {});
   const supportsParticipantPolarity = options.supportsParticipantPolarity ?? (() => false);
   const topLevelHierarchyHasRenderMode = options.topLevelHierarchyHasRenderMode ?? (() => false);
+
+  function getParticipantLayoutSide(participant = null) {
+    return participant?.side === "product" ? "product" : "reactant";
+  }
+
+  function getParticipantConnectorRole(participant = null) {
+    return isCenterAssemblyParticipant(participant) ? "center" : participant?.side;
+  }
+
+  function getParticipantRootOutputAnchorInstanceIndices(participant = null, node = null, nodeKey = "") {
+    if (!isCenterAssemblyParticipant(participant)) {
+      return [null];
+    }
+    const rootNode = getParticipantRootNode(participant);
+    if (String(node?.id ?? "") !== String(rootNode?.id ?? "")) {
+      return [null];
+    }
+    if (participant?.templateId === "free_architrinos") {
+      const connectorRole = getParticipantConnectorRole(participant);
+      const mappedIndices = [...new Set(
+        getMappings()
+          .filter(
+            (mapping) =>
+              mapping?.sourceKey === nodeKey &&
+              String(mapping?.sourceRole ?? "") === connectorRole
+          )
+          .map((mapping) => Number(mapping?.sourceAnchorInstanceIndex))
+          .filter((anchorInstanceIndex) => Number.isInteger(anchorInstanceIndex) && anchorInstanceIndex >= 1)
+      )].sort((left, right) => left - right);
+      return mappedIndices.length ? mappedIndices : [1];
+    }
+    return [1];
+  }
 
   function createEmptyLedger() {
     return {
@@ -229,7 +264,8 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       return frame;
     }
     const inputAnchor = createAnchorButton(participant, rootNode, rootNodeKey, {
-      anchorRole: "operator-input",
+      anchorRole: getParticipantConnectorRole(participant),
+      anchorInstanceIndex: 0,
       extraClassNames: [
         "composer-reaction-canvas-operator-anchor",
         "is-center-assembly-input",
@@ -344,24 +380,30 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createTreeRowAnchor(participant, node, nodeKey) {
-    if (
-      participant?.side === "reactant" &&
-      participant?.templateId === "free_architrinos" &&
-      String(node?.id ?? "") === String(getParticipantRootNode(participant)?.id ?? "")
-    ) {
+    const layoutSide = getParticipantLayoutSide(participant);
+    const connectorRole = getParticipantConnectorRole(participant);
+    const outputAnchorInstanceIndices = getParticipantRootOutputAnchorInstanceIndices(
+      participant,
+      node,
+      nodeKey
+    );
+    if (outputAnchorInstanceIndices.length > 1) {
       const anchorSet = document.createElement("div");
-      anchorSet.className = "composer-reaction-canvas-anchor-set is-reactant is-free-architrinos-root";
-      [0, 1, 2].forEach((anchorInstanceIndex) => {
+      anchorSet.className = `composer-reaction-canvas-anchor-set is-${layoutSide} is-free-architrinos-root`;
+      outputAnchorInstanceIndices.forEach((anchorInstanceIndex) => {
         anchorSet.appendChild(
           createAnchorButton(participant, node, nodeKey, {
-            anchorRole: "reactant",
+            anchorRole: connectorRole,
             anchorInstanceIndex,
           })
         );
       });
       return anchorSet;
     }
-    return createAnchorButton(participant, node, nodeKey);
+    return createAnchorButton(participant, node, nodeKey, {
+      anchorRole: connectorRole,
+      anchorInstanceIndex: outputAnchorInstanceIndices[0] ?? null,
+    });
   }
 
   function createNoetherCoreGridSections(participant, node, options = {}) {
@@ -418,16 +460,19 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createInlineTrackBody(participant, node, nodeKey, track, options = {}) {
+    const layoutSide = getParticipantLayoutSide(participant);
     const body = document.createElement("div");
-    body.className = `composer-reaction-canvas-inline-track-body is-${participant.side}`;
+    body.className = `composer-reaction-canvas-inline-track-body is-${layoutSide}`;
     if (options.className) {
       body.classList.add(options.className);
     }
-    const selectorSlot = createInlineAnchorSlot(participant, node, nodeKey);
+    const selectorSlot = document.createElement("div");
+    selectorSlot.className = `composer-reaction-canvas-inline-anchor-slot is-${layoutSide}`;
+    selectorSlot.appendChild(createTreeRowAnchor(participant, node, nodeKey));
     if (options.selectorLaneClassName) {
       selectorSlot.classList.add(options.selectorLaneClassName);
     }
-    if (participant.side === "product") {
+    if (layoutSide === "product") {
       body.append(selectorSlot, track);
     } else {
       body.append(track, selectorSlot);
@@ -696,11 +741,26 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     const rail = document.createElement("div");
     rail.className = `composer-reaction-canvas-composite-visual-rail is-${participant.side}`;
 
-    const collector = document.createElement("span");
-    collector.className =
-      "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
+    const rootNode = getParticipantRootNode(participant);
+    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
+    const collector =
+      rootNode && rootNodeKey
+        ? createAnchorButton(participant, rootNode, rootNodeKey, {
+            anchorRole: getParticipantConnectorRole(participant),
+            anchorInstanceIndex:
+              getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null,
+            extraClassNames: [
+              "composer-reaction-canvas-composite-collector",
+              "composer-reaction-canvas-composite-connector-dot",
+            ],
+          })
+        : document.createElement("span");
+    if (!collector.className) {
+      collector.className =
+        "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
+      collector.setAttribute("aria-hidden", "true");
+    }
     collector.dataset.compositeCollectorId = participant.id;
-    collector.setAttribute("aria-hidden", "true");
 
     const visual = createParticipantVisual(participant);
     if (participant.side === "product") {
@@ -769,11 +829,19 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       const mapping = findMappingByNodeKey(nodeKey);
       const isCollapsed = !!mapping && canRenderChildren && !rendersChildrenInline;
       const hiddenDescendantCount = isCollapsed ? countDescendants(node) : 0;
-      const anchorAvailability = getAnchorAvailability(participant.side, nodeKey);
+      const layoutSide = getParticipantLayoutSide(participant);
+      const connectorRole = getParticipantConnectorRole(participant);
+      const outputAnchorInstanceIndex =
+        getParticipantRootOutputAnchorInstanceIndices(participant, node, nodeKey)[0] ?? null;
+      const anchorAvailability = getAnchorAvailability(
+        connectorRole,
+        nodeKey,
+        outputAnchorInstanceIndex
+      );
       const row = document.createElement("div");
       row.className = "composer-reaction-canvas-tree-row";
       row.style.setProperty("--reaction-canvas-depth", String(depth));
-      row.classList.add(`is-${participant.side}`);
+      row.classList.add(`is-${layoutSide}`);
       if (anchorAvailability.disabled) {
         row.classList.add("is-disabled");
         if (anchorAvailability.reason) {
@@ -831,7 +899,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       }
       if (usesInlineAnchor) {
         row.appendChild(content);
-      } else if (participant.side === "product") {
+      } else if (layoutSide === "product") {
         row.append(anchor, content);
       } else {
         row.append(content, anchor);

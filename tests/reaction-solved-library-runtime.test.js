@@ -10,161 +10,125 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
 }
 
-test("solved library runtime converts PDG-backed muon decay solve output into an accepted reusable library document", () => {
-  const request = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
+test("solved library runtime converts an exact solver fixture into an accepted reusable library document", () => {
+  const request = readJson("content/contracts/examples/solver-request/carry_through_neutron.v1.json");
   const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
-  const { result } = solveReactionSolverRequest(request);
+  const result = readJson("content/contracts/examples/solver-result/carry_through_neutron_result.v1.json");
   const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
     request,
     result,
     reviewCandidate,
     acceptedAt: "2026-04-05T12:00:00.000Z",
-    entryId: "muon_decay",
-    description: "Accepted PDG-backed muon decay library entry.",
+    entryId: "carry_through_neutron",
+    description: "Accepted exact carry-through neutron library entry.",
   });
 
-  assert.equal(candidate.entry.id, "muon_decay");
+  assert.equal(candidate.entry.id, "carry_through_neutron");
   assert.equal(candidate.entry.reviewStatus, "accepted");
   assert.equal(candidate.document.review.status, "accepted");
-  assert.equal(candidate.document.operators.length >= 4, true);
+  assert.equal(candidate.document.title, "Reaction Review: Exact Carry-Through Neutron");
+  assert.equal(candidate.document.review.acceptedAt, "2026-04-05T12:00:00.000Z");
+  assert.equal(candidate.document.operators.length, 0);
   assert.equal(candidate.document.mappings.length >= 1, true);
-  assert.equal(candidate.document.provenance.reviewInput.origin.sourceDocumentId, "pdg-proposal:muon_decay");
-  assert.equal(
-    candidate.document.hints.semanticTags.includes("pdg-review"),
-    true
-  );
   assert.equal(
     candidate.document.participants.some(
       (participant) =>
-        participant.id === "reactant_pro_muon_1" &&
-        participant.label === "Pro Muon"
+        participant.id === "reactant_neutron_1" &&
+        participant.label === "Neutron"
     ),
     true
   );
   assert.equal(
     candidate.document.participants.some(
       (participant) =>
-        participant.id === "product_pro_muon_neutrino_3" &&
-        participant.label === "Pro Muon Neutrino"
+        participant.id === "product_neutron_1" &&
+        participant.label === "Neutron"
     ),
     true
   );
-  assert.equal(
-    candidate.document.operators.some((operator) => operator.type === "dissociate"),
-    true
-  );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_noether_pair_1_anti_core" &&
-        participant.layout?.column === "center"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_noether_pair_1_pro_core" &&
-        participant.layout?.column === "center"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
-        participant.layout?.column === "center"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_noether_pair_1" &&
-        participant.layout?.column === "left"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_source_core" &&
-        participant.layout?.column === "center"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.operators.some(
-      (operator) =>
-        operator.type === "dissociate" &&
-        operator.inputs.some((endpoint) => endpoint.participantId === "reactant_pro_muon_1") &&
-        operator.outputs.some(
-          (endpoint) => endpoint.participantId === "center_weak-lepton-decay_base_free_architrinos"
-        )
-    ),
-    true
+  assert.equal(candidate.document.provenance.reviewInput.requestId, request.requestId);
+});
+
+test("solved library runtime rejects non-exact PDG-backed muon decay solve output", () => {
+  const request = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
+  const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
+  const { result } = solveReactionSolverRequest(request);
+
+  assert.equal(result.summary.exact, false);
+  assert.throws(
+    () =>
+      buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+        request,
+        result,
+        reviewCandidate,
+        acceptedAt: "2026-04-05T12:00:00.000Z",
+        entryId: "muon_decay",
+        description: "Accepted PDG-backed muon decay library entry.",
+      }),
+    /exact solver result/
   );
 });
 
-test("solved library runtime converts PDG-backed charged pion decay solve output into an accepted reusable library document", () => {
+test("solved library runtime rejects non-exact PDG-backed charged pion decay solve output", () => {
   const request = readJson(
     "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json"
   );
   const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
   const { result } = solveReactionSolverRequest(request);
-  const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
-    request,
-    result,
-    reviewCandidate,
-    acceptedAt: "2026-04-05T12:00:00.000Z",
-    entryId: "charged_pion_to_muon_neutrino",
-    description: "Accepted PDG-backed charged pion decay library entry.",
-  });
 
-  assert.equal(candidate.entry.id, "charged_pion_to_muon_neutrino");
-  assert.equal(candidate.document.review.status, "accepted");
-  assert.equal(candidate.document.operators.length >= 1, true);
-  assert.equal(candidate.document.mappings.length >= 1, true);
-  assert.equal(
-    candidate.document.provenance.reviewInput.origin.sourceDocumentId,
-    "pdg-proposal:charged_pion_to_muon_neutrino"
+  assert.equal(result.summary.exact, false);
+  assert.throws(
+    () =>
+      buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+        request,
+        result,
+        reviewCandidate,
+        acceptedAt: "2026-04-05T12:00:00.000Z",
+        entryId: "charged_pion_to_muon_neutrino",
+        description: "Accepted PDG-backed charged pion decay library entry.",
+      }),
+    /exact solver result/
   );
 });
 
-test("solved library runtime preserves generated center participants and operator inputs for neutron beta decay", () => {
+test("solved library runtime rejects non-exact neutron beta decay solve output", () => {
   const request = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
   const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
   const { result } = solveReactionSolverRequest(request);
-  const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
-    request,
-    result,
-    reviewCandidate,
-    acceptedAt: "2026-04-05T12:00:00.000Z",
-    entryId: "free_neutron_beta",
-    description: "Accepted PDG-backed solved free neutron beta decay library entry.",
-  });
 
-  assert.equal(candidate.entry.id, "free_neutron_beta");
-  assert.equal(candidate.document.review.status, "accepted");
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.id.includes("free_architrinos") &&
-        participant.side === "intermediate" &&
-        participant.layout?.column === "center"
-    ),
-    true
+  assert.equal(result.summary.exact, false);
+  assert.throws(
+    () =>
+      buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+        request,
+        result,
+        reviewCandidate,
+        acceptedAt: "2026-04-05T12:00:00.000Z",
+        entryId: "free_neutron_beta",
+        description: "Accepted PDG-backed solved free neutron beta decay library entry.",
+      }),
+    /exact solver result/
   );
-  assert.equal(
-    candidate.document.participants.some(
-      (participant) =>
-        participant.structureKey === "up_quark" &&
-        participant.layout?.column === "center"
-    ),
-    true
-  );
-  assert.equal(
-    candidate.document.operators.every((operator) => Array.isArray(operator.inputs) && operator.inputs.length >= 1),
-    true
+});
+
+test("solved library runtime rejects non-exact solver results", () => {
+  assert.throws(
+    () =>
+      buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
+        request: {},
+        result: {
+          summary: {
+            exact: false,
+          },
+          diagnostics: [
+            {
+              code: "connector-required-open",
+              severity: "error",
+              message: "Open connector.",
+            },
+          ],
+        },
+      }),
+    /exact solver result/
   );
 });

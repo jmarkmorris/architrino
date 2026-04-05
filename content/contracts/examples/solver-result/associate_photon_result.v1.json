@@ -131,16 +131,23 @@
       "stepId": "step_associate_photon",
       "kind": "associate",
       "ruleFamily": "associate-photon",
-      "consumedParticipantIds": ["reactant_pro_core", "reactant_anti_core"],
+      "consumedParticipantIds": [
+        "reactant_pro_core",
+        "reactant_anti_core"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_photon"],
+      "resolvedTargetIds": [
+        "product_photon"
+      ],
       "mappingIds": [
         "map_associate_photon_in_pro",
         "map_associate_photon_in_anti",
         "map_associate_photon_out_pro",
         "map_associate_photon_out_anti"
       ],
-      "operatorIds": ["associate:1"]
+      "operatorIds": [
+        "associate:1"
+      ]
     }
   ],
   "mappings": [
@@ -270,6 +277,23 @@
         "lane": 1,
         "row": 1,
         "slot": 1
+      }
+    ],
+    "participantPlacements": [
+      {
+        "participantId": "reactant_pro_core",
+        "placementClass": "reactant",
+        "row": 0
+      },
+      {
+        "participantId": "reactant_anti_core",
+        "placementClass": "reactant",
+        "row": 1
+      },
+      {
+        "participantId": "product_photon",
+        "placementClass": "product",
+        "row": 0
       }
     ]
   },

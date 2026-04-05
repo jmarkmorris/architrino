@@ -5,6 +5,7 @@ import json
 import sys
 from copy import deepcopy
 from collections import Counter
+from pathlib import Path
 
 
 def normalize_text(value=""):
@@ -16,6 +17,389 @@ def to_int(value, fallback=0):
         return int(value)
     except (TypeError, ValueError):
         return fallback
+
+
+def load_reaction_object_registry():
+    registry_path = (
+        Path(__file__).resolve().parents[1]
+        / "src"
+        / "apps"
+        / "reaction"
+        / "reaction-object-registry.v1.json"
+    )
+    with registry_path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+REACTION_OBJECT_REGISTRY = load_reaction_object_registry()
+
+
+def build_reaction_object_alias_map(registry=None):
+    alias_map = {}
+    for template_id, spec in ((registry or {}).get("templates") or {}).items():
+        normalized_template_id = normalize_text(template_id).lower()
+        if not normalized_template_id:
+            continue
+        alias_map[normalized_template_id] = normalized_template_id
+        for alias in spec.get("aliases") or []:
+            normalized_alias = normalize_text(alias).lower()
+            if normalized_alias:
+                alias_map[normalized_alias] = normalized_template_id
+    return alias_map
+
+
+REACTION_OBJECT_ALIAS_MAP = build_reaction_object_alias_map(REACTION_OBJECT_REGISTRY)
+
+
+def get_reaction_connection_policy():
+    return REACTION_OBJECT_REGISTRY.get("connectionPolicy") or {}
+
+
+def get_reaction_placement_lane_numbers(placement_class=""):
+    placement_spec = (
+        (REACTION_OBJECT_REGISTRY.get("placementClasses") or {}).get(
+            normalize_text(placement_class).lower()
+        )
+        or {}
+    )
+    return [
+        max(0, to_int(lane_number))
+        for lane_number in (placement_spec.get("laneNumbers") or [])
+        if isinstance(lane_number, int) or str(lane_number).strip()
+    ]
+
+
+def build_reaction_allowed_connection_set(policy=None):
+    allowed_connections = set()
+    for entry in ((policy or {}).get("allowedConnections") or []):
+        source_placement_class = normalize_text(entry.get("sourcePlacementClass")).lower()
+        source_role = normalize_text(entry.get("sourceRole")).lower()
+        target_placement_class = normalize_text(entry.get("targetPlacementClass")).lower()
+        target_role = normalize_text(entry.get("targetRole")).lower()
+        source_lanes = [
+            max(0, to_int(lane_number))
+            for lane_number in (entry.get("sourceLaneNumbers") or [])
+            if isinstance(lane_number, int) or str(lane_number).strip()
+        ]
+        target_lanes = [
+            max(0, to_int(lane_number))
+            for lane_number in (entry.get("targetLaneNumbers") or [])
+            if isinstance(lane_number, int) or str(lane_number).strip()
+        ]
+        if not (source_placement_class and source_role and target_placement_class and target_role):
+            continue
+        for source_lane in source_lanes:
+            for target_lane in target_lanes:
+                allowed_connections.add(
+                    (
+                        source_placement_class,
+                        source_role,
+                        source_lane,
+                        target_placement_class,
+                        target_role,
+                        target_lane,
+                    )
+                )
+    return allowed_connections
+
+
+REACTION_CONNECTION_POLICY = get_reaction_connection_policy()
+REACTION_ALLOWED_CONNECTION_SET = build_reaction_allowed_connection_set(REACTION_CONNECTION_POLICY)
+
+
+def get_reaction_operator_lane_number(operator_lane_index=0):
+    operator_lane_numbers = get_reaction_placement_lane_numbers("operator")
+    normalized_operator_lane_index = max(0, to_int(operator_lane_index))
+    if 0 <= normalized_operator_lane_index < len(operator_lane_numbers):
+        return operator_lane_numbers[normalized_operator_lane_index]
+    if operator_lane_numbers:
+        return operator_lane_numbers[-1]
+    return normalized_operator_lane_index
+
+
+def is_reaction_connection_allowed(
+    source_placement_class="",
+    source_role="",
+    source_lane=None,
+    target_placement_class="",
+    target_role="",
+    target_lane=None,
+):
+    return (
+        normalize_text(source_placement_class).lower(),
+        normalize_text(source_role).lower(),
+        max(0, to_int(source_lane)),
+        normalize_text(target_placement_class).lower(),
+        normalize_text(target_role).lower(),
+        max(0, to_int(target_lane)),
+    ) in REACTION_ALLOWED_CONNECTION_SET
+
+
+def normalize_registry_template_id(template_id=""):
+    normalized_template_id = normalize_text(template_id).lower()
+    return REACTION_OBJECT_ALIAS_MAP.get(normalized_template_id, normalized_template_id)
+
+
+def get_reaction_object_spec(template_id=""):
+    return ((REACTION_OBJECT_REGISTRY.get("templates") or {}).get(normalize_registry_template_id(template_id))) or None
+
+
+def reaction_object_supports_polarity(template_id=""):
+    return bool((get_reaction_object_spec(template_id) or {}).get("supportsPolarity"))
+
+
+def get_reaction_object_allowed_placement_classes(template_id=""):
+    spec = get_reaction_object_spec(template_id) or {}
+    return [normalize_text(value).lower() for value in (spec.get("allowedPlacementClasses") or []) if normalize_text(value)]
+
+
+def is_reaction_object_placement_allowed(template_id="", placement_class=""):
+    return normalize_text(placement_class).lower() in get_reaction_object_allowed_placement_classes(template_id)
+
+
+def get_reaction_object_connector_policy(template_id="", placement_class=""):
+    normalized_placement_class = normalize_text(placement_class).lower()
+    if not is_reaction_object_placement_allowed(template_id, normalized_placement_class):
+        return None
+    return ((REACTION_OBJECT_REGISTRY.get("placementClasses") or {}).get(normalized_placement_class)) or None
+
+
+def get_reaction_result_participant_placement_class(participant=None):
+    participant = participant or {}
+    side = normalize_text(participant.get("side")).lower()
+    if side == "center":
+        return "center"
+    if side == "product":
+        return "product"
+    return "reactant"
+
+
+def normalize_anchor_instance_index(value=None):
+    if value is None or value == "":
+        return None
+    return max(0, to_int(value))
+
+
+def build_registry_validation_diagnostics(participants=None, operators=None):
+    diagnostics = []
+    for participant in participants or []:
+        template_id = normalize_text(participant.get("templateId"))
+        placement_class = get_reaction_result_participant_placement_class(participant)
+        if template_id and not is_reaction_object_placement_allowed(template_id, placement_class):
+            diagnostics.append(
+                {
+                    "code": "registry-placement-invalid",
+                    "severity": "error",
+                    "message": (
+                        f"Result participant {normalize_text(participant.get('id')) or '(missing id)'} "
+                        f"uses placement {placement_class} for {template_id}, which is not allowed by the canonical registry."
+                    ),
+                    "path": "participants",
+                }
+            )
+    for operator in operators or []:
+        template_id = normalize_text(operator.get("type"))
+        if template_id and not is_reaction_object_placement_allowed(template_id, "operator"):
+            diagnostics.append(
+                {
+                    "code": "registry-operator-placement-invalid",
+                    "severity": "error",
+                    "message": (
+                        f"Result operator {normalize_text(operator.get('id')) or '(missing id)'} "
+                        f"uses type {template_id}, which is not allowed in operator placement by the canonical registry."
+                    ),
+                    "path": "operators",
+                }
+            )
+    return diagnostics
+
+
+def build_connection_policy_validation_diagnostics(
+    mappings=None,
+    participant_placements=None,
+    operator_placements=None,
+):
+    diagnostics = []
+    policy_id = normalize_text(REACTION_CONNECTION_POLICY.get("policyId")) or "reaction-forward-lane-policy/v1"
+    participant_placement_by_id = {}
+    participant_lane_by_id = {}
+    for placement in participant_placements or []:
+        participant_id = normalize_text(placement.get("participantId"))
+        placement_class = normalize_text(placement.get("placementClass")).lower()
+        lane_numbers = get_reaction_placement_lane_numbers(placement_class)
+        lane_number = lane_numbers[0] if lane_numbers else 0
+        if participant_id and placement_class:
+            participant_placement_by_id[participant_id] = placement_class
+            participant_lane_by_id[participant_id] = lane_number
+
+    operator_lane_by_id = {}
+    for placement in operator_placements or []:
+        operator_id = normalize_text(placement.get("operatorId"))
+        if operator_id:
+            operator_lane_by_id[operator_id] = get_reaction_operator_lane_number(placement.get("lane"))
+
+    def classify_endpoint(endpoint=None):
+        endpoint = endpoint or {}
+        participant_id = normalize_text(endpoint.get("participantId"))
+        role = normalize_text(endpoint.get("role")).lower()
+        if participant_id in operator_lane_by_id:
+            return {
+                "placementClass": "operator",
+                "role": role,
+                "lane": operator_lane_by_id[participant_id],
+            }
+        placement_class = participant_placement_by_id.get(participant_id)
+        if not placement_class:
+            if role == "product":
+                placement_class = "product"
+            elif role == "center":
+                placement_class = "center"
+            else:
+                placement_class = "reactant"
+        lane_number = participant_lane_by_id.get(participant_id)
+        if lane_number is None:
+            lane_numbers = get_reaction_placement_lane_numbers(placement_class)
+            lane_number = lane_numbers[0] if lane_numbers else 0
+        return {
+            "placementClass": placement_class,
+            "role": role,
+            "lane": lane_number,
+        }
+
+    for mapping in mappings or []:
+        source_endpoint = classify_endpoint(mapping.get("from"))
+        target_endpoint = classify_endpoint(mapping.get("to"))
+        if is_reaction_connection_allowed(
+            source_endpoint["placementClass"],
+            source_endpoint["role"],
+            source_endpoint["lane"],
+            target_endpoint["placementClass"],
+            target_endpoint["role"],
+            target_endpoint["lane"],
+        ):
+            continue
+        diagnostics.append(
+            {
+                "code": "registry-connection-policy-invalid",
+                "severity": "error",
+                "message": (
+                    f"Result mapping {normalize_text(mapping.get('id')) or '(missing id)'} routes "
+                    f"{source_endpoint['placementClass']}/{source_endpoint['role']}/{source_endpoint['lane']} -> "
+                    f"{target_endpoint['placementClass']}/{target_endpoint['role']}/{target_endpoint['lane']}, "
+                    f"which violates {policy_id}."
+                ),
+                "path": "mappings",
+            }
+        )
+    return diagnostics
+
+
+def build_connector_completeness_validation_diagnostics(
+    participants=None,
+    operators=None,
+    mappings=None,
+    participant_placements=None,
+):
+    diagnostics = []
+    participant_placement_by_id = {}
+    for placement in participant_placements or []:
+        participant_id = normalize_text(placement.get("participantId"))
+        placement_class = normalize_text(placement.get("placementClass")).lower()
+        if participant_id and placement_class:
+            participant_placement_by_id[participant_id] = placement_class
+
+    def infer_participant_placement_class(participant=None):
+        participant = participant or {}
+        participant_id = normalize_text(participant.get("id"))
+        explicit_placement_class = participant_placement_by_id.get(participant_id)
+        if explicit_placement_class:
+            return explicit_placement_class
+        side = normalize_text(participant.get("side")).lower()
+        if side == "center":
+            return "center"
+        if side == "product":
+            return "product"
+        return "reactant"
+
+    def count_endpoint_connections(participant_id="", role="", endpoint_key="from"):
+        normalized_participant_id = normalize_text(participant_id)
+        normalized_role = normalize_text(role).lower()
+        if not (normalized_participant_id and normalized_role):
+            return 0
+        total = 0
+        for mapping in mappings or []:
+            endpoint = (mapping or {}).get(endpoint_key) or {}
+            if (
+                normalize_text(endpoint.get("participantId")) == normalized_participant_id
+                and normalize_text(endpoint.get("role")).lower() == normalized_role
+            ):
+                total += 1
+        return total
+
+    for participant in participants or []:
+        participant_id = normalize_text(participant.get("id"))
+        template_id = normalize_text(participant.get("templateId"))
+        placement_class = infer_participant_placement_class(participant)
+        connector_policy = get_reaction_object_connector_policy(template_id, placement_class) or {}
+        if not participant_id or not connector_policy:
+            continue
+        input_role = normalize_text(connector_policy.get("inputRole")).lower()
+        output_role = normalize_text(connector_policy.get("outputRole")).lower()
+        if input_role and count_endpoint_connections(participant_id, input_role, "to") < 1:
+            diagnostics.append(
+                {
+                    "code": "connector-required-open",
+                    "severity": "error",
+                    "message": (
+                        f"Result participant {participant_id} leaves required {input_role} input open "
+                        f"in {placement_class} placement."
+                    ),
+                    "path": "participants",
+                }
+            )
+        if output_role and count_endpoint_connections(participant_id, output_role, "from") < 1:
+            diagnostics.append(
+                {
+                    "code": "connector-required-open",
+                    "severity": "error",
+                    "message": (
+                        f"Result participant {participant_id} leaves required {output_role} output open "
+                        f"in {placement_class} placement."
+                    ),
+                    "path": "participants",
+                }
+            )
+
+    for operator in operators or []:
+        operator_id = normalize_text(operator.get("id"))
+        if not operator_id:
+            continue
+        if count_endpoint_connections(operator_id, "operator-input", "to") < 1:
+            diagnostics.append(
+                {
+                    "code": "connector-required-open",
+                    "severity": "error",
+                    "message": f"Result operator {operator_id} leaves required operator-input open.",
+                    "path": "operators",
+                }
+            )
+        if count_endpoint_connections(operator_id, "operator-output", "from") < 1:
+            diagnostics.append(
+                {
+                    "code": "connector-required-open",
+                    "severity": "error",
+                    "message": f"Result operator {operator_id} leaves required operator-output open.",
+                    "path": "operators",
+                }
+            )
+    return diagnostics
+
+
+def result_has_structural_validation_errors(result=None):
+    return any(
+        normalize_text((diagnostic or {}).get("severity")).lower() == "error"
+        for diagnostic in (result or {}).get("diagnostics", [])
+    )
 
 
 def normalize_inventory(inventory=None):
@@ -90,15 +474,7 @@ def get_generation_flag_value(entity=None):
 def get_effective_polarity(entity=None, template_id=""):
     normalized_template_id = canonical_template_id(template_id)
     normalized_polarity = normalize_text((entity or {}).get("polarity")).lower()
-    if normalized_template_id in {
-        "electron",
-        "neutrino",
-        "proton",
-        "neutron",
-        "up_quark",
-        "down_quark",
-        "noether_core",
-    }:
+    if reaction_object_supports_polarity(normalized_template_id):
         return normalized_polarity
     return ""
 
@@ -3207,7 +3583,7 @@ def build_generated_noether_quad(
         label="Noether Quad",
         family="boson",
         inventory={"electrinoCount": 12, "positrinoCount": 12},
-        side="center",
+        side="reactant",
         is_composite=True,
         source_participant_id=source_participant_id,
         source_step_id=source_step_id,
@@ -3244,7 +3620,7 @@ def build_generated_noether_pair(
         label="Noether Pair",
         family="boson",
         inventory={"electrinoCount": 6, "positrinoCount": 6},
-        side="center",
+        side="reactant",
         is_composite=True,
         source_participant_id=source_participant_id,
         source_step_id=source_step_id,
@@ -3495,6 +3871,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
 
     variant_prefix = f"{family['key']}_{family['variantKey']}"
     ledger_step_id = f"step_{variant_prefix}_lepton_core_pool"
+    recruit_step_id = f"step_{variant_prefix}_spacetime_recruit"
     generated_participants = []
 
     source_core = build_generated_noether_core_participant(
@@ -3567,7 +3944,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
         noether_pair = build_generated_noether_pair(
             participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
             source_participant_id=source_id,
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_pair)
         noether_pair_id = normalize_text(noether_pair.get("id"))
@@ -3598,7 +3975,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
         noether_quad = build_generated_noether_quad(
             participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
             source_participant_id=source_id,
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_quad)
         noether_quad_id = normalize_text(noether_quad.get("id"))
@@ -3629,9 +4006,7 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
             "ruleFamily": "dissociate-lepton-core-pool",
             "consumedParticipantIds": [source_id],
             "producedParticipantIds": generated_core_ids
-            + [free_pool_id]
-            + generated_noether_pair_ids
-            + generated_noether_quad_ids,
+            + [free_pool_id],
             "resolvedTargetIds": [],
             "mappingIds": [],
             "operatorIds": [],
@@ -3640,6 +4015,21 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
             + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
         }
     ]
+    if generated_noether_pair_ids or generated_noether_quad_ids:
+        steps.append(
+            {
+                "stepId": recruit_step_id,
+                "kind": "recruit",
+                "ruleFamily": "recruit-spacetime-supplement",
+                "consumedParticipantIds": [],
+                "producedParticipantIds": generated_noether_pair_ids + generated_noether_quad_ids,
+                "resolvedTargetIds": [],
+                "mappingIds": [],
+                "operatorIds": [],
+                "diagnosticLabels": (["noether-pair-supplement"] if generated_noether_pair_ids else [])
+                + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
+            }
+        )
     mappings = []
     operators = []
     operator_placements = []
@@ -3857,15 +4247,6 @@ def solve_lepton_constituent_provenance_channel(request, source_participants, pr
                 "anchorId": free_pool_root_id,
                 "inventory": free_pool.get("inventory"),
             },
-            *[
-                {
-                    "participantId": participant_id,
-                    "anchorId": normalize_text((participant_records.get(participant_id) or {}).get("rootNodeId"))
-                    or "root",
-                    "inventory": (participant_records.get(participant_id) or {}).get("inventory"),
-                }
-                for participant_id in generated_noether_pair_ids + generated_noether_quad_ids
-            ],
         ],
     )
 
@@ -4213,6 +4594,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
     variant_prefix = f"{family['key']}_{family['variantKey']}"
     quark_step_id = f"step_{variant_prefix}_meson_quarks"
     ledger_step_id = f"step_{variant_prefix}_core_pool"
+    recruit_step_id = f"step_{variant_prefix}_spacetime_recruit"
     generated_participants = []
 
     quark_participants = []
@@ -4291,7 +4673,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         noether_pair = build_generated_noether_pair(
             participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
             source_participant_id=source_id,
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_pair)
         generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
@@ -4313,7 +4695,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
         noether_quad = build_generated_noether_quad(
             participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
             source_participant_id=source_id,
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_quad)
         generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
@@ -4349,10 +4731,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
             "consumedParticipantIds": [
                 normalize_text(participant.get("id")) for participant in quark_participants
             ],
-            "producedParticipantIds": generated_core_ids
-            + [free_pool_id]
-            + generated_noether_pair_ids
-            + generated_noether_quad_ids,
+            "producedParticipantIds": generated_core_ids + [free_pool_id],
             "resolvedTargetIds": [],
             "mappingIds": [],
             "operatorIds": [],
@@ -4361,6 +4740,21 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
             + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
         },
     ]
+    if generated_noether_pair_ids or generated_noether_quad_ids:
+        steps.append(
+            {
+                "stepId": recruit_step_id,
+                "kind": "recruit",
+                "ruleFamily": "recruit-spacetime-supplement",
+                "consumedParticipantIds": [],
+                "producedParticipantIds": generated_noether_pair_ids + generated_noether_quad_ids,
+                "resolvedTargetIds": [],
+                "mappingIds": [],
+                "operatorIds": [],
+                "diagnosticLabels": (["noether-pair-supplement"] if generated_noether_pair_ids else [])
+                + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
+            }
+        )
     mappings = []
     operators = []
     operator_placements = []
@@ -4491,7 +4885,7 @@ def solve_meson_lepton_provenance_channel(request, source_participants, product_
                 "anchorId": normalize_text((participant_records.get(participant_id) or {}).get("rootNodeId")) or "root",
                 "inventory": (participant_records.get(participant_id) or {}).get("inventory"),
             }
-            for participant_id in generated_core_ids + [free_pool_id] + generated_noether_pair_ids + generated_noether_quad_ids
+            for participant_id in generated_core_ids + [free_pool_id]
         ],
         lane=0,
         row=3,
@@ -4709,6 +5103,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
     variant_prefix = f"{family['key']}_{family['variantKey']}"
     quark_step_id = f"step_{variant_prefix}_baryon_quarks"
     ledger_step_id = f"step_{variant_prefix}_weak_quark_transform"
+    recruit_step_id = f"step_{variant_prefix}_spacetime_recruit"
     generated_participants = []
 
     quark_participants = []
@@ -4781,7 +5176,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
         noether_pair = build_generated_noether_pair(
             participant_id=f"center_{variant_prefix}_noether_pair_{pair_index}",
             source_participant_id=normalize_text(transforming_quark.get("id")),
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_pair)
         generated_noether_pair_ids.append(normalize_text(noether_pair.get("id")))
@@ -4803,7 +5198,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
         noether_quad = build_generated_noether_quad(
             participant_id=f"center_{variant_prefix}_noether_quad_{cluster_index}",
             source_participant_id=normalize_text(transforming_quark.get("id")),
-            source_step_id=ledger_step_id,
+            source_step_id=recruit_step_id,
         )
         generated_participants.append(noether_quad)
         generated_noether_quad_ids.append(normalize_text(noether_quad.get("id")))
@@ -4836,9 +5231,7 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
             "ruleFamily": "dissociate-baryon-weak-core-pool",
             "consumedParticipantIds": [normalize_text(transforming_quark.get("id"))],
             "producedParticipantIds": generated_core_ids
-            + [free_pool_id, normalize_text(transformed_up_quark.get("id"))]
-            + generated_noether_pair_ids
-            + generated_noether_quad_ids,
+            + [free_pool_id, normalize_text(transformed_up_quark.get("id"))],
             "resolvedTargetIds": [],
             "mappingIds": [],
             "operatorIds": [],
@@ -4847,6 +5240,21 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
             + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
         },
     ]
+    if generated_noether_pair_ids or generated_noether_quad_ids:
+        steps.append(
+            {
+                "stepId": recruit_step_id,
+                "kind": "recruit",
+                "ruleFamily": "recruit-spacetime-supplement",
+                "consumedParticipantIds": [],
+                "producedParticipantIds": generated_noether_pair_ids + generated_noether_quad_ids,
+                "resolvedTargetIds": [],
+                "mappingIds": [],
+                "operatorIds": [],
+                "diagnosticLabels": (["noether-pair-supplement"] if generated_noether_pair_ids else [])
+                + (["noether-quad-supplement"] if generated_noether_quad_ids else []),
+            }
+        )
     mappings = []
     operators = []
     operator_placements = []
@@ -4981,8 +5389,6 @@ def solve_baryon_constituent_provenance_channel(request, source_participants, pr
             }
             for participant_id in generated_core_ids
             + [free_pool_id, normalize_text(transformed_up_quark.get("id"))]
-            + generated_noether_pair_ids
-            + generated_noether_quad_ids
         ],
         lane=0,
         row=3,
@@ -5236,7 +5642,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
             product_participants,
             family,
         )
-        if lepton_result is not None:
+        if lepton_result is not None and lepton_result.get("summary", {}).get("exact") is True:
             return lepton_result
     if (
         get_effective_template_id(source_root or source_participant)
@@ -5250,7 +5656,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
             product_participants,
             family,
         )
-        if meson_result is not None:
+        if meson_result is not None and meson_result.get("summary", {}).get("exact") is True:
             return meson_result
     if get_effective_template_id(source_root or source_participant) == "neutron" and product_participants:
         baryon_result = solve_baryon_constituent_provenance_channel(
@@ -5259,7 +5665,7 @@ def solve_generic_weak_channel(request, source_participants, product_participant
             product_participants,
             family,
         )
-        if baryon_result is not None:
+        if baryon_result is not None and baryon_result.get("summary", {}).get("exact") is True:
             return baryon_result
     operator_id = f"associate:{family['key']}"
     step_id = f"step_{family['key']}_{family['variantKey']}"
@@ -5469,11 +5875,15 @@ def serialize_manual_operator(operator=None):
 
 def serialize_endpoint(endpoint=None):
     endpoint = endpoint or {}
-    return {
+    record = {
         "participantId": normalize_text(endpoint.get("participantId")),
         "anchorId": normalize_text(endpoint.get("anchorId")) or "root",
         "role": normalize_text(endpoint.get("role")) or "reactant",
     }
+    anchor_instance_index = normalize_anchor_instance_index(endpoint.get("anchorInstanceIndex"))
+    if anchor_instance_index is not None:
+        record["anchorInstanceIndex"] = anchor_instance_index
+    return record
 
 
 def serialize_manual_mapping(mapping=None):
@@ -5492,6 +5902,127 @@ def serialize_manual_mapping(mapping=None):
     if via_operator_id:
         record["viaOperatorId"] = via_operator_id
     return record
+
+
+def build_result_participant_index(participants=None):
+    return {
+        normalize_text(participant.get("id")): participant
+        for participant in (participants or [])
+        if normalize_text(participant.get("id"))
+    }
+
+
+def normalize_result_endpoint(
+    endpoint=None,
+    *,
+    endpoint_kind="source",
+    participant_index=None,
+    center_output_counts=None,
+):
+    record = serialize_endpoint(endpoint)
+    output_counts = center_output_counts if center_output_counts is not None else {}
+    existing_anchor_instance_index = normalize_anchor_instance_index(record.get("anchorInstanceIndex"))
+    if existing_anchor_instance_index is not None:
+        record["anchorInstanceIndex"] = existing_anchor_instance_index
+        return record
+    role = normalize_text(record.get("role")).lower()
+    participant_id = normalize_text(record.get("participantId"))
+    if role in ("operator-input", "operator-output"):
+        record["anchorInstanceIndex"] = 0
+        return record
+    if role != "center":
+        return record
+    if endpoint_kind == "target":
+        record["anchorInstanceIndex"] = 0
+        return record
+    participant = (participant_index or {}).get(participant_id) or {}
+    template_id = normalize_registry_template_id(participant.get("templateId"))
+    if template_id == "free_architrinos":
+        next_index = output_counts.get(participant_id, 0) + 1
+        output_counts[participant_id] = next_index
+        record["anchorInstanceIndex"] = next_index
+        return record
+    record["anchorInstanceIndex"] = 1
+    return record
+
+
+def normalize_result_mappings(mappings=None, participant_index=None):
+    center_output_counts = {}
+    normalized_mappings = []
+    for mapping in mappings or []:
+        record = deepcopy(mapping)
+        record["from"] = normalize_result_endpoint(
+            record.get("from"),
+            endpoint_kind="source",
+            participant_index=participant_index,
+            center_output_counts=center_output_counts,
+        )
+        record["to"] = normalize_result_endpoint(
+            record.get("to"),
+            endpoint_kind="target",
+            participant_index=participant_index,
+            center_output_counts=center_output_counts,
+        )
+        normalized_mappings.append(record)
+    return normalized_mappings
+
+
+def normalize_result_operators(operators=None, participant_index=None):
+    center_output_counts = {}
+    normalized_operators = []
+    for operator in operators or []:
+        record = deepcopy(operator)
+        record["inputs"] = [
+            normalize_result_endpoint(
+                endpoint,
+                endpoint_kind="source",
+                participant_index=participant_index,
+                center_output_counts=center_output_counts,
+            )
+            for endpoint in operator.get("inputs", [])
+        ]
+        record["outputs"] = [
+            normalize_result_endpoint(
+                endpoint,
+                endpoint_kind="target" if normalize_text((endpoint or {}).get("role")).lower() == "center" else "source",
+                participant_index=participant_index,
+                center_output_counts=center_output_counts,
+            )
+            for endpoint in operator.get("outputs", [])
+        ]
+        normalized_operators.append(record)
+    return normalized_operators
+
+
+def build_result_participant_placements(request=None, generated_participants=None):
+    next_row_by_placement_class = {"reactant": 0, "center": 0, "product": 0}
+    placements = []
+    for participant in list((request or {}).get("participants", [])) + list(generated_participants or []):
+        participant_id = normalize_text(participant.get("id"))
+        if not participant_id:
+            continue
+        placement = participant.get("placement") or {}
+        placement_class = normalize_text(placement.get("placementClass")).lower()
+        if placement_class not in {"reactant", "center", "product"}:
+            placement_class = get_reaction_result_participant_placement_class(participant)
+        explicit_row = (
+            max(0, to_int(placement.get("row")))
+            if placement.get("row") is not None and placement.get("row") != ""
+            else None
+        )
+        row = explicit_row if explicit_row is not None else next_row_by_placement_class[placement_class]
+        next_row_by_placement_class[placement_class] = max(
+            next_row_by_placement_class[placement_class],
+            row + 1,
+        )
+        placements.append(
+            {
+                "participantId": participant_id,
+                "placementClass": placement_class,
+                "row": row,
+            }
+        )
+    return placements
 
 
 def serialize_request_metadata(request=None):
@@ -5606,6 +6137,10 @@ class SourceEntry:
 
 def source_entry_participant_template_id(source_entry):
     return canonical_template_id((source_entry.participant or {}).get("templateId"))
+
+
+def source_entry_role(source_entry):
+    return "center" if normalize_text((source_entry or {}).side).lower() == "center" else "reactant"
 
 
 MESON_CONSTITUENT_PROVENANCE_TEMPLATE_IDS = {
@@ -5852,7 +6387,7 @@ def build_matched_source_node_ids(mappings, participant_id):
         from_endpoint = (mapping or {}).get("from") or {}
         if normalize_text(from_endpoint.get("participantId")) != normalized_participant_id:
             continue
-        if normalize_text(from_endpoint.get("role")) != "reactant":
+        if normalize_text(from_endpoint.get("role")) not in {"reactant", "center"}:
             continue
         anchor_id = normalize_text(from_endpoint.get("anchorId"))
         if anchor_id:
@@ -6033,9 +6568,10 @@ def build_result(
     diagnostics=None,
 ):
     request_id = normalize_text(request.get("requestId")) or "solver_request"
+    raw_participants = list(request.get("participants", [])) + list(generated_participants or [])
     participants = [
         serialize_result_participant(participant)
-        for participant in list(request.get("participants", [])) + list(generated_participants or [])
+        for participant in raw_participants
     ]
     manually_opened_participant_ids = [
         normalize_text(participant_id)
@@ -6061,7 +6597,20 @@ def build_result(
     manual_mappings = [
         serialize_manual_mapping(mapping) for mapping in request.get("manualMappings", [])
     ]
-    all_result_mappings = manual_mappings + generated_mappings
+    participant_index = build_result_participant_index(participants)
+    normalized_operators = normalize_result_operators(
+        manual_operators + generated_operators,
+        participant_index=participant_index,
+    )
+    all_result_mappings = normalize_result_mappings(
+        manual_mappings + generated_mappings,
+        participant_index=participant_index,
+    )
+    participant_placements = build_result_participant_placements(
+        request=request,
+        generated_participants=generated_participants,
+    )
+    all_operator_placements = manual_operator_placements + operator_placements
     auto_dissociated_participants = build_auto_dissociated_participant_records(
         request=request,
         auto_dissociated_participant_ids=auto_dissociated_participant_ids,
@@ -6088,13 +6637,36 @@ def build_result(
             continue
         target_inventory = add_inventory(target_inventory, participant.get("inventory"))
 
+    registry_diagnostics = build_registry_validation_diagnostics(
+        participants=participants,
+        operators=normalized_operators,
+    )
+    connection_policy_diagnostics = build_connection_policy_validation_diagnostics(
+        mappings=all_result_mappings,
+        participant_placements=participant_placements,
+        operator_placements=all_operator_placements,
+    )
+    connector_completeness_diagnostics = build_connector_completeness_validation_diagnostics(
+        participants=participants,
+        operators=normalized_operators,
+        mappings=all_result_mappings,
+        participant_placements=participant_placements,
+    )
+    structural_validation_errors = (
+        list(registry_diagnostics)
+        + list(connection_policy_diagnostics)
+        + list(connector_completeness_diagnostics)
+    )
+    if structural_validation_errors:
+        outcome = "partial" if (manual_mappings or generated_mappings or manual_operators or generated_operators) else "no-solution"
+
     return {
         "schema": "solver-result/v1",
         "resultId": f"{request_id}_result",
         "request": serialize_request_metadata(request),
         "summary": {
             "outcome": outcome,
-            "exact": len(unresolved_target_ids) == 0,
+            "exact": len(unresolved_target_ids) == 0 and not structural_validation_errors,
             "selectedPlanId": f"plan_{request_id}",
             "unresolvedTargetCount": len(unresolved_target_ids),
             "ambiguityCount": 0,
@@ -6103,7 +6675,7 @@ def build_result(
         "participants": participants,
         "steps": generated_steps,
         "mappings": all_result_mappings,
-        "operators": manual_operators + generated_operators,
+        "operators": normalized_operators,
         "dissociation": {
             "openedParticipantIds": list(
                 dict.fromkeys(manually_opened_participant_ids + list(auto_dissociated_participant_ids))
@@ -6125,7 +6697,8 @@ def build_result(
             ),
         },
         "placement": {
-            "operatorPlacements": manual_operator_placements + operator_placements,
+            "participantPlacements": participant_placements,
+            "operatorPlacements": all_operator_placements,
         },
         "residue": {
             "unresolvedTargetIds": unresolved_target_ids,
@@ -6137,7 +6710,7 @@ def build_result(
             "targetInventory": target_inventory,
             "unsupportedNotes": [],
         },
-        "diagnostics": list(diagnostics or []),
+        "diagnostics": list(diagnostics or []) + structural_validation_errors,
     }
 
 
@@ -6204,7 +6777,7 @@ def solve_request(request):
             product_participants,
             supported_generic_weak_channel,
         )
-        if result is not None:
+        if result is not None and result.get("summary", {}).get("exact") is True:
             return result
     source_entries = []
     for participant in source_participants:
@@ -6243,7 +6816,7 @@ def solve_request(request):
                     kind=direct_match["mappingKind"],
                     from_participant_id=source_entry.participant_id,
                     from_anchor_id=direct_match["sourceAnchorId"],
-                    from_role="reactant",
+                    from_role=source_entry_role(source_entry),
                     to_participant_id=product_id,
                     to_anchor_id=direct_match["targetAnchorId"],
                     to_role="product",
@@ -6293,7 +6866,7 @@ def solve_request(request):
                 kind="fragment",
                 from_participant_id=fragment_match.participant_id,
                 from_anchor_id=fragment_match.node_id,
-                from_role="reactant",
+                from_role=source_entry_role(fragment_match),
                 to_participant_id=product_id,
                 to_anchor_id=normalize_text(product_root.get("id")),
                 to_role="product",
@@ -6341,7 +6914,7 @@ def solve_request(request):
                     kind="operator-path",
                     from_participant_id=source_entry.participant_id,
                     from_anchor_id=source_entry.node_id,
-                    from_role="reactant",
+                    from_role=source_entry_role(source_entry),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -6355,7 +6928,7 @@ def solve_request(request):
                 {
                     "participantId": source_entry.participant_id,
                     "anchorId": source_entry.node_id,
-                    "role": "reactant",
+                    "role": source_entry_role(source_entry),
                 }
             )
             mapping_out_id = f"map_{normalize_text(product.get('id')).replace('product_', '')}_out_{normalize_text(child.get('polarity')).lower() or len(operator_mapping_ids) + 1}"
@@ -6450,7 +7023,7 @@ def solve_request(request):
                     kind="operator-path",
                     from_participant_id=source_entry.participant_id,
                     from_anchor_id=source_entry.node_id,
-                    from_role="reactant",
+                    from_role=source_entry_role(source_entry),
                     to_participant_id=operator_id,
                     to_anchor_id="root",
                     to_role="operator-input",
@@ -6464,7 +7037,7 @@ def solve_request(request):
                 {
                     "participantId": source_entry.participant_id,
                     "anchorId": source_entry.node_id,
-                    "role": "reactant",
+                    "role": source_entry_role(source_entry),
                 }
             )
         mapping_out_id = f"map_{product_id.replace('product_', '')}_out"

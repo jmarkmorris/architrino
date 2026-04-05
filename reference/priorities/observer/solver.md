@@ -79,6 +79,10 @@ Operator semantics that should remain canonical:
 - spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
 - `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
 - when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
+- left/input-side connectors on assemblies are sink-only and must not connect forward to anything on their right;
+- left/input-side connectors on any assembly must never be used as a source for a forward mapping to anything in a higher-numbered lane or column;
+- treating the visible lanes/columns as ordered left-to-right `1 2 3 4 5`, any right/output-side connector may connect only to a higher-numbered lane/column object and must terminate on a left/input-side connector only;
+- a composite title or title-card shell does not have its own first-class output connector; when flow must visibly continue from a composite into its subassemblies, that path uses the composite's special internal rail/collector depiction rather than a normal title-output anchor;
 - and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the dotted composite framing survives projection and library handoff.
 
 Composite and dissociation requirements that should move forward into the new architecture:
@@ -92,12 +96,14 @@ Composite and dissociation requirements that should move forward into the new ar
 
 Full-solve lane contract:
 
+- every required connector on every visible participant or operator must be connected for the surface to count as a full solve;
 - lane 1 reactant participants are output-only and each visible output must connect forward into lane 2, 3, 4, or 5;
 - lane 2 dissociate operators are input-and-output and every visible input and output must be connected;
 - lane 3 center-lane participants are input-and-output and every visible input and output must be connected;
 - lane 4 associate operators are input-and-output and every visible input and output must be connected;
 - lane 5 product participants are input-only and every visible input must be connected;
-- if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
+- if any required connector remains open, the surface is invalid as a full solve even if product inventory happens to close;
+- and if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
@@ -1389,6 +1395,8 @@ For accepted solver-owned solves, the result should be treated as a render-speci
 
 - when the solver receives a normalized `solver-request/v1`, it should return a `solver-result/v1` that fully specifies the solved participant set, operator set, dissociation state, placement, and connectivity needed to render the reaction image;
 - the Reaction app should be rendering the semantics that JSON defines rather than reconstructing omitted connectivity, omitted dissociation stages, omitted connector-side intent, or omitted lane eligibility from heuristics;
+- the returned connectivity must also obey the shared forward-lane connection policy: source endpoints must be real output-capable endpoints, target endpoints must be real input-capable endpoints, and a full solve must not route from a higher-numbered lane or column back into a lower-numbered one;
+- a result is solver-complete only when every required visible connector has an explicit connected counterpart in that returned connectivity; open connectors make the result incomplete rather than exact;
 - if a user authors reactants and products in Reaction and presses Solve, the app should send that normalized authored state to the solver and receive back the full solved specification in JSON form;
 - and if the returned JSON is not sufficient to determine the rendered wiring without app-side guesswork, the solve is still incomplete.
 
@@ -1446,6 +1454,8 @@ Required contract rules:
 - the result must be self-sufficient enough for the Reaction projection adapter to materialize the solve without rereading planner-internal state;
 - result participants and steps must preserve authored versus solve-generated provenance explicitly rather than relying on naming convention alone;
 - mappings, operators, dissociation, and residue must use stable participant or node identities rather than DOM-derived positions;
+- endpoint roles and placement must be rich enough to validate the shared connection policy, including the rule that left/input-only connectors are sink-only and that full solves do not contain backward lane transitions such as `3 -> 2` or `4 -> 3`;
+- `summary.exact` must imply connector completeness as well as target closure: no required visible participant or operator connector may remain open in an exact result;
 - placement data may be advisory, but semantic solve claims must not depend on render-order inference;
 - manual authored Reaction state that the solver did not create must remain distinguishable from solve-created additions;
 - partial results may be emitted to Reaction for review, but they are review artifacts rather than resumable solver state; any new solve must begin from a fresh authored request built from the current accepted/authored Reaction state;
@@ -1561,26 +1571,7 @@ Likely durable boundaries in the rearchitected system are:
 
 ## Priorities
 
-### 1. Add A Canonical Reaction Object Registry And Make Solver/Reaction Read From It
-
-Status: `active`
-
-Current:
-
-- object identity and behavior are still split across labels, structure builders, solver rules, import/export normalization, and lane/connectivity tests;
-- charged leptons, neutrinos, quarks, cores, and assemblies already imply canonical characteristics such as occupied core slots, generation family, lane eligibility, and connector behavior;
-- but those characteristics are not yet owned by one canonical registry that both solver and Reaction consume.
-
-Objective:
-
-- add one canonical object registry that defines, for every screenable object type, at least:
-  - the template/type identity;
-  - the core form or occupied-slot basis, including the `h1` / `h2` / `h3` style generation characteristics where applicable;
-  - which lanes or placement classes the object is allowed to occupy;
-  - and the connector policy for that object in each allowed placement, including whether input/output connectors apply and where they are;
-- then make label generation, structure generation, lane validation, connector validation, solver output validation, and import/export normalization read from that registry instead of from scattered heuristics.
-
-### 2. Finish The External Solver Cut-Over And Remove The Legacy In-Process Bridge
+### 1. Finish The External Solver Cut-Over And Remove The Legacy In-Process Bridge
 
 Status: `active`
 
@@ -1595,7 +1586,7 @@ Objective:
 
 - make the external solver the only supported solve path for normal runtime use and delete the remaining in-process bridge once parity and reviewability are sufficient.
 
-### 3. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
+### 2. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
 
 Status: `active`
 
@@ -1610,7 +1601,7 @@ Objective:
 
 - define the conservative baryon weak constituent provenance rule needed for neutron beta-family closure before claiming the remaining generic-profile exact closures can be finished safely.
 
-### 4. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
+### 3. Upgrade Generic-Profile Exact Closures To Full Constituent Provenance
 
 Status: `pending`
 
@@ -1625,7 +1616,7 @@ Objective:
 
 - once the baryon weak constituent rule is explicit, finish shrinking the generic-profile bucket by upgrading the remaining exact weak-channel families only where the solver already has enough particle-content knowledge to justify a stronger provenance story.
 
-### 5. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
+### 4. Keep The Sweep And Contract Reports As The Solver Acceptance Bar
 
 Status: `pending`
 

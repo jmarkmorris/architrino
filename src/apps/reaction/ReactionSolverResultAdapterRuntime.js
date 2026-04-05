@@ -15,6 +15,19 @@ function normalizeOperatorPlacementRecord(record = {}) {
   };
 }
 
+function normalizeParticipantPlacementRecord(record = {}) {
+  const participantId = normalizeText(record?.participantId);
+  const placementClass = normalizeText(record?.placementClass).toLowerCase();
+  if (!participantId || !["reactant", "center", "product"].includes(placementClass)) {
+    return null;
+  }
+  return {
+    participantId,
+    placementClass,
+    row: Math.max(0, Math.round(Number(record?.row) || 0)),
+  };
+}
+
 function normalizeProjectionEndpoint(
   endpoint = {},
   solveGeneratedOperatorIds = new Set()
@@ -47,10 +60,19 @@ function normalizeProjectionEndpoint(
 }
 
 export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
+  const participantPlacements = Array.isArray(result?.placement?.participantPlacements)
+    ? result.placement.participantPlacements
+    : [];
   const operators = Array.isArray(result?.operators) ? result.operators : [];
   const operatorPlacements = Array.isArray(result?.placement?.operatorPlacements)
     ? result.placement.operatorPlacements
     : [];
+  const placementByParticipantId = new Map(
+    participantPlacements
+      .map((record) => normalizeParticipantPlacementRecord(record))
+      .filter(Boolean)
+      .map((record) => [record.participantId, record])
+  );
   const placementByOperatorId = new Map(
     operatorPlacements
       .map((record) => normalizeOperatorPlacementRecord(record))
@@ -60,6 +82,13 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
   const solveGeneratedOperators = operators.filter(
     (operator) =>
       normalizeText(operator?.id) && normalizeText(operator?.origin) === "solve-generated"
+  );
+  const solveGeneratedParticipants = (Array.isArray(result?.participants) ? result.participants : []).filter(
+    (participant) =>
+      normalizeText(participant?.id) &&
+      !["authored-reactant", "authored-product", "authored-center"].includes(
+        normalizeText(participant?.origin)
+      )
   );
   const solveGeneratedOperatorIds = new Set(
     solveGeneratedOperators.map((operator) => normalizeText(operator.id))
@@ -73,18 +102,46 @@ export function buildReactionSolveProjectionPlanFromSolverResult(result = {}) {
     : [];
 
   return {
-    participantAdditions: solveGeneratedOperators.map((operator) => {
-      const operatorId = normalizeText(operator.id);
-      const placement = placementByOperatorId.get(operatorId) ?? null;
-      return {
-        ref: operatorId,
-        kind: "operator",
-        templateId: normalizeText(operator.type),
-        operatorLaneIndex: placement?.lane ?? 0,
-        operatorRowIndex: placement?.row ?? 0,
-        operatorSlotIndex: placement?.slot ?? placement?.row ?? 0,
-      };
-    }),
+    participantAdditions: [
+      ...solveGeneratedParticipants.map((participant) => {
+        const participantId = normalizeText(participant.id);
+        const placement = placementByParticipantId.get(participantId) ?? null;
+        return {
+          ref: participantId,
+          kind: "participant",
+          templateId: normalizeText(participant?.templateId),
+          label: normalizeText(participant?.label),
+          polarity: normalizeText(participant?.polarity),
+          placementClass:
+            placement?.placementClass ??
+            (normalizeText(participant?.side) === "center"
+              ? "center"
+              : normalizeText(participant?.side) === "product"
+                ? "product"
+                : "reactant"),
+          surfaceRowIndex: placement?.row ?? 0,
+          tags: Array.isArray(participant?.tags) ? [...participant.tags] : [],
+          participant: {
+            ...participant,
+          },
+        };
+      }),
+      ...solveGeneratedOperators.map((operator) => {
+        const operatorId = normalizeText(operator.id);
+        const placement = placementByOperatorId.get(operatorId) ?? null;
+        return {
+          ref: operatorId,
+          kind: "operator",
+          templateId: normalizeText(operator.type),
+          operatorLaneIndex: placement?.lane ?? 0,
+          operatorRowIndex: placement?.row ?? 0,
+          operatorSlotIndex: placement?.slot ?? placement?.row ?? 0,
+        };
+      }),
+    ],
+    participantPlacements: participantPlacements
+      .map((record) => normalizeParticipantPlacementRecord(record))
+      .filter(Boolean),
     dissociatedCompositeParticipants: autoDissociatedParticipantIds,
     dissociation: {
       autoDissociatedParticipantIds,

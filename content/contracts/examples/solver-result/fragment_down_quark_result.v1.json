@@ -120,10 +120,16 @@
       "stepId": "step_fragment_down_quark",
       "kind": "direct-map",
       "ruleFamily": "fragment-to-root",
-      "consumedParticipantIds": ["reactant_neutron"],
+      "consumedParticipantIds": [
+        "reactant_neutron"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_down_quark"],
-      "mappingIds": ["map_fragment_down_quark"],
+      "resolvedTargetIds": [
+        "product_down_quark"
+      ],
+      "mappingIds": [
+        "map_fragment_down_quark"
+      ],
       "operatorIds": []
     }
   ],
@@ -150,8 +156,12 @@
   ],
   "operators": [],
   "dissociation": {
-    "openedParticipantIds": ["reactant_neutron"],
-    "autoDissociatedParticipantIds": ["reactant_neutron"],
+    "openedParticipantIds": [
+      "reactant_neutron"
+    ],
+    "autoDissociatedParticipantIds": [
+      "reactant_neutron"
+    ],
     "releasedParticipantIds": [],
     "notes": [
       {
@@ -161,11 +171,32 @@
     ]
   },
   "placement": {
-    "operatorPlacements": []
+    "operatorPlacements": [],
+    "participantPlacements": [
+      {
+        "participantId": "reactant_neutron",
+        "placementClass": "reactant",
+        "row": 0
+      },
+      {
+        "participantId": "product_proton",
+        "placementClass": "product",
+        "row": 0
+      },
+      {
+        "participantId": "product_down_quark",
+        "placementClass": "product",
+        "row": 1
+      }
+    ]
   },
   "residue": {
-    "unresolvedTargetIds": ["product_proton"],
-    "unusedSourceIds": ["reactant_neutron"],
+    "unresolvedTargetIds": [
+      "product_proton"
+    ],
+    "unusedSourceIds": [
+      "reactant_neutron"
+    ],
     "sourceInventory": {
       "electrinoCount": 0,
       "positrinoCount": 0

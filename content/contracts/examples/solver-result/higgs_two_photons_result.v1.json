@@ -205,7 +205,9 @@
       "stepId": "step_higgs_dissociate",
       "kind": "dissociate",
       "ruleFamily": "auto-dissociate-composite",
-      "consumedParticipantIds": ["reactant_higgs"],
+      "consumedParticipantIds": [
+        "reactant_higgs"
+      ],
       "producedParticipantIds": [],
       "resolvedTargetIds": [],
       "mappingIds": [],
@@ -215,31 +217,43 @@
       "stepId": "step_higgs_associate_a",
       "kind": "associate",
       "ruleFamily": "associate-photon",
-      "consumedParticipantIds": ["reactant_higgs"],
+      "consumedParticipantIds": [
+        "reactant_higgs"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_photon_a"],
+      "resolvedTargetIds": [
+        "product_photon_a"
+      ],
       "mappingIds": [
         "map_higgs_a_in_anti",
         "map_higgs_a_in_pro",
         "map_higgs_a_out_pro",
         "map_higgs_a_out_anti"
       ],
-      "operatorIds": ["associate:1"]
+      "operatorIds": [
+        "associate:1"
+      ]
     },
     {
       "stepId": "step_higgs_associate_b",
       "kind": "associate",
       "ruleFamily": "associate-photon",
-      "consumedParticipantIds": ["reactant_higgs"],
+      "consumedParticipantIds": [
+        "reactant_higgs"
+      ],
       "producedParticipantIds": [],
-      "resolvedTargetIds": ["product_photon_b"],
+      "resolvedTargetIds": [
+        "product_photon_b"
+      ],
       "mappingIds": [
         "map_higgs_b_in_pro",
         "map_higgs_b_in_anti",
         "map_higgs_b_out_pro",
         "map_higgs_b_out_anti"
       ],
-      "operatorIds": ["associate:2"]
+      "operatorIds": [
+        "associate:2"
+      ]
     }
   ],
   "mappings": [
@@ -467,8 +481,12 @@
     }
   ],
   "dissociation": {
-    "openedParticipantIds": ["reactant_higgs"],
-    "autoDissociatedParticipantIds": ["reactant_higgs"],
+    "openedParticipantIds": [
+      "reactant_higgs"
+    ],
+    "autoDissociatedParticipantIds": [
+      "reactant_higgs"
+    ],
     "releasedParticipantIds": [],
     "notes": [
       {
@@ -490,6 +508,23 @@
         "lane": 1,
         "row": 3,
         "slot": 3
+      }
+    ],
+    "participantPlacements": [
+      {
+        "participantId": "reactant_higgs",
+        "placementClass": "reactant",
+        "row": 0
+      },
+      {
+        "participantId": "product_photon_a",
+        "placementClass": "product",
+        "row": 0
+      },
+      {
+        "participantId": "product_photon_b",
+        "placementClass": "product",
+        "row": 1
       }
     ]
   },

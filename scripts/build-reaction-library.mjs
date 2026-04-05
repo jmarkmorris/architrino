@@ -1,21 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { buildReactionReviewCandidateFromSolverRequest } from "../src/apps/reaction/ReactionReviewImportRuntime.js";
-import { buildAcceptedReactionLibraryCandidateFromSolverArtifacts } from "../src/apps/reaction/ReactionSolvedLibraryRuntime.js";
-import { solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
+import { buildAcceptedReactionLibraryDocument } from "./reaction-library-build-runtime.mjs";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
-}
-
-function sanitizeToken(value = "", fallback = "reaction_library") {
-  return (
-    normalizeText(value)
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "_")
-      .replace(/^_+|_+$/g, "") || fallback
-  );
 }
 
 function printUsage() {
@@ -53,48 +42,8 @@ function parseArgs(argv = []) {
   return { help: false, requestPaths, outDir, acceptedAt };
 }
 
-function deriveEntryId(requestPath = "", request = {}) {
-  const pathBase = path.basename(requestPath).replace(/\.solver-request\.v1\.json$/i, "");
-  return sanitizeToken(
-    normalizeText(request?.upstreamContext?.proposalId) ||
-      normalizeText(request?.requestId) ||
-      pathBase,
-    "reaction_library"
-  );
-}
-
-function deriveTitle(request = {}, entryId = "") {
-  return (
-    normalizeText(request?.origin?.title) ||
-    normalizeText(request?.upstreamContext?.notes?.title) ||
-    entryId
-      .split("_")
-      .filter(Boolean)
-      .map((token) => token.charAt(0).toUpperCase() + token.slice(1))
-      .join(" ")
-  );
-}
-
 function writeJson(outputPath, value) {
   fs.writeFileSync(outputPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
-}
-
-function buildAcceptedLibraryDocument(requestPath = "", options = {}) {
-  const request = JSON.parse(fs.readFileSync(requestPath, "utf8"));
-  const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
-  const { result } = solveReactionSolverRequest(request);
-  const entryId = deriveEntryId(requestPath, request);
-  const title = deriveTitle(request, entryId);
-  const candidate = buildAcceptedReactionLibraryCandidateFromSolverArtifacts({
-    request,
-    result,
-    reviewCandidate,
-    acceptedAt: options.acceptedAt,
-    entryId,
-    title,
-    description: `Accepted PDG-backed solved reaction for ${title}.`,
-  });
-  return { request, result, candidate, entryId, title };
 }
 
 try {
@@ -116,11 +65,11 @@ try {
     entries: [],
   };
   for (const requestPath of args.requestPaths) {
-    const output = buildAcceptedLibraryDocument(requestPath, {
+    const output = buildAcceptedReactionLibraryDocument(requestPath, {
       acceptedAt: args.acceptedAt,
     });
     const outputPath = path.join(args.outDir, `${output.entryId}.v1.json`);
-    writeJson(outputPath, output.candidate.document);
+    writeJson(outputPath, output.document);
     summary.entries.push({
       entryId: output.entryId,
       title: output.title,

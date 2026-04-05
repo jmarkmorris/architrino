@@ -2,6 +2,12 @@ import { classifyReactionNode } from "./ReactionStructureMappingRuntime.js";
 import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 import { deriveStructureClassification } from "../../domain/structure/StructureClassification.js";
+import {
+  getReactionParticipantFamilyTag,
+  inferReactionGenerationFromLabel,
+  getReactionParticipantPlacementClass,
+  isReactionObjectPlacementAllowed,
+} from "./ReactionObjectRegistryRuntime.js";
 
 const DEFAULT_POLICY = Object.freeze({
   recruitmentMode: "forbid",
@@ -54,60 +60,7 @@ function buildInventoryRecord(inventory = null, flags = []) {
 }
 
 function inferGenerationFromLabel(templateId = "", label = "") {
-  const normalizedTemplateId = normalizeLowerText(templateId);
-  const normalizedLabel = normalizeLowerText(label);
-  if (!normalizedTemplateId || !normalizedLabel) {
-    return "";
-  }
-  if (normalizedTemplateId === "electron") {
-    if (normalizedLabel.includes("tau")) {
-      return "3";
-    }
-    if (normalizedLabel.includes("muon")) {
-      return "2";
-    }
-    if (normalizedLabel.includes("electron")) {
-      return "1";
-    }
-    return "";
-  }
-  if (normalizedTemplateId === "neutrino") {
-    if (normalizedLabel.includes("tau")) {
-      return "3";
-    }
-    if (normalizedLabel.includes("muon")) {
-      return "2";
-    }
-    if (normalizedLabel.includes("neutrino")) {
-      return "1";
-    }
-    return "";
-  }
-  if (normalizedTemplateId === "up_quark") {
-    if (normalizedLabel.includes("top")) {
-      return "3";
-    }
-    if (normalizedLabel.includes("charm")) {
-      return "2";
-    }
-    if (normalizedLabel.includes("up")) {
-      return "1";
-    }
-    return "";
-  }
-  if (normalizedTemplateId === "down_quark") {
-    if (normalizedLabel.includes("bottom")) {
-      return "3";
-    }
-    if (normalizedLabel.includes("strange")) {
-      return "2";
-    }
-    if (normalizedLabel.includes("down")) {
-      return "1";
-    }
-    return "";
-  }
-  return "";
+  return inferReactionGenerationFromLabel(templateId, label);
 }
 
 function inferGenerationFromStructure(participant = null) {
@@ -136,52 +89,25 @@ function buildParticipantInventoryFlags(participant = null, templateId = "", nod
 }
 
 function detectParticipantFamily(participant = null) {
-  const templateId = normalizeLowerText(participant?.templateId);
-  if (templateId.includes("noether_core")) {
-    return "noether-core";
-  }
-  if (templateId === "noether_pair" || templateId === "noether_quad") {
-    return "boson";
-  }
-  if (templateId.includes("photon") || templateId.includes("boson")) {
-    return "boson";
-  }
-  if (templateId.includes("architrino")) {
-    return "free-architrinos";
-  }
-  if (templateId.includes("neutrino") || templateId.includes("electron")) {
-    return "lepton";
-  }
-  if (templateId.includes("quark")) {
-    return "quark";
-  }
-  if (
-    templateId.includes("pi") ||
-    templateId === "k_plus" ||
-    templateId === "k_minus" ||
-    templateId === "dk0" ||
-    templateId === "sk0" ||
-    templateId === "b_plus" ||
-    templateId === "b_minus" ||
-    templateId === "db0" ||
-    templateId === "bb0"
-  ) {
-    return "meson";
-  }
-  if (templateId.includes("neutron") || templateId.includes("proton")) {
-    return "baryon";
-  }
-  return "";
+  return getReactionParticipantFamilyTag(participant?.templateId);
 }
 
 function normalizeParticipantSide(participant = null) {
-  if (participant?.surfaceColumn === "center-assembly") {
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass === "center") {
     return "center";
   }
-  if (participant?.side === "product") {
+  if (placementClass === "product") {
     return "product";
   }
   return "reactant";
+}
+
+function buildParticipantPlacementRecord(participant = null) {
+  return {
+    placementClass: getReactionParticipantPlacementClass(participant),
+    row: Math.max(0, Math.round(Number(participant?.surfaceRowIndex ?? 0) || 0)),
+  };
 }
 
 function isOperatorParticipant(participant = null) {
@@ -294,9 +220,15 @@ function serializeParticipantRecord(participant = null, resolveBinaryChoiceInven
     participant?.isDissociatedComposite ? "manual-dissociated" : "",
     participant?.isAutoDissociatedComposite ? "auto-dissociated" : "",
   ]);
+  if (!isReactionObjectPlacementAllowed(participant?.templateId, side)) {
+    throw new Error(
+      `Solver request export cannot place ${normalizeText(participant?.id) || "(missing id)"} as ${side} for ${normalizeText(participant?.templateId) || "(missing template)"}.`
+    );
+  }
   return {
     id: normalizeText(participant.id),
     side,
+    placement: buildParticipantPlacementRecord(participant),
     ...(side === "center"
       ? {
           centerUsage:
@@ -381,10 +313,14 @@ function buildManualOperators(participants = [], mappings = [], participantsById
           source?.participant &&
           !isSolveGeneratedParticipant(source.participant)
       )
-      .map(({ source }) => ({
+      .map(({ mapping, source }) => ({
         participantId: source.participantId,
         anchorId: source.anchorId,
         role: source.role,
+        ...(mapping?.targetAnchorInstanceIndex !== null &&
+        mapping?.targetAnchorInstanceIndex !== undefined
+          ? { anchorInstanceIndex: mapping.targetAnchorInstanceIndex }
+          : {}),
       }));
     const outputs = (Array.isArray(mappings) ? mappings : [])
       .map((mapping) => ({
@@ -399,10 +335,14 @@ function buildManualOperators(participants = [], mappings = [], participantsById
           target?.participant &&
           !isSolveGeneratedParticipant(target.participant)
       )
-      .map(({ target }) => ({
+      .map(({ mapping, target }) => ({
         participantId: target.participantId,
         anchorId: target.anchorId,
         role: target.role,
+        ...(mapping?.sourceAnchorInstanceIndex !== null &&
+        mapping?.sourceAnchorInstanceIndex !== undefined
+          ? { anchorInstanceIndex: mapping.sourceAnchorInstanceIndex }
+          : {}),
       }));
     const placement = {
       lane: Math.max(0, Math.round(Number(participant?.operatorLaneIndex ?? 0) || 0)),
@@ -463,11 +403,19 @@ function serializeManualMappings(mappings = [], participantsById = new Map(), re
           participantId: sourceEndpoint.participantId,
           anchorId: sourceEndpoint.anchorId,
           role: sourceEndpoint.role,
+          ...(mapping?.sourceAnchorInstanceIndex !== null &&
+          mapping?.sourceAnchorInstanceIndex !== undefined
+            ? { anchorInstanceIndex: mapping.sourceAnchorInstanceIndex }
+            : {}),
         },
         to: {
           participantId: targetEndpoint.participantId,
           anchorId: targetEndpoint.anchorId,
           role: targetEndpoint.role,
+          ...(mapping?.targetAnchorInstanceIndex !== null &&
+          mapping?.targetAnchorInstanceIndex !== undefined
+            ? { anchorInstanceIndex: mapping.targetAnchorInstanceIndex }
+            : {}),
         },
         ...(viaOperatorId ? { viaOperatorId } : {}),
         provenanceMode: "manual-authored",

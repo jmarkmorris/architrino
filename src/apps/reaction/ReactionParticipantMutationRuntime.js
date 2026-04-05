@@ -14,6 +14,7 @@ import {
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
 import { resolveStructureDisplayLabel } from "../../domain/structure/StructureDisplayLabel.js";
 import { normalizeStructureAssemblyTemplateId } from "../../domain/structure/StructureAssemblyCatalog.js";
+import { inferReactionTemplateIdFromStructure } from "./ReactionObjectRegistryRuntime.js";
 
 export function createReactionParticipantMutationRuntime(options = {}) {
   const supportsParticipantPolarity =
@@ -34,85 +35,10 @@ export function createReactionParticipantMutationRuntime(options = {}) {
       : () => ({});
 
   function inferTemplateIdFromStructure(structureRoot) {
-    if (!structureRoot) {
-      return "noether_core";
-    }
-    const structureKind = String(structureRoot?.kind ?? "").trim();
-    const structureSpecies = String(structureRoot?.species ?? "").trim().toLowerCase();
-    const family = String(structureRoot?.classification?.family ?? "").trim();
-    if (structureKind === STRUCTURE_KINDS.NOETHER_CORE) {
-      return "noether_core";
-    }
-    if (structureSpecies === "noether_pair" || structureSpecies === "noether_quad") {
-      return normalizeStructureAssemblyTemplateId(structureSpecies);
-    }
-    if (structureSpecies === "photon") {
-      return "photon";
-    }
-    if (structureSpecies === "w_minus_boson") {
-      return "w_minus_boson";
-    }
-    if (structureSpecies === "w_plus_boson") {
-      return "w_plus_boson";
-    }
-    if (structureSpecies === "z_boson") {
-      return "z_boson";
-    }
-    if (structureSpecies === "proton") {
-      return "proton";
-    }
-    if (structureSpecies === "neutron") {
-      return "neutron";
-    }
-    if (structureSpecies === "pi_plus") {
-      return "pi_plus";
-    }
-    if (structureSpecies === "pi_minus") {
-      return "pi_minus";
-    }
-    if (structureSpecies === "upi0") {
-      return "upi0";
-    }
-    if (structureSpecies === "dpi0") {
-      return "dpi0";
-    }
-    if (structureSpecies === "k_plus") {
-      return "k_plus";
-    }
-    if (structureSpecies === "k_minus") {
-      return "k_minus";
-    }
-    if (structureSpecies === "dk0") {
-      return "dk0";
-    }
-    if (structureSpecies === "sk0") {
-      return "sk0";
-    }
-    if (structureSpecies === "b_plus") {
-      return "b_plus";
-    }
-    if (structureSpecies === "b_minus") {
-      return "b_minus";
-    }
-    if (structureSpecies === "db0") {
-      return "dB0";
-    }
-    if (structureSpecies === "bb0") {
-      return "bB0";
-    }
-    if (family === STRUCTURE_CLASSIFICATION_FAMILIES.CHARGED_LEPTON) {
-      return "electron";
-    }
-    if (family === STRUCTURE_CLASSIFICATION_FAMILIES.NEUTRINO) {
-      return "neutrino";
-    }
-    if (family === STRUCTURE_CLASSIFICATION_FAMILIES.UP_TYPE_QUARK) {
-      return "up_quark";
-    }
-    if (family === STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK) {
-      return "down_quark";
-    }
-    return structureSpecies || "noether_core";
+    return (
+      normalizeStructureAssemblyTemplateId(inferReactionTemplateIdFromStructure(structureRoot)) ||
+      "noether_core"
+    );
   }
 
   function inferParticipantPolarityFromStructure(structureRoot) {

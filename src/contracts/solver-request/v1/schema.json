@@ -156,6 +156,21 @@
             "type": "string",
             "enum": ["reactant", "product", "center"]
           },
+          "placement": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["placementClass", "row"],
+            "properties": {
+              "placementClass": {
+                "type": "string",
+                "enum": ["reactant", "product", "center"]
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
           "centerUsage": {
             "type": "string",
             "enum": ["optional", "required"]
@@ -390,6 +405,10 @@
                 "role": {
                   "type": "string",
                   "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+                },
+                "anchorInstanceIndex": {
+                  "type": "integer",
+                  "minimum": 0
                 }
               }
             }
@@ -412,6 +431,10 @@
                 "role": {
                   "type": "string",
                   "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+                },
+                "anchorInstanceIndex": {
+                  "type": "integer",
+                  "minimum": 0
                 }
               }
             }
@@ -469,6 +492,10 @@
               "role": {
                 "type": "string",
                 "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+              },
+              "anchorInstanceIndex": {
+                "type": "integer",
+                "minimum": 0
               }
             }
           },
@@ -488,6 +515,10 @@
               "role": {
                 "type": "string",
                 "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+              },
+              "anchorInstanceIndex": {
+                "type": "integer",
+                "minimum": 0
               }
             }
           },

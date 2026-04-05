@@ -174,11 +174,11 @@ Reaction should not:
 
 ## Priorities
 
-These Reaction follow-ups are intentionally deferred until [solver](./solver.md) priority 1 lands. The next Reaction pass should consume the canonical registry from [solver](./solver.md) rather than adding another layer of local heuristics.
+The canonical registry work from [solver](./solver.md) is now in place. These are the next Reaction-side follow-ups so the app fully consumes that shared object model instead of keeping local repair logic and incomplete connector/document semantics.
 
 ### 1. Replace Reaction-Side Object Heuristics With Canonical Registry Reads
 
-Status: `deferred until solver priority 1`
+Status: `active`
 
 Current:
 
@@ -209,7 +209,7 @@ Done when:
 
 ### 2. Make Reaction Treat `solver-result/v1` As A Full Render Specification
 
-Status: `deferred until solver priority 1`
+Status: `active`
 
 Current:
 
@@ -228,17 +228,19 @@ This should mean:
 - if the solver expects a Noether Pair or Noether Quad recruitment assembly, the solved JSON must place it in the reactant or product column explicitly;
 - if the solver expects Free Architrinos, the solved JSON must place them in the middle lane explicitly;
 - if a composite is opened, the solved JSON must explicitly mark its dissociated-composite state;
+- if a participant or operator exposes only a right/output connector, the solved JSON must never route it backward into an earlier lane or column;
 - and if an operator or participant appears on screen, the solved JSON must already specify how it is connected.
 
 Done when:
 
 - Reaction can load a solved document and render it without inferring missing stages;
 - any solve that omits required staging or connectivity fails validation instead of being patched in-app;
+- any solved document that routes from a later lane back into an earlier one is rejected as incomplete rather than treated as a usable library entry;
 - and built-in library entries are true renderable handoff documents, not corrected imports.
 
 ### 3. Add First-Class Center-Lane Connector Semantics To The Reaction Runtime
 
-Status: `deferred until solver priority 1`
+Status: `active`
 
 Current:
 
@@ -266,7 +268,7 @@ Done when:
 
 ### 4. Make Dissociation, Recruitment, And Composite State Fully Explicit In Reaction Documents
 
-Status: `deferred until solver priority 1`
+Status: `active`
 
 Current:
 
@@ -295,44 +297,9 @@ Done when:
 - the lane grammar for assemblies and Free Architrinos is validated, not merely preferred;
 - and the rendered reaction image is a direct consequence of the document rather than of viewer-side inference.
 
-### 5. Replace Participant-Level Connectivity Checks With Connector-Level Full-Solve Validation
+### 5. Add Durable Reaction Regressions For Built-In Library Surface Behavior
 
-Status: `deferred until solver priority 1`
-
-Current:
-
-- the current connectivity tests are still too weak because they mostly prove that a participant has some mapping, not that every visible connector that should be wired is actually wired;
-- this is why an incorrect solve can still pass despite missing first-lane outputs, wrong-side attachments, or partially connected middle-lane objects;
-- and the current tests do not enforce the user-facing lane contract tightly enough.
-
-Objective:
-
-- replace the current participant/role counting tests with connector-level validation over the rendered reaction model or an equivalent normalized surface description;
-- enumerate every visible connector for each tile and assert whether it must be connected based on tile type and lane;
-- and fail the solve if even one required connector is left unconnected or connected on the wrong side.
-
-The minimum lane contract to enforce is:
-
-- lane 1 objects that expose outputs must have every required output connector connected forward into lane 2, 3, 4, or 5;
-- lane 2, 3, and 4 objects that expose both inputs and outputs must have every required input connector connected and every required output connector connected;
-- lane 5 objects that expose inputs must have every required input connector connected;
-- and tiles that do not legally expose a connector in a given lane must not accidentally pass because a different connector on the same participant happened to be wired.
-
-The validation should also catch:
-
-- routes attached to the wrong side of center-lane assemblies or middle-lane special participants;
-- composites shown as opened without the required downstream dissociate path;
-- and library entries whose visible canvas tiles imply a fuller solve than the document actually contains.
-
-Done when:
-
-- the tests fail on the exact kinds of incorrect images that previously slipped through;
-- every required visible connector is validated directly rather than inferred from participant presence;
-- and a built-in reaction is considered a full solve only when its rendered connector contract is completely satisfied.
-
-### 6. Add Durable Reaction Regressions For Built-In Library Surface Behavior
-
-Status: `deferred until solver priority 1`
+Status: `active`
 
 Current:
 

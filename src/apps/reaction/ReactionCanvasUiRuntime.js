@@ -89,6 +89,15 @@ import {
   applyStructurePolarity,
 } from "../../domain/structure/StructureTransforms.js";
 import { validateStructureTree } from "../../domain/structure/StructureValidation.js";
+import {
+  formatReactionCanonicalLabel as formatReactionRegistryCanonicalLabel,
+  getReactionCanonicalBaseLabel as getReactionRegistryCanonicalBaseLabel,
+  normalizeReactionObjectPolarity,
+  reactionObjectRegistryCenterAssemblyPickerEntries,
+  reactionObjectRegistryOperatorEntries,
+  shouldPreserveReactionLeadingPolarityLabel,
+  supportsReactionObjectPolarity,
+} from "./ReactionObjectRegistryRuntime.js";
 
 const canvasTemplateMeta = Object.freeze({
   noether_core: { shortLabel: "NC", accent: "#a259ff" },
@@ -122,33 +131,10 @@ const canvasTemplateMeta = Object.freeze({
   fermion_gen1: { shortLabel: "F1", accent: "#c2d5ff" },
 });
 
-export const REACTION_OPERATOR_ENTRIES = Object.freeze([
-  { templateId: "associate", label: "Associate" },
-  { templateId: "dissociate", label: "Dissociate" },
-]);
+export const REACTION_OPERATOR_ENTRIES = reactionObjectRegistryOperatorEntries;
 export const REACTION_OPERATOR_LANE_COUNT = 2;
-export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES = Object.freeze([
-  Object.freeze({
-    templateId: "noether_core",
-    label: "Noether Core",
-  }),
-  Object.freeze({
-    templateId: "w_minus_boson",
-    label: "Negative W Boson",
-  }),
-  Object.freeze({
-    templateId: "z_boson",
-    label: "Neutral Z Boson",
-  }),
-  Object.freeze({
-    templateId: "w_plus_boson",
-    label: "Positive W Boson",
-  }),
-  Object.freeze({
-    templateId: "free_architrinos",
-    label: "Free Architrinos",
-  }),
-]);
+export const REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES =
+  reactionObjectRegistryCenterAssemblyPickerEntries;
 const operatorEntries = REACTION_OPERATOR_ENTRIES;
 export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
@@ -228,15 +214,6 @@ const dissociableFermionFamilies = new Set([
   STRUCTURE_CLASSIFICATION_FAMILIES.DOWN_TYPE_QUARK,
 ]);
 
-const participantPolarityTemplateIds = new Set([
-  "noether_core",
-  "electron",
-  "neutrino",
-  "down_quark",
-  "up_quark",
-  "fermion_gen1",
-]);
-
 function cloneSerializableValue(value) {
   if (typeof globalThis.structuredClone === "function") {
     return globalThis.structuredClone(value);
@@ -298,7 +275,7 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
 }
 
 function supportsParticipantPolarity(templateId) {
-  return participantPolarityTemplateIds.has(String(templateId ?? "").trim().toLowerCase());
+  return supportsReactionObjectPolarity(templateId);
 }
 
 function isOperatorTemplateId(templateId = "") {
@@ -306,12 +283,11 @@ function isOperatorTemplateId(templateId = "") {
 }
 
 function normalizeParticipantPolarity(polarity) {
-  return String(polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
+  return normalizeReactionObjectPolarity(polarity);
 }
 
 function shouldPreserveLeadingPolarityLabel(templateId = "") {
-  const normalizedTemplateId = String(templateId ?? "").trim().toLowerCase();
-  return normalizedTemplateId === "proton" || normalizedTemplateId === "neutron";
+  return shouldPreserveReactionLeadingPolarityLabel(templateId);
 }
 
 function stripLeadingParticipantPolarity(label = "") {
@@ -319,14 +295,7 @@ function stripLeadingParticipantPolarity(label = "") {
 }
 
 function formatParticipantLabel(baseLabel = "", templateId = "", polarity = "") {
-  if (shouldPreserveLeadingPolarityLabel(templateId)) {
-    return String(baseLabel ?? "").trim() || "?";
-  }
-  const cleanedBaseLabel = stripLeadingParticipantPolarity(baseLabel) || "?";
-  if (!supportsParticipantPolarity(templateId)) {
-    return cleanedBaseLabel;
-  }
-  return `${normalizeParticipantPolarity(polarity) === "anti" ? "Anti" : "Pro"} ${cleanedBaseLabel}`;
+  return formatReactionRegistryCanonicalLabel(baseLabel, templateId, polarity);
 }
 
 function buildParticipantStructure(
@@ -1004,9 +973,11 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     createAnchorButton,
     createBinaryGlyph,
     createInlineAnchorSlot,
+    getMappings: () => state.mappings,
     cycleQuarkBinaryPreset,
     cycleFreeArchitrinoPreset,
     findMappingByNodeKey,
+    findMappingsByNodeKey,
     formatLedger,
     formatParticipantLabel,
     getAllowedBinaryChoiceIds,
@@ -1100,6 +1071,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   }
 
   function createParticipantRecord({
+    participantId = "",
     side,
     templateId,
     label,
@@ -1117,12 +1089,13 @@ export function createReactionCanvasUiRuntime(deps = {}) {
           extraFields.polarity ?? inferParticipantPolarityFromStructure(structure?.root ?? structure)
         )
       : "";
-    const participantId = `canvas_participant_${state.nextParticipantId++}`;
+    const resolvedParticipantId =
+      normalizeText(participantId) || `canvas_participant_${state.nextParticipantId++}`;
     const pendingBaseLabel = normalizeParticipantBaseLabel(label, resolvedTemplateId);
     const factoryStructure =
       !structure && typeof structureFactory === "function"
         ? structureFactory({
-            participantId,
+            participantId: resolvedParticipantId,
             templateId: resolvedTemplateId,
             baseLabel: pendingBaseLabel,
             polarity: resolvedPolarity,
@@ -1134,7 +1107,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       resolvedTemplateId
     );
     const participant = {
-      id: participantId,
+      id: resolvedParticipantId,
       side,
       templateId: resolvedTemplateId,
       baseLabel: resolvedBaseLabel,
@@ -1721,9 +1694,11 @@ export function createReactionCanvasUiRuntime(deps = {}) {
         participants: state.participants,
         getParticipantById: findParticipantById,
         createOperatorParticipant,
+        createSolveGeneratedParticipant,
         getParticipantRootNode,
         buildNodeKey,
         markParticipantAutoDissociated,
+        applyParticipantPlacement,
         addOrReplaceMapping,
       });
       markMappingsRecent(appliedMappingIds);
@@ -1750,9 +1725,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   }
 
   function resetSolveDerivedArtifacts() {
-    state.participants = state.participants.filter(
-      (participant) => !(participant?.side === "operator" && participant?.isSolveGenerated)
-    );
+    state.participants = state.participants.filter((participant) => !participant?.isSolveGenerated);
     state.participants.forEach((participant) => {
       if (participant?.isAutoDissociatedComposite) {
         participant.isAutoDissociatedComposite = false;
@@ -3087,6 +3060,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
         ? null
         : Math.round(Number(options.operatorSlotIndex) || 0);
     const participant = createParticipantRecord({
+      participantId: options?.participantId,
       side: "operator",
       templateId: normalizedTemplateId,
       label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate"),
@@ -3108,6 +3082,59 @@ export function createReactionCanvasUiRuntime(deps = {}) {
         getFirstAvailableOperatorSlotIndex(participant.id, resolvedLaneIndex)
     );
     return participant;
+  }
+
+  function createSolveGeneratedParticipant(addition = {}, _options = {}) {
+    const placementClass = normalizeText(addition?.placementClass).toLowerCase();
+    const side = placementClass === "product" ? "product" : "reactant";
+    const resultParticipant = addition?.participant ?? {};
+    const rootNodeId =
+      normalizeText(resultParticipant?.rootNodeId) || `${normalizeText(addition?.ref)}_structure`;
+    const participant = createParticipantRecord({
+      participantId: addition?.ref,
+      side,
+      templateId: addition?.templateId,
+      label: addition?.label,
+      hierarchy: buildFallbackHierarchyForTemplate(
+        addition?.templateId,
+        addition?.label
+      ),
+      structure: buildReactionParticipantStructure(addition?.templateId, {
+        id: rootNodeId,
+        label: addition?.label,
+        polarity: addition?.polarity ?? "",
+      }),
+      extraFields: {
+        polarity: addition?.polarity ?? "",
+        ...(placementClass === "center" ? { surfaceColumn: "center-assembly" } : {}),
+        surfaceRowIndex: Math.max(0, Math.round(Number(addition?.surfaceRowIndex ?? 0) || 0)),
+        provenanceId: `solver-result-participant:${normalizeText(addition?.ref)}`,
+        isSolveGenerated: true,
+        tags: Array.isArray(addition?.tags) ? [...addition.tags] : [],
+      },
+    });
+    state.participants.push(participant);
+    return participant;
+  }
+
+  function applyParticipantPlacement(participantId = "", placementClass = "reactant", row = 0) {
+    const participant = findParticipantById(participantId);
+    if (!participant) {
+      return false;
+    }
+    const normalizedPlacementClass = normalizeText(placementClass).toLowerCase();
+    if (normalizedPlacementClass === "center") {
+      participant.side = "reactant";
+      participant.surfaceColumn = "center-assembly";
+    } else if (normalizedPlacementClass === "product") {
+      participant.side = "product";
+      delete participant.surfaceColumn;
+    } else {
+      participant.side = "reactant";
+      delete participant.surfaceColumn;
+    }
+    participant.surfaceRowIndex = Math.max(0, Math.round(Number(row) || 0));
+    return true;
   }
 
   function addOperatorParticipant(templateId = "associate", operatorLaneIndex = 1) {

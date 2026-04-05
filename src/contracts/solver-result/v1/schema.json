@@ -509,6 +509,10 @@
               "role": {
                 "type": "string",
                 "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+              },
+              "anchorInstanceIndex": {
+                "type": "integer",
+                "minimum": 0
               }
             }
           },
@@ -528,6 +532,10 @@
               "role": {
                 "type": "string",
                 "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+              },
+              "anchorInstanceIndex": {
+                "type": "integer",
+                "minimum": 0
               }
             }
           },
@@ -598,6 +606,10 @@
                 "role": {
                   "type": "string",
                   "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+                },
+                "anchorInstanceIndex": {
+                  "type": "integer",
+                  "minimum": 0
                 }
               }
             }
@@ -620,6 +632,10 @@
                 "role": {
                   "type": "string",
                   "enum": ["reactant", "product", "center", "operator-input", "operator-output"]
+                },
+                "anchorInstanceIndex": {
+                  "type": "integer",
+                  "minimum": 0
                 }
               }
             }
@@ -713,8 +729,30 @@
     "placement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["operatorPlacements"],
+      "required": ["participantPlacements", "operatorPlacements"],
       "properties": {
+        "participantPlacements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["participantId", "placementClass", "row"],
+            "properties": {
+              "participantId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "placementClass": {
+                "type": "string",
+                "enum": ["reactant", "center", "product"]
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
         "operatorPlacements": {
           "type": "array",
           "items": {
