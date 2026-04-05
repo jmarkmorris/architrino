@@ -33,6 +33,30 @@ test("solved library runtime converts PDG-backed muon decay solve output into an
     candidate.document.hints.semanticTags.includes("pdg-review"),
     true
   );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1" &&
+        participant.layout?.column === "left"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_source_core" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
 });
 
 test("solved library runtime converts PDG-backed charged pion decay solve output into an accepted reusable library document", () => {
@@ -76,7 +100,20 @@ test("solved library runtime preserves generated center participants and operato
   assert.equal(candidate.entry.id, "free_neutron_beta");
   assert.equal(candidate.document.review.status, "accepted");
   assert.equal(
-    candidate.document.participants.some((participant) => participant.side === "intermediate" && participant.structureKey === "free_architrinos"),
+    candidate.document.participants.some(
+      (participant) =>
+        participant.id.includes("free_architrinos") &&
+        participant.side === "intermediate" &&
+        participant.layout?.column === "center"
+    ),
+    true
+  );
+  assert.equal(
+    candidate.document.participants.some(
+      (participant) =>
+        participant.structureKey === "up_quark" &&
+        participant.layout?.column === "center"
+    ),
     true
   );
   assert.equal(

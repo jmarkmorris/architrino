@@ -11,6 +11,10 @@ function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
 
+function normalizeLowerText(value = "") {
+  return normalizeText(value).toLowerCase();
+}
+
 function getParticipantRootNode(participant = null) {
   return participant?.hierarchy?.[0] ?? null;
 }
@@ -50,6 +54,12 @@ function createGeneratedCenterParticipant(resultParticipant = {}) {
   const templateId = normalizeText(resultParticipant?.templateId) || "particle";
   const polarity = normalizeText(resultParticipant?.polarity).toLowerCase() === "anti" ? "anti" : "pro";
   const rootNodeId = normalizeText(resultParticipant?.rootNodeId) || `${participantId}_structure`;
+  const normalizedTags = Array.isArray(resultParticipant?.tags)
+    ? resultParticipant.tags.map((tag) => normalizeLowerText(tag)).filter(Boolean)
+    : [];
+  const shouldRenderAsLeftReactant =
+    templateId !== "free_architrinos" &&
+    normalizedTags.some((tag) => tag.endsWith("-supplement"));
   const label = normalizeText(resultParticipant?.label) || getReactionCanonicalBaseLabel(templateId, {
     fallbackLabel: "Participant",
   });
@@ -61,7 +71,7 @@ function createGeneratedCenterParticipant(resultParticipant = {}) {
   return {
     id: participantId,
     side: "reactant",
-    surfaceColumn: "center-assembly",
+    ...(shouldRenderAsLeftReactant ? {} : { surfaceColumn: "center-assembly" }),
     templateId,
     polarity: ["electron", "neutrino", "up_quark", "down_quark", "noether_core"].includes(templateId)
       ? polarity

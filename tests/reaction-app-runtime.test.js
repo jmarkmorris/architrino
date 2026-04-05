@@ -16,6 +16,14 @@ class FakeElement {
     this.listeners = new Map();
     this.children = [];
     this.innerHTML = "";
+    this.className = "";
+    this.classList = {
+      add: (...tokens) => {
+        const current = new Set(String(this.className || "").split(/\s+/).filter(Boolean));
+        tokens.forEach((token) => current.add(String(token)));
+        this.className = [...current].join(" ");
+      },
+    };
   }
 
   addEventListener(type, listener) {
@@ -88,6 +96,9 @@ function withFakeDom(testBody) {
       createElement(tagName) {
         if (tagName === "option") {
           return new FakeOptionElement();
+        }
+        if (tagName === "button") {
+          return new FakeButtonElement();
         }
         return new FakeElement();
       },
@@ -165,6 +176,7 @@ function createReactionAppRuntimeHarness(options = {}) {
   const statusElement = new FakeElement();
   const reviewStateElement = new FakeElement();
   const librarySelect = new FakeSelectElement();
+  const libraryQuickList = new FakeElement();
   const libraryLoadButton = new FakeButtonElement();
   const acceptButton = new FakeButtonElement();
   const exportButton = new FakeButtonElement();
@@ -175,6 +187,7 @@ function createReactionAppRuntimeHarness(options = {}) {
     statusElement,
     reviewStateElement,
     librarySelect,
+    libraryQuickList,
     libraryLoadButton,
     acceptButton,
     exportButton,
@@ -200,6 +213,7 @@ function createReactionAppRuntimeHarness(options = {}) {
     statusElement,
     reviewStateElement,
     librarySelect,
+    libraryQuickList,
     libraryLoadButton,
     acceptButton,
     exportButton,
@@ -248,6 +262,10 @@ test(
     assert.deepEqual(
       harness.librarySelect.options.map((option) => option.value),
       ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
+    );
+    assert.deepEqual(
+      [...new Set(harness.libraryQuickList.children.map((child) => child.textContent))],
+      ["Muon decay", "Free neutron beta decay", "Charged pion to muon neutrino"]
     );
     assert.equal(harness.librarySelect.value, "muon_decay");
     assert.equal(harness.libraryLoadButton.disabled, false);

@@ -111,6 +111,30 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
   assert.equal(loadedMuon.document.review.status, "accepted");
   assert.deepEqual(loadedMuon.exportOverrides.sourceDocumentIds, muonFixture.provenance.sourceDocumentIds);
   assert.equal(loadedMuon.snapshot.participants.some((participant) => participant.id === "reactant_pro_muon_1"), true);
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_noether_pair_1" &&
+        participant.surfaceColumn !== "center-assembly"
+    ),
+    true
+  );
+  assert.equal(
+    loadedMuon.snapshot.participants.some(
+      (participant) =>
+        participant.id === "center_weak-lepton-decay_base_source_core" &&
+        participant.surfaceColumn === "center-assembly"
+    ),
+    true
+  );
 
   assert.equal(loadedPion.entry.title, "Charged pion to muon neutrino");
   assert.equal(loadedPion.document.reactionId, pionFixture.reactionId);

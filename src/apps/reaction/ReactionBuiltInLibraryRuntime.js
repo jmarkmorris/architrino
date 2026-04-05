@@ -11,6 +11,7 @@ import { buildReactionLibraryExportOverrides } from "./ReactionFlowLibrarySuppor
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_OPERATOR_LANE_INDEX = 1;
+const REACTION_BUILTIN_LIBRARY_CACHE_BUSTER = "2026-04-05-reaction-library-v2";
 const FREE_NEUTRON_BETA_DOCUMENT_PATH =
   "../../../content/contracts/examples/reaction-flow/free_neutron_beta.v1.json";
 const MUON_DECAY_DOCUMENT_PATH =
@@ -471,6 +472,9 @@ async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
     throw new Error("Built-in reaction library loading requires fetch().");
   }
   const documentUrl = new URL(entry.documentPath, options?.baseUrl ?? import.meta.url);
+  if (!documentUrl.searchParams.has("v")) {
+    documentUrl.searchParams.set("v", REACTION_BUILTIN_LIBRARY_CACHE_BUSTER);
+  }
   const response = await fetchImpl(documentUrl);
   if (response?.ok === false) {
     throw new Error(`Built-in reaction library fetch failed for ${entry.id}.`);

@@ -52,6 +52,7 @@ export function createReactionAppRuntime(deps) {
     mapSvg = null,
     menu = null,
     librarySelect = null,
+    libraryQuickList = null,
     libraryLoadButton = null,
     acceptButton = null,
     exportButton = null,
@@ -154,28 +155,62 @@ export function createReactionAppRuntime(deps) {
 
   function syncBuiltInLibraryControls(selectedEntryId = "") {
     if (!(librarySelect instanceof HTMLSelectElement)) {
-      return;
-    }
-    const entries = Array.isArray(builtInLibraryEntries) ? builtInLibraryEntries : [];
-    librarySelect.innerHTML = "";
-    entries.forEach((entry) => {
-      const option = globalThis.document?.createElement?.("option") ?? null;
-      if (!option) {
+      if (!(libraryQuickList instanceof HTMLElement)) {
         return;
       }
-      option.value = normalizeText(entry?.id);
-      option.textContent = normalizeText(entry?.title) || option.value;
-      librarySelect.appendChild(option);
-    });
+    }
+    const entries = Array.isArray(builtInLibraryEntries) ? builtInLibraryEntries : [];
+    if (librarySelect instanceof HTMLSelectElement) {
+      librarySelect.innerHTML = "";
+      entries.forEach((entry) => {
+        const option = globalThis.document?.createElement?.("option") ?? null;
+        if (!option) {
+          return;
+        }
+        option.value = normalizeText(entry?.id);
+        option.textContent = normalizeText(entry?.title) || option.value;
+        librarySelect.appendChild(option);
+      });
+    }
     const defaultSelectedId =
       normalizeText(selectedEntryId) ||
-      normalizeText(librarySelect.value) ||
+      normalizeText(librarySelect instanceof HTMLSelectElement ? librarySelect.value : "") ||
       normalizeText(entries.find((entry) => entry?.isDefault)?.id) ||
       normalizeText(entries[0]?.id);
-    if (defaultSelectedId) {
+    if (defaultSelectedId && librarySelect instanceof HTMLSelectElement) {
       librarySelect.value = defaultSelectedId;
     }
-    librarySelect.disabled = entries.length === 0;
+    if (librarySelect instanceof HTMLSelectElement) {
+      librarySelect.disabled = entries.length === 0;
+    }
+    if (libraryQuickList instanceof HTMLElement) {
+      libraryQuickList.innerHTML = "";
+      entries.forEach((entry) => {
+        const button = globalThis.document?.createElement?.("button") ?? null;
+        if (!(button instanceof HTMLButtonElement)) {
+          return;
+        }
+        button.type = "button";
+        button.className = "reaction-app-library-chip";
+        const entryId = normalizeText(entry?.id);
+        if (entryId && entryId === defaultSelectedId) {
+          button.classList.add("is-active");
+        }
+        button.textContent = normalizeText(entry?.title) || entryId;
+        button.addEventListener("click", async () => {
+          if (librarySelect instanceof HTMLSelectElement && entryId) {
+            librarySelect.value = entryId;
+          }
+          syncBuiltInLibraryControls(entryId);
+          try {
+            await loadSelectedBuiltInReactionLibraryEntry(entryId);
+          } catch (_error) {
+            setStatus("Built-in reaction load failed.");
+          }
+        });
+        libraryQuickList.appendChild(button);
+      });
+    }
     if (libraryLoadButton instanceof HTMLButtonElement) {
       libraryLoadButton.disabled = entries.length === 0;
       libraryLoadButton.setAttribute("aria-disabled", entries.length === 0 ? "true" : "false");
