@@ -1,7 +1,4 @@
 
-## Process Reminder
-
-- In the next repo-process follow-up branch/PR, update [reference/op/repo-process.md](./repo-process.md) guidance so the standard PR flow goes beyond draft creation and explicitly marks the PR `ready for review` when the work is genuinely reviewable.
 
 ## API vs. plan usage instructions.
 
@@ -79,14 +76,3 @@ Now:
 
 ---
 
-## Related Priorities
-
-- [cruft-sprawl](../priorities/cruft-sprawl/cruft-sprawl.md)
-- [composer-reaction](../priorities/observer/observer.md)
-- [chapter-authoring](../priorities/chapter-authoring/chapter-authoring.md)
-
-## Related AAA Notes
-
-- [software-architecture-and-maintenance](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
-- [about-the-webapp](../../content/markdown/aaa/archie/about-the-webapp.md)
-- [navigation-and-controls](../../content/markdown/aaa/archie/navigation-and-controls.md)

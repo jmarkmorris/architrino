@@ -11,7 +11,7 @@
 
 ## Directory Guide
 
-- [app-architecture](./app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
+- [app-architecture](app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
 - [reaction](./reaction.md) — `reaction` app design and `reaction`-owned priorities.
 - [solver](./solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, and proposal-review work.
@@ -23,7 +23,7 @@
 2. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest as `reaction` export hardens and `composer` stays data-first downstream.
 3. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
 4. [pdgfeed](./pdgfeed.md): build `pdgfeed.py`, fixtures, and the first normalized candidate export path into `solver-request/v1`.
-5. [app-architecture](./app-architecture.md), [reaction](./reaction.md), and [composer](./composer.md): keep shrinking shared roots such as `app.js` and oversized app coordinators while protecting the explicit app boundary.
+5. [app-architecture](app-architecture.md), [reaction](./reaction.md), and [composer](./composer.md): keep shrinking shared roots such as `app.js` and oversized app coordinators while protecting the explicit app boundary.
 
 ## Subapp Workflow Overview
 

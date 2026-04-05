@@ -1,6 +1,8 @@
 import { buildReactionSolverContractResponse } from "./ReactionSolverContractResponseRuntime.js";
 import { buildReactionSolverRequestDocument } from "./ReactionSolverRequestExportRuntime.js";
 
+const DEFAULT_BROWSER_REACTION_SOLVE_TIMEOUT_MS = 30000;
+
 function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
@@ -15,7 +17,7 @@ function resolveReactionSolveEndpoint(windowLike = globalThis.window, endpoint =
     return "";
   }
   try {
-    return new URL("./api/reaction/solve", href).toString();
+    return new URL("/api/reaction/solve", href).toString();
   } catch (_error) {
     return "";
   }
@@ -44,6 +46,28 @@ function readReactionSolveErrorMessage(responseText = "", status = 0) {
   return normalizeText(responseText) || `Reaction solve request failed (${status}).`;
 }
 
+function resolveReactionSolveTimeoutMs(options = {}) {
+  const timeoutMs = Number(options?.timeoutMs);
+  if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+    return Math.round(timeoutMs);
+  }
+  return DEFAULT_BROWSER_REACTION_SOLVE_TIMEOUT_MS;
+}
+
+function createReactionSolveTimeoutError(timeoutMs = DEFAULT_BROWSER_REACTION_SOLVE_TIMEOUT_MS) {
+  const seconds = Math.max(1, Math.round(timeoutMs / 1000));
+  return new Error(
+    `Reaction solve timed out after ${seconds}s. The local solve bridge may be stalled.`
+  );
+}
+
+function isAbortError(error = null) {
+  return (
+    String(error?.name ?? "").trim() === "AbortError" ||
+    String(error?.code ?? "").trim() === "ABORT_ERR"
+  );
+}
+
 async function requestBrowserReactionSolve(request = {}, options = {}) {
   const fetchImpl = resolveBrowserFetch(options?.fetchImpl);
   const endpoint = resolveReactionSolveEndpoint(options?.windowLike, options?.endpoint);
@@ -52,14 +76,36 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
       "Browser Reaction solver bridge is unavailable. Start the local dev server with the solve API or inject a solveSnapshot bridge explicitly."
     );
   }
-  const response = await fetchImpl(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(request),
-  });
+  const timeoutMs = resolveReactionSolveTimeoutMs(options);
+  const abortController =
+    typeof globalThis.AbortController === "function" ? new globalThis.AbortController() : null;
+  const timeoutId =
+    abortController && timeoutMs > 0
+      ? globalThis.setTimeout(() => {
+          abortController.abort(createReactionSolveTimeoutError(timeoutMs));
+        }, timeoutMs)
+      : null;
+  let response;
+  try {
+    response = await fetchImpl(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(request),
+      signal: abortController?.signal,
+    });
+  } catch (error) {
+    if (isAbortError(error)) {
+      throw createReactionSolveTimeoutError(timeoutMs);
+    }
+    throw error;
+  } finally {
+    if (timeoutId) {
+      globalThis.clearTimeout(timeoutId);
+    }
+  }
   const responseText = await response.text();
   if (!response.ok) {
     throw new Error(readReactionSolveErrorMessage(responseText, response.status));

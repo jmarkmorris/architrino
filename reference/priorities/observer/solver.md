@@ -1313,20 +1313,20 @@ The current grammar should therefore aim for:
 
 Current recommended conflict checks:
 
-| Potential conflict | Why it is risky | Recommended rule |
-| --- | --- | --- |
-| `2h2`, `4h3`, `3h2` | mixes prefix-count and suffix-core-form roles on one token | forbid entirely |
-| `a2h`, `a4h`, `2ah` | unclear whether anti applies to an aggregate or to a core token inside it | forbid entirely |
-| `aae`, `aav2`, `aah` | stacked anti prefixes add no meaning and create parser noise | forbid entirely |
-| `aW+`, `aW-`, `aZ`, `a1:1@` | anti is not currently defined for these families | forbid entirely |
-| `e0`, `e4`, `u9`, `v7` | generation outside `1`, `2`, `3` | forbid entirely |
-| `0h` | zero-count whole-core aggregate is not meaningful in the current grammar | forbid entirely |
-| `3h`, `5h`, `12h` | only `2h` and `4h` are currently committed aggregate tokens | forbid entirely for now |
-| `0:0@` | null `Free Architrinos` ledger carries no usable content | forbid entirely |
-| `h23`, `u23`, `e12` | visually suggests one token but leaves trailing digits ambiguous | forbid entirely |
-| `@`, `2@`, `227@` | omitted ledger side makes the free-architrino token ambiguous | forbid entirely |
-| `:120@`, `227:@` | omitted ledger side creates a special-case parse | forbid entirely |
-| `227:120@3`, `1:1@2` | payload after `@` collides with the token boundary | forbid entirely |
+| Potential conflict          | Why it is risky                                                           | Recommended rule |
+| --------------------------- | ------------------------------------------------------------------------- | ---------------- |
+| `2h2`, `4h3`, `3h2`         | mixes prefix-count and suffix-core-form roles on one token                | forbid entirely  |
+| `a2h`, `a4h`, `2ah`         | unclear whether anti applies to an aggregate or to a core token inside it | forbid entirely  |
+| `aae`, `aav2`, `aah`        | stacked anti prefixes add no meaning and create parser noise              | forbid entirely  |
+| `aW+`, `aW-`, `aZ`, `a1:1@` | anti is not currently defined for these families                          | forbid entirely  |
+| `e0`, `e4`, `u9`, `v7`      | generation outside `1`, `2`, `3`                                          | forbid entirely  |
+| `0h`                        | zero-count whole-core aggregate is not meaningful in the current grammar  | forbid entirely  |
+| `3h`, `5h`, `12h`           | only `2h` and `4h` are currently committed aggregate tokens               | forbid entirely  |
+| `0:0@`                      | null `Free Architrinos` ledger carries no usable content                  | forbid entirely  |
+| `h23`, `u23`, `e12`         | visually suggests one token but leaves trailing digits ambiguous          | forbid entirely  |
+| `@`, `2@`, `227@`           | omitted ledger side makes the free-architrino token ambiguous             | forbid entirely  |
+| `:120@`, `227:@`            | omitted ledger side creates a special-case parse                          | forbid entirely  |
+| `227:120@3`, `1:1@2`        | payload after `@` collides with the token boundary                        | forbid entirely  |
 
 Operational lexer guidance:
 
@@ -1536,8 +1536,8 @@ Likely durable boundaries in the rearchitected system are:
 - [reaction](./reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
 - [pdgfeed](./pdgfeed.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
 - [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
-- [app-architecture](./app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
-- [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
+- [app-architecture](app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
+- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 

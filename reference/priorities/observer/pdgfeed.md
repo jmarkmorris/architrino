@@ -428,7 +428,7 @@ This review layer is still upstream of Reaction. It chooses among PDG-derived al
 - [solver](./solver.md) is the planning core this component should feed.
 - [reaction](./reaction.md) owns inspection, correction, manual override, and acceptance after PDG proposals are generated.
 - [composer](./composer.md) remains downstream of accepted Reaction output only.
-- [app-architecture](./app-architecture.md) defines the app-boundary rule this component must respect.
+- [app-architecture](app-architecture.md) defines the app-boundary rule this component must respect.
 
 ### Deferred Feature: Package And Database Maintenance
 
@@ -449,20 +449,7 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Project Accepted PDG Proposals Into Reaction
-
-Status: `active`
-
-Current:
-
-- `pdgfeed.py` already emits normalized `pdg-proposal/v1`, `solver-request/v1`, and frozen live manifests;
-- there is still no accepted proposal path into Reaction.
-
-Objective:
-
-- define the explicit PDG-to-Reaction seam so candidates become reviewable upstream input instead of file-only artifacts.
-
-### 2. Move `pdgfeed.py` Out Of The Repo Root Without Breaking Callers
+### 1. Move `pdgfeed.py` Out Of The Repo Root Without Breaking Callers
 
 Status: `active`
 
@@ -475,7 +462,7 @@ Objective:
 
 - move the real implementation under `scripts/` or another explicit PDG-owned runtime location while preserving a compatibility shim at the repo root until tests, tooling, and docs no longer depend on the old path.
 
-### 3. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
+### 2. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
 
 Status: `active`
 
@@ -486,3 +473,5 @@ Current:
 Objective:
 
 - keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
+
+### 3. migrate ~3 archie docs to reference.  there is one about the pdg package, and others that are development specific, like github, etc....

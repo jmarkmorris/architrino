@@ -72,3 +72,23 @@ test("reaction solve http runtime returns a json error for invalid request bodie
   assert.equal(response.statusCode, 400);
   assert.equal(typeof JSON.parse(response.body).error, "string");
 });
+
+test("reaction solve http runtime reports a timeout when the solve subprocess stalls", async () => {
+  const request = createRequest({
+    body: JSON.stringify({ schema: "solver-request/v1", requestId: "timeout_test" }),
+  });
+  const response = createResponse();
+  const timeoutError = new Error("Command timed out");
+  timeoutError.code = "ETIMEDOUT";
+
+  const handled = await handleReactionSolveApiRequest(request, response, {
+    repoRoot: "/tmp/architrino",
+    executeSolveRequest: () => {
+      throw timeoutError;
+    },
+  });
+
+  assert.equal(handled, true);
+  assert.equal(response.statusCode, 504);
+  assert.match(JSON.parse(response.body).error, /timed out/i);
+});

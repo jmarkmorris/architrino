@@ -45,6 +45,11 @@ function normalizeExternalSolverResponse(response = null) {
   };
 }
 
+function resolveExternalSolverTimeoutMs(options = {}) {
+  const timeoutMs = Number(options?.externalSolverTimeoutMs);
+  return Number.isFinite(timeoutMs) && timeoutMs > 0 ? Math.round(timeoutMs) : 30000;
+}
+
 export function canExecuteExternalReactionSolver(options = {}) {
   if (options?.useExternalSolver === false) {
     return false;
@@ -92,6 +97,7 @@ export function executeExternalReactionSolverRequest(request = {}, options = {})
     encoding: "utf8",
     input: JSON.stringify(request),
     maxBuffer: Number(options?.externalSolverMaxBuffer ?? 16 * 1024 * 1024),
+    timeout: resolveExternalSolverTimeoutMs(options),
   });
   return {
     result: JSON.parse(stdout),

@@ -2,9 +2,15 @@ import { createReactionCommitStateRuntime } from "./ReactionCommitStateRuntime.j
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
 import { navigateStandaloneReactionHome } from "./ReactionAppModeRuntime.js";
 import { createReactionCanvasUiRuntime } from "./ReactionCanvasUiRuntime.js";
+import { loadDefaultReactionBuiltInLibraryEntry } from "./ReactionBuiltInLibraryRuntime.js";
+import { buildReactionReviewCandidateFromSolverRequest } from "./ReactionReviewImportRuntime.js";
 import { reactionAssemblyTemplateMenuRows } from "./ReactionTemplateCatalogRuntime.js";
 
 const reactionCanvasStorageKey = "architrino.reaction.active";
+
+function normalizeText(value = "") {
+  return String(value ?? "").trim();
+}
 
 function formatAcceptedAt(acceptedAt = "") {
   const acceptedDate = new Date(acceptedAt);
@@ -22,6 +28,13 @@ function sanitizeDownloadFileBaseName(value = "") {
     .replace(/^_+|_+$/g, "") || "reaction_designer_active";
 }
 
+function snapshotHasContent(snapshot = {}) {
+  return (
+    (Array.isArray(snapshot?.participants) ? snapshot.participants.length : 0) > 0 ||
+    (Array.isArray(snapshot?.mappings) ? snapshot.mappings.length : 0) > 0
+  );
+}
+
 export function createReactionAppRuntime(deps) {
   const {
     reviewStateElement = null,
@@ -31,7 +44,6 @@ export function createReactionAppRuntime(deps) {
     reactantsColumn = null,
     productsColumn = null,
     mapHint = null,
-    legibilityPanel = null,
     emptyState = null,
     mapSvg = null,
     menu = null,
@@ -41,6 +53,11 @@ export function createReactionAppRuntime(deps) {
     solveButton = null,
     exitButton = null,
     solveSnapshot = null,
+    initialSolverRequest = null,
+    createCommitRuntime = createReactionCommitStateRuntime,
+    createCanvasRuntime = createReactionCanvasUiRuntime,
+    createFlowExportRuntime = createReactionFlowExportRuntime,
+    loadDefaultReactionLibraryEntry = loadDefaultReactionBuiltInLibraryEntry,
   } = deps;
 
   function setStatus(message = "") {
@@ -62,16 +79,17 @@ export function createReactionAppRuntime(deps) {
   }
 
   let latestSnapshot = { participants: [], mappings: [] };
-  const commitRuntime = createReactionCommitStateRuntime({
+  let reviewImportCandidate = null;
+  let currentDocumentOptions = null;
+  const commitRuntime = createCommitRuntime({
     getSnapshot: () => latestSnapshot,
   });
-  const canvasRuntime = createReactionCanvasUiRuntime({
+  const canvasRuntime = createCanvasRuntime({
     root,
     surface,
     reactantsColumn,
     productsColumn,
     mapHint,
-    legibilityPanel,
     emptyState,
     mapSvg,
     menu,
@@ -83,6 +101,10 @@ export function createReactionAppRuntime(deps) {
     setStatus,
     onSnapshotChange: (snapshot) => {
       latestSnapshot = snapshot;
+      if (!snapshotHasContent(snapshot)) {
+        reviewImportCandidate = null;
+        currentDocumentOptions = null;
+      }
       const invalidatedAcceptedState = commitRuntime.observeSnapshot(snapshot);
       syncReviewControls();
       if (invalidatedAcceptedState) {
@@ -95,15 +117,72 @@ export function createReactionAppRuntime(deps) {
     solveSnapshot:
       typeof solveSnapshot === "function" ? solveSnapshot : undefined,
   });
-  const exportRuntime = createReactionFlowExportRuntime({
+  const exportRuntime = createFlowExportRuntime({
     getSnapshot: canvasRuntime.getSnapshot,
     getReview: () => commitRuntime.buildExportReview(),
+    getDocumentOptions: () => currentDocumentOptions ?? {},
     reactionId: "reaction_designer_active",
     title: "Reaction Designer",
     sourceDocumentIds: [reactionCanvasStorageKey],
     semanticTags: ["manual-authoring", "reaction-designer"],
     suggestedSceneId: "reaction_designer_scene",
   });
+
+  function buildReviewImportStatusMessage(reviewInput = {}) {
+    const reviewTitle = normalizeText(reviewInput?.origin?.title);
+    const sourceKind = normalizeText(reviewInput?.origin?.sourceKind);
+    const sourceLabel = sourceKind === "pdg-ingest" ? "PDG" : "solver-request";
+    return `${
+      reviewTitle ? `${sourceLabel} review candidate loaded: ${reviewTitle}.` : `${sourceLabel} review candidate loaded.`
+    } Accept it to emit accepted reaction-flow/v1 JSON downstream of review.`;
+  }
+
+  function buildBuiltInLibraryStatusMessage(libraryEntry = {}) {
+    const entryTitle = normalizeText(libraryEntry?.title);
+    return `${
+      entryTitle ? `Built-in reaction loaded: ${entryTitle}.` : "Built-in reaction loaded."
+    } Accept it to emit accepted reaction-flow/v1 JSON downstream of review.`;
+  }
+
+  function applyLoadedSnapshot(snapshot = {}, documentOptions = null, options = {}) {
+    latestSnapshot = canvasRuntime.replaceSnapshot(snapshot, {
+      announce: false,
+    });
+    currentDocumentOptions =
+      documentOptions && Object.keys(documentOptions).length > 0 ? documentOptions : null;
+    commitRuntime.reset();
+    syncReviewControls();
+    if (options?.announce !== false) {
+      setStatus(normalizeText(options?.statusMessage));
+    }
+    return latestSnapshot;
+  }
+
+  function loadSolverRequestReviewCandidate(request = {}, options = {}) {
+    const candidate = buildReactionReviewCandidateFromSolverRequest(request);
+    reviewImportCandidate = candidate;
+    applyLoadedSnapshot(candidate.snapshot, candidate.exportOverrides, {
+      announce: false,
+    });
+    if (options?.announce !== false) {
+      setStatus(buildReviewImportStatusMessage(candidate.reviewInput));
+    }
+    return candidate;
+  }
+
+  function loadBuiltInReactionLibraryCandidate(payload = {}, options = {}) {
+    reviewImportCandidate = null;
+    const appliedSnapshot = applyLoadedSnapshot(payload?.snapshot, payload?.exportOverrides, {
+      announce: false,
+    });
+    if (options?.announce !== false) {
+      setStatus(buildBuiltInLibraryStatusMessage(payload?.entry));
+    }
+    return {
+      ...payload,
+      snapshot: appliedSnapshot,
+    };
+  }
 
   function syncReviewControls() {
     const commitState = commitRuntime.getCommitState(latestSnapshot);
@@ -185,7 +264,7 @@ export function createReactionAppRuntime(deps) {
     return true;
   }
 
-  function init() {
+  async function init() {
     latestSnapshot = canvasRuntime.getSnapshot();
     syncReviewControls();
     if (acceptButton instanceof HTMLButtonElement) {
@@ -204,10 +283,25 @@ export function createReactionAppRuntime(deps) {
       });
     }
     canvasRuntime.setActive(true, { persist: false, announce: false });
+    if (initialSolverRequest) {
+      loadSolverRequestReviewCandidate(initialSolverRequest, { announce: false });
+      syncReviewControls();
+      setStatus(buildReviewImportStatusMessage(reviewImportCandidate?.reviewInput));
+      return;
+    }
+    if (!snapshotHasContent(latestSnapshot)) {
+      try {
+        const libraryPayload = await loadDefaultReactionLibraryEntry();
+        loadBuiltInReactionLibraryCandidate(libraryPayload, { announce: false });
+        syncReviewControls();
+        setStatus(buildBuiltInLibraryStatusMessage(libraryPayload?.entry));
+        return;
+      } catch (_error) {
+        // Keep manual authoring available even if the built-in library fixture is unavailable.
+      }
+    }
     syncReviewControls();
-    setStatus(
-      "Reaction app ready. Use the left and right + controls to build a reaction."
-    );
+    setStatus("Reaction app ready. Use the left and right + controls to build a reaction.");
   }
 
   return {
@@ -218,5 +312,7 @@ export function createReactionAppRuntime(deps) {
     canvasRuntime,
     exportReactionFlowDocument,
     downloadReactionFlowDocument,
+    loadBuiltInReactionLibraryCandidate,
+    loadSolverRequestReviewCandidate,
   };
 }

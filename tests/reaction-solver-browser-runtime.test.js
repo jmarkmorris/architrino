@@ -43,9 +43,13 @@ function createParticipant({ id, side, templateId, polarity = "pro", label = tem
   return participant;
 }
 
-test("browser reaction solver runtime resolves the local solve endpoint relative to the current page", () => {
+test("browser reaction solver runtime resolves the local solve endpoint from the origin root", () => {
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/reaction.html" } }),
+    "http://127.0.0.1:5173/api/reaction/solve"
+  );
+  assert.equal(
+    resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/architrino/reaction.html" } }),
     "http://127.0.0.1:5173/api/reaction/solve"
   );
 });
@@ -105,4 +109,28 @@ test("browser reaction solver runtime posts a request document and returns a con
   assert.equal(solution.execution?.target, "browser-http");
   assert.equal(solution.execution?.endpoint, "http://127.0.0.1:5173/api/reaction/solve");
   assert.equal(solution.planDescription, "1 associated product");
+});
+
+test("browser reaction solver runtime times out stalled solve requests", async () => {
+  const solveSnapshot = createBrowserReactionSolveSnapshot({
+    windowLike: { location: { href: "http://127.0.0.1:5173/reaction.html" } },
+    timeoutMs: 5,
+    fetchImpl: async (_url, options = {}) =>
+      new Promise((_resolve, reject) => {
+        options.signal?.addEventListener(
+          "abort",
+          () => {
+            const error = new Error("Aborted");
+            error.name = "AbortError";
+            reject(error);
+          },
+          { once: true }
+        );
+      }),
+  });
+
+  await assert.rejects(
+    () => solveSnapshot({ participants: [], mappings: [] }),
+    /Reaction solve timed out/
+  );
 });

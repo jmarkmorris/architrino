@@ -39,8 +39,11 @@ It does not own:
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
 - The canonical implementation for Reaction helper, canvas, solve, structure, export, and layout runtimes now lives under `src/apps/reaction/`.
+- Reaction now ships one external-only solve path, and the browser-side solve bridge resolves from the origin root so the standalone app still reaches `/api/reaction/solve` when served from a subpath such as `/architrino/reaction.html`.
+- Mapping authoring and route rendering now live in focused canvas runtimes so `ReactionCanvasUiRuntime.js` stays a wiring layer instead of reclaiming provenance, corridor, and connector ownership.
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 - The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
+- The standalone Reaction app now has a first built-in solved-reaction library seed, with free neutron beta decay loading by default when startup finds no authored canvas state to preserve.
 
 ## Design
 
@@ -167,46 +170,8 @@ Reaction should not:
 - [solver](./solver.md) owns the Reaction-side solve engine and algorithmic constraints.
 - [pdgfeed](./pdgfeed.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
 - [composer](./composer.md) is the downstream staging and explanation surface.
-- [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
+- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 
-### 1. Finish Manual Workflow Legibility And Operator Grammar
-
-Status: `active`
-
-Current:
-
-- the lane-based canvas, mapping rules, add picker, and center assembly picker are live;
-- the standalone shell now keeps corridor grammar, operator-lane meaning, and live surface-state counts visible without reusing the transient status line;
-- but the manual workflow still depends on a large `ReactionCanvasUiRuntime.js` surface, and path emphasis plus deeper object-local legibility still need more focused extraction.
-
-Objective:
-
-- make provenance, operator use, and corridor state understandable from the visible surface without side knowledge.
-
-### 2. Complete The Solver Cut-Over And Remove The In-Process Fallback
-
-Status: `pending`
-
-Current:
-
-- the solve contract already prefers the external solver when available;
-- `ReactionSolverContractRuntime.js` still falls back to the legacy in-process path.
-
-Objective:
-
-- finish the flash cut-over so Reaction ships one solver path, one adapter surface, and one test story.
-
-### 3. Keep Layout, Mapping Rules, And Provenance Ownership Centralized
-
-Status: `pending`
-
-Current:
-
-- lane geometry and mapping rules already live in dedicated runtimes;
-- large UI surfaces can still re-accumulate those semantics if new work lands in the wrong place.
-
-Objective:
-
-- keep Reaction as the single provenance-authoring surface with one source of truth for geometry, anchors, and conservation.
+No active priorities currently listed.

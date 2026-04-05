@@ -19,6 +19,8 @@ import {
   reactionNodeKeysConflict as defaultNodeKeysConflict,
 } from "./ReactionNodeKeyRuntime.js";
 import { createReactionAnchorStateRuntime as defaultCreateAnchorStateRuntime } from "./ReactionAnchorStateRuntime.js";
+import { createReactionCanvasMappingRuntime as defaultCreateCanvasMappingRuntime } from "./ReactionCanvasMappingRuntime.js";
+import { createReactionCanvasRouteRenderRuntime as defaultCreateCanvasRouteRenderRuntime } from "./ReactionCanvasRouteRenderRuntime.js";
 import {
   createReactionBinarySelectionRuntime as defaultCreateBinarySelectionRuntime,
   getBinaryPersonalityChoice,
@@ -58,7 +60,6 @@ import {
   REACTION_CANVAS_LAYOUT,
   REACTION_CANVAS_SURFACE_ROW_COUNT,
 } from "./ReactionCanvasLayoutRuntime.js";
-import { buildReactionLegibilitySnapshot } from "./ReactionCanvasLegibilityRuntime.js";
 import {
   buildReactionStructureDescriptorTree,
   findReactionStructureDescriptorNode,
@@ -82,6 +83,7 @@ import {
   isNoetherAssemblyTemplateId,
   normalizeStructureAssemblyTemplateId,
 } from "../../domain/structure/StructureAssemblyCatalog.js";
+import { getReactionCanonicalBaseLabel } from "./ReactionLabelCatalogRuntime.js";
 import { findStructureNodeById } from "../../domain/structure/StructureTraversal.js";
 import {
   applyStructurePolarity,
@@ -242,6 +244,10 @@ function cloneSerializableValue(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+function normalizeText(value = "") {
+  return String(value ?? "").trim();
+}
+
 function ensureCenterAssembliesColumn(surface) {
   if (!(surface instanceof HTMLElement)) {
     return null;
@@ -262,10 +268,14 @@ function dedupeTemplateEntries(templateMenuRows = [], extraEntries = []) {
   const seen = new Set();
   const allEntries = [
     ...templateMenuRows.flatMap((row) => (Array.isArray(row) ? row : [])),
-    { template: "neutron", label: "Pro Neutron" },
-    { template: "proton", label: "Pro Proton" },
-    { template: "photon", label: "Photon" },
-    { template: "neutrino", label: "Pro Neutrino", initialPolarity: "pro" },
+    { template: "neutron", label: getReactionCanonicalBaseLabel("neutron") },
+    { template: "proton", label: getReactionCanonicalBaseLabel("proton") },
+    { template: "photon", label: getReactionCanonicalBaseLabel("photon") },
+    {
+      template: "neutrino",
+      label: getReactionCanonicalBaseLabel("neutrino"),
+      initialPolarity: "pro",
+    },
     ...extraEntries,
   ];
   allEntries.forEach((entry) => {
@@ -520,89 +530,12 @@ function getParticipantCompositeModeLabel(participant) {
 }
 
 function getDefaultParticipantBaseLabel(templateId = "", fallbackLabel = "") {
-  const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
-  if (isNoetherAssemblyTemplateId(normalizedTemplateId)) {
-    return getStructureAssemblyDisplayLabel(normalizedTemplateId);
-  }
-  if (normalizedTemplateId === "noether_core") {
-    return "Pro Noether Core";
-  }
-  if (normalizedTemplateId === "up_quark") {
-    return "Pro Up Quark";
-  }
-  if (normalizedTemplateId === "down_quark") {
-    return "Pro Down Quark";
-  }
-  if (normalizedTemplateId === "electron") {
-    return "Pro Electron";
-  }
-  if (normalizedTemplateId === "w_minus_boson") {
-    return "Negative W Boson";
-  }
-  if (normalizedTemplateId === "w_plus_boson") {
-    return "Positive W Boson";
-  }
-  if (normalizedTemplateId === "neutrino") {
-    return "Pro Neutrino";
-  }
-  if (normalizedTemplateId === "z_boson") {
-    return "Neutral Z Boson";
-  }
-  if (normalizedTemplateId === "free_architrinos") {
-    return "Free Architrinos";
-  }
-  if (normalizedTemplateId === "proton") {
-    return "Pro Proton";
-  }
-  if (normalizedTemplateId === "photon") {
-    return "Photon";
-  }
-  if (normalizedTemplateId === "associate") {
-    return "Associate";
-  }
-  if (normalizedTemplateId === "dissociate") {
-    return "Dissociate";
-  }
-  if (normalizedTemplateId === "neutron") {
-    return "Pro Neutron";
-  }
-  if (normalizedTemplateId === "pi_plus") {
-    return "Positive Pion";
-  }
-  if (normalizedTemplateId === "pi_minus") {
-    return "Negative Pion";
-  }
-  if (normalizedTemplateId === "upi0") {
-    return "Neutral Pion (u anti-u)";
-  }
-  if (normalizedTemplateId === "dpi0") {
-    return "Neutral Pion (d anti-d)";
-  }
-  if (normalizedTemplateId === "k_plus") {
-    return "Positive Kaon";
-  }
-  if (normalizedTemplateId === "k_minus") {
-    return "Negative Kaon";
-  }
-  if (normalizedTemplateId === "dk0") {
-    return "Neutral Kaon (d anti-s)";
-  }
-  if (normalizedTemplateId === "sk0") {
-    return "Neutral Kaon (s anti-d)";
-  }
-  if (normalizedTemplateId === "b_plus") {
-    return "Positive B Meson";
-  }
-  if (normalizedTemplateId === "b_minus") {
-    return "Negative B Meson";
-  }
-  if (normalizedTemplateId === "db0") {
-    return "Neutral B Meson (d anti-b)";
-  }
-  if (normalizedTemplateId === "bb0") {
-    return "Neutral B Meson (b anti-d)";
-  }
-  return String(fallbackLabel || normalizedTemplateId || "?").trim() || "?";
+  return getReactionCanonicalBaseLabel(templateId, {
+    fallbackLabel:
+      isNoetherAssemblyTemplateId(normalizeStructureAssemblyTemplateId(templateId))
+        ? getStructureAssemblyDisplayLabel(normalizeStructureAssemblyTemplateId(templateId))
+        : fallbackLabel,
+  });
 }
 
 function getTemplateGridPickerLayout(pickerCells = []) {
@@ -717,10 +650,6 @@ function isSingleMappingAnchorRole(role = "") {
       ? String(role.role ?? "").trim()
       : String(role ?? "").trim();
   return normalizedRole === "reactant" || normalizedRole === "product";
-}
-
-function canStartMappingFromRole(role = "") {
-  return role === "reactant" || role === "operator-output";
 }
 
 function canTargetMappingRole(role = "") {
@@ -873,7 +802,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     reactantsColumn,
     productsColumn,
     mapHint,
-    legibilityPanel = null,
     emptyState,
     mapSvg,
     menu,
@@ -901,6 +829,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     getReactionAddPickerCells = defaultGetReactionAddPickerCells,
     createMappingRulesRuntime = defaultCreateMappingRulesRuntime,
     createAnchorStateRuntime = defaultCreateAnchorStateRuntime,
+    createCanvasMappingRuntime = defaultCreateCanvasMappingRuntime,
+    createCanvasRouteRenderRuntime = defaultCreateCanvasRouteRenderRuntime,
     buildSolveState = defaultBuildSolveState,
     describeSolvePlan = defaultDescribeSolvePlan,
     applySolvePlan = defaultApplySolvePlan,
@@ -987,7 +917,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   };
   let lastSnapshotChangeSignature = "";
 
-  let drawFrameId = 0;
   let operatorLayoutFrameId = 0;
   let applyHoveredRouteState = () => {};
   let createAnchorButton = () => document.createElement("button");
@@ -996,6 +925,9 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   let createOperatorParticipantCard = () => document.createElement("article");
   let renderParticipantCard = () => document.createElement("article");
   let setHoveredMappingIds = () => {};
+  let addOrReplaceMapping = () => "";
+  let handleAnchorClick = () => {};
+  let scheduleMappingDraw = () => {};
   let syncOperatorFan = () => {};
   const mappingRulesRuntime = createMappingRulesRuntime({
     getNodeContext,
@@ -1044,7 +976,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     getPendingSourceKey: () => state.pendingSourceKey,
     getPendingSourceRole: () => state.pendingSourceRole,
     getRecentMappingIds: () => state.recentMappingIds,
-    handleAnchorClick,
+    handleAnchorClick: (...args) => handleAnchorClick(...args),
     isSingleMappingAnchorRole: isSingleMappingAnchorRoleForNode,
     mapSvg,
     markMappingsRecent,
@@ -1116,6 +1048,46 @@ export function createReactionCanvasUiRuntime(deps = {}) {
   if (typeof participantRenderRuntime.syncOperatorFan === "function") {
     syncOperatorFan = participantRenderRuntime.syncOperatorFan;
   }
+  ({
+    addOrReplaceMapping,
+    handleAnchorClick,
+  } = createCanvasMappingRuntime({
+    state,
+    getAnchorAvailability,
+    setStatus,
+    render,
+    isSingleMappingAnchorRoleForNode,
+    nodeKeysConflict,
+    pruneRecentRouteState,
+    markCompositeReactantDissociatedForNodeKey,
+    parseNodeKey,
+    findParticipantById,
+    syncAutoGeneratedDissociateAssembliesForOperator,
+    markMappingsRecent,
+    setHoveredMappingIds,
+    countEligibleTargets,
+    getMappingValidation,
+  }));
+  ({
+    scheduleMappingDraw,
+  } = createCanvasRouteRenderRuntime({
+    state,
+    surface,
+    mapSvg,
+    canvasRouteAnchorGapPx,
+    createSvgElement,
+    getParticipants: () => state.participants,
+    getMappings: () => state.mappings,
+    isActive: () => state.active,
+    isCompositeParticipant,
+    getMappingValidation,
+    setHoveredMappingIds,
+    removeMappingById,
+    render,
+    setStatus,
+    applyHoveredRouteState,
+    normalizeAnchorInstanceIndex,
+  }));
 
   function findParticipantById(participantId) {
     return state.participants.find((participant) => participant?.id === participantId) ?? null;
@@ -1204,6 +1176,18 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       participants: cloneSerializableValue(state.participants),
       mappings: cloneSerializableValue(state.mappings),
     };
+  }
+
+  function inferNextSequenceValue(values = [], prefix = "") {
+    return (
+      values.reduce((maxValue, value) => {
+        const match = String(value ?? "").match(new RegExp(`^${prefix}(\\d+)$`));
+        if (!match) {
+          return maxValue;
+        }
+        return Math.max(maxValue, Number(match[1]) || 0);
+      }, 0) + 1
+    );
   }
 
   function notifySnapshotChange() {
@@ -1625,6 +1609,39 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     return true;
   }
 
+  function replaceSnapshot(snapshot = {}, options = {}) {
+    const nextParticipants = cloneSerializableValue(
+      Array.isArray(snapshot?.participants) ? snapshot.participants : []
+    );
+    const nextMappings = cloneSerializableValue(Array.isArray(snapshot?.mappings) ? snapshot.mappings : []);
+    clearDragState();
+    state.participants = nextParticipants;
+    state.mappings = nextMappings;
+    state.pendingSourceKey = "";
+    state.pendingSourceRole = "";
+    state.pendingSourceAnchorInstanceIndex = null;
+    state.hoveredMappingIds = [];
+    state.isSolving = false;
+    clearAllRecentRouteState();
+    state.nextParticipantId = inferNextSequenceValue(
+      nextParticipants.map((participant) => participant?.id),
+      "canvas_participant_"
+    );
+    state.nextMappingId = inferNextSequenceValue(
+      nextMappings.map((mapping) => mapping?.id),
+      "canvas_mapping_"
+    );
+    closeMenu();
+    render();
+    notifySnapshotChange();
+    if (options?.announce) {
+      setStatus(
+        normalizeText(options?.statusMessage) || "Reaction review candidate loaded into the canvas."
+      );
+    }
+    return buildSerializableSnapshot();
+  }
+
   async function solveReactionCanvas() {
     if (!state.active) {
       setStatus("Open the reaction app before running solve.");
@@ -1701,6 +1718,8 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       clearAllRecentRouteState();
       const { appliedMappingIds } = applySolvePlan({
         result,
+        participants: state.participants,
+        getParticipantById: findParticipantById,
         createOperatorParticipant,
         getParticipantRootNode,
         buildNodeKey,
@@ -2152,59 +2171,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       );
     });
     return true;
-  }
-
-  function addOrReplaceMapping(
-    sourceKey,
-    sourceRole,
-    targetKey,
-    targetRole,
-    {
-      sourceAnchorInstanceIndex = null,
-      targetAnchorInstanceIndex = null,
-      syncAutoGeneratedDissociateAssemblies: shouldSyncAutoGeneratedDissociateAssemblies = true,
-    } = {}
-  ) {
-    state.mappings = state.mappings.filter((mapping) => {
-      const sourceConflict = isSingleMappingAnchorRoleForNode({
-        role: sourceRole,
-        nodeKey: sourceKey,
-        anchorInstanceIndex: sourceAnchorInstanceIndex,
-      })
-        ? nodeKeysConflict(mapping.sourceKey, sourceKey) || nodeKeysConflict(mapping.targetKey, sourceKey)
-        : false;
-      const targetConflict = isSingleMappingAnchorRoleForNode({
-        role: targetRole,
-        nodeKey: targetKey,
-        anchorInstanceIndex: targetAnchorInstanceIndex,
-      })
-        ? nodeKeysConflict(mapping.sourceKey, targetKey) || nodeKeysConflict(mapping.targetKey, targetKey)
-        : false;
-      return !(sourceConflict || targetConflict);
-    });
-    pruneRecentRouteState();
-    const mappingId = `canvas_mapping_${state.nextMappingId++}`;
-    state.mappings.push({
-      id: mappingId,
-      sourceKey,
-      targetKey,
-      sourceRole,
-      targetRole,
-      sourceAnchorInstanceIndex,
-      targetAnchorInstanceIndex,
-    });
-    markCompositeReactantDissociatedForNodeKey(sourceKey, sourceRole);
-    const targetParticipantId = parseNodeKey(targetKey).participantId;
-    if (
-      shouldSyncAutoGeneratedDissociateAssemblies &&
-      sourceRole === "reactant" &&
-      targetRole === "operator-input" &&
-      findParticipantById(targetParticipantId)?.templateId === "dissociate"
-    ) {
-      syncAutoGeneratedDissociateAssembliesForOperator(targetParticipantId);
-    }
-    state.hoveredMappingIds = [];
-    return mappingId;
   }
 
   function clearPendingSource() {
@@ -3342,99 +3308,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     setActive(!state.active);
   }
 
-  function handleAnchorClick(role, nodeKey, anchorInstanceIndex = null) {
-    const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
-    if (anchorAvailability.disabled) {
-      if (anchorAvailability.reason) {
-        setStatus(anchorAvailability.reason);
-      }
-      return;
-    }
-
-    if (canStartMappingFromRole(role)) {
-      const isClearingPending =
-        state.pendingSourceKey === nodeKey &&
-        state.pendingSourceRole === role &&
-        state.pendingSourceAnchorInstanceIndex === anchorInstanceIndex;
-      state.pendingSourceKey = isClearingPending ? "" : nodeKey;
-      state.pendingSourceRole = isClearingPending ? "" : role;
-      state.pendingSourceAnchorInstanceIndex = isClearingPending ? null : anchorInstanceIndex;
-      setHoveredMappingIds([]);
-      render();
-      if (!state.pendingSourceKey) {
-        setStatus(
-          role === "operator-output"
-            ? "Operator output anchor cleared."
-            : "Reactant anchor cleared."
-        );
-        return;
-      }
-      const eligibleTargetCount = countEligibleTargets();
-      if (role === "operator-output") {
-        setStatus(
-          eligibleTargetCount
-            ? "Operator output selected. All targets remain available; rule-breaking connections will stay red until fixed."
-            : "Operator output selected."
-        );
-        return;
-      }
-      setStatus(
-        eligibleTargetCount
-          ? "Reactant anchor selected. All targets remain available; rule-breaking connections will stay red until fixed."
-          : "Reactant anchor selected."
-      );
-      return;
-    }
-
-    if (!state.pendingSourceKey || !state.pendingSourceRole) {
-      setStatus("Choose a reactant or operator output anchor first.");
-      return;
-    }
-
-    if (
-      state.pendingSourceRole === "reactant" &&
-      role !== "product" &&
-      role !== "operator-input"
-    ) {
-      setStatus("Reactant anchors connect to products or to an operator input.");
-      return;
-    }
-    if (state.pendingSourceRole === "operator-output" && role !== "product" && role !== "operator-input") {
-      setStatus("Operator outputs connect to product anchors or operator inputs.");
-      return;
-    }
-
-    const sourceRole = state.pendingSourceRole;
-    const mappingId = addOrReplaceMapping(
-      state.pendingSourceKey,
-      sourceRole,
-      nodeKey,
-      role,
-      {
-        sourceAnchorInstanceIndex: state.pendingSourceAnchorInstanceIndex,
-        targetAnchorInstanceIndex: anchorInstanceIndex,
-      }
-    );
-    markMappingsRecent([mappingId]);
-    state.pendingSourceKey = "";
-    state.pendingSourceRole = "";
-    state.pendingSourceAnchorInstanceIndex = null;
-    render();
-    const validation = getMappingValidation(
-      state.mappings.find((mapping) => mapping.id === mappingId) ?? null
-    );
-    setStatus(
-      validation.valid
-        ? role === "operator-input" && sourceRole === "reactant"
-          ? "Reactant routed into operator."
-          : role === "operator-input" && sourceRole === "operator-output"
-            ? "Operator routed into operator."
-          : "Reaction mapping added."
-        : `Connection added but invalid: ${validation.reason}`
-    );
-  }
-
-
   function getOperatorCardTop(operatorSlotIndex = 0) {
     return `${getReactionSurfaceRowCenterPx(operatorSlotIndex)}px`;
   }
@@ -3829,371 +3702,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;
   }
 
-  function createLegibilityCard(title = "", summary = "") {
-    const card = document.createElement("article");
-    card.className = "reaction-app-legibility-card";
-    const titleElement = document.createElement("h2");
-    titleElement.className = "reaction-app-legibility-title";
-    titleElement.textContent = title;
-    card.appendChild(titleElement);
-    if (summary) {
-      const summaryElement = document.createElement("p");
-      summaryElement.className = "reaction-app-legibility-summary";
-      summaryElement.textContent = summary;
-      card.appendChild(summaryElement);
-    }
-    return card;
-  }
-
-  function createLegibilityList(lines = [], className = "reaction-app-legibility-list") {
-    const list = document.createElement("ul");
-    list.className = className;
-    lines.filter(Boolean).forEach((line) => {
-      const item = document.createElement("li");
-      item.textContent = line;
-      list.appendChild(item);
-    });
-    return list;
-  }
-
-  function createLegibilityPillList(entries = []) {
-    const list = document.createElement("ul");
-    list.className = "reaction-app-legibility-pills";
-    entries.filter((entry) => entry?.label).forEach((entry) => {
-      const item = document.createElement("li");
-      item.className = "reaction-app-legibility-pill";
-      item.classList.add(`is-${String(entry?.tone ?? "neutral").trim() || "neutral"}`);
-      item.textContent = entry.label;
-      list.appendChild(item);
-    });
-    return list;
-  }
-
-  function syncLegibilityPanel() {
-    if (!(legibilityPanel instanceof HTMLElement)) {
-      return;
-    }
-    const snapshot = buildReactionLegibilitySnapshot({
-      participants: state.participants,
-      mappings: state.mappings,
-      pendingSourceKey: state.pendingSourceKey,
-      pendingSourceRole: state.pendingSourceRole,
-      getMappingValidation,
-      getOperatorLedgerSummary,
-    });
-    legibilityPanel.dataset.focusKind = snapshot.focusState.kind;
-    const fragment = document.createDocumentFragment();
-
-    const workflowCard = createLegibilityCard("Corridor grammar", snapshot.focusState.summary);
-    workflowCard.appendChild(createLegibilityList(snapshot.workflowLines));
-    fragment.appendChild(workflowCard);
-
-    const operatorCard = createLegibilityCard(
-      "Operator lanes",
-      "The center lanes mean different authored moves. Keep that grammar explicit on the visible surface."
-    );
-    operatorCard.appendChild(
-      createLegibilityList(
-        snapshot.operatorGrammarEntries.map(
-          (entry) => `${entry.laneLabel}: ${entry.title}. ${entry.detail}`
-        )
-      )
-    );
-    fragment.appendChild(operatorCard);
-
-    const stateCard = createLegibilityCard(
-      "Visible state",
-      "Anchor color and route state should be legible enough to review without hidden side knowledge."
-    );
-    stateCard.appendChild(createLegibilityPillList(snapshot.corridorState.pillEntries));
-    stateCard.appendChild(createLegibilityPillList(snapshot.operatorState.pillEntries));
-    stateCard.appendChild(
-      createLegibilityList(
-        snapshot.corridorLegendEntries.map((entry) => `${entry.label}: ${entry.detail}`),
-        "reaction-app-legibility-list is-legend"
-      )
-    );
-    fragment.appendChild(stateCard);
-
-    legibilityPanel.replaceChildren(fragment);
-  }
-
-  function getElementCenterWithinSurface(element, bounds) {
-    const rect = element.getBoundingClientRect();
-    return {
-      x: rect.left + rect.width / 2 - bounds.left,
-      y: rect.top + rect.height / 2 - bounds.top,
-    };
-  }
-
-  function getAnchorRadiusFromBounds(element) {
-    if (!(element instanceof Element)) {
-      return 0;
-    }
-    const rect = element.getBoundingClientRect();
-    return Math.max(0, Math.min(rect.width, rect.height) / 2);
-  }
-
-  function getFixedAnchorAttachmentPoint(element, bounds, edgeInset = canvasRouteAnchorGapPx) {
-    if (!(element instanceof Element)) {
-      return null;
-    }
-    const anchorRole = String(element.getAttribute("data-anchor-side") ?? "").trim();
-    const center = getElementCenterWithinSurface(element, bounds);
-    const radius = Math.max(0, getAnchorRadiusFromBounds(element) - edgeInset);
-    if (anchorRole === "reactant" || anchorRole === "operator-output") {
-      return {
-        x: center.x + radius,
-        y: center.y,
-      };
-    }
-    if (anchorRole === "product" || anchorRole === "operator-input") {
-      return {
-        x: center.x - radius,
-        y: center.y,
-      };
-    }
-    return null;
-  }
-
-  function getTrimmedRouteEndpoints(
-    sourceElement,
-    targetElement,
-    bounds,
-    edgeInset = canvasRouteAnchorGapPx
-  ) {
-    const sourcePoint =
-      getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
-      getElementCenterWithinSurface(sourceElement, bounds);
-    const targetPoint =
-      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset) ??
-      getElementCenterWithinSurface(targetElement, bounds);
-    const deltaX = targetPoint.x - sourcePoint.x;
-    const deltaY = targetPoint.y - sourcePoint.y;
-    const distance = Math.hypot(deltaX, deltaY);
-    if (distance <= 0.001) {
-      return {
-        startX: sourcePoint.x,
-        startY: sourcePoint.y,
-        endX: targetPoint.x,
-        endY: targetPoint.y,
-      };
-    }
-    return {
-      startX: sourcePoint.x,
-      startY: sourcePoint.y,
-      endX: targetPoint.x,
-      endY: targetPoint.y,
-    };
-  }
-
-  function getCompositeBusRouteEndpoints(
-    spanStem,
-    collector,
-    bounds,
-    edgeInset = canvasRouteAnchorGapPx
-  ) {
-    if (!(spanStem instanceof Element) || !(collector instanceof Element)) {
-      return getTrimmedRouteEndpoints(spanStem, collector, bounds, edgeInset);
-    }
-    const collectorPoint = getElementCenterWithinSurface(collector, bounds);
-    const stemRect = spanStem.getBoundingClientRect();
-    const stemX = stemRect.left + stemRect.width / 2 - bounds.left;
-    const stemTop = stemRect.top - bounds.top;
-    const stemBottom = stemRect.bottom - bounds.top;
-    const stemPoint = {
-      x: stemX,
-      y: Math.max(stemTop, Math.min(collectorPoint.y, stemBottom)),
-    };
-    const deltaX = collectorPoint.x - stemPoint.x;
-    const deltaY = collectorPoint.y - stemPoint.y;
-    const distance = Math.hypot(deltaX, deltaY);
-    if (distance <= 0.001) {
-      return {
-        startX: stemPoint.x,
-        startY: stemPoint.y,
-        endX: collectorPoint.x,
-        endY: collectorPoint.y,
-      };
-    }
-    const unitX = deltaX / distance;
-    const unitY = deltaY / distance;
-    const collectorRadius = Math.max(0, getAnchorRadiusFromBounds(collector) - edgeInset);
-    return {
-      startX: stemPoint.x,
-      startY: stemPoint.y,
-      endX: collectorPoint.x - unitX * collectorRadius,
-      endY: collectorPoint.y - unitY * collectorRadius,
-    };
-  }
-
-  function createCompositeBusPath({ startX, startY, endX, endY }) {
-    const path = createSvgElement("path");
-    path.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
-    path.setAttribute("class", "composer-reaction-canvas-composite-link");
-    return path;
-  }
-
-  function drawCompositeLinks(bounds) {
-    state.participants
-      .filter((participant) => isCompositeParticipant(participant))
-      .forEach((participant) => {
-        const collector = surface.querySelector(
-          `.composer-reaction-canvas-composite-collector[data-composite-collector-id="${CSS.escape(participant.id)}"]`
-        );
-        if (!collector) {
-          return;
-        }
-        const spanStem = surface.querySelector(
-          `.composer-reaction-canvas-composite-span-stem[data-composite-span-participant-id="${CSS.escape(participant.id)}"]`
-        );
-        if (spanStem) {
-          const { startX, startY, endX, endY } = getCompositeBusRouteEndpoints(
-            spanStem,
-            collector,
-            bounds
-          );
-          if (Math.abs(endX - startX) < 0.5 && Math.abs(endY - startY) < 0.5) {
-            return;
-          }
-          mapSvg.appendChild(createCompositeBusPath({ startX, startY, endX, endY }));
-          return;
-        }
-        const sourceAnchors = Array.from(
-          surface.querySelectorAll(
-            `.composer-reaction-canvas-anchor[data-composite-participant-id="${CSS.escape(participant.id)}"][data-composite-source-key]`
-          )
-        );
-        sourceAnchors.forEach((sourceAnchor) => {
-          const { startX, startY, endX, endY } = getTrimmedRouteEndpoints(
-            sourceAnchor,
-            collector,
-            bounds
-          );
-          mapSvg.appendChild(createCompositeBusPath({ startX, startY, endX, endY }));
-        });
-      });
-  }
-
-  function getRenderedAnchorsForNodeRole(nodeKey, role) {
-    if (!surface) {
-      return [];
-    }
-    return Array.from(
-      surface.querySelectorAll(
-        `.composer-reaction-canvas-anchor[data-anchor-key="${CSS.escape(nodeKey)}"][data-anchor-side="${CSS.escape(role)}"]`
-      )
-    ).sort((leftAnchor, rightAnchor) => {
-      const leftIndex = Number(leftAnchor.dataset.anchorInstanceIndex ?? 0);
-      const rightIndex = Number(rightAnchor.dataset.anchorInstanceIndex ?? 0);
-      if (leftIndex !== rightIndex) {
-        return leftIndex - rightIndex;
-      }
-      const leftTop = leftAnchor.getBoundingClientRect().top;
-      const rightTop = rightAnchor.getBoundingClientRect().top;
-      return leftTop - rightTop;
-    });
-  }
-
-  function getRenderedMappingAnchor(mapping, endpoint = "source") {
-    if (!mapping) {
-      return null;
-    }
-    const isSource = endpoint !== "target";
-    const anchorKey = isSource ? mapping.sourceKey : mapping.targetKey;
-    const anchorRole = isSource ? mapping.sourceRole : mapping.targetRole;
-    const anchorInstanceIndex = isSource
-      ? mapping.sourceAnchorInstanceIndex
-      : mapping.targetAnchorInstanceIndex;
-    const anchors = getRenderedAnchorsForNodeRole(anchorKey, anchorRole);
-    if (!anchors.length) {
-      return null;
-    }
-    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
-    if (normalizedAnchorInstanceIndex !== null) {
-      const exactAnchor =
-        anchors.find(
-          (anchor) =>
-            normalizeAnchorInstanceIndex(anchor.dataset.anchorInstanceIndex) ===
-            normalizedAnchorInstanceIndex
-        ) ?? null;
-      if (exactAnchor) {
-        return exactAnchor;
-      }
-    }
-    if (anchors.length === 1) {
-      return anchors[0];
-    }
-    const matchingMappings = state.mappings.filter((entry) =>
-      isSource
-        ? entry.sourceKey === anchorKey && entry.sourceRole === anchorRole
-        : entry.targetKey === anchorKey && entry.targetRole === anchorRole
-    );
-    const mappingIndex = matchingMappings.findIndex((entry) => entry.id === mapping.id);
-    if (mappingIndex < 0) {
-      return anchors[0];
-    }
-    return anchors[mappingIndex % anchors.length] ?? anchors[0];
-  }
-
-  function drawMappings() {
-    drawFrameId = 0;
-    if (!state.active || !surface || !mapSvg) {
-      return;
-    }
-    const bounds = surface.getBoundingClientRect();
-    const width = Math.max(1, Math.round(bounds.width));
-    const height = Math.max(1, Math.round(bounds.height));
-    mapSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    mapSvg.innerHTML = "";
-    drawCompositeLinks(bounds);
-    state.mappings.forEach((mapping) => {
-      const sourceAnchor = getRenderedMappingAnchor(mapping, "source");
-      const targetAnchor = getRenderedMappingAnchor(mapping, "target");
-      if (!sourceAnchor || !targetAnchor) {
-        return;
-      }
-      const { startX, startY, endX, endY } = getTrimmedRouteEndpoints(
-        sourceAnchor,
-        targetAnchor,
-        bounds
-      );
-      const validation = getMappingValidation(mapping);
-      const deltaX = Math.max(96, Math.abs(endX - startX) * 0.35);
-      const path = createSvgElement("path");
-      path.setAttribute(
-        "d",
-        `M ${startX} ${startY} C ${startX + deltaX} ${startY}, ${endX - deltaX} ${endY}, ${endX} ${endY}`
-      );
-      path.setAttribute("class", "composer-reaction-canvas-path");
-      path.dataset.mappingId = mapping.id;
-      path.classList.toggle("is-invalid", !validation.valid);
-      if (validation.reason) {
-        const title = createSvgElement("title");
-        title.textContent = validation.reason;
-        path.appendChild(title);
-      }
-      path.addEventListener("pointerenter", () => setHoveredMappingIds([mapping.id]));
-      path.addEventListener("pointerleave", () => setHoveredMappingIds([]));
-      path.addEventListener("click", () => {
-        if (!removeMappingById(mapping.id)) {
-          return;
-        }
-        render();
-        setStatus("Removed reaction mapping.");
-      });
-      mapSvg.appendChild(path);
-    });
-    applyHoveredRouteState();
-  }
-
-  function scheduleMappingDraw() {
-    if (drawFrameId) {
-      cancelAnimationFrame(drawFrameId);
-    }
-    drawFrameId = requestAnimationFrame(drawMappings);
-  }
-
   function syncOperatorLaneLayout() {
     if (!state.active || !operatorLayer) {
       return false;
@@ -4312,7 +3820,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       }
       state.anchorRegistry = new Map();
       state.hoveredMappingIds = [];
-      syncLegibilityPanel();
       return;
     }
     rebuildAnchorRegistry();
@@ -4361,7 +3868,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       operatorLayer.appendChild(createOperatorParticipantCard(participant));
     });
     updateHint();
-    syncLegibilityPanel();
     scheduleSideColumnGeometry();
     scheduleMappingDraw();
     scheduleOperatorLaneLayout();
@@ -4476,6 +3982,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     isActive: () => state.active,
     clearCanvas: clearReactionCanvas,
     getSnapshot: buildSerializableSnapshot,
+    replaceSnapshot,
     solveCanvas: solveReactionCanvas,
     setActive,
     toggleActive,

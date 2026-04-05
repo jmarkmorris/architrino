@@ -79,7 +79,7 @@ The SGP provides no evidence for or against the architrino substrate at the leve
 
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [strong-field-hypotheses](../strong-field-hypotheses/strong-field-hypotheses.md)
-- [dynamo-team-insights](../dynamo-team-insights/dynamo-team-insights.md)
+- [dynamo-team-insights](../deferred/dynamo-team-insights.md)
 
 ## Related AAA Notes
 

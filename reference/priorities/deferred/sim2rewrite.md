@@ -47,10 +47,9 @@ This document captures the integration strategy for porting the sim2 physics gen
 
 ## Related Priorities
 
-- [simulations](../simulations/simulations.md)
+- [simulations](simulations.md)
 - [composer-reaction](../observer/observer.md)
-- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
-- [viewports](../viewports/viewports.md)
+- [viewports](../observer/viewports.md)
 
 ## Related AAA Notes
 

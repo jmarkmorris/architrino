@@ -16,7 +16,6 @@ const reactionAppRuntime = createReactionAppRuntime({
   reactantsColumn: document.getElementById("reaction-canvas-reactants"),
   productsColumn: document.getElementById("reaction-canvas-products"),
   mapHint: document.getElementById("reaction-hint"),
-  legibilityPanel: document.getElementById("reaction-legibility-panel"),
   emptyState: document.getElementById("reaction-canvas-empty"),
   mapSvg: document.getElementById("reaction-canvas-svg"),
   menu: document.getElementById("reaction-canvas-menu"),
@@ -25,10 +24,11 @@ const reactionAppRuntime = createReactionAppRuntime({
   clearButton: document.getElementById("reaction-clear-button"),
   solveButton: document.getElementById("reaction-solve-button"),
   exitButton: document.getElementById("reaction-exit-button"),
+  initialSolverRequest: reactionAppRuntimeDeps.initialSolverRequest ?? null,
   solveSnapshot:
     typeof reactionAppRuntimeDeps.solveSnapshot === "function"
       ? reactionAppRuntimeDeps.solveSnapshot
       : defaultBrowserSolveSnapshot,
 });
 
-reactionAppRuntime.init();
+void reactionAppRuntime.init();

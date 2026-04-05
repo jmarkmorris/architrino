@@ -7,7 +7,7 @@
 - Keep Composer focused on staging, observer work, overlays, playback, and scene output.
 - Do not restate solver internals or PDG-ingest plans here except where Composer must interface with them.
 - Keep cross-app handoff details brief here and prefer the contract-owning document when it exists.
-- Keep cross-cutting app-boundary and modularity doctrine in [app-architecture](./app-architecture.md); keep only Composer-specific seams and boundaries here.
+- Keep cross-cutting app-boundary and modularity doctrine in [app-architecture](app-architecture.md); keep only Composer-specific seams and boundaries here.
 
 ## Purpose
 
@@ -199,8 +199,8 @@ The Composer-side intake should be strong enough to receive:
 - [reaction](./reaction.md) owns the conservative authoring workflow that feeds Composer.
 - [solver](./solver.md) owns Reaction-side solve logic and should remain upstream.
 - [pdgfeed](./pdgfeed.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
-- [app-architecture](./app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
-- [app-architecture](./app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
+- [app-architecture](app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
+- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
 
 ## Priorities
 
@@ -274,9 +274,8 @@ Objective:
 - [reaction](./reaction.md)
 - [solver](./solver.md)
 - [pdgfeed](./pdgfeed.md)
-- [app-architecture](./app-architecture.md)
-- [viewports](../viewports/viewports.md)
-- [cruft-sprawl](../cruft-sprawl/cruft-sprawl.md)
+- [app-architecture](app-architecture.md)
+- [viewports](viewports.md)
 
 ## Related AAA Notes
 

@@ -37,7 +37,7 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 
 ## Immediate Next Move
 
-1. Use [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md) as the scratch/archive notebook.
+1. Use [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.
 2. Build the regularized two-layer phase-amplitude return map at fixed finite `\eta > 0`, not a pure phase-only reduction.
 3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then test whether chaining the second layer yields a stable `1:2:4` state.
 4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as `\beta \to 1`.
@@ -45,8 +45,8 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 
 ## Related Priorities
 
-- [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)
-- [simulations](../simulations/simulations.md)
+- [phenomenological-heuristics](phenomenological-heuristics.md)
+- [simulations](../deferred/simulations.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 
 ## Related AAA Notes

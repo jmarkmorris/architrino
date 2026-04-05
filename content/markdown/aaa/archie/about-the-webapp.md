@@ -22,7 +22,7 @@ This guide should be read alongside:
 
 ## What the Webapp Is
 
-`architrino.com` is an interactive 3D knowledge graph for the Architrino Assembly Architecture. It combines scene-based navigation, long-form markdown reading, generated document views, and specialized tools inside one reader-facing environment.
+`architrino.com` is an interactive 3D knowledge graph for the Architrino Assembly Architecture. It combines scene-based navigation, long-form markdown reading, generated document views, and specialized tools and apps inside one reader-facing environment.
 
 The webapp is not merely a document repository with visual decoration. Its central design claim is that conceptual structure should be navigable spatially as well as readable textually.
 
@@ -51,13 +51,13 @@ The webapp also includes non-document surfaces where interaction is primary.
 
 Current examples include:
 
-- Composer-related tools,
+- image and animation related tools for viewing assemblies and reactions of assemblies with input from the PDG database of known particle reactions.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.
 
 ## Information Architecture Claim
 
-The webapp uses scenes rather than directories as the reader-facing hierarchy.
+The webapp uses scenes rather than directories as the reader-facing hierarchy and network.
 
 That means:
 
@@ -103,6 +103,7 @@ The current webapp stack includes:
 - Three.js for WebGL rendering and CSS2D overlays,
 - KaTeX for TeX and LaTeX rendering,
 - `markdown-it` for markdown parsing and rendering.
+- pdg python package for known standard model particle reactions
 
 These technologies matter operationally because they shape what kinds of scenes, mathematical notation, and document behaviors the runtime can support directly.
 
@@ -115,7 +116,8 @@ That means:
 - content depth may increase,
 - scene bindings may continue to improve as documents are reorganized,
 - supporting Archie references may expand as the public surface becomes more explicit,
-- and additional presentation types may be added over time.
+- additional presentation types may be added over time.
+- some material or apps may not be complete
 
 The governing architecture, however, is already clear: scenes organize the reader-facing graph, markdown carries the long-form content, and generated manifests stabilize runtime access.
 

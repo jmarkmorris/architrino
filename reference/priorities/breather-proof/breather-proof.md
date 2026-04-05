@@ -118,8 +118,8 @@ $$
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [simulations](../simulations/simulations.md)
-- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
+- [simulations](../deferred/simulations.md)
+- [chapter-authoring](../../op/chapter-authoring.md)
 
 ## Related AAA Notes
 

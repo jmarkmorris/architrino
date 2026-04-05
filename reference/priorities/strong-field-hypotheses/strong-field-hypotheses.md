@@ -45,9 +45,9 @@ This is a watchlist workstream. It exists to keep strong-field and tri-binary id
 ## Related Priorities
 
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
-- [phenomenological-heuristics](../phenomenological-heuristics/phenomenological-heuristics.md)
+- [phenomenological-heuristics](../dyadic-lock/phenomenological-heuristics.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [dynamo-team-insights](../dynamo-team-insights/dynamo-team-insights.md)
+- [dynamo-team-insights](../deferred/dynamo-team-insights.md)
 
 ## Related AAA Notes
 

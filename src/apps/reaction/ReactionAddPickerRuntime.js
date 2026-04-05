@@ -1,6 +1,6 @@
 import { STRUCTURE_SLOT_ORDER } from "../../domain/structure/StructureSchema.js";
-import { resolveStructureDisplayLabel } from "../../domain/structure/StructureDisplayLabel.js";
 import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
+import { reactionPickerLabelColumns } from "./ReactionLabelCatalogRuntime.js";
 
 function getOccupiedSlots(count = 0) {
   const normalizedCount = Math.max(
@@ -32,226 +32,16 @@ function createPickerEntry({
 }
 
 export const reactionAddPickerColumns = Object.freeze([
-  Object.freeze({
-    id: "binary_count",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "uni_binary",
-        label: "Pro Uni Binary",
-        templateId: "noether_core",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "bi_binary",
-        label: "Pro Bi Binary",
-        templateId: "noether_core",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "tri_binary",
-        label: "Pro Noether Core",
-        templateId: "noether_core",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "neutrinos",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "tau_neutrino",
-        label: "Pro Tau Neutrino",
-        templateId: "neutrino",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "muon_neutrino",
-        label: "Pro Muon Neutrino",
-        templateId: "neutrino",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "neutrino",
-        label: "Pro Neutrino",
-        templateId: "neutrino",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "charged_leptons",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "tau",
-        label: "Pro Tau",
-        templateId: "electron",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "muon",
-        label: "Pro Muon",
-        templateId: "electron",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "electron",
-        label: "Pro Electron",
-        templateId: "electron",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "down_family",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "bottom",
-        label: "Pro Bottom Quark",
-        templateId: "down_quark",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "strange",
-        label: "Pro Strange Quark",
-        templateId: "down_quark",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "down",
-        label: "Pro Down Quark",
-        templateId: "down_quark",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "up_family",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "top",
-        label: "Pro Top Quark",
-        templateId: "up_quark",
-        occupiedCount: 1,
-      }),
-      createPickerEntry({
-        id: "charm",
-        label: "Pro Charm Quark",
-        templateId: "up_quark",
-        occupiedCount: 2,
-      }),
-      createPickerEntry({
-        id: "up",
-        label: "Pro Up Quark",
-        templateId: "up_quark",
-        occupiedCount: 3,
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "boson_bridge",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "photon",
-        label: "Photon",
-        templateId: "photon",
-      }),
-      createPickerEntry({
-        id: "pi_minus",
-        label: "Negative Pion",
-        templateId: "pi_minus",
-      }),
-      createPickerEntry({
-        id: "pi_plus",
-        label: "Positive Pion",
-        templateId: "pi_plus",
-      }),
-      createPickerEntry({
-        id: "dpi0",
-        label: "Neutral Pion (d anti-d)",
-        templateId: "dpi0",
-      }),
-      createPickerEntry({
-        id: "upi0",
-        label: "Neutral Pion (u anti-u)",
-        templateId: "upi0",
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "kaon_bridge",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "k_minus",
-        label: "Negative Kaon",
-        templateId: "k_minus",
-      }),
-      createPickerEntry({
-        id: "k_plus",
-        label: "Positive Kaon",
-        templateId: "k_plus",
-      }),
-      createPickerEntry({
-        id: "sk0",
-        label: "Neutral Kaon (s anti-d)",
-        templateId: "sk0",
-      }),
-      createPickerEntry({
-        id: "dk0",
-        label: "Neutral Kaon (d anti-s)",
-        templateId: "dk0",
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "b_meson_bridge",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "b_minus",
-        label: "Negative B Meson",
-        templateId: "b_minus",
-      }),
-      createPickerEntry({
-        id: "b_plus",
-        label: "Positive B Meson",
-        templateId: "b_plus",
-      }),
-      createPickerEntry({
-        id: "bB0",
-        label: "Neutral B Meson (b anti-d)",
-        templateId: "bB0",
-      }),
-      createPickerEntry({
-        id: "dB0",
-        label: "Neutral B Meson (d anti-b)",
-        templateId: "dB0",
-      }),
-    ]),
-  }),
-  Object.freeze({
-    id: "composite_bridge",
-    entries: Object.freeze([
-      createPickerEntry({
-        id: "noether_pair",
-        label: "Noether Pair",
-        templateId: "noether_pair",
-      }),
-      createPickerEntry({
-        id: "noether_quad",
-        label: "Noether Quad",
-        templateId: "noether_quad",
-      }),
-      createPickerEntry({
-        id: "proton",
-        label: "Pro Proton",
-        templateId: "proton",
-      }),
-      createPickerEntry({
-        id: "neutron",
-        label: "Pro Neutron",
-        templateId: "neutron",
-      }),
-    ]),
-  }),
+  ...reactionPickerLabelColumns.map((column) =>
+    Object.freeze({
+      id: column.id,
+      entries: Object.freeze(
+        (Array.isArray(column?.entries) ? column.entries : []).map((entry) =>
+          createPickerEntry(entry)
+        )
+      ),
+    })
+  ),
 ]);
 
 export function getReactionAddPickerCells() {
@@ -267,10 +57,7 @@ export function getReactionAddPickerCells() {
             });
       cells.push({
         ...entry,
-        label:
-          entry?.vacant === true
-            ? String(entry?.label ?? "").trim()
-            : resolveStructureDisplayLabel(previewStructure?.root ?? previewStructure),
+        label: String(entry?.label ?? "").trim(),
         columnId: String(column?.id ?? `column_${columnIndex + 1}`),
         columnIndex,
         rowIndex,
@@ -290,7 +77,7 @@ export function buildReactionParticipantStructureForPickerCell(
   const participantId = String(options.participantId ?? "").trim() || "picker_participant";
   const structureId = `${participantId}__structure`;
   const polarity = String(options.polarity ?? "").trim().toLowerCase() === "anti" ? "anti" : "pro";
-  const label = String(options.label ?? "").trim();
+  const label = String(options.label ?? pickerCell?.label ?? "").trim();
   return buildReactionParticipantStructure(pickerCell.templateId, {
     id: structureId,
     polarity,

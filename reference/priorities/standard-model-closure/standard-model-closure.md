@@ -58,7 +58,7 @@ rather than treating transport costs as fit knobs.
 
 - [mass-map](../mass-map/mass-map.md)
 - [3x3](../3x3/3x3.md)
-- [glyph](../glyph/glyph.md)
+- [glyph](../../architecture/glyph.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 
 ## Related AAA Notes

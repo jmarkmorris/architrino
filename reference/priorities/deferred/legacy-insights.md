@@ -33,18 +33,7 @@ This bucket includes:
 
 - Clean up the old `neoclassical.ai` repo.
 - Try to sell the `neoclassical.ai` domain.
-- Make a new subreddit named `architrino`.
+- Make a new subreddit.
 - Rename the blog.
-- Remember the convenience-hardware note about a Mac mini when the `M5` cycle arrives.
 
-## Related Priorities
 
-- [chapter-authoring](../chapter-authoring/chapter-authoring.md)
-- [composer-reaction](../observer/observer.md)
-- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-
-## Related AAA Notes
-
-- [github-presence-and-community](../../../content/markdown/aaa/archie/github-presence-and-community.md)
-- [support-architrino-research](../../../content/markdown/aaa/archie/support-architrino-research.md)
-- [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md)

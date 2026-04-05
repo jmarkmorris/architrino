@@ -2,7 +2,7 @@
 
 This file is the canonical control surface for `priorities`. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream slug file, not in the filesystem names.
 
-The full pre-split monolith is preserved at [archive/priorities-legacy.md](../archive/priorities-legacy.md).
+The full pre-split monolith is preserved at [archive/priorities-legacy.md](../../archive/priorities-legacy.md).
 
 ## Scoring System
 
@@ -52,29 +52,28 @@ This single table is the canonical rollup for every direct child of `priorities`
 | 4 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
-| 7 | [`simulations`](../simulations/simulations.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
+| 7 | [`simulations`](../deferred/simulations.md) | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
 | 8 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md) | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
 | 9 | [`strong-field-hypotheses`](../strong-field-hypotheses/strong-field-hypotheses.md) | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 10 | [`chapter-authoring`](../chapter-authoring/chapter-authoring.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 10 | [`chapter-authoring`](../../op/chapter-authoring.md) | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
 | 11 | [`quantum-closure`](../quantum-closure/quantum-closure.md) | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
 | 12 | [`cosmology-closure`](../cosmology-closure/cosmology-closure.md) | Cosmology transfer-function closure | 2 | 9 | 0.22 |
-| 13 | [`deferred-outlook`](../deferred-outlook/deferred-outlook.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
+| 13 | [`deferred-outlook`](../deferred/legacy-insights.md) | Deferred product / outlook work | 1 | 6 | 0.17 |
 | 14 | [`planar-bridge-closure`](../planar-bridge-closure/planar-bridge-closure.md) | First planar delayed-bridge closure and tame return map | 6 | 5 | 1.20 |
 | — | [`SUMMARY`](./priorities.md) | Action-items report control surface | — | — | — |
-| — | [`archive`](../archive/priorities-legacy.md) | Archive | — | — | — |
-| — | [`icebox`](../icebox/proof-check.md) | Icebox | — | — | — |
+| — | [`archive`](../../archive/priorities-legacy.md) | Archive | — | — | — |
+| — | [`icebox`](../deferred/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../observer/composer.md) | Composer | — | — | — |
 | — | [`reaction`](../observer/reaction.md) | Reaction app | — | — | — |
 | — | [`solver`](../observer/solver.md) | Reaction solver | — | — | — |
 | — | [`pdgfeed`](../observer/pdgfeed.md) | PDG | — | — | — |
-| — | [`cruft-sprawl`](../cruft-sprawl/cruft-sprawl.md) | Cruft and sprawl reduction | — | — | — |
-| — | [`glyph`](../glyph/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
-| — | [`viewports`](../viewports/viewports.md) | Viewports | — | — | — |
+| — | [`glyph`](../../architecture/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
+| — | [`viewports`](../observer/viewports.md) | Viewports | — | — | — |
 | — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |
-| — | [`phenomenological-heuristics`](../phenomenological-heuristics/phenomenological-heuristics.md) | Dyadic resonance lock archive | — | — | — |
-| — | [`dynamo-team-insights`](../dynamo-team-insights/dynamo-team-insights.md) | Consolidated geometry and dynamics observations | — | — | — |
-| — | [`codex`](../../op/codex.md) | Codex operator notes | — | — | — |
+| — | [`phenomenological-heuristics`](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive | — | — | — |
+| — | [`dynamo-team-insights`](../deferred/dynamo-team-insights.md) | Consolidated geometry and dynamics observations | — | — | — |
+| — | [`codex`](../../op/codex-setup.md) | Codex operator notes | — | — | — |
 
 ## Current Focus
 

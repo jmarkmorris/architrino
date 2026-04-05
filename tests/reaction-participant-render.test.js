@@ -551,12 +551,12 @@ test("composite span stem uses the shared centered connector span geometry", () 
 
 test("composite connector path uses a direct line segment", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
     runtimeSource,
-    /path\.setAttribute\("d",\s*`M \$\{startX\} \$\{startY\} L \$\{endX\} \$\{endY\}`\);/
+    /buildReactionCanvasDirectPath\(\{\s*startX,\s*startY,\s*endX,\s*endY\s*\}\)/
   );
 });
 

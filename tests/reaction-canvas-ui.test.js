@@ -157,6 +157,10 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
     new URL("../src/apps/reaction/ReactionSolverExecutionRuntime.js", import.meta.url),
     "utf8"
   );
+  const mappingRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasMappingRuntime.js", import.meta.url),
+    "utf8"
+  );
   const reactionCommitStateSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCommitStateRuntime.js", import.meta.url),
     "utf8"
@@ -183,10 +187,6 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
-    /legibilityPanel = null,/
-  );
-  assert.match(
-    reactionAppRuntimeSource,
     /exportButton = null,/
   );
   assert.match(
@@ -195,11 +195,23 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionAppRuntimeSource,
-    /createReactionCommitStateRuntime\(\{/
+    /initialSolverRequest = null,/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /createCommitRuntime = createReactionCommitStateRuntime,/
   );
   assert.match(
     reactionAppRuntimeSource,
     /getReview:\s*\(\)\s*=> commitRuntime\.buildExportReview\(\),/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /getDocumentOptions:\s*\(\)\s*=> currentDocumentOptions \?\? \{\},/
+  );
+  assert.match(
+    reactionAppRuntimeSource,
+    /function loadSolverRequestReviewCandidate\(request = \{\}, options = \{\}\)/
   );
   assert.match(
     reactionAppRuntimeSource,
@@ -239,15 +251,15 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionMainSource,
+    /initialSolverRequest:\s*reactionAppRuntimeDeps\.initialSolverRequest \?\? null,/
+  );
+  assert.match(
+    reactionMainSource,
     /document\.getElementById\("reaction-status"\)/
   );
   assert.match(
     reactionMainSource,
     /document\.getElementById\("reaction-hint"\)/
-  );
-  assert.match(
-    reactionMainSource,
-    /document\.getElementById\("reaction-legibility-panel"\)/
   );
   assert.match(
     reactionMainSource,
@@ -283,7 +295,15 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
+    /function replaceSnapshot\(snapshot = \{\}, options = \{\}\)/
+  );
+  assert.match(
+    runtimeSource,
     /async function solveReactionCanvas\(\)/
+  );
+  assert.match(
+    runtimeSource,
+    /function normalizeText\(value = ""\)\s*\{\s*return String\(value \?\? ""\)\.trim\(\);\s*\}/
   );
   assert.match(
     runtimeSource,
@@ -303,11 +323,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /buildReactionLegibilitySnapshot/
-  );
-  assert.match(
-    runtimeSource,
-    /function syncLegibilityPanel\(\)/
+    /replaceSnapshot,/
   );
   assert.match(
     runtimeSource,
@@ -331,7 +347,11 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /result,\s*createOperatorParticipant,/s
+    /result,\s*participants: state\.participants,\s*getParticipantById: findParticipantById,/s
+  );
+  assert.match(
+    runtimeSource,
+    /result,[\s\S]*?createOperatorParticipant,/s
   );
   assert.match(
     runtimeSource,
@@ -355,7 +375,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     reactionSolverExecutionSource,
-    /Legacy in-process solver bridge remains active for this solve\./
+    /export function buildReactionSolverExecutionStatusNote\(_execution = null\)\s*\{\s*return "";\s*\}/
   );
   assert.match(
     runtimeSource,
@@ -363,6 +383,14 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
+    /createCanvasMappingRuntime = defaultCreateCanvasMappingRuntime/
+  );
+  assert.match(
+    runtimeSource,
+    /createCanvasMappingRuntime\(\{/
+  );
+  assert.match(
+    mappingRuntimeSource,
     /function addOrReplaceMapping\(\s*sourceKey,\s*sourceRole,\s*targetKey,\s*targetRole,\s*\{[\s\S]*?sourceAnchorInstanceIndex = null,[\s\S]*?targetAnchorInstanceIndex = null,[\s\S]*?\} = \{\}\s*\)/
   );
   assert.match(
@@ -509,6 +537,10 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
+  const mappingRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasMappingRuntime.js", import.meta.url),
+    "utf8"
+  );
   assert.match(
     runtimeSource,
     /function markCompositeReactantDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
@@ -534,7 +566,7 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
     /function markParticipantAutoDissociated\(participantOrId = null\) \{/
   );
   assert.match(
-    runtimeSource,
+    mappingRuntimeSource,
     /markCompositeReactantDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
   );
 });
@@ -598,21 +630,25 @@ test("operator tiles resolve vertical placement from explicit grid rows instead 
 });
 
 test("only drawn paths remove existing reaction mappings on click", () => {
-  const runtimeSource = readFileSync(
+  const canvasRuntimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
+  const routeRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
   assert.doesNotMatch(
-    runtimeSource,
+    canvasRuntimeSource,
     /function removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex = null\)/
   );
   assert.doesNotMatch(
-    runtimeSource,
+    canvasRuntimeSource,
     /const removedCount = removeMappingsForAnchor\(nodeKey,\s*role,\s*anchorInstanceIndex\);/
   );
   assert.match(
-    runtimeSource,
-    /path\.addEventListener\("click",\s*\(\) => \{\s*if \(!removeMappingById\(mapping\.id\)\) \{\s*return;\s*\}\s*render\(\);\s*setStatus\("Removed reaction mapping\."\);/
+    routeRuntimeSource,
+    /path\?\.(?:addEventListener\?\.)\("click",\s*\(\) => \{\s*if \(!removeMappingById\(mapping\.id\)\) \{\s*return;\s*\}\s*render\(\);\s*setStatus\("Removed reaction mapping\."\);/
   );
 });
 
@@ -645,7 +681,7 @@ test("removing a reactant or product clears mappings and removes operators plus 
 
 test("route endpoints use fixed left and right tangents for canvas connectors", () => {
   const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
+    new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
     "utf8"
   );
   assert.match(
