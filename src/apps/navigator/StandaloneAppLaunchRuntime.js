@@ -1,6 +1,7 @@
 const standaloneScenePathById = Object.freeze({
   composer: "./composer.html",
   reaction_designer: "./reaction.html",
+  xyzzy: "./xyzzy.html",
 });
 
 export function getStandaloneAppPathForScene(sceneId = "") {

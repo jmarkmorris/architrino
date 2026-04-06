@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#10181b" />
+    <title>architrino xyzzy</title>
+    <link rel="stylesheet" href="./src/apps/xyzzy/xyzzy.css" />
+  </head>
+  <body class="xyzzy-app-page">
+    <div class="xyzzy-app-shell">
+      <header class="xyzzy-app-header">
+        <div class="xyzzy-app-title-row">
+          <div class="xyzzy-app-title-wrap">
+            <p class="xyzzy-app-kicker">Standalone Authoring Surface</p>
+            <h1 class="xyzzy-app-title">Xyzzy</h1>
+            <p class="xyzzy-app-subtitle">
+              Fixed 20-column strip. Assemblies stay 4x1, operators stay 1x1, and v1 spline authoring is only Shift-click between neighboring object bands.
+            </p>
+          </div>
+          <div class="xyzzy-app-actions">
+            <a class="xyzzy-app-home-link" href="./index.html">Home</a>
+            <button
+              id="xyzzy-reset-example"
+              class="xyzzy-app-action"
+              type="button"
+            >
+              Reset Example
+            </button>
+            <button
+              id="xyzzy-apply-json"
+              class="xyzzy-app-action is-primary"
+              type="button"
+            >
+              Apply JSON
+            </button>
+            <button
+              id="xyzzy-export-json"
+              class="xyzzy-app-action"
+              type="button"
+            >
+              Export JSON
+            </button>
+          </div>
+        </div>
+        <div id="xyzzy-status" class="xyzzy-app-status" aria-live="polite"></div>
+        <div class="xyzzy-app-hint">
+          JSON is the v1 object authoring boundary because create, move, and delete workflows for assemblies and operators are not yet specified in <code>xyzzy.md</code>. The surface below owns only rendering plus spline authoring and deletion.
+        </div>
+      </header>
+
+      <main class="xyzzy-app-main">
+        <section class="xyzzy-panel">
+          <div class="xyzzy-panel-header">
+            <h2 class="xyzzy-panel-title">Surface</h2>
+            <p class="xyzzy-panel-note">Plain click on a spline deletes it immediately.</p>
+          </div>
+          <div class="xyzzy-surface-scroll">
+            <div id="xyzzy-surface"></div>
+          </div>
+        </section>
+
+        <section class="xyzzy-panel xyzzy-editor-panel">
+          <div class="xyzzy-panel-header">
+            <h2 class="xyzzy-panel-title">xyzzy/v1 JSON</h2>
+            <p class="xyzzy-panel-note">Apply only validated documents.</p>
+          </div>
+          <textarea
+            id="xyzzy-json"
+            class="xyzzy-json"
+            spellcheck="false"
+            aria-label="Xyzzy JSON editor"
+          ></textarea>
+          <div>
+            <div class="xyzzy-panel-header">
+              <h2 class="xyzzy-panel-title">Validation</h2>
+              <p class="xyzzy-panel-note">Strip, overlap, and adjacency checks.</p>
+            </div>
+            <ul id="xyzzy-diagnostics" class="xyzzy-diagnostics"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      window.addEventListener("error", (event) => {
+        const status = document.getElementById("xyzzy-status");
+        if (status) {
+          status.textContent = `Xyzzy runtime error: ${String(event?.message || "").trim()}`;
+        }
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        const status = document.getElementById("xyzzy-status");
+        const reason = event?.reason;
+        const message =
+          (typeof reason === "object" && reason && "message" in reason ? reason.message : reason) ?? "";
+        if (status) {
+          status.textContent = `Xyzzy runtime error: ${String(message || "Unhandled promise rejection").trim()}`;
+        }
+      });
+    </script>
+    <script type="module" src="./src/apps/xyzzy/main.js"></script>
+  </body>
+</html>

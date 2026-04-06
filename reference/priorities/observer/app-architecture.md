@@ -5,7 +5,7 @@
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [composer](composer.md), [reaction](reaction.md), [solver](solver.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [composer](composer.md), [reaction](reaction.md), [xyzzy](xyzzy.md), [solver](solver.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
@@ -15,7 +15,7 @@ This document defines the overall architectural approach for incorporating dedic
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated apps such as Composer and Reaction as independent runtimes within one repo;
+- the role of dedicated apps such as Composer, Reaction, and Xyzzy as independent runtimes within one repo;
 - the rules for app boundaries, shared code, and cross-app exchange;
 - the modularity rules that keep app growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
@@ -50,6 +50,7 @@ The intended shape is:
 - one main Architrino discovery surface;
 - one Composer runtime;
 - one Reaction runtime;
+- one Xyzzy runtime;
 - and explicit data boundaries between those runtimes.
 
 This is not a multi-product split. It is one product with a launcher/discovery layer and dedicated tools that open into their own app runtimes when the user enters them.
@@ -69,7 +70,7 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated apps such as Composer and Reaction should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated apps such as Composer, Reaction, and Xyzzy should be treated as standalone runtimes within the overall Architrino experience.
 
 Each dedicated app should own:
 
@@ -101,7 +102,7 @@ Not allowed:
 - shared app-specific UI behavior;
 - or hidden coupling through launcher-state assumptions.
 
-When Composer and Reaction exchange information, the exchange should happen through a versioned contract rather than through shared executable helpers.
+When dedicated apps exchange information, the exchange should happen through a versioned contract rather than through shared executable helpers.
 
 For the current Composer/Reaction split, the intended bridge remains `reaction-flow/v1`.
 
@@ -180,6 +181,12 @@ For the current Composer/Reaction architecture, that means:
 - Reaction owns conservative authoring and accepted output;
 - Composer owns downstream staging and explanatory presentation;
 - and the connection between them is explicit data rather than shared runtime logic.
+
+Other dedicated-app relationships should follow the same rule:
+
+- app-to-app exchange happens through explicit versioned data;
+- app-specific runtime behavior stays local to the owning app;
+- and launcher/runtime boundaries should stay clear even as new dedicated apps are added.
 
 ### Shared Infrastructure Surface
 
@@ -350,5 +357,6 @@ Practical order:
 - [composer-reaction](observer.md)
 - [composer](composer.md)
 - [reaction](reaction.md)
+- [xyzzy](xyzzy.md)
 - [solver](solver.md)
 - [pdgfeed](pdgfeed.md)

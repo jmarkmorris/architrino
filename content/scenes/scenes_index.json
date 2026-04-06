@@ -1449,6 +1449,11 @@
       "id": "reaction_designer",
       "name": "Reaction Designer",
       "path": "content/scenes/archie/reaction_designer.json"
+    },
+    {
+      "id": "xyzzy",
+      "name": "Xyzzy",
+      "path": "content/scenes/archie/xyzzy.json"
     }
   ]
 }

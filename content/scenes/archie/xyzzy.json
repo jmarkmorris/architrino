@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "xyzzy",
+    "title": "Xyzzy",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "hideScaleLabels": true,
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": []
+}

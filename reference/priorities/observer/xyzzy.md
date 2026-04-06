@@ -465,116 +465,88 @@ The solver should not own screen coordinates or screen geometry details. Xyzzy o
 
 ## Priorities
 
-### 1. Define The Xyzzy JSON Contract
+### 1. Specify The Direct Object-Editing Workflow
 
 Status: `active`
 
 Current:
 
-- the new surface grammar is clear at the tile and interaction level;
-- but the canonical Xyzzy document shape is not yet written down completely.
+- the first standalone Xyzzy runtime now exists;
+- the `xyzzy/v1` JSON contract, fixed 20-column strip, gap-free tile layout, adjacent-column spline authoring, and optional final-pass composite labels are now implemented;
+- but assemblies and operators are still authored through explicit JSON edits because the direct create, move, and delete workflow on the surface remains unspecified.
 
 Objective:
 
-- define one JSON schema for assemblies, operators, splines, and composite-label effects;
-- make four-tile assembly payloads explicit;
-- make one-tile operator payloads explicit;
-- make semantic placement role explicit in JSON rather than inferred only from `x`;
-- keep the top-level document flat;
-- require stable ids on all authored record types;
-- make array order authorial only;
-- make placement explicit in record fields rather than implied by array position;
-- and make adjacency-based spline links explicit.
+- define the explicit v1 or v2 surface workflow for:
+  - creating assemblies and operators;
+  - moving them within the fixed strip;
+  - deleting them;
+  - and keeping those actions consistent with the fixed object bands and occupied-tile overlap rules.
 
 Done when:
 
-- a single Xyzzy document shape exists;
-- the four-tile assembly grammar and one-tile operator grammar are explicit in JSON;
-- assembly tile content is explicit in JSON rather than implied only by `type`;
-- semantic placement role is explicit and validated against placement coordinates;
-- the document uses flat top-level lists for main authored objects;
-- every authored record type carries a stable id;
-- array order is non-semantic;
-- and placement is explicit in record fields;
-- and composite-label after-effects are defined as final-pass records.
+- direct object creation, movement, and deletion are defined at the interaction level;
+- the runtime no longer depends on JSON hand-editing for normal object authorship;
+- and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
 
-### 2. Make Tile Geometry Gap-Free In Code
+### 2. Freeze The Richer Tile Payload Vocabulary
 
 Status: `next`
 
 Current:
 
-- the visual direction is to place half-gap spacing inside the glyph artwork itself;
-- but the implementation rules still need to state that runtime tile layout never computes gaps.
+- `xyzzy/v1` now carries explicit four-tile assembly payloads with minimal tile kinds and counts;
+- but the fuller explicit payload for the standard tile language, polar glyph detail, and richer ledger or title variants is still not written down completely.
 
 Objective:
 
-- remove gap calculation from the runtime model;
-- treat tiles as abutted units in both horizontal and vertical directions;
-- model assemblies and operators as simple grid rectangles;
-- define one fixed reaction-diagram column strip with dedicated routing bands;
-- make object placement strict by object class and strip position;
-- and make tile-edge attachment math depend only on tile bounds plus the fixed strip.
+- define the canonical explicit tile-record vocabulary for Xyzzy assemblies;
+- keep tile display content explicit in JSON rather than reintroducing inference from `type`;
+- and make the richer tile language precise enough that solver output and manual authoring can use the same surface records.
 
 Done when:
 
-- layout uses abutted tile rectangles only;
-- assemblies are always `4x1` and operators are always `1x1` at the surface-geometry level;
-- the 20-column strip is explicit and enforced;
-- each object class has one exact allowed placement region in that strip;
-- no runtime gap values are needed for placement or spline attachment;
-- and visual spacing comes entirely from glyph design.
+- the full tile payload vocabulary is named and explicit;
+- polar or ledger details do not depend on app-local inference;
+- and example or solver-produced Xyzzy documents can express the intended display records directly.
 
-### 3. Implement Adjacent-Column Spline Authoring
+### 3. Define The Solver Boundary Around `xyzzy/v1`
 
 Status: `next`
 
 Current:
 
-- the target interaction is defined;
-- but the interaction and deletion rules are not yet captured in runtime behavior.
+- the standalone Xyzzy app and `xyzzy/v1` contract now exist inside the repo;
+- but the upstream and downstream handoff around solver-owned output is still only described at the architectural level.
 
 Objective:
 
-- implement click plus `Shift` plus click authored linking between neighboring object bands;
-- keep links object-to-object only;
-- limit links to neighboring object bands separated by one routing band;
-- treat `Shift` as the spline-authoring gesture rather than introducing a separate persistent tool mode;
-- treat links as undirected endpoint pairs while preserving the left-to-right reaction flow implied by band order;
-- ignore repeated creation attempts for the same endpoint pair;
-- forbid self-links;
-- keep each link inside one routing column;
-- attach splines to the vertical middle of the relevant outer edges;
-- and remove a spline when the spline itself is clicked.
+- decide exactly what solver-owned JSON should enter and leave Xyzzy;
+- keep assemblies, operators, splines, and composite-label after-effects explicit at that boundary;
+- and avoid any return to screen-geometry-driven or renderer-only interpretation.
 
 Done when:
 
-- assemblies and operators can be linked by the adjacent-column gesture;
-- internal assembly tiles are not individual link endpoints;
-- non-neighboring object-band links are rejected by the base interaction;
-- the temporary link state exists only while `Shift`-driven linking is in progress;
-- duplicate links between the same two endpoint objects are ignored rather than duplicated;
-- self-links cannot be created;
-- each link uses exactly one valid routing column;
-- and spline deletion is direct and explicit.
+- one solver-facing Xyzzy boundary is written down clearly;
+- the exchanged object records are explicit Xyzzy-owned records;
+- and the runtime does not need to reinterpret foreign geometry conventions.
 
-### 4. Add Composite Labels As A Final Rendering Pass
+### 4. Deepen Composite-Label Semantics Only When Needed
 
 Status: `next`
 
 Current:
 
-- composite labels and their vertical span line are specified as after-effects;
-- but the reserved outer tile space and final-pass render rules still need to be formalized in implementation.
+- Xyzzy now reserves the outer columns and renders optional composite labels as a final pass;
+- but the richer meaning of those labels beyond explicit text plus span intent is still intentionally minimal.
 
 Objective:
 
-- reserve one tile space in the outer label regions on both the left and right sides of the reaction diagram;
-- render composite labels only after base objects and splines;
-- and keep them fully JSON-driven.
+- keep the current explicit final-pass model unless a real composite-label use case requires more;
+- and when that need appears, define richer label semantics without disturbing the base tile grammar or spline model.
 
 Done when:
 
-- the outer label tile space is reserved;
-- composite labels are drawn as the last structural pass;
-- and no earlier layout stage depends on them.
+- any richer composite-label fields are justified by concrete use;
+- the outer reserved columns remain the only composite-label region;
+- and base rendering stays independent of composite labels being present.
