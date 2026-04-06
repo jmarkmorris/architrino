@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 420,
-      "edges": 1166,
-      "scenes": 291,
+      "nodes": 419,
+      "edges": 1165,
+      "scenes": 290,
       "markdownIndexes": 0,
       "markdownDocs": 129,
       "runtimeEdges": 476,
@@ -1889,12 +1889,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "xyzzy",
-      "name": "Xyzzy",
-      "path": "content/scenes/archie/xyzzy.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
       "name": "About the Webapp",
       "path": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -2848,15 +2842,6 @@
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
       "searchTarget": "content/scenes/archie/user_interface.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/xyzzy.json",
-      "nodeType": "scene",
-      "id": "xyzzy",
-      "name": "Xyzzy",
-      "path": "content/scenes/archie/xyzzy.json",
-      "searchTarget": "content/scenes/archie/xyzzy.json",
       "implicit": false
     },
     {
@@ -6468,45 +6453,38 @@
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/xyzzy.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/molecule.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",

@@ -20,10 +20,6 @@
         "scenePath": "content/scenes/archie/reaction_designer.json"
       },
       {
-        "nodeId": "xyzzy",
-        "scenePath": "content/scenes/archie/xyzzy.json"
-      },
-      {
         "nodeId": "hyde_periodic_table",
         "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
@@ -59,13 +55,6 @@
       "radius": 2.2,
       "color": "#36b3bc",
       "labelTitle": "Reaction Designer"
-    },
-    {
-      "id": "xyzzy",
-      "title": "Xyzzy",
-      "radius": 2.2,
-      "color": "#b7844b",
-      "labelTitle": "Xyzzy"
     },
     {
       "id": "hyde_periodic_table",

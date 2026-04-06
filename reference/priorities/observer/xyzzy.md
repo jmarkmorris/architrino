@@ -619,3 +619,24 @@ Done when:
 - any richer composite-label fields are justified by concrete use;
 - the outer reserved columns remain the only composite-label region;
 - and base rendering stays independent of composite labels being present.
+
+### 5. Update `glyph.py` To Generate Xyzzy Tiles
+
+Status: `next`
+
+Current:
+
+- `scripts/glyphs/glyph.py` does not yet generate the tile outputs needed by the Xyzzy app;
+- and the generation path for title, binary, free-particle, and ledger tiles is not yet defined as part of the Xyzzy toolchain.
+
+Objective:
+
+- update `scripts/glyphs/glyph.py` so it can generate the necessary tiles for the Xyzzy app;
+- keep those generated tiles aligned with the canonical Xyzzy tile vocabulary;
+- and avoid ad hoc manual tile creation when the tile set evolves.
+
+Done when:
+
+- `glyph.py` emits the required Xyzzy tile outputs;
+- the generated set covers the tile families required by the Xyzzy surface grammar;
+- and the generation workflow is clear enough that future Xyzzy tile updates do not require one-off manual redraws.
