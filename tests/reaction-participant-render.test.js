@@ -325,7 +325,7 @@ test("free architrinos render as one aggregate ledger tile instead of a tri-slot
   );
 });
 
-test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
+test("free architrinos root reuses one output anchor and uses the compact centered label style", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -333,19 +333,15 @@ test("free architrinos root exposes multiple reactant output anchors and uses th
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /participant\?\.templateId === "free_architrinos"[\s\S]*?mappedIndices\.length \? mappedIndices : \[1\]/
+    /participant\?\.templateId === "free_architrinos"[\s\S]*?return \[mappedIndices\[0\] \?\? 1\];/
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
-    /const connectorRole = getParticipantConnectorRole\(participant\);[\s\S]*?anchorRole:\s*connectorRole,[\s\S]*?anchorInstanceIndex/
+    /is-free-architrinos-root/
   );
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-particle\.is-free-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-tree-row\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
   );
 });
 

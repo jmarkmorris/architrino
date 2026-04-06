@@ -1,4 +1,5 @@
 import { buildReactionFlowDocument } from "./ReactionFlowExportRuntime.js";
+import { normalizeReactionSnapshotToStrictFiveLane } from "./ReactionFlowMigrationRuntime.js";
 import { buildReactionLibraryCandidateFromDocument } from "./ReactionLibraryCandidateRuntime.js";
 import { buildReactionSnapshotFromSolverResult } from "./ReactionSolverResultAdapterRuntime.js";
 
@@ -19,11 +20,11 @@ function resultHasErrorDiagnostics(result = {}) {
 function buildReactionLibraryCandidateFromSolvedResult(options = {}) {
   const result = options?.result ?? {};
   const reviewCandidate = options?.reviewCandidate ?? null;
-  const exact = result?.summary?.exact === true && !resultHasErrorDiagnostics(result);
-  const snapshot = buildReactionSnapshotFromSolverResult(result);
+  const snapshot = normalizeReactionSnapshotToStrictFiveLane(
+    buildReactionSnapshotFromSolverResult(result)
+  );
   const exportOverrides = reviewCandidate?.exportOverrides ?? {};
-  const reviewStatus = normalizeLowerText(options?.reviewStatus) === "accepted" && exact ? "accepted" : "draft";
-  const document = buildReactionFlowDocument({
+  const baseDocumentOptions = {
     ...exportOverrides,
     reactionId: normalizeText(options?.reactionId) || exportOverrides.reactionId,
     title: normalizeText(options?.title) || exportOverrides.title,
@@ -35,18 +36,34 @@ function buildReactionLibraryCandidateFromSolvedResult(options = {}) {
       : exportOverrides.semanticTags,
     suggestedSceneId: normalizeText(options?.suggestedSceneId) || exportOverrides.suggestedSceneId,
     reviewInput: options?.reviewInput ?? reviewCandidate?.reviewInput,
-    review:
-      reviewStatus === "accepted"
-        ? {
-            status: "accepted",
-            acceptedAt: normalizeText(options?.acceptedAt) || new Date().toISOString(),
-          }
-        : {
-            status: "draft",
-          },
-    allowIncompleteSnapshot: options?.allowIncompleteSnapshot === true,
     snapshot,
-  });
+  };
+  const wantsDraft = normalizeLowerText(options?.reviewStatus) === "draft";
+  let document = null;
+  let acceptedByStrictExport = false;
+  if (!wantsDraft) {
+    try {
+      document = buildReactionFlowDocument({
+        ...baseDocumentOptions,
+        review: {
+          status: "accepted",
+          acceptedAt: normalizeText(options?.acceptedAt) || new Date().toISOString(),
+        },
+      });
+      acceptedByStrictExport = true;
+    } catch (_error) {
+      document = null;
+    }
+  }
+  if (!document) {
+    document = buildReactionFlowDocument({
+      ...baseDocumentOptions,
+      review: {
+        status: "draft",
+      },
+      allowIncompleteSnapshot: options?.allowIncompleteSnapshot === true || !acceptedByStrictExport,
+    });
+  }
 
   return buildReactionLibraryCandidateFromDocument(document, {
     entryId: options?.entryId,
@@ -57,12 +74,7 @@ function buildReactionLibraryCandidateFromSolvedResult(options = {}) {
 export function buildReactionLibraryCandidateFromSolverArtifacts(options = {}) {
   return buildReactionLibraryCandidateFromSolvedResult({
     ...options,
-    reviewStatus:
-      options?.reviewStatus !== undefined
-        ? options.reviewStatus
-        : options?.result?.summary?.exact === true && !resultHasErrorDiagnostics(options?.result)
-          ? "accepted"
-          : "draft",
+    reviewStatus: options?.reviewStatus,
   });
 }
 

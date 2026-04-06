@@ -4,6 +4,11 @@ import {
   getReactionParticipantPlacementClass,
   isReactionObjectPlacementAllowed,
 } from "./ReactionObjectRegistryRuntime.js";
+import {
+  getReactionDocumentColumnForLane,
+  getReactionSnapshotLaneNumber,
+  isAdjacentReactionLaneProgress,
+} from "./ReactionFlowLaneRuntime.js";
 import { buildReactionSurfaceValidation } from "./ReactionSurfaceValidationRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
@@ -41,14 +46,7 @@ function normalizeParticipantSide(participant = {}) {
 }
 
 function normalizeParticipantLayoutColumn(participant = {}) {
-  const placementClass = getReactionParticipantPlacementClass(participant);
-  if (placementClass === "product") {
-    return "right";
-  }
-  if (placementClass === "center") {
-    return "center";
-  }
-  return "left";
+  return getReactionDocumentColumnForLane(getParticipantLaneNumber(participant)) || "left";
 }
 
 function buildTagList(values = []) {
@@ -131,17 +129,7 @@ function buildParticipantRole(participant = {}, direction = "output") {
 }
 
 function getParticipantLaneNumber(participant = {}) {
-  if (participant?.side === "operator") {
-    return Math.max(0, Math.round(Number(participant?.operatorLaneIndex) || 0)) === 0 ? 2 : 4;
-  }
-  const placementClass = getReactionParticipantPlacementClass(participant);
-  if (placementClass === "center") {
-    return 3;
-  }
-  if (placementClass === "product") {
-    return 5;
-  }
-  return 1;
+  return getReactionSnapshotLaneNumber(participant);
 }
 
 function getExpectedSnapshotEndpointRole(participant = {}, direction = "output") {
@@ -207,6 +195,13 @@ function validateSnapshotMapping(mapping = {}, participantsById = new Map()) {
   if (!sourceParticipant || !targetParticipant) {
     throw new Error(
       `Reaction flow export mapping ${String(mapping?.id ?? "(missing id)")} references unknown participant(s): ${sourceParticipantId || "(missing source)"} -> ${targetParticipantId || "(missing target)"}`
+    );
+  }
+  const sourceLaneNumber = getParticipantLaneNumber(sourceParticipant);
+  const targetLaneNumber = getParticipantLaneNumber(targetParticipant);
+  if (!isAdjacentReactionLaneProgress(sourceLaneNumber, targetLaneNumber)) {
+    throw new Error(
+      `Reaction flow export requires adjacent lane progress only. Mapping ${String(mapping?.id ?? "(missing id)")} uses lane ${sourceLaneNumber} -> lane ${targetLaneNumber}.`
     );
   }
   validateSnapshotEndpoint(sourceParticipant, mapping, "output");
@@ -345,6 +340,7 @@ export function buildReactionFlowDocument(options = {}) {
     tags: buildParticipantTags(participant),
     state: buildParticipantState(participant),
     layout: {
+      lane: getParticipantLaneNumber(participant),
       column: normalizeParticipantLayoutColumn(participant),
       row: Math.max(0, Math.round(Number(participant?.surfaceRowIndex) || 0)),
     },
@@ -357,7 +353,7 @@ export function buildReactionFlowDocument(options = {}) {
     type: normalizeText(participant?.templateId || "operator") || "operator",
     label: normalizeText(participant?.label) || "Operator",
     layout: {
-      lane: Math.max(0, Math.round(Number(participant?.operatorLaneIndex) || 0)),
+      lane: getParticipantLaneNumber(participant),
       row: Math.max(0, Math.round(Number(participant?.surfaceRowIndex) || 0)),
       slot: Math.max(0, Math.round(Number(participant?.operatorSlotIndex) || 0)),
     },

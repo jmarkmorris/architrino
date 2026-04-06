@@ -65,11 +65,11 @@ export function inferReactionOccupiedCountFromLabel(templateId = "", label = "")
   return normalizeOccupiedCount(matchedVariant?.occupiedCount);
 }
 
-function resolveOccupiedCountFromOptions(options = {}) {
+function resolveOccupiedCountFromOptions(templateId = "", options = {}) {
   if (Array.isArray(options?.occupiedSlots) && options.occupiedSlots.length) {
     return normalizeOccupiedCount(options.occupiedSlots.length);
   }
-  const inferredFromLabel = inferReactionOccupiedCountFromLabel(options?.templateId, options?.label);
+  const inferredFromLabel = inferReactionOccupiedCountFromLabel(templateId, options?.label);
   if (inferredFromLabel !== null) {
     return inferredFromLabel;
   }
@@ -81,7 +81,7 @@ function resolveVariantRecord(templateId = "", options = {}) {
   if (!variants.length) {
     return null;
   }
-  const occupiedCount = resolveOccupiedCountFromOptions(options);
+  const occupiedCount = resolveOccupiedCountFromOptions(templateId, options);
   if (occupiedCount !== null) {
     const exactVariant = variants.find(
       (variant) => normalizeOccupiedCount(variant?.occupiedCount) === occupiedCount

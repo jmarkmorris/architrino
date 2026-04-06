@@ -230,21 +230,18 @@ function classifyBinarySelectorGroupNode(
   resolveBinaryChoiceInventory
 ) {
   const primaryCore = getPrimaryNoetherCore(structureNode);
-  const occupancy = getNoetherCoreSlotOccupancy(primaryCore);
   const binaryPresence = getNoetherCoreSlotBinaryPresence(primaryCore);
   const corePolarity = normalizeText(getStructureTrait(primaryCore, "polarity", ""));
-  const inventory = STRUCTURE_SLOT_ORDER.reduce((sum, slotName) => {
-    if (!occupancy[slotName]) {
-      return sum;
-    }
-    return addInventories(
-      sum,
-      resolveBinaryChoiceInventory?.(
-        participant,
+  const selectorNodes = Array.isArray(node?.children)
+    ? node.children.filter((childNode) => !!getSlotNameFromNode(childNode))
+    : STRUCTURE_SLOT_ORDER.map((slotName) =>
         createSyntheticBinarySelectorNode(node?.id, slotName)
-      )
-    );
-  }, createEmptyInventory());
+      );
+  const inventory = selectorNodes.reduce(
+    (sum, selectorNode) =>
+      addInventories(sum, resolveBinaryChoiceInventory?.(participant, selectorNode, node)),
+    createEmptyInventory()
+  );
   return {
     kind: getNodeKeyKind(node, structureNode?.species ?? "binary_selector_group"),
     label: String(node?.label ?? structureNode?.label ?? "").trim(),

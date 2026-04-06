@@ -150,7 +150,9 @@ export function createReactionParticipantRenderRuntime(options = {}) {
           .map((mapping) => Number(mapping?.sourceAnchorInstanceIndex))
           .filter((anchorInstanceIndex) => Number.isInteger(anchorInstanceIndex) && anchorInstanceIndex >= 1)
       )].sort((left, right) => left - right);
-      return mappedIndices.length ? mappedIndices : [1];
+      // Keep one visible outlet per group even when imported mappings preserve
+      // distinct free-architrino output indices.
+      return [mappedIndices[0] ?? 1];
     }
     return [1];
   }
@@ -380,26 +382,12 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   }
 
   function createTreeRowAnchor(participant, node, nodeKey) {
-    const layoutSide = getParticipantLayoutSide(participant);
     const connectorRole = getParticipantConnectorRole(participant);
     const outputAnchorInstanceIndices = getParticipantRootOutputAnchorInstanceIndices(
       participant,
       node,
       nodeKey
     );
-    if (outputAnchorInstanceIndices.length > 1) {
-      const anchorSet = document.createElement("div");
-      anchorSet.className = `composer-reaction-canvas-anchor-set is-${layoutSide} is-free-architrinos-root`;
-      outputAnchorInstanceIndices.forEach((anchorInstanceIndex) => {
-        anchorSet.appendChild(
-          createAnchorButton(participant, node, nodeKey, {
-            anchorRole: connectorRole,
-            anchorInstanceIndex,
-          })
-        );
-      });
-      return anchorSet;
-    }
     return createAnchorButton(participant, node, nodeKey, {
       anchorRole: connectorRole,
       anchorInstanceIndex: outputAnchorInstanceIndices[0] ?? null,

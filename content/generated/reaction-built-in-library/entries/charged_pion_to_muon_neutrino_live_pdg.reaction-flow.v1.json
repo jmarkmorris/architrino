@@ -24,6 +24,7 @@
         "dissociation": "manual-dissociated"
       },
       "layout": {
+        "lane": 1,
         "column": "left",
         "row": 0
       }
@@ -42,6 +43,7 @@
         "pdg-id:mu+"
       ],
       "layout": {
+        "lane": 5,
         "column": "right",
         "row": 0
       }
@@ -60,6 +62,7 @@
         "pdg-id:nu_mu"
       ],
       "layout": {
+        "lane": 5,
         "column": "right",
         "row": 1
       }
@@ -80,6 +83,7 @@
         "solveGenerated": true
       },
       "layout": {
+        "lane": 3,
         "column": "center",
         "row": 0
       }
@@ -100,6 +104,7 @@
         "solveGenerated": true
       },
       "layout": {
+        "lane": 3,
         "column": "center",
         "row": 1
       }
@@ -120,6 +125,7 @@
         "solveGenerated": true
       },
       "layout": {
+        "lane": 3,
         "column": "center",
         "row": 2
       }
@@ -131,7 +137,7 @@
       "type": "dissociate",
       "label": "Dissociate",
       "layout": {
-        "lane": 0,
+        "lane": 2,
         "row": 1,
         "slot": 1
       },
@@ -174,7 +180,7 @@
       "type": "associate",
       "label": "Associate",
       "layout": {
-        "lane": 1,
+        "lane": 4,
         "row": 3,
         "slot": 3
       },
@@ -211,7 +217,7 @@
       "type": "associate",
       "label": "Associate",
       "layout": {
-        "lane": 1,
+        "lane": 4,
         "row": 5,
         "slot": 5
       },

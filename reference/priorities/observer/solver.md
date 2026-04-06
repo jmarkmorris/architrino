@@ -75,7 +75,7 @@ Operator semantics that should remain canonical:
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
 - center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
-- the current solver operator vocabulary remains `Associate` plus `Dissociate`;
+- the current solver operator vocabulary is `Associate`, `Dissociate`, and `Pass Thru`;
 - spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
 - `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
 - when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
@@ -97,13 +97,19 @@ Composite and dissociation requirements that should move forward into the new ar
 Full-solve lane contract:
 
 - every required connector on every visible participant or operator must be connected for the surface to count as a full solve;
-- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2, 3, 4, or 5;
-- lane 2 dissociate operators are input-and-output and every visible input and output must be connected;
+- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2 only;
+- lane 2 operators are input-and-output and every visible input and output must be connected;
 - lane 3 center-lane participants are input-and-output and every visible input and output must be connected;
-- lane 4 associate operators are input-and-output and every visible input and output must be connected;
+- lane 4 operators are input-and-output and every visible input and output must be connected;
 - lane 5 product participants are input-only and every visible input must be connected;
 - if any required connector remains open, the surface is invalid as a full solve even if product inventory happens to close;
 - and if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
+
+Current transition note:
+
+- Reaction now validates and exports only strict adjacent-lane accepted documents;
+- accepted legacy solved documents are currently regenerated into that form through isolated migration code;
+- the native solver still needs to emit the same lane-complete structure directly so migration code can be retired.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 

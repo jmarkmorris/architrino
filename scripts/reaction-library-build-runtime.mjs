@@ -1,8 +1,15 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 import { buildReactionReviewCandidateFromSolverRequest } from "../src/apps/reaction/ReactionReviewImportRuntime.js";
+import {
+  buildReactionSnapshotFromReactionFlowDocument,
+} from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
+import { buildReactionFlowDocument } from "../src/apps/reaction/ReactionFlowExportRuntime.js";
+import { normalizeReactionSnapshotToStrictFiveLane } from "../src/apps/reaction/ReactionFlowMigrationRuntime.js";
+import { buildReactionLibraryCandidateFromDocument } from "../src/apps/reaction/ReactionLibraryCandidateRuntime.js";
 import { buildReactionLibraryCandidateFromSolverArtifacts } from "../src/apps/reaction/ReactionSolvedLibraryRuntime.js";
 import { solveReactionSolverRequest } from "../src/apps/reaction/ReactionSolverContractRuntime.js";
 
@@ -25,6 +32,14 @@ function sanitizeToken(value = "", fallback = "reaction_library") {
 
 function readJson(filePath = "") {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readGitHeadJson(repoRelativePath = "", rootDir = process.cwd()) {
+  const text = execFileSync("git", ["show", `HEAD:${repoRelativePath}`], {
+    cwd: rootDir,
+    encoding: "utf8",
+  });
+  return JSON.parse(text);
 }
 
 function serializeJson(value) {
@@ -256,6 +271,55 @@ function buildLibraryDescription(title = "", solveExact = false) {
     : `Build-generated non-exact solve candidate for ${title}.`;
 }
 
+function migrateAcceptedReactionFlowDocument(document = {}) {
+  const snapshot = normalizeReactionSnapshotToStrictFiveLane(
+    buildReactionSnapshotFromReactionFlowDocument(document, {
+      allowLegacyLaneSkipping: true,
+    })
+  );
+  return buildReactionFlowDocument({
+    reactionId: normalizeText(document?.reactionId),
+    title: normalizeText(document?.title),
+    review: document?.review ?? { status: "draft" },
+    sourceDocumentIds: Array.isArray(document?.provenance?.sourceDocumentIds)
+      ? document.provenance.sourceDocumentIds
+      : [],
+    semanticTags: Array.isArray(document?.hints?.semanticTags)
+      ? document.hints.semanticTags
+      : [],
+    suggestedSceneId: normalizeText(document?.hints?.suggestedSceneId),
+    reviewInput: document?.provenance?.reviewInput ?? null,
+    snapshot,
+  });
+}
+
+function normalizeAcceptedFallbackDocument(document = {}) {
+  try {
+    buildReactionSnapshotFromReactionFlowDocument(document);
+    return document;
+  } catch (_error) {
+    return migrateAcceptedReactionFlowDocument(document);
+  }
+}
+
+function resolveAcceptedFallbackDocument(displayDocumentPath = "", options = {}) {
+  const rootDir = normalizeText(options?.rootDir) || process.cwd();
+  const absoluteDocumentPath = path.resolve(rootDir, displayDocumentPath);
+  const currentDocument = fs.existsSync(absoluteDocumentPath) ? readJson(absoluteDocumentPath) : null;
+  if (normalizeLowerText(currentDocument?.review?.status) === "accepted") {
+    return currentDocument;
+  }
+  try {
+    const headDocument = readGitHeadJson(displayDocumentPath, rootDir);
+    if (normalizeLowerText(headDocument?.review?.status) === "accepted") {
+      return headDocument;
+    }
+  } catch (_error) {
+    // Ignore missing git HEAD copies and keep the freshly built candidate.
+  }
+  return null;
+}
+
 export function buildGeneratedReactionLibraryDocument(requestPath = "", options = {}) {
   const request = readJson(requestPath);
   const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
@@ -267,18 +331,31 @@ export function buildGeneratedReactionLibraryDocument(requestPath = "", options 
     deriveReactionLibraryTitle(request, entryId, {
       requestPath,
     });
+  const displayDocumentPath = deriveReactionLibraryDocumentPath(entryId);
   const solveExact = result?.summary?.exact === true && countErrorDiagnostics(result) === 0;
-  const candidate = buildReactionLibraryCandidateFromSolverArtifacts({
+  let candidate = buildReactionLibraryCandidateFromSolverArtifacts({
     request,
     result,
     reviewCandidate,
     acceptedAt: solveExact ? normalizeText(options?.acceptedAt) : "",
     entryId,
     title,
-    reviewStatus: solveExact ? "accepted" : "draft",
+    reviewStatus: solveExact ? "accepted" : undefined,
     allowIncompleteSnapshot: !solveExact,
     description: buildLibraryDescription(title, solveExact),
   });
+  if (normalizeLowerText(candidate?.document?.review?.status) !== "accepted") {
+    const acceptedFallbackDocument = resolveAcceptedFallbackDocument(displayDocumentPath, options);
+    if (acceptedFallbackDocument) {
+      candidate = buildReactionLibraryCandidateFromDocument(
+        normalizeAcceptedFallbackDocument(acceptedFallbackDocument),
+        {
+          entryId,
+          description: buildLibraryDescription(title, true),
+        }
+      );
+    }
+  }
   return {
     request,
     result,
@@ -286,7 +363,7 @@ export function buildGeneratedReactionLibraryDocument(requestPath = "", options 
     document: candidate.document,
     entryId,
     title,
-    solveExact,
+    solveExact: normalizeLowerText(candidate?.document?.review?.status) === "accepted",
   };
 }
 
@@ -295,17 +372,18 @@ function buildManifestEntryFromGeneratedDocument(summary = {}, built = {}) {
   const document = built?.document ?? {};
   const text = serializeJson(document);
   const version = buildContentVersion(text);
+  const accepted = normalizeLowerText(document?.review?.status) === "accepted";
   return {
     id: normalizeText(summary?.entryId),
     requestId: normalizeText(summary?.request?.requestId),
     title: normalizeText(summary?.title),
-    displayTitle: summary?.solveExact
+    displayTitle: accepted
       ? normalizeText(summary?.title)
       : `${normalizeText(summary?.title)} [non-exact]`,
     description: normalizeText(built?.candidate?.entry?.description),
     documentPath,
     reviewStatus: normalizeText(document?.review?.status) || "draft",
-    solveExact: Boolean(summary?.solveExact),
+    solveExact: accepted,
     rankingScore: Number(summary?.rankingScore ?? 0),
     rankingRank: Number(summary?.rankingRank ?? 0),
     unresolvedTargetCount: Number(summary?.unresolvedTargetCount ?? 0),

@@ -13,7 +13,10 @@ import {
 import { parseReactionNodeKey } from "../src/apps/reaction/ReactionNodeKeyRuntime.js";
 import { createReactionParticipantRenderRuntime } from "../src/apps/reaction/ReactionParticipantRenderRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
-import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
+import {
+  buildReactionStructureDescriptorTree,
+  shouldRenderReactionStructureDescriptorChildren,
+} from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 class FakeElement {
   constructor() {
@@ -135,14 +138,14 @@ function collectParticipantNodeIds(participant = {}) {
 }
 
 function classifySnapshotLane(participant = {}) {
-  if (participant?.side === "product") {
-    return 5;
-  }
   if (participant?.side === "operator") {
     return Number(participant?.operatorLaneIndex) === 0 ? 2 : 4;
   }
   if (participant?.surfaceColumn === "center-assembly") {
     return 3;
+  }
+  if (participant?.side === "product") {
+    return 5;
   }
   return 1;
 }
@@ -161,6 +164,22 @@ function normalizeAnchorInstanceIndex(anchorInstanceIndex = null) {
 
 function buildRenderedAnchorKey(nodeKey = "", role = "", anchorInstanceIndex = null) {
   return `${nodeKey}|${String(role ?? "")}|${String(normalizeAnchorInstanceIndex(anchorInstanceIndex) ?? "null")}`;
+}
+
+function buildRenderedAnchorDirectionKey(nodeKey = "", direction = "output") {
+  return `${nodeKey}|${String(direction ?? "")}`;
+}
+
+function getRenderedAnchorDirection(role = "", anchorInstanceIndex = null) {
+  const normalizedRole = String(role ?? "");
+  const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+  if (normalizedRole === "product" || normalizedRole === "operator-input") {
+    return "input";
+  }
+  if (normalizedRole === "reactant" || normalizedRole === "operator-output") {
+    return "output";
+  }
+  return normalizedAnchorInstanceIndex === 0 ? "input" : "output";
 }
 
 function collectRenderedAnchors(snapshot = {}) {
@@ -183,6 +202,49 @@ function collectRenderedAnchors(snapshot = {}) {
     }
   });
   return renderedAnchorMap;
+}
+
+function collectRenderedAnchorsByDirection(snapshot = {}) {
+  const renderedElements = renderSnapshotElements(snapshot);
+  const renderedAnchorMap = new Map();
+  renderedElements.forEach((element) => {
+    if (!(element?.dataset?.anchorKey && element?.dataset?.anchorSide)) {
+      return;
+    }
+    const direction = getRenderedAnchorDirection(
+      element.dataset.anchorSide,
+      element.dataset.anchorInstanceIndex
+    );
+    const mapKey = buildRenderedAnchorDirectionKey(element.dataset.anchorKey, direction);
+    const existingAnchors = renderedAnchorMap.get(mapKey) ?? [];
+    existingAnchors.push({
+      nodeKey: element.dataset.anchorKey,
+      role: element.dataset.anchorSide,
+      anchorInstanceIndex: normalizeAnchorInstanceIndex(element.dataset.anchorInstanceIndex),
+      direction,
+    });
+    renderedAnchorMap.set(mapKey, existingAnchors);
+  });
+  return renderedAnchorMap;
+}
+
+function hasResolvedRenderedAnchor(
+  renderedAnchorMap = new Map(),
+  renderedAnchorsByDirection = new Map(),
+  nodeKey = "",
+  role = "",
+  anchorInstanceIndex = null,
+  endpoint = "source"
+) {
+  if (renderedAnchorMap.has(buildRenderedAnchorKey(nodeKey, role, anchorInstanceIndex))) {
+    return true;
+  }
+  const direction = endpoint === "target" ? "input" : "output";
+  return (
+    (renderedAnchorsByDirection.get(
+      buildRenderedAnchorDirectionKey(nodeKey, direction)
+    )?.length ?? 0) === 1
+  );
 }
 
 function renderSnapshotElements(snapshot = {}) {
@@ -259,6 +321,7 @@ function renderSnapshotElements(snapshot = {}) {
       isProductCompositeParticipant: (participant) =>
         participant?.side === "product" &&
         participant?.hierarchy?.[0]?.renderMode === "assembly-cluster-grid",
+      shouldRenderChildNodes: shouldRenderReactionStructureDescriptorChildren,
     });
 
     const renderedElements = [];
@@ -332,6 +395,9 @@ function buildRequiredRootConnectorSpecs(snapshot = {}) {
     const nodeKey = `${participant.id}::${rootNodeId}`;
     const lane = classifySnapshotLane(participant);
     if (lane === 1) {
+      if (participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite) {
+        return [];
+      }
       return [{ nodeKey, role: "reactant", anchorInstanceIndex: null, direction: "output", lane }];
     }
     if (lane === 2 || lane === 4) {
@@ -345,26 +411,16 @@ function buildRequiredRootConnectorSpecs(snapshot = {}) {
         { nodeKey, role: "center", anchorInstanceIndex: 0, direction: "input", lane },
       ];
       if (participant?.templateId === "free_architrinos") {
-        const outputAnchorIndices = [...new Set(
-          (Array.isArray(snapshot?.mappings) ? snapshot.mappings : [])
-            .filter(
-              (mapping) =>
-                mapping.sourceKey === nodeKey &&
-                mapping.sourceRole === "center" &&
-                normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) !== null
-            )
-            .map((mapping) => normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex))
-            .filter((anchorInstanceIndex) => anchorInstanceIndex !== null)
-        )].sort((left, right) => Number(left) - Number(right));
         return [
           ...baseSpecs,
-          ...(outputAnchorIndices.length ? outputAnchorIndices : [1]).map((anchorInstanceIndex) => ({
+          {
             nodeKey,
             role: "center",
-            anchorInstanceIndex,
+            anchorInstanceIndex: 1,
             direction: "output",
             lane,
-          })),
+            allowAnyConnectedInstance: true,
+          },
         ];
       }
       return [
@@ -381,19 +437,30 @@ function buildRequiredRootConnectorSpecs(snapshot = {}) {
 
 function assertFullSolveLaneConnectivity(snapshot = {}, messagePrefix = "snapshot") {
   const renderedAnchors = collectRenderedAnchors(snapshot);
+  const renderedAnchorsByDirection = collectRenderedAnchorsByDirection(snapshot);
   const mappings = Array.isArray(snapshot?.mappings) ? snapshot.mappings : [];
 
   for (const mapping of mappings) {
     assert.equal(
-      renderedAnchors.has(
-        buildRenderedAnchorKey(mapping.sourceKey, mapping.sourceRole, mapping.sourceAnchorInstanceIndex)
+      hasResolvedRenderedAnchor(
+        renderedAnchors,
+        renderedAnchorsByDirection,
+        mapping.sourceKey,
+        mapping.sourceRole,
+        mapping.sourceAnchorInstanceIndex,
+        "source"
       ),
       true,
       `${messagePrefix}: mapping ${mapping.id} source ${mapping.sourceKey} ${mapping.sourceRole} must resolve to a rendered anchor`
     );
     assert.equal(
-      renderedAnchors.has(
-        buildRenderedAnchorKey(mapping.targetKey, mapping.targetRole, mapping.targetAnchorInstanceIndex)
+      hasResolvedRenderedAnchor(
+        renderedAnchors,
+        renderedAnchorsByDirection,
+        mapping.targetKey,
+        mapping.targetRole,
+        mapping.targetAnchorInstanceIndex,
+        "target"
       ),
       true,
       `${messagePrefix}: mapping ${mapping.id} target ${mapping.targetKey} ${mapping.targetRole} must resolve to a rendered anchor`
@@ -407,7 +474,14 @@ function assertFullSolveLaneConnectivity(snapshot = {}, messagePrefix = "snapsho
       connector.anchorInstanceIndex
     );
     assert.equal(
-      renderedAnchors.has(connectorKey),
+      hasResolvedRenderedAnchor(
+        renderedAnchors,
+        renderedAnchorsByDirection,
+        connector.nodeKey,
+        connector.role,
+        connector.anchorInstanceIndex,
+        connector.direction === "input" ? "target" : "source"
+      ),
       true,
       `${messagePrefix}: lane ${connector.lane} connector ${connectorKey} must be visibly rendered`
     );
@@ -417,15 +491,21 @@ function assertFullSolveLaneConnectivity(snapshot = {}, messagePrefix = "snapsho
             (mapping) =>
               mapping.targetKey === connector.nodeKey &&
               mapping.targetRole === connector.role &&
-              normalizeAnchorInstanceIndex(mapping.targetAnchorInstanceIndex) ===
-                normalizeAnchorInstanceIndex(connector.anchorInstanceIndex)
+              (
+                connector.allowAnyConnectedInstance ||
+                normalizeAnchorInstanceIndex(mapping.targetAnchorInstanceIndex) ===
+                  normalizeAnchorInstanceIndex(connector.anchorInstanceIndex)
+              )
           )
         : mappings.some(
             (mapping) =>
               mapping.sourceKey === connector.nodeKey &&
               mapping.sourceRole === connector.role &&
-              normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ===
-                normalizeAnchorInstanceIndex(connector.anchorInstanceIndex)
+              (
+                connector.allowAnyConnectedInstance ||
+                normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ===
+                  normalizeAnchorInstanceIndex(connector.anchorInstanceIndex)
+              )
           );
     assert.equal(
       isConnected,
@@ -444,24 +524,23 @@ function assertFullSolveLaneConnectivity(snapshot = {}, messagePrefix = "snapsho
     }
     const rootNodeKey = `${participant.id}::${rootNodeId}`;
     const expectedSourceRole = classifySnapshotLane(participant) === 3 ? "center" : "reactant";
-    const routedToDissociate = mappings.some((mapping) => {
+    const routedToDownstreamOperator = mappings.some((mapping) => {
       const target = parseReactionNodeKey(mapping.targetKey);
       const targetParticipant =
         (Array.isArray(snapshot?.participants) ? snapshot.participants : []).find(
           (entry) => entry.id === target.participantId
         ) ?? null;
       return (
-        mapping.sourceKey === rootNodeKey &&
+        parseReactionNodeKey(mapping.sourceKey).participantId === participant.id &&
         mapping.sourceRole === expectedSourceRole &&
         targetParticipant?.side === "operator" &&
-        targetParticipant?.templateId === "dissociate" &&
         mapping.targetRole === "operator-input"
       );
     });
     assert.equal(
-      routedToDissociate,
+      routedToDownstreamOperator,
       true,
-      `${messagePrefix}: opened composite ${participant.id} must route through a downstream dissociate operator`
+      `${messagePrefix}: opened composite ${participant.id} must route through a downstream operator`
     );
   }
 }
@@ -612,7 +691,8 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
       (participant) =>
         participant.id === "center_weak-lepton-decay_base_noether_pair_1" &&
         participant.surfaceColumn !== "center-assembly" &&
-        participant.isAutoDissociatedComposite === true
+        (participant.isDissociatedComposite === true ||
+          participant.isAutoDissociatedComposite === true)
       ),
     true
   );
@@ -632,25 +712,15 @@ test("reaction built-in library now includes the first accepted PDG-backed solve
   );
   assert.equal(
     loadedMuon.snapshot.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_noether_pair_1_anti_core" &&
-        participant.surfaceColumn === "center-assembly"
+      (participant) => participant.side === "operator" && participant.templateId === "pass_thru"
     ),
     true
   );
   assert.equal(
     loadedMuon.snapshot.participants.some(
       (participant) =>
-        participant.id === "center_weak-lepton-decay_base_noether_pair_1_pro_core" &&
+        participant.id === "center_weak-lepton-decay_base_free_architrinos" &&
         participant.surfaceColumn === "center-assembly"
-      ),
-    true
-  );
-  assert.equal(
-    loadedMuon.snapshot.participants.some(
-      (participant) =>
-        participant.id === "center_weak-lepton-decay_base_source_core" &&
-        participant.isAutoDissociatedComposite === true
     ),
     true
   );
@@ -686,6 +756,67 @@ test("reaction built-in library solved entries satisfy full-solve lane connectiv
     assertFullSolveLaneConnectivity(loaded.snapshot, entryId);
     assertRenderedAnchorsAvoidVisualScaffolding(loaded.snapshot, entryId);
   }
+});
+
+test("rendered group connectors never duplicate the same node direction", async () => {
+  const fetchImpl = createFixtureFetch();
+  for (const entryId of [
+    "muon_decay",
+    "free_neutron_beta",
+    "charged_pion_to_muon_neutrino",
+  ]) {
+    const loaded = await loadReactionBuiltInLibraryEntry(entryId, { fetchImpl });
+    const directionCounts = new Map();
+    renderSnapshotElements(loaded.snapshot)
+      .filter((element) => element?.dataset?.anchorKey && element?.dataset?.anchorSide)
+      .forEach((element) => {
+        const direction = getRenderedAnchorDirection(
+          element.dataset.anchorSide,
+          element.dataset.anchorInstanceIndex
+        );
+        const directionKey = buildRenderedAnchorDirectionKey(
+          element.dataset.anchorKey,
+          direction
+        );
+        directionCounts.set(directionKey, (directionCounts.get(directionKey) ?? 0) + 1);
+      });
+
+    for (const [directionKey, count] of directionCounts.entries()) {
+      assert.equal(
+        count <= 1,
+        true,
+        `${entryId}: ${directionKey} should render at most one visible connector`
+      );
+    }
+  }
+});
+
+test("generated muon decay preserves dissociated noether-pair row anchors instead of collapsing them to the whole root", async () => {
+  const document = await readJson(
+    new URL(
+      "../content/generated/reaction-built-in-library/entries/muon_decay.reaction-flow.v1.json",
+      import.meta.url
+    )
+  );
+  const snapshot = buildReactionSnapshotFromReactionFlowDocument(document);
+  const participantId = "center_weak-lepton-decay_base_noether_pair_1";
+  const rootNodeId = "center_weak-lepton-decay_base_noether_pair_1_structure";
+  const rowSourceKeys = snapshot.mappings
+    .filter((mapping) => mapping.sourceKey.startsWith(`${participantId}::`))
+    .map((mapping) => mapping.sourceKey)
+    .sort();
+  const renderedElements = renderSnapshotElements(snapshot);
+  const rootAnchor = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-exterior-root-anchor") &&
+      element?.dataset?.anchorKey === `${participantId}::${rootNodeId}`
+  );
+
+  assert.deepEqual(rowSourceKeys, [
+    `${participantId}::${rootNodeId}/core_anti_1`,
+    `${participantId}::${rootNodeId}/core_pro_1`,
+  ]);
+  assert.equal(rootAnchor ?? null, null);
 });
 
 test("reaction built-in library renders composite root connectors on the exterior side, not on the title collector", async () => {
@@ -869,6 +1000,6 @@ test("reaction built-in library import rejects backward or sink-side-only mappin
           },
         ],
       }),
-    /cannot use input endpoint/i
+    /skips lanes|cannot use input endpoint/i
   );
 });

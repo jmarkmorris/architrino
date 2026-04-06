@@ -70,7 +70,10 @@ function inferStageAction(stage = {}) {
 
 function normalizeParticipantLayout(participant = {}) {
   const layout = participant?.layout ?? {};
-  const column = normalizeString(layout.column, "center");
+  const lane = Math.max(1, Math.round(Number(layout.lane ?? 0) || 0));
+  const column =
+    normalizeString(layout.column, "") ||
+    (lane === 1 ? "left" : lane === 5 ? "right" : "center");
   return {
     column:
       column === "left" || column === "right" || column === "center"
@@ -78,6 +81,27 @@ function normalizeParticipantLayout(participant = {}) {
         : "center",
     row: Math.max(0, Math.round(Number(layout.row ?? 0) || 0)),
   };
+}
+
+function getParticipantLane(participant = {}) {
+  return Math.max(1, Math.round(Number(participant?.layout?.lane ?? 0) || 0));
+}
+
+function isSolveGeneratedParticipant(participant = {}) {
+  const tags = Array.isArray(participant?.tags) ? participant.tags : [];
+  return participant?.state?.solveGenerated === true || tags.includes("solve-generated");
+}
+
+function isComposerBoundaryParticipant(participant = {}) {
+  const side = normalizeString(participant?.side, "");
+  const lane = getParticipantLane(participant);
+  if (side === "reactant") {
+    return lane === 1 && isSolveGeneratedParticipant(participant) === false;
+  }
+  if (side === "product") {
+    return lane === 5 && isSolveGeneratedParticipant(participant) === false;
+  }
+  return false;
 }
 
 function buildStageRecords(reactionFlow = {}) {
@@ -292,42 +316,166 @@ function buildTransferTime(mapping = {}, stageById = new Map()) {
   return roundNumber((stage.start + stage.end) / 2);
 }
 
+function buildParticipantIncomingMappings(mappings = []) {
+  const incomingByParticipantId = new Map();
+  mappings.forEach((mapping) => {
+    const participantId = normalizeString(mapping?.to?.participantId, "");
+    if (!participantId) {
+      return;
+    }
+    const existingMappings = incomingByParticipantId.get(participantId) ?? [];
+    existingMappings.push(mapping);
+    incomingByParticipantId.set(participantId, existingMappings);
+  });
+  return incomingByParticipantId;
+}
+
+function buildParticipantCatalog(reactionFlow = {}) {
+  const participants = Array.isArray(reactionFlow?.participants) ? reactionFlow.participants : [];
+  const operators = Array.isArray(reactionFlow?.operators) ? reactionFlow.operators : [];
+  const participantById = new Map(participants.map((participant) => [normalizeString(participant?.id, ""), participant]));
+  const operatorById = new Map(operators.map((operator) => [normalizeString(operator?.id, ""), operator]));
+  return {
+    participantById,
+    operatorById,
+  };
+}
+
+function collectBoundarySourcesForTargetParticipant(
+  startParticipantId = "",
+  {
+    incomingByParticipantId = new Map(),
+    participantById = new Map(),
+    boundarySourceIds = new Set(),
+  } = {}
+) {
+  const sourceRecords = new Map();
+  const visitedParticipantIds = new Set();
+  const pendingParticipantIds = [normalizeString(startParticipantId, "")].filter(Boolean);
+
+  while (pendingParticipantIds.length) {
+    const currentParticipantId = pendingParticipantIds.pop();
+    if (!currentParticipantId || visitedParticipantIds.has(currentParticipantId)) {
+      continue;
+    }
+    visitedParticipantIds.add(currentParticipantId);
+    const incomingMappings = incomingByParticipantId.get(currentParticipantId) ?? [];
+    incomingMappings.forEach((mapping) => {
+      const sourceParticipantId = normalizeString(mapping?.from?.participantId, "");
+      if (!sourceParticipantId) {
+        return;
+      }
+      if (boundarySourceIds.has(sourceParticipantId)) {
+        if (!sourceRecords.has(sourceParticipantId)) {
+          sourceRecords.set(sourceParticipantId, {
+            participantId: sourceParticipantId,
+            anchorId: normalizeString(mapping?.from?.anchorId, "root"),
+          });
+        }
+        return;
+      }
+      const sourceParticipant = participantById.get(sourceParticipantId) ?? null;
+      if (sourceParticipant && getParticipantLane(sourceParticipant) === 1) {
+        return;
+      }
+      pendingParticipantIds.push(sourceParticipantId);
+    });
+  }
+
+  return sourceRecords;
+}
+
 function buildTransfers({
-  mappings = [],
+  reactionFlow = {},
+  importedParticipants = [],
   participantIdToAssemblyId = new Map(),
   memberMaps = new Map(),
   stageById = new Map(),
-  addWarning = () => {},
+  addFallback = () => {},
 }) {
+  const mappings = Array.isArray(reactionFlow?.mappings) ? reactionFlow.mappings : [];
+  const { participantById } = buildParticipantCatalog(reactionFlow);
+  const incomingByParticipantId = buildParticipantIncomingMappings(mappings);
+  const boundarySourceIds = new Set(
+    importedParticipants
+      .filter((participant) => normalizeString(participant?.side, "") === "reactant")
+      .map((participant) => normalizeString(participant?.id, ""))
+      .filter(Boolean)
+  );
+  const boundaryTargets = importedParticipants.filter(
+    (participant) => normalizeString(participant?.side, "") === "product"
+  );
   const usedTransferIds = new Set();
   const transferStageIds = new Map();
+  const transfers = [];
 
-  const transfers = mappings
-    .map((mapping, index) => {
-      const sourceParticipantId = normalizeString(mapping?.from?.participantId, "");
-      const targetParticipantId = normalizeString(mapping?.to?.participantId, "");
+  boundaryTargets.forEach((targetParticipant, targetIndex) => {
+    const targetParticipantId = normalizeString(targetParticipant?.id, "");
+    const targetAssemblyId = participantIdToAssemblyId.get(targetParticipantId) ?? "";
+    if (!targetParticipantId || !targetAssemblyId) {
+      return;
+    }
+    const incomingMappings = incomingByParticipantId.get(targetParticipantId) ?? [];
+    if (!incomingMappings.length) {
+      return;
+    }
+
+    const sourceRecordsByParticipantId = new Map();
+    incomingMappings.forEach((targetMapping) => {
+      const upstreamParticipantId = normalizeString(targetMapping?.from?.participantId, "");
+      const upstreamSourceRecords = collectBoundarySourcesForTargetParticipant(upstreamParticipantId, {
+        incomingByParticipantId,
+        participantById,
+        boundarySourceIds,
+      });
+      upstreamSourceRecords.forEach((sourceRecord, sourceParticipantId) => {
+        if (!sourceRecordsByParticipantId.has(sourceParticipantId)) {
+          sourceRecordsByParticipantId.set(sourceParticipantId, {
+            ...sourceRecord,
+            targetMapping,
+          });
+        }
+      });
+    });
+
+    if (!sourceRecordsByParticipantId.size && boundarySourceIds.size === 1) {
+      const [sourceParticipantId] = [...boundarySourceIds];
+      sourceRecordsByParticipantId.set(sourceParticipantId, {
+        participantId: sourceParticipantId,
+        anchorId: "root",
+        targetMapping: incomingMappings[0],
+      });
+      addFallback(
+        "five-lane-source-collapsed",
+        "Composer collapsed a lane-1 helper branch back to the primary imported reactant.",
+        `participants[${targetIndex}]`
+      );
+    }
+
+    sourceRecordsByParticipantId.forEach((sourceRecord, sourceIndex) => {
+      const sourceParticipantId = normalizeString(sourceRecord?.participantId, "");
       const sourceAssemblyId = participantIdToAssemblyId.get(sourceParticipantId) ?? "";
-      const targetAssemblyId = participantIdToAssemblyId.get(targetParticipantId) ?? "";
-      const sourceMemberId = memberMaps.get(sourceParticipantId)?.get(mapping?.from?.anchorId) ?? "";
-      const targetMemberId = memberMaps.get(targetParticipantId)?.get(mapping?.to?.anchorId) ?? "";
+      const sourceMemberId =
+        memberMaps.get(sourceParticipantId)?.get(sourceRecord?.anchorId) ??
+        [...(memberMaps.get(sourceParticipantId)?.values() ?? [])][0] ??
+        "";
+      const targetMemberId =
+        memberMaps.get(targetParticipantId)?.get(sourceRecord?.targetMapping?.to?.anchorId) ??
+        [...(memberMaps.get(targetParticipantId)?.values() ?? [])][0] ??
+        "";
       if (!sourceAssemblyId || !targetAssemblyId || !sourceMemberId || !targetMemberId) {
-        addWarning(
-          "mapping-skipped-missing-participant",
-          "Composer skipped a mapping that referenced a participant or anchor missing from the handoff.",
-          `mappings[${index}]`
-        );
-        return null;
+        return;
       }
       const transferId = allocateUniqueId(
-        mapping?.id,
-        `transfer_${index + 1}`,
+        sourceRecord?.targetMapping?.id,
+        `transfer_${targetIndex + 1}_${sourceIndex + 1}`,
         usedTransferIds
       );
-      const stageId = normalizeString(mapping?.stageId, "");
+      const stageId = normalizeString(sourceRecord?.targetMapping?.stageId, "");
       if (stageId) {
         transferStageIds.set(transferId, stageId);
       }
-      return {
+      transfers.push({
         id: transferId,
         source: {
           assemblyId: sourceAssemblyId,
@@ -337,10 +485,10 @@ function buildTransfers({
           assemblyId: targetAssemblyId,
           memberId: targetMemberId,
         },
-        t: buildTransferTime(mapping, stageById),
-      };
-    })
-    .filter(Boolean);
+        t: buildTransferTime(sourceRecord?.targetMapping, stageById),
+      });
+    });
+  });
 
   return {
     transfers,
@@ -421,9 +569,13 @@ export function importReactionFlowToComposerDraft(reactionFlow = {}, options = {
   const addFallback = buildIssueCollector(fallbacks);
   const nowIso = typeof options?.nowIso === "function" ? options.nowIso : () => new Date().toISOString();
 
-  const participants = Array.isArray(reactionFlow?.participants) ? reactionFlow.participants : [];
-  if (!participants.length) {
+  const allParticipants = Array.isArray(reactionFlow?.participants) ? reactionFlow.participants : [];
+  if (!allParticipants.length) {
     throw new Error("Reaction handoff did not include any participants.");
+  }
+  const participants = allParticipants.filter((participant) => isComposerBoundaryParticipant(participant));
+  if (!participants.length) {
+    throw new Error("Reaction handoff did not include any importable reactant or product participants.");
   }
 
   const stageRecords = buildStageRecords(reactionFlow);
@@ -436,11 +588,12 @@ export function importReactionFlowToComposerDraft(reactionFlow = {}, options = {
     memberMaps,
   });
   const { transfers, transferStageIds } = buildTransfers({
-    mappings: Array.isArray(reactionFlow?.mappings) ? reactionFlow.mappings : [],
+    reactionFlow,
+    importedParticipants: participants,
     participantIdToAssemblyId,
     memberMaps,
     stageById,
-    addWarning,
+    addFallback,
   });
   const reactionStages = buildReactionStages(stageRecords, transfers.map((transfer) => transfer.id), transferStageIds);
   const sceneStart = stageRecords[0]?.start ?? 0;

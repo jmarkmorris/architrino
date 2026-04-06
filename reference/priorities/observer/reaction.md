@@ -33,8 +33,9 @@ It does not own:
 - The repository already has a dedicated `Reaction Designer` scene and a first-class standalone Reaction app runtime built around the reaction canvas.
 - The current deployment already has a dedicated Reaction entrypoint, though some launcher-era shared-root cleanup still remains.
 - The live manual workflow is lane-based, with reactants on the left, products on the right, and operator lanes between them.
-- The current add flow visibly supports reactants, products, polarity transforms, dissociate, associate, and center-assembly additions.
-- The operator registry includes dissociate and associate handling, but the full user-facing grammar still needs to read as one coherent system.
+- The current add flow visibly supports reactants, products, polarity transforms, dissociate, associate, `Pass Thru`, and center-assembly additions.
+- Reaction now enforces a strict visible five-lane grammar: lane 1 to lane 2 to lane 3 to lane 4 to lane 5, with no same-lane or skip-lane mappings on the accepted path.
+- The operator registry now includes `Dissociate`, `Associate`, and `Pass Thru`, and the grammar panel reflects the adjacent-lane-only model.
 - Mappings are authored manually by choosing a source anchor and then a valid destination anchor.
 - Conservation and validity checks now run through dedicated mapping-rule runtimes instead of being scattered through UI conditionals.
 - Composite participants, binary selection, anchor state, participant mutation, participant rendering, and binary glyph rendering already live in dedicated runtimes with local automated tests.
@@ -44,6 +45,7 @@ It does not own:
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 - The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
 - The standalone Reaction app now has a first built-in solved-reaction library seed, with free neutron beta decay loading by default when startup finds no authored canvas state to preserve.
+- Accepted built-in library documents and contract examples now carry explicit five-lane placement and `Pass Thru` carry-through steps rather than forward-skip shortcuts.
 
 ## Design
 
@@ -82,7 +84,7 @@ Current intended interaction model:
 - authors choose or place reactants and products;
 - the app shows explicit attachment points on hierarchy rows;
 - mappings are authored from a valid source anchor to a valid destination anchor;
-- a mapping is a visible authored corridor rather than just an annotation;
+- a mapping is a visible authored corridor rather than just an annotation, and every forward corridor step advances exactly one lane;
 - and center assemblies plus operator lanes can act as conservative junctions where the reaction requires them.
 
 The live UI should continue becoming more self-explanatory through:
@@ -102,6 +104,7 @@ Core rules:
 - one mapping connects one source to one destination at first pass;
 - mappings should be allowed only when source and target conserve the same `electrino` and `positrino` inventory for the modeled unit;
 - accepted mappings should carry provenance even when the app or solver must infer leaf-level detail to keep the ledger honest;
+- accepted mappings may only connect adjacent lanes in the visible five-lane surface grammar;
 - invalid targets should deactivate rather than allowing invalid mappings to be drawn;
 - and operator or assembly behavior should remain conservative under the same mapping and inventory rules as the rest of the surface.
 
