@@ -55,9 +55,15 @@ node scripts/build-scene-graph.mjs --write
 node scripts/smoke-option3.mjs
 ```
 
-`validate-content` also attempts built-in Reaction library drift checks for
-entries whose solver path still closes exactly. When a checked-in built-in
-fixture is now historical and the current solver no longer closes it exactly,
-the validator reports a note instead of failing pre-commit.
+`validate-content` also regenerates the build-time built-in Reaction library
+artifacts under `content/generated/reaction-built-in-library/`.
+
+The generated library manifest drives the reaction app dropdown and default
+autoload behavior:
+- all exact solver-backed entries are included;
+- up to the top 5 non-exact entries are also included and flagged as
+  `[non-exact]`;
+- if no exact entries exist, the best-ranked non-exact entry becomes the
+  default on refresh.
 
 If `--write` updates index or graph files intentionally, include those file changes in your commit.

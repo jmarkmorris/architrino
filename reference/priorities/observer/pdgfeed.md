@@ -353,7 +353,7 @@ The first exported `solver-request/v1` candidate should follow these rules:
 
 The first exported `policy` baseline should be:
 
-- `recruitmentMode: "forbid"`
+- `recruitmentMode: "allow-if-needed"`
 - `lateBosonCollapseMode: "allow-exact"`
 - `weakChannelMode: "v1-core-provenance-only"`
 - `carryThroughMode: "exact-first"`

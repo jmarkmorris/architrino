@@ -35,17 +35,19 @@
 - When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
+- In user-facing communication, use plain language and avoid internal software jargon. Do not use terms such as `seam`, `anchor`, `root`, `composition root`, `wiring`, `headless`, or similar insider shorthand unless they are literal code identifiers, file names, UI labels, or direct quotations.
+- If a technical term cannot be avoided, explain it immediately in ordinary language.
 
 ## SWE Architecture and Modularity
 
 - Prefer small, single-purpose modules over extending large coordinator files.
 - Always inspect the relevant code paths and rendered structure before proposing or applying a fix; do not guess from symptoms or screenshots alone when the implementation can be examined directly.
-- Treat `app.js` and similarly large entrypoint/runtime files as composition roots and wiring layers, not as the long-term home for new feature logic.
-- When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes as thin wiring only.
+- Treat `app.js` and similarly large entrypoint/runtime files as startup and assembly files, not as the long-term home for new feature logic.
+- When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes limited to straightforward setup only.
 - Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.
 - If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
-- If a refactor is too large to finish in one pass, still isolate the new work behind a clean seam so later extraction is straightforward instead of leaving another layer of spaghetti.
+- If a refactor is too large to finish in one pass, still isolate the new work behind a small dedicated module or helper so later extraction is straightforward instead of leaving another layer of spaghetti.
 - Reaction solver lane geometry must have one source of truth. Use the explicit periodic-table-style surface grid model and dedicated lane-slot elements for runtime lane centers; do not duplicate lane widths/gaps in both CSS and JS, infer visible centers from rendered content offsets, or hide spacing in ad hoc per-column padding.
 
 ## Commit Audits (Run Every Turn Before Commit)

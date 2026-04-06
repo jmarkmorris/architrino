@@ -184,21 +184,7 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
             return;
           }
           mapSvg?.appendChild?.(createCompositeBusPath({ startX, startY, endX, endY }));
-          return;
         }
-        const sourceAnchors = Array.from(
-          surface?.querySelectorAll?.(
-            `.composer-reaction-canvas-anchor[data-composite-participant-id="${escapeCssSelector(participant.id)}"][data-composite-source-key]`
-          ) ?? []
-        );
-        sourceAnchors.forEach((sourceAnchor) => {
-          const { startX, startY, endX, endY } = getTrimmedRouteEndpoints(
-            sourceAnchor,
-            collector,
-            bounds
-          );
-          mapSvg?.appendChild?.(createCompositeBusPath({ startX, startY, endX, endY }));
-        });
       });
   }
 

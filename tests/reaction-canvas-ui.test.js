@@ -153,16 +153,16 @@ test("reaction canvas no longer exposes a right-click root menu", () => {
 });
 
 test("reaction canvas exposes clear and solve actions in the reaction app shell and keeps them runtime-owned", () => {
-  const reactionSolverExecutionSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionSolverExecutionRuntime.js", import.meta.url),
-    "utf8"
-  );
   const mappingRuntimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasMappingRuntime.js", import.meta.url),
     "utf8"
   );
   const reactionCommitStateSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCommitStateRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const documentRuntimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasDocumentRuntime.js", import.meta.url),
     "utf8"
   );
   const reactionAppRuntimeSource = readFileSync(
@@ -299,11 +299,7 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
   );
   assert.match(
     runtimeSource,
-    /function replaceSnapshot\(snapshot = \{\}, options = \{\}\)/
-  );
-  assert.match(
-    runtimeSource,
-    /async function solveReactionCanvas\(\)/
+    /createCanvasDocumentRuntime = defaultCreateCanvasDocumentRuntime/
   );
   assert.match(
     runtimeSource,
@@ -318,68 +314,60 @@ test("reaction canvas exposes clear and solve actions in the reaction app shell 
     /solveButton\.addEventListener\("click",\s*async \(\) => \{\s*await solveReactionCanvas\(\);/s
   );
   assert.match(
-    runtimeSource,
-    /resetSolveDerivedArtifacts\(\);/
+    documentRuntimeSource,
+    /function replaceSnapshot\(snapshot = \{\}, replaceOptions = \{\}\)/
   );
   assert.match(
-    runtimeSource,
-    /const solution = await Promise\.resolve\(\s*solveSnapshot\(\s*\{\s*participants:\s*cloneSerializableValue\(state\.participants\),\s*mappings:\s*cloneSerializableValue\(state\.mappings\),/s
+    documentRuntimeSource,
+    /async function solveReactionCanvas\(\)/
+  );
+  assert.match(
+    documentRuntimeSource,
+    /const solution = await Promise\.resolve\(\s*solveSnapshot\(buildSerializableSnapshot\(\),/s
   );
   assert.match(
     runtimeSource,
     /replaceSnapshot,/
   );
   assert.match(
-    runtimeSource,
+    documentRuntimeSource,
     /const result = solution\?\.result \?\? null;/
   );
   assert.match(
-    runtimeSource,
-    /Solve v1 only supports reactants, products, center assemblies, and existing operators on the canvas\./
+    documentRuntimeSource,
+    /const solvedSnapshot = buildReactionSnapshotFromSolverResult\(result\);/
   );
   assert.doesNotMatch(
-    runtimeSource,
-    /Remove center bosons first\./
+    documentRuntimeSource,
+    /resetSolveDerivedArtifacts\(\);/
   );
   assert.doesNotMatch(
-    runtimeSource,
-    /Remove center bosons or operators first\./
+    documentRuntimeSource,
+    /buildReactionSolveState as defaultBuildSolveState/
   );
   assert.match(
-    runtimeSource,
-    /applySolvePlan\(\{/
+    documentRuntimeSource,
+    /replaceSnapshot\(solvedSnapshot,\s*\{\s*announce: false,\s*\}\);/
   );
   assert.match(
-    runtimeSource,
-    /result,\s*participants: state\.participants,\s*getParticipantById: findParticipantById,/s
+    documentRuntimeSource,
+    /import \{ buildReactionSnapshotFromSolverResult \} from "\.\/ReactionSolverResultAdapterRuntime\.js";/
   );
   assert.match(
-    runtimeSource,
-    /result,[\s\S]*?createOperatorParticipant,/s
-  );
-  assert.match(
-    runtimeSource,
-    /markParticipantAutoDissociated,/
-  );
-  assert.match(
-    runtimeSource,
-    /buildReactionSolverExecutionStatusNote\(solution\?\.execution\)/
-  );
-  assert.match(
-    runtimeSource,
+    documentRuntimeSource,
     /state\.isSolving = true;/
   );
   assert.match(
-    runtimeSource,
-    /setStatus\("Running external Reaction solve\.\.\."\);/
+    documentRuntimeSource,
+    /setStatus\("Sending authored Reaction request to solver\.\.\."\);/
   );
   assert.match(
-    runtimeSource,
-    /normalizeText\(solution\?\.planDescription\) \|\| describeSolvePlan\(\{\}\)/
+    documentRuntimeSource,
+    /typeof solveSnapshot !== "function"/
   );
   assert.match(
-    reactionSolverExecutionSource,
-    /export function buildReactionSolverExecutionStatusNote\(_execution = null\)\s*\{\s*return "";\s*\}/
+    documentRuntimeSource,
+    /normalizeText\(solution\?\.planDescription\) \|\| normalizeText\(result\?\.summary\?\.outcome\) \|\| "a result"/
   );
   assert.match(
     runtimeSource,
@@ -537,7 +525,7 @@ test("composite right-click dissociation marks the existing composite instead of
   );
 });
 
-test("mapping from a composite reactant child auto-marks the composite as dissociated", () => {
+test("mapping from a composite reactant child no longer auto-marks the composite as dissociated", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
@@ -546,56 +534,28 @@ test("mapping from a composite reactant child auto-marks the composite as dissoc
     new URL("../src/apps/reaction/ReactionCanvasMappingRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function markCompositeReactantDissociatedForNodeKey\(nodeKey,\s*role = ""\)/
   );
-  assert.match(
-    runtimeSource,
-    /if \(role !== "reactant" \|\| !nodeKey\) \{\s*return false;\s*\}/
-  );
-  assert.match(
-    runtimeSource,
-    /if \(!participant \|\| participant\.side !== "reactant" \|\| !isCompositeParticipant\(participant\)\) \{\s*return false;\s*\}/
-  );
-  assert.match(
-    runtimeSource,
-    /if \(!rootNode\?\.id \|\| String\(rootNode\.id\) === String\(nodeId \?\? ""\)\) \{\s*return false;\s*\}/
-  );
-  assert.match(
-    runtimeSource,
-    /participant\.isAutoDissociatedComposite = true;/
-  );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function markParticipantAutoDissociated\(participantOrId = null\) \{/
   );
-  assert.match(
+  assert.doesNotMatch(
     mappingRuntimeSource,
     /markCompositeReactantDissociatedForNodeKey\(sourceKey,\s*sourceRole\);/
   );
 });
 
-test("solve resets all solver-generated participants and auto dissociation before rebuilding mappings", () => {
+test("solve no longer patches prior solver artifacts before rebuilding the canvas", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function resetSolveDerivedArtifacts\(\)/
-  );
-  assert.match(
-    runtimeSource,
-    /state\.participants = state\.participants\.filter\(\(participant\) => !participant\?\.isSolveGenerated\);/
-  );
-  assert.match(
-    runtimeSource,
-    /if \(participant\?\.isAutoDissociatedComposite\) \{\s*participant\.isAutoDissociatedComposite = false;\s*\}/
-  );
-  assert.match(
-    runtimeSource,
-    /state\.mappings = \[\];/
   );
 });
 
@@ -757,33 +717,17 @@ test("participant menu exposes dissociate only for reactant composites", () => {
   );
 });
 
-test("reactant to dissociate mappings auto-create center assemblies from the source node", () => {
+test("reactant to dissociate mappings no longer auto-create center assemblies from the source node", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function buildAutoGeneratedDissociateAssemblies\(sourceKey = ""\)/
   );
-  assert.match(
-    runtimeSource,
-    /templateId:\s*"free_architrinos"/
-  );
-  assert.match(
-    runtimeSource,
-    /templateId:\s*"noether_core"/
-  );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
     /function syncAutoGeneratedDissociateAssembliesForOperator\(operatorId = ""\)/
-  );
-  assert.match(
-    runtimeSource,
-    /sourceRole === "reactant"[\s\S]*?targetRole === "operator-input"[\s\S]*?findParticipantById\(targetParticipantId\)\?\.templateId === "dissociate"/
-  );
-  assert.match(
-    runtimeSource,
-    /addOrReplaceMapping\(\s*buildNodeKey\(operator\.id,\s*operatorNode\.id\),\s*"operator-output",[\s\S]*?"operator-input"/
   );
 });

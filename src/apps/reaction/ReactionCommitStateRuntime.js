@@ -14,6 +14,10 @@ export function createReactionCommitStateRuntime(options = {}) {
     typeof options?.getSnapshot === "function"
       ? options.getSnapshot
       : () => ({ participants: [], mappings: [] });
+  const validateSnapshot =
+    typeof options?.validateSnapshot === "function"
+      ? options.validateSnapshot
+      : () => ({ valid: true, diagnostics: [], message: "" });
   const now =
     typeof options?.now === "function"
       ? options.now
@@ -30,6 +34,26 @@ export function createReactionCommitStateRuntime(options = {}) {
       (Array.isArray(snapshot?.participants) && snapshot.participants.length > 0) ||
       (Array.isArray(snapshot?.mappings) && snapshot.mappings.length > 0)
     );
+  }
+
+  function getSnapshotValidation(snapshot = getSnapshot()) {
+    if (!hasContent(snapshot)) {
+      return {
+        valid: false,
+        diagnostics: [],
+        message: "",
+      };
+    }
+    const validation = validateSnapshot(snapshot);
+    const diagnostics = Array.isArray(validation?.diagnostics) ? validation.diagnostics : [];
+    const firstErrorMessage =
+      diagnostics.find((diagnostic) => String(diagnostic?.severity ?? "").trim().toLowerCase() === "error")
+        ?.message ?? "";
+    return {
+      valid: validation?.valid !== false && !firstErrorMessage,
+      diagnostics,
+      message: String(validation?.message ?? firstErrorMessage ?? "").trim(),
+    };
   }
 
   function reset(options = {}) {
@@ -58,7 +82,7 @@ export function createReactionCommitStateRuntime(options = {}) {
   }
 
   function acceptCurrentSnapshot(snapshot = getSnapshot()) {
-    if (!hasContent(snapshot)) {
+    if (!hasContent(snapshot) || !getSnapshotValidation(snapshot).valid) {
       return null;
     }
     state.acceptedSnapshotSignature = buildReactionCommitSnapshotSignature(snapshot);
@@ -69,8 +93,10 @@ export function createReactionCommitStateRuntime(options = {}) {
 
   function getCommitState(snapshot = getSnapshot()) {
     const snapshotHasContent = hasContent(snapshot);
+    const snapshotValidation = getSnapshotValidation(snapshot);
     const accepted =
       snapshotHasContent &&
+      snapshotValidation.valid &&
       !!state.acceptedSnapshotSignature &&
       buildReactionCommitSnapshotSignature(snapshot) === state.acceptedSnapshotSignature;
     return {
@@ -78,7 +104,7 @@ export function createReactionCommitStateRuntime(options = {}) {
       acceptedAt: accepted ? state.acceptedAt : "",
       hasContent: snapshotHasContent,
       needsReaccept: !accepted && state.needsReaccept,
-      canAccept: snapshotHasContent,
+      canAccept: snapshotHasContent && snapshotValidation.valid,
       canExport: accepted,
     };
   }
@@ -100,6 +126,7 @@ export function createReactionCommitStateRuntime(options = {}) {
     acceptCurrentSnapshot,
     buildExportReview,
     getCommitState,
+    getSnapshotValidation,
     observeSnapshot,
     reset,
   };

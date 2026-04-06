@@ -258,17 +258,18 @@ This is a normalization and ranking pass, not a license to widen the early searc
 
 #### Spacetime Recruitment And Higgs-Cluster Closure
 
-The solver should have an explicit policy for adding spacetime-derived material such as `Higgs Cluster` instead of smuggling it in as an invisible convenience.
+The solver should have an explicit policy for adding spacetime-derived material such as `2H` and `4H` supplements instead of smuggling it in as an invisible convenience.
 
 Recommended rule:
 
 - do not recruit spacetime inputs during the first authored-source closure pass;
-- if authored sources plus their justified dissociations cannot close the remaining targets, compute the remaining exact ledger deficit;
-- then ask whether the active solve policy permits recruitment from spacetime-like sources such as `Higgs Cluster`;
-- if recruitment is allowed, add those recruited assemblies explicitly as solver-created inputs with a clear provenance tag and a real search cost;
-- and require the resulting plan to close more exactly than the unrecruited alternative, rather than merely adding decorative completeness.
+- if authored sources plus their justified dissociations cannot close the remaining targets, compute the remaining exact core deficit;
+- then run the late recruitment sequence in a fixed order: no recruitment, then one explicit `2H` reactant recruit, then one explicit `4H` reactant recruit;
+- treat the active request policy as `recruitmentMode: "allow-if-needed"` for this late sequence;
+- add any recruited assembly explicitly to the branch state as a solver-created reactant with provenance tags and a visible `recruit` step;
+- and require the recruited branch to win by achieving stronger exact closure than the unrecruited branch, rather than merely looking cleaner.
 
-This means spacetime recruitment is neither forbidden nor free. It is a late explicit solve family for exact closure when the conservative ledger says more source material is genuinely required.
+This means spacetime recruitment is neither early nor free. It is a late explicit solve family for exact closure when the conservative ledger says more source material is genuinely required, and it must be attempted in the concrete order `none -> 2H -> 4H`.
 
 #### State Expansion And Scoring
 
@@ -1003,13 +1004,14 @@ Multiple late-stage boson collapses are allowed in the same completed closure, b
 
 #### Rule 9: Recruit Spacetime Material Only As An Explicit Late Solve Family
 
-The solver may recruit spacetime-derived material such as `Higgs Cluster` only after authored-source closure and justified dissociation have failed to close the remaining targets exactly.
+The solver may recruit spacetime-derived material only after authored-source closure and justified dissociation have failed to close the remaining targets exactly.
 
 Recruitment is legal only when:
 
-- the active solve policy permits that recruitment family;
+- the active solve policy is `recruitmentMode: "allow-if-needed"`;
 - the current branch has an exact remaining ledger deficit that authored material cannot close;
 - the recruited material is added explicitly to the branch state with solver-created provenance;
+- the solver first tries no recruitment, then a single explicit `2H` recruit, and only then a single explicit `4H` recruit;
 - and the recruited branch scores better than the best unrecruited branch by achieving stronger exact closure.
 
 Spacetime recruitment is not allowed merely because it makes a branch cleaner, shorter, or more visually elegant. If authored material can already close the reaction exactly, the solver must prefer that authored-material closure over a recruited alternative.
@@ -1629,3 +1631,44 @@ Current:
 Objective:
 
 - keep the analyzable outlier list empty by ranking solver work against the frozen-manifest denominator and the contract-facing regression surface, so newly discovered misses become fresh regressions rather than lingering backlog as particle vocabulary and rule families expand.
+
+## Reaction-Side Solve Logic To Review For Relevance And Potential Incorporation
+
+The first-pass browser planner and projection stack have already been removed from the live Reaction path on this branch. The remaining audit surface is narrower but still important: Reaction still owns a nontrivial amount of semantic normalization, provenance classification, contract repair, and validation logic that should be classified as one of:
+
+- incorporate into the canonical external solver core;
+- move into a shared request/result contract or shared validator layer;
+- keep as a strict Reaction-side rendering or review boundary;
+- or delete because the contract should be explicit enough that the app no longer needs to infer or repair anything.
+
+### Highest-Priority Remaining Solver Or Shared-Contract Candidates
+
+- [`ReactionStructureMappingRuntime.js`](../../../src/apps/reaction/ReactionStructureMappingRuntime.js): `normalizeInventory`, `addInventories`, `classifyReactionNode`, and `evaluateReactionMappingCandidate` still define canonical inventory arithmetic, guessed-vs-direct provenance, binary-selector interpretation, and conservative mapping legality. This is solver/shared-domain logic, not app-only display logic.
+- [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js): `DEFAULT_POLICY`, `buildParticipantInventoryFlags`, `serializeParticipantNodes`, `serializeManualMappings`, and `buildPolicyRecord` still make solver-facing decisions inside Reaction. The exporter is not just serializing authored state; it is supplying default policy, inferring generation/family flags, classifying node inventories, labeling mapping kind, and computing conserved-ledger payloads.
+- [`ReactionSolverResultAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js): `buildParticipantFromResultRecord` and `buildOperatorFromResultRecord` still reconstruct participant/operator structures, hierarchy trees, labels, and anchor identities from partial contract data. If `solver-result/v1` is the true render boundary, Reaction should not need to rebuild semantics from `templateId`, `type`, placement, and a few mapping hints.
+- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js): `resolveParticipantIdentity`, `normalizeSupportedOperatorTemplateId`, `inferOperatorLaneIndex`, and `inferOperatorSurfaceRowIndex` still repair incomplete `reaction-flow` documents by inferring missing identity and layout. That inference should move into document generation or a shared import normalizer rather than stay hidden in the app.
+
+### Validation And Acceptance Semantics Still Living In Reaction
+
+- [`ReactionFlowExportRuntime.js`](../../../src/apps/reaction/ReactionFlowExportRuntime.js): `buildParticipantRole`, `getParticipantLaneNumber`, `validateSnapshotEndpoint`, and `validateSnapshotMapping` still encode canonical endpoint-role, lane-number, and anchor-instance rules for `reaction-flow/v1`. If these are real contract rules, they should not exist only in the export path.
+- [`ReactionSurfaceValidationRuntime.js`](../../../src/apps/reaction/ReactionSurfaceValidationRuntime.js): `buildReactionSurfaceValidation` still decides when authored participants or operators are illegally left open. Because [`ReactionAppRuntime.js`](../../../src/apps/reaction/ReactionAppRuntime.js) and [`ReactionCommitStateRuntime.js`](../../../src/apps/reaction/ReactionCommitStateRuntime.js) use that result to gate acceptance/export, this is no longer mere UI convenience; it is contract-affecting validation.
+- [`ReactionMappingRulesRuntime.js`](../../../src/apps/reaction/ReactionMappingRulesRuntime.js): `evaluateOperatorOutputLedger`, `evaluateOperatorStructureCompatibility`, and `evaluateOperatorOutputCandidate` still define operator-output legality, structure compatibility, and partial-routing rules. That is effectively solve-adjacent rule evaluation.
+
+### Review UI Still Recomputes Solver-Like Summaries
+
+- [`ReactionCanvasUiRuntime.js`](../../../src/apps/reaction/ReactionCanvasUiRuntime.js): local helpers such as `ledgerFitsWithin`, `ledgersMatch`, `formatLedger`, and especially `getOperatorLedgerSummary` still recompute operator ledger state from authored mappings. This duplicates rule semantics in the UI coordinator instead of consuming a shared summary/validation service.
+- [`ReactionCanvasLegibilityRuntime.js`](../../../src/apps/reaction/ReactionCanvasLegibilityRuntime.js): `buildReactionLegibilitySnapshot` turns mapping validity and operator ledger state into workflow guidance such as "conservative surface," "invalid corridor," and "open operator." The wording is UI-owned, but the validity classification it depends on is shared semantics.
+- [`ReactionParticipantRenderRuntime.js`](../../../src/apps/reaction/ReactionParticipantRenderRuntime.js): operator badges, warning classes, and tooltips still depend on locally computed ledger summaries. Rendering can stay app-side, but the summary it consumes should come from one shared source of truth rather than ad hoc UI recomputation.
+
+### Remaining Transport And Adapter Decisioning To Shrink
+
+- [`main.js`](../../../src/apps/reaction/main.js): the app still chooses its own solve bridge by selecting between the browser HTTP bridge and the external runtime. If Reaction is meant to "just do what it is told," it should ideally receive one explicit solve bridge rather than carry transport-selection policy.
+- [`ReactionSolverContractRuntime.js`](../../../src/apps/reaction/ReactionSolverContractRuntime.js), [`ReactionSolverBrowserRuntime.js`](../../../src/apps/reaction/ReactionSolverBrowserRuntime.js), and [`ReactionSolverExternalRuntime.js`](../../../src/apps/reaction/ReactionSolverExternalRuntime.js): these files are now mostly bridge code, but they still build requests, pass policy through, and own timeout/error/transport selection concerns. Keep only the minimal boundary needed to invoke the external solver.
+- [`ReactionSolverRequestAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestAdapterRuntime.js): `buildOperatorAnchorIdIndex`, `applyBinarySelectionsFromRequestParticipant`, and `createParticipantFromRequestRecord` still reconstruct structure, infer binary selections by ledger matching, and derive operator anchors from manual mappings. That is acceptable only if request review must remain editable and the request contract intentionally omits explicit render detail.
+- [`ReactionSolverContractResponseRuntime.js`](../../../src/apps/reaction/ReactionSolverContractResponseRuntime.js): `describeReactionSolverResult` still interprets solver `steps` into app-side summary language. Low priority, but this can likely move into the solver response or be deleted in favor of a thinner review payload.
+
+### Logic That Should Stay Reaction-Owned Unless The Contract Expands
+
+- [`ReactionStructureDescriptorRuntime.js`](../../../src/apps/reaction/ReactionStructureDescriptorRuntime.js) and [`ReactionParticipantRenderRuntime.js`](../../../src/apps/reaction/ReactionParticipantRenderRuntime.js): render-tree construction and DOM rendering should stay in Reaction as long as they stop inferring hidden solver semantics.
+- [`ReactionSolvedLibraryRuntime.js`](../../../src/apps/reaction/ReactionSolvedLibraryRuntime.js), [`ReactionLibraryCandidateRuntime.js`](../../../src/apps/reaction/ReactionLibraryCandidateRuntime.js), and [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): these should remain thin review-boundary modules, but only if request/result documents become explicit enough that they no longer repair meaning during import.
+- [`ReactionObjectRegistryData.js`](../../../src/apps/reaction/ReactionObjectRegistryData.js) and [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js): placement and render grammar belong near the app, but solver-facing inference helpers such as `inferReactionGenerationFromLabel` and `inferReactionTemplateIdFromStructure` should move out if the solver depends on them.

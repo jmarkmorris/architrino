@@ -128,7 +128,7 @@
     "preserveManualState": true
   },
   "policy": {
-    "recruitmentMode": "forbid",
+    "recruitmentMode": "allow-if-needed",
     "lateBosonCollapseMode": "allow-exact",
     "weakChannelMode": "v1-core-provenance-only",
     "carryThroughMode": "exact-first"

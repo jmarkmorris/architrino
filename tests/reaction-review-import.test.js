@@ -91,20 +91,10 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
   return errors;
 }
 
-test("PDG solver-request review import yields a reviewable snapshot plus accepted-flow provenance", () => {
+test("PDG solver-request review import yields a reviewable snapshot plus provenance metadata", () => {
   const request = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
-  const schema = readJson("src/contracts/reaction-flow/v1/schema.json");
   const candidate = buildReactionReviewCandidateFromSolverRequest(request);
-  const document = buildReactionFlowDocument({
-    ...candidate.exportOverrides,
-    review: {
-      status: "accepted",
-      acceptedAt: "2026-04-04T10:00:00.000Z",
-    },
-    snapshot: candidate.snapshot,
-  });
 
-  assert.deepEqual(validateAgainstSchema(document, schema), []);
   assert.equal(candidate.reviewInput.origin.sourceKind, "pdg-ingest");
   assert.equal(candidate.reviewInput.origin.sourceDocumentId, "pdg-proposal:muon_decay");
   assert.equal(candidate.reviewInput.upstreamContext.sourceSchema, "pdg-proposal/v1");
@@ -117,20 +107,18 @@ test("PDG solver-request review import yields a reviewable snapshot plus accepte
   assert.equal(candidate.snapshot.participants[0].tags.includes("pdg-id:mu-"), true);
   assert.equal(candidate.snapshot.participants[1].label, "Pro Electron");
   assert.equal(candidate.snapshot.participants[2].label, "Anti Electron Neutrino");
-  assert.equal(document.review.status, "accepted");
-  assert.equal(document.provenance.sourceDocumentIds[0], "pdg-proposal:muon_decay");
-  assert.deepEqual(document.provenance.reviewInput, {
-    schema: "solver-request/v1",
-    requestId: "muon_decay",
-    origin: {
-      sourceKind: "pdg-ingest",
-      sourceDocumentId: "pdg-proposal:muon_decay",
-      title: "Muon decay",
-    },
-    upstreamContext: request.upstreamContext,
-  });
-  assert.equal(document.participants[0].provenanceId, "solver-request-participant:reactant_pro_muon_1");
-  assert.equal(document.participants[0].tags.includes("pdg:species:muon"), true);
+  assert.throws(
+    () =>
+      buildReactionFlowDocument({
+        ...candidate.exportOverrides,
+        review: {
+          status: "accepted",
+          acceptedAt: "2026-04-04T10:00:00.000Z",
+        },
+        snapshot: candidate.snapshot,
+      }),
+    /all visible required connectors to be connected/i
+  );
 });
 
 test("reaction review import rejects non solver-request input", () => {

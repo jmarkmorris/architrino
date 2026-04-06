@@ -35,3 +35,14 @@ test("route render runtime returns the canvas route scheduling interface", () =>
   assert.equal(typeof runtime.createCompositeBusPath, "function");
   assert.equal(typeof runtime.getTrimmedRouteEndpoints, "function");
 });
+
+test("route render runtime no longer looks for legacy composite source anchors", async () => {
+  const fs = await import("node:fs/promises");
+  const runtimeSource = await fs.readFile(
+    new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+
+  assert.doesNotMatch(runtimeSource, /data-composite-source-key/);
+  assert.doesNotMatch(runtimeSource, /data-composite-participant-id/);
+});

@@ -4,6 +4,7 @@ import {
   getReactionParticipantPlacementClass,
   isReactionObjectPlacementAllowed,
 } from "./ReactionObjectRegistryRuntime.js";
+import { buildReactionSurfaceValidation } from "./ReactionSurfaceValidationRuntime.js";
 
 const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
 const DEFAULT_STAGE_ID = "stage_manual_authoring";
@@ -328,6 +329,12 @@ export function buildReactionFlowDocument(options = {}) {
   mappings.forEach((mapping) => {
     validateSnapshotMapping(mapping, participantsById);
   });
+  const surfaceValidation = buildReactionSurfaceValidation(snapshot);
+  if (!surfaceValidation.valid && options?.allowIncompleteSnapshot !== true) {
+    throw new Error(
+      `Reaction flow export requires all visible required connectors to be connected. ${surfaceValidation.message || "Open required connectors remain on the surface."}`
+    );
+  }
 
   const documentParticipants = nonOperatorParticipants.map((participant) => ({
     id: normalizeText(participant?.id),

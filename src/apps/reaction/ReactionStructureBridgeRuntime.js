@@ -314,6 +314,7 @@ function createNoetherAssemblyNode(id, templateId, options = {}) {
   const normalizedTemplateId = normalizeStructureAssemblyTemplateId(templateId);
   const corePolarities = getStructureAssemblyCorePolarities(normalizedTemplateId);
   const { label = getStructureAssemblyDisplayLabel(normalizedTemplateId, "Noether Assembly") } = options;
+  const polarityCounts = new Map();
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.PARTICLE,
@@ -323,12 +324,14 @@ function createNoetherAssemblyNode(id, templateId, options = {}) {
       family: STRUCTURE_CLASSIFICATION_FAMILIES.BOSON,
       source: "derived",
     },
-    children: corePolarities.map((polarity, index) =>
-      createNoetherCoreNode(`${id}/core_${polarity}_${index + 1}`, {
+    children: corePolarities.map((polarity) => {
+      const nextPolarityIndex = (polarityCounts.get(polarity) ?? 0) + 1;
+      polarityCounts.set(polarity, nextPolarityIndex);
+      return createNoetherCoreNode(`${id}/core_${polarity}_${nextPolarityIndex}`, {
         label: formatNoetherCoreLabel(polarity),
         polarity,
-      })
-    ),
+      });
+    }),
   });
 }
 

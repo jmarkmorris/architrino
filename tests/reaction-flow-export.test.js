@@ -107,19 +107,18 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
           surfaceRowIndex: 0,
         },
         {
-          id: "assembly_free_architrinos",
-          side: "reactant",
-          templateId: "free_architrinos",
-          label: "Free Architrinos",
-          surfaceColumn: "center-assembly",
-          surfaceRowIndex: 0,
-        },
-        {
           id: "product_proton",
           side: "product",
           templateId: "proton",
           label: "Proton",
           surfaceRowIndex: 0,
+        },
+        {
+          id: "product_electron",
+          side: "product",
+          templateId: "electron",
+          label: "Pro Electron",
+          surfaceRowIndex: 1,
         },
         {
           id: "op_dissociate_1",
@@ -148,6 +147,14 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
           targetRole: "product",
           sourceAnchorInstanceIndex: 0,
         },
+        {
+          id: "map_operator_to_product_2",
+          sourceKey: "op_dissociate_1::dissociate_root",
+          targetKey: "product_electron::electron_root",
+          sourceRole: "operator-output",
+          targetRole: "product",
+          sourceAnchorInstanceIndex: 0,
+        },
       ],
     },
   });
@@ -167,14 +174,19 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
       anchorId: "proton_root",
       role: "product",
     },
+    {
+      participantId: "product_electron",
+      anchorId: "electron_root",
+      role: "product",
+    },
   ]);
   assert.deepEqual(reactionFlow.operators[0].layout, {
     lane: 0,
     row: 0,
     slot: 0,
   });
-  assert.equal(reactionFlow.participants[1].side, "intermediate");
-  assert.equal(reactionFlow.participants[1].layout.column, "center");
+  assert.equal(reactionFlow.participants[1].side, "product");
+  assert.equal(reactionFlow.participants[1].layout.column, "right");
   assert.deepEqual(reactionFlow.mappings[0].from, {
     participantId: "reactant_neutron",
     anchorId: "neutron_root",
@@ -200,14 +212,29 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
     snapshot: {
       participants: [
         {
-          id: "reactant_neutron",
+          id: "reactant_electron",
           side: "reactant",
-          templateId: "neutron",
-          label: "Neutron",
+          templateId: "electron",
+          label: "Pro Electron",
+          surfaceRowIndex: 0,
+        },
+        {
+          id: "product_electron",
+          side: "product",
+          templateId: "electron",
+          label: "Pro Electron",
           surfaceRowIndex: 0,
         },
       ],
-      mappings: [],
+      mappings: [
+        {
+          id: "map_direct_electron",
+          sourceKey: "reactant_electron::electron_root",
+          targetKey: "product_electron::electron_root",
+          sourceRole: "reactant",
+          targetRole: "product",
+        },
+      ],
     },
   });
 
@@ -215,6 +242,66 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
     status: "accepted",
     acceptedAt: "2026-04-03T09:00:00.000Z",
   });
+});
+
+test("reaction flow exporter rejects snapshots with open required connectors", () => {
+  assert.throws(
+    () =>
+      buildReactionFlowDocument({
+        reactionId: "open_connector_export",
+        snapshot: {
+          participants: [
+            {
+              id: "reactant_electron",
+              side: "reactant",
+              templateId: "electron",
+              label: "Pro Electron",
+              surfaceRowIndex: 0,
+            },
+            {
+              id: "product_electron",
+              side: "product",
+              templateId: "electron",
+              label: "Pro Electron",
+              surfaceRowIndex: 0,
+            },
+          ],
+          mappings: [],
+        },
+      }),
+    /all visible required connectors to be connected/i
+  );
+});
+
+test("reaction flow exporter can serialize incomplete snapshots when explicitly allowed", () => {
+  const document = buildReactionFlowDocument({
+    reactionId: "open_connector_export",
+    allowIncompleteSnapshot: true,
+    snapshot: {
+      participants: [
+        {
+          id: "reactant_electron",
+          side: "reactant",
+          templateId: "electron",
+          label: "Pro Electron",
+          surfaceRowIndex: 0,
+        },
+        {
+          id: "product_electron",
+          side: "product",
+          templateId: "electron",
+          label: "Pro Electron",
+          surfaceRowIndex: 0,
+        },
+      ],
+      mappings: [],
+    },
+  });
+
+  assert.equal(document.schema, "reaction-flow/v1");
+  assert.deepEqual(document.review, { status: "draft" });
+  assert.equal(document.participants.length, 2);
+  assert.equal(document.mappings.length, 0);
 });
 
 test("reaction flow exporter rejects unsupported sink-side-only connector mappings", () => {

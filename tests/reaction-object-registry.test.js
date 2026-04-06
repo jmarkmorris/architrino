@@ -34,6 +34,15 @@ test("reaction object registry exposes canonical placement and connector policy 
   assert.equal(getReactionAnchorAttachmentSide("center", "target"), "left");
 });
 
+test("reaction object registry resolves anchor attachment sides from the registry placement policy", () => {
+  assert.equal(getReactionAnchorAttachmentSide("reactant", "source"), "right");
+  assert.equal(getReactionAnchorAttachmentSide("operator-input", "target"), "left");
+  assert.equal(getReactionAnchorAttachmentSide("operator-output", "source"), "right");
+  assert.equal(getReactionAnchorAttachmentSide("product", "target"), "left");
+  assert.equal(getReactionAnchorAttachmentSide("center", "source"), "right");
+  assert.equal(getReactionAnchorAttachmentSide("center", "target"), "left");
+});
+
 test("reaction object registry keeps Noether Pair and Noether Quad out of the center lane", () => {
   assert.deepEqual(getReactionObjectSpec("noether_pair")?.allowedPlacementClasses, [
     "reactant",

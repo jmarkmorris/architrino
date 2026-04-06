@@ -65,15 +65,15 @@ try {
     acceptedAt: args.acceptedAt,
   });
   process.stdout.write(`built-in reaction library sync mode: ${result.mode}\n`);
-  process.stdout.write(`- Entries targeted: ${result.entryCount}\n`);
+  process.stdout.write(`- Requests scanned: ${result.requestCount}\n`);
+  process.stdout.write(`- Entries emitted: ${result.entryCount}\n`);
+  process.stdout.write(`- Exact entries: ${result.exactEntryCount}\n`);
+  process.stdout.write(`- Non-exact entries: ${result.nonExactEntryCount}\n`);
+  if (result.defaultEntryId) {
+    process.stdout.write(`- Default entry: ${result.defaultEntryId}\n`);
+  }
   printItemList("updated", result.changedPaths);
   printItemList("drift", result.driftPaths);
-  if (Array.isArray(result.skippedEntries) && result.skippedEntries.length) {
-    process.stdout.write(`- skipped non-exact entries (${result.skippedEntries.length})\n`);
-    for (const skippedEntry of result.skippedEntries) {
-      process.stdout.write(`  - ${skippedEntry.outputPath}: ${skippedEntry.message}\n`);
-    }
-  }
   if (Array.isArray(result.generationErrors) && result.generationErrors.length) {
     process.stdout.write(`- generation errors (${result.generationErrors.length})\n`);
     for (const error of result.generationErrors) {

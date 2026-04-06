@@ -148,7 +148,15 @@ test("reaction-flow export keeps neutral kaon identities distinct on the shared 
         label: "Neutral Kaon (s anti-d)",
       }),
     ],
-    mappings: [],
+    mappings: [
+      {
+        id: "map_k0_identity",
+        sourceKey: "reactant_k0::reactant_k0_structure",
+        targetKey: "product_sk0::product_sk0_structure",
+        sourceRole: "reactant",
+        targetRole: "product",
+      },
+    ],
   };
 
   const document = buildReactionFlowDocument({

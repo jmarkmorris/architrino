@@ -588,7 +588,7 @@
       "properties": {
         "recruitmentMode": {
           "type": "string",
-          "enum": ["forbid", "allow-if-needed"]
+          "enum": ["allow-if-needed"]
         },
         "lateBosonCollapseMode": {
           "type": "string",

@@ -1,10 +1,13 @@
 import { createReactionCommitStateRuntime } from "./ReactionCommitStateRuntime.js";
 import { createReactionFlowExportRuntime } from "./ReactionFlowExportRuntime.js";
+import { createReactionLibraryPickerRuntime } from "./ReactionLibraryPickerRuntime.js";
 import { navigateStandaloneReactionHome } from "./ReactionAppModeRuntime.js";
 import { createReactionCanvasUiRuntime } from "./ReactionCanvasUiRuntime.js";
+import { buildReactionSurfaceValidation } from "./ReactionSurfaceValidationRuntime.js";
 import {
   REACTION_BUILTIN_LIBRARY_ENTRIES,
   loadDefaultReactionBuiltInLibraryEntry,
+  loadReactionBuiltInLibraryManifest,
   loadReactionBuiltInLibraryEntry,
 } from "./ReactionBuiltInLibraryRuntime.js";
 import { buildReactionReviewCandidateFromSolverRequest } from "./ReactionReviewImportRuntime.js";
@@ -51,8 +54,9 @@ export function createReactionAppRuntime(deps) {
     emptyState = null,
     mapSvg = null,
     menu = null,
-    librarySelect = null,
-    libraryQuickList = null,
+    libraryPickerRoot = null,
+    libraryPickerTrigger = null,
+    libraryPickerMenu = null,
     libraryLoadButton = null,
     acceptButton = null,
     exportButton = null,
@@ -64,10 +68,17 @@ export function createReactionAppRuntime(deps) {
     createCommitRuntime = createReactionCommitStateRuntime,
     createCanvasRuntime = createReactionCanvasUiRuntime,
     createFlowExportRuntime = createReactionFlowExportRuntime,
+    createLibraryPickerRuntime = createReactionLibraryPickerRuntime,
     builtInLibraryEntries = REACTION_BUILTIN_LIBRARY_ENTRIES,
+    loadReactionLibraryManifest = loadReactionBuiltInLibraryManifest,
     loadReactionLibraryEntry = loadReactionBuiltInLibraryEntry,
     loadDefaultReactionLibraryEntry = loadDefaultReactionBuiltInLibraryEntry,
   } = deps;
+
+  let resolvedBuiltInLibraryEntries = Array.isArray(builtInLibraryEntries) ? [...builtInLibraryEntries] : [];
+  let resolvedDefaultBuiltInLibraryEntryId =
+    normalizeText(resolvedBuiltInLibraryEntries.find((entry) => entry?.isDefault)?.id) ||
+    normalizeText(resolvedBuiltInLibraryEntries[0]?.id);
 
   function setStatus(message = "") {
     if (!(statusElement instanceof HTMLElement)) {
@@ -92,6 +103,7 @@ export function createReactionAppRuntime(deps) {
   let currentDocumentOptions = null;
   const commitRuntime = createCommitRuntime({
     getSnapshot: () => latestSnapshot,
+    validateSnapshot: buildReactionSurfaceValidation,
   });
   const canvasRuntime = createCanvasRuntime({
     root,
@@ -136,6 +148,11 @@ export function createReactionAppRuntime(deps) {
     semanticTags: ["manual-authoring", "reaction-designer"],
     suggestedSceneId: "reaction_designer_scene",
   });
+  const libraryPickerRuntime = createLibraryPickerRuntime({
+    root: libraryPickerRoot,
+    triggerButton: libraryPickerTrigger,
+    menuElement: libraryPickerMenu,
+  });
 
   function buildReviewImportStatusMessage(reviewInput = {}) {
     const reviewTitle = normalizeText(reviewInput?.origin?.title);
@@ -147,70 +164,26 @@ export function createReactionAppRuntime(deps) {
   }
 
   function buildBuiltInLibraryStatusMessage(libraryEntry = {}) {
-    const entryTitle = normalizeText(libraryEntry?.title);
+    const entryTitle = normalizeText(libraryEntry?.displayTitle) || normalizeText(libraryEntry?.title);
     return `${
       entryTitle ? `Built-in reaction loaded: ${entryTitle}.` : "Built-in reaction loaded."
     } Accept it to emit accepted reaction-flow/v1 JSON downstream of review.`;
   }
 
   function syncBuiltInLibraryControls(selectedEntryId = "") {
-    if (!(librarySelect instanceof HTMLSelectElement)) {
-      if (!(libraryQuickList instanceof HTMLElement)) {
-        return;
-      }
+    if (!libraryPickerRuntime || typeof libraryPickerRuntime.setEntries !== "function") {
+      return;
     }
-    const entries = Array.isArray(builtInLibraryEntries) ? builtInLibraryEntries : [];
-    if (librarySelect instanceof HTMLSelectElement) {
-      librarySelect.innerHTML = "";
-      entries.forEach((entry) => {
-        const option = globalThis.document?.createElement?.("option") ?? null;
-        if (!option) {
-          return;
-        }
-        option.value = normalizeText(entry?.id);
-        option.textContent = normalizeText(entry?.title) || option.value;
-        librarySelect.appendChild(option);
-      });
-    }
+    const entries = Array.isArray(resolvedBuiltInLibraryEntries) ? resolvedBuiltInLibraryEntries : [];
     const defaultSelectedId =
       normalizeText(selectedEntryId) ||
-      normalizeText(librarySelect instanceof HTMLSelectElement ? librarySelect.value : "") ||
+      normalizeText(libraryPickerRuntime.getSelectedId?.()) ||
+      normalizeText(resolvedDefaultBuiltInLibraryEntryId) ||
       normalizeText(entries.find((entry) => entry?.isDefault)?.id) ||
       normalizeText(entries[0]?.id);
-    if (defaultSelectedId && librarySelect instanceof HTMLSelectElement) {
-      librarySelect.value = defaultSelectedId;
-    }
-    if (librarySelect instanceof HTMLSelectElement) {
-      librarySelect.disabled = entries.length === 0;
-    }
-    if (libraryQuickList instanceof HTMLElement) {
-      libraryQuickList.innerHTML = "";
-      entries.forEach((entry) => {
-        const button = globalThis.document?.createElement?.("button") ?? null;
-        if (!(button instanceof HTMLButtonElement)) {
-          return;
-        }
-        button.type = "button";
-        button.className = "reaction-app-library-chip";
-        const entryId = normalizeText(entry?.id);
-        if (entryId && entryId === defaultSelectedId) {
-          button.classList.add("is-active");
-        }
-        button.textContent = normalizeText(entry?.title) || entryId;
-        button.addEventListener("click", async () => {
-          if (librarySelect instanceof HTMLSelectElement && entryId) {
-            librarySelect.value = entryId;
-          }
-          syncBuiltInLibraryControls(entryId);
-          try {
-            await loadSelectedBuiltInReactionLibraryEntry(entryId);
-          } catch (_error) {
-            setStatus("Built-in reaction load failed.");
-          }
-        });
-        libraryQuickList.appendChild(button);
-      });
-    }
+    libraryPickerRuntime.setEntries(entries, {
+      selectedId: defaultSelectedId,
+    });
     if (libraryLoadButton instanceof HTMLButtonElement) {
       libraryLoadButton.disabled = entries.length === 0;
       libraryLoadButton.setAttribute("aria-disabled", entries.length === 0 ? "true" : "false");
@@ -260,9 +233,12 @@ export function createReactionAppRuntime(deps) {
 
   function syncReviewControls() {
     const commitState = commitRuntime.getCommitState(latestSnapshot);
+    const snapshotValidation = commitRuntime.getSnapshotValidation(latestSnapshot);
     if (reviewStateElement instanceof HTMLElement) {
       if (!commitState.hasContent) {
         setReviewState("Draft. Build a reaction, then accept it for handoff.");
+      } else if (!snapshotValidation.valid) {
+        setReviewState("Draft. Connect every required visible connector before acceptance.");
       } else if (commitState.status === "accepted") {
         const acceptedAtLabel = formatAcceptedAt(commitState.acceptedAt);
         setReviewState(
@@ -295,7 +271,17 @@ export function createReactionAppRuntime(deps) {
     const commitState = commitRuntime.acceptCurrentSnapshot(latestSnapshot);
     syncReviewControls();
     if (!commitState) {
-      setStatus("Build a reaction before accepting it for handoff.");
+      const snapshotValidation = commitRuntime.getSnapshotValidation(latestSnapshot);
+      if (!snapshotHasContent(latestSnapshot)) {
+        setStatus("Build a reaction before accepting it for handoff.");
+      } else if (!snapshotValidation.valid) {
+        setStatus(
+          snapshotValidation.message ||
+            "Connect every required visible connector before accepting this reaction."
+        );
+      } else {
+        setStatus("Build a reaction before accepting it for handoff.");
+      }
       return false;
     }
     setStatus("Reaction accepted for handoff. Export now emits accepted reaction-flow/v1 JSON.");
@@ -312,7 +298,14 @@ export function createReactionAppRuntime(deps) {
       setStatus("Accept the reaction before exporting handoff JSON.");
       return false;
     }
-    const reactionFlowDocument = exportReactionFlowDocument();
+    let reactionFlowDocument = null;
+    try {
+      reactionFlowDocument = exportReactionFlowDocument();
+    } catch (error) {
+      const message = normalizeText(error?.message);
+      setStatus(message || "Reaction export failed.");
+      return false;
+    }
     if (
       typeof Blob !== "function" ||
       !globalThis.URL ||
@@ -341,18 +334,39 @@ export function createReactionAppRuntime(deps) {
   async function loadSelectedBuiltInReactionLibraryEntry(entryId = "", options = {}) {
     const resolvedEntryId =
       normalizeText(entryId) ||
-      (librarySelect instanceof HTMLSelectElement ? normalizeText(librarySelect.value) : "");
+      normalizeText(libraryPickerRuntime?.getSelectedId?.());
     if (!resolvedEntryId) {
       setStatus("Choose a built-in reaction before loading.");
       return null;
     }
-    const payload = await loadReactionLibraryEntry(resolvedEntryId);
+    const payload = await loadReactionLibraryEntry(resolvedEntryId, {
+      entries: resolvedBuiltInLibraryEntries,
+      defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
+    });
     return loadBuiltInReactionLibraryCandidate(payload, options);
   }
 
   async function init() {
     latestSnapshot = canvasRuntime.getSnapshot();
     syncReviewControls();
+    if (
+      (!Array.isArray(resolvedBuiltInLibraryEntries) || resolvedBuiltInLibraryEntries.length === 0) &&
+      typeof loadReactionLibraryManifest === "function"
+    ) {
+      try {
+        const manifest = await loadReactionLibraryManifest();
+        resolvedBuiltInLibraryEntries = Array.isArray(manifest?.entries) ? [...manifest.entries] : [];
+        resolvedDefaultBuiltInLibraryEntryId =
+          normalizeText(manifest?.defaultEntryId) ||
+          normalizeText(resolvedBuiltInLibraryEntries.find((entry) => entry?.isDefault)?.id) ||
+          normalizeText(resolvedBuiltInLibraryEntries[0]?.id);
+      } catch (error) {
+        const message = normalizeText(error?.message);
+        if (message) {
+          setStatus(`Built-in reaction library manifest load failed: ${message}.`);
+        }
+      }
+    }
     syncBuiltInLibraryControls();
     if (acceptButton instanceof HTMLButtonElement) {
       acceptButton.addEventListener("click", () => {
@@ -387,7 +401,10 @@ export function createReactionAppRuntime(deps) {
     }
     if (!snapshotHasContent(latestSnapshot)) {
       try {
-        const libraryPayload = await loadDefaultReactionLibraryEntry();
+        const libraryPayload = await loadDefaultReactionLibraryEntry({
+          entries: resolvedBuiltInLibraryEntries,
+          defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
+        });
         loadBuiltInReactionLibraryCandidate(libraryPayload, { announce: false });
         syncReviewControls();
         setStatus(buildBuiltInLibraryStatusMessage(libraryPayload?.entry));
