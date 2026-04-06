@@ -1,7 +1,7 @@
 {
   "schema": "reaction-flow/v1",
-  "reactionId": "reaction_review_radiative_muon_decay_live_pdg",
-  "title": "Radiative muon decay (live PDG)",
+  "reactionId": "reaction_review_muon_decay_with_electron_positron_pair_live_pdg",
+  "title": "Muon decay with electron-positron pair (live PDG)",
   "review": {
     "status": "accepted",
     "acceptedAt": "2026-04-05T12:00:00.000Z"
@@ -90,17 +90,20 @@
       }
     },
     {
-      "id": "product_photon_4",
+      "id": "product_anti_electron_4",
       "side": "product",
-      "label": "Photon",
-      "structureKey": "photon",
-      "provenanceId": "solver-request-participant:product_photon_4",
+      "label": "Anti Electron",
+      "structureKey": "electron",
+      "provenanceId": "solver-request-participant:product_anti_electron_4",
       "tags": [
         "outgoing",
-        "photon",
-        "pdg:species:photon",
-        "pdg-id:gamma",
-        "pdg-name:gamma"
+        "electron",
+        "pdg:species:positron",
+        "pdg:generation:1",
+        "pdg-id:e+",
+        "generation:1",
+        "charged-lepton",
+        "pdg-name:e+"
       ],
       "layout": {
         "column": "right",
@@ -108,11 +111,32 @@
       }
     },
     {
-      "id": "center_weak-lepton-decay_radiative_source_core",
+      "id": "product_pro_electron_5",
+      "side": "product",
+      "label": "Pro Electron",
+      "structureKey": "electron",
+      "provenanceId": "solver-request-participant:product_pro_electron_5",
+      "tags": [
+        "outgoing",
+        "electron",
+        "pdg:species:electron",
+        "pdg:generation:1",
+        "pdg-id:e-",
+        "generation:1",
+        "charged-lepton",
+        "pdg-name:e-"
+      ],
+      "layout": {
+        "column": "right",
+        "row": 4
+      }
+    },
+    {
+      "id": "center_weak-lepton-decay_pair_source_core",
       "side": "intermediate",
       "label": "Pro Noether core",
       "structureKey": "noether_core",
-      "provenanceId": "solver-result-participant:center_weak-lepton-decay_radiative_source_core",
+      "provenanceId": "solver-result-participant:center_weak-lepton-decay_pair_source_core",
       "tags": [
         "center-assembly",
         "noether_core",
@@ -128,11 +152,11 @@
       }
     },
     {
-      "id": "center_weak-lepton-decay_radiative_free_architrinos",
+      "id": "center_weak-lepton-decay_pair_free_architrinos",
       "side": "intermediate",
       "label": "Free Architrinos",
       "structureKey": "free_architrinos",
-      "provenanceId": "solver-result-participant:center_weak-lepton-decay_radiative_free_architrinos",
+      "provenanceId": "solver-result-participant:center_weak-lepton-decay_pair_free_architrinos",
       "tags": [
         "center-assembly",
         "free_architrinos",
@@ -148,11 +172,11 @@
       }
     },
     {
-      "id": "center_weak-lepton-decay_radiative_noether_quad_1",
+      "id": "center_weak-lepton-decay_pair_noether_quad_1",
       "side": "reactant",
       "label": "Noether Quad",
       "structureKey": "noether_quad",
-      "provenanceId": "solver-result-participant:center_weak-lepton-decay_radiative_noether_quad_1",
+      "provenanceId": "solver-result-participant:center_weak-lepton-decay_pair_noether_quad_1",
       "tags": [
         "incoming",
         "auto-dissociated",
@@ -172,7 +196,7 @@
   ],
   "operators": [
     {
-      "id": "dissociate:weak-lepton-decay_radiative:source",
+      "id": "dissociate:weak-lepton-decay_pair:source",
       "type": "dissociate",
       "label": "Dissociate",
       "layout": {
@@ -190,14 +214,14 @@
       ],
       "outputs": [
         {
-          "participantId": "center_weak-lepton-decay_radiative_source_core",
-          "anchorId": "center_weak-lepton-decay_radiative_source_core/root",
+          "participantId": "center_weak-lepton-decay_pair_source_core",
+          "anchorId": "center_weak-lepton-decay_pair_source_core/root",
           "role": "center",
           "anchorInstanceIndex": 0
         },
         {
-          "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-          "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
           "role": "center",
           "anchorInstanceIndex": 0
         }
@@ -209,7 +233,7 @@
       ]
     },
     {
-      "id": "associate:weak-lepton-decay_radiative:1",
+      "id": "associate:weak-lepton-decay_pair:1",
       "type": "associate",
       "label": "Associate",
       "layout": {
@@ -220,14 +244,14 @@
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
-          "participantId": "center_weak-lepton-decay_radiative_source_core",
-          "anchorId": "center_weak-lepton-decay_radiative_source_core/root",
+          "participantId": "center_weak-lepton-decay_pair_source_core",
+          "anchorId": "center_weak-lepton-decay_pair_source_core/root",
           "role": "center",
           "anchorInstanceIndex": 1
         },
         {
-          "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-          "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
           "role": "center",
           "anchorInstanceIndex": 1
         }
@@ -246,7 +270,7 @@
       ]
     },
     {
-      "id": "associate:weak-lepton-decay_radiative:2",
+      "id": "associate:weak-lepton-decay_pair:2",
       "type": "associate",
       "label": "Associate",
       "layout": {
@@ -257,13 +281,13 @@
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
-          "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-          "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root",
+          "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+          "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root",
           "role": "reactant"
         },
         {
-          "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-          "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
           "role": "center",
           "anchorInstanceIndex": 2
         }
@@ -282,7 +306,7 @@
       ]
     },
     {
-      "id": "associate:weak-lepton-decay_radiative:3",
+      "id": "associate:weak-lepton-decay_pair:3",
       "type": "associate",
       "label": "Associate",
       "layout": {
@@ -293,13 +317,13 @@
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
-          "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-          "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root/core_pro_1",
+          "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+          "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root/core_pro_1",
           "role": "reactant"
         },
         {
-          "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-          "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
           "role": "center",
           "anchorInstanceIndex": 3
         }
@@ -318,7 +342,7 @@
       ]
     },
     {
-      "id": "associate:weak-lepton-decay_radiative:4",
+      "id": "associate:weak-lepton-decay_pair:4",
       "type": "associate",
       "label": "Associate",
       "layout": {
@@ -329,20 +353,57 @@
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
-          "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-          "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root",
+          "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+          "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root/core_anti_2",
           "role": "reactant"
         },
         {
-          "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-          "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root/core_anti_2",
-          "role": "reactant"
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
+          "role": "center",
+          "anchorInstanceIndex": 4
         }
       ],
       "outputs": [
         {
-          "participantId": "product_photon_4",
-          "anchorId": "product_photon_4/root",
+          "participantId": "product_anti_electron_4",
+          "anchorId": "product_anti_electron_4/root",
+          "role": "product"
+        }
+      ],
+      "tags": [
+        "operator",
+        "associate",
+        "solve-generated"
+      ]
+    },
+    {
+      "id": "associate:weak-lepton-decay_pair:5",
+      "type": "associate",
+      "label": "Associate",
+      "layout": {
+        "lane": 1,
+        "row": 0,
+        "slot": 11
+      },
+      "stageId": "stage_manual_authoring",
+      "inputs": [
+        {
+          "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+          "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root",
+          "role": "reactant"
+        },
+        {
+          "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+          "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
+          "role": "center",
+          "anchorInstanceIndex": 5
+        }
+      ],
+      "outputs": [
+        {
+          "participantId": "product_pro_electron_5",
+          "anchorId": "product_pro_electron_5/root",
           "role": "product"
         }
       ],
@@ -362,87 +423,87 @@
         "role": "reactant"
       },
       "to": {
-        "participantId": "dissociate:weak-lepton-decay_radiative:source",
-        "anchorId": "dissociate:weak-lepton-decay_radiative:source_root",
+        "participantId": "dissociate:weak-lepton-decay_pair:source",
+        "anchorId": "dissociate:weak-lepton-decay_pair:source_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "dissociate:weak-lepton-decay_radiative:source",
+      "viaOperatorId": "dissociate:weak-lepton-decay_pair:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_2",
       "from": {
-        "participantId": "dissociate:weak-lepton-decay_radiative:source",
-        "anchorId": "dissociate:weak-lepton-decay_radiative:source_root",
+        "participantId": "dissociate:weak-lepton-decay_pair:source",
+        "anchorId": "dissociate:weak-lepton-decay_pair:source_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "center_weak-lepton-decay_radiative_source_core",
-        "anchorId": "center_weak-lepton-decay_radiative_source_core/root",
+        "participantId": "center_weak-lepton-decay_pair_source_core",
+        "anchorId": "center_weak-lepton-decay_pair_source_core/root",
         "role": "center",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "dissociate:weak-lepton-decay_radiative:source",
+      "viaOperatorId": "dissociate:weak-lepton-decay_pair:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_3",
       "from": {
-        "participantId": "dissociate:weak-lepton-decay_radiative:source",
-        "anchorId": "dissociate:weak-lepton-decay_radiative:source_root",
+        "participantId": "dissociate:weak-lepton-decay_pair:source",
+        "anchorId": "dissociate:weak-lepton-decay_pair:source_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-        "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
         "role": "center",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "dissociate:weak-lepton-decay_radiative:source",
+      "viaOperatorId": "dissociate:weak-lepton-decay_pair:source",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_4",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_source_core",
-        "anchorId": "center_weak-lepton-decay_radiative_source_core/root",
+        "participantId": "center_weak-lepton-decay_pair_source_core",
+        "anchorId": "center_weak-lepton-decay_pair_source_core/root",
         "role": "center",
         "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:1",
-        "anchorId": "associate:weak-lepton-decay_radiative:1_root",
+        "participantId": "associate:weak-lepton-decay_pair:1",
+        "anchorId": "associate:weak-lepton-decay_pair:1_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:1",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_5",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-        "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
         "role": "center",
         "anchorInstanceIndex": 1
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:1",
-        "anchorId": "associate:weak-lepton-decay_radiative:1_root",
+        "participantId": "associate:weak-lepton-decay_pair:1",
+        "anchorId": "associate:weak-lepton-decay_pair:1_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:1",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_6",
       "from": {
-        "participantId": "associate:weak-lepton-decay_radiative:1",
-        "anchorId": "associate:weak-lepton-decay_radiative:1_root",
+        "participantId": "associate:weak-lepton-decay_pair:1",
+        "anchorId": "associate:weak-lepton-decay_pair:1_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -451,47 +512,47 @@
         "anchorId": "product_pro_electron_1/root",
         "role": "product"
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:1",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:1",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_7",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-        "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root",
+        "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+        "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root",
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:2",
-        "anchorId": "associate:weak-lepton-decay_radiative:2_root",
+        "participantId": "associate:weak-lepton-decay_pair:2",
+        "anchorId": "associate:weak-lepton-decay_pair:2_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:2",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:2",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_8",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-        "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
         "role": "center",
         "anchorInstanceIndex": 2
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:2",
-        "anchorId": "associate:weak-lepton-decay_radiative:2_root",
+        "participantId": "associate:weak-lepton-decay_pair:2",
+        "anchorId": "associate:weak-lepton-decay_pair:2_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:2",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:2",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_9",
       "from": {
-        "participantId": "associate:weak-lepton-decay_radiative:2",
-        "anchorId": "associate:weak-lepton-decay_radiative:2_root",
+        "participantId": "associate:weak-lepton-decay_pair:2",
+        "anchorId": "associate:weak-lepton-decay_pair:2_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -500,47 +561,47 @@
         "anchorId": "product_anti_electron_neutrino_2/root",
         "role": "product"
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:2",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:2",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_10",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-        "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root/core_pro_1",
+        "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+        "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root/core_pro_1",
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:3",
-        "anchorId": "associate:weak-lepton-decay_radiative:3_root",
+        "participantId": "associate:weak-lepton-decay_pair:3",
+        "anchorId": "associate:weak-lepton-decay_pair:3_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:3",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:3",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_11",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_free_architrinos",
-        "anchorId": "center_weak-lepton-decay_radiative_free_architrinos/root",
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
         "role": "center",
         "anchorInstanceIndex": 3
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:3",
-        "anchorId": "associate:weak-lepton-decay_radiative:3_root",
+        "participantId": "associate:weak-lepton-decay_pair:3",
+        "anchorId": "associate:weak-lepton-decay_pair:3_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:3",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:3",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_12",
       "from": {
-        "participantId": "associate:weak-lepton-decay_radiative:3",
-        "anchorId": "associate:weak-lepton-decay_radiative:3_root",
+        "participantId": "associate:weak-lepton-decay_pair:3",
+        "anchorId": "associate:weak-lepton-decay_pair:3_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -549,55 +610,105 @@
         "anchorId": "product_pro_muon_neutrino_3/root",
         "role": "product"
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:3",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:3",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_13",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-        "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root",
+        "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+        "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root/core_anti_2",
         "role": "reactant"
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:4",
-        "anchorId": "associate:weak-lepton-decay_radiative:4_root",
+        "participantId": "associate:weak-lepton-decay_pair:4",
+        "anchorId": "associate:weak-lepton-decay_pair:4_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:4",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:4",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_14",
       "from": {
-        "participantId": "center_weak-lepton-decay_radiative_noether_quad_1",
-        "anchorId": "center_weak-lepton-decay_radiative_noether_quad_1/root/core_anti_2",
-        "role": "reactant"
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
+        "role": "center",
+        "anchorInstanceIndex": 4
       },
       "to": {
-        "participantId": "associate:weak-lepton-decay_radiative:4",
-        "anchorId": "associate:weak-lepton-decay_radiative:4_root",
+        "participantId": "associate:weak-lepton-decay_pair:4",
+        "anchorId": "associate:weak-lepton-decay_pair:4_root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:4",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:4",
       "stageId": "stage_manual_authoring"
     },
     {
       "id": "mapping_15",
       "from": {
-        "participantId": "associate:weak-lepton-decay_radiative:4",
-        "anchorId": "associate:weak-lepton-decay_radiative:4_root",
+        "participantId": "associate:weak-lepton-decay_pair:4",
+        "anchorId": "associate:weak-lepton-decay_pair:4_root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "product_photon_4",
-        "anchorId": "product_photon_4/root",
+        "participantId": "product_anti_electron_4",
+        "anchorId": "product_anti_electron_4/root",
         "role": "product"
       },
-      "viaOperatorId": "associate:weak-lepton-decay_radiative:4",
+      "viaOperatorId": "associate:weak-lepton-decay_pair:4",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_16",
+      "from": {
+        "participantId": "center_weak-lepton-decay_pair_noether_quad_1",
+        "anchorId": "center_weak-lepton-decay_pair_noether_quad_1/root",
+        "role": "reactant"
+      },
+      "to": {
+        "participantId": "associate:weak-lepton-decay_pair:5",
+        "anchorId": "associate:weak-lepton-decay_pair:5_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
+      },
+      "viaOperatorId": "associate:weak-lepton-decay_pair:5",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_17",
+      "from": {
+        "participantId": "center_weak-lepton-decay_pair_free_architrinos",
+        "anchorId": "center_weak-lepton-decay_pair_free_architrinos/root",
+        "role": "center",
+        "anchorInstanceIndex": 5
+      },
+      "to": {
+        "participantId": "associate:weak-lepton-decay_pair:5",
+        "anchorId": "associate:weak-lepton-decay_pair:5_root",
+        "role": "operator-input",
+        "anchorInstanceIndex": 0
+      },
+      "viaOperatorId": "associate:weak-lepton-decay_pair:5",
+      "stageId": "stage_manual_authoring"
+    },
+    {
+      "id": "mapping_18",
+      "from": {
+        "participantId": "associate:weak-lepton-decay_pair:5",
+        "anchorId": "associate:weak-lepton-decay_pair:5_root",
+        "role": "operator-output",
+        "anchorInstanceIndex": 0
+      },
+      "to": {
+        "participantId": "product_pro_electron_5",
+        "anchorId": "product_pro_electron_5/root",
+        "role": "product"
+      },
+      "viaOperatorId": "associate:weak-lepton-decay_pair:5",
       "stageId": "stage_manual_authoring"
     }
   ],
@@ -610,17 +721,18 @@
   ],
   "provenance": {
     "sourceDocumentIds": [
-      "pdg-proposal:radiative_muon_decay.live-pdg"
+      "pdg-proposal:muon_decay_with_electron_positron_pair.live-pdg"
     ],
     "participantIds": [
       "reactant_pro_muon_1",
       "product_pro_electron_1",
       "product_anti_electron_neutrino_2",
       "product_pro_muon_neutrino_3",
-      "product_photon_4",
-      "center_weak-lepton-decay_radiative_source_core",
-      "center_weak-lepton-decay_radiative_free_architrinos",
-      "center_weak-lepton-decay_radiative_noether_quad_1"
+      "product_anti_electron_4",
+      "product_pro_electron_5",
+      "center_weak-lepton-decay_pair_source_core",
+      "center_weak-lepton-decay_pair_free_architrinos",
+      "center_weak-lepton-decay_pair_noether_quad_1"
     ],
     "mappingIds": [
       "mapping_1",
@@ -637,29 +749,32 @@
       "mapping_12",
       "mapping_13",
       "mapping_14",
-      "mapping_15"
+      "mapping_15",
+      "mapping_16",
+      "mapping_17",
+      "mapping_18"
     ],
     "reviewInput": {
       "schema": "solver-request/v1",
-      "requestId": "radiative_muon_decay.live-pdg",
+      "requestId": "muon_decay_with_electron_positron_pair.live-pdg",
       "origin": {
         "sourceKind": "pdg-ingest",
-        "sourceDocumentId": "pdg-proposal:radiative_muon_decay.live-pdg",
-        "title": "Radiative muon decay"
+        "sourceDocumentId": "pdg-proposal:muon_decay_with_electron_positron_pair.live-pdg",
+        "title": "Muon decay with electron-positron pair"
       },
       "upstreamContext": {
         "sourceSchema": "pdg-proposal/v1",
-        "proposalId": "radiative_muon_decay.live-pdg",
+        "proposalId": "muon_decay_with_electron_positron_pair.live-pdg",
         "reviewBoundary": "reaction-review",
         "source": {
           "edition": "2025",
-          "channelDescription": "mu- -> e- nubar_e nu_mu gamma",
+          "channelDescription": "mu- -> e- nubar_e nu_mu e+ e-",
           "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
-          "branchingDisplay": "(6.0+-0.5)E-8",
+          "branchingDisplay": "(3.4+-0.4)E-5",
           "sourceMode": "pdg.connect",
           "lookupParticleName": "mu-",
-          "pdgIdentifier": "S004.2/2025",
-          "liveCaseId": "radiative_muon_decay",
+          "pdgIdentifier": "S004.7/2025",
+          "liveCaseId": "muon_decay_with_electron_positron_pair",
           "contract": {
             "upstreamSchema": "pdg-proposal/v1",
             "downstreamSchema": "solver-request/v1",
@@ -703,6 +818,6 @@
       "pdg-ingest",
       "pdg-review"
     ],
-    "suggestedSceneId": "reaction_review_radiative_muon_decay_live_pdg_scene"
+    "suggestedSceneId": "reaction_review_muon_decay_with_electron_positron_pair_live_pdg_scene"
   }
 }

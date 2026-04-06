@@ -437,7 +437,7 @@ test("external solve-reaction CLI closes generic proton radiative weak channels 
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -2993,7 +2993,7 @@ test("external solve-reaction CLI closes charged pion to positron plus electron 
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3083,7 +3083,7 @@ test("external solve-reaction CLI closes neutral pion to two photons through the
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3201,7 +3201,7 @@ test("external solve-reaction CLI closes neutral pion to electron-positron throu
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3322,7 +3322,7 @@ test("external solve-reaction CLI closes neutral pion to electron-neutrino pair 
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3418,7 +3418,7 @@ test("external solve-reaction CLI falls back to a generic weak profile for neutr
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3615,7 +3615,7 @@ test("external solve-reaction CLI uses an authored reactant Noether Pair as a no
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3743,7 +3743,7 @@ test("external solve-reaction CLI treats upi0 and dpi0 as solver-equivalent neut
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3846,7 +3846,7 @@ test("external solve-reaction CLI falls back to the generic weak profile for muo
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -3998,7 +3998,7 @@ test("external solve-reaction CLI preserves authored manual operators, mappings,
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -4101,7 +4101,7 @@ test("external solve-reaction CLI counts authored manual mappings toward resolve
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",
@@ -4183,7 +4183,7 @@ test("external solve-reaction CLI preserves manual dissociation separately from 
       preserveManualState: true,
     },
     policy: {
-      recruitmentMode: "forbid",
+      recruitmentMode: "allow-if-needed",
       lateBosonCollapseMode: "allow-exact",
       weakChannelMode: "v1-core-provenance-only",
       carryThroughMode: "exact-first",

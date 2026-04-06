@@ -1,7 +1,7 @@
 {
   "schema": "reaction-flow/v1",
-  "reactionId": "reaction_review_charged_pion_to_muon_neutrino_live_pdg",
-  "title": "Charged pion to muon neutrino (live PDG)",
+  "reactionId": "reaction_review_charged_pion_to_muon_neutrino",
+  "title": "Charged pion to muon neutrino",
   "review": {
     "status": "accepted",
     "acceptedAt": "2026-04-05T12:00:00.000Z"
@@ -428,7 +428,7 @@
   ],
   "provenance": {
     "sourceDocumentIds": [
-      "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg"
+      "pdg-proposal:charged_pion_to_muon_neutrino"
     ],
     "participantIds": [
       "reactant_positive_pion_1",
@@ -452,25 +452,23 @@
     ],
     "reviewInput": {
       "schema": "solver-request/v1",
-      "requestId": "charged_pion_to_muon_neutrino.live-pdg",
+      "requestId": "charged_pion_to_muon_neutrino",
       "origin": {
         "sourceKind": "pdg-ingest",
-        "sourceDocumentId": "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg",
+        "sourceDocumentId": "pdg-proposal:charged_pion_to_muon_neutrino",
         "title": "Charged pion to muon neutrino"
       },
       "upstreamContext": {
         "sourceSchema": "pdg-proposal/v1",
-        "proposalId": "charged_pion_to_muon_neutrino.live-pdg",
+        "proposalId": "charged_pion_to_muon_neutrino",
         "reviewBoundary": "reaction-review",
         "source": {
-          "edition": "2025",
+          "edition": "2026",
           "channelDescription": "pi+ -> mu+ nu_mu",
-          "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
-          "branchingDisplay": "99.98770+-0.00004",
-          "sourceMode": "pdg.connect",
-          "lookupParticleName": "pi+",
-          "pdgIdentifier": "S008.1/2025",
-          "liveCaseId": "charged_pion_to_muon_neutrino",
+          "citation": "Local PDG fixture seed",
+          "branchingDisplay": "dominant charged pion decay channel",
+          "fixtureId": "charged_pion_to_muon_neutrino",
+          "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json",
           "contract": {
             "upstreamSchema": "pdg-proposal/v1",
             "downstreamSchema": "solver-request/v1",
@@ -492,13 +490,15 @@
         },
         "ranking": {
           "rank": 1,
-          "score": 100,
+          "score": 95,
           "reasons": [
-            "pdg-live-source",
+            "fixture-source",
             "all-participants-supported"
           ]
         },
-        "notes": []
+        "notes": [
+          "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+        ]
       }
     }
   },
@@ -514,6 +514,6 @@
       "pdg-ingest",
       "pdg-review"
     ],
-    "suggestedSceneId": "reaction_review_charged_pion_to_muon_neutrino_live_pdg_scene"
+    "suggestedSceneId": "reaction_review_charged_pion_to_muon_neutrino_scene"
   }
 }

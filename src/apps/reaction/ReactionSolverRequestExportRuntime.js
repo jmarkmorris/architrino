@@ -10,7 +10,7 @@ import {
 } from "./ReactionObjectRegistryRuntime.js";
 
 const DEFAULT_POLICY = Object.freeze({
-  recruitmentMode: "forbid",
+  recruitmentMode: "allow-if-needed",
   lateBosonCollapseMode: "allow-exact",
   weakChannelMode: "v1-core-provenance-only",
   carryThroughMode: "exact-first",
