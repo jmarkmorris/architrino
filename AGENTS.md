@@ -35,7 +35,7 @@
 - When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in the agent's ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
-- In user-facing communication, use plain language and avoid internal software jargon. Do not use terms such as `seam`, `anchor`, `root`, `composition root`, `wiring`, or similar insider shorthand unless they are literal code identifiers, file names, UI labels, or direct quotations.
+- In user-facing communication, use plain language and avoid internal software jargon. Do not use terms such as `seam`, `anchor`, `root`, `composition root`, `wiring`, `headless`, or similar insider shorthand unless they are literal code identifiers, file names, UI labels, or direct quotations.
 - If a technical term cannot be avoided, explain it immediately in ordinary language.
 
 ## SWE Architecture and Modularity
