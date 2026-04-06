@@ -3,6 +3,10 @@ import {
   getReactionObjectConnectorPolicy,
   getReactionParticipantPlacementClass,
 } from "./ReactionObjectRegistryRuntime.js";
+import {
+  getReactionSnapshotLaneNumber,
+  isAdjacentReactionLaneProgress,
+} from "./ReactionFlowLaneRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -39,6 +43,31 @@ export function buildReactionSurfaceValidation(snapshot = {}) {
   const participants = Array.isArray(snapshot?.participants) ? snapshot.participants : [];
   const mappings = Array.isArray(snapshot?.mappings) ? snapshot.mappings : [];
   const diagnostics = [];
+  const participantsById = new Map(
+    participants
+      .filter((participant) => normalizeText(participant?.id))
+      .map((participant) => [normalizeText(participant.id), participant])
+  );
+
+  mappings.forEach((mapping) => {
+    const sourceParticipantId = normalizeText(parseReactionNodeKey(mapping?.sourceKey).participantId);
+    const targetParticipantId = normalizeText(parseReactionNodeKey(mapping?.targetKey).participantId);
+    const sourceParticipant = participantsById.get(sourceParticipantId) ?? null;
+    const targetParticipant = participantsById.get(targetParticipantId) ?? null;
+    if (!sourceParticipant || !targetParticipant) {
+      return;
+    }
+    const sourceLane = getReactionSnapshotLaneNumber(sourceParticipant);
+    const targetLane = getReactionSnapshotLaneNumber(targetParticipant);
+    if (!isAdjacentReactionLaneProgress(sourceLane, targetLane)) {
+      diagnostics.push({
+        code: "lane-skip",
+        severity: "error",
+        message: `Mapping ${normalizeText(mapping?.id) || "(missing id)"} skips lanes: ${sourceLane} -> ${targetLane}.`,
+        path: "mappings",
+      });
+    }
+  });
 
   participants
     .filter((participant) => participant?.side !== "operator")

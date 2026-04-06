@@ -224,29 +224,39 @@ test(
     const root = new FakeElement("div");
     const triggerButton = new FakeButtonElement();
     const menuElement = new FakeElement("div");
-    const seenSelections = [];
+    const selections = [];
     root.appendChild(triggerButton);
     root.appendChild(menuElement);
 
-    createReactionLibraryPickerRuntime({
+    const runtime = createReactionLibraryPickerRuntime({
       root,
       triggerButton,
       menuElement,
       documentLike,
       windowLike,
-      onSelect: (entryId) => {
-        seenSelections.push(entryId);
+      onSelect: (entryId, entry) => {
+        selections.push({
+          entryId,
+          title: entry?.title,
+        });
       },
-    }).setEntries([
+    });
+
+    runtime.setEntries([
       { id: "muon_decay", title: "Muon decay" },
-      { id: "free_neutron_beta_decay", title: "Free neutron beta decay" },
+      { id: "pion_decay", title: "Pion decay" },
     ]);
 
     triggerButton.dispatchEvent("click");
-    menuElement.children[1]?.dispatchEvent("click");
+    menuElement.children[1].dispatchEvent("click");
 
-    assert.deepEqual(seenSelections, ["free_neutron_beta_decay"]);
-    assert.equal(triggerButton.textContent, "Free neutron beta decay");
-    assert.equal(menuElement.hidden, true);
+    assert.equal(runtime.getSelectedId(), "pion_decay");
+    assert.equal(triggerButton.textContent, "Pion decay");
+    assert.deepEqual(selections, [
+      {
+        entryId: "pion_decay",
+        title: "Pion decay",
+      },
+    ]);
   })
 );

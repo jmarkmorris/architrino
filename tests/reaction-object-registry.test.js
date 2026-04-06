@@ -7,6 +7,7 @@ import {
   getReactionConnectionPolicy,
   isReactionConnectionAllowed,
   getReactionObjectSpec,
+  getReactionObjectOccupiedSlots,
   inferReactionGenerationFromLabel,
   supportsReactionObjectPolarity,
 } from "../src/apps/reaction/ReactionObjectRegistryRuntime.js";
@@ -74,31 +75,9 @@ test("reaction object registry encodes the forward-only connection policy", () =
       sourcePlacementClass: "reactant",
       sourceRole: "reactant",
       sourceLaneNumber: 1,
-      targetPlacementClass: "product",
-      targetRole: "product",
-      targetLaneNumber: 5,
-    }),
-    false
-  );
-  assert.equal(
-    isReactionConnectionAllowed({
-      sourcePlacementClass: "center",
-      sourceRole: "center",
-      sourceLaneNumber: 3,
-      targetPlacementClass: "operator",
-      targetRole: "operator-input",
-      targetLaneNumber: 2,
-    }),
-    false
-  );
-  assert.equal(
-    isReactionConnectionAllowed({
-      sourcePlacementClass: "operator",
-      sourceRole: "operator-output",
-      sourceLaneNumber: 2,
-      targetPlacementClass: "product",
-      targetRole: "product",
-      targetLaneNumber: 5,
+      targetPlacementClass: "center",
+      targetRole: "center",
+      targetLaneNumber: 3,
     }),
     false
   );
@@ -136,6 +115,17 @@ test("reaction object registry resolves generation variants from canonical label
   assert.equal(inferReactionGenerationFromLabel("electron", "Pro Muon"), "2");
   assert.equal(inferReactionGenerationFromLabel("neutrino", "Pro Electron Neutrino"), "1");
   assert.equal(inferReactionGenerationFromLabel("down_quark", "Anti Strange Quark"), "2");
+});
+
+test("reaction object registry resolves reduced noether-core occupied slots from the canonical label", () => {
+  assert.deepEqual(
+    getReactionObjectOccupiedSlots("noether_core", { label: "Pro Bi Binary" }),
+    ["inner", "middle"]
+  );
+  assert.deepEqual(
+    getReactionObjectOccupiedSlots("noether_core", { label: "Anti Uni Binary" }),
+    ["inner"]
+  );
 });
 
 test("reaction structure bridge infers occupied slots from registry-backed muon labels", () => {

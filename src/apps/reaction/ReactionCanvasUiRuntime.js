@@ -78,9 +78,6 @@ import {
   shouldRenderReactionStructureDescriptorChildren,
 } from "./ReactionStructureDescriptorRuntime.js";
 import {
-  isReactionTargetTerminal,
-} from "./ReactionAnchorTerminalRuntime.js";
-import {
   cloneStructureNode,
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_KINDS,
@@ -115,6 +112,7 @@ const canvasTemplateMeta = Object.freeze({
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
+  pass_thru: { shortLabel: "Pt", accent: "#4aa8a0" },
   w_minus_boson: { shortLabel: "W-", accent: "#2d8cff" },
   w_plus_boson: { shortLabel: "W+", accent: "#ff5a4a" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
@@ -146,24 +144,32 @@ const operatorEntries = REACTION_OPERATOR_ENTRIES;
 export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
     laneIndex: 0,
-    templateId: "assembly",
-    label: "Assembly",
+    templateId: "left-operator",
+    label: "Lane 2",
     pickerEntries: Object.freeze([
       Object.freeze({
         templateId: "dissociate",
         label: "Dissociate",
+      }),
+      Object.freeze({
+        templateId: "pass_thru",
+        label: "Pass Thru",
       }),
     ]),
     enabled: true,
   }),
   Object.freeze({
     laneIndex: 1,
-    templateId: "operator",
-    label: "Operator",
+    templateId: "right-operator",
+    label: "Lane 4",
     pickerEntries: Object.freeze([
       Object.freeze({
         templateId: "associate",
         label: "Associate",
+      }),
+      Object.freeze({
+        templateId: "pass_thru",
+        label: "Pass Thru",
       }),
     ]),
     enabled: true,
@@ -335,7 +341,15 @@ function syncParticipantHierarchyForPolarity(participant) {
   if (!topNode) {
     return;
   }
-  topNode.label = `${polarity === "anti" ? "Anti" : "Pro"} Noether Core`;
+  if (participant.templateId === "noether_core") {
+    topNode.label = formatParticipantLabel(
+      participant.baseLabel || topNode.label || "Noether Core",
+      participant.templateId,
+      polarity
+    );
+  } else {
+    topNode.label = `${polarity === "anti" ? "Anti" : "Pro"} Noether Core`;
+  }
   topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
 }
 
@@ -614,14 +628,30 @@ function getParticipantCollectionKey(participant = null) {
   return participant?.side === "product" ? "product" : "reactant";
 }
 
-function canTargetMappingRole(role = "") {
-  const descriptor =
+function isSingleMappingAnchorRole(role = "") {
+  const normalizedRole =
     typeof role === "object" && role !== null
-      ? role
-      : {
-          role,
-        };
-  return isReactionTargetTerminal(descriptor);
+      ? String(role.role ?? "").trim()
+      : String(role ?? "").trim();
+  return normalizedRole === "reactant" || normalizedRole === "product";
+}
+
+function canTargetMappingRole(descriptor = "") {
+  const role =
+    descriptor && typeof descriptor === "object"
+      ? String(descriptor.role ?? "").trim()
+      : String(descriptor ?? "").trim();
+  const anchorInstanceIndex =
+    descriptor && typeof descriptor === "object"
+      ? normalizeAnchorInstanceIndex(descriptor.anchorInstanceIndex)
+      : null;
+  if (role === "product" || role === "operator-input") {
+    return true;
+  }
+  if (role !== "center") {
+    return false;
+  }
+  return anchorInstanceIndex === 0;
 }
 
 function getSlotNameFromCode(slotCode = "") {
@@ -964,7 +994,6 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     pruneRecentRouteState,
   } = anchorStateRuntime;
   const anchorRenderRuntime = createAnchorRenderRuntime({
-    canTargetMappingRole,
     findMappingsByNodeKey,
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
@@ -1569,40 +1598,31 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return 0;
     }
     let count = 0;
-    state.participants.forEach((participant) => {
-      const visit = (nodes = []) => {
-        nodes.forEach((node) => {
-          const nodeKey = buildNodeKey(participant.id, node.id);
-          if (participant.side === "product") {
-            if (!getAnchorAvailability("product", nodeKey).disabled) {
-              count += 1;
+    state.participants
+      .filter((participant) => participant.side === "product" || participant.side === "operator")
+      .forEach((participant) => {
+        const visit = (nodes = []) => {
+          nodes.forEach((node) => {
+            const nodeKey = buildNodeKey(participant.id, node.id);
+            if (participant.side === "product") {
+              if (!getAnchorAvailability("product", nodeKey).disabled) {
+                count += 1;
+              }
+            } else if (participant.side === "operator") {
+              const operatorNode = getOperatorNode(participant);
+              if (operatorNode && node.id === operatorNode.id) {
+                if (!getAnchorAvailability("operator-input", nodeKey).disabled) {
+                  count += 1;
+                }
+              }
             }
-          } else if (participant.side === "operator") {
-            const operatorNode = getOperatorNode(participant);
-            if (
-              operatorNode &&
-              node.id === operatorNode.id &&
-              !getAnchorAvailability("operator-input", nodeKey, 0).disabled
-            ) {
-              count += 1;
+            if (shouldRenderChildNodes(node)) {
+              visit(node.children);
             }
-          } else if (isCenterAssemblyParticipant(participant)) {
-            const rootNode = getParticipantRootNode(participant);
-            if (
-              rootNode &&
-              node.id === rootNode.id &&
-              !getAnchorAvailability("center", nodeKey, 0).disabled
-            ) {
-              count += 1;
-            }
-          }
-          if (shouldRenderChildNodes(node)) {
-            visit(node.children);
-          }
-        });
-      };
-      visit(participant.hierarchy);
-    });
+          });
+        };
+        visit(participant.hierarchy);
+      });
     return count;
   }
 
@@ -2472,10 +2492,10 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       participantId: options?.participantId,
       side: "operator",
       templateId: normalizedTemplateId,
-      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate"),
+      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Operator"),
       hierarchy: buildFallbackHierarchyForTemplate(
         normalizedTemplateId,
-        getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate")
+        getDefaultParticipantBaseLabel(normalizedTemplateId, "Operator")
       ),
       extraFields: {
         operatorLaneIndex: resolvedLaneIndex,
@@ -3079,7 +3099,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a source anchor, then a valid downstream anchor, to author the first mapping.";
+        "Choose a reactant anchor, then a product or operator anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;

@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";

@@ -62,8 +62,8 @@ export function createReactionAppRuntime(deps) {
     clearButton = null,
     solveButton = null,
     exitButton = null,
-    solveReactionRequest = null,
     solveSnapshot = null,
+    solveReactionRequest = null,
     initialSolverRequest = null,
     createCommitRuntime = createReactionCommitStateRuntime,
     createCanvasRuntime = createReactionCanvasUiRuntime,
@@ -101,7 +101,6 @@ export function createReactionAppRuntime(deps) {
   let latestSnapshot = { participants: [], mappings: [] };
   let reviewImportCandidate = null;
   let currentDocumentOptions = null;
-  let latestLibrarySelectionLoadToken = 0;
   const commitRuntime = createCommitRuntime({
     getSnapshot: () => latestSnapshot,
     validateSnapshot: buildReactionSurfaceValidation,
@@ -153,14 +152,11 @@ export function createReactionAppRuntime(deps) {
     root: libraryPickerRoot,
     triggerButton: libraryPickerTrigger,
     menuElement: libraryPickerMenu,
-    onSelect: (entryId) => {
-      void (async () => {
-        try {
-          await loadSelectedBuiltInReactionLibraryEntry(entryId);
-        } catch (_error) {
-          setStatus("Built-in reaction load failed.");
-        }
-      })();
+    onSelect: (selectedEntryId) => {
+      void loadSelectedBuiltInReactionLibraryEntry(selectedEntryId).catch((error) => {
+        const message = normalizeText(error?.message);
+        setStatus(message || "Library reaction solve failed.");
+      });
     },
   });
 
@@ -176,7 +172,7 @@ export function createReactionAppRuntime(deps) {
   function buildBuiltInLibraryStatusMessage(libraryEntry = {}) {
     const entryTitle = normalizeText(libraryEntry?.displayTitle) || normalizeText(libraryEntry?.title);
     return `${
-      entryTitle ? `Built-in reaction loaded: ${entryTitle}.` : "Built-in reaction loaded."
+      entryTitle ? `Library reaction solved: ${entryTitle}.` : "Library reaction solved."
     } Accept it to emit accepted reaction-flow/v1 JSON downstream of review.`;
   }
 
@@ -342,35 +338,23 @@ export function createReactionAppRuntime(deps) {
       normalizeText(entryId) ||
       normalizeText(libraryPickerRuntime?.getSelectedId?.());
     if (!resolvedEntryId) {
-      setStatus("Choose a built-in reaction before loading.");
+      setStatus("Choose a library reaction first.");
       return null;
     }
-    const loadToken = ++latestLibrarySelectionLoadToken;
     const selectedEntry =
       resolvedBuiltInLibraryEntries.find((entry) => normalizeText(entry?.id) === resolvedEntryId) ?? null;
-    const selectedEntryTitle =
-      normalizeText(selectedEntry?.displayTitle) ||
-      normalizeText(selectedEntry?.title) ||
-      resolvedEntryId;
-    if (options?.announce !== false) {
-      setStatus(`Solving built-in reaction: ${selectedEntryTitle}.`);
+    if (selectedEntry) {
+      setStatus(
+        `Solving library reaction: ${
+          normalizeText(selectedEntry?.displayTitle) || normalizeText(selectedEntry?.title) || resolvedEntryId
+        }.`
+      );
     }
-    let payload = null;
-    try {
-      payload = await loadReactionLibraryEntry(resolvedEntryId, {
-        entries: resolvedBuiltInLibraryEntries,
-        defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
-        solveRequest: solveReactionRequest,
-      });
-    } catch (error) {
-      if (loadToken !== latestLibrarySelectionLoadToken) {
-        return null;
-      }
-      throw error;
-    }
-    if (loadToken !== latestLibrarySelectionLoadToken) {
-      return null;
-    }
+    const payload = await loadReactionLibraryEntry(resolvedEntryId, {
+      entries: resolvedBuiltInLibraryEntries,
+      defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
+      solveReactionRequest,
+    });
     return loadBuiltInReactionLibraryCandidate(payload, options);
   }
 
@@ -391,7 +375,7 @@ export function createReactionAppRuntime(deps) {
       } catch (error) {
         const message = normalizeText(error?.message);
         if (message) {
-          setStatus(`Built-in reaction library manifest load failed: ${message}.`);
+          setStatus(`Reaction library manifest load failed: ${message}.`);
         }
       }
     }
@@ -423,7 +407,7 @@ export function createReactionAppRuntime(deps) {
         const libraryPayload = await loadDefaultReactionLibraryEntry({
           entries: resolvedBuiltInLibraryEntries,
           defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
-          solveRequest: solveReactionRequest,
+          solveReactionRequest,
         });
         loadBuiltInReactionLibraryCandidate(libraryPayload, { announce: false });
         syncReviewControls();
@@ -432,26 +416,25 @@ export function createReactionAppRuntime(deps) {
       } catch (error) {
         const message = normalizeText(error?.message);
         if (message) {
-          setStatus(`Built-in reaction auto-load failed: ${message}. Manual authoring is still available.`);
+          setStatus(`Library reaction auto-solve failed: ${message}. Manual authoring is still available.`);
         }
-        // Keep manual authoring available even if the built-in library fixture is unavailable.
         return;
       }
     }
     syncReviewControls();
-    setStatus("Reaction app ready. Use the left and right + controls to build a reaction.");
+    setStatus("Reaction app ready. Choose a reaction or use the left and right + controls to build one.");
   }
 
-    return {
-      init,
-      setStatus,
-      exitReactionApp,
-      acceptReactionFlowDocument,
+  return {
+    init,
+    setStatus,
+    exitReactionApp,
+    acceptReactionFlowDocument,
     canvasRuntime,
-      exportReactionFlowDocument,
-      downloadReactionFlowDocument,
-      loadBuiltInReactionLibraryCandidate,
-      loadSelectedBuiltInReactionLibraryEntry,
-      loadSolverRequestReviewCandidate,
-    };
+    exportReactionFlowDocument,
+    downloadReactionFlowDocument,
+    loadBuiltInReactionLibraryCandidate,
+    loadSelectedBuiltInReactionLibraryEntry,
+    loadSolverRequestReviewCandidate,
+  };
 }

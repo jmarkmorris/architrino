@@ -91,46 +91,6 @@ test("reaction anchor render runtime labels anchor buttons through the registry 
   }
 });
 
-test("reaction anchor render runtime stamps explicit terminal indices on anchor buttons", () => {
-  const previousDocument = globalThis.document;
-  const previousHTMLElement = globalThis.HTMLElement;
-
-  globalThis.document = {
-    createElement() {
-      return new FakeElement();
-    },
-  };
-  globalThis.HTMLElement = FakeElement;
-
-  try {
-    const runtime = createReactionAnchorRenderRuntime();
-    const centerInputAnchor = runtime.createAnchorButton(
-      { side: "reactant" },
-      { label: "Pro Noether Core" },
-      "center_core::root",
-      {
-        anchorRole: "center",
-        anchorInstanceIndex: 0,
-      }
-    );
-    const centerOutputAnchor = runtime.createAnchorButton(
-      { side: "reactant" },
-      { label: "Pro Noether Core" },
-      "center_core::root",
-      {
-        anchorRole: "center",
-        anchorInstanceIndex: 1,
-      }
-    );
-
-    assert.equal(centerInputAnchor.dataset.anchorTerminalIndex, "0");
-    assert.equal(centerOutputAnchor.dataset.anchorTerminalIndex, "1");
-  } finally {
-    globalThis.document = previousDocument;
-    globalThis.HTMLElement = previousHTMLElement;
-  }
-});
-
 test("reaction participant render runtime emits explicit center input and output anchors", () => {
   const previousDocument = globalThis.document;
   const previousHTMLElement = globalThis.HTMLElement;

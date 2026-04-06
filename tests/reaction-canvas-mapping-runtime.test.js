@@ -10,14 +10,14 @@ import {
 test("mapping runtime exposes the authored start and target role grammar", () => {
   assert.equal(canStartReactionCanvasMappingFromRole("reactant"), true);
   assert.equal(canStartReactionCanvasMappingFromRole("operator-output"), true);
-  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 1 }), true);
-  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 0 }), false);
   assert.equal(canStartReactionCanvasMappingFromRole("product"), false);
+  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 0 }), false);
+  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 1 }), true);
   assert.equal(canTargetReactionCanvasMappingRole("product"), true);
   assert.equal(canTargetReactionCanvasMappingRole("operator-input"), true);
+  assert.equal(canTargetReactionCanvasMappingRole("reactant"), false);
   assert.equal(canTargetReactionCanvasMappingRole({ role: "center", anchorInstanceIndex: 0 }), true);
   assert.equal(canTargetReactionCanvasMappingRole({ role: "center", anchorInstanceIndex: 1 }), false);
-  assert.equal(canTargetReactionCanvasMappingRole("reactant"), false);
 });
 
 test("mapping runtime replaces conflicting single-anchor mappings", () => {
@@ -109,4 +109,33 @@ test("mapping runtime routes a pending reactant into an operator input and clear
   assert.deepEqual(recentMappingIds, [["canvas_mapping_1"]]);
   assert.equal(renderCount, 1);
   assert.equal(statuses.at(-1), "Reactant routed into operator.");
+});
+
+test("mapping runtime does not start a rightward route from a center input connector", () => {
+  const state = {
+    mappings: [],
+    nextMappingId: 1,
+    pendingSourceKey: "",
+    pendingSourceRole: "",
+    pendingSourceAnchorInstanceIndex: null,
+    hoveredMappingIds: [],
+  };
+  const statuses = [];
+  let renderCount = 0;
+  const runtime = createReactionCanvasMappingRuntime({
+    state,
+    getAnchorAvailability: () => ({ disabled: false, reason: "" }),
+    setStatus: (status) => statuses.push(status),
+    render: () => {
+      renderCount += 1;
+    },
+  });
+
+  runtime.handleAnchorClick("center", "center_free_architrinos::root", 0);
+
+  assert.equal(state.pendingSourceKey, "");
+  assert.equal(state.pendingSourceRole, "");
+  assert.equal(state.pendingSourceAnchorInstanceIndex, null);
+  assert.equal(renderCount, 0);
+  assert.equal(statuses.at(-1), "Center input connectors cannot start a rightward route.");
 });

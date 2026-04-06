@@ -75,15 +75,15 @@ Operator semantics that should remain canonical:
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
 - center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
-- the current solver operator vocabulary remains `Associate` plus `Dissociate`;
+- the current solver operator vocabulary is `Associate`, `Dissociate`, and `Pass Thru`;
 - spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
 - `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
 - when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
 - left/input-side connectors on assemblies are sink-only and must not connect forward to anything on their right;
 - left/input-side connectors on any assembly must never be used as a source for a forward mapping to anything in a higher-numbered lane or column;
-- treating the visible lanes/columns as ordered left-to-right `1 2 3 4 5`, any right/output-side connector may connect only to lane `N+1` and must terminate on a left/input-side connector only;
+- treating the visible lanes/columns as ordered left-to-right `1 2 3 4 5`, any right/output-side connector may connect only to a higher-numbered lane/column object and must terminate on a left/input-side connector only;
 - a composite title or title-card shell does not have its own first-class output connector; when flow must visibly continue from a composite into its subassemblies, that path uses the composite's special internal rail/collector depiction rather than a normal title-output anchor;
-- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the opened composite state survives projection and library handoff.
+- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the opened-composite semantics survive projection and library handoff.
 
 Composite and dissociation requirements that should move forward into the new architecture:
 
@@ -97,14 +97,20 @@ Composite and dissociation requirements that should move forward into the new ar
 Full-solve lane contract:
 
 - every required connector on every visible participant or operator must be connected for the surface to count as a full solve;
-- lane 1 single-row reactant roots are output-only and each visible output must first connect into a lane 2 operator input such as `Dissociate`, or `Pass Thru` once that operator exists;
-- lane 1 row-group outputs in general do not jump directly to later lanes; they still enter the lane 2 operator stage first;
-- lane 2 dissociate operators are input-and-output and every visible input and output must be connected;
+- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2 only;
+- lane 2 operators are input-and-output and every visible input and output must be connected;
 - lane 3 center-lane participants are input-and-output and every visible input and output must be connected;
-- lane 4 associate operators are input-and-output and every visible input and output must be connected;
+- lane 4 operators are input-and-output and every visible input and output must be connected;
 - lane 5 product participants are input-only and every visible input must be connected;
 - if any required connector remains open, the surface is invalid as a full solve even if product inventory happens to close;
 - and if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
+
+Current transition note:
+
+- Reaction now validates and exports only strict adjacent-lane accepted documents;
+- accepted example documents are already strict five-lane handoff fixtures;
+- the live Reaction library now solves request fixtures on demand instead of loading pre-built solved artifacts;
+- and the native solver still needs to emit the same lane-complete structure directly so request-backed library solves and accepted exports stay identical without compatibility rewrites.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
@@ -1387,19 +1393,17 @@ That output should be rich enough to carry:
 
 The Reaction app should consume that output through a projection adapter that materializes the solve into live participants, mappings, dissociation state, and operator placement. Composer should remain downstream of accepted Reaction output through explicit versioned data such as `reaction-flow/v1`, rather than calling solver runtime code.
 
-The built-in Reaction library now sits strictly upstream of this boundary. It is only a request manifest. Selecting a library entry should invoke the solver with that `solver-request/v1` payload and then render the returned `solver-result/v1`; it should not load a checked-in solved-document catalog.
-
 The reviewed v1 boundary is now:
 
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py) returns semantic `solver-result/v1` data keyed by stable `participantId`, `anchorId`, `operatorId`, and dissociation ids;
 - the Reaction-side result adapter resolves those semantic ids into live participant objects and node keys at projection time, but it must not invent missing structure or missing connectivity;
 - solve-created operator placements cross the boundary only as advisory lane / row / slot records under `placement.operatorPlacements`;
-- and Reaction keeps ownership only of live object creation, node-key packing, and non-semantic grouping layout needed to display what the result already specifies.
+- and Reaction keeps ownership of live operator creation, node-key packing, auto-dissociation marking, and any local row-slot fallback behavior.
 
 For accepted solver-owned solves, the result should be treated as a render-specification boundary:
 
 - when the solver receives a normalized `solver-request/v1`, it should return a `solver-result/v1` that fully specifies the solved participant set, operator set, dissociation state, placement, and connectivity needed to render the reaction image;
-- the Reaction app should be rendering the semantics that JSON defines rather than reconstructing omitted connectivity, omitted dissociation stages, omitted connector-side intent, omitted lane eligibility, or synthetic connector geometry from heuristics;
+- the Reaction app should be rendering the semantics that JSON defines rather than reconstructing omitted connectivity, omitted dissociation stages, omitted connector-side intent, or omitted lane eligibility from heuristics;
 - the returned connectivity must also obey the shared forward-lane connection policy: source endpoints must be real output-capable endpoints, target endpoints must be real input-capable endpoints, and a full solve must not route from a higher-numbered lane or column back into a lower-numbered one;
 - a result is solver-complete only when every required visible connector has an explicit connected counterpart in that returned connectivity; open connectors make the result incomplete rather than exact;
 - if a user authors reactants and products in Reaction and presses Solve, the app should send that normalized authored state to the solver and receive back the full solved specification in JSON form;
@@ -1585,11 +1589,11 @@ Current:
 - `solver-request/v1` and `solver-result/v1` are now the live seam;
 - `solve-reaction.mjs` already runs the Python core in [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py);
 - Node-side contract solves default to the external path;
-- and the remaining client-side work is mostly transport selection between the browser HTTP bridge and an explicitly injected external bridge, not a second in-process solver implementation.
+- but [`ReactionSolverContractRuntime.js`](../../../src/apps/reaction/ReactionSolverContractRuntime.js) still allows the legacy in-process bridge when external solving is disabled, and the UI still exposes that fallback as legacy execution.
 
 Objective:
 
-- keep the external solver as the only real solve implementation and continue shrinking Reaction-side transport-selection policy until the app receives one explicit solve bridge.
+- make the external solver the only supported solve path for normal runtime use and delete the remaining in-process bridge once parity and reviewability are sufficient.
 
 ### 2. Make Baryon Weak Constituent Provenance Explicit Before Closing The Remaining Generic-Profile Gaps
 
@@ -1649,7 +1653,7 @@ The first-pass browser planner and projection stack have already been removed fr
 - [`ReactionStructureMappingRuntime.js`](../../../src/apps/reaction/ReactionStructureMappingRuntime.js): `normalizeInventory`, `addInventories`, `classifyReactionNode`, and `evaluateReactionMappingCandidate` still define canonical inventory arithmetic, guessed-vs-direct provenance, binary-selector interpretation, and conservative mapping legality. This is solver/shared-domain logic, not app-only display logic.
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js): `DEFAULT_POLICY`, `buildParticipantInventoryFlags`, `serializeParticipantNodes`, `serializeManualMappings`, and `buildPolicyRecord` still make solver-facing decisions inside Reaction. The exporter is not just serializing authored state; it is supplying default policy, inferring generation/family flags, classifying node inventories, labeling mapping kind, and computing conserved-ledger payloads.
 - [`ReactionSolverResultAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js): `buildParticipantFromResultRecord` and `buildOperatorFromResultRecord` still reconstruct participant/operator structures, hierarchy trees, labels, and anchor identities from partial contract data. If `solver-result/v1` is the true render boundary, Reaction should not need to rebuild semantics from `templateId`, `type`, placement, and a few mapping hints.
-- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js): this runtime is now correctly thin. Keep it as request-manifest loading plus solve invocation only; do not let it grow back into a solved-document import or semantic repair layer.
+- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js): `resolveParticipantIdentity`, `normalizeSupportedOperatorTemplateId`, `inferOperatorLaneIndex`, and `inferOperatorSurfaceRowIndex` still repair incomplete `reaction-flow` documents by inferring missing identity and layout. That inference should move into document generation or a shared import normalizer rather than stay hidden in the app.
 
 ### Validation And Acceptance Semantics Still Living In Reaction
 
@@ -1673,5 +1677,5 @@ The first-pass browser planner and projection stack have already been removed fr
 ### Logic That Should Stay Reaction-Owned Unless The Contract Expands
 
 - [`ReactionStructureDescriptorRuntime.js`](../../../src/apps/reaction/ReactionStructureDescriptorRuntime.js) and [`ReactionParticipantRenderRuntime.js`](../../../src/apps/reaction/ReactionParticipantRenderRuntime.js): render-tree construction and DOM rendering should stay in Reaction as long as they stop inferring hidden solver semantics.
-- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js) and [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): these should stay thin request/result boundary adapters only. The built-in library should remain a request manifest plus solve bridge, not a second solved-document generation pipeline.
+- [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): this should remain a thin review-boundary module, but only if request/result documents become explicit enough that it no longer repairs meaning during import.
 - [`ReactionObjectRegistryData.js`](../../../src/apps/reaction/ReactionObjectRegistryData.js) and [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js): placement and render grammar belong near the app, but solver-facing inference helpers such as `inferReactionGenerationFromLabel` and `inferReactionTemplateIdFromStructure` should move out if the solver depends on them.

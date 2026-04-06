@@ -2030,6 +2030,12 @@ body {
 .composer-reaction-canvas {
   --reaction-canvas-attachment-gap: 3px;
   --reaction-canvas-anchor-size: 16px;
+  --reaction-canvas-composite-node-size: 6px;
+  --reaction-canvas-composite-node-center: calc(var(--reaction-canvas-composite-node-size) * 0.5);
+  --reaction-canvas-composite-connector-span: var(--reaction-canvas-tile-gap, 7px);
+  --reaction-canvas-composite-node-inset: calc(
+    (var(--reaction-canvas-composite-connector-span) - var(--reaction-canvas-composite-node-size)) * 0.5
+  );
   --reaction-canvas-composite-participant-gap: var(--reaction-canvas-tile-gap, 7px);
   position: absolute;
   inset: 0;
@@ -2198,13 +2204,6 @@ body {
 
 .composer-reaction-canvas-path.is-route-dimmed {
   opacity: 1;
-}
-
-.composer-reaction-canvas-composite-link {
-  fill: none;
-  stroke: rgba(153, 211, 255, 0.46);
-  stroke-width: 2;
-  stroke-linecap: round;
 }
 
 .composer-reaction-canvas-empty {
@@ -2969,12 +2968,24 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
   width: 2px;
-  transform: translateX(-50%);
   border-radius: 999px;
   background: rgba(153, 211, 255, 0.46);
   pointer-events: none;
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-reactant
+  > .composer-reaction-canvas-composite-span-rail
+  > .composer-reaction-canvas-composite-span-stem {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-product
+  > .composer-reaction-canvas-composite-span-rail
+  > .composer-reaction-canvas-composite-span-stem {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .composer-reaction-canvas-higgs-cluster-grid-row {

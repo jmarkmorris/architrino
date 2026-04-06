@@ -47,14 +47,14 @@ const reactionAppRuntime = createReactionAppRuntime({
   solveButton: document.getElementById("reaction-solve-button"),
   exitButton: document.getElementById("reaction-exit-button"),
   initialSolverRequest: reactionAppRuntimeDeps.initialSolverRequest ?? null,
-  solveReactionRequest:
-    typeof reactionAppRuntimeDeps.solveReactionRequest === "function"
-      ? reactionAppRuntimeDeps.solveReactionRequest
-      : defaultSolveReactionRequest,
   solveSnapshot:
     typeof reactionAppRuntimeDeps.solveSnapshot === "function"
       ? reactionAppRuntimeDeps.solveSnapshot
       : defaultSolveSnapshot,
+  solveReactionRequest:
+    typeof reactionAppRuntimeDeps.solveReactionRequest === "function"
+      ? reactionAppRuntimeDeps.solveReactionRequest
+      : defaultSolveReactionRequest,
 });
 
 void reactionAppRuntime.init();

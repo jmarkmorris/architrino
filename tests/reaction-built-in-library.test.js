@@ -3,161 +3,126 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 
 import {
+  buildReactionSnapshotFromReactionFlowDocument,
   loadDefaultReactionBuiltInLibraryEntry,
   loadReactionBuiltInLibraryEntry,
   loadReactionBuiltInLibraryManifest,
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
 
-async function readJsonFromRepo(relativePath) {
-  return JSON.parse(await fs.readFile(new URL(`../${relativePath}`, import.meta.url), "utf8"));
+async function readJson(url) {
+  return JSON.parse(await fs.readFile(url, "utf8"));
 }
 
-test("reaction built-in library manifest is request-only and defaults to free neutron beta decay", async () => {
-  const manifest = await loadReactionBuiltInLibraryManifest({
-    manifest: await readJsonFromRepo("content/contracts/examples/reaction-library/manifest.v1.json"),
-  });
-
-  assert.equal(manifest.defaultEntryId, "free_neutron_beta_decay");
-  assert.equal(manifest.entries[0]?.id, "free_neutron_beta_decay");
-  assert.equal(
-    manifest.entries.every(
-      (entry) => typeof entry.sourceRequestPath === "string" && entry.sourceRequestPath.startsWith("content/")
-    ),
-    true
-  );
-  assert.equal(manifest.entries.some((entry) => "documentPath" in entry), false);
+const FIXTURE_LIBRARY_MANIFEST = Object.freeze({
+  schema: "reaction-library-manifest/v1",
+  defaultEntryId: "associate_photon",
+  entries: Object.freeze([
+    Object.freeze({
+      id: "associate_photon",
+      requestId: "associate_photon",
+      title: "Associate photon",
+      displayTitle: "Associate photon",
+      requestPath: "../../../content/contracts/examples/solver-request/associate_photon.v1.json",
+      isDefault: true,
+    }),
+    Object.freeze({
+      id: "carry_through_neutron",
+      requestId: "carry_through_neutron",
+      title: "Carry through neutron",
+      displayTitle: "Carry through neutron",
+      requestPath: "../../../content/contracts/examples/solver-request/carry_through_neutron.v1.json",
+    }),
+  ]),
 });
 
-test("reaction built-in library requires a solveRequest bridge", async () => {
-  await assert.rejects(
-    () =>
-      loadDefaultReactionBuiltInLibraryEntry({
-        manifest: {
-          schema: "reaction-built-in-library-manifest/v1",
-          defaultEntryId: "associate_photon",
-          entries: [
-            {
-              id: "associate_photon",
-              title: "Associate photon",
-              sourceRequestPath: "content/contracts/examples/solver-request/associate_photon.v1.json",
-              isDefault: true,
-            },
-          ],
+function createFixtureFetch() {
+  return async function fetchFixture(url) {
+    if (String(url).endsWith("content/contracts/examples/reaction-library/manifest.v1.json")) {
+      return {
+        ok: true,
+        async json() {
+          return FIXTURE_LIBRARY_MANIFEST;
         },
-        fetchImpl: async () => ({
-          ok: true,
-          async json() {
-            return readJsonFromRepo("content/contracts/examples/solver-request/associate_photon.v1.json");
-          },
-        }),
-      }),
-    /requires solveRequest\(\)/i
-  );
-});
-
-test("reaction built-in library solves a selected entry from its source request path", async () => {
-  const requestFixture = await readJsonFromRepo(
-    "content/contracts/examples/solver-request/associate_photon.v1.json"
-  );
-  const resultFixture = await readJsonFromRepo(
-    "content/contracts/examples/solver-result/associate_photon_result.v1.json"
-  );
-  const seenRequestIds = [];
-
-  const loaded = await loadReactionBuiltInLibraryEntry("associate_photon", {
-    manifest: {
-      schema: "reaction-built-in-library-manifest/v1",
-      defaultEntryId: "associate_photon",
-      entries: [
-        {
-          id: "associate_photon",
-          requestId: "associate_photon",
-          title: "Associate photon",
-          displayTitle: "Associate photon",
-          description: "Solve-backed fixture.",
-          sourceRequestPath: "content/contracts/examples/solver-request/associate_photon.v1.json",
-          isDefault: true,
-          solveExact: true,
-        },
-      ],
-    },
-    fetchImpl: async () => ({
+      };
+    }
+    const document = await readJson(url);
+    return {
       ok: true,
       async json() {
-        return requestFixture;
+        return document;
       },
-    }),
-    solveRequest: async (request) => {
-      seenRequestIds.push(request?.requestId);
+    };
+  };
+}
+
+test("reaction library manifest loads request entries and preserves the default id", async () => {
+  const manifest = await loadReactionBuiltInLibraryManifest({
+    fetchImpl: createFixtureFetch(),
+  });
+
+  assert.equal(manifest.defaultEntryId, "associate_photon");
+  assert.deepEqual(
+    manifest.entries.map((entry) => ({
+      id: entry.id,
+      requestPath: entry.requestPath,
+    })),
+    [
+      {
+        id: "associate_photon",
+        requestPath: "../../../content/contracts/examples/solver-request/associate_photon.v1.json",
+      },
+      {
+        id: "carry_through_neutron",
+        requestPath: "../../../content/contracts/examples/solver-request/carry_through_neutron.v1.json",
+      },
+    ]
+  );
+});
+
+test("reaction library entry loads a solver request, solves it, and returns a renderable snapshot", async () => {
+  const solveCalls = [];
+  const payload = await loadReactionBuiltInLibraryEntry("associate_photon", {
+    fetchImpl: createFixtureFetch(),
+    solveReactionRequest: async (request) => {
+      solveCalls.push(request.requestId);
       return {
         request,
-        result: resultFixture,
+        result: await readJson(
+          new URL("../content/contracts/examples/solver-result/associate_photon_result.v1.json", import.meta.url)
+        ),
       };
     },
   });
 
-  assert.deepEqual(seenRequestIds, ["associate_photon"]);
-  assert.equal(loaded.entry.id, "associate_photon");
-  assert.equal(loaded.request.requestId, "associate_photon");
-  assert.equal(loaded.solution.result.summary.exact, true);
-  assert.equal(loaded.snapshot.participants.length > 0, true);
-  assert.equal(loaded.snapshot.mappings.length > 0, true);
-  assert.deepEqual(loaded.exportOverrides.sourceDocumentIds, ["associate_photon_fixture"]);
+  assert.deepEqual(solveCalls, ["associate_photon"]);
+  assert.equal(payload.entry.id, "associate_photon");
+  assert.equal(payload.request.requestId, "associate_photon");
+  assert.equal(payload.snapshot.participants.some((participant) => participant.id === "associate:1"), true);
+  assert.equal(payload.snapshot.participants.some((participant) => participant.id === "product_photon"), true);
+  assert.equal(payload.exportOverrides.reviewInput?.requestId, "associate_photon");
 });
 
-test("reaction built-in library resolves request paths from the page origin", async () => {
-  const previousDocument = globalThis.document;
-  const requestFixture = await readJsonFromRepo(
-    "content/contracts/examples/solver-request/associate_photon.v1.json"
-  );
-  const resultFixture = await readJsonFromRepo(
-    "content/contracts/examples/solver-result/associate_photon_result.v1.json"
-  );
-  let fetchedUrl = "";
-  globalThis.document = {
-    baseURI: "http://localhost:5173/reaction.html",
-  };
+test("reaction library default entry solves through the default manifest selection", async () => {
+  const payload = await loadDefaultReactionBuiltInLibraryEntry({
+    fetchImpl: createFixtureFetch(),
+    solveReactionRequest: async (request) => ({
+      request,
+      result: await readJson(
+        new URL("../content/contracts/examples/solver-result/associate_photon_result.v1.json", import.meta.url)
+      ),
+    }),
+  });
 
-  try {
-    const loaded = await loadDefaultReactionBuiltInLibraryEntry({
-      manifest: {
-        schema: "reaction-built-in-library-manifest/v1",
-        defaultEntryId: "associate_photon",
-        entries: [
-          {
-            id: "associate_photon",
-            requestId: "associate_photon",
-            title: "Associate photon",
-            displayTitle: "Associate photon",
-            description: "Browser path fixture.",
-            sourceRequestPath: "content/contracts/examples/solver-request/associate_photon.v1.json",
-            isDefault: true,
-            solveExact: true,
-          },
-        ],
-      },
-      fetchImpl: async (url) => {
-        fetchedUrl = String(url);
-        return {
-          ok: true,
-          async json() {
-            return requestFixture;
-          },
-        };
-      },
-      solveRequest: async (request) => ({
-        request,
-        result: resultFixture,
-      }),
-    });
+  assert.equal(payload.entry.id, "associate_photon");
+});
 
-    assert.equal(
-      fetchedUrl,
-      "http://localhost:5173/content/contracts/examples/solver-request/associate_photon.v1.json"
-    );
-    assert.equal(loaded.entry.id, "associate_photon");
-    assert.equal(loaded.request.schema, "solver-request/v1");
-  } finally {
-    globalThis.document = previousDocument;
-  }
+test("reaction flow documents can still be imported into reaction snapshots for migration paths", async () => {
+  const document = await readJson(
+    new URL("../content/contracts/examples/reaction-flow/muon_decay.v1.json", import.meta.url)
+  );
+  const snapshot = buildReactionSnapshotFromReactionFlowDocument(document);
+
+  assert.equal(Array.isArray(snapshot.participants), true);
+  assert.equal(Array.isArray(snapshot.mappings), true);
+  assert.equal(snapshot.participants.length > 0, true);
 });

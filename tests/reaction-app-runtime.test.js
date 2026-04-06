@@ -149,7 +149,7 @@ function createReactionAppRuntimeHarness(options = {}) {
   const canvasRuntimeStub = createCanvasRuntimeStub(options.initialSnapshot);
   let libraryEntries = [];
   let selectedLibraryId = "";
-  let libraryPickerOnSelect = null;
+  let librarySelectHandler = null;
   let defaultLibraryLoadCalls = 0;
   let specificLibraryLoadCalls = [];
   const runtime = createReactionAppRuntime({
@@ -166,7 +166,7 @@ function createReactionAppRuntimeHarness(options = {}) {
       },
     }),
     createLibraryPickerRuntime: (pickerOptions = {}) => {
-      libraryPickerOnSelect =
+      librarySelectHandler =
         typeof pickerOptions?.onSelect === "function" ? pickerOptions.onSelect : null;
       return {
         setEntries(entries = [], pickerOptions = {}) {
@@ -205,9 +205,9 @@ function createReactionAppRuntimeHarness(options = {}) {
     setSelectedLibraryId: (entryId) => {
       selectedLibraryId = String(entryId ?? "");
     },
-    async selectLibraryEntry(entryId) {
+    selectLibrary: async (entryId) => {
       selectedLibraryId = String(entryId ?? "");
-      await Promise.resolve(libraryPickerOnSelect?.(selectedLibraryId));
+      await librarySelectHandler?.(selectedLibraryId, libraryEntries.find((entry) => entry.id === selectedLibraryId));
     },
     acceptButton,
     exportButton,
@@ -225,7 +225,7 @@ const defaultLibraryPayload = {
   snapshot: {
     participants: [
       {
-        id: "reactant_neutron_1",
+        id: "reactant_neutron",
         side: "reactant",
         templateId: "neutron",
         label: "Neutron",
@@ -240,7 +240,7 @@ const defaultLibraryPayload = {
 };
 
 test(
-  "reaction app runtime loads the default built-in reaction when startup finds no authored session",
+  "reaction app runtime auto-solves the default library reaction when startup finds no authored session",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: { participants: [], mappings: [] },
@@ -260,7 +260,7 @@ test(
     assert.equal(harness.getSelectedLibraryId(), "free_neutron_beta_decay");
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Library reaction solved: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
     assert.equal(
       harness.reviewStateElement.textContent,
@@ -272,7 +272,7 @@ test(
 );
 
 test(
-  "reaction app runtime keeps an existing authored session instead of forcing the default built-in reaction",
+  "reaction app runtime keeps an existing authored session instead of forcing the default library selection",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: {
@@ -295,7 +295,7 @@ test(
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 0);
     assert.equal(
       harness.statusElement.textContent,
-      "Reaction app ready. Use the left and right + controls to build a reaction."
+      "Reaction app ready. Choose a reaction or use the left and right + controls to build one."
     );
     assert.equal(
       harness.reviewStateElement.textContent,
@@ -305,7 +305,7 @@ test(
 );
 
 test(
-  "reaction app runtime lets the user load a specific built-in library entry from the selector",
+  "reaction app runtime solves a specific library entry as soon as the selector changes",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: {
@@ -346,73 +346,19 @@ test(
     });
 
     await harness.runtime.init();
-    harness.setSelectedLibraryId("muon_decay");
-    await harness.runtime.loadSelectedBuiltInReactionLibraryEntry();
+    await harness.selectLibrary("muon_decay");
 
     assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["muon_decay"]);
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Library reaction solved: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
   })
 );
 
 test(
-  "reaction app runtime auto-loads the newly selected built-in library entry",
-  withFakeDom(async () => {
-    const harness = createReactionAppRuntimeHarness({
-      initialSnapshot: {
-        participants: [
-          {
-            id: "existing_reactant",
-            side: "reactant",
-            templateId: "neutron",
-            label: "Existing neutron",
-          },
-        ],
-        mappings: [],
-      },
-      defaultLibraryPayload,
-      libraryPayloads: {
-        charged_pion_to_muon_neutrino: {
-          entry: {
-            id: "charged_pion_to_muon_neutrino",
-            title: "Charged pion to muon neutrino",
-          },
-          snapshot: {
-            participants: [
-              {
-                id: "reactant_positive_pion_1",
-                side: "reactant",
-                templateId: "pi_plus",
-                label: "Positive Pion",
-              },
-            ],
-            mappings: [],
-          },
-          exportOverrides: {
-            reactionId: "charged_pion_to_muon_neutrino",
-            title: "Charged pion to muon neutrino",
-          },
-        },
-      },
-    });
-
-    await harness.runtime.init();
-    await harness.selectLibraryEntry("charged_pion_to_muon_neutrino");
-
-    assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["charged_pion_to_muon_neutrino"]);
-    assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
-    assert.equal(
-      harness.statusElement.textContent,
-      "Built-in reaction loaded: Charged pion to muon neutrino. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
-    );
-  })
-);
-
-test(
-  "reaction app runtime keeps solver-request startup imports ahead of the default built-in reaction",
+  "reaction app runtime keeps solver-request startup imports ahead of the default library selection",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: { participants: [], mappings: [] },

@@ -65,6 +65,15 @@ function readReactionSolveErrorMessage(responseText = "", status = 0) {
   return normalizedResponseText || `Reaction solve request failed (${status}).`;
 }
 
+function buildUnavailableBridgeMessage(endpoint = "") {
+  const endpointLabel = normalizeText(endpoint) || "/api/reaction/solve";
+  return (
+    `Reaction solve bridge is unavailable at \`${endpointLabel}\`. ` +
+    "This page is being served without the local solve API. " +
+    DEFAULT_LOCAL_DEV_SERVER_HINT
+  );
+}
+
 function resolveReactionSolveTimeoutMs(options = {}) {
   const timeoutMs = Number(options?.timeoutMs);
   if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
@@ -121,7 +130,7 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
     if (isAbortError(error)) {
       throw createReactionSolveTimeoutError(timeoutMs);
     }
-    throw error;
+    throw new Error(buildUnavailableBridgeMessage(endpoint));
   } finally {
     if (timeoutId) {
       globalThis.clearTimeout(timeoutId);
@@ -138,15 +147,6 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
       target: "browser-http",
       endpoint,
     },
-  };
-}
-
-export function createBrowserReactionSolveRequest(options = {}) {
-  return async function solveReactionRequestInBrowser(request = {}) {
-    const solved = await requestBrowserReactionSolve(request, options);
-    return buildReactionSolverContractResponse(request, solved.result, {
-      execution: solved.execution,
-    });
   };
 }
 
@@ -172,6 +172,15 @@ export function createBrowserReactionSolveSnapshot(options = {}) {
         typeof solveOptions?.getCenterUsage === "function" ? solveOptions.getCenterUsage : null,
       policy: solveOptions?.policy,
     });
+    const solved = await requestBrowserReactionSolve(request, options);
+    return buildReactionSolverContractResponse(request, solved.result, {
+      execution: solved.execution,
+    });
+  };
+}
+
+export function createBrowserReactionSolveRequest(options = {}) {
+  return async function solveReactionRequestInBrowser(request = {}) {
     const solved = await requestBrowserReactionSolve(request, options);
     return buildReactionSolverContractResponse(request, solved.result, {
       execution: solved.execution,

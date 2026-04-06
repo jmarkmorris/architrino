@@ -1,7 +1,4 @@
-import {
-  getReactionAnchorAttachmentSideFromTerminalIndex,
-  normalizeReactionAnchorInstanceIndex,
-} from "./ReactionAnchorTerminalRuntime.js";
+import { getReactionAnchorAttachmentSide } from "./ReactionObjectRegistryRuntime.js";
 
 function isElement(value) {
   return typeof globalThis.Element === "function" && value instanceof globalThis.Element;
@@ -30,8 +27,10 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
     mapSvg = null,
     canvasRouteAnchorGapPx = 0,
     createSvgElement = () => null,
+    getParticipants = () => state?.participants ?? [],
     getMappings = () => state?.mappings ?? [],
     isActive = () => Boolean(state?.active),
+    isCompositeParticipant = () => false,
     getMappingValidation = () => ({ valid: true, reason: "" }),
     setHoveredMappingIds = () => {},
     removeMappingById = () => false,
@@ -70,17 +69,16 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
   function getFixedAnchorAttachmentPoint(
     element,
     bounds,
-    edgeInset = canvasRouteAnchorGapPx
+    edgeInset = canvasRouteAnchorGapPx,
+    endpointKind = "source"
   ) {
     if (!isElement(element)) {
       return null;
     }
+    const anchorRole = String(element.getAttribute("data-anchor-side") ?? "").trim();
     const center = getElementCenterWithinSurface(element, bounds);
     const radius = Math.max(0, getAnchorRadiusFromBounds(element) - edgeInset);
-    const terminalIndex = normalizeReactionAnchorInstanceIndex(
-      element.getAttribute("data-anchor-terminal-index")
-    );
-    const attachmentSide = getReactionAnchorAttachmentSideFromTerminalIndex(terminalIndex);
+    const attachmentSide = getReactionAnchorAttachmentSide(anchorRole, endpointKind);
     if (attachmentSide === "right") {
       return {
         x: center.x + radius,
@@ -106,7 +104,7 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
       getFixedAnchorAttachmentPoint(sourceElement, bounds, edgeInset) ??
       getElementCenterWithinSurface(sourceElement, bounds);
     const targetPoint =
-      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset) ??
+      getFixedAnchorAttachmentPoint(targetElement, bounds, edgeInset, "target") ??
       getElementCenterWithinSurface(targetElement, bounds);
     return {
       startX: sourcePoint.x,

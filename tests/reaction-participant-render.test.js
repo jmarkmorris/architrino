@@ -257,10 +257,6 @@ test("composite assembly rows use the standard tile gap between the title tile a
     styleSheet,
     /\.composer-reaction-canvas-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
   );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
-  );
 });
 
 test("side anchors use the shared attachment offset so connectors abut tile edges", () => {
@@ -325,7 +321,7 @@ test("free architrinos render as one aggregate ledger tile instead of a tri-slot
   );
 });
 
-test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
+test("free architrinos root reuses one output anchor and uses the compact centered label style", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -333,19 +329,15 @@ test("free architrinos root exposes multiple reactant output anchors and uses th
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /participant\?\.templateId === "free_architrinos"[\s\S]*?mappedIndices\.length \? mappedIndices : \[1\]/
+    /participant\?\.templateId === "free_architrinos"[\s\S]*?return \[mappedIndices\[0\] \?\? 1\];/
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
-    /const connectorRole = getParticipantConnectorRole\(participant\);[\s\S]*?anchorRole:\s*connectorRole,[\s\S]*?anchorInstanceIndex/
+    /is-free-architrinos-root/
   );
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-particle\.is-free-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-tree-row\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
   );
 });
 
@@ -452,16 +444,13 @@ test("composite participants keep only the vertical grouping rail and no synthet
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-rail\s*\{/);
-  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-visual-rail\s*\{/);
   assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-visual-rail\s*\{/);
   assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-collector\s*\{/);
   assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-connector-dot/);
   assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-span-slot\s*\{/);
-  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-span-node\s*\{/);
-  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-root-anchor/);
   assert.doesNotMatch(runtimeSource, /createCompositeVisualRail/);
   assert.doesNotMatch(runtimeSource, /createCompositeExteriorRootAnchor/);
-  assert.doesNotMatch(runtimeSource, /createCompositeHiddenRootAnchor/);
   assert.match(runtimeSource, /createCompositeSpanRail/);
 });
 
@@ -511,15 +500,17 @@ test("template picker grid uses the shared canvas tile gap", () => {
   );
 });
 
-test("composite span stem geometry helpers remain for the vertical grouping rail", () => {
+test("composite span stem geometry helpers remain for the decorative bus rail", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-stem\s*\{/);
+  assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-rail\s*\{/);
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?top:\s*0;[\s\S]*?bottom:\s*0;[\s\S]*?left:\s*50%;/
+    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?top:\s*0;[\s\S]*?bottom:\s*0;/
   );
   assert.match(
     styleSheet,
@@ -532,6 +523,14 @@ test("composite span stem geometry helpers remain for the vertical grouping rail
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-higgs-cluster-grid\.is-product\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?left:\s*100%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
   );
   assert.match(runtimeSource, /composite-span-stem/);
 });

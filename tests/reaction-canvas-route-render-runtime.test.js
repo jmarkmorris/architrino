@@ -35,16 +35,16 @@ test("route render runtime returns the canvas route scheduling interface", () =>
   assert.equal(typeof runtime.getTrimmedRouteEndpoints, "function");
 });
 
-test("route render runtime no longer draws synthetic composite bus paths", async () => {
+test("route render runtime carries no synthetic composite bus path or legacy composite source anchors", async () => {
   const fs = await import("node:fs/promises");
   const runtimeSource = await fs.readFile(
     new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
     "utf8"
   );
 
-  assert.doesNotMatch(runtimeSource, /createCompositeBusPath/);
-  assert.doesNotMatch(runtimeSource, /drawCompositeLinks/);
-  assert.doesNotMatch(runtimeSource, /data-composite-collector-id/);
   assert.doesNotMatch(runtimeSource, /data-composite-source-key/);
   assert.doesNotMatch(runtimeSource, /data-composite-participant-id/);
+  assert.doesNotMatch(runtimeSource, /drawCompositeLinks/);
+  assert.doesNotMatch(runtimeSource, /createCompositeBusPath/);
+  assert.doesNotMatch(runtimeSource, /composite-collector/);
 });

@@ -12,6 +12,7 @@
 ## Directory Guide
 
 - [app-architecture](app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
+- [flow](./flow.md) — strict five-lane reaction-flow contract and the migration status for adjacent-only routing.
 - [reaction](./reaction.md) — `reaction` app design and `reaction`-owned priorities.
 - [solver](./solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, and proposal-review work.
@@ -19,11 +20,11 @@
 
 ## Current Cross-Doc Queue
 
-1. [reaction](./reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
-2. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest as `reaction` export hardens and `composer` stays data-first downstream.
-3. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
-4. [pdgfeed](./pdgfeed.md): build `pdgfeed.py`, fixtures, and the first normalized candidate export path into `solver-request/v1`.
-5. [app-architecture](app-architecture.md), [reaction](./reaction.md), and [composer](./composer.md): keep shrinking shared roots such as `app.js` and oversized app coordinators while protecting the explicit app boundary.
+1. [flow](./flow.md) and [solver](./solver.md): finish native solver emission of the strict five-lane adjacent-only graph so request-backed library solves and accepted exports stay identical without compatibility rewrites.
+2. [reaction](./reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
+3. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest now that accepted handoff documents carry the full explicit five-lane path.
+4. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
+5. [pdgfeed](./pdgfeed.md): build `pdgfeed.py`, fixtures, and the first normalized candidate export path into `solver-request/v1`.
 
 ## Subapp Workflow Overview
 
@@ -101,7 +102,7 @@ Input:
 
 - solver output JSON;
 - or manually authored reaction structure in the `reaction` UI rather than from JSON input;
-- or a built-in library selection from a request-only manifest, where one `solver-request/v1` document is solved on demand;
+- or a library entry that resolves to a canonical `solver-request/v1` fixture and is solved on selection;
 - or a reaction JSON file loaded by the developer.
 
 Output:
@@ -213,21 +214,19 @@ Note:
 - if built-in solver requests exist, they should be treated as developer fixtures or canned examples, not as a replacement for the explicit request format.
 - advanced users may also enter here by loading a `solver-request/v1` JSON file directly, including one generated from a user-specified PDG channel upstream.
 
-### C. Start With `reaction` Using A Built-In Library Entry Or Loaded Spec
+### C. Start With `reaction` Using A Built-In Or Loaded Spec
 
 Audience:
 
 - developer
 - user
 
-Use this when you want to work at the reaction-authoring level without running PDG ingest first and are happy to let `reaction` invoke the solver on library selection.
-
-The built-in library in this mode is a request catalog, not a stored solved-reaction catalog.
+Use this when you want to work at the reaction-authoring level without running PDG ingest or the solver first.
 
 Workflow:
 
 1. Open `reaction`.
-2. Choose a built-in library reaction, which sends its `solver-request/v1` document to the solver immediately, or load one from a reaction JSON file.
+2. Choose a reaction-library entry, or load a reaction JSON file directly.
 3. Review and edit participants, mappings, and operators in `reaction`.
 4. Run the solver from inside `reaction` if helpful, or stay manual.
 5. Accept the reaction once the provenance story is correct.

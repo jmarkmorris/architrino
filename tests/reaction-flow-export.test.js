@@ -100,34 +100,18 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
     snapshot: {
       participants: [
         {
-          id: "reactant_neutron",
+          id: "reactant_electron",
           side: "reactant",
-          templateId: "neutron",
-          label: "Neutron",
+          templateId: "electron",
+          label: "Pro Electron",
           surfaceRowIndex: 0,
         },
         {
-          id: "center_core",
+          id: "center_electron",
           side: "reactant",
           surfaceColumn: "center-assembly",
-          templateId: "noether_core",
-          label: "Pro Noether Core",
-          surfaceRowIndex: 0,
-        },
-        {
-          id: "op_associate_1",
-          side: "operator",
-          templateId: "associate",
-          label: "Associate",
-          operatorLaneIndex: 1,
-          operatorSlotIndex: 0,
-          surfaceRowIndex: 0,
-        },
-        {
-          id: "product_proton",
-          side: "product",
-          templateId: "proton",
-          label: "Proton",
+          templateId: "electron",
+          label: "Pro Electron",
           surfaceRowIndex: 0,
         },
         {
@@ -135,56 +119,57 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
           side: "product",
           templateId: "electron",
           label: "Pro Electron",
-          surfaceRowIndex: 1,
+          surfaceRowIndex: 0,
         },
         {
-          id: "op_dissociate_1",
+          id: "op_pass_left",
           side: "operator",
-          templateId: "dissociate",
-          label: "Dissociate",
+          templateId: "pass_thru",
+          label: "Pass Thru",
           operatorLaneIndex: 0,
+          operatorSlotIndex: 0,
+          surfaceRowIndex: 0,
+        },
+        {
+          id: "op_pass_right",
+          side: "operator",
+          templateId: "pass_thru",
+          label: "Pass Thru",
+          operatorLaneIndex: 1,
           operatorSlotIndex: 0,
           surfaceRowIndex: 0,
         },
       ],
       mappings: [
         {
-          id: "map_reactant_to_operator",
-          sourceKey: "reactant_neutron::neutron_root",
-          targetKey: "op_dissociate_1::dissociate_root",
+          id: "map_reactant_to_left",
+          sourceKey: "reactant_electron::electron_root",
+          targetKey: "op_pass_left::pass_thru_root",
           sourceRole: "reactant",
           targetRole: "operator-input",
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_operator_to_center",
-          sourceKey: "op_dissociate_1::dissociate_root",
-          targetKey: "center_core::center_core_root",
+          id: "map_left_to_center",
+          sourceKey: "op_pass_left::pass_thru_root",
+          targetKey: "center_electron::electron_root",
           sourceRole: "operator-output",
           targetRole: "center",
           sourceAnchorInstanceIndex: 0,
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_center_to_operator",
-          sourceKey: "center_core::center_core_root",
-          targetKey: "op_associate_1::associate_root",
+          id: "map_center_to_right",
+          sourceKey: "center_electron::electron_root",
+          targetKey: "op_pass_right::pass_thru_root",
           sourceRole: "center",
           targetRole: "operator-input",
           sourceAnchorInstanceIndex: 1,
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_operator_to_product_1",
-          sourceKey: "op_associate_1::associate_root",
-          targetKey: "product_proton::proton_root",
-          sourceRole: "operator-output",
-          targetRole: "product",
-          sourceAnchorInstanceIndex: 0,
-        },
-        {
-          id: "map_operator_to_product_2",
-          sourceKey: "op_associate_1::associate_root",
+          id: "map_right_to_product",
+          sourceKey: "op_pass_right::pass_thru_root",
           targetKey: "product_electron::electron_root",
           sourceRole: "operator-output",
           targetRole: "product",
@@ -200,68 +185,38 @@ test("reaction flow exporter builds a schema-valid manual-authoring document", (
   assert.equal(reactionFlow.schema, "reaction-flow/v1");
   assert.deepEqual(reactionFlow.review, { status: "draft" });
   assert.equal(reactionFlow.operators.length, 2);
-  const dissociateOperator = reactionFlow.operators.find((operator) => operator.id === "op_dissociate_1");
-  const associateOperator = reactionFlow.operators.find((operator) => operator.id === "op_associate_1");
-  assert.deepEqual(dissociateOperator?.inputs, [
-    { participantId: "reactant_neutron", anchorId: "neutron_root", role: "reactant" },
+  assert.deepEqual(reactionFlow.operators[0].inputs, [
+    { participantId: "reactant_electron", anchorId: "electron_root", role: "reactant" },
   ]);
-  assert.deepEqual(dissociateOperator?.outputs, [
+  assert.deepEqual(reactionFlow.operators[0].outputs, [
     {
-      participantId: "center_core",
-      anchorId: "center_core_root",
+      participantId: "center_electron",
+      anchorId: "electron_root",
       role: "center",
       anchorInstanceIndex: 0,
     },
   ]);
-  assert.deepEqual(associateOperator?.inputs, [
-    {
-      participantId: "center_core",
-      anchorId: "center_core_root",
-      role: "center",
-      anchorInstanceIndex: 1,
-    },
-  ]);
-  assert.deepEqual(associateOperator?.outputs, [
-    {
-      participantId: "product_proton",
-      anchorId: "proton_root",
-      role: "product",
-    },
-    {
-      participantId: "product_electron",
-      anchorId: "electron_root",
-      role: "product",
-    },
-  ]);
-  assert.deepEqual(dissociateOperator?.layout, {
-    lane: 0,
+  assert.deepEqual(reactionFlow.operators[0].layout, {
+    lane: 2,
     row: 0,
     slot: 0,
   });
-  assert.deepEqual(associateOperator?.layout, {
-    lane: 1,
-    row: 0,
-    slot: 0,
-  });
-  const protonParticipant = reactionFlow.participants.find((participant) => participant.id === "product_proton");
-  assert.equal(protonParticipant?.side, "product");
-  assert.equal(protonParticipant?.layout.column, "right");
+  assert.equal(reactionFlow.participants[1].side, "intermediate");
+  assert.equal(reactionFlow.participants[1].layout.column, "center");
+  assert.equal(reactionFlow.participants[1].layout.lane, 3);
   assert.deepEqual(reactionFlow.mappings[0].from, {
-    participantId: "reactant_neutron",
-    anchorId: "neutron_root",
+    participantId: "reactant_electron",
+    anchorId: "electron_root",
     role: "reactant",
   });
   assert.deepEqual(reactionFlow.mappings[0].to, {
-    participantId: "op_dissociate_1",
-    anchorId: "dissociate_root",
+    participantId: "op_pass_left",
+    anchorId: "pass_thru_root",
     role: "operator-input",
     anchorInstanceIndex: 0,
   });
-  assert.equal(reactionFlow.mappings[0].viaOperatorId, "op_dissociate_1");
-  assert.equal(reactionFlow.mappings[1].viaOperatorId, "op_dissociate_1");
-  assert.equal(reactionFlow.mappings[2].viaOperatorId, "op_associate_1");
-  assert.equal(reactionFlow.mappings[3].viaOperatorId, "op_associate_1");
-  assert.equal(reactionFlow.mappings[4].viaOperatorId, "op_associate_1");
+  assert.equal(reactionFlow.mappings[0].viaOperatorId, "op_pass_left");
+  assert.equal(reactionFlow.mappings[3].viaOperatorId, "op_pass_right");
 });
 
 test("reaction flow exporter can mark an accepted handoff review state", () => {
@@ -281,18 +236,27 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
           surfaceRowIndex: 0,
         },
         {
-          id: "center_core",
+          id: "center_electron",
           side: "reactant",
           surfaceColumn: "center-assembly",
-          templateId: "noether_core",
-          label: "Pro Noether Core",
+          templateId: "electron",
+          label: "Pro Electron",
           surfaceRowIndex: 0,
         },
         {
-          id: "op_associate_1",
+          id: "op_pass_left",
           side: "operator",
-          templateId: "associate",
-          label: "Associate",
+          templateId: "pass_thru",
+          label: "Pass Thru",
+          operatorLaneIndex: 0,
+          operatorSlotIndex: 0,
+          surfaceRowIndex: 0,
+        },
+        {
+          id: "op_pass_right",
+          side: "operator",
+          templateId: "pass_thru",
+          label: "Pass Thru",
           operatorLaneIndex: 1,
           operatorSlotIndex: 0,
           surfaceRowIndex: 0,
@@ -304,46 +268,37 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
           label: "Pro Electron",
           surfaceRowIndex: 0,
         },
-        {
-          id: "op_dissociate_1",
-          side: "operator",
-          templateId: "dissociate",
-          label: "Dissociate",
-          operatorLaneIndex: 0,
-          operatorSlotIndex: 0,
-          surfaceRowIndex: 0,
-        },
       ],
       mappings: [
         {
-          id: "map_reactant_to_operator",
+          id: "map_left",
           sourceKey: "reactant_electron::electron_root",
-          targetKey: "op_dissociate_1::dissociate_root",
+          targetKey: "op_pass_left::pass_thru_root",
           sourceRole: "reactant",
           targetRole: "operator-input",
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_operator_to_center",
-          sourceKey: "op_dissociate_1::dissociate_root",
-          targetKey: "center_core::center_core_root",
+          id: "map_center_in",
+          sourceKey: "op_pass_left::pass_thru_root",
+          targetKey: "center_electron::electron_root",
           sourceRole: "operator-output",
           targetRole: "center",
           sourceAnchorInstanceIndex: 0,
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_center_to_operator",
-          sourceKey: "center_core::center_core_root",
-          targetKey: "op_associate_1::associate_root",
+          id: "map_center_out",
+          sourceKey: "center_electron::electron_root",
+          targetKey: "op_pass_right::pass_thru_root",
           sourceRole: "center",
           targetRole: "operator-input",
           sourceAnchorInstanceIndex: 1,
           targetAnchorInstanceIndex: 0,
         },
         {
-          id: "map_operator_to_product",
-          sourceKey: "op_associate_1::associate_root",
+          id: "map_right",
+          sourceKey: "op_pass_right::pass_thru_root",
           targetKey: "product_electron::electron_root",
           sourceRole: "operator-output",
           targetRole: "product",
@@ -357,43 +312,6 @@ test("reaction flow exporter can mark an accepted handoff review state", () => {
     status: "accepted",
     acceptedAt: "2026-04-03T09:00:00.000Z",
   });
-});
-
-test("reaction flow exporter rejects direct lane-1 single-row reactant root mappings to products", () => {
-  assert.throws(
-    () =>
-      buildReactionFlowDocument({
-        reactionId: "invalid_direct_root_map",
-        snapshot: {
-          participants: [
-            {
-              id: "reactant_electron",
-              side: "reactant",
-              templateId: "electron",
-              label: "Pro Electron",
-              surfaceRowIndex: 0,
-            },
-            {
-              id: "product_electron",
-              side: "product",
-              templateId: "electron",
-              label: "Pro Electron",
-              surfaceRowIndex: 0,
-            },
-          ],
-          mappings: [
-            {
-              id: "map_direct_electron",
-              sourceKey: "reactant_electron::electron_root",
-              targetKey: "product_electron::electron_root",
-              sourceRole: "reactant",
-              targetRole: "product",
-            },
-          ],
-        },
-      }),
-    /exactly one lane at a time/i
-  );
 });
 
 test("reaction flow exporter rejects snapshots with open required connectors", () => {
@@ -489,6 +407,6 @@ test("reaction flow exporter rejects unsupported sink-side-only connector mappin
           ],
         },
       }),
-    /cannot use input endpoint/i
+    /adjacent lane progress|skips lanes|cannot use input endpoint/i
   );
 });

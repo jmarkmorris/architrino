@@ -1,7 +1,33 @@
+import { createReactionBinarySelectionRuntime } from "./ReactionBinarySelectionRuntime.js";
+import {
+  getReactionCanonicalBaseLabel,
+  getReactionCanonicalLabel,
+} from "./ReactionLabelCatalogRuntime.js";
+import { buildReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
+import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
+import { buildReactionParticipantStructure } from "./ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "./ReactionStructureDescriptorRuntime.js";
 import { buildReactionReviewCandidateFromSolverRequest } from "./ReactionReviewImportRuntime.js";
 import { buildReactionSnapshotFromSolverResult } from "./ReactionSolverResultAdapterRuntime.js";
+import {
+  getReactionObjectConnectorPolicy,
+  getReactionParticipantPlacementClass,
+  isReactionObjectPlacementAllowed,
+  normalizeReactionObjectTemplateId,
+  normalizeReactionObjectPolarity,
+  supportsReactionObjectPolarity,
+} from "./ReactionObjectRegistryRuntime.js";
+import {
+  inferReactionDocumentLaneFromLayout,
+  isAdjacentReactionLaneProgress,
+  normalizeReactionDocumentOperatorLane,
+  normalizeReactionSnapshotOperatorLaneIndex,
+} from "./ReactionFlowLaneRuntime.js";
 
-export const REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA = "reaction-built-in-library-manifest/v1";
+const REACTION_FLOW_SCHEMA = "reaction-flow/v1";
+const SOLVER_REQUEST_SCHEMA = "solver-request/v1";
+const DEFAULT_OPERATOR_LANE_INDEX = 1;
+export const REACTION_BUILTIN_LIBRARY_MANIFEST_SCHEMA = "reaction-library-manifest/v1";
 export const REACTION_BUILTIN_LIBRARY_MANIFEST_PATH =
   "../../../content/contracts/examples/reaction-library/manifest.v1.json";
 export const REACTION_BUILTIN_LIBRARY_ENTRIES = Object.freeze([]);
@@ -9,6 +35,14 @@ export const DEFAULT_REACTION_BUILTIN_LIBRARY_ENTRY_ID = "";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
+}
+
+function normalizeLowerText(value = "") {
+  return normalizeText(value).toLowerCase();
+}
+
+function buildTagList(values = []) {
+  return [...new Set(values.map((value) => normalizeText(value)).filter(Boolean))];
 }
 
 function buildBuiltInLibraryPageBaseUrl(fallbackUrl = import.meta.url, pageBaseUrl = "") {
@@ -27,13 +61,53 @@ function resolveBuiltInLibraryAssetUrl(assetPath = "", options = {}) {
   if (/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(normalizedAssetPath)) {
     return new URL(normalizedAssetPath);
   }
-  if (normalizedAssetPath.startsWith("/") || normalizedAssetPath.startsWith("content/")) {
+  if (normalizedAssetPath.startsWith("/")) {
+    return new URL(
+      normalizedAssetPath,
+      buildBuiltInLibraryPageBaseUrl(options?.baseUrl ?? import.meta.url, options?.pageBaseUrl)
+    );
+  }
+  if (normalizedAssetPath.startsWith("content/")) {
     return new URL(
       normalizedAssetPath,
       buildBuiltInLibraryPageBaseUrl(options?.baseUrl ?? import.meta.url, options?.pageBaseUrl)
     );
   }
   return new URL(normalizedAssetPath, options?.baseUrl ?? import.meta.url);
+}
+
+function resolveImportedParticipantLabel(documentParticipant = {}, templateId = "", polarity = "") {
+  const explicitLabel = normalizeText(documentParticipant?.label);
+  if (explicitLabel) {
+    return explicitLabel;
+  }
+  return getReactionCanonicalLabel(templateId, {
+    polarity,
+  });
+}
+
+function supportsParticipantPolarity(templateId = "") {
+  return supportsReactionObjectPolarity(templateId);
+}
+
+function normalizeParticipantPolarity(polarity = "") {
+  return normalizeReactionObjectPolarity(polarity);
+}
+
+function normalizeNonNegativeInteger(value, fallback = 0) {
+  return Math.max(0, Math.round(Number(value) || fallback));
+}
+
+function normalizeAnchorInstanceIndex(anchorInstanceIndex = null) {
+  if (
+    anchorInstanceIndex === null ||
+    anchorInstanceIndex === undefined ||
+    anchorInstanceIndex === ""
+  ) {
+    return null;
+  }
+  const normalized = Number(anchorInstanceIndex);
+  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
 }
 
 function getBuiltInReactionLibraryEntry(entryId = "", entries = []) {
@@ -60,16 +134,16 @@ function resolveBuiltInEntry(entryId = "", entries = [], defaultEntryId = "") {
 function normalizeBuiltInManifest(manifest = {}) {
   const entries = (Array.isArray(manifest?.entries) ? manifest.entries : [])
     .map((entry) => ({
+      ...entry,
       id: normalizeText(entry?.id),
       requestId: normalizeText(entry?.requestId),
       title: normalizeText(entry?.title),
       displayTitle: normalizeText(entry?.displayTitle),
       description: normalizeText(entry?.description),
-      sourceRequestPath: normalizeText(entry?.sourceRequestPath),
-      isDefault: entry?.isDefault === true,
-      solveExact: entry?.solveExact === true,
+      requestPath: normalizeText(entry?.requestPath || entry?.sourceRequestPath),
+      isDefault: Boolean(entry?.isDefault),
     }))
-    .filter((entry) => entry.id && entry.sourceRequestPath);
+    .filter((entry) => entry.id && entry.requestPath);
   const defaultEntryId =
     normalizeText(manifest?.defaultEntryId) ||
     normalizeText(entries.find((entry) => entry?.isDefault)?.id) ||
@@ -79,16 +153,6 @@ function normalizeBuiltInManifest(manifest = {}) {
     defaultEntryId,
     entries,
   };
-}
-
-function resolveBrowserFetch(fetchImpl = null) {
-  if (typeof fetchImpl === "function") {
-    return fetchImpl;
-  }
-  if (typeof globalThis.fetch === "function") {
-    return globalThis.fetch.bind(globalThis);
-  }
-  return null;
 }
 
 export async function loadReactionBuiltInLibraryManifest(options = {}) {
@@ -102,7 +166,12 @@ export async function loadReactionBuiltInLibraryManifest(options = {}) {
   if (options?.manifest && typeof options.manifest === "object") {
     return normalizeBuiltInManifest(options.manifest);
   }
-  const fetchImpl = resolveBrowserFetch(options?.fetchImpl);
+  const fetchImpl =
+    typeof options?.fetchImpl === "function"
+      ? options.fetchImpl
+      : typeof globalThis.fetch === "function"
+        ? globalThis.fetch.bind(globalThis)
+        : null;
   if (typeof fetchImpl !== "function") {
     throw new Error("Built-in reaction library loading requires fetch().");
   }
@@ -121,48 +190,444 @@ export async function loadReactionBuiltInLibraryManifest(options = {}) {
   return normalizeBuiltInManifest(manifest);
 }
 
-async function loadJsonSolverRequestFromBuiltInEntry(entry = {}, options = {}) {
-  const sourceRequestPath = normalizeText(entry?.sourceRequestPath);
-  if (!sourceRequestPath) {
-    throw new Error(`Built-in reaction library entry ${entry?.id || "(missing id)"} is missing sourceRequestPath.`);
+function resolveParticipantIdentity(documentParticipant = {}) {
+  const structureKey = normalizeLowerText(documentParticipant?.structureKey);
+  const normalizedTemplateId =
+    structureKey.startsWith("anti_") && supportsParticipantPolarity(structureKey.slice(5))
+      ? normalizeReactionObjectTemplateId(structureKey.slice(5))
+      : normalizeReactionObjectTemplateId(structureKey);
+  return {
+    templateId: normalizedTemplateId || "particle",
+    polarity:
+      structureKey.startsWith("anti_") && supportsParticipantPolarity(normalizedTemplateId)
+        ? "anti"
+        : supportsParticipantPolarity(normalizedTemplateId)
+          ? "pro"
+          : "",
+  };
+}
+
+function createParticipantFromReactionFlowDocumentRecord(documentParticipant = {}, options = {}) {
+  const binarySelectionRuntime = options?.binarySelectionRuntime ?? {};
+  const {
+    getInitialParticipantBinarySelections = () => ({}),
+  } = binarySelectionRuntime;
+  const participantId = normalizeText(documentParticipant?.id);
+  const { templateId, polarity } = resolveParticipantIdentity(documentParticipant);
+  const baseLabel = resolveImportedParticipantLabel(documentParticipant, templateId, polarity);
+  const participantLane = inferReactionDocumentLaneFromLayout(
+    documentParticipant?.layout,
+    documentParticipant?.side
+  );
+  const isCenterAssembly = participantLane === 3;
+  const structure = buildReactionParticipantStructure(templateId, {
+    id: `${participantId || "reaction_flow_participant"}_structure`,
+    label: baseLabel,
+    polarity,
+  });
+  const participant = {
+    id: participantId,
+    side: normalizeLowerText(documentParticipant?.side) === "product" ? "product" : "reactant",
+    templateId,
+    polarity: supportsParticipantPolarity(templateId) ? normalizeParticipantPolarity(polarity) : "",
+    baseLabel,
+    label: baseLabel,
+    provenanceId:
+      normalizeText(documentParticipant?.provenanceId) || `reaction-flow-participant:${participantId}`,
+    tags: buildTagList(documentParticipant?.tags),
+    structure: structure.root,
+    structureValidation: structure.validation,
+    hierarchy: buildReactionStructureDescriptorTree(structure.root),
+    binarySelections: {},
+    surfaceRowIndex: normalizeNonNegativeInteger(documentParticipant?.layout?.row),
+    ...(isCenterAssembly
+      ? {
+          surfaceColumn: "center-assembly",
+          centerUsage: "optional",
+        }
+      : {}),
+  };
+  const normalizedDissociation = normalizeLowerText(documentParticipant?.state?.dissociation);
+  if (normalizedDissociation === "manual-dissociated") {
+    participant.isDissociatedComposite = true;
+    participant.isAutoDissociatedComposite = false;
+  } else if (normalizedDissociation === "auto-dissociated") {
+    participant.isAutoDissociatedComposite = true;
+  } else if (Array.isArray(documentParticipant?.tags)) {
+    if (documentParticipant.tags.includes("manual-dissociated")) {
+      participant.isDissociatedComposite = true;
+      participant.isAutoDissociatedComposite = false;
+    } else if (documentParticipant.tags.includes("auto-dissociated")) {
+      participant.isAutoDissociatedComposite = true;
+    }
   }
-  const fetchImpl = resolveBrowserFetch(options?.fetchImpl);
+  if (documentParticipant?.state?.solveGenerated === true) {
+    participant.isSolveGenerated = true;
+  } else if (Array.isArray(documentParticipant?.tags) && documentParticipant.tags.includes("solve-generated")) {
+    participant.isSolveGenerated = true;
+  }
+  if (documentParticipant?.state?.autoGenerated === true) {
+    participant.isAutoGeneratedDissociateAssembly = true;
+  }
+  if (!isReactionObjectPlacementAllowed(participant.templateId, getReactionParticipantPlacementClass(participant))) {
+    throw new Error(
+      `Built-in reaction participant ${participant.id || "(missing id)"} uses invalid placement ${getReactionParticipantPlacementClass(participant)} for ${participant.templateId}.`
+    );
+  }
+  participant.binarySelections = getInitialParticipantBinarySelections(participant);
+  return participant;
+}
+
+function inferOperatorSurfaceRowIndex(operator = {}, documentParticipantsById = new Map()) {
+  const connectedRows = [
+    ...(Array.isArray(operator?.inputs) ? operator.inputs : []),
+    ...(Array.isArray(operator?.outputs) ? operator.outputs : []),
+  ]
+    .map((endpoint) => documentParticipantsById.get(normalizeText(endpoint?.participantId))?.surfaceRowIndex)
+    .filter((rowIndex) => Number.isInteger(rowIndex));
+  return connectedRows.length ? Math.min(...connectedRows) : 0;
+}
+
+function inferOperatorLaneIndex(operator = {}, operatorIndex = 0) {
+  const explicitLane = normalizeReactionDocumentOperatorLane(operator?.layout?.lane);
+  if (explicitLane !== null) {
+    return normalizeReactionSnapshotOperatorLaneIndex(explicitLane);
+  }
+  const normalizedType = normalizeSupportedOperatorTemplateId(operator);
+  if (normalizedType === "dissociate") {
+    return 0;
+  }
+  if (normalizedType === "associate" || normalizedType === "pass_thru") {
+    return 1;
+  }
+  return DEFAULT_OPERATOR_LANE_INDEX + normalizeNonNegativeInteger(operatorIndex) * 0;
+}
+
+function normalizeSupportedOperatorTemplateId(operator = {}) {
+  const normalizedType = normalizeLowerText(operator?.type);
+  if (
+    normalizedType === "associate" ||
+    normalizedType === "dissociate" ||
+    normalizedType === "pass_thru"
+  ) {
+    return normalizedType;
+  }
+  const inputCount = Array.isArray(operator?.inputs) ? operator.inputs.length : 0;
+  const outputCount = Array.isArray(operator?.outputs) ? operator.outputs.length : 0;
+  if (inputCount <= 1 && outputCount >= 1) {
+    return "dissociate";
+  }
+  if (inputCount >= 1 && outputCount <= 1) {
+    return "associate";
+  }
+  return "associate";
+}
+
+function createOperatorParticipantFromReactionFlowDocumentRecord(
+  operator = {},
+  options = {}
+) {
+  const operatorId = normalizeText(operator?.id);
+  const operatorType = normalizeSupportedOperatorTemplateId(operator);
+  const operatorLabel = getReactionCanonicalBaseLabel(operatorType, {
+    fallbackLabel:
+      normalizeText(operator?.label) ||
+      normalizeText(operator?.type) ||
+      "Operator",
+  });
+  const operatorRootId = `${operatorId || "reaction_flow_operator"}_root`;
+  const operatorIndex = normalizeNonNegativeInteger(options?.operatorIndex);
+  const explicitLayout = operator?.layout && typeof operator.layout === "object" ? operator.layout : null;
+  const structure = buildReactionParticipantStructure(operatorType, {
+    id: operatorRootId,
+    label: operatorLabel,
+  });
+  return {
+    id: operatorId,
+    side: "operator",
+    templateId: operatorType,
+    label: operatorLabel,
+    provenanceId: `reaction-flow-operator:${operatorId}`,
+    tags: buildTagList(operator?.tags),
+    operatorLaneIndex: inferOperatorLaneIndex(operator, operatorIndex),
+    operatorSlotIndex: normalizeNonNegativeInteger(explicitLayout?.slot, 0),
+    surfaceRowIndex: normalizeNonNegativeInteger(
+      explicitLayout?.row,
+      inferOperatorSurfaceRowIndex(operator, options?.documentParticipantsById ?? new Map())
+    ),
+    structure: structure.root,
+    structureValidation: structure.validation,
+    hierarchy: [
+      {
+        id: operatorRootId,
+        label: operatorLabel,
+        templateId: operatorType,
+        renderMode: "operator-tile",
+        children: [],
+      },
+    ],
+  };
+}
+
+function buildParticipantsById(participants = []) {
+  return new Map(
+    participants
+      .filter((participant) => normalizeText(participant?.id))
+      .map((participant) => [normalizeText(participant.id), participant])
+  );
+}
+
+function buildParticipantRole(participant = {}, direction = "output") {
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  const connectorPolicy = getReactionObjectConnectorPolicy(participant?.templateId, placementClass);
+  if (direction === "input") {
+    return normalizeLowerText(connectorPolicy?.inputRole);
+  }
+  return normalizeLowerText(connectorPolicy?.outputRole);
+}
+
+function getParticipantLaneNumber(participant = {}) {
+  if (participant?.side === "operator") {
+    return normalizeNonNegativeInteger(participant?.operatorLaneIndex) === 0 ? 2 : 4;
+  }
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass === "center") {
+    return 3;
+  }
+  if (placementClass === "product") {
+    return 5;
+  }
+  return 1;
+}
+
+function resolveImportedParticipantAnchorId(participant = {}, anchorId = "") {
+  const normalizedAnchorId = normalizeText(anchorId);
+  const rootId = normalizeText(participant?.hierarchy?.[0]?.id) || "root";
+  if (!normalizedAnchorId) {
+    return rootId;
+  }
+  const participantId = normalizeText(participant?.id);
+  const relativeAnchorId =
+    participantId && normalizedAnchorId.startsWith(`${participantId}/`)
+      ? normalizedAnchorId.slice(participantId.length + 1)
+      : normalizedAnchorId;
+  const candidateAnchorIds = [
+    normalizedAnchorId,
+    relativeAnchorId,
+    relativeAnchorId === "root" ? rootId : "",
+    relativeAnchorId.startsWith("root/") ? `${rootId}/${relativeAnchorId.slice("root/".length)}` : "",
+  ].filter(Boolean);
+  const resolvedAnchorId = [...new Set(candidateAnchorIds)].find(
+    (candidateAnchorId) =>
+      candidateAnchorId === rootId ||
+      findReactionStructureDescriptorNode(participant?.hierarchy, candidateAnchorId)
+  );
+  if (resolvedAnchorId) {
+    return resolvedAnchorId;
+  }
+  return rootId;
+}
+
+function normalizeDocumentEndpoint(endpoint = {}) {
+  return {
+    participantId: normalizeText(endpoint?.participantId),
+    anchorId: normalizeText(endpoint?.anchorId),
+    role: normalizeLowerText(endpoint?.role),
+    anchorInstanceIndex: normalizeAnchorInstanceIndex(endpoint?.anchorInstanceIndex),
+  };
+}
+
+function getExpectedDocumentEndpointRole(participant = {}, direction = "output") {
+  if (participant?.side === "operator") {
+    return direction === "input" ? "operator-input" : "operator-output";
+  }
+  return buildParticipantRole(participant, direction);
+}
+
+function validateDocumentEndpoint(endpoint = {}, participant = {}, direction = "output", mappingId = "") {
+  const expectedRole = getExpectedDocumentEndpointRole(participant, direction);
+  if (!expectedRole) {
+    throw new Error(
+      `Reaction flow mapping ${mappingId || "(missing id)"} cannot use ${direction} endpoint for ${participant?.id || "(missing participant)"} in lane ${getParticipantLaneNumber(participant)}.`
+    );
+  }
+  if (endpoint.role !== expectedRole) {
+    throw new Error(
+      `Reaction flow mapping ${mappingId || "(missing id)"} uses ${endpoint.role || "(missing role)"} for ${participant?.id || "(missing participant)"} but expected ${expectedRole}.`
+    );
+  }
+
+  const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(endpoint.anchorInstanceIndex);
+  if (participant?.side === "operator") {
+    if (normalizedAnchorInstanceIndex !== 0) {
+      throw new Error(
+        `Reaction flow mapping ${mappingId || "(missing id)"} must use anchorInstanceIndex 0 for operator ${participant?.id || "(missing participant)"}.`
+      );
+    }
+    return;
+  }
+
+  const placementClass = getReactionParticipantPlacementClass(participant);
+  if (placementClass !== "center") {
+    return;
+  }
+
+  if (direction === "input") {
+    if (normalizedAnchorInstanceIndex !== 0) {
+      throw new Error(
+        `Reaction flow mapping ${mappingId || "(missing id)"} must target center input anchorInstanceIndex 0 for ${participant?.id || "(missing participant)"}.`
+      );
+    }
+    return;
+  }
+
+  if (normalizeReactionObjectTemplateId(participant?.templateId) === "free_architrinos") {
+    if (normalizedAnchorInstanceIndex === null || normalizedAnchorInstanceIndex < 1) {
+      throw new Error(
+        `Reaction flow mapping ${mappingId || "(missing id)"} must use explicit free-architrinos output anchorInstanceIndex >= 1 for ${participant?.id || "(missing participant)"}.`
+      );
+    }
+    return;
+  }
+
+  if (normalizedAnchorInstanceIndex !== 1) {
+    throw new Error(
+      `Reaction flow mapping ${mappingId || "(missing id)"} must use center output anchorInstanceIndex 1 for ${participant?.id || "(missing participant)"}.`
+    );
+  }
+}
+
+function buildSnapshotMappingsFromReactionFlowDocument(
+  document = {},
+  options = {}
+) {
+  const participantsById = options?.participantsById ?? new Map();
+  const allowLegacyLaneSkipping = options?.allowLegacyLaneSkipping === true;
+  return (Array.isArray(document?.mappings) ? document.mappings : []).map((mapping, mappingIndex) => {
+    const mappingId = normalizeText(mapping?.id) || `reaction_flow_mapping_${mappingIndex + 1}`;
+    const sourceEndpoint = normalizeDocumentEndpoint(mapping?.from);
+    const targetEndpoint = normalizeDocumentEndpoint(mapping?.to);
+    const sourceParticipant = participantsById.get(sourceEndpoint.participantId) ?? null;
+    const targetParticipant = participantsById.get(targetEndpoint.participantId) ?? null;
+    if (!sourceParticipant || !targetParticipant) {
+      throw new Error(
+        `Reaction flow mapping ${mappingId} references unknown participant(s): ${sourceEndpoint.participantId || "(missing source)"} -> ${targetEndpoint.participantId || "(missing target)"}`
+      );
+    }
+    const sourceLaneNumber = getParticipantLaneNumber(sourceParticipant);
+    const targetLaneNumber = getParticipantLaneNumber(targetParticipant);
+    if (!allowLegacyLaneSkipping && !isAdjacentReactionLaneProgress(sourceLaneNumber, targetLaneNumber)) {
+      throw new Error(
+        `Reaction flow mapping ${mappingId} skips lanes: ${sourceLaneNumber} -> ${targetLaneNumber}.`
+      );
+    }
+    validateDocumentEndpoint(sourceEndpoint, sourceParticipant, "output", mappingId);
+    validateDocumentEndpoint(targetEndpoint, targetParticipant, "input", mappingId);
+    return {
+      id: mappingId,
+      sourceKey: buildReactionNodeKey(
+        sourceParticipant.id,
+        resolveImportedParticipantAnchorId(sourceParticipant, sourceEndpoint.anchorId)
+      ),
+      targetKey: buildReactionNodeKey(
+        targetParticipant.id,
+        resolveImportedParticipantAnchorId(targetParticipant, targetEndpoint.anchorId)
+      ),
+      sourceRole: sourceEndpoint.role,
+      targetRole: targetEndpoint.role,
+      sourceAnchorInstanceIndex: sourceEndpoint.anchorInstanceIndex,
+      targetAnchorInstanceIndex: targetEndpoint.anchorInstanceIndex,
+    };
+  });
+}
+
+export function buildReactionSnapshotFromReactionFlowDocument(document = {}, options = {}) {
+  if (normalizeText(document?.schema) !== REACTION_FLOW_SCHEMA) {
+    throw new Error("Reaction built-in library import expects reaction-flow/v1 input.");
+  }
+  const binarySelectionRuntime = createReactionBinarySelectionRuntime({
+    supportsParticipantPolarity,
+    normalizeParticipantPolarity,
+  });
+  const documentParticipants = (Array.isArray(document?.participants) ? document.participants : [])
+    .map((participant) =>
+      createParticipantFromReactionFlowDocumentRecord(participant, {
+        binarySelectionRuntime,
+      })
+    )
+    .filter(Boolean);
+  const documentParticipantsById = buildParticipantsById(documentParticipants);
+  const operatorParticipants = (Array.isArray(document?.operators) ? document.operators : [])
+    .map((operator, operatorIndex) =>
+      createOperatorParticipantFromReactionFlowDocumentRecord(operator, {
+        operatorIndex,
+        documentParticipantsById,
+      })
+    )
+    .filter(Boolean);
+  const participants = [...documentParticipants, ...operatorParticipants];
+  const participantsById = buildParticipantsById(participants);
+  return {
+    participants,
+    mappings: buildSnapshotMappingsFromReactionFlowDocument(document, {
+      participantsById,
+      allowLegacyLaneSkipping: options?.allowLegacyLaneSkipping === true,
+    }),
+  };
+}
+
+async function loadJsonDocumentFromBuiltInEntry(entry = {}, options = {}) {
+  const fetchImpl =
+    typeof options?.fetchImpl === "function"
+      ? options.fetchImpl
+      : typeof globalThis.fetch === "function"
+        ? globalThis.fetch.bind(globalThis)
+        : null;
   if (typeof fetchImpl !== "function") {
     throw new Error("Built-in reaction library loading requires fetch().");
   }
-  const requestUrl = resolveBuiltInLibraryAssetUrl(sourceRequestPath, options);
-  const response = await fetchImpl(requestUrl);
+  const documentUrl = resolveBuiltInLibraryAssetUrl(entry.requestPath, options);
+  const response = await fetchImpl(documentUrl);
   if (response?.ok === false) {
-    throw new Error(`Built-in reaction solver-request fetch failed for ${entry.id}.`);
+    throw new Error(`Built-in reaction library fetch failed for ${entry.id}.`);
   }
-  const request = await response.json();
-  if (normalizeText(request?.schema) !== "solver-request/v1") {
+  const document = await response.json();
+  if (normalizeText(document?.schema) !== SOLVER_REQUEST_SCHEMA) {
     throw new Error(`Built-in reaction library entry ${entry.id} is not solver-request/v1.`);
   }
-  return request;
+  return document;
 }
 
 export async function loadReactionBuiltInLibraryEntry(entryId = "", options = {}) {
   const manifest = await loadReactionBuiltInLibraryManifest(options);
   const entry = resolveBuiltInEntry(entryId, manifest.entries, manifest.defaultEntryId);
-  const solveRequest = typeof options?.solveRequest === "function" ? options.solveRequest : null;
-  if (!solveRequest) {
-    throw new Error("Built-in reaction library loading requires solveRequest().");
+  const request = await loadJsonDocumentFromBuiltInEntry(entry, options);
+  const solveReactionRequest =
+    typeof options?.solveReactionRequest === "function" ? options.solveReactionRequest : null;
+  if (typeof solveReactionRequest !== "function") {
+    throw new Error("Built-in reaction library solving requires solveReactionRequest().");
   }
-  const request = await loadJsonSolverRequestFromBuiltInEntry(entry, options);
+  const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
   const solution = await Promise.resolve(
-    solveRequest(request, {
-      requestId: normalizeText(request?.requestId) || normalizeText(entry?.requestId) || normalizeText(entry?.id),
+    solveReactionRequest(request, {
+      requestId: normalizeText(request?.requestId) || entry.id,
       origin: request?.origin,
+      entry,
     })
   );
-  const reviewCandidate = buildReactionReviewCandidateFromSolverRequest(request);
+  const result = solution?.result ?? null;
+  if (!result || typeof result !== "object") {
+    throw new Error(`Reaction library solve failed for ${entry.id}.`);
+  }
+  const snapshot = buildReactionSnapshotFromSolverResult(result);
   return {
     entry,
     manifest,
     request,
     solution,
-    snapshot: buildReactionSnapshotFromSolverResult(solution?.result ?? {}),
+    result,
+    snapshot,
+    reviewInput: reviewCandidate.reviewInput,
     exportOverrides: reviewCandidate.exportOverrides,
   };
 }

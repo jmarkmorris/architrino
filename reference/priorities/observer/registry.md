@@ -11,7 +11,7 @@ The current runtime/helper surface that consumes that registry includes:
 
 - [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js)
 - [`ReactionCanvasUiRuntime.js`](../../../src/apps/reaction/ReactionCanvasUiRuntime.js)
-- [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js)
+- [`ReactionMappingRulesRuntime.js`](../../../src/apps/reaction/ReactionMappingRulesRuntime.js)
 - [`ReactionFlowExportRuntime.js`](../../../src/apps/reaction/ReactionFlowExportRuntime.js)
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js)
 - [`ReactionSolverResultAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js)
@@ -85,7 +85,7 @@ Important current consequences:
 - `1 -> 3`, `1 -> 5`, `2 -> 4`, `2 -> 5`, and `3 -> 5` are invalid
 - center-lane outputs are forward-only
 - operator outputs may only connect to input-side roles
-- the shared adjacent-lane and terminal-side rule is enforced by [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js)
+- the shared adjacent-lane and terminal-side rule is enforced by [`ReactionMappingRulesRuntime.js`](../../../src/apps/reaction/ReactionMappingRulesRuntime.js)
 
 ## Current Picker Surfaces
 
@@ -195,7 +195,7 @@ Current code-backed notes:
 - Connection validity is registry-owned:
   - the Python solver reads the same `connectionPolicy`;
   - `isReactionConnectionAllowed(...)` is now the shared forward-lane baseline in browser tests and solver validation;
-  - [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js) layers the stricter lane-1 single-row reactant-root rule on top of that baseline.
+  - [`ReactionMappingRulesRuntime.js`](../../../src/apps/reaction/ReactionMappingRulesRuntime.js) layers the stricter lane-1 single-row reactant-root rule on top of that baseline.
 - `Noether Pair` and `Noether Quad` are not center-lane objects in the current registry.
 - `Free Architrinos` is center-only in the current registry.
 - `Associate` and `Dissociate` remain the only canonical operator templates.

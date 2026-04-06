@@ -8,6 +8,9 @@ import {
   getReactionParticipantTrackHeaderInsetPx,
   getReactionParticipantTrackStartOffsetCss,
   getReactionParticipantTrackStartOffsetPx,
+  REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX,
+  REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX,
+  REACTION_CANVAS_COMPOSITE_NODE_INSET_PX,
   REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX,
   REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX,
   getReactionSurfaceColumnGroupFallbackRatios,
@@ -45,6 +48,22 @@ test("reaction canvas layout applies shared css variables from one source of tru
   assert.equal(
     applied.get("--reaction-canvas-anchor-attachment-offset"),
     `${REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX}px`
+  );
+  assert.equal(
+    applied.get("--reaction-canvas-composite-node-size"),
+    `${REACTION_CANVAS_LAYOUT.compositeNodeSizePx}px`
+  );
+  assert.equal(
+    applied.get("--reaction-canvas-composite-node-center"),
+    `${REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX}px`
+  );
+  assert.equal(
+    applied.get("--reaction-canvas-composite-connector-span"),
+    `${REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX}px`
+  );
+  assert.equal(
+    applied.get("--reaction-canvas-composite-node-inset"),
+    `${REACTION_CANVAS_COMPOSITE_NODE_INSET_PX}px`
   );
   assert.equal(
     applied.get("--reaction-canvas-composite-participant-gap"),

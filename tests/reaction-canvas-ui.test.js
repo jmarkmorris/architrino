@@ -19,6 +19,7 @@ test("reaction canvas operator registry includes only associate and dissociate",
     [
       "associate",
       "dissociate",
+      "pass_thru",
     ]
   );
 });
@@ -31,17 +32,17 @@ test("reaction canvas operator layout assigns dissociate to the inner-left group
       enabled: entry.enabled,
     })),
     [
-      { laneIndex: 0, templateId: "assembly", enabled: true },
-      { laneIndex: 1, templateId: "operator", enabled: true },
+      { laneIndex: 0, templateId: "left-operator", enabled: true },
+      { laneIndex: 1, templateId: "right-operator", enabled: true },
     ]
   );
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT[0].pickerEntries.map((entry) => entry.templateId),
-    ["dissociate"]
+    ["dissociate", "pass_thru"]
   );
   assert.deepEqual(
     REACTION_OPERATOR_LANE_LAYOUT[1].pickerEntries.map((entry) => entry.templateId),
-    ["associate"]
+    ["associate", "pass_thru"]
   );
 });
 
@@ -111,6 +112,17 @@ test("center-column Noether core title click toggles polarity directly", () => {
   assert.match(
     renderSource,
     /visual\.addEventListener\("click",\s*\(event\)\s*=>\s*\{[\s\S]*?handleParticipantVisualClick\(participant,\s*event\)/s
+  );
+});
+
+test("Noether-core polarity sync preserves the occupied-slot variant label", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionCanvasUiRuntime.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    runtimeSource,
+    /if \(participant\.templateId === "noether_core"\) \{\s*topNode\.label = formatParticipantLabel\(\s*participant\.baseLabel \|\| topNode\.label \|\| "Noether Core",\s*participant\.templateId,\s*polarity\s*\);/s
   );
 });
 
@@ -651,15 +663,11 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /function getFixedAnchorAttachmentPoint\(\s*element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx\s*\) \{/
+    /function getFixedAnchorAttachmentPoint\(\s*element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx,\s*endpointKind = "source"\s*\) \{/
   );
   assert.match(
     runtimeSource,
-    /const terminalIndex = normalizeReactionAnchorInstanceIndex\(\s*element\.getAttribute\("data-anchor-terminal-index"\)\s*\);/
-  );
-  assert.match(
-    runtimeSource,
-    /const attachmentSide = getReactionAnchorAttachmentSideFromTerminalIndex\(terminalIndex\);/
+    /const attachmentSide = getReactionAnchorAttachmentSide\(anchorRole,\s*endpointKind\);/
   );
   assert.match(
     runtimeSource,
@@ -675,7 +683,7 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
+    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset,\s*"target"\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
   );
   assert.doesNotMatch(
     runtimeSource,

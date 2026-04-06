@@ -33,7 +33,7 @@ test("associate output remains invalid until outgoing ledger exactly matches inc
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "associate_a", templateId: "associate", side: "operator", operatorLaneIndex: 1 },
+    participant: { id: "associate_a", templateId: "associate" },
     node: { id: "associate_a/output" },
   };
   const rules = createReactionMappingRulesRuntime({
@@ -68,7 +68,7 @@ test("pending associate output target becomes available when the candidate close
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "associate_b", templateId: "associate", side: "operator", operatorLaneIndex: 1 },
+    participant: { id: "associate_b", templateId: "associate" },
     node: { id: "associate_b/output" },
   };
   const rules = createReactionMappingRulesRuntime({
@@ -103,7 +103,7 @@ test("committed associate output mapping stays valid when the existing outgoing 
   const targetParticipant = createParticipant("noether_core", "pro");
   const targetContext = createNodeContext(targetParticipant);
   const sourceContext = {
-    participant: { id: "associate_c", templateId: "associate", side: "operator", operatorLaneIndex: 1 },
+    participant: { id: "associate_c", templateId: "associate" },
     node: { id: "associate_c/output" },
   };
   const rules = createReactionMappingRulesRuntime({
@@ -140,7 +140,7 @@ test("single-source associate output cannot bypass direct structure compatibilit
   const sourceContext = createNodeContext(sourceParticipant);
   const targetContext = createNodeContext(targetParticipant);
   const associateOutputContext = {
-    participant: { id: "associate_d", templateId: "associate", side: "operator", operatorLaneIndex: 1 },
+    participant: { id: "associate_d", templateId: "associate" },
     node: { id: "associate_d/output" },
   };
   const rules = createReactionMappingRulesRuntime({
@@ -181,7 +181,7 @@ test("multi-source associate outputs stay ledger-based when no single direct str
   const sourceContext = createNodeContext(sourceParticipant);
   const targetContext = createNodeContext(targetParticipant);
   const associateOutputContext = {
-    participant: { id: "associate_e", templateId: "associate", side: "operator", operatorLaneIndex: 1 },
+    participant: { id: "associate_e", templateId: "associate" },
     node: { id: "associate_e/output" },
   };
   const rules = createReactionMappingRulesRuntime({
@@ -215,7 +215,7 @@ test("multi-source associate outputs stay ledger-based when no single direct str
   assert.match(validation.reason, /fully conservative/i);
 });
 
-test("lane-1 single-row reactant roots cannot bypass the lane-2 operator stage", () => {
+test("direct reactant to product checks still enforce structured conservation rules", () => {
   const sourceParticipant = createParticipant("noether_core", "pro");
   const targetParticipant = createParticipant("noether_core", "anti");
   const sourceContext = createNodeContext(sourceParticipant);
@@ -240,39 +240,7 @@ test("lane-1 single-row reactant roots cannot bypass the lane-2 operator stage",
   });
 
   assert.equal(validation.valid, false);
-  assert.match(validation.reason, /exactly one lane at a time/i);
-});
-
-test("pending product targets are disabled for lane-1 single-row reactant roots", () => {
-  const sourceParticipant = createParticipant("electron", "pro");
-  const targetParticipant = createParticipant("electron", "pro");
-  targetParticipant.side = "product";
-  const sourceContext = createNodeContext(sourceParticipant);
-  const targetContext = createNodeContext(targetParticipant);
-  const rules = createReactionMappingRulesRuntime({
-    getNodeContext: (nodeKey) =>
-      ({
-        "electron_pro::root": sourceContext,
-        "electron_pro_product::root": targetContext,
-      }[nodeKey] ?? null),
-    parseNodeKey: (nodeKey = "") => {
-      const [participantId = "", nodeId = ""] = String(nodeKey ?? "").split("::");
-      return { participantId, nodeId };
-    },
-  });
-
-  targetParticipant.id = "electron_pro_product";
-
-  const availability = rules.evaluatePendingTargetAvailability({
-    pendingSourceKey: "electron_pro::root",
-    pendingSourceRole: "reactant",
-    role: "product",
-    sourceContext,
-    targetContext,
-  });
-
-  assert.equal(availability?.disabled, true);
-  assert.match(String(availability?.reason ?? ""), /exactly one lane at a time/i);
+  assert.match(validation.reason, /cannot map directly/i);
 });
 
 test("associate input targets stay live during authoring", () => {
@@ -344,24 +312,10 @@ test("associate can accept more than two reactant inputs for composite reassembl
   assert.match(validation.reason, /reactant routed into operator/i);
 });
 
-test("operator outputs can target center inputs and stay red until conservative", () => {
-  const sourceContext = {
-    participant: {
-      id: "associate_source",
-      templateId: "associate",
-      side: "operator",
-      operatorLaneIndex: 0,
-    },
-    node: { id: "associate_source::output" },
-  };
+test("operator outputs can target operator inputs and stay red until conservative", () => {
   const targetContext = {
-    participant: {
-      id: "center_core",
-      templateId: "noether_core",
-      side: "reactant",
-      surfaceColumn: "center-assembly",
-    },
-    node: { id: "center_core::root" },
+    participant: { id: "associate_operator", templateId: "associate" },
+    node: { id: "associate_operator::root" },
   };
   const rules = createReactionMappingRulesRuntime({
     getOperatorLedgerSummary: (participantId = "") => ({
@@ -383,9 +337,7 @@ test("operator outputs can target center inputs and stay red until conservative"
   const availability = rules.evaluatePendingTargetAvailability({
     pendingSourceKey: "associate_source::output",
     pendingSourceRole: "operator-output",
-    role: "center",
-    targetAnchorInstanceIndex: 0,
-    sourceContext,
+    role: "operator-input",
     targetContext,
   });
 
@@ -394,35 +346,25 @@ test("operator outputs can target center inputs and stay red until conservative"
   assert.match(availability?.reason ?? "", /operator|associate/i);
 });
 
-test("committed operator output to center input can become valid once conservative", () => {
+test("committed operator output to operator input can become valid once conservative", () => {
   const sourceContext = {
-    participant: {
-      id: "associate_source",
-      templateId: "associate",
-      side: "operator",
-      operatorLaneIndex: 0,
-    },
+    participant: { id: "associate_source", templateId: "associate" },
     node: { id: "associate_source::output" },
   };
   const targetContext = {
-    participant: {
-      id: "center_core",
-      templateId: "noether_core",
-      side: "reactant",
-      surfaceColumn: "center-assembly",
-    },
-    node: { id: "center_core::root" },
+    participant: { id: "associate_operator", templateId: "associate" },
+    node: { id: "associate_operator::root" },
   };
   const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
         "associate_source::output": sourceContext,
-        "center_core::root": targetContext,
+        "associate_operator::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger: { electrino: 3, positrino: 3 },
       outgoingLedger: { electrino: 3, positrino: 3 },
-      incomingCount: participantId === "center_core" ? 2 : 1,
+      incomingCount: participantId === "associate_operator" ? 2 : 1,
       outgoingCount: 1,
       isBalanced: true,
     }),
@@ -434,14 +376,13 @@ test("committed operator output to center input can become valid once conservati
 
   const validation = rules.getMappingValidation({
     sourceKey: "associate_source::output",
-    targetKey: "center_core::root",
+    targetKey: "associate_operator::root",
     sourceRole: "operator-output",
-    targetRole: "center",
-    targetAnchorInstanceIndex: 0,
+    targetRole: "operator-input",
   });
 
   assert.equal(validation.valid, true);
-  assert.match(validation.reason, /fully conservative/i);
+  assert.match(validation.reason, /operator routed into operator/i);
 });
 
 test("associate input mapping stays red until exactly two reactants are attached", () => {
@@ -555,29 +496,16 @@ test("dissociate input mapping stays red until exactly one reactant is attached"
   assert.match(validation.reason, /exactly one reactant input/i);
 });
 
-test("dissociate output uses a single shared output ledger when feeding the next center lane", () => {
+test("dissociate output uses a single shared output ledger", () => {
   const targetContext = {
-    participant: {
-      id: "center_sink",
-      templateId: "noether_core",
-      side: "reactant",
-      surfaceColumn: "center-assembly",
-    },
-    node: { id: "center_sink::root" },
+    participant: { id: "associate_sink", templateId: "associate" },
+    node: { id: "associate_sink::root" },
   };
   const rules = createReactionMappingRulesRuntime({
     getNodeContext: (nodeKey) =>
       ({
-        "dissociate_op::root": {
-          participant: {
-            id: "dissociate_op",
-            templateId: "dissociate",
-            side: "operator",
-            operatorLaneIndex: 0,
-          },
-          node: { id: "dissociate_op::root" },
-        },
-        "center_sink::root": targetContext,
+        "dissociate_op::root": { participant: { id: "dissociate_op", templateId: "dissociate" }, node: { id: "dissociate_op::root" } },
+        "associate_sink::root": targetContext,
       }[nodeKey] ?? null),
     getOperatorLedgerSummary: (participantId = "") => ({
       incomingLedger: { electrino: 3, positrino: 3 },
@@ -592,9 +520,9 @@ test("dissociate output uses a single shared output ledger when feeding the next
               0: { electrino: 3, positrino: 3 },
             }
           : {},
-      incomingCount: participantId === "center_sink" ? 2 : 1,
+      incomingCount: participantId === "associate_sink" ? 2 : 1,
       outgoingCount: 1,
-      isBalanced: participantId === "center_sink",
+      isBalanced: participantId === "associate_sink",
     }),
     getOperatorOutputLedger: (_participantId = "", anchorInstanceIndex = null, operatorSummary = null) =>
       operatorSummary?.outputLedgerByAnchorInstance?.[anchorInstanceIndex ?? 0] ?? operatorSummary?.outputLedger,
@@ -606,13 +534,12 @@ test("dissociate output uses a single shared output ledger when feeding the next
 
   const validation = rules.getMappingValidation({
     sourceKey: "dissociate_op::root",
-    targetKey: "center_sink::root",
+    targetKey: "associate_sink::root",
     sourceRole: "operator-output",
-    targetRole: "center",
+    targetRole: "operator-input",
     sourceAnchorInstanceIndex: 0,
-    targetAnchorInstanceIndex: 0,
   });
 
   assert.equal(validation.valid, true);
-  assert.match(validation.reason, /fully conservative/i);
+  assert.match(validation.reason, /operator routed into operator/i);
 });

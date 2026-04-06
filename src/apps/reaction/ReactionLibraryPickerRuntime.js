@@ -11,9 +11,9 @@ export function createReactionLibraryPickerRuntime(options = {}) {
     root = null,
     triggerButton = null,
     menuElement = null,
-    onSelect = null,
     documentLike = globalThis.document ?? null,
     windowLike = globalThis.window ?? null,
+    onSelect = () => {},
   } = options;
 
   let entries = [];
@@ -68,7 +68,7 @@ export function createReactionLibraryPickerRuntime(options = {}) {
         entries.find((entry) => normalizeText(entry?.id) === normalizeText(selectedId)) ?? entries[0] ?? null;
       triggerButton.disabled = entries.length === 0;
       triggerButton.setAttribute("aria-disabled", entries.length === 0 ? "true" : "false");
-      triggerButton.textContent = selectedEntry ? resolveEntryLabel(selectedEntry) : "Choose built-in reaction";
+      triggerButton.textContent = selectedEntry ? resolveEntryLabel(selectedEntry) : "Choose reaction";
     }
     if (menuElement instanceof HTMLElement) {
       menuElement.innerHTML = "";
@@ -91,9 +91,7 @@ export function createReactionLibraryPickerRuntime(options = {}) {
           selectedId = getResolvedSelectedId(entryId);
           render();
           closeMenu();
-          if (typeof onSelect === "function") {
-            onSelect(selectedId, entry);
-          }
+          onSelect(entryId, entry);
         });
         menuElement.appendChild(button);
       });
