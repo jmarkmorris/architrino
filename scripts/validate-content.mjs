@@ -2,8 +2,6 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { syncBuiltInReactionLibrary } from "./reaction-library-build-runtime.mjs";
-
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
@@ -1271,28 +1269,6 @@ if (scenesWithNoIncomingLinks.length) {
 }
 
 const wroteFiles = [];
-const builtInReactionLibrarySyncResult = syncBuiltInReactionLibrary({ mode });
-notes.push(
-  `Built-in reaction library: ${builtInReactionLibrarySyncResult.entryCount} emitted ` +
-    `(${builtInReactionLibrarySyncResult.exactEntryCount} exact, ` +
-    `${builtInReactionLibrarySyncResult.nonExactEntryCount} non-exact).`
-);
-if (builtInReactionLibrarySyncResult.defaultEntryId) {
-  notes.push(`built-in reaction library default: ${builtInReactionLibrarySyncResult.defaultEntryId}`);
-}
-for (const generationError of builtInReactionLibrarySyncResult.generationErrors) {
-  errors.push(
-    `built-in reaction library ${generationError.outputPath}: generation failed (${generationError.message}). Run node scripts/sync-built-in-reaction-library.mjs --write after fixing the solver/library path.`
-  );
-}
-for (const driftPath of builtInReactionLibrarySyncResult.driftPaths) {
-  errors.push(
-    `built-in reaction library drift: ${driftPath} is stale. Run node scripts/sync-built-in-reaction-library.mjs --write.`
-  );
-}
-if (mode === "write") {
-  wroteFiles.push(...builtInReactionLibrarySyncResult.changedPaths);
-}
 if (mode === "write") {
   if (writeJsonIfChanged(SCENES_INDEX_PATH, generatedScenesIndex)) {
     wroteFiles.push(SCENES_INDEX_PATH);
@@ -1311,22 +1287,6 @@ if (ancillarySceneJson.length) {
 }
 if (wroteFiles.length) {
   console.log(`- Wrote generated files: ${wroteFiles.join(", ")}`);
-}
-console.log(`- Built-in reaction library entries targeted: ${builtInReactionLibrarySyncResult.entryCount}`);
-if (builtInReactionLibrarySyncResult.changedPaths.length) {
-  console.log(
-    `- Built-in reaction library files updated: ${builtInReactionLibrarySyncResult.changedPaths.join(", ")}`
-  );
-}
-if (builtInReactionLibrarySyncResult.driftPaths.length) {
-  console.log(
-    `- Built-in reaction library drift: ${builtInReactionLibrarySyncResult.driftPaths.join(", ")}`
-  );
-}
-if (builtInReactionLibrarySyncResult.generationErrors.length) {
-  console.log(
-    `- Built-in reaction library generation errors: ${builtInReactionLibrarySyncResult.generationErrors.length}`
-  );
 }
 
 console.log(`\n${SCENES_INDEX_PATH}`);

@@ -1,5 +1,9 @@
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 import {
+  evaluateReactionConnectionPolicy,
+  getReactionMappingEndpointLaneNumber,
+} from "./ReactionConnectionPolicyRuntime.js";
+import {
   getReactionObjectConnectorPolicy,
   getReactionParticipantPlacementClass,
   isReactionObjectPlacementAllowed,
@@ -131,17 +135,8 @@ function buildParticipantRole(participant = {}, direction = "output") {
 }
 
 function getParticipantLaneNumber(participant = {}) {
-  if (participant?.side === "operator") {
-    return Math.max(0, Math.round(Number(participant?.operatorLaneIndex) || 0)) === 0 ? 2 : 4;
-  }
-  const placementClass = getReactionParticipantPlacementClass(participant);
-  if (placementClass === "center") {
-    return 3;
-  }
-  if (placementClass === "product") {
-    return 5;
-  }
-  return 1;
+  const role = participant?.side === "operator" ? "operator-output" : buildParticipantRole(participant, "output");
+  return getReactionMappingEndpointLaneNumber(participant, role);
 }
 
 function getExpectedSnapshotEndpointRole(participant = {}, direction = "output") {
@@ -200,8 +195,10 @@ function validateSnapshotEndpoint(participant = {}, mapping = {}, direction = "o
 }
 
 function validateSnapshotMapping(mapping = {}, participantsById = new Map()) {
-  const sourceParticipantId = normalizeText(parseReactionNodeKey(mapping?.sourceKey).participantId);
-  const targetParticipantId = normalizeText(parseReactionNodeKey(mapping?.targetKey).participantId);
+  const sourceEndpoint = parseReactionNodeKey(mapping?.sourceKey);
+  const targetEndpoint = parseReactionNodeKey(mapping?.targetKey);
+  const sourceParticipantId = normalizeText(sourceEndpoint.participantId);
+  const targetParticipantId = normalizeText(targetEndpoint.participantId);
   const sourceParticipant = participantsById.get(sourceParticipantId) ?? null;
   const targetParticipant = participantsById.get(targetParticipantId) ?? null;
   if (!sourceParticipant || !targetParticipant) {
@@ -211,6 +208,21 @@ function validateSnapshotMapping(mapping = {}, participantsById = new Map()) {
   }
   validateSnapshotEndpoint(sourceParticipant, mapping, "output");
   validateSnapshotEndpoint(targetParticipant, mapping, "input");
+  const connectionPolicyEvaluation = evaluateReactionConnectionPolicy({
+    sourceParticipant,
+    sourceNodeId: sourceEndpoint.nodeId,
+    sourceRole: mapping?.sourceRole,
+    sourceAnchorInstanceIndex: mapping?.sourceAnchorInstanceIndex,
+    targetParticipant,
+    targetNodeId: targetEndpoint.nodeId,
+    targetRole: mapping?.targetRole,
+    targetAnchorInstanceIndex: mapping?.targetAnchorInstanceIndex,
+  });
+  if (!connectionPolicyEvaluation.allowed) {
+    throw new Error(
+      `Reaction flow export mapping ${String(mapping?.id ?? "(missing id)")} violates the reaction lane policy. ${connectionPolicyEvaluation.reason}`
+    );
+  }
 }
 
 function buildParticipantState(participant = {}) {

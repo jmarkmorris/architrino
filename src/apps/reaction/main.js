@@ -1,6 +1,12 @@
 import { createReactionAppRuntime } from "./ReactionAppRuntime.js";
-import { createBrowserReactionSolveSnapshot } from "./ReactionSolverBrowserRuntime.js";
-import { solveReactionSnapshot as solveReactionSnapshotViaExternalRuntime } from "./ReactionSolverContractRuntime.js";
+import {
+  createBrowserReactionSolveRequest,
+  createBrowserReactionSolveSnapshot,
+} from "./ReactionSolverBrowserRuntime.js";
+import {
+  solveReactionSnapshot as solveReactionSnapshotViaExternalRuntime,
+  solveReactionSolverRequest as solveReactionSolverRequestViaExternalRuntime,
+} from "./ReactionSolverContractRuntime.js";
 import { canExecuteExternalReactionSolver } from "./ReactionSolverExternalRuntime.js";
 
 const reactionAppRuntimeDeps = globalThis.__ARCHITRINO_REACTION_APP_DEPS__ ?? {};
@@ -9,9 +15,17 @@ const defaultBrowserSolveSnapshot = createBrowserReactionSolveSnapshot({
   fetchImpl: typeof globalThis.fetch === "function" ? globalThis.fetch.bind(globalThis) : null,
   endpoint: reactionAppRuntimeDeps.solveEndpoint,
 });
+const defaultBrowserSolveRequest = createBrowserReactionSolveRequest({
+  windowLike: globalThis.window,
+  fetchImpl: typeof globalThis.fetch === "function" ? globalThis.fetch.bind(globalThis) : null,
+  endpoint: reactionAppRuntimeDeps.solveEndpoint,
+});
 const defaultSolveSnapshot = canExecuteExternalReactionSolver()
   ? solveReactionSnapshotViaExternalRuntime
   : defaultBrowserSolveSnapshot;
+const defaultSolveReactionRequest = canExecuteExternalReactionSolver()
+  ? solveReactionSolverRequestViaExternalRuntime
+  : defaultBrowserSolveRequest;
 
 const reactionAppRuntime = createReactionAppRuntime({
   reviewStateElement: document.getElementById("reaction-review-state"),
@@ -27,13 +41,16 @@ const reactionAppRuntime = createReactionAppRuntime({
   libraryPickerRoot: document.getElementById("reaction-library-picker"),
   libraryPickerTrigger: document.getElementById("reaction-library-trigger"),
   libraryPickerMenu: document.getElementById("reaction-library-menu"),
-  libraryLoadButton: document.getElementById("reaction-library-load-button"),
   acceptButton: document.getElementById("reaction-accept-button"),
   exportButton: document.getElementById("reaction-export-button"),
   clearButton: document.getElementById("reaction-clear-button"),
   solveButton: document.getElementById("reaction-solve-button"),
   exitButton: document.getElementById("reaction-exit-button"),
   initialSolverRequest: reactionAppRuntimeDeps.initialSolverRequest ?? null,
+  solveReactionRequest:
+    typeof reactionAppRuntimeDeps.solveReactionRequest === "function"
+      ? reactionAppRuntimeDeps.solveReactionRequest
+      : defaultSolveReactionRequest,
   solveSnapshot:
     typeof reactionAppRuntimeDeps.solveSnapshot === "function"
       ? reactionAppRuntimeDeps.solveSnapshot

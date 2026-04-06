@@ -21,12 +21,6 @@ function resolveReactionSolveEndpoint(windowLike = globalThis.window, endpoint =
   try {
     const currentUrl = new URL(href);
     const endpointUrl = new URL("/api/reaction/solve", currentUrl);
-    if (
-      normalizeText(currentUrl.hostname).toLowerCase() === "localhost" ||
-      normalizeText(currentUrl.hostname).toLowerCase() === "[::1]"
-    ) {
-      endpointUrl.hostname = "127.0.0.1";
-    }
     return endpointUrl.toString();
   } catch (_error) {
     return "";
@@ -144,6 +138,15 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
       target: "browser-http",
       endpoint,
     },
+  };
+}
+
+export function createBrowserReactionSolveRequest(options = {}) {
+  return async function solveReactionRequestInBrowser(request = {}) {
+    const solved = await requestBrowserReactionSolve(request, options);
+    return buildReactionSolverContractResponse(request, solved.result, {
+      execution: solved.execution,
+    });
   };
 }
 

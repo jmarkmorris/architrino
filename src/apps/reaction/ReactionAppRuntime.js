@@ -57,12 +57,12 @@ export function createReactionAppRuntime(deps) {
     libraryPickerRoot = null,
     libraryPickerTrigger = null,
     libraryPickerMenu = null,
-    libraryLoadButton = null,
     acceptButton = null,
     exportButton = null,
     clearButton = null,
     solveButton = null,
     exitButton = null,
+    solveReactionRequest = null,
     solveSnapshot = null,
     initialSolverRequest = null,
     createCommitRuntime = createReactionCommitStateRuntime,
@@ -101,6 +101,7 @@ export function createReactionAppRuntime(deps) {
   let latestSnapshot = { participants: [], mappings: [] };
   let reviewImportCandidate = null;
   let currentDocumentOptions = null;
+  let latestLibrarySelectionLoadToken = 0;
   const commitRuntime = createCommitRuntime({
     getSnapshot: () => latestSnapshot,
     validateSnapshot: buildReactionSurfaceValidation,
@@ -152,6 +153,15 @@ export function createReactionAppRuntime(deps) {
     root: libraryPickerRoot,
     triggerButton: libraryPickerTrigger,
     menuElement: libraryPickerMenu,
+    onSelect: (entryId) => {
+      void (async () => {
+        try {
+          await loadSelectedBuiltInReactionLibraryEntry(entryId);
+        } catch (_error) {
+          setStatus("Built-in reaction load failed.");
+        }
+      })();
+    },
   });
 
   function buildReviewImportStatusMessage(reviewInput = {}) {
@@ -184,10 +194,6 @@ export function createReactionAppRuntime(deps) {
     libraryPickerRuntime.setEntries(entries, {
       selectedId: defaultSelectedId,
     });
-    if (libraryLoadButton instanceof HTMLButtonElement) {
-      libraryLoadButton.disabled = entries.length === 0;
-      libraryLoadButton.setAttribute("aria-disabled", entries.length === 0 ? "true" : "false");
-    }
   }
 
   function applyLoadedSnapshot(snapshot = {}, documentOptions = null, options = {}) {
@@ -339,10 +345,32 @@ export function createReactionAppRuntime(deps) {
       setStatus("Choose a built-in reaction before loading.");
       return null;
     }
-    const payload = await loadReactionLibraryEntry(resolvedEntryId, {
-      entries: resolvedBuiltInLibraryEntries,
-      defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
-    });
+    const loadToken = ++latestLibrarySelectionLoadToken;
+    const selectedEntry =
+      resolvedBuiltInLibraryEntries.find((entry) => normalizeText(entry?.id) === resolvedEntryId) ?? null;
+    const selectedEntryTitle =
+      normalizeText(selectedEntry?.displayTitle) ||
+      normalizeText(selectedEntry?.title) ||
+      resolvedEntryId;
+    if (options?.announce !== false) {
+      setStatus(`Solving built-in reaction: ${selectedEntryTitle}.`);
+    }
+    let payload = null;
+    try {
+      payload = await loadReactionLibraryEntry(resolvedEntryId, {
+        entries: resolvedBuiltInLibraryEntries,
+        defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
+        solveRequest: solveReactionRequest,
+      });
+    } catch (error) {
+      if (loadToken !== latestLibrarySelectionLoadToken) {
+        return null;
+      }
+      throw error;
+    }
+    if (loadToken !== latestLibrarySelectionLoadToken) {
+      return null;
+    }
     return loadBuiltInReactionLibraryCandidate(payload, options);
   }
 
@@ -378,15 +406,6 @@ export function createReactionAppRuntime(deps) {
         downloadReactionFlowDocument();
       });
     }
-    if (libraryLoadButton instanceof HTMLButtonElement) {
-      libraryLoadButton.addEventListener("click", async () => {
-        try {
-          await loadSelectedBuiltInReactionLibraryEntry();
-        } catch (_error) {
-          setStatus("Built-in reaction load failed.");
-        }
-      });
-    }
     if (exitButton instanceof HTMLButtonElement) {
       exitButton.addEventListener("click", () => {
         exitReactionApp();
@@ -404,6 +423,7 @@ export function createReactionAppRuntime(deps) {
         const libraryPayload = await loadDefaultReactionLibraryEntry({
           entries: resolvedBuiltInLibraryEntries,
           defaultEntryId: resolvedDefaultBuiltInLibraryEntryId,
+          solveRequest: solveReactionRequest,
         });
         loadBuiltInReactionLibraryCandidate(libraryPayload, { announce: false });
         syncReviewControls();

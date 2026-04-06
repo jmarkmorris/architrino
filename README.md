@@ -46,8 +46,6 @@ Then open `http://localhost:5173/`.
 Run these from the repo root:
 
 ```bash
-node scripts/sync-built-in-reaction-library.mjs --check
-node scripts/sync-built-in-reaction-library.mjs --write
 node scripts/validate-content.mjs --check
 node scripts/validate-content.mjs --write
 node scripts/build-scene-graph.mjs --check
@@ -55,15 +53,10 @@ node scripts/build-scene-graph.mjs --write
 node scripts/smoke-option3.mjs
 ```
 
-`validate-content` also regenerates the build-time built-in Reaction library
-artifacts under `content/generated/reaction-built-in-library/`.
-
-The generated library manifest drives the reaction app dropdown and default
-autoload behavior:
-- all exact solver-backed entries are included;
-- up to the top 5 non-exact entries are also included and flagged as
-  `[non-exact]`;
-- if no exact entries exist, the best-ranked non-exact entry becomes the
-  default on refresh.
+The Reaction app library is a request-only manifest at
+`content/contracts/examples/reaction-library/manifest.v1.json`.
+Selecting a library entry sends that solver request to the live solve bridge and
+renders the returned in-memory solution. There are no pre-generated solved
+library JSON artifacts.
 
 If `--write` updates index or graph files intentionally, include those file changes in your commit.

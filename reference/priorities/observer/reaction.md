@@ -43,7 +43,8 @@ It does not own:
 - Mapping authoring and route rendering now live in focused canvas runtimes so `ReactionCanvasUiRuntime.js` stays a wiring layer instead of reclaiming provenance, corridor, and connector ownership.
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 - The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
-- The standalone Reaction app now has a first built-in solved-reaction library seed, with free neutron beta decay loading by default when startup finds no authored canvas state to preserve.
+- The standalone Reaction app now uses a request-only built-in library manifest under `content/contracts/examples/reaction-library/manifest.v1.json`; selecting an entry immediately sends its `solver-request/v1` payload to the solve bridge, and free neutron beta decay autoloads by default when startup finds no authored canvas state to preserve.
+- The standalone Reaction render path is intentionally primitive: it should draw only the participants, grouping lines, and mappings present in the current authored snapshot or returned solver result, not invent extra connector endpoints or phantom route scaffolding.
 
 ## Design
 
@@ -116,6 +117,7 @@ The intended surface grammar is:
 - preserve seam-side composite cards;
 - keep split behavior reversible through re-add rather than hidden state;
 - keep internal composite join lines visually subordinate to main mapping lines;
+- do not invent synthetic collector dots, exterior composite connectors, or other fake route endpoints on composite title cards;
 - and keep any non-primary transfer affordances visually subordinate to the dedicated Reaction mapping workflow.
 
 The app also needs a legible way to represent special coarse participants such as spacetime-like recruitment and return, but those should remain explicit app semantics rather than getting buried as implicit solver behavior.
@@ -189,7 +191,7 @@ Current:
 Objective:
 
 - make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./solver.md);
-- remove local object-type guesses from the built-in library path, render path, and test helpers;
+- remove local object-type guesses from the request export path, solver-result adapter path, render path, and test helpers;
 - and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Free Architrinos come directly from the registry rather than from app-specific fallback logic.
 
 This should include, at minimum, registry-driven behavior for:
@@ -233,10 +235,10 @@ This should mean:
 
 Done when:
 
-- Reaction can load a solved document and render it without inferring missing stages;
+- Reaction can load a solver result or accepted handoff and render it without inferring missing stages;
 - any solve that omits required staging or connectivity fails validation instead of being patched in-app;
-- any solved document that routes from a later lane back into an earlier one is rejected as incomplete rather than treated as a usable library entry;
-- and built-in library entries are true renderable handoff documents, not corrected imports.
+- any solved result that routes from a later lane back into an earlier one is rejected as incomplete rather than treated as solver-complete;
+- and the built-in library remains a request manifest plus solve call rather than a checked-in catalog of solved handoff documents.
 
 ### 3. Add First-Class Center-Lane Connector Semantics To The Reaction Runtime
 
@@ -272,7 +274,7 @@ Status: `active`
 
 Current:
 
-- dissociation and recruitment staging can still be under-specified or only partially enforced once the solved document reaches Reaction;
+- dissociation and recruitment staging can still be under-specified or only partially enforced once a solver result or accepted handoff reaches Reaction;
 - composite-open state is not yet treated as a fully validated part of the Reaction-side document contract;
 - and the intended lane grammar for assemblies versus middle-lane special participants still needs stricter enforcement.
 
@@ -281,7 +283,8 @@ Objective:
 - make the accepted Reaction-side document carry enough explicit state to render composite opening, per-core dissociation, recruited middle-lane pools, and downstream association without interpretation;
 - enforce the lane grammar that spacetime-style assemblies such as Noether Pair and Noether Quad belong only in the reactant or product columns;
 - enforce the lane grammar that Free Architrinos belong only in the middle lane;
-- and ensure that when a composite is drawn as opened, its dotted dissociated state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
+- enforce the authored rule that a single-row lane-1 reactant root must route first into a lane-2 operator input rather than jumping directly to downstream lanes;
+- and ensure that when a composite is drawn as opened, its dissociated state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
 
 For the current weak-reaction cases, this should specifically mean:
 
@@ -297,25 +300,26 @@ Done when:
 - the lane grammar for assemblies and Free Architrinos is validated, not merely preferred;
 - and the rendered reaction image is a direct consequence of the document rather than of viewer-side inference.
 
-### 5. Add Durable Reaction Regressions For Built-In Library Surface Behavior
+### 5. Add Durable Reaction Regressions For Request-Manifest Library Behavior
 
 Status: `active`
 
 Current:
 
 - several cobalt-session failures were UI-surface failures rather than pure solver failures;
-- built-in reaction selection, labeling, connector-side rendering, and composite-state rendering need durable regression coverage;
+- request-manifest selection, immediate solve-on-select behavior, labeling, connector-side rendering, and composite-state rendering need durable regression coverage;
 - and the Reaction library surface should make it obvious which built-ins are available without relying on a fragile native dropdown alone.
 
 Objective:
 
-- add regression coverage for the built-in library surface, built-in loading path, and accepted solved-document rendering behavior;
-- verify that all built-in reactions appear in the visible library controls and load the correct document;
+- add regression coverage for the built-in library surface, request-manifest loading path, and current-solver rendering behavior;
+- verify that all built-in reactions appear in the visible library controls and send the correct request to the solver immediately on selection;
 - verify that registry-defined objects such as muons and muon neutrinos preserve the correct displayed identity and structure on load;
-- and verify that dissociated composites, center-lane connector roles, and solver-owned dissociate stages all remain visible after import/export and page reload.
+- and verify that dissociated composites, center-lane connector roles, and solver-owned dissociate stages all remain visible after solve, reload, and accepted handoff export.
 
 Done when:
 
 - the built-in library UI consistently exposes the full available set of reactions;
-- loading a built-in reaction preserves the correct object identity, structure, connector orientation, and composite state;
+- selecting a built-in reaction immediately sends its `solver-request/v1` payload and preserves the correct object identity, structure, connector orientation, and composite state in the rendered result;
+- refresh on an empty session auto-solves the default free neutron beta decay entry;
 - and future regressions of the cobalt-session failures are caught by focused Reaction tests rather than by manual screenshot review.

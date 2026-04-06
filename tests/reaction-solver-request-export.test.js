@@ -204,8 +204,10 @@ test("solver request exporter emits an authored-only solver-request document", (
     label: "Electron",
   });
   const authoredOperator = createOperatorParticipant({
-    id: "operator_associate_authored",
-    operatorLaneIndex: 1,
+    id: "operator_dissociate_authored",
+    templateId: "dissociate",
+    label: "Dissociate",
+    operatorLaneIndex: 0,
     operatorSlotIndex: 2,
   });
   const solveGeneratedOperator = createOperatorParticipant({
@@ -235,8 +237,9 @@ test("solver request exporter emits an authored-only solver-request document", (
         id: "mapping_authored_2",
         sourceKey: buildNodeKey(authoredOperator, authoredOperator.hierarchy[0]),
         sourceRole: "operator-output",
-        targetKey: buildNodeKey(productElectron, productElectron.hierarchy[0]),
-        targetRole: "product",
+        targetKey: buildNodeKey(centerCore, centerCore.hierarchy[0]),
+        targetRole: "center",
+        targetAnchorInstanceIndex: 0,
       },
       {
         id: "mapping_solve_generated_ignored",
@@ -270,7 +273,7 @@ test("solver request exporter emits an authored-only solver-request document", (
     ["optional"]
   );
   assert.deepEqual(request.manualOperators.map((operator) => operator.id), [
-    "operator_associate_authored",
+    "operator_dissociate_authored",
   ]);
   assert.equal(request.manualOperators[0].inputs.length, 1);
   assert.equal(request.manualOperators[0].outputs.length, 1);
@@ -279,12 +282,12 @@ test("solver request exporter emits an authored-only solver-request document", (
     ["mapping_authored_1", "mapping_authored_2"]
   );
   assert(request.manualMappings.every((mapping) => mapping.kind === "operator-path"));
-  assert(request.manualMappings.every((mapping) => mapping.viaOperatorId === "operator_associate_authored"));
+  assert(request.manualMappings.every((mapping) => mapping.viaOperatorId === "operator_dissociate_authored"));
   assert.deepEqual(request.dissociation.manuallyOpenedParticipantIds, ["reactant_neutron_manual"]);
   assert.deepEqual(request.dissociation.manuallyOpenedNodeIds, []);
 });
 
-test("solver request exporter derives canonical ledgers and fragment mappings from live structure state", () => {
+test("solver request exporter derives canonical ledgers from live structure state", () => {
   const centerFreeArchitrinos = setParticipantBinarySelectionsBySlotCode(
     createParticipant({
       id: "center_free_architrinos_ledger",
@@ -295,6 +298,36 @@ test("solver request exporter derives canonical ledgers and fragment mappings fr
     { I: "ee", M: "ee", O: "ee" }
   );
   centerFreeArchitrinos.surfaceColumn = "center-assembly";
+  const reactantNeutron = createParticipant({
+    id: "reactant_neutron_fragment",
+    side: "reactant",
+    templateId: "neutron",
+    label: "Neutron",
+  });
+
+  const request = buildReactionSolverRequestDocument({
+    requestId: "reaction_fragment_request",
+    snapshot: {
+      participants: [centerFreeArchitrinos, reactantNeutron],
+      mappings: [],
+    },
+    resolveBinaryChoiceInventory,
+  });
+  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+  const errors = validateAgainstSchema(request, schema);
+  const freeArchitrinoParticipant = request.participants.find(
+    (participant) => participant.id === "center_free_architrinos_ledger"
+  );
+
+  assert.deepEqual(errors, []);
+  assert.deepEqual(freeArchitrinoParticipant.inventory, {
+    electrinoCount: 6,
+    positrinoCount: 0,
+  });
+  assert.deepEqual(request.manualMappings, []);
+});
+
+test("solver request exporter rejects direct fragment mappings that skip intermediate lanes", () => {
   const reactantNeutron = createParticipant({
     id: "reactant_neutron_fragment",
     side: "reactant",
@@ -314,43 +347,63 @@ test("solver request exporter derives canonical ledgers and fragment mappings fr
   );
   assert.ok(neutronChildNode);
 
-  const request = buildReactionSolverRequestDocument({
-    requestId: "reaction_fragment_request",
-    snapshot: {
-      participants: [centerFreeArchitrinos, reactantNeutron, productDownQuark],
-      mappings: [
-        {
-          id: "mapping_fragment_1",
-          sourceKey: buildNodeKey(reactantNeutron, neutronChildNode),
-          sourceRole: "reactant",
-          targetKey: buildNodeKey(productDownQuark, productDownQuark.hierarchy[0]),
-          targetRole: "product",
+  assert.throws(
+    () =>
+      buildReactionSolverRequestDocument({
+        requestId: "reaction_invalid_fragment_request",
+        snapshot: {
+          participants: [reactantNeutron, productDownQuark],
+          mappings: [
+            {
+              id: "mapping_fragment_1",
+              sourceKey: buildNodeKey(reactantNeutron, neutronChildNode),
+              sourceRole: "reactant",
+              targetKey: buildNodeKey(productDownQuark, productDownQuark.hierarchy[0]),
+              targetRole: "product",
+            },
+          ],
         },
-      ],
-    },
-    resolveBinaryChoiceInventory,
-  });
-  const schema = readJson("src/contracts/solver-request/v1/schema.json");
-  const errors = validateAgainstSchema(request, schema);
-  const freeArchitrinoParticipant = request.participants.find(
-    (participant) => participant.id === "center_free_architrinos_ledger"
+        resolveBinaryChoiceInventory,
+      }),
+    /exactly one lane at a time/i
   );
+});
 
-  assert.deepEqual(errors, []);
-  assert.deepEqual(freeArchitrinoParticipant.inventory, {
-    electrinoCount: 6,
-    positrinoCount: 0,
+test("solver request exporter rejects direct lane-1 single-row reactant root mappings", () => {
+  const reactantElectron = createParticipant({
+    id: "reactant_electron_root",
+    side: "reactant",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
   });
-  assert.equal(
-    request.manualMappings.find((mapping) => mapping.id === "mapping_fragment_1")?.kind,
-    "fragment"
-  );
-  assert.deepEqual(
-    request.manualMappings.find((mapping) => mapping.id === "mapping_fragment_1")?.conservedLedger,
-    {
-      electrinoCount: 7,
-      positrinoCount: 5,
-    }
+  const productElectron = createParticipant({
+    id: "product_electron_root",
+    side: "product",
+    templateId: "electron",
+    polarity: "pro",
+    label: "Electron",
+  });
+
+  assert.throws(
+    () =>
+      buildReactionSolverRequestDocument({
+        requestId: "reaction_invalid_direct_root_request",
+        snapshot: {
+          participants: [reactantElectron, productElectron],
+          mappings: [
+            {
+              id: "mapping_direct_root",
+              sourceKey: buildNodeKey(reactantElectron, reactantElectron.hierarchy[0]),
+              sourceRole: "reactant",
+              targetKey: buildNodeKey(productElectron, productElectron.hierarchy[0]),
+              targetRole: "product",
+            },
+          ],
+        },
+        resolveBinaryChoiceInventory,
+      }),
+    /exactly one lane at a time/i
   );
 });
 

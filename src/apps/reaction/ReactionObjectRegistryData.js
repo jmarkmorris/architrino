@@ -41,23 +41,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "sourceLaneNumbers": [1],
         "targetPlacementClass": "operator",
         "targetRole": "operator-input",
-        "targetLaneNumbers": [2, 4]
-      },
-      {
-        "sourcePlacementClass": "reactant",
-        "sourceRole": "reactant",
-        "sourceLaneNumbers": [1],
-        "targetPlacementClass": "center",
-        "targetRole": "center",
-        "targetLaneNumbers": [3]
-      },
-      {
-        "sourcePlacementClass": "reactant",
-        "sourceRole": "reactant",
-        "sourceLaneNumbers": [1],
-        "targetPlacementClass": "product",
-        "targetRole": "product",
-        "targetLaneNumbers": [5]
+        "targetLaneNumbers": [2]
       },
       {
         "sourcePlacementClass": "operator",
@@ -68,22 +52,6 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "targetLaneNumbers": [3]
       },
       {
-        "sourcePlacementClass": "operator",
-        "sourceRole": "operator-output",
-        "sourceLaneNumbers": [2],
-        "targetPlacementClass": "operator",
-        "targetRole": "operator-input",
-        "targetLaneNumbers": [4]
-      },
-      {
-        "sourcePlacementClass": "operator",
-        "sourceRole": "operator-output",
-        "sourceLaneNumbers": [2, 4],
-        "targetPlacementClass": "product",
-        "targetRole": "product",
-        "targetLaneNumbers": [5]
-      },
-      {
         "sourcePlacementClass": "center",
         "sourceRole": "center",
         "sourceLaneNumbers": [3],
@@ -92,9 +60,9 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "targetLaneNumbers": [4]
       },
       {
-        "sourcePlacementClass": "center",
-        "sourceRole": "center",
-        "sourceLaneNumbers": [3],
+        "sourcePlacementClass": "operator",
+        "sourceRole": "operator-output",
+        "sourceLaneNumbers": [4],
         "targetPlacementClass": "product",
         "targetRole": "product",
         "targetLaneNumbers": [5]

@@ -21,6 +21,12 @@ One design rule should stay explicit from the start:
 
 The author should feel like they are shaping observation, not operating a film rig.
 
+Another boundary should stay explicit too:
+
+- viewport tools are downstream of accepted Reaction handoff;
+- they should not solve the reaction again or repair missing reaction geometry;
+- and they should treat upstream reaction structure as authored input, not as something to reinterpret.
+
 ## Standard designs
 
 The common patterns in animation and editorial tools are familiar for a reason. We should understand them clearly even if we adapt them to a more AAA-native language.

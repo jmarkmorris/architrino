@@ -101,7 +101,7 @@ Input:
 
 - solver output JSON;
 - or manually authored reaction structure in the `reaction` UI rather than from JSON input;
-- or a built-in reaction spec JSON document from a library;
+- or a built-in library selection from a request-only manifest, where one `solver-request/v1` document is solved on demand;
 - or a reaction JSON file loaded by the developer.
 
 Output:
@@ -213,19 +213,21 @@ Note:
 - if built-in solver requests exist, they should be treated as developer fixtures or canned examples, not as a replacement for the explicit request format.
 - advanced users may also enter here by loading a `solver-request/v1` JSON file directly, including one generated from a user-specified PDG channel upstream.
 
-### C. Start With `reaction` Using A Built-In Or Loaded Spec
+### C. Start With `reaction` Using A Built-In Library Entry Or Loaded Spec
 
 Audience:
 
 - developer
 - user
 
-Use this when you want to work at the reaction-authoring level without running PDG ingest or the solver first.
+Use this when you want to work at the reaction-authoring level without running PDG ingest first and are happy to let `reaction` invoke the solver on library selection.
+
+The built-in library in this mode is a request catalog, not a stored solved-reaction catalog.
 
 Workflow:
 
 1. Open `reaction`.
-2. Choose a built-in reaction spec JSON document from the library, or load one from a reaction JSON file.
+2. Choose a built-in library reaction, which sends its `solver-request/v1` document to the solver immediately, or load one from a reaction JSON file.
 3. Review and edit participants, mappings, and operators in `reaction`.
 4. Run the solver from inside `reaction` if helpful, or stay manual.
 5. Accept the reaction once the provenance story is correct.
@@ -235,7 +237,7 @@ Workflow:
 
 Short form:
 
-- open reaction spec -> edit and accept in `reaction` -> hand off to `composer`.
+- open reaction library entry or reaction JSON -> edit and accept in `reaction` -> hand off to `composer`.
 
 ### D. Start With `reaction` And Build A Manual Solution
 

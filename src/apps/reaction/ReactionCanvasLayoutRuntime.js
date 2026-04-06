@@ -3,19 +3,20 @@ import {
   isReactionStructureInlineAnchorRenderMode,
 } from "./ReactionStructureDescriptorRuntime.js";
 
+const REACTION_CANVAS_TILE_GAP_PX = 7;
+
 export const REACTION_CANVAS_LAYOUT = Object.freeze({
   addButtonSizePx: 32,
   attachmentGapPx: 3,
   anchorSizePx: 16,
   binaryChoiceSizePx: 72,
-  compositeNodeSizePx: Math.round(16 * 0.35),
-  compositeParticipantGapPx: 0,
+  compositeParticipantGapPx: REACTION_CANVAS_TILE_GAP_PX,
   contentStackGapPx: 10,
   operatorGraphicConnectionStepPx: 79,
   operatorTileCount: 4,
   surfaceColumnGapPx: 72 / 16,
   routeAnchorGapPx: 0.25,
-  tileGapPx: 7,
+  tileGapPx: REACTION_CANVAS_TILE_GAP_PX,
   topControlRowHeightPx: 38,
   operatorLaneEdgePaddingPx: 18,
   operatorSlotEdgePaddingPx: 18,
@@ -61,13 +62,6 @@ export const REACTION_CANVAS_SURFACE_COLUMN_GROUP_LAYOUT = Object.freeze([
 export const REACTION_CANVAS_OPERATOR_LANE_WIDTH_PX =
   REACTION_CANVAS_LAYOUT.binaryChoiceSizePx * REACTION_CANVAS_LAYOUT.operatorTileCount +
   REACTION_CANVAS_LAYOUT.tileGapPx * (REACTION_CANVAS_LAYOUT.operatorTileCount - 1);
-export const REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX = REACTION_CANVAS_LAYOUT.tileGapPx;
-export const REACTION_CANVAS_COMPOSITE_NODE_INSET_PX = Math.max(
-  0,
-  (REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX - REACTION_CANVAS_LAYOUT.compositeNodeSizePx) / 2
-);
-export const REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX =
-  REACTION_CANVAS_LAYOUT.compositeNodeSizePx / 2;
 export const REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX =
   REACTION_CANVAS_LAYOUT.anchorSizePx / 2;
 export const REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX =
@@ -155,26 +149,6 @@ export function applyReactionCanvasLayoutCssVars(surface) {
     surface,
     "--reaction-canvas-anchor-attachment-offset",
     `${REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX}px`
-  );
-  setReactionCanvasLayoutVar(
-    surface,
-    "--reaction-canvas-composite-node-size",
-    `${REACTION_CANVAS_LAYOUT.compositeNodeSizePx}px`
-  );
-  setReactionCanvasLayoutVar(
-    surface,
-    "--reaction-canvas-composite-node-center",
-    `${REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX}px`
-  );
-  setReactionCanvasLayoutVar(
-    surface,
-    "--reaction-canvas-composite-connector-span",
-    `${REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX}px`
-  );
-  setReactionCanvasLayoutVar(
-    surface,
-    "--reaction-canvas-composite-node-inset",
-    `${REACTION_CANVAS_COMPOSITE_NODE_INSET_PX}px`
   );
   setReactionCanvasLayoutVar(
     surface,

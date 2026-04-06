@@ -78,6 +78,9 @@ import {
   shouldRenderReactionStructureDescriptorChildren,
 } from "./ReactionStructureDescriptorRuntime.js";
 import {
+  isReactionTargetTerminal,
+} from "./ReactionAnchorTerminalRuntime.js";
+import {
   cloneStructureNode,
   STRUCTURE_CHARGE_TYPES,
   STRUCTURE_KINDS,
@@ -611,16 +614,14 @@ function getParticipantCollectionKey(participant = null) {
   return participant?.side === "product" ? "product" : "reactant";
 }
 
-function isSingleMappingAnchorRole(role = "") {
-  const normalizedRole =
-    typeof role === "object" && role !== null
-      ? String(role.role ?? "").trim()
-      : String(role ?? "").trim();
-  return normalizedRole === "reactant" || normalizedRole === "product";
-}
-
 function canTargetMappingRole(role = "") {
-  return role === "product" || role === "operator-input";
+  const descriptor =
+    typeof role === "object" && role !== null
+      ? role
+      : {
+          role,
+        };
+  return isReactionTargetTerminal(descriptor);
 }
 
 function getSlotNameFromCode(slotCode = "") {
@@ -963,6 +964,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     pruneRecentRouteState,
   } = anchorStateRuntime;
   const anchorRenderRuntime = createAnchorRenderRuntime({
+    canTargetMappingRole,
     findMappingsByNodeKey,
     getAnchorAvailability,
     getHoveredMappingIds: () => state.hoveredMappingIds,
@@ -1567,31 +1569,40 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return 0;
     }
     let count = 0;
-    state.participants
-      .filter((participant) => participant.side === "product" || participant.side === "operator")
-      .forEach((participant) => {
-        const visit = (nodes = []) => {
-          nodes.forEach((node) => {
-            const nodeKey = buildNodeKey(participant.id, node.id);
-            if (participant.side === "product") {
-              if (!getAnchorAvailability("product", nodeKey).disabled) {
-                count += 1;
-              }
-            } else if (participant.side === "operator") {
-              const operatorNode = getOperatorNode(participant);
-              if (operatorNode && node.id === operatorNode.id) {
-                if (!getAnchorAvailability("operator-input", nodeKey).disabled) {
-                  count += 1;
-                }
-              }
+    state.participants.forEach((participant) => {
+      const visit = (nodes = []) => {
+        nodes.forEach((node) => {
+          const nodeKey = buildNodeKey(participant.id, node.id);
+          if (participant.side === "product") {
+            if (!getAnchorAvailability("product", nodeKey).disabled) {
+              count += 1;
             }
-            if (shouldRenderChildNodes(node)) {
-              visit(node.children);
+          } else if (participant.side === "operator") {
+            const operatorNode = getOperatorNode(participant);
+            if (
+              operatorNode &&
+              node.id === operatorNode.id &&
+              !getAnchorAvailability("operator-input", nodeKey, 0).disabled
+            ) {
+              count += 1;
             }
-          });
-        };
-        visit(participant.hierarchy);
-      });
+          } else if (isCenterAssemblyParticipant(participant)) {
+            const rootNode = getParticipantRootNode(participant);
+            if (
+              rootNode &&
+              node.id === rootNode.id &&
+              !getAnchorAvailability("center", nodeKey, 0).disabled
+            ) {
+              count += 1;
+            }
+          }
+          if (shouldRenderChildNodes(node)) {
+            visit(node.children);
+          }
+        });
+      };
+      visit(participant.hierarchy);
+    });
     return count;
   }
 
@@ -3068,7 +3079,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     }
     if (!state.mappings.length) {
       mapHint.textContent =
-        "Choose a reactant anchor, then a product or operator anchor, to author the first mapping.";
+        "Choose a source anchor, then a valid downstream anchor, to author the first mapping.";
       return;
     }
     mapHint.textContent = `${state.mappings.length} mapping${state.mappings.length === 1 ? "" : "s"} authored. Click any mapped anchor to remove it.`;

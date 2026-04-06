@@ -2,6 +2,7 @@ import { classifyReactionNode } from "./ReactionStructureMappingRuntime.js";
 import { findReactionStructureDescriptorNode } from "./ReactionStructureDescriptorRuntime.js";
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
 import { deriveStructureClassification } from "../../domain/structure/StructureClassification.js";
+import { evaluateReactionConnectionPolicy } from "./ReactionConnectionPolicyRuntime.js";
 import {
   getReactionParticipantFamilyTag,
   inferReactionGenerationFromLabel,
@@ -451,6 +452,29 @@ function buildPolicyRecord(overrides = {}) {
   };
 }
 
+function validateManualMappingConnectionPolicy(mapping = {}, participantsById = new Map()) {
+  const sourceEndpoint = parseMappingEndpoint(mapping?.sourceKey, mapping?.sourceRole, participantsById);
+  const targetEndpoint = parseMappingEndpoint(mapping?.targetKey, mapping?.targetRole, participantsById);
+  if (!sourceEndpoint || !targetEndpoint) {
+    return;
+  }
+  const evaluation = evaluateReactionConnectionPolicy({
+    sourceParticipant: sourceEndpoint.participant,
+    sourceNodeId: sourceEndpoint.anchorId,
+    sourceRole: sourceEndpoint.role,
+    sourceAnchorInstanceIndex: mapping?.sourceAnchorInstanceIndex,
+    targetParticipant: targetEndpoint.participant,
+    targetNodeId: targetEndpoint.anchorId,
+    targetRole: targetEndpoint.role,
+    targetAnchorInstanceIndex: mapping?.targetAnchorInstanceIndex,
+  });
+  if (!evaluation.allowed) {
+    throw new Error(
+      `Solver request export mapping ${normalizeText(mapping?.id) || "(missing id)"} violates the reaction lane policy. ${evaluation.reason}`
+    );
+  }
+}
+
 export function buildReactionSolverRequestDocument(options = {}) {
   const snapshot = options?.snapshot ?? {};
   const participants = Array.isArray(snapshot?.participants) ? snapshot.participants : [];
@@ -478,6 +502,7 @@ export function buildReactionSolverRequestDocument(options = {}) {
     )
     .filter(Boolean);
   const participantsById = buildParticipantIndex(participants);
+  mappings.forEach((mapping) => validateManualMappingConnectionPolicy(mapping, participantsById));
 
   return {
     schema: "solver-request/v1",

@@ -63,11 +63,22 @@ test("reaction object registry encodes the forward-only connection policy", () =
       sourcePlacementClass: "reactant",
       sourceRole: "reactant",
       sourceLaneNumber: 1,
-      targetPlacementClass: "center",
-      targetRole: "center",
-      targetLaneNumber: 3,
+      targetPlacementClass: "operator",
+      targetRole: "operator-input",
+      targetLaneNumber: 2,
     }),
     true
+  );
+  assert.equal(
+    isReactionConnectionAllowed({
+      sourcePlacementClass: "reactant",
+      sourceRole: "reactant",
+      sourceLaneNumber: 1,
+      targetPlacementClass: "product",
+      targetRole: "product",
+      targetLaneNumber: 5,
+    }),
+    false
   );
   assert.equal(
     isReactionConnectionAllowed({
@@ -77,6 +88,17 @@ test("reaction object registry encodes the forward-only connection policy", () =
       targetPlacementClass: "operator",
       targetRole: "operator-input",
       targetLaneNumber: 2,
+    }),
+    false
+  );
+  assert.equal(
+    isReactionConnectionAllowed({
+      sourcePlacementClass: "operator",
+      sourceRole: "operator-output",
+      sourceLaneNumber: 2,
+      targetPlacementClass: "product",
+      targetRole: "product",
+      targetLaneNumber: 5,
     }),
     false
   );

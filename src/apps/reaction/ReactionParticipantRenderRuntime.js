@@ -77,7 +77,6 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   const cycleQuarkBinaryPreset = options.cycleQuarkBinaryPreset ?? (() => {});
   const cycleFreeArchitrinoPreset = options.cycleFreeArchitrinoPreset ?? (() => {});
   const findMappingByNodeKey = options.findMappingByNodeKey ?? (() => null);
-  const findMappingsByNodeKey = options.findMappingsByNodeKey ?? (() => []);
   const getMappings = options.getMappings ?? (() => []);
   const formatLedger = options.formatLedger ?? (() => "");
   const formatParticipantLabel = options.formatParticipantLabel ?? ((label) => label);
@@ -695,61 +694,20 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     return body;
   }
 
-  function createCompositeSpanRail(participant, rowNodes = []) {
+  function createCompositeSpanRail(participant) {
     const rail = document.createElement("div");
     rail.className = `composer-reaction-canvas-composite-span-rail is-${participant.side}`;
     const stem = document.createElement("span");
     stem.className = "composer-reaction-canvas-composite-span-stem";
     stem.dataset.compositeSpanParticipantId = participant.id;
     rail.appendChild(stem);
-    rowNodes.forEach(() => {
-      const slot = document.createElement("div");
-      slot.className = "composer-reaction-canvas-composite-span-slot";
-      const node = document.createElement("span");
-      node.className =
-        "composer-reaction-canvas-composite-span-node composer-reaction-canvas-composite-connector-dot";
-      node.setAttribute("aria-hidden", "true");
-      slot.appendChild(node);
-      rail.appendChild(slot);
-    });
     return rail;
-  }
-
-  function shouldRenderCompositeExteriorRootAnchor(participant, rootNode = null, rootNodeKey = "") {
-    if (!rootNode || !rootNodeKey) {
-      return false;
-    }
-    const anchorRole = getParticipantConnectorRole(participant);
-    const anchorInstanceIndex =
-      getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null;
-    const hasExplicitRootMapping =
-      findMappingsByNodeKey(rootNodeKey, anchorRole, anchorInstanceIndex).length > 0;
-    if (hasExplicitRootMapping) {
-      return true;
-    }
-    return !(participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite);
-  }
-
-  function createCompositeExteriorRootAnchor(participant, rootNode = null, rootNodeKey = "") {
-    if (!shouldRenderCompositeExteriorRootAnchor(participant, rootNode, rootNodeKey)) {
-      return null;
-    }
-    return createAnchorButton(participant, rootNode, rootNodeKey, {
-      anchorRole: getParticipantConnectorRole(participant),
-      anchorInstanceIndex:
-        getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null,
-      extraClassNames: [
-        "composer-reaction-canvas-composite-exterior-root-anchor",
-      ],
-    });
   }
 
   function createCompositeAssemblyGridContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-canvas-higgs-cluster-grid is-${participant.side}`;
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
-    const rootNode = getParticipantRootNode(participant);
-    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const rows = document.createElement("div");
     rows.className = "composer-reaction-canvas-higgs-cluster-grid-rows";
     coreNodes.forEach((coreNode) => {
@@ -759,35 +717,13 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       row.appendChild(rowBody);
       rows.appendChild(row);
     });
-    const spanRail = createCompositeSpanRail(participant, coreNodes);
-    const exteriorRootAnchor = createCompositeExteriorRootAnchor(participant, rootNode, rootNodeKey);
+    const spanRail = createCompositeSpanRail(participant);
     if (participant.side === "product") {
       wrapper.append(rows, spanRail);
     } else {
       wrapper.append(spanRail, rows);
     }
-    if (exteriorRootAnchor) {
-      wrapper.appendChild(exteriorRootAnchor);
-    }
     return wrapper;
-  }
-
-  function createCompositeVisualRail(participant) {
-    const rail = document.createElement("div");
-    rail.className = `composer-reaction-canvas-composite-visual-rail is-${participant.side}`;
-    const collector = document.createElement("span");
-    collector.className =
-      "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
-    collector.setAttribute("aria-hidden", "true");
-    collector.dataset.compositeCollectorId = participant.id;
-
-    const visual = createParticipantVisual(participant);
-    if (participant.side === "product") {
-      rail.append(collector, visual);
-    } else {
-      rail.append(visual, collector);
-    }
-    return rail;
   }
 
   function createBinarySelectorContent(participant, node) {
@@ -958,15 +894,10 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     if (isComposite) {
       card.classList.add("is-composite-participant");
     }
-    if (participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite) {
-      card.classList.add("is-dissociated-composite");
-    }
     if (participant.side === "product" && rootAnchorAvailability?.reason) {
       card.title = rootAnchorAvailability.reason;
     }
-    const visual = isComposite
-      ? createCompositeVisualRail(participant)
-      : createParticipantVisual(participant);
+    const visual = createParticipantVisual(participant);
 
     const hierarchy = document.createElement("div");
     hierarchy.className = `composer-reaction-canvas-tree is-${participant.side}`;

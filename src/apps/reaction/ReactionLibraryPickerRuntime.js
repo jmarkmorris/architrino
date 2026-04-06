@@ -11,6 +11,7 @@ export function createReactionLibraryPickerRuntime(options = {}) {
     root = null,
     triggerButton = null,
     menuElement = null,
+    onSelect = null,
     documentLike = globalThis.document ?? null,
     windowLike = globalThis.window ?? null,
   } = options;
@@ -90,6 +91,9 @@ export function createReactionLibraryPickerRuntime(options = {}) {
           selectedId = getResolvedSelectedId(entryId);
           render();
           closeMenu();
+          if (typeof onSelect === "function") {
+            onSelect(selectedId, entry);
+          }
         });
         menuElement.appendChild(button);
       });

@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-import { createBrowserReactionSolveSnapshot, resolveReactionSolveEndpoint } from "../src/apps/reaction/ReactionSolverBrowserRuntime.js";
+import {
+  createBrowserReactionSolveRequest,
+  createBrowserReactionSolveSnapshot,
+  resolveReactionSolveEndpoint,
+} from "../src/apps/reaction/ReactionSolverBrowserRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
@@ -50,12 +54,42 @@ test("browser reaction solver runtime resolves the local solve endpoint from the
   );
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://localhost:5173/reaction.html" } }),
-    "http://127.0.0.1:5173/api/reaction/solve"
+    "http://localhost:5173/api/reaction/solve"
   );
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/architrino/reaction.html" } }),
     "http://127.0.0.1:5173/api/reaction/solve"
   );
+});
+
+test("browser reaction solver runtime can post a solver-request document directly", async () => {
+  const fixtureResult = readJson("content/contracts/examples/solver-result/associate_photon_result.v1.json");
+  const request = readJson("content/contracts/examples/solver-request/associate_photon.v1.json");
+  const seenRequests = [];
+  const solveRequest = createBrowserReactionSolveRequest({
+    windowLike: { location: { href: "http://localhost:5173/reaction.html" } },
+    fetchImpl: async (url, options = {}) => {
+      seenRequests.push({
+        url,
+        method: options.method,
+        headers: options.headers,
+        body: JSON.parse(options.body),
+      });
+      return {
+        ok: true,
+        status: 200,
+        text: async () => JSON.stringify(fixtureResult),
+      };
+    },
+  });
+
+  const solution = await solveRequest(request);
+
+  assert.equal(seenRequests.length, 1);
+  assert.equal(seenRequests[0].url, "http://localhost:5173/api/reaction/solve");
+  assert.equal(seenRequests[0].body.requestId, request.requestId);
+  assert.equal(solution.request.requestId, request.requestId);
+  assert.equal(solution.result.summary.exact, true);
 });
 
 test("browser reaction solver runtime posts a request document and returns a contract response", async () => {

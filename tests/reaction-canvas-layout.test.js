@@ -8,9 +8,6 @@ import {
   getReactionParticipantTrackHeaderInsetPx,
   getReactionParticipantTrackStartOffsetCss,
   getReactionParticipantTrackStartOffsetPx,
-  REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX,
-  REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX,
-  REACTION_CANVAS_COMPOSITE_NODE_INSET_PX,
   REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX,
   REACTION_CANVAS_ANCHOR_CENTER_OFFSET_PX,
   getReactionSurfaceColumnGroupFallbackRatios,
@@ -50,22 +47,6 @@ test("reaction canvas layout applies shared css variables from one source of tru
     `${REACTION_CANVAS_ANCHOR_ATTACHMENT_OFFSET_PX}px`
   );
   assert.equal(
-    applied.get("--reaction-canvas-composite-node-size"),
-    `${REACTION_CANVAS_LAYOUT.compositeNodeSizePx}px`
-  );
-  assert.equal(
-    applied.get("--reaction-canvas-composite-node-center"),
-    `${REACTION_CANVAS_COMPOSITE_NODE_CENTER_PX}px`
-  );
-  assert.equal(
-    applied.get("--reaction-canvas-composite-connector-span"),
-    `${REACTION_CANVAS_COMPOSITE_CONNECTOR_SPAN_PX}px`
-  );
-  assert.equal(
-    applied.get("--reaction-canvas-composite-node-inset"),
-    `${REACTION_CANVAS_COMPOSITE_NODE_INSET_PX}px`
-  );
-  assert.equal(
     applied.get("--reaction-canvas-composite-participant-gap"),
     `${REACTION_CANVAS_LAYOUT.compositeParticipantGapPx}px`
   );
@@ -82,6 +63,13 @@ test("reaction canvas layout applies shared css variables from one source of tru
     String(REACTION_CANVAS_SURFACE_COLUMN_COUNT)
   );
   assert.equal(REACTION_CANVAS_SURFACE_COLUMN_GROUP_COUNT, 5);
+});
+
+test("composite title gap uses the same standard horizontal gap as tile-to-tile spacing", () => {
+  assert.equal(
+    REACTION_CANVAS_LAYOUT.compositeParticipantGapPx,
+    REACTION_CANVAS_LAYOUT.tileGapPx
+  );
 });
 
 test("reaction canvas layout derives explicit track-start offsets for standalone and composite grids", () => {

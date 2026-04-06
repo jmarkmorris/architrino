@@ -11,9 +11,10 @@ The current runtime/helper surface that consumes that registry includes:
 
 - [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js)
 - [`ReactionCanvasUiRuntime.js`](../../../src/apps/reaction/ReactionCanvasUiRuntime.js)
+- [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js)
 - [`ReactionFlowExportRuntime.js`](../../../src/apps/reaction/ReactionFlowExportRuntime.js)
-- [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js)
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js)
+- [`ReactionSolverResultAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js)
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py)
 - [`StructureAssemblyCatalog.js`](../../../src/domain/structure/StructureAssemblyCatalog.js)
 - [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js)
@@ -65,21 +66,26 @@ The registry now includes a first-class connection policy:
 - `requireForwardLaneProgress = true`
 - `requireInputTerminus = true`
 
-Allowed routed edge shapes are currently:
+At the placement-class level, the allowed routed edge shapes are now the strict adjacent-lane cases only:
 
 | Source | Allowed targets |
 | --- | --- |
-| `reactant` lane `1`, role `reactant` | `operator-input` lane `2` or `4`; `center` lane `3`; `product` lane `5` |
-| `operator-output` lane `2` | `center` lane `3`; `operator-input` lane `4`; `product` lane `5` |
+| `reactant` lane `1`, role `reactant` | `operator-input` lane `2` |
+| `operator-output` lane `2` | `center` lane `3` |
+| `center` lane `3`, role `center` | `operator-input` lane `4` |
 | `operator-output` lane `4` | `product` lane `5` |
-| `center` lane `3`, role `center` | `operator-input` lane `4`; `product` lane `5` |
 
 Important current consequences:
 
+- every mapping must start on a right/output terminal and end on a left/input terminal;
+- the runtime now treats those row-group terminals explicitly as left `0` and right `1`;
+- lane `N` may connect only to lane `N+1`;
 - `3 -> 2` is invalid
 - `4 -> 3` is invalid
+- `1 -> 3`, `1 -> 5`, `2 -> 4`, `2 -> 5`, and `3 -> 5` are invalid
 - center-lane outputs are forward-only
 - operator outputs may only connect to input-side roles
+- the shared adjacent-lane and terminal-side rule is enforced by [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js)
 
 ## Current Picker Surfaces
 
@@ -120,7 +126,12 @@ One important current render rule from the runtime helpers:
 - `getReactionAnchorAttachmentSide("center", "source")` returns `right`
 - `getReactionAnchorAttachmentSide("center", "target")` returns `left`
 
-That is the current first-class rule for center-lane connector side semantics.
+That coarse placement fact is still true, but the runtime now resolves actual attach points from explicit row-group terminal indices:
+
+- left/input terminal = `0`
+- right/output terminal = `1`
+- center input anchors use terminal `0`
+- center output anchors use terminal `1`
 
 ## Canonical Template Families
 
@@ -180,13 +191,15 @@ Current code-backed notes:
 
 - The JSON registry and the browser-importable JS registry data are currently kept byte-identical. [`reaction-object-registry.test.js`](../../../tests/reaction-object-registry.test.js) checks that directly.
 - Placement validity is registry-owned:
-  - `ReactionFlowExportRuntime.js`, `ReactionBuiltInLibraryRuntime.js`, and `ReactionSolverRequestAdapterRuntime.js` all reject participants whose placement class is not allowed by the registry.
+  - `ReactionFlowExportRuntime.js`, `ReactionSolverRequestAdapterRuntime.js`, and `ReactionSolverResultAdapterRuntime.js` all reject participants whose placement class is not allowed by the registry.
 - Connection validity is registry-owned:
   - the Python solver reads the same `connectionPolicy`;
-  - `isReactionConnectionAllowed(...)` is now the shared forward-lane law in browser tests and solver validation.
+  - `isReactionConnectionAllowed(...)` is now the shared forward-lane baseline in browser tests and solver validation;
+  - [`ReactionConnectionPolicyRuntime.js`](../../../src/apps/reaction/ReactionConnectionPolicyRuntime.js) layers the stricter lane-1 single-row reactant-root rule on top of that baseline.
 - `Noether Pair` and `Noether Quad` are not center-lane objects in the current registry.
 - `Free Architrinos` is center-only in the current registry.
 - `Associate` and `Dissociate` remain the only canonical operator templates.
+- `ReactionBuiltInLibraryRuntime.js` no longer consumes the registry directly because the built-in library is now request-only; object semantics are applied later by request export, solver result adaptation, rendering, and validation.
 - The UI still narrows operator placement more than the registry itself:
   - current add flow offers `Dissociate` only on the left operator lane;
   - current add flow offers `Associate` only on the right operator lane.

@@ -215,3 +215,38 @@ test(
     assert.equal(triggerButton.attributes.get("aria-expanded"), "false");
   })
 );
+
+test(
+  "reaction library picker notifies selection changes immediately",
+  withFakeDom(() => {
+    const documentLike = new FakeDocument();
+    const windowLike = new FakeWindow();
+    const root = new FakeElement("div");
+    const triggerButton = new FakeButtonElement();
+    const menuElement = new FakeElement("div");
+    const seenSelections = [];
+    root.appendChild(triggerButton);
+    root.appendChild(menuElement);
+
+    createReactionLibraryPickerRuntime({
+      root,
+      triggerButton,
+      menuElement,
+      documentLike,
+      windowLike,
+      onSelect: (entryId) => {
+        seenSelections.push(entryId);
+      },
+    }).setEntries([
+      { id: "muon_decay", title: "Muon decay" },
+      { id: "free_neutron_beta_decay", title: "Free neutron beta decay" },
+    ]);
+
+    triggerButton.dispatchEvent("click");
+    menuElement.children[1]?.dispatchEvent("click");
+
+    assert.deepEqual(seenSelections, ["free_neutron_beta_decay"]);
+    assert.equal(triggerButton.textContent, "Free neutron beta decay");
+    assert.equal(menuElement.hidden, true);
+  })
+);

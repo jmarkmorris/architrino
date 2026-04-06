@@ -2,6 +2,7 @@ import {
   classifyReactionNode,
   evaluateReactionMappingCandidate,
 } from "./ReactionStructureMappingRuntime.js";
+import { evaluateReactionConnectionPolicy } from "./ReactionConnectionPolicyRuntime.js";
 import {
   addReactionLedgers,
   createEmptyReactionLedger,
@@ -157,7 +158,7 @@ export function createReactionMappingRulesRuntime(options = {}) {
     }
     return {
       valid: false,
-      reason: `Single-source operator output must still respect source-to-product structure compatibility. ${evaluation.reason}`,
+      reason: `Single-source operator output must still respect source-to-target structure compatibility. ${evaluation.reason}`,
     };
   }
 
@@ -258,20 +259,26 @@ export function createReactionMappingRulesRuntime(options = {}) {
         reason: "Mapping references an unavailable source or target node.",
       };
     }
-    if (mapping.sourceRole === "reactant" && mapping.targetRole === "product") {
-      const evaluation = evaluateReactionMappingCandidate({
-        sourceParticipant: sourceContext.participant,
-        sourceNode: sourceContext.node,
-        targetParticipant: targetContext.participant,
-        targetNode: targetContext.node,
-        resolveBinaryChoiceInventory,
-      });
+    const connectionPolicyEvaluation = evaluateReactionConnectionPolicy({
+      sourceParticipant: sourceContext.participant,
+      sourceNodeId: sourceContext?.node?.id,
+      sourceRole: mapping.sourceRole,
+      sourceAnchorInstanceIndex: mapping.sourceAnchorInstanceIndex,
+      targetParticipant: targetContext.participant,
+      targetNodeId: targetContext?.node?.id,
+      targetRole: mapping.targetRole,
+      targetAnchorInstanceIndex: mapping.targetAnchorInstanceIndex,
+    });
+    if (!connectionPolicyEvaluation.allowed) {
       return {
-        valid: evaluation.allowed,
-        reason: evaluation.reason,
+        valid: false,
+        reason: connectionPolicyEvaluation.reason,
       };
     }
     if (mapping.sourceRole === "reactant" && mapping.targetRole === "operator-input") {
+      return evaluateOperatorInputValidation(targetContext);
+    }
+    if (mapping.sourceRole === "center" && mapping.targetRole === "operator-input") {
       return evaluateOperatorInputValidation(targetContext);
     }
     if (mapping.sourceRole === "operator-output" && mapping.targetRole === "product") {
@@ -299,7 +306,7 @@ export function createReactionMappingRulesRuntime(options = {}) {
       );
       return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
     }
-    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "operator-input") {
+    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "center") {
       const { participantId: operatorId } = parseNodeKey(mapping.sourceKey);
       const operatorSummary = getOperatorLedgerSummary(operatorId);
       const selectedOutputLedger = getOperatorOutputLedger(
@@ -307,30 +314,22 @@ export function createReactionMappingRulesRuntime(options = {}) {
         mapping.sourceAnchorInstanceIndex,
         operatorSummary
       );
-      const outputEvaluation = evaluateOperatorOutputLedger(
+      const ledgerEvaluation = evaluateOperatorOutputLedger(
         operatorSummary,
         operatorSummary?.routedOutgoingLedgerByAnchorInstance?.[
           String(normalizeAnchorInstanceIndex(mapping.sourceAnchorInstanceIndex) ?? 0)
-        ] ?? operatorSummary.outputLedger ?? operatorSummary.outgoingLedger,
+        ] ?? operatorSummary.routedOutgoingLedger ?? operatorSummary.outgoingLedger,
         selectedOutputLedger
       );
-      if (!outputEvaluation.valid) {
-        return outputEvaluation;
+      if (!ledgerEvaluation.valid) {
+        return ledgerEvaluation;
       }
-      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
-      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
-      if (!inputEvaluation.valid) {
-        return inputEvaluation;
-      }
-      return targetOperatorSummary?.isBalanced
-        ? {
-            valid: true,
-            reason: "Operator routed into operator.",
-          }
-        : {
-            valid: false,
-            reason: "Target operator remains unresolved until its downstream mapping is conservative.",
-          };
+      const compatibilityEvaluation = evaluateOperatorStructureCompatibility(
+        operatorId,
+        operatorSummary,
+        targetContext
+      );
+      return compatibilityEvaluation.valid ? ledgerEvaluation : compatibilityEvaluation;
     }
     return {
       valid: false,
@@ -343,27 +342,30 @@ export function createReactionMappingRulesRuntime(options = {}) {
     pendingSourceRole,
     pendingSourceAnchorInstanceIndex = null,
     role,
+    targetAnchorInstanceIndex = null,
     sourceContext,
     targetContext,
   } = {}) {
-    if (pendingSourceRole === "reactant" && role === "product") {
-      const evaluation = evaluateReactionMappingCandidate({
-        sourceParticipant: sourceContext?.participant,
-        sourceNode: sourceContext?.node,
-        targetParticipant: targetContext?.participant,
-        targetNode: targetContext?.node,
-        resolveBinaryChoiceInventory,
-      });
-      if (!evaluation.allowed) {
-        return {
-          disabled: false,
-          reason: evaluation.reason,
-          invalid: true,
-        };
-      }
-      return null;
+    const connectionPolicyEvaluation = evaluateReactionConnectionPolicy({
+      sourceParticipant: sourceContext?.participant,
+      sourceNodeId: sourceContext?.node?.id,
+      sourceRole: pendingSourceRole,
+      sourceAnchorInstanceIndex: pendingSourceAnchorInstanceIndex,
+      targetParticipant: targetContext?.participant,
+      targetNodeId: targetContext?.node?.id,
+      targetRole: role,
+      targetAnchorInstanceIndex,
+    });
+    if (!connectionPolicyEvaluation.allowed) {
+      return {
+        disabled: true,
+        reason: connectionPolicyEvaluation.reason,
+      };
     }
     if (pendingSourceRole === "reactant" && role === "operator-input") {
+      return null;
+    }
+    if (pendingSourceRole === "center" && role === "operator-input") {
       return null;
     }
     if (pendingSourceRole === "operator-output" && role === "product") {
@@ -382,25 +384,19 @@ export function createReactionMappingRulesRuntime(options = {}) {
         invalid: true,
       };
     }
-    if (pendingSourceRole === "operator-output" && role === "operator-input") {
+    if (pendingSourceRole === "operator-output" && role === "center") {
       const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
-      const outputEvaluation = evaluateOperatorOutputCandidate(
+      const evaluation = evaluateOperatorOutputCandidate(
         operatorId,
         targetContext,
         pendingSourceAnchorInstanceIndex
       );
-      const inputEvaluation = evaluateOperatorInputValidation(targetContext);
-      const targetOperatorSummary = getOperatorLedgerSummary(targetContext?.participant?.id);
-      if (outputEvaluation.valid && inputEvaluation.valid && targetOperatorSummary?.isBalanced) {
+      if (evaluation.valid) {
         return null;
       }
       return {
         disabled: false,
-        reason: !outputEvaluation.valid
-          ? outputEvaluation.reason
-          : !inputEvaluation.valid
-            ? inputEvaluation.reason
-            : "Target operator remains unresolved until its downstream mapping is conservative.",
+        reason: evaluation.reason,
         invalid: true,
       };
     }

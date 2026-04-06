@@ -651,11 +651,15 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /function getFixedAnchorAttachmentPoint\(\s*element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx,\s*endpointKind = "source"\s*\) \{/
+    /function getFixedAnchorAttachmentPoint\(\s*element,\s*bounds,\s*edgeInset = canvasRouteAnchorGapPx\s*\) \{/
   );
   assert.match(
     runtimeSource,
-    /const attachmentSide = getReactionAnchorAttachmentSide\(anchorRole,\s*endpointKind\);/
+    /const terminalIndex = normalizeReactionAnchorInstanceIndex\(\s*element\.getAttribute\("data-anchor-terminal-index"\)\s*\);/
+  );
+  assert.match(
+    runtimeSource,
+    /const attachmentSide = getReactionAnchorAttachmentSideFromTerminalIndex\(terminalIndex\);/
   );
   assert.match(
     runtimeSource,
@@ -671,7 +675,7 @@ test("route endpoints use fixed left and right tangents for canvas connectors", 
   );
   assert.match(
     runtimeSource,
-    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset,\s*"target"\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
+    /const targetPoint =\s*getFixedAnchorAttachmentPoint\(targetElement,\s*bounds,\s*edgeInset\) \?\?\s*getElementCenterWithinSurface\(targetElement,\s*bounds\);/
   );
   assert.doesNotMatch(
     runtimeSource,

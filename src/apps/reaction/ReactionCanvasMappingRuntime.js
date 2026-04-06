@@ -1,9 +1,27 @@
-function canStartReactionCanvasMappingFromRole(role = "") {
-  return role === "reactant" || role === "operator-output";
+import {
+  isReactionSourceTerminal,
+  isReactionTargetTerminal,
+} from "./ReactionAnchorTerminalRuntime.js";
+
+function getAnchorDescriptor(role = "", anchorInstanceIndex = null) {
+  if (typeof role === "object" && role !== null) {
+    return {
+      role: String(role.role ?? "").trim(),
+      anchorInstanceIndex: role.anchorInstanceIndex ?? null,
+    };
+  }
+  return {
+    role: String(role ?? "").trim(),
+    anchorInstanceIndex,
+  };
 }
 
-function canTargetReactionCanvasMappingRole(role = "") {
-  return role === "product" || role === "operator-input";
+function canStartReactionCanvasMappingFromRole(role = "", anchorInstanceIndex = null) {
+  return isReactionSourceTerminal(getAnchorDescriptor(role, anchorInstanceIndex));
+}
+
+function canTargetReactionCanvasMappingRole(role = "", anchorInstanceIndex = null) {
+  return isReactionTargetTerminal(getAnchorDescriptor(role, anchorInstanceIndex));
 }
 
 export function createReactionCanvasMappingRuntime(deps = {}) {
@@ -70,6 +88,7 @@ export function createReactionCanvasMappingRuntime(deps = {}) {
     if (!state) {
       return;
     }
+    const anchorDescriptor = getAnchorDescriptor(role, anchorInstanceIndex);
     const anchorAvailability = getAnchorAvailability(role, nodeKey, anchorInstanceIndex);
     if (anchorAvailability.disabled) {
       if (anchorAvailability.reason) {
@@ -78,7 +97,7 @@ export function createReactionCanvasMappingRuntime(deps = {}) {
       return;
     }
 
-    if (canStartReactionCanvasMappingFromRole(role)) {
+    if (canStartReactionCanvasMappingFromRole(anchorDescriptor)) {
       const isClearingPending =
         state.pendingSourceKey === nodeKey &&
         state.pendingSourceRole === role &&
@@ -92,7 +111,9 @@ export function createReactionCanvasMappingRuntime(deps = {}) {
         setStatus(
           role === "operator-output"
             ? "Operator output anchor cleared."
-            : "Reactant anchor cleared."
+            : role === "center"
+              ? "Center assembly output anchor cleared."
+              : "Reactant anchor cleared."
         );
         return;
       }
@@ -105,6 +126,14 @@ export function createReactionCanvasMappingRuntime(deps = {}) {
         );
         return;
       }
+      if (role === "center") {
+        setStatus(
+          eligibleTargetCount
+            ? "Center assembly output selected. All targets remain available; rule-breaking connections will stay red until fixed."
+            : "Center assembly output selected."
+        );
+        return;
+      }
       setStatus(
         eligibleTargetCount
           ? "Reactant anchor selected. All targets remain available; rule-breaking connections will stay red until fixed."
@@ -114,22 +143,14 @@ export function createReactionCanvasMappingRuntime(deps = {}) {
     }
 
     if (!state.pendingSourceKey || !state.pendingSourceRole) {
-      setStatus("Choose a reactant or operator output anchor first.");
+      setStatus("Choose a right-side source anchor first.");
       return;
     }
 
     if (
-      state.pendingSourceRole === "reactant" &&
-      !canTargetReactionCanvasMappingRole(role)
+      !canTargetReactionCanvasMappingRole(role, anchorInstanceIndex)
     ) {
-      setStatus("Reactant anchors connect to products or to an operator input.");
-      return;
-    }
-    if (
-      state.pendingSourceRole === "operator-output" &&
-      !canTargetReactionCanvasMappingRole(role)
-    ) {
-      setStatus("Operator outputs connect to product anchors or operator inputs.");
+      setStatus("Source anchors connect only to left-side target anchors in the next lane.");
       return;
     }
 

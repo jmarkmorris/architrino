@@ -34,6 +34,7 @@ It does not own:
 - Reaction now owns a meaningful standalone app shell and much of its app-specific composition.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
 - The Composer/Reaction boundary is clearer than before; the main remaining structural debt is concentrated in oversized shared roots and broad coordinator files.
+- Reaction's built-in library is now a request manifest plus runtime solve call rather than a generated solved-document catalog, which is closer to the intended explicit request/result seam.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
@@ -89,6 +90,7 @@ Allowed sharing:
 - generic platform or shell infrastructure;
 - static schemas and contract definitions;
 - static catalogs as data when they are truly app-neutral;
+- request manifests and fixtures that stay on the data side of the seam;
 - fixtures, example documents, and enforcement rules.
 
 Not allowed:
@@ -196,6 +198,7 @@ Bad shared surfaces:
 - app-specific stores;
 - app-specific UI runtime helpers;
 - app-specific catalogs that change behavior;
+- checked-in generated solved app-state catalogs when the intended boundary is a runtime request/result seam;
 - or compatibility shims that become permanent architecture by accident.
 
 ### Cross-App Checks

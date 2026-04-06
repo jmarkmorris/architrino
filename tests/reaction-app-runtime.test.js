@@ -144,18 +144,17 @@ function createCommitRuntimeStub() {
 function createReactionAppRuntimeHarness(options = {}) {
   const statusElement = new FakeElement();
   const reviewStateElement = new FakeElement();
-  const libraryLoadButton = new FakeButtonElement();
   const acceptButton = new FakeButtonElement();
   const exportButton = new FakeButtonElement();
   const canvasRuntimeStub = createCanvasRuntimeStub(options.initialSnapshot);
   let libraryEntries = [];
   let selectedLibraryId = "";
+  let libraryPickerOnSelect = null;
   let defaultLibraryLoadCalls = 0;
   let specificLibraryLoadCalls = [];
   const runtime = createReactionAppRuntime({
     statusElement,
     reviewStateElement,
-    libraryLoadButton,
     acceptButton,
     exportButton,
     initialSolverRequest: options.initialSolverRequest ?? null,
@@ -166,21 +165,25 @@ function createReactionAppRuntimeHarness(options = {}) {
         return {};
       },
     }),
-    createLibraryPickerRuntime: () => ({
-      setEntries(entries = [], pickerOptions = {}) {
-        libraryEntries = [...entries];
-        selectedLibraryId = String(pickerOptions?.selectedId ?? entries[0]?.id ?? "");
-      },
-      setSelectedId(entryId = "") {
-        selectedLibraryId = String(entryId ?? "");
-      },
-      getSelectedId() {
-        return selectedLibraryId;
-      },
-    }),
+    createLibraryPickerRuntime: (pickerOptions = {}) => {
+      libraryPickerOnSelect =
+        typeof pickerOptions?.onSelect === "function" ? pickerOptions.onSelect : null;
+      return {
+        setEntries(entries = [], pickerOptions = {}) {
+          libraryEntries = [...entries];
+          selectedLibraryId = String(pickerOptions?.selectedId ?? entries[0]?.id ?? "");
+        },
+        setSelectedId(entryId = "") {
+          selectedLibraryId = String(entryId ?? "");
+        },
+        getSelectedId() {
+          return selectedLibraryId;
+        },
+      };
+    },
     builtInLibraryEntries: options.builtInLibraryEntries ?? [
-      { id: "muon_decay", title: "Muon decay", isDefault: true },
-      { id: "free_neutron_beta", title: "Free neutron beta decay" },
+      { id: "free_neutron_beta_decay", title: "Free neutron beta decay", isDefault: true },
+      { id: "muon_decay", title: "Muon decay" },
       { id: "charged_pion_to_muon_neutrino", title: "Charged pion to muon neutrino" },
     ],
     loadDefaultReactionLibraryEntry: async () => {
@@ -202,7 +205,10 @@ function createReactionAppRuntimeHarness(options = {}) {
     setSelectedLibraryId: (entryId) => {
       selectedLibraryId = String(entryId ?? "");
     },
-    libraryLoadButton,
+    async selectLibraryEntry(entryId) {
+      selectedLibraryId = String(entryId ?? "");
+      await Promise.resolve(libraryPickerOnSelect?.(selectedLibraryId));
+    },
     acceptButton,
     exportButton,
     canvasRuntimeStub,
@@ -213,13 +219,13 @@ function createReactionAppRuntimeHarness(options = {}) {
 
 const defaultLibraryPayload = {
   entry: {
-    id: "muon_decay",
-    title: "Muon decay",
+    id: "free_neutron_beta_decay",
+    title: "Free neutron beta decay",
   },
   snapshot: {
     participants: [
       {
-        id: "reactant_neutron",
+        id: "reactant_neutron_1",
         side: "reactant",
         templateId: "neutron",
         label: "Neutron",
@@ -228,8 +234,8 @@ const defaultLibraryPayload = {
     mappings: [],
   },
   exportOverrides: {
-    reactionId: "muon_decay",
-    title: "Muon decay",
+    reactionId: "free_neutron_beta_decay",
+    title: "Free neutron beta decay",
   },
 };
 
@@ -249,13 +255,12 @@ test(
     assert.deepEqual(harness.canvasRuntimeStub.replaceCalls[0], defaultLibraryPayload.snapshot);
     assert.deepEqual(
       harness.getLibraryEntries().map((entry) => entry.id),
-      ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
+      ["free_neutron_beta_decay", "muon_decay", "charged_pion_to_muon_neutrino"]
     );
-    assert.equal(harness.getSelectedLibraryId(), "muon_decay");
-    assert.equal(harness.libraryLoadButton.disabled, false);
+    assert.equal(harness.getSelectedLibraryId(), "free_neutron_beta_decay");
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Built-in reaction loaded: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
     assert.equal(
       harness.reviewStateElement.textContent,
@@ -349,6 +354,59 @@ test(
     assert.equal(
       harness.statusElement.textContent,
       "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+    );
+  })
+);
+
+test(
+  "reaction app runtime auto-loads the newly selected built-in library entry",
+  withFakeDom(async () => {
+    const harness = createReactionAppRuntimeHarness({
+      initialSnapshot: {
+        participants: [
+          {
+            id: "existing_reactant",
+            side: "reactant",
+            templateId: "neutron",
+            label: "Existing neutron",
+          },
+        ],
+        mappings: [],
+      },
+      defaultLibraryPayload,
+      libraryPayloads: {
+        charged_pion_to_muon_neutrino: {
+          entry: {
+            id: "charged_pion_to_muon_neutrino",
+            title: "Charged pion to muon neutrino",
+          },
+          snapshot: {
+            participants: [
+              {
+                id: "reactant_positive_pion_1",
+                side: "reactant",
+                templateId: "pi_plus",
+                label: "Positive Pion",
+              },
+            ],
+            mappings: [],
+          },
+          exportOverrides: {
+            reactionId: "charged_pion_to_muon_neutrino",
+            title: "Charged pion to muon neutrino",
+          },
+        },
+      },
+    });
+
+    await harness.runtime.init();
+    await harness.selectLibraryEntry("charged_pion_to_muon_neutrino");
+
+    assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["charged_pion_to_muon_neutrino"]);
+    assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
+    assert.equal(
+      harness.statusElement.textContent,
+      "Built-in reaction loaded: Charged pion to muon neutrino. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
   })
 );

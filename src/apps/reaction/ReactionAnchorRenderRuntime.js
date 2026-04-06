@@ -1,16 +1,8 @@
 import { getReactionAnchorAriaLabel } from "./ReactionObjectRegistryRuntime.js";
-
-function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
-  if (
-    anchorInstanceIndex === null ||
-    anchorInstanceIndex === undefined ||
-    anchorInstanceIndex === ""
-  ) {
-    return null;
-  }
-  const normalized = Number(anchorInstanceIndex);
-  return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
-}
+import {
+  getReactionAnchorTerminalIndex,
+  normalizeReactionAnchorInstanceIndex,
+} from "./ReactionAnchorTerminalRuntime.js";
 
 export function createReactionAnchorRenderRuntime(options = {}) {
   const surface = options.surface ?? null;
@@ -51,6 +43,10 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     typeof options.shouldSuppressRouteState === "function"
       ? options.shouldSuppressRouteState
       : () => false;
+  const canTargetMappingRole =
+    typeof options.canTargetMappingRole === "function"
+      ? options.canTargetMappingRole
+      : () => false;
 
   function applyHoveredRouteState() {
     if (!surface || !mapSvg) {
@@ -78,7 +74,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
       .forEach((anchor) => {
         const anchorKey = anchor.getAttribute("data-anchor-key") ?? "";
         const anchorRole = anchor.getAttribute("data-anchor-side") ?? "";
-        const anchorInstanceIndex = normalizeAnchorInstanceIndex(
+        const anchorInstanceIndex = normalizeReactionAnchorInstanceIndex(
           anchor.getAttribute("data-anchor-instance-index")
         );
         const mappingIds = getMappingIdsForAnchor(anchorKey, anchorRole, anchorInstanceIndex);
@@ -131,7 +127,11 @@ export function createReactionAnchorRenderRuntime(options = {}) {
       anchorRole = participant.side,
       anchorInstanceIndex = null,
     } = options;
-    const normalizedAnchorInstanceIndex = normalizeAnchorInstanceIndex(anchorInstanceIndex);
+    const normalizedAnchorInstanceIndex = normalizeReactionAnchorInstanceIndex(anchorInstanceIndex);
+    const terminalIndex = getReactionAnchorTerminalIndex({
+      role: anchorRole,
+      anchorInstanceIndex: normalizedAnchorInstanceIndex,
+    });
     const anchorAvailability = getAnchorAvailability(
       anchorRole,
       nodeKey,
@@ -165,6 +165,9 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     if (normalizedAnchorInstanceIndex !== null) {
       anchor.dataset.anchorInstanceIndex = String(normalizedAnchorInstanceIndex);
     }
+    if (terminalIndex !== null) {
+      anchor.dataset.anchorTerminalIndex = String(terminalIndex);
+    }
     anchor.setAttribute("aria-label", getReactionAnchorAriaLabel(anchorRole, node.label));
     anchor.disabled = anchorAvailability.disabled;
     if (anchorAvailability.reason) {
@@ -173,7 +176,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     if (
       getPendingSourceKey() === nodeKey &&
       getPendingSourceRole() === anchorRole &&
-      normalizeAnchorInstanceIndex(getPendingSourceAnchorInstanceIndex()) ===
+      normalizeReactionAnchorInstanceIndex(getPendingSourceAnchorInstanceIndex()) ===
         normalizedAnchorInstanceIndex
     ) {
       anchor.classList.add("is-pending");
@@ -181,7 +184,11 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     if (
       getPendingSourceKey() &&
       getPendingSourceKey() !== nodeKey &&
-      (anchorRole === "product" || anchorRole === "operator-input") &&
+      canTargetMappingRole({
+        role: anchorRole,
+        nodeKey,
+        anchorInstanceIndex: normalizedAnchorInstanceIndex,
+      }) &&
       !anchorAvailability.disabled &&
       !anchorAvailability.invalid
     ) {

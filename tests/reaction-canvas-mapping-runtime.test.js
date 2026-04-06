@@ -10,9 +10,13 @@ import {
 test("mapping runtime exposes the authored start and target role grammar", () => {
   assert.equal(canStartReactionCanvasMappingFromRole("reactant"), true);
   assert.equal(canStartReactionCanvasMappingFromRole("operator-output"), true);
+  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 1 }), true);
+  assert.equal(canStartReactionCanvasMappingFromRole({ role: "center", anchorInstanceIndex: 0 }), false);
   assert.equal(canStartReactionCanvasMappingFromRole("product"), false);
   assert.equal(canTargetReactionCanvasMappingRole("product"), true);
   assert.equal(canTargetReactionCanvasMappingRole("operator-input"), true);
+  assert.equal(canTargetReactionCanvasMappingRole({ role: "center", anchorInstanceIndex: 0 }), true);
+  assert.equal(canTargetReactionCanvasMappingRole({ role: "center", anchorInstanceIndex: 1 }), false);
   assert.equal(canTargetReactionCanvasMappingRole("reactant"), false);
 });
 
