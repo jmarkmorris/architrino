@@ -27,6 +27,7 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 - Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
 - Prefer ready PRs once a branch is genuinely reviewable.
 - Use draft PRs only when the branch is intentionally not ready for real review.
+- A green PR check run is not enough by itself. A ready PR must also be mergeable into the current base branch without conflicts.
 - If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
 - In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
 
@@ -194,6 +195,7 @@ git checkout -b codex/<element-name>
 ### 3. Confirm publish integrity before any PR action
 
 - Do not open, update, or rely on a PR until the exact branch tip you want reviewed is both committed locally and present on the remote branch.
+- Refresh remote-tracking refs first so all later decisions are based on the current `origin/main`, not stale local knowledge.
 - The worktree should be clean at this point.
 - The local branch `HEAD` and `origin/<current-branch>` should resolve to the same commit.
 - Do not skip this check just because `git push` printed success earlier in the session.
@@ -202,6 +204,7 @@ git checkout -b codex/<element-name>
 Suggested checks:
 
 ```bash
+git fetch origin
 git branch --show-current
 git status -sb
 git rev-parse HEAD
@@ -216,7 +219,27 @@ Interpretation:
 
 Only continue to PR checks after this gate passes.
 
-### 4. Check whether a PR already exists for the branch before opening or updating one
+### 4. Confirm the branch is still mergeable into the current base branch
+
+- A branch can have clean local validation and passing PR checks and still be unmergeable because `main` moved underneath it.
+- Do not open or keep a ready PR on a branch that GitHub reports as conflicted with the current base branch.
+- Use the current remote base, not stale local `main`, for this gate.
+- If the branch is not mergeable, stop PR publication, merge or rebase the current base branch into the working branch, resolve conflicts deliberately, rerun validation, push again, and only then return to PR work.
+
+Suggested local preflight:
+
+```bash
+git fetch origin
+git merge-tree $(git merge-base HEAD origin/main) HEAD origin/main
+```
+
+Interpretation:
+
+- if the merge-tree output shows conflict markers or `changed in both` conflict sections for files that need manual resolution, stop and reconcile the branch with current `origin/main` before PR publication;
+- if the branch was already known to be recently rebased or merged with current `origin/main`, you may treat that as satisfying the local mergeability preflight;
+- do not assume passing CI implies mergeability.
+
+### 5. Check whether a PR already exists for the branch before opening or updating one
 
 - This is the primary guard against continuing on a branch whose PR already merged.
 - Do this after pushing the branch tip and before opening, updating, or relying on a PR.
@@ -244,16 +267,18 @@ Interpretation:
 
 This check should happen even if you believe you are "just updating the PR," because a merged PR is no longer updateable in the way an open PR is.
 
-### 5. Open the PR in ready mode
+### 6. Open the PR in ready mode
 
 - Open the PR in ready mode once the branch is coherent enough for real review.
 - The minimum bar for a ready PR is:
   - the full local validation set that mirrors current repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
   - the worktree is clean;
+  - the branch is mergeable into the current base branch;
   - the diff represents one logically complete reviewable unit;
   - the PR title and body are intentionally written rather than left to default autofill;
-  - and the remote PR checks have completed successfully.
+  - the remote PR checks have completed successfully;
+  - and GitHub reports the PR as mergeable rather than conflicted.
 - Use draft only when the branch is intentionally incomplete and should not yet enter normal review.
 - A ready PR is not considered successfully published until the remote checks finish green.
 
@@ -281,13 +306,21 @@ After creating or updating the PR, wait for the remote checks:
 gh pr checks --watch
 ```
 
+Then confirm GitHub mergeability:
+
+```bash
+gh pr view --json mergeStateStatus
+```
+
 Interpretation:
 
 - if `gh pr checks --watch` finishes with all required checks passing, the ready PR gate has passed;
 - if any required check fails, do not leave the branch represented as review-ready; fix the issue or convert the PR back to draft until it is genuinely ready;
+- if `gh pr view --json mergeStateStatus` reports `DIRTY` or another conflicted state, the ready PR gate has not passed even if checks are green;
+- in that conflicted case, close or convert the PR to draft as appropriate, reconcile the branch with current `origin/main`, rerun validation, push, and repeat the publish gate;
 - if GitHub connectivity or authentication is broken, treat the ready-PR publish step as incomplete and resolve that before declaring success.
 
-### 6. Respond to review on the same branch
+### 7. Respond to review on the same branch
 
 - Keep follow-up fixes on the PR branch until the PR is merged.
 - Do not branch from an unmerged feature branch to start the next line of work unless that dependency is intentional and explicitly accepted.
