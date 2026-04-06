@@ -108,8 +108,9 @@ Full-solve lane contract:
 Current transition note:
 
 - Reaction now validates and exports only strict adjacent-lane accepted documents;
-- accepted legacy solved documents are currently regenerated into that form through isolated migration code;
-- the native solver still needs to emit the same lane-complete structure directly so migration code can be retired.
+- accepted example documents are already strict five-lane handoff fixtures;
+- the live Reaction library now solves request fixtures on demand instead of loading pre-built solved artifacts;
+- and the native solver still needs to emit the same lane-complete structure directly so request-backed library solves and accepted exports stay identical without compatibility rewrites.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
@@ -1676,5 +1677,5 @@ The first-pass browser planner and projection stack have already been removed fr
 ### Logic That Should Stay Reaction-Owned Unless The Contract Expands
 
 - [`ReactionStructureDescriptorRuntime.js`](../../../src/apps/reaction/ReactionStructureDescriptorRuntime.js) and [`ReactionParticipantRenderRuntime.js`](../../../src/apps/reaction/ReactionParticipantRenderRuntime.js): render-tree construction and DOM rendering should stay in Reaction as long as they stop inferring hidden solver semantics.
-- [`ReactionSolvedLibraryRuntime.js`](../../../src/apps/reaction/ReactionSolvedLibraryRuntime.js), [`ReactionLibraryCandidateRuntime.js`](../../../src/apps/reaction/ReactionLibraryCandidateRuntime.js), and [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): these should remain thin review-boundary modules, but only if request/result documents become explicit enough that they no longer repair meaning during import.
+- [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): this should remain a thin review-boundary module, but only if request/result documents become explicit enough that it no longer repairs meaning during import.
 - [`ReactionObjectRegistryData.js`](../../../src/apps/reaction/ReactionObjectRegistryData.js) and [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js): placement and render grammar belong near the app, but solver-facing inference helpers such as `inferReactionGenerationFromLabel` and `inferReactionTemplateIdFromStructure` should move out if the solver depends on them.

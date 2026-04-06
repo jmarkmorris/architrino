@@ -215,3 +215,48 @@ test(
     assert.equal(triggerButton.attributes.get("aria-expanded"), "false");
   })
 );
+
+test(
+  "reaction library picker notifies selection changes immediately",
+  withFakeDom(() => {
+    const documentLike = new FakeDocument();
+    const windowLike = new FakeWindow();
+    const root = new FakeElement("div");
+    const triggerButton = new FakeButtonElement();
+    const menuElement = new FakeElement("div");
+    const selections = [];
+    root.appendChild(triggerButton);
+    root.appendChild(menuElement);
+
+    const runtime = createReactionLibraryPickerRuntime({
+      root,
+      triggerButton,
+      menuElement,
+      documentLike,
+      windowLike,
+      onSelect: (entryId, entry) => {
+        selections.push({
+          entryId,
+          title: entry?.title,
+        });
+      },
+    });
+
+    runtime.setEntries([
+      { id: "muon_decay", title: "Muon decay" },
+      { id: "pion_decay", title: "Pion decay" },
+    ]);
+
+    triggerButton.dispatchEvent("click");
+    menuElement.children[1].dispatchEvent("click");
+
+    assert.equal(runtime.getSelectedId(), "pion_decay");
+    assert.equal(triggerButton.textContent, "Pion decay");
+    assert.deepEqual(selections, [
+      {
+        entryId: "pion_decay",
+        title: "Pion decay",
+      },
+    ]);
+  })
+);

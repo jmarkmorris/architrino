@@ -44,8 +44,9 @@ It does not own:
 - Mapping authoring and route rendering now live in focused canvas runtimes so `ReactionCanvasUiRuntime.js` stays a wiring layer instead of reclaiming provenance, corridor, and connector ownership.
 - Reaction now exposes an explicit accept / commit state in the standalone app and exports accepted `reaction-flow/v1` handoff JSON only after the current canvas has been reviewed.
 - The standalone Reaction shell now separates transient action status from the persistent authoring hint and includes a dedicated visible grammar panel for corridor steps, operator-lane meaning, and live corridor/operator state counts.
-- The standalone Reaction app now has a first built-in solved-reaction library seed, with free neutron beta decay loading by default when startup finds no authored canvas state to preserve.
-- Accepted built-in library documents and contract examples now carry explicit five-lane placement and `Pass Thru` carry-through steps rather than forward-skip shortcuts.
+- The standalone Reaction app now has a request-backed reaction library manifest, with the default entry solved on startup only when no authored canvas state exists to preserve.
+- The live library no longer ships pre-built solved JSON artifacts; selection now resolves a canonical `solver-request/v1` fixture and asks the solver for an in-memory result.
+- Accepted contract examples still carry explicit five-lane placement and `Pass Thru` carry-through steps rather than forward-skip shortcuts.
 
 ## Design
 
@@ -192,7 +193,7 @@ Current:
 Objective:
 
 - make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./solver.md);
-- remove local object-type guesses from the built-in library path, render path, and test helpers;
+- remove local object-type guesses from the library import path, render path, and test helpers;
 - and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Free Architrinos come directly from the registry rather than from app-specific fallback logic.
 
 This should include, at minimum, registry-driven behavior for:
@@ -238,8 +239,8 @@ Done when:
 
 - Reaction can load a solved document and render it without inferring missing stages;
 - any solve that omits required staging or connectivity fails validation instead of being patched in-app;
-- any solved document that routes from a later lane back into an earlier one is rejected as incomplete rather than treated as a usable library entry;
-- and built-in library entries are true renderable handoff documents, not corrected imports.
+- any solved document that routes from a later lane back into an earlier one is rejected as incomplete rather than treated as a usable library solve result;
+- and Reaction library entries are solver requests whose returned solve result is rendered directly rather than being repaired into a separate checked-in solved artifact.
 
 ### 3. Add First-Class Center-Lane Connector Semantics To The Reaction Runtime
 
@@ -300,25 +301,25 @@ Done when:
 - the lane grammar for assemblies and Free Architrinos is validated, not merely preferred;
 - and the rendered reaction image is a direct consequence of the document rather than of viewer-side inference.
 
-### 5. Add Durable Reaction Regressions For Built-In Library Surface Behavior
+### 5. Add Durable Reaction Regressions For Reaction Library Surface Behavior
 
 Status: `active`
 
 Current:
 
 - several cobalt-session failures were UI-surface failures rather than pure solver failures;
-- built-in reaction selection, labeling, connector-side rendering, and composite-state rendering need durable regression coverage;
-- and the Reaction library surface should make it obvious which built-ins are available without relying on a fragile native dropdown alone.
+- reaction-library selection, labeling, connector-side rendering, and composite-state rendering need durable regression coverage;
+- and the Reaction library surface should make it obvious which request-backed entries are available without relying on a fragile native dropdown alone.
 
 Objective:
 
-- add regression coverage for the built-in library surface, built-in loading path, and accepted solved-document rendering behavior;
-- verify that all built-in reactions appear in the visible library controls and load the correct document;
+- add regression coverage for the Reaction library surface, solve-on-select loading path, and returned solved-document rendering behavior;
+- verify that all library entries appear in the visible controls and trigger the correct solver request;
 - verify that registry-defined objects such as muons and muon neutrinos preserve the correct displayed identity and structure on load;
 - and verify that dissociated composites, center-lane connector roles, and solver-owned dissociate stages all remain visible after import/export and page reload.
 
 Done when:
 
-- the built-in library UI consistently exposes the full available set of reactions;
-- loading a built-in reaction preserves the correct object identity, structure, connector orientation, and composite state;
+- the Reaction library UI consistently exposes the full available set of request-backed reactions;
+- selecting a library reaction preserves the correct object identity, structure, connector orientation, and composite state in the returned solve result;
 - and future regressions of the cobalt-session failures are caught by focused Reaction tests rather than by manual screenshot review.

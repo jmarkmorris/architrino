@@ -20,7 +20,7 @@
 
 ## Current Cross-Doc Queue
 
-1. [flow](./flow.md) and [solver](./solver.md): finish native solver emission of the strict five-lane adjacent-only graph so accepted document regeneration no longer depends on legacy compatibility code.
+1. [flow](./flow.md) and [solver](./solver.md): finish native solver emission of the strict five-lane adjacent-only graph so request-backed library solves and accepted exports stay identical without compatibility rewrites.
 2. [reaction](./reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
 3. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest now that accepted handoff documents carry the full explicit five-lane path.
 4. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
@@ -102,7 +102,7 @@ Input:
 
 - solver output JSON;
 - or manually authored reaction structure in the `reaction` UI rather than from JSON input;
-- or a built-in reaction spec JSON document from a library;
+- or a library entry that resolves to a canonical `solver-request/v1` fixture and is solved on selection;
 - or a reaction JSON file loaded by the developer.
 
 Output:
@@ -226,7 +226,7 @@ Use this when you want to work at the reaction-authoring level without running P
 Workflow:
 
 1. Open `reaction`.
-2. Choose a built-in reaction spec JSON document from the library, or load one from a reaction JSON file.
+2. Choose a reaction-library entry, or load a reaction JSON file directly.
 3. Review and edit participants, mappings, and operators in `reaction`.
 4. Run the solver from inside `reaction` if helpful, or stay manual.
 5. Accept the reaction once the provenance story is correct.
@@ -236,7 +236,7 @@ Workflow:
 
 Short form:
 
-- open reaction spec -> edit and accept in `reaction` -> hand off to `composer`.
+- open reaction library entry or reaction JSON -> edit and accept in `reaction` -> hand off to `composer`.
 
 ### D. Start With `reaction` And Build A Manual Solution
 

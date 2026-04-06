@@ -32,11 +32,10 @@ test("route render runtime returns the canvas route scheduling interface", () =>
 
   assert.equal(typeof runtime.drawMappings, "function");
   assert.equal(typeof runtime.scheduleMappingDraw, "function");
-  assert.equal(typeof runtime.createCompositeBusPath, "function");
   assert.equal(typeof runtime.getTrimmedRouteEndpoints, "function");
 });
 
-test("route render runtime no longer looks for legacy composite source anchors", async () => {
+test("route render runtime carries no synthetic composite bus path or legacy composite source anchors", async () => {
   const fs = await import("node:fs/promises");
   const runtimeSource = await fs.readFile(
     new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
@@ -45,4 +44,7 @@ test("route render runtime no longer looks for legacy composite source anchors",
 
   assert.doesNotMatch(runtimeSource, /data-composite-source-key/);
   assert.doesNotMatch(runtimeSource, /data-composite-participant-id/);
+  assert.doesNotMatch(runtimeSource, /drawCompositeLinks/);
+  assert.doesNotMatch(runtimeSource, /createCompositeBusPath/);
+  assert.doesNotMatch(runtimeSource, /composite-collector/);
 });

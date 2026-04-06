@@ -230,9 +230,9 @@ Done when:
 
 Current note:
 
-- the accepted Reaction-side library and examples now use explicit five-lane documents;
-- migration/regeneration is currently performed from previously accepted solved documents through isolated conversion code;
-- the raw solver still needs a native lane-complete planning pass so regenerated output no longer depends on that compatibility step.
+- accepted `reaction-flow/v1` examples now use explicit five-lane documents;
+- the live Reaction library no longer depends on pre-built solved artifacts and instead solves request fixtures on selection;
+- and the raw solver still needs a native lane-complete planning pass so request-backed library solves and accepted exports stay identical without any compatibility rewrite.
 
 ### 4. Define Lane-3 Identity Rules
 
@@ -289,7 +289,7 @@ Result:
 - target highlighting and validation are aligned with the adjacent-only rule;
 - and composite title styling no longer carries special dissociation-state semantics.
 
-### 6. Update Import / Export Schemas And Built-In Library Documents
+### 6. Update Import / Export Schemas And Example Documents
 
 Status: `completed`
 
@@ -300,7 +300,7 @@ Goal:
 Work:
 
 - update solved-document import/export checks so `Pass Thru` is legal and skip-lane mappings are illegal;
-- regenerate built-in library examples to use explicit lane-2 and lane-4 operators;
+- regenerate contract examples to use explicit lane-2 and lane-4 operators;
 - regenerate composite-source examples so flow starts from lane-1 row groups rather than from whole-composite forward mappings;
 - update fixture documents that currently use direct forward skips;
 - and validate that every visible lane participant/operator has the required adjacent connection.
@@ -308,12 +308,13 @@ Work:
 Done when:
 
 - accepted `reaction-flow/v1` documents carry the full five-lane path explicitly;
-- and the built-in library contains no legacy skip-lane examples.
+- and the accepted example set contains no legacy skip-lane examples.
 
 Result:
 
 - accepted document schema/layout now records explicit participant lane placement and operator lanes `2` / `4`;
-- built-in library fixtures and contract examples have been regenerated into explicit five-lane documents;
+- contract examples have been regenerated into explicit five-lane documents;
+- the live Reaction library now points at request fixtures rather than checked-in solved artifacts;
 - and legacy accepted solved documents are migrated by regeneration rather than left in mixed skip-lane form.
 
 ### 7. Add Transition Regressions
@@ -335,7 +336,7 @@ Required tests:
 - verify `Free Architrinos` only leave lane 3 through lane-4 operators;
 - verify all lane-5 products are fed only from lane 4;
 - verify composite title tiles never use dotted dissociation styling;
-- and verify built-in library documents contain no lane-skipping edges.
+- and verify accepted example documents contain no lane-skipping edges.
 
 Done when:
 
@@ -343,8 +344,8 @@ Done when:
 
 Result:
 
-- Reaction export, built-in library import, participant rendering, and Composer handoff tests now cover the adjacent-only lane law and explicit five-lane documents;
-- and the accepted library fixtures are checked against the strict lane-complete contract.
+- Reaction export, request-backed library solve/import, participant rendering, and Composer handoff tests now cover the adjacent-only lane law and explicit five-lane documents;
+- and the accepted example fixtures are checked against the strict lane-complete contract.
 
 ## Implementation Notes
 

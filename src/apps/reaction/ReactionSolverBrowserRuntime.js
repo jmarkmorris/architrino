@@ -21,12 +21,6 @@ function resolveReactionSolveEndpoint(windowLike = globalThis.window, endpoint =
   try {
     const currentUrl = new URL(href);
     const endpointUrl = new URL("/api/reaction/solve", currentUrl);
-    if (
-      normalizeText(currentUrl.hostname).toLowerCase() === "localhost" ||
-      normalizeText(currentUrl.hostname).toLowerCase() === "[::1]"
-    ) {
-      endpointUrl.hostname = "127.0.0.1";
-    }
     return endpointUrl.toString();
   } catch (_error) {
     return "";
@@ -69,6 +63,15 @@ function readReactionSolveErrorMessage(responseText = "", status = 0) {
     );
   }
   return normalizedResponseText || `Reaction solve request failed (${status}).`;
+}
+
+function buildUnavailableBridgeMessage(endpoint = "") {
+  const endpointLabel = normalizeText(endpoint) || "/api/reaction/solve";
+  return (
+    `Reaction solve bridge is unavailable at \`${endpointLabel}\`. ` +
+    "This page is being served without the local solve API. " +
+    DEFAULT_LOCAL_DEV_SERVER_HINT
+  );
 }
 
 function resolveReactionSolveTimeoutMs(options = {}) {
@@ -127,7 +130,7 @@ async function requestBrowserReactionSolve(request = {}, options = {}) {
     if (isAbortError(error)) {
       throw createReactionSolveTimeoutError(timeoutMs);
     }
-    throw error;
+    throw new Error(buildUnavailableBridgeMessage(endpoint));
   } finally {
     if (timeoutId) {
       globalThis.clearTimeout(timeoutId);
@@ -169,6 +172,15 @@ export function createBrowserReactionSolveSnapshot(options = {}) {
         typeof solveOptions?.getCenterUsage === "function" ? solveOptions.getCenterUsage : null,
       policy: solveOptions?.policy,
     });
+    const solved = await requestBrowserReactionSolve(request, options);
+    return buildReactionSolverContractResponse(request, solved.result, {
+      execution: solved.execution,
+    });
+  };
+}
+
+export function createBrowserReactionSolveRequest(options = {}) {
+  return async function solveReactionRequestInBrowser(request = {}) {
     const solved = await requestBrowserReactionSolve(request, options);
     return buildReactionSolverContractResponse(request, solved.result, {
       execution: solved.execution,
