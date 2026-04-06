@@ -43,6 +43,7 @@ It does not own:
 - Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Reaction-side acceptance before any downstream handoff can be considered.
 - Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Reaction output.
+- Those emitted `solver-request/v1` payloads are now also the direct built-in-library inputs for the standalone reaction app; no pre-solved built-in Reaction JSON catalog is required.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.

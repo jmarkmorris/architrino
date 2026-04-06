@@ -49,6 +49,7 @@ It does not own:
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
 - The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
 - The `reaction-flow/v1` intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
+- Reaction's request-only built-in library and solve-on-select behavior stay entirely upstream of Composer; Composer still only sees accepted `reaction-flow/v1` handoff data.
 - The current import and contract coverage is still centered on the baseline reaction-flow fixture, so downstream particle-family-specific coverage remains thinner than the upstream Reaction and solver tests.
 
 ## Design
@@ -183,6 +184,7 @@ Composer should consume a versioned Reaction-owned handoff document and translat
 Composer should not:
 
 - solve the reaction again;
+- consume reaction library request manifests or live solver selections directly;
 - import Reaction runtime code to perform the handoff;
 - or depend on shared live UI state across the Composer/Reaction boundary.
 
