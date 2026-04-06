@@ -3,6 +3,10 @@ import {
   evaluateReactionMappingCandidate,
 } from "./ReactionStructureMappingRuntime.js";
 import {
+  getReactionSnapshotLaneNumber,
+  isAdjacentReactionLaneProgress,
+} from "./ReactionFlowLaneRuntime.js";
+import {
   addReactionLedgers,
   createEmptyReactionLedger,
   formatReactionLedger,
@@ -33,6 +37,48 @@ function getNodeLedgerFromContext(nodeContext = null, resolveBinaryChoiceInvento
       })
     : null;
   return spec?.inventory ?? createEmptyReactionLedger();
+}
+
+function getContextLaneNumber(nodeContext = null) {
+  return getReactionSnapshotLaneNumber(nodeContext?.participant ?? null);
+}
+
+function evaluateCenterEndpointDirection(mapping = null, sourceContext = null, targetContext = null) {
+  const sourceParticipant = sourceContext?.participant ?? null;
+  const normalizedSourceAnchorInstanceIndex = normalizeAnchorInstanceIndex(
+    mapping?.sourceAnchorInstanceIndex
+  );
+  const normalizedTargetAnchorInstanceIndex = normalizeAnchorInstanceIndex(
+    mapping?.targetAnchorInstanceIndex
+  );
+
+  if (mapping?.sourceRole === "center") {
+    if (sourceParticipant?.templateId === "free_architrinos") {
+      if (normalizedSourceAnchorInstanceIndex === null || normalizedSourceAnchorInstanceIndex < 1) {
+        return {
+          valid: false,
+          reason: "Free Architrinos must route rightward from their right-side output connector.",
+        };
+      }
+    } else if (normalizedSourceAnchorInstanceIndex !== 1) {
+      return {
+        valid: false,
+        reason: "Center participants must route rightward from output anchorInstanceIndex 1.",
+      };
+    }
+  }
+
+  if (mapping?.targetRole === "center" && normalizedTargetAnchorInstanceIndex !== 0) {
+    return {
+      valid: false,
+      reason: "Center participants may only receive incoming routes on left input anchorInstanceIndex 0.",
+    };
+  }
+
+  return {
+    valid: true,
+    reason: "",
+  };
 }
 
 export function createReactionMappingRulesRuntime(options = {}) {
@@ -240,6 +286,24 @@ export function createReactionMappingRulesRuntime(options = {}) {
         };
       }
     }
+    if (targetParticipant.templateId === "pass_thru") {
+      const incomingCount = Math.max(
+        0,
+        Number(getOperatorLedgerSummary(targetParticipant.id)?.incomingCount ?? 0)
+      );
+      if (incomingCount < 1) {
+        return {
+          valid: false,
+          reason: "Pass Thru needs exactly one upstream input.",
+        };
+      }
+      if (incomingCount > 1) {
+        return {
+          valid: false,
+          reason: "Pass Thru accepts exactly one upstream input.",
+        };
+      }
+    }
     return {
       valid: true,
       reason: "Reactant routed into operator.",
@@ -258,20 +322,33 @@ export function createReactionMappingRulesRuntime(options = {}) {
         reason: "Mapping references an unavailable source or target node.",
       };
     }
-    if (mapping.sourceRole === "reactant" && mapping.targetRole === "product") {
-      const evaluation = evaluateReactionMappingCandidate({
-        sourceParticipant: sourceContext.participant,
-        sourceNode: sourceContext.node,
-        targetParticipant: targetContext.participant,
-        targetNode: targetContext.node,
-        resolveBinaryChoiceInventory,
-      });
+    const centerEndpointEvaluation = evaluateCenterEndpointDirection(
+      mapping,
+      sourceContext,
+      targetContext
+    );
+    if (!centerEndpointEvaluation.valid) {
+      return centerEndpointEvaluation;
+    }
+    const sourceLaneNumber = getContextLaneNumber(sourceContext);
+    const targetLaneNumber = getContextLaneNumber(targetContext);
+    if (!isAdjacentReactionLaneProgress(sourceLaneNumber, targetLaneNumber)) {
       return {
-        valid: evaluation.allowed,
-        reason: evaluation.reason,
+        valid: false,
+        reason: `Mappings must advance exactly one lane rightward. Received lane ${sourceLaneNumber} -> lane ${targetLaneNumber}.`,
       };
     }
     if (mapping.sourceRole === "reactant" && mapping.targetRole === "operator-input") {
+      return evaluateOperatorInputValidation(targetContext);
+    }
+    if (mapping.sourceRole === "operator-output" && mapping.targetRole === "center") {
+      return evaluateOperatorOutputCandidate(
+        parseNodeKey(mapping.sourceKey).participantId,
+        targetContext,
+        mapping.sourceAnchorInstanceIndex
+      );
+    }
+    if (mapping.sourceRole === "center" && mapping.targetRole === "operator-input") {
       return evaluateOperatorInputValidation(targetContext);
     }
     if (mapping.sourceRole === "operator-output" && mapping.targetRole === "product") {
@@ -347,24 +424,57 @@ export function createReactionMappingRulesRuntime(options = {}) {
     targetContext,
   } = {}) {
     if (pendingSourceRole === "reactant" && role === "product") {
-      const evaluation = evaluateReactionMappingCandidate({
-        sourceParticipant: sourceContext?.participant,
-        sourceNode: sourceContext?.node,
-        targetParticipant: targetContext?.participant,
-        targetNode: targetContext?.node,
-        resolveBinaryChoiceInventory,
-      });
-      if (!evaluation.allowed) {
-        return {
-          disabled: false,
-          reason: evaluation.reason,
-          invalid: true,
-        };
-      }
-      return null;
+      return {
+        disabled: false,
+        reason: "Lane-1 sources cannot jump directly to lane 5.",
+        invalid: true,
+      };
+    }
+    if (role === "center" && normalizeAnchorInstanceIndex(targetAnchorInstanceIndex) !== 0) {
+      return {
+        disabled: false,
+        reason: "Center routes must land on the left input connector.",
+        invalid: true,
+      };
+    }
+    const sourceLaneNumber = getContextLaneNumber(sourceContext);
+    const targetLaneNumber = getContextLaneNumber(targetContext);
+    if (!isAdjacentReactionLaneProgress(sourceLaneNumber, targetLaneNumber)) {
+      return {
+        disabled: false,
+        reason: `This route skips lanes. Move from lane ${sourceLaneNumber} to lane ${sourceLaneNumber + 1} only.`,
+        invalid: true,
+      };
     }
     if (pendingSourceRole === "reactant" && role === "operator-input") {
       return null;
+    }
+    if (pendingSourceRole === "operator-output" && role === "center") {
+      const { participantId: operatorId } = parseNodeKey(pendingSourceKey);
+      const evaluation = evaluateOperatorOutputCandidate(
+        operatorId,
+        targetContext,
+        pendingSourceAnchorInstanceIndex
+      );
+      if (evaluation.valid) {
+        return null;
+      }
+      return {
+        disabled: false,
+        reason: evaluation.reason,
+        invalid: true,
+      };
+    }
+    if (pendingSourceRole === "center" && role === "operator-input") {
+      const evaluation = evaluateOperatorInputValidation(targetContext);
+      if (evaluation.valid) {
+        return null;
+      }
+      return {
+        disabled: false,
+        reason: evaluation.reason,
+        invalid: true,
+      };
     }
     if (pendingSourceRole === "operator-output" && role === "product") {
       const { participantId: operatorId } = parseNodeKey(pendingSourceKey);

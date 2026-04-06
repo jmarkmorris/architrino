@@ -1,0 +1,56 @@
+{
+  "schema": "reaction-library-manifest/v1",
+  "defaultEntryId": "free_neutron_beta_decay",
+  "entries": [
+    {
+      "id": "free_neutron_beta_decay",
+      "requestId": "free_neutron_beta_decay",
+      "title": "Free neutron beta decay",
+      "displayTitle": "Free neutron beta decay",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json",
+      "isDefault": true
+    },
+    {
+      "id": "muon_decay",
+      "requestId": "muon_decay",
+      "title": "Muon decay",
+      "displayTitle": "Muon decay",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json"
+    },
+    {
+      "id": "charged_pion_to_muon_neutrino_live_pdg",
+      "requestId": "charged_pion_to_muon_neutrino.live-pdg",
+      "title": "Charged pion to muon neutrino (live PDG)",
+      "displayTitle": "Charged pion to muon neutrino (live PDG)",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json"
+    },
+    {
+      "id": "muon_to_electron_photon_live_pdg",
+      "requestId": "muon_to_electron_photon.live-pdg",
+      "title": "Muon to electron photon (live PDG)",
+      "displayTitle": "Muon to electron photon (live PDG)",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/muon_to_electron_photon.live-pdg.solver-request.v1.json"
+    },
+    {
+      "id": "muon_decay_live_pdg",
+      "requestId": "muon_decay.live-pdg",
+      "title": "Muon decay (live PDG)",
+      "displayTitle": "Muon decay (live PDG)",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.solver-request.v1.json"
+    },
+    {
+      "id": "free_neutron_beta_decay_live_pdg",
+      "requestId": "free_neutron_beta_decay.live-pdg",
+      "title": "Free neutron beta decay (live PDG)",
+      "displayTitle": "Free neutron beta decay (live PDG)",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.solver-request.v1.json"
+    },
+    {
+      "id": "charged_pion_to_muon_neutrino",
+      "requestId": "charged_pion_to_muon_neutrino",
+      "title": "Charged pion to muon neutrino",
+      "displayTitle": "Charged pion to muon neutrino",
+      "requestPath": "content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json"
+    }
+  ]
+}

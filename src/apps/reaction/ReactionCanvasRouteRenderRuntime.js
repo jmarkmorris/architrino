@@ -114,80 +114,6 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
     };
   }
 
-  function getCompositeBusRouteEndpoints(
-    spanStem,
-    collector,
-    bounds,
-    edgeInset = canvasRouteAnchorGapPx
-  ) {
-    if (!isElement(spanStem) || !isElement(collector)) {
-      return getTrimmedRouteEndpoints(spanStem, collector, bounds, edgeInset);
-    }
-    const collectorPoint = getElementCenterWithinSurface(collector, bounds);
-    const stemRect = spanStem.getBoundingClientRect();
-    const stemX = stemRect.left + stemRect.width / 2 - bounds.left;
-    const stemTop = stemRect.top - bounds.top;
-    const stemBottom = stemRect.bottom - bounds.top;
-    const stemPoint = {
-      x: stemX,
-      y: Math.max(stemTop, Math.min(collectorPoint.y, stemBottom)),
-    };
-    const deltaX = collectorPoint.x - stemPoint.x;
-    const deltaY = collectorPoint.y - stemPoint.y;
-    const distance = Math.hypot(deltaX, deltaY);
-    if (distance <= 0.001) {
-      return {
-        startX: stemPoint.x,
-        startY: stemPoint.y,
-        endX: collectorPoint.x,
-        endY: collectorPoint.y,
-      };
-    }
-    const unitX = deltaX / distance;
-    const unitY = deltaY / distance;
-    const collectorRadius = Math.max(0, getAnchorRadiusFromBounds(collector) - edgeInset);
-    return {
-      startX: stemPoint.x,
-      startY: stemPoint.y,
-      endX: collectorPoint.x - unitX * collectorRadius,
-      endY: collectorPoint.y - unitY * collectorRadius,
-    };
-  }
-
-  function createCompositeBusPath({ startX, startY, endX, endY }) {
-    const path = createSvgElement("path");
-    path?.setAttribute?.("d", buildReactionCanvasDirectPath({ startX, startY, endX, endY }));
-    path?.setAttribute?.("class", "composer-reaction-canvas-composite-link");
-    return path;
-  }
-
-  function drawCompositeLinks(bounds) {
-    getParticipants()
-      .filter((participant) => isCompositeParticipant(participant))
-      .forEach((participant) => {
-        const collector = surface?.querySelector?.(
-          `.composer-reaction-canvas-composite-collector[data-composite-collector-id="${escapeCssSelector(participant.id)}"]`
-        );
-        if (!collector) {
-          return;
-        }
-        const spanStem = surface?.querySelector?.(
-          `.composer-reaction-canvas-composite-span-stem[data-composite-span-participant-id="${escapeCssSelector(participant.id)}"]`
-        );
-        if (spanStem) {
-          const { startX, startY, endX, endY } = getCompositeBusRouteEndpoints(
-            spanStem,
-            collector,
-            bounds
-          );
-          if (Math.abs(endX - startX) < 0.5 && Math.abs(endY - startY) < 0.5) {
-            return;
-          }
-          mapSvg?.appendChild?.(createCompositeBusPath({ startX, startY, endX, endY }));
-        }
-      });
-  }
-
   function getRenderedAnchorsForNodeRole(nodeKey, role) {
     if (!surface) {
       return [];
@@ -258,7 +184,6 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
     const height = Math.max(1, Math.round(bounds.height));
     mapSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     mapSvg.innerHTML = "";
-    drawCompositeLinks(bounds);
     getMappings().forEach((mapping) => {
       const sourceAnchor = getRenderedMappingAnchor(mapping, "source");
       const targetAnchor = getRenderedMappingAnchor(mapping, "target");
@@ -311,6 +236,5 @@ export function createReactionCanvasRouteRenderRuntime(deps = {}) {
     drawMappings,
     scheduleMappingDraw,
     getTrimmedRouteEndpoints,
-    createCompositeBusPath,
   };
 }

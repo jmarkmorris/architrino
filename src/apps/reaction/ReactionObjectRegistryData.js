@@ -41,23 +41,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "sourceLaneNumbers": [1],
         "targetPlacementClass": "operator",
         "targetRole": "operator-input",
-        "targetLaneNumbers": [2, 4]
-      },
-      {
-        "sourcePlacementClass": "reactant",
-        "sourceRole": "reactant",
-        "sourceLaneNumbers": [1],
-        "targetPlacementClass": "center",
-        "targetRole": "center",
-        "targetLaneNumbers": [3]
-      },
-      {
-        "sourcePlacementClass": "reactant",
-        "sourceRole": "reactant",
-        "sourceLaneNumbers": [1],
-        "targetPlacementClass": "product",
-        "targetRole": "product",
-        "targetLaneNumbers": [5]
+        "targetLaneNumbers": [2]
       },
       {
         "sourcePlacementClass": "operator",
@@ -68,22 +52,6 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "targetLaneNumbers": [3]
       },
       {
-        "sourcePlacementClass": "operator",
-        "sourceRole": "operator-output",
-        "sourceLaneNumbers": [2],
-        "targetPlacementClass": "operator",
-        "targetRole": "operator-input",
-        "targetLaneNumbers": [4]
-      },
-      {
-        "sourcePlacementClass": "operator",
-        "sourceRole": "operator-output",
-        "sourceLaneNumbers": [2, 4],
-        "targetPlacementClass": "product",
-        "targetRole": "product",
-        "targetLaneNumbers": [5]
-      },
-      {
         "sourcePlacementClass": "center",
         "sourceRole": "center",
         "sourceLaneNumbers": [3],
@@ -92,9 +60,9 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "targetLaneNumbers": [4]
       },
       {
-        "sourcePlacementClass": "center",
-        "sourceRole": "center",
-        "sourceLaneNumbers": [3],
+        "sourcePlacementClass": "operator",
+        "sourceRole": "operator-output",
+        "sourceLaneNumbers": [4],
         "targetPlacementClass": "product",
         "targetRole": "product",
         "targetLaneNumbers": [5]
@@ -189,7 +157,8 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
   ],
   "operatorEntries": [
     { "templateId": "associate", "label": "Associate" },
-    { "templateId": "dissociate", "label": "Dissociate" }
+    { "templateId": "dissociate", "label": "Dissociate" },
+    { "templateId": "pass_thru", "label": "Pass Thru" }
   ],
   "templates": {
     "associate": {
@@ -202,6 +171,14 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
     },
     "dissociate": {
       "defaultLabel": "Dissociate",
+      "familyTag": "operator",
+      "supportsPolarity": false,
+      "preserveLeadingPolarityLabel": false,
+      "allowedPlacementClasses": ["operator"],
+      "structure": { "kind": "operator" }
+    },
+    "pass_thru": {
+      "defaultLabel": "Pass Thru",
       "familyTag": "operator",
       "supportsPolarity": false,
       "preserveLeadingPolarityLabel": false,
@@ -260,7 +237,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
       "familyTag": "boson",
       "supportsPolarity": false,
       "preserveLeadingPolarityLabel": false,
-      "allowedPlacementClasses": ["reactant", "product"],
+      "allowedPlacementClasses": ["reactant", "product", "center"],
       "structure": { "kind": "photon" }
     },
     "noether_core": {
@@ -284,7 +261,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
       "familyTag": "lepton",
       "supportsPolarity": true,
       "preserveLeadingPolarityLabel": false,
-      "allowedPlacementClasses": ["reactant", "product"],
+      "allowedPlacementClasses": ["reactant", "product", "center"],
       "variants": [
         { "occupiedCount": 1, "label": "Pro Tau", "generation": "3", "hBasis": ["h1"], "occupiedSlots": ["inner"] },
         { "occupiedCount": 2, "label": "Pro Muon", "generation": "2", "hBasis": ["h1", "h2"], "occupiedSlots": ["inner", "middle"] },
@@ -302,7 +279,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
       "familyTag": "lepton",
       "supportsPolarity": true,
       "preserveLeadingPolarityLabel": false,
-      "allowedPlacementClasses": ["reactant", "product"],
+      "allowedPlacementClasses": ["reactant", "product", "center"],
       "variants": [
         { "occupiedCount": 1, "label": "Pro Tau Neutrino", "generation": "3", "hBasis": ["h1"], "occupiedSlots": ["inner"] },
         { "occupiedCount": 2, "label": "Pro Muon Neutrino", "generation": "2", "hBasis": ["h1", "h2"], "occupiedSlots": ["inner", "middle"] },

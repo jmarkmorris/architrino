@@ -257,10 +257,6 @@ test("composite assembly rows use the standard tile gap between the title tile a
     styleSheet,
     /\.composer-reaction-canvas-higgs-cluster-grid-rows\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
   );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-stack-gap,\s*10px\);/
-  );
 });
 
 test("side anchors use the shared attachment offset so connectors abut tile edges", () => {
@@ -325,7 +321,7 @@ test("free architrinos render as one aggregate ledger tile instead of a tri-slot
   );
 });
 
-test("free architrinos root exposes multiple reactant output anchors and uses the compact centered label style", () => {
+test("free architrinos root reuses one output anchor and uses the compact centered label style", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -333,19 +329,15 @@ test("free architrinos root exposes multiple reactant output anchors and uses th
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /participant\?\.templateId === "free_architrinos"[\s\S]*?mappedIndices\.length \? mappedIndices : \[1\]/
+    /participant\?\.templateId === "free_architrinos"[\s\S]*?return \[mappedIndices\[0\] \?\? 1\];/
   );
-  assert.match(
+  assert.doesNotMatch(
     runtimeSource,
-    /const connectorRole = getParticipantConnectorRole\(participant\);[\s\S]*?anchorRole:\s*connectorRole,[\s\S]*?anchorInstanceIndex/
+    /is-free-architrinos-root/
   );
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-particle\.is-free-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-tree-row\.is-reactant\s*>\s*\.composer-reaction-canvas-anchor-set\s*\{[\s\S]*?display:\s*grid;[\s\S]*?gap:\s*4px;/
   );
 });
 
@@ -437,120 +429,63 @@ test("composite participants collapse the outer gap into a single connector span
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-composite-participant-gap,\s*0px\);/
-  );
-});
-
-test("composite participant connector rails are removed from the row flow", () => {
-  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-visual-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
+    /--reaction-canvas-composite-participant-gap:\s*var\(--reaction-canvas-tile-gap,\s*7px\);/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?position:\s*absolute;[\s\S]*?z-index:\s*2;/
-  );
-  assert.doesNotMatch(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-visual-rail::after\s*\{/
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-composite-participant-gap,\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
   );
 });
 
-test("composite title rail side anchoring survives the nested participant-content wrapper", () => {
+test("composite participants keep only the vertical grouping rail and no synthetic exterior anchor or dots", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-rail\s*\{/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-visual-rail\s*\{/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-collector\s*\{/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-connector-dot/);
+  assert.doesNotMatch(styleSheet, /\.composer-reaction-canvas-composite-span-slot\s*\{/);
+  assert.doesNotMatch(runtimeSource, /createCompositeVisualRail/);
+  assert.doesNotMatch(runtimeSource, /createCompositeExteriorRootAnchor/);
+  assert.match(runtimeSource, /createCompositeSpanRail/);
+});
+
+test("composite title card is vertically centered against the full composite stack", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?align-items:\s*center;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*>\s*\.composer-reaction-canvas-participant-content\s*\{[\s\S]*?align-items:\s*center;/
+  );
+});
+
+test("composite participants render directly inside the shared participant-content wrapper", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
   assert.match(
     runtimeSource,
     /content\.className = "composer-reaction-canvas-participant-content";/
   );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\s+\.composer-reaction-canvas-composite-visual-rail\.is-reactant\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\s+\.composer-reaction-canvas-composite-visual-rail\.is-product\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
-  );
+  assert.match(runtimeSource, /const visual = createParticipantVisual\(participant\);/);
 });
 
-test("dissociated composites keep the title tile and render it with a dotted border", () => {
+test("dissociated composites keep the title tile without any dotted border styling", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    runtimeSource,
-    /if \(participant\?\.isDissociatedComposite \|\| participant\?\.isAutoDissociatedComposite\) \{\s*card\.classList\.add\("is-dissociated-composite"\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-canvas-composite-visual-rail[\s\S]*?\.composer-reaction-canvas-particle\s*\{[\s\S]*?border-style:\s*dotted;/
-  );
-});
-
-test("composite collector uses the shared centered connector inset", () => {
-  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-visual-rail\.is-reactant\s+\.composer-reaction-canvas-composite-collector\s*\{[\s\S]*?left:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-composite-node-inset\)\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-composite-node-inset\)\);/
-  );
-});
-
-test("composite root anchors live on the exterior participant side while the title collector stays decorative", () => {
-  const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
-    "utf8"
-  );
-  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    runtimeSource,
-    /function createCompositeExteriorRootAnchor\(participant,\s*rootNode = null,\s*rootNodeKey = ""\)/
-  );
-  assert.match(
-    runtimeSource,
-    /createAnchorButton\(participant,\s*rootNode,\s*rootNodeKey,\s*\{[\s\S]*?"composer-reaction-canvas-composite-exterior-root-anchor"/
-  );
-  assert.match(
-    runtimeSource,
-    /function createCompositeVisualRail\(participant\)[\s\S]*?const collector = document\.createElement\("span"\);[\s\S]*?collector\.setAttribute\("aria-hidden", "true"\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--reaction-canvas-anchor-center-offset,\s*8px\)\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product\s*>\s*\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-anchor-center-offset,\s*8px\)\s*\*\s*-1\);/
-  );
-});
-
-test("composite collector and span rail use the same connector dot type", () => {
-  const runtimeSource = readFileSync(
-    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
-    "utf8"
-  );
-  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    runtimeSource,
-    /composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot/
-  );
-  assert.match(
-    runtimeSource,
-    /composer-reaction-canvas-composite-span-node composer-reaction-canvas-composite-connector-dot/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-composite-connector-dot,\s*\.composer-reaction-canvas-composite-span-node\s*\{/
-  );
+  assert.doesNotMatch(runtimeSource, /is-dissociated-composite/);
+  assert.doesNotMatch(styleSheet, /border-style:\s*dotted;/);
 });
 
 test("template picker grid uses the shared canvas tile gap", () => {
@@ -565,27 +500,48 @@ test("template picker grid uses the shared canvas tile gap", () => {
   );
 });
 
-test("composite span stem uses the shared centered connector span geometry", () => {
+test("composite span stem geometry helpers remain for the decorative bus rail", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-stem\s*\{/);
+  assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-rail\s*\{/);
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-composite-node-inset,\s*0\.5px\)\s*\+\s*var\(--reaction-canvas-composite-node-center,\s*3px\)\);/
+    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?top:\s*0;[\s\S]*?bottom:\s*0;/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--reaction-canvas-composite-connector-span\);/
+    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--reaction-canvas-composite-participant-gap,\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
   );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?right:\s*100%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?left:\s*100%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
+  );
+  assert.match(runtimeSource, /composite-span-stem/);
 });
 
-test("composite connector path uses a direct line segment", () => {
+test("composite connector path helper is gone when only the vertical grouping rail remains", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionCanvasRouteRenderRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(
-    runtimeSource,
-    /buildReactionCanvasDirectPath\(\{\s*startX,\s*startY,\s*endX,\s*endY\s*\}\)/
-  );
+  assert.doesNotMatch(runtimeSource, /createCompositeBusPath/);
+  assert.doesNotMatch(runtimeSource, /drawCompositeLinks/);
 });
 
 test("composite and standalone track rows share the same inline track-body helper", () => {

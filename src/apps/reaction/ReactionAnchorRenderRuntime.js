@@ -181,7 +181,7 @@ export function createReactionAnchorRenderRuntime(options = {}) {
     if (
       getPendingSourceKey() &&
       getPendingSourceKey() !== nodeKey &&
-      (anchorRole === "product" || anchorRole === "operator-input") &&
+      (anchorRole === "product" || anchorRole === "center" || anchorRole === "operator-input") &&
       !anchorAvailability.disabled &&
       !anchorAvailability.invalid
     ) {

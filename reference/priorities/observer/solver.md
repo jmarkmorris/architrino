@@ -75,7 +75,7 @@ Operator semantics that should remain canonical:
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
 - center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
-- the current solver operator vocabulary remains `Associate` plus `Dissociate`;
+- the current solver operator vocabulary is `Associate`, `Dissociate`, and `Pass Thru`;
 - spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
 - `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
 - when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
@@ -83,7 +83,7 @@ Operator semantics that should remain canonical:
 - left/input-side connectors on any assembly must never be used as a source for a forward mapping to anything in a higher-numbered lane or column;
 - treating the visible lanes/columns as ordered left-to-right `1 2 3 4 5`, any right/output-side connector may connect only to a higher-numbered lane/column object and must terminate on a left/input-side connector only;
 - a composite title or title-card shell does not have its own first-class output connector; when flow must visibly continue from a composite into its subassemblies, that path uses the composite's special internal rail/collector depiction rather than a normal title-output anchor;
-- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the dotted composite framing survives projection and library handoff.
+- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the opened-composite semantics survive projection and library handoff.
 
 Composite and dissociation requirements that should move forward into the new architecture:
 
@@ -97,13 +97,20 @@ Composite and dissociation requirements that should move forward into the new ar
 Full-solve lane contract:
 
 - every required connector on every visible participant or operator must be connected for the surface to count as a full solve;
-- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2, 3, 4, or 5;
-- lane 2 dissociate operators are input-and-output and every visible input and output must be connected;
+- lane 1 reactant participants are output-only and each visible output must connect forward into lane 2 only;
+- lane 2 operators are input-and-output and every visible input and output must be connected;
 - lane 3 center-lane participants are input-and-output and every visible input and output must be connected;
-- lane 4 associate operators are input-and-output and every visible input and output must be connected;
+- lane 4 operators are input-and-output and every visible input and output must be connected;
 - lane 5 product participants are input-only and every visible input must be connected;
 - if any required connector remains open, the surface is invalid as a full solve even if product inventory happens to close;
 - and if a candidate fails any of those connectivity rules, it is not a full solve and must not be treated as solver-complete library output.
+
+Current transition note:
+
+- Reaction now validates and exports only strict adjacent-lane accepted documents;
+- accepted example documents are already strict five-lane handoff fixtures;
+- the live Reaction library now solves request fixtures on demand instead of loading pre-built solved artifacts;
+- and the native solver still needs to emit the same lane-complete structure directly so request-backed library solves and accepted exports stay identical without compatibility rewrites.
 
 Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
@@ -1670,5 +1677,5 @@ The first-pass browser planner and projection stack have already been removed fr
 ### Logic That Should Stay Reaction-Owned Unless The Contract Expands
 
 - [`ReactionStructureDescriptorRuntime.js`](../../../src/apps/reaction/ReactionStructureDescriptorRuntime.js) and [`ReactionParticipantRenderRuntime.js`](../../../src/apps/reaction/ReactionParticipantRenderRuntime.js): render-tree construction and DOM rendering should stay in Reaction as long as they stop inferring hidden solver semantics.
-- [`ReactionSolvedLibraryRuntime.js`](../../../src/apps/reaction/ReactionSolvedLibraryRuntime.js), [`ReactionLibraryCandidateRuntime.js`](../../../src/apps/reaction/ReactionLibraryCandidateRuntime.js), and [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): these should remain thin review-boundary modules, but only if request/result documents become explicit enough that they no longer repair meaning during import.
+- [`ReactionReviewImportRuntime.js`](../../../src/apps/reaction/ReactionReviewImportRuntime.js): this should remain a thin review-boundary module, but only if request/result documents become explicit enough that it no longer repairs meaning during import.
 - [`ReactionObjectRegistryData.js`](../../../src/apps/reaction/ReactionObjectRegistryData.js) and [`ReactionObjectRegistryRuntime.js`](../../../src/apps/reaction/ReactionObjectRegistryRuntime.js): placement and render grammar belong near the app, but solver-facing inference helpers such as `inferReactionGenerationFromLabel` and `inferReactionTemplateIdFromStructure` should move out if the solver depends on them.

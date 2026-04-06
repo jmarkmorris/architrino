@@ -112,6 +112,7 @@ const canvasTemplateMeta = Object.freeze({
   proton: { shortLabel: "P", accent: "#ff5a4a" },
   associate: { shortLabel: "As", accent: "#35b59a" },
   dissociate: { shortLabel: "Ds", accent: "#ff8a52" },
+  pass_thru: { shortLabel: "Pt", accent: "#4aa8a0" },
   w_minus_boson: { shortLabel: "W-", accent: "#2d8cff" },
   w_plus_boson: { shortLabel: "W+", accent: "#ff5a4a" },
   electron: { shortLabel: "e-", accent: "#2d8cff" },
@@ -143,24 +144,32 @@ const operatorEntries = REACTION_OPERATOR_ENTRIES;
 export const REACTION_OPERATOR_LANE_LAYOUT = Object.freeze([
   Object.freeze({
     laneIndex: 0,
-    templateId: "assembly",
-    label: "Assembly",
+    templateId: "left-operator",
+    label: "Lane 2",
     pickerEntries: Object.freeze([
       Object.freeze({
         templateId: "dissociate",
         label: "Dissociate",
+      }),
+      Object.freeze({
+        templateId: "pass_thru",
+        label: "Pass Thru",
       }),
     ]),
     enabled: true,
   }),
   Object.freeze({
     laneIndex: 1,
-    templateId: "operator",
-    label: "Operator",
+    templateId: "right-operator",
+    label: "Lane 4",
     pickerEntries: Object.freeze([
       Object.freeze({
         templateId: "associate",
         label: "Associate",
+      }),
+      Object.freeze({
+        templateId: "pass_thru",
+        label: "Pass Thru",
       }),
     ]),
     enabled: true,
@@ -332,7 +341,15 @@ function syncParticipantHierarchyForPolarity(participant) {
   if (!topNode) {
     return;
   }
-  topNode.label = `${polarity === "anti" ? "Anti" : "Pro"} Noether Core`;
+  if (participant.templateId === "noether_core") {
+    topNode.label = formatParticipantLabel(
+      participant.baseLabel || topNode.label || "Noether Core",
+      participant.templateId,
+      polarity
+    );
+  } else {
+    topNode.label = `${polarity === "anti" ? "Anti" : "Pro"} Noether Core`;
+  }
   topNode.inventory = polarity === "anti" ? { antiCore: 1 } : { proCore: 1 };
 }
 
@@ -619,8 +636,22 @@ function isSingleMappingAnchorRole(role = "") {
   return normalizedRole === "reactant" || normalizedRole === "product";
 }
 
-function canTargetMappingRole(role = "") {
-  return role === "product" || role === "operator-input";
+function canTargetMappingRole(descriptor = "") {
+  const role =
+    descriptor && typeof descriptor === "object"
+      ? String(descriptor.role ?? "").trim()
+      : String(descriptor ?? "").trim();
+  const anchorInstanceIndex =
+    descriptor && typeof descriptor === "object"
+      ? normalizeAnchorInstanceIndex(descriptor.anchorInstanceIndex)
+      : null;
+  if (role === "product" || role === "operator-input") {
+    return true;
+  }
+  if (role !== "center") {
+    return false;
+  }
+  return anchorInstanceIndex === 0;
 }
 
 function getSlotNameFromCode(slotCode = "") {
@@ -2461,10 +2492,10 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       participantId: options?.participantId,
       side: "operator",
       templateId: normalizedTemplateId,
-      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate"),
+      label: getDefaultParticipantBaseLabel(normalizedTemplateId, "Operator"),
       hierarchy: buildFallbackHierarchyForTemplate(
         normalizedTemplateId,
-        getDefaultParticipantBaseLabel(normalizedTemplateId, "Associate")
+        getDefaultParticipantBaseLabel(normalizedTemplateId, "Operator")
       ),
       extraFields: {
         operatorLaneIndex: resolvedLaneIndex,

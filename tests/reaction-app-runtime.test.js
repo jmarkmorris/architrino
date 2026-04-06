@@ -144,18 +144,17 @@ function createCommitRuntimeStub() {
 function createReactionAppRuntimeHarness(options = {}) {
   const statusElement = new FakeElement();
   const reviewStateElement = new FakeElement();
-  const libraryLoadButton = new FakeButtonElement();
   const acceptButton = new FakeButtonElement();
   const exportButton = new FakeButtonElement();
   const canvasRuntimeStub = createCanvasRuntimeStub(options.initialSnapshot);
   let libraryEntries = [];
   let selectedLibraryId = "";
+  let librarySelectHandler = null;
   let defaultLibraryLoadCalls = 0;
   let specificLibraryLoadCalls = [];
   const runtime = createReactionAppRuntime({
     statusElement,
     reviewStateElement,
-    libraryLoadButton,
     acceptButton,
     exportButton,
     initialSolverRequest: options.initialSolverRequest ?? null,
@@ -166,21 +165,25 @@ function createReactionAppRuntimeHarness(options = {}) {
         return {};
       },
     }),
-    createLibraryPickerRuntime: () => ({
-      setEntries(entries = [], pickerOptions = {}) {
-        libraryEntries = [...entries];
-        selectedLibraryId = String(pickerOptions?.selectedId ?? entries[0]?.id ?? "");
-      },
-      setSelectedId(entryId = "") {
-        selectedLibraryId = String(entryId ?? "");
-      },
-      getSelectedId() {
-        return selectedLibraryId;
-      },
-    }),
+    createLibraryPickerRuntime: (pickerOptions = {}) => {
+      librarySelectHandler =
+        typeof pickerOptions?.onSelect === "function" ? pickerOptions.onSelect : null;
+      return {
+        setEntries(entries = [], pickerOptions = {}) {
+          libraryEntries = [...entries];
+          selectedLibraryId = String(pickerOptions?.selectedId ?? entries[0]?.id ?? "");
+        },
+        setSelectedId(entryId = "") {
+          selectedLibraryId = String(entryId ?? "");
+        },
+        getSelectedId() {
+          return selectedLibraryId;
+        },
+      };
+    },
     builtInLibraryEntries: options.builtInLibraryEntries ?? [
-      { id: "muon_decay", title: "Muon decay", isDefault: true },
-      { id: "free_neutron_beta", title: "Free neutron beta decay" },
+      { id: "free_neutron_beta_decay", title: "Free neutron beta decay", isDefault: true },
+      { id: "muon_decay", title: "Muon decay" },
       { id: "charged_pion_to_muon_neutrino", title: "Charged pion to muon neutrino" },
     ],
     loadDefaultReactionLibraryEntry: async () => {
@@ -202,7 +205,10 @@ function createReactionAppRuntimeHarness(options = {}) {
     setSelectedLibraryId: (entryId) => {
       selectedLibraryId = String(entryId ?? "");
     },
-    libraryLoadButton,
+    selectLibrary: async (entryId) => {
+      selectedLibraryId = String(entryId ?? "");
+      await librarySelectHandler?.(selectedLibraryId, libraryEntries.find((entry) => entry.id === selectedLibraryId));
+    },
     acceptButton,
     exportButton,
     canvasRuntimeStub,
@@ -213,8 +219,8 @@ function createReactionAppRuntimeHarness(options = {}) {
 
 const defaultLibraryPayload = {
   entry: {
-    id: "muon_decay",
-    title: "Muon decay",
+    id: "free_neutron_beta_decay",
+    title: "Free neutron beta decay",
   },
   snapshot: {
     participants: [
@@ -228,13 +234,13 @@ const defaultLibraryPayload = {
     mappings: [],
   },
   exportOverrides: {
-    reactionId: "muon_decay",
-    title: "Muon decay",
+    reactionId: "free_neutron_beta_decay",
+    title: "Free neutron beta decay",
   },
 };
 
 test(
-  "reaction app runtime loads the default built-in reaction when startup finds no authored session",
+  "reaction app runtime auto-solves the default library reaction when startup finds no authored session",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: { participants: [], mappings: [] },
@@ -249,13 +255,12 @@ test(
     assert.deepEqual(harness.canvasRuntimeStub.replaceCalls[0], defaultLibraryPayload.snapshot);
     assert.deepEqual(
       harness.getLibraryEntries().map((entry) => entry.id),
-      ["muon_decay", "free_neutron_beta", "charged_pion_to_muon_neutrino"]
+      ["free_neutron_beta_decay", "muon_decay", "charged_pion_to_muon_neutrino"]
     );
-    assert.equal(harness.getSelectedLibraryId(), "muon_decay");
-    assert.equal(harness.libraryLoadButton.disabled, false);
+    assert.equal(harness.getSelectedLibraryId(), "free_neutron_beta_decay");
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Library reaction solved: Free neutron beta decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
     assert.equal(
       harness.reviewStateElement.textContent,
@@ -267,7 +272,7 @@ test(
 );
 
 test(
-  "reaction app runtime keeps an existing authored session instead of forcing the default built-in reaction",
+  "reaction app runtime keeps an existing authored session instead of forcing the default library selection",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: {
@@ -290,7 +295,7 @@ test(
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 0);
     assert.equal(
       harness.statusElement.textContent,
-      "Reaction app ready. Use the left and right + controls to build a reaction."
+      "Reaction app ready. Choose a reaction or use the left and right + controls to build one."
     );
     assert.equal(
       harness.reviewStateElement.textContent,
@@ -300,7 +305,7 @@ test(
 );
 
 test(
-  "reaction app runtime lets the user load a specific built-in library entry from the selector",
+  "reaction app runtime solves a specific library entry as soon as the selector changes",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: {
@@ -341,20 +346,19 @@ test(
     });
 
     await harness.runtime.init();
-    harness.setSelectedLibraryId("muon_decay");
-    await harness.runtime.loadSelectedBuiltInReactionLibraryEntry();
+    await harness.selectLibrary("muon_decay");
 
     assert.deepEqual(harness.getSpecificLibraryLoadCalls(), ["muon_decay"]);
     assert.equal(harness.canvasRuntimeStub.replaceCalls.length, 1);
     assert.equal(
       harness.statusElement.textContent,
-      "Built-in reaction loaded: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
+      "Library reaction solved: Muon decay. Accept it to emit accepted reaction-flow/v1 JSON downstream of review."
     );
   })
 );
 
 test(
-  "reaction app runtime keeps solver-request startup imports ahead of the default built-in reaction",
+  "reaction app runtime keeps solver-request startup imports ahead of the default library selection",
   withFakeDom(async () => {
     const harness = createReactionAppRuntimeHarness({
       initialSnapshot: { participants: [], mappings: [] },

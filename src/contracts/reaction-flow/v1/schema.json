@@ -51,7 +51,7 @@
       "properties": {
         "lane": {
           "type": "integer",
-          "minimum": 0
+          "enum": [2, 4]
         },
         "row": {
           "type": "integer",
@@ -143,8 +143,12 @@
           "layout": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["column", "row"],
+            "required": ["lane", "column", "row"],
             "properties": {
+              "lane": {
+                "type": "integer",
+                "enum": [1, 3, 5]
+              },
               "column": {
                 "type": "string",
                 "enum": ["left", "center", "right"]

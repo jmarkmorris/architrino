@@ -2,7 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-import { createBrowserReactionSolveSnapshot, resolveReactionSolveEndpoint } from "../src/apps/reaction/ReactionSolverBrowserRuntime.js";
+import {
+  createBrowserReactionSolveSnapshot,
+  resolveReactionSolveEndpoint,
+} from "../src/apps/reaction/ReactionSolverBrowserRuntime.js";
 import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
 import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 import { createReactionBinarySelectionRuntime } from "../src/apps/reaction/ReactionBinarySelectionRuntime.js";
@@ -50,7 +53,7 @@ test("browser reaction solver runtime resolves the local solve endpoint from the
   );
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://localhost:5173/reaction.html" } }),
-    "http://127.0.0.1:5173/api/reaction/solve"
+    "http://localhost:5173/api/reaction/solve"
   );
   assert.equal(
     resolveReactionSolveEndpoint({ location: { href: "http://127.0.0.1:5173/architrino/reaction.html" } }),
@@ -153,5 +156,19 @@ test("browser reaction solver runtime explains when a static server rejects POST
   await assert.rejects(
     () => solveSnapshot({ participants: [], mappings: [] }),
     /Reaction solve bridge is unavailable at `\/api\/reaction\/solve`\./
+  );
+});
+
+test("browser reaction solver runtime explains when the solve bridge cannot be reached", async () => {
+  const solveSnapshot = createBrowserReactionSolveSnapshot({
+    windowLike: { location: { href: "http://127.0.0.1:5173/reaction.html" } },
+    fetchImpl: async () => {
+      throw new TypeError("Failed to fetch");
+    },
+  });
+
+  await assert.rejects(
+    () => solveSnapshot({ participants: [], mappings: [] }),
+    /Reaction solve bridge is unavailable at `http:\/\/127\.0\.0\.1:5173\/api\/reaction\/solve`\./
   );
 });

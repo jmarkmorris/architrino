@@ -21,28 +21,41 @@ test("reaction-flow import runtime maps the contract fixture into composer draft
 
   assert.equal(importResult.schema, "composer-import-result/v1");
   assert.equal(importResult.sourceSchema, "reaction-flow/v1");
-  assert.equal(importResult.importedReactionId, "free_neutron_beta_001");
-  assert.equal(importResult.sceneId, "free_neutron_beta_scene");
+  assert.equal(importResult.importedReactionId, "reaction_review_free_neutron_beta_decay");
+  assert.equal(importResult.sceneId, "reaction_review_free_neutron_beta_decay_scene");
   assert.equal(importResult.warnings.length, 0);
-  assert.equal(draftState.id, "free_neutron_beta_scene");
-  assert.equal(draftState.name, "Free Neutron Beta Reaction");
+  assert.equal(draftState.id, "reaction_review_free_neutron_beta_decay_scene");
+  assert.equal(draftState.name, "Free neutron beta decay");
   assert.equal(draftState.assembliesDraft.length, 4);
   assert.deepEqual(
     draftState.transfers.map((transfer) => transfer.id),
-    ["map_remainder_to_proton", "map_emitted_electron", "map_emitted_antineutrino"]
+    [
+      "map_weak-baryon-beta-decay_base_product_proton_1_out",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out",
+    ]
   );
   assert.equal(draftState.reactions.length, 1);
   assert.deepEqual(
     draftState.reactions[0].transferIds,
-    ["map_remainder_to_proton", "map_emitted_electron", "map_emitted_antineutrino"]
+    [
+      "map_weak-baryon-beta-decay_base_product_proton_1_out",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out",
+    ]
   );
   assert.deepEqual(
     draftState.reactions[0].participants.map((participant) => participant.assembly),
-    ["reactant_neutron", "product_proton", "product_electron", "product_antineutrino"]
+    [
+      "reactant_neutron_1",
+      "product_proton_1",
+      "product_pro_electron_2",
+      "product_anti_electron_neutrino_3",
+    ]
   );
   assert.deepEqual(
     draftState.cameraShots[0].framing.requiredAssemblyIds,
-    ["reactant_neutron", "product_proton", "product_electron"]
+    ["reactant_neutron_1", "product_proton_1", "product_pro_electron_2"]
   );
   assert.equal(
     draftState.metadata.importedReactionFlow.importResult.fallbacks[0].code,
@@ -50,10 +63,10 @@ test("reaction-flow import runtime maps the contract fixture into composer draft
   );
 
   const sceneDocument = createComposerSceneDocument(draftState);
-  assert.equal(sceneDocument.cameraShots[0].framing.requiredAssemblyIds[0], "reactant_neutron");
+  assert.equal(sceneDocument.cameraShots[0].framing.requiredAssemblyIds[0], "reactant_neutron_1");
   assert.equal(
     sceneDocument.metadata.importedReactionFlow.importedReactionId,
-    "free_neutron_beta_001"
+    "reaction_review_free_neutron_beta_decay"
   );
 });
 
@@ -201,21 +214,29 @@ test("composer document workspace runtime imports reaction-flow json text and ap
   const importedDraftState = runtime.readComposerDraftState();
   const importedSceneDocument = runtime.buildComposerDocumentData(importedDraftState);
 
-  assert.equal(importPayload.importResult.importedReactionId, "free_neutron_beta_001");
-  assert.equal(sceneIdInput.value, "free_neutron_beta_scene");
-  assert.equal(sceneNameInput.value, "Free Neutron Beta Reaction");
-  assert.match(statusMessage, /Imported free_neutron_beta_001/);
+  assert.equal(importPayload.importResult.importedReactionId, "reaction_review_free_neutron_beta_decay");
+  assert.equal(sceneIdInput.value, "reaction_review_free_neutron_beta_decay_scene");
+  assert.equal(sceneNameInput.value, "Free neutron beta decay");
+  assert.match(statusMessage, /Imported reaction_review_free_neutron_beta_decay/);
   assert.equal(assemblyDraftsState.length, 4);
-  assert.match(transferListInput.value, /map_remainder_to_proton/);
+  assert.match(transferListInput.value, /map_weak-baryon-beta-decay_base_product_proton_1_out/);
   assert.equal(supplementalDraftState.reactions.length, 1);
   assert.equal(supplementalDraftState.cameraShots.length, 1);
   assert.deepEqual(
     importedDraftState.reactions[0].transferIds,
-    ["map_remainder_to_proton", "map_emitted_electron", "map_emitted_antineutrino"]
+    [
+      "map_weak-baryon-beta-decay_base_product_proton_1_out",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out",
+    ]
   );
   assert.deepEqual(
     importedSceneDocument.reactions[0].transferIds,
-    ["map_remainder_to_proton", "map_emitted_electron", "map_emitted_antineutrino"]
+    [
+      "map_weak-baryon-beta-decay_base_product_proton_1_out",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out",
+    ]
   );
 });
 

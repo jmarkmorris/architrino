@@ -84,6 +84,13 @@ test("reaction canvas layout applies shared css variables from one source of tru
   assert.equal(REACTION_CANVAS_SURFACE_COLUMN_GROUP_COUNT, 5);
 });
 
+test("composite title gap uses the same standard horizontal gap as tile-to-tile spacing", () => {
+  assert.equal(
+    REACTION_CANVAS_LAYOUT.compositeParticipantGapPx,
+    REACTION_CANVAS_LAYOUT.tileGapPx
+  );
+});
+
 test("reaction canvas layout derives explicit track-start offsets for standalone and composite grids", () => {
   assert.equal(
     getReactionParticipantTrackStartOffsetPx("binary-selector-grid"),

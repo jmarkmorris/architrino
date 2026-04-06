@@ -2,18 +2,34 @@ export const REACTION_OPERATOR_GRAMMAR_ENTRIES = Object.freeze([
   Object.freeze({
     templateId: "dissociate",
     laneIndex: 0,
-    laneLabel: "Inner-left lane",
+    laneLabel: "Lane 2",
     title: "Dissociate opens carried structure",
     detail:
       "Use Dissociate to open one source-side participant or center assembly so its constituents can continue through visible corridors.",
   }),
   Object.freeze({
+    templateId: "pass_thru",
+    laneIndex: 0,
+    laneLabel: "Lane 2",
+    title: "Pass Thru carries one identity forward",
+    detail:
+      "Use Pass Thru when one participant or group continues unchanged into the next visible lane.",
+  }),
+  Object.freeze({
     templateId: "associate",
     laneIndex: 1,
-    laneLabel: "Inner-right lane",
+    laneLabel: "Lane 4",
     title: "Associate gathers to one output",
     detail:
       "Use Associate to collect available constituents and commit them into one assembled downstream participant.",
+  }),
+  Object.freeze({
+    templateId: "pass_thru",
+    laneIndex: 1,
+    laneLabel: "Lane 4",
+    title: "Pass Thru carries one identity forward",
+    detail:
+      "Use Pass Thru when one middle-lane participant survives unchanged into the product lane story.",
   }),
 ]);
 
@@ -140,8 +156,8 @@ export function buildReactionLegibilitySnapshot(options = {}) {
       summary: focusSummary,
     }),
     workflowLines: Object.freeze([
-      "Start a corridor from a reactant or operator output anchor.",
-      "Finish it on a product or operator input anchor.",
+      "Start a corridor from a lane-1 reactant, a lane-2 or lane-4 operator output, or a lane-3 center output.",
+      "Finish it one lane to the right on an operator input, a center input, or a product input.",
       "Use red routes and open operators as visible review signals, not hidden solver-only state.",
     ]),
     operatorGrammarEntries: REACTION_OPERATOR_GRAMMAR_ENTRIES,
