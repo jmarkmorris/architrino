@@ -12,17 +12,16 @@
       "side": "reactant",
       "label": "Neutron",
       "structureKey": "neutron",
-      "provenanceId": "solver-request-participant:reactant_neutron_1",
+      "provenanceId": "solver-result-participant:reactant_neutron_1",
       "tags": [
         "incoming",
-        "auto-dissociated",
+        "manual-dissociated",
         "neutron",
         "pdg:species:neutron",
-        "pdg-id:n",
-        "pdg-name:n"
+        "pdg-id:n"
       ],
       "state": {
-        "dissociation": "auto-dissociated"
+        "dissociation": "manual-dissociated"
       },
       "layout": {
         "column": "left",
@@ -34,13 +33,12 @@
       "side": "product",
       "label": "Proton",
       "structureKey": "proton",
-      "provenanceId": "solver-request-participant:product_proton_1",
+      "provenanceId": "solver-result-participant:product_proton_1",
       "tags": [
         "outgoing",
         "proton",
         "pdg:species:proton",
-        "pdg-id:p",
-        "pdg-name:p"
+        "pdg-id:p"
       ],
       "layout": {
         "column": "right",
@@ -52,16 +50,13 @@
       "side": "product",
       "label": "Pro Electron",
       "structureKey": "electron",
-      "provenanceId": "solver-request-participant:product_pro_electron_2",
+      "provenanceId": "solver-result-participant:product_pro_electron_2",
       "tags": [
         "outgoing",
         "electron",
         "pdg:species:electron",
         "pdg:generation:1",
-        "pdg-id:e-",
-        "generation:1",
-        "charged-lepton",
-        "pdg-name:e-"
+        "pdg-id:e-"
       ],
       "layout": {
         "column": "right",
@@ -73,15 +68,13 @@
       "side": "product",
       "label": "Anti Electron Neutrino",
       "structureKey": "neutrino",
-      "provenanceId": "solver-request-participant:product_anti_electron_neutrino_3",
+      "provenanceId": "solver-result-participant:product_anti_electron_neutrino_3",
       "tags": [
         "outgoing",
         "neutrino",
         "pdg:species:anti-electron-neutrino",
         "pdg:generation:1",
-        "pdg-id:anti-nu_e",
-        "generation:1",
-        "pdg-name:anti-nu_e"
+        "pdg-id:anti-nu_e"
       ],
       "layout": {
         "column": "right",
@@ -202,13 +195,13 @@
       "provenanceId": "solver-result-participant:center_weak-baryon-beta-decay_base_noether_pair_1",
       "tags": [
         "incoming",
-        "auto-dissociated",
+        "manual-dissociated",
         "noether_pair",
         "solve-generated",
         "noether-pair-supplement"
       ],
       "state": {
-        "dissociation": "auto-dissociated",
+        "dissociation": "manual-dissociated",
         "solveGenerated": true
       },
       "layout": {
@@ -224,7 +217,7 @@
       "label": "Dissociate",
       "layout": {
         "lane": 0,
-        "row": 0,
+        "row": 1,
         "slot": 1
       },
       "stageId": "stage_manual_authoring",
@@ -279,7 +272,7 @@
       "label": "Associate",
       "layout": {
         "lane": 1,
-        "row": 0,
+        "row": 3,
         "slot": 3
       },
       "stageId": "stage_manual_authoring",
@@ -322,7 +315,7 @@
       "label": "Associate",
       "layout": {
         "lane": 1,
-        "row": 0,
+        "row": 5,
         "slot": 5
       },
       "stageId": "stage_manual_authoring",
@@ -359,14 +352,14 @@
       "label": "Associate",
       "layout": {
         "lane": 1,
-        "row": 0,
+        "row": 7,
         "slot": 7
       },
       "stageId": "stage_manual_authoring",
       "inputs": [
         {
           "participantId": "center_weak-baryon-beta-decay_base_noether_pair_1",
-          "anchorId": "center_weak-baryon-beta-decay_base_noether_pair_1/root",
+          "anchorId": "center_weak-baryon-beta-decay_base_noether_pair_1/root/core_anti_1",
           "role": "reactant"
         },
         {
@@ -392,7 +385,7 @@
   ],
   "mappings": [
     {
-      "id": "mapping_1",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_input",
       "from": {
         "participantId": "reactant_neutron_1",
         "anchorId": "reactant_neutron_1/root",
@@ -400,7 +393,7 @@
       },
       "to": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -408,10 +401,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_2",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_output_1",
       "from": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -425,10 +418,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_3",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_output_2",
       "from": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -442,10 +435,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_4",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_output_3",
       "from": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -459,10 +452,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_5",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_output_4",
       "from": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -476,10 +469,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_6",
+      "id": "map_dissociate_weak-baryon-beta-decay_base_source_output_5",
       "from": {
         "participantId": "dissociate:weak-baryon-beta-decay_base:source",
-        "anchorId": "dissociate:weak-baryon-beta-decay_base:source_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -493,7 +486,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_7",
+      "id": "map_weak-baryon-beta-decay_base_product_proton_1_quark_1",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_spectator_quark_1",
         "anchorId": "center_weak-baryon-beta-decay_base_spectator_quark_1/root",
@@ -502,7 +495,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:proton",
-        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -510,7 +503,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_8",
+      "id": "map_weak-baryon-beta-decay_base_product_proton_1_quark_2",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_spectator_quark_2",
         "anchorId": "center_weak-baryon-beta-decay_base_spectator_quark_2/root",
@@ -519,7 +512,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:proton",
-        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -527,7 +520,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_9",
+      "id": "map_weak-baryon-beta-decay_base_product_proton_1_quark_3",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_transformed_up_quark",
         "anchorId": "center_weak-baryon-beta-decay_base_transformed_up_quark/root",
@@ -536,7 +529,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:proton",
-        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -544,10 +537,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_10",
+      "id": "map_weak-baryon-beta-decay_base_product_proton_1_out",
       "from": {
         "participantId": "associate:weak-baryon-beta-decay_base:proton",
-        "anchorId": "associate:weak-baryon-beta-decay_base:proton_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -560,7 +553,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_11",
+      "id": "map_weak-baryon-beta-decay_base_product_pro_electron_2_core",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_source_core",
         "anchorId": "center_weak-baryon-beta-decay_base_source_core/root",
@@ -569,7 +562,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_1",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -577,7 +570,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_12",
+      "id": "map_weak-baryon-beta-decay_base_product_pro_electron_2_free",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
         "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
@@ -586,7 +579,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_1",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -594,10 +587,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_13",
+      "id": "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
       "from": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_1",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_1_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -610,15 +603,15 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_14",
+      "id": "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_core",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_noether_pair_1",
-        "anchorId": "center_weak-baryon-beta-decay_base_noether_pair_1/root",
+        "anchorId": "center_weak-baryon-beta-decay_base_noether_pair_1/root/core_anti_1",
         "role": "reactant"
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_2",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -626,7 +619,7 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_15",
+      "id": "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_free",
       "from": {
         "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
         "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos/root",
@@ -635,7 +628,7 @@
       },
       "to": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_2",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "anchorId": "root",
         "role": "operator-input",
         "anchorInstanceIndex": 0
       },
@@ -643,10 +636,10 @@
       "stageId": "stage_manual_authoring"
     },
     {
-      "id": "mapping_16",
+      "id": "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out",
       "from": {
         "participantId": "associate:weak-baryon-beta-decay_base:product_2",
-        "anchorId": "associate:weak-baryon-beta-decay_base:product_2_root",
+        "anchorId": "root",
         "role": "operator-output",
         "anchorInstanceIndex": 0
       },
@@ -683,22 +676,22 @@
       "center_weak-baryon-beta-decay_base_noether_pair_1"
     ],
     "mappingIds": [
-      "mapping_1",
-      "mapping_2",
-      "mapping_3",
-      "mapping_4",
-      "mapping_5",
-      "mapping_6",
-      "mapping_7",
-      "mapping_8",
-      "mapping_9",
-      "mapping_10",
-      "mapping_11",
-      "mapping_12",
-      "mapping_13",
-      "mapping_14",
-      "mapping_15",
-      "mapping_16"
+      "map_dissociate_weak-baryon-beta-decay_base_source_input",
+      "map_dissociate_weak-baryon-beta-decay_base_source_output_1",
+      "map_dissociate_weak-baryon-beta-decay_base_source_output_2",
+      "map_dissociate_weak-baryon-beta-decay_base_source_output_3",
+      "map_dissociate_weak-baryon-beta-decay_base_source_output_4",
+      "map_dissociate_weak-baryon-beta-decay_base_source_output_5",
+      "map_weak-baryon-beta-decay_base_product_proton_1_quark_1",
+      "map_weak-baryon-beta-decay_base_product_proton_1_quark_2",
+      "map_weak-baryon-beta-decay_base_product_proton_1_quark_3",
+      "map_weak-baryon-beta-decay_base_product_proton_1_out",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_core",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_free",
+      "map_weak-baryon-beta-decay_base_product_pro_electron_2_out",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_core",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_free",
+      "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_out"
     ],
     "reviewInput": {
       "schema": "solver-request/v1",

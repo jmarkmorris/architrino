@@ -715,10 +715,41 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     return rail;
   }
 
+  function shouldRenderCompositeExteriorRootAnchor(participant, rootNode = null, rootNodeKey = "") {
+    if (!rootNode || !rootNodeKey) {
+      return false;
+    }
+    const anchorRole = getParticipantConnectorRole(participant);
+    const anchorInstanceIndex =
+      getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null;
+    const hasExplicitRootMapping =
+      findMappingsByNodeKey(rootNodeKey, anchorRole, anchorInstanceIndex).length > 0;
+    if (hasExplicitRootMapping) {
+      return true;
+    }
+    return !(participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite);
+  }
+
+  function createCompositeExteriorRootAnchor(participant, rootNode = null, rootNodeKey = "") {
+    if (!shouldRenderCompositeExteriorRootAnchor(participant, rootNode, rootNodeKey)) {
+      return null;
+    }
+    return createAnchorButton(participant, rootNode, rootNodeKey, {
+      anchorRole: getParticipantConnectorRole(participant),
+      anchorInstanceIndex:
+        getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null,
+      extraClassNames: [
+        "composer-reaction-canvas-composite-exterior-root-anchor",
+      ],
+    });
+  }
+
   function createCompositeAssemblyGridContent(participant, node) {
     const wrapper = document.createElement("div");
     wrapper.className = `composer-reaction-canvas-higgs-cluster-grid is-${participant.side}`;
     const coreNodes = Array.isArray(node?.children) ? node.children : [];
+    const rootNode = getParticipantRootNode(participant);
+    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
     const rows = document.createElement("div");
     rows.className = "composer-reaction-canvas-higgs-cluster-grid-rows";
     coreNodes.forEach((coreNode) => {
@@ -729,10 +760,14 @@ export function createReactionParticipantRenderRuntime(options = {}) {
       rows.appendChild(row);
     });
     const spanRail = createCompositeSpanRail(participant, coreNodes);
+    const exteriorRootAnchor = createCompositeExteriorRootAnchor(participant, rootNode, rootNodeKey);
     if (participant.side === "product") {
       wrapper.append(rows, spanRail);
     } else {
       wrapper.append(spanRail, rows);
+    }
+    if (exteriorRootAnchor) {
+      wrapper.appendChild(exteriorRootAnchor);
     }
     return wrapper;
   }
@@ -740,26 +775,10 @@ export function createReactionParticipantRenderRuntime(options = {}) {
   function createCompositeVisualRail(participant) {
     const rail = document.createElement("div");
     rail.className = `composer-reaction-canvas-composite-visual-rail is-${participant.side}`;
-
-    const rootNode = getParticipantRootNode(participant);
-    const rootNodeKey = rootNode ? buildNodeKey(participant.id, rootNode.id) : "";
-    const collector =
-      rootNode && rootNodeKey
-        ? createAnchorButton(participant, rootNode, rootNodeKey, {
-            anchorRole: getParticipantConnectorRole(participant),
-            anchorInstanceIndex:
-              getParticipantRootOutputAnchorInstanceIndices(participant, rootNode, rootNodeKey)[0] ?? null,
-            extraClassNames: [
-              "composer-reaction-canvas-composite-collector",
-              "composer-reaction-canvas-composite-connector-dot",
-            ],
-          })
-        : document.createElement("span");
-    if (!collector.className) {
-      collector.className =
-        "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
-      collector.setAttribute("aria-hidden", "true");
-    }
+    const collector = document.createElement("span");
+    collector.className =
+      "composer-reaction-canvas-composite-collector composer-reaction-canvas-composite-connector-dot";
+    collector.setAttribute("aria-hidden", "true");
     collector.dataset.compositeCollectorId = participant.id;
 
     const visual = createParticipantVisual(participant);

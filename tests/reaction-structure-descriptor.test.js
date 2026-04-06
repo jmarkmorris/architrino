@@ -114,6 +114,15 @@ test("Noether Quad descriptor tree expands to four alternating core rows", () =>
     root.children.map((child) => child.inventory?.antiCore ?? 0),
     [0, 1, 0, 1]
   );
+  assert.deepEqual(
+    root.children.map((child) => child.id),
+    [
+      "noether_quad_pro/core_pro_1",
+      "noether_quad_pro/core_anti_1",
+      "noether_quad_pro/core_pro_2",
+      "noether_quad_pro/core_anti_2",
+    ]
+  );
 });
 
 test("Noether Pair descriptor tree expands to one pro core and one anti core", () => {
@@ -127,6 +136,13 @@ test("Noether Pair descriptor tree expands to one pro core and one anti core", (
   assert.deepEqual(
     root.children.map((child) => child.inventory?.antiCore ?? 0),
     [0, 1]
+  );
+  assert.deepEqual(
+    root.children.map((child) => child.id),
+    [
+      "noether_pair_pro/core_pro_1",
+      "noether_pair_pro/core_anti_1",
+    ]
   );
 });
 

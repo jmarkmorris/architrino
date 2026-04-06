@@ -336,14 +336,23 @@ export function isReactionParticipantPlacementValid(participant = {}) {
 
 export function getReactionAnchorAttachmentSide(anchorRole = "", endpointKind = "source") {
   const normalizedRole = normalizeText(anchorRole);
-  if (normalizedRole === "reactant" || normalizedRole === "operator-output") {
-    return "right";
-  }
-  if (normalizedRole === "product" || normalizedRole === "operator-input") {
-    return "left";
-  }
-  if (normalizedRole === "center") {
-    return normalizeText(endpointKind) === "target" ? "left" : "right";
+  const normalizedEndpointKind = normalizeText(endpointKind) === "target" ? "target" : "source";
+  for (const connectorPolicy of Object.values(reactionObjectRegistryJson?.placementClasses ?? {})) {
+    if (!connectorPolicy) {
+      continue;
+    }
+    if (
+      normalizedEndpointKind === "source" &&
+      normalizeText(connectorPolicy?.outputRole) === normalizedRole
+    ) {
+      return normalizeText(connectorPolicy?.outputSide);
+    }
+    if (
+      normalizedEndpointKind === "target" &&
+      normalizeText(connectorPolicy?.inputRole) === normalizedRole
+    ) {
+      return normalizeText(connectorPolicy?.inputSide);
+    }
   }
   return "";
 }

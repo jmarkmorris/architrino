@@ -14,7 +14,6 @@ The current runtime/helper surface that consumes that registry includes:
 - [`ReactionFlowExportRuntime.js`](../../../src/apps/reaction/ReactionFlowExportRuntime.js)
 - [`ReactionBuiltInLibraryRuntime.js`](../../../src/apps/reaction/ReactionBuiltInLibraryRuntime.js)
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js)
-- [`ReactionSolverResultExportRuntime.js`](../../../src/apps/reaction/ReactionSolverResultExportRuntime.js)
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py)
 - [`StructureAssemblyCatalog.js`](../../../src/domain/structure/StructureAssemblyCatalog.js)
 - [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js)

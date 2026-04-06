@@ -2,62 +2,17 @@ import {
   classifyReactionNode,
   evaluateReactionMappingCandidate,
 } from "./ReactionStructureMappingRuntime.js";
+import {
+  addReactionLedgers,
+  createEmptyReactionLedger,
+  formatReactionLedger,
+  hasReactionLedger,
+  normalizeReactionLedger,
+  reactionLedgerFitsWithin,
+  reactionLedgersMatch,
+  subtractReactionLedgers,
+} from "./ReactionLedgerRuntime.js";
 import { parseReactionNodeKey } from "./ReactionNodeKeyRuntime.js";
-
-function createEmptyLedger() {
-  return {
-    electrino: 0,
-    positrino: 0,
-  };
-}
-
-function normalizeLedger(ledger = null) {
-  return {
-    electrino: Math.max(0, Number(ledger?.electrino ?? 0)),
-    positrino: Math.max(0, Number(ledger?.positrino ?? 0)),
-  };
-}
-
-function addLedgers(leftLedger = null, rightLedger = null) {
-  const left = normalizeLedger(leftLedger);
-  const right = normalizeLedger(rightLedger);
-  return {
-    electrino: left.electrino + right.electrino,
-    positrino: left.positrino + right.positrino,
-  };
-}
-
-function subtractLedgers(leftLedger = null, rightLedger = null) {
-  const left = normalizeLedger(leftLedger);
-  const right = normalizeLedger(rightLedger);
-  return {
-    electrino: Math.max(0, left.electrino - right.electrino),
-    positrino: Math.max(0, left.positrino - right.positrino),
-  };
-}
-
-function ledgerFitsWithin(limitLedger = null, candidateLedger = null) {
-  const limit = normalizeLedger(limitLedger);
-  const candidate = normalizeLedger(candidateLedger);
-  return (
-    candidate.electrino <= limit.electrino &&
-    candidate.positrino <= limit.positrino
-  );
-}
-
-function ledgersMatch(leftLedger = null, rightLedger = null) {
-  const left = normalizeLedger(leftLedger);
-  const right = normalizeLedger(rightLedger);
-  return (
-    left.electrino === right.electrino &&
-    left.positrino === right.positrino
-  );
-}
-
-function hasLedger(ledger = null) {
-  const normalized = normalizeLedger(ledger);
-  return normalized.electrino > 0 || normalized.positrino > 0;
-}
 
 function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
   if (
@@ -71,25 +26,13 @@ function normalizeAnchorInstanceIndex(anchorInstanceIndex) {
   return Number.isInteger(normalized) && normalized >= 0 ? normalized : null;
 }
 
-function formatLedger(ledger = null) {
-  const normalized = normalizeLedger(ledger);
-  const parts = [];
-  if (normalized.electrino) {
-    parts.push(`${normalized.electrino} electrino`);
-  }
-  if (normalized.positrino) {
-    parts.push(`${normalized.positrino} positrino`);
-  }
-  return parts.join(" + ") || "empty ledger";
-}
-
 function getNodeLedgerFromContext(nodeContext = null, resolveBinaryChoiceInventory) {
   const spec = nodeContext
     ? classifyReactionNode(nodeContext.participant, nodeContext.node, {
         resolveBinaryChoiceInventory,
       })
     : null;
-  return spec?.inventory ?? createEmptyLedger();
+  return spec?.inventory ?? createEmptyReactionLedger();
 }
 
 export function createReactionMappingRulesRuntime(options = {}) {
@@ -103,10 +46,10 @@ export function createReactionMappingRulesRuntime(options = {}) {
     typeof options.getOperatorLedgerSummary === "function"
       ? options.getOperatorLedgerSummary
       : () => ({
-          incomingLedger: createEmptyLedger(),
-          outputLedger: createEmptyLedger(),
-          outgoingLedger: createEmptyLedger(),
-          routedOutgoingLedger: createEmptyLedger(),
+          incomingLedger: createEmptyReactionLedger(),
+          outputLedger: createEmptyReactionLedger(),
+          outgoingLedger: createEmptyReactionLedger(),
+          routedOutgoingLedger: createEmptyReactionLedger(),
           incomingCount: 0,
           outgoingCount: 0,
           isBalanced: false,
@@ -115,9 +58,9 @@ export function createReactionMappingRulesRuntime(options = {}) {
     typeof options.getOperatorOutputLedger === "function"
       ? options.getOperatorOutputLedger
       : (_participantId, _anchorInstanceIndex, operatorSummary) =>
-          hasLedger(operatorSummary?.outputLedger)
-            ? normalizeLedger(operatorSummary.outputLedger)
-            : normalizeLedger(operatorSummary?.incomingLedger);
+          hasReactionLedger(operatorSummary?.outputLedger)
+            ? normalizeReactionLedger(operatorSummary.outputLedger)
+            : normalizeReactionLedger(operatorSummary?.incomingLedger);
   const parseNodeKey =
     typeof options.parseNodeKey === "function"
       ? options.parseNodeKey
@@ -133,36 +76,36 @@ export function createReactionMappingRulesRuntime(options = {}) {
     availableOutputLedgerOverride = null
   ) {
     const normalizedSummary = operatorSummary ?? {
-      incomingLedger: createEmptyLedger(),
-      outputLedger: createEmptyLedger(),
-      outgoingLedger: createEmptyLedger(),
-      routedOutgoingLedger: createEmptyLedger(),
+      incomingLedger: createEmptyReactionLedger(),
+      outputLedger: createEmptyReactionLedger(),
+      outgoingLedger: createEmptyReactionLedger(),
+      routedOutgoingLedger: createEmptyReactionLedger(),
       incomingCount: 0,
       outgoingCount: 0,
     };
-    const availableOutputLedger = hasLedger(availableOutputLedgerOverride)
-      ? normalizeLedger(availableOutputLedgerOverride)
-      : hasLedger(normalizedSummary.outputLedger)
+    const availableOutputLedger = hasReactionLedger(availableOutputLedgerOverride)
+      ? normalizeReactionLedger(availableOutputLedgerOverride)
+      : hasReactionLedger(normalizedSummary.outputLedger)
         ? normalizedSummary.outputLedger
         : normalizedSummary.incomingLedger;
-    const candidateLedger = normalizeLedger(outputLedger);
-    if (!hasLedger(availableOutputLedger)) {
+    const candidateLedger = normalizeReactionLedger(outputLedger);
+    if (!hasReactionLedger(availableOutputLedger)) {
       return {
         valid: false,
         reason: "Add conservative reactant inputs to this operator first.",
       };
     }
-    if (!ledgerFitsWithin(availableOutputLedger, candidateLedger)) {
+    if (!reactionLedgerFitsWithin(availableOutputLedger, candidateLedger)) {
       return {
         valid: false,
-        reason: `Operator output would exceed its available ledger: ${formatLedger(availableOutputLedger)} available.`,
+        reason: `Operator output would exceed its available ledger: ${formatReactionLedger(availableOutputLedger)} available.`,
       };
     }
-    if (!ledgersMatch(availableOutputLedger, candidateLedger)) {
-      const remainingLedger = subtractLedgers(availableOutputLedger, candidateLedger);
+    if (!reactionLedgersMatch(availableOutputLedger, candidateLedger)) {
+      const remainingLedger = subtractReactionLedgers(availableOutputLedger, candidateLedger);
       return {
         valid: false,
-        reason: `Operator output remains incomplete: ${formatLedger(remainingLedger)} still unmatched.`,
+        reason: `Operator output remains incomplete: ${formatReactionLedger(remainingLedger)} still unmatched.`,
       };
     }
     return {
@@ -237,8 +180,8 @@ export function createReactionMappingRulesRuntime(options = {}) {
     const currentAnchorOutgoingLedger =
       routedOutgoingLedgerByAnchorInstance[
         String(normalizedSourceAnchorInstanceIndex ?? 0)
-      ] ?? createEmptyLedger();
-    const candidateLedger = addLedgers(
+      ] ?? createEmptyReactionLedger();
+    const candidateLedger = addReactionLedgers(
       currentAnchorOutgoingLedger,
       getNodeLedgerFromContext(candidateTargetContext, resolveBinaryChoiceInventory)
     );
@@ -465,14 +408,14 @@ export function createReactionMappingRulesRuntime(options = {}) {
   }
 
   return {
-    addLedgers,
-    createEmptyLedger,
+    addLedgers: addReactionLedgers,
+    createEmptyLedger: createEmptyReactionLedger,
     evaluatePendingTargetAvailability: resolvePendingTargetAvailability,
-    formatLedger,
+    formatLedger: formatReactionLedger,
     getMappingValidation,
     getNodeLedgerFromContext,
-    hasLedger,
-    ledgerFitsWithin,
-    ledgersMatch,
+    hasLedger: hasReactionLedger,
+    ledgerFitsWithin: reactionLedgerFitsWithin,
+    ledgersMatch: reactionLedgersMatch,
   };
 }

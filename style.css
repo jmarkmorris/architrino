@@ -3006,6 +3006,22 @@ body {
   pointer-events: none;
 }
 
+.composer-reaction-canvas-composite-exterior-root-anchor {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-reactant > .composer-reaction-canvas-composite-exterior-root-anchor {
+  left: calc(100% - var(--reaction-canvas-anchor-center-offset, 8px));
+  transform: translateY(-50%);
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-product > .composer-reaction-canvas-composite-exterior-root-anchor {
+  left: calc(var(--reaction-canvas-anchor-center-offset, 8px) * -1);
+  transform: translateY(-50%);
+}
+
 .composer-reaction-canvas-composite-span-slot {
   position: relative;
   display: grid;

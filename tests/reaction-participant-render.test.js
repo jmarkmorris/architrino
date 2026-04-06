@@ -333,11 +333,11 @@ test("free architrinos root exposes multiple reactant output anchors and uses th
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /participant\?\.side === "reactant"[\s\S]*?participant\?\.templateId === "free_architrinos"[\s\S]*?\[0,\s*1,\s*2\]\.forEach\(\(anchorInstanceIndex\) =>/
+    /participant\?\.templateId === "free_architrinos"[\s\S]*?mappedIndices\.length \? mappedIndices : \[1\]/
   );
   assert.match(
     runtimeSource,
-    /anchorRole:\s*"reactant",[\s\S]*?anchorInstanceIndex/
+    /const connectorRole = getParticipantConnectorRole\(participant\);[\s\S]*?anchorRole:\s*connectorRole,[\s\S]*?anchorInstanceIndex/
   );
   assert.match(
     styleSheet,
@@ -502,6 +502,34 @@ test("composite collector uses the shared centered connector inset", () => {
   assert.match(
     styleSheet,
     /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?right:\s*calc\(100%\s*\+\s*var\(--reaction-canvas-composite-node-inset\)\);/
+  );
+});
+
+test("composite root anchors live on the exterior participant side while the title collector stays decorative", () => {
+  const runtimeSource = readFileSync(
+    new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    runtimeSource,
+    /function createCompositeExteriorRootAnchor\(participant,\s*rootNode = null,\s*rootNodeKey = ""\)/
+  );
+  assert.match(
+    runtimeSource,
+    /createAnchorButton\(participant,\s*rootNode,\s*rootNodeKey,\s*\{[\s\S]*?"composer-reaction-canvas-composite-exterior-root-anchor"/
+  );
+  assert.match(
+    runtimeSource,
+    /function createCompositeVisualRail\(participant\)[\s\S]*?const collector = document\.createElement\("span"\);[\s\S]*?collector\.setAttribute\("aria-hidden", "true"\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{[\s\S]*?left:\s*calc\(100%\s*-\s*var\(--reaction-canvas-anchor-center-offset,\s*8px\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product\s*>\s*\.composer-reaction-canvas-composite-exterior-root-anchor\s*\{[\s\S]*?left:\s*calc\(var\(--reaction-canvas-anchor-center-offset,\s*8px\)\s*\*\s*-1\);/
   );
 });
 

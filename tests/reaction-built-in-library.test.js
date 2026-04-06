@@ -12,6 +12,8 @@ import {
 } from "../src/apps/reaction/ReactionBuiltInLibraryRuntime.js";
 import { parseReactionNodeKey } from "../src/apps/reaction/ReactionNodeKeyRuntime.js";
 import { createReactionParticipantRenderRuntime } from "../src/apps/reaction/ReactionParticipantRenderRuntime.js";
+import { buildReactionParticipantStructure } from "../src/apps/reaction/ReactionStructureBridgeRuntime.js";
+import { buildReactionStructureDescriptorTree } from "../src/apps/reaction/ReactionStructureDescriptorRuntime.js";
 
 class FakeElement {
   constructor() {
@@ -19,6 +21,7 @@ class FakeElement {
     this.className = "";
     this.dataset = {};
     this.disabled = false;
+    this.parentElement = null;
     this.attributes = new Map();
     this.listeners = new Map();
     this.children = [];
@@ -44,6 +47,9 @@ class FakeElement {
   }
 
   appendChild(child) {
+    if (child && typeof child === "object") {
+      child.parentElement = this;
+    }
     this.children.push(child);
     return child;
   }
@@ -158,6 +164,28 @@ function buildRenderedAnchorKey(nodeKey = "", role = "", anchorInstanceIndex = n
 }
 
 function collectRenderedAnchors(snapshot = {}) {
+  const renderedElements = renderSnapshotElements(snapshot);
+  const renderedAnchorMap = new Map();
+  renderedElements.forEach((element) => {
+    if (element?.dataset?.anchorKey && element?.dataset?.anchorSide) {
+      renderedAnchorMap.set(
+        buildRenderedAnchorKey(
+          element.dataset.anchorKey,
+          element.dataset.anchorSide,
+          element.dataset.anchorInstanceIndex
+        ),
+        {
+          nodeKey: element.dataset.anchorKey,
+          role: element.dataset.anchorSide,
+          anchorInstanceIndex: normalizeAnchorInstanceIndex(element.dataset.anchorInstanceIndex),
+        }
+      );
+    }
+  });
+  return renderedAnchorMap;
+}
+
+function renderSnapshotElements(snapshot = {}) {
   const previousDocument = globalThis.document;
   const previousHTMLElement = globalThis.HTMLElement;
   globalThis.document = {
@@ -233,25 +261,12 @@ function collectRenderedAnchors(snapshot = {}) {
         participant?.hierarchy?.[0]?.renderMode === "assembly-cluster-grid",
     });
 
-    const renderedAnchorMap = new Map();
+    const renderedElements = [];
     const visitElement = (element) => {
       if (!element || typeof element !== "object") {
         return;
       }
-      if (element?.dataset?.anchorKey && element?.dataset?.anchorSide) {
-        renderedAnchorMap.set(
-          buildRenderedAnchorKey(
-            element.dataset.anchorKey,
-            element.dataset.anchorSide,
-            element.dataset.anchorInstanceIndex
-          ),
-          {
-            nodeKey: element.dataset.anchorKey,
-            role: element.dataset.anchorSide,
-            anchorInstanceIndex: normalizeAnchorInstanceIndex(element.dataset.anchorInstanceIndex),
-          }
-        );
-      }
+      renderedElements.push(element);
       (Array.isArray(element.children) ? element.children : []).forEach((child) => visitElement(child));
     };
 
@@ -262,10 +277,49 @@ function collectRenderedAnchors(snapshot = {}) {
           : participantRenderRuntime.renderParticipantCard(participant);
       visitElement(card);
     });
-    return renderedAnchorMap;
+    return renderedElements;
   } finally {
     globalThis.document = previousDocument;
     globalThis.HTMLElement = previousHTMLElement;
+  }
+}
+
+function hasAncestorClassName(element = null, className = "") {
+  const normalizedClassName = String(className ?? "").trim();
+  let current = element?.parentElement ?? null;
+  while (current) {
+    const classNames = String(current?.className ?? "").split(/\s+/).filter(Boolean);
+    if (classNames.includes(normalizedClassName)) {
+      return true;
+    }
+    current = current.parentElement ?? null;
+  }
+  return false;
+}
+
+function assertRenderedAnchorsAvoidVisualScaffolding(snapshot = {}, messagePrefix = "snapshot") {
+  const renderedElements = renderSnapshotElements(snapshot);
+  const anchors = renderedElements.filter(
+    (element) =>
+      element?.dataset?.anchorKey &&
+      element?.dataset?.anchorSide
+  );
+  for (const anchor of anchors) {
+    assert.equal(
+      String(anchor?.className ?? "").includes("composer-reaction-canvas-composite-collector"),
+      false,
+      `${messagePrefix}: rendered anchors must never be the decorative composite collector`
+    );
+    assert.equal(
+      hasAncestorClassName(anchor, "composer-reaction-canvas-composite-visual-rail"),
+      false,
+      `${messagePrefix}: rendered anchors must never live inside the composite title rail`
+    );
+    assert.equal(
+      hasAncestorClassName(anchor, "composer-reaction-canvas-particle"),
+      false,
+      `${messagePrefix}: rendered anchors must never live inside a participant title tile`
+    );
   }
 }
 
@@ -630,7 +684,104 @@ test("reaction built-in library solved entries satisfy full-solve lane connectiv
   ]) {
     const loaded = await loadReactionBuiltInLibraryEntry(entryId, { fetchImpl });
     assertFullSolveLaneConnectivity(loaded.snapshot, entryId);
+    assertRenderedAnchorsAvoidVisualScaffolding(loaded.snapshot, entryId);
   }
+});
+
+test("reaction built-in library renders composite root connectors on the exterior side, not on the title collector", async () => {
+  const fetchImpl = createFixtureFetch();
+  const loaded = await loadReactionBuiltInLibraryEntry("charged_pion_to_muon_neutrino", { fetchImpl });
+  const renderedElements = renderSnapshotElements(loaded.snapshot);
+  const participant =
+    loaded.snapshot.participants.find((entry) => entry.id === "reactant_positive_pion_1") ?? null;
+  const rootNodeId = String(participant?.hierarchy?.[0]?.id ?? "").trim();
+  const collector = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-collector") &&
+      element?.dataset?.compositeCollectorId === "reactant_positive_pion_1"
+  );
+  const rootAnchor = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-exterior-root-anchor") &&
+      element?.dataset?.anchorKey === `reactant_positive_pion_1::${rootNodeId}` &&
+      element?.dataset?.anchorSide === "reactant"
+  );
+
+  assert.ok(rootNodeId);
+  assert.ok(collector);
+  assert.equal(Boolean(collector?.dataset?.anchorKey), false);
+  assert.ok(rootAnchor);
+});
+
+test("reaction built-in library keeps product composite root connectors off the title collector too", async () => {
+  const fetchImpl = createFixtureFetch();
+  const loaded = await loadReactionBuiltInLibraryEntry("free_neutron_beta", { fetchImpl });
+  const renderedElements = renderSnapshotElements(loaded.snapshot);
+  const participant =
+    loaded.snapshot.participants.find((entry) => entry.id === "product_proton_1") ?? null;
+  const rootNodeId = String(participant?.hierarchy?.[0]?.id ?? "").trim();
+  const collector = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-collector") &&
+      element?.dataset?.compositeCollectorId === "product_proton_1"
+  );
+  const rootAnchor = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-exterior-root-anchor") &&
+      element?.dataset?.anchorKey === `product_proton_1::${rootNodeId}` &&
+      element?.dataset?.anchorSide === "product"
+  );
+
+  assert.ok(rootNodeId);
+  assert.ok(collector);
+  assert.equal(Boolean(collector?.dataset?.anchorKey), false);
+  assert.ok(rootAnchor);
+});
+
+test("dissociated noether pair does not render a whole-particle button when only the child rows are used", () => {
+  const structure = buildReactionParticipantStructure("noether_pair", {
+    id: "reactant_noether_pair_structure",
+    label: "Noether Pair",
+  });
+  const hierarchy = buildReactionStructureDescriptorTree(structure.root);
+  const coreNodeId = String(hierarchy?.[0]?.children?.[0]?.id ?? "").trim();
+  const rootNodeId = String(hierarchy?.[0]?.id ?? "").trim();
+  const snapshot = {
+    participants: [
+      {
+        id: "reactant_noether_pair",
+        side: "reactant",
+        templateId: "noether_pair",
+        label: "Noether Pair",
+        structure: structure.root,
+        structureValidation: structure.validation,
+        hierarchy,
+        binarySelections: {},
+        surfaceRowIndex: 0,
+        isAutoDissociatedComposite: true,
+      },
+    ],
+    mappings: [
+      {
+        id: "map_noether_pair_core_only",
+        sourceKey: `reactant_noether_pair::${coreNodeId}`,
+        sourceRole: "reactant",
+        targetKey: "operator_1::operator_root",
+        targetRole: "operator-input",
+        targetAnchorInstanceIndex: 0,
+      },
+    ],
+  };
+  const renderedElements = renderSnapshotElements(snapshot);
+  const rootAnchor = renderedElements.find(
+    (element) =>
+      String(element?.className ?? "").includes("composer-reaction-canvas-composite-exterior-root-anchor") &&
+      element?.dataset?.anchorKey === `reactant_noether_pair::${rootNodeId}`
+  );
+
+  assert.ok(coreNodeId);
+  assert.ok(rootNodeId);
+  assert.equal(rootAnchor ?? null, null);
 });
 
 test("reaction built-in library import assigns explicit center connector instances", async () => {
