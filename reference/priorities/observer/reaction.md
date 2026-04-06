@@ -285,7 +285,7 @@ Objective:
 - make the accepted Reaction-side document carry enough explicit state to render composite opening, per-core dissociation, recruited middle-lane pools, and downstream association without interpretation;
 - enforce the lane grammar that spacetime-style assemblies such as Noether Pair and Noether Quad belong only in the reactant or product columns;
 - enforce the lane grammar that Free Architrinos belong only in the middle lane;
-- and ensure that when a composite is drawn as opened, its dotted dissociated state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
+- and ensure that when a composite is drawn as opened, that opened state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
 
 For the current weak-reaction cases, this should specifically mean:
 

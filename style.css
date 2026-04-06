@@ -2036,7 +2036,7 @@ body {
   --reaction-canvas-composite-node-inset: calc(
     (var(--reaction-canvas-composite-connector-span) - var(--reaction-canvas-composite-node-size)) * 0.5
   );
-  --reaction-canvas-composite-participant-gap: 0px;
+  --reaction-canvas-composite-participant-gap: var(--reaction-canvas-tile-gap, 7px);
   position: absolute;
   inset: 0;
   z-index: 5;
@@ -2495,13 +2495,14 @@ body {
 
 .composer-reaction-canvas-participant.is-composite-participant {
   position: relative;
-  align-items: start;
-  gap: var(--reaction-canvas-composite-participant-gap, 0px);
+  align-items: center;
+  gap: var(--reaction-canvas-composite-participant-gap, var(--reaction-canvas-tile-gap, 7px));
   overflow: visible;
 }
 
 .composer-reaction-canvas-participant.is-composite-participant > .composer-reaction-canvas-participant-content {
-  gap: var(--reaction-canvas-composite-participant-gap, 0px);
+  align-items: center;
+  gap: var(--reaction-canvas-composite-participant-gap, var(--reaction-canvas-tile-gap, 7px));
 }
 
 .composer-reaction-canvas-particle {
@@ -2532,11 +2533,6 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     0 0 0 1px color-mix(in srgb, var(--reaction-canvas-anti-fill-accent) 24%, transparent),
     0 0 18px color-mix(in srgb, var(--reaction-canvas-anti-fill-accent) 18%, transparent);
-}
-
-.composer-reaction-canvas-participant.is-composite-participant.is-dissociated-composite
-  .composer-reaction-canvas-particle {
-  border-style: dotted;
 }
 
 .composer-reaction-canvas-particle-label {
@@ -2954,29 +2950,42 @@ body {
   grid-auto-rows: var(--binary-choice-size, 72px);
   align-content: start;
   gap: var(--reaction-canvas-stack-gap, 10px);
-  width: var(--reaction-canvas-composite-connector-span);
+  width: var(--reaction-canvas-composite-participant-gap, var(--reaction-canvas-tile-gap, 7px));
   inset-block: 0;
   z-index: 2;
+  pointer-events: none;
 }
 
 .composer-reaction-canvas-higgs-cluster-grid.is-reactant > .composer-reaction-canvas-composite-span-rail {
-  right: calc(100% + var(--reaction-canvas-composite-node-inset));
+  right: 100%;
 }
 
 .composer-reaction-canvas-higgs-cluster-grid.is-product > .composer-reaction-canvas-composite-span-rail {
-  left: calc(100% + var(--reaction-canvas-composite-node-inset));
+  left: 100%;
 }
 
 .composer-reaction-canvas-composite-span-stem {
   position: absolute;
-  top: calc(var(--binary-choice-size, 72px) * 0.5);
-  bottom: calc(var(--binary-choice-size, 72px) * 0.5);
-  left: calc(var(--reaction-canvas-composite-node-inset, 0.5px) + var(--reaction-canvas-composite-node-center, 3px));
+  top: 0;
+  bottom: 0;
   width: 2px;
-  transform: translateX(-50%);
   border-radius: 999px;
   background: rgba(153, 211, 255, 0.46);
   pointer-events: none;
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-reactant
+  > .composer-reaction-canvas-composite-span-rail
+  > .composer-reaction-canvas-composite-span-stem {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.composer-reaction-canvas-higgs-cluster-grid.is-product
+  > .composer-reaction-canvas-composite-span-rail
+  > .composer-reaction-canvas-composite-span-stem {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .composer-reaction-canvas-higgs-cluster-grid-row {

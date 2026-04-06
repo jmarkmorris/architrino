@@ -883,9 +883,6 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     if (isComposite) {
       card.classList.add("is-composite-participant");
     }
-    if (participant?.isDissociatedComposite || participant?.isAutoDissociatedComposite) {
-      card.classList.add("is-dissociated-composite");
-    }
     if (participant.side === "product" && rootAnchorAvailability?.reason) {
       card.title = rootAnchorAvailability.reason;
     }

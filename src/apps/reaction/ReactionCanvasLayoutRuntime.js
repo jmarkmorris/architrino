@@ -3,19 +3,21 @@ import {
   isReactionStructureInlineAnchorRenderMode,
 } from "./ReactionStructureDescriptorRuntime.js";
 
+const REACTION_CANVAS_TILE_GAP_PX = 7;
+
 export const REACTION_CANVAS_LAYOUT = Object.freeze({
   addButtonSizePx: 32,
   attachmentGapPx: 3,
   anchorSizePx: 16,
   binaryChoiceSizePx: 72,
   compositeNodeSizePx: Math.round(16 * 0.35),
-  compositeParticipantGapPx: 0,
+  compositeParticipantGapPx: REACTION_CANVAS_TILE_GAP_PX,
   contentStackGapPx: 10,
   operatorGraphicConnectionStepPx: 79,
   operatorTileCount: 4,
   surfaceColumnGapPx: 72 / 16,
   routeAnchorGapPx: 0.25,
-  tileGapPx: 7,
+  tileGapPx: REACTION_CANVAS_TILE_GAP_PX,
   topControlRowHeightPx: 38,
   operatorLaneEdgePaddingPx: 18,
   operatorSlotEdgePaddingPx: 18,

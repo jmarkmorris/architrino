@@ -429,7 +429,11 @@ test("composite participants collapse the outer gap into a single connector span
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-composite-participant-gap,\s*0px\);/
+    /--reaction-canvas-composite-participant-gap:\s*var\(--reaction-canvas-tile-gap,\s*7px\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?gap:\s*var\(--reaction-canvas-composite-participant-gap,\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
   );
 });
 
@@ -450,6 +454,18 @@ test("composite participants keep only the vertical grouping rail and no synthet
   assert.match(runtimeSource, /createCompositeSpanRail/);
 });
 
+test("composite title card is vertically centered against the full composite stack", () => {
+  const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*\{[\s\S]*?align-items:\s*center;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-participant\.is-composite-participant\s*>\s*\.composer-reaction-canvas-participant-content\s*\{[\s\S]*?align-items:\s*center;/
+  );
+});
+
 test("composite participants render directly inside the shared participant-content wrapper", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
@@ -462,20 +478,14 @@ test("composite participants render directly inside the shared participant-conte
   assert.match(runtimeSource, /const visual = createParticipantVisual\(participant\);/);
 });
 
-test("dissociated composites keep the title tile and render it with a dotted border", () => {
+test("dissociated composites keep the title tile without any dotted border styling", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
   );
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
-  assert.match(
-    runtimeSource,
-    /if \(participant\?\.isDissociatedComposite \|\| participant\?\.isAutoDissociatedComposite\) \{\s*card\.classList\.add\("is-dissociated-composite"\);/
-  );
-  assert.match(
-    styleSheet,
-    /\.composer-reaction-canvas-participant\.is-composite-participant\.is-dissociated-composite[\s\S]*?\.composer-reaction-canvas-particle\s*\{[\s\S]*?border-style:\s*dotted;/
-  );
+  assert.doesNotMatch(runtimeSource, /is-dissociated-composite/);
+  assert.doesNotMatch(styleSheet, /border-style:\s*dotted;/);
 });
 
 test("template picker grid uses the shared canvas tile gap", () => {
@@ -498,6 +508,30 @@ test("composite span stem geometry helpers remain for the decorative bus rail", 
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-stem\s*\{/);
   assert.match(styleSheet, /\.composer-reaction-canvas-composite-span-rail\s*\{/);
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?top:\s*0;[\s\S]*?bottom:\s*0;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?width:\s*var\(--reaction-canvas-composite-participant-gap,\s*var\(--reaction-canvas-tile-gap,\s*7px\)\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?right:\s*100%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product\s*>\s*\.composer-reaction-canvas-composite-span-rail\s*\{[\s\S]*?left:\s*100%;/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-reactant[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
+  );
+  assert.match(
+    styleSheet,
+    /\.composer-reaction-canvas-higgs-cluster-grid\.is-product[\s\S]*?\.composer-reaction-canvas-composite-span-stem\s*\{[\s\S]*?left:\s*50%;[\s\S]*?transform:\s*translateX\(-50%\);/
+  );
   assert.match(runtimeSource, /composite-span-stem/);
 });
 

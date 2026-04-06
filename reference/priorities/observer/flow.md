@@ -65,7 +65,7 @@ Composite title tiles are no longer used to indicate opened or dissociated state
 
 That means:
 
-- no dotted title tiles;
+- no modified title-border styling for opened composites;
 - no special visual “opened composite” title treatment;
 - and no solver or Reaction-side state whose purpose is to decorate a composite title tile as dissociated.
 
@@ -335,7 +335,7 @@ Required tests:
 - verify dissociation flows from lane 2 to lane 3 only and never directly to lane 4 or lane 5;
 - verify `Free Architrinos` only leave lane 3 through lane-4 operators;
 - verify all lane-5 products are fed only from lane 4;
-- verify composite title tiles never use dotted dissociation styling;
+- verify composite title tiles never receive special opened-composite border styling;
 - and verify accepted example documents contain no lane-skipping edges.
 
 Done when:

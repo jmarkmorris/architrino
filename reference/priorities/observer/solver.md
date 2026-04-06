@@ -83,7 +83,7 @@ Operator semantics that should remain canonical:
 - left/input-side connectors on any assembly must never be used as a source for a forward mapping to anything in a higher-numbered lane or column;
 - treating the visible lanes/columns as ordered left-to-right `1 2 3 4 5`, any right/output-side connector may connect only to a higher-numbered lane/column object and must terminate on a left/input-side connector only;
 - a composite title or title-card shell does not have its own first-class output connector; when flow must visibly continue from a composite into its subassemblies, that path uses the composite's special internal rail/collector depiction rather than a normal title-output anchor;
-- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the dotted composite framing survives projection and library handoff.
+- and if the solver uses a composite participant as an opened source, that participant must carry explicit dissociated-composite state so the opened-composite semantics survive projection and library handoff.
 
 Composite and dissociation requirements that should move forward into the new architecture:
 
