@@ -60,12 +60,6 @@ Each visible object occupies whole tile positions in that grid. The runtime shou
 - tile height in tiles;
 - and the fixed routing-column layout of the surface.
 
-The runtime should not care about:
-
-- connector-circle offsets;
-- hidden lane-center offsets derived from gaps;
-- or special spacing constants between internal members.
-
 Every placeable object should therefore be modeled as a rectangle on the tile grid.
 
 The baseline rectangle rules are:
@@ -86,11 +80,11 @@ Those columns are:
 - column 1: blank, reserved for future composite-label use;
 - columns 2-5: reactant assembly band;
 - column 6: spline routing band;
-- column 7: left operator band;
+- column 7: operator band;
 - column 8: spline routing band;
 - columns 9-12: intermediate assembly band;
 - column 13: spline routing band;
-- column 14: right operator band;
+- column 14: operator band;
 - column 15: spline routing band;
 - columns 16-19: product assembly band;
 - column 20: blank, reserved for future composite-label use.
@@ -109,15 +103,13 @@ Placement should also be strict by object class:
 - reactant assemblies may be placed only in columns 2-5;
 - intermediate assemblies may be placed only in columns 9-12;
 - product assemblies may be placed only in columns 16-19;
-- left operators may be placed only in column 7;
-- right operators may be placed only in column 14.
+- operators may be placed only in column 7 or column 14.
 
 For the JSON contract, semantic placement role should be explicit rather than inferred only from `x`.
 
 That means:
 
 - assembly records declare `reactant`, `intermediate`, or `product`;
-- operator records declare `left` or `right`;
 - and validation requires both a valid declared role and a matching allowed placement region.
 
 ### Assembly
@@ -241,20 +233,6 @@ For the first implementation:
 - no alternate routing styles should be supported in v1;
 - and manual bend editing should not exist in v1.
 
-### Temporary Link Mode
-
-The authored-link gesture should use one temporary interaction mode invoked by holding `Shift`.
-
-The preferred default is `Shift` because it is cross-platform, visually familiar, and simpler than a platform-dependent primary-modifier split.
-
-The intended first-pass gesture is therefore:
-
-- hold `Shift`;
-- click object A as `endpointA`;
-- while still holding `Shift`, click object B in the next allowed object band as `endpointB`.
-
-The temporary link state should then clear after the link is created.
-
 For v1 interaction behavior:
 
 - plain click on an object does nothing special;
@@ -262,7 +240,7 @@ For v1 interaction behavior:
 - hold `Shift` and click two valid objects to create a link;
 - plain click on a spline deletes that spline immediately;
 - spline deletion has no confirmation step in v1;
-- and `Shift` is reserved for temporary link mode, not multiselect.
+- and `Shift` is reserved for spline authoring, not multiselect.
 
 ### Adjacency Rule
 
@@ -282,17 +260,17 @@ Links may connect objects on any rows as long as the objects are in neighboring 
 
 The intended neighboring-band pairs are:
 
-- reactant assembly band to left operator band;
-- left operator band to intermediate assembly band;
-- intermediate assembly band to right operator band;
-- right operator band to product assembly band.
+- reactant assembly band to operator column 7;
+- operator column 7 to intermediate assembly band;
+- intermediate assembly band to operator column 14;
+- operator column 14 to product assembly band.
 
 Their routing columns are:
 
-- reactant assembly band to left operator band uses routing column 6;
-- left operator band to intermediate assembly band uses routing column 8;
-- intermediate assembly band to right operator band uses routing column 13;
-- right operator band to product assembly band uses routing column 15.
+- reactant assembly band to operator column 7 uses routing column 6;
+- operator column 7 to intermediate assembly band uses routing column 8;
+- intermediate assembly band to operator column 14 uses routing column 13;
+- operator column 14 to product assembly band uses routing column 15.
 
 Non-neighboring object-band links should not be created directly by the basic interaction.
 
@@ -434,8 +412,7 @@ The runtime should validate placement against the fixed column strip:
 - reactant assemblies may be placed only in columns 2-5;
 - intermediate assemblies may be placed only in columns 9-12;
 - product assemblies may be placed only in columns 16-19;
-- left operators may be placed only in column 7;
-- right operators may be placed only in column 14;
+- operators may be placed only in column 7 or column 14;
 - and reserved blank columns are not normal placement targets.
 
 No two objects may overlap.
@@ -562,7 +539,7 @@ Objective:
 - implement click plus `Shift` plus click authored linking between neighboring object bands;
 - keep links object-to-object only;
 - limit links to neighboring object bands separated by one routing band;
-- treat `Shift` as the temporary link mode rather than introducing a separate persistent tool mode;
+- treat `Shift` as the spline-authoring gesture rather than introducing a separate persistent tool mode;
 - treat links as undirected endpoint pairs while preserving the left-to-right reaction flow implied by band order;
 - ignore repeated creation attempts for the same endpoint pair;
 - forbid self-links;
