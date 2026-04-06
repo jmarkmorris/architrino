@@ -112,6 +112,14 @@ Placement should also be strict by object class:
 - left operators may be placed only in column 7;
 - right operators may be placed only in column 14.
 
+For the JSON contract, semantic placement role should be explicit rather than inferred only from `x`.
+
+That means:
+
+- assembly records declare `reactant`, `intermediate`, or `product`;
+- operator records declare `left` or `right`;
+- and validation requires both a valid declared role and a matching allowed placement region.
+
 ### Assembly
 
 An assembly is one horizontal strip of four abutted tiles.
@@ -138,6 +146,14 @@ The assembly record should store only its origin tile position. Internal tile po
 - fourth tile at offset `3`.
 
 The runtime should not store independent placement data for the internal assembly tiles.
+
+For the JSON contract, the assembly display payload should still be explicit.
+
+That means:
+
+- the record stores one origin position for placement;
+- the four tile offsets are implied by the fixed `4x1` assembly shape;
+- but the display content for tiles 1-4 is carried explicitly in assembly data rather than guessed only from `type`.
 
 ### Free Architrinos Assembly
 
@@ -352,7 +368,7 @@ The contract should stay flat rather than hierarchical at the top level.
 
 Recommended object model:
 
-- every assembly record stores one origin tile position in an allowed four-tile assembly band and an implied four-tile payload;
+- every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
 - every operator record stores one grid position in an allowed one-tile operator band and a one-tile payload containing title plus positrino and electrino counts;
 - every spline record stores `endpointA` and `endpointB`;
 - every composite-label record stores explicit placement and vertical span intent.
@@ -374,6 +390,16 @@ The minimal assembly schema should include:
 - `x`
 - `y`
 - `title`
+- `role`
+- `tiles`
+
+The `tiles` field is the canonical display payload for the four assembly tiles.
+
+That means:
+
+- tile 1 content is explicit;
+- tiles 2-4 content is explicit;
+- and those tile records are not reconstructed only from `type`.
 
 Recommended top-level document shape:
 
@@ -430,6 +456,17 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 - user-authored placement changes on the tile grid;
 - and user-authored adjacent-column spline links.
 
+For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators.
+
+This note currently defines:
+
+- surface grammar;
+- placement and validation rules;
+- JSON shape constraints;
+- and spline-link interaction rules.
+
+Detailed v1 workflows for creating, moving, and deleting assemblies and operators remain to be specified separately.
+
 ### Outputs
 
 - Xyzzy JSON documents with stable object ids and placements;
@@ -458,13 +495,14 @@ Status: `active`
 Current:
 
 - the new surface grammar is clear at the tile and interaction level;
-- but the canonical Xyzzy document shape is not yet written down.
+- but the canonical Xyzzy document shape is not yet written down completely.
 
 Objective:
 
 - define one JSON schema for assemblies, operators, splines, and composite-label effects;
 - make four-tile assembly payloads explicit;
 - make one-tile operator payloads explicit;
+- make semantic placement role explicit in JSON rather than inferred only from `x`;
 - keep the top-level document flat;
 - require stable ids on all authored record types;
 - make array order authorial only;
@@ -475,6 +513,8 @@ Done when:
 
 - a single Xyzzy document shape exists;
 - the four-tile assembly grammar and one-tile operator grammar are explicit in JSON;
+- assembly tile content is explicit in JSON rather than implied only by `type`;
+- semantic placement role is explicit and validated against placement coordinates;
 - the document uses flat top-level lists for main authored objects;
 - every authored record type carries a stable id;
 - array order is non-semantic;
