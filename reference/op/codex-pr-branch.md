@@ -49,10 +49,13 @@ git diff --stat
 ### 2. Run the required repo checks
 
 These are mandatory before commit and before PR publication.
+- Treat the local pre-push checklist as a mirror of the current required repo workflow, not as a smaller convenience subset.
+- If GitHub Actions runs an additional repo-owned validation step, add and run that same step locally before opening a ready PR.
 
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/smoke-option3.mjs
 ```
 
 If scene-graph drift is reported, regenerate and re-check:
@@ -61,6 +64,7 @@ If scene-graph drift is reported, regenerate and re-check:
 node scripts/build-scene-graph.mjs --write --strict
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/smoke-option3.mjs
 ```
 
 ### 3. Stage only the intended files
@@ -113,6 +117,8 @@ git push origin <branch>
 - Default to a ready PR when the branch is coherent enough for real review.
 - Use draft only when the branch is intentionally incomplete and not yet ready for review.
 - If a PR for the branch already exists, pushing the branch updates that PR automatically.
+- Do not rely on `gh pr create --fill` alone to produce an acceptable title or body.
+- Before creating a ready PR, decide the exact PR title and ensure the body explicitly covers the items below.
 - The PR body should explain:
   - what changed,
   - why it changed,
@@ -135,13 +141,13 @@ Interpretation:
 If no PR exists yet, create one:
 
 ```bash
-gh pr create --fill
+gh pr create --title "<clear reviewable title>" --body-file <path-to-pr-body>
 ```
 
 If the branch is intentionally incomplete, create a draft instead:
 
 ```bash
-gh pr create --draft --fill
+gh pr create --draft --title "<clear reviewable title>" --body-file <path-to-pr-body>
 ```
 
 If an existing PR is draft and is now ready for review:
@@ -242,22 +248,25 @@ This check should happen even if you believe you are "just updating the PR," bec
 
 - Open the PR in ready mode once the branch is coherent enough for real review.
 - The minimum bar for a ready PR is:
-  - the required validation commands passed;
+  - the full local validation set that mirrors current repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
   - the worktree is clean;
-  - and the diff represents one logically complete reviewable unit.
+  - the diff represents one logically complete reviewable unit;
+  - the PR title and body are intentionally written rather than left to default autofill;
+  - and the remote PR checks have completed successfully.
 - Use draft only when the branch is intentionally incomplete and should not yet enter normal review.
+- A ready PR is not considered successfully published until the remote checks finish green.
 
 Commands:
 
 ```bash
-gh pr create --fill
+gh pr create --title "<clear reviewable title>" --body-file <path-to-pr-body>
 ```
 
 or, if intentionally incomplete:
 
 ```bash
-gh pr create --draft --fill
+gh pr create --draft --title "<clear reviewable title>" --body-file <path-to-pr-body>
 ```
 
 If the PR already exists as a draft and should now enter normal review:
@@ -265,6 +274,18 @@ If the PR already exists as a draft and should now enter normal review:
 ```bash
 gh pr ready
 ```
+
+After creating or updating the PR, wait for the remote checks:
+
+```bash
+gh pr checks --watch
+```
+
+Interpretation:
+
+- if `gh pr checks --watch` finishes with all required checks passing, the ready PR gate has passed;
+- if any required check fails, do not leave the branch represented as review-ready; fix the issue or convert the PR back to draft until it is genuinely ready;
+- if GitHub connectivity or authentication is broken, treat the ready-PR publish step as incomplete and resolve that before declaring success.
 
 ### 6. Respond to review on the same branch
 
