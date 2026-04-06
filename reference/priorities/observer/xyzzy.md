@@ -8,6 +8,9 @@
 - Prefer simple surface rules over inferred geometry, hidden spacing logic, or special-case rendering heuristics.
 - Use `xyzzy` in code and file naming for the new app family.
 - Do not introduce geometry concepts that depend on explicit gap calculation between tiles.
+- Do not invent surrounding app chrome, editor panels, status copy, or decorative framing that is not explicitly specified here.
+- Treat JSON as a boundary contract, not as permission to add a visible JSON editor panel by default.
+- Prefer glyph-defined tiles over generic cards, plain text boxes, or inferred tile appearance.
 
 ## Purpose
 
@@ -31,22 +34,70 @@ It does not own:
 
 - hidden gap calculation;
 - special connector widgets;
-- or a surface model that depends on inferred sub-tile geometry.
+- a surface model that depends on inferred sub-tile geometry;
+- or extra application chrome such as title banners, toolbars, JSON side panels, validation panels, hint copy, or decorative framed canvases unless those are explicitly specified here.
 
 ## Design
+
+### Surface Scope
+
+Xyzzy specifies the authored tile surface itself.
+
+Its purpose is not to invent a surrounding standalone app shell beyond what this document names explicitly.
+
+For v1, the following are not part of the Xyzzy surface spec unless they are added here later:
+
+- title banners or subtitles above the surface;
+- home buttons, reset buttons, export buttons, or similar toolbar controls;
+- status lines, hint text, or explanatory paragraphs around the surface;
+- visible JSON editor panels or validation panels;
+- decorative bordered cards or framed sub-canvases around the tile surface;
+- and labeled header bars such as a separate `Surface` title row above the grid.
+
+The surface itself should therefore remain the primary artifact.
 
 ### Surface Primitive
 
 The basic surface primitive is the tile.
 
-Each tile is a fixed visual glyph block whose artwork includes half-gap padding on all four sides. That visual spacing belongs to the glyph design itself, not to layout math.
+Each tile is a fixed visual glyph block.
+
+That tile artwork should be understood as two concentric regions:
+
+- an interior bordered glyph field;
+- and an outer half-gap field beyond that interior border on all four sides.
+
+The visual half-gap belongs to the glyph design itself, not to layout math.
 
 Therefore:
 
 - tiles may be abutted horizontally with no programmatic gap calculation;
 - tiles may be abutted vertically with no programmatic gap calculation;
+- visible spacing between neighboring interior borders comes from the two abutted half-gap fields of the neighboring tiles;
+- the half-gap belongs outside the interior border rather than being simulated by external CSS gap values;
 - visible spacing comes from the tile glyph artwork alone;
 - and runtime layout should not calculate, store, or infer tile gaps.
+
+### Tile Glyph Construction
+
+Assemblies and operators should be constructed from tile glyphs, not from generic cards with text dropped onto them.
+
+For the standard binary tile language, the glyph should be built explicitly from the canonical binary components:
+
+- the orbit ellipse;
+- the axial line;
+- the left and right pole charges;
+- and any required top or bottom personality marks required by the tile payload.
+
+Title tiles, free-electrino tiles, free-positrino tiles, ledger tiles, and operator tiles are also tile glyphs.
+
+That means:
+
+- a four-tile assembly row is four abutted glyph tiles;
+- a one-tile operator is one glyph tile;
+- the interior border of each tile belongs to that tile's own artwork;
+- the half-gap field sits outside that interior border on all four sides;
+- and the runtime should not fake this look by inserting layout gaps, panel padding, or extra wrapper borders between otherwise plain rectangles.
 
 ### Column And Row Model
 
@@ -68,6 +119,17 @@ The baseline rectangle rules are:
 - an operator is `w=1`, `h=1`.
 
 Every object occupies exactly one row.
+
+The surface should also reserve one full blank row at the top of the grid for future additions.
+
+That reserved top row:
+
+- is part of the same tile grid as the authored surface;
+- is not a separate header bar or framed panel;
+- is blank in v1;
+- and is not a normal placement target for assemblies, operators, splines, or composite labels in v1.
+
+Normal authored rows therefore begin below that reserved top row.
 
 Spline attachment should use only the outer rectangle bounds of the two linked objects.
 
@@ -344,6 +406,10 @@ The contract should prefer explicit tile-level display records over inferred geo
 
 The contract should stay flat rather than hierarchical at the top level.
 
+The JSON contract is a boundary contract.
+
+It does not imply that the runtime should render a visible side-by-side JSON editing panel as part of the default Xyzzy surface.
+
 Recommended object model:
 
 - every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
@@ -413,6 +479,7 @@ The runtime should validate placement against the fixed column strip:
 - intermediate assemblies may be placed only in columns 9-12;
 - product assemblies may be placed only in columns 16-19;
 - operators may be placed only in column 7 or column 14;
+- the reserved top row is not a normal placement target;
 - and reserved blank columns are not normal placement targets.
 
 No two objects may overlap.
@@ -432,6 +499,8 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 - Xyzzy JSON documents containing assemblies, operators, splines, and composite-label effects;
 - user-authored placement changes on the tile grid;
 - and user-authored adjacent-column spline links.
+
+Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
 
 For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators.
 
