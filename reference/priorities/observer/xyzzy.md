@@ -696,9 +696,9 @@ Its tile order is:
 
 The electrino and positrino middle tiles are visual glyph tiles, not ad hoc overlays.
 
-The exact ledger counts stay explicit in tiles 2 and 3 through the `N` and `M` count lines.
+The exact charge counts stay explicit in tiles 2 and 3 through the `N` and `M` count lines.
 
-Tile 4 is therefore a closing identity tile, not a separate count ledger tile.
+Tile 4 is therefore a closing identity tile, not a separate dedicated count tile.
 
 ### Operator
 
@@ -1166,7 +1166,7 @@ Status: `next`
 Current:
 
 - `xyzzy/v1` now carries explicit four-tile assembly payloads with minimal tile kinds and counts;
-- but the fuller explicit payload for the standard tile language, polar glyph detail, and richer ledger or title variants is still not written down completely.
+- but the fuller explicit payload for the standard tile language, charge-glyph and polar-glyph detail, and richer title variants is still not written down completely.
 
 Objective:
 
@@ -1177,7 +1177,7 @@ Objective:
 Done when:
 
 - the full tile payload vocabulary is named and explicit;
-- polar or ledger details do not depend on app-local inference;
+- charge-glyph, binary-glyph, or polar-glyph details do not depend on app-local inference;
 - and example or solver-produced Xyzzy documents can express the intended display records directly.
 
 ### 3. Define The Solver Boundary Around `xyzzy/v1`
@@ -1255,10 +1255,10 @@ x5. Specify the exact appearance of the unbound-architrino tile-2 electrino tile
 x6. Specify the exact appearance of the unbound-architrino tile-3 positrino tile, including line text, count line, circle size, color, spacing, and border rule. See `Charge Glyph Tiles` and `Unbound Architrinos Assembly`.
 7. Specify the exact appearance of the reaction-app tile variant that depicts the same two polar charges without the binary.
 8. Specify the exact appearance of polar architrino tiles, including what is text, what is glyph, and how polarity changes the rendered form.
-x9. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, ledger, free-charge, binary, and polar architrino variants. See table above.
+x9. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, unbound charge-glyph, binary, and polar architrino variants. See table above.
 x10. Specify the allowed tile ordering and payload combinations for each four-tile assembly family so the solver and viewer do not have to infer group composition from labels. See table above.
 x11. Specify whether binary and polar architrino tiles should be produced by a generator rather than hand-enumerated. A generator.
-12. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth.
+x12. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth. See `Abbreviated Grammar`, `Shared JSON Tile Catalog`, and `scripts/glyphs/glyph.py`.
 13. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family after the above items are specified.
 x14. Specify the exact text layout metrics for standard tiles and operator tiles, including font family, font sizes, line heights, line positions, centering rules, and overflow behavior. See table above.
 15. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
