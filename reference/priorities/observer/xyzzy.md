@@ -78,18 +78,175 @@ Therefore:
 - visible spacing comes from the tile glyph artwork alone;
 - and runtime layout should not calculate, store, or infer tile gaps.
 
+### Baseline Tile Box
+
+The baseline Xyzzy tile is a fixed `80px x 80px` square.
+
+That full `80px x 80px` tile area is filled solid black.
+
+Inside that black tile field sits one centered rounded-corner square border with dimensions `72px x 72px`.
+
+Because the inner square is centered both horizontally and vertically, the remaining black field is `4px` on each side.
+
+That black outer field is part of the tile itself rather than a layout gap between neighboring tiles.
+
+The centered inner rounded square is border only.
+
+Its interior is clear, so the tile continues to show the same black background through the middle of the bordered square.
+
+For the baseline tile family, that bordered inner rounded square may use one of three canonical stroke colors drawn from the current reaction app palette:
+
+- red: `#ff5a4a`;
+- blue: `#2d8cff`;
+- purple: `#a259ff`.
+
+The text payload for a tile belongs inside that centered `72px x 72px` bordered square and sits over the black tile background visible through that clear interior.
+
+This section defines only the base tile box, the black outer field, the centered bordered square, and the allowed baseline border colors.
+
+Text variants, text placement rules, and per-tile payload options should be specified separately.
+
+### Standard Tile Text
+
+Xyzzy standard text tiles may use up to three short lines of text inside the centered `72px x 72px` bordered square.
+
+The baseline text inventory should be derived from the current reaction app tile vocabulary, but Xyzzy should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
+
+The standard tile should not use corner ledger numbers.
+
+If a tile uses fewer than three visible lines, the unused lower lines remain blank.
+
+The shared JSON tile catalog should be treated as the source of truth for this tile family.
+
+The JavaScript Xyzzy app should read that JSON directly.
+
+The generator in `scripts/glyphs/glyph.py` should be treated as reference code that reads the same JSON and emits review SVGs.
+
+`glyph.py` is not the runtime dependency of the app.
+
+Each row in the following table is one permitted standard-tile text form.
+
+For polarity-driven families, the table below lists the baseline `Pro` form.
+
+Every row in this table that begins with `Pro` also permits a matching `Anti` form.
+
+For those matching anti forms, line 1 changes from `Pro` to `Anti`.
+
+For most such rows, line 2, line 3, and text color remain the same.
+
+Border color also follows a polarity rule for those matching `Pro` and `Anti` pairs:
+
+- if the `Pro` tile uses a blue border, the matching `Anti` tile uses a red border;
+- if the `Pro` tile uses a red border, the matching `Anti` tile uses a blue border;
+- and if the `Pro` tile uses a purple border, the matching `Anti` tile also uses a purple border.
+
+Proton and neutron are the exception:
+
+- `Anti Proton` uses line 3 `!u !d !u`;
+- and `Anti Neutron` uses line 3 `!d !u !d`.
+
+| Line 1       | Line 2        | Line 3       | Text Color                            | Border Color |
+| ------------ | ------------- | ------------ | ------------------------------------- | ------------ |
+| `<count> ϵ+` | `Associate`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Dissociate`  | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Architrinos` | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+|              | `Photon`      |              | white                                 | purple       |
+| `Pro`        | `Noether`     | `Core`       | white                                 | purple       |
+| `Negative`   | `W`           | `Boson`      | white                                 | blue         |
+| `Neutral`    | `Z`           | `Boson`      | white                                 | purple       |
+| `Positive`   | `W`           | `Boson`      | white                                 | red          |
+| `Noether`    | `Pair`        | `Pro+Anti`   | white                                 | purple       |
+| `Noether`    | `Quad`        | `Two Pair`   | white                                 | purple       |
+| `Pro`        | `Uni`         | `Binary`     | white                                 | purple       |
+| `Pro`        | `Bi`          | `Binary`     | white                                 | purple       |
+| `Pro`        | `Tau`         |              | white                                 | blue         |
+| `Pro`        | `Muon`        |              | white                                 | blue         |
+| `Pro`        | `Electron`    |              | white                                 | blue         |
+| `Pro`        | `Tau`         | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Muon`        | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Electron`    | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Bottom`      | `Quark`      | white                                 | blue         |
+| `Pro`        | `Strange`     | `Quark`      | white                                 | blue         |
+| `Pro`        | `Down`        | `Quark`      | white                                 | blue         |
+| `Pro`        | `Top`         | `Quark`      | white                                 | red          |
+| `Pro`        | `Charm`       | `Quark`      | white                                 | red          |
+| `Pro`        | `Up`          | `Quark`      | white                                 | red          |
+| `Pro`        | `Proton`      | `u d u`      | white                                 | red          |
+| `Pro`        | `Neutron`     | `d u d`      | white                                 | purple       |
+| `Positive`   | `Pion`        | `u !d`       | white                                 | red          |
+| `Negative`   | `Pion`        | `d !u`       | white                                 | blue         |
+| `Neutral`    | `Pion`        | `u !u`       | white                                 | purple       |
+| `Neutral`    | `Pion`        | `d !d`       | white                                 | purple       |
+| `Positive`   | `Kaon`        | `u !s`       | white                                 | red          |
+| `Negative`   | `Kaon`        | `s !u`       | white                                 | blue         |
+| `Neutral`    | `Kaon`        | `d !s`       | white                                 | purple       |
+| `Neutral`    | `Kaon`        | `s !d`       | white                                 | purple       |
+| `Positive`   | `B Meson`     | `u !b`       | white                                 | red          |
+| `Negative`   | `B Meson`     | `b !u`       | white                                 | blue         |
+| `Neutral`    | `B Meson`     | `d !b`       | white                                 | purple       |
+| `Neutral`    | `B Meson`     | `b !d`       | white                                 | purple       |
+
+These text forms cover the current reaction app tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
+
+The reaction app binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this Xyzzy baseline.
+
+For the three operator tiles `Associate`, `Dissociate`, and `Pass Thru`, line 1 and line 3 are not ordinary words.
+
+Those two lines are dynamic count lines and should use the epsilon symbol form already used in `glyph.py`.
+
+That means:
+
+- line 1 should be written as `<count> ϵ+`;
+- and line 3 should be written as `<count> ϵ-`.
+
+There should be exactly one space between the count and the epsilon symbol.
+
+In code or SVG entity form, that same epsilon symbol is `&#x03F5;`.
+
+For these architrino count lines:
+
+- a positrino count line should use the standard red text color;
+- and an electrino count line should use the standard blue text color.
+
+All other standard tile text should use white.
+
+In the baseline shared JSON catalog, the architrino count rows stay dynamic through the placeholders `N` and `M`.
+
+In that same baseline JSON catalog, `Pro` and `Anti` are pre-expanded as explicit tile entries so the JavaScript app can keep a simple tile lookup.
+
+That is a packaging choice rather than a visual rule.
+
+If a later runtime wants to collapse those rows into one polarity-aware family and expand them in memory, that is allowed as long as it preserves the same tile text, border-color rules, and emitted tile forms.
+
+### Shared JSON Tile Catalog
+
+The baseline shared JSON catalog should live in the Xyzzy app directory as `src/apps/xyzzy/xyzzy-tiles.json`.
+
+The JavaScript app should use that JSON directly for tile lookup and dynamic count substitution.
+
+The app-local catalog at [`src/apps/xyzzy/xyzzy-tiles.json`](../../../src/apps/xyzzy/xyzzy-tiles.json) is the canonical catalog that should stay in sync with this document.
+
+The JavaScript tile renderer at [`src/apps/xyzzy/XyzzyTileSvgRuntime.js`](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) and the review app at [`src/apps/xyzzy/XyzzyTileReviewAppRuntime.js`](../../../src/apps/xyzzy/XyzzyTileReviewAppRuntime.js) are the baseline implementation the future Xyzzy app should use for tile rendering.
+
+The review entrypoint at [`src/apps/xyzzy/review/main.js`](../../../src/apps/xyzzy/review/main.js) demonstrates how the app should load the JSON and render the full tile catalog in browser-side SVG.
+
+The `glyph.py` script should remain reference and comparison code, not the runtime tile engine of the app.
+
 ### Tile Glyph Construction
 
 Assemblies and operators should be constructed from tile glyphs, not from generic cards with text dropped onto them.
 
-For the standard binary tile language, the glyph should be built explicitly from the canonical binary components:
+For the current baseline tile language, a tile glyph is the simple bordered text tile defined by the shared JSON catalog and rendered by the JavaScript tile renderer.
 
-- the orbit ellipse;
-- the axial line;
-- the left and right pole charges;
-- and any required top or bottom personality marks required by the tile payload.
+That means the glyph is defined by:
 
-Title tiles, free-electrino tiles, free-positrino tiles, ledger tiles, and operator tiles are also tile glyphs.
+- the fixed `80px x 80px` black outer tile;
+- the centered `72px x 72px` rounded border-only inner square;
+- the canonical border color token from the JSON palette;
+- and the one-line, two-line, or three-line text payload defined in the JSON tile record.
+
+Operator tiles, architrino count tiles, title-like tiles, and particle tiles are all instances of that same baseline tile renderer.
 
 That means:
 
@@ -97,6 +254,7 @@ That means:
 - a one-tile operator is one glyph tile;
 - the interior border of each tile belongs to that tile's own artwork;
 - the half-gap field sits outside that interior border on all four sides;
+- the JavaScript app should render those tiles from `src/apps/xyzzy/xyzzy-tiles.json` using the baseline renderer in `src/apps/xyzzy/`;
 - and the runtime should not fake this look by inserting layout gaps, panel padding, or extra wrapper borders between otherwise plain rectangles.
 
 ### Column And Row Model
@@ -181,14 +339,14 @@ An assembly is one horizontal strip of four abutted tiles.
 The baseline assembly shape is:
 
 - tile 1: title tile;
-- tile 2: binary tile;
-- tile 3: binary tile;
-- tile 4: binary tile.
+- tile 2: standard Xyzzy tile from the JSON catalog;
+- tile 3: standard Xyzzy tile from the JSON catalog;
+- tile 4: standard Xyzzy tile from the JSON catalog.
 
 The typical assembly therefore contains:
 
 - one title tile;
-- and three binary tiles, which may include polar architrino glyphs using the standard tile language.
+- and three standard Xyzzy tiles rendered through the shared JavaScript tile renderer.
 
 An assembly is authored and stored as one object with one placement. Its four tiles are part of one visual unit, not four independent surface objects.
 
@@ -229,16 +387,16 @@ An operator is one tile total.
 The operator tile contains:
 
 - a title;
-- a centered positrino count at the top of the interior bordered glyph;
-- and a centered electrino count at the bottom of the interior bordered glyph.
+- a centered top count line written as `<count> ϵ+` in the standard red text color;
+- and a centered bottom count line written as `<count> ϵ-` in the standard blue text color.
 
 `Pass Thru` is an explicit operator type.
 
 `Pass Thru`, `Associate`, and `Dissociate` should all use the same one-tile operator layout:
 
-- centered positrino count at the top;
+- centered `<count> ϵ+` at the top in the standard red text color;
 - centered operator title in the middle;
-- and centered electrino count at the bottom.
+- and centered `<count> ϵ-` at the bottom in the standard blue text color.
 
 For `Pass Thru`, the middle title text should be `Pass Thru`.
 
@@ -620,23 +778,24 @@ Done when:
 - the outer reserved columns remain the only composite-label region;
 - and base rendering stays independent of composite labels being present.
 
-### 5. Update `glyph.py` To Generate Xyzzy Tiles
+### 5. Keep The Reference Generator Aligned
 
 Status: `next`
 
 Current:
 
-- `scripts/glyphs/glyph.py` does not yet generate the tile outputs needed by the Xyzzy app;
-- and the generation path for title, binary, free-particle, and ledger tiles is not yet defined as part of the Xyzzy toolchain.
+- the JavaScript app now has the baseline tile renderer and canonical app-local JSON catalog;
+- `scripts/glyphs/glyph.py` is now reference and comparison code rather than the runtime tile engine;
+- and the remaining risk is drift between the app-local JSON catalog, the JavaScript renderer, and the reference SVG outputs.
 
 Objective:
 
-- update `scripts/glyphs/glyph.py` so it can generate the necessary tiles for the Xyzzy app;
-- keep those generated tiles aligned with the canonical Xyzzy tile vocabulary;
-- and avoid ad hoc manual tile creation when the tile set evolves.
+- keep `scripts/glyphs/glyph.py` aligned with `src/apps/xyzzy/xyzzy-tiles.json`;
+- keep the reference SVG outputs visually aligned with the JavaScript tile renderer;
+- and avoid any return to separate hand-maintained tile definitions.
 
 Done when:
 
-- `glyph.py` emits the required Xyzzy tile outputs;
-- the generated set covers the tile families required by the Xyzzy surface grammar;
-- and the generation workflow is clear enough that future Xyzzy tile updates do not require one-off manual redraws.
+- the app-local JSON catalog remains the single tile-definition source of truth;
+- the JavaScript renderer remains the implementation used by the Xyzzy app;
+- and the reference SVG generation stays useful for comparison without becoming a parallel design system.
