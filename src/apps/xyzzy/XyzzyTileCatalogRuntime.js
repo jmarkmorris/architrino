@@ -94,6 +94,14 @@ function createBinaryCircle(key, position, radius, fillColor, filter) {
   };
 }
 
+function resolveBinaryBorderColor(generator, polarCode) {
+  const borderColorByPolar =
+    generator?.borderColorByPolar && typeof generator.borderColorByPolar === "object"
+      ? generator.borderColorByPolar
+      : {};
+  return normalizeText(borderColorByPolar?.[polarCode]) || normalizeText(generator?.borderColor) || "purple";
+}
+
 function buildBinaryGlyphTileFromGrammar(code, generator) {
   const grammarCode = normalizeText(code);
   const [mode = "", binary = "", polar = ""] = grammarCode.split(":");
@@ -161,7 +169,7 @@ function buildBinaryGlyphTileFromGrammar(code, generator) {
     title: `${normalizeText(generator?.titlePrefix) || "Binary tile"}: ${grammarCode}`,
     grammarCode,
     type: "binary-glyph",
-    borderColor: normalizeText(generator?.borderColor) || "purple",
+    borderColor: resolveBinaryBorderColor(generator, normalizedPolar),
     lines: [],
     binaryGlyph: normalizeBinaryGlyph({
       showOrbit,

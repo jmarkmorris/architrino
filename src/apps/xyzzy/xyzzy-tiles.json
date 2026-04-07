@@ -42,6 +42,10 @@
   "binaryGlyphGenerator": {
     "titlePrefix": "Binary tile",
     "borderColor": "purple",
+    "borderColorByPolar": {
+      "bb": "blue",
+      "rr": "red"
+    },
     "modeOrder": [
       "full",
       "axis",

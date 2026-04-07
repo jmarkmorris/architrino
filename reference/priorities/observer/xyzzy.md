@@ -373,6 +373,12 @@ The current reaction-app glow filters are:
 - electrino blue glow: `drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))`;
 - positrino red glow: `drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))`.
 
+The Xyzzy binary-tile border color follows the bottom/top polar code:
+
+- `bb` uses a blue border;
+- `rr` uses a red border;
+- and the mixed cases `br` and `rb` use a purple border.
+
 #### Locked Variant Family
 
 For the mixed-polarity dressed-binary family, Xyzzy should express the variants as the multiplicative combination

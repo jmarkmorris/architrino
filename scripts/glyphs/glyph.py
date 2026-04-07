@@ -237,6 +237,14 @@ def create_binary_circle(
     )
 
 
+def resolve_binary_border_color(generator: dict[str, object], polar_code: str, *, palette: dict[str, str]) -> str:
+    border_color_by_polar = (
+        generator.get("borderColorByPolar") if isinstance(generator.get("borderColorByPolar"), dict) else {}
+    )
+    token = str(border_color_by_polar.get(polar_code, generator.get("borderColor", "purple")))
+    return resolve_palette_color(palette, token)
+
+
 def build_binary_glyph_tile_from_grammar(
     grammar_code: str,
     generator: dict[str, object],
@@ -310,7 +318,7 @@ def build_binary_glyph_tile_from_grammar(
         key=f"binary-{mode}-{('none' if binary == '--' else binary)}-{polar}",
         title=f"{str(generator.get('titlePrefix', 'Binary tile'))}: {grammar_code}",
         tile_type="binary-glyph",
-        border_color=resolve_palette_color(palette, str(generator.get("borderColor", "purple"))),
+        border_color=resolve_binary_border_color(generator, polar, palette=palette),
         lines=tuple(),
         grammar_code=grammar_code,
         binary_glyph=resolve_binary_glyph(
