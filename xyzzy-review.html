@@ -106,6 +106,32 @@
         gap: 16px;
       }
 
+      #xyzzy-review-assembly-showcase {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .xyzzy-review-section {
+        display: grid;
+        gap: 14px;
+      }
+
+      .xyzzy-review-section-header {
+        display: grid;
+        gap: 4px;
+      }
+
+      .xyzzy-review-section-header h2 {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.15;
+      }
+
+      .xyzzy-review-section-note {
+        margin: 0;
+        color: var(--xyzzy-muted);
+        font-size: 0.9rem;
+      }
+
       .xyzzy-review-card {
         display: grid;
         gap: 12px;
@@ -121,10 +147,26 @@
         place-items: center;
       }
 
+      .xyzzy-review-assembly-preview {
+        justify-items: start;
+        overflow-x: auto;
+      }
+
+      .xyzzy-review-assembly-strip {
+        display: flex;
+        gap: 0;
+        width: max-content;
+      }
+
       .xyzzy-review-tile-svg {
         width: 160px;
         height: 160px;
         display: block;
+      }
+
+      .xyzzy-review-assembly-tile {
+        width: 96px;
+        height: 96px;
       }
 
       .xyzzy-review-card-meta {
@@ -162,6 +204,11 @@
           width: 136px;
           height: 136px;
         }
+
+        .xyzzy-review-assembly-tile {
+          width: 80px;
+          height: 80px;
+        }
       }
     </style>
   </head>
@@ -178,21 +225,57 @@
 
       <section class="xyzzy-review-controls" aria-label="Xyzzy review controls">
         <div class="xyzzy-review-field">
-          <label for="xyzzy-review-top-count">Top Count Placeholder</label>
+          <label for="xyzzy-review-top-count">N Placeholder</label>
           <input id="xyzzy-review-top-count" type="text" value="N" />
         </div>
         <div class="xyzzy-review-field">
-          <label for="xyzzy-review-bottom-count">Bottom Count Placeholder</label>
+          <label for="xyzzy-review-bottom-count">M Placeholder</label>
           <input id="xyzzy-review-bottom-count" type="text" value="M" />
         </div>
       </section>
 
-      <section
-        id="xyzzy-review-grid"
-        class="xyzzy-review-grid"
-        aria-label="Xyzzy tile review grid"
-      ></section>
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-assembly-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-assembly-heading">Four-Tile Group</h2>
+          <p class="xyzzy-review-section-note">
+            The committed unbound-architrino strip rendered as one abutted four-tile assembly.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-assembly-showcase"
+          class="xyzzy-review-grid"
+          aria-label="Xyzzy unbound architrino group showcase"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-title-tiles-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-title-tiles-heading">Catalog Tiles</h2>
+          <p class="xyzzy-review-section-note">
+            Standard text tiles and charge-bearing glyph tiles from the shared Xyzzy catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-title-grid"
+          class="xyzzy-review-grid"
+          aria-label="Xyzzy title tile review grid"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-binary-tiles-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-binary-tiles-heading">Binary Tiles</h2>
+          <p class="xyzzy-review-section-note">
+            Grammar-generated binary glyph variants from the shared Xyzzy catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-binary-grid"
+          class="xyzzy-review-grid"
+          aria-label="Xyzzy binary tile review grid"
+        ></div>
+      </section>
     </main>
-    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-06-xyzzy-review-v2"></script>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-unbound-group"></script>
   </body>
 </html>

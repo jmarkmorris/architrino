@@ -19,6 +19,8 @@
     "red": "#ff5a4a",
     "blue": "#2d8cff",
     "purple": "#a259ff",
+    "binary_orbit_stroke": "rgba(162, 89, 255, 0.96)",
+    "binary_axis_stroke": "rgba(162, 89, 255, 0.82)",
     "count_positive": "#ff3d3d",
     "count_negative": "#1879ff"
   },
@@ -36,6 +38,82 @@
       "N",
       "M"
     ]
+  },
+  "binaryGlyphGenerator": {
+    "titlePrefix": "Binary tile",
+    "borderColor": "purple",
+    "modeOrder": [
+      "full",
+      "axis",
+      "polar"
+    ],
+    "binaryOptionsByMode": {
+      "full": [
+        "br",
+        "rb"
+      ],
+      "axis": [
+        "br",
+        "rb"
+      ],
+      "polar": [
+        "--"
+      ]
+    },
+    "polarOptions": [
+      "bb",
+      "br",
+      "rb",
+      "rr"
+    ],
+    "colors": {
+      "blue": "count_negative",
+      "red": "count_positive"
+    },
+    "filters": {
+      "count_negative": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))",
+      "count_positive": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+    },
+    "viewBoxWidth": 120,
+    "viewBoxHeight": 120,
+    "orbit": {
+      "cx": 60,
+      "cy": 60,
+      "rx": 38,
+      "ry": 13,
+      "strokeColor": "binary_orbit_stroke",
+      "strokeWidth": 7.2,
+      "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
+    },
+    "axis": {
+      "x1": 60,
+      "y1": 33.3333333333,
+      "x2": 60,
+      "y2": 86.6666666667,
+      "strokeColor": "binary_axis_stroke",
+      "strokeWidth": 4.8,
+      "lineCap": "butt",
+      "opacity": 0.84
+    },
+    "circleRadius": 8.3333333333,
+    "positions": {
+      "left": {
+        "cx": 25,
+        "cy": 60
+      },
+      "right": {
+        "cx": 95,
+        "cy": 60
+      },
+      "top": {
+        "cx": 60,
+        "cy": 25
+      },
+      "bottom": {
+        "cx": 60,
+        "cy": 95
+      }
+    }
   },
   "tiles": [
     {
@@ -111,15 +189,90 @@
       ]
     },
     {
-      "key": "architrinos",
-      "title": "Architrinos ledger tile",
+      "key": "unbound",
+      "title": "Unbound title tile",
       "borderColor": "purple",
       "lines": [
         {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Unbound",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "unbound-electrinos",
+      "title": "Unbound Architrinos electrinos tile",
+      "type": "charge-glyph",
+      "borderColor": "blue",
+      "textOffsetYPx": -8,
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Electrinos",
+          "color": "count_negative"
+        },
+        {
           "type": "count",
           "placeholder": "N",
+          "sign": "-",
+          "color": "count_negative"
+        },
+        {
+          "type": "blank"
+        }
+      ],
+      "chargeCircle": {
+        "cx": 40,
+        "cy": 57,
+        "r": 7,
+        "fillColor": "count_negative",
+        "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+      }
+    },
+    {
+      "key": "unbound-positrinos",
+      "title": "Unbound Architrinos positrinos tile",
+      "type": "charge-glyph",
+      "borderColor": "red",
+      "textOffsetYPx": -8,
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positrinos",
+          "color": "count_positive"
+        },
+        {
+          "type": "count",
+          "placeholder": "M",
           "sign": "+",
           "color": "count_positive"
+        },
+        {
+          "type": "blank"
+        }
+      ],
+      "chargeCircle": {
+        "cx": 40,
+        "cy": 57,
+        "r": 7,
+        "fillColor": "count_positive",
+        "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+      }
+    },
+    {
+      "key": "architrinos",
+      "title": "Architrinos title tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
         },
         {
           "type": "literal",
@@ -127,10 +280,7 @@
           "color": "white"
         },
         {
-          "type": "count",
-          "placeholder": "M",
-          "sign": "-",
-          "color": "count_negative"
+          "type": "blank"
         }
       ]
     },

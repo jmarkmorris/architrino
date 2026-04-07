@@ -201,7 +201,8 @@ Proton and neutron are the exception:
 | `<count> ϵ+` | `Associate`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
 | `<count> ϵ+` | `Dissociate`  | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
 | `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
-| `<count> ϵ+` | `Architrinos` | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+|              | `Unbound`     |              | white                                 | purple       |
+|              | `Architrinos` |              | white                                 | purple       |
 |              | `Photon`      |              | white                                 | purple       |
 | `Pro`        | `Noether`     | `Core`       | white                                 | purple       |
 | `Negative`   | `W`           | `Boson`      | white                                 | blue         |
@@ -269,6 +270,184 @@ In that same baseline JSON catalog, `Pro` and `Anti` are pre-expanded as explici
 That is a packaging choice rather than a visual rule.
 
 If a later runtime wants to collapse those rows into one polarity-aware family and expand them in memory, that is allowed as long as it preserves the same tile text, border-color rules, and emitted tile forms.
+
+### Charge Glyph Tiles
+
+Xyzzy also uses one non-binary glyph family for the middle two tiles of the unbound-architrino group.
+
+These are not ordinary three-line text tiles.
+
+They use:
+
+- the same baseline `80px x 80px` tile box;
+- the same centered `72px x 72px` inner rounded border;
+- two centered text lines at the top;
+- and one centered charge circle in the lower half of the tile.
+
+For Xyzzy v1, the charge-glyph metrics below are locked.
+
+The JavaScript runtime and the reference SVG generator should use these exact values rather than improvising a separate layout rule.
+
+#### Charge Glyph Layout
+
+- line 1 and line 2 use the same text font and count rendering rules as standard text tiles;
+- the two-line text block is shifted upward by `8px` relative to the ordinary optical-center placement;
+- the charge circle is centered at `(40, 57)` in tile coordinates;
+- the charge-circle radius is `7px`;
+- the blue variant uses the electrino blue fill `#1879ff` with `drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))`;
+- and the red variant uses the positrino red fill `#ff3d3d` with `drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))`.
+
+The two committed charge-glyph tiles are:
+
+- `Electrinos` / `N ϵ−` / blue circle, with blue text and blue border;
+- and `Positrinos` / `M ϵ+` / red circle, with red text and red border.
+
+### Binary Tiles
+
+The reaction app also uses a distinct binary-glyph tile that is not a standard three-line text tile.
+
+That binary tile is drawn in an SVG view box of `120 x 120` units and then scaled into the baseline `72px x 72px` inner tile square.
+
+For Xyzzy v1, the binary-glyph metrics below are locked.
+
+The Xyzzy generator and review renderer should use these exact values rather than re-deriving them from runtime heuristics.
+
+#### Orbital Ellipse
+
+- center: `(60, 60)`;
+- horizontal radius: `38`;
+- vertical radius: `13`;
+- stroke color: `rgba(162, 89, 255, 0.96)`;
+- stroke width: `7.2` in the generator specification, which corresponds to a `12px` intended design thickness scaled by the `72/120` glyph fit.
+
+In the Xyzzy binary generator, that orbit stroke also uses a non-scaling stroke rule.
+
+The current reaction-app rendering also applies the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
+
+#### Axis Line
+
+- start point: `(60, 33.3333333333)`;
+- end point: `(60, 86.6666666667)`;
+- line length: `53.3333333334`;
+- stroke color: `rgba(162, 89, 255, 0.82)`;
+- stroke width: `4.8` in the generator specification, which corresponds to an `8px` intended design thickness scaled by the `72/120` glyph fit.
+
+The current reaction-app rendering also uses:
+
+- non-scaling stroke;
+- butt line caps;
+- and overall axis opacity `0.84`.
+
+#### Architrino Circles
+
+There are four circles in the full binary-personality tile:
+
+- left pole circle;
+- right pole circle;
+- top circle;
+- and bottom circle.
+
+The left and right pole circles are the larger pair:
+
+- base left-pole center: `(25, 60)`;
+- base right-pole center: `(95, 60)`;
+- each pole-circle radius: `8.3333333333` in the `120 x 120` glyph space, which renders as `5px` in the `72px x 72px` inner tile square.
+
+For Xyzzy v1, those two pole centers are fixed at those coordinates.
+
+The top and bottom circles sit on the vertical axis:
+
+- top-circle center: `(60, 25)`;
+- bottom-circle center: `(60, 95)`;
+- each top/bottom circle radius: `8.3333333333` in the `120 x 120` glyph space, which renders as `5px` in the `72px x 72px` inner tile square.
+
+With those centers and radii, each circle sits `6px` away from the inner edge of the purple interior border.
+
+The current reaction-app color definitions are:
+
+- electrino blue fill: `#1879ff`;
+- positrino red fill: `#ff3d3d`.
+
+The current reaction-app glow filters are:
+
+- electrino blue glow: `drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))`;
+- positrino red glow: `drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))`.
+
+#### Locked Variant Family
+
+For the mixed-polarity dressed-binary family, Xyzzy should express the variants as the multiplicative combination
+
+- `(red/blue binary | blue/red binary) x (red/blue polar | blue/red polar)`.
+
+In explicit placement terms:
+
+- `blue/red binary` means left blue and right red;
+- `red/blue binary` means left red and right blue;
+- `red/blue polar` means top red and bottom blue;
+- `blue/red polar` means top blue and bottom red.
+
+That produces exactly four locked Xyzzy binary-glyph variants:
+
+- `blue/red binary x red/blue polar`;
+- `blue/red binary x blue/red polar`;
+- `red/blue binary x red/blue polar`;
+- `red/blue binary x blue/red polar`.
+
+These four variants are the Xyzzy expression of the reaction-app factorization in which:
+
+- the left/right binary pair is determined by binary polarity;
+- and the top/bottom polar pair is determined by the selected polar arrangement.
+
+In reaction-app terms, the left/right pair comes from the binary polarity swap, while the mixed top/bottom pair corresponds to the two neutral personality choices `p/e` and `e/p`.
+
+#### Abbreviated Grammar
+
+Xyzzy should also use a short clueful grammar for binary-glyph variants:
+
+- `<mode>:<binary>:<polar>`.
+
+The field meanings are:
+
+- `mode` names which parts of the glyph are drawn;
+- `binary` names the left/right colors of the horizontal binary pair;
+- `polar` names the bottom/top colors of the vertical polar pair.
+
+The allowed `mode` values are:
+
+- `full`: draw ellipse, axis, left/right binary pair, and bottom/top polar pair;
+- `axis`: draw axis, left/right binary pair, and bottom/top polar pair, but omit the ellipse;
+- `polar`: draw only the bottom/top polar pair, with no ellipse, axis, or left/right binary pair.
+
+The allowed `binary` values are:
+
+- `br`: left blue, right red;
+- `rb`: left red, right blue;
+- `--`: no left/right binary pair is drawn.
+
+The allowed `polar` values are:
+
+- `bb`: bottom blue, top blue;
+- `br`: bottom blue, top red;
+- `rb`: bottom red, top blue;
+- `rr`: bottom red, top red.
+
+Examples:
+
+- `full:br:rb` means left blue, right red, bottom red, top blue;
+- `full:rb:br` means left red, right blue, bottom blue, top red;
+- `polar:--:rb` means no binary scaffold and a bottom-red, top-blue polar pair.
+
+For Xyzzy, use `left/right` ordering for the binary field and `bottom/top` ordering for the polar field.
+
+Do not use north/east/south/west naming in the serialized Xyzzy grammar.
+
+The shared Xyzzy binary-tile generator should expand the full valid family from this grammar:
+
+- `full` mode: `2 x 4 = 8` variants;
+- `axis` mode: `2 x 4 = 8` variants;
+- `polar` mode: `1 x 4 = 4` variants.
+
+That yields `20` generated binary-glyph tiles in total.
 
 ### Shared JSON Tile Catalog
 
@@ -435,18 +614,24 @@ That means:
 - the four tile offsets are implied by the fixed `4x1` assembly shape;
 - but the display content for tiles 1-4 is carried explicitly in assembly data rather than guessed only from `type`.
 
-### Free Architrinos Assembly
+### Unbound Architrinos Assembly
 
-`Free Architrinos` is also one horizontal strip of four abutted tiles.
+The solver-side participant may still remain `Free Architrinos` at the JSON boundary for v1, but the Xyzzy surface should render that four-tile group with the visible state title `Unbound`.
+
+`Unbound Architrinos` is one horizontal strip of four abutted tiles.
 
 Its tile order is:
 
-- tile 1: title tile;
-- tile 2: free electrino tile, shown as visual blue circles with no text;
-- tile 3: free positrino tile, shown as visual red circles with no text;
-- tile 4: ledger tile showing electrino and positrino counts.
+- tile 1: title tile with centered line 2 text `Unbound`;
+- tile 2: charge-glyph tile with line 1 `Electrinos`, line 2 `N ϵ−`, and one centered blue electrino circle;
+- tile 3: charge-glyph tile with line 1 `Positrinos`, line 2 `M ϵ+`, and one centered red positrino circle;
+- tile 4: title tile with centered line 2 text `Architrinos`.
 
-The free electrino and free positrino tiles are visual tiles, not ad hoc overlays. The ledger tile is part of the same four-tile assembly row.
+The electrino and positrino middle tiles are visual glyph tiles, not ad hoc overlays.
+
+The exact ledger counts stay explicit in tiles 2 and 3 through the `N` and `M` count lines.
+
+Tile 4 is therefore a closing identity tile, not a separate count ledger tile.
 
 ### Operator
 
@@ -995,28 +1180,27 @@ Done when:
 
 ### 4-Tile Group Specification Work
 
-1. Define the complete canonical list of four-tile assembly families that Xyzzy must render in the first implementation.
-2. Freeze the incomplete four-tile assembly payload vocabulary so required visuals do not have to be guessed from the spec alone, including the exact JSON shape and rendering grammar for title tiles, free electrino tiles, free positrino tiles, and ledger tiles.
-3. Specify the exact appearance and tile-record shape of the title tile used in four-tile groups.
-4. Specify the exact appearance and tile-record shape of ledger tiles used in four-tile groups.
-5. Specify the exact appearance of the `Free Architrinos` tile-2 free electrino tile, including circle count display, color, size, spacing, and border rule.
-6. Specify the exact appearance of the `Free Architrinos` tile-3 free positrino tile, including circle count display, color, size, spacing, and border rule.
-7. Specify the exact appearance of the reaction-app tile variant that depicts a binary together with two polar charges.
-8. Specify the exact appearance of the reaction-app tile variant that depicts the same two polar charges without the binary.
-9. Specify the exact appearance of polar architrino tiles, including what is text, what is glyph, and how polarity changes the rendered form.
-10. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, ledger, free-charge, binary, and polar architrino variants.
-11. Specify the allowed tile ordering and payload combinations for each four-tile assembly family so the solver and viewer do not have to infer group composition from labels.
-12. Specify whether binary and polar architrino tiles should be produced by a generator rather than hand-enumerated.
-13. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth.
-14. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family after the above items are specified.
-15. Specify the exact text layout metrics for standard tiles and operator tiles, including font family, font sizes, line heights, line positions, centering rules, and overflow behavior.
-16. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
-17. Specify the exact behavior when the manifest is empty, when the manifest fails to load, and when a selected JSON document fails validation or fails to load, without inventing extra UI outside the permitted header and surface regions.
-18. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
-19. Specify the exact page and surface background treatment outside the tile glyphs, including background colors and whether the centered `1600px` strip sits on the same field or a distinct surface field.
-20. Specify whether vertical scrolling is whole-page scrolling or an inner scroll region below the two top bands, and whether the two top bands stay fixed while the surface scrolls.
-21. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width.
-22. Specify the exact composite-label rendering appearance, including font, alignment, text anchoring, vertical-span-line position, stroke style, and single-row versus multi-row behavior.
-23. Specify the exact row-numbering convention for object `y`, `rowStart`, and `rowEnd`, including whether the reserved blank top row participates in serialized row coordinates.
-24. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
-25. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
+x1. Define the complete canonical list of four-tile assembly families that Xyzzy must render in the first implementation. See table above.
+x2. Freeze the incomplete four-tile assembly payload vocabulary so required visuals do not have to be guessed from the spec alone, including the exact JSON shape and rendering grammar for title tiles, unbound electrino tiles, unbound positrino tiles, and the closing `Architrinos` tile. See table above.
+x3. Specify the exact appearance and tile-record shape of the title tile used in four-tile groups. see src/apps/xyzzy/XyzzyTileCatalogRuntime.js, src/apps/xyzzy/XyzzyTileReviewAppRuntime.js, src/apps/xyzzy/XyzzyTileSvgRuntime.js, src/apps/xyzzy/xyzzy-tiles.json
+x4. Specify the exact appearance and tile-record shape of the closing `Architrinos` tile used in the unbound-architrino four-tile group. See table above.
+x5. Specify the exact appearance of the unbound-architrino tile-2 electrino tile, including line text, count line, circle size, color, spacing, and border rule. See `Charge Glyph Tiles` and `Unbound Architrinos Assembly`.
+x6. Specify the exact appearance of the unbound-architrino tile-3 positrino tile, including line text, count line, circle size, color, spacing, and border rule. See `Charge Glyph Tiles` and `Unbound Architrinos Assembly`.
+7. Specify the exact appearance of the reaction-app tile variant that depicts the same two polar charges without the binary.
+8. Specify the exact appearance of polar architrino tiles, including what is text, what is glyph, and how polarity changes the rendered form.
+x9. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, ledger, free-charge, binary, and polar architrino variants. See table above.
+x10. Specify the allowed tile ordering and payload combinations for each four-tile assembly family so the solver and viewer do not have to infer group composition from labels. See table above.
+x11. Specify whether binary and polar architrino tiles should be produced by a generator rather than hand-enumerated. A generator.
+12. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth.
+13. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family after the above items are specified.
+x14. Specify the exact text layout metrics for standard tiles and operator tiles, including font family, font sizes, line heights, line positions, centering rules, and overflow behavior. See table above.
+15. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
+x16. Specify the exact behavior when the manifest is empty, when the manifest fails to load, and when a selected JSON document fails validation or fails to load, without inventing extra UI outside the permitted header and surface regions. Error message mid screen.
+17. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
+x18. Specify the exact page and surface background treatment outside the tile glyphs, including background colors and whether the centered `1600px` strip sits on the same field or a distinct surface field. Black background.
+x19. Specify whether vertical scrolling is whole-page scrolling or an inner scroll region below the two top bands, and whether the two top bands stay fixed while the surface scrolls. Inner scroll region below the two top bands, and the two top bands stay fixed while the surface scrolls.
+20. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. 
+x21. Specify the exact composite-label rendering appearance, including font, alignment, text anchoring, vertical-span-line position, stroke style, and single-row versus multi-row behavior. Deferred.
+x22. Specify the exact row-numbering convention for object `y`, `rowStart`, and `rowEnd`, including whether the reserved blank top row participates in serialized row coordinates. Reserved rows do not participate. Row and column tile numbers. Tiles abut.
+23. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
+24. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.

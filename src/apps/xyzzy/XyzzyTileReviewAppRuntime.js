@@ -38,12 +38,61 @@ function createTileCard(documentLike, catalog, tile, sampleCounts, measurementCo
   return card;
 }
 
+function createAssemblyShowcaseCard(
+  documentLike,
+  catalog,
+  title,
+  key,
+  tiles,
+  sampleCounts,
+  measurementContext
+) {
+  const card = documentLike.createElement("article");
+  card.className = "xyzzy-review-card xyzzy-review-assembly-card";
+
+  const preview = documentLike.createElement("div");
+  preview.className = "xyzzy-review-card-preview xyzzy-review-assembly-preview";
+
+  const strip = documentLike.createElement("div");
+  strip.className = "xyzzy-review-assembly-strip";
+  tiles.forEach((tile) => {
+    const tileSvg = renderXyzzyTileSvg({
+      documentLike,
+      catalog,
+      tile,
+      sampleCounts,
+      measurementContext,
+    });
+    tileSvg.classList.add("xyzzy-review-assembly-tile");
+    strip.append(tileSvg);
+  });
+  preview.append(strip);
+
+  const meta = documentLike.createElement("div");
+  meta.className = "xyzzy-review-card-meta";
+
+  const titleElement = documentLike.createElement("h2");
+  titleElement.className = "xyzzy-review-card-title";
+  titleElement.textContent = title;
+
+  const keyElement = documentLike.createElement("div");
+  keyElement.className = "xyzzy-review-card-key";
+  keyElement.textContent = key;
+
+  meta.append(titleElement, keyElement);
+  card.append(preview, meta);
+  return card;
+}
+
 export function createXyzzyTileReviewAppRuntime({
   documentLike = globalThis.document,
   fetchImpl = globalThis.fetch?.bind(globalThis),
   specUrl,
   statusElement,
   catalogMetaElement,
+  assemblyShowcaseElement,
+  titleGridElement,
+  binaryGridElement,
   gridElement,
   topCountInput,
   bottomCountInput,
@@ -59,22 +108,65 @@ export function createXyzzyTileReviewAppRuntime({
   }
 
   function render() {
-    if (!catalog || !gridElement) {
+    if (!catalog || (!gridElement && !titleGridElement && !binaryGridElement && !assemblyShowcaseElement)) {
       return;
     }
     const sampleCounts = getSampleCounts();
-    gridElement.replaceChildren(
-      ...catalog.tiles.map((tile) =>
-        createTileCard(documentLike, catalog, tile, sampleCounts, measurementContext)
-      )
-    );
+    const catalogTiles = catalog.tiles.filter((tile) => tile.type !== "binary-glyph");
+    const binaryTiles = catalog.tiles.filter((tile) => tile.type === "binary-glyph");
+    const unboundAssemblyKeys = [
+      "unbound",
+      "unbound-electrinos",
+      "unbound-positrinos",
+      "architrinos",
+    ];
+    const unboundAssemblyTiles = unboundAssemblyKeys
+      .map((key) => catalog.tiles.find((tile) => tile.key === key))
+      .filter(Boolean);
+    const fallbackGrid = !titleGridElement && !binaryGridElement ? gridElement : null;
+    if (assemblyShowcaseElement) {
+      assemblyShowcaseElement.replaceChildren(
+        createAssemblyShowcaseCard(
+          documentLike,
+          catalog,
+          "Unbound Architrinos Group",
+          unboundAssemblyKeys.join(" | "),
+          unboundAssemblyTiles,
+          sampleCounts,
+          measurementContext
+        )
+      );
+    }
+    if (titleGridElement) {
+      titleGridElement.replaceChildren(
+        ...catalogTiles.map((tile) =>
+          createTileCard(documentLike, catalog, tile, sampleCounts, measurementContext)
+        )
+      );
+    }
+    if (binaryGridElement) {
+      binaryGridElement.replaceChildren(
+        ...binaryTiles.map((tile) =>
+          createTileCard(documentLike, catalog, tile, sampleCounts, measurementContext)
+        )
+      );
+    }
+    if (fallbackGrid) {
+      fallbackGrid.replaceChildren(
+        ...catalog.tiles.map((tile) =>
+          createTileCard(documentLike, catalog, tile, sampleCounts, measurementContext)
+        )
+      );
+    }
     if (statusElement) {
-      statusElement.textContent = `Rendered ${catalog.tiles.length} JSON-driven Xyzzy tiles.`;
+      statusElement.textContent =
+        `Rendered ${catalogTiles.length} catalog tiles, ${binaryTiles.length} binary tiles, ` +
+        `and the unbound-architrino group showcase from the JSON-driven Xyzzy catalog.`;
     }
   }
 
   async function init() {
-    if (!gridElement) {
+    if (!gridElement && !titleGridElement && !binaryGridElement && !assemblyShowcaseElement) {
       throw new Error("Xyzzy review grid element is required.");
     }
     catalog = await loadXyzzyTileCatalog({ fetchImpl, specUrl });
