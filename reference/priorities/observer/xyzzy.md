@@ -11,6 +11,7 @@
 - Do not invent surrounding app chrome, editor panels, status copy, or decorative framing that is not explicitly specified here.
 - Treat JSON as a boundary contract, not as permission to add a visible JSON editor panel by default.
 - Prefer glyph-defined tiles over generic cards, plain text boxes, or inferred tile appearance.
+- Build exactly what is specified here and nothing else. Do not add visible UI, controls, text, panels, overlays, frames, or behaviors unless this document explicitly calls for them.
 
 ## Purpose
 
@@ -35,7 +36,7 @@ It does not own:
 - hidden gap calculation;
 - special connector widgets;
 - a surface model that depends on inferred sub-tile geometry;
-- or extra application chrome such as title banners, toolbars, JSON side panels, validation panels, hint copy, or decorative framed canvases unless those are explicitly specified here.
+- or extra application chrome such as title banners, toolbars beyond the one control named below, JSON side panels, validation panels, hint copy, or decorative framed canvases unless those are explicitly specified here.
 
 ## Design
 
@@ -45,14 +46,64 @@ Xyzzy specifies the authored tile surface itself.
 
 Its purpose is not to invent a surrounding standalone app shell beyond what this document names explicitly.
 
+Xyzzy does include two minimal app-level bands at the top of the canvas.
+
+The first top band is:
+
+- exactly `80px` tall;
+- the full width of the canvas;
+- the header band for the first implementation;
+- and one of the only two app-level chrome bands permitted in v1.
+
+The second top band is:
+
+- immediately below the first band;
+- exactly `80px` tall;
+- the full width of the canvas;
+- reserved for future use;
+- empty in v1;
+- and the other app-level chrome band permitted in v1.
+
+For v1, the first top band contains exactly two controls aligned at the top right:
+
+- a JSON document selector;
+- and a home button immediately to its right.
+
+The JSON document selector should use the same manifest-driven picker pattern as the reaction app library picker.
+
+That means:
+
+- it is a compact header control, not a side panel;
+- it shows the currently selected document title in the closed state;
+- it opens a dropdown listbox of available solver JSON documents;
+- it supports the same basic open, close, and select behavior as the reaction app picker;
+- and it is the only selector control permitted in the v1 header.
+
+The home button:
+
+- sits at the far top right of the first band;
+- uses the same home icon as the main web app home button and the reaction app home link;
+- and navigates to `./index.html`.
+
+Other than that JSON selector and home button, the first top band remains empty in v1.
+
+The second top band remains entirely empty in v1.
+
+Below those two top bands, the authored surface should use the full available canvas width.
+
+The implementation must not place the surface inside a decorative frame, bordered card, inset panel, padded sub-canvas, or any other inner wrapper that gives up horizontal screen real estate.
+
 For v1, the following are not part of the Xyzzy surface spec unless they are added here later:
 
 - title banners or subtitles above the surface;
-- home buttons, reset buttons, export buttons, or similar toolbar controls;
+- any controls in the first top band other than the JSON selector and home button;
+- any controls or text in the second top band;
 - status lines, hint text, or explanatory paragraphs around the surface;
 - visible JSON editor panels or validation panels;
 - decorative bordered cards or framed sub-canvases around the tile surface;
 - and labeled header bars such as a separate `Surface` title row above the grid.
+
+If a visible element is not explicitly specified in this document, it should not appear in the v1 implementation.
 
 The surface itself should therefore remain the primary artifact.
 
@@ -283,6 +334,7 @@ The surface should also reserve one full blank row at the top of the grid for fu
 That reserved top row:
 
 - is part of the same tile grid as the authored surface;
+- sits below the two separate app-level `80px` top bands described in `Surface Scope`;
 - is not a separate header bar or framed panel;
 - is blank in v1;
 - and is not a normal placement target for assemblies, operators, splines, or composite labels in v1.
@@ -294,6 +346,8 @@ Spline attachment should use only the outer rectangle bounds of the two linked o
 ### Fixed Column Strip
 
 The base reaction diagram should use one fixed 20-column strip.
+
+At the baseline tile size of `80px`, that strip is a fixed rendered width of `1600px`.
 
 Those columns are:
 
@@ -317,6 +371,20 @@ This makes the surface grammar explicit:
 - and the outer blank columns remain reserved for later composite-label work.
 
 The runtime should not infer column meaning from object type or current occupancy. Column meaning is fixed by the strip definition.
+
+The fixed `1600px` grid strip should be horizontally centered within the full-width authored surface region.
+
+The runtime should not scale the strip down to fit smaller widths and should not wrap it in an inset frame or card.
+
+The first implementation is desktop-only.
+
+For v1:
+
+- the intended target is a desktop viewport wide enough to show the centered `1600px` grid strip and header controls without horizontal scrolling;
+- narrow-screen and phone-specific adaptations are out of scope;
+- and the runtime should not introduce a separate responsive mobile layout or a horizontal-scroll fallback mode.
+
+Vertical overflow belongs to the surface region below the two top bands and should scroll.
 
 Placement should also be strict by object class:
 
@@ -440,6 +508,21 @@ That means:
 - the link ends on the right side of that same routing column;
 - and the spline shape belongs to that one routing column rather than spanning multiple routing columns.
 
+For v1 rendering, there should be exactly one simple spline style:
+
+- one cubic Bezier path per link;
+- horizontal departure and arrival tangents at the two endpoints;
+- one neutral uncolored visible stroke;
+- constant stroke width;
+- round line caps;
+- and no arrows, glow, double strokes, or alternate path families.
+
+To reduce visual confusion when multiple splines share the same routing column, the runtime should assign each such spline a deterministic lateral slot offset inside that routing column from a small fixed slot set.
+
+That slotting rule should separate nearby spline paths without changing the fixed tile grid, changing endpoint rows, or introducing multiple spline style classes.
+
+For click targeting, the runtime may use a wider invisible hit path, but it should not add a second visible stroke.
+
 The runtime should not expose or render separate connection circles.
 
 Spline coloring is a later finishing action, like composite labels, and should not complicate the first-pass interaction or layout model.
@@ -498,7 +581,13 @@ Links are not visually directed.
 
 The implied reaction flow is left to right because the surface bands are ordered left to right from reactants toward products.
 
-The link record may still store two endpoints for validation and serialization, but the rendered spline should not display an arrow or any other direction marker.
+The link record stores two endpoints for validation and serialization, but the rendered spline should not display an arrow or any other direction marker.
+
+For `xyzzy/v1` serialization, each link record uses canonical left-to-right endpoint order:
+
+- `endpointA` is the id of the object in the left object band;
+- `endpointB` is the id of the object in the right object band;
+- and no extra bend, waypoint, color, or screen-geometry fields belong in the link record.
 
 Links are undirected at the authored-surface level:
 
@@ -531,11 +620,33 @@ The base reaction diagram should therefore include:
 
 Those reserved outer columns exist even when no composite labels are currently drawn.
 
+For `xyzzy/v1`, `compositeLabels` is always present as a top-level array.
+
+When no composite labels are drawn, that array should be `[]`.
+
+Each composite-label record uses this exact shape:
+
+- `id`
+- `side`
+- `text`
+- `rowStart`
+- `rowEnd`
+
+Composite-label field rules are:
+
+- `side` must be either `left` or `right`;
+- `text` must be a non-empty string;
+- `rowStart` and `rowEnd` must be inclusive integer row coordinates in the same row space used by assembly and operator `y` placement;
+- `rowStart` must be less than or equal to `rowEnd`;
+- `side: "left"` renders in the reserved column-1 region;
+- and `side: "right"` renders in the reserved column-20 region.
+
+No explicit `x`, `width`, waypoint, or screen-coordinate fields belong in a `xyzzy/v1` composite-label record.
+
 For v1, composite labels should be absent by default:
 
-- `compositeLabels` may be omitted;
-- `compositeLabels` may be empty;
-- and base rendering must not depend on composite labels being present.
+- `compositeLabels` should usually be empty;
+- and base rendering must not depend on `compositeLabels` containing any records.
 
 ### Rendering Order
 
@@ -553,6 +664,8 @@ This keeps the primary object grammar stable and makes the label system an expli
 
 The Xyzzy JSON contract should describe the authored surface directly.
 
+The top-level document should include `schema: "xyzzy/v1"`.
+
 The contract should represent:
 
 - assemblies;
@@ -568,12 +681,12 @@ The JSON contract is a boundary contract.
 
 It does not imply that the runtime should render a visible side-by-side JSON editing panel as part of the default Xyzzy surface.
 
-Recommended object model:
+Exact object model for `xyzzy/v1`:
 
 - every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
 - every operator record stores one grid position in an allowed one-tile operator band and a one-tile payload containing title plus positrino and electrino counts;
-- every spline record stores `endpointA` and `endpointB`;
-- every composite-label record stores explicit placement and vertical span intent.
+- every spline record stores exactly `id`, `endpointA`, and `endpointB`;
+- and every composite-label record stores exactly `id`, `side`, `text`, `rowStart`, and `rowEnd`.
 
 The minimal operator schema should include:
 
@@ -595,6 +708,35 @@ The minimal assembly schema should include:
 - `role`
 - `tiles`
 
+The exact link schema is:
+
+- `id`
+- `endpointA`
+- `endpointB`
+
+Link field rules are:
+
+- `endpointA` and `endpointB` must each reference an existing assembly or operator id;
+- `endpointA` must reference the left-side object and `endpointB` the right-side object;
+- the endpoint pair must belong to one valid neighboring-band connection with one valid routing column between them;
+- and no extra geometry, style, or screen-coordinate fields belong in the `xyzzy/v1` link schema.
+
+The exact composite-label schema is:
+
+- `id`
+- `side`
+- `text`
+- `rowStart`
+- `rowEnd`
+
+Composite-label field rules are:
+
+- `side` must be `left` or `right`;
+- `text` must be a non-empty string;
+- `rowStart` and `rowEnd` must be inclusive integer row coordinates using the same row numbering as object `y` positions;
+- `rowStart` must be less than or equal to `rowEnd`;
+- and no extra geometry or screen-coordinate fields belong in the `xyzzy/v1` composite-label schema.
+
 The `tiles` field is the canonical display payload for the four assembly tiles.
 
 That means:
@@ -603,12 +745,17 @@ That means:
 - tiles 2-4 content is explicit;
 - and those tile records are not reconstructed only from `type`.
 
-Recommended top-level document shape:
+Exact top-level document shape for `xyzzy/v1`:
 
+- `schema`
 - `assemblies`
 - `operators`
 - `links`
 - `compositeLabels`
+
+All five top-level keys are required in a `xyzzy/v1` document.
+
+If any of the four record collections has no entries, its value must be `[]`.
 
 Every assembly, operator, link, and composite-label record must have a stable id.
 
@@ -655,21 +802,64 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 ### Inputs
 
 - Xyzzy JSON documents containing assemblies, operators, splines, and composite-label effects;
-- user-authored placement changes on the tile grid;
+- a manifest-driven list of available solver JSON documents for the header selector;
 - and user-authored adjacent-column spline links.
 
 Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
 
-For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators.
+For the first implementation, direct object editing is explicitly out of scope.
+
+That means the first implementation should not develop:
+
+- blank-document creation;
+- direct creation of assemblies or operators on the surface;
+- direct movement of assemblies or operators on the surface;
+- direct deletion of assemblies or operators on the surface;
+- drag handles, resize handles, selection boxes, or context menus for object editing;
+- or substitute editing chrome invented to work around the missing workflow.
+
+For the first implementation, Xyzzy should behave as a pure viewer of solver-produced Xyzzy JSON documents.
+
+For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators, and that workflow is intentionally deferred rather than to be guessed during the first implementation.
 
 This note currently defines:
 
 - surface grammar;
 - placement and validation rules;
 - JSON shape constraints;
+- header document selection and bootstrap behavior;
 - and spline-link interaction rules.
 
 Detailed v1 workflows for creating, moving, and deleting assemblies and operators remain to be specified separately.
+
+### Document Selection And Bootstrap
+
+The header JSON selector should be populated from a manifest of available solver JSON documents.
+
+That manifest should follow the same basic shape used by the reaction app library manifest:
+
+- a top-level schema id;
+- a `defaultEntryId`;
+- and an `entries` array of records with ids, titles, display titles, and JSON asset paths.
+
+For Xyzzy, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
+
+The first implementation should not include a built-in blank-document flow, new-document button, or manual surface-authoring mode.
+
+When the app starts:
+
+- if an entry with id `free_neutron_beta_decay` is available, load that entry by default;
+- otherwise load the manifest's default entry if one is declared;
+- otherwise load the first available manifest entry;
+- and if no entries are available, leave the surface empty rather than inventing extra UI.
+
+When the user chooses a different item from the header selector, the app should load that JSON document into the surface.
+
+That selection behavior should:
+
+- clear the currently rendered surface objects and spline paths;
+- load the newly selected Xyzzy JSON document from the manifest entry;
+- and render only the selected document.
 
 ### Outputs
 
@@ -694,17 +884,18 @@ The solver should not own screen coordinates or screen geometry details. Xyzzy o
 
 ### 1. Specify The Direct Object-Editing Workflow
 
-Status: `active`
+Status: `deferred`
 
 Current:
 
 - the first standalone Xyzzy runtime now exists;
 - the `xyzzy/v1` JSON contract, fixed 20-column strip, gap-free tile layout, adjacent-column spline authoring, and optional final-pass composite labels are now implemented;
-- but assemblies and operators are still authored through explicit JSON edits because the direct create, move, and delete workflow on the surface remains unspecified.
+- but assemblies and operators are still authored through explicit JSON documents because the direct create, move, and delete workflow on the surface remains unspecified;
+- and that workflow is intentionally deferred and should not be built as part of the first implementation.
 
 Objective:
 
-- define the explicit v1 or v2 surface workflow for:
+- define the explicit later surface workflow for:
   - creating assemblies and operators;
   - moving them within the fixed strip;
   - deleting them;
@@ -799,3 +990,22 @@ Done when:
 - the app-local JSON catalog remains the single tile-definition source of truth;
 - the JavaScript renderer remains the implementation used by the Xyzzy app;
 - and the reference SVG generation stays useful for comparison without becoming a parallel design system.
+
+## To Do
+
+### 4-Tile Group Specification Work
+
+1. Define the complete canonical list of four-tile assembly families that Xyzzy must render in the first implementation.
+2. Freeze the incomplete four-tile assembly payload vocabulary so required visuals do not have to be guessed from the spec alone, including the exact JSON shape and rendering grammar for title tiles, free electrino tiles, free positrino tiles, and ledger tiles.
+3. Specify the exact appearance and tile-record shape of the title tile used in four-tile groups.
+4. Specify the exact appearance and tile-record shape of ledger tiles used in four-tile groups.
+5. Specify the exact appearance of the `Free Architrinos` tile-2 free electrino tile, including circle count display, color, size, spacing, and border rule.
+6. Specify the exact appearance of the `Free Architrinos` tile-3 free positrino tile, including circle count display, color, size, spacing, and border rule.
+7. Specify the exact appearance of the reaction-app tile variant that depicts a binary together with two polar charges.
+8. Specify the exact appearance of the reaction-app tile variant that depicts the same two polar charges without the binary.
+9. Specify the exact appearance of polar architrino tiles, including what is text, what is glyph, and how polarity changes the rendered form.
+10. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, ledger, free-charge, binary, and polar architrino variants.
+11. Specify the allowed tile ordering and payload combinations for each four-tile assembly family so the solver and viewer do not have to infer group composition from labels.
+12. Specify whether binary and polar architrino tiles should be produced by a generator rather than hand-enumerated.
+13. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth.
+14. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family after the above items are specified.
