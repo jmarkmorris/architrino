@@ -96,6 +96,7 @@ class XyzzyCatalog:
     spec_path: Path
     tile_size: float
     outer_fill: str
+    inner_border_outer_inset: float
     inner_border_outer_size: float
     inner_border_stroke_width: float
     inner_border_outer_radius: float
@@ -420,11 +421,15 @@ def load_xyzzy_catalog(spec_path: Path) -> XyzzyCatalog:
             )
         )
     tiles.extend(create_generated_binary_glyph_tiles(raw, palette=palette))
+    tile_size = float(geometry["tileSizePx"])
+    inner_border_outer_size = float(geometry["innerBorderOuterSizePx"])
+    inner_border_outer_inset = float(geometry.get("innerBorderOuterInsetPx", (tile_size - inner_border_outer_size) / 2.0))
     return XyzzyCatalog(
         spec_path=spec_path,
-        tile_size=float(geometry["tileSizePx"]),
+        tile_size=tile_size,
         outer_fill=resolve_palette_color(palette, str(geometry["outerFillColor"])),
-        inner_border_outer_size=float(geometry["innerBorderOuterSizePx"]),
+        inner_border_outer_inset=inner_border_outer_inset,
+        inner_border_outer_size=inner_border_outer_size,
         inner_border_stroke_width=float(geometry["innerBorderStrokeWidthPx"]),
         inner_border_outer_radius=float(geometry["innerBorderOuterRadiusPx"]),
         text_font_family=str(text_layout["fontFamily"]),
@@ -434,6 +439,13 @@ def load_xyzzy_catalog(spec_path: Path) -> XyzzyCatalog:
         epsilon_entity=str(text_layout["epsilonEntity"]),
         tiles=tuple(tiles),
     )
+
+
+def get_frame_geometry(catalog: XyzzyCatalog) -> tuple[float, float, float, float]:
+    rect_inset = catalog.inner_border_outer_inset + (catalog.inner_border_stroke_width / 2.0)
+    rect_size = catalog.inner_border_outer_size - catalog.inner_border_stroke_width
+    rect_radius = max(0.0, catalog.inner_border_outer_radius - (catalog.inner_border_stroke_width / 2.0))
+    return rect_inset, rect_size, rect_radius, catalog.inner_border_outer_inset
 
 
 def get_line_bounds(line: XyzzyResolvedLine, catalog: XyzzyCatalog) -> tuple[float, float]:
@@ -514,12 +526,7 @@ def render_line(
 
 
 def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
-    rect_inset = (
-        (catalog.tile_size - catalog.inner_border_outer_size) / 2.0
-        + (catalog.inner_border_stroke_width / 2.0)
-    )
-    rect_size = catalog.inner_border_outer_size - catalog.inner_border_stroke_width
-    rect_radius = max(0.0, catalog.inner_border_outer_radius - (catalog.inner_border_stroke_width / 2.0))
+    rect_inset, rect_size, rect_radius, outer_inset = get_frame_geometry(catalog)
     content: list[str] = []
     if tile.tile_type == "text":
         baselines = get_tile_baselines(tile.lines, catalog)
@@ -551,7 +558,7 @@ def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
         ]
         content.extend(line for line in rendered_lines if line)
     elif tile.tile_type == "binary-glyph" and tile.binary_glyph:
-        glyph_inset = (catalog.tile_size - catalog.inner_border_outer_size) / 2.0
+        glyph_inset = outer_inset
         orbit = tile.binary_glyph.orbit
         axis = tile.binary_glyph.axis
         content.append(

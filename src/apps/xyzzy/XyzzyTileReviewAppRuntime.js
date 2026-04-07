@@ -1,4 +1,4 @@
-import { loadXyzzyTileCatalog } from "./XyzzyTileCatalogRuntime.js";
+import { getXyzzyFrameGeometry, loadXyzzyTileCatalog } from "./XyzzyTileCatalogRuntime.js";
 import { renderXyzzyTileSvg } from "./XyzzyTileSvgRuntime.js";
 
 function normalizeInputValue(value, fallback) {
@@ -159,9 +159,12 @@ export function createXyzzyTileReviewAppRuntime({
       );
     }
     if (statusElement) {
+      const frame = getXyzzyFrameGeometry(catalog);
       statusElement.textContent =
         `Rendered ${catalogTiles.length} catalog tiles, ${binaryTiles.length} binary tiles, ` +
-        `and the unbound-architrino group showcase from the JSON-driven Xyzzy catalog.`;
+        `and the unbound-architrino group showcase from the JSON-driven Xyzzy catalog. ` +
+        `Frame rect ${frame.rectInset.toFixed(0)},${frame.rectInset.toFixed(0)} ` +
+        `${frame.rectSize.toFixed(0)}x${frame.rectSize.toFixed(0)}.`;
     }
   }
 

@@ -9,6 +9,7 @@
   "geometry": {
     "tileSizePx": 80,
     "outerFillColor": "outer_black",
+    "innerBorderOuterInsetPx": 4,
     "innerBorderOuterSizePx": 72,
     "innerBorderStrokeWidthPx": 4,
     "innerBorderOuterRadiusPx": 12

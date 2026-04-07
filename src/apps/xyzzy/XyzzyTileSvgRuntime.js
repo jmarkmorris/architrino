@@ -1,4 +1,5 @@
 import {
+  getXyzzyFrameGeometry,
   resolveXyzzyCatalogColor,
   resolveXyzzyTileReviewLines,
 } from "./XyzzyTileCatalogRuntime.js";
@@ -138,11 +139,12 @@ function applyOptionalFilter(element, filterValue) {
 function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
   const binaryGlyph = tile?.binaryGlyph ?? {};
   const nestedSvg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
-  const glyphInset = (catalog.geometry.tileSizePx - catalog.geometry.innerBorderOuterSizePx) / 2;
+  const frame = getXyzzyFrameGeometry(catalog);
+  const glyphInset = frame.outerInset;
   nestedSvg.setAttribute("x", glyphInset.toFixed(2));
   nestedSvg.setAttribute("y", glyphInset.toFixed(2));
-  nestedSvg.setAttribute("width", String(catalog.geometry.innerBorderOuterSizePx));
-  nestedSvg.setAttribute("height", String(catalog.geometry.innerBorderOuterSizePx));
+  nestedSvg.setAttribute("width", String(frame.outerSize));
+  nestedSvg.setAttribute("height", String(frame.outerSize));
   nestedSvg.setAttribute(
     "viewBox",
     `0 0 ${binaryGlyph.viewBoxWidth || 120} ${binaryGlyph.viewBoxHeight || 120}`
@@ -220,13 +222,8 @@ export function renderXyzzyTileSvg({
   const svg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
   const resolvedLines = resolveXyzzyTileReviewLines(tile, sampleCounts);
   const baselines = getTileBaselines(measurementContext, resolvedLines, catalog);
-  const tileSize = catalog.geometry.tileSizePx;
-  const innerBorderOuterSize = catalog.geometry.innerBorderOuterSizePx;
-  const innerBorderStrokeWidth = catalog.geometry.innerBorderStrokeWidthPx;
-  const innerBorderOuterRadius = catalog.geometry.innerBorderOuterRadiusPx;
-  const rectInset = (tileSize - innerBorderOuterSize) / 2 + innerBorderStrokeWidth / 2;
-  const rectSize = innerBorderOuterSize - innerBorderStrokeWidth;
-  const rectRadius = Math.max(0, innerBorderOuterRadius - innerBorderStrokeWidth / 2);
+  const frame = getXyzzyFrameGeometry(catalog);
+  const tileSize = frame.tileSize;
 
   svg.setAttribute("viewBox", `0 0 ${tileSize} ${tileSize}`);
   svg.setAttribute("role", "img");
@@ -240,14 +237,14 @@ export function renderXyzzyTileSvg({
   svg.append(outerRect);
 
   const innerRect = documentLike.createElementNS(SVG_NAMESPACE, "rect");
-  innerRect.setAttribute("x", rectInset.toFixed(2));
-  innerRect.setAttribute("y", rectInset.toFixed(2));
-  innerRect.setAttribute("width", rectSize.toFixed(2));
-  innerRect.setAttribute("height", rectSize.toFixed(2));
-  innerRect.setAttribute("rx", rectRadius.toFixed(2));
+  innerRect.setAttribute("x", frame.rectInset.toFixed(2));
+  innerRect.setAttribute("y", frame.rectInset.toFixed(2));
+  innerRect.setAttribute("width", frame.rectSize.toFixed(2));
+  innerRect.setAttribute("height", frame.rectSize.toFixed(2));
+  innerRect.setAttribute("rx", frame.rectRadius.toFixed(2));
   innerRect.setAttribute("fill", "none");
   innerRect.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, tile.borderColor));
-  innerRect.setAttribute("stroke-width", String(innerBorderStrokeWidth));
+  innerRect.setAttribute("stroke-width", String(frame.strokeWidth));
   svg.append(innerRect);
 
   if (tile?.type === "binary-glyph") {

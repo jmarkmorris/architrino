@@ -145,6 +145,29 @@ The centered inner rounded square is border only.
 
 Its interior is clear, so the tile continues to show the same black background through the middle of the bordered square.
 
+For Xyzzy v1, the position of that frame is also numerically locked.
+
+In outer-edge terms, the rounded-square border occupies:
+
+- left edge `x = 4px`;
+- top edge `y = 4px`;
+- right edge `x = 76px`;
+- and bottom edge `y = 76px`.
+
+Equivalently, the border's outer box is exactly `72px x 72px` inset by `4px` from each tile edge.
+
+Because the stroke width is `4px`, the SVG stroke-center rect that actually gets rendered sits at:
+
+- `x = 6px`;
+- `y = 6px`;
+- `width = 68px`;
+- `height = 68px`;
+- and `rx = 10px`.
+
+Those values are not optional approximations.
+
+The shared JSON catalog, the JavaScript runtime, the review page, and the reference generator should all use that same frame position exactly.
+
 For the baseline tile family, that bordered inner rounded square may use one of three canonical stroke colors drawn from the current reaction app palette:
 
 - red: `#ff5a4a`;
@@ -156,6 +179,38 @@ The text payload for a tile belongs inside that centered `72px x 72px` bordered 
 This section defines only the base tile box, the black outer field, the centered bordered square, and the allowed baseline border colors.
 
 Text variants, text placement rules, and per-tile payload options should be specified separately.
+
+#### Outline Conformance Standard
+
+All Xyzzy tile outlines belong to one locked geometry family.
+
+That requirement applies to:
+
+- standard text tiles;
+- operator tiles;
+- title tiles;
+- charge-glyph tiles;
+- binary-glyph tiles;
+- and any later tile family added to the shared catalog.
+
+For every tile family, the outline must therefore use exactly the same baseline border geometry:
+
+- one centered inner rounded square with outer dimensions `72px x 72px`;
+- the same centered placement inside the `80px x 80px` tile box;
+- the same numeric outer-frame box from `x = 4px`, `y = 4px` to `x = 76px`, `y = 76px`;
+- the same numeric rendered stroke rect at `x = 6px`, `y = 6px`, `width = 68px`, `height = 68px`, `rx = 10px`;
+- the same `4px` stroke width;
+- and the same rounded-corner geometry defined by the baseline tile box.
+
+Content may shift inside that outline, but the outline itself may not be nudged, stretched, shrunk, or re-centered to make room for content.
+
+In concrete terms:
+
+- no tile family may move the outline up, down, left, or right relative to the baseline centered placement;
+- no tile family may use a taller, shorter, wider, or narrower outline than the baseline `72px x 72px` standard;
+- and no tile family may introduce per-type optical fudge that changes where the outline lands inside the tile box.
+
+Therefore, when different tile types are shown side by side in a review strip, the top, bottom, left, and right extents of their inner outlines must coincide exactly.
 
 ### Standard Tile Text
 
@@ -287,6 +342,12 @@ They use:
 For Xyzzy v1, the charge-glyph metrics below are locked.
 
 The JavaScript runtime and the reference SVG generator should use these exact values rather than improvising a separate layout rule.
+
+Charge-glyph tiles inherit the exact same outline geometry and centered border placement as every other Xyzzy tile.
+
+Only the text block and charge circle may move within the tile.
+
+The outline itself must remain identical in size and alignment to the baseline standard.
 
 #### Charge Glyph Layout
 

@@ -210,12 +210,16 @@ export function normalizeXyzzyTileCatalog(rawCatalog) {
   const textLayout = rawCatalog?.textLayout ?? {};
   const tiles = Array.isArray(rawCatalog?.tiles) ? rawCatalog.tiles : [];
   const generatedTiles = createGeneratedBinaryGlyphTiles(rawCatalog);
+  const tileSizePx = Number(geometry.tileSizePx) || 80;
+  const innerBorderOuterSizePx = Number(geometry.innerBorderOuterSizePx) || 72;
+  const fallbackInset = (tileSizePx - innerBorderOuterSizePx) / 2;
   return {
     version: Number(rawCatalog?.version) || 1,
     geometry: {
-      tileSizePx: Number(geometry.tileSizePx) || 80,
+      tileSizePx,
       outerFillColor: normalizeText(geometry.outerFillColor) || "outer_black",
-      innerBorderOuterSizePx: Number(geometry.innerBorderOuterSizePx) || 72,
+      innerBorderOuterInsetPx: normalizeNumber(geometry.innerBorderOuterInsetPx, fallbackInset),
+      innerBorderOuterSizePx,
       innerBorderStrokeWidthPx: Number(geometry.innerBorderStrokeWidthPx) || 4,
       innerBorderOuterRadiusPx: Number(geometry.innerBorderOuterRadiusPx) || 12,
     },
@@ -245,6 +249,27 @@ export function normalizeXyzzyTileCatalog(rawCatalog) {
       binaryGlyph: normalizeBinaryGlyph(tile?.binaryGlyph),
       chargeCircle: normalizeChargeCircle(tile?.chargeCircle),
     })),
+  };
+}
+
+export function getXyzzyFrameGeometry(catalog) {
+  const tileSize = Number(catalog?.geometry?.tileSizePx) || 80;
+  const outerInset = normalizeNumber(
+    catalog?.geometry?.innerBorderOuterInsetPx,
+    (tileSize - (Number(catalog?.geometry?.innerBorderOuterSizePx) || 72)) / 2
+  );
+  const outerSize = Number(catalog?.geometry?.innerBorderOuterSizePx) || 72;
+  const strokeWidth = Number(catalog?.geometry?.innerBorderStrokeWidthPx) || 4;
+  const outerRadius = Number(catalog?.geometry?.innerBorderOuterRadiusPx) || 12;
+  return {
+    tileSize,
+    outerInset,
+    outerSize,
+    outerRadius,
+    strokeWidth,
+    rectInset: outerInset + strokeWidth / 2,
+    rectSize: outerSize - strokeWidth,
+    rectRadius: Math.max(0, outerRadius - strokeWidth / 2),
   };
 }
 

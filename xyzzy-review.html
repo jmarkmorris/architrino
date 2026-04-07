@@ -134,6 +134,7 @@
 
       .xyzzy-review-card {
         display: grid;
+        align-content: start;
         gap: 12px;
         padding: 14px;
         border: 1px solid var(--xyzzy-panel-border);
@@ -144,11 +145,14 @@
 
       .xyzzy-review-card-preview {
         display: grid;
-        place-items: center;
+        justify-items: center;
+        align-items: start;
+        min-height: 160px;
       }
 
       .xyzzy-review-assembly-preview {
         justify-items: start;
+        min-height: 96px;
         overflow-x: auto;
       }
 
@@ -208,6 +212,14 @@
         .xyzzy-review-assembly-tile {
           width: 80px;
           height: 80px;
+        }
+
+        .xyzzy-review-card-preview {
+          min-height: 136px;
+        }
+
+        .xyzzy-review-assembly-preview {
+          min-height: 80px;
         }
       }
     </style>
@@ -276,6 +288,6 @@
         ></div>
       </section>
     </main>
-    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-unbound-group"></script>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-frame-conformance"></script>
   </body>
 </html>
