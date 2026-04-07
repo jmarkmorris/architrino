@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" style="background:#06070d;color:#f5f7ff;">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#06070d" />
+    <title>architrino xyzzy review</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --xyzzy-bg: #06070d;
+        --xyzzy-panel: #11131c;
+        --xyzzy-panel-border: rgba(255, 255, 255, 0.12);
+        --xyzzy-text: #f5f7ff;
+        --xyzzy-muted: rgba(245, 247, 255, 0.68);
+        --xyzzy-input: #0e1017;
+        --xyzzy-shadow: rgba(0, 0, 0, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top, rgba(45, 140, 255, 0.18), transparent 35%),
+          linear-gradient(180deg, #0a0c14 0%, var(--xyzzy-bg) 100%);
+        color: var(--xyzzy-text);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        padding: 24px;
+      }
+
+      .xyzzy-review-shell {
+        display: grid;
+        gap: 18px;
+        width: min(1400px, 100%);
+        margin: 0 auto;
+      }
+
+      .xyzzy-review-header,
+      .xyzzy-review-controls {
+        display: grid;
+        gap: 10px;
+        padding: 18px 20px;
+        border: 1px solid var(--xyzzy-panel-border);
+        border-radius: 18px;
+        background: rgba(17, 19, 28, 0.88);
+        box-shadow: 0 20px 40px var(--xyzzy-shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .xyzzy-review-header h1 {
+        margin: 0;
+        font-size: clamp(1.65rem, 2vw, 2.2rem);
+        line-height: 1.05;
+      }
+
+      .xyzzy-review-subtitle,
+      .xyzzy-review-meta,
+      .xyzzy-review-status {
+        margin: 0;
+        color: var(--xyzzy-muted);
+        font-size: 0.98rem;
+      }
+
+      .xyzzy-review-controls {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        align-items: end;
+      }
+
+      .xyzzy-review-field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .xyzzy-review-field label {
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--xyzzy-muted);
+      }
+
+      .xyzzy-review-field input {
+        width: 100%;
+        border: 1px solid var(--xyzzy-panel-border);
+        border-radius: 12px;
+        padding: 11px 12px;
+        background: var(--xyzzy-input);
+        color: var(--xyzzy-text);
+        font: inherit;
+      }
+
+      .xyzzy-review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+        gap: 16px;
+      }
+
+      .xyzzy-review-card {
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--xyzzy-panel-border);
+        border-radius: 18px;
+        background: rgba(11, 13, 20, 0.92);
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34);
+      }
+
+      .xyzzy-review-card-preview {
+        display: grid;
+        place-items: center;
+      }
+
+      .xyzzy-review-tile-svg {
+        width: 160px;
+        height: 160px;
+        display: block;
+      }
+
+      .xyzzy-review-card-meta {
+        display: grid;
+        gap: 4px;
+      }
+
+      .xyzzy-review-card-title {
+        margin: 0;
+        font-size: 0.98rem;
+        line-height: 1.2;
+      }
+
+      .xyzzy-review-card-key {
+        color: var(--xyzzy-muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 14px;
+        }
+
+        .xyzzy-review-header,
+        .xyzzy-review-controls {
+          padding: 16px;
+        }
+
+        .xyzzy-review-grid {
+          grid-template-columns: repeat(auto-fill, minmax(154px, 1fr));
+        }
+
+        .xyzzy-review-tile-svg {
+          width: 136px;
+          height: 136px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="xyzzy-review-shell">
+      <section class="xyzzy-review-header">
+        <h1>Xyzzy Tile Review</h1>
+        <p class="xyzzy-review-subtitle">
+          Browser-side SVG rendering from the shared JSON catalog.
+        </p>
+        <p id="xyzzy-review-catalog-meta" class="xyzzy-review-meta"></p>
+        <p id="xyzzy-review-status" class="xyzzy-review-status" aria-live="polite"></p>
+      </section>
+
+      <section class="xyzzy-review-controls" aria-label="Xyzzy review controls">
+        <div class="xyzzy-review-field">
+          <label for="xyzzy-review-top-count">Top Count Placeholder</label>
+          <input id="xyzzy-review-top-count" type="text" value="N" />
+        </div>
+        <div class="xyzzy-review-field">
+          <label for="xyzzy-review-bottom-count">Bottom Count Placeholder</label>
+          <input id="xyzzy-review-bottom-count" type="text" value="M" />
+        </div>
+      </section>
+
+      <section
+        id="xyzzy-review-grid"
+        class="xyzzy-review-grid"
+        aria-label="Xyzzy tile review grid"
+      ></section>
+    </main>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-06-xyzzy-review-v2"></script>
+  </body>
+</html>
