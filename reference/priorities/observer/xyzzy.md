@@ -78,6 +78,127 @@ Therefore:
 - visible spacing comes from the tile glyph artwork alone;
 - and runtime layout should not calculate, store, or infer tile gaps.
 
+### Baseline Tile Box
+
+The baseline Xyzzy tile is a fixed `80px x 80px` square.
+
+That full `80px x 80px` tile area is filled solid black.
+
+Inside that black tile field sits one centered rounded-corner square border with dimensions `72px x 72px`.
+
+Because the inner square is centered both horizontally and vertically, the remaining black field is `4px` on each side.
+
+That black outer field is part of the tile itself rather than a layout gap between neighboring tiles.
+
+The centered inner rounded square is border only.
+
+Its interior is clear, so the tile continues to show the same black background through the middle of the bordered square.
+
+For the baseline tile family, that bordered inner rounded square may use one of three canonical stroke colors drawn from the current reaction app palette:
+
+- red: `#ff5a4a`;
+- blue: `#2d8cff`;
+- purple: `#a259ff`.
+
+The text payload for a tile belongs inside that centered `72px x 72px` bordered square and sits over the black tile background visible through that clear interior.
+
+This section defines only the base tile box, the black outer field, the centered bordered square, and the allowed baseline border colors.
+
+Text variants, text placement rules, and per-tile payload options should be specified separately.
+
+### Standard Tile Text
+
+Xyzzy standard text tiles may use up to three short lines of text inside the centered `72px x 72px` bordered square.
+
+The baseline text inventory should be derived from the current reaction app tile vocabulary, but Xyzzy should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
+
+The standard tile should not use corner ledger numbers.
+
+If a tile uses fewer than three visible lines, the unused lower lines remain blank.
+
+The generator in `scripts/glyphs/glyph.py` should be treated as reference code for this tile family.
+
+Each row in the following table is one permitted standard-tile text form.
+
+For polarity-driven families, the table below lists the baseline `Pro` form.
+
+Every row in this table that begins with `Pro` also permits a matching `Anti` form.
+
+For those matching anti forms, line 1 changes from `Pro` to `Anti`.
+
+For most such rows, line 2, line 3, and color remain the same.
+
+Proton and neutron are the exception:
+
+- `Anti Proton` uses line 3 `!u !d !u`;
+- and `Anti Neutron` uses line 3 `!d !u !d`.
+
+| Line 1       | Line 2        | Line 3       | Color                                 |
+| ------------ | ------------- | ------------ | ------------------------------------- |
+| `<count> ϵ+` | `Associate`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
+| `<count> ϵ+` | `Dissociate`  | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
+| `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
+| `<count> ϵ+` | `Architrinos` | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
+|              | `Photon`      |              | white                                 |
+| `Pro`        | `Noether`     | `Core`       | white                                 |
+| `Negative`   | `W`           | `Boson`      | white                                 |
+| `Neutral`    | `Z`           | `Boson`      | white                                 |
+| `Positive`   | `W`           | `Boson`      | white                                 |
+| `Noether`    | `Pair`        | `Pro+Anti`   | white                                 |
+| `Noether`    | `Quad`        | `Two Pair`   | white                                 |
+| `Pro`        | `Uni`         | `Binary`     | white                                 |
+| `Pro`        | `Bi`          | `Binary`     | white                                 |
+| `Pro`        | `Tau`         |              | white                                 |
+| `Pro`        | `Muon`        |              | white                                 |
+| `Pro`        | `Electron`    |              | white                                 |
+| `Pro`        | `Tau`         | `Neutrino`   | white                                 |
+| `Pro`        | `Muon`        | `Neutrino`   | white                                 |
+| `Pro`        | `Electron`    | `Neutrino`   | white                                 |
+| `Pro`        | `Bottom`      | `Quark`      | white                                 |
+| `Pro`        | `Strange`     | `Quark`      | white                                 |
+| `Pro`        | `Down`        | `Quark`      | white                                 |
+| `Pro`        | `Top`         | `Quark`      | white                                 |
+| `Pro`        | `Charm`       | `Quark`      | white                                 |
+| `Pro`        | `Up`          | `Quark`      | white                                 |
+| `Pro`        | `Proton`      | `u d u`      | white                                 |
+| `Pro`        | `Neutron`     | `d u d`      | white                                 |
+| `Positive`   | `Pion`        | `u !d`       | white                                 |
+| `Negative`   | `Pion`        | `d !u`       | white                                 |
+| `Neutral`    | `Pion`        | `u !u`       | white                                 |
+| `Neutral`    | `Pion`        | `d !d`       | white                                 |
+| `Positive`   | `Kaon`        | `u !s`       | white                                 |
+| `Negative`   | `Kaon`        | `s !u`       | white                                 |
+| `Neutral`    | `Kaon`        | `d !s`       | white                                 |
+| `Neutral`    | `Kaon`        | `s !d`       | white                                 |
+| `Positive`   | `B Meson`     | `u !b`       | white                                 |
+| `Negative`   | `B Meson`     | `b !u`       | white                                 |
+| `Neutral`    | `B Meson`     | `d !b`       | white                                 |
+| `Neutral`    | `B Meson`     | `b !d`       | white                                 |
+
+These text forms cover the current reaction app tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
+
+The reaction app binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this Xyzzy baseline.
+
+For the three operator tiles `Associate`, `Dissociate`, and `Pass Thru`, line 1 and line 3 are not ordinary words.
+
+Those two lines are dynamic count lines and should use the epsilon symbol form already used in `glyph.py`.
+
+That means:
+
+- line 1 should be written as `<count> ϵ+`;
+- and line 3 should be written as `<count> ϵ-`.
+
+There should be exactly one space between the count and the epsilon symbol.
+
+In code or SVG entity form, that same epsilon symbol is `&#x03F5;`.
+
+For these architrino count lines:
+
+- a positrino count line should use the standard red text color;
+- and an electrino count line should use the standard blue text color.
+
+All other standard tile text should use white.
+
 ### Tile Glyph Construction
 
 Assemblies and operators should be constructed from tile glyphs, not from generic cards with text dropped onto them.
@@ -229,16 +350,16 @@ An operator is one tile total.
 The operator tile contains:
 
 - a title;
-- a centered positrino count at the top of the interior bordered glyph;
-- and a centered electrino count at the bottom of the interior bordered glyph.
+- a centered top count line written as `<count> ϵ+` in the standard red text color;
+- and a centered bottom count line written as `<count> ϵ-` in the standard blue text color.
 
 `Pass Thru` is an explicit operator type.
 
 `Pass Thru`, `Associate`, and `Dissociate` should all use the same one-tile operator layout:
 
-- centered positrino count at the top;
+- centered `<count> ϵ+` at the top in the standard red text color;
 - centered operator title in the middle;
-- and centered electrino count at the bottom.
+- and centered `<count> ϵ-` at the bottom in the standard blue text color.
 
 For `Pass Thru`, the middle title text should be `Pass Thru`.
 
