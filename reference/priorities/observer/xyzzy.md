@@ -116,7 +116,13 @@ The standard tile should not use corner ledger numbers.
 
 If a tile uses fewer than three visible lines, the unused lower lines remain blank.
 
-The generator in `scripts/glyphs/glyph.py` should be treated as reference code for this tile family.
+The shared JSON tile catalog should be treated as the source of truth for this tile family.
+
+The JavaScript Xyzzy app should read that JSON directly.
+
+The generator in `scripts/glyphs/glyph.py` should be treated as reference code that reads the same JSON and emits review SVGs.
+
+`glyph.py` is not the runtime dependency of the app.
 
 Each row in the following table is one permitted standard-tile text form.
 
@@ -126,54 +132,60 @@ Every row in this table that begins with `Pro` also permits a matching `Anti` fo
 
 For those matching anti forms, line 1 changes from `Pro` to `Anti`.
 
-For most such rows, line 2, line 3, and color remain the same.
+For most such rows, line 2, line 3, and text color remain the same.
+
+Border color also follows a polarity rule for those matching `Pro` and `Anti` pairs:
+
+- if the `Pro` tile uses a blue border, the matching `Anti` tile uses a red border;
+- if the `Pro` tile uses a red border, the matching `Anti` tile uses a blue border;
+- and if the `Pro` tile uses a purple border, the matching `Anti` tile also uses a purple border.
 
 Proton and neutron are the exception:
 
 - `Anti Proton` uses line 3 `!u !d !u`;
 - and `Anti Neutron` uses line 3 `!d !u !d`.
 
-| Line 1       | Line 2        | Line 3       | Color                                 |
-| ------------ | ------------- | ------------ | ------------------------------------- |
-| `<count> ϵ+` | `Associate`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
-| `<count> ϵ+` | `Dissociate`  | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
-| `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
-| `<count> ϵ+` | `Architrinos` | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue |
-|              | `Photon`      |              | white                                 |
-| `Pro`        | `Noether`     | `Core`       | white                                 |
-| `Negative`   | `W`           | `Boson`      | white                                 |
-| `Neutral`    | `Z`           | `Boson`      | white                                 |
-| `Positive`   | `W`           | `Boson`      | white                                 |
-| `Noether`    | `Pair`        | `Pro+Anti`   | white                                 |
-| `Noether`    | `Quad`        | `Two Pair`   | white                                 |
-| `Pro`        | `Uni`         | `Binary`     | white                                 |
-| `Pro`        | `Bi`          | `Binary`     | white                                 |
-| `Pro`        | `Tau`         |              | white                                 |
-| `Pro`        | `Muon`        |              | white                                 |
-| `Pro`        | `Electron`    |              | white                                 |
-| `Pro`        | `Tau`         | `Neutrino`   | white                                 |
-| `Pro`        | `Muon`        | `Neutrino`   | white                                 |
-| `Pro`        | `Electron`    | `Neutrino`   | white                                 |
-| `Pro`        | `Bottom`      | `Quark`      | white                                 |
-| `Pro`        | `Strange`     | `Quark`      | white                                 |
-| `Pro`        | `Down`        | `Quark`      | white                                 |
-| `Pro`        | `Top`         | `Quark`      | white                                 |
-| `Pro`        | `Charm`       | `Quark`      | white                                 |
-| `Pro`        | `Up`          | `Quark`      | white                                 |
-| `Pro`        | `Proton`      | `u d u`      | white                                 |
-| `Pro`        | `Neutron`     | `d u d`      | white                                 |
-| `Positive`   | `Pion`        | `u !d`       | white                                 |
-| `Negative`   | `Pion`        | `d !u`       | white                                 |
-| `Neutral`    | `Pion`        | `u !u`       | white                                 |
-| `Neutral`    | `Pion`        | `d !d`       | white                                 |
-| `Positive`   | `Kaon`        | `u !s`       | white                                 |
-| `Negative`   | `Kaon`        | `s !u`       | white                                 |
-| `Neutral`    | `Kaon`        | `d !s`       | white                                 |
-| `Neutral`    | `Kaon`        | `s !d`       | white                                 |
-| `Positive`   | `B Meson`     | `u !b`       | white                                 |
-| `Negative`   | `B Meson`     | `b !u`       | white                                 |
-| `Neutral`    | `B Meson`     | `d !b`       | white                                 |
-| `Neutral`    | `B Meson`     | `b !d`       | white                                 |
+| Line 1       | Line 2        | Line 3       | Text Color                            | Border Color |
+| ------------ | ------------- | ------------ | ------------------------------------- | ------------ |
+| `<count> ϵ+` | `Associate`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Dissociate`  | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+| `<count> ϵ+` | `Architrinos` | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
+|              | `Photon`      |              | white                                 | purple       |
+| `Pro`        | `Noether`     | `Core`       | white                                 | purple       |
+| `Negative`   | `W`           | `Boson`      | white                                 | blue         |
+| `Neutral`    | `Z`           | `Boson`      | white                                 | purple       |
+| `Positive`   | `W`           | `Boson`      | white                                 | red          |
+| `Noether`    | `Pair`        | `Pro+Anti`   | white                                 | purple       |
+| `Noether`    | `Quad`        | `Two Pair`   | white                                 | purple       |
+| `Pro`        | `Uni`         | `Binary`     | white                                 | purple       |
+| `Pro`        | `Bi`          | `Binary`     | white                                 | purple       |
+| `Pro`        | `Tau`         |              | white                                 | blue         |
+| `Pro`        | `Muon`        |              | white                                 | blue         |
+| `Pro`        | `Electron`    |              | white                                 | blue         |
+| `Pro`        | `Tau`         | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Muon`        | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Electron`    | `Neutrino`   | white                                 | purple       |
+| `Pro`        | `Bottom`      | `Quark`      | white                                 | blue         |
+| `Pro`        | `Strange`     | `Quark`      | white                                 | blue         |
+| `Pro`        | `Down`        | `Quark`      | white                                 | blue         |
+| `Pro`        | `Top`         | `Quark`      | white                                 | red          |
+| `Pro`        | `Charm`       | `Quark`      | white                                 | red          |
+| `Pro`        | `Up`          | `Quark`      | white                                 | red          |
+| `Pro`        | `Proton`      | `u d u`      | white                                 | red          |
+| `Pro`        | `Neutron`     | `d u d`      | white                                 | purple       |
+| `Positive`   | `Pion`        | `u !d`       | white                                 | red          |
+| `Negative`   | `Pion`        | `d !u`       | white                                 | blue         |
+| `Neutral`    | `Pion`        | `u !u`       | white                                 | purple       |
+| `Neutral`    | `Pion`        | `d !d`       | white                                 | purple       |
+| `Positive`   | `Kaon`        | `u !s`       | white                                 | red          |
+| `Negative`   | `Kaon`        | `s !u`       | white                                 | blue         |
+| `Neutral`    | `Kaon`        | `d !s`       | white                                 | purple       |
+| `Neutral`    | `Kaon`        | `s !d`       | white                                 | purple       |
+| `Positive`   | `B Meson`     | `u !b`       | white                                 | red          |
+| `Negative`   | `B Meson`     | `b !u`       | white                                 | blue         |
+| `Neutral`    | `B Meson`     | `d !b`       | white                                 | purple       |
+| `Neutral`    | `B Meson`     | `b !d`       | white                                 | purple       |
 
 These text forms cover the current reaction app tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
 
@@ -198,6 +210,1293 @@ For these architrino count lines:
 - and an electrino count line should use the standard blue text color.
 
 All other standard tile text should use white.
+
+In the baseline shared JSON catalog, the architrino count rows stay dynamic through the placeholders `N` and `M`.
+
+In that same baseline JSON catalog, `Pro` and `Anti` are pre-expanded as explicit tile entries so the JavaScript app can keep a simple tile lookup.
+
+That is a packaging choice rather than a visual rule.
+
+If a later runtime wants to collapse those rows into one polarity-aware family and expand them in memory, that is allowed as long as it preserves the same tile text, border-color rules, and emitted tile forms.
+
+### Shared JSON Tile Catalog
+
+The baseline shared JSON catalog should live beside `glyph.py` as `scripts/glyphs/xyzzy-tiles.json`.
+
+The JavaScript app should use that JSON directly for tile lookup and dynamic count substitution.
+
+The `glyph.py` script should read the same JSON and render comparison SVGs from it.
+
+The baseline JSON I would use is:
+
+```json
+{
+  "version": 1,
+  "strategy": {
+    "runtimeConsumer": "xyzzy-javascript-app",
+    "referenceGenerator": "scripts/glyphs/glyph.py",
+    "polarityCatalogMode": "preexpanded",
+    "countMode": "dynamic_placeholders"
+  },
+  "geometry": {
+    "tileSizePx": 80,
+    "outerFillColor": "outer_black",
+    "innerBorderOuterSizePx": 72,
+    "innerBorderStrokeWidthPx": 4,
+    "innerBorderOuterRadiusPx": 12
+  },
+  "palette": {
+    "outer_black": "#000000",
+    "white": "#f5f7ff",
+    "red": "#ff5a4a",
+    "blue": "#2d8cff",
+    "purple": "#a259ff",
+    "count_positive": "#ff3d3d",
+    "count_negative": "#1879ff"
+  },
+  "textLayout": {
+    "maxLines": 3,
+    "fontFamily": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    "fontSizePx": 11.75,
+    "fontWeight": 700,
+    "lineGapPx": 4.0,
+    "horizontalAlign": "center",
+    "verticalAlign": "optical_center",
+    "epsilonEntity": "&#x03F5;",
+    "countFormat": "<count> ϵ<sign>",
+    "countPlaceholders": [
+      "N",
+      "M"
+    ]
+  },
+  "tiles": [
+    {
+      "key": "associate",
+      "title": "Associate operator tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "count",
+          "placeholder": "N",
+          "sign": "+",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "Associate",
+          "color": "white"
+        },
+        {
+          "type": "count",
+          "placeholder": "M",
+          "sign": "-",
+          "color": "count_negative"
+        }
+      ]
+    },
+    {
+      "key": "dissociate",
+      "title": "Dissociate operator tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "count",
+          "placeholder": "N",
+          "sign": "+",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "Dissociate",
+          "color": "white"
+        },
+        {
+          "type": "count",
+          "placeholder": "M",
+          "sign": "-",
+          "color": "count_negative"
+        }
+      ]
+    },
+    {
+      "key": "pass-thru",
+      "title": "Pass Thru operator tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "count",
+          "placeholder": "N",
+          "sign": "+",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "Pass Thru",
+          "color": "white"
+        },
+        {
+          "type": "count",
+          "placeholder": "M",
+          "sign": "-",
+          "color": "count_negative"
+        }
+      ]
+    },
+    {
+      "key": "architrinos",
+      "title": "Architrinos ledger tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "count",
+          "placeholder": "N",
+          "sign": "+",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "Architrinos",
+          "color": "white"
+        },
+        {
+          "type": "count",
+          "placeholder": "M",
+          "sign": "-",
+          "color": "count_negative"
+        }
+      ]
+    },
+    {
+      "key": "photon",
+      "title": "Photon tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Photon",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "negative-w-boson",
+      "title": "Negative W boson tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Negative",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "W",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Boson",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-z-boson",
+      "title": "Neutral Z boson tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Z",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Boson",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "positive-w-boson",
+      "title": "Positive W boson tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positive",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "W",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Boson",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "noether-pair",
+      "title": "Noether Pair tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pair",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pro+Anti",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "noether-quad",
+      "title": "Noether Quad tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quad",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Two Pair",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "positive-pion",
+      "title": "Positive Pion tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positive",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pion",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "u !d",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "negative-pion",
+      "title": "Negative Pion tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Negative",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pion",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "d !u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-pion-u",
+      "title": "Neutral Pion u anti-u tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pion",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "u !u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-pion-d",
+      "title": "Neutral Pion d anti-d tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Pion",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "d !d",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "positive-kaon",
+      "title": "Positive Kaon tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positive",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Kaon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "u !s",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "negative-kaon",
+      "title": "Negative Kaon tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Negative",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Kaon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "s !u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-kaon-d",
+      "title": "Neutral Kaon d anti-s tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Kaon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "d !s",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-kaon-s",
+      "title": "Neutral Kaon s anti-d tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Kaon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "s !d",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "positive-b-meson",
+      "title": "Positive B Meson tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positive",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "B Meson",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "u !b",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "negative-b-meson",
+      "title": "Negative B Meson tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Negative",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "B Meson",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "b !u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-b-meson-d",
+      "title": "Neutral B Meson d anti-b tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "B Meson",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "d !b",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "neutral-b-meson-b",
+      "title": "Neutral B Meson b anti-d tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Neutral",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "B Meson",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "b !d",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-noether-core",
+      "title": "Pro Noether Core",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Core",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-noether-core",
+      "title": "Anti Noether Core",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Core",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-uni-binary",
+      "title": "Pro Uni Binary",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Uni",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Binary",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-uni-binary",
+      "title": "Anti Uni Binary",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Uni",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Binary",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-bi-binary",
+      "title": "Pro Bi Binary",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Bi",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Binary",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-bi-binary",
+      "title": "Anti Bi Binary",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Bi",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Binary",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-tau",
+      "title": "Pro Tau",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Tau",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "anti-tau",
+      "title": "Anti Tau",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Tau",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "pro-muon",
+      "title": "Pro Muon",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Muon",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "anti-muon",
+      "title": "Anti Muon",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Muon",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "pro-electron",
+      "title": "Pro Electron",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Electron",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "anti-electron",
+      "title": "Anti Electron",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Electron",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "pro-tau-neutrino",
+      "title": "Pro Tau Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Tau",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-tau-neutrino",
+      "title": "Anti Tau Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Tau",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-muon-neutrino",
+      "title": "Pro Muon Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Muon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-muon-neutrino",
+      "title": "Anti Muon Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Muon",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-electron-neutrino",
+      "title": "Pro Electron Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Electron",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-electron-neutrino",
+      "title": "Anti Electron Neutrino",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Electron",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutrino",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-bottom-quark",
+      "title": "Pro Bottom Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Bottom",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-bottom-quark",
+      "title": "Anti Bottom Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Bottom",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-strange-quark",
+      "title": "Pro Strange Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Strange",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-strange-quark",
+      "title": "Anti Strange Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Strange",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-down-quark",
+      "title": "Pro Down Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Down",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-down-quark",
+      "title": "Anti Down Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Down",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-top-quark",
+      "title": "Pro Top Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Top",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-top-quark",
+      "title": "Anti Top Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Top",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-charm-quark",
+      "title": "Pro Charm Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Charm",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-charm-quark",
+      "title": "Anti Charm Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Charm",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-up-quark",
+      "title": "Pro Up Quark",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Up",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-up-quark",
+      "title": "Anti Up Quark",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Up",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Quark",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-proton",
+      "title": "Pro Proton u d u",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Proton",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "u d u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-proton",
+      "title": "Anti Proton !u !d !u",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Proton",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "!u !d !u",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "pro-neutron",
+      "title": "Pro Neutron d u d",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Pro",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutron",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "d u d",
+          "color": "white"
+        }
+      ]
+    },
+    {
+      "key": "anti-neutron",
+      "title": "Anti Neutron !d !u !d",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Anti",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Neutron",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "!d !u !d",
+          "color": "white"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ### Tile Glyph Construction
 
