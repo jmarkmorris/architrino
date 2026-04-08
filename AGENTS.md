@@ -1,5 +1,11 @@
 # Project Notes For Agents
 
+This document distinguishes three audience scopes:
+
+- `operator/developer`: communication with the workspace operator/developer during collaboration.
+- `author/editor`: authored documentation and AAA prose, especially under `content/markdown/aaa`.
+- `end user`: language shown to readers and users of the web apps.
+
 ### Workspace Identity
 
 - Preferred agent name in this workspace: `Cody`.
@@ -18,11 +24,11 @@
 
 ### Operator/Developer Communication
 
-- When giving the operator or developer step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one step at a time at the level of a sophomore in an electrical engineering bachelor's program.
-- When asking the operator or developer questions needed to proceed, ask them one at a time and phrase each question at the level of a sophomore in an electrical engineering bachelor's program.
-- When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
+- When giving the operator/developer step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one step at a time at the level of a sophomore in an electrical engineering bachelor's program.
+- When asking the operator/developer questions needed to proceed, ask them one at a time and phrase each question at the level of a sophomore in an electrical engineering bachelor's program.
+- When asking the operator/developer a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in your, the agent, ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
-- If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
+- If the question is nuanced, open-ended, or needs discussion rather than a crisp operator/developer choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
 - In operator/developer communication, do not assume shared understanding of technical or project-specific terminology before proceeding. When such terms are needed, define them immediately in plain language and explain how they relate to the surrounding concepts.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
 
@@ -36,8 +42,8 @@
 
 #### Document Scope and Linking
 
-- In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
-- Keep `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+- In markdown documents, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
+- Keep documents in `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 
 #### Canon and Editorial References
 
@@ -63,7 +69,7 @@
 
 #### Terminology and Reference Exclusions
 
-- In documentation, do not use `retard`, `retarded`, or related variants, including in full quotations. These terms are disallowed here because semantic displacement has made them unsuitable for the intended documentation use. Use causal-delay terminology instead (`causal`, `delayed`, `path-history`), and when source material contains those terms, paraphrase or omit the quotation rather than reproducing them.
+- In authored documentation and AAA prose, do not use `retard`, `retarded`, or related variants, including in full quotations. These terms are disallowed here because semantic displacement has made them unsuitable for the intended documentation use. Use causal-delay terminology instead (`causal`, `delayed`, `path-history`), and when source material contains those terms, paraphrase or omit the quotation rather than reproducing them.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
 
 ### End-User App Language
