@@ -1,0 +1,425 @@
+{
+  "schema": "xyzzy/v1",
+  "assemblies": [
+    {
+      "id": "reactant_neutron_row_1",
+      "type": "neutron-row",
+      "x": 2,
+      "y": 0,
+      "title": "Neutron Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "reactant_neutron_row_2",
+      "type": "neutron-row",
+      "x": 2,
+      "y": 1,
+      "title": "Neutron Row 2",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "reactant_neutron_row_3",
+      "type": "neutron-row",
+      "x": 2,
+      "y": 2,
+      "title": "Neutron Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "reactant_noether_pair_row_1",
+      "type": "noether-pair-row",
+      "x": 2,
+      "y": 3,
+      "title": "Noether Pair Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "reactant_noether_pair_row_2",
+      "type": "noether-pair-row",
+      "x": 2,
+      "y": 4,
+      "title": "Noether Pair Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "intermediate_up_quark_row_1",
+      "type": "up-quark-row",
+      "x": 9,
+      "y": 0,
+      "title": "Up Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "intermediate_down_quark_row_1",
+      "type": "down-quark-row",
+      "x": 9,
+      "y": 1,
+      "title": "Down Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "intermediate_up_quark_row_2",
+      "type": "up-quark-row",
+      "x": 9,
+      "y": 2,
+      "title": "Up Quark Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "intermediate_pro_noether_core",
+      "type": "pro-noether-core-row",
+      "x": 9,
+      "y": 3,
+      "title": "Pro Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "intermediate_anti_noether_core",
+      "type": "anti-noether-core-row",
+      "x": 9,
+      "y": 4,
+      "title": "Anti Noether Core",
+      "role": "intermediate",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "intermediate_unbound_architrinos",
+      "type": "unbound-architrinos-row",
+      "x": 9,
+      "y": 5,
+      "title": "Unbound Architrinos",
+      "role": "intermediate",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ]
+    },
+    {
+      "id": "product_proton_row_1",
+      "type": "proton-row",
+      "x": 16,
+      "y": 0,
+      "title": "Proton Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "product_proton_row_2",
+      "type": "proton-row",
+      "x": 16,
+      "y": 1,
+      "title": "Proton Row 2",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "product_proton_row_3",
+      "type": "proton-row",
+      "x": 16,
+      "y": 2,
+      "title": "Proton Row 3",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "product_pro_electron",
+      "type": "electron-row",
+      "x": 16,
+      "y": 3,
+      "title": "Pro Electron",
+      "role": "product",
+      "tiles": [
+        "pro-electron",
+        "binary-full-br-bb",
+        "binary-full-br-bb",
+        "binary-full-br-bb"
+      ]
+    },
+    {
+      "id": "product_anti_electron_neutrino",
+      "type": "anti-electron-neutrino-row",
+      "x": 16,
+      "y": 5,
+      "title": "Anti Electron Neutrino",
+      "role": "product",
+      "tiles": [
+        "anti-electron-neutrino",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb"
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "id": "dissociate_source",
+      "type": "dissociate",
+      "x": 7,
+      "y": 1,
+      "title": "Dissociate",
+      "positrinoCount": 9,
+      "electrinoCount": 9
+    },
+    {
+      "id": "pass_thru_noether_pair",
+      "type": "pass-thru",
+      "x": 7,
+      "y": 4,
+      "title": "Pass Thru",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "associate_proton",
+      "type": "associate",
+      "x": 14,
+      "y": 1,
+      "title": "Associate",
+      "positrinoCount": 9,
+      "electrinoCount": 9
+    },
+    {
+      "id": "associate_pro_electron",
+      "type": "associate",
+      "x": 14,
+      "y": 3,
+      "title": "Associate",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    },
+    {
+      "id": "associate_anti_electron_neutrino",
+      "type": "associate",
+      "x": 14,
+      "y": 5,
+      "title": "Associate",
+      "positrinoCount": 3,
+      "electrinoCount": 3
+    }
+  ],
+  "links": [
+    {
+      "id": "link_neutron_row_1_to_dissociate",
+      "endpointA": "reactant_neutron_row_1",
+      "endpointB": "dissociate_source"
+    },
+    {
+      "id": "link_neutron_row_2_to_dissociate",
+      "endpointA": "reactant_neutron_row_2",
+      "endpointB": "dissociate_source"
+    },
+    {
+      "id": "link_neutron_row_3_to_dissociate",
+      "endpointA": "reactant_neutron_row_3",
+      "endpointB": "dissociate_source"
+    },
+    {
+      "id": "link_dissociate_to_up_row_1",
+      "endpointA": "dissociate_source",
+      "endpointB": "intermediate_up_quark_row_1"
+    },
+    {
+      "id": "link_dissociate_to_down_row_1",
+      "endpointA": "dissociate_source",
+      "endpointB": "intermediate_down_quark_row_1"
+    },
+    {
+      "id": "link_dissociate_to_up_row_2",
+      "endpointA": "dissociate_source",
+      "endpointB": "intermediate_up_quark_row_2"
+    },
+    {
+      "id": "link_dissociate_to_pro_core",
+      "endpointA": "dissociate_source",
+      "endpointB": "intermediate_pro_noether_core"
+    },
+    {
+      "id": "link_dissociate_to_unbound",
+      "endpointA": "dissociate_source",
+      "endpointB": "intermediate_unbound_architrinos"
+    },
+    {
+      "id": "link_noether_pair_to_pass_thru",
+      "endpointA": "reactant_noether_pair_row_2",
+      "endpointB": "pass_thru_noether_pair"
+    },
+    {
+      "id": "link_pass_thru_to_anti_core",
+      "endpointA": "pass_thru_noether_pair",
+      "endpointB": "intermediate_anti_noether_core"
+    },
+    {
+      "id": "link_up_row_1_to_associate_proton",
+      "endpointA": "intermediate_up_quark_row_1",
+      "endpointB": "associate_proton"
+    },
+    {
+      "id": "link_down_row_1_to_associate_proton",
+      "endpointA": "intermediate_down_quark_row_1",
+      "endpointB": "associate_proton"
+    },
+    {
+      "id": "link_up_row_2_to_associate_proton",
+      "endpointA": "intermediate_up_quark_row_2",
+      "endpointB": "associate_proton"
+    },
+    {
+      "id": "link_associate_proton_to_product_row_1",
+      "endpointA": "associate_proton",
+      "endpointB": "product_proton_row_1"
+    },
+    {
+      "id": "link_associate_proton_to_product_row_2",
+      "endpointA": "associate_proton",
+      "endpointB": "product_proton_row_2"
+    },
+    {
+      "id": "link_associate_proton_to_product_row_3",
+      "endpointA": "associate_proton",
+      "endpointB": "product_proton_row_3"
+    },
+    {
+      "id": "link_pro_core_to_associate_electron",
+      "endpointA": "intermediate_pro_noether_core",
+      "endpointB": "associate_pro_electron"
+    },
+    {
+      "id": "link_unbound_to_associate_electron",
+      "endpointA": "intermediate_unbound_architrinos",
+      "endpointB": "associate_pro_electron"
+    },
+    {
+      "id": "link_associate_electron_to_product",
+      "endpointA": "associate_pro_electron",
+      "endpointB": "product_pro_electron"
+    },
+    {
+      "id": "link_anti_core_to_associate_antineutrino",
+      "endpointA": "intermediate_anti_noether_core",
+      "endpointB": "associate_anti_electron_neutrino"
+    },
+    {
+      "id": "link_unbound_to_associate_antineutrino",
+      "endpointA": "intermediate_unbound_architrinos",
+      "endpointB": "associate_anti_electron_neutrino"
+    },
+    {
+      "id": "link_associate_antineutrino_to_product",
+      "endpointA": "associate_anti_electron_neutrino",
+      "endpointB": "product_anti_electron_neutrino"
+    }
+  ],
+  "compositeLabels": [
+    {
+      "id": "label_neutron",
+      "side": "left",
+      "text": "Neutron",
+      "rowStart": 0,
+      "rowEnd": 2
+    },
+    {
+      "id": "label_noether_pair",
+      "side": "left",
+      "text": "Noether Pair",
+      "rowStart": 3,
+      "rowEnd": 4
+    },
+    {
+      "id": "label_proton",
+      "side": "right",
+      "text": "Proton",
+      "rowStart": 0,
+      "rowEnd": 2
+    },
+    {
+      "id": "label_pro_electron",
+      "side": "right",
+      "text": "Pro Electron",
+      "rowStart": 3,
+      "rowEnd": 3
+    },
+    {
+      "id": "label_anti_electron_neutrino",
+      "side": "right",
+      "text": "Anti Electron Neutrino",
+      "rowStart": 5,
+      "rowEnd": 5
+    }
+  ]
+}

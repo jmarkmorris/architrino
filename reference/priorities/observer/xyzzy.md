@@ -860,6 +860,84 @@ That slotting rule should separate nearby spline paths without changing the fixe
 
 For click targeting, the runtime may use a wider invisible hit path, but it should not add a second visible stroke.
 
+The exact spline rendering metrics for v1 are now fixed.
+
+The visible spline stroke is:
+
+- stroke color `#ffffff`;
+- stroke width `2px`;
+- stroke opacity `1`;
+- `fill: none`;
+- `stroke-linecap: round`;
+- `stroke-linejoin: round`;
+- no dash pattern;
+- no arrows;
+- no glow;
+- and no second visible under-stroke or halo.
+
+The invisible click-target path is:
+
+- one separate invisible path that follows the exact same cubic Bezier geometry as the visible spline;
+- stroke width `12px`;
+- `stroke: transparent`;
+- `fill: none`;
+- and used only for pointer targeting such as deletion.
+
+The routing-column geometry is:
+
+- each routing column is one tile column wide and therefore `80px` wide;
+- the routing centerline is the horizontal center of that routing column;
+- the spline belongs to that routing column alone;
+- and the spline may bend only by shifting around that routing centerline with one fixed slot offset.
+
+The exact endpoint anchors are:
+
+- start point at the vertical middle of the linked left object's right outer edge facing the routing column;
+- end point at the vertical middle of the linked right object's left outer edge facing the routing column;
+- for assemblies, that means the midpoint of the four-tile object's outer edge;
+- for operators, that means the midpoint of the one-tile object's outer edge.
+
+The exact cubic Bezier rule is:
+
+- `P0` is the start anchor on the left object edge;
+- `P3` is the end anchor on the right object edge;
+- `P1.x = P0.x + 16px`;
+- `P2.x = P3.x - 16px`;
+- `P1.y` equals the routing-slot y position for that spline;
+- `P2.y` equals the same routing-slot y position;
+- the routing-slot y position is the routing-column midpoint between the two endpoint y values plus the assigned slot offset;
+- and no additional waypoints or alternate control rules are permitted in v1.
+
+In plain terms, the spline should leave each object only a short horizontal distance, commit early toward its assigned routing slot inside the one-tile channel, and stay as taut and diagonal as possible rather than expanding into a broad S-shape through the middle.
+
+The exact routing-column slot-offset set is:
+
+- `-12px`
+- `-6px`
+- `0px`
+- `6px`
+- `12px`
+
+Those are offsets from the routing-column centerline.
+
+No other slot offsets are allowed in v1.
+
+The deterministic slot assignment rule is:
+
+- gather all links that use the same routing column;
+- sort them by stable link id ascending;
+- assign offsets in the fixed order `0`, `-6`, `6`, `-12`, `12`;
+- if more than five links share one routing column, continue reusing that same five-slot cycle in sorted order;
+- and do not alter endpoint rows, object placement, or link validity in order to avoid collisions.
+
+The visible spline class is therefore completely fixed for v1:
+
+- white;
+- `2px`;
+- one cubic Bezier family only;
+- one routing-column control-line rule only;
+- and one invisible `12px` hit path only.
+
 The runtime should not expose or render separate connection circles.
 
 Spline coloring is a later finishing action, like composite labels, and should not complicate the first-pass interaction or layout model.
@@ -1363,9 +1441,5 @@ Done when:
 
 ## To Do
 
-1. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
-    It includes “White. 2px.” in the todo itself, but I do not see the full spline spec written out in the document or implemented in a live Xyzzy surface module.
-2. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
+1. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
     The schema requires type for assemblies and operators in src/contracts/xyzzy/v1/schema.json (line 18) and src/contracts/xyzzy/v1/schema.json (line 63), but there is no closed allowed-value list or statement of whether each type is semantic-only, display-only, or both.
-3. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
-    I did not find a canonical free_neutron_beta_decay xyzzy/v1 sample doc or a matching Xyzzy manifest entry. The only manifest I found was the reaction one at content/contracts/examples/reaction-library/manifest.v1.json (line 1).

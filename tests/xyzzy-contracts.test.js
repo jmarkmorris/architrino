@@ -105,10 +105,13 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 
 const XYZZY_EXAMPLE_PATHS = [
   "content/contracts/examples/xyzzy/four_tile_family_coverage.v1.json",
+  "content/contracts/examples/xyzzy/free_neutron_beta_decay.v1.json",
   "content/contracts/examples/xyzzy/unbound_architrinos.v1.json",
   "content/contracts/examples/xyzzy/pass_thru_up_quark.v1.json",
   "content/contracts/examples/xyzzy/proton_to_photon_stack.v1.json",
 ];
+
+const XYZZY_MANIFEST_PATH = "content/contracts/examples/xyzzy/manifest.v1.json";
 
 test("xyzzy example documents match the versioned xyzzy schema", () => {
   const schema = readJson("src/contracts/xyzzy/v1/schema.json");
@@ -209,4 +212,34 @@ test("xyzzy examples include at least one explicit assembly payload for every cu
 
   const missingRows = allReviewRows.filter((row) => !coveredRows.has(row));
   assert.deepEqual(missingRows, []);
+});
+
+test("xyzzy manifest defaults to the canonical free neutron beta decay document", () => {
+  const manifest = readJson(XYZZY_MANIFEST_PATH);
+  assert.equal(manifest.schema, "xyzzy-library-manifest/v1");
+  assert.equal(manifest.defaultEntryId, "free_neutron_beta_decay");
+  assert.deepEqual(Object.keys(manifest).sort(), ["defaultEntryId", "entries", "schema"]);
+
+  const defaultEntry = manifest.entries.find((entry) => entry.id === manifest.defaultEntryId);
+  assert.ok(defaultEntry);
+  assert.equal(defaultEntry.isDefault, true);
+  assert.equal(
+    defaultEntry.documentPath,
+    "content/contracts/examples/xyzzy/free_neutron_beta_decay.v1.json"
+  );
+
+  manifest.entries.forEach((entry) => {
+    assert.deepEqual(
+      Object.keys(entry).sort(),
+      entry.isDefault
+        ? ["displayTitle", "documentPath", "id", "isDefault", "title"]
+        : ["displayTitle", "documentPath", "id", "title"]
+    );
+    assert.equal(typeof entry.id, "string");
+    assert.equal(typeof entry.title, "string");
+    assert.equal(typeof entry.displayTitle, "string");
+    assert.equal(typeof entry.documentPath, "string");
+    assert.equal(entry.documentPath.endsWith(".v1.json"), true);
+    assert.equal(fs.existsSync(new URL(`../${entry.documentPath}`, import.meta.url)), true, entry.documentPath);
+  });
 });
