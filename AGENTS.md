@@ -16,25 +16,41 @@
 - For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 
-### Operator and Developer Guidance
+### Operator/Developer Communication
 
-- When giving the operator or developer step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one detailed ELI5 step at a time.
-- When asking the operator or developer questions needed to proceed, ask them one at a time and phrase each question in detailed ELI5 terms.
+- When giving the operator or developer step-by-step instructions, first provide a short overview of the steps, then deliver the detailed explanation one step at a time at the level of a sophomore in an electrical engineering bachelor's program.
+- When asking the operator or developer questions needed to proceed, ask them one at a time and phrase each question at the level of a sophomore in an electrical engineering bachelor's program.
 - When asking the operator a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in your, the agent, ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
-- In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
-- Keep `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+- In operator/developer communication, do not assume shared understanding of technical or project-specific terminology before proceeding. When such terms are needed, define them immediately in plain language and explain how they relate to the surrounding concepts.
+- Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
+
+### Workspace Workflow
+
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
-- Do not use terms such as `seam`, `anchor`, `root`, `composition root`, `wiring`, `headless`, or similar insider shorthand unless they are literal code identifiers, file names, UI labels, or direct quotations.
+- For the live backlog of known cruft and sprawl reduction work, see [reference/priorities/SUMMARY/priorities.md](reference/priorities/SUMMARY/priorities.md).
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
-### End-User-Facing Content and Web Apps
+### Authoring and Editorial Policy
 
-- For textbook-facing prose, notation, terminology, and usage canon, rely on Archie guides, glossaries, and references in `content/markdown/aaa/archie/`
+#### Document Scope and Linking
+
+- In markdown content, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
+- Keep `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
+
+#### Canon and Editorial References
+
+- For textbook-facing prose, notation, terminology, and usage canon, rely on Archie guides, glossaries, and references in `content/markdown/aaa/archie/`.
 - Primary style guides: [content/markdown/aaa/archie/academic-style-guide.md](content/markdown/aaa/archie/academic-style-guide.md) and [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md).
 - Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md) and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
-- Update the Archie canon of guides and glossaries as terminology and knowledge develops.
+- Treat the Archie canon of guides and glossaries as controlled references, not casual edit targets.
+- For ordinary content work, conform documents to the canon; do not silently rewrite the canon to match a draft.
+- Update canon files only when the task explicitly changes terminology or style policy, or when leaving the canon unchanged would create a clear conflict with already-accepted content.
+- Before changing canon files as part of broader work, discuss the proposed canon change, rationale, and downstream effects with the operator/developer unless the operator/developer explicitly requested the canon update.
+
+#### Theory-Facing Writing
+
 - Theory/math-first authoring: prioritize derivations, definitions, geometry, and dynamics; minimize forward-looking TODO/checklist language tied to future observations or experiments unless explicitly requested.
 - Preserve high-value insights and eureka moments, but restate them at the strongest defensible level rather than the most exuberant level.
 - In theory-facing prose, distinguish carefully between:
@@ -44,8 +60,14 @@
   - and speculative extensions.
 - When an insight feels foundational, prefer wording such as "deeper basis," "ontological basis," "fundamental ledger," or "stronger claim than" before escalating to universal statements like "root of all" or "explains everything."
 - Do not flatten a real insight into timid prose; keep the force of the insight, but name its scope, what it directly establishes, and what still requires separate argument.
-- Use causal-delay terminology in prose (`causal`, `delayed`, `path-history`) and avoid `retard`/`retarded` wording outside literal quotations.
+
+#### Terminology and Reference Exclusions
+
+- In documentation, do not use `retard`, `retarded`, or related variants, including in full quotations. These terms are disallowed here because semantic displacement has made them unsuitable for the intended documentation use. Use causal-delay terminology instead (`causal`, `delayed`, `path-history`), and when source material contains those terms, paraphrase or omit the quotation rather than reproducing them.
 - Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
+
+### End-User App Language
+
 - In end-user-facing web app communication, use plain language and avoid internal software jargon.
 - If a technical term cannot be avoided, explain it immediately in ordinary language.
 
@@ -65,7 +87,7 @@
 
 - Always inspect the relevant code paths and rendered structure before proposing or applying a fix. Find the actual code causing the issue rather than inferring the solution from symptoms or screenshots alone when the implementation can be examined directly.
 - After identifying the real cause, search for other instances of the same or similar code elsewhere in the codebase that could produce the same class of problem.
-- In user-facing communication, avoid the phrase `instead of guessing`.
+- In operator/developer-facing communication, avoid the phrase `instead of guessing`.
 
 ### Reaction Solver Geometry
 
