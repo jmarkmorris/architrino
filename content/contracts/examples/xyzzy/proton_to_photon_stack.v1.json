@@ -1,0 +1,93 @@
+{
+  "schema": "xyzzy/v1",
+  "assemblies": [
+    {
+      "id": "reactant_proton_row_1",
+      "type": "pro-up-quark-assembly",
+      "x": 2,
+      "y": 0,
+      "title": "Proton Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "reactant_proton_row_2",
+      "type": "pro-down-quark-assembly",
+      "x": 2,
+      "y": 1,
+      "title": "Proton Row 2",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "reactant_proton_row_3",
+      "type": "pro-up-quark-assembly",
+      "x": 2,
+      "y": 2,
+      "title": "Proton Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "product_photon_row_1",
+      "type": "photon-assembly",
+      "x": 16,
+      "y": 0,
+      "title": "Photon Row 1",
+      "role": "product",
+      "tiles": [
+        "photon",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "product_photon_row_2",
+      "type": "photon-assembly",
+      "x": 16,
+      "y": 1,
+      "title": "Photon Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    }
+  ],
+  "operators": [],
+  "links": [],
+  "compositeLabels": [
+    {
+      "id": "label_proton",
+      "side": "left",
+      "text": "Proton",
+      "rowStart": 0,
+      "rowEnd": 2
+    },
+    {
+      "id": "label_photon",
+      "side": "right",
+      "text": "Photon",
+      "rowStart": 0,
+      "rowEnd": 1
+    }
+  ]
+}

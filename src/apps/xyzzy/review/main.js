@@ -1,4 +1,4 @@
-import { createXyzzyTileReviewAppRuntime } from "../XyzzyTileReviewAppRuntime.js";
+import { createXyzzyTileReviewAppRuntime } from "../XyzzyTileReviewAppRuntime.js?v=2026-04-08-quark-color-title-tile";
 
 const specUrl = new URL("../xyzzy-tiles.json", import.meta.url).href;
 const groupSpecUrl = new URL("../xyzzy-review-groups.json", import.meta.url).href;
@@ -12,6 +12,7 @@ const runtime = createXyzzyTileReviewAppRuntime({
   catalogMetaElement: document.getElementById("xyzzy-review-catalog-meta"),
   specialGroupElement: document.getElementById("xyzzy-review-special-group-grid"),
   singleRowGroupElement: document.getElementById("xyzzy-review-single-row-group-grid"),
+  quarkColorGroupElement: document.getElementById("xyzzy-review-quark-color-group-grid"),
   compositeGroupElement: document.getElementById("xyzzy-review-composite-group-grid"),
   titleGridElement: document.getElementById("xyzzy-review-title-grid"),
   binaryGridElement: document.getElementById("xyzzy-review-binary-grid"),

@@ -304,6 +304,80 @@
       ]
     }
   ],
+  "quarkColorGroups": [
+    {
+      "key": "up-quark-color-variations",
+      "title": "Up Quark Color Variations",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-br",
+          "binary-full-br-rr",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-rr",
+          "binary-full-br-br"
+        ]
+      ]
+    },
+    {
+      "key": "down-quark-color-variations-family-i",
+      "title": "Down Quark Color Variations Family I",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-rr",
+          "binary-full-br-bb",
+          "binary-full-br-bb"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-bb",
+          "binary-full-br-rr",
+          "binary-full-br-bb"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-bb",
+          "binary-full-br-bb",
+          "binary-full-br-rr"
+        ]
+      ]
+    },
+    {
+      "key": "down-quark-color-variations-family-ii",
+      "title": "Down Quark Color Variations Family II",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-bb",
+          "binary-full-br-br",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-br",
+          "binary-full-br-bb"
+        ]
+      ]
+    }
+  ],
   "compositeGroups": [
     {
       "key": "photon",

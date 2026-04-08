@@ -1,6 +1,6 @@
-import { getXyzzyFrameGeometry, loadXyzzyTileCatalog } from "./XyzzyTileCatalogRuntime.js";
-import { loadXyzzyReviewGroupCatalog } from "./XyzzyReviewGroupCatalogRuntime.js";
-import { renderXyzzyTileSvg } from "./XyzzyTileSvgRuntime.js";
+import { getXyzzyFrameGeometry, loadXyzzyTileCatalog } from "./XyzzyTileCatalogRuntime.js?v=2026-04-08-quark-color-title-tile";
+import { loadXyzzyReviewGroupCatalog } from "./XyzzyReviewGroupCatalogRuntime.js?v=2026-04-08-quark-color-title-tile";
+import { renderXyzzyTileSvg } from "./XyzzyTileSvgRuntime.js?v=2026-04-08-quark-color-title-tile";
 
 function normalizeInputValue(value, fallback) {
   const text = typeof value === "string" ? value.trim() : "";
@@ -119,6 +119,7 @@ export function createXyzzyTileReviewAppRuntime({
   catalogMetaElement,
   specialGroupElement,
   singleRowGroupElement,
+  quarkColorGroupElement,
   compositeGroupElement,
   titleGridElement,
   binaryGridElement,
@@ -139,7 +140,8 @@ export function createXyzzyTileReviewAppRuntime({
 
   function render() {
     const hasTileGridElements = gridElement || titleGridElement || binaryGridElement;
-    const hasGroupElements = specialGroupElement || singleRowGroupElement || compositeGroupElement;
+    const hasGroupElements =
+      specialGroupElement || singleRowGroupElement || quarkColorGroupElement || compositeGroupElement;
     if (!catalog || (!hasTileGridElements && !hasGroupElements)) {
       return;
     }
@@ -160,6 +162,13 @@ export function createXyzzyTileReviewAppRuntime({
     if (singleRowGroupElement && groupCatalog) {
       singleRowGroupElement.replaceChildren(
         ...groupCatalog.singleRowGroups.map((group) =>
+          createGroupCard(documentLike, catalog, tileByKey, group, sampleCounts, measurementContext)
+        )
+      );
+    }
+    if (quarkColorGroupElement && groupCatalog) {
+      quarkColorGroupElement.replaceChildren(
+        ...groupCatalog.quarkColorGroups.map((group) =>
           createGroupCard(documentLike, catalog, tileByKey, group, sampleCounts, measurementContext)
         )
       );
@@ -196,11 +205,13 @@ export function createXyzzyTileReviewAppRuntime({
       const frame = getXyzzyFrameGeometry(catalog);
       const specialGroupCount = groupCatalog?.specialGroups?.length ?? 0;
       const singleRowGroupCount = groupCatalog?.singleRowGroups?.length ?? 0;
+      const quarkColorGroupCount = groupCatalog?.quarkColorGroups?.length ?? 0;
       const compositeGroupCount = groupCatalog?.compositeGroups?.length ?? 0;
       statusElement.textContent =
         `Rendered ${catalogTiles.length} catalog tiles, ${binaryTiles.length} binary tiles, ` +
         `${specialGroupCount} special single-row groups, ${singleRowGroupCount} standard-model single-row groups, ` +
-        `and ${compositeGroupCount} composite groups from the JSON-driven Xyzzy catalogs. ` +
+        `${quarkColorGroupCount} quark color example groups, and ${compositeGroupCount} composite groups ` +
+        `from the JSON-driven Xyzzy catalogs. ` +
         `Frame rect ${frame.rectInset.toFixed(0)},${frame.rectInset.toFixed(0)} ` +
         `${frame.rectSize.toFixed(0)}x${frame.rectSize.toFixed(0)}.`;
     }
@@ -208,7 +219,8 @@ export function createXyzzyTileReviewAppRuntime({
 
   async function init() {
     const hasTileGridElements = gridElement || titleGridElement || binaryGridElement;
-    const hasGroupElements = specialGroupElement || singleRowGroupElement || compositeGroupElement;
+    const hasGroupElements =
+      specialGroupElement || singleRowGroupElement || quarkColorGroupElement || compositeGroupElement;
     if (!hasTileGridElements && !hasGroupElements) {
       throw new Error("Xyzzy review output element is required.");
     }
@@ -229,6 +241,7 @@ export function createXyzzyTileReviewAppRuntime({
       const groupTotal =
         (groupCatalog?.specialGroups?.length ?? 0) +
         (groupCatalog?.singleRowGroups?.length ?? 0) +
+        (groupCatalog?.quarkColorGroups?.length ?? 0) +
         (groupCatalog?.compositeGroups?.length ?? 0);
       catalogMetaElement.textContent =
         `${catalog.tiles.length} tiles from ${specUrl}` +

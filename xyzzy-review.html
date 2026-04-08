@@ -18,6 +18,7 @@
         --xyzzy-muted: rgba(245, 247, 255, 0.68);
         --xyzzy-input: #0e1017;
         --xyzzy-shadow: rgba(0, 0, 0, 0.42);
+        --xyzzy-app-tile-size: 72px;
       }
 
       * {
@@ -102,7 +103,7 @@
 
       .xyzzy-review-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
         gap: 16px;
       }
 
@@ -149,12 +150,12 @@
         display: grid;
         justify-items: center;
         align-items: start;
-        min-height: 160px;
+        min-height: var(--xyzzy-app-tile-size);
       }
 
       .xyzzy-review-group-preview {
         justify-items: start;
-        min-height: 88px;
+        min-height: var(--xyzzy-app-tile-size);
         overflow-x: auto;
       }
 
@@ -171,14 +172,14 @@
       }
 
       .xyzzy-review-tile-svg {
-        width: 160px;
-        height: 160px;
+        width: var(--xyzzy-app-tile-size);
+        height: var(--xyzzy-app-tile-size);
         display: block;
       }
 
       .xyzzy-review-group-tile {
-        width: 88px;
-        height: 88px;
+        width: var(--xyzzy-app-tile-size);
+        height: var(--xyzzy-app-tile-size);
         flex: 0 0 auto;
       }
 
@@ -210,30 +211,13 @@
         }
 
         .xyzzy-review-grid {
-          grid-template-columns: repeat(auto-fill, minmax(154px, 1fr));
-        }
-
-        .xyzzy-review-tile-svg {
-          width: 136px;
-          height: 136px;
+          grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
         }
 
         .xyzzy-review-group-grid {
           grid-template-columns: minmax(0, 1fr);
         }
 
-        .xyzzy-review-group-tile {
-          width: 68px;
-          height: 68px;
-        }
-
-        .xyzzy-review-card-preview {
-          min-height: 136px;
-        }
-
-        .xyzzy-review-group-preview {
-          min-height: 68px;
-        }
       }
     </style>
   </head>
@@ -287,6 +271,20 @@
         ></div>
       </section>
 
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-quark-color-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-quark-color-groups-heading">Quark Color Example Groups</h2>
+          <p class="xyzzy-review-section-note">
+            Example four-tile quark rows showing axis-exceptionality permutations for up quarks and both current down-quark families.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-quark-color-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy quark color example group review"
+        ></div>
+      </section>
+
       <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-composite-groups-heading">
         <header class="xyzzy-review-section-header">
           <h2 id="xyzzy-review-composite-groups-heading">Composite Groups</h2>
@@ -329,6 +327,6 @@
         ></div>
       </section>
     </main>
-    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-groups"></script>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-08-quark-color-title-tile"></script>
   </body>
 </html>

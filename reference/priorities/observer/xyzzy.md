@@ -85,6 +85,84 @@ The home button:
 - uses the same home icon as the main web app home button and the reaction app home link;
 - and navigates to `./index.html`.
 
+The exact header control geometry and appearance for v1 is now fixed.
+
+The two header controls must visually emulate the top-right search control and home button from the main web app HUD.
+
+For Xyzzy, that means:
+
+- the first top band keeps the same `80px` height already specified above;
+- the controls sit inside that band at the top right;
+- the controls align to the band's top edge using the same top-right HUD idiom as the main web app rather than a new centered or bottom-aligned layout;
+- the JSON selector trigger sits immediately to the left of the home button;
+- and the home button remains the far-right control.
+
+The exact horizontal spacing is:
+
+- `8px` gap between the JSON selector trigger and the home button;
+- and no additional visible control between them.
+
+The exact home-button geometry is:
+
+- `32px` wide;
+- `32px` tall;
+- circular with `border-radius: 999px`;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- background `rgba(8, 10, 18, 0.75)`;
+- icon color `#f5f7ff`;
+- one centered house SVG at `18px x 18px`;
+- and the accessible label `Go to home`.
+
+The exact JSON-selector trigger geometry is:
+
+- it must use the same compact control footprint and material treatment as the main web app search control;
+- `32px` tall minimum;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- background `rgba(8, 10, 18, 0.75)`;
+- text color `#f5f7ff`;
+- backdrop blur matching the main app HUD treatment;
+- and pointer/hover/focus behavior should match the main web app control family rather than inventing a separate Xyzzy-only button style.
+
+Unlike the main web app search control, the Xyzzy selector is not icon-only in the openable trigger state.
+
+Its closed trigger should therefore:
+
+- present the selected document title as text;
+- use the same visual material treatment as the main web app search/results control family;
+- remain compact rather than expanding into a full-width header bar;
+- and size to content with a practical minimum width sufficient to show short titles cleanly.
+
+The exact selector dropdown geometry is:
+
+- it opens as a floating panel below the trigger;
+- top offset `44px` below the trigger origin, matching the main web app search panel drop;
+- right-aligned to the trigger/home control cluster;
+- minimum width `260px`;
+- maximum width `80vw`;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- `12px` corner radius;
+- background `rgba(8, 10, 18, 0.75)`;
+- padding `8px 10px`;
+- and backdrop blur matching the main web app search panel.
+
+The exact selector-option appearance is:
+
+- use the same visual family as the main web app search results list;
+- show one row per manifest entry using `displayTitle`;
+- and keep the list compact and HUD-like rather than introducing framed cards, tiled previews, or extra descriptive text in v1.
+
+The exact accessible labels are:
+
+- JSON selector trigger: `Choose Xyzzy document`;
+- home button: `Go to home`.
+
+The first top band visual treatment is:
+
+- no extra title label, caption, divider, or framing bar around the controls;
+- no separate bordered container wrapping both controls together;
+- no decorative chrome beyond the band and the controls themselves;
+- and visual styling should read as the same translucent HUD control family already used by the main web app.
+
 Other than that JSON selector and home button, the first top band remains empty in v1.
 
 The second top band remains entirely empty in v1.
@@ -379,9 +457,9 @@ The Xyzzy generator and review renderer should use these exact values rather tha
 - horizontal radius: `38`;
 - vertical radius: `13`;
 - stroke color: `rgba(162, 89, 255, 0.96)`;
-- stroke width: `7.2` in the generator specification, which corresponds to a `12px` intended design thickness scaled by the `72/120` glyph fit.
+- stroke width: `5` in the generator specification, which corresponds to a `3px` display thickness after the `72/120` glyph fit.
 
-In the Xyzzy binary generator, that orbit stroke also uses a non-scaling stroke rule.
+In the Xyzzy binary generator and review renderer, that orbit stroke scales with the `72/120` glyph fit, so it renders at `3px` inside the `72px x 72px` tile field.
 
 The current reaction-app rendering also applies the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
 
@@ -391,11 +469,11 @@ The current reaction-app rendering also applies the orbit glow filter `drop-shad
 - end point: `(60, 86.6666666667)`;
 - line length: `53.3333333334`;
 - stroke color: `rgba(162, 89, 255, 0.82)`;
-- stroke width: `4.8` in the generator specification, which corresponds to an `8px` intended design thickness scaled by the `72/120` glyph fit.
+- stroke width: `4` in the generator specification, which corresponds to a `2.4px` display thickness after the `72/120` glyph fit.
 
-The current reaction-app rendering also uses:
+The current Xyzzy generator and review renderer also use:
 
-- non-scaling stroke;
+- scaling stroke;
 - solid full-mode axis lines with butt line caps;
 - and overall axis opacity `0.84`.
 
@@ -594,6 +672,15 @@ That reserved top row:
 
 Normal authored rows therefore begin below that reserved top row.
 
+Within each assembly band, authored placement should follow a dense lane standard.
+
+That means:
+
+- between the topmost and bottommost occupied assembly extents in one assembly band, there should be no empty lane row;
+- the only routine blank row in the grid is the one reserved top row described above;
+- a later composite occupying `n` rows in one assembly band counts as one occupied `n x 4` lane rectangle for this density rule;
+- and create, drag, delete, and composite-edit behavior in an assembly band should preserve that no-gap lane standard.
+
 Spline attachment should use only the outer rectangle bounds of the two linked objects.
 
 ### Fixed Column Strip
@@ -738,6 +825,165 @@ Even with that difference, both assemblies and operators still live on the same 
 
 Operators remain linkable on both their left and right sides. A one-tile operator is still a full link endpoint object even though it is visually smaller than a four-tile assembly.
 
+### Direct Object Editing
+
+For v1, direct object editing belongs to the authored surface itself.
+
+These interaction rules define the intended authoring behavior even if parts of that authoring runtime remain deferred in implementation until the dedicated authoring pass lands.
+
+It should remain single-object and surface-local:
+
+- no persistent side panel;
+- no extra top-band controls;
+- no multiselect;
+- no resize handles;
+- and no separate visible JSON editor.
+
+Plain click behavior is now:
+
+- plain click on an assembly or operator selects that one object;
+- plain click on empty surface clears the current object selection;
+- dragging an object begins from the object itself rather than from a separate handle;
+- and `Shift` remains reserved for spline authoring.
+
+A selected object should draw one thin visible selection outline around the full outer rectangle of the object:
+
+- `4x1` outer bounds for assemblies;
+- `1x1` outer bounds for operators;
+- and no per-tile internal selection boxes.
+
+#### Create Picker
+
+Object creation should use one transient surface-local picker.
+
+That picker is the only create UI permitted in v1.
+
+It should:
+
+- appear only after double-click on an empty legal placement target;
+- open anchored near the clicked row position;
+- use the same translucent HUD material family as the header JSON selector dropdown;
+- close on `Escape` or plain click elsewhere with no document change;
+- and never appear as a permanent toolbar, side panel, or bottom tray.
+
+The picker should never open on:
+
+- reserved column 1 or 20;
+- routing columns 6, 8, 13, or 15;
+- the reserved top row;
+- occupied operator cells;
+- or assembly rows whose four occupied tile cells are already blocked by another object.
+
+#### Creating Assemblies
+
+To create an assembly:
+
+- double-click an empty tile position in one of the three assembly bands on a normal authored row;
+- treat any clicked tile in columns 2-5 as the reactant assembly slot for that row;
+- treat any clicked tile in columns 9-12 as the intermediate assembly slot for that row;
+- treat any clicked tile in columns 16-19 as the product assembly slot for that row;
+- open the create picker with assembly entries only for that slot;
+- and click one assembly entry to create the assembly immediately in that row and close the picker.
+
+The chosen assembly entry must provide the full explicit assembly payload written to the working `xyzzy/v1` document:
+
+- one new stable `id`;
+- the assembly `type`;
+- the visible `title`;
+- the band-fixed `x` origin (`2`, `9`, or `16`);
+- the clicked row as `y`;
+- the role implied by the chosen band (`reactant`, `intermediate`, or `product`);
+- and the exact four-entry `tiles` array for that assembly.
+
+The runtime must not create an assembly by storing only `type` and later guessing the `tiles` payload.
+
+#### Creating Operators
+
+To create an operator:
+
+- double-click an empty cell in column 7 or column 14 on a normal authored row;
+- open the create picker with exactly three operator type choices: `Associate`, `Dissociate`, and `Pass Thru`;
+- choose one operator type;
+- enter explicit integer values for `positrinoCount` and `electrinoCount` in the same picker;
+- and confirm creation to write the operator and close the picker.
+
+The operator create action must write:
+
+- one new stable `id`;
+- the operator `type`;
+- the canonical visible `title` for that type;
+- the clicked column as `x`;
+- the clicked row as `y`;
+- the entered `positrinoCount`;
+- and the entered `electrinoCount`.
+
+Creation should stay blocked until both count fields are valid integers. No hidden defaults should be assumed at commit time.
+
+#### Moving Assemblies And Operators
+
+Object movement should be direct drag on the object itself.
+
+The movement rule is intentionally simple in v1:
+
+- assemblies move only vertically within their current assembly band;
+- operators move only vertically within their current operator column;
+- horizontal reassignment between object bands is not part of the v1 direct-editing workflow;
+- to place an object in a different band, create a new object there and delete the old one;
+- and `Shift`-drag has no alternate move meaning.
+
+For assemblies, the drag affordance should cover the full four-tile rectangle:
+
+- a pointer-down anywhere inside the visible `4x1` assembly bounds may begin the drag;
+- no separate grab handle is permitted;
+- and the drag should read as moving the whole assembly group up or down its lane rather than moving one internal tile.
+
+When the user drags an object:
+
+- the drag preview should snap to whole-row positions;
+- the object's `x`, width, and height remain fixed by object class and current band;
+- only `y` is eligible to change;
+- the reserved top row is never a valid drop target;
+- and any row whose occupied cells would overlap another object is invalid.
+
+On drop:
+
+- releasing an operator on one valid free row commits the new `y`;
+- releasing an assembly in one assembly band should preserve the dense lane standard for that band;
+- releasing anywhere else returns the object to its original row;
+- no automatic row shuffling or collision resolution should occur for operators;
+- and the object's stable `id` must not change.
+
+Because movement stays inside the current band, existing spline links stay attached to the same object ids and remain valid after the move.
+
+For assembly lanes, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
+
+- dragging one assembly over another assembly row should open an insertion position in that lane rather than requiring a permanently empty destination row;
+- the affected lower assemblies in that same lane should shift down as needed to make room for the dragged assembly;
+- and dropping an assembly should leave that lane with no empty rows between occupied assembly extents.
+
+Composite-aware insertion may remain deferred until composite authoring is implemented, but its behavior is already fixed:
+
+- a composite in one assembly lane should be hit-tested as one occupied `n-row x 4-column` rectangle;
+- dragging an assembly over that composite rectangle should shift the composite's member assemblies down together as one block;
+- and that insertion behavior should still preserve the dense no-gap lane rule.
+
+#### Deleting Assemblies And Operators
+
+Deletion is selection-based and immediate.
+
+The delete gesture is:
+
+- plain click an assembly or operator to select it;
+- press `Delete` or `Backspace`;
+- and remove that object from the working `xyzzy/v1` document immediately.
+
+When an object is deleted:
+
+- delete every link whose `endpointA` or `endpointB` references that object's id in the same edit action;
+- if deleting an assembly would leave an empty lane row inside that assembly band, compact the lower assemblies in that same band upward to close the gap;
+- leave unrelated objects and composite-label records unchanged;
+- and do not show a confirmation dialog in v1.
+
 ### Spline Authoring
 
 Mappings are authored directly between whole objects, not through separate connection widgets.
@@ -782,6 +1028,84 @@ That slotting rule should separate nearby spline paths without changing the fixe
 
 For click targeting, the runtime may use a wider invisible hit path, but it should not add a second visible stroke.
 
+The exact spline rendering metrics for v1 are now fixed.
+
+The visible spline stroke is:
+
+- stroke color `#ffffff`;
+- stroke width `2px`;
+- stroke opacity `1`;
+- `fill: none`;
+- `stroke-linecap: round`;
+- `stroke-linejoin: round`;
+- no dash pattern;
+- no arrows;
+- no glow;
+- and no second visible under-stroke or halo.
+
+The invisible click-target path is:
+
+- one separate invisible path that follows the exact same cubic Bezier geometry as the visible spline;
+- stroke width `12px`;
+- `stroke: transparent`;
+- `fill: none`;
+- and used only for pointer targeting such as deletion.
+
+The routing-column geometry is:
+
+- each routing column is one tile column wide and therefore `80px` wide;
+- the routing centerline is the horizontal center of that routing column;
+- the spline belongs to that routing column alone;
+- and the spline may bend only by shifting around that routing centerline with one fixed slot offset.
+
+The exact endpoint anchors are:
+
+- start point at the vertical middle of the linked left object's right outer edge facing the routing column;
+- end point at the vertical middle of the linked right object's left outer edge facing the routing column;
+- for assemblies, that means the midpoint of the four-tile object's outer edge;
+- for operators, that means the midpoint of the one-tile object's outer edge.
+
+The exact cubic Bezier rule is:
+
+- `P0` is the start anchor on the left object edge;
+- `P3` is the end anchor on the right object edge;
+- `P1.x = P0.x + 16px`;
+- `P2.x = P3.x - 16px`;
+- `P1.y` equals the routing-slot y position for that spline;
+- `P2.y` equals the same routing-slot y position;
+- the routing-slot y position is the routing-column midpoint between the two endpoint y values plus the assigned slot offset;
+- and no additional waypoints or alternate control rules are permitted in v1.
+
+In plain terms, the spline should leave each object only a short horizontal distance, commit early toward its assigned routing slot inside the one-tile channel, and stay as taut and diagonal as possible rather than expanding into a broad S-shape through the middle.
+
+The exact routing-column slot-offset set is:
+
+- `-12px`
+- `-6px`
+- `0px`
+- `6px`
+- `12px`
+
+Those are offsets from the routing-column centerline.
+
+No other slot offsets are allowed in v1.
+
+The deterministic slot assignment rule is:
+
+- gather all links that use the same routing column;
+- sort them by stable link id ascending;
+- assign offsets in the fixed order `0`, `-6`, `6`, `-12`, `12`;
+- if more than five links share one routing column, continue reusing that same five-slot cycle in sorted order;
+- and do not alter endpoint rows, object placement, or link validity in order to avoid collisions.
+
+The visible spline class is therefore completely fixed for v1:
+
+- white;
+- `2px`;
+- one cubic Bezier family only;
+- one routing-column control-line rule only;
+- and one invisible `12px` hit path only.
+
 The runtime should not expose or render separate connection circles.
 
 Spline coloring is a later finishing action, like composite labels, and should not complicate the first-pass interaction or layout model.
@@ -797,12 +1121,13 @@ For the first implementation:
 
 For v1 interaction behavior:
 
-- plain click on an object does nothing special;
-- plain click on empty space does nothing special;
+- plain click on an object selects that object;
+- plain click on empty space clears the current object selection;
+- double-click on one empty legal placement target opens the create picker for that slot;
 - hold `Shift` and click two valid objects to create a link;
 - plain click on a spline deletes that spline immediately;
 - spline deletion has no confirmation step in v1;
-- and `Shift` is reserved for spline authoring, not multiselect.
+- and `Shift` is reserved for spline authoring, not multiselect or alternate move modes.
 
 ### Adjacency Rule
 
@@ -967,6 +1292,101 @@ The minimal assembly schema should include:
 - `role`
 - `tiles`
 
+The exact assembly `tiles` field is:
+
+- one array named `tiles`;
+- length exactly `4`;
+- one shared-catalog tile key for each left-to-right assembly slot;
+- and no nested visible text, border-color, charge-circle, orbit, or polar detail duplicated inside the document payload.
+
+Assembly tile payload rules are:
+
+- tile 1 is the leftmost assembly tile and tiles 2-4 follow in visible left-to-right order;
+- every `tiles` entry must be one tile key that exists in the shared Xyzzy tile catalog;
+- the runtime uses those tile keys directly as the visible display payload;
+- and the runtime must not rebuild the row from `type`, `title`, polarity, generation, family, or other semantic fields when `tiles` is present.
+
+For operator records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+
+- `associate`
+- `dissociate`
+- `pass-thru`
+
+For operators, `type` is both semantic and display-driving.
+
+That means:
+
+- `associate` identifies the operator semantically and uses the visible operator title `Associate`;
+- `dissociate` identifies the operator semantically and uses the visible operator title `Dissociate`;
+- `pass-thru` identifies the operator semantically and uses the visible operator title `Pass Thru`;
+- no other operator `type` values are valid in `xyzzy/v1`;
+- and operator rendering may use the operator `type` to validate the expected title family and one-tile operator layout.
+
+For assembly records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+
+- `unbound-architrinos-assembly`
+- `pro-tau-assembly`
+- `anti-tau-assembly`
+- `pro-muon-assembly`
+- `anti-muon-assembly`
+- `pro-electron-assembly`
+- `anti-electron-assembly`
+- `pro-tau-neutrino-assembly`
+- `anti-tau-neutrino-assembly`
+- `pro-muon-neutrino-assembly`
+- `anti-muon-neutrino-assembly`
+- `pro-electron-neutrino-assembly`
+- `anti-electron-neutrino-assembly`
+- `pro-bottom-quark-assembly`
+- `anti-bottom-quark-assembly`
+- `pro-strange-quark-assembly`
+- `anti-strange-quark-assembly`
+- `pro-down-quark-assembly`
+- `anti-down-quark-assembly`
+- `pro-top-quark-assembly`
+- `anti-top-quark-assembly`
+- `pro-charm-quark-assembly`
+- `anti-charm-quark-assembly`
+- `pro-up-quark-assembly`
+- `anti-up-quark-assembly`
+- `up-quark-color-variations-assembly`
+- `down-quark-color-variations-family-i-assembly`
+- `down-quark-color-variations-family-ii-assembly`
+- `photon-assembly`
+- `noether-pair-assembly`
+- `noether-quad-assembly`
+- `pro-proton-assembly`
+- `anti-proton-assembly`
+- `pro-neutron-assembly`
+- `anti-neutron-assembly`
+- `positive-pion-assembly`
+- `negative-pion-assembly`
+- `neutral-pion-u-assembly`
+- `neutral-pion-d-assembly`
+- `positive-kaon-assembly`
+- `negative-kaon-assembly`
+- `neutral-kaon-d-assembly`
+- `neutral-kaon-s-assembly`
+- `positive-b-meson-assembly`
+- `negative-b-meson-assembly`
+- `neutral-b-meson-d-assembly`
+- `neutral-b-meson-b-assembly`
+- `pro-noether-core-assembly`
+- `anti-noether-core-assembly`
+
+For assemblies, `type` is semantic only.
+
+That means:
+
+- assembly `type` identifies the semantic family of the four-tile object;
+- assembly `type` must not be used to reconstruct the visible tile payload;
+- assembly `type` may be used for validation, filtering, export, and transformation logic;
+- and the exact rendered appearance still comes only from the explicit `tiles` array.
+
+The `-assembly` suffix is the canonical naming form for assembly `type` values in `xyzzy/v1`.
+
+The assembly display payload remains the explicit `tiles` array.
+
 The exact link schema is:
 
 - `id`
@@ -997,12 +1417,6 @@ Composite-label field rules are:
 - and no extra geometry or screen-coordinate fields belong in the `xyzzy/v1` composite-label schema.
 
 The `tiles` field is the canonical display payload for the four assembly tiles.
-
-That means:
-
-- tile 1 content is explicit;
-- tiles 2-4 content is explicit;
-- and those tile records are not reconstructed only from `type`.
 
 Exact top-level document shape for `xyzzy/v1`:
 
@@ -1060,50 +1474,98 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 
 ### Inputs
 
-- Xyzzy JSON documents containing assemblies, operators, splines, and composite-label effects;
-- a manifest-driven list of available solver JSON documents for the header selector;
+- final `xyzzy/v1` JSON documents containing assemblies, operators, splines, and composite-label effects;
+- a manifest-driven list of available final `xyzzy/v1` documents for the header selector;
+- user-authored assembly and operator create, move, and delete gestures on the current document;
 - and user-authored adjacent-column spline links.
 
 Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
 
-For the first implementation, direct object editing is explicitly out of scope.
+For v1, direct object editing is part of Xyzzy itself.
 
-That means the first implementation should not develop:
+That direct authoring surface is limited to:
 
-- blank-document creation;
-- direct creation of assemblies or operators on the surface;
-- direct movement of assemblies or operators on the surface;
-- direct deletion of assemblies or operators on the surface;
-- drag handles, resize handles, selection boxes, or context menus for object editing;
-- or substitute editing chrome invented to work around the missing workflow.
+- creating assemblies and operators through the surface-local create picker defined above;
+- moving them by band-constrained vertical drag;
+- deleting the selected object with immediate link cleanup;
+- and authoring or deleting splines through the direct surface gestures defined here.
 
-For the first implementation, Xyzzy should behave as a pure viewer of solver-produced Xyzzy JSON documents.
+Even with that authoring support, Xyzzy should still not introduce:
 
-For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators, and that workflow is intentionally deferred rather than to be guessed during the first implementation.
+- extra top-band controls beyond the JSON selector and home button;
+- built-in visible JSON side panels;
+- persistent inspector panels;
+- resize handles, marquee selection boxes, or multiselect;
+- context menus;
+- built-in blank-document creation or a new-document button;
+- or substitute editor chrome unrelated to the fixed strip and object grammar.
 
 This note currently defines:
 
 - surface grammar;
 - placement and validation rules;
+- direct create, move, delete, and link interactions;
 - JSON shape constraints;
-- header document selection and bootstrap behavior;
-- and spline-link interaction rules.
-
-Detailed v1 workflows for creating, moving, and deleting assemblies and operators remain to be specified separately.
+- and header document selection and bootstrap behavior.
 
 ### Document Selection And Bootstrap
 
-The header JSON selector should be populated from a manifest of available solver JSON documents.
+The header JSON selector should be populated from a manifest of available final `xyzzy/v1` documents.
 
-That manifest should follow the same basic shape used by the reaction app library manifest:
+The manifest contract for Xyzzy v1 is now fixed.
 
-- a top-level schema id;
-- a `defaultEntryId`;
-- and an `entries` array of records with ids, titles, display titles, and JSON asset paths.
+The exact manifest schema id is:
+
+- `xyzzy-library-manifest/v1`
+
+The canonical manifest file path is:
+
+- `content/contracts/examples/xyzzy/manifest.v1.json`
+
+The exact top-level manifest keys are:
+
+- `schema`
+- `defaultEntryId`
+- `entries`
+
+The exact per-entry keys are:
+
+- `id`
+- `title`
+- `displayTitle`
+- `documentPath`
+- `isDefault`
+
+Per-entry field rules are:
+
+- `id` must be a stable non-empty string;
+- `title` must be a non-empty source title;
+- `displayTitle` must be the label shown in the closed selector and dropdown options;
+- `documentPath` must be the final `xyzzy/v1` asset path consumed by the Xyzzy runtime;
+- `isDefault` is optional and may be used as a local redundancy marker for the default entry;
+- and no `requestPath`, `sourceRequestPath`, `solverRequest`, `solverResult`, or other upstream solve payload fields belong in the Xyzzy manifest contract.
+
+The exact path field used to load a final `xyzzy/v1` document is:
+
+- `documentPath`
+
+That path field is canonical for Xyzzy.
+
+It does not alias to `requestPath`, `sourceRequestPath`, or any other alternate asset field name.
 
 For Xyzzy, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
 
-The first implementation should not include a built-in blank-document flow, new-document button, or manual surface-authoring mode.
+That manifest should point directly to final `xyzzy/v1` documents.
+
+It should not point to raw `solver-request/v1` or `solver-result/v1` payloads.
+
+If an upstream solver pipeline starts from some non-Xyzzy request or result format, the translation into final `xyzzy/v1` should happen before the document is published to the Xyzzy manifest and before the Xyzzy runtime reads it.
+
+Xyzzy v1 should still not include a built-in blank-document flow or new-document button in the top bands.
+
+Direct surface authoring should instead operate on the currently loaded document.
+
+An author who wants a blank starting point should load a manifest entry whose `assemblies`, `operators`, `links`, and `compositeLabels` arrays are all empty.
 
 When the app starts:
 
@@ -1117,145 +1579,100 @@ When the user chooses a different item from the header selector, the app should 
 That selection behavior should:
 
 - clear the currently rendered surface objects and spline paths;
-- load the newly selected Xyzzy JSON document from the manifest entry;
+- load the newly selected Xyzzy JSON document from the manifest entry's `documentPath`;
 - and render only the selected document.
 
 ### Outputs
 
-- Xyzzy JSON documents with stable object ids and placements;
+- final `xyzzy/v1` documents with stable object ids and placements;
 - explicit spline link records;
 - and explicit composite-label records for the final rendering pass.
 
 ### Solver Boundary
 
-The solver boundary may be redefined to fit Xyzzy.
-
 The preferred contract stance is:
 
-- the solver exchanges explicit Xyzzy-owned JSON shapes;
+- the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by Xyzzy is final `xyzzy/v1`;
+- any translation from `solver-request/v1`, `solver-result/v1`, or another upstream solve format into `xyzzy/v1` happens outside the Xyzzy renderer;
+- the Xyzzy runtime receives explicit Xyzzy-owned JSON shapes;
 - assemblies and operators arrive as Xyzzy surface objects rather than as data that must be reinterpreted by the renderer;
 - spline-producing relationships are explicit in JSON;
 - and composite-label after-effects remain explicit data rather than inferred presentation.
 
 The solver should not own screen coordinates or screen geometry details. Xyzzy owns the surface grid and final visual placement.
 
+That means the practical v1 boundary is:
+
+- send any solver-facing request upstream through a separate solve or transformation step;
+- receive or publish a final `xyzzy/v1` document;
+- and let the Xyzzy runtime render that `xyzzy/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
+
 ## Priorities
 
-### 1. Specify The Direct Object-Editing Workflow
+### 1. Define Composite Authoring On Top Of The Direct Object-Editing Workflow
 
 Status: `deferred`
 
 Current:
 
-- the first standalone Xyzzy runtime now exists;
-- the `xyzzy/v1` JSON contract, fixed 20-column strip, gap-free tile layout, adjacent-column spline authoring, and optional final-pass composite labels are now implemented;
-- but assemblies and operators are still authored through explicit JSON documents because the direct create, move, and delete workflow on the surface remains unspecified;
-- and that workflow is intentionally deferred and should not be built as part of the first implementation.
-
-Objective:
-
-- define the explicit later surface workflow for:
-  - creating assemblies and operators;
-  - moving them within the fixed strip;
-  - deleting them;
-  - and keeping those actions consistent with the fixed object bands and occupied-tile overlap rules.
-
-Done when:
-
-- direct object creation, movement, and deletion are defined at the interaction level;
-- the runtime no longer depends on JSON hand-editing for normal object authorship;
-- and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
-
-### 2. Freeze The Richer Tile Payload Vocabulary
-
-Status: `next`
-
-Current:
-
-- `xyzzy/v1` now carries explicit four-tile assembly payloads with minimal tile kinds and counts;
-- but the fuller explicit payload for the standard tile language, charge-glyph and polar-glyph detail, and richer title variants is still not written down completely.
-
-Objective:
-
-- define the canonical explicit tile-record vocabulary for Xyzzy assemblies;
-- keep tile display content explicit in JSON rather than reintroducing inference from `type`;
-- and make the richer tile language precise enough that solver output and manual authoring can use the same surface records.
-
-Done when:
-
-- the full tile payload vocabulary is named and explicit;
-- charge-glyph, binary-glyph, or polar-glyph details do not depend on app-local inference;
-- and example or solver-produced Xyzzy documents can express the intended display records directly.
-
-### 3. Define The Solver Boundary Around `xyzzy/v1`
-
-Status: `next`
-
-Current:
-
-- the standalone Xyzzy app and `xyzzy/v1` contract now exist inside the repo;
-- but the upstream and downstream handoff around solver-owned output is still only described at the architectural level.
-
-Objective:
-
-- decide exactly what solver-owned JSON should enter and leave Xyzzy;
-- keep assemblies, operators, splines, and composite-label after-effects explicit at that boundary;
-- and avoid any return to screen-geometry-driven or renderer-only interpretation.
-
-Done when:
-
-- one solver-facing Xyzzy boundary is written down clearly;
-- the exchanged object records are explicit Xyzzy-owned records;
-- and the runtime does not need to reinterpret foreign geometry conventions.
-
-### 4. Deepen Composite-Label Semantics Only When Needed
-
-Status: `next`
-
-Current:
-
+- the base direct object-editing workflow for single assemblies and operators is now defined;
 - Xyzzy now reserves the outer columns and renders optional composite labels as a final pass;
-- but the richer meaning of those labels beyond explicit text plus span intent is still intentionally minimal.
+- no richer composite-label semantics are intended beyond explicit visual grouping;
+- composite authoring still has no explicit surface workflow of its own;
+- and composite-aware assembly insertion behavior may remain deferred until that composite workflow is implemented.
 
 Objective:
 
-- keep the current explicit final-pass model unless a real composite-label use case requires more;
-- and when that need appears, define richer label semantics without disturbing the base tile grammar or spline model.
+- build on the direct object-editing workflow defined above so authored assemblies in lane columns 1, 3, and 5 can become a solver request and that same authoring flow can describe composite assemblies as well as individual assemblies;
+- define a composite as one authored grouping of multiple assembly rows that belong together;
+- allow one optional visual span bar to illustrate the grouping, but for visual effect only;
+- place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
+- place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
+- treat the composite's occupied area in one lane as one `n-row x 4-column` rectangle for drag hit testing and insertion;
+- and include the composite label and optional span-bar records in the solver request only as pass-through display data that the solver returns without using for solve logic.
+
+Purposes:
+
+- make it easy to add a composite from the same surface-local create-picker family;
+- make it easy to move all rows belonging to a composite together by dragging the composite vertically within a lane;
+- make it easy to drag an assembly over a composite rectangle and have that composite shift down as one block to make room;
+- make it easy to delete a composite from its composite label tile without a side panel workflow;
+- and preserve composite labels and spans as visual organizing graphics for still reaction images.
 
 Done when:
 
-- any richer composite-label fields are justified by concrete use;
-- the outer reserved columns remain the only composite-label region;
-- and base rendering stays independent of composite labels being present.
+- the composite workflow built on the direct object-editing model can create both individual assemblies and composite assemblies;
+- a composite can author multiple grouped rows in one action;
+- composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
+- dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;
+- assembly lanes remain densely packed with no empty rows between occupied assembly or composite extents;
+- optional span bars remain visual-only grouping graphics;
+- and composite label and span data round-trip through the solver request and response path without becoming solver-owned decision logic.
 
-### 5. Keep The Reference Generator Aligned
+### 2. Automate Drift Detection Between The JS Renderer And The Reference Generator
 
 Status: `next`
 
 Current:
 
-- the JavaScript app now has the baseline tile renderer and canonical app-local JSON catalog;
-- `scripts/glyphs/glyph.py` is now reference and comparison code rather than the runtime tile engine;
-- and the remaining risk is drift between the app-local JSON catalog, the JavaScript renderer, and the reference SVG outputs.
+- the shared Xyzzy tile and review-group catalogs are now the authored source of truth;
+- the JavaScript runtime remains the only app renderer;
+- `scripts/glyphs/glyph.py` generates committed reference SVG artifacts for comparison;
+- and the remaining risk is silent drift between the shared catalogs, the JavaScript runtime, the Python reference exporter, and the checked-in SVG outputs.
 
 Objective:
 
-- keep `scripts/glyphs/glyph.py` aligned with `src/apps/xyzzy/xyzzy-tiles.json`;
-- keep the reference SVG outputs visually aligned with the JavaScript tile renderer;
-- and avoid any return to separate hand-maintained tile definitions.
+- keep the shared JSON catalogs as the only authored design inputs;
+- keep the JavaScript runtime as the only app renderer;
+- keep `glyph.py` limited to reference export and comparison work;
+- treat the committed `xyzzy-tile-*` and `xyzzy-group-*` SVG files as derived reference artifacts generated by one workflow;
+- and add automated checks that detect filename drift, content drift, and stale generated outputs.
 
 Done when:
 
-- the app-local JSON catalog remains the single tile-definition source of truth;
-- the JavaScript renderer remains the implementation used by the Xyzzy app;
-- and the reference SVG generation stays useful for comparison without becoming a parallel design system.
-
-## To Do
-
-1. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family now that the tile grammar is fixed.
-2. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and whether each entry must point directly to a final `xyzzy/v1` document or may instead point to an upstream solver/request document that requires a transformation step before rendering.
-3. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
-4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
-5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
-6. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
-7. Develop the four-tile assembly variants that explicitly show color charge.
+- the shared Xyzzy JSON catalogs remain the only authored tile and group definitions;
+- `glyph.py` reads those shared catalogs rather than any parallel hand-maintained tile inventory;
+- tests verify that the committed `xyzzy-tile-*` and `xyzzy-group-*` SVG filename set matches the current catalog-defined outputs exactly;
+- tests verify that regenerated reference SVG output still matches the committed canonical artifacts for representative tiles and groups;
+- stale generated Xyzzy SVG files are detectable;
+- and the reference SVG generation stays useful for comparison without becoming a second design system.

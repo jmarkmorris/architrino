@@ -45,7 +45,7 @@ function normalizeBinaryGlyph(binaryGlyph) {
       rx: normalizeNumber(orbit.rx, 38),
       ry: normalizeNumber(orbit.ry, 13),
       strokeColor: normalizeText(orbit.strokeColor),
-      strokeWidth: normalizeNumber(orbit.strokeWidth, 7.2),
+      strokeWidth: normalizeNumber(orbit.strokeWidth, 5),
       filter: normalizeText(orbit.filter),
     },
     axis: {
@@ -54,7 +54,7 @@ function normalizeBinaryGlyph(binaryGlyph) {
       x2: normalizeNumber(axis.x2, 60),
       y2: normalizeNumber(axis.y2, 86.6666666667),
       strokeColor: normalizeText(axis.strokeColor),
-      strokeWidth: normalizeNumber(axis.strokeWidth, 4.8),
+      strokeWidth: normalizeNumber(axis.strokeWidth, 4),
       lineCap: normalizeText(axis.lineCap) || "butt",
       opacity: normalizeNumber(axis.opacity, 1),
       strokeDasharray: normalizeText(axis.strokeDasharray),

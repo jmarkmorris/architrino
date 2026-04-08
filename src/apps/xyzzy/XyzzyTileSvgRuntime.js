@@ -160,8 +160,7 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     orbitElement.setAttribute("ry", String(orbit.ry ?? 13));
     orbitElement.setAttribute("fill", "none");
     orbitElement.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, orbit.strokeColor));
-    orbitElement.setAttribute("stroke-width", String(orbit.strokeWidth ?? 3));
-    orbitElement.setAttribute("vector-effect", "non-scaling-stroke");
+    orbitElement.setAttribute("stroke-width", String(orbit.strokeWidth ?? 5));
     applyOptionalFilter(orbitElement, orbit.filter);
     nestedSvg.append(orbitElement);
   }
@@ -175,9 +174,8 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     axisElement.setAttribute("y2", String(axis.y2 ?? 102));
     axisElement.setAttribute("fill", "none");
     axisElement.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, axis.strokeColor));
-    axisElement.setAttribute("stroke-width", String(axis.strokeWidth ?? 1.55));
+    axisElement.setAttribute("stroke-width", String(axis.strokeWidth ?? 4));
     axisElement.setAttribute("stroke-linecap", axis.lineCap || "round");
-    axisElement.setAttribute("vector-effect", "non-scaling-stroke");
     axisElement.setAttribute("opacity", String(axis.opacity ?? 1));
     if (typeof axis.strokeDasharray === "string" && axis.strokeDasharray.trim()) {
       axisElement.setAttribute("stroke-dasharray", axis.strokeDasharray.trim());

@@ -97,7 +97,7 @@
       "rx": 38,
       "ry": 13,
       "strokeColor": "binary_orbit_stroke",
-      "strokeWidth": 7.2,
+      "strokeWidth": 5,
       "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
     },
     "axis": {
@@ -106,7 +106,7 @@
       "x2": 60,
       "y2": 86.6666666667,
       "strokeColor": "binary_axis_stroke",
-      "strokeWidth": 4.8,
+      "strokeWidth": 4,
       "lineCap": "butt",
       "opacity": 0.84
     },

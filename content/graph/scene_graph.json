@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 419,
+      "nodes": 421,
       "edges": 1165,
       "scenes": 290,
       "markdownIndexes": 0,
-      "markdownDocs": 129,
+      "markdownDocs": 131,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2111,6 +2111,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
       "name": "Binary Dynamics",
       "path": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -2192,6 +2198,12 @@
       "id": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
       "name": "Planar Bridge Closure",
       "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5608,6 +5620,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "name": "Algorithmic Resonance and Shor's Algorithm",
+      "path": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "searchTarget": "content/markdown/aaa/dynamics/algorithmic-resonance.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -5731,6 +5752,15 @@
       "name": "Planar Bridge Closure",
       "path": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
       "searchTarget": "content/markdown/aaa/dynamics/planar-bridge-closure.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
+      "searchTarget": "content/markdown/aaa/dynamics/quantum-operator-mapping.md",
       "implicit": false
     },
     {
