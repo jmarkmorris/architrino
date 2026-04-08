@@ -106,8 +106,10 @@
         gap: 16px;
       }
 
-      #xyzzy-review-assembly-showcase {
-        grid-template-columns: minmax(0, 1fr);
+      .xyzzy-review-group-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 16px;
       }
 
       .xyzzy-review-section {
@@ -150,13 +152,19 @@
         min-height: 160px;
       }
 
-      .xyzzy-review-assembly-preview {
+      .xyzzy-review-group-preview {
         justify-items: start;
-        min-height: 96px;
+        min-height: 88px;
         overflow-x: auto;
       }
 
-      .xyzzy-review-assembly-strip {
+      .xyzzy-review-group-stack {
+        display: grid;
+        gap: 0;
+        width: max-content;
+      }
+
+      .xyzzy-review-group-row {
         display: flex;
         gap: 0;
         width: max-content;
@@ -168,9 +176,10 @@
         display: block;
       }
 
-      .xyzzy-review-assembly-tile {
-        width: 96px;
-        height: 96px;
+      .xyzzy-review-group-tile {
+        width: 88px;
+        height: 88px;
+        flex: 0 0 auto;
       }
 
       .xyzzy-review-card-meta {
@@ -209,17 +218,21 @@
           height: 136px;
         }
 
-        .xyzzy-review-assembly-tile {
-          width: 80px;
-          height: 80px;
+        .xyzzy-review-group-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .xyzzy-review-group-tile {
+          width: 68px;
+          height: 68px;
         }
 
         .xyzzy-review-card-preview {
           min-height: 136px;
         }
 
-        .xyzzy-review-assembly-preview {
-          min-height: 80px;
+        .xyzzy-review-group-preview {
+          min-height: 68px;
         }
       }
     </style>
@@ -246,17 +259,45 @@
         </div>
       </section>
 
-      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-assembly-heading">
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-special-groups-heading">
         <header class="xyzzy-review-section-header">
-          <h2 id="xyzzy-review-assembly-heading">Four-Tile Group</h2>
+          <h2 id="xyzzy-review-special-groups-heading">Special Single-Row Groups</h2>
           <p class="xyzzy-review-section-note">
-            The committed unbound-architrino strip rendered as one abutted four-tile assembly.
+            Explicit four-tile strips that are not part of the standard-model fermion family review.
           </p>
         </header>
         <div
-          id="xyzzy-review-assembly-showcase"
-          class="xyzzy-review-grid"
-          aria-label="Xyzzy unbound architrino group showcase"
+          id="xyzzy-review-special-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy special single-row group review"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-single-row-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-single-row-groups-heading">Standard Model Single-Row Groups</h2>
+          <p class="xyzzy-review-section-note">
+            All pro and anti quark and lepton rows rendered as four abutted Xyzzy tiles.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-single-row-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy standard-model single-row group review"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-composite-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-composite-groups-heading">Composite Groups</h2>
+          <p class="xyzzy-review-section-note">
+            Multi-row composites rendered as stacked four-tile strips from the shared Xyzzy group catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-composite-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy composite group review"
         ></div>
       </section>
 
@@ -288,6 +329,6 @@
         ></div>
       </section>
     </main>
-    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-dotted-axis"></script>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-groups"></script>
   </body>
 </html>

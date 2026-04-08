@@ -110,6 +110,21 @@ class XyzzyCatalog:
     tiles: tuple[XyzzyResolvedTile, ...]
 
 
+@dataclass(frozen=True)
+class XyzzyReviewGroup:
+    key: str
+    title: str
+    rows: tuple[tuple[str, ...], ...]
+
+
+@dataclass(frozen=True)
+class XyzzyReviewGroupCatalog:
+    spec_path: Path
+    special_groups: tuple[XyzzyReviewGroup, ...]
+    single_row_groups: tuple[XyzzyReviewGroup, ...]
+    composite_groups: tuple[XyzzyReviewGroup, ...]
+
+
 @lru_cache(maxsize=None)
 def load_font(path: str, size: float) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(path, size=size)
@@ -260,6 +275,19 @@ def resolve_binary_axis_for_mode(generator: dict[str, object], mode: str) -> dic
     }
 
 
+def resolve_binary_polar_options_for_mode(generator: dict[str, object], mode: str) -> list[str]:
+    polar_options_by_mode = (
+        generator.get("polarOptionsByMode") if isinstance(generator.get("polarOptionsByMode"), dict) else {}
+    )
+    mode_specific_options = polar_options_by_mode.get(mode)
+    if isinstance(mode_specific_options, list):
+        return [str(option) for option in mode_specific_options]
+    polar_options = generator.get("polarOptions")
+    if isinstance(polar_options, list):
+        return [str(option) for option in polar_options]
+    return []
+
+
 def build_binary_glyph_tile_from_grammar(
     grammar_code: str,
     generator: dict[str, object],
@@ -338,8 +366,8 @@ def build_binary_glyph_tile_from_grammar(
         grammar_code=grammar_code,
         binary_glyph=resolve_binary_glyph(
             {
-                "showOrbit": mode == "full",
-                "showAxis": mode in {"full", "axis"},
+                "showOrbit": mode in {"full", "bare"},
+                "showAxis": mode in {"full", "axis", "bare"},
                 "viewBoxWidth": generator.get("viewBoxWidth", 120),
                 "viewBoxHeight": generator.get("viewBoxHeight", 120),
                 "orbit": generator.get("orbit", {}),
@@ -372,7 +400,6 @@ def create_generated_binary_glyph_tiles(
     binary_options_by_mode = (
         generator.get("binaryOptionsByMode") if isinstance(generator.get("binaryOptionsByMode"), dict) else {}
     )
-    polar_options = generator.get("polarOptions") if isinstance(generator.get("polarOptions"), list) else []
     mode_order = (
         generator.get("modeOrder")
         if isinstance(generator.get("modeOrder"), list)
@@ -385,14 +412,17 @@ def create_generated_binary_glyph_tiles(
         binary_options = binary_options_by_mode.get(mode, [])
         if not isinstance(binary_options, list):
             continue
+        polar_options = resolve_binary_polar_options_for_mode(generator, mode)
         for binary in binary_options:
             if not isinstance(binary, str):
                 continue
             for polar in polar_options:
-                if not isinstance(polar, str):
-                    continue
                 generated_tiles.append(
-                    build_binary_glyph_tile_from_grammar(f"{mode}:{binary}:{polar}", generator, palette=palette)
+                    build_binary_glyph_tile_from_grammar(
+                        f"{mode}:{binary}:{str(polar)}",
+                        generator,
+                        palette=palette,
+                    )
                 )
     return generated_tiles
 
@@ -539,7 +569,12 @@ def render_line(
     )
 
 
-def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
+def render_tile_body_lines(
+    tile: XyzzyResolvedTile,
+    catalog: XyzzyCatalog,
+    *,
+    indent: str = "  ",
+) -> list[str]:
     rect_inset, rect_size, rect_radius, outer_inset = get_frame_geometry(catalog)
     content: list[str] = []
     if tile.tile_type == "text":
@@ -629,6 +664,19 @@ def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
                 )
             )
         content.append("  </svg>")
+    nested_content = [line if line.startswith("  ") else f"  {line}" for line in content]
+    return [
+        f'{indent}<rect width="{catalog.tile_size:.0f}" height="{catalog.tile_size:.0f}" fill="{catalog.outer_fill}"/>',
+        (
+            f'{indent}<rect x="{rect_inset:.2f}" y="{rect_inset:.2f}" width="{rect_size:.2f}" '
+            f'height="{rect_size:.2f}" rx="{rect_radius:.2f}" fill="none" '
+            f'stroke="{tile.border_color}" stroke-width="{catalog.inner_border_stroke_width:.2f}"/>'
+        ),
+        *(f"{indent}{line[2:]}" if line.startswith("  ") else f"{indent}{line}" for line in nested_content),
+    ]
+
+
+def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
     return "\n".join(
         [
             f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {catalog.tile_size:.0f} {catalog.tile_size:.0f}" role="img" aria-labelledby="title desc">',
@@ -637,19 +685,86 @@ def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
                 f'  <desc id="desc">{escape(tile.title)}. Xyzzy reference tile generated from '
                 f'{escape(catalog.spec_path.name)}.</desc>'
             ),
-            f'  <rect width="{catalog.tile_size:.0f}" height="{catalog.tile_size:.0f}" fill="{catalog.outer_fill}"/>',
-            (
-                f'  <rect x="{rect_inset:.2f}" y="{rect_inset:.2f}" width="{rect_size:.2f}" '
-                f'height="{rect_size:.2f}" rx="{rect_radius:.2f}" fill="none" '
-                f'stroke="{tile.border_color}" stroke-width="{catalog.inner_border_stroke_width:.2f}"/>'
-            ),
-            *content,
+            *render_tile_body_lines(tile, catalog, indent="  "),
             "</svg>",
         ]
     )
 
 
+def load_xyzzy_review_group_catalog(spec_path: Path) -> XyzzyReviewGroupCatalog:
+    raw = json.loads(spec_path.read_text(encoding="utf-8"))
+
+    def resolve_groups(key: str) -> tuple[XyzzyReviewGroup, ...]:
+        groups = raw.get(key)
+        if not isinstance(groups, list):
+            return tuple()
+        resolved_groups: list[XyzzyReviewGroup] = []
+        for group_spec in groups:
+            if not isinstance(group_spec, dict):
+                continue
+            rows = group_spec.get("rows")
+            if not isinstance(rows, list):
+                continue
+            resolved_rows: list[tuple[str, ...]] = []
+            for row in rows:
+                if not isinstance(row, list):
+                    continue
+                resolved_rows.append(tuple(str(tile_key) for tile_key in row if str(tile_key).strip()))
+            if not resolved_rows:
+                continue
+            resolved_groups.append(
+                XyzzyReviewGroup(
+                    key=str(group_spec.get("key", "")).strip(),
+                    title=str(group_spec.get("title", "")).strip(),
+                    rows=tuple(resolved_rows),
+                )
+            )
+        return tuple(group for group in resolved_groups if group.key and group.rows)
+
+    return XyzzyReviewGroupCatalog(
+        spec_path=spec_path,
+        special_groups=resolve_groups("specialGroups"),
+        single_row_groups=resolve_groups("singleRowGroups"),
+        composite_groups=resolve_groups("compositeGroups"),
+    )
+
+
+def render_group_svg(group: XyzzyReviewGroup, catalog: XyzzyCatalog) -> str:
+    tile_by_key = {tile.key: tile for tile in catalog.tiles}
+    missing_tile_keys = [
+        tile_key
+        for row in group.rows
+        for tile_key in row
+        if tile_key not in tile_by_key
+    ]
+    if missing_tile_keys:
+        missing_keys = ", ".join(sorted(set(missing_tile_keys)))
+        raise ValueError(f"Group {group.key} references unknown tile keys: {missing_keys}")
+
+    width = catalog.tile_size * 4
+    height = catalog.tile_size * len(group.rows)
+    lines = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" role="img" aria-labelledby="title desc">',
+        f'  <title id="title">{escape(group.title)}</title>',
+        (
+            f'  <desc id="desc">{escape(group.title)}. Xyzzy group reference generated from '
+            f'{escape(catalog.spec_path.name)}.</desc>'
+        ),
+    ]
+    for row_index, row in enumerate(group.rows):
+        for column_index, tile_key in enumerate(row):
+            tile = tile_by_key[tile_key]
+            x = column_index * catalog.tile_size
+            y = row_index * catalog.tile_size
+            lines.append(f'  <g transform="translate({x:.2f} {y:.2f})">')
+            lines.extend(render_tile_body_lines(tile, catalog, indent="    "))
+            lines.append("  </g>")
+    lines.append("</svg>")
+    return "\n".join(lines)
+
+
 def parse_args() -> argparse.Namespace:
+    repo_root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(
         description="Generate Xyzzy reference SVG tiles from a shared JSON catalog."
     )
@@ -668,18 +783,37 @@ def parse_args() -> argparse.Namespace:
         default="xyzzy-tile-",
         help="Filename prefix for generated SVG files. Defaults to xyzzy-tile-.",
     )
+    parser.add_argument(
+        "--group-spec-json",
+        default=str(repo_root / "src" / "apps" / "xyzzy" / "xyzzy-review-groups.json"),
+        help="Shared Xyzzy review-group JSON catalog. Defaults to src/apps/xyzzy/xyzzy-review-groups.json.",
+    )
+    parser.add_argument(
+        "--group-output-prefix",
+        default="xyzzy-group-",
+        help="Filename prefix for generated Xyzzy group SVG files. Defaults to xyzzy-group-.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     catalog = load_xyzzy_catalog(Path(args.spec_json))
+    group_catalog = load_xyzzy_review_group_catalog(Path(args.group_spec_json))
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     for tile in catalog.tiles:
         output_path = output_dir / f"{args.output_prefix}{tile.key}.svg"
         output_path.write_text(render_tile_svg(tile, catalog), encoding="utf-8")
+        written.append(output_path)
+    for group in (
+        *group_catalog.special_groups,
+        *group_catalog.single_row_groups,
+        *group_catalog.composite_groups,
+    ):
+        output_path = output_dir / f"{args.group_output_prefix}{group.key}.svg"
+        output_path.write_text(render_group_svg(group, catalog), encoding="utf-8")
         written.append(output_path)
     for path in written:
         print(path)

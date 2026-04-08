@@ -116,6 +116,18 @@ function resolveBinaryAxisForMode(generator, mode) {
   };
 }
 
+function getGeneratorPolarOptionsForMode(generator, mode) {
+  const polarOptionsByMode =
+    generator?.polarOptionsByMode && typeof generator.polarOptionsByMode === "object"
+      ? generator.polarOptionsByMode
+      : {};
+  const modeSpecificOptions = Array.isArray(polarOptionsByMode?.[mode]) ? polarOptionsByMode[mode] : null;
+  if (modeSpecificOptions) {
+    return modeSpecificOptions;
+  }
+  return Array.isArray(generator?.polarOptions) ? generator.polarOptions : [];
+}
+
 function buildBinaryGlyphTileFromGrammar(code, generator) {
   const grammarCode = normalizeText(code);
   const [mode = "", binary = "", polar = ""] = grammarCode.split(":");
@@ -139,8 +151,9 @@ function buildBinaryGlyphTileFromGrammar(code, generator) {
           top: colorByCode[normalizedPolar[1]] ?? "",
         }
       : null;
-  const showOrbit = normalizedMode === "full";
-  const showAxis = normalizedMode === "full" || normalizedMode === "axis";
+  const showOrbit = normalizedMode === "full" || normalizedMode === "bare";
+  const showAxis =
+    normalizedMode === "full" || normalizedMode === "axis" || normalizedMode === "bare";
   const circles = [];
   if (binaryPair) {
     circles.push(
@@ -206,12 +219,12 @@ function createGeneratedBinaryGlyphTiles(rawCatalog) {
     generator?.binaryOptionsByMode && typeof generator.binaryOptionsByMode === "object"
       ? generator.binaryOptionsByMode
       : {};
-  const polarOptions = Array.isArray(generator?.polarOptions) ? generator.polarOptions : [];
   const modeOrder = Array.isArray(generator?.modeOrder)
     ? generator.modeOrder.map((value) => normalizeText(value)).filter(Boolean)
     : Object.keys(binaryOptionsByMode).map((value) => normalizeText(value)).filter(Boolean);
   return modeOrder.flatMap((mode) => {
     const binaryOptions = Array.isArray(binaryOptionsByMode[mode]) ? binaryOptionsByMode[mode] : [];
+    const polarOptions = getGeneratorPolarOptionsForMode(generator, mode);
     return binaryOptions.flatMap((binary) =>
       polarOptions.map((polar) => buildBinaryGlyphTileFromGrammar(`${mode}:${binary}:${polar}`, generator))
     );

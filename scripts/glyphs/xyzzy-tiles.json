@@ -50,7 +50,8 @@
     "modeOrder": [
       "full",
       "axis",
-      "polar"
+      "polar",
+      "bare"
     ],
     "binaryOptionsByMode": {
       "full": [
@@ -63,6 +64,10 @@
       ],
       "polar": [
         "--"
+      ],
+      "bare": [
+        "br",
+        "rb"
       ]
     },
     "polarOptions": [
@@ -71,6 +76,11 @@
       "rb",
       "rr"
     ],
+    "polarOptionsByMode": {
+      "bare": [
+        "none"
+      ]
+    },
     "colors": {
       "blue": "count_negative",
       "red": "count_positive"

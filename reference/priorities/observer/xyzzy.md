@@ -1258,3 +1258,4 @@ Done when:
 4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
 5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
 6. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
+7. Develop the four-tile assembly variants that explicitly show color charge.
