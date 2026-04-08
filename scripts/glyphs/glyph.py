@@ -122,6 +122,7 @@ class XyzzyReviewGroupCatalog:
     spec_path: Path
     special_groups: tuple[XyzzyReviewGroup, ...]
     single_row_groups: tuple[XyzzyReviewGroup, ...]
+    quark_color_groups: tuple[XyzzyReviewGroup, ...]
     composite_groups: tuple[XyzzyReviewGroup, ...]
 
 
@@ -725,6 +726,7 @@ def load_xyzzy_review_group_catalog(spec_path: Path) -> XyzzyReviewGroupCatalog:
         spec_path=spec_path,
         special_groups=resolve_groups("specialGroups"),
         single_row_groups=resolve_groups("singleRowGroups"),
+        quark_color_groups=resolve_groups("quarkColorGroups"),
         composite_groups=resolve_groups("compositeGroups"),
     )
 
@@ -810,6 +812,7 @@ def main() -> int:
     for group in (
         *group_catalog.special_groups,
         *group_catalog.single_row_groups,
+        *group_catalog.quark_color_groups,
         *group_catalog.composite_groups,
     ):
         output_path = output_dir / f"{args.group_output_prefix}{group.key}.svg"

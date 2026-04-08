@@ -26,6 +26,9 @@ export function normalizeXyzzyReviewGroupCatalog(rawCatalog) {
     singleRowGroups: Array.isArray(rawCatalog?.singleRowGroups)
       ? rawCatalog.singleRowGroups.map(normalizeGroup).filter((group) => group.key && group.rows.length)
       : [],
+    quarkColorGroups: Array.isArray(rawCatalog?.quarkColorGroups)
+      ? rawCatalog.quarkColorGroups.map(normalizeGroup).filter((group) => group.key && group.rows.length)
+      : [],
     compositeGroups: Array.isArray(rawCatalog?.compositeGroups)
       ? rawCatalog.compositeGroups.map(normalizeGroup).filter((group) => group.key && group.rows.length)
       : [],

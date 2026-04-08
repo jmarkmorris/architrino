@@ -63,6 +63,7 @@ test("Xyzzy review groups reference only tiles present in the shared catalog", (
   const missingKeys = [
     ...reviewGroups.specialGroups,
     ...reviewGroups.singleRowGroups,
+    ...reviewGroups.quarkColorGroups,
     ...reviewGroups.compositeGroups,
   ].flatMap((group) =>
     group.rows.flatMap((row) =>
@@ -88,6 +89,7 @@ test("Xyzzy review group catalog covers the requested single-row and composite f
 
   assert.equal(reviewGroups.specialGroups.length, 1);
   assert.equal(reviewGroups.singleRowGroups.length, 24);
+  assert.equal(reviewGroups.quarkColorGroups.length, 3);
   assert.equal(reviewGroups.compositeGroups.length, 19);
 });
 
@@ -97,4 +99,34 @@ test("gen II and gen III fermion review rows use generation-trimmed polar tiles"
   reviewGroups.singleRowGroups.forEach((group) => {
     assert.deepEqual(group.rows[0].slice(1), getExpectedGenerationTiles(group.key), group.key);
   });
+});
+
+test("quark color example groups use the standard quark title tiles and expected axis permutations", () => {
+  const reviewGroups = normalizeXyzzyReviewGroupCatalog(readJson("src/apps/xyzzy/xyzzy-review-groups.json"));
+  const groupByKey = new Map(reviewGroups.quarkColorGroups.map((group) => [group.key, group]));
+
+  assert.deepEqual(
+    groupByKey.get("up-quark-color-variations")?.rows,
+    [
+      ["pro-up-quark", "binary-full-br-br", "binary-full-br-rr", "binary-full-br-rr"],
+      ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      ["pro-up-quark", "binary-full-br-rr", "binary-full-br-rr", "binary-full-br-br"],
+    ]
+  );
+  assert.deepEqual(
+    groupByKey.get("down-quark-color-variations-family-i")?.rows,
+    [
+      ["pro-down-quark", "binary-full-br-rr", "binary-full-br-bb", "binary-full-br-bb"],
+      ["pro-down-quark", "binary-full-br-bb", "binary-full-br-rr", "binary-full-br-bb"],
+      ["pro-down-quark", "binary-full-br-bb", "binary-full-br-bb", "binary-full-br-rr"],
+    ]
+  );
+  assert.deepEqual(
+    groupByKey.get("down-quark-color-variations-family-ii")?.rows,
+    [
+      ["pro-down-quark", "binary-full-br-bb", "binary-full-br-br", "binary-full-br-br"],
+      ["pro-down-quark", "binary-full-br-br", "binary-full-br-bb", "binary-full-br-br"],
+      ["pro-down-quark", "binary-full-br-br", "binary-full-br-br", "binary-full-br-bb"],
+    ]
+  );
 });

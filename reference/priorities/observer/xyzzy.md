@@ -1166,26 +1166,30 @@ Done when:
 - the runtime no longer depends on JSON hand-editing for normal object authorship;
 - and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
 
-### 2. Freeze The Richer Tile Payload Vocabulary
+### 2. Freeze The Explicit Tile Payload Contract
 
 Status: `next`
 
 Current:
 
-- `xyzzy/v1` now carries explicit four-tile assembly payloads with minimal tile kinds and counts;
-- but the fuller explicit payload for the standard tile language, charge-glyph and polar-glyph detail, and richer title variants is still not written down completely.
+- the shared Xyzzy tile catalog now covers the standard title tiles, charge-glyph tiles, binary variants, and polar variants needed for the current review surface;
+- and the runtime can already render four-tile assembly rows directly from explicit tile keys;
+- but the versioned `xyzzy/v1` contract still does not lock the exact `tiles` payload shape, the boundary between semantic fields and display fields, or the validation and example assets needed to freeze that contract.
 
 Objective:
 
-- define the canonical explicit tile-record vocabulary for Xyzzy assemblies;
-- keep tile display content explicit in JSON rather than reintroducing inference from `type`;
-- and make the richer tile language precise enough that solver output and manual authoring can use the same surface records.
+- treat the current shared tile catalog as the v1 display vocabulary rather than continuing to invent more tile families;
+- freeze `assemblies[].tiles` as exactly four catalog keys that drive the visible row directly;
+- keep `type` and `role` semantic rather than using them to rebuild tile appearance;
+- and add the schema, examples, and tests needed so solver output and manual authoring can use the same explicit surface records.
 
 Done when:
 
-- the full tile payload vocabulary is named and explicit;
-- charge-glyph, binary-glyph, or polar-glyph details do not depend on app-local inference;
-- and example or solver-produced Xyzzy documents can express the intended display records directly.
+- `xyzzy/v1` defines `assemblies[].tiles` as exactly four tile keys drawn from the shared Xyzzy catalog;
+- the runtime does not reconstruct visible tile rows from `type`, `title`, polarity, generation, or family when `tiles` is present;
+- a versioned `xyzzy/v1` schema exists and validates the top-level document shape plus the exact four-tile assembly payload shape;
+- canonical example `xyzzy/v1` documents exist under `content/contracts/examples/xyzzy`;
+- and tests enforce exact tile count, known tile keys, and no app-local display inference.
 
 ### 3. Define The Solver Boundary Around `xyzzy/v1`
 
