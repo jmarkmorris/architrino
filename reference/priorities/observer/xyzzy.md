@@ -1068,8 +1068,8 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 
 ### Inputs
 
-- Xyzzy JSON documents containing assemblies, operators, splines, and composite-label effects;
-- a manifest-driven list of available solver JSON documents for the header selector;
+- final `xyzzy/v1` JSON documents containing assemblies, operators, splines, and composite-label effects;
+- a manifest-driven list of available final `xyzzy/v1` documents for the header selector;
 - and user-authored adjacent-column spline links.
 
 Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
@@ -1085,7 +1085,7 @@ That means the first implementation should not develop:
 - drag handles, resize handles, selection boxes, or context menus for object editing;
 - or substitute editing chrome invented to work around the missing workflow.
 
-For the first implementation, Xyzzy should behave as a pure viewer of solver-produced Xyzzy JSON documents.
+For the first implementation, Xyzzy should behave as a pure viewer of solver-produced `xyzzy/v1` documents.
 
 For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators, and that workflow is intentionally deferred rather than to be guessed during the first implementation.
 
@@ -1101,7 +1101,7 @@ Detailed v1 workflows for creating, moving, and deleting assemblies and operator
 
 ### Document Selection And Bootstrap
 
-The header JSON selector should be populated from a manifest of available solver JSON documents.
+The header JSON selector should be populated from a manifest of available final `xyzzy/v1` documents.
 
 That manifest should follow the same basic shape used by the reaction app library manifest:
 
@@ -1110,6 +1110,12 @@ That manifest should follow the same basic shape used by the reaction app librar
 - and an `entries` array of records with ids, titles, display titles, and JSON asset paths.
 
 For Xyzzy, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
+
+That manifest should point directly to final `xyzzy/v1` documents.
+
+It should not point to raw `solver-request/v1` or `solver-result/v1` payloads.
+
+If an upstream solver pipeline starts from some non-Xyzzy request or result format, the translation into final `xyzzy/v1` should happen before the document is published to the Xyzzy manifest and before the Xyzzy runtime reads it.
 
 The first implementation should not include a built-in blank-document flow, new-document button, or manual surface-authoring mode.
 
@@ -1130,22 +1136,28 @@ That selection behavior should:
 
 ### Outputs
 
-- Xyzzy JSON documents with stable object ids and placements;
+- final `xyzzy/v1` documents with stable object ids and placements;
 - explicit spline link records;
 - and explicit composite-label records for the final rendering pass.
 
 ### Solver Boundary
 
-The solver boundary may be redefined to fit Xyzzy.
-
 The preferred contract stance is:
 
-- the solver exchanges explicit Xyzzy-owned JSON shapes;
+- the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by Xyzzy is final `xyzzy/v1`;
+- any translation from `solver-request/v1`, `solver-result/v1`, or another upstream solve format into `xyzzy/v1` happens outside the Xyzzy renderer;
+- the Xyzzy runtime receives explicit Xyzzy-owned JSON shapes;
 - assemblies and operators arrive as Xyzzy surface objects rather than as data that must be reinterpreted by the renderer;
 - spline-producing relationships are explicit in JSON;
 - and composite-label after-effects remain explicit data rather than inferred presentation.
 
 The solver should not own screen coordinates or screen geometry details. Xyzzy owns the surface grid and final visual placement.
+
+That means the practical v1 boundary is:
+
+- send any solver-facing request upstream through a separate solve or transformation step;
+- receive or publish a final `xyzzy/v1` document;
+- and let the Xyzzy runtime render that `xyzzy/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
 
 ## Priorities
 
@@ -1174,28 +1186,7 @@ Done when:
 - the runtime no longer depends on JSON hand-editing for normal object authorship;
 - and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
 
-### 2. Define The Solver Boundary Around `xyzzy/v1`
-
-Status: `next`
-
-Current:
-
-- the standalone Xyzzy app and `xyzzy/v1` contract now exist inside the repo;
-- but the upstream and downstream handoff around solver-owned output is still only described at the architectural level.
-
-Objective:
-
-- decide exactly what solver-owned JSON should enter and leave Xyzzy;
-- keep assemblies, operators, splines, and composite-label after-effects explicit at that boundary;
-- and avoid any return to screen-geometry-driven or renderer-only interpretation.
-
-Done when:
-
-- one solver-facing Xyzzy boundary is written down clearly;
-- the exchanged object records are explicit Xyzzy-owned records;
-- and the runtime does not need to reinterpret foreign geometry conventions.
-
-### 3. Deepen Composite-Label Semantics Only When Needed
+### 2. Deepen Composite-Label Semantics Only When Needed
 
 Status: `next`
 
@@ -1215,7 +1206,7 @@ Done when:
 - the outer reserved columns remain the only composite-label region;
 - and base rendering stays independent of composite labels being present.
 
-### 4. Keep The Reference Generator Aligned
+### 3. Keep The Reference Generator Aligned
 
 Status: `next`
 
@@ -1240,7 +1231,7 @@ Done when:
 ## To Do
 
 1. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family now that the tile grammar is fixed.
-2. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and whether each entry must point directly to a final `xyzzy/v1` document or may instead point to an upstream solver/request document that requires a transformation step before rendering.
+2. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and the exact final-`xyzzy/v1` document path field used by each entry.
 3. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
 4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
 5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
