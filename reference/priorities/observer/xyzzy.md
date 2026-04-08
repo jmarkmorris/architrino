@@ -1250,10 +1250,13 @@ Done when:
 
 ## To Do
 
-1. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family now that the tile grammar is fixed.
-2. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and the exact final-`xyzzy/v1` document path field used by each entry.
-3. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
-4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
-5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
-6. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
-7. Develop the four-tile assembly variants that explicitly show color charge.
+1. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and the exact final-`xyzzy/v1` document path field used by each entry.reference/priorities/observer/xyzzy.md (line 1254) is not complete.  
+    The doc describes the manifest concept around reference/priorities/observer/xyzzy.md (line 1104), but it does not freeze the exact schema id, canonical manifest path, exact top-level fields, exact per-entry fields, and exact Xyzzy document path field.
+2. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment. reference/priorities/observer/xyzzy.md (line 1255) is not complete.  
+    The two 80px header bands and presence of the selector/home button are specified near reference/priorities/observer/xyzzy.md (line 53), but not the exact control sizes, spacing, alignment, accessible labels, and header-band treatment.
+3. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
+    It includes “White. 2px.” in the todo itself, but I do not see the full spline spec written out in the document or implemented in a live Xyzzy surface module.
+4. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
+    The schema requires type for assemblies and operators in src/contracts/xyzzy/v1/schema.json (line 18) and src/contracts/xyzzy/v1/schema.json (line 63), but there is no closed allowed-value list or statement of whether each type is semantic-only, display-only, or both.
+5. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
+    I did not find a canonical free_neutron_beta_decay xyzzy/v1 sample doc or a matching Xyzzy manifest entry. The only manifest I found was the reaction one at content/contracts/examples/reaction-library/manifest.v1.json (line 1).

@@ -7,6 +7,7 @@ import {
   getXyzzyDocumentAssemblyRows,
   validateXyzzyDocumentTilePayload,
 } from "../src/apps/xyzzy/XyzzyDocumentRuntime.js";
+import { normalizeXyzzyReviewGroupCatalog } from "../src/apps/xyzzy/XyzzyReviewGroupCatalogRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -103,6 +104,7 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const XYZZY_EXAMPLE_PATHS = [
+  "content/contracts/examples/xyzzy/four_tile_family_coverage.v1.json",
   "content/contracts/examples/xyzzy/unbound_architrinos.v1.json",
   "content/contracts/examples/xyzzy/pass_thru_up_quark.v1.json",
   "content/contracts/examples/xyzzy/proton_to_photon_stack.v1.json",
@@ -186,4 +188,25 @@ test("xyzzy example links and composite labels stay within the explicit boundary
       );
     });
   });
+});
+
+test("xyzzy examples include at least one explicit assembly payload for every current four-tile review row", () => {
+  const coveredRows = new Set();
+  const reviewGroups = normalizeXyzzyReviewGroupCatalog(readJson("src/apps/xyzzy/xyzzy-review-groups.json"));
+  const allReviewRows = [
+    ...reviewGroups.specialGroups,
+    ...reviewGroups.singleRowGroups,
+    ...reviewGroups.quarkColorGroups,
+    ...reviewGroups.compositeGroups,
+  ].flatMap((group) => group.rows.map((row) => JSON.stringify(row)));
+
+  XYZZY_EXAMPLE_PATHS.forEach((examplePath) => {
+    const example = readJson(examplePath);
+    example.assemblies.forEach((assembly) => {
+      coveredRows.add(JSON.stringify(assembly.tiles));
+    });
+  });
+
+  const missingRows = allReviewRows.filter((row) => !coveredRows.has(row));
+  assert.deepEqual(missingRows, []);
 });
