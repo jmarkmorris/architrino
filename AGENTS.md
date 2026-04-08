@@ -43,6 +43,7 @@
 - Prefer small, single-purpose modules over extending large coordinator files.
 - Always inspect the relevant code paths and rendered structure before proposing or applying a fix; do not guess from symptoms or screenshots alone when the implementation can be examined directly.
 - Never guess the solution to an issue. Find the actual code that is causing it, and then search for other instances of the same or similar code elsewhere in the codebase that could be causing the same class of problem.
+- In user-facing communication, avoid the phrase `instead of guessing`.
 - Treat `app.js` and similarly large entrypoint/runtime files as startup and assembly files, not as the long-term home for new feature logic.
 - When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes limited to straightforward setup only.
 - Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.

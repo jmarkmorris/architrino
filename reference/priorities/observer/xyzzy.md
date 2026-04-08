@@ -1253,7 +1253,7 @@ Done when:
 ## To Do
 
 1. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family now that the tile grammar is fixed.
-2. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
+2. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and whether each entry must point directly to a final `xyzzy/v1` document or may instead point to an upstream solver/request document that requires a transformation step before rendering.
 3. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
 4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
 5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
