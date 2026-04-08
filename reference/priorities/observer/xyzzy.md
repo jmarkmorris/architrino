@@ -1137,6 +1137,87 @@ Assembly tile payload rules are:
 - the runtime uses those tile keys directly as the visible display payload;
 - and the runtime must not rebuild the row from `type`, `title`, polarity, generation, family, or other semantic fields when `tiles` is present.
 
+For operator records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+
+- `associate`
+- `dissociate`
+- `pass-thru`
+
+For operators, `type` is both semantic and display-driving.
+
+That means:
+
+- `associate` identifies the operator semantically and uses the visible operator title `Associate`;
+- `dissociate` identifies the operator semantically and uses the visible operator title `Dissociate`;
+- `pass-thru` identifies the operator semantically and uses the visible operator title `Pass Thru`;
+- no other operator `type` values are valid in `xyzzy/v1`;
+- and operator rendering may use the operator `type` to validate the expected title family and one-tile operator layout.
+
+For assembly records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+
+- `unbound-architrinos-assembly`
+- `pro-tau-assembly`
+- `anti-tau-assembly`
+- `pro-muon-assembly`
+- `anti-muon-assembly`
+- `pro-electron-assembly`
+- `anti-electron-assembly`
+- `pro-tau-neutrino-assembly`
+- `anti-tau-neutrino-assembly`
+- `pro-muon-neutrino-assembly`
+- `anti-muon-neutrino-assembly`
+- `pro-electron-neutrino-assembly`
+- `anti-electron-neutrino-assembly`
+- `pro-bottom-quark-assembly`
+- `anti-bottom-quark-assembly`
+- `pro-strange-quark-assembly`
+- `anti-strange-quark-assembly`
+- `pro-down-quark-assembly`
+- `anti-down-quark-assembly`
+- `pro-top-quark-assembly`
+- `anti-top-quark-assembly`
+- `pro-charm-quark-assembly`
+- `anti-charm-quark-assembly`
+- `pro-up-quark-assembly`
+- `anti-up-quark-assembly`
+- `up-quark-color-variations-assembly`
+- `down-quark-color-variations-family-i-assembly`
+- `down-quark-color-variations-family-ii-assembly`
+- `photon-assembly`
+- `noether-pair-assembly`
+- `noether-quad-assembly`
+- `pro-proton-assembly`
+- `anti-proton-assembly`
+- `pro-neutron-assembly`
+- `anti-neutron-assembly`
+- `positive-pion-assembly`
+- `negative-pion-assembly`
+- `neutral-pion-u-assembly`
+- `neutral-pion-d-assembly`
+- `positive-kaon-assembly`
+- `negative-kaon-assembly`
+- `neutral-kaon-d-assembly`
+- `neutral-kaon-s-assembly`
+- `positive-b-meson-assembly`
+- `negative-b-meson-assembly`
+- `neutral-b-meson-d-assembly`
+- `neutral-b-meson-b-assembly`
+- `pro-noether-core-assembly`
+- `anti-noether-core-assembly`
+
+For assemblies, `type` is semantic only.
+
+That means:
+
+- assembly `type` identifies the semantic family of the four-tile object;
+- assembly `type` must not be used to reconstruct the visible tile payload;
+- assembly `type` may be used for validation, filtering, export, and transformation logic;
+- and the exact rendered appearance still comes only from the explicit `tiles` array.
+
+The `-assembly` suffix is the canonical naming form for assembly `type` values in `xyzzy/v1`.
+
+The assembly display payload remains the explicit `tiles` array.
+
 The exact link schema is:
 
 - `id`
@@ -1439,7 +1520,4 @@ Done when:
 - stale generated Xyzzy SVG files are detectable;
 - and the reference SVG generation stays useful for comparison without becoming a second design system.
 
-## To Do
 
-1. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
-    The schema requires type for assemblies and operators in src/contracts/xyzzy/v1/schema.json (line 18) and src/contracts/xyzzy/v1/schema.json (line 63), but there is no closed allowed-value list or statement of whether each type is semantic-only, display-only, or both.

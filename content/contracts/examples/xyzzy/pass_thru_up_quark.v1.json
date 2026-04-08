@@ -3,7 +3,7 @@
   "assemblies": [
     {
       "id": "reactant_up_quark",
-      "type": "up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 1,
       "title": "Input Up Quark",
@@ -17,7 +17,7 @@
     },
     {
       "id": "intermediate_up_quark",
-      "type": "up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 1,
       "title": "Intermediate Up Quark",
@@ -31,7 +31,7 @@
     },
     {
       "id": "product_up_quark",
-      "type": "up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 16,
       "y": 1,
       "title": "Output Up Quark",

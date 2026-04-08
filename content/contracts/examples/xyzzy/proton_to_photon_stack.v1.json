@@ -3,7 +3,7 @@
   "assemblies": [
     {
       "id": "reactant_proton_row_1",
-      "type": "up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 0,
       "title": "Proton Row 1",
@@ -17,7 +17,7 @@
     },
     {
       "id": "reactant_proton_row_2",
-      "type": "down-quark",
+      "type": "pro-down-quark-assembly",
       "x": 2,
       "y": 1,
       "title": "Proton Row 2",
@@ -31,7 +31,7 @@
     },
     {
       "id": "reactant_proton_row_3",
-      "type": "up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 2,
       "title": "Proton Row 3",
@@ -45,7 +45,7 @@
     },
     {
       "id": "product_photon_row_1",
-      "type": "photon-core",
+      "type": "photon-assembly",
       "x": 16,
       "y": 0,
       "title": "Photon Row 1",
@@ -59,7 +59,7 @@
     },
     {
       "id": "product_photon_row_2",
-      "type": "photon-core",
+      "type": "photon-assembly",
       "x": 16,
       "y": 1,
       "title": "Photon Row 2",

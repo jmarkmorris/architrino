@@ -36,7 +36,57 @@
           },
           "type": {
             "type": "string",
-            "minLength": 1
+            "enum": [
+              "unbound-architrinos-assembly",
+              "pro-tau-assembly",
+              "anti-tau-assembly",
+              "pro-muon-assembly",
+              "anti-muon-assembly",
+              "pro-electron-assembly",
+              "anti-electron-assembly",
+              "pro-tau-neutrino-assembly",
+              "anti-tau-neutrino-assembly",
+              "pro-muon-neutrino-assembly",
+              "anti-muon-neutrino-assembly",
+              "pro-electron-neutrino-assembly",
+              "anti-electron-neutrino-assembly",
+              "pro-bottom-quark-assembly",
+              "anti-bottom-quark-assembly",
+              "pro-strange-quark-assembly",
+              "anti-strange-quark-assembly",
+              "pro-down-quark-assembly",
+              "anti-down-quark-assembly",
+              "pro-top-quark-assembly",
+              "anti-top-quark-assembly",
+              "pro-charm-quark-assembly",
+              "anti-charm-quark-assembly",
+              "pro-up-quark-assembly",
+              "anti-up-quark-assembly",
+              "up-quark-color-variations-assembly",
+              "down-quark-color-variations-family-i-assembly",
+              "down-quark-color-variations-family-ii-assembly",
+              "photon-assembly",
+              "noether-pair-assembly",
+              "noether-quad-assembly",
+              "pro-proton-assembly",
+              "anti-proton-assembly",
+              "pro-neutron-assembly",
+              "anti-neutron-assembly",
+              "positive-pion-assembly",
+              "negative-pion-assembly",
+              "neutral-pion-u-assembly",
+              "neutral-pion-d-assembly",
+              "positive-kaon-assembly",
+              "negative-kaon-assembly",
+              "neutral-kaon-d-assembly",
+              "neutral-kaon-s-assembly",
+              "positive-b-meson-assembly",
+              "negative-b-meson-assembly",
+              "neutral-b-meson-d-assembly",
+              "neutral-b-meson-b-assembly",
+              "pro-noether-core-assembly",
+              "anti-noether-core-assembly"
+            ]
           },
           "x": {
             "type": "integer",
@@ -91,7 +141,11 @@
           },
           "type": {
             "type": "string",
-            "minLength": 1
+            "enum": [
+              "associate",
+              "dissociate",
+              "pass-thru"
+            ]
           },
           "x": {
             "type": "integer",

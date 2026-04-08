@@ -3,7 +3,7 @@
   "assemblies": [
     {
       "id": "reactant_unbound_architrinos",
-      "type": "unbound-architrinos",
+      "type": "unbound-architrinos-assembly",
       "x": 2,
       "y": 0,
       "title": "Unbound Architrinos",

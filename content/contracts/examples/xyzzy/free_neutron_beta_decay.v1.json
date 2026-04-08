@@ -3,7 +3,7 @@
   "assemblies": [
     {
       "id": "reactant_neutron_row_1",
-      "type": "neutron-row",
+      "type": "pro-neutron-assembly",
       "x": 2,
       "y": 0,
       "title": "Neutron Row 1",
@@ -17,7 +17,7 @@
     },
     {
       "id": "reactant_neutron_row_2",
-      "type": "neutron-row",
+      "type": "pro-neutron-assembly",
       "x": 2,
       "y": 1,
       "title": "Neutron Row 2",
@@ -31,7 +31,7 @@
     },
     {
       "id": "reactant_neutron_row_3",
-      "type": "neutron-row",
+      "type": "pro-neutron-assembly",
       "x": 2,
       "y": 2,
       "title": "Neutron Row 3",
@@ -45,7 +45,7 @@
     },
     {
       "id": "reactant_noether_pair_row_1",
-      "type": "noether-pair-row",
+      "type": "noether-pair-assembly",
       "x": 2,
       "y": 3,
       "title": "Noether Pair Row 1",
@@ -59,7 +59,7 @@
     },
     {
       "id": "reactant_noether_pair_row_2",
-      "type": "noether-pair-row",
+      "type": "noether-pair-assembly",
       "x": 2,
       "y": 4,
       "title": "Noether Pair Row 2",
@@ -73,7 +73,7 @@
     },
     {
       "id": "intermediate_up_quark_row_1",
-      "type": "up-quark-row",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 0,
       "title": "Up Quark Row 1",
@@ -87,7 +87,7 @@
     },
     {
       "id": "intermediate_down_quark_row_1",
-      "type": "down-quark-row",
+      "type": "pro-down-quark-assembly",
       "x": 9,
       "y": 1,
       "title": "Down Quark Row 1",
@@ -101,7 +101,7 @@
     },
     {
       "id": "intermediate_up_quark_row_2",
-      "type": "up-quark-row",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 2,
       "title": "Up Quark Row 2",
@@ -115,7 +115,7 @@
     },
     {
       "id": "intermediate_pro_noether_core",
-      "type": "pro-noether-core-row",
+      "type": "pro-noether-core-assembly",
       "x": 9,
       "y": 3,
       "title": "Pro Noether Core",
@@ -129,7 +129,7 @@
     },
     {
       "id": "intermediate_anti_noether_core",
-      "type": "anti-noether-core-row",
+      "type": "anti-noether-core-assembly",
       "x": 9,
       "y": 4,
       "title": "Anti Noether Core",
@@ -143,7 +143,7 @@
     },
     {
       "id": "intermediate_unbound_architrinos",
-      "type": "unbound-architrinos-row",
+      "type": "unbound-architrinos-assembly",
       "x": 9,
       "y": 5,
       "title": "Unbound Architrinos",
@@ -157,7 +157,7 @@
     },
     {
       "id": "product_proton_row_1",
-      "type": "proton-row",
+      "type": "pro-proton-assembly",
       "x": 16,
       "y": 0,
       "title": "Proton Row 1",
@@ -171,7 +171,7 @@
     },
     {
       "id": "product_proton_row_2",
-      "type": "proton-row",
+      "type": "pro-proton-assembly",
       "x": 16,
       "y": 1,
       "title": "Proton Row 2",
@@ -185,7 +185,7 @@
     },
     {
       "id": "product_proton_row_3",
-      "type": "proton-row",
+      "type": "pro-proton-assembly",
       "x": 16,
       "y": 2,
       "title": "Proton Row 3",
@@ -199,7 +199,7 @@
     },
     {
       "id": "product_pro_electron",
-      "type": "electron-row",
+      "type": "pro-electron-assembly",
       "x": 16,
       "y": 3,
       "title": "Pro Electron",
@@ -213,7 +213,7 @@
     },
     {
       "id": "product_anti_electron_neutrino",
-      "type": "anti-electron-neutrino-row",
+      "type": "anti-electron-neutrino-assembly",
       "x": 16,
       "y": 5,
       "title": "Anti Electron Neutrino",

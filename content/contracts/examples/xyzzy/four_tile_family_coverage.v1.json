@@ -3,7 +3,7 @@
   "assemblies": [
     {
       "id": "unbound_architrinos_row_1",
-      "type": "unbound-architrinos",
+      "type": "unbound-architrinos-assembly",
       "x": 2,
       "y": 0,
       "title": "Unbound Architrinos Row 1",
@@ -17,7 +17,7 @@
     },
     {
       "id": "pro_tau_row_1",
-      "type": "pro-tau",
+      "type": "pro-tau-assembly",
       "x": 9,
       "y": 0,
       "title": "Pro Tau Row 1",
@@ -31,7 +31,7 @@
     },
     {
       "id": "anti_tau_row_1",
-      "type": "anti-tau",
+      "type": "anti-tau-assembly",
       "x": 16,
       "y": 0,
       "title": "Anti Tau Row 1",
@@ -45,7 +45,7 @@
     },
     {
       "id": "pro_muon_row_1",
-      "type": "pro-muon",
+      "type": "pro-muon-assembly",
       "x": 2,
       "y": 1,
       "title": "Pro Muon Row 1",
@@ -59,7 +59,7 @@
     },
     {
       "id": "anti_muon_row_1",
-      "type": "anti-muon",
+      "type": "anti-muon-assembly",
       "x": 9,
       "y": 1,
       "title": "Anti Muon Row 1",
@@ -73,7 +73,7 @@
     },
     {
       "id": "pro_electron_row_1",
-      "type": "pro-electron",
+      "type": "pro-electron-assembly",
       "x": 16,
       "y": 1,
       "title": "Pro Electron Row 1",
@@ -87,7 +87,7 @@
     },
     {
       "id": "anti_electron_row_1",
-      "type": "anti-electron",
+      "type": "anti-electron-assembly",
       "x": 2,
       "y": 2,
       "title": "Anti Electron Row 1",
@@ -101,7 +101,7 @@
     },
     {
       "id": "pro_tau_neutrino_row_1",
-      "type": "pro-tau-neutrino",
+      "type": "pro-tau-neutrino-assembly",
       "x": 9,
       "y": 2,
       "title": "Pro Tau Neutrino Row 1",
@@ -115,7 +115,7 @@
     },
     {
       "id": "anti_tau_neutrino_row_1",
-      "type": "anti-tau-neutrino",
+      "type": "anti-tau-neutrino-assembly",
       "x": 16,
       "y": 2,
       "title": "Anti Tau Neutrino Row 1",
@@ -129,7 +129,7 @@
     },
     {
       "id": "pro_muon_neutrino_row_1",
-      "type": "pro-muon-neutrino",
+      "type": "pro-muon-neutrino-assembly",
       "x": 2,
       "y": 3,
       "title": "Pro Muon Neutrino Row 1",
@@ -143,7 +143,7 @@
     },
     {
       "id": "anti_muon_neutrino_row_1",
-      "type": "anti-muon-neutrino",
+      "type": "anti-muon-neutrino-assembly",
       "x": 9,
       "y": 3,
       "title": "Anti Muon Neutrino Row 1",
@@ -157,7 +157,7 @@
     },
     {
       "id": "pro_electron_neutrino_row_1",
-      "type": "pro-electron-neutrino",
+      "type": "pro-electron-neutrino-assembly",
       "x": 16,
       "y": 3,
       "title": "Pro Electron Neutrino Row 1",
@@ -171,7 +171,7 @@
     },
     {
       "id": "anti_electron_neutrino_row_1",
-      "type": "anti-electron-neutrino",
+      "type": "anti-electron-neutrino-assembly",
       "x": 2,
       "y": 4,
       "title": "Anti Electron Neutrino Row 1",
@@ -185,7 +185,7 @@
     },
     {
       "id": "pro_bottom_quark_row_1",
-      "type": "pro-bottom-quark",
+      "type": "pro-bottom-quark-assembly",
       "x": 9,
       "y": 4,
       "title": "Pro Bottom Quark Row 1",
@@ -199,7 +199,7 @@
     },
     {
       "id": "anti_bottom_quark_row_1",
-      "type": "anti-bottom-quark",
+      "type": "anti-bottom-quark-assembly",
       "x": 16,
       "y": 4,
       "title": "Anti Bottom Quark Row 1",
@@ -213,7 +213,7 @@
     },
     {
       "id": "pro_strange_quark_row_1",
-      "type": "pro-strange-quark",
+      "type": "pro-strange-quark-assembly",
       "x": 2,
       "y": 5,
       "title": "Pro Strange Quark Row 1",
@@ -227,7 +227,7 @@
     },
     {
       "id": "anti_strange_quark_row_1",
-      "type": "anti-strange-quark",
+      "type": "anti-strange-quark-assembly",
       "x": 9,
       "y": 5,
       "title": "Anti Strange Quark Row 1",
@@ -241,7 +241,7 @@
     },
     {
       "id": "pro_down_quark_row_1",
-      "type": "pro-down-quark",
+      "type": "pro-down-quark-assembly",
       "x": 16,
       "y": 5,
       "title": "Pro Down Quark Row 1",
@@ -255,7 +255,7 @@
     },
     {
       "id": "anti_down_quark_row_1",
-      "type": "anti-down-quark",
+      "type": "anti-down-quark-assembly",
       "x": 2,
       "y": 6,
       "title": "Anti Down Quark Row 1",
@@ -269,7 +269,7 @@
     },
     {
       "id": "pro_top_quark_row_1",
-      "type": "pro-top-quark",
+      "type": "pro-top-quark-assembly",
       "x": 9,
       "y": 6,
       "title": "Pro Top Quark Row 1",
@@ -283,7 +283,7 @@
     },
     {
       "id": "anti_top_quark_row_1",
-      "type": "anti-top-quark",
+      "type": "anti-top-quark-assembly",
       "x": 16,
       "y": 6,
       "title": "Anti Top Quark Row 1",
@@ -297,7 +297,7 @@
     },
     {
       "id": "pro_charm_quark_row_1",
-      "type": "pro-charm-quark",
+      "type": "pro-charm-quark-assembly",
       "x": 2,
       "y": 7,
       "title": "Pro Charm Quark Row 1",
@@ -311,7 +311,7 @@
     },
     {
       "id": "anti_charm_quark_row_1",
-      "type": "anti-charm-quark",
+      "type": "anti-charm-quark-assembly",
       "x": 9,
       "y": 7,
       "title": "Anti Charm Quark Row 1",
@@ -325,7 +325,7 @@
     },
     {
       "id": "pro_up_quark_row_1",
-      "type": "pro-up-quark",
+      "type": "pro-up-quark-assembly",
       "x": 16,
       "y": 7,
       "title": "Pro Up Quark Row 1",
@@ -339,7 +339,7 @@
     },
     {
       "id": "anti_up_quark_row_1",
-      "type": "anti-up-quark",
+      "type": "anti-up-quark-assembly",
       "x": 2,
       "y": 8,
       "title": "Anti Up Quark Row 1",
@@ -353,7 +353,7 @@
     },
     {
       "id": "up_quark_color_variations_row_1",
-      "type": "up-quark-color-variations",
+      "type": "up-quark-color-variations-assembly",
       "x": 9,
       "y": 8,
       "title": "Up Quark Color Variations Row 1",
@@ -367,7 +367,7 @@
     },
     {
       "id": "up_quark_color_variations_row_2",
-      "type": "up-quark-color-variations",
+      "type": "up-quark-color-variations-assembly",
       "x": 16,
       "y": 8,
       "title": "Up Quark Color Variations Row 2",
@@ -381,7 +381,7 @@
     },
     {
       "id": "up_quark_color_variations_row_3",
-      "type": "up-quark-color-variations",
+      "type": "up-quark-color-variations-assembly",
       "x": 2,
       "y": 9,
       "title": "Up Quark Color Variations Row 3",
@@ -395,7 +395,7 @@
     },
     {
       "id": "down_quark_color_variations_family_i_row_1",
-      "type": "down-quark-color-variations-family-i",
+      "type": "down-quark-color-variations-family-i-assembly",
       "x": 9,
       "y": 9,
       "title": "Down Quark Color Variations Family I Row 1",
@@ -409,7 +409,7 @@
     },
     {
       "id": "down_quark_color_variations_family_i_row_2",
-      "type": "down-quark-color-variations-family-i",
+      "type": "down-quark-color-variations-family-i-assembly",
       "x": 16,
       "y": 9,
       "title": "Down Quark Color Variations Family I Row 2",
@@ -423,7 +423,7 @@
     },
     {
       "id": "down_quark_color_variations_family_i_row_3",
-      "type": "down-quark-color-variations-family-i",
+      "type": "down-quark-color-variations-family-i-assembly",
       "x": 2,
       "y": 10,
       "title": "Down Quark Color Variations Family I Row 3",
@@ -437,7 +437,7 @@
     },
     {
       "id": "down_quark_color_variations_family_ii_row_1",
-      "type": "down-quark-color-variations-family-ii",
+      "type": "down-quark-color-variations-family-ii-assembly",
       "x": 9,
       "y": 10,
       "title": "Down Quark Color Variations Family II Row 1",
@@ -451,7 +451,7 @@
     },
     {
       "id": "down_quark_color_variations_family_ii_row_2",
-      "type": "down-quark-color-variations-family-ii",
+      "type": "down-quark-color-variations-family-ii-assembly",
       "x": 16,
       "y": 10,
       "title": "Down Quark Color Variations Family II Row 2",
@@ -465,7 +465,7 @@
     },
     {
       "id": "down_quark_color_variations_family_ii_row_3",
-      "type": "down-quark-color-variations-family-ii",
+      "type": "down-quark-color-variations-family-ii-assembly",
       "x": 2,
       "y": 11,
       "title": "Down Quark Color Variations Family II Row 3",
@@ -479,7 +479,7 @@
     },
     {
       "id": "photon_row_1",
-      "type": "photon",
+      "type": "photon-assembly",
       "x": 9,
       "y": 11,
       "title": "Photon Row 1",
@@ -493,7 +493,7 @@
     },
     {
       "id": "photon_row_2",
-      "type": "photon",
+      "type": "photon-assembly",
       "x": 16,
       "y": 11,
       "title": "Photon Row 2",
@@ -507,7 +507,7 @@
     },
     {
       "id": "noether_pair_row_1",
-      "type": "noether-pair",
+      "type": "noether-pair-assembly",
       "x": 2,
       "y": 12,
       "title": "Noether Pair Row 1",
@@ -521,7 +521,7 @@
     },
     {
       "id": "noether_pair_row_2",
-      "type": "noether-pair",
+      "type": "noether-pair-assembly",
       "x": 9,
       "y": 12,
       "title": "Noether Pair Row 2",
@@ -535,7 +535,7 @@
     },
     {
       "id": "noether_quad_row_1",
-      "type": "noether-quad",
+      "type": "noether-quad-assembly",
       "x": 16,
       "y": 12,
       "title": "Noether Quad Row 1",
@@ -549,7 +549,7 @@
     },
     {
       "id": "noether_quad_row_2",
-      "type": "noether-quad",
+      "type": "noether-quad-assembly",
       "x": 2,
       "y": 13,
       "title": "Noether Quad Row 2",
@@ -563,7 +563,7 @@
     },
     {
       "id": "noether_quad_row_3",
-      "type": "noether-quad",
+      "type": "noether-quad-assembly",
       "x": 9,
       "y": 13,
       "title": "Noether Quad Row 3",
@@ -577,7 +577,7 @@
     },
     {
       "id": "noether_quad_row_4",
-      "type": "noether-quad",
+      "type": "noether-quad-assembly",
       "x": 16,
       "y": 13,
       "title": "Noether Quad Row 4",
@@ -591,7 +591,7 @@
     },
     {
       "id": "pro_proton_row_1",
-      "type": "pro-proton",
+      "type": "pro-proton-assembly",
       "x": 2,
       "y": 14,
       "title": "Pro Proton Row 1",
@@ -605,7 +605,7 @@
     },
     {
       "id": "pro_proton_row_2",
-      "type": "pro-proton",
+      "type": "pro-proton-assembly",
       "x": 9,
       "y": 14,
       "title": "Pro Proton Row 2",
@@ -619,7 +619,7 @@
     },
     {
       "id": "pro_proton_row_3",
-      "type": "pro-proton",
+      "type": "pro-proton-assembly",
       "x": 16,
       "y": 14,
       "title": "Pro Proton Row 3",
@@ -633,7 +633,7 @@
     },
     {
       "id": "anti_proton_row_1",
-      "type": "anti-proton",
+      "type": "anti-proton-assembly",
       "x": 2,
       "y": 15,
       "title": "Anti Proton Row 1",
@@ -647,7 +647,7 @@
     },
     {
       "id": "anti_proton_row_2",
-      "type": "anti-proton",
+      "type": "anti-proton-assembly",
       "x": 9,
       "y": 15,
       "title": "Anti Proton Row 2",
@@ -661,7 +661,7 @@
     },
     {
       "id": "anti_proton_row_3",
-      "type": "anti-proton",
+      "type": "anti-proton-assembly",
       "x": 16,
       "y": 15,
       "title": "Anti Proton Row 3",
@@ -675,7 +675,7 @@
     },
     {
       "id": "pro_neutron_row_1",
-      "type": "pro-neutron",
+      "type": "pro-neutron-assembly",
       "x": 2,
       "y": 16,
       "title": "Pro Neutron Row 1",
@@ -689,7 +689,7 @@
     },
     {
       "id": "pro_neutron_row_2",
-      "type": "pro-neutron",
+      "type": "pro-neutron-assembly",
       "x": 9,
       "y": 16,
       "title": "Pro Neutron Row 2",
@@ -703,7 +703,7 @@
     },
     {
       "id": "pro_neutron_row_3",
-      "type": "pro-neutron",
+      "type": "pro-neutron-assembly",
       "x": 16,
       "y": 16,
       "title": "Pro Neutron Row 3",
@@ -717,7 +717,7 @@
     },
     {
       "id": "anti_neutron_row_1",
-      "type": "anti-neutron",
+      "type": "anti-neutron-assembly",
       "x": 2,
       "y": 17,
       "title": "Anti Neutron Row 1",
@@ -731,7 +731,7 @@
     },
     {
       "id": "anti_neutron_row_2",
-      "type": "anti-neutron",
+      "type": "anti-neutron-assembly",
       "x": 9,
       "y": 17,
       "title": "Anti Neutron Row 2",
@@ -745,7 +745,7 @@
     },
     {
       "id": "anti_neutron_row_3",
-      "type": "anti-neutron",
+      "type": "anti-neutron-assembly",
       "x": 16,
       "y": 17,
       "title": "Anti Neutron Row 3",
@@ -759,7 +759,7 @@
     },
     {
       "id": "positive_pion_row_1",
-      "type": "positive-pion",
+      "type": "positive-pion-assembly",
       "x": 2,
       "y": 18,
       "title": "Positive Pion Row 1",
@@ -773,7 +773,7 @@
     },
     {
       "id": "positive_pion_row_2",
-      "type": "positive-pion",
+      "type": "positive-pion-assembly",
       "x": 9,
       "y": 18,
       "title": "Positive Pion Row 2",
@@ -787,7 +787,7 @@
     },
     {
       "id": "negative_pion_row_1",
-      "type": "negative-pion",
+      "type": "negative-pion-assembly",
       "x": 16,
       "y": 18,
       "title": "Negative Pion Row 1",
@@ -801,7 +801,7 @@
     },
     {
       "id": "negative_pion_row_2",
-      "type": "negative-pion",
+      "type": "negative-pion-assembly",
       "x": 2,
       "y": 19,
       "title": "Negative Pion Row 2",
@@ -815,7 +815,7 @@
     },
     {
       "id": "neutral_pion_u_row_1",
-      "type": "neutral-pion-u",
+      "type": "neutral-pion-u-assembly",
       "x": 9,
       "y": 19,
       "title": "Neutral Pion (u anti-u) Row 1",
@@ -829,7 +829,7 @@
     },
     {
       "id": "neutral_pion_u_row_2",
-      "type": "neutral-pion-u",
+      "type": "neutral-pion-u-assembly",
       "x": 16,
       "y": 19,
       "title": "Neutral Pion (u anti-u) Row 2",
@@ -843,7 +843,7 @@
     },
     {
       "id": "neutral_pion_d_row_1",
-      "type": "neutral-pion-d",
+      "type": "neutral-pion-d-assembly",
       "x": 2,
       "y": 20,
       "title": "Neutral Pion (d anti-d) Row 1",
@@ -857,7 +857,7 @@
     },
     {
       "id": "neutral_pion_d_row_2",
-      "type": "neutral-pion-d",
+      "type": "neutral-pion-d-assembly",
       "x": 9,
       "y": 20,
       "title": "Neutral Pion (d anti-d) Row 2",
@@ -871,7 +871,7 @@
     },
     {
       "id": "positive_kaon_row_1",
-      "type": "positive-kaon",
+      "type": "positive-kaon-assembly",
       "x": 16,
       "y": 20,
       "title": "Positive Kaon Row 1",
@@ -885,7 +885,7 @@
     },
     {
       "id": "positive_kaon_row_2",
-      "type": "positive-kaon",
+      "type": "positive-kaon-assembly",
       "x": 2,
       "y": 21,
       "title": "Positive Kaon Row 2",
@@ -899,7 +899,7 @@
     },
     {
       "id": "negative_kaon_row_1",
-      "type": "negative-kaon",
+      "type": "negative-kaon-assembly",
       "x": 9,
       "y": 21,
       "title": "Negative Kaon Row 1",
@@ -913,7 +913,7 @@
     },
     {
       "id": "negative_kaon_row_2",
-      "type": "negative-kaon",
+      "type": "negative-kaon-assembly",
       "x": 16,
       "y": 21,
       "title": "Negative Kaon Row 2",
@@ -927,7 +927,7 @@
     },
     {
       "id": "neutral_kaon_d_row_1",
-      "type": "neutral-kaon-d",
+      "type": "neutral-kaon-d-assembly",
       "x": 2,
       "y": 22,
       "title": "Neutral Kaon (d anti-s) Row 1",
@@ -941,7 +941,7 @@
     },
     {
       "id": "neutral_kaon_d_row_2",
-      "type": "neutral-kaon-d",
+      "type": "neutral-kaon-d-assembly",
       "x": 9,
       "y": 22,
       "title": "Neutral Kaon (d anti-s) Row 2",
@@ -955,7 +955,7 @@
     },
     {
       "id": "neutral_kaon_s_row_1",
-      "type": "neutral-kaon-s",
+      "type": "neutral-kaon-s-assembly",
       "x": 16,
       "y": 22,
       "title": "Neutral Kaon (s anti-d) Row 1",
@@ -969,7 +969,7 @@
     },
     {
       "id": "neutral_kaon_s_row_2",
-      "type": "neutral-kaon-s",
+      "type": "neutral-kaon-s-assembly",
       "x": 2,
       "y": 23,
       "title": "Neutral Kaon (s anti-d) Row 2",
@@ -983,7 +983,7 @@
     },
     {
       "id": "positive_b_meson_row_1",
-      "type": "positive-b-meson",
+      "type": "positive-b-meson-assembly",
       "x": 9,
       "y": 23,
       "title": "Positive B Meson Row 1",
@@ -997,7 +997,7 @@
     },
     {
       "id": "positive_b_meson_row_2",
-      "type": "positive-b-meson",
+      "type": "positive-b-meson-assembly",
       "x": 16,
       "y": 23,
       "title": "Positive B Meson Row 2",
@@ -1011,7 +1011,7 @@
     },
     {
       "id": "negative_b_meson_row_1",
-      "type": "negative-b-meson",
+      "type": "negative-b-meson-assembly",
       "x": 2,
       "y": 24,
       "title": "Negative B Meson Row 1",
@@ -1025,7 +1025,7 @@
     },
     {
       "id": "negative_b_meson_row_2",
-      "type": "negative-b-meson",
+      "type": "negative-b-meson-assembly",
       "x": 9,
       "y": 24,
       "title": "Negative B Meson Row 2",
@@ -1039,7 +1039,7 @@
     },
     {
       "id": "neutral_b_meson_d_row_1",
-      "type": "neutral-b-meson-d",
+      "type": "neutral-b-meson-d-assembly",
       "x": 16,
       "y": 24,
       "title": "Neutral B Meson (d anti-b) Row 1",
@@ -1053,7 +1053,7 @@
     },
     {
       "id": "neutral_b_meson_d_row_2",
-      "type": "neutral-b-meson-d",
+      "type": "neutral-b-meson-d-assembly",
       "x": 2,
       "y": 25,
       "title": "Neutral B Meson (d anti-b) Row 2",
@@ -1067,7 +1067,7 @@
     },
     {
       "id": "neutral_b_meson_b_row_1",
-      "type": "neutral-b-meson-b",
+      "type": "neutral-b-meson-b-assembly",
       "x": 9,
       "y": 25,
       "title": "Neutral B Meson (b anti-d) Row 1",
@@ -1081,7 +1081,7 @@
     },
     {
       "id": "neutral_b_meson_b_row_2",
-      "type": "neutral-b-meson-b",
+      "type": "neutral-b-meson-b-assembly",
       "x": 16,
       "y": 25,
       "title": "Neutral B Meson (b anti-d) Row 2",
