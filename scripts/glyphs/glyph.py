@@ -190,7 +190,7 @@ def resolve_binary_glyph(
             rx=float(orbit_spec.get("rx", 38)),
             ry=float(orbit_spec.get("ry", 13)),
             stroke_color=resolve_palette_color(palette, str(orbit_spec.get("strokeColor", ""))),
-            stroke_width=float(orbit_spec.get("strokeWidth", 7.2)),
+            stroke_width=float(orbit_spec.get("strokeWidth", 5)),
             filter_value=str(orbit_spec.get("filter", "")).strip(),
         ),
         axis=XyzzyBinaryGlyphAxis(
@@ -199,7 +199,7 @@ def resolve_binary_glyph(
             x2=float(axis_spec.get("x2", 60)),
             y2=float(axis_spec.get("y2", 86.6666666667)),
             stroke_color=resolve_palette_color(palette, str(axis_spec.get("strokeColor", ""))),
-            stroke_width=float(axis_spec.get("strokeWidth", 4.8)),
+            stroke_width=float(axis_spec.get("strokeWidth", 4)),
             line_cap=str(axis_spec.get("lineCap", "butt")).strip() or "butt",
             opacity=float(axis_spec.get("opacity", 1)),
             stroke_dasharray=str(axis_spec.get("strokeDasharray", "")).strip(),
@@ -629,7 +629,7 @@ def render_tile_body_lines(
                 (
                     f'    <ellipse cx="{orbit.cx:.2f}" cy="{orbit.cy:.2f}" rx="{orbit.rx:.2f}" '
                     f'ry="{orbit.ry:.2f}" fill="none" stroke="{orbit.stroke_color}" '
-                    f'stroke-width="{orbit.stroke_width:.2f}" vector-effect="non-scaling-stroke"{orbit_style}/>'
+                    f'stroke-width="{orbit.stroke_width:.2f}"{orbit_style}/>'
                 )
             )
         if tile.binary_glyph.show_axis:
@@ -647,7 +647,7 @@ def render_tile_body_lines(
                 (
                     f'    <line x1="{axis.x1:.2f}" y1="{axis.y1:.2f}" x2="{axis.x2:.2f}" y2="{axis.y2:.2f}" '
                     f'fill="none" stroke="{axis.stroke_color}" stroke-width="{axis.stroke_width:.2f}" '
-                    f'stroke-linecap="{escape(axis.line_cap)}" vector-effect="non-scaling-stroke" '
+                    f'stroke-linecap="{escape(axis.line_cap)}" '
                     f'opacity="{axis.opacity:.2f}"{axis_dasharray}{axis_dashoffset}/>'
                 )
             )

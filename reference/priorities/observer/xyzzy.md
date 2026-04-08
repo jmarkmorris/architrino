@@ -379,9 +379,9 @@ The Xyzzy generator and review renderer should use these exact values rather tha
 - horizontal radius: `38`;
 - vertical radius: `13`;
 - stroke color: `rgba(162, 89, 255, 0.96)`;
-- stroke width: `7.2` in the generator specification, which corresponds to a `12px` intended design thickness scaled by the `72/120` glyph fit.
+- stroke width: `5` in the generator specification, which corresponds to a `3px` display thickness after the `72/120` glyph fit.
 
-In the Xyzzy binary generator, that orbit stroke also uses a non-scaling stroke rule.
+In the Xyzzy binary generator and review renderer, that orbit stroke scales with the `72/120` glyph fit, so it renders at `3px` inside the `72px x 72px` tile field.
 
 The current reaction-app rendering also applies the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
 
@@ -391,11 +391,11 @@ The current reaction-app rendering also applies the orbit glow filter `drop-shad
 - end point: `(60, 86.6666666667)`;
 - line length: `53.3333333334`;
 - stroke color: `rgba(162, 89, 255, 0.82)`;
-- stroke width: `4.8` in the generator specification, which corresponds to an `8px` intended design thickness scaled by the `72/120` glyph fit.
+- stroke width: `4` in the generator specification, which corresponds to a `2.4px` display thickness after the `72/120` glyph fit.
 
-The current reaction-app rendering also uses:
+The current Xyzzy generator and review renderer also use:
 
-- non-scaling stroke;
+- scaling stroke;
 - solid full-mode axis lines with butt line caps;
 - and overall axis opacity `0.84`.
 
