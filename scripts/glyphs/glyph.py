@@ -772,8 +772,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--spec-json",
-        default=str(Path(__file__).resolve().with_name("xyzzy-tiles.json")),
-        help="Shared Xyzzy tile JSON catalog. Defaults to xyzzy-tiles.json next to glyph.py.",
+        default=str(repo_root / "src" / "apps" / "xyzzy" / "xyzzy-tiles.json"),
+        help="Shared Xyzzy tile JSON catalog. Defaults to src/apps/xyzzy/xyzzy-tiles.json.",
     )
     parser.add_argument(
         "--output-dir",
