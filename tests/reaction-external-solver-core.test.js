@@ -227,7 +227,7 @@ test("external solve-reaction CLI closes the supported PDG weak-channel request 
         (participant) =>
           participant.origin === "solve-generated-intermediate" &&
           participant.side === "center" &&
-          ["noether_core", "free_architrinos"].includes(participant.templateId)
+          ["noether_core", "unbound_architrinos"].includes(participant.templateId)
       ),
       true,
       `${requestPath} should synthesize solve-generated center provenance participants`
@@ -675,7 +675,7 @@ test("external solve-reaction CLI falls back to the generic weak profile for aut
     ),
     true
   );
-  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
+  assert.equal(result.participants.some((participant) => participant.templateId === "unbound_architrinos"), false);
 });
 
 test("external solve-reaction CLI falls back to the generic weak profile for authored charged-kaon weak decay requests", () => {
@@ -3010,7 +3010,7 @@ test("external solve-reaction CLI closes charged pion to positron plus electron 
   assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
   assert.equal(result.operators.length, 1);
   assert.equal(result.steps.some((step) => step.ruleFamily === "dissociate-meson-constituents"), false);
-  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
+  assert.equal(result.participants.some((participant) => participant.templateId === "unbound_architrinos"), false);
 });
 
 test("external solve-reaction CLI closes neutral pion to two photons through the generic meson path", () => {
@@ -3217,7 +3217,7 @@ test("external solve-reaction CLI closes neutral pion to electron-positron throu
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-electron-pair-decay"), true);
   assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
   assert.equal(result.operators.length, 1);
-  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
+  assert.equal(result.participants.some((participant) => participant.templateId === "unbound_architrinos"), false);
 });
 
 test("external solve-reaction CLI closes neutral pion to electron-neutrino pair through the generic meson path", () => {
@@ -3338,7 +3338,7 @@ test("external solve-reaction CLI closes neutral pion to electron-neutrino pair 
   assert.equal(result.steps.some((step) => step.ruleFamily === "meson-neutral-pion-neutrino-pair-decay"), true);
   assert.equal(result.steps.some((step) => step.diagnosticLabels?.includes("generic-weak-channel")), true);
   assert.equal(result.operators.length, 1);
-  assert.equal(result.participants.some((participant) => participant.templateId === "free_architrinos"), false);
+  assert.equal(result.participants.some((participant) => participant.templateId === "unbound_architrinos"), false);
 });
 
 test("external solve-reaction CLI falls back to a generic weak profile for neutral pion double-Dalitz closure when provenance staging is policy-invalid", () => {
@@ -3495,23 +3495,23 @@ test("external solve-reaction CLI uses an authored reactant Noether Pair as a no
         ],
       },
       {
-        id: "center_free_architrinos_electron",
+        id: "center_unbound_architrinos_electron",
         side: "center",
-        templateId: "free_architrinos",
-        label: "Free Architrinos",
-        family: "free-architrinos",
+        templateId: "unbound_architrinos",
+        label: "Unbound Architrinos",
+        family: "unbound-architrinos",
         isComposite: true,
         inventory: {
           electrinoCount: 6,
           positrinoCount: 0,
         },
-        rootNodeId: "center_free_architrinos_electron/root",
+        rootNodeId: "center_unbound_architrinos_electron/root",
         nodes: [
           {
-            id: "center_free_architrinos_electron/root",
-            templateId: "free_architrinos",
-            label: "Free Architrinos",
-            family: "free-architrinos",
+            id: "center_unbound_architrinos_electron/root",
+            templateId: "unbound_architrinos",
+            label: "Unbound Architrinos",
+            family: "unbound-architrinos",
             isComposite: true,
             inventory: {
               electrinoCount: 6,
@@ -3521,23 +3521,23 @@ test("external solve-reaction CLI uses an authored reactant Noether Pair as a no
         ],
       },
       {
-        id: "center_free_architrinos_positron",
+        id: "center_unbound_architrinos_positron",
         side: "center",
-        templateId: "free_architrinos",
-        label: "Free Architrinos",
-        family: "free-architrinos",
+        templateId: "unbound_architrinos",
+        label: "Unbound Architrinos",
+        family: "unbound-architrinos",
         isComposite: true,
         inventory: {
           electrinoCount: 0,
           positrinoCount: 6,
         },
-        rootNodeId: "center_free_architrinos_positron/root",
+        rootNodeId: "center_unbound_architrinos_positron/root",
         nodes: [
           {
-            id: "center_free_architrinos_positron/root",
-            templateId: "free_architrinos",
-            label: "Free Architrinos",
-            family: "free-architrinos",
+            id: "center_unbound_architrinos_positron/root",
+            templateId: "unbound_architrinos",
+            label: "Unbound Architrinos",
+            family: "unbound-architrinos",
             isComposite: true,
             inventory: {
               electrinoCount: 0,
@@ -3658,13 +3658,13 @@ test("external solve-reaction CLI uses an authored reactant Noether Pair as a no
   );
   assert.equal(
     result.operators.some((operator) =>
-      operator.inputs.some((input) => input.participantId === "center_free_architrinos_electron")
+      operator.inputs.some((input) => input.participantId === "center_unbound_architrinos_electron")
     ),
     true
   );
   assert.equal(
     result.operators.some((operator) =>
-      operator.inputs.some((input) => input.participantId === "center_free_architrinos_positron")
+      operator.inputs.some((input) => input.participantId === "center_unbound_architrinos_positron")
     ),
     true
   );

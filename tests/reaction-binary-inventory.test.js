@@ -85,11 +85,11 @@ test("binary inventory runtime subtracts the hidden binary pair for trimmed slot
   });
 });
 
-test("free architrinos resolve personality-only inventory without a Noether core wrapper", () => {
+test("unbound architrinos resolve personality-only inventory without a Noether core wrapper", () => {
   const participant = createParticipant({
-    id: "free_architrinos_a",
-    templateId: "free_architrinos",
-    label: "Free Architrinos",
+    id: "unbound_architrinos_a",
+    templateId: "unbound_architrinos",
+    label: "Unbound Architrinos",
   });
   const innerNode = participant.hierarchy[0].children[0];
 

@@ -2545,7 +2545,7 @@ body {
   color: rgba(244, 247, 255, 0.88);
 }
 
-.composer-reaction-canvas-particle.is-free-architrinos .composer-reaction-canvas-particle-label {
+.composer-reaction-canvas-particle.is-unbound-architrinos .composer-reaction-canvas-particle-label {
   font-size: 10px;
   line-height: 1.05;
   justify-items: center;

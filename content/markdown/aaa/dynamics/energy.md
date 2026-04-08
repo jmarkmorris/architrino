@@ -153,7 +153,7 @@ At the fundamental level, the Euclidean void is an empty container. **Effective 
 
 Energy in this picture is distributed across:
 
-1. **Free Architrinos** (rare at low energies),
+1. **Unbound Architrinos** (rare at low energies),
 2. **Standard Model assemblies** (electrons, nucleons, etc.),
 3. The **tri-binary sea** that constitutes the Noether Sea and, in bridge prose, the spacetime medium.
 

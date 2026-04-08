@@ -3539,8 +3539,8 @@ def build_generated_free_architrino_pool(
     }
     return build_generated_participant(
         participant_id=participant_id,
-        template_id="free_architrinos",
-        label="Free Architrinos",
+        template_id="unbound_architrinos",
+        label="Unbound Architrinos",
         family="boson",
         inventory=pool_inventory,
         side="center",
@@ -3881,7 +3881,7 @@ def build_lepton_constituent_provenance_diagnostic(
         "severity": "info",
         "message": (
             f"{context_label} preserves lepton constituent provenance for {subject_label}: "
-            f"{core_label} + Free Architrinos."
+            f"{core_label} + Unbound Architrinos."
         ),
         "path": "steps[0]",
     }
@@ -3943,7 +3943,7 @@ def solve_lepton_constituent_provenance_channel(
     )
 
     free_pool = build_generated_free_architrino_pool(
-        participant_id=f"center_{variant_prefix}_free_architrinos",
+        participant_id=f"center_{variant_prefix}_unbound_architrinos",
         product_count=len(product_participants),
         source_participant_id=source_id,
         source_step_id=ledger_step_id,
@@ -4431,7 +4431,7 @@ def solve_meson_lepton_provenance_channel(
         )
 
     free_pool = build_generated_free_architrino_pool(
-        participant_id=f"center_{variant_prefix}_free_architrinos",
+        participant_id=f"center_{variant_prefix}_unbound_architrinos",
         product_count=len(product_participants),
         source_participant_id=source_id,
         source_step_id=ledger_step_id,
@@ -4889,7 +4889,7 @@ def solve_baryon_constituent_provenance_channel(
     }
 
     free_pool = build_generated_free_architrino_pool(
-        participant_id=f"center_{variant_prefix}_free_architrinos",
+        participant_id=f"center_{variant_prefix}_unbound_architrinos",
         product_count=max(2, len(product_participants)),
         source_participant_id=source_id,
         source_step_id=ledger_step_id,
@@ -5643,7 +5643,7 @@ def normalize_result_endpoint(
         return record
     participant = (participant_index or {}).get(participant_id) or {}
     template_id = normalize_registry_template_id(participant.get("templateId"))
-    if template_id == "free_architrinos":
+    if template_id == "unbound_architrinos":
         next_index = output_counts.get(participant_id, 0) + 1
         output_counts[participant_id] = next_index
         record["anchorInstanceIndex"] = next_index
@@ -6227,7 +6227,7 @@ def find_matching_free_architrino_combo(required_inventory, source_entries):
         [
             entry
             for entry in source_entries
-            if not entry.consumed and source_entry_participant_template_id(entry) == "free_architrinos"
+            if not entry.consumed and source_entry_participant_template_id(entry) == "unbound_architrinos"
         ],
         key=rank_free_architrino_source,
     )
@@ -6719,7 +6719,7 @@ def solve_request(request):
             if source_entry.fragment_source and source_entry.participant_id not in auto_dissociated_participant_ids:
                 auto_dissociated_participant_ids.append(source_entry.participant_id)
             mapping_id = f"map_{product_id.replace('product_', '')}_in_{normalize_text(source_entry.participant.get('templateId')).lower()}"
-            if normalize_text(source_entry.participant.get("templateId")).lower() == "free_architrinos":
+            if normalize_text(source_entry.participant.get("templateId")).lower() == "unbound_architrinos":
                 mapping_id = f"map_{product_id.replace('product_', '')}_in_free"
             elif normalize_text(source_entry.participant.get("templateId")).lower() == "noether_core":
                 mapping_id = f"map_{product_id.replace('product_', '')}_in_core"

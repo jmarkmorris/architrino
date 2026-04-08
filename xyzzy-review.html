@@ -106,8 +106,37 @@
         gap: 16px;
       }
 
+      .xyzzy-review-group-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 16px;
+      }
+
+      .xyzzy-review-section {
+        display: grid;
+        gap: 14px;
+      }
+
+      .xyzzy-review-section-header {
+        display: grid;
+        gap: 4px;
+      }
+
+      .xyzzy-review-section-header h2 {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.15;
+      }
+
+      .xyzzy-review-section-note {
+        margin: 0;
+        color: var(--xyzzy-muted);
+        font-size: 0.9rem;
+      }
+
       .xyzzy-review-card {
         display: grid;
+        align-content: start;
         gap: 12px;
         padding: 14px;
         border: 1px solid var(--xyzzy-panel-border);
@@ -118,13 +147,39 @@
 
       .xyzzy-review-card-preview {
         display: grid;
-        place-items: center;
+        justify-items: center;
+        align-items: start;
+        min-height: 160px;
+      }
+
+      .xyzzy-review-group-preview {
+        justify-items: start;
+        min-height: 88px;
+        overflow-x: auto;
+      }
+
+      .xyzzy-review-group-stack {
+        display: grid;
+        gap: 0;
+        width: max-content;
+      }
+
+      .xyzzy-review-group-row {
+        display: flex;
+        gap: 0;
+        width: max-content;
       }
 
       .xyzzy-review-tile-svg {
         width: 160px;
         height: 160px;
         display: block;
+      }
+
+      .xyzzy-review-group-tile {
+        width: 88px;
+        height: 88px;
+        flex: 0 0 auto;
       }
 
       .xyzzy-review-card-meta {
@@ -162,6 +217,23 @@
           width: 136px;
           height: 136px;
         }
+
+        .xyzzy-review-group-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .xyzzy-review-group-tile {
+          width: 68px;
+          height: 68px;
+        }
+
+        .xyzzy-review-card-preview {
+          min-height: 136px;
+        }
+
+        .xyzzy-review-group-preview {
+          min-height: 68px;
+        }
       }
     </style>
   </head>
@@ -178,21 +250,85 @@
 
       <section class="xyzzy-review-controls" aria-label="Xyzzy review controls">
         <div class="xyzzy-review-field">
-          <label for="xyzzy-review-top-count">Top Count Placeholder</label>
+          <label for="xyzzy-review-top-count">N Placeholder</label>
           <input id="xyzzy-review-top-count" type="text" value="N" />
         </div>
         <div class="xyzzy-review-field">
-          <label for="xyzzy-review-bottom-count">Bottom Count Placeholder</label>
+          <label for="xyzzy-review-bottom-count">M Placeholder</label>
           <input id="xyzzy-review-bottom-count" type="text" value="M" />
         </div>
       </section>
 
-      <section
-        id="xyzzy-review-grid"
-        class="xyzzy-review-grid"
-        aria-label="Xyzzy tile review grid"
-      ></section>
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-special-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-special-groups-heading">Special Single-Row Groups</h2>
+          <p class="xyzzy-review-section-note">
+            Explicit four-tile strips that are not part of the standard-model fermion family review.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-special-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy special single-row group review"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-single-row-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-single-row-groups-heading">Standard Model Single-Row Groups</h2>
+          <p class="xyzzy-review-section-note">
+            All pro and anti quark and lepton rows rendered as four abutted Xyzzy tiles.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-single-row-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy standard-model single-row group review"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-composite-groups-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-composite-groups-heading">Composite Groups</h2>
+          <p class="xyzzy-review-section-note">
+            Multi-row composites rendered as stacked four-tile strips from the shared Xyzzy group catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-composite-group-grid"
+          class="xyzzy-review-group-grid"
+          aria-label="Xyzzy composite group review"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-title-tiles-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-title-tiles-heading">Catalog Tiles</h2>
+          <p class="xyzzy-review-section-note">
+            Standard text tiles and charge-bearing glyph tiles from the shared Xyzzy catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-title-grid"
+          class="xyzzy-review-grid"
+          aria-label="Xyzzy title tile review grid"
+        ></div>
+      </section>
+
+      <section class="xyzzy-review-section" aria-labelledby="xyzzy-review-binary-tiles-heading">
+        <header class="xyzzy-review-section-header">
+          <h2 id="xyzzy-review-binary-tiles-heading">Binary Tiles</h2>
+          <p class="xyzzy-review-section-note">
+            Grammar-generated binary glyph variants from the shared Xyzzy catalog.
+          </p>
+        </header>
+        <div
+          id="xyzzy-review-binary-grid"
+          class="xyzzy-review-grid"
+          aria-label="Xyzzy binary tile review grid"
+        ></div>
+      </section>
     </main>
-    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-06-xyzzy-review-v2"></script>
+    <script type="module" src="./src/apps/xyzzy/review/main.js?v=2026-04-07-xyzzy-review-groups"></script>
   </body>
 </html>

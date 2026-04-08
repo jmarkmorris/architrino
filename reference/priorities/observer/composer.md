@@ -158,7 +158,7 @@ That means:
 - extend the existing read path into more viewport and editor surfaces;
 - move real mutation paths onto shared structure transforms rather than bespoke composer-only logic;
 - make parent and child nesting read as local structure rather than grouped ids alone;
-- keep free architrinos as outputs of structure-changing edits rather than top-level add-menu stamps;
+- keep `Unbound Architrinos` as outputs of structure-changing edits rather than top-level add-menu stamps;
 - and continue expanding richer structure depiction only after the canonical edit path is in place.
 
 ## Interfaces

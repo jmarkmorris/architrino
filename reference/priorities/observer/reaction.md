@@ -194,7 +194,7 @@ Objective:
 
 - make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./solver.md);
 - remove local object-type guesses from the library import path, render path, and test helpers;
-- and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Free Architrinos come directly from the registry rather than from app-specific fallback logic.
+- and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Unbound Architrinos come directly from the registry rather than from app-specific fallback logic.
 
 This should include, at minimum, registry-driven behavior for:
 
@@ -230,10 +230,12 @@ Objective:
 This should mean:
 
 - if the solver expects a Noether Pair or Noether Quad recruitment assembly, the solved JSON must place it in the reactant or product column explicitly;
-- if the solver expects Free Architrinos, the solved JSON must place them in the middle lane explicitly;
+- if the solver expects Unbound Architrinos, the solved JSON must place them in the middle lane explicitly;
 - if a composite is opened, the solved JSON must explicitly mark its dissociated-composite state;
 - if a participant or operator exposes only a right/output connector, the solved JSON must never route it backward into an earlier lane or column;
 - and if an operator or participant appears on screen, the solved JSON must already specify how it is connected.
+
+If that same solved participant is later projected into Xyzzy, the Xyzzy surface may render it as the four-tile `Unbound | Electrinos | Positrinos | Architrinos` group without changing the underlying participant identity.
 
 Done when:
 
@@ -261,7 +263,7 @@ Objective:
 This should cover at least:
 
 - center-lane assemblies whose internal/input connector is on the left and whose output connector is on the right;
-- special middle-lane participants such as Free Architrinos that must accept routed input on the correct side and emit through the correct side when their ledger is forwarded;
+- special middle-lane participants such as Unbound Architrinos that must accept routed input on the correct side and emit through the correct side when their ledger is forwarded;
 - and operator-to-center plus center-to-operator attachments that should be unambiguous at render time.
 
 Done when:
@@ -284,7 +286,7 @@ Objective:
 
 - make the accepted Reaction-side document carry enough explicit state to render composite opening, per-core dissociation, recruited middle-lane pools, and downstream association without interpretation;
 - enforce the lane grammar that spacetime-style assemblies such as Noether Pair and Noether Quad belong only in the reactant or product columns;
-- enforce the lane grammar that Free Architrinos belong only in the middle lane;
+- enforce the lane grammar that Unbound Architrinos belong only in the middle lane;
 - and ensure that when a composite is drawn as opened, that opened state and its downstream per-core dissociation stages are explicit in the document rather than implied by the viewer.
 
 For the current weak-reaction cases, this should specifically mean:
@@ -292,13 +294,13 @@ For the current weak-reaction cases, this should specifically mean:
 - a recruited Noether Pair stays in column 1 or column 5, never in the middle lanes;
 - the Noether Pair can dissociate at the composite level to expose pro and anti Noether cores;
 - each exposed Noether core can then route to its own dissociate operator when the solve requires that stage;
-- the resulting Free Architrinos feed the middle-lane Free Architrinos object and update its ledger there;
+- the resulting Unbound Architrinos feed the middle-lane Unbound Architrinos object and update its ledger there;
 - and the resulting middle-lane cores or other surviving intermediates route onward to the appropriate associate operators.
 
 Done when:
 
 - the accepted Reaction document says exactly which composites are opened, which dissociate stages occur, and which recruited middle-lane pools receive the resulting flow;
-- the lane grammar for assemblies and Free Architrinos is validated, not merely preferred;
+- the lane grammar for assemblies and Unbound Architrinos is validated, not merely preferred;
 - and the rendered reaction image is a direct consequence of the document rather than of viewer-side inference.
 
 ### 5. Add Durable Reaction Regressions For Reaction Library Surface Behavior

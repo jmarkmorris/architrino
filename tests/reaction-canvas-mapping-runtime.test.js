@@ -131,7 +131,7 @@ test("mapping runtime does not start a rightward route from a center input conne
     },
   });
 
-  runtime.handleAnchorClick("center", "center_free_architrinos::root", 0);
+  runtime.handleAnchorClick("center", "center_unbound_architrinos::root", 0);
 
   assert.equal(state.pendingSourceKey, "");
   assert.equal(state.pendingSourceRole, "");

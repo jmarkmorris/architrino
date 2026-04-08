@@ -1,4 +1,5 @@
 import {
+  getXyzzyFrameGeometry,
   resolveXyzzyCatalogColor,
   resolveXyzzyTileReviewLines,
 } from "./XyzzyTileCatalogRuntime.js";
@@ -128,6 +129,95 @@ function appendTextLine(textElement, line, catalog) {
   textElement.textContent = line.text;
 }
 
+function applyOptionalFilter(element, filterValue) {
+  if (typeof filterValue !== "string" || !filterValue.trim()) {
+    return;
+  }
+  element.style.filter = filterValue;
+}
+
+function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
+  const binaryGlyph = tile?.binaryGlyph ?? {};
+  const nestedSvg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
+  const frame = getXyzzyFrameGeometry(catalog);
+  const glyphInset = frame.outerInset;
+  nestedSvg.setAttribute("x", glyphInset.toFixed(2));
+  nestedSvg.setAttribute("y", glyphInset.toFixed(2));
+  nestedSvg.setAttribute("width", String(frame.outerSize));
+  nestedSvg.setAttribute("height", String(frame.outerSize));
+  nestedSvg.setAttribute(
+    "viewBox",
+    `0 0 ${binaryGlyph.viewBoxWidth || 120} ${binaryGlyph.viewBoxHeight || 120}`
+  );
+  nestedSvg.setAttribute("aria-hidden", "true");
+
+  const orbit = binaryGlyph.orbit ?? {};
+  if (binaryGlyph.showOrbit !== false) {
+    const orbitElement = documentLike.createElementNS(SVG_NAMESPACE, "ellipse");
+    orbitElement.setAttribute("cx", String(orbit.cx ?? 60));
+    orbitElement.setAttribute("cy", String(orbit.cy ?? 60));
+    orbitElement.setAttribute("rx", String(orbit.rx ?? 38));
+    orbitElement.setAttribute("ry", String(orbit.ry ?? 13));
+    orbitElement.setAttribute("fill", "none");
+    orbitElement.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, orbit.strokeColor));
+    orbitElement.setAttribute("stroke-width", String(orbit.strokeWidth ?? 3));
+    orbitElement.setAttribute("vector-effect", "non-scaling-stroke");
+    applyOptionalFilter(orbitElement, orbit.filter);
+    nestedSvg.append(orbitElement);
+  }
+
+  const axis = binaryGlyph.axis ?? {};
+  if (binaryGlyph.showAxis !== false) {
+    const axisElement = documentLike.createElementNS(SVG_NAMESPACE, "line");
+    axisElement.setAttribute("x1", String(axis.x1 ?? 60));
+    axisElement.setAttribute("y1", String(axis.y1 ?? 18));
+    axisElement.setAttribute("x2", String(axis.x2 ?? 60));
+    axisElement.setAttribute("y2", String(axis.y2 ?? 102));
+    axisElement.setAttribute("fill", "none");
+    axisElement.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, axis.strokeColor));
+    axisElement.setAttribute("stroke-width", String(axis.strokeWidth ?? 1.55));
+    axisElement.setAttribute("stroke-linecap", axis.lineCap || "round");
+    axisElement.setAttribute("vector-effect", "non-scaling-stroke");
+    axisElement.setAttribute("opacity", String(axis.opacity ?? 1));
+    if (typeof axis.strokeDasharray === "string" && axis.strokeDasharray.trim()) {
+      axisElement.setAttribute("stroke-dasharray", axis.strokeDasharray.trim());
+    }
+    if (Number.isFinite(Number(axis.strokeDashoffset)) && Number(axis.strokeDashoffset) !== 0) {
+      axisElement.setAttribute("stroke-dashoffset", String(axis.strokeDashoffset));
+    }
+    nestedSvg.append(axisElement);
+  }
+
+  (Array.isArray(binaryGlyph.circles) ? binaryGlyph.circles : []).forEach((circle) => {
+    const circleElement = documentLike.createElementNS(SVG_NAMESPACE, "circle");
+    circleElement.setAttribute("cx", String(circle.cx ?? 0));
+    circleElement.setAttribute("cy", String(circle.cy ?? 0));
+    circleElement.setAttribute("r", String(circle.r ?? 0));
+    circleElement.setAttribute("fill", resolveXyzzyCatalogColor(catalog, circle.fillColor));
+    circleElement.setAttribute("vector-effect", "non-scaling-stroke");
+    applyOptionalFilter(circleElement, circle.filter);
+    nestedSvg.append(circleElement);
+  });
+
+  svg.append(nestedSvg);
+}
+
+function appendChargeCircleSvg(documentLike, svg, catalog, tile) {
+  const chargeCircle = tile?.chargeCircle ?? {};
+  const radius = Number(chargeCircle.r ?? 0);
+  if (!(radius > 0)) {
+    return;
+  }
+  const circleElement = documentLike.createElementNS(SVG_NAMESPACE, "circle");
+  circleElement.setAttribute("cx", String(chargeCircle.cx ?? catalog.geometry.tileSizePx / 2));
+  circleElement.setAttribute("cy", String(chargeCircle.cy ?? catalog.geometry.tileSizePx / 2));
+  circleElement.setAttribute("r", String(radius));
+  circleElement.setAttribute("fill", resolveXyzzyCatalogColor(catalog, chargeCircle.fillColor));
+  circleElement.setAttribute("vector-effect", "non-scaling-stroke");
+  applyOptionalFilter(circleElement, chargeCircle.filter);
+  svg.append(circleElement);
+}
+
 export function renderXyzzyTileSvg({
   documentLike = globalThis.document,
   catalog,
@@ -138,13 +228,8 @@ export function renderXyzzyTileSvg({
   const svg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
   const resolvedLines = resolveXyzzyTileReviewLines(tile, sampleCounts);
   const baselines = getTileBaselines(measurementContext, resolvedLines, catalog);
-  const tileSize = catalog.geometry.tileSizePx;
-  const innerBorderOuterSize = catalog.geometry.innerBorderOuterSizePx;
-  const innerBorderStrokeWidth = catalog.geometry.innerBorderStrokeWidthPx;
-  const innerBorderOuterRadius = catalog.geometry.innerBorderOuterRadiusPx;
-  const rectInset = (tileSize - innerBorderOuterSize) / 2 + innerBorderStrokeWidth / 2;
-  const rectSize = innerBorderOuterSize - innerBorderStrokeWidth;
-  const rectRadius = Math.max(0, innerBorderOuterRadius - innerBorderStrokeWidth / 2);
+  const frame = getXyzzyFrameGeometry(catalog);
+  const tileSize = frame.tileSize;
 
   svg.setAttribute("viewBox", `0 0 ${tileSize} ${tileSize}`);
   svg.setAttribute("role", "img");
@@ -158,15 +243,22 @@ export function renderXyzzyTileSvg({
   svg.append(outerRect);
 
   const innerRect = documentLike.createElementNS(SVG_NAMESPACE, "rect");
-  innerRect.setAttribute("x", rectInset.toFixed(2));
-  innerRect.setAttribute("y", rectInset.toFixed(2));
-  innerRect.setAttribute("width", rectSize.toFixed(2));
-  innerRect.setAttribute("height", rectSize.toFixed(2));
-  innerRect.setAttribute("rx", rectRadius.toFixed(2));
+  innerRect.setAttribute("x", frame.rectInset.toFixed(2));
+  innerRect.setAttribute("y", frame.rectInset.toFixed(2));
+  innerRect.setAttribute("width", frame.rectSize.toFixed(2));
+  innerRect.setAttribute("height", frame.rectSize.toFixed(2));
+  innerRect.setAttribute("rx", frame.rectRadius.toFixed(2));
   innerRect.setAttribute("fill", "none");
   innerRect.setAttribute("stroke", resolveXyzzyCatalogColor(catalog, tile.borderColor));
-  innerRect.setAttribute("stroke-width", String(innerBorderStrokeWidth));
+  innerRect.setAttribute("stroke-width", String(frame.strokeWidth));
   svg.append(innerRect);
+
+  if (tile?.type === "binary-glyph") {
+    appendBinaryGlyphSvg(documentLike, svg, catalog, tile);
+  }
+  if (tile?.type === "charge-glyph") {
+    appendChargeCircleSvg(documentLike, svg, catalog, tile);
+  }
 
   resolvedLines.forEach((line, index) => {
     if (!line.text) {
@@ -174,7 +266,10 @@ export function renderXyzzyTileSvg({
     }
     const textElement = documentLike.createElementNS(SVG_NAMESPACE, "text");
     textElement.setAttribute("x", String(tileSize / 2));
-    textElement.setAttribute("y", baselines[index].toFixed(2));
+    textElement.setAttribute(
+      "y",
+      (baselines[index] + Number(tile?.textOffsetYPx ?? 0)).toFixed(2)
+    );
     textElement.setAttribute("fill", resolveXyzzyCatalogColor(catalog, line.color));
     textElement.setAttribute("font-family", catalog.textLayout.fontFamily);
     textElement.setAttribute("font-size", String(catalog.textLayout.fontSizePx));

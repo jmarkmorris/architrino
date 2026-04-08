@@ -185,8 +185,8 @@ Scoring system:
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
-  - add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into free architrinos;
-  - keep free architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
+  - add structure-changing edits such as detaching an axial architrino into a free architrino and breaking a binary into unbound architrinos;
+  - keep unbound architrinos as outputs of structure-changing edits, not as top-level add-menu stamps;
   - make scale changes legible in-scene, including clear indication when a structure, inset, or derived view is shown at a different scale;
   - support richer geometric depictions that matter across cases, especially oblate spheroids and spiral structures;
   - animate deeper structural behaviors directly from the architrino picture, including photon counter-rotation, self-propulsion, polarization, Malus-law behavior, axial-polarity-driven precession, equivalence-principle explanations, and ephemeral `W` and `Z` configurations;

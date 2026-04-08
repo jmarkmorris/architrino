@@ -1,0 +1,687 @@
+{
+  "version": 1,
+  "specialGroups": [
+    {
+      "key": "unbound-architrinos",
+      "title": "Unbound Architrinos",
+      "rows": [
+        [
+          "unbound",
+          "unbound-electrinos",
+          "unbound-positrinos",
+          "architrinos"
+        ]
+      ]
+    }
+  ],
+  "singleRowGroups": [
+    {
+      "key": "pro-tau",
+      "title": "Pro Tau",
+      "rows": [
+        [
+          "pro-tau",
+          "binary-full-br-bb",
+          "binary-polar-none-bb",
+          "binary-polar-none-bb"
+        ]
+      ]
+    },
+    {
+      "key": "anti-tau",
+      "title": "Anti Tau",
+      "rows": [
+        [
+          "anti-tau",
+          "binary-full-rb-rr",
+          "binary-polar-none-rr",
+          "binary-polar-none-rr"
+        ]
+      ]
+    },
+    {
+      "key": "pro-muon",
+      "title": "Pro Muon",
+      "rows": [
+        [
+          "pro-muon",
+          "binary-full-br-bb",
+          "binary-full-br-bb",
+          "binary-polar-none-bb"
+        ]
+      ]
+    },
+    {
+      "key": "anti-muon",
+      "title": "Anti Muon",
+      "rows": [
+        [
+          "anti-muon",
+          "binary-full-rb-rr",
+          "binary-full-rb-rr",
+          "binary-polar-none-rr"
+        ]
+      ]
+    },
+    {
+      "key": "pro-electron",
+      "title": "Pro Electron",
+      "rows": [
+        [
+          "pro-electron",
+          "binary-full-br-bb",
+          "binary-full-br-bb",
+          "binary-full-br-bb"
+        ]
+      ]
+    },
+    {
+      "key": "anti-electron",
+      "title": "Anti Electron",
+      "rows": [
+        [
+          "anti-electron",
+          "binary-full-rb-rr",
+          "binary-full-rb-rr",
+          "binary-full-rb-rr"
+        ]
+      ]
+    },
+    {
+      "key": "pro-tau-neutrino",
+      "title": "Pro Tau Neutrino",
+      "rows": [
+        [
+          "pro-tau-neutrino",
+          "binary-full-br-br",
+          "binary-polar-none-br",
+          "binary-polar-none-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-tau-neutrino",
+      "title": "Anti Tau Neutrino",
+      "rows": [
+        [
+          "anti-tau-neutrino",
+          "binary-full-rb-rb",
+          "binary-polar-none-rb",
+          "binary-polar-none-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-muon-neutrino",
+      "title": "Pro Muon Neutrino",
+      "rows": [
+        [
+          "pro-muon-neutrino",
+          "binary-full-br-br",
+          "binary-full-br-br",
+          "binary-polar-none-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-muon-neutrino",
+      "title": "Anti Muon Neutrino",
+      "rows": [
+        [
+          "anti-muon-neutrino",
+          "binary-full-rb-rb",
+          "binary-full-rb-rb",
+          "binary-polar-none-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-electron-neutrino",
+      "title": "Pro Electron Neutrino",
+      "rows": [
+        [
+          "pro-electron-neutrino",
+          "binary-full-br-br",
+          "binary-full-br-br",
+          "binary-full-br-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-electron-neutrino",
+      "title": "Anti Electron Neutrino",
+      "rows": [
+        [
+          "anti-electron-neutrino",
+          "binary-full-rb-rb",
+          "binary-full-rb-rb",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-bottom-quark",
+      "title": "Pro Bottom Quark",
+      "rows": [
+        [
+          "pro-bottom-quark",
+          "binary-full-br-br",
+          "binary-polar-none-bb",
+          "binary-polar-none-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-bottom-quark",
+      "title": "Anti Bottom Quark",
+      "rows": [
+        [
+          "anti-bottom-quark",
+          "binary-full-rb-rb",
+          "binary-polar-none-rr",
+          "binary-polar-none-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-strange-quark",
+      "title": "Pro Strange Quark",
+      "rows": [
+        [
+          "pro-strange-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-polar-none-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-strange-quark",
+      "title": "Anti Strange Quark",
+      "rows": [
+        [
+          "anti-strange-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-polar-none-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-down-quark",
+      "title": "Pro Down Quark",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-down-quark",
+      "title": "Anti Down Quark",
+      "rows": [
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-top-quark",
+      "title": "Pro Top Quark",
+      "rows": [
+        [
+          "pro-top-quark",
+          "binary-full-br-rr",
+          "binary-polar-none-br",
+          "binary-polar-none-rr"
+        ]
+      ]
+    },
+    {
+      "key": "anti-top-quark",
+      "title": "Anti Top Quark",
+      "rows": [
+        [
+          "anti-top-quark",
+          "binary-full-rb-bb",
+          "binary-polar-none-rb",
+          "binary-polar-none-bb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-charm-quark",
+      "title": "Pro Charm Quark",
+      "rows": [
+        [
+          "pro-charm-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-polar-none-rr"
+        ]
+      ]
+    },
+    {
+      "key": "anti-charm-quark",
+      "title": "Anti Charm Quark",
+      "rows": [
+        [
+          "anti-charm-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-polar-none-bb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-up-quark",
+      "title": "Pro Up Quark",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ]
+      ]
+    },
+    {
+      "key": "anti-up-quark",
+      "title": "Anti Up Quark",
+      "rows": [
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    }
+  ],
+  "compositeGroups": [
+    {
+      "key": "photon",
+      "title": "Photon",
+      "rows": [
+        [
+          "photon",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ]
+    },
+    {
+      "key": "noether-pair",
+      "title": "Noether Pair",
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ]
+    },
+    {
+      "key": "noether-quad",
+      "title": "Noether Quad",
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ],
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ]
+    },
+    {
+      "key": "pro-proton",
+      "title": "Pro Proton",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ]
+      ]
+    },
+    {
+      "key": "anti-proton",
+      "title": "Anti Proton",
+      "rows": [
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    },
+    {
+      "key": "pro-neutron",
+      "title": "Pro Neutron",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ]
+      ]
+    },
+    {
+      "key": "anti-neutron",
+      "title": "Anti Neutron",
+      "rows": [
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "positive-pion",
+      "title": "Positive Pion",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "negative-pion",
+      "title": "Negative Pion",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-pion-u",
+      "title": "Neutral Pion (u anti-u)",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-pion-d",
+      "title": "Neutral Pion (d anti-d)",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "positive-kaon",
+      "title": "Positive Kaon",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "anti-strange-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "negative-kaon",
+      "title": "Negative Kaon",
+      "rows": [
+        [
+          "pro-strange-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-kaon-d",
+      "title": "Neutral Kaon (d anti-s)",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-strange-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-kaon-s",
+      "title": "Neutral Kaon (s anti-d)",
+      "rows": [
+        [
+          "pro-strange-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "positive-b-meson",
+      "title": "Positive B Meson",
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "anti-bottom-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "negative-b-meson",
+      "title": "Negative B Meson",
+      "rows": [
+        [
+          "pro-bottom-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-up-quark",
+          "binary-full-rb-bb",
+          "binary-full-rb-rb",
+          "binary-full-rb-bb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-b-meson-d",
+      "title": "Neutral B Meson (d anti-b)",
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-bottom-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    },
+    {
+      "key": "neutral-b-meson-b",
+      "title": "Neutral B Meson (b anti-d)",
+      "rows": [
+        [
+          "pro-bottom-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "anti-down-quark",
+          "binary-full-rb-rb",
+          "binary-full-rb-rr",
+          "binary-full-rb-rb"
+        ]
+      ]
+    }
+  ]
+}

@@ -323,7 +323,7 @@ export function classifyReactionNode(participant = null, node = null, options = 
   }
   if (
     (renderMode === "binary-selector-grid" || renderMode === "aggregate-ledger-tile") &&
-    normalizeText(node?.templateId) === "free_architrinos"
+    normalizeText(node?.templateId) === "unbound_architrinos"
   ) {
     return classifyAggregateHierarchyNode(participant, node, options);
   }

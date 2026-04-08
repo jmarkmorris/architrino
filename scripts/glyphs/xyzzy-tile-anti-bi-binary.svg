@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title desc">
   <title id="title">Anti Bi Binary</title>
-  <desc id="desc">Anti Bi Binary. Xyzzy text tile with a black 80 by 80 outer tile and a centered 72 by 72 bordered square.</desc>
+  <desc id="desc">Anti Bi Binary. Xyzzy reference tile generated from xyzzy-tiles.json.</desc>
   <rect width="80" height="80" fill="#000000"/>
-  <rect x="6" y="6" width="68" height="68" rx="10" fill="none" stroke="#a259ff" stroke-width="4"/>
-  <text x="40" y="31.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Anti</text>
-  <text x="40" y="43.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Bi</text>
-  <text x="40" y="55.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Binary</text>
+  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4.00"/>
+  <text x="40.00" y="31.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Anti</text>
+  <text x="40.00" y="43.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Bi</text>
+  <text x="40.00" y="55.00" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Binary</text>
 </svg>

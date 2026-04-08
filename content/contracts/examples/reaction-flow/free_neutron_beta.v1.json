@@ -176,14 +176,14 @@
       }
     },
     {
-      "id": "center_weak-baryon-beta-decay_base_free_architrinos",
+      "id": "center_weak-baryon-beta-decay_base_unbound_architrinos",
       "side": "intermediate",
-      "label": "Free Architrinos",
-      "structureKey": "free_architrinos",
-      "provenanceId": "solver-result-participant:center_weak-baryon-beta-decay_base_free_architrinos",
+      "label": "Unbound Architrinos",
+      "structureKey": "unbound_architrinos",
+      "provenanceId": "solver-result-participant:center_weak-baryon-beta-decay_base_unbound_architrinos",
       "tags": [
         "center-assembly",
-        "free_architrinos",
+        "unbound_architrinos",
         "solve-generated",
         "shared-free-architrino-pool"
       ],
@@ -271,8 +271,8 @@
           "anchorInstanceIndex": 0
         },
         {
-          "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 0
         },
@@ -362,8 +362,8 @@
           "anchorInstanceIndex": 1
         },
         {
-          "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 1
         }
@@ -399,8 +399,8 @@
           "anchorInstanceIndex": 1
         },
         {
-          "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-          "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 2
         }
@@ -494,8 +494,8 @@
         "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 0
       },
@@ -640,8 +640,8 @@
     {
       "id": "map_weak-baryon-beta-decay_base_product_pro_electron_2_free",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 1
       },
@@ -723,8 +723,8 @@
     {
       "id": "map_weak-baryon-beta-decay_base_product_anti_electron_neutrino_3_free",
       "from": {
-        "participantId": "center_weak-baryon-beta-decay_base_free_architrinos",
-        "anchorId": "center_weak-baryon-beta-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-baryon-beta-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-baryon-beta-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 2
       },
@@ -774,7 +774,7 @@
       "center_weak-baryon-beta-decay_base_spectator_quark_2",
       "center_weak-baryon-beta-decay_base_transformed_up_quark",
       "center_weak-baryon-beta-decay_base_source_core",
-      "center_weak-baryon-beta-decay_base_free_architrinos",
+      "center_weak-baryon-beta-decay_base_unbound_architrinos",
       "center_weak-baryon-beta-decay_base_noether_pair_1",
       "flow_migration_center_1"
     ],

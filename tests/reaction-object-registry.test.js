@@ -27,8 +27,8 @@ test("browser ESM registry data stays identical to the canonical JSON registry",
   assert.deepEqual(reactionObjectRegistryData, canonicalJsonRegistry);
 });
 
-test("reaction object registry exposes canonical placement and connector policy for center-only Free Architrinos", () => {
-  const spec = getReactionObjectSpec("free_architrinos");
+test("reaction object registry exposes canonical placement and connector policy for center-only Unbound Architrinos", () => {
+  const spec = getReactionObjectSpec("unbound_architrinos");
 
   assert.deepEqual(spec?.allowedPlacementClasses, ["center"]);
   assert.equal(getReactionAnchorAttachmentSide("center", "source"), "right");
@@ -140,18 +140,18 @@ test("reaction structure bridge infers occupied slots from registry-backed muon 
 });
 
 test("reaction flow export rejects placements forbidden by the canonical registry", () => {
-  const structure = buildReactionParticipantStructure("free_architrinos", {
-    id: "invalid_free_architrinos_structure",
-    label: "Free Architrinos",
+  const structure = buildReactionParticipantStructure("unbound_architrinos", {
+    id: "invalid_unbound_architrinos_structure",
+    label: "Unbound Architrinos",
   });
   const hierarchy = buildReactionStructureDescriptorTree(structure.root);
   const snapshot = {
     participants: [
       {
-        id: "invalid_free_architrinos",
+        id: "invalid_unbound_architrinos",
         side: "reactant",
-        templateId: "free_architrinos",
-        label: "Free Architrinos",
+        templateId: "unbound_architrinos",
+        label: "Unbound Architrinos",
         provenanceId: "test",
         structure: structure.root,
         structureValidation: structure.validation,
@@ -165,6 +165,6 @@ test("reaction flow export rejects placements forbidden by the canonical registr
 
   assert.throws(
     () => buildReactionFlowDocument({ snapshot }),
-    /cannot place invalid_free_architrinos as reactant for free_architrinos/i
+    /cannot place invalid_unbound_architrinos as reactant for unbound_architrinos/i
   );
 });

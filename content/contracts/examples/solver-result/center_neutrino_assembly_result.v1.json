@@ -44,24 +44,24 @@
       ]
     },
     {
-      "id": "center_free_architrinos",
+      "id": "center_unbound_architrinos",
       "origin": "authored-center",
       "side": "center",
-      "templateId": "free_architrinos",
-      "label": "Free Architrinos",
-      "family": "free-architrinos",
+      "templateId": "unbound_architrinos",
+      "label": "Unbound Architrinos",
+      "family": "unbound-architrinos",
       "isComposite": true,
       "inventory": {
         "electrinoCount": 3,
         "positrinoCount": 3
       },
-      "rootNodeId": "center_free_architrinos_structure",
+      "rootNodeId": "center_unbound_architrinos_structure",
       "nodes": [
         {
-          "id": "center_free_architrinos_structure",
-          "templateId": "free_architrinos",
-          "label": "Free Architrinos",
-          "family": "free-architrinos",
+          "id": "center_unbound_architrinos_structure",
+          "templateId": "unbound_architrinos",
+          "label": "Unbound Architrinos",
+          "family": "unbound-architrinos",
           "isComposite": true,
           "inventory": {
             "electrinoCount": 3,
@@ -107,7 +107,7 @@
       "ruleFamily": "associate-standalone",
       "consumedParticipantIds": [
         "center_noether_core",
-        "center_free_architrinos"
+        "center_unbound_architrinos"
       ],
       "producedParticipantIds": [],
       "resolvedTargetIds": [
@@ -148,8 +148,8 @@
       "id": "map_center_neutrino_in_free",
       "kind": "operator-path",
       "from": {
-        "participantId": "center_free_architrinos",
-        "anchorId": "center_free_architrinos_structure",
+        "participantId": "center_unbound_architrinos",
+        "anchorId": "center_unbound_architrinos_structure",
         "role": "reactant"
       },
       "to": {
@@ -198,8 +198,8 @@
           "role": "reactant"
         },
         {
-          "participantId": "center_free_architrinos",
-          "anchorId": "center_free_architrinos_structure",
+          "participantId": "center_unbound_architrinos",
+          "anchorId": "center_unbound_architrinos_structure",
           "role": "reactant"
         }
       ],
@@ -234,7 +234,7 @@
         "row": 0
       },
       {
-        "participantId": "center_free_architrinos",
+        "participantId": "center_unbound_architrinos",
         "placementClass": "center",
         "row": 1
       },

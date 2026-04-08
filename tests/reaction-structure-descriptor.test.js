@@ -78,15 +78,15 @@ test("W+ boson descriptor tree uses the standard tri-binary particle row", () =>
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
 });
 
-test("free architrinos descriptor tree exposes one aggregate ledger tile backed by hidden slot ledgers", () => {
+test("unbound architrinos descriptor tree exposes one aggregate ledger tile backed by hidden slot ledgers", () => {
   const descriptorTree = buildReactionStructureDescriptorTree(
-    createStructure("free_architrinos", "pro", "Free Architrinos")
+    createStructure("unbound_architrinos", "pro", "Unbound Architrinos")
   );
   const [root] = descriptorTree;
 
   assert.equal(root.renderMode, REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE);
-  assert.equal(root.templateId, "free_architrinos");
-  assert.equal(root.label, "Free Architrinos");
+  assert.equal(root.templateId, "unbound_architrinos");
+  assert.equal(root.label, "Unbound Architrinos");
   assert.deepEqual(root.children.map((child) => child.slotCode), ["I", "M", "O"]);
   assert.deepEqual(root.children.map((child) => child.hasBinary), [false, false, false]);
 });

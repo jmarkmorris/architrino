@@ -170,7 +170,7 @@ function createNoetherCoreNode(id, options = {}) {
 
 function createFreeArchitrinosNode(id, options = {}) {
   const {
-    label = "Free Architrinos",
+    label = "Unbound Architrinos",
     occupiedSlots = STRUCTURE_SLOT_ORDER,
   } = options;
   const occupiedSet = new Set(
@@ -181,7 +181,7 @@ function createFreeArchitrinosNode(id, options = {}) {
   return createStructureNode({
     id,
     kind: STRUCTURE_KINDS.PARTICLE,
-    species: "free_architrinos",
+    species: "unbound_architrinos",
     label,
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createNoetherCoreSlotNode(`${id}/${slotName}_slot`, slotName, {
@@ -476,9 +476,9 @@ export function buildReactionParticipantStructure(templateId, options = {}) {
       polarity,
       occupiedSlots,
     });
-  } else if (structureSpec?.kind === "free_architrinos") {
+  } else if (structureSpec?.kind === "unbound_architrinos") {
     root = createFreeArchitrinosNode(structureId, {
-      label: resolvedLabel || "Free Architrinos",
+      label: resolvedLabel || "Unbound Architrinos",
       occupiedSlots,
     });
   } else if (structureSpec?.kind === "operator") {

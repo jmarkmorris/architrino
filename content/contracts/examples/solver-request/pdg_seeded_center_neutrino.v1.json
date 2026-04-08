@@ -4,7 +4,7 @@
   "origin": {
     "sourceKind": "pdg-ingest",
     "sourceDocumentId": "pdg:proposal:center_neutrino:1",
-    "title": "PDG-Seeded Center Noether Core And Free Architrinos To Neutrino"
+    "title": "PDG-Seeded Center Noether Core And Unbound Architrinos To Neutrino"
   },
   "participants": [
     {
@@ -37,24 +37,24 @@
       ]
     },
     {
-      "id": "center_free_architrinos",
+      "id": "center_unbound_architrinos",
       "side": "center",
       "centerUsage": "required",
-      "templateId": "free_architrinos",
-      "label": "Free Architrinos",
-      "family": "free-architrinos",
+      "templateId": "unbound_architrinos",
+      "label": "Unbound Architrinos",
+      "family": "unbound-architrinos",
       "isComposite": true,
       "inventory": {
         "electrinoCount": 3,
         "positrinoCount": 3
       },
-      "rootNodeId": "center_free_architrinos_structure",
+      "rootNodeId": "center_unbound_architrinos_structure",
       "nodes": [
         {
-          "id": "center_free_architrinos_structure",
-          "templateId": "free_architrinos",
-          "label": "Free Architrinos",
-          "family": "free-architrinos",
+          "id": "center_unbound_architrinos_structure",
+          "templateId": "unbound_architrinos",
+          "label": "Unbound Architrinos",
+          "family": "unbound-architrinos",
           "isComposite": true,
           "inventory": {
             "electrinoCount": 3,

@@ -138,7 +138,7 @@ export function createReactionParticipantRenderRuntime(options = {}) {
     if (String(node?.id ?? "") !== String(rootNode?.id ?? "")) {
       return [null];
     }
-    if (participant?.templateId === "free_architrinos") {
+    if (participant?.templateId === "unbound_architrinos") {
       const connectorRole = getParticipantConnectorRole(participant);
       const mappedIndices = [...new Set(
         getMappings()
