@@ -1103,11 +1103,46 @@ Detailed v1 workflows for creating, moving, and deleting assemblies and operator
 
 The header JSON selector should be populated from a manifest of available final `xyzzy/v1` documents.
 
-That manifest should follow the same basic shape used by the reaction app library manifest:
+The manifest contract for Xyzzy v1 is now fixed.
 
-- a top-level schema id;
-- a `defaultEntryId`;
-- and an `entries` array of records with ids, titles, display titles, and JSON asset paths.
+The exact manifest schema id is:
+
+- `xyzzy-library-manifest/v1`
+
+The canonical manifest file path is:
+
+- `content/contracts/examples/xyzzy/manifest.v1.json`
+
+The exact top-level manifest keys are:
+
+- `schema`
+- `defaultEntryId`
+- `entries`
+
+The exact per-entry keys are:
+
+- `id`
+- `title`
+- `displayTitle`
+- `documentPath`
+- `isDefault`
+
+Per-entry field rules are:
+
+- `id` must be a stable non-empty string;
+- `title` must be a non-empty source title;
+- `displayTitle` must be the label shown in the closed selector and dropdown options;
+- `documentPath` must be the final `xyzzy/v1` asset path consumed by the Xyzzy runtime;
+- `isDefault` is optional and may be used as a local redundancy marker for the default entry;
+- and no `requestPath`, `sourceRequestPath`, `solverRequest`, `solverResult`, or other upstream solve payload fields belong in the Xyzzy manifest contract.
+
+The exact path field used to load a final `xyzzy/v1` document is:
+
+- `documentPath`
+
+That path field is canonical for Xyzzy.
+
+It does not alias to `requestPath`, `sourceRequestPath`, or any other alternate asset field name.
 
 For Xyzzy, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
 
@@ -1131,7 +1166,7 @@ When the user chooses a different item from the header selector, the app should 
 That selection behavior should:
 
 - clear the currently rendered surface objects and spline paths;
-- load the newly selected Xyzzy JSON document from the manifest entry;
+- load the newly selected Xyzzy JSON document from the manifest entry's `documentPath`;
 - and render only the selected document.
 
 ### Outputs
@@ -1250,13 +1285,11 @@ Done when:
 
 ## To Do
 
-1. Freeze the header-selector manifest contract by specifying all unresolved contract details explicitly: the exact manifest schema id, the canonical manifest file path, the exact top-level field names, the exact per-entry field names, and the exact final-`xyzzy/v1` document path field used by each entry.reference/priorities/observer/xyzzy.md (line 1254) is not complete.  
-    The doc describes the manifest concept around reference/priorities/observer/xyzzy.md (line 1104), but it does not freeze the exact schema id, canonical manifest path, exact top-level fields, exact per-entry fields, and exact Xyzzy document path field.
-2. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment. reference/priorities/observer/xyzzy.md (line 1255) is not complete.  
+1. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment. reference/priorities/observer/xyzzy.md (line 1255) is not complete.  
     The two 80px header bands and presence of the selector/home button are specified near reference/priorities/observer/xyzzy.md (line 53), but not the exact control sizes, spacing, alignment, accessible labels, and header-band treatment.
-3. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
+2. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
     It includes “White. 2px.” in the todo itself, but I do not see the full spline spec written out in the document or implemented in a live Xyzzy surface module.
-4. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
+3. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
     The schema requires type for assemblies and operators in src/contracts/xyzzy/v1/schema.json (line 18) and src/contracts/xyzzy/v1/schema.json (line 63), but there is no closed allowed-value list or statement of whether each type is semantic-only, display-only, or both.
-5. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
+4. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
     I did not find a canonical free_neutron_beta_decay xyzzy/v1 sample doc or a matching Xyzzy manifest entry. The only manifest I found was the reaction one at content/contracts/examples/reaction-library/manifest.v1.json (line 1).
