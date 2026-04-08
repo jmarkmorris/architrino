@@ -179,6 +179,12 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     axisElement.setAttribute("stroke-linecap", axis.lineCap || "round");
     axisElement.setAttribute("vector-effect", "non-scaling-stroke");
     axisElement.setAttribute("opacity", String(axis.opacity ?? 1));
+    if (typeof axis.strokeDasharray === "string" && axis.strokeDasharray.trim()) {
+      axisElement.setAttribute("stroke-dasharray", axis.strokeDasharray.trim());
+    }
+    if (Number.isFinite(Number(axis.strokeDashoffset)) && Number(axis.strokeDashoffset) !== 0) {
+      axisElement.setAttribute("stroke-dashoffset", String(axis.strokeDashoffset));
+    }
     nestedSvg.append(axisElement);
   }
 

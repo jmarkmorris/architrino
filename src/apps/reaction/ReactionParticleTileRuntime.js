@@ -92,8 +92,8 @@ export function createReactionParticleTileElement(participant = null, options = 
   const tile = document.createElement("div");
   tile.className = "composer-reaction-canvas-particle";
   classNames.filter(Boolean).forEach((className) => tile.classList.add(className));
-  if (participant?.templateId === "free_architrinos") {
-    tile.classList.add("is-free-architrinos");
+  if (participant?.templateId === "unbound_architrinos") {
+    tile.classList.add("is-unbound-architrinos");
   }
   if (participant?.polarity === "anti") {
     tile.classList.add("is-anti-polarity");

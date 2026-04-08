@@ -74,10 +74,11 @@ Operator semantics that should remain canonical:
 - `Associate` may consume many inputs but produces exactly one assembled output;
 - `Associate` must not become a generic weak-reaction junction, transform shim, or many-output routing node;
 - the solver operator set is constrained by the Reaction app rather than expanded ad hoc by planner convenience;
-- center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Free Architrinos` are supported participants, not solver-defined operators;
+- center assemblies such as `Noether core`, `W-`, `W+`, `Z`, and `Unbound Architrinos` are supported participants, not solver-defined operators;
 - the current solver operator vocabulary is `Associate`, `Dissociate`, and `Pass Thru`;
 - spacetime assemblies such as `Noether Pair` and `Noether Quad` are solver-visible recruited or authored source participants and therefore belong only in the reactant or product columns, never as middle-lane center assemblies;
-- `Free Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
+- `Unbound Architrinos` is a center-lane assembly participant and belongs only in the middle lane, never in the reactant or product columns;
+- Xyzzy may render that same center-lane participant as the four-tile `Unbound | Electrinos | Positrinos | Architrinos` group;
 - when a center-lane assembly participant is drawn, incoming mappings terminate on its left/input connector and outgoing mappings originate from its right/output connector;
 - left/input-side connectors on assemblies are sink-only and must not connect forward to anything on their right;
 - left/input-side connectors on any assembly must never be used as a source for a forward mapping to anything in a higher-numbered lane or column;
@@ -112,7 +113,7 @@ Current transition note:
 - the live Reaction library now solves request fixtures on demand instead of loading pre-built solved artifacts;
 - and the native solver still needs to emit the same lane-complete structure directly so request-backed library solves and accepted exports stay identical without compatibility rewrites.
 
-Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Free Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
+Primitive-first planning should remain the expansion rule. The planner should reason first in the primitive language of `Dissociate`, `Associate`, `Noether core`, `Unbound Architrinos`, direct mappings, and dissociated-composite access. If an exact solved primitive subgraph later matches a boson-like structure, that pattern may be recognized or collapsed for readability, but the solver should not become boson-first before primitive charge-routing is complete.
 
 Conservative matching discipline that should remain explicit:
 
@@ -148,7 +149,7 @@ Covered conservative solve families worth preserving as explicit reference behav
 - full composite carry-through for identical composites;
 - fragment-to-root reuse from composite children into supported standalone products;
 - authored center-assembly direct mapping for currently supported product families;
-- `Associate`-based standalone assembly from `Noether core` plus `Free Architrinos` where exact inventory closure holds;
+- `Associate`-based standalone assembly from `Noether core` plus `Unbound Architrinos` where exact inventory closure holds;
 - `Associate`-based composite reassembly from exact available source sets;
 - `Associate`-based photon assembly from opposite-polarity `Noether core` sources where exact closure holds;
 - and `Higgs Cluster -> Photon + Photon` through conservative dissociation plus two assembled photon outputs.
@@ -232,7 +233,7 @@ This pre-pass matters because it shrinks the remaining search space before any d
 
 - a needed constituent exists inside a currently unavailable composite source;
 - a recruited spacetime assembly must be opened to expose useful primitive inventory;
-- or the plan requires explicit release of intermediate source material such as `Free Architrinos` or `Noether core` constituents.
+- or the plan requires explicit release of intermediate source material such as `Unbound Architrinos` or `Noether core` constituents.
 
 `Associate` should be introduced when:
 
@@ -240,7 +241,7 @@ This pre-pass matters because it shrinks the remaining search space before any d
 - two or more already-available source entries exactly conserve into one assembled product;
 - and the product is better represented as a gathered assembly than as a loose residue set.
 
-Intermediates created by a `Dissociate` step should become explicit entries in the source pool for downstream search. They should not be treated as magical spontaneous material. If a `Dissociate` of a composite or recruited assembly yields `Free Architrinos`, `Noether core` forms, or other supported primitive units, those entries should be represented explicitly in the partial solve state and consumed explicitly by later steps.
+Intermediates created by a `Dissociate` step should become explicit entries in the source pool for downstream search. They should not be treated as magical spontaneous material. If a `Dissociate` of a composite or recruited assembly yields `Unbound Architrinos`, `Noether core` forms, or other supported primitive units, those entries should be represented explicitly in the partial solve state and consumed explicitly by later steps.
 
 #### W And Z Handling
 
@@ -253,7 +254,7 @@ Recommended rule:
 - synthetic `W` and `Z` insertion should not be a default early search family;
 - and solver-created `W` / `Z` intermediates should stay behind an explicit theory and rule gate until their provenance semantics are pinned down strongly enough to avoid fake closure.
 
-In other words, the new solver should stay primitive-first. It should first try to close products through direct mappings, dissociated constituents, `Associate`, `Dissociate`, `Noether core`, and `Free Architrinos`. Only after that primitive story is exact should it recognize or optionally introduce `W` / `Z` structure.
+In other words, the new solver should stay primitive-first. It should first try to close products through direct mappings, dissociated constituents, `Associate`, `Dissociate`, `Noether core`, and `Unbound Architrinos`. Only after that primitive story is exact should it recognize or optionally introduce `W` / `Z` structure.
 
 Once a branch already has a completed primitive closure, the solver may run a late-stage recognition pass over the center lane. In that pass:
 
@@ -752,7 +753,7 @@ No solve rule may depend on DOM shape, render order, menu state, or browser-loca
 Authored center-lane material is part of this canonical state, but only for supported center-assembly families. In particular:
 
 - authored middle-lane inputs constrain the solve just like authored reactants and products do;
-- the center lane should admit supported authored `W+`, `W-`, `Z`, `Free Architrinos`, and supported `Noether core` forms;
+- the center lane should admit supported authored `W+`, `W-`, `Z`, `Unbound Architrinos`, and supported `Noether core` forms;
 - the center lane should not be a generic slot for arbitrary composites;
 - and `Higgs Cluster` should not be treated as a default center-lane family in v1, because it belongs either on the reactant side when explicitly authored or in the separate spacetime-recruitment rule family when solver-added.
 
@@ -876,7 +877,7 @@ The solver may introduce `Dissociate` when:
 
 - the needed constituent exists inside an authored composite source;
 - the needed constituent exists inside an explicitly recruited assembly that has already been admitted into the branch;
-- or the supported primitive solve language requires explicit release of intermediate material such as `Free Architrinos` or `Noether core` forms.
+- or the supported primitive solve language requires explicit release of intermediate material such as `Unbound Architrinos` or `Noether core` forms.
 
 The solver should choose `Dissociate` only after it can name the target-side need that justifies the opening. In particular:
 
@@ -894,7 +895,7 @@ When `Dissociate` is selected:
 
 - the released constituents must become explicit new source entries in the branch state;
 - the parent source must be marked as consumed, partially consumed, or opened according to the selected plan rather than remaining silently fully available;
-- any released `Free Architrinos`, `Noether core` forms, or other supported primitive units must be counted explicitly as available downstream material;
+- any released `Unbound Architrinos`, `Noether core` forms, or other supported primitive units must be counted explicitly as available downstream material;
 - and dissociation must not automatically count as product closure by itself; it only changes the source pool.
 
 This matters for color-neutral bound composites such as proton and neutron states. An intact color-neutral composite may carry through as one bound state without requiring the solver to freeze an internal quark-color assignment. But once the solver explicitly dissociates that composite, the released constituents become explicit solver-visible entries and may be individually color-charged or otherwise internally non-neutral in the solver sense. After dissociation:
@@ -947,7 +948,7 @@ Any intermediate produced or released by a selected solve step must become expli
 This includes:
 
 - constituents released by `Dissociate`;
-- `Free Architrinos` released from opened sources;
+- `Unbound Architrinos` released from opened sources;
 - `Noether core` forms released from opened sources;
 - and any other supported primitive intermediate.
 
@@ -991,12 +992,13 @@ Accepted exact recognizers so far:
 
 Free-architrino-ledger interaction rule:
 
-- a late-stage `W+` collapse may consume six positrinos from a center-lane `Free Architrinos` ledger tile;
-- a late-stage `W-` collapse may consume six electrinos from a center-lane `Free Architrinos` ledger tile;
-- that ledger tile should be understood as one aggregate bucket of available free architrinos, not as three solver-significant binary-linked subtiles with fixed per-slot identity;
-- the source ledger tile must then be rewritten to the decremented remaining ledger rather than left unchanged;
-- for example, a center-lane ledger tile of `11:7@` plus a pro `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
-- likewise, a center-lane ledger tile of `11:7@` plus an anti `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
+- a late-stage `W+` collapse may consume six positrinos from a center-lane `Unbound Architrinos` ledger object;
+- a late-stage `W-` collapse may consume six electrinos from a center-lane `Unbound Architrinos` ledger object;
+- that ledger object should be understood as one aggregate bucket of available unbound architrinos, not as three solver-significant binary-linked subtiles with fixed per-slot identity;
+- when Xyzzy renders that same object, it should still be one aggregate `Unbound Architrinos` four-tile group rather than multiple solver-significant sub-ledgers;
+- the source ledger object must then be rewritten to the decremented remaining ledger rather than left unchanged;
+- for example, a center-lane ledger object of `11:7@` plus a pro `Noether core` may collapse to `W-` plus a remaining ledger of `5:7@`;
+- likewise, a center-lane ledger object of `11:7@` plus an anti `Noether core` may collapse to `W+` plus a remaining ledger of `11:1@`;
 - and no `W` collapse is legal unless the required six-unit ledger decrement can be paid exactly from the available center-lane ledger content.
 
 Allowed direct `Z`-mapping targets for v1:
@@ -1140,7 +1142,7 @@ The authored middle lane should constrain the solve just like authored reactants
 Recommended initial `--i` / `--I` families:
 
 - authored `W+`, `W-`, and `Z`;
-- authored `Free Architrinos` ledgers;
+- authored `Unbound Architrinos` ledgers;
 - and authored `Noether core` forms that the active model already supports as center assemblies.
 
 Recommended non-goal for v1:
@@ -1168,7 +1170,7 @@ Examples:
 | `P,e2,v` | same input with comma separators |
 | `h2.W-.P` | distinct assemblies made easier to scan |
 | `P.e.av` | proton, electron, anti-neutrino |
-| `1:1@.P.e` | explicit `Free Architrinos` ledger plus proton and electron |
+| `1:1@.P.e` | explicit `Unbound Architrinos` ledger plus proton and electron |
 
 Example command, free neutron decay with an added `4h` reactant:
 
@@ -1192,7 +1194,7 @@ Current compact notation:
 | `h3`        | Uni Binary                | reduced `Noether core` form                                        | `n/a`            |
 | `2h`        | photon                    | two-core photon shorthand                                          | `gamma`          |
 | `4h`        | Higgs cluster             | four-core Higgs-cluster shorthand                                  | `n/a`            |
-| `e:p@`      | `Free Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
+| `e:p@`      | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
 | `N`         | neutron                   | aligns with existing `Pro Neutron` support                         | `n`              |
 | `P`         | proton                    | aligns with existing `Pro Proton` support                          | `p`              |
 | `u1` or `u` | up quark                  | generation I may omit the `1`                                      | `u`              |
@@ -1240,7 +1242,7 @@ Examples:
 | `h` | pro `Noether core` |
 | `ah` | anti `Noether core` |
 
-`Free Architrinos` are the exception to that polarity rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
+`Unbound Architrinos` are the exception to that polarity rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
 The `h` notation now has two different numeric roles, and both should stay explicit:
 
@@ -1261,7 +1263,7 @@ Current intended `h` family examples:
 
 For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The grammar should not treat arbitrary `nh` forms as generally valid unless that aggregate family is expanded deliberately in a later revision.
 
-`Free Architrinos` should be written with an explicit electrino:positrino ledger:
+`Unbound Architrinos` should be written with an explicit electrino:positrino ledger:
 
 | Notation | Meaning |
 | --- | --- |
@@ -1272,7 +1274,7 @@ For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The g
 
 Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
 
-The choice of `@` for `Free Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a free electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
+The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a free electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
 
 This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
@@ -1324,7 +1326,7 @@ Interpretation rules:
 - `a` is currently valid for fermions, nucleons, and `Noether core` forms `h`, `h2`, and `h3`;
 - generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
 - prefix counts belong only to aggregate whole-core forms such as `2h` and `4h`;
-- `Free Architrinos` use a dedicated two-sided ledger token `e:p@`;
+- `Unbound Architrinos` use a dedicated two-sided ledger token `e:p@`;
 - separators are optional for any adjacent token sequence whose left-to-right longest-match tokenization remains unambiguous;
 - and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.
 
@@ -1350,7 +1352,7 @@ Current recommended conflict checks:
 | `e0`, `e4`, `u9`, `v7`      | generation outside `1`, `2`, `3`                                          | forbid entirely  |
 | `0h`                        | zero-count whole-core aggregate is not meaningful in the current grammar  | forbid entirely  |
 | `3h`, `5h`, `12h`           | only `2h` and `4h` are currently committed aggregate tokens               | forbid entirely  |
-| `0:0@`                      | null `Free Architrinos` ledger carries no usable content                  | forbid entirely  |
+| `0:0@`                      | null `Unbound Architrinos` ledger carries no usable content                  | forbid entirely  |
 | `h23`, `u23`, `e12`         | visually suggests one token but leaves trailing digits ambiguous          | forbid entirely  |
 | `@`, `2@`, `227@`           | omitted ledger side makes the free-architrino token ambiguous             | forbid entirely  |
 | `:120@`, `227:@`            | omitted ledger side creates a special-case parse                          | forbid entirely  |
@@ -1361,7 +1363,7 @@ Operational lexer guidance:
 - treat `W+` and `W-` as atomic two-character tokens;
 - recognize `h2` and `h3` before bare `h`;
 - recognize `2h` and `4h` as committed aggregate tokens before testing bare `h`;
-- recognize `[digits]:[digits]@` as one `Free Architrinos` ledger token that ends at `@`;
+- recognize `[digits]:[digits]@` as one `Unbound Architrinos` ledger token that ends at `@`;
 - do not require separators around any token family when the surrounding token boundaries are already unambiguous under longest-match tokenization;
 - and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
 

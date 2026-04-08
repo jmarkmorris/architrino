@@ -293,7 +293,7 @@ test("Z boson uses the standard tri-binary grid renderer instead of a custom cen
   assert.doesNotMatch(runtimeSource, /createChargeAssemblyGridContent/);
 });
 
-test("free architrinos render as one aggregate ledger tile instead of a tri-slot selector grid", () => {
+test("unbound architrinos render as one aggregate ledger tile instead of a tri-slot selector grid", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -302,7 +302,7 @@ test("free architrinos render as one aggregate ledger tile instead of a tri-slot
     new URL("../src/apps/reaction/ReactionStructureDescriptorRuntime.js", import.meta.url),
     "utf8"
   );
-  assert.match(descriptorSource, /templateId:\s*"free_architrinos"/);
+  assert.match(descriptorSource, /templateId:\s*"unbound_architrinos"/);
   assert.match(
     descriptorSource,
     /renderMode:\s*REACTION_STRUCTURE_RENDER_MODES\.AGGREGATE_LEDGER_TILE/
@@ -321,7 +321,7 @@ test("free architrinos render as one aggregate ledger tile instead of a tri-slot
   );
 });
 
-test("free architrinos root reuses one output anchor and uses the compact centered label style", () => {
+test("unbound architrinos root reuses one output anchor and uses the compact centered label style", () => {
   const runtimeSource = readFileSync(
     new URL("../src/apps/reaction/ReactionParticipantRenderRuntime.js", import.meta.url),
     "utf8"
@@ -329,15 +329,15 @@ test("free architrinos root reuses one output anchor and uses the compact center
   const styleSheet = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(
     runtimeSource,
-    /participant\?\.templateId === "free_architrinos"[\s\S]*?return \[mappedIndices\[0\] \?\? 1\];/
+    /participant\?\.templateId === "unbound_architrinos"[\s\S]*?return \[mappedIndices\[0\] \?\? 1\];/
   );
   assert.doesNotMatch(
     runtimeSource,
-    /is-free-architrinos-root/
+    /is-unbound-architrinos-root/
   );
   assert.match(
     styleSheet,
-    /\.composer-reaction-canvas-particle\.is-free-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
+    /\.composer-reaction-canvas-particle\.is-unbound-architrinos\s+\.composer-reaction-canvas-particle-label\s*\{[\s\S]*?font-size:\s*10px;[\s\S]*?text-align:\s*center;/
   );
 });
 

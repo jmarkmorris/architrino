@@ -54,7 +54,7 @@ function getParticipantRow(participant = {}) {
 }
 
 function getCenterOutputAnchorInstanceIndex(participant = {}) {
-  return normalizeText(participant?.templateId) === "free_architrinos" ? 1 : 1;
+  return normalizeText(participant?.templateId) === "unbound_architrinos" ? 1 : 1;
 }
 
 function createPassThruOperatorParticipant(participantId = "", operatorLaneIndex = 0, row = 0, slot = 0) {

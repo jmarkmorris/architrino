@@ -481,10 +481,10 @@ function validateDocumentEndpoint(endpoint = {}, participant = {}, direction = "
     return;
   }
 
-  if (normalizeReactionObjectTemplateId(participant?.templateId) === "free_architrinos") {
+  if (normalizeReactionObjectTemplateId(participant?.templateId) === "unbound_architrinos") {
     if (normalizedAnchorInstanceIndex === null || normalizedAnchorInstanceIndex < 1) {
       throw new Error(
-        `Reaction flow mapping ${mappingId || "(missing id)"} must use explicit free-architrinos output anchorInstanceIndex >= 1 for ${participant?.id || "(missing participant)"}.`
+        `Reaction flow mapping ${mappingId || "(missing id)"} must use explicit unbound-architrinos output anchorInstanceIndex >= 1 for ${participant?.id || "(missing participant)"}.`
       );
     }
     return;

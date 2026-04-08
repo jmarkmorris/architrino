@@ -110,14 +110,14 @@
       }
     },
     {
-      "id": "center_weak-meson-charged-pion-decay_base_free_architrinos",
+      "id": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
       "side": "intermediate",
-      "label": "Free Architrinos",
-      "structureKey": "free_architrinos",
-      "provenanceId": "solver-result-participant:center_weak-meson-charged-pion-decay_base_free_architrinos",
+      "label": "Unbound Architrinos",
+      "structureKey": "unbound_architrinos",
+      "provenanceId": "solver-result-participant:center_weak-meson-charged-pion-decay_base_unbound_architrinos",
       "tags": [
         "center-assembly",
-        "free_architrinos",
+        "unbound_architrinos",
         "solve-generated",
         "shared-free-architrino-pool"
       ],
@@ -163,8 +163,8 @@
           "anchorInstanceIndex": 0
         },
         {
-          "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-          "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 0
         }
@@ -193,8 +193,8 @@
           "anchorInstanceIndex": 1
         },
         {
-          "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-          "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 1
         }
@@ -230,8 +230,8 @@
           "anchorInstanceIndex": 1
         },
         {
-          "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-          "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+          "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+          "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
           "role": "center",
           "anchorInstanceIndex": 2
         }
@@ -310,8 +310,8 @@
         "anchorInstanceIndex": 0
       },
       "to": {
-        "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-        "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 0
       },
@@ -338,8 +338,8 @@
     {
       "id": "map_weak-meson-charged-pion-decay_base_product_anti_muon_1_free",
       "from": {
-        "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-        "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 1
       },
@@ -388,8 +388,8 @@
     {
       "id": "map_weak-meson-charged-pion-decay_base_product_pro_muon_neutrino_2_free",
       "from": {
-        "participantId": "center_weak-meson-charged-pion-decay_base_free_architrinos",
-        "anchorId": "center_weak-meson-charged-pion-decay_base_free_architrinos_structure",
+        "participantId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos",
+        "anchorId": "center_weak-meson-charged-pion-decay_base_unbound_architrinos_structure",
         "role": "center",
         "anchorInstanceIndex": 2
       },
@@ -436,7 +436,7 @@
       "product_pro_muon_neutrino_2",
       "center_weak-meson-charged-pion-decay_base_core_1",
       "center_weak-meson-charged-pion-decay_base_core_2",
-      "center_weak-meson-charged-pion-decay_base_free_architrinos"
+      "center_weak-meson-charged-pion-decay_base_unbound_architrinos"
     ],
     "mappingIds": [
       "map_dissociate_weak-meson-charged-pion-decay_base_source_input",

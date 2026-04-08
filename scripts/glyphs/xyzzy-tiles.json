@@ -100,6 +100,12 @@
       "lineCap": "butt",
       "opacity": 0.84
     },
+    "axisByMode": {
+      "axis": {
+        "strokeDasharray": "0 8",
+        "lineCap": "round"
+      }
+    },
     "circleRadius": 8.3333333333,
     "positions": {
       "left": {

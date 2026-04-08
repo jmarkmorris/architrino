@@ -171,10 +171,10 @@ function validateSnapshotEndpoint(participant = {}, mapping = {}, direction = "o
     );
   }
   if (direction === "output") {
-    if (normalizeText(participant?.templateId) === "free_architrinos") {
+    if (normalizeText(participant?.templateId) === "unbound_architrinos") {
       if (actualAnchorInstanceIndex === null || actualAnchorInstanceIndex < 1) {
         throw new Error(
-          `Reaction flow export requires free-architrinos output anchorInstanceIndex >= 1 for ${String(participant?.id ?? "(missing participant)")}.`
+          `Reaction flow export requires unbound-architrinos output anchorInstanceIndex >= 1 for ${String(participant?.id ?? "(missing participant)")}.`
         );
       }
       return;

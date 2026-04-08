@@ -153,7 +153,7 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
     { "templateId": "w_minus_boson", "label": "Negative W Boson" },
     { "templateId": "z_boson", "label": "Neutral Z Boson" },
     { "templateId": "w_plus_boson", "label": "Positive W Boson" },
-    { "templateId": "free_architrinos", "label": "Free Architrinos" }
+    { "templateId": "unbound_architrinos", "label": "Unbound Architrinos" }
   ],
   "operatorEntries": [
     { "templateId": "associate", "label": "Associate" },
@@ -221,14 +221,14 @@ const reactionObjectRegistryData = JSON.parse(String.raw`{
         "defaultOccupiedCount": 3
       }
     },
-    "free_architrinos": {
-      "defaultLabel": "Free Architrinos",
-      "familyTag": "free-architrinos",
+    "unbound_architrinos": {
+      "defaultLabel": "Unbound Architrinos",
+      "familyTag": "unbound-architrinos",
       "supportsPolarity": false,
       "preserveLeadingPolarityLabel": false,
       "allowedPlacementClasses": ["center"],
       "structure": {
-        "kind": "free_architrinos",
+        "kind": "unbound_architrinos",
         "defaultOccupiedCount": 3
       }
     },

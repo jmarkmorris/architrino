@@ -56,6 +56,8 @@ class XyzzyBinaryGlyphAxis:
     stroke_width: float
     line_cap: str = "round"
     opacity: float = 1.0
+    stroke_dasharray: str = ""
+    stroke_dashoffset: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -185,6 +187,8 @@ def resolve_binary_glyph(
             stroke_width=float(axis_spec.get("strokeWidth", 4.8)),
             line_cap=str(axis_spec.get("lineCap", "butt")).strip() or "butt",
             opacity=float(axis_spec.get("opacity", 1)),
+            stroke_dasharray=str(axis_spec.get("strokeDasharray", "")).strip(),
+            stroke_dashoffset=float(axis_spec.get("strokeDashoffset", 0)),
         ),
         circles=tuple(
             XyzzyBinaryGlyphCircle(
@@ -244,6 +248,16 @@ def resolve_binary_border_color(generator: dict[str, object], polar_code: str, *
     )
     token = str(border_color_by_polar.get(polar_code, generator.get("borderColor", "purple")))
     return resolve_palette_color(palette, token)
+
+
+def resolve_binary_axis_for_mode(generator: dict[str, object], mode: str) -> dict[str, object]:
+    base_axis = generator.get("axis") if isinstance(generator.get("axis"), dict) else {}
+    axis_by_mode = generator.get("axisByMode") if isinstance(generator.get("axisByMode"), dict) else {}
+    mode_override = axis_by_mode.get(mode) if isinstance(axis_by_mode.get(mode), dict) else {}
+    return {
+        **base_axis,
+        **mode_override,
+    }
 
 
 def build_binary_glyph_tile_from_grammar(
@@ -329,7 +343,7 @@ def build_binary_glyph_tile_from_grammar(
                 "viewBoxWidth": generator.get("viewBoxWidth", 120),
                 "viewBoxHeight": generator.get("viewBoxHeight", 120),
                 "orbit": generator.get("orbit", {}),
-                "axis": generator.get("axis", {}),
+                "axis": resolve_binary_axis_for_mode(generator, mode),
                 "circles": [
                     {
                         "key": circle.key,
@@ -584,12 +598,22 @@ def render_tile_svg(tile: XyzzyResolvedTile, catalog: XyzzyCatalog) -> str:
                 )
             )
         if tile.binary_glyph.show_axis:
+            axis_dasharray = (
+                f' stroke-dasharray="{escape(axis.stroke_dasharray)}"'
+                if axis.stroke_dasharray
+                else ""
+            )
+            axis_dashoffset = (
+                f' stroke-dashoffset="{axis.stroke_dashoffset:.2f}"'
+                if axis.stroke_dashoffset
+                else ""
+            )
             content.append(
                 (
                     f'    <line x1="{axis.x1:.2f}" y1="{axis.y1:.2f}" x2="{axis.x2:.2f}" y2="{axis.y2:.2f}" '
                     f'fill="none" stroke="{axis.stroke_color}" stroke-width="{axis.stroke_width:.2f}" '
                     f'stroke-linecap="{escape(axis.line_cap)}" vector-effect="non-scaling-stroke" '
-                    f'opacity="{axis.opacity:.2f}"/>'
+                    f'opacity="{axis.opacity:.2f}"{axis_dasharray}{axis_dashoffset}/>'
                 )
             )
         for circle in tile.binary_glyph.circles:

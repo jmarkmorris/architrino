@@ -106,14 +106,16 @@ Canonical pattern:
 - lane 1 source assembly group routes to a lane 2 `Dissociate`;
 - lane 2 `Dissociate` routes to either one or two lane 3 groups;
 - if a surviving core/group remains, it routes to the appropriate lane 3 core/group;
-- if released polar architrinos exist, they route to a lane 3 `Free Architrinos` group;
-- the `Free Architrinos` group updates its ledger there, in lane 3;
+- if released polar architrinos exist, they route to a lane 3 `Unbound Architrinos` group;
+- the `Unbound Architrinos` group updates its ledger there, in lane 3;
 - downstream product building then begins from lane 3 into lane 4 only.
+
+In Xyzzy, that same middle-lane participant should appear as the four-tile `Unbound | Electrinos | Positrinos | Architrinos` group rather than as a one-tile ledger label.
 
 Allowed dissociate outcomes:
 
-- one lane-3 group when a pro or anti `Noether core` dissociates fully into `Free Architrinos`;
-- two lane-3 groups when an assembly group yields both a surviving lane-3 core/group and a lane-3 `Free Architrinos` group.
+- one lane-3 group when a pro or anti `Noether core` dissociates fully into `Unbound Architrinos`;
+- two lane-3 groups when an assembly group yields both a surviving lane-3 core/group and a lane-3 `Unbound Architrinos` group.
 
 ### Association Pattern
 
@@ -121,7 +123,7 @@ Product construction must begin from lane 3 and must route through lane 4 operat
 
 Canonical pattern:
 
-- lane 3 `Free Architrinos` route to one or more lane 4 `Associate` operators when assembled products need them;
+- lane 3 `Unbound Architrinos` route to one or more lane 4 `Associate` operators when assembled products need them;
 - lane 3 `Noether core` or other lane-3 groups route to lane 4 `Associate` when they contribute to a built product;
 - lane 3 unchanged groups or participants route to lane 4 `Pass Thru` when they simply survive forward unchanged;
 - each lane 4 `Associate` produces exactly one lane 5 product assembly group.
@@ -248,7 +250,7 @@ Work:
 - define whether lane-3 carry-through groups preserve the same participant id or receive a solve-generated intermediate id;
 - define how lane-1 composite row groups are named in solved JSON before any lane-2 routing;
 - define how row-derived center groups are named in solved JSON;
-- and define how `Free Architrinos` ledger groups accumulate contributions from one or more lane-2 dissociations.
+- and define how `Unbound Architrinos` ledger groups accumulate contributions from one or more lane-2 dissociations.
 
 Done when:
 
@@ -333,7 +335,7 @@ Required tests:
 - verify a lane-1 whole composite never appears as a forward-moving source endpoint;
 - verify lane-1 composite flow starts from explicit row-level `assembly.group` entries;
 - verify dissociation flows from lane 2 to lane 3 only and never directly to lane 4 or lane 5;
-- verify `Free Architrinos` only leave lane 3 through lane-4 operators;
+- verify `Unbound Architrinos` only leave lane 3 through lane-4 operators;
 - verify all lane-5 products are fed only from lane 4;
 - verify composite title tiles never receive special opened-composite border styling;
 - and verify accepted example documents contain no lane-skipping edges.

@@ -53,11 +53,11 @@ function evaluateCenterEndpointDirection(mapping = null, sourceContext = null, t
   );
 
   if (mapping?.sourceRole === "center") {
-    if (sourceParticipant?.templateId === "free_architrinos") {
+    if (sourceParticipant?.templateId === "unbound_architrinos") {
       if (normalizedSourceAnchorInstanceIndex === null || normalizedSourceAnchorInstanceIndex < 1) {
         return {
           valid: false,
-          reason: "Free Architrinos must route rightward from their right-side output connector.",
+          reason: "Unbound Architrinos must route rightward from their right-side output connector.",
         };
       }
     } else if (normalizedSourceAnchorInstanceIndex !== 1) {

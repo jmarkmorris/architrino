@@ -253,14 +253,14 @@ function buildWBosonDescriptorTree(structureRoot, templateId, fallbackLabel) {
 function buildFreeArchitrinosDescriptorTree(structureRoot) {
   return [{
     id: String(structureRoot?.id ?? "root"),
-    label: String(structureRoot?.label ?? "Free Architrinos").trim() || "Free Architrinos",
-    templateId: "free_architrinos",
+    label: String(structureRoot?.label ?? "Unbound Architrinos").trim() || "Unbound Architrinos",
+    templateId: "unbound_architrinos",
     renderMode: REACTION_STRUCTURE_RENDER_MODES.AGGREGATE_LEDGER_TILE,
     layoutRole: "track-row",
     children: STRUCTURE_SLOT_ORDER.map((slotName) =>
       createBinarySlotDescriptor(
         `${structureRoot?.id ?? "root"}/${slotName}`,
-        `${slotName} free architrinos`,
+        `${slotName} unbound architrinos`,
         getSlotCode(slotName),
         { hasBinary: false }
       )
@@ -449,7 +449,7 @@ export function buildReactionStructureDescriptorTree(structureRoot) {
     if (normalizedSpecies === "z_boson") {
       return buildZBosonDescriptorTree(structureRoot);
     }
-    if (normalizedSpecies === "free_architrinos") {
+    if (normalizedSpecies === "unbound_architrinos") {
       return buildFreeArchitrinosDescriptorTree(structureRoot);
     }
     if (

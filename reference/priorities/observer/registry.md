@@ -100,7 +100,7 @@ Important current consequences:
 | reactant/product side picker | `pickerColumns.kaon_bridge` | `k_minus`, `k_plus`, `sk0`, `dk0` |
 | reactant/product side picker | `pickerColumns.b_meson_bridge` | `b_minus`, `b_plus`, `bB0`, `dB0` |
 | reactant/product side picker | `pickerColumns.composite_bridge` | `noether_pair`, `noether_quad`, `proton`, `neutron` |
-| center-lane picker | `centerAssemblyPickerEntries` | `noether_core`, `w_minus_boson`, `z_boson`, `w_plus_boson`, `free_architrinos` |
+| center-lane picker | `centerAssemblyPickerEntries` | `noether_core`, `w_minus_boson`, `z_boson`, `w_plus_boson`, `unbound_architrinos` |
 | operator picker | `operatorEntries` | `associate`, `dissociate` |
 | lane-restricted operator UI | `REACTION_OPERATOR_LANE_LAYOUT` | lane `0` => `dissociate`; lane `1` => `associate` |
 
@@ -146,7 +146,7 @@ The registry currently contains `29` canonical templates.
 | `w_minus_boson` | Negative W Boson | `boson` | `w_boson` | `center` | `family=charged_lepton`, `defaultOccupiedCount=3` |
 | `z_boson` | Neutral Z Boson | `boson` | `z_boson` | `center` | `family=neutrino`, `defaultOccupiedCount=3` |
 | `w_plus_boson` | Positive W Boson | `boson` | `w_boson` | `center` | `family=charged_lepton`, `defaultOccupiedCount=3` |
-| `free_architrinos` | Free Architrinos | `free-architrinos` | `free_architrinos` | `center` | center-only participant; export/import treats its output anchor indexing specially |
+| `unbound_architrinos` | Unbound Architrinos | `unbound-architrinos` | `unbound_architrinos` | `center` | center-only participant; export/import treats its output anchor indexing specially; Xyzzy renders it as the four-tile `Unbound | Electrinos | Positrinos | Architrinos` group |
 
 ### Variant-Driven Polarized Families
 
@@ -197,7 +197,9 @@ Current code-backed notes:
   - `isReactionConnectionAllowed(...)` is now the shared forward-lane baseline in browser tests and solver validation;
   - [`ReactionMappingRulesRuntime.js`](../../../src/apps/reaction/ReactionMappingRulesRuntime.js) layers the stricter lane-1 single-row reactant-root rule on top of that baseline.
 - `Noether Pair` and `Noether Quad` are not center-lane objects in the current registry.
-- `Free Architrinos` is center-only in the current registry.
+- `Unbound Architrinos` is center-only in the current registry.
+- the registry id and solver/runtime name are `unbound_architrinos` / `Unbound Architrinos`.
+- Xyzzy renders that participant as the four-tile `Unbound | Electrinos | Positrinos | Architrinos` group rather than as a one-tile label.
 - `Associate` and `Dissociate` remain the only canonical operator templates.
 - `ReactionBuiltInLibraryRuntime.js` no longer consumes the registry directly because the built-in library is now request-only; object semantics are applied later by request export, solver result adaptation, rendering, and validation.
 - The UI still narrows operator placement more than the registry itself:

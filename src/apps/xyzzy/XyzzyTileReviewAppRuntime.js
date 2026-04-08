@@ -108,7 +108,10 @@ export function createXyzzyTileReviewAppRuntime({
   }
 
   function render() {
-    if (!catalog || (!gridElement && !titleGridElement && !binaryGridElement && !assemblyShowcaseElement)) {
+    if (
+      !catalog ||
+      (!gridElement && !titleGridElement && !binaryGridElement && !assemblyShowcaseElement)
+    ) {
       return;
     }
     const sampleCounts = getSampleCounts();

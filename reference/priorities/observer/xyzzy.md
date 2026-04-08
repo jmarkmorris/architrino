@@ -396,8 +396,15 @@ The current reaction-app rendering also applies the orbit glow filter `drop-shad
 The current reaction-app rendering also uses:
 
 - non-scaling stroke;
-- butt line caps;
+- solid full-mode axis lines with butt line caps;
 - and overall axis opacity `0.84`.
+
+For Xyzzy v1, axis styling is mode-sensitive:
+
+- `full` mode keeps the solid vertical axis line with butt line caps;
+- `axis` mode uses the same geometry, color, stroke width, and opacity, but renders that vertical axis as a dotted line;
+- the dotted `axis`-mode line therefore uses `stroke-dasharray="0 8"` in the `120 x 120` glyph space;
+- and that dotted `axis`-mode line uses round line caps so each dash reads as a dot.
 
 #### Architrino Circles
 
@@ -683,7 +690,7 @@ That means:
 
 ### Unbound Architrinos Assembly
 
-The solver-side participant may still remain `Free Architrinos` at the JSON boundary for v1, but the Xyzzy surface should render that four-tile group with the visible state title `Unbound`.
+The solver-side participant at the JSON boundary is `Unbound Architrinos`, and the Xyzzy surface should render it as a four-tile group with the visible state title `Unbound`.
 
 `Unbound Architrinos` is one horizontal strip of four abutted tiles.
 

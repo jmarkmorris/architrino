@@ -86,6 +86,8 @@ This separation helps preserve both clarity and momentum. It keeps the issue tra
 
 As a practical workflow suggestion rather than a requirement, contributors working through a long session or a large in-progress refactor may find lightweight annotated tags useful as named checkpoints between pull requests. That can be a good way to preserve meaningful intermediate states without forcing a full branch-reset and pull-request cycle every time the amount of change becomes substantial. Pull requests should still remain the normal unit of review and integration. Tags are better understood here as optional bookmarks inside a larger working arc.
 
+For example, a contributor who wants to preserve a named checkpoint can create an annotated tag with a command such as `git tag -a xyzzy-checkpoint-1 -m "Xyzzy spec checkpoint before runtime work"`. If that checkpoint should also exist on the remote, it can then be pushed with `git push origin xyzzy-checkpoint-1`.
+
 ## Editorial and Moderation Principles
 
 If the public-facing GitHub presence grows, it will need moderation and editorial norms that remain consistent with the broader project.

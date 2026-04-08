@@ -57,6 +57,8 @@ function normalizeBinaryGlyph(binaryGlyph) {
       strokeWidth: normalizeNumber(axis.strokeWidth, 4.8),
       lineCap: normalizeText(axis.lineCap) || "butt",
       opacity: normalizeNumber(axis.opacity, 1),
+      strokeDasharray: normalizeText(axis.strokeDasharray),
+      strokeDashoffset: normalizeNumber(axis.strokeDashoffset),
     },
     circles: Array.isArray(binaryGlyph?.circles)
       ? binaryGlyph.circles.map(normalizeBinaryGlyphCircle)
@@ -100,6 +102,18 @@ function resolveBinaryBorderColor(generator, polarCode) {
       ? generator.borderColorByPolar
       : {};
   return normalizeText(borderColorByPolar?.[polarCode]) || normalizeText(generator?.borderColor) || "purple";
+}
+
+function resolveBinaryAxisForMode(generator, mode) {
+  const baseAxis = generator?.axis && typeof generator.axis === "object" ? generator.axis : {};
+  const axisByMode =
+    generator?.axisByMode && typeof generator.axisByMode === "object" ? generator.axisByMode : {};
+  const modeOverride =
+    axisByMode?.[mode] && typeof axisByMode[mode] === "object" ? axisByMode[mode] : {};
+  return {
+    ...baseAxis,
+    ...modeOverride,
+  };
 }
 
 function buildBinaryGlyphTileFromGrammar(code, generator) {
@@ -177,7 +191,7 @@ function buildBinaryGlyphTileFromGrammar(code, generator) {
       viewBoxWidth: generator?.viewBoxWidth,
       viewBoxHeight: generator?.viewBoxHeight,
       orbit: generator?.orbit,
-      axis: generator?.axis,
+      axis: resolveBinaryAxisForMode(generator, normalizedMode),
       circles,
     }),
   };

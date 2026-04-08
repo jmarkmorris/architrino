@@ -46,7 +46,7 @@ test("reaction canvas operator layout assigns dissociate to the inner-left group
   );
 });
 
-test("reaction canvas center assembly lane exposes Noether core, weak bosons, and Free Architrinos", () => {
+test("reaction canvas center assembly lane exposes Noether core, weak bosons, and Unbound Architrinos", () => {
   assert.deepEqual(
     REACTION_CENTER_ASSEMBLY_PICKER_ENTRIES.map((entry) => ({
       templateId: entry.templateId,
@@ -57,7 +57,7 @@ test("reaction canvas center assembly lane exposes Noether core, weak bosons, an
       { templateId: "w_minus_boson", label: "Negative W Boson" },
       { templateId: "z_boson", label: "Neutral Z Boson" },
       { templateId: "w_plus_boson", label: "Positive W Boson" },
-      { templateId: "free_architrinos", label: "Free Architrinos" },
+      { templateId: "unbound_architrinos", label: "Unbound Architrinos" },
     ]
   );
 });

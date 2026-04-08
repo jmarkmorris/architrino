@@ -287,10 +287,10 @@ test("solver request exporter emits an authored-only solver-request document", (
 test("solver request exporter derives canonical ledgers and fragment mappings from live structure state", () => {
   const centerFreeArchitrinos = setParticipantBinarySelectionsBySlotCode(
     createParticipant({
-      id: "center_free_architrinos_ledger",
+      id: "center_unbound_architrinos_ledger",
       side: "reactant",
-      templateId: "free_architrinos",
-      label: "Free Architrinos",
+      templateId: "unbound_architrinos",
+      label: "Unbound Architrinos",
     }),
     { I: "ee", M: "ee", O: "ee" }
   );
@@ -333,7 +333,7 @@ test("solver request exporter derives canonical ledgers and fragment mappings fr
   const schema = readJson("src/contracts/solver-request/v1/schema.json");
   const errors = validateAgainstSchema(request, schema);
   const freeArchitrinoParticipant = request.participants.find(
-    (participant) => participant.id === "center_free_architrinos_ledger"
+    (participant) => participant.id === "center_unbound_architrinos_ledger"
   );
 
   assert.deepEqual(errors, []);

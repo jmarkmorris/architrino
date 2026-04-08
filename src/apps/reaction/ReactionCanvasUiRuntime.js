@@ -118,7 +118,7 @@ const canvasTemplateMeta = Object.freeze({
   electron: { shortLabel: "e-", accent: "#2d8cff" },
   neutrino: { shortLabel: "𝜈", accent: "#a259ff" },
   z_boson: { shortLabel: "Z", accent: "#a259ff" },
-  free_architrinos: { shortLabel: "FA", accent: "#7db2ff" },
+  unbound_architrinos: { shortLabel: "UA", accent: "#7db2ff" },
   down_quark: { shortLabel: "d", accent: "#4a78ff" },
   up_quark: { shortLabel: "u", accent: "#ff5a4a" },
   pi_plus: { shortLabel: "Pi+", accent: "#ff5a4a" },
@@ -1235,7 +1235,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     const nodeContext = nodeKey ? getNodeContext(nodeKey) : null;
     const rootNode = nodeContext?.participant ? getParticipantRootNode(nodeContext.participant) : null;
     const isFreeArchitrinosRoot =
-      nodeContext?.participant?.templateId === "free_architrinos" &&
+      nodeContext?.participant?.templateId === "unbound_architrinos" &&
       String(nodeContext?.node?.id ?? "") === String(rootNode?.id ?? "");
     return !isFreeArchitrinosRoot;
   }
@@ -1558,7 +1558,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       normalizedTemplateId === "noether_core" ||
       normalizedTemplateId === "w_plus_boson" ||
       normalizedTemplateId === "z_boson" ||
-      normalizedTemplateId === "free_architrinos"
+      normalizedTemplateId === "unbound_architrinos"
         ? normalizedTemplateId
         : "w_minus_boson";
     return createParticipantRecord({
@@ -1707,7 +1707,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
       return;
     }
     const groupNode = resolveBinarySelectorGroup(participant, nodeId);
-    if (!groupNode || String(groupNode.templateId ?? "").trim().toLowerCase() !== "free_architrinos") {
+    if (!groupNode || String(groupNode.templateId ?? "").trim().toLowerCase() !== "unbound_architrinos") {
       return;
     }
     const nodes = getBinarySelectorNodes(participant, groupNode);
@@ -2701,7 +2701,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     if (announce) {
       setStatus(
         nextActive
-          ? "Reaction app opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products."
+          ? "Reaction app opened. Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Unbound Architrinos assemblies, the inner-right + for associate, and the right + for products."
           : "Reaction app closed."
       );
     }
@@ -3087,7 +3087,7 @@ export function createReactionCanvasUiRuntime(deps = {}) {
     emptyState.setAttribute("aria-hidden", hasParticipants ? "true" : "false");
     if (!hasParticipants) {
       mapHint.textContent =
-        "Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Free Architrinos assemblies, the inner-right + for associate, and the right + for products.";
+        "Use the left + for reactants, the inner-left + for dissociate, the center + for Noether core, W-, W+, Z, or Unbound Architrinos assemblies, the inner-right + for associate, and the right + for products.";
       return;
     }
     if (state.pendingSourceKey) {
