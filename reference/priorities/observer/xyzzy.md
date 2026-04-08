@@ -672,6 +672,15 @@ That reserved top row:
 
 Normal authored rows therefore begin below that reserved top row.
 
+Within each assembly band, authored placement should follow a dense lane standard.
+
+That means:
+
+- between the topmost and bottommost occupied assembly extents in one assembly band, there should be no empty lane row;
+- the only routine blank row in the grid is the one reserved top row described above;
+- a later composite occupying `n` rows in one assembly band counts as one occupied `n x 4` lane rectangle for this density rule;
+- and create, drag, delete, and composite-edit behavior in an assembly band should preserve that no-gap lane standard.
+
 Spline attachment should use only the outer rectangle bounds of the two linked objects.
 
 ### Fixed Column Strip
@@ -816,6 +825,165 @@ Even with that difference, both assemblies and operators still live on the same 
 
 Operators remain linkable on both their left and right sides. A one-tile operator is still a full link endpoint object even though it is visually smaller than a four-tile assembly.
 
+### Direct Object Editing
+
+For v1, direct object editing belongs to the authored surface itself.
+
+These interaction rules define the intended authoring behavior even if parts of that authoring runtime remain deferred in implementation until the dedicated authoring pass lands.
+
+It should remain single-object and surface-local:
+
+- no persistent side panel;
+- no extra top-band controls;
+- no multiselect;
+- no resize handles;
+- and no separate visible JSON editor.
+
+Plain click behavior is now:
+
+- plain click on an assembly or operator selects that one object;
+- plain click on empty surface clears the current object selection;
+- dragging an object begins from the object itself rather than from a separate handle;
+- and `Shift` remains reserved for spline authoring.
+
+A selected object should draw one thin visible selection outline around the full outer rectangle of the object:
+
+- `4x1` outer bounds for assemblies;
+- `1x1` outer bounds for operators;
+- and no per-tile internal selection boxes.
+
+#### Create Picker
+
+Object creation should use one transient surface-local picker.
+
+That picker is the only create UI permitted in v1.
+
+It should:
+
+- appear only after double-click on an empty legal placement target;
+- open anchored near the clicked row position;
+- use the same translucent HUD material family as the header JSON selector dropdown;
+- close on `Escape` or plain click elsewhere with no document change;
+- and never appear as a permanent toolbar, side panel, or bottom tray.
+
+The picker should never open on:
+
+- reserved column 1 or 20;
+- routing columns 6, 8, 13, or 15;
+- the reserved top row;
+- occupied operator cells;
+- or assembly rows whose four occupied tile cells are already blocked by another object.
+
+#### Creating Assemblies
+
+To create an assembly:
+
+- double-click an empty tile position in one of the three assembly bands on a normal authored row;
+- treat any clicked tile in columns 2-5 as the reactant assembly slot for that row;
+- treat any clicked tile in columns 9-12 as the intermediate assembly slot for that row;
+- treat any clicked tile in columns 16-19 as the product assembly slot for that row;
+- open the create picker with assembly entries only for that slot;
+- and click one assembly entry to create the assembly immediately in that row and close the picker.
+
+The chosen assembly entry must provide the full explicit assembly payload written to the working `xyzzy/v1` document:
+
+- one new stable `id`;
+- the assembly `type`;
+- the visible `title`;
+- the band-fixed `x` origin (`2`, `9`, or `16`);
+- the clicked row as `y`;
+- the role implied by the chosen band (`reactant`, `intermediate`, or `product`);
+- and the exact four-entry `tiles` array for that assembly.
+
+The runtime must not create an assembly by storing only `type` and later guessing the `tiles` payload.
+
+#### Creating Operators
+
+To create an operator:
+
+- double-click an empty cell in column 7 or column 14 on a normal authored row;
+- open the create picker with exactly three operator type choices: `Associate`, `Dissociate`, and `Pass Thru`;
+- choose one operator type;
+- enter explicit integer values for `positrinoCount` and `electrinoCount` in the same picker;
+- and confirm creation to write the operator and close the picker.
+
+The operator create action must write:
+
+- one new stable `id`;
+- the operator `type`;
+- the canonical visible `title` for that type;
+- the clicked column as `x`;
+- the clicked row as `y`;
+- the entered `positrinoCount`;
+- and the entered `electrinoCount`.
+
+Creation should stay blocked until both count fields are valid integers. No hidden defaults should be assumed at commit time.
+
+#### Moving Assemblies And Operators
+
+Object movement should be direct drag on the object itself.
+
+The movement rule is intentionally simple in v1:
+
+- assemblies move only vertically within their current assembly band;
+- operators move only vertically within their current operator column;
+- horizontal reassignment between object bands is not part of the v1 direct-editing workflow;
+- to place an object in a different band, create a new object there and delete the old one;
+- and `Shift`-drag has no alternate move meaning.
+
+For assemblies, the drag affordance should cover the full four-tile rectangle:
+
+- a pointer-down anywhere inside the visible `4x1` assembly bounds may begin the drag;
+- no separate grab handle is permitted;
+- and the drag should read as moving the whole assembly group up or down its lane rather than moving one internal tile.
+
+When the user drags an object:
+
+- the drag preview should snap to whole-row positions;
+- the object's `x`, width, and height remain fixed by object class and current band;
+- only `y` is eligible to change;
+- the reserved top row is never a valid drop target;
+- and any row whose occupied cells would overlap another object is invalid.
+
+On drop:
+
+- releasing an operator on one valid free row commits the new `y`;
+- releasing an assembly in one assembly band should preserve the dense lane standard for that band;
+- releasing anywhere else returns the object to its original row;
+- no automatic row shuffling or collision resolution should occur for operators;
+- and the object's stable `id` must not change.
+
+Because movement stays inside the current band, existing spline links stay attached to the same object ids and remain valid after the move.
+
+For assembly lanes, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
+
+- dragging one assembly over another assembly row should open an insertion position in that lane rather than requiring a permanently empty destination row;
+- the affected lower assemblies in that same lane should shift down as needed to make room for the dragged assembly;
+- and dropping an assembly should leave that lane with no empty rows between occupied assembly extents.
+
+Composite-aware insertion may remain deferred until composite authoring is implemented, but its behavior is already fixed:
+
+- a composite in one assembly lane should be hit-tested as one occupied `n-row x 4-column` rectangle;
+- dragging an assembly over that composite rectangle should shift the composite's member assemblies down together as one block;
+- and that insertion behavior should still preserve the dense no-gap lane rule.
+
+#### Deleting Assemblies And Operators
+
+Deletion is selection-based and immediate.
+
+The delete gesture is:
+
+- plain click an assembly or operator to select it;
+- press `Delete` or `Backspace`;
+- and remove that object from the working `xyzzy/v1` document immediately.
+
+When an object is deleted:
+
+- delete every link whose `endpointA` or `endpointB` references that object's id in the same edit action;
+- if deleting an assembly would leave an empty lane row inside that assembly band, compact the lower assemblies in that same band upward to close the gap;
+- leave unrelated objects and composite-label records unchanged;
+- and do not show a confirmation dialog in v1.
+
 ### Spline Authoring
 
 Mappings are authored directly between whole objects, not through separate connection widgets.
@@ -953,12 +1121,13 @@ For the first implementation:
 
 For v1 interaction behavior:
 
-- plain click on an object does nothing special;
-- plain click on empty space does nothing special;
+- plain click on an object selects that object;
+- plain click on empty space clears the current object selection;
+- double-click on one empty legal placement target opens the create picker for that slot;
 - hold `Shift` and click two valid objects to create a link;
 - plain click on a spline deletes that spline immediately;
 - spline deletion has no confirmation step in v1;
-- and `Shift` is reserved for spline authoring, not multiselect.
+- and `Shift` is reserved for spline authoring, not multiselect or alternate move modes.
 
 ### Adjacency Rule
 
@@ -1307,34 +1476,37 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 
 - final `xyzzy/v1` JSON documents containing assemblies, operators, splines, and composite-label effects;
 - a manifest-driven list of available final `xyzzy/v1` documents for the header selector;
+- user-authored assembly and operator create, move, and delete gestures on the current document;
 - and user-authored adjacent-column spline links.
 
 Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
 
-For the first implementation, direct object editing is explicitly out of scope.
+For v1, direct object editing is part of Xyzzy itself.
 
-That means the first implementation should not develop:
+That direct authoring surface is limited to:
 
-- blank-document creation;
-- direct creation of assemblies or operators on the surface;
-- direct movement of assemblies or operators on the surface;
-- direct deletion of assemblies or operators on the surface;
-- drag handles, resize handles, selection boxes, or context menus for object editing;
-- or substitute editing chrome invented to work around the missing workflow.
+- creating assemblies and operators through the surface-local create picker defined above;
+- moving them by band-constrained vertical drag;
+- deleting the selected object with immediate link cleanup;
+- and authoring or deleting splines through the direct surface gestures defined here.
 
-For the first implementation, Xyzzy should behave as a pure viewer of solver-produced `xyzzy/v1` documents.
+Even with that authoring support, Xyzzy should still not introduce:
 
-For v1, this document does not yet define the full create, move, or delete workflow for assemblies and operators, and that workflow is intentionally deferred rather than to be guessed during the first implementation.
+- extra top-band controls beyond the JSON selector and home button;
+- built-in visible JSON side panels;
+- persistent inspector panels;
+- resize handles, marquee selection boxes, or multiselect;
+- context menus;
+- built-in blank-document creation or a new-document button;
+- or substitute editor chrome unrelated to the fixed strip and object grammar.
 
 This note currently defines:
 
 - surface grammar;
 - placement and validation rules;
+- direct create, move, delete, and link interactions;
 - JSON shape constraints;
-- header document selection and bootstrap behavior;
-- and spline-link interaction rules.
-
-Detailed v1 workflows for creating, moving, and deleting assemblies and operators remain to be specified separately.
+- and header document selection and bootstrap behavior.
 
 ### Document Selection And Bootstrap
 
@@ -1389,7 +1561,11 @@ It should not point to raw `solver-request/v1` or `solver-result/v1` payloads.
 
 If an upstream solver pipeline starts from some non-Xyzzy request or result format, the translation into final `xyzzy/v1` should happen before the document is published to the Xyzzy manifest and before the Xyzzy runtime reads it.
 
-The first implementation should not include a built-in blank-document flow, new-document button, or manual surface-authoring mode.
+Xyzzy v1 should still not include a built-in blank-document flow or new-document button in the top bands.
+
+Direct surface authoring should instead operate on the currently loaded document.
+
+An author who wants a blank starting point should load a manifest entry whose `assemblies`, `operators`, `links`, and `compositeLabels` arrays are all empty.
 
 When the app starts:
 
@@ -1433,66 +1609,47 @@ That means the practical v1 boundary is:
 
 ## Priorities
 
-### 1. Specify The Direct Object-Editing Workflow
+### 1. Define Composite Authoring On Top Of The Direct Object-Editing Workflow
 
 Status: `deferred`
 
 Current:
 
-- the first standalone Xyzzy runtime now exists;
-- the `xyzzy/v1` JSON contract, fixed 20-column strip, gap-free tile layout, adjacent-column spline authoring, and optional final-pass composite labels are now implemented;
-- but assemblies and operators are still authored through explicit JSON documents because the direct create, move, and delete workflow on the surface remains unspecified;
-- and that workflow is intentionally deferred and should not be built as part of the first implementation.
-
-Objective:
-
-- define the explicit later surface workflow for:
-  - creating assemblies and operators;
-  - moving them within the fixed strip;
-  - deleting them;
-  - and keeping those actions consistent with the fixed object bands and occupied-tile overlap rules.
-
-Done when:
-
-- direct object creation, movement, and deletion are defined at the interaction level;
-- the runtime no longer depends on JSON hand-editing for normal object authorship;
-- and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
-
-### 2. Defer Composite Authoring Until The Direct Authoring Workflow Exists
-
-Status: `deferred`
-
-Current:
-
+- the base direct object-editing workflow for single assemblies and operators is now defined;
 - Xyzzy now reserves the outer columns and renders optional composite labels as a final pass;
 - no richer composite-label semantics are intended beyond explicit visual grouping;
-- and composite handling should be defined only as part of the later direct authoring workflow in Priority 1 rather than as a separate near-term feature.
+- composite authoring still has no explicit surface workflow of its own;
+- and composite-aware assembly insertion behavior may remain deferred until that composite workflow is implemented.
 
 Objective:
 
-- when deferred Priority 1 is implemented, define how authored assemblies in lane columns 1, 3, and 5 become a solver request and allow that same authoring flow to describe composite assemblies as well as individual assemblies;
+- build on the direct object-editing workflow defined above so authored assemblies in lane columns 1, 3, and 5 can become a solver request and that same authoring flow can describe composite assemblies as well as individual assemblies;
 - define a composite as one authored grouping of multiple assembly rows that belong together;
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
 - place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
+- treat the composite's occupied area in one lane as one `n-row x 4-column` rectangle for drag hit testing and insertion;
 - and include the composite label and optional span-bar records in the solver request only as pass-through display data that the solver returns without using for solve logic.
 
 Purposes:
 
-- make it easy to add a composite from the later add menu;
+- make it easy to add a composite from the same surface-local create-picker family;
 - make it easy to move all rows belonging to a composite together by dragging the composite vertically within a lane;
-- make it easy to delete a composite by clicking or right-clicking its composite label tile;
+- make it easy to drag an assembly over a composite rectangle and have that composite shift down as one block to make room;
+- make it easy to delete a composite from its composite label tile without a side panel workflow;
 - and preserve composite labels and spans as visual organizing graphics for still reaction images.
 
 Done when:
 
-- the deferred Priority 1 authoring workflow can create both individual assemblies and composite assemblies;
+- the composite workflow built on the direct object-editing model can create both individual assemblies and composite assemblies;
 - a composite can author multiple grouped rows in one action;
 - composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
+- dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;
+- assembly lanes remain densely packed with no empty rows between occupied assembly or composite extents;
 - optional span bars remain visual-only grouping graphics;
 - and composite label and span data round-trip through the solver request and response path without becoming solver-owned decision logic.
 
-### 3. Automate Drift Detection Between The JS Renderer And The Reference Generator
+### 2. Automate Drift Detection Between The JS Renderer And The Reference Generator
 
 Status: `next`
 
@@ -1519,5 +1676,3 @@ Done when:
 - tests verify that regenerated reference SVG output still matches the committed canonical artifacts for representative tiles and groups;
 - stale generated Xyzzy SVG files are detectable;
 - and the reference SVG generation stays useful for comparison without becoming a second design system.
-
-
