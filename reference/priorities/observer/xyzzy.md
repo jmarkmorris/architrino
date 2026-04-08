@@ -1252,29 +1252,9 @@ Done when:
 
 ## To Do
 
-### 4-Tile Group Specification Work
-
-x1. Define the complete canonical list of four-tile assembly families that Xyzzy must render in the first implementation. See table above.
-x2. Freeze the incomplete four-tile assembly payload vocabulary so required visuals do not have to be guessed from the spec alone, including the exact JSON shape and rendering grammar for title tiles, unbound electrino tiles, unbound positrino tiles, and the closing `Architrinos` tile. See table above.
-x3. Specify the exact appearance and tile-record shape of the title tile used in four-tile groups. see src/apps/xyzzy/XyzzyTileCatalogRuntime.js, src/apps/xyzzy/XyzzyTileReviewAppRuntime.js, src/apps/xyzzy/XyzzyTileSvgRuntime.js, src/apps/xyzzy/xyzzy-tiles.json
-x4. Specify the exact appearance and tile-record shape of the closing `Architrinos` tile used in the unbound-architrino four-tile group. See table above.
-x5. Specify the exact appearance of the unbound-architrino tile-2 electrino tile, including line text, count line, circle size, color, spacing, and border rule. See `Charge Glyph Tiles` and `Unbound Architrinos Assembly`.
-x6. Specify the exact appearance of the unbound-architrino tile-3 positrino tile, including line text, count line, circle size, color, spacing, and border rule. See `Charge Glyph Tiles` and `Unbound Architrinos Assembly`.
-7. Specify the exact appearance of the reaction-app tile variant that depicts the same two polar charges without the binary.
-8. Specify the exact appearance of polar architrino tiles, including what is text, what is glyph, and how polarity changes the rendered form.
-x9. Specify the exact JSON tile-record vocabulary for all non-standard four-tile-group tiles, including title, unbound charge-glyph, binary, and polar architrino variants. See table above.
-x10. Specify the allowed tile ordering and payload combinations for each four-tile assembly family so the solver and viewer do not have to infer group composition from labels. See table above.
-x11. Specify whether binary and polar architrino tiles should be produced by a generator rather than hand-enumerated. A generator.
-x12. If a generator is used for binary and polar architrino tiles, specify its inputs, emitted outputs, and how it stays aligned with the canonical Xyzzy JSON catalog without creating a second competing source of truth. See `Abbreviated Grammar`, `Shared JSON Tile Catalog`, and `scripts/glyphs/glyph.py`.
-13. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family after the above items are specified.
-x14. Specify the exact text layout metrics for standard tiles and operator tiles, including font family, font sizes, line heights, line positions, centering rules, and overflow behavior. See table above.
-15. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
-x16. Specify the exact behavior when the manifest is empty, when the manifest fails to load, and when a selected JSON document fails validation or fails to load, without inventing extra UI outside the permitted header and surface regions. Error message mid screen.
-17. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
-x18. Specify the exact page and surface background treatment outside the tile glyphs, including background colors and whether the centered `1600px` strip sits on the same field or a distinct surface field. Black background.
-x19. Specify whether vertical scrolling is whole-page scrolling or an inner scroll region below the two top bands, and whether the two top bands stay fixed while the surface scrolls. Inner scroll region below the two top bands, and the two top bands stay fixed while the surface scrolls.
-20. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. 
-x21. Specify the exact composite-label rendering appearance, including font, alignment, text anchoring, vertical-span-line position, stroke style, and single-row versus multi-row behavior. Deferred.
-x22. Specify the exact row-numbering convention for object `y`, `rowStart`, and `rowEnd`, including whether the reserved blank top row participates in serialized row coordinates. Reserved rows do not participate. Row and column tile numbers. Tiles abut.
-23. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
-24. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
+1. Provide at least one explicit `xyzzy/v1` example assembly payload for each four-tile family now that the tile grammar is fixed.
+2. Specify the exact canonical manifest contract for the header JSON selector, including schema id, manifest file location, entry field names, and whether entries point directly to final `xyzzy/v1` documents or to upstream solver outputs that require a transformation step.
+3. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment.
+4. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px.
+5. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both.
+6. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path.
