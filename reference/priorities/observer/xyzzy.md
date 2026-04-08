@@ -967,6 +967,20 @@ The minimal assembly schema should include:
 - `role`
 - `tiles`
 
+The exact assembly `tiles` field is:
+
+- one array named `tiles`;
+- length exactly `4`;
+- one shared-catalog tile key for each left-to-right assembly slot;
+- and no nested visible text, border-color, charge-circle, orbit, or polar detail duplicated inside the document payload.
+
+Assembly tile payload rules are:
+
+- tile 1 is the leftmost assembly tile and tiles 2-4 follow in visible left-to-right order;
+- every `tiles` entry must be one tile key that exists in the shared Xyzzy tile catalog;
+- the runtime uses those tile keys directly as the visible display payload;
+- and the runtime must not rebuild the row from `type`, `title`, polarity, generation, family, or other semantic fields when `tiles` is present.
+
 The exact link schema is:
 
 - `id`
@@ -997,12 +1011,6 @@ Composite-label field rules are:
 - and no extra geometry or screen-coordinate fields belong in the `xyzzy/v1` composite-label schema.
 
 The `tiles` field is the canonical display payload for the four assembly tiles.
-
-That means:
-
-- tile 1 content is explicit;
-- tiles 2-4 content is explicit;
-- and those tile records are not reconstructed only from `type`.
 
 Exact top-level document shape for `xyzzy/v1`:
 
@@ -1166,32 +1174,7 @@ Done when:
 - the runtime no longer depends on JSON hand-editing for normal object authorship;
 - and the surface workflow preserves the fixed strip, fixed object sizes, and occupied-tile validation rules.
 
-### 2. Freeze The Explicit Tile Payload Contract
-
-Status: `next`
-
-Current:
-
-- the shared Xyzzy tile catalog now covers the standard title tiles, charge-glyph tiles, binary variants, and polar variants needed for the current review surface;
-- and the runtime can already render four-tile assembly rows directly from explicit tile keys;
-- but the versioned `xyzzy/v1` contract still does not lock the exact `tiles` payload shape, the boundary between semantic fields and display fields, or the validation and example assets needed to freeze that contract.
-
-Objective:
-
-- treat the current shared tile catalog as the v1 display vocabulary rather than continuing to invent more tile families;
-- freeze `assemblies[].tiles` as exactly four catalog keys that drive the visible row directly;
-- keep `type` and `role` semantic rather than using them to rebuild tile appearance;
-- and add the schema, examples, and tests needed so solver output and manual authoring can use the same explicit surface records.
-
-Done when:
-
-- `xyzzy/v1` defines `assemblies[].tiles` as exactly four tile keys drawn from the shared Xyzzy catalog;
-- the runtime does not reconstruct visible tile rows from `type`, `title`, polarity, generation, or family when `tiles` is present;
-- a versioned `xyzzy/v1` schema exists and validates the top-level document shape plus the exact four-tile assembly payload shape;
-- canonical example `xyzzy/v1` documents exist under `content/contracts/examples/xyzzy`;
-- and tests enforce exact tile count, known tile keys, and no app-local display inference.
-
-### 3. Define The Solver Boundary Around `xyzzy/v1`
+### 2. Define The Solver Boundary Around `xyzzy/v1`
 
 Status: `next`
 
@@ -1212,7 +1195,7 @@ Done when:
 - the exchanged object records are explicit Xyzzy-owned records;
 - and the runtime does not need to reinterpret foreign geometry conventions.
 
-### 4. Deepen Composite-Label Semantics Only When Needed
+### 3. Deepen Composite-Label Semantics Only When Needed
 
 Status: `next`
 
@@ -1232,7 +1215,7 @@ Done when:
 - the outer reserved columns remain the only composite-label region;
 - and base rendering stays independent of composite labels being present.
 
-### 5. Keep The Reference Generator Aligned
+### 4. Keep The Reference Generator Aligned
 
 Status: `next`
 
