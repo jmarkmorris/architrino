@@ -85,6 +85,84 @@ The home button:
 - uses the same home icon as the main web app home button and the reaction app home link;
 - and navigates to `./index.html`.
 
+The exact header control geometry and appearance for v1 is now fixed.
+
+The two header controls must visually emulate the top-right search control and home button from the main web app HUD.
+
+For Xyzzy, that means:
+
+- the first top band keeps the same `80px` height already specified above;
+- the controls sit inside that band at the top right;
+- the controls align to the band's top edge using the same top-right HUD idiom as the main web app rather than a new centered or bottom-aligned layout;
+- the JSON selector trigger sits immediately to the left of the home button;
+- and the home button remains the far-right control.
+
+The exact horizontal spacing is:
+
+- `8px` gap between the JSON selector trigger and the home button;
+- and no additional visible control between them.
+
+The exact home-button geometry is:
+
+- `32px` wide;
+- `32px` tall;
+- circular with `border-radius: 999px`;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- background `rgba(8, 10, 18, 0.75)`;
+- icon color `#f5f7ff`;
+- one centered house SVG at `18px x 18px`;
+- and the accessible label `Go to home`.
+
+The exact JSON-selector trigger geometry is:
+
+- it must use the same compact control footprint and material treatment as the main web app search control;
+- `32px` tall minimum;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- background `rgba(8, 10, 18, 0.75)`;
+- text color `#f5f7ff`;
+- backdrop blur matching the main app HUD treatment;
+- and pointer/hover/focus behavior should match the main web app control family rather than inventing a separate Xyzzy-only button style.
+
+Unlike the main web app search control, the Xyzzy selector is not icon-only in the openable trigger state.
+
+Its closed trigger should therefore:
+
+- present the selected document title as text;
+- use the same visual material treatment as the main web app search/results control family;
+- remain compact rather than expanding into a full-width header bar;
+- and size to content with a practical minimum width sufficient to show short titles cleanly.
+
+The exact selector dropdown geometry is:
+
+- it opens as a floating panel below the trigger;
+- top offset `44px` below the trigger origin, matching the main web app search panel drop;
+- right-aligned to the trigger/home control cluster;
+- minimum width `260px`;
+- maximum width `80vw`;
+- one `1px` border in `rgba(160, 170, 220, 0.25)`;
+- `12px` corner radius;
+- background `rgba(8, 10, 18, 0.75)`;
+- padding `8px 10px`;
+- and backdrop blur matching the main web app search panel.
+
+The exact selector-option appearance is:
+
+- use the same visual family as the main web app search results list;
+- show one row per manifest entry using `displayTitle`;
+- and keep the list compact and HUD-like rather than introducing framed cards, tiled previews, or extra descriptive text in v1.
+
+The exact accessible labels are:
+
+- JSON selector trigger: `Choose Xyzzy document`;
+- home button: `Go to home`.
+
+The first top band visual treatment is:
+
+- no extra title label, caption, divider, or framing bar around the controls;
+- no separate bordered container wrapping both controls together;
+- no decorative chrome beyond the band and the controls themselves;
+- and visual styling should read as the same translucent HUD control family already used by the main web app.
+
 Other than that JSON selector and home button, the first top band remains empty in v1.
 
 The second top band remains entirely empty in v1.
@@ -1285,11 +1363,9 @@ Done when:
 
 ## To Do
 
-1. Specify the exact header control geometry for the JSON selector and home button, including control sizes, spacing, vertical alignment, accessible labels, and header-band visual treatment. reference/priorities/observer/xyzzy.md (line 1255) is not complete.  
-    The two 80px header bands and presence of the selector/home button are specified near reference/priorities/observer/xyzzy.md (line 53), but not the exact control sizes, spacing, alignment, accessible labels, and header-band treatment.
-2. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
+1. Specify the exact spline rendering metrics, including stroke color, stroke width, Bezier control-point rule, routing-column slot-offset set, and invisible hit-target width. White. 2px. reference/priorities/observer/xyzzy.md (line 1256) is only partially complete.  
     It includes “White. 2px.” in the todo itself, but I do not see the full spline spec written out in the document or implemented in a live Xyzzy surface module.
-3. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
+2. Specify the exact allowed `type` values for assemblies and operators, and state whether each `type` is semantic only, display only, or both. reference/priorities/observer/xyzzy.md (line 1257) is not complete.  
     The schema requires type for assemblies and operators in src/contracts/xyzzy/v1/schema.json (line 18) and src/contracts/xyzzy/v1/schema.json (line 63), but there is no closed allowed-value list or statement of whether each type is semantic-only, display-only, or both.
-4. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
+3. Provide one full canonical `xyzzy/v1` sample document plus matching manifest entry for the default `free_neutron_beta_decay` startup path. reference/priorities/observer/xyzzy.md (line 1258) is not complete.  
     I did not find a canonical free_neutron_beta_decay xyzzy/v1 sample doc or a matching Xyzzy manifest entry. The only manifest I found was the reaction one at content/contracts/examples/reaction-library/manifest.v1.json (line 1).
