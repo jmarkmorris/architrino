@@ -20,8 +20,14 @@ function setCanvasFont(context, fontSizePx, fontFamily, fontWeight = 700) {
 function measureTextBounds(context, text, fontSizePx, fontFamily, fontWeight = 700) {
   setCanvasFont(context, fontSizePx, fontFamily, fontWeight);
   const metrics = context.measureText(text);
-  const top = -(metrics.actualBoundingBoxAscent || fontSizePx * 0.72);
-  const bottom = metrics.actualBoundingBoxDescent || fontSizePx * 0.18;
+  const ascent = Number.isFinite(metrics.actualBoundingBoxAscent)
+    ? metrics.actualBoundingBoxAscent
+    : fontSizePx * 0.72;
+  const descent = Number.isFinite(metrics.actualBoundingBoxDescent)
+    ? metrics.actualBoundingBoxDescent
+    : fontSizePx * 0.18;
+  const top = -ascent;
+  const bottom = descent;
   return { top, bottom };
 }
 
@@ -111,15 +117,15 @@ function getTileBaselines(context, resolvedLines, catalog) {
   return resolvedLines.map((_line, index) => (baselinesByIndex.get(index) || 0) + verticalOffset);
 }
 
-function appendTextLine(textElement, line, catalog) {
+function appendTextLine(documentLike, textElement, line, catalog) {
   if (line.kind === "count") {
     textElement.textContent = `${line.text} `;
-    const epsilonSpan = document.createElementNS(SVG_NAMESPACE, "tspan");
+    const epsilonSpan = documentLike.createElementNS(SVG_NAMESPACE, "tspan");
     epsilonSpan.setAttribute("font-family", EPSILON_FONT_FAMILY);
     epsilonSpan.textContent = EPSILON_GLYPH;
     textElement.append(epsilonSpan);
     const superscriptSize = Math.max(7, catalog.textLayout.fontSizePx - 2.5);
-    const signSpan = document.createElementNS(SVG_NAMESPACE, "tspan");
+    const signSpan = documentLike.createElementNS(SVG_NAMESPACE, "tspan");
     signSpan.setAttribute("baseline-shift", "super");
     signSpan.setAttribute("font-size", String(superscriptSize));
     signSpan.textContent = line.sign;
@@ -273,7 +279,7 @@ export function renderXyzzyTileSvg({
     textElement.setAttribute("font-size", String(catalog.textLayout.fontSizePx));
     textElement.setAttribute("font-weight", String(catalog.textLayout.fontWeight));
     textElement.setAttribute("text-anchor", "middle");
-    appendTextLine(textElement, line, catalog);
+    appendTextLine(documentLike, textElement, line, catalog);
     svg.append(textElement);
   });
 
