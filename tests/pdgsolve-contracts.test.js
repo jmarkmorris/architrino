@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
+import { createPdgeditLibraryManifestEntry } from "../src/apps/pdgedit/PdgeditLibraryManifestRuntime.js";
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
@@ -114,6 +115,7 @@ const pdgsolveResultSchema = readJson("src/contracts/pdgsolve-result/v1/schema.j
 const pdgsolveAcceptanceSchema = readJson("src/contracts/pdgsolve-acceptance/v1/schema.json");
 const pdgsolvePublicationGraphSchema = readJson("src/contracts/pdgsolve-publication-graph/v1/schema.json");
 const pdgsolvePdgeditPackageSchema = readJson("src/contracts/pdgsolve-pdgedit-package/v1/schema.json");
+const pdgeditLibraryManifestSchema = readJson("src/contracts/pdgedit-library-manifest/v1/schema.json");
 const pdgeditSchema = readJson("src/contracts/pdgedit/v1/schema.json");
 const pdgsolvePdgeditRecipeCatalog = normalizePdgsolvePdgeditRecipeCatalog(
   readJson("src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json")
@@ -215,6 +217,18 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
     true
   );
   assert.deepEqual(packageFixture.pdgeditDocument, pdgeditDocument);
+  assert.deepEqual(
+    validateAgainstSchema(
+      {
+        schema: "pdgedit-library-manifest/v1",
+        defaultEntryId: packageFixture.manifestEntry.id,
+        entries: [{ ...packageFixture.manifestEntry, isDefault: true }],
+      },
+      pdgeditLibraryManifestSchema
+    ),
+    [],
+    "beta package manifest entry drifted from pdgedit manifest contract"
+  );
 });
 
 test("pdgsolve beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
@@ -340,6 +354,15 @@ test("pdgsolve publication runtime builds the expected durable package for bound
 
   assert.deepEqual(validateAgainstSchema(builtPackage, pdgsolvePdgeditPackageSchema), [], "boundary package schema drifted");
   assert.deepEqual(builtPackage, expectedPackage);
+  assert.deepEqual(
+    builtPackage.manifestEntry,
+    createPdgeditLibraryManifestEntry({
+      id: "pdgsolve_boundary_augmentation_recipe_coverage",
+      title: "Boundary augmentation recipe coverage",
+      displayTitle: "Boundary augmentation recipe coverage",
+      documentPath: "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
+    })
+  );
 });
 
 test("pdgsolve publication runtime builds the expected beta pdgedit document from the accepted publication graph", () => {
@@ -368,4 +391,13 @@ test("pdgsolve publication runtime builds the expected durable beta package from
 
   assert.deepEqual(validateAgainstSchema(builtPackage, pdgsolvePdgeditPackageSchema), [], "beta package schema drifted");
   assert.deepEqual(builtPackage, expectedPackage);
+  assert.deepEqual(
+    builtPackage.manifestEntry,
+    createPdgeditLibraryManifestEntry({
+      id: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+      title: "Free neutron beta exact",
+      displayTitle: "Free neutron beta exact",
+      documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    })
+  );
 });

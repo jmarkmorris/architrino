@@ -39,9 +39,9 @@ The active job is not to invent a different pipeline. It is to turn the existing
 
 ## Current State
 
-- `src/apps/pdgsolve/` already contains the recipe catalog and pdgsolve-to-pdgedit publication helpers, and `src/contracts/` plus `content/contracts/examples/` already carry request, result, acceptance, publication-graph, package, and `pdgedit/v1` fixtures.
-- `src/apps/pdgedit/` already contains tile-catalog, document, and SVG-rendering helpers, but `src/apps/pdgedit/main.js` still boots the tile-review harness and the only public pdgedit page is `pdgedit-review.html`.
-- `content/contracts/examples/pdgedit/manifest.v1.json` already exists and the pdgedit examples round-trip through tests, but pdgedit does not yet exist as the direct editing surface specified in [pdgedit](./pdgedit.md).
+- `src/apps/pdgsolve/` already contains the recipe catalog and pdgsolve-to-pdgedit publication helpers, and `src/contracts/` plus `content/contracts/examples/` now carry request, result, acceptance, publication-graph, package, pdgedit library-manifest, and `pdgedit/v1` schemas and fixtures.
+- `src/apps/pdgedit/` already contains tile-catalog, document, SVG-rendering, and manifest-bootstrap helpers, and the review harness boot now lives under `src/apps/pdgedit/review/` instead of doubling as `pdgedit` the app bootstrap.
+- `content/contracts/examples/pdgedit/manifest.v1.json` already exists, now has an explicit schema in `src/contracts/`, and the manifest plus downstream package entry rules round-trip through tests, but pdgedit does not yet exist as the direct editing surface specified in [pdgedit](./pdgedit.md).
 - `src/apps/navigator/StandaloneAppLaunchRuntime.js` only knows `pdgview`, and `src/apps/pdgview/main.js` still imports `app.js`, so the dedicated-app cut-over is not finished even for the downstream app that already has a substantial app tree.
 - `pdgfeed.py` already emits proposal and request artifacts and already has fixture/live-case regression coverage, but the implementation still lives at the repo root and is still the caller-facing entrypoint.
 
@@ -49,10 +49,10 @@ The active job is not to invent a different pipeline. It is to turn the existing
 
 ### 1. Stabilize The Contract Substrate Before UI Expansion
 
-- Keep the request, result, acceptance, publication-graph, package, manifest, and `pdgedit/v1` schemas as the source of truth in `src/contracts/` and `content/contracts/examples/`.
-- Treat the current pdgsolve publication runtime and pdgedit tile/document helpers as seeds for the app work, not as temporary prototypes to bypass.
-- Separate review-only or catalog-review surfaces from the future production app bootstraps so `pdgedit` the app is not conflated with `pdgedit-review` the reference harness.
-- Exit criterion: the full upstream request and downstream publication denominator is frozen enough that runtime work can assemble on top of it without inventing new hidden formats.
+- Request, result, acceptance, publication-graph, package, manifest, and `pdgedit/v1` now live as the explicit source of truth in `src/contracts/` and `content/contracts/examples/`.
+- The pdgsolve publication runtime and pdgedit tile/document helpers now assemble through shared contract helpers instead of duplicating manifest-entry shape or bypassing the frozen JSON boundary.
+- Review-only or catalog-review surfaces now stay under `src/apps/pdgedit/review/`, while `src/apps/pdgedit/main.js` is reserved for the authored-surface bootstrap seed rather than the tile-review harness.
+- Status: complete. The full upstream request and downstream publication denominator is now frozen enough that runtime work can assemble on top of it without inventing new hidden formats.
 
 ### 2. Deliver `pdgedit` As The Final Authored-Surface App
 

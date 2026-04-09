@@ -3,6 +3,7 @@ import {
   getPdgsolvePdgeditOperatorRecipe,
   normalizePdgsolvePdgeditRecipeCatalog,
 } from "./PdgsolvePdgeditRecipeCatalogRuntime.js";
+import { createPdgeditLibraryManifestEntry } from "../pdgedit/PdgeditLibraryManifestRuntime.js";
 
 const ASSEMBLY_X_BY_LANE = Object.freeze({
   1: 2,
@@ -247,12 +248,12 @@ export function buildPdgsolvePdgeditPackage({
     pdgeditDocument,
     manifestEntry:
       normalizedMode === "durable"
-        ? {
+        ? createPdgeditLibraryManifestEntry({
             id: normalizeText(documentId),
             title: normalizeText(documentTitle),
             displayTitle: normalizeText(documentTitle),
             documentPath: normalizeText(durableDocumentPath),
-          }
+          })
         : null,
   };
 }

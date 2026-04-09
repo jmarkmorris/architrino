@@ -2,6 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
+import {
+  getPdgeditLibraryManifestEntryById,
+  normalizePdgeditLibraryManifest,
+  selectDefaultPdgeditLibraryManifestEntry,
+} from "../src/apps/pdgedit/PdgeditLibraryManifestRuntime.js";
+import { loadPdgeditContractBootstrapSeed } from "../src/apps/pdgedit/main.js";
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import {
   getPdgeditDocumentAssemblyRows,
@@ -125,6 +131,14 @@ test("pdgedit example documents match the versioned pdgedit schema", () => {
   });
 });
 
+test("pdgedit manifest fixture matches the versioned manifest schema", () => {
+  const schema = readJson("src/contracts/pdgedit-library-manifest/v1/schema.json");
+  const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const errors = validateAgainstSchema(manifest, schema);
+
+  assert.deepEqual(errors, [], "pdgedit manifest schema mismatch");
+});
+
 test("pdgedit example assemblies use exact four-tile payloads drawn from the shared tile catalog", () => {
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
 
@@ -230,11 +244,12 @@ test("pdgedit examples include at least one explicit assembly payload for every 
 
 test("pdgedit manifest defaults to the canonical free neutron beta decay document", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
   assert.equal(manifest.schema, "pdgedit-library-manifest/v1");
   assert.equal(manifest.defaultEntryId, "free_neutron_beta_decay");
   assert.deepEqual(Object.keys(manifest).sort(), ["defaultEntryId", "entries", "schema"]);
 
-  const defaultEntry = manifest.entries.find((entry) => entry.id === manifest.defaultEntryId);
+  const defaultEntry = getPdgeditLibraryManifestEntryById(normalizedManifest, normalizedManifest.defaultEntryId);
   assert.ok(defaultEntry);
   assert.equal(defaultEntry.isDefault, true);
   assert.equal(
@@ -256,4 +271,72 @@ test("pdgedit manifest defaults to the canonical free neutron beta decay documen
     assert.equal(entry.documentPath.endsWith(".v1.json"), true);
     assert.equal(fs.existsSync(new URL(`../${entry.documentPath}`, import.meta.url)), true, entry.documentPath);
   });
+});
+
+test("pdgedit manifest selection prefers the canonical beta fixture, then declared default, then first entry", () => {
+  const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const selectedFromFixture = selectDefaultPdgeditLibraryManifestEntry(manifest);
+  const selectedFromDeclaredDefault = selectDefaultPdgeditLibraryManifestEntry({
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "secondary_document",
+    entries: [
+      {
+        id: "primary_document",
+        title: "Primary document",
+        displayTitle: "Primary document",
+        documentPath: "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+      },
+      {
+        id: "secondary_document",
+        title: "Secondary document",
+        displayTitle: "Secondary document",
+        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+        isDefault: true,
+      },
+    ],
+  });
+  const selectedFromFirstEntry = selectDefaultPdgeditLibraryManifestEntry({
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "",
+    entries: [
+      {
+        id: "first_document",
+        title: "First document",
+        displayTitle: "First document",
+        documentPath: "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+      },
+      {
+        id: "second_document",
+        title: "Second document",
+        displayTitle: "Second document",
+        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+      },
+    ],
+  });
+
+  assert.equal(selectedFromFixture?.id, "free_neutron_beta_decay");
+  assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
+  assert.equal(selectedFromFirstEntry?.id, "first_document");
+});
+
+test("pdgedit main bootstrap seed stays contract-first and separate from the review harness", async () => {
+  const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const fetchCalls = [];
+  const source = fs.readFileSync(new URL("../src/apps/pdgedit/main.js", import.meta.url), "utf8");
+  const { manifest: loadedManifest, selectedEntry } = await loadPdgeditContractBootstrapSeed({
+    manifestUrl: "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    fetchImpl: async (url) => {
+      fetchCalls.push(url);
+      return {
+        ok: true,
+        json: async () => manifest,
+      };
+    },
+  });
+
+  assert.deepEqual(fetchCalls, ["https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json"]);
+  assert.deepEqual(loadedManifest, normalizePdgeditLibraryManifest(manifest));
+  assert.equal(selectedEntry?.id, "free_neutron_beta_decay");
+  assert.equal(source.includes("PdgeditTileReviewAppRuntime"), false);
+  assert.equal(source.includes("./review/main.js"), true);
 });
