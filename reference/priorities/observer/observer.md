@@ -1,4 +1,4 @@
-# Composer / Reaction Workstream
+# Observer Workstream
 
 ## Workstream Metadata
 
@@ -11,29 +11,29 @@
 
 ## Directory Guide
 
-- [app-architecture](app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
-- [flow](./flow.md) — strict five-lane reaction-flow contract and the migration status for adjacent-only routing.
-- [reaction](./old-reaction.md) — `reaction` app design and `reaction`-owned priorities.
-- [solver](./old-solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
-- [combo](./combo.md) — Combo app design as the request-intake, solve-review, and Xyzzy-publication surface.
-- [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, and proposal-review work.
-- [composer](./composer.md) — `composer` design and `composer`-owned priorities.
+- [app-architecture](./app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
+- [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, proposal review, and upstream request emission.
+- [combo](./combo.md) — Combo app design as the request-intake, solve-review, acceptance, and Xyzzy-publication surface.
+- [xyzzy](./xyzzy.md) — final authored-surface document model, tile grammar, manifest behavior, and direct object editing.
+- [composer](./composer.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
+- [viewports](./viewports.md) — observer-view and design-view guidance for downstream scene authoring.
+- [glyph](./glyph.md) — shared glyph-system guidance relevant to authored surfaces and downstream presentation.
 
 ## Current Cross-Doc Queue
 
-1. [flow](./flow.md) and [solver](./old-solver.md): finish native solver emission of the strict five-lane adjacent-only graph so request-backed library solves and accepted exports stay identical without compatibility rewrites.
-2. [reaction](./old-reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
-3. [reaction](./old-reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest now that accepted handoff documents carry the full explicit five-lane path.
-4. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
-5. [pdgfeed](./pdgfeed.md): build `pdgfeed.py`, fixtures, and the first normalized candidate export path into `solver-request/v1`.
+1. [pdgfeed](./pdgfeed.md) and [combo](./combo.md): keep upstream request emission explicit, proposal-aware, and ready for Combo intake.
+2. [combo](./combo.md) and [xyzzy](./xyzzy.md): freeze the accepted publication path from reviewed solve state into final `xyzzy/v1`.
+3. [xyzzy](./xyzzy.md) and [composer](./composer.md): define the downstream handoff from accepted Xyzzy output into observer-stage scene work.
+4. [composer](./composer.md) and [viewports](./viewports.md): finish observer framing, autoscale, overlays, and preview behavior on top of imported authored-surface content.
+5. [app-architecture](./app-architecture.md): keep these boundaries contract-first and prevent shared-runtime backsliding.
 
 ## Subapp Workflow Overview
 
-The overall pipeline is:
+The intended pipeline is:
 
-`pdgfeed -> solver -> reaction -> composer`
+`pdgfeed -> combo -> xyzzy -> composer`
 
-This is a data pipeline, not a shared-runtime pipeline. Each stage should accept a versioned input, do its own job, and emit a versioned output for the next stage.
+This is a data pipeline, not a shared-runtime pipeline. Each stage should accept explicit versioned input, do its own job, and emit explicit output for the next stage.
 
 ### Subapp Roles, Inputs, And Outputs
 
@@ -42,8 +42,8 @@ This is a data pipeline, not a shared-runtime pipeline. Each stage should accept
 Purpose:
 
 - reads PDG-backed decay or channel data;
-- normalizes that data into Architrino-owned candidate records;
-- and emits solver requests.
+- normalizes that data into Architrino-owned proposal and request artifacts;
+- and emits explicit upstream request data for Combo.
 
 Input:
 
@@ -64,81 +64,87 @@ Current CLI examples:
 Output:
 
 - proposal-review JSON artifacts for inspection;
-- and `solver-request/v1` JSON for the solver.
+- and explicit request JSON for Combo intake.
 
 Visual output:
 
 - none.
 
-#### `solver`
+#### `combo`
 
 Purpose:
 
-- takes a solver request;
-- computes conservative mappings, operator placements, and candidate closures;
-- and returns structured solve results for `reaction`.
+- loads explicit solve requests;
+- normalizes them into a Combo-owned solve problem;
+- computes and reviews conservative candidate outcomes;
+- accepts one outcome for publication;
+- and publishes final `xyzzy/v1` documents.
 
 Input:
 
-- command-line input that points to or contains a `solver-request/v1` JSON payload for a direct solve run;
-- or a `solver-request/v1` JSON file, including one produced by `pdgfeed`.
+- built-in request manifests backed by canonical fixtures;
+- PDG-backed requests emitted by `pdgfeed`;
+- direct load of explicit request JSON by a developer or advanced user;
+- or reopened Combo work items carried by Combo-owned ids or records.
 
 Output:
 
-- structured JSON for `reaction` review and correction.
+- reviewable solve results;
+- accepted Combo publication state;
+- final `xyzzy/v1` documents;
+- and launch-ready or manifest-ready downstream publication packages.
 
 Visual output:
 
-- none.
+- yes: Combo is the solve-and-review surface.
 
-#### `reaction`
+#### `xyzzy`
 
 Purpose:
 
-- is the conservative authoring and review surface;
-- lets the author inspect, correct, or manually build the reaction;
-- and accepts the reaction for downstream handoff.
+- renders and edits final authored-surface documents;
+- provides the direct object-editing surface for assemblies, operators, splines, and composite-label effects;
+- and manages manifest-driven selection of final `xyzzy/v1` documents.
 
 Input:
 
-- solver output JSON;
-- or manually authored reaction structure in the `reaction` UI rather than from JSON input;
-- or a library entry that resolves to a canonical `solver-request/v1` fixture and is solved on selection;
-- or a reaction JSON file loaded by the developer.
+- published `xyzzy/v1` documents;
+- manifest-backed authored-surface selections;
+- and direct surface edits to assemblies, operators, links, and composite labels.
 
 Output:
 
-- accepted `reaction`-owned handoff JSON for `composer`;
-- visual reaction diagrams inside the `reaction` app;
-- and exported reaction images where needed.
+- final `xyzzy/v1` documents with stable object ids and placements;
+- explicit spline link records;
+- and manifest-ready authored-surface assets for downstream staging.
 
 Visual output:
 
-- yes: the reaction diagram and related exported images.
+- yes: the final tile-based authored surface.
 
 #### `composer`
 
 Purpose:
 
-- stages the final observer-facing scene;
-- turns accepted reaction flow into live visualization, timing, framing, and media;
-- and exports scene output and recorded presentation material.
+- stages the downstream observer-facing scene;
+- turns accepted authored-surface content into framing, overlays, timing, playback, and media presentation;
+- and exports scene output or recorded presentation material.
 
 Input:
 
-- accepted `reaction` handoff JSON, currently the `reaction-flow/v1` style boundary;
-- or a built-in reaction-derived scene spec JSON document;
-- or a previously saved `composer` JSON file.
+- accepted Xyzzy documents;
+- or explicit downstream staging contracts derived from accepted Xyzzy output;
+- plus authored scene, timing, and media data.
 
 Output:
 
-- live visualization in the `composer` runtime;
 - composed scene JSON;
-- and recorded animations or other presentation exports.
+- preview state and local drafts;
+- and recorded or exported observer-stage output.
 
 Visual output:
 
-- yes: live scene preview and final animation-oriented output.
+- yes: live scene preview and final presentation-oriented output.
 
 ## Start Points
 
@@ -153,193 +159,107 @@ Audience:
 
 Use this when the source of truth is PDG data and you want to begin upstream.
 
-This path should support two modes:
-
-- built-in PDG fixture or live-case selection for the guided path;
-- user-specified PDG reaction or channel selection for the advanced path.
-
 Boundary rule:
 
-- every PDG-selected case, whether built in or user specified, should be normalized into `solver-request/v1` JSON before entering the solver.
+- every PDG-selected case should be normalized into explicit request data before entering Combo.
 
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
 2. Choose a built-in fixture, a built-in live PDG case, or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
-4. Emit a `solver-request/v1` JSON candidate.
-5. Pass that JSON into the solver.
-6. Pass solver output JSON into `reaction` for review and acceptance.
-7. Export accepted `reaction` output JSON into `composer`.
-8. Stage and record the final visualization in `composer` if needed.
+4. Emit an explicit request artifact for Combo intake.
+5. Load that request into Combo.
+6. Review candidate solve families in Combo and accept one outcome.
+7. Publish the accepted result into final `xyzzy/v1`.
+8. Open the published document in Xyzzy for authored-surface inspection or editing.
+9. Hand accepted authored-surface content into Composer when observer-stage staging is needed.
 
 Short form:
 
-- choose PDG channel -> emit solver request -> solve -> review in `reaction` -> hand off to `composer`.
+- choose PDG channel -> emit request -> solve and review in Combo -> publish Xyzzy -> stage in Composer.
 
-### B. Start With `solver`
+### B. Start With `combo`
 
 Audience:
 
 - developer
 - advanced user
 
-Use this when you already know the reaction you want to solve and do not need PDG ingest first.
-
-This path should support two modes:
-
-- built-in `solver-request/v1` JSON fixtures for the guided path;
-- loaded `solver-request/v1` JSON files for the advanced path, including files emitted by `pdgfeed`.
+Use this when you already know the request you want to solve and do not need PDG ingest first.
 
 Boundary rule:
 
-- `solver` should consume explicit request JSON rather than hidden app state or ad hoc text commands.
+- Combo should consume explicit request data rather than hidden app state or inferred browser-local structure.
 
 Workflow:
 
-1. Start the solver directly.
-2. Choose a built-in solver request, or load a `solver-request/v1` JSON file.
+1. Open Combo.
+2. Choose a built-in request, reopen a Combo work item, or load explicit request JSON.
 3. Run the solve.
-4. Inspect the solver JSON result.
-5. Open that result in `reaction`.
-6. Accept or manually correct the reaction in `reaction`.
-7. Export the accepted handoff JSON to `composer`.
-8. Build the final observer-facing scene in `composer`.
+4. Inspect and compare the candidate families.
+5. Accept one family for publication.
+6. Publish the accepted result into final `xyzzy/v1`.
+7. Open the published document in Xyzzy.
+8. Hand accepted authored-surface content into Composer if downstream scene staging is needed.
 
 Short form:
 
-- choose solver request -> solve -> review in `reaction` -> hand off to `composer`.
+- choose request -> solve and review in Combo -> publish Xyzzy -> stage in Composer.
 
-Note:
-
-- if built-in solver requests exist, they should be treated as developer fixtures or canned examples, not as a replacement for the explicit request format.
-- advanced users may also enter here by loading a `solver-request/v1` JSON file directly, including one generated from a user-specified PDG channel upstream.
-
-### C. Start With `reaction` Using A Built-In Or Loaded Spec
+### C. Start With `xyzzy`
 
 Audience:
 
 - developer
 - user
 
-Use this when you want to work at the reaction-authoring level without running PDG ingest or the solver first.
+Use this when you want to work directly at the final authored-surface level.
 
 Workflow:
 
-1. Open `reaction`.
-2. Choose a reaction-library entry, or load a reaction JSON file directly.
-3. Review and edit participants, mappings, and operators in `reaction`.
-4. Run the solver from inside `reaction` if helpful, or stay manual.
-5. Accept the reaction once the provenance story is correct.
-6. Export the accepted handoff JSON from `reaction`.
-7. Open that handoff in `composer`.
-8. Stage and refine the final visualization.
+1. Open Xyzzy.
+2. Choose a manifest entry that points to a final `xyzzy/v1` document.
+3. Inspect or edit assemblies, operators, links, and composite-label effects directly on the surface.
+4. Save or persist the resulting authored-surface document as needed.
+5. Open the accepted authored-surface content in Composer if observer-stage work is the next step.
 
 Short form:
 
-- open reaction library entry or reaction JSON -> edit and accept in `reaction` -> hand off to `composer`.
+- open Xyzzy document -> edit authored surface -> hand downstream to Composer when needed.
 
-### D. Start With `reaction` And Build A Manual Solution
+### D. Start With `composer`
 
 Audience:
 
 - developer
 - user
 
-Use this when the main task is conservative manual authorship rather than upstream ingest or automatic solving.
+Use this when the immediate task is scene staging, observer framing, playback, overlays, or presentation work.
 
 Workflow:
 
-1. Open `reaction` with a blank or minimal setup.
-2. Add reactants, products, center assemblies, and operators manually.
-3. Author mappings and disassembly or reassembly structure manually.
-4. Use the solver only as an optional assistant, not as the source of truth.
-5. Validate the final reaction by visual inspection and conservation checks.
-6. Accept the reaction.
-7. Export the accepted handoff JSON.
-8. Open it in `composer` for final staging and animation.
-
-Short form:
-
-- author manually in `reaction` -> accept -> hand off to `composer`.
-
-### E. Start With `composer`
-
-Audience:
-
-- developer
-- user
-
-Use this when the immediate task is scene staging, observer framing, playback, or presentation work.
-
-Workflow:
-
-1. Open `composer`.
-2. Choose a built-in `reaction`-derived scene spec JSON document, or load a `composer` JSON file or `reaction` handoff JSON file.
-3. Inspect the imported assemblies, paths, and timing.
+1. Open Composer.
+2. Load accepted Xyzzy output or an explicit downstream staging contract derived from it.
+3. Inspect the imported assemblies, paths, labels, and timing.
 4. Adjust observer framing, overlays, media, pacing, and scene structure.
 5. Preview the live visualization.
-6. Export composed scene JSON or record animation output.
+6. Export composed scene JSON or record presentation output.
 
 Short form:
 
-- load reaction-derived scene data -> stage in `composer` -> preview -> export or record.
-
-### F. Developer Closure Sweep Across Many PDG Reactions
-
-Audience:
-
-- developer
-
-Use this when the goal is not to author one reaction, but to measure solver coverage across many PDG reactions and see which cases reach conservative closure.
-
-Core tools:
-
-- `pdgfeed.py`
-- `solver.py`
-
-Optional inspection tools:
-
-- `reaction` for inspecting selected failures, borderline cases, or unexpectedly strong closures;
-- `composer` is not part of the closure-sweep loop.
-
-Workflow:
-
-1. Run `pdgfeed.py` in a batch mode over many built-in or user-selected PDG reactions or channels.
-2. Emit one `solver-request/v1` JSON file per candidate case.
-3. Run `solver.py` over that batch of `solver-request/v1` JSON files.
-4. Record one solver result JSON file per case.
-5. Compute a summary report that says how many cases were attempted, how many reached closure, how many failed, and why they failed.
-6. Group failures by reason, such as unsupported particle mapping, missing operator family, conservation mismatch, or incomplete projection rule.
-7. Open selected result JSON files in `reaction` only when a human needs to inspect the provenance story or decide whether a failure is expected.
-
-Short form:
-
-- batch PDG cases -> emit `solver-request/v1` JSON -> batch solve -> summarize closure coverage.
-
-Design rule:
-
-- this workstream should stay easy to run from the command line and should not require opening `reaction` or `composer` for routine coverage measurement.
-
-Desired output:
-
-- a machine-readable summary JSON report;
-- and a human-readable coverage summary showing total cases, closure count, non-closure count, and the main failure buckets.
-
-Important boundary:
-
-- `composer` should start from accepted reaction data whenever the task depends on reaction correctness.
-- `composer` may visualize and refine presentation, but it should not become the place where reaction solving or provenance correction happens.
+- load accepted authored-surface content -> stage in Composer -> preview -> export or record.
 
 ## Workflow Rule
 
-If a reaction begins from PDG data, whether that PDG case is built in or user specified, the workflow should be:
+If work begins from PDG data, the workflow should be:
 
 - choose PDG reaction or channel;
 - normalize it in `pdgfeed`;
-- emit `solver-request/v1` JSON;
-- solve from that JSON in `solver`;
-- review and accept the solver result JSON in `reaction`;
-- and only then hand accepted reaction JSON into `composer`.
+- emit explicit request data;
+- solve and review it in Combo;
+- publish accepted output into final `xyzzy/v1`;
+- inspect or refine the authored surface in Xyzzy as needed;
+- and only then hand accepted authored-surface content into Composer.
 
-That keeps user flexibility high without collapsing the app boundaries.
+That keeps flexibility high without collapsing the app boundaries.
