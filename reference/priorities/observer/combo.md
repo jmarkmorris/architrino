@@ -897,9 +897,11 @@ So yes, this limited geometry is not merely drawable. It is mathematically enume
 
 ### Solve Output Model
 
-Combo should return one Combo-owned review model from the search core.
+Combo should return one Combo-owned internal search result model from the search core.
 
-That review model should be rich enough to carry:
+That internal model should be solver-shaped rather than review-workflow-shaped.
+
+It should be rich enough to carry:
 
 - the selected candidate graph;
 - any alternate candidate families worth surfacing;
@@ -907,7 +909,21 @@ That review model should be rich enough to carry:
 - explicit provenance/accounting summaries;
 - and the information needed to publish into `xyzzy/v1` without making Xyzzy reconstruct omitted semantics.
 
-Whether Combo keeps a distinct internal result model or reuses a versioned external result contract should be decided on first-principles clarity, not legacy compatibility.
+Combo should not reuse the external `combo-result/v1` document as the native in-memory search-core shape.
+
+Instead:
+
+- the search core should return its own internal result model;
+- the review layer should hold review workflow state such as selected family, accepted family, accepted record, and stale/published status;
+- the publication layer should hold downstream publication state;
+- and the app boundary should assemble `combo-result/v1` from those pieces.
+
+This means:
+
+- the search core does not own `review.state`, `acceptedFamilyId`, or `publication`;
+- `combo-result/v1` is the external review/result contract, not the internal solver contract;
+- the internal search result may later be serialized if another boundary genuinely needs it;
+- but Combo v1 should not force that internal model to become a public versioned JSON contract prematurely.
 
 ### Option Family Identity
 
@@ -967,6 +983,12 @@ The canonical representative of an option family should be the member with minim
 ### Combo Result Contract
 
 Combo should freeze one external review/result contract named `combo-result/v1`.
+
+That contract should be assembled from:
+
+- the current internal Combo search result;
+- the current review-state record;
+- and the current publication-state record.
 
 At the top level, that contract should contain:
 
@@ -1601,18 +1623,7 @@ Combo should not:
 
 ## Priorities
 
-### 1. Build The First Combo Fixtures And Regression Surface
-
-Status: `active`
-
-Current:
-
-- the minimum required regression fixture set is now frozen;
-- but Combo still has no own request fixtures, expected-result fixtures, or Xyzzy-publication regressions.
-
-Objective:
-
-- create the first Combo-native request fixtures, candidate expectations, and Xyzzy-publication regressions.
+No active items right now.
 
 ## Related Priorities
 
