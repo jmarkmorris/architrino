@@ -300,7 +300,7 @@ Combo should support a small number of explicit entry modes:
 - built-in request manifests backed by canonical fixtures;
 - PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
 - direct load of explicit request JSON by a developer or advanced user;
-- and later, reopened Combo work items or Xyzzy-originated authored solve requests if that workflow becomes necessary.
+- and reopened Combo work items carried by Combo-owned ids or records.
 
 Combo should consume explicit request data rather than hidden app-local state.
 
@@ -1492,6 +1492,48 @@ Combo should be able to hand accepted results downstream in one of two ways:
 
 The durable path should be the canonical reviewable path.
 
+### Reverse Boundary From Xyzzy
+
+For Combo v1, Xyzzy should be downstream-only.
+
+That means:
+
+- a final `xyzzy/v1` document is a publication artifact, not a Combo solve request;
+- editing a Xyzzy document does not implicitly create or mutate Combo solve state;
+- Combo should not reverse-parse arbitrary Xyzzy assemblies, operators, links, or composite labels back into solver-native meaning;
+- and Xyzzy should not host candidate ranking, ambiguity handling, acceptance state, or other Combo review semantics.
+
+So the v1 answer is:
+
+- Combo publishes to Xyzzy;
+- but Xyzzy does not originate a new Combo solve request from arbitrary authored surface state.
+
+The only admitted reverse-adjacent operation in Combo v1 should be **reopen by Combo-owned reference**.
+
+That means:
+
+- if the runtime still has a Combo work item id, accepted-record digest, or equivalent Combo-owned publication reference for the current Xyzzy document, it may offer a launcher-level action that reopens that Combo work item;
+- Combo must then reload its own normalized problem, accepted record, or stored review state from Combo-owned persistence;
+- and the Xyzzy document itself is not the source of truth for the reopened solve.
+
+If that Combo-owned reference is missing, the Xyzzy document alone is not sufficient to reconstruct the Combo problem.
+
+So a published Xyzzy artifact may be viewable or editable as a Xyzzy document even when no reversible Combo session still exists.
+
+### Future Xyzzy-To-Combo Gate
+
+If a true Xyzzy-to-Combo authoring loop is ever admitted later, it should require a separate versioned transform contract rather than reverse use of raw `xyzzy/v1`.
+
+That future transform should be accepted only if all of the following are true:
+
+- the source document is intentionally marked as request-shaped rather than publication-shaped;
+- only explicit boundary-side authored assemblies are treated as request inputs and targets;
+- Xyzzy-only placement, link-routing, and composite-label details are ignored as non-solver semantics;
+- the transform runs outside the Xyzzy renderer;
+- and the output is an explicit Combo-owned request contract such as `combo-request/v1`, not an in-process callback into Combo review state.
+
+Until such a contract is explicitly admitted, arbitrary `xyzzy/v1` documents should be treated as non-invertible downstream artifacts.
+
 ### App Boundary Rules
 
 Combo should follow the dedicated-app rules in [app-architecture](app-architecture.md):
@@ -1525,7 +1567,7 @@ So Combo should not consider itself beyond the minimal single-family stage until
 - built-in Combo fixture requests;
 - explicit developer-loaded request documents;
 - Combo-owned solve policy and review state;
-- and later, any intentionally supported Xyzzy-originated authored solve requests.
+- and Combo-owned reopened work-item references when one already exists.
 
 ### Outputs
 
@@ -1546,6 +1588,7 @@ Combo should:
 Combo should not:
 
 - ask Xyzzy to parse raw solver-native problem or result data;
+- treat arbitrary `xyzzy/v1` documents as invertible Combo requests;
 - duplicate PDG normalization logic locally;
 - or let launcher/runtime concerns become the source of solve semantics.
 
@@ -1558,23 +1601,9 @@ Combo should not:
 
 ## Priorities
 
-### 1. Define How Combo And Xyzzy Interact In Both Directions
+### 1. Build The First Combo Fixtures And Regression Surface
 
 Status: `active`
-
-Current:
-
-- Combo now owns a frozen accepted-record boundary and one canonical publication path into `xyzzy/v1`;
-- Combo clearly publishes to Xyzzy;
-- but the reverse interaction, if any, is not yet frozen.
-
-Objective:
-
-- decide whether Xyzzy may originate authored solve requests back into Combo and, if so, define that boundary without pushing solver review into Xyzzy.
-
-### 2. Build The First Combo Fixtures And Regression Surface
-
-Status: `pending`
 
 Current:
 
