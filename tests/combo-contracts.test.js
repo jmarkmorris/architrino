@@ -3,7 +3,10 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 import { normalizeXyzzyTileCatalog } from "../src/apps/xyzzy/XyzzyTileCatalogRuntime.js";
+import { normalizeXyzzyReviewGroupCatalog } from "../src/apps/xyzzy/XyzzyReviewGroupCatalogRuntime.js";
 import { validateXyzzyDocumentTilePayload } from "../src/apps/xyzzy/XyzzyDocumentRuntime.js";
+import { buildComboXyzzyPackage, buildXyzzyDocumentFromComboPublicationGraph } from "../src/apps/combo/ComboXyzzyPublicationRuntime.js";
+import { normalizeComboXyzzyRecipeCatalog } from "../src/apps/combo/ComboXyzzyRecipeCatalogRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -112,6 +115,9 @@ const comboAcceptanceSchema = readJson("src/contracts/combo-acceptance/v1/schema
 const comboPublicationGraphSchema = readJson("src/contracts/combo-publication-graph/v1/schema.json");
 const comboXyzzyPackageSchema = readJson("src/contracts/combo-xyzzy-package/v1/schema.json");
 const xyzzySchema = readJson("src/contracts/xyzzy/v1/schema.json");
+const comboXyzzyRecipeCatalog = normalizeComboXyzzyRecipeCatalog(
+  readJson("src/apps/combo/combo-xyzzy-recipes.v1.json")
+);
 
 test("combo request fixtures match the versioned combo-request schema", () => {
   comboCorpus.cases.forEach((entry) => {
@@ -252,4 +258,114 @@ test("combo beta xyzzy publication regression keeps the fixed band layout and va
       ["right", "Anti Electron Neutrino", 4, 4],
     ]
   );
+});
+
+test("combo xyzzy recipe catalog admits 2h and 4h as explicit publication recipes without collapsing them into support assemblies", () => {
+  const twoHRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.get("combo.xyzzy.2h.v1");
+  const fourHRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.get("combo.xyzzy.4h.v1");
+  const noetherPairRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.get("combo.xyzzy.noether_pair.v1");
+
+  assert.ok(twoHRecipe);
+  assert.ok(fourHRecipe);
+  assert.ok(noetherPairRecipe);
+  assert.equal(twoHRecipe.comboAssemblyId, "2h");
+  assert.equal(fourHRecipe.comboAssemblyId, "4h");
+  assert.equal(twoHRecipe.xyzzyType, "noether-pair-assembly");
+  assert.equal(fourHRecipe.xyzzyType, "noether-quad-assembly");
+  assert.equal(twoHRecipe.boundaryLabelText, "2H");
+  assert.equal(fourHRecipe.boundaryLabelText, "4H");
+  assert.equal(noetherPairRecipe.boundaryLabelText, "Noether Pair");
+  assert.notEqual(twoHRecipe.id, noetherPairRecipe.id);
+  assert.notDeepEqual(twoHRecipe.rowTitles, noetherPairRecipe.rowTitles);
+});
+
+test("combo 2h and 4h recipes reuse the canonical Xyzzy Noether row payloads while keeping distinct labels", () => {
+  const reviewGroups = normalizeXyzzyReviewGroupCatalog(readJson("src/apps/xyzzy/xyzzy-review-groups.json"));
+  const noetherPairRows = reviewGroups.compositeGroups.find((group) => group.key === "noether-pair")?.rows;
+  const noetherQuadRows = reviewGroups.compositeGroups.find((group) => group.key === "noether-quad")?.rows;
+  const twoHRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.get("combo.xyzzy.2h.v1");
+  const fourHRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.get("combo.xyzzy.4h.v1");
+
+  assert.deepEqual(twoHRecipe.rows, noetherPairRows);
+  assert.deepEqual(fourHRecipe.rows, noetherQuadRows);
+  assert.deepEqual(twoHRecipe.rowTitles, ["2H Row 1", "2H Row 2"]);
+  assert.deepEqual(fourHRecipe.rowTitles, ["4H Row 1", "4H Row 2", "4H Row 3", "4H Row 4"]);
+});
+
+test("every recipeId used by combo publication-graph fixtures is admitted in the Combo Xyzzy recipe catalog", () => {
+  const graphPaths = [
+    "content/contracts/examples/combo-publication-graph/free_neutron_beta_exact.v1.json",
+    "content/contracts/examples/combo-publication-graph/boundary_augmentation_recipe_coverage.v1.json",
+  ];
+
+  graphPaths.forEach((graphPath) => {
+    const graph = readJson(graphPath);
+    graph.units.forEach((unit) => {
+      const hasAssemblyRecipe = comboXyzzyRecipeCatalog.assemblyRecipeById.has(unit.recipeId);
+      const hasOperatorRecipe = comboXyzzyRecipeCatalog.operatorRecipeById.has(unit.recipeId);
+      assert.equal(
+        hasAssemblyRecipe || hasOperatorRecipe,
+        true,
+        `${graphPath} references unknown recipe ${unit.recipeId}`
+      );
+    });
+  });
+});
+
+test("combo publication runtime builds the expected boundary-augmentation xyzzy document", () => {
+  const graph = readJson("content/contracts/examples/combo-publication-graph/boundary_augmentation_recipe_coverage.v1.json");
+  const expectedXyzzyDocument = readJson("content/contracts/examples/xyzzy/combo_boundary_augmentation_recipe_coverage.v1.json");
+  const builtDocument = buildXyzzyDocumentFromComboPublicationGraph(graph, comboXyzzyRecipeCatalog);
+  const tileCatalog = normalizeXyzzyTileCatalog(readJson("src/apps/xyzzy/xyzzy-tiles.json"));
+
+  assert.deepEqual(validateAgainstSchema(builtDocument, xyzzySchema), [], "boundary xyzzy schema drifted");
+  assert.deepEqual(validateXyzzyDocumentTilePayload(builtDocument, tileCatalog), [], "boundary xyzzy tile drifted");
+  assert.deepEqual(builtDocument, expectedXyzzyDocument);
+});
+
+test("combo publication runtime builds the expected durable package for boundary augmentations", () => {
+  const graph = readJson("content/contracts/examples/combo-publication-graph/boundary_augmentation_recipe_coverage.v1.json");
+  const expectedPackage = readJson(
+    "content/contracts/examples/combo-xyzzy-package/boundary_augmentation_recipe_coverage_durable.v1.json"
+  );
+  const builtPackage = buildComboXyzzyPackage({
+    sourceAcceptanceDigest: "combo_boundary_augmentation_recipe_coverage::v1",
+    publicationMode: "durable",
+    documentId: "combo_boundary_augmentation_recipe_coverage",
+    documentTitle: "Boundary augmentation recipe coverage",
+    graph,
+    recipeCatalog: comboXyzzyRecipeCatalog,
+    durableDocumentPath: "content/contracts/examples/xyzzy/combo_boundary_augmentation_recipe_coverage.v1.json",
+  });
+
+  assert.deepEqual(validateAgainstSchema(builtPackage, comboXyzzyPackageSchema), [], "boundary package schema drifted");
+  assert.deepEqual(builtPackage, expectedPackage);
+});
+
+test("combo publication runtime builds the expected beta xyzzy document from the accepted publication graph", () => {
+  const graph = readJson("content/contracts/examples/combo-publication-graph/free_neutron_beta_exact.v1.json");
+  const expectedXyzzyDocument = readJson("content/contracts/examples/xyzzy/combo_free_neutron_beta_exact.v1.json");
+  const builtDocument = buildXyzzyDocumentFromComboPublicationGraph(graph, comboXyzzyRecipeCatalog);
+  const tileCatalog = normalizeXyzzyTileCatalog(readJson("src/apps/xyzzy/xyzzy-tiles.json"));
+
+  assert.deepEqual(validateAgainstSchema(builtDocument, xyzzySchema), [], "beta xyzzy schema drifted");
+  assert.deepEqual(validateXyzzyDocumentTilePayload(builtDocument, tileCatalog), [], "beta xyzzy tile drifted");
+  assert.deepEqual(builtDocument, expectedXyzzyDocument);
+});
+
+test("combo publication runtime builds the expected durable beta package from the accepted publication graph", () => {
+  const graph = readJson("content/contracts/examples/combo-publication-graph/free_neutron_beta_exact.v1.json");
+  const expectedPackage = readJson("content/contracts/examples/combo-xyzzy-package/free_neutron_beta_exact_durable.v1.json");
+  const builtPackage = buildComboXyzzyPackage({
+    sourceAcceptanceDigest: "combo_problem_free_neutron_beta_exact::family.beta.exact.v1::v1",
+    publicationMode: "durable",
+    documentId: "combo_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+    graph,
+    recipeCatalog: comboXyzzyRecipeCatalog,
+    durableDocumentPath: "content/contracts/examples/xyzzy/combo_free_neutron_beta_exact.v1.json",
+  });
+
+  assert.deepEqual(validateAgainstSchema(builtPackage, comboXyzzyPackageSchema), [], "beta package schema drifted");
+  assert.deepEqual(builtPackage, expectedPackage);
 });

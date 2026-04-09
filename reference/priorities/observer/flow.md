@@ -4,7 +4,7 @@
 
 - Keep `Transition Plan` ordered as the current work queue, with the most important active item first.
 - Keep `Target Model` descriptive and stable; move task-shaped material into `Transition Plan`.
-- Treat this document as the lane-flow contract that both [solver](./solver.md) and [reaction](./reaction.md) must converge on.
+- Treat this document as the lane-flow contract that both [solver](./old-solver.md) and [reaction](./old-reaction.md) must converge on.
 - Prefer describing the solver-owned JSON contract and the Reaction-side rendering/runtime consequences over local implementation detail.
 
 ## Purpose

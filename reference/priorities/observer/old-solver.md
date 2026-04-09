@@ -1383,7 +1383,7 @@ Reference fixtures for the frozen v1 boundary now live in:
 - [`carry_through_neutron.v1.json`](../../../content/contracts/examples/solver-request/carry_through_neutron.v1.json)
 - [`carry_through_neutron_result.v1.json`](../../../content/contracts/examples/solver-result/carry_through_neutron_result.v1.json)
 
-[reaction](./reaction.md) should reference this section rather than restating the payload.
+[reaction](./old-reaction.md) should reference this section rather than restating the payload.
 
 That output should be rich enough to carry:
 
@@ -1574,7 +1574,7 @@ Likely durable boundaries in the rearchitected system are:
 
 ### Neighboring Components
 
-- [reaction](./reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
+- [reaction](./old-reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
 - [pdgfeed](./pdgfeed.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
 - [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
 - [app-architecture](app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.

@@ -8,7 +8,7 @@
     "schema": "xyzzy/v1",
     "assemblies": [
       {
-        "id": "reactant_neutron_row_1",
+        "id": "unit_lane1_neutron.row.1",
         "type": "pro-neutron-assembly",
         "x": 2,
         "y": 0,
@@ -22,7 +22,7 @@
         ]
       },
       {
-        "id": "reactant_neutron_row_2",
+        "id": "unit_lane1_neutron.row.2",
         "type": "pro-neutron-assembly",
         "x": 2,
         "y": 1,
@@ -36,7 +36,7 @@
         ]
       },
       {
-        "id": "reactant_neutron_row_3",
+        "id": "unit_lane1_neutron.row.3",
         "type": "pro-neutron-assembly",
         "x": 2,
         "y": 2,
@@ -50,7 +50,7 @@
         ]
       },
       {
-        "id": "reactant_noether_pair_row_1",
+        "id": "unit_lane1_noether_pair.row.1",
         "type": "noether-pair-assembly",
         "x": 2,
         "y": 3,
@@ -64,7 +64,7 @@
         ]
       },
       {
-        "id": "reactant_noether_pair_row_2",
+        "id": "unit_lane1_noether_pair.row.2",
         "type": "noether-pair-assembly",
         "x": 2,
         "y": 4,
@@ -78,7 +78,7 @@
         ]
       },
       {
-        "id": "intermediate_proton_row_1",
+        "id": "unit_lane3_proton.row.1",
         "type": "pro-proton-assembly",
         "x": 9,
         "y": 0,
@@ -92,7 +92,7 @@
         ]
       },
       {
-        "id": "intermediate_proton_row_2",
+        "id": "unit_lane3_proton.row.2",
         "type": "pro-proton-assembly",
         "x": 9,
         "y": 1,
@@ -106,7 +106,7 @@
         ]
       },
       {
-        "id": "intermediate_proton_row_3",
+        "id": "unit_lane3_proton.row.3",
         "type": "pro-proton-assembly",
         "x": 9,
         "y": 2,
@@ -120,7 +120,7 @@
         ]
       },
       {
-        "id": "intermediate_electron",
+        "id": "unit_lane3_electron.row.1",
         "type": "pro-electron-assembly",
         "x": 9,
         "y": 3,
@@ -134,7 +134,7 @@
         ]
       },
       {
-        "id": "intermediate_electron_antineutrino",
+        "id": "unit_lane3_electron_antineutrino.row.1",
         "type": "anti-electron-neutrino-assembly",
         "x": 9,
         "y": 4,
@@ -148,7 +148,7 @@
         ]
       },
       {
-        "id": "product_proton_row_1",
+        "id": "unit_lane5_proton.row.1",
         "type": "pro-proton-assembly",
         "x": 16,
         "y": 0,
@@ -162,7 +162,7 @@
         ]
       },
       {
-        "id": "product_proton_row_2",
+        "id": "unit_lane5_proton.row.2",
         "type": "pro-proton-assembly",
         "x": 16,
         "y": 1,
@@ -176,7 +176,7 @@
         ]
       },
       {
-        "id": "product_proton_row_3",
+        "id": "unit_lane5_proton.row.3",
         "type": "pro-proton-assembly",
         "x": 16,
         "y": 2,
@@ -190,7 +190,7 @@
         ]
       },
       {
-        "id": "product_electron",
+        "id": "unit_lane5_electron.row.1",
         "type": "pro-electron-assembly",
         "x": 16,
         "y": 3,
@@ -204,7 +204,7 @@
         ]
       },
       {
-        "id": "product_electron_antineutrino",
+        "id": "unit_lane5_electron_antineutrino.row.1",
         "type": "anti-electron-neutrino-assembly",
         "x": 16,
         "y": 4,
@@ -220,7 +220,7 @@
     ],
     "operators": [
       {
-        "id": "operator_beta_dissociate",
+        "id": "unit_lane2_beta_dissociate",
         "type": "dissociate",
         "x": 7,
         "y": 2,
@@ -229,7 +229,7 @@
         "electrinoCount": 30
       },
       {
-        "id": "operator_pass_thru_proton",
+        "id": "unit_lane4_pass_thru_proton",
         "type": "pass-thru",
         "x": 14,
         "y": 1,
@@ -238,7 +238,7 @@
         "electrinoCount": 15
       },
       {
-        "id": "operator_pass_thru_electron",
+        "id": "unit_lane4_pass_thru_electron",
         "type": "pass-thru",
         "x": 14,
         "y": 3,
@@ -247,7 +247,7 @@
         "electrinoCount": 9
       },
       {
-        "id": "operator_pass_thru_electron_antineutrino",
+        "id": "unit_lane4_pass_thru_electron_antineutrino",
         "type": "pass-thru",
         "x": 14,
         "y": 4,
@@ -258,137 +258,137 @@
     ],
     "links": [
       {
-        "id": "link_neutron_row_1_to_dissociate",
-        "endpointA": "reactant_neutron_row_1",
-        "endpointB": "operator_beta_dissociate"
+        "id": "edge_neutron_to_beta_dissociate.link.1",
+        "endpointA": "unit_lane1_neutron.row.1",
+        "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "link_neutron_row_2_to_dissociate",
-        "endpointA": "reactant_neutron_row_2",
-        "endpointB": "operator_beta_dissociate"
+        "id": "edge_neutron_to_beta_dissociate.link.2",
+        "endpointA": "unit_lane1_neutron.row.2",
+        "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "link_neutron_row_3_to_dissociate",
-        "endpointA": "reactant_neutron_row_3",
-        "endpointB": "operator_beta_dissociate"
+        "id": "edge_neutron_to_beta_dissociate.link.3",
+        "endpointA": "unit_lane1_neutron.row.3",
+        "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "link_noether_pair_row_1_to_dissociate",
-        "endpointA": "reactant_noether_pair_row_1",
-        "endpointB": "operator_beta_dissociate"
+        "id": "edge_noether_pair_to_beta_dissociate.link.1",
+        "endpointA": "unit_lane1_noether_pair.row.1",
+        "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "link_noether_pair_row_2_to_dissociate",
-        "endpointA": "reactant_noether_pair_row_2",
-        "endpointB": "operator_beta_dissociate"
+        "id": "edge_noether_pair_to_beta_dissociate.link.2",
+        "endpointA": "unit_lane1_noether_pair.row.2",
+        "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "link_dissociate_to_proton_row_1",
-        "endpointA": "operator_beta_dissociate",
-        "endpointB": "intermediate_proton_row_1"
+        "id": "edge_beta_dissociate_to_proton.link.1",
+        "endpointA": "unit_lane2_beta_dissociate",
+        "endpointB": "unit_lane3_proton.row.1"
       },
       {
-        "id": "link_dissociate_to_proton_row_2",
-        "endpointA": "operator_beta_dissociate",
-        "endpointB": "intermediate_proton_row_2"
+        "id": "edge_beta_dissociate_to_proton.link.2",
+        "endpointA": "unit_lane2_beta_dissociate",
+        "endpointB": "unit_lane3_proton.row.2"
       },
       {
-        "id": "link_dissociate_to_proton_row_3",
-        "endpointA": "operator_beta_dissociate",
-        "endpointB": "intermediate_proton_row_3"
+        "id": "edge_beta_dissociate_to_proton.link.3",
+        "endpointA": "unit_lane2_beta_dissociate",
+        "endpointB": "unit_lane3_proton.row.3"
       },
       {
-        "id": "link_dissociate_to_electron",
-        "endpointA": "operator_beta_dissociate",
-        "endpointB": "intermediate_electron"
+        "id": "edge_beta_dissociate_to_electron",
+        "endpointA": "unit_lane2_beta_dissociate",
+        "endpointB": "unit_lane3_electron.row.1"
       },
       {
-        "id": "link_dissociate_to_electron_antineutrino",
-        "endpointA": "operator_beta_dissociate",
-        "endpointB": "intermediate_electron_antineutrino"
+        "id": "edge_beta_dissociate_to_electron_antineutrino",
+        "endpointA": "unit_lane2_beta_dissociate",
+        "endpointB": "unit_lane3_electron_antineutrino.row.1"
       },
       {
-        "id": "link_intermediate_proton_row_1_to_pass_thru",
-        "endpointA": "intermediate_proton_row_1",
-        "endpointB": "operator_pass_thru_proton"
+        "id": "edge_lane3_proton_to_lane4_pass_thru.link.1",
+        "endpointA": "unit_lane3_proton.row.1",
+        "endpointB": "unit_lane4_pass_thru_proton"
       },
       {
-        "id": "link_intermediate_proton_row_2_to_pass_thru",
-        "endpointA": "intermediate_proton_row_2",
-        "endpointB": "operator_pass_thru_proton"
+        "id": "edge_lane3_proton_to_lane4_pass_thru.link.2",
+        "endpointA": "unit_lane3_proton.row.2",
+        "endpointB": "unit_lane4_pass_thru_proton"
       },
       {
-        "id": "link_intermediate_proton_row_3_to_pass_thru",
-        "endpointA": "intermediate_proton_row_3",
-        "endpointB": "operator_pass_thru_proton"
+        "id": "edge_lane3_proton_to_lane4_pass_thru.link.3",
+        "endpointA": "unit_lane3_proton.row.3",
+        "endpointB": "unit_lane4_pass_thru_proton"
       },
       {
-        "id": "link_pass_thru_proton_to_product_row_1",
-        "endpointA": "operator_pass_thru_proton",
-        "endpointB": "product_proton_row_1"
+        "id": "edge_lane4_pass_thru_to_lane5_proton.link.1",
+        "endpointA": "unit_lane4_pass_thru_proton",
+        "endpointB": "unit_lane5_proton.row.1"
       },
       {
-        "id": "link_pass_thru_proton_to_product_row_2",
-        "endpointA": "operator_pass_thru_proton",
-        "endpointB": "product_proton_row_2"
+        "id": "edge_lane4_pass_thru_to_lane5_proton.link.2",
+        "endpointA": "unit_lane4_pass_thru_proton",
+        "endpointB": "unit_lane5_proton.row.2"
       },
       {
-        "id": "link_pass_thru_proton_to_product_row_3",
-        "endpointA": "operator_pass_thru_proton",
-        "endpointB": "product_proton_row_3"
+        "id": "edge_lane4_pass_thru_to_lane5_proton.link.3",
+        "endpointA": "unit_lane4_pass_thru_proton",
+        "endpointB": "unit_lane5_proton.row.3"
       },
       {
-        "id": "link_intermediate_electron_to_pass_thru",
-        "endpointA": "intermediate_electron",
-        "endpointB": "operator_pass_thru_electron"
+        "id": "edge_lane3_electron_to_lane4_pass_thru",
+        "endpointA": "unit_lane3_electron.row.1",
+        "endpointB": "unit_lane4_pass_thru_electron"
       },
       {
-        "id": "link_pass_thru_electron_to_product",
-        "endpointA": "operator_pass_thru_electron",
-        "endpointB": "product_electron"
+        "id": "edge_lane4_pass_thru_to_lane5_electron",
+        "endpointA": "unit_lane4_pass_thru_electron",
+        "endpointB": "unit_lane5_electron.row.1"
       },
       {
-        "id": "link_intermediate_electron_antineutrino_to_pass_thru",
-        "endpointA": "intermediate_electron_antineutrino",
-        "endpointB": "operator_pass_thru_electron_antineutrino"
+        "id": "edge_lane3_electron_antineutrino_to_lane4_pass_thru",
+        "endpointA": "unit_lane3_electron_antineutrino.row.1",
+        "endpointB": "unit_lane4_pass_thru_electron_antineutrino"
       },
       {
-        "id": "link_pass_thru_electron_antineutrino_to_product",
-        "endpointA": "operator_pass_thru_electron_antineutrino",
-        "endpointB": "product_electron_antineutrino"
+        "id": "edge_lane4_pass_thru_to_lane5_electron_antineutrino",
+        "endpointA": "unit_lane4_pass_thru_electron_antineutrino",
+        "endpointB": "unit_lane5_electron_antineutrino.row.1"
       }
     ],
     "compositeLabels": [
       {
-        "id": "label_neutron",
+        "id": "label.unit_lane1_neutron",
         "side": "left",
         "text": "Neutron",
         "rowStart": 0,
         "rowEnd": 2
       },
       {
-        "id": "label_noether_pair",
+        "id": "label.unit_lane1_noether_pair",
         "side": "left",
         "text": "Noether Pair",
         "rowStart": 3,
         "rowEnd": 4
       },
       {
-        "id": "label_proton",
+        "id": "label.unit_lane5_proton",
         "side": "right",
         "text": "Proton",
         "rowStart": 0,
         "rowEnd": 2
       },
       {
-        "id": "label_electron",
+        "id": "label.unit_lane5_electron",
         "side": "right",
         "text": "Pro Electron",
         "rowStart": 3,
         "rowEnd": 3
       },
       {
-        "id": "label_electron_antineutrino",
+        "id": "label.unit_lane5_electron_antineutrino",
         "side": "right",
         "text": "Anti Electron Neutrino",
         "rowStart": 4,

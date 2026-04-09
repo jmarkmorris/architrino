@@ -1,0 +1,42 @@
+{
+  "schema": "combo-publication-graph/v1",
+  "units": [
+    {
+      "id": "unit_lane1_2h_left",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "combo.xyzzy.2h.v1",
+      "occurrenceKey": "lane1.2h#1",
+      "title": "2H",
+      "anchorRow": 0
+    },
+    {
+      "id": "unit_lane1_4h_left",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "combo.xyzzy.4h.v1",
+      "occurrenceKey": "lane1.4h#1",
+      "title": "4H",
+      "anchorRow": 2
+    },
+    {
+      "id": "unit_lane5_2h_right",
+      "kind": "assembly",
+      "lane": 5,
+      "recipeId": "combo.xyzzy.2h.v1",
+      "occurrenceKey": "lane5.2h#1",
+      "title": "2H",
+      "anchorRow": 0
+    },
+    {
+      "id": "unit_lane5_4h_right",
+      "kind": "assembly",
+      "lane": 5,
+      "recipeId": "combo.xyzzy.4h.v1",
+      "occurrenceKey": "lane5.4h#1",
+      "title": "4H",
+      "anchorRow": 2
+    }
+  ],
+  "edges": []
+}

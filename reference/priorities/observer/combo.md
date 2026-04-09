@@ -604,7 +604,7 @@ The search design should specify:
 
 The search model should remain planner-first rather than surface-first.
 
-The related search material in [solver](./solver.md) is relevant here as neighboring groundwork, not as a finished Combo spec.
+The related search material in [solver](./old-solver.md) is relevant here as neighboring groundwork, not as a finished Combo spec.
 
 This limited geometry should be exploited aggressively.
 
@@ -1397,12 +1397,14 @@ So the accepted publication graph is still Combo-owned, but it is already explic
 
 The first admitted recipe family should be `combo-xyzzy-recipes/v1-beta-minimal`.
 
-That family should support exactly the current publishable beta-minimal assemblies and operators:
+That family should support exactly the current publishable beta-minimal assemblies, boundary augmentations, and operators:
 
 | Combo unit | Admitted recipe id | Xyzzy type family | Expansion height | Boundary label text |
 | --- | --- | --- | --- | --- |
 | `neutron` | `combo.xyzzy.neutron.v1` | `pro-neutron-assembly` | `3` rows | `Neutron` |
 | `noether_pair` | `combo.xyzzy.noether_pair.v1` | `noether-pair-assembly` | `2` rows | `Noether Pair` |
+| `2h` | `combo.xyzzy.2h.v1` | `noether-pair-assembly` | `2` rows | `2H` |
+| `4h` | `combo.xyzzy.4h.v1` | `noether-quad-assembly` | `4` rows | `4H` |
 | `proton` | `combo.xyzzy.proton.v1` | `pro-proton-assembly` | `3` rows | `Proton` |
 | `electron` | `combo.xyzzy.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
 | `electron_antineutrino` | `combo.xyzzy.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
@@ -1410,13 +1412,14 @@ That family should support exactly the current publishable beta-minimal assembli
 | lane-2 or lane-4 `Pass Thru` | `combo.xyzzy.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
 | lane-4 `Associate` | `combo.xyzzy.operator.associate.v1` | `associate` | `1` row | none |
 
-For Combo v1, the boundary augmentation assemblies `2h` and `4h` should not yet have admitted Xyzzy publication recipes.
+The boundary augmentation assemblies `2h` and `4h` are therefore publishable in Combo v1.
 
-So:
+Their surface mapping should follow one explicit rule:
 
-- they may still appear in solve search and review;
-- but any accepted family that still depends on them is not publication-ready in the current Xyzzy publication family;
-- and the review blocker should be `combo.review.missing_xyzzy_publication_recipe` until explicit Xyzzy publication recipes for those assemblies are admitted.
+- `2h` should publish through the admitted `combo.xyzzy.2h.v1` recipe using the existing Xyzzy `noether-pair-assembly` row family;
+- `4h` should publish through the admitted `combo.xyzzy.4h.v1` recipe using the existing Xyzzy `noether-quad-assembly` row family;
+- but those remain distinct Combo recipes with distinct recipe ids and boundary labels `2H` and `4H`;
+- so the publication layer must not rewrite `2h` into `noether_pair` or `4h` into any other Combo assembly merely because the Xyzzy-side row payloads reuse existing Noether-family surface rows.
 
 ### Layout And Object Emission Rules
 
@@ -1618,7 +1621,7 @@ Combo should not:
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
 - [xyzzy](./xyzzy.md) owns the final tile surface, placement grammar, and Xyzzy-side document model.
-- [solver](./solver.md) carries related search-strategy and branch-state design material.
+- [solver](./old-solver.md) carries related search-strategy and branch-state design material.
 - [app-architecture](app-architecture.md) owns the cross-app boundary and modularity rules that apply here.
 
 ## Priorities
@@ -1630,5 +1633,5 @@ No active items right now.
 - [observer](./observer.md)
 - [pdgfeed](./pdgfeed.md)
 - [xyzzy](./xyzzy.md)
-- [solver](./solver.md)
+- [solver](./old-solver.md)
 - [app-architecture](app-architecture.md)

@@ -64,8 +64,8 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`archive`](../../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../deferred/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../observer/composer.md) | Composer | — | — | — |
-| — | [`reaction`](../observer/reaction.md) | Reaction app | — | — | — |
-| — | [`solver`](../observer/solver.md) | Reaction solver | — | — | — |
+| — | [`reaction`](../observer/old-reaction.md) | Reaction app | — | — | — |
+| — | [`solver`](../observer/old-solver.md) | Reaction solver | — | — | — |
 | — | [`pdgfeed`](../observer/pdgfeed.md) | PDG | — | — | — |
 | — | [`glyph`](../observer/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../observer/viewports.md) | Viewports | — | — | — |

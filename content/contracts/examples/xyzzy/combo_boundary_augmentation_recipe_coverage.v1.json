@@ -1,0 +1,205 @@
+{
+  "schema": "xyzzy/v1",
+  "assemblies": [
+    {
+      "id": "unit_lane1_2h_left.row.1",
+      "type": "noether-pair-assembly",
+      "x": 2,
+      "y": 0,
+      "title": "2H Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane1_2h_left.row.2",
+      "type": "noether-pair-assembly",
+      "x": 2,
+      "y": 1,
+      "title": "2H Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "unit_lane1_4h_left.row.1",
+      "type": "noether-quad-assembly",
+      "x": 2,
+      "y": 2,
+      "title": "4H Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane1_4h_left.row.2",
+      "type": "noether-quad-assembly",
+      "x": 2,
+      "y": 3,
+      "title": "4H Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "unit_lane1_4h_left.row.3",
+      "type": "noether-quad-assembly",
+      "x": 2,
+      "y": 4,
+      "title": "4H Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane1_4h_left.row.4",
+      "type": "noether-quad-assembly",
+      "x": 2,
+      "y": 5,
+      "title": "4H Row 4",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_2h_right.row.1",
+      "type": "noether-pair-assembly",
+      "x": 16,
+      "y": 0,
+      "title": "2H Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_2h_right.row.2",
+      "type": "noether-pair-assembly",
+      "x": 16,
+      "y": 1,
+      "title": "2H Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_4h_right.row.1",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 2,
+      "title": "4H Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_4h_right.row.2",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 3,
+      "title": "4H Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_4h_right.row.3",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 4,
+      "title": "4H Row 3",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "unit_lane5_4h_right.row.4",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 5,
+      "title": "4H Row 4",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    }
+  ],
+  "operators": [],
+  "links": [],
+  "compositeLabels": [
+    {
+      "id": "label.unit_lane1_2h_left",
+      "side": "left",
+      "text": "2H",
+      "rowStart": 0,
+      "rowEnd": 1
+    },
+    {
+      "id": "label.unit_lane1_4h_left",
+      "side": "left",
+      "text": "4H",
+      "rowStart": 2,
+      "rowEnd": 5
+    },
+    {
+      "id": "label.unit_lane5_2h_right",
+      "side": "right",
+      "text": "2H",
+      "rowStart": 0,
+      "rowEnd": 1
+    },
+    {
+      "id": "label.unit_lane5_4h_right",
+      "side": "right",
+      "text": "4H",
+      "rowStart": 2,
+      "rowEnd": 5
+    }
+  ]
+}

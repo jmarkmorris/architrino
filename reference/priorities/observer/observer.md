@@ -13,17 +13,17 @@
 
 - [app-architecture](app-architecture.md) — overall architecture for how dedicated apps fit into the Architrino web app.
 - [flow](./flow.md) — strict five-lane reaction-flow contract and the migration status for adjacent-only routing.
-- [reaction](./reaction.md) — `reaction` app design and `reaction`-owned priorities.
-- [solver](./solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
+- [reaction](./old-reaction.md) — `reaction` app design and `reaction`-owned priorities.
+- [solver](./old-solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
 - [combo](./combo.md) — Combo app design as the request-intake, solve-review, and Xyzzy-publication surface.
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, and proposal-review work.
 - [composer](./composer.md) — `composer` design and `composer`-owned priorities.
 
 ## Current Cross-Doc Queue
 
-1. [flow](./flow.md) and [solver](./solver.md): finish native solver emission of the strict five-lane adjacent-only graph so request-backed library solves and accepted exports stay identical without compatibility rewrites.
-2. [reaction](./reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
-3. [reaction](./reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest now that accepted handoff documents carry the full explicit five-lane path.
+1. [flow](./flow.md) and [solver](./old-solver.md): finish native solver emission of the strict five-lane adjacent-only graph so request-backed library solves and accepted exports stay identical without compatibility rewrites.
+2. [reaction](./old-reaction.md): finish the manual provenance workflow and keep `reaction` as the primary conservative authoring surface.
+3. [reaction](./old-reaction.md) and [composer](./composer.md): keep the `reaction-flow/v1` boundary honest now that accepted handoff documents carry the full explicit five-lane path.
 4. [composer](./composer.md): finish authored observer framing and autoscale UI on top of the now-working `reaction` handoff intake.
 5. [pdgfeed](./pdgfeed.md): build `pdgfeed.py`, fixtures, and the first normalized candidate export path into `solver-request/v1`.
 
