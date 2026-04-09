@@ -375,6 +375,144 @@ $$
 
 These are the first conserved sums that must match across the solve.
 
+### V1 Assembly Table
+
+Before Combo implementation begins, the first executable family should freeze one minimal assembly alphabet.
+
+For Combo v1, that alphabet should be
+
+$$
+\mathcal{A}_{\mathrm{v1}}
+=
+\{
+\mathrm{2h},
+\mathrm{4h},
+\mathrm{electron},
+\mathrm{electron\_antineutrino},
+\mathrm{neutron},
+\mathrm{noether\_pair},
+\mathrm{proton}
+\}.
+$$
+
+The v1 assembly table should be:
+
+| Canonical id | Display label | Allowed lane roles in Combo v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
+| --- | --- | --- | --- | --- |
+| `neutron` | `Neutron` | lanes `1`, `3`, `5` | \((18, 18)\) | intact baryon carry-through is legal |
+| `proton` | `Proton` | lanes `1`, `3`, `5` | \((15, 21)\) | intact baryon carry-through is legal |
+| `electron` | `Electron` | lanes `1`, `3`, `5` | \((9, 3)\) | charged lepton assembly |
+| `electron_antineutrino` | `Electron Antineutrino` | lanes `1`, `3`, `5` | \((6, 6)\) | neutral lepton assembly |
+| `noether_pair` | `Noether Pair` | lane `1` explicit support reactant only | \((6, 6)\) | explicit weak-support carrier; not a lane-3 assembly in v1 |
+| `2h` | `2H` | lane `1` or lane `5` boundary augmentation only | \((6, 6)\) | anonymous two-core spacetime supplement |
+| `4h` | `4H` | lane `1` or lane `5` boundary augmentation only | \((12, 12)\) | anonymous four-core spacetime supplement |
+
+The frozen v1 bookkeeping values should therefore include:
+
+- \(\mu(\mathrm{proton}) = 2\mu(u) + \mu(d) = (15, 21)\);
+- \(\mu(\mathrm{neutron}) = \mu(u) + 2\mu(d) = (18, 18)\);
+- \(\mu(\mathrm{electron}) = (9, 3)\);
+- \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\);
+- \(\mu(\mathrm{noether\_pair}) = \mu(\mathrm{2h}) = (6, 6)\);
+- and \(\mu(\mathrm{4h}) = 2\mu(\mathrm{2h}) = (12, 12)\).
+
+Combo v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
+
+In particular:
+
+- `noether_pair` and `2h` share the same primitive counts;
+- but they remain different assemblies with different provenance meaning and lane-role rules;
+- and no normalization or ranking rule should collapse them into one symbol merely because their primitive ledgers match.
+
+### V1 Law Tables
+
+Combo v1 should freeze a deliberately small executable law family.
+
+For unary laws, the initial tables should be empty:
+
+$$
+\Delta(a) = \varnothing,
+\qquad
+\Gamma(a) = \varnothing,
+\qquad
+a \in \mathcal{A}_{\mathrm{v1}}.
+$$
+
+So in Combo v1, the only unary rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
+
+The first and only non-identity executable law family should be the explicit neutron-beta support cluster rule
+
+$$
+\Lambda_{2}^{\mathrm{cl}}\!\left(
+e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+\right)
+=
+\left\{
+e_{\mathrm{proton}}
++ e_{\mathrm{electron}}
++ e_{\mathrm{electron\_antineutrino}}
+\right\}.
+$$
+
+That law should be frozen as the following v1 record:
+
+| Law id | Input multiset | Output multiset | Lane-2 operator tag | Lane-4 operator tags | Required provenance summary |
+| --- | --- | --- | --- | --- | --- |
+| `cluster.beta.neutron_noether_pair.v1` | `neutron + noether_pair` | `proton + electron + electron_antineutrino` | `Dissociate` | `Pass Thru`, `Pass Thru`, `Pass Thru` | spectator `u`, spectator `d`, active `d -> u`, and lepton-support provenance from `Noether Pair` |
+
+Combo v1 should admit no other non-identity law family.
+
+That means:
+
+- there is no unary neutron dissociation rule in v1;
+- there is no generic `Noether Pair -> ...` unary rule in v1;
+- boundary-only assemblies such as `noether_pair`, `2h`, and `4h` do not receive unary pass-thru in v1 because they are not lane-3 assemblies;
+- there is no association table yet beyond identity pass-thru;
+- and any branch that requires another non-identity law family should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
+
+### Normalization Rules
+
+Combo should normalize every upstream request into one explicit `combo-problem/v1` record before search begins.
+
+The raw request contract should remain small.
+
+It should carry:
+
+- `schema: "combo-request/v1"`;
+- `requestId`;
+- `source.kind`, for example `fixture`, `pdgfeed`, or `developer`;
+- explicit reactant-side and product-side occurrence lists;
+- and optional policy overrides.
+
+Normalization should then do the following, in order:
+
+1. canonicalize every upstream particle token into one Combo v1 assembly id, for example `n -> neutron`, `p -> proton`, `e- -> electron`, and `anti-electron-neutrino -> electron_antineutrino`;
+2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
+3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `combo.request.unsupported_assembly`;
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `combo-laws/v1-beta-minimal`, and the augmentation family as \(\mathcal{B} = \{0, e_{\mathrm{2h}}, e_{\mathrm{4h}}\}\) unless the request narrows that family explicitly;
+5. build the requested multisets \(R\) and \(T\);
+6. preserve any explicit authored or request-side `noether_pair` reactant occurrence as authored support rather than rewriting it into `2h`;
+7. when the raw request is the free-neutron beta family and policy `betaSupportMode = allow-implied-noether-pair`, add one normalized `noether_pair` reactant occurrence if one is not already explicit, mark it as normalized support, and emit `combo.normalization.support_added.noether_pair`;
+8. when the raw request is the free-neutron beta family but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `combo.normalization.support_required.noether_pair`;
+9. keep explicit request-side `2h` and `4h` occurrences in \(R\) or \(T\) only when they already occupy boundary-side roles in the request contract;
+10. keep `noether_pair` only as an explicit reactant-side support assembly in Combo v1;
+11. reject any attempt to place `noether_pair`, `2h`, or `4h` outside their frozen v1 lane-role rules with `combo.request.invalid_boundary_role`; and
+12. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
+
+The normalized Combo problem contract should be:
+
+- `schema: "combo-problem/v1"`;
+- `problemId`;
+- `requestId`;
+- `source`;
+- `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
+- `assemblyAlphabetId: "combo-assemblies/v1-minimal"`;
+- `primitiveBasisId: "combo-primitives/electrino-positrino/v1"`;
+- `lawTableId: "combo-laws/v1-beta-minimal"`;
+- `allowedBoundaryAugmentations`, with left and right values drawn from `none`, `2h`, and `4h`;
+- `policy`;
+- and `normalization`, containing explicit notes about added support material and normalization diagnostics.
+
 ### Conserved Balance Equations
 
 Combo should make the balance laws explicit at assembly lanes 1, 3, and 5.
@@ -472,18 +610,30 @@ This limited geometry should be exploited aggressively.
 
 In particular:
 
-- each lane-1 assembly presents a small action set, typically `Pass Thru` or `Dissociate`;
+- each lane-1 lane-3-capable assembly presents a small action set, typically `Pass Thru` or `Dissociate`;
 - each lane-3 assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
-For lane 2, Combo should define the local reactant rewrite family
+Let
 
 $$
-\Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A},
+\mathcal{A}_{\mathrm{mid}} \subset \mathcal{A}
+$$
+
+be the subset of assemblies that are legal lane-3 assemblies in the active solve family.
+
+For lane 2, Combo should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
+
+$$
+\Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
 $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
+
+Boundary-only support or augmentation assemblies are therefore not given unary lane-2 pass-thru merely by belonging to \(\mathcal{A}\).
+
+They enter the search only through approved cluster or boundary rules.
 
 For a small finite set of worked weak families, Combo may also define explicit local reactant-cluster rewrites over a reactant multiset
 
@@ -509,35 +659,39 @@ $$
 
 Search should treat such a cluster as one assignable local lane-2 unit after reserving the participating reactant occurrences explicitly.
 
-For lane 4, Combo should define the local product-closure family
+For lane 4, Combo should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
-\Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A},
+\Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
 $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal lane-3 input multiset that can `Associate` into \(a\).
 
-Given a full lane-1 inventory \(x_{1}\), the left-generated middle family is
+Given a full lane-1 inventory \(x_{1}\) and a chosen reservation of any cluster-assigned reactant occurrences, the remaining unary left-generated middle family is
 
 $$
 \mathfrak{L}(x_{1}) =
 \left\{
-\sum_{a \in \mathcal{A}} \sum_{i=1}^{x_{1}(a)} y_{a,i}
+\sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{i=1}^{x_{1}(a)} y_{a,i}
 \;\middle|\;
 y_{a,i} \in \Lambda_{2}(a)
 \right\}.
 $$
 
-Given a full lane-5 inventory \(x_{5}\), the right-required middle family is
+Given a full lane-5 inventory \(x_{5}\), the unary right-required middle family is
 
 $$
 \mathfrak{R}(x_{5}) =
 \left\{
-\sum_{a \in \mathcal{A}} \sum_{j=1}^{x_{5}(a)} z_{a,j}
+\sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{j=1}^{x_{5}(a)} z_{a,j}
 \;\middle|\;
 z_{a,j} \in \Lambda_{4}(a)
 \right\}.
 $$
+
+These unary families are understood after removing any occurrences already reserved into approved lane-2 cluster rewrites.
+
+So in the beta-family case, the reserved cluster output is added into \(x_{3}^{L}\) before the meet-in-the-middle comparison is evaluated.
 
 An exact solve for the augmentation pair \((b^{-}, b^{+})\) therefore requires
 
@@ -570,7 +724,7 @@ The operational loop should be:
 2. reject that pair immediately if the primitive imbalance vector \(\delta(Q; b^{-}, b^{+})\) is nonzero and the current search mode requires exact closure;
 3. initialize the empty branch state with no lane-2 or lane-4 assignments;
 4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter middle-lane constraints;
-5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
+5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\), or reserve one approved local reactant cluster when the active family allows it;
 6. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
 7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
 8. continue until all reactant and product occurrences are assigned;
@@ -663,7 +817,9 @@ $$
 
 Here \(a_{\rho}\) and \(a_{\pi}\) are the assemblies attached to those unresolved occurrences.
 
-Because \(e_{a} \in \Lambda_{2}(a)\) and \(e_{a} \in \Lambda_{4}(a)\), these envelopes automatically include the pass-thru possibility.
+For every unresolved occurrence whose assembly lies in \(\mathcal{A}_{\mathrm{mid}}\), the corresponding family still contains the identity element \(e_{a}\).
+
+So these envelopes automatically include the pass-thru possibility for every unresolved occurrence that is actually eligible for pass-thru.
 
 So a middle-lane prune is safe only if one of the coordinatewise intervals is already disjoint:
 
@@ -683,7 +839,7 @@ In plain language:
 
 The same conservatism should apply to operator-count bounds.
 
-For unresolved occurrences, the lower-bound future operator burden should treat pass-thru as zero additional non-identity cost unless a non-identity rewrite is provably forced.
+For unresolved occurrences that are eligible for pass-thru, the lower-bound future operator burden should treat pass-thru as zero additional non-identity cost unless a non-identity rewrite is provably forced.
 
 ### How Rules Produce Options
 
@@ -731,8 +887,9 @@ This yields a finite branch graph for any finite request.
 The key reason is:
 
 - there are only finitely many augmentation pairs \((b^{-}, b^{+}) \in \mathcal{B} \times \mathcal{B}\);
-- each reactant assembly occurrence contributes one finite choice from \(\Lambda_{2}(a)\);
-- each product assembly occurrence contributes one finite choice from \(\Lambda_{4}(a)\);
+- each lane-3-capable reactant occurrence contributes one finite choice from \(\Lambda_{2}(a)\);
+- each lane-3-capable product occurrence contributes one finite choice from \(\Lambda_{4}(a)\);
+- each approved local reactant cluster contributes one finite choice from its cluster family;
 - \(\mathfrak{L}(x_{1})\) and \(\mathfrak{R}(x_{5})\) are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
 
@@ -751,6 +908,103 @@ That review model should be rich enough to carry:
 - and the information needed to publish into `xyzzy/v1` without making Xyzzy reconstruct omitted semantics.
 
 Whether Combo keeps a distinct internal result model or reuses a versioned external result contract should be decided on first-principles clarity, not legacy compatibility.
+
+### Option Family Identity
+
+Combo review should surface option families rather than raw branches.
+
+For completed raw options
+
+$$
+O_{\mathrm{raw}} = (b^{-}, b^{+}, \phi_{2}, \phi_{4}, W),
+$$
+
+two branches should belong to the same option family exactly when they agree on the full review-visible solve summary:
+
+- the same augmentation pair \((b^{-}, b^{+})\);
+- the same lane-1, lane-3, and lane-5 assembly inventories;
+- the same ordered lane-2 operator assignments after canonical reactant-occurrence ordering;
+- the same ordered lane-4 operator assignments after canonical product-occurrence ordering;
+- the same score tuple \(\kappa\);
+- the same review-visible provenance summary;
+- and the same diagnostic id set.
+
+Two completed raw branches should not split into different option families merely because they:
+
+- rename primitive carriers inside the witness;
+- permute indistinguishable assembly occurrences with the same canonical occurrence index class;
+- or differ only in low-level witness detail that leaves the published lane inventories, operator choices, diagnostics, and provenance summary unchanged.
+
+The family key should therefore be
+
+$$
+\operatorname{fam}(O_{\mathrm{raw}})
+=
+\bigl(
+b^{-},
+b^{+},
+x_{1},
+x_{3},
+x_{5},
+\sigma_{2},
+\sigma_{4},
+\rho,
+\kappa
+\bigr),
+$$
+
+where \(\sigma_{2}\) and \(\sigma_{4}\) are the canonical ordered operator signatures and \(\rho\) is the canonical review-visible provenance summary.
+
+Differing provenance-witness detail should create a different option family only when it changes \(\rho\).
+
+So:
+
+- witness detail that changes which assembly occurrence is the active rewrite source, spectator source, support source, or ambiguous source does change family identity;
+- but witness detail that only renames equivalent primitive carriers does not.
+
+The canonical representative of an option family should be the member with minimal deterministic tie-break key \(\tau\) inside that family.
+
+### Combo Result Contract
+
+Combo should freeze one external review/result contract named `combo-result/v1`.
+
+At the top level, that contract should contain:
+
+- `schema: "combo-result/v1"`;
+- `problemId`;
+- `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
+- `bestFamilyId`;
+- `acceptedFamilyId`, nullable until review acceptance occurs;
+- top-level `diagnostics`;
+- `optionFamilies`;
+- and nullable `publication`.
+
+Each member of `optionFamilies` should contain:
+
+- `familyId`;
+- `kind`, with values `exact`, `partial`, or `unsupported`;
+- `score`, carrying the concrete components of \(\kappa\);
+- `augmentation`, with explicit left and right boundary choices;
+- `laneInventories`, carrying canonical lane-1, lane-3, and lane-5 assembly multisets;
+- `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
+- `provenanceSummary`, carrying the family-level witness summary that review must see;
+- `diagnostics`, carrying family-local diagnostics;
+- `rawBranchCount`, the number of raw branches folded into the family;
+- `publicationReady`, a boolean derived from exactness plus review-policy gates;
+- and `canonicalCandidate`, the fully specified representative candidate used for publication if accepted.
+
+The accepted-result handoff before Xyzzy translation should live in `publication`.
+
+That object should be null until one family is accepted.
+
+After acceptance, it should contain:
+
+- `schema: "combo-accepted-candidate/v1"`;
+- `familyId`;
+- `acceptedScore`;
+- `acceptedDiagnostics`;
+- `translationInput`, which is the only Combo-to-Xyzzy handoff shape used before `xyzzy/v1` translation;
+- and `reviewSummary`, carrying the accepted provenance and policy notes that remain relevant downstream.
 
 ### Candidate Scoring
 
@@ -862,6 +1116,68 @@ That means the review surface can show:
 - alternate exact options next, in score order;
 - and partial or unsupported options after that, also in score order with explicit diagnostics.
 
+### Deterministic Tie-Break Rule
+
+Combo should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
+
+For candidate comparison, define
+
+$$
+\tau(C)
+=
+\bigl(
+\operatorname{ord}(b^{-}_{C}),
+\operatorname{ord}(b^{+}_{C}),
+\sigma_{2}(C),
+\sigma_{4}(C),
+\sigma_{3}(C),
+\rho(C)
+\bigr),
+$$
+
+with lexicographic comparison and the concrete orders:
+
+- augmentation order: `none < 2h < 4h` on each side;
+- canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
+- reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
+- product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
+- lane-2 operator order: the sequence of operator assignments in reactant-occurrence order;
+- lane-4 operator order: the sequence of operator assignments in product-occurrence order;
+- and middle-inventory order: assembly counts listed in canonical assembly order.
+
+For Combo v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
+
+- `pass_thru`;
+- then `dissociate(cluster.beta.neutron_noether_pair.v1)`;
+- then any later law-family symbol in the order those law ids are admitted into Combo.
+
+The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
+
+- whether each product occurrence is pure pass-thru, active rewrite output, or support-derived output;
+- the support source class, ordered as `none < noether_pair < 2h < 4h`;
+- and any explicit ambiguity marker bits.
+
+This means repeated runs over the same normalized problem must produce the same best-family representative even when the raw search explores equal-score branches in a different transient order.
+
+### Diagnostic Codes
+
+Combo should freeze the first stable diagnostic ids now so later UI and fixture work does not guess at naming.
+
+The initial v1 set should be:
+
+| Diagnostic id | Phase | Meaning | Required payload |
+| --- | --- | --- | --- |
+| `combo.request.unsupported_assembly` | request | the request names an assembly outside Combo v1 | requested token and attempted canonical id |
+| `combo.request.invalid_boundary_role` | normalization | a boundary-only assembly was requested in a non-boundary role | assembly id and attempted role |
+| `combo.normalization.support_added.noether_pair` | normalization | normalization added one implied `Noether Pair` support reactant | request id and added occurrence id |
+| `combo.normalization.support_required.noether_pair` | normalization | exact beta-family closure needs explicit or policy-allowed `Noether Pair` support | request id and policy mode |
+| `combo.search.primitive_imbalance` | search | \(\delta(Q; b^{-}, b^{+}) \neq 0\) for the retained branch or retained request summary | augmentation pair and \((\delta_E, \delta_P)\) |
+| `combo.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | augmentation pair and canonical mismatch vector |
+| `combo.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
+| `combo.search.unsupported_law_family` | search | exact closure would require a law family not admitted into Combo v1 | missing law family id or descriptive token |
+| `combo.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
+| `combo.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
+
 ### Review And Acceptance
 
 Combo should own the review boundary between solve-core output and Xyzzy publication.
@@ -906,6 +1222,22 @@ Combo should follow the dedicated-app rules in [app-architecture](app-architectu
 - no hidden coupling through launcher-state assumptions;
 - and one source of truth for solve semantics, publication semantics, and downstream document structure.
 
+### Minimum Regression Fixture Set
+
+Before Combo implementation is considered trustworthy, the first fixed regression denominator should be:
+
+| Fixture id | Raw request | Key policy | Minimum expected outcome |
+| --- | --- | --- | --- |
+| `free_neutron_beta_exact` | `neutron -> proton + electron + electron_antineutrino` | implied beta support allowed | normalization adds one `noether_pair`; best family is exact; auxiliary burden is `none`; publication is ready after acceptance |
+| `free_neutron_beta_support_disallowed` | `neutron -> proton + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `combo.normalization.support_required.noether_pair` is present; retained best family is partial or unsupported |
+| `primitive_imbalance_neutron_to_proton` | `neutron -> proton` | default | retained diagnostics include `combo.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `pass_thru_neutron` | `neutron -> neutron` | default | one exact pass-thru family; zero non-identity operators; zero ambiguity penalty |
+| `first_multi_option_exact` | the first request admitted after the beta-minimal law set that yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
+
+The last fixture is a gate on the first post-beta expansion.
+
+So Combo should not consider itself beyond the minimal single-family stage until that first genuine multi-option exact case exists and is under regression.
+
 ## Interfaces
 
 ### Inputs
@@ -947,46 +1279,20 @@ Combo should not:
 
 ## Priorities
 
-### 1. Freeze The Combo-Native Solve Problem Model From First Principles
+### 1. Define The Combo Review And Acceptance Boundary
 
 Status: `active`
 
 Current:
 
-- upstream request sources exist;
-- but Combo still has no native request/problem model of its own.
+- option-family identity, score ordering, result-contract shape, diagnostic ids, and acceptance handoff shape are now frozen;
+- but the accepted-state workflow and operator-facing review lifecycle are not yet specified end-to-end.
 
 Objective:
 
-- define the canonical Combo-side solve problem in solver-native terms rather than in inherited Reaction UI terms.
+- freeze Combo as the owner of candidate review, alternative selection, accepted-state workflow, and publication readiness.
 
-### 2. Define The Combinatorial Search Grammar And Branch-State Model
-
-Status: `active`
-
-Current:
-
-- combinatorial search is an explicitly interesting direction;
-- but the state model, expansion rules, pruning rules, and deterministic ranking rules are not yet written down in one Combo-owned place.
-
-Objective:
-
-- define the branch-state model, operator expansion grammar, pruning discipline, and candidate ranking model for the next-generation solver.
-
-### 3. Define The Combo Review And Acceptance Boundary
-
-Status: `next`
-
-Current:
-
-- it is clear that Combo must review and accept before Xyzzy publication;
-- but the candidate-review shape, ambiguity handling, and acceptance semantics are not yet specified.
-
-Objective:
-
-- freeze Combo as the owner of candidate review, alternative selection, and publication acceptance.
-
-### 4. Define The Canonical Publication Path Into `xyzzy/v1`
+### 2. Define The Canonical Publication Path Into `xyzzy/v1`
 
 Status: `next`
 
@@ -999,7 +1305,7 @@ Objective:
 
 - define one explicit accepted-result-to-`xyzzy/v1` translation path and make it the only supported downstream publication route.
 
-### 5. Define How Combo And Xyzzy Interact In Both Directions
+### 3. Define How Combo And Xyzzy Interact In Both Directions
 
 Status: `pending`
 
@@ -1012,14 +1318,14 @@ Objective:
 
 - decide whether Xyzzy may originate authored solve requests back into Combo and, if so, define that boundary without pushing solver review into Xyzzy.
 
-### 6. Build The First Combo Fixtures And Regression Surface
+### 4. Build The First Combo Fixtures And Regression Surface
 
 Status: `pending`
 
 Current:
 
-- prototype fixtures and prototype solver regressions exist;
-- but Combo has no own regression denominator yet.
+- the minimum required regression fixture set is now frozen;
+- but Combo still has no own request fixtures, expected-result fixtures, or Xyzzy-publication regressions.
 
 Objective:
 
@@ -1032,57 +1338,3 @@ Objective:
 - [xyzzy](./xyzzy.md)
 - [solver](./solver.md)
 - [app-architecture](app-architecture.md)
-
-## Pre-Implementation To Do
-
-Before writing Combo solver code, the remaining spec work should be:
-
-1. Freeze the v1 assembly table.
-
-- For each allowed v1 assembly, define:
-- canonical id;
-- display label;
-- allowed lane roles;
-- and the primitive count map \(\mu(a)\).
-
-2. Freeze the first executable law tables.
-
-- Define the actual v1 unary dissociation laws \(\Delta(a)\);
-- define the actual v1 unary association laws \(\Gamma(a)\);
-- and define the allowed local cluster laws such as the neutron-plus-`Noether Pair` beta family.
-
-3. Freeze normalization rules.
-
-- Define exactly how authored or PDG-backed requests become Combo-native normalized solve problems;
-- define when explicit support reactants such as `Noether Pair` are added or required;
-- and define what diagnostics appear when normalization cannot justify an exact family.
-
-4. Freeze the meaning of an option family.
-
-- Define when two raw branches collapse into the same review option;
-- define whether differing provenance-witness detail changes option identity or only diagnostics;
-- and define the canonical representative rule for each option family.
-
-5. Freeze the Combo result contract.
-
-- Define the candidate/result JSON shape;
-- define the option-family review shape;
-- define where scores, diagnostics, and provenance summaries live;
-- and define the downstream handoff shape used before translation into `xyzzy/v1`.
-
-6. Freeze diagnostic codes.
-
-- Define the stable diagnostic ids for balance failure, middle mismatch, provenance failure, support-reactant requirements, unsupported law families, and other first-class solver states.
-
-7. Freeze the deterministic tie-break rule.
-
-- Define the concrete meaning of \(\tau(C)\), including augmentation order, occurrence order, operator order, and any canonical assembly ordering needed for stable results.
-
-8. Freeze the minimum regression fixture set.
-
-- Define the first Combo-native fixtures required before implementation is considered trustworthy, including:
-- free neutron beta exact closure;
-- free neutron beta with support disallowed;
-- a primitive-imbalance failure case;
-- a pass-thru baseline case;
-- and at least one multi-option exact closure case.

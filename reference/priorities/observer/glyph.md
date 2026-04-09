@@ -13,6 +13,8 @@ In short:
 - style should remain semantic rather than hardcoded;
 - and the resulting system should be editor-friendly rather than hand-drawn.
 
+In the current app architecture, that does not mean one standalone glyph-rendering runtime. Shared glyph semantics should be consumed by app-local JavaScript renderers, while reference exporters may emit comparison SVG artifacts without becoming the live app renderer.
+
 ## Core idea
 
 Treat a glyph as:
@@ -326,7 +328,7 @@ If this is done well, the glyph system becomes a language for $\mathbb{A}\mathbb
 That language could eventually support:
 
 - canonical assembly vocabularies;
-- renderer generation;
+- shared semantic inputs for app-local renderers;
 - editor tooling;
 - animation and state extensions;
 - semantic comparison between assemblies;
@@ -348,7 +350,7 @@ The first-pass reaction glyph grammar should separate three concerns:
 - **binary axial state**;
 - and **whole-quark color**.
 
-Those should not all be encoded by the same visual channel. At the moment, only the first two are promoted into the current prototype and generator.
+Those should not all be encoded by the same visual channel. At the moment, only the first two are promoted into the current app runtimes and reference-export tooling.
 
 The recommended split is:
 
@@ -496,36 +498,49 @@ In other words:
 - the solver glyph chips are compact projections of that semantic model for authoring tasks;
 - and both should share the same underlying semantic fields wherever possible.
 
+### Runtime ownership
+
+In the current architecture, this note defines shared glyph semantics and vocabulary guidance, not a standalone built-in renderer.
+
+The live renderers are app-local JavaScript runtimes:
+
+- Reaction-side binary glyph rendering for authoring surfaces lives in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
+- Xyzzy tile and review glyph rendering lives in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) and is driven by the shared Xyzzy JSON catalogs at [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
+- [glyph.py](../../../scripts/glyphs/glyph.py) and the checked-in SVG outputs under `scripts/glyphs/` are reference-export and drift-comparison artifacts only.
+
 ### Current implementation status
 
-The current concrete implementation artifacts are:
+The current concrete implementation is split across shared data, app-local JavaScript renderers, and reference exporters:
 
-- the generator at [scripts/glyphs/glyph.py](../../../scripts/glyphs/glyph.py);
-- standalone outputs at [glyph-binary-bare.svg](../../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../../scripts/glyphs/glyph-binary-neutral.svg), and [glyph-binary-positive.svg](../../../scripts/glyphs/glyph-binary-positive.svg);
-- and the canonical page artifact at [quark-glyph-prototype.svg](../../../scripts/glyphs/quark-glyph-prototype.svg).
+- Reaction builds live binary glyph SVG in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
+- Xyzzy builds live tile and binary-glyph SVG in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) from the shared catalogs in [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
+- [glyph.py](../../../scripts/glyphs/glyph.py) emits derived reference SVG artifacts for comparison and review, including outputs such as [glyph-binary-bare.svg](../../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../../scripts/glyphs/glyph-binary-neutral.svg), [glyph-binary-positive.svg](../../../scripts/glyphs/glyph-binary-positive.svg), and [quark-glyph-prototype.svg](../../../scripts/glyphs/quark-glyph-prototype.svg).
 
-Those artifacts now cover:
+The implemented surface now covers:
 
+- Reaction-side binary glyph construction for authoring/runtime use;
+- Xyzzy-side browser SVG rendering from shared JSON catalogs;
 - one bare neutral-binary tile;
 - the full four-state axial set;
-- and the reduced-menu convention in which `p/e` is the canonical neutral representative.
+- the reduced-menu convention in which `p/e` is the canonical neutral representative;
+- and reference SVG export for review and drift detection.
 
 ### Immediate next build target
 
 The next practical implementation target should be:
 
 - a reference schema for the binary glyph object;
-- a renderer rule that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set;
-- and a composer-side binary picker that consumes the same semantic fields as the generator.
+- a data-driven renderer rule in the owning JavaScript runtimes that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set;
+- and a composer-side binary picker that consumes the same semantic fields as the Reaction-side renderer rather than introducing a separate glyph engine.
 
 ## Immediate next steps
 
 Natural follow-on work from this note would be:
 
 - a reference JSON schema for `binary_glyph`;
-- a runtime SVG renderer that consumes the same binary-glyph semantic object;
-- a pure SVG renderer;
+- alignment between Reaction-side binary-glyph objects and any future shared catalog form;
 - a composer-side glyph editor surface;
+- continued drift checks that keep the shared semantic/catalog inputs, the JavaScript renderers, and the reference SVG exports in sync;
 - a canonical library of reference assemblies for the first binary vocabulary;
 - and a separate follow-on note that reopens whole-quark color only after the 3x3x3 and axis-basis relation is closed.
 
