@@ -2,16 +2,15 @@
 
 ## LLM Instructions
 
-- Keep this document focused on Combo as the next-generation solver app paired with [xyzzy](./xyzzy.md).
-- Treat the remaining prototype solve/review runtimes and notes as learning references only, not as compatibility targets.
-- Re-evaluate rules from first principles rather than preserving legacy UI artifacts, anchor conventions, or document shapes by inertia.
+- Keep this document focused on Combo as the solve/review app paired with [xyzzy](./xyzzy.md).
+- Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document shapes by inertia.
 - Keep `Design` about durable boundaries, solve-state concepts, and review/publication workflow ownership rather than temporary migration tactics.
 - Keep `Priorities` ordered as the active work queue.
 - Do not restate low-level PDG ingest internals or Xyzzy tile-rendering internals except where Combo depends on them.
 
 ## Purpose
 
-Combo is the next-generation solve app.
+Combo is the solve-and-review app.
 
 It sits between upstream request sources and downstream Xyzzy documents.
 
@@ -29,15 +28,13 @@ It does not own:
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
 - Xyzzy tile grammar, placement grammar, manifest consumption, or direct object editing that belong in [xyzzy](./xyzzy.md);
 - observer-stage presentation/runtime behavior that belongs downstream of accepted Xyzzy output;
-- or compatibility obligations to legacy prototype handoff contracts, canvas state, or projection behavior unless those are intentionally re-adopted on their own merits.
+- or downstream presentation/runtime behavior that belongs outside the solve/review boundary.
 
 ## Current State
 
 - There is no dedicated Combo app runtime yet.
-- Legacy prototype solve/review runtimes still exist as learning references in code and docs.
-- [xyzzy](./xyzzy.md) now defines the downstream authored-surface boundary more clearly than the prototype flow did.
+- [xyzzy](./xyzzy.md) now defines the downstream authored-surface boundary clearly.
 - [pdgfeed](./pdgfeed.md) already exists as an upstream request-producing component.
-- Legacy solve contracts, prototype surface grammar, and older projection adapters are useful learning references, but they should not dictate Combo structure by default.
 - The next major design task is therefore not migration glue. It is defining Combo's native request model, native search model, native review boundary, and native publication path into Xyzzy.
 
 ## Design
@@ -56,29 +53,24 @@ The intended high-level flow is:
 - Combo publishes a final `xyzzy/v1` document;
 - and Xyzzy renders or edits that final authored-surface document.
 
-Combo should therefore replace the legacy prototype solve/review role.
-
-Xyzzy should therefore replace the legacy prototype final authoring role.
-
 ### Foundational Stance
 
 Combo should be designed from ground zero.
 
 That means:
 
-- no obligation to preserve legacy prototype lane widgets, anchor ids, operator UI shapes, or import/export conventions merely because they exist;
-- no obligation to preserve the old split between browser solver behavior and external solver behavior;
-- no obligation to preserve prototype request/result contracts unless they still serve the new architecture cleanly;
+- Combo should define its own lane widgets, anchor ids, operator UI shapes, request/result contracts, and review model based on solve semantics, reviewability, determinism, and the downstream Xyzzy boundary;
+- the internal design should not inherit accidental constraints from earlier surfaces or tooling splits;
 - and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream Xyzzy boundary.
 
-Prototype behavior may still inform:
+Useful prior work may still inform:
 
 - conserved-ledger semantics;
 - operator family meaning;
 - useful fixture cases;
 - and examples of successful or failed closure families.
 
-Prototype UI artifacts should not define Combo's architecture.
+UI artifacts should not define Combo's architecture.
 
 ### Runtime Shape
 
@@ -604,7 +596,7 @@ The search design should specify:
 
 The search model should remain planner-first rather than surface-first.
 
-Related search material from the legacy prototype notes remains useful neighboring groundwork, but it is not a finished Combo spec.
+Related search material elsewhere in the observer workstream remains useful neighboring groundwork, but it is not a finished Combo spec.
 
 This limited geometry should be exploited aggressively.
 

@@ -47,8 +47,7 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The legacy Reaction handoff intake has been removed from the active Composer runtime.
-- Composer no longer consumes archived prototype `reaction-flow` documents inside the active app tree.
+- Composer now sits cleanly on the downstream side of the solve/publication path.
 - Upstream request loading, solving, review, and publication stay entirely outside Composer; the intended forward input is accepted Xyzzy output or an equivalent downstream contract.
 - The next import and contract work is to define and cover that forward Combo/Xyzzy-to-Composer seam.
 

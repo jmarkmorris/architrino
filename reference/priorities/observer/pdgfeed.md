@@ -3,7 +3,7 @@
 ## LLM Instructions
 
 - Keep this document focused on PDG-specific ingest, normalization, proposal review, and handoff preparation.
-- Do not restate Combo solve behavior or legacy prototype solve behavior here except where the PDG layer depends on the explicit request boundary.
+- Do not restate Combo solve behavior here except where the PDG layer depends on the explicit request boundary.
 - Keep `Priorities` ordered as the active work queue.
 - Keep `Design` about durable component boundaries, not speculative product sprawl.
 - Treat downstream publication and staging as Combo/Xyzzy/Composer concerns, not as part of PDG ingest logic.
@@ -43,7 +43,7 @@ It does not own:
 - Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Combo-side acceptance before any downstream handoff can be considered.
 - Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Combo publication.
-- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts intended for Combo intake; the archived prototype solve path is no longer part of the active workflow.
+- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts intended for Combo intake.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
@@ -137,7 +137,7 @@ The stdout-print commands must write only JSON to `stdout`; any diagnostics belo
 
 Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized participants instead of being rejected wholesale. That means channels like `pi0 -> 2gamma` can cross the request seam as two photon participants, while generic/textual items still remain proposal-only.
 
-The legacy solve-core sweep tooling now lives under `archive/legacy-reaction/`. Active PDG work should treat request emission and manifest building as the live responsibilities until Combo-side solve and review tooling exists.
+Active PDG work should treat request emission and manifest building as the live responsibilities until Combo-side solve and review tooling exists.
 
 For batch work over every exportable discovered live decay, first freeze a manifest:
 

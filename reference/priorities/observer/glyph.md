@@ -502,9 +502,8 @@ In other words:
 
 In the current architecture, this note defines shared glyph semantics and vocabulary guidance, not a standalone built-in renderer.
 
-The live renderers are app-local JavaScript runtimes. The current prototype solve-authoring renderer still lives in the legacy Reaction app tree, while Xyzzy already has its own app-local renderer:
+The live renderer is app-local JavaScript in Xyzzy:
 
-- Prototype solve-authoring binary glyph rendering now lives in the legacy archive at [ReactionBinaryGlyphRuntime.js](../../../archive/legacy-reaction/src/apps/reaction/ReactionBinaryGlyphRuntime.js).
 - Xyzzy tile and review glyph rendering lives in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) and is driven by the shared Xyzzy JSON catalogs at [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
 - [glyph.py](../../../scripts/glyphs/glyph.py) and the checked-in SVG outputs under `scripts/glyphs/` are reference-export and drift-comparison artifacts only.
 
@@ -512,13 +511,11 @@ The live renderers are app-local JavaScript runtimes. The current prototype solv
 
 The current concrete implementation is split across shared data, app-local JavaScript renderers, and reference exporters:
 
-- The current prototype solve-authoring runtime builds live binary glyph SVG in the legacy archive at [ReactionBinaryGlyphRuntime.js](../../../archive/legacy-reaction/src/apps/reaction/ReactionBinaryGlyphRuntime.js).
 - Xyzzy builds live tile and binary-glyph SVG in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) from the shared catalogs in [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
 - [glyph.py](../../../scripts/glyphs/glyph.py) emits derived reference SVG artifacts for comparison and review, including outputs such as [glyph-binary-bare.svg](../../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../../scripts/glyphs/glyph-binary-neutral.svg), [glyph-binary-positive.svg](../../../scripts/glyphs/glyph-binary-positive.svg), and [quark-glyph-prototype.svg](../../../scripts/glyphs/quark-glyph-prototype.svg).
 
 The implemented surface now covers:
 
-- prototype solve-authoring binary glyph construction for current runtime use;
 - Xyzzy-side browser SVG rendering from shared JSON catalogs;
 - one bare neutral-binary tile;
 - the full four-state axial set;

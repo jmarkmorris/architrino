@@ -36,8 +36,7 @@ Suggested defaults:
 
 - `medium` for UI legibility, app-shell, contract-shape, and most scoped refactor tasks;
 - `high` for solver-core reasoning, provenance rules, search behavior, or other semantics-heavy work;
-- use `high` for Reaction UI work only when the task likely requires deeper restructuring of a large coordinator such as `ReactionCanvasUiRuntime.js`.
-
+- use `high` for large UI refactors only when the task likely requires deeper restructuring of a major coordinator or composition root.
 
 
 

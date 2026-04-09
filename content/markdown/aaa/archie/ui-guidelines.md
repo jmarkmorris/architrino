@@ -10,10 +10,10 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element                  | Preference                                                                                                                                                                                | Current Non-Matching Uses                                                                                        |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Primary navigation metaphor | Use clickable spheres as the principal scene-navigation object: selecting a sphere descends into the next layer, while camera zoom/pan supports spatial orientation around that structure | Standalone reaction page uses a conventional app-shell layout instead of sphere-based navigation                 |
+| Primary navigation metaphor | Use clickable spheres as the principal scene-navigation object: selecting a sphere descends into the next layer, while camera zoom/pan supports spatial orientation around that structure |  |
 | App title treatment         | Browser page titles use lowercase `architrino` unless it is a use case where capitalization is typical, optionally followed by a lowercase feature suffix                                 |                                                                                                                  |
 | Composer header             | Timestamp-only                                                                                                                                                                            |                                                                                                                  |
-| Global navigation buttons   | Include `Back`, `Forward`, `Home`, `Search`, `Info`, `Archie`, and `Notes`, using 32x32 circular dark-shell icon buttons in the main scene chrome                                         | Composer and reaction actions use text buttons instead of 32x32 circular icon buttons                            |
+| Global navigation buttons   | Include `Back`, `Forward`, `Home`, `Search`, `Info`, `Archie`, and `Notes`, using 32x32 circular dark-shell icon buttons in the main scene chrome                                         | Composer action controls use text buttons instead of 32x32 circular icon buttons                                 |
 | Search affordance           | Magnifier icon button opens an anchored search popover, clears the query, and focuses the input on open                                                                                   |                                                                                                                  |
 | Notes toggle                | Document icon remains the canonical document-facing chrome control                                                                                                                        | `#doc-button` currently toggles textbook TOC state in `AppSceneChromeRuntime`, not a general scene-notes surface |
 | Info/detail affordance      | Circle-i button reopens the detail panel; the scene-label chip can also become a keyboard-accessible info trigger                                                                         |                                                                                                                  |
@@ -23,7 +23,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
-| Scene title in chrome | Show the active scene name in a compact uppercase chip with ellipsis overflow, max width `min(58vw, 520px)`, and optional clickable info-trigger behavior | Standalone reaction page uses a conventional mixed-case `h1` instead of the chrome title chip |
+| Scene title in chrome | Show the active scene name in a compact uppercase chip with ellipsis overflow, max width `min(58vw, 520px)`, and optional clickable info-trigger behavior |  |
 | Markdown source title (`#`) | Keep as canonical document title |  |
 | Duplicate visible title when chrome already shows title | Suppress the first rendered markdown `h1` in the reading surface to avoid duplicate titling | The current CSS hides the first `h1` unconditionally inside the markdown panel, not only when chrome already shows the title |
 | Auto-open document landing state | Start with title and orienting overview |  |
@@ -49,16 +49,16 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | Primary UI font | `Helvetica Neue`, falling back to `Arial, sans-serif` | Canvas-drawn labels in `app.js` still use generic `sans-serif` rather than the explicit stack |
 | Reading-surface font | `Helvetica Neue`, falling back to `Arial, sans-serif` | Canvas-drawn labels in `app.js` still use generic `sans-serif` rather than the explicit stack |
 | Monospace font | `SFMono-Regular`, `Menlo`, `Consolas`, `monospace` |  |
-| Heading scale | Markdown headings use `22px` / `20px` / `18px` for `h1` / `h2` / `h3`; compact chrome titles and menu kickers typically use `10px`-`13px` uppercase text | Reaction app title uses a larger mixed-case `clamp(15px, 1.45vw, 20px)` heading instead of the compact uppercase chrome pattern |
+| Heading scale | Markdown headings use `22px` / `20px` / `18px` for `h1` / `h2` / `h3`; compact chrome titles and menu kickers typically use `10px`-`13px` uppercase text |  |
 | Body text scale | Markdown prose uses `16px` with `1.8` line height; supporting panels commonly use `11px`-`14px` body text | Search items, detail rows, tooltips, and composer panels run smaller than the markdown reading surface |
-| Caption or metadata scale | Use compact metadata text in the `10px`-`13px` range, often with slight letter spacing and uppercase for labels/kickers | Reaction status text and some detail values stay sentence-case rather than using uppercase micro-label styling |
+| Caption or metadata scale | Use compact metadata text in the `10px`-`13px` range, often with slight letter spacing and uppercase for labels/kickers |  |
 | Math rendering context | KaTeX |  |
 
 ## Buttons and Controls
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
-| Primary button style | Use dark translucent buttons with a thin cool-gray border, white text/icons, and compact rounded geometry (`6px`-`8px` radius for text buttons, `999px` for pills) | `#composer-reaction-button` uses a brighter gradient pill treatment, `.composer-assembly-menu-orb` uses orb-like circular buttons, `.legend-pill` and reaction app actions use larger pill styling |
+| Primary button style | Use dark translucent buttons with a thin cool-gray border, white text/icons, and compact rounded geometry (`6px`-`8px` radius for text buttons, `999px` for pills) | Some composer action pills and `.composer-assembly-menu-orb` controls use brighter gradient/orb treatments than the standard shell buttons |
 | Secondary button style | Reuse the same dark-shell button family for secondary actions, usually at `28px`-`34px` height with lighter emphasis than active toggles | Scene chrome icon buttons are circular `32px` controls rather than text buttons |
 | Icon-only buttons | Use clear semantic line icons in 32px circular shell buttons for Search, Info, Archie, Notes, layout toggle, and full-document open | `#composer-docs-button` uses an emoji book icon, element navigation uses triangle glyphs instead of line SVG icons |
 | Hover treatment | Brighten the border and deepen the background on hover/focus; some pill/key controls also lift slightly | Hyde navigation keys and legend pills add translation/lift effects, unlike most shell buttons |
@@ -73,7 +73,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 | Notes panel | Use a centered large-format overlay with rounded corners, scrollable content, and markdown-focused spacing | `#markdown-panel` currently uses a solid purple background instead of the darker glass shell used by most other panels |
 | Search panel | Use an anchored dark-glass popover beneath the search toggle, min width `260px`, max width `80vw`, with input autofocus and top-10 button results |  |
 | Detail/info panel | Use a left-docked dark-glass card with scrollable content and an explicit close affordance | Element-info mode hides the title and swaps the text `Close` button for a floating circular `×` button |
-| Composer overlay | Use a full-screen fixed dark workspace with a compact header bar, dedicated status line, and tool-specific internal panels/menus | Standalone reaction page reuses the solver surface outside the full-screen composer overlay |
+| Composer overlay | Use a full-screen fixed dark workspace with a compact header bar, dedicated status line, and tool-specific internal panels/menus |  |
 | Context menus | Prefer custom anchored menus over native browser context menus for composer canvas/timeline editing; use dark-glass menu surfaces with sectioned content | Custom context menus are implemented for composer surfaces, not as a repo-wide pattern across all app areas |
 | Modal dialogs |  |  |
 | Dismiss behavior | Search and composer menus dismiss on outside interaction; search also dismisses on focus leaving and `Escape`; detail dismisses through an explicit close control | No shared modal-dialog dismissal pattern is implemented because there is no general dialog system yet |
@@ -93,8 +93,8 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
-| Color system | Base the UI on a dark navy/near-black field with white text, cool gray-blue borders, and blue/cyan accent states | Markdown panel uses solid purple, Hyde periodic overlay uses a white canvas, and some composer/reaction tools add stronger domain-specific accent palettes |
-| Background treatment | Prefer black or the project's neutral purple for scene backgrounds where that treatment works, with translucent dark panel surfaces over the stage and blur for floating UI when appropriate | `#hyde-periodic-overlay` and its stage are white, reaction standalone page uses a full-page gradient background |
+| Color system | Base the UI on a dark navy/near-black field with white text, cool gray-blue borders, and blue/cyan accent states | Markdown panel uses solid purple, Hyde periodic overlay uses a white canvas, and some composer tools add stronger domain-specific accent palettes |
+| Background treatment | Prefer black or the project's neutral purple for scene backgrounds where that treatment works, with translucent dark panel surfaces over the stage and blur for floating UI when appropriate | `#hyde-periodic-overlay` and its stage are white |
 | Border treatment | Use thin `1px` semi-transparent cool-gray borders with rounded corners (`8px`-`14px`) or pills (`999px`) | Hyde periodic overlay drops the border entirely, while some orb/timeline elements use brighter accent borders |
 | Shadow treatment | Use restrained overlay shadows for menus, callouts, and elevated panels; many shell controls stay flat | Hyde periodic callouts and composer orbs use heavier glow/shadow treatments than the standard shell |
 | Motion and transitions | Keep interaction motion short and functional, typically in the `80ms`-`180ms` range for hover/focus states | Periodic overlays fade over `1000ms`, which is much slower than the general control-state timing |
@@ -117,7 +117,7 @@ The third column is a comma-separated ledger of known web-facing docs or app sur
 
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
-| Home scene entry experience | Use the full scene shell with centered focus sphere, top chrome, and dark ambient stage as the default app entry frame | Standalone reaction page opens in a conventional app-shell layout instead of the scene shell |
+| Home scene entry experience | Use the full scene shell with centered focus sphere, top chrome, and dark ambient stage as the default app entry frame |  |
 | Mobile behavior | Below the current breakpoints (`980px`, `960px`, `900px`, `820px`), wrap the top HUD, collapse markdown multi-columns to one column, stack composer/reaction layouts, and scale Hyde periodic content down |  |
 | Desktop behavior | On wider screens, preserve the full top chrome, centered overlays, multi-column markdown, wide composer timeline/header layout, and full element-nav overlay |  |
 | Empty states |  |  |

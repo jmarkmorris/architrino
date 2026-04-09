@@ -30,11 +30,9 @@ It does not own:
 ## Current State
 
 - The codebase now has `composer.html` as the only active standalone app entrypoint in the main web surface.
-- The main web app no longer launches the archived legacy Reaction path from the scene network.
-- The legacy Reaction runtime, standalone entrypoint, prototype solve API, and old handoff stack now live under `archive/legacy-reaction/`.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
 - The forward architectural split is now clearer in docs: `pdgfeed -> combo -> xyzzy -> composer`.
-- The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect the legacy prototype path.
+- The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
@@ -52,8 +50,6 @@ The intended shape is:
 - one Combo runtime;
 - one Xyzzy runtime;
 - and explicit data boundaries between those runtimes.
-
-Legacy prototype runtimes may remain in the repo during transition, but they should not define the intended long-term split.
 
 This is not a multi-product split. It is one product with a launcher/discovery layer and dedicated tools that open into their own app runtimes when the user enters them.
 
@@ -124,7 +120,7 @@ The architecture should keep moving toward:
 - explicit ownership of state, layout, rendering, interaction, import/export, validation, and persistence;
 - and local module families under each app tree rather than app logic living in generic coordinators.
 
-This applies especially to large shared-root hotspots such as `app.js` and to large collapsed subsystem files such as `ReactionSolverUiRuntime.js`.
+This applies especially to large shared-root hotspots such as `app.js` and to app-owned runtimes that start accumulating too many responsibilities.
 
 ### One Source Of Truth
 
@@ -275,7 +271,7 @@ Status: `active`
 Current:
 
 - `app.js` is still about 7.1k lines;
-- `ReactionCanvasUiRuntime.js` is still a 4.3k-line concentration point.
+- and some editor/runtime concentration is still larger than the intended long-term boundaries.
 
 Objective:
 

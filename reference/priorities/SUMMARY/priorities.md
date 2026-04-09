@@ -77,7 +77,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 - Workstream `breather-proof`: the architecture is frozen; the next phase is literal proof writing inside the existing theorem DAG.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
-- Workstream `composer-reaction`: finish the forward Combo/Xyzzy/Composer split and keep the archived legacy prototype out of the active app path.
+- Workstream `composer-reaction`: finish the forward Combo/Xyzzy/Composer split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
 - Workstream `planar-bridge-closure`: isolate the first planar delayed bridge strongly enough to support cone control, bounded fold transit, radial turnaround, and a tame return map.
 
