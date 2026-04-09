@@ -12,12 +12,8 @@
     "hideScaleLabels": true,
     "children": [
       {
-        "nodeId": "composer",
-        "scenePath": "content/scenes/archie/composer.json"
-      },
-      {
-        "nodeId": "reaction_designer",
-        "scenePath": "content/scenes/archie/reaction_designer.json"
+        "nodeId": "pdgview",
+        "scenePath": "content/scenes/archie/pdgview.json"
       },
       {
         "nodeId": "hyde_periodic_table",
@@ -43,18 +39,11 @@
   },
   "objects": [
     {
-      "id": "composer",
-      "title": "Composer",
+      "id": "pdgview",
+      "title": "pdgview",
       "radius": 2.2,
       "color": "#7ee0d7",
-      "labelTitle": "Composer"
-    },
-    {
-      "id": "reaction_designer",
-      "title": "Reaction Designer",
-      "radius": 2.2,
-      "color": "#36b3bc",
-      "labelTitle": "Reaction Designer"
+      "labelTitle": "pdgview"
     },
     {
       "id": "hyde_periodic_table",

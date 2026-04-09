@@ -1,0 +1,63 @@
+{
+  "schema": "pdgsolve-golden-corpus/v1",
+  "cases": [
+    {
+      "id": "free_neutron_beta_exact",
+      "label": "Free neutron beta exact with implied Noether Pair support",
+      "requestPath": "content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json",
+      "resultPath": "content/contracts/examples/pdgsolve-result/free_neutron_beta_exact_result.v1.json",
+      "publicationGraphPath": "content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json",
+      "acceptancePath": "content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json",
+      "packagePath": "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json",
+      "pdgeditDocumentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+      "expectedSummary": {
+        "searchStatus": "exact_available",
+        "bestFamilyKind": "exact",
+        "publicationReady": true,
+        "diagnosticIds": [
+          "pdgsolve.normalization.support_added.noether_pair"
+        ]
+      }
+    },
+    {
+      "id": "free_neutron_beta_support_disallowed",
+      "label": "Free neutron beta without implied support",
+      "requestPath": "content/contracts/examples/pdgsolve-request/free_neutron_beta_support_disallowed.v1.json",
+      "resultPath": "content/contracts/examples/pdgsolve-result/free_neutron_beta_support_disallowed_result.v1.json",
+      "expectedSummary": {
+        "searchStatus": "unsupported",
+        "bestFamilyKind": "unsupported",
+        "publicationReady": false,
+        "diagnosticIds": [
+          "pdgsolve.normalization.support_required.noether_pair"
+        ]
+      }
+    },
+    {
+      "id": "primitive_imbalance_neutron_to_proton",
+      "label": "Primitive imbalance neutron to proton",
+      "requestPath": "content/contracts/examples/pdgsolve-request/primitive_imbalance_neutron_to_proton.v1.json",
+      "resultPath": "content/contracts/examples/pdgsolve-result/primitive_imbalance_neutron_to_proton_result.v1.json",
+      "expectedSummary": {
+        "searchStatus": "partial_only",
+        "bestFamilyKind": "partial",
+        "publicationReady": false,
+        "diagnosticIds": [
+          "pdgsolve.search.primitive_imbalance"
+        ]
+      }
+    },
+    {
+      "id": "pass_thru_neutron",
+      "label": "Pass thru neutron exact family",
+      "requestPath": "content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json",
+      "resultPath": "content/contracts/examples/pdgsolve-result/pass_thru_neutron_result.v1.json",
+      "expectedSummary": {
+        "searchStatus": "exact_available",
+        "bestFamilyKind": "exact",
+        "publicationReady": true,
+        "diagnosticIds": []
+      }
+    }
+  ]
+}

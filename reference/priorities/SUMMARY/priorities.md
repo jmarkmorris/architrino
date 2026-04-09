@@ -48,7 +48,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | [`breather-proof`](../breather-proof/breather-proof.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | [`mass-map`](../mass-map/mass-map.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | [`composer-reaction`](../observer/observer.md) | Scene system, composer, reaction, solver, PDG ingest, and later enhancements | 9 | 4 | 2.25 |
+| 3 | [`pdgview-reaction`](../pdg/pdg.md) | Scene system, PDG ingest, pdgsolve, pdgedit, pdgview, and later enhancements | 9 | 4 | 2.25 |
 | 4 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -63,12 +63,8 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`SUMMARY`](./priorities.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../deferred/proof-check.md) | Icebox | — | — | — |
-| — | [`composer`](../observer/composer.md) | Composer | — | — | — |
-| — | [`reaction`](../observer/old-reaction.md) | Reaction app | — | — | — |
-| — | [`solver`](../observer/old-solver.md) | Reaction solver | — | — | — |
-| — | [`pdgfeed`](../observer/pdgfeed.md) | PDG | — | — | — |
-| — | [`glyph`](../observer/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
-| — | [`viewports`](../observer/viewports.md) | Viewports | — | — | — |
+| — | [`pdgview`](../pdg/pdgview.md) | pdgview | — | — | — |
+| — | [`pdgfeed`](../pdg/pdgfeed.md) | PDG | — | — | — |
 | — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |
 | — | [`phenomenological-heuristics`](../dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive | — | — | — |
@@ -79,7 +75,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 - Workstream `breather-proof`: the architecture is frozen; the next phase is literal proof writing inside the existing theorem DAG.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
-- Workstream `composer-reaction`: finish the reaction app manual workflow and bridge solved reactions back into the main composer.
+- Workstream `pdgview-reaction`: finish the forward pdgsolve/pdgedit/pdgview split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
 - Workstream `planar-bridge-closure`: isolate the first planar delayed bridge strongly enough to support cone control, bounded fold transit, radial turnaround, and a tame return map.
 
@@ -87,7 +83,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 1. Formalize the first proof-writing package in the breather program, starting with seed-side persistence and early branch-regularity lemmas.
 2. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
-3. Finish the reaction app as a usable manual provenance tool and make accepted solves durable inside the composer timeline model.
+3. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into pdgview.
 
 ## Info
 

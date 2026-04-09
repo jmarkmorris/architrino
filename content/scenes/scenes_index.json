@@ -1316,9 +1316,9 @@
       "path": "content/scenes/philosophy_history/information_computation.json"
     },
     {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/archie/composer.json"
+      "id": "pdgview",
+      "name": "pdgview",
+      "path": "content/scenes/archie/pdgview.json"
     },
     {
       "id": "archie__about",
@@ -1444,11 +1444,6 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
-    },
-    {
-      "id": "reaction_designer",
-      "name": "Reaction Designer",
-      "path": "content/scenes/archie/reaction_designer.json"
     }
   ]
 }

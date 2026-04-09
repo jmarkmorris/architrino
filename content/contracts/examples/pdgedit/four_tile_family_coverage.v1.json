@@ -1,0 +1,1100 @@
+{
+  "schema": "pdgedit/v1",
+  "assemblies": [
+    {
+      "id": "unbound_architrinos_row_1",
+      "type": "unbound-architrinos-assembly",
+      "x": 2,
+      "y": 0,
+      "title": "Unbound Architrinos Row 1",
+      "role": "reactant",
+      "tiles": [
+        "unbound",
+        "unbound-electrinos",
+        "unbound-positrinos",
+        "architrinos"
+      ]
+    },
+    {
+      "id": "pro_tau_row_1",
+      "type": "pro-tau-assembly",
+      "x": 9,
+      "y": 0,
+      "title": "Pro Tau Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-tau",
+        "binary-full-br-bb",
+        "binary-polar-none-bb",
+        "binary-polar-none-bb"
+      ]
+    },
+    {
+      "id": "anti_tau_row_1",
+      "type": "anti-tau-assembly",
+      "x": 16,
+      "y": 0,
+      "title": "Anti Tau Row 1",
+      "role": "product",
+      "tiles": [
+        "anti-tau",
+        "binary-full-rb-rr",
+        "binary-polar-none-rr",
+        "binary-polar-none-rr"
+      ]
+    },
+    {
+      "id": "pro_muon_row_1",
+      "type": "pro-muon-assembly",
+      "x": 2,
+      "y": 1,
+      "title": "Pro Muon Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-muon",
+        "binary-full-br-bb",
+        "binary-full-br-bb",
+        "binary-polar-none-bb"
+      ]
+    },
+    {
+      "id": "anti_muon_row_1",
+      "type": "anti-muon-assembly",
+      "x": 9,
+      "y": 1,
+      "title": "Anti Muon Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "anti-muon",
+        "binary-full-rb-rr",
+        "binary-full-rb-rr",
+        "binary-polar-none-rr"
+      ]
+    },
+    {
+      "id": "pro_electron_row_1",
+      "type": "pro-electron-assembly",
+      "x": 16,
+      "y": 1,
+      "title": "Pro Electron Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-electron",
+        "binary-full-br-bb",
+        "binary-full-br-bb",
+        "binary-full-br-bb"
+      ]
+    },
+    {
+      "id": "anti_electron_row_1",
+      "type": "anti-electron-assembly",
+      "x": 2,
+      "y": 2,
+      "title": "Anti Electron Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-electron",
+        "binary-full-rb-rr",
+        "binary-full-rb-rr",
+        "binary-full-rb-rr"
+      ]
+    },
+    {
+      "id": "pro_tau_neutrino_row_1",
+      "type": "pro-tau-neutrino-assembly",
+      "x": 9,
+      "y": 2,
+      "title": "Pro Tau Neutrino Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-tau-neutrino",
+        "binary-full-br-br",
+        "binary-polar-none-br",
+        "binary-polar-none-br"
+      ]
+    },
+    {
+      "id": "anti_tau_neutrino_row_1",
+      "type": "anti-tau-neutrino-assembly",
+      "x": 16,
+      "y": 2,
+      "title": "Anti Tau Neutrino Row 1",
+      "role": "product",
+      "tiles": [
+        "anti-tau-neutrino",
+        "binary-full-rb-rb",
+        "binary-polar-none-rb",
+        "binary-polar-none-rb"
+      ]
+    },
+    {
+      "id": "pro_muon_neutrino_row_1",
+      "type": "pro-muon-neutrino-assembly",
+      "x": 2,
+      "y": 3,
+      "title": "Pro Muon Neutrino Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-muon-neutrino",
+        "binary-full-br-br",
+        "binary-full-br-br",
+        "binary-polar-none-br"
+      ]
+    },
+    {
+      "id": "anti_muon_neutrino_row_1",
+      "type": "anti-muon-neutrino-assembly",
+      "x": 9,
+      "y": 3,
+      "title": "Anti Muon Neutrino Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "anti-muon-neutrino",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb",
+        "binary-polar-none-rb"
+      ]
+    },
+    {
+      "id": "pro_electron_neutrino_row_1",
+      "type": "pro-electron-neutrino-assembly",
+      "x": 16,
+      "y": 3,
+      "title": "Pro Electron Neutrino Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-electron-neutrino",
+        "binary-full-br-br",
+        "binary-full-br-br",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "anti_electron_neutrino_row_1",
+      "type": "anti-electron-neutrino-assembly",
+      "x": 2,
+      "y": 4,
+      "title": "Anti Electron Neutrino Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-electron-neutrino",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "pro_bottom_quark_row_1",
+      "type": "pro-bottom-quark-assembly",
+      "x": 9,
+      "y": 4,
+      "title": "Pro Bottom Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-bottom-quark",
+        "binary-full-br-br",
+        "binary-polar-none-bb",
+        "binary-polar-none-br"
+      ]
+    },
+    {
+      "id": "anti_bottom_quark_row_1",
+      "type": "anti-bottom-quark-assembly",
+      "x": 16,
+      "y": 4,
+      "title": "Anti Bottom Quark Row 1",
+      "role": "product",
+      "tiles": [
+        "anti-bottom-quark",
+        "binary-full-rb-rb",
+        "binary-polar-none-rr",
+        "binary-polar-none-rb"
+      ]
+    },
+    {
+      "id": "pro_strange_quark_row_1",
+      "type": "pro-strange-quark-assembly",
+      "x": 2,
+      "y": 5,
+      "title": "Pro Strange Quark Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-strange-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-polar-none-br"
+      ]
+    },
+    {
+      "id": "anti_strange_quark_row_1",
+      "type": "anti-strange-quark-assembly",
+      "x": 9,
+      "y": 5,
+      "title": "Anti Strange Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "anti-strange-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-polar-none-rb"
+      ]
+    },
+    {
+      "id": "pro_down_quark_row_1",
+      "type": "pro-down-quark-assembly",
+      "x": 16,
+      "y": 5,
+      "title": "Pro Down Quark Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "anti_down_quark_row_1",
+      "type": "anti-down-quark-assembly",
+      "x": 2,
+      "y": 6,
+      "title": "Anti Down Quark Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "pro_top_quark_row_1",
+      "type": "pro-top-quark-assembly",
+      "x": 9,
+      "y": 6,
+      "title": "Pro Top Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-top-quark",
+        "binary-full-br-rr",
+        "binary-polar-none-br",
+        "binary-polar-none-rr"
+      ]
+    },
+    {
+      "id": "anti_top_quark_row_1",
+      "type": "anti-top-quark-assembly",
+      "x": 16,
+      "y": 6,
+      "title": "Anti Top Quark Row 1",
+      "role": "product",
+      "tiles": [
+        "anti-top-quark",
+        "binary-full-rb-bb",
+        "binary-polar-none-rb",
+        "binary-polar-none-bb"
+      ]
+    },
+    {
+      "id": "pro_charm_quark_row_1",
+      "type": "pro-charm-quark-assembly",
+      "x": 2,
+      "y": 7,
+      "title": "Pro Charm Quark Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-charm-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-polar-none-rr"
+      ]
+    },
+    {
+      "id": "anti_charm_quark_row_1",
+      "type": "anti-charm-quark-assembly",
+      "x": 9,
+      "y": 7,
+      "title": "Anti Charm Quark Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "anti-charm-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-polar-none-bb"
+      ]
+    },
+    {
+      "id": "pro_up_quark_row_1",
+      "type": "pro-up-quark-assembly",
+      "x": 16,
+      "y": 7,
+      "title": "Pro Up Quark Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "anti_up_quark_row_1",
+      "type": "anti-up-quark-assembly",
+      "x": 2,
+      "y": 8,
+      "title": "Anti Up Quark Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "up_quark_color_variations_row_1",
+      "type": "up-quark-color-variations-assembly",
+      "x": 9,
+      "y": 8,
+      "title": "Up Quark Color Variations Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-br",
+        "binary-full-br-rr",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "up_quark_color_variations_row_2",
+      "type": "up-quark-color-variations-assembly",
+      "x": 16,
+      "y": 8,
+      "title": "Up Quark Color Variations Row 2",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "up_quark_color_variations_row_3",
+      "type": "up-quark-color-variations-assembly",
+      "x": 2,
+      "y": 9,
+      "title": "Up Quark Color Variations Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-rr",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_i_row_1",
+      "type": "down-quark-color-variations-family-i-assembly",
+      "x": 9,
+      "y": 9,
+      "title": "Down Quark Color Variations Family I Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-rr",
+        "binary-full-br-bb",
+        "binary-full-br-bb"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_i_row_2",
+      "type": "down-quark-color-variations-family-i-assembly",
+      "x": 16,
+      "y": 9,
+      "title": "Down Quark Color Variations Family I Row 2",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-bb",
+        "binary-full-br-rr",
+        "binary-full-br-bb"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_i_row_3",
+      "type": "down-quark-color-variations-family-i-assembly",
+      "x": 2,
+      "y": 10,
+      "title": "Down Quark Color Variations Family I Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-bb",
+        "binary-full-br-bb",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_ii_row_1",
+      "type": "down-quark-color-variations-family-ii-assembly",
+      "x": 9,
+      "y": 10,
+      "title": "Down Quark Color Variations Family II Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-bb",
+        "binary-full-br-br",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_ii_row_2",
+      "type": "down-quark-color-variations-family-ii-assembly",
+      "x": 16,
+      "y": 10,
+      "title": "Down Quark Color Variations Family II Row 2",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "down_quark_color_variations_family_ii_row_3",
+      "type": "down-quark-color-variations-family-ii-assembly",
+      "x": 2,
+      "y": 11,
+      "title": "Down Quark Color Variations Family II Row 3",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-br",
+        "binary-full-br-bb"
+      ]
+    },
+    {
+      "id": "photon_row_1",
+      "type": "photon-assembly",
+      "x": 9,
+      "y": 11,
+      "title": "Photon Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "photon",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "photon_row_2",
+      "type": "photon-assembly",
+      "x": 16,
+      "y": 11,
+      "title": "Photon Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "noether_pair_row_1",
+      "type": "noether-pair-assembly",
+      "x": 2,
+      "y": 12,
+      "title": "Noether Pair Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "noether_pair_row_2",
+      "type": "noether-pair-assembly",
+      "x": 9,
+      "y": 12,
+      "title": "Noether Pair Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "noether_quad_row_1",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 12,
+      "title": "Noether Quad Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "noether_quad_row_2",
+      "type": "noether-quad-assembly",
+      "x": 2,
+      "y": 13,
+      "title": "Noether Quad Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "noether_quad_row_3",
+      "type": "noether-quad-assembly",
+      "x": 9,
+      "y": 13,
+      "title": "Noether Quad Row 3",
+      "role": "intermediate",
+      "tiles": [
+        "pro-noether-core",
+        "binary-bare-br-none",
+        "binary-bare-br-none",
+        "binary-bare-br-none"
+      ]
+    },
+    {
+      "id": "noether_quad_row_4",
+      "type": "noether-quad-assembly",
+      "x": 16,
+      "y": 13,
+      "title": "Noether Quad Row 4",
+      "role": "product",
+      "tiles": [
+        "anti-noether-core",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none",
+        "binary-bare-rb-none"
+      ]
+    },
+    {
+      "id": "pro_proton_row_1",
+      "type": "pro-proton-assembly",
+      "x": 2,
+      "y": 14,
+      "title": "Pro Proton Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "pro_proton_row_2",
+      "type": "pro-proton-assembly",
+      "x": 9,
+      "y": 14,
+      "title": "Pro Proton Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "pro_proton_row_3",
+      "type": "pro-proton-assembly",
+      "x": 16,
+      "y": 14,
+      "title": "Pro Proton Row 3",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "anti_proton_row_1",
+      "type": "anti-proton-assembly",
+      "x": 2,
+      "y": 15,
+      "title": "Anti Proton Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "anti_proton_row_2",
+      "type": "anti-proton-assembly",
+      "x": 9,
+      "y": 15,
+      "title": "Anti Proton Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "anti_proton_row_3",
+      "type": "anti-proton-assembly",
+      "x": 16,
+      "y": 15,
+      "title": "Anti Proton Row 3",
+      "role": "product",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "pro_neutron_row_1",
+      "type": "pro-neutron-assembly",
+      "x": 2,
+      "y": 16,
+      "title": "Pro Neutron Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "pro_neutron_row_2",
+      "type": "pro-neutron-assembly",
+      "x": 9,
+      "y": 16,
+      "title": "Pro Neutron Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "pro_neutron_row_3",
+      "type": "pro-neutron-assembly",
+      "x": 16,
+      "y": 16,
+      "title": "Pro Neutron Row 3",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "anti_neutron_row_1",
+      "type": "anti-neutron-assembly",
+      "x": 2,
+      "y": 17,
+      "title": "Anti Neutron Row 1",
+      "role": "reactant",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "anti_neutron_row_2",
+      "type": "anti-neutron-assembly",
+      "x": 9,
+      "y": 17,
+      "title": "Anti Neutron Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "anti_neutron_row_3",
+      "type": "anti-neutron-assembly",
+      "x": 16,
+      "y": 17,
+      "title": "Anti Neutron Row 3",
+      "role": "product",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "positive_pion_row_1",
+      "type": "positive-pion-assembly",
+      "x": 2,
+      "y": 18,
+      "title": "Positive Pion Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "positive_pion_row_2",
+      "type": "positive-pion-assembly",
+      "x": 9,
+      "y": 18,
+      "title": "Positive Pion Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "negative_pion_row_1",
+      "type": "negative-pion-assembly",
+      "x": 16,
+      "y": 18,
+      "title": "Negative Pion Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "negative_pion_row_2",
+      "type": "negative-pion-assembly",
+      "x": 2,
+      "y": 19,
+      "title": "Negative Pion Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "neutral_pion_u_row_1",
+      "type": "neutral-pion-u-assembly",
+      "x": 9,
+      "y": 19,
+      "title": "Neutral Pion (u anti-u) Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "neutral_pion_u_row_2",
+      "type": "neutral-pion-u-assembly",
+      "x": 16,
+      "y": 19,
+      "title": "Neutral Pion (u anti-u) Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "neutral_pion_d_row_1",
+      "type": "neutral-pion-d-assembly",
+      "x": 2,
+      "y": 20,
+      "title": "Neutral Pion (d anti-d) Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "neutral_pion_d_row_2",
+      "type": "neutral-pion-d-assembly",
+      "x": 9,
+      "y": 20,
+      "title": "Neutral Pion (d anti-d) Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "positive_kaon_row_1",
+      "type": "positive-kaon-assembly",
+      "x": 16,
+      "y": 20,
+      "title": "Positive Kaon Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "positive_kaon_row_2",
+      "type": "positive-kaon-assembly",
+      "x": 2,
+      "y": 21,
+      "title": "Positive Kaon Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-strange-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "negative_kaon_row_1",
+      "type": "negative-kaon-assembly",
+      "x": 9,
+      "y": 21,
+      "title": "Negative Kaon Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-strange-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "negative_kaon_row_2",
+      "type": "negative-kaon-assembly",
+      "x": 16,
+      "y": 21,
+      "title": "Negative Kaon Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "neutral_kaon_d_row_1",
+      "type": "neutral-kaon-d-assembly",
+      "x": 2,
+      "y": 22,
+      "title": "Neutral Kaon (d anti-s) Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "neutral_kaon_d_row_2",
+      "type": "neutral-kaon-d-assembly",
+      "x": 9,
+      "y": 22,
+      "title": "Neutral Kaon (d anti-s) Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-strange-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "neutral_kaon_s_row_1",
+      "type": "neutral-kaon-s-assembly",
+      "x": 16,
+      "y": 22,
+      "title": "Neutral Kaon (s anti-d) Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-strange-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "neutral_kaon_s_row_2",
+      "type": "neutral-kaon-s-assembly",
+      "x": 2,
+      "y": 23,
+      "title": "Neutral Kaon (s anti-d) Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "positive_b_meson_row_1",
+      "type": "positive-b-meson-assembly",
+      "x": 9,
+      "y": 23,
+      "title": "Positive B Meson Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-up-quark",
+        "binary-full-br-rr",
+        "binary-full-br-br",
+        "binary-full-br-rr"
+      ]
+    },
+    {
+      "id": "positive_b_meson_row_2",
+      "type": "positive-b-meson-assembly",
+      "x": 16,
+      "y": 23,
+      "title": "Positive B Meson Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-bottom-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "negative_b_meson_row_1",
+      "type": "negative-b-meson-assembly",
+      "x": 2,
+      "y": 24,
+      "title": "Negative B Meson Row 1",
+      "role": "reactant",
+      "tiles": [
+        "pro-bottom-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "negative_b_meson_row_2",
+      "type": "negative-b-meson-assembly",
+      "x": 9,
+      "y": 24,
+      "title": "Negative B Meson Row 2",
+      "role": "intermediate",
+      "tiles": [
+        "anti-up-quark",
+        "binary-full-rb-bb",
+        "binary-full-rb-rb",
+        "binary-full-rb-bb"
+      ]
+    },
+    {
+      "id": "neutral_b_meson_d_row_1",
+      "type": "neutral-b-meson-d-assembly",
+      "x": 16,
+      "y": 24,
+      "title": "Neutral B Meson (d anti-b) Row 1",
+      "role": "product",
+      "tiles": [
+        "pro-down-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "neutral_b_meson_d_row_2",
+      "type": "neutral-b-meson-d-assembly",
+      "x": 2,
+      "y": 25,
+      "title": "Neutral B Meson (d anti-b) Row 2",
+      "role": "reactant",
+      "tiles": [
+        "anti-bottom-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    },
+    {
+      "id": "neutral_b_meson_b_row_1",
+      "type": "neutral-b-meson-b-assembly",
+      "x": 9,
+      "y": 25,
+      "title": "Neutral B Meson (b anti-d) Row 1",
+      "role": "intermediate",
+      "tiles": [
+        "pro-bottom-quark",
+        "binary-full-br-br",
+        "binary-full-br-bb",
+        "binary-full-br-br"
+      ]
+    },
+    {
+      "id": "neutral_b_meson_b_row_2",
+      "type": "neutral-b-meson-b-assembly",
+      "x": 16,
+      "y": 25,
+      "title": "Neutral B Meson (b anti-d) Row 2",
+      "role": "product",
+      "tiles": [
+        "anti-down-quark",
+        "binary-full-rb-rb",
+        "binary-full-rb-rr",
+        "binary-full-rb-rb"
+      ]
+    }
+  ],
+  "operators": [],
+  "links": [],
+  "compositeLabels": []
+}

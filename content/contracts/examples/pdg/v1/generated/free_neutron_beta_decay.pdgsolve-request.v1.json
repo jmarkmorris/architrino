@@ -1,0 +1,42 @@
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "free_neutron_beta_decay",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "Free neutron beta decay",
+    "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron_1",
+      "assemblyId": "neutron",
+      "title": "Neutron"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton_1",
+      "assemblyId": "proton",
+      "title": "Proton"
+    },
+    {
+      "id": "product_pro_electron_2",
+      "assemblyId": "electron",
+      "title": "Electron"
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "assemblyId": "electron_antineutrino",
+      "title": "Electron Antineutrino"
+    }
+  ],
+  "policy": {
+    "betaSupportMode": "allow-implied-noether-pair",
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none",
+      "2h",
+      "4h"
+    ]
+  }
+}

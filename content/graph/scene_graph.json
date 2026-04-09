@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 421,
-      "edges": 1165,
-      "scenes": 290,
+      "nodes": 420,
+      "edges": 1164,
+      "scenes": 289,
       "markdownIndexes": 0,
       "markdownDocs": 131,
       "runtimeEdges": 476,
@@ -1727,9 +1727,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/archie/composer.json",
+      "id": "pdgview",
+      "name": "pdgview",
+      "path": "content/scenes/archie/pdgview.json",
       "nodeType": "scene"
     },
     {
@@ -1880,12 +1880,6 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "reaction_designer",
-      "name": "Reaction Designer",
-      "path": "content/scenes/archie/reaction_designer.json",
       "nodeType": "scene"
     },
     {
@@ -2713,15 +2707,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/composer.json",
-      "nodeType": "scene",
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/archie/composer.json",
-      "searchTarget": "content/scenes/archie/composer.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/archie/documentation.json",
       "nodeType": "scene",
       "id": "archie__documentation",
@@ -2785,21 +2770,21 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/pdgview.json",
+      "nodeType": "scene",
+      "id": "pdgview",
+      "name": "pdgview",
+      "path": "content/scenes/archie/pdgview.json",
+      "searchTarget": "content/scenes/archie/pdgview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/project.json",
       "nodeType": "scene",
       "id": "archie__project",
       "name": "Project",
       "path": "content/scenes/archie/project.json",
       "searchTarget": "content/scenes/archie/project.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/reaction_designer.json",
-      "nodeType": "scene",
-      "id": "reaction_designer",
-      "name": "Reaction Designer",
-      "path": "content/scenes/archie/reaction_designer.json",
-      "searchTarget": "content/scenes/archie/reaction_designer.json",
       "implicit": false
     },
     {
@@ -6469,52 +6454,45 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/composer.json",
+      "to": "scene:content/scenes/archie/pdgview.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/reaction_designer.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/molecule.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",

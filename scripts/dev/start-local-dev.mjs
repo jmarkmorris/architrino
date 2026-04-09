@@ -6,7 +6,6 @@ import {
   createDevServerHttpCacheHeaders,
   isFreshDevServerHttpCacheRequest,
 } from "./DevServerHttpCache.mjs";
-import { handleReactionSolveApiRequest } from "./ReactionSolveHttpRuntime.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
@@ -80,9 +79,6 @@ function serveFile(request, response) {
 
 const server = createServer(async (request, response) => {
   try {
-    if (await handleReactionSolveApiRequest(request, response, { repoRoot: REPO_ROOT })) {
-      return;
-    }
     serveFile(request, response);
   } catch (_error) {
     response.writeHead(500, {

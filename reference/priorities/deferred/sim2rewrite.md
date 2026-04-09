@@ -48,8 +48,8 @@ This document captures the integration strategy for porting the sim2 physics gen
 ## Related Priorities
 
 - [simulations](simulations.md)
-- [composer-reaction](../observer/observer.md)
-- [viewports](../observer/viewports.md)
+- [pdgview-reaction](../pdg/pdg.md)
+- [pdgview](../pdg/pdgview.md)
 
 ## Related AAA Notes
 

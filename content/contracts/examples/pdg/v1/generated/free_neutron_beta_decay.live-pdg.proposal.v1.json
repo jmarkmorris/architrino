@@ -13,12 +13,12 @@
     "liveCaseId": "free_neutron_beta_decay",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
-      "downstreamSchema": "solver-request/v1",
+      "downstreamSchema": "pdgsolve-request/v1",
       "handoffMode": "upstream-only",
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
       "acceptedReactionHandoff": "reaction-owned",
-      "composerHandoff": "accepted-reaction-only"
+      "pdgviewHandoff": "accepted-reaction-only"
     }
   },
   "reactants": [

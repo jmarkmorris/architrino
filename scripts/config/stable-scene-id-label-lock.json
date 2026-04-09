@@ -76,16 +76,16 @@
         "information_computation": "Information / Computation"
       }
     },
-    "content/scenes/archie/composer.json": {
-      "sceneId": "composer",
-      "sceneName": "Composer",
+    "content/scenes/archie/pdgview.json": {
+      "sceneId": "pdgview",
+      "sceneName": "pdgview",
       "objects": {
-        "composer_export": "Export / Validate",
-        "composer_interactions": "Interactions",
-        "composer_orbit": "Orbit Editor",
-        "composer_path": "Path Editor",
-        "composer_preview": "Preview",
-        "composer_tree": "Scene Tree"
+        "pdgview_export": "Export / Validate",
+        "pdgview_interactions": "Interactions",
+        "pdgview_orbit": "Orbit Editor",
+        "pdgview_path": "Path Editor",
+        "pdgview_preview": "Preview",
+        "pdgview_tree": "Scene Tree"
       }
     },
     "content/scenes/archie/archie.json": {
