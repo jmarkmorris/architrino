@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/combo-acceptance/v1/schema.json",
+  "title": "Combo Acceptance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "problemId",
+    "familyId",
+    "resultDigest",
+    "acceptedScore",
+    "acceptedDiagnostics",
+    "acceptedState",
+    "lockedNormalizationSummary",
+    "lockedPolicySummary",
+    "lockedLaneInventories",
+    "lockedLane2Operators",
+    "lockedLane4Operators",
+    "lockedProvenanceSummary",
+    "lockedSolveGraph"
+  ],
+  "properties": {
+    "schema": {
+      "const": "combo-acceptance/v1"
+    },
+    "problemId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "familyId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resultDigest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptedScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exactness",
+        "primitiveMismatch",
+        "middleMismatch",
+        "auxiliaryBurden",
+        "nonIdentityOperatorCount",
+        "dissociationCount",
+        "ambiguityPenalty",
+        "tieBreakKey"
+      ],
+      "properties": {
+        "exactness": { "type": "integer", "minimum": 0 },
+        "primitiveMismatch": { "type": "integer", "minimum": 0 },
+        "middleMismatch": { "type": "integer", "minimum": 0 },
+        "auxiliaryBurden": { "type": "integer", "minimum": 0 },
+        "nonIdentityOperatorCount": { "type": "integer", "minimum": 0 },
+        "dissociationCount": { "type": "integer", "minimum": 0 },
+        "ambiguityPenalty": { "type": "integer", "minimum": 0 },
+        "tieBreakKey": { "type": "string", "minLength": 1 }
+      }
+    },
+    "acceptedDiagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "phase", "message", "blocking", "payload"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "phase": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "blocking": { "type": "boolean" },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "acceptedState": {
+      "const": "accepted"
+    },
+    "lockedNormalizationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["addedSupportOccurrences", "diagnostics"],
+      "properties": {
+        "addedSupportOccurrences": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "phase", "message", "blocking", "payload"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "phase": { "type": "string", "minLength": 1 },
+              "message": { "type": "string", "minLength": 1 },
+              "blocking": { "type": "boolean" },
+              "payload": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    "lockedPolicySummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "betaSupportMode",
+        "exactClosureRequired",
+        "allowedBoundaryAugmentations"
+      ],
+      "properties": {
+        "betaSupportMode": {
+          "type": "string",
+          "enum": ["allow-implied-noether-pair", "explicit-only"]
+        },
+        "exactClosureRequired": {
+          "type": "boolean"
+        },
+        "allowedBoundaryAugmentations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["none", "2h", "4h"]
+          }
+        }
+      }
+    },
+    "lockedLaneInventories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lane1", "lane3", "lane5"],
+      "properties": {
+        "lane1": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assemblyId", "count"],
+            "properties": {
+              "assemblyId": { "type": "string", "minLength": 1 },
+              "count": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "lane3": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assemblyId", "count"],
+            "properties": {
+              "assemblyId": { "type": "string", "minLength": 1 },
+              "count": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "lane5": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assemblyId", "count"],
+            "properties": {
+              "assemblyId": { "type": "string", "minLength": 1 },
+              "count": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "lockedLane2Operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
+          "lawId": { "type": ["string", "null"], "minLength": 1 },
+          "inputOccurrenceKeys": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "outputOccurrenceKeys": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "lockedLane4Operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
+          "lawId": { "type": ["string", "null"], "minLength": 1 },
+          "inputOccurrenceKeys": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "outputOccurrenceKeys": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "lockedProvenanceSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summaryText", "outputs"],
+      "properties": {
+        "summaryText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["occurrenceKey", "provenanceClass", "supportSourceClass", "ambiguous"],
+            "properties": {
+              "occurrenceKey": { "type": "string", "minLength": 1 },
+              "provenanceClass": {
+                "type": "string",
+                "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
+              },
+              "supportSourceClass": {
+                "type": "string",
+                "enum": ["none", "noether_pair", "2h", "4h"]
+              },
+              "ambiguous": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "lockedSolveGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "units", "edges"],
+      "properties": {
+        "schema": {
+          "const": "combo-publication-graph/v1"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "kind",
+              "lane",
+              "recipeId",
+              "occurrenceKey",
+              "title",
+              "anchorRow"
+            ],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "kind": { "type": "string", "enum": ["assembly", "operator"] },
+              "lane": { "type": "integer", "minimum": 1 },
+              "recipeId": { "type": "string", "minLength": 1 },
+              "occurrenceKey": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "anchorRow": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "fromUnitId", "fromPortId", "toUnitId", "toPortId"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "fromUnitId": { "type": "string", "minLength": 1 },
+              "fromPortId": { "type": "string", "minLength": 1 },
+              "toUnitId": { "type": "string", "minLength": 1 },
+              "toPortId": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "acceptedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptedBy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptanceNote": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

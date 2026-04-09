@@ -1,0 +1,42 @@
+{
+  "schema": "combo-request/v1",
+  "requestId": "free_neutron_beta_exact",
+  "source": {
+    "kind": "fixture",
+    "title": "Free neutron beta exact",
+    "sourceDocumentId": "combo_fixture_free_neutron_beta_exact"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron",
+      "assemblyId": "neutron",
+      "title": "Neutron"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton",
+      "assemblyId": "proton",
+      "title": "Proton"
+    },
+    {
+      "id": "product_electron",
+      "assemblyId": "electron",
+      "title": "Electron"
+    },
+    {
+      "id": "product_electron_antineutrino",
+      "assemblyId": "electron_antineutrino",
+      "title": "Electron Antineutrino"
+    }
+  ],
+  "policy": {
+    "betaSupportMode": "allow-implied-noether-pair",
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none",
+      "2h",
+      "4h"
+    ]
+  }
+}

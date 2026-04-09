@@ -5,7 +5,7 @@
 - Keep `Priorities` ordered as the current work queue, with the most important active item first.
 - Keep `Design` descriptive and stable; move task-shaped material into `Priorities`.
 - Keep Reaction focused on conservative authoring, provenance legibility, manual correction, and accepted output.
-- Do not restate generic solver architecture here except where the Reaction app depends on it; prefer [solver](./solver.md) for solver-component detail.
+- Do not restate generic solver architecture here except where the Reaction app depends on it; prefer [solver](./old-solver.md) for solver-component detail.
 - Do not let Composer-stage concerns or PDG-ingest plans expand this document beyond the Reaction app's own role.
 - Keep contract specifics brief here and prefer the contract-owning document when it exists.
 
@@ -135,7 +135,7 @@ That screen should be understood as:
 - allowed to share contract vocabulary and visual language with Composer, but not Composer runtime code;
 - and downstream of future PDG seeds or proposals when those exist.
 
-The solver component itself is documented in [solver](./solver.md). The solver-to-Reaction payload format is owned in [solver](./solver.md#result-format). This document owns how that capability appears inside the Reaction app.
+The solver component itself is documented in [solver](./old-solver.md). The solver-to-Reaction payload format is owned in [solver](./old-solver.md#result-format). This document owns how that capability appears inside the Reaction app.
 
 ## Interfaces
 
@@ -144,7 +144,7 @@ The solver component itself is documented in [solver](./solver.md). The solver-t
 - manually authored or selected reactants and products;
 - participant templates and operator choices exposed by the Reaction app;
 - current authored mappings and dissociation state;
-- structured solver results in the format owned by [solver](./solver.md#result-format);
+- structured solver results in the format owned by [solver](./old-solver.md#result-format);
 - and future normalized seeds or proposals from [pdgfeed](./pdgfeed.md).
 
 ### Outputs
@@ -171,14 +171,14 @@ Reaction should not:
 
 ### Neighboring Components
 
-- [solver](./solver.md) owns the Reaction-side solve engine and algorithmic constraints.
+- [solver](./old-solver.md) owns the Reaction-side solve engine and algorithmic constraints.
 - [pdgfeed](./pdgfeed.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
 - [composer](./composer.md) is the downstream staging and explanation surface.
 - [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 
-The canonical registry work from [solver](./solver.md) is now in place. These are the next Reaction-side follow-ups so the app fully consumes that shared object model instead of keeping local repair logic and incomplete connector/document semantics.
+The canonical registry work from [solver](./old-solver.md) is now in place. These are the next Reaction-side follow-ups so the app fully consumes that shared object model instead of keeping local repair logic and incomplete connector/document semantics.
 
 ### 1. Replace Reaction-Side Object Heuristics With Canonical Registry Reads
 
@@ -192,7 +192,7 @@ Current:
 
 Objective:
 
-- make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./solver.md);
+- make Reaction read object identity, structure characteristics, lane eligibility, and connector policy from the canonical registry added in [solver](./old-solver.md);
 - remove local object-type guesses from the library import path, render path, and test helpers;
 - and make surface behavior for objects such as muons, muon neutrinos, Noether cores, Noether pairs, and Unbound Architrinos come directly from the registry rather than from app-specific fallback logic.
 

@@ -198,8 +198,8 @@ The Composer-side intake should be strong enough to receive:
 
 ### Neighboring Components
 
-- [reaction](./reaction.md) owns the conservative authoring workflow that feeds Composer.
-- [solver](./solver.md) owns Reaction-side solve logic and should remain upstream.
+- [reaction](./old-reaction.md) owns the conservative authoring workflow that feeds Composer.
+- [solver](./old-solver.md) owns Reaction-side solve logic and should remain upstream.
 - [pdgfeed](./pdgfeed.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
 - [app-architecture](app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
 - [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
@@ -273,8 +273,8 @@ Objective:
 ## Related Priorities
 
 - [composer-reaction](./observer.md)
-- [reaction](./reaction.md)
-- [solver](./solver.md)
+- [reaction](./old-reaction.md)
+- [solver](./old-solver.md)
 - [pdgfeed](./pdgfeed.md)
 - [app-architecture](app-architecture.md)
 - [viewports](viewports.md)

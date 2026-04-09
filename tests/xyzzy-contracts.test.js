@@ -104,6 +104,8 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const XYZZY_EXAMPLE_PATHS = [
+  "content/contracts/examples/xyzzy/combo_boundary_augmentation_recipe_coverage.v1.json",
+  "content/contracts/examples/xyzzy/combo_free_neutron_beta_exact.v1.json",
   "content/contracts/examples/xyzzy/four_tile_family_coverage.v1.json",
   "content/contracts/examples/xyzzy/free_neutron_beta_decay.v1.json",
   "content/contracts/examples/xyzzy/unbound_architrinos.v1.json",
@@ -191,6 +193,18 @@ test("xyzzy example links and composite labels stay within the explicit boundary
       );
     });
   });
+});
+
+test("the default free neutron beta decay xyzzy document uses the normalized unit, edge, and label id vocabulary", () => {
+  const example = readJson("content/contracts/examples/xyzzy/free_neutron_beta_decay.v1.json");
+
+  assert.equal(
+    example.assemblies.every((assembly) => assembly.id.startsWith("unit_") && assembly.id.includes(".row.")),
+    true
+  );
+  assert.equal(example.operators.every((operator) => operator.id.startsWith("unit_")), true);
+  assert.equal(example.links.every((link) => link.id.startsWith("edge_")), true);
+  assert.equal(example.compositeLabels.every((label) => label.id.startsWith("label.")), true);
 });
 
 test("xyzzy examples include at least one explicit assembly payload for every current four-tile review row", () => {

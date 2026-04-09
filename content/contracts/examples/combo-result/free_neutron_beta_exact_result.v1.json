@@ -1,0 +1,475 @@
+{
+  "schema": "combo-result/v1",
+  "problemId": "combo_problem_free_neutron_beta_exact",
+  "searchStatus": "exact_available",
+  "bestFamilyId": "family.beta.exact.v1",
+  "acceptedFamilyId": null,
+  "diagnostics": [
+    {
+      "id": "combo.normalization.support_added.noether_pair",
+      "phase": "normalization",
+      "message": "Normalization added one implied Noether Pair support reactant for the exact beta family.",
+      "blocking": false,
+      "payload": {
+        "requestId": "free_neutron_beta_exact",
+        "addedOccurrenceId": "lane1.noether_pair#1"
+      }
+    }
+  ],
+  "optionFamilies": [
+    {
+      "familyId": "family.beta.exact.v1",
+      "kind": "exact",
+      "score": {
+        "exactness": 0,
+        "primitiveMismatch": 0,
+        "middleMismatch": 0,
+        "auxiliaryBurden": 0,
+        "nonIdentityOperatorCount": 1,
+        "dissociationCount": 1,
+        "ambiguityPenalty": 0,
+        "tieBreakKey": "none|none|lane2:dissociate(cluster.beta.neutron_noether_pair.v1)|lane4:pass-thru,pass-thru,pass-thru|lane3:electron,electron_antineutrino,proton|rho:proton=active,electron=support,electron_antineutrino=support"
+      },
+      "augmentation": {
+        "left": "none",
+        "right": "none"
+      },
+      "laneInventories": {
+        "lane1": [
+          {
+            "assemblyId": "neutron",
+            "count": 1
+          },
+          {
+            "assemblyId": "noether_pair",
+            "count": 1
+          }
+        ],
+        "lane3": [
+          {
+            "assemblyId": "proton",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron_antineutrino",
+            "count": 1
+          }
+        ],
+        "lane5": [
+          {
+            "assemblyId": "proton",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron_antineutrino",
+            "count": 1
+          }
+        ]
+      },
+      "lane2Operators": [
+        {
+          "id": "lane2_beta_dissociate",
+          "type": "dissociate",
+          "lawId": "cluster.beta.neutron_noether_pair.v1",
+          "inputOccurrenceKeys": [
+            "lane1.neutron#1",
+            "lane1.noether_pair#1"
+          ],
+          "outputOccurrenceKeys": [
+            "lane3.proton#1",
+            "lane3.electron#1",
+            "lane3.electron_antineutrino#1"
+          ]
+        }
+      ],
+      "lane4Operators": [
+        {
+          "id": "lane4_pass_thru_proton",
+          "type": "pass-thru",
+          "lawId": null,
+          "inputOccurrenceKeys": [
+            "lane3.proton#1"
+          ],
+          "outputOccurrenceKeys": [
+            "lane5.proton#1"
+          ]
+        },
+        {
+          "id": "lane4_pass_thru_electron",
+          "type": "pass-thru",
+          "lawId": null,
+          "inputOccurrenceKeys": [
+            "lane3.electron#1"
+          ],
+          "outputOccurrenceKeys": [
+            "lane5.electron#1"
+          ]
+        },
+        {
+          "id": "lane4_pass_thru_electron_antineutrino",
+          "type": "pass-thru",
+          "lawId": null,
+          "inputOccurrenceKeys": [
+            "lane3.electron_antineutrino#1"
+          ],
+          "outputOccurrenceKeys": [
+            "lane5.electron_antineutrino#1"
+          ]
+        }
+      ],
+      "provenanceSummary": {
+        "summaryText": "The proton keeps the neutron spectator content while the electron and electron antineutrino are support-derived outputs from the normalized Noether Pair.",
+        "outputs": [
+          {
+            "occurrenceKey": "lane5.proton#1",
+            "provenanceClass": "active_rewrite",
+            "supportSourceClass": "none",
+            "ambiguous": false
+          },
+          {
+            "occurrenceKey": "lane5.electron#1",
+            "provenanceClass": "support_derived",
+            "supportSourceClass": "noether_pair",
+            "ambiguous": false
+          },
+          {
+            "occurrenceKey": "lane5.electron_antineutrino#1",
+            "provenanceClass": "support_derived",
+            "supportSourceClass": "noether_pair",
+            "ambiguous": false
+          }
+        ]
+      },
+      "diagnostics": [],
+      "rawBranchCount": 1,
+      "publicationReady": true,
+      "canonicalCandidate": {
+        "candidateId": "candidate.beta.exact.v1",
+        "exact": true,
+        "laneInventories": {
+          "lane1": [
+            {
+              "assemblyId": "neutron",
+              "count": 1
+            },
+            {
+              "assemblyId": "noether_pair",
+              "count": 1
+            }
+          ],
+          "lane3": [
+            {
+              "assemblyId": "proton",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron_antineutrino",
+              "count": 1
+            }
+          ],
+          "lane5": [
+            {
+              "assemblyId": "proton",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron_antineutrino",
+              "count": 1
+            }
+          ]
+        },
+        "lane2Operators": [
+          {
+            "id": "lane2_beta_dissociate",
+            "type": "dissociate",
+            "lawId": "cluster.beta.neutron_noether_pair.v1",
+            "inputOccurrenceKeys": [
+              "lane1.neutron#1",
+              "lane1.noether_pair#1"
+            ],
+            "outputOccurrenceKeys": [
+              "lane3.proton#1",
+              "lane3.electron#1",
+              "lane3.electron_antineutrino#1"
+            ]
+          }
+        ],
+        "lane4Operators": [
+          {
+            "id": "lane4_pass_thru_proton",
+            "type": "pass-thru",
+            "lawId": null,
+            "inputOccurrenceKeys": [
+              "lane3.proton#1"
+            ],
+            "outputOccurrenceKeys": [
+              "lane5.proton#1"
+            ]
+          },
+          {
+            "id": "lane4_pass_thru_electron",
+            "type": "pass-thru",
+            "lawId": null,
+            "inputOccurrenceKeys": [
+              "lane3.electron#1"
+            ],
+            "outputOccurrenceKeys": [
+              "lane5.electron#1"
+            ]
+          },
+          {
+            "id": "lane4_pass_thru_electron_antineutrino",
+            "type": "pass-thru",
+            "lawId": null,
+            "inputOccurrenceKeys": [
+              "lane3.electron_antineutrino#1"
+            ],
+            "outputOccurrenceKeys": [
+              "lane5.electron_antineutrino#1"
+            ]
+          }
+        ],
+        "provenanceSummary": {
+          "summaryText": "The proton keeps the neutron spectator content while the electron and electron antineutrino are support-derived outputs from the normalized Noether Pair.",
+          "outputs": [
+            {
+              "occurrenceKey": "lane5.proton#1",
+              "provenanceClass": "active_rewrite",
+              "supportSourceClass": "none",
+              "ambiguous": false
+            },
+            {
+              "occurrenceKey": "lane5.electron#1",
+              "provenanceClass": "support_derived",
+              "supportSourceClass": "noether_pair",
+              "ambiguous": false
+            },
+            {
+              "occurrenceKey": "lane5.electron_antineutrino#1",
+              "provenanceClass": "support_derived",
+              "supportSourceClass": "noether_pair",
+              "ambiguous": false
+            }
+          ]
+        },
+        "solveGraph": {
+          "schema": "combo-publication-graph/v1",
+          "units": [
+            {
+              "id": "unit_lane1_neutron",
+              "kind": "assembly",
+              "lane": 1,
+              "recipeId": "combo.xyzzy.neutron.v1",
+              "occurrenceKey": "lane1.neutron#1",
+              "title": "Neutron",
+              "anchorRow": 0
+            },
+            {
+              "id": "unit_lane1_noether_pair",
+              "kind": "assembly",
+              "lane": 1,
+              "recipeId": "combo.xyzzy.noether_pair.v1",
+              "occurrenceKey": "lane1.noether_pair#1",
+              "title": "Noether Pair",
+              "anchorRow": 3
+            },
+            {
+              "id": "unit_lane2_beta_dissociate",
+              "kind": "operator",
+              "lane": 2,
+              "recipeId": "combo.xyzzy.operator.dissociate.v1",
+              "occurrenceKey": "lane2.cluster.beta.neutron_noether_pair#1",
+              "title": "Dissociate",
+              "anchorRow": 2
+            },
+            {
+              "id": "unit_lane3_proton",
+              "kind": "assembly",
+              "lane": 3,
+              "recipeId": "combo.xyzzy.proton.v1",
+              "occurrenceKey": "lane3.proton#1",
+              "title": "Proton",
+              "anchorRow": 0
+            },
+            {
+              "id": "unit_lane3_electron",
+              "kind": "assembly",
+              "lane": 3,
+              "recipeId": "combo.xyzzy.electron.v1",
+              "occurrenceKey": "lane3.electron#1",
+              "title": "Pro Electron",
+              "anchorRow": 3
+            },
+            {
+              "id": "unit_lane3_electron_antineutrino",
+              "kind": "assembly",
+              "lane": 3,
+              "recipeId": "combo.xyzzy.electron_antineutrino.v1",
+              "occurrenceKey": "lane3.electron_antineutrino#1",
+              "title": "Anti Electron Neutrino",
+              "anchorRow": 4
+            },
+            {
+              "id": "unit_lane4_pass_thru_proton",
+              "kind": "operator",
+              "lane": 4,
+              "recipeId": "combo.xyzzy.operator.pass_thru.v1",
+              "occurrenceKey": "lane4.pass_thru.proton#1",
+              "title": "Pass Thru",
+              "anchorRow": 1
+            },
+            {
+              "id": "unit_lane4_pass_thru_electron",
+              "kind": "operator",
+              "lane": 4,
+              "recipeId": "combo.xyzzy.operator.pass_thru.v1",
+              "occurrenceKey": "lane4.pass_thru.electron#1",
+              "title": "Pass Thru",
+              "anchorRow": 3
+            },
+            {
+              "id": "unit_lane4_pass_thru_electron_antineutrino",
+              "kind": "operator",
+              "lane": 4,
+              "recipeId": "combo.xyzzy.operator.pass_thru.v1",
+              "occurrenceKey": "lane4.pass_thru.electron_antineutrino#1",
+              "title": "Pass Thru",
+              "anchorRow": 4
+            },
+            {
+              "id": "unit_lane5_proton",
+              "kind": "assembly",
+              "lane": 5,
+              "recipeId": "combo.xyzzy.proton.v1",
+              "occurrenceKey": "lane5.proton#1",
+              "title": "Proton",
+              "anchorRow": 0
+            },
+            {
+              "id": "unit_lane5_electron",
+              "kind": "assembly",
+              "lane": 5,
+              "recipeId": "combo.xyzzy.electron.v1",
+              "occurrenceKey": "lane5.electron#1",
+              "title": "Pro Electron",
+              "anchorRow": 3
+            },
+            {
+              "id": "unit_lane5_electron_antineutrino",
+              "kind": "assembly",
+              "lane": 5,
+              "recipeId": "combo.xyzzy.electron_antineutrino.v1",
+              "occurrenceKey": "lane5.electron_antineutrino#1",
+              "title": "Anti Electron Neutrino",
+              "anchorRow": 4
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge_neutron_to_beta_dissociate",
+              "fromUnitId": "unit_lane1_neutron",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane2_beta_dissociate",
+              "toPortId": "input.neutron"
+            },
+            {
+              "id": "edge_noether_pair_to_beta_dissociate",
+              "fromUnitId": "unit_lane1_noether_pair",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane2_beta_dissociate",
+              "toPortId": "input.noether_pair"
+            },
+            {
+              "id": "edge_beta_dissociate_to_proton",
+              "fromUnitId": "unit_lane2_beta_dissociate",
+              "fromPortId": "output.proton",
+              "toUnitId": "unit_lane3_proton",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_beta_dissociate_to_electron",
+              "fromUnitId": "unit_lane2_beta_dissociate",
+              "fromPortId": "output.electron",
+              "toUnitId": "unit_lane3_electron",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_beta_dissociate_to_electron_antineutrino",
+              "fromUnitId": "unit_lane2_beta_dissociate",
+              "fromPortId": "output.electron_antineutrino",
+              "toUnitId": "unit_lane3_electron_antineutrino",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane3_proton_to_lane4_pass_thru",
+              "fromUnitId": "unit_lane3_proton",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane4_pass_thru_proton",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane4_pass_thru_to_lane5_proton",
+              "fromUnitId": "unit_lane4_pass_thru_proton",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane5_proton",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane3_electron_to_lane4_pass_thru",
+              "fromUnitId": "unit_lane3_electron",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane4_pass_thru_electron",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane4_pass_thru_to_lane5_electron",
+              "fromUnitId": "unit_lane4_pass_thru_electron",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane5_electron",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane3_electron_antineutrino_to_lane4_pass_thru",
+              "fromUnitId": "unit_lane3_electron_antineutrino",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane4_pass_thru_electron_antineutrino",
+              "toPortId": "input"
+            },
+            {
+              "id": "edge_lane4_pass_thru_to_lane5_electron_antineutrino",
+              "fromUnitId": "unit_lane4_pass_thru_electron_antineutrino",
+              "fromPortId": "output",
+              "toUnitId": "unit_lane5_electron_antineutrino",
+              "toPortId": "input"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "review": {
+    "schema": "combo-review-state/v1",
+    "state": "review_ready",
+    "selectedFamilyId": "family.beta.exact.v1",
+    "acceptedFamilyId": null,
+    "acceptedRecord": null,
+    "blockingDiagnostics": []
+  },
+  "publication": null
+}

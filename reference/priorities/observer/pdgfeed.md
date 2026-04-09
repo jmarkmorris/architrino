@@ -426,8 +426,8 @@ This review layer is still upstream of Reaction. It chooses among PDG-derived al
 
 ### Neighboring Components
 
-- [solver](./solver.md) is the planning core this component should feed.
-- [reaction](./reaction.md) owns inspection, correction, manual override, and acceptance after PDG proposals are generated.
+- [solver](./old-solver.md) is the planning core this component should feed.
+- [reaction](./old-reaction.md) owns inspection, correction, manual override, and acceptance after PDG proposals are generated.
 - [composer](./composer.md) remains downstream of accepted Reaction output only.
 - [app-architecture](app-architecture.md) defines the app-boundary rule this component must respect.
 

@@ -5,7 +5,7 @@
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [composer](composer.md), [reaction](reaction.md), [xyzzy](xyzzy.md), [solver](solver.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [composer](composer.md), [reaction](old-reaction.md), [xyzzy](xyzzy.md), [solver](old-solver.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
@@ -356,7 +356,7 @@ Practical order:
 
 - [composer-reaction](observer.md)
 - [composer](composer.md)
-- [reaction](reaction.md)
+- [reaction](old-reaction.md)
 - [xyzzy](xyzzy.md)
-- [solver](solver.md)
+- [solver](old-solver.md)
 - [pdgfeed](pdgfeed.md)

@@ -1,0 +1,173 @@
+{
+  "schema": "combo-result/v1",
+  "problemId": "combo_problem_free_neutron_beta_support_disallowed",
+  "searchStatus": "unsupported",
+  "bestFamilyId": "family.beta.support_required.v1",
+  "acceptedFamilyId": null,
+  "diagnostics": [
+    {
+      "id": "combo.normalization.support_required.noether_pair",
+      "phase": "normalization",
+      "message": "Exact beta-family closure requires an explicit or policy-allowed Noether Pair support reactant.",
+      "blocking": true,
+      "payload": {
+        "requestId": "free_neutron_beta_support_disallowed",
+        "policyMode": "explicit-only"
+      }
+    }
+  ],
+  "optionFamilies": [
+    {
+      "familyId": "family.beta.support_required.v1",
+      "kind": "unsupported",
+      "score": {
+        "exactness": 1,
+        "primitiveMismatch": 24,
+        "middleMismatch": 3,
+        "auxiliaryBurden": 0,
+        "nonIdentityOperatorCount": 0,
+        "dissociationCount": 0,
+        "ambiguityPenalty": 3,
+        "tieBreakKey": "none|none|lane2:none|lane4:none|lane3:none|rho:missing_noether_pair"
+      },
+      "augmentation": {
+        "left": "none",
+        "right": "none"
+      },
+      "laneInventories": {
+        "lane1": [
+          {
+            "assemblyId": "neutron",
+            "count": 1
+          }
+        ],
+        "lane3": [],
+        "lane5": [
+          {
+            "assemblyId": "proton",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron",
+            "count": 1
+          },
+          {
+            "assemblyId": "electron_antineutrino",
+            "count": 1
+          }
+        ]
+      },
+      "lane2Operators": [],
+      "lane4Operators": [],
+      "provenanceSummary": {
+        "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether Pair support reactant.",
+        "outputs": [
+          {
+            "occurrenceKey": "lane5.proton#1",
+            "provenanceClass": "mixed",
+            "supportSourceClass": "none",
+            "ambiguous": true
+          },
+          {
+            "occurrenceKey": "lane5.electron#1",
+            "provenanceClass": "mixed",
+            "supportSourceClass": "none",
+            "ambiguous": true
+          },
+          {
+            "occurrenceKey": "lane5.electron_antineutrino#1",
+            "provenanceClass": "mixed",
+            "supportSourceClass": "none",
+            "ambiguous": true
+          }
+        ]
+      },
+      "diagnostics": [
+        {
+          "id": "combo.search.unsupported_law_family",
+          "phase": "search",
+          "message": "The retained beta branch would require the admitted neutron-plus-noether-pair cluster law, which is unavailable without explicit support material.",
+          "blocking": true,
+          "payload": {
+            "missingLawFamilyId": "cluster.beta.neutron_noether_pair.v1"
+          }
+        }
+      ],
+      "rawBranchCount": 0,
+      "publicationReady": false,
+      "canonicalCandidate": {
+        "candidateId": "candidate.beta.support_required.v1",
+        "exact": false,
+        "laneInventories": {
+          "lane1": [
+            {
+              "assemblyId": "neutron",
+              "count": 1
+            }
+          ],
+          "lane3": [],
+          "lane5": [
+            {
+              "assemblyId": "proton",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron",
+              "count": 1
+            },
+            {
+              "assemblyId": "electron_antineutrino",
+              "count": 1
+            }
+          ]
+        },
+        "lane2Operators": [],
+        "lane4Operators": [],
+        "provenanceSummary": {
+          "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether Pair support reactant.",
+          "outputs": [
+            {
+              "occurrenceKey": "lane5.proton#1",
+              "provenanceClass": "mixed",
+              "supportSourceClass": "none",
+              "ambiguous": true
+            },
+            {
+              "occurrenceKey": "lane5.electron#1",
+              "provenanceClass": "mixed",
+              "supportSourceClass": "none",
+              "ambiguous": true
+            },
+            {
+              "occurrenceKey": "lane5.electron_antineutrino#1",
+              "provenanceClass": "mixed",
+              "supportSourceClass": "none",
+              "ambiguous": true
+            }
+          ]
+        },
+        "solveGraph": null
+      }
+    }
+  ],
+  "review": {
+    "schema": "combo-review-state/v1",
+    "state": "review_ready",
+    "selectedFamilyId": "family.beta.support_required.v1",
+    "acceptedFamilyId": null,
+    "acceptedRecord": null,
+    "blockingDiagnostics": [
+      {
+        "id": "combo.normalization.support_required.noether_pair",
+        "phase": "normalization",
+        "message": "Exact beta-family closure requires an explicit or policy-allowed Noether Pair support reactant.",
+        "blocking": true,
+        "payload": {
+          "requestId": "free_neutron_beta_support_disallowed",
+          "policyMode": "explicit-only"
+        }
+      }
+    ]
+  },
+  "publication": null
+}

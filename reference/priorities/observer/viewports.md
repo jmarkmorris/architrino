@@ -259,7 +259,7 @@ The Architrino-specific improvement is to make the observer itself frame-aware, 
 
 - [composer-reaction](../observer/observer.md)
 - [composer](../observer/composer.md)
-- [reaction](../observer/reaction.md)
+- [reaction](./old-reaction.md)
 - [ellipsoid](../ellipsoid/ellipsoid.md)
 
 ## Related AAA Notes
