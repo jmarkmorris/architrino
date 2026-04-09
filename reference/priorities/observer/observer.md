@@ -17,7 +17,6 @@
 - [xyzzy](./xyzzy.md) — final authored-surface document model, tile grammar, manifest behavior, and direct object editing.
 - [composer](./composer.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
 - [viewports](./viewports.md) — observer-view and design-view guidance for downstream scene authoring.
-- [glyph](./glyph.md) — shared glyph-system guidance relevant to authored surfaces and downstream presentation.
 
 ## Current Cross-Doc Queue
 

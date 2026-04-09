@@ -2,26 +2,17 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import { normalizeXyzzyTileCatalog } from "../src/apps/xyzzy/XyzzyTileCatalogRuntime.js";
 import { normalizeXyzzyReviewGroupCatalog } from "../src/apps/xyzzy/XyzzyReviewGroupCatalogRuntime.js";
 import { renderXyzzyTileSvg } from "../src/apps/xyzzy/XyzzyTileSvgRuntime.js";
+import {
+  createMockDocument,
+  createPythonMeasurementContext,
+} from "../scripts/xyzzy/ReferenceSvgRuntime.mjs";
 
-const repoRootPath = fileURLToPath(new URL("../", import.meta.url));
 const glyphOutputDirPath = fileURLToPath(new URL("../scripts/glyphs/", import.meta.url));
-const TEXT_FONT_PATH = "/System/Library/Fonts/HelveticaNeue.ttc";
-const EPSILON_FONT_PATH = "/System/Library/Fonts/Supplemental/Times New Roman.ttf";
-const PYTHON_FONT_MEASURE_SCRIPT = `
-import json
-import sys
-from PIL import ImageFont
-
-font = ImageFont.truetype(sys.argv[1], size=float(sys.argv[2]))
-_left, top, _right, bottom = font.getbbox(sys.argv[3], anchor="ls")
-print(json.dumps({"ascent": -float(top), "descent": float(bottom)}))
-`.trim();
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -29,76 +20,6 @@ function readJson(relativePath) {
 
 function readSvgFixture(filename) {
   return fs.readFileSync(path.join(glyphOutputDirPath, filename), "utf8");
-}
-
-class MockSvgElement {
-  constructor(name) {
-    this.name = name;
-    this.attributes = new Map();
-    this.children = [];
-    this.textContent = "";
-    this.style = {};
-    this.classNames = [];
-    this.classList = {
-      add: (...names) => {
-        this.classNames.push(...names);
-      },
-    };
-  }
-
-  setAttribute(key, value) {
-    this.attributes.set(key, String(value));
-  }
-
-  append(...children) {
-    this.children.push(...children);
-  }
-
-  appendChild(child) {
-    this.children.push(child);
-  }
-}
-
-function createMockDocument() {
-  return {
-    createElementNS(_namespace, name) {
-      return new MockSvgElement(name);
-    },
-  };
-}
-
-function createPythonMeasurementContext() {
-  const measurementCache = new Map();
-  return {
-    font: "",
-    measureText(text) {
-      const fontSpec = String(this.font || "");
-      const match = /(\d+(?:\.\d+)?)px\s+(.+)$/.exec(fontSpec);
-      if (!match) {
-        throw new Error(`Unsupported font specification: ${fontSpec}`);
-      }
-      const fontSize = Number(match[1]);
-      const fontFamily = match[2];
-      const fontPath = fontFamily.includes("STIX Two Text") ? EPSILON_FONT_PATH : TEXT_FONT_PATH;
-      const cacheKey = `${fontPath}\u0000${fontSize}\u0000${text}`;
-      if (!measurementCache.has(cacheKey)) {
-        const rawMeasurement = execFileSync(
-          "python3",
-          ["-c", PYTHON_FONT_MEASURE_SCRIPT, fontPath, String(fontSize), String(text)],
-          {
-            cwd: repoRootPath,
-            encoding: "utf8",
-          }
-        );
-        measurementCache.set(cacheKey, JSON.parse(rawMeasurement));
-      }
-      const measurement = measurementCache.get(cacheKey);
-      return {
-        actualBoundingBoxAscent: measurement.ascent,
-        actualBoundingBoxDescent: measurement.descent,
-      };
-    },
-  };
 }
 
 function parseSvgTree(svgText) {

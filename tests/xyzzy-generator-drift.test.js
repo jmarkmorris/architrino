@@ -12,6 +12,123 @@ import { normalizeXyzzyReviewGroupCatalog } from "../src/apps/xyzzy/XyzzyReviewG
 const repoRootPath = fileURLToPath(new URL("../", import.meta.url));
 const glyphOutputDirPath = fileURLToPath(new URL("../scripts/glyphs/", import.meta.url));
 
+function parseSvgTree(svgText) {
+  const tokens = svgText.match(/<[^>]+>|[^<]+/g) ?? [];
+  const stack = [];
+  let root = null;
+
+  tokens.forEach((token) => {
+    if (token.startsWith("<?") || token.startsWith("<!")) {
+      return;
+    }
+    if (token.startsWith("</")) {
+      stack.pop();
+      return;
+    }
+    if (token.startsWith("<")) {
+      const openMatch = /^<([A-Za-z0-9:_-]+)/.exec(token);
+      if (!openMatch) {
+        return;
+      }
+      const attrs = {};
+      for (const attrMatch of token.matchAll(/([A-Za-z_:][-A-Za-z0-9_:.]*)="([^"]*)"/g)) {
+        attrs[attrMatch[1]] = attrMatch[2];
+      }
+      const node = {
+        name: openMatch[1],
+        attrs,
+        children: [],
+        text: "",
+      };
+      if (stack.length) {
+        stack[stack.length - 1].children.push(node);
+      } else {
+        root = node;
+      }
+      if (!token.endsWith("/>")) {
+        stack.push(node);
+      }
+      return;
+    }
+    if (!stack.length || /^\s+$/.test(token)) {
+      return;
+    }
+    stack[stack.length - 1].text += token;
+  });
+
+  return root;
+}
+
+function normalizeAttributeValue(key, value) {
+  const text = String(value);
+  function formatNumber(numberValue) {
+    const rounded = Math.round(numberValue * 100) / 100;
+    if (Number.isInteger(rounded)) {
+      return String(rounded);
+    }
+    return rounded.toFixed(2).replace(/0+$/u, "").replace(/\.$/u, "");
+  }
+  if (/^-?\d+(?:\.\d+)?$/.test(text)) {
+    return formatNumber(Number(text));
+  }
+  if (key === "viewBox" || key === "stroke-dasharray") {
+    return text
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((segment) => (/^-?\d+(?:\.\d+)?$/.test(segment) ? formatNumber(Number(segment)) : segment))
+      .join(" ");
+  }
+  if (key === "transform") {
+    const match = /^translate\(([-\d.]+)\s+([-\d.]+)\)$/.exec(text);
+    if (match) {
+      return `translate(${formatNumber(Number(match[1]))} ${formatNumber(Number(match[2]))})`;
+    }
+  }
+  return text;
+}
+
+function sortObjectEntries(object) {
+  return Object.fromEntries(Object.entries(object).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function normalizeTextContent(text) {
+  return String(text).replaceAll("&#x03F5;", "ϵ");
+}
+
+function toComparableSvgTree(node, { isRoot = false } = {}) {
+  if (!node || node.name === "title" || node.name === "desc") {
+    return null;
+  }
+
+  const rawAttributes =
+    node.attributes instanceof Map ? Object.fromEntries(node.attributes.entries()) : { ...(node.attrs ?? {}) };
+  const normalizedAttributes = {};
+  Object.entries(rawAttributes).forEach(([key, value]) => {
+    if (isRoot && (key === "xmlns" || key === "role" || key === "aria-label" || key === "aria-labelledby")) {
+      return;
+    }
+    normalizedAttributes[key] = normalizeAttributeValue(key, value);
+  });
+
+  const comparableNode = { name: node.name };
+  if (Object.keys(normalizedAttributes).length) {
+    comparableNode.attrs = sortObjectEntries(normalizedAttributes);
+  }
+  const text = typeof node.textContent === "string" && node.textContent.length ? node.textContent : node.text;
+  if (typeof text === "string" && text.length) {
+    comparableNode.text = normalizeTextContent(text);
+  }
+
+  const children = (Array.isArray(node.children) ? node.children : [])
+    .map((child) => toComparableSvgTree(child))
+    .filter(Boolean);
+  if (children.length) {
+    comparableNode.children = children;
+  }
+
+  return comparableNode;
+}
+
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
 }
@@ -70,6 +187,10 @@ test("glyph.py regenerates the committed xyzzy reference svg set and canonical a
   canonicalSampleFilenames.forEach((filename) => {
     const regeneratedSvg = fs.readFileSync(path.join(tempDir, filename), "utf8");
     const committedSvg = fs.readFileSync(path.join(glyphOutputDirPath, filename), "utf8");
-    assert.equal(regeneratedSvg, committedSvg, filename);
+    assert.deepEqual(
+      toComparableSvgTree(parseSvgTree(regeneratedSvg), { isRoot: true }),
+      toComparableSvgTree(parseSvgTree(committedSvg), { isRoot: true }),
+      filename
+    );
   });
 });

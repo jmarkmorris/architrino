@@ -65,7 +65,6 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`icebox`](../deferred/proof-check.md) | Icebox | — | — | — |
 | — | [`composer`](../observer/composer.md) | Composer | — | — | — |
 | — | [`pdgfeed`](../observer/pdgfeed.md) | PDG | — | — | — |
-| — | [`glyph`](../observer/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../observer/viewports.md) | Viewports | — | — | — |
 | — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |
