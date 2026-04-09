@@ -5,7 +5,7 @@
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [composer](composer.md), [reaction](old-reaction.md), [xyzzy](xyzzy.md), [solver](old-solver.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [composer](composer.md), [combo](combo.md), [xyzzy](xyzzy.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
@@ -15,7 +15,7 @@ This document defines the overall architectural approach for incorporating dedic
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated apps such as Composer, Reaction, and Xyzzy as independent runtimes within one repo;
+- the role of dedicated apps such as Composer, Combo, and Xyzzy as independent runtimes within one repo;
 - the rules for app boundaries, shared code, and cross-app exchange;
 - the modularity rules that keep app growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
@@ -29,12 +29,12 @@ It does not own:
 
 ## Current State
 
-- The codebase already has separate `composer.html` and `reaction.html` entrypoints.
+- The codebase already has separate `composer.html` and legacy `reaction.html` entrypoints.
 - The main web app already launches those entrypoints from the scene network rather than treating everything as one runtime mode.
-- Reaction now owns a meaningful standalone app shell and much of its app-specific composition.
+- A legacy prototype Reaction runtime still exists in code, but it no longer defines the intended forward process.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
-- The Composer/Reaction boundary is clearer than before; the main remaining structural debt is concentrated in oversized shared roots and broad coordinator files.
-- Reaction's built-in library is now a request manifest plus runtime solve call rather than a generated solved-document catalog, which is closer to the intended explicit request/result seam.
+- The forward architectural split is now clearer in docs: `pdgfeed -> combo -> xyzzy -> composer`.
+- The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect the legacy prototype path.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
@@ -49,9 +49,11 @@ The intended shape is:
 - one repo;
 - one main Architrino discovery surface;
 - one Composer runtime;
-- one Reaction runtime;
+- one Combo runtime;
 - one Xyzzy runtime;
 - and explicit data boundaries between those runtimes.
+
+Legacy prototype runtimes may remain in the repo during transition, but they should not define the intended long-term split.
 
 This is not a multi-product split. It is one product with a launcher/discovery layer and dedicated tools that open into their own app runtimes when the user enters them.
 
@@ -70,7 +72,7 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated apps such as Composer, Reaction, and Xyzzy should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated apps such as Composer, Combo, and Xyzzy should be treated as standalone runtimes within the overall Architrino experience.
 
 Each dedicated app should own:
 
@@ -104,7 +106,12 @@ Not allowed:
 
 When dedicated apps exchange information, the exchange should happen through a versioned contract rather than through shared executable helpers.
 
-For the current Composer/Reaction split, the intended bridge remains `reaction-flow/v1`.
+For the intended forward solve/publication chain:
+
+- `pdgfeed` emits explicit upstream request data;
+- Combo owns solve, review, acceptance, and publication;
+- Xyzzy owns final `xyzzy/v1` documents and direct authored-surface editing;
+- and Composer owns downstream observer-stage staging and presentation.
 
 ### Composition Roots And Ownership
 
@@ -176,11 +183,12 @@ The main web app should hand off to dedicated apps through route, scene, or laun
 
 Dedicated apps should talk through versioned data contracts.
 
-For the current Composer/Reaction architecture, that means:
+For the intended Combo/Xyzzy/Composer architecture, that means:
 
-- Reaction owns conservative authoring and accepted output;
+- Combo owns accepted solve state and publication;
+- Xyzzy owns the final authored-surface document boundary;
 - Composer owns downstream staging and explanatory presentation;
-- and the connection between them is explicit data rather than shared runtime logic.
+- and the connections between them are explicit data rather than shared runtime logic.
 
 Other dedicated-app relationships should follow the same rule:
 
@@ -214,7 +222,8 @@ The architecture should keep the following checks in place:
 
 - forbidden cross-import checks;
 - contract fixture validation;
-- Reaction export tests;
+- Combo publication-contract tests;
+- Xyzzy document validation tests;
 - Composer import tests;
 - and smoke tests proving each app boots independently.
 
@@ -226,13 +235,12 @@ Status: `active`
 
 Current:
 
-- standalone launch routing already exists for `composer` and `reaction_designer`;
-- Reaction already boots through `src/apps/reaction/main.js`;
+- standalone launch routing already exists for `composer` and the remaining prototype runtimes;
 - but `src/apps/composer/main.js` still hands control back to `app.js`.
 
 Objective:
 
-- make the main web app a launcher and discovery surface only, with Composer and Reaction each owning their own runtime path.
+- make the main web app a launcher and discovery surface only, with Composer and the forward dedicated apps each owning their own runtime path.
 
 ### 2. Keep Cross-App Exchange Contract-First
 
@@ -240,8 +248,8 @@ Status: `active`
 
 Current:
 
-- `reaction-flow/v1` export/import runtimes, schemas, examples, and contract tests are already in place;
-- Composer consumes the handoff without importing Reaction runtime code.
+- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> combo -> xyzzy -> composer` chain;
+- and Composer already consumes upstream handoff data without importing upstream runtime code.
 
 Objective:
 
@@ -253,7 +261,7 @@ Status: `next`
 
 Current:
 
-- standalone launch tests, contract tests, and the Composer/Reaction boundary checker already exist;
+- standalone launch tests, contract tests, and boundary checks already exist;
 - but the boundary checker is not part of the git-hook audit path.
 
 Objective:
@@ -280,7 +288,7 @@ Status: `pending`
 Current:
 
 - both apps now have substantial `src/apps/*` module families;
-- Composer still relies more heavily on shared `src/runtime/` surfaces than Reaction does.
+- Composer still relies more heavily on shared `src/runtime/` surfaces than the intended app-owned pattern does.
 
 Objective:
 
@@ -354,9 +362,8 @@ Practical order:
 
 ## Related Priorities
 
-- [composer-reaction](observer.md)
+- [observer](observer.md)
 - [composer](composer.md)
-- [reaction](old-reaction.md)
+- [combo](combo.md)
 - [xyzzy](xyzzy.md)
-- [solver](old-solver.md)
 - [pdgfeed](pdgfeed.md)

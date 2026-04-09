@@ -334,17 +334,17 @@ That language could eventually support:
 - semantic comparison between assemblies;
 - and a shared symbolic layer between theory notes, scenes, and authored interactive tools.
 
-## First reaction-solver glyph vocabulary
+## First solve-authoring glyph vocabulary
 
-The general 3D-to-SVG glyph language above still needs a first concrete vocabulary for the reaction solver.
+The general 3D-to-SVG glyph language above still needs a first concrete vocabulary for solve-authoring surfaces.
 
-That first vocabulary should be deliberately compact and editor-friendly. Here compact means a reduced, authoring-facing presentation variant rather than a new term from the underlying geometry or dynamics. It is not trying to show every detail of a full assembly glyph at once. It is trying to give the solver a small, legible symbolic language for choosing binary state quickly and consistently.
+That first vocabulary should be deliberately compact and editor-friendly. Here compact means a reduced, authoring-facing presentation variant rather than a new term from the underlying geometry or dynamics. It is not trying to show every detail of a full assembly glyph at once. It is trying to give Combo-, Xyzzy-, and related authoring surfaces a small, legible symbolic language for choosing binary state quickly and consistently.
 
 The current implementation target is therefore narrower than some earlier drafts: the binary glyph layer is now stable enough to implement, while the whole-quark color layer should remain provisional until the slot/axis relation is closed more cleanly.
 
 ### Design split
 
-The first-pass reaction glyph grammar should separate three concerns:
+The first-pass binary glyph grammar for solve-authoring surfaces should separate three concerns:
 
 - **binary structure**;
 - **binary axial state**;
@@ -362,7 +362,7 @@ This keeps the symbol readable and prevents any future quark-color system from c
 
 ### Canonical binary orientation
 
-For the first reaction-solver binary glyph, use a canonical 2D orientation:
+For the first solve-authoring binary glyph, use a canonical 2D orientation:
 
 - the binary orbit is a **horizontal purple ellipse**;
 - the binary axis is a **vertical purple line** through the center;
@@ -378,7 +378,7 @@ That gives a stable authored reading order:
 
 ### Full binary axial-state set
 
-When the reaction solver needs the full authored state of a binary, it should distinguish all four top/bottom axial assignments:
+When an authoring or review surface needs the full authored state of a binary, it should distinguish all four top/bottom axial assignments:
 
 - `e/e`
 - `e/p`
@@ -417,7 +417,7 @@ So the reduced three-state set becomes:
 - `p/e`
 - `p/p`
 
-This should be a deliberate rule rather than an incidental renderer choice, so the same neutral representative appears consistently across menus, docs, and solver views.
+This should be a deliberate rule rather than an incidental renderer choice, so the same neutral representative appears consistently across menus, docs, and authored views.
 
 ### Whole-quark color is deferred
 
@@ -438,7 +438,7 @@ So this note should treat:
 
 ### Compact chip behavior
 
-In the reaction solver menu, these should appear as compact clickable chips.
+In solve-authoring menus, these should appear as compact clickable chips.
 
 The binary axial-state chips should show:
 
@@ -455,7 +455,7 @@ Important rule:
 
 ### First-pass semantic fields
 
-The reduced reaction-solver glyph vocabulary should introduce explicit semantic fields like:
+The reduced solve-authoring glyph vocabulary should introduce explicit semantic fields like:
 
 ```json
 {
@@ -490,21 +490,21 @@ For a bare neutral-binary tile, the same object can suppress axial-architrino la
 
 ### Relationship to the broader glyph system
 
-These reaction-solver glyphs should be treated as a **reduced editor vocabulary** derived from the broader glyph system, not as a competing icon set.
+These solve-authoring glyphs should be treated as a **reduced editor vocabulary** derived from the broader glyph system, not as a competing icon set.
 
 In other words:
 
 - the general glyph system still owns the full 3D semantic assembly model;
-- the solver glyph chips are compact projections of that semantic model for authoring tasks;
+- the authoring glyph chips are compact projections of that semantic model for authoring tasks;
 - and both should share the same underlying semantic fields wherever possible.
 
 ### Runtime ownership
 
 In the current architecture, this note defines shared glyph semantics and vocabulary guidance, not a standalone built-in renderer.
 
-The live renderers are app-local JavaScript runtimes:
+The live renderers are app-local JavaScript runtimes. The current prototype solve-authoring renderer still lives in the legacy Reaction app tree, while Xyzzy already has its own app-local renderer:
 
-- Reaction-side binary glyph rendering for authoring surfaces lives in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
+- Prototype solve-authoring binary glyph rendering currently lives in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
 - Xyzzy tile and review glyph rendering lives in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) and is driven by the shared Xyzzy JSON catalogs at [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
 - [glyph.py](../../../scripts/glyphs/glyph.py) and the checked-in SVG outputs under `scripts/glyphs/` are reference-export and drift-comparison artifacts only.
 
@@ -512,13 +512,13 @@ The live renderers are app-local JavaScript runtimes:
 
 The current concrete implementation is split across shared data, app-local JavaScript renderers, and reference exporters:
 
-- Reaction builds live binary glyph SVG in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
+- The current prototype solve-authoring runtime builds live binary glyph SVG in [ReactionBinaryGlyphRuntime.js](../../../src/apps/reaction/ReactionBinaryGlyphRuntime.js).
 - Xyzzy builds live tile and binary-glyph SVG in [XyzzyTileSvgRuntime.js](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) from the shared catalogs in [xyzzy-tiles.json](../../../src/apps/xyzzy/xyzzy-tiles.json) and [xyzzy-review-groups.json](../../../src/apps/xyzzy/xyzzy-review-groups.json).
 - [glyph.py](../../../scripts/glyphs/glyph.py) emits derived reference SVG artifacts for comparison and review, including outputs such as [glyph-binary-bare.svg](../../../scripts/glyphs/glyph-binary-bare.svg), [glyph-binary-negative.svg](../../../scripts/glyphs/glyph-binary-negative.svg), [glyph-binary-neutral.svg](../../../scripts/glyphs/glyph-binary-neutral.svg), [glyph-binary-positive.svg](../../../scripts/glyphs/glyph-binary-positive.svg), and [quark-glyph-prototype.svg](../../../scripts/glyphs/quark-glyph-prototype.svg).
 
 The implemented surface now covers:
 
-- Reaction-side binary glyph construction for authoring/runtime use;
+- prototype solve-authoring binary glyph construction for current runtime use;
 - Xyzzy-side browser SVG rendering from shared JSON catalogs;
 - one bare neutral-binary tile;
 - the full four-state axial set;
@@ -531,14 +531,14 @@ The next practical implementation target should be:
 
 - a reference schema for the binary glyph object;
 - a data-driven renderer rule in the owning JavaScript runtimes that can switch between the full four-state binary set and the reduced `e/e`, `p/e`, `p/p` set;
-- and a composer-side binary picker that consumes the same semantic fields as the Reaction-side renderer rather than introducing a separate glyph engine.
+- and a composer-side binary picker that consumes the same semantic fields as the current prototype renderer and future app-local authoring renderers rather than introducing a separate glyph engine.
 
 ## Immediate next steps
 
 Natural follow-on work from this note would be:
 
 - a reference JSON schema for `binary_glyph`;
-- alignment between Reaction-side binary-glyph objects and any future shared catalog form;
+- alignment between current prototype binary-glyph objects, Xyzzy catalogs, and any future shared catalog form;
 - a composer-side glyph editor surface;
 - continued drift checks that keep the shared semantic/catalog inputs, the JavaScript renderers, and the reference SVG exports in sync;
 - a canonical library of reference assemblies for the first binary vocabulary;
@@ -548,7 +548,7 @@ Natural follow-on work from this note would be:
 
 - [3x3](../3x3/3x3.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
-- [composer-reaction](./observer.md)
+- [observer](./observer.md)
 - [viewports](./viewports.md)
 
 ## Related AAA Notes

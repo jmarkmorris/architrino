@@ -3,7 +3,7 @@
 ## LLM Instructions
 
 - Keep this document focused on Combo as the next-generation solver app paired with [xyzzy](./xyzzy.md).
-- Treat the current `reaction` app and current solver as prototypes and learning references only, not as compatibility targets.
+- Treat the remaining prototype solve/review runtimes and notes as learning references only, not as compatibility targets.
 - Re-evaluate rules from first principles rather than preserving legacy UI artifacts, anchor conventions, or document shapes by inertia.
 - Keep `Design` about durable boundaries, solve-state concepts, and review/publication workflow ownership rather than temporary migration tactics.
 - Keep `Priorities` ordered as the active work queue.
@@ -29,15 +29,15 @@ It does not own:
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
 - Xyzzy tile grammar, placement grammar, manifest consumption, or direct object editing that belong in [xyzzy](./xyzzy.md);
 - observer-stage presentation/runtime behavior that belongs downstream of accepted Xyzzy output;
-- or compatibility obligations to the prototype `reaction-flow/v1`, legacy Reaction canvas state, or legacy solver projection behavior unless those are intentionally re-adopted on their own merits.
+- or compatibility obligations to legacy prototype handoff contracts, canvas state, or projection behavior unless those are intentionally re-adopted on their own merits.
 
 ## Current State
 
 - There is no dedicated Combo app runtime yet.
-- The current `reaction` app and current solver together act as the prototype solve/review flow.
-- [xyzzy](./xyzzy.md) now defines the downstream authored-surface boundary more clearly than the old Reaction flow did.
+- Legacy prototype solve/review runtimes still exist as learning references in code and docs.
+- [xyzzy](./xyzzy.md) now defines the downstream authored-surface boundary more clearly than the prototype flow did.
 - [pdgfeed](./pdgfeed.md) already exists as an upstream request-producing component.
-- The old solver contracts, old Reaction surface grammar, and old projection adapters are useful learning references, but they should not dictate Combo structure by default.
+- Legacy solve contracts, prototype surface grammar, and older projection adapters are useful learning references, but they should not dictate Combo structure by default.
 - The next major design task is therefore not migration glue. It is defining Combo's native request model, native search model, native review boundary, and native publication path into Xyzzy.
 
 ## Design
@@ -56,9 +56,9 @@ The intended high-level flow is:
 - Combo publishes a final `xyzzy/v1` document;
 - and Xyzzy renders or edits that final authored-surface document.
 
-Combo should therefore replace the current solver-app role.
+Combo should therefore replace the legacy prototype solve/review role.
 
-Xyzzy should therefore replace the current Reaction-app role.
+Xyzzy should therefore replace the legacy prototype final authoring role.
 
 ### Foundational Stance
 
@@ -66,7 +66,7 @@ Combo should be designed from ground zero.
 
 That means:
 
-- no obligation to preserve legacy Reaction lane widgets, anchor ids, operator UI shapes, or import/export conventions merely because they exist;
+- no obligation to preserve legacy prototype lane widgets, anchor ids, operator UI shapes, or import/export conventions merely because they exist;
 - no obligation to preserve the old split between browser solver behavior and external solver behavior;
 - no obligation to preserve prototype request/result contracts unless they still serve the new architecture cleanly;
 - and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream Xyzzy boundary.
@@ -604,7 +604,7 @@ The search design should specify:
 
 The search model should remain planner-first rather than surface-first.
 
-The related search material in [solver](./old-solver.md) is relevant here as neighboring groundwork, not as a finished Combo spec.
+Related search material from the legacy prototype notes remains useful neighboring groundwork, but it is not a finished Combo spec.
 
 This limited geometry should be exploited aggressively.
 
@@ -1621,7 +1621,6 @@ Combo should not:
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
 - [xyzzy](./xyzzy.md) owns the final tile surface, placement grammar, and Xyzzy-side document model.
-- [solver](./old-solver.md) carries related search-strategy and branch-state design material.
 - [app-architecture](app-architecture.md) owns the cross-app boundary and modularity rules that apply here.
 
 ## Priorities
@@ -1633,7 +1632,6 @@ No active items right now.
 - [observer](./observer.md)
 - [pdgfeed](./pdgfeed.md)
 - [xyzzy](./xyzzy.md)
-- [solver](./old-solver.md)
 - [app-architecture](app-architecture.md)
 
 ## Deferred Priorities

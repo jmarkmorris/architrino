@@ -34,7 +34,7 @@ It does not own:
 
 - low-level reaction solving;
 - PDG channel ingest;
-- or live cross-app runtime behavior with Reaction.
+- or live cross-app runtime behavior with upstream authoring apps.
 
 ## Current State
 
@@ -47,10 +47,10 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer can now ingest a versioned Reaction-owned handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
-- The `reaction-flow/v1` intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
-- Reaction's request-only built-in library and solve-on-select behavior stay entirely upstream of Composer; Composer still only sees accepted `reaction-flow/v1` handoff data.
-- The current import and contract coverage is still centered on the baseline reaction-flow fixture, so downstream particle-family-specific coverage remains thinner than the upstream Reaction and solver tests.
+- The composer can now ingest a versioned upstream handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
+- The current legacy handoff intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
+- Upstream request loading, solving, review, and publication stay entirely outside Composer; Composer only sees accepted handoff data.
+- The current import and contract coverage is still centered on the legacy prototype handoff fixture, so downstream particle-family-specific coverage remains thinner than the intended Combo/Xyzzy path requires.
 
 ## Design
 
@@ -167,7 +167,7 @@ That means:
 
 - authored scene documents and local drafts;
 - assembly, path, and timing data authored directly in Composer;
-- imported reaction-flow handoff data from Reaction;
+- imported accepted Xyzzy output or equivalent downstream staging contracts derived from it;
 - and referenced media assets for overlays and editorial material.
 
 ### Outputs
@@ -179,14 +179,14 @@ That means:
 
 ### Upstream And Downstream Boundaries
 
-Composer should consume a versioned Reaction-owned handoff document and translate it into Composer-owned scene state.
+Composer should consume accepted Xyzzy output or an equivalent explicit downstream staging contract derived from it and translate that data into Composer-owned scene state.
 
 Composer should not:
 
 - solve the reaction again;
-- consume reaction library request manifests or live solver selections directly;
-- import Reaction runtime code to perform the handoff;
-- or depend on shared live UI state across the Composer/Reaction boundary.
+- consume Combo review state or live upstream request selections directly;
+- import Combo or Xyzzy runtime code to perform the handoff;
+- or depend on shared live UI state across the upstream/downstream app boundary.
 
 The Composer-side intake should be strong enough to receive:
 
@@ -198,8 +198,8 @@ The Composer-side intake should be strong enough to receive:
 
 ### Neighboring Components
 
-- [reaction](./old-reaction.md) owns the conservative authoring workflow that feeds Composer.
-- [solver](./old-solver.md) owns Reaction-side solve logic and should remain upstream.
+- [combo](./combo.md) owns solve review, acceptance, and publication upstream of Composer.
+- [xyzzy](./xyzzy.md) owns the final authored surface and `xyzzy/v1` document model that should feed Composer.
 - [pdgfeed](./pdgfeed.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
 - [app-architecture](app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
 - [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
@@ -225,7 +225,7 @@ Status: `active`
 
 Current:
 
-- framing normalization, required/optional assembly targeting, autoscale math, and Reaction observer-hint import are already live;
+- framing normalization, required/optional assembly targeting, autoscale math, and upstream observer-hint import are already live;
 - but there is still no compact author-facing UI for editing that model.
 
 Objective:
@@ -244,18 +244,18 @@ Objective:
 
 - turn `Observer` into a true timeline object and either implement `Audio` or remove its placeholder path until it is real.
 
-### 4. Expand Contract-Driven Import Coverage For Downstream Reaction Content
+### 4. Expand Contract-Driven Import Coverage For Downstream Authored-Surface Content
 
 Status: `next`
 
 Current:
 
-- Composer already consumes `reaction-flow/v1`, and the neutron baseline is covered by schema and import tests;
-- downstream coverage is still thin for mesons and newer assemblies such as `Noether Pair`.
+- Composer already consumes the current upstream handoff path, and the neutron baseline is covered by schema and import tests;
+- downstream coverage is still thin for newer assemblies and for the eventual accepted-Xyzzy publication path.
 
 Objective:
 
-- prove that Composer stays a pure contract consumer as upstream particle and assembly coverage grows.
+- prove that Composer stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
 
 ### 5. Move More Editing Onto Canonical Structure Transforms
 
@@ -272,9 +272,9 @@ Objective:
 
 ## Related Priorities
 
-- [composer-reaction](./observer.md)
-- [reaction](./old-reaction.md)
-- [solver](./old-solver.md)
+- [observer](./observer.md)
+- [combo](./combo.md)
+- [xyzzy](./xyzzy.md)
 - [pdgfeed](./pdgfeed.md)
 - [app-architecture](app-architecture.md)
 - [viewports](viewports.md)

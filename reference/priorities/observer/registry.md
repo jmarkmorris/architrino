@@ -1,6 +1,10 @@
-# Reaction Registry
+# Legacy Reaction Registry Snapshot
 
-This document is the current code-backed snapshot of the Reaction object registry.
+This document is the current code-backed snapshot of the legacy Reaction object registry.
+
+It remains useful as a prototype reference and code inventory.
+
+It does not define the forward Combo/Xyzzy architecture, which now lives in [combo](./combo.md) and [xyzzy](./xyzzy.md).
 
 The canonical data lives in:
 

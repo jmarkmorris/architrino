@@ -3,14 +3,14 @@
 ## LLM Instructions
 
 - Keep this document focused on PDG-specific ingest, normalization, proposal review, and handoff preparation.
-- Do not restate generic Reaction solver behavior here except where the PDG layer depends on it.
+- Do not restate Combo solve behavior or legacy prototype solve behavior here except where the PDG layer depends on the explicit request boundary.
 - Keep `Priorities` ordered as the active work queue.
 - Keep `Design` about durable component boundaries, not speculative product sprawl.
-- Treat Composer as downstream of accepted Reaction output, not as a participant in PDG ingest logic.
+- Treat downstream publication and staging as Combo/Xyzzy/Composer concerns, not as part of PDG ingest logic.
 
 ## Purpose
 
-The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into solver-ready state, and produces candidate proposals for Reaction-side review.
+The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into explicit solve-request state, and produces candidate proposals for Combo-side review.
 
 It owns:
 
@@ -22,7 +22,8 @@ It owns:
 It does not own:
 
 - solver search rules or solver internals;
-- Reaction UI/runtime behavior;
+- Combo review/runtime behavior;
+- Xyzzy surface behavior;
 - Composer runtime behavior;
 - or downstream animation/export concerns.
 
@@ -34,23 +35,23 @@ It does not own:
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
 - `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and piping into the solver CLI.
-- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the solver-request seam, including that Reaction owns acceptance and Composer handoff stays downstream of accepted Reaction output.
+- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that Combo owns review and acceptance while Xyzzy and Composer stay downstream.
 - `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron, muon, pion, kaon, and B-meson solver-facing particle sets that are in the locked v1 registry.
 - Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, neutral-pion discovery cases, the first charged/neutral kaon discovery cases, and the first charged/neutral B-meson discovery cases when a local `pdg` installation is present.
 - Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
-- Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Reaction-side acceptance before any downstream handoff can be considered.
-- Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Reaction output.
-- Those emitted `solver-request/v1` payloads are now also the direct built-in-library inputs for the standalone reaction app; no pre-solved built-in Reaction JSON catalog is required.
+- Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Combo-side acceptance before any downstream handoff can be considered.
+- Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Combo publication.
+- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts; current prototype tooling may still consume them directly, but the intended forward path is Combo intake.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has a solver seam that PDG should feed.
-- There is not yet a finalized accepted-reaction payload path from PDG through Reaction into Composer handoff.
+- There is not yet a finalized accepted-publication payload path from PDG through Combo into Xyzzy and onward into Composer staging.
 - The current local fixture corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
@@ -63,9 +64,9 @@ The intended program shape is:
 
 1. connect to the local PDG database through the official `pdg` Python package;
 2. retrieve particles, branching fractions, decay products, subdecays, and related metadata;
-3. normalize that data into solver-owned seed and proposal records;
+3. normalize that data into explicit request-side seed and proposal records;
 4. rank or filter candidate proposals at the PDG layer;
-5. hand normalized state and provenance into Reaction and the solver seam.
+5. hand normalized state and provenance into Combo intake and the explicit upstream request seam.
 
 Routine ingest should not depend on live calls to the PDG website.
 
@@ -82,7 +83,7 @@ The Python program should keep these responsibilities distinct even in the first
 - provenance:
   records PDG edition, schema/release metadata, PDG Identifier, descriptions, and any limit or confidence semantics needed for review;
 - export boundary:
-  emits normalized data for the solver and Reaction-side review flow.
+  emits normalized data for Combo intake and upstream review flow.
 
 ### Implementation Baseline
 
@@ -130,7 +131,7 @@ The current CLI surface is:
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay` followed by `node scripts/solve-reaction.mjs content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json`;
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay` followed by the current prototype solve-core runner `node scripts/solve-reaction.mjs content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json`;
 - and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay | node scripts/solve-reaction.mjs`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
@@ -149,15 +150,15 @@ The manifest assigns sequential `batchId` values and records the PDG decay ident
 
 #### Frozen Manifest Sweep Workflow
 
-When the goal is to measure solver progress across many live PDG decays, the preferred path is the frozen-manifest sweep rather than the small built-in live-case list.
+When the goal is to measure solve-core progress across many live PDG decays, the preferred path is the frozen-manifest sweep rather than the small built-in live-case list.
 
 Recommended workflow:
 
 1. build a frozen live manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
 2. run `scripts/pdg-closure-sweep.mjs` against that frozen manifest, optionally in batches with `--cursor` plus `--limit`;
 3. read `/tmp` run artifacts such as `summary.json` and `report.txt`;
-4. treat analyzable/exportable manifest entries as the solver denominator;
-5. separate unsupported-particle discovery from solver no-solution or partial cases.
+4. treat analyzable/exportable manifest entries as the solve-core denominator;
+5. separate unsupported-particle discovery from no-solution or partial solve cases.
 
 Example full-manifest run:
 
@@ -175,10 +176,10 @@ How to interpret the sweep:
 
 - `exactClosures` are analyzable cases solved exactly;
 - `partialClosures` are analyzable cases where some products closed and some did not;
-- `noSolution` are analyzable cases where the solver could not close the reaction;
-- `discoveredTopUnsupportedParticles` is the particle-vocabulary priority list, not a solver-failure list.
+- `noSolution` are analyzable cases where the solve core could not close the reaction;
+- `discoveredTopUnsupportedParticles` is the particle-vocabulary priority list, not a solve-core failure list.
 
-For solver-progress reporting after each solve-rate change:
+For solve-core progress reporting after each solve-rate change:
 
 - rebuild the manifest;
 - rerun the sweep;
@@ -286,7 +287,7 @@ The ingest program should assume that the required package and database are alre
 
 ### Normalization Contract
 
-Normalization should target the solver's abstract state boundary, not a UI-shaped structure.
+Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
 
 The normalized output should include:
 
@@ -369,14 +370,14 @@ The first PDG version should also stay within these scope limits:
 
 ### Boundary Rules
 
-- PDG feeds the solver seam; it does not define a second solver.
+- PDG feeds the explicit Combo-intake solve seam; it does not define its own solve runtime.
 - PDG must not depend on Composer runtime code.
-- PDG must not bypass Reaction acceptance on the way to Composer.
+- PDG must not bypass Combo review and acceptance on the way to Xyzzy or Composer.
 - PDG should talk to downstream code through explicit normalized contracts.
 
 ### Proposal Review
 
-PDG needs an explicit upstream review boundary between raw proposal generation and Reaction acceptance.
+PDG needs an explicit upstream review boundary between raw proposal generation and Combo acceptance.
 
 That boundary should let ingest keep more than one normalized interpretation of the same PDG channel without pretending that rank alone is acceptance. The top-ranked candidate may be the default exportable choice, but review must still be able to preserve the rest of the candidate set, explain why the default was chosen, and mark certain alternatives as intentionally preferred or intentionally excluded.
 
@@ -405,7 +406,7 @@ The first review semantics should be:
 - reranking after new ingest should preserve explicit review decisions where they still apply;
 - and unsupported alternatives may remain visible in review but must not cross the solver seam.
 
-This review layer is still upstream of Reaction. It chooses among PDG-derived alternatives and preserves provenance; it does not author manual mappings, operator grammar, or Composer-facing output.
+This review layer is still upstream of Combo. It chooses among PDG-derived alternatives and preserves provenance; it does not author solve-review state, Xyzzy publication data, or Composer-facing output.
 
 ## Interfaces
 
@@ -418,7 +419,7 @@ This review layer is still upstream of Reaction. It chooses among PDG-derived al
 
 ### Outputs
 
-- normalized seed data for the Reaction solver;
+- normalized seed data for Combo intake;
 - candidate `solver-request/v1` payloads;
 - ranked candidate proposals;
 - proposal-review state;
@@ -426,9 +427,9 @@ This review layer is still upstream of Reaction. It chooses among PDG-derived al
 
 ### Neighboring Components
 
-- [solver](./old-solver.md) is the planning core this component should feed.
-- [reaction](./old-reaction.md) owns inspection, correction, manual override, and acceptance after PDG proposals are generated.
-- [composer](./composer.md) remains downstream of accepted Reaction output only.
+- [combo](./combo.md) is the solve-review and acceptance app this component should feed.
+- [xyzzy](./xyzzy.md) remains downstream of accepted Combo publication only.
+- [composer](./composer.md) remains downstream of accepted authored-surface output only.
 - [app-architecture](app-architecture.md) defines the app-boundary rule this component must respect.
 
 ### Deferred Feature: Package And Database Maintenance
@@ -473,6 +474,17 @@ Current:
 
 Objective:
 
-- keep solver-progress reporting tied to the frozen-manifest denominator as particle coverage grows.
+- keep solve-core progress reporting tied to the frozen-manifest denominator as particle coverage grows.
 
-### 3. migrate ~3 archie docs to reference.  there is one about the pdg package, and others that are development specific, like github, etc....
+### 3. Promote Remaining PDG Developer Notes Into `reference/`
+
+Status: `pending`
+
+Current:
+
+- some PDG-adjacent development notes still live outside `reference/`;
+- at least one covers the PDG package itself, while others are general development notes that should no longer live in AAA-facing locations.
+
+Objective:
+
+- move the remaining PDG-specific and development-specific notes into `reference/` so the editorial and developer boundaries stay clean.

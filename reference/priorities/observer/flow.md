@@ -1,15 +1,19 @@
-# Five-Lane Flow Transition
+# Legacy Five-Lane Prototype Flow
 
 ## LLM Instructions
 
 - Keep `Transition Plan` ordered as the current work queue, with the most important active item first.
 - Keep `Target Model` descriptive and stable; move task-shaped material into `Transition Plan`.
-- Treat this document as the lane-flow contract that both [solver](./old-solver.md) and [reaction](./old-reaction.md) must converge on.
-- Prefer describing the solver-owned JSON contract and the Reaction-side rendering/runtime consequences over local implementation detail.
+- Treat this document as a legacy prototype reference for the former five-lane solve/render transition.
+- Prefer describing the prototype contract and rendering consequences over local implementation detail.
 
 ## Purpose
 
-This document defines the transition from the current forward-only-but-skip-capable flow grammar to a strict five-lane handoff grammar in which every connection advances exactly one lane.
+This document records the former transition from a forward-only-but-skip-capable prototype flow grammar to a strict five-lane handoff grammar in which every connection advances exactly one lane.
+
+It remains useful as migration history and prototype reference material.
+
+It does not define the forward `pdgfeed -> combo -> xyzzy -> composer` process. For the intended active path, see [combo](./combo.md), [xyzzy](./xyzzy.md), and [observer](./observer.md).
 
 The target lane sequence is:
 
@@ -67,7 +71,7 @@ That means:
 
 - no modified title-border styling for opened composites;
 - no special visual “opened composite” title treatment;
-- and no solver or Reaction-side state whose purpose is to decorate a composite title tile as dissociated.
+- and no legacy solve-core or legacy review-runtime state whose purpose is to decorate a composite title tile as dissociated.
 
 If a composite contributes flow, that fact is shown by the explicit lane-1 row groups and their downstream connections, not by a modified title shell.
 
@@ -158,26 +162,26 @@ Goal:
 
 - define the strict `1 -> 2 -> 3 -> 4 -> 5` law as the only valid lane progression;
 - remove the older rule that allowed forward skipping;
-- and make that law explicit in solver docs, Reaction docs, and `reaction-flow/v1` / `solver-result/v1` validation.
+- and make that law explicit in the legacy prototype docs and `reaction-flow/v1` / `solver-result/v1` validation.
 
 Work:
 
-- update the solver flow contract so no solved mapping may skip a lane;
-- update the Reaction-side validation so any skip is rejected immediately;
+- update the legacy solve-core flow contract so no solved mapping may skip a lane;
+- update the legacy review-runtime validation so any skip is rejected immediately;
 - update any connection-policy helpers that currently allow `1 -> 3`, `1 -> 5`, `2 -> 4`, or `3 -> 5`;
 - update contracts so lane-1 whole composites are not valid moving source endpoints;
 - and add a shared validation helper that checks lane delta equals exactly `+1`.
 
 Done when:
 
-- both solver and Reaction treat lane skipping as invalid;
+- both legacy solve-core and legacy review-runtime treat lane skipping as invalid;
 - solved library entries that skip lanes fail validation;
 - and the lane rule is described consistently in one place.
 
 Result:
 
-- `reaction-flow/v1` now requires explicit five-lane placement and adjacent-only mappings on the accepted Reaction-side path;
-- Reaction import/export and mapping validation reject skip-lane and same-lane routes;
+- legacy `reaction-flow/v1` now requires explicit five-lane placement and adjacent-only mappings on the accepted prototype path;
+- legacy prototype import/export and mapping validation reject skip-lane and same-lane routes;
 - and temporary legacy compatibility is isolated to migration-only code rather than the accepted validation path.
 
 ### 2. Introduce `Pass Thru` As A First-Class Operator
@@ -232,9 +236,9 @@ Done when:
 
 Current note:
 
-- accepted `reaction-flow/v1` examples now use explicit five-lane documents;
-- the live Reaction library no longer depends on pre-built solved artifacts and instead solves request fixtures on selection;
-- and the raw solver still needs a native lane-complete planning pass so request-backed library solves and accepted exports stay identical without any compatibility rewrite.
+- accepted legacy `reaction-flow/v1` examples now use explicit five-lane documents;
+- the live prototype library no longer depends on pre-built solved artifacts and instead solves request fixtures on selection;
+- and the raw prototype solve-core still needs a native lane-complete planning pass so request-backed library solves and accepted exports stay identical without any compatibility rewrite.
 
 ### 4. Define Lane-3 Identity Rules
 
@@ -242,7 +246,7 @@ Status: `active`
 
 Goal:
 
-- pin down what the lane-3 participant means in each family so the solver can emit stable intermediate identities.
+- pin down what the lane-3 participant means in each family so the legacy solve-core can emit stable intermediate identities.
 
 Work:
 
@@ -254,22 +258,22 @@ Work:
 
 Done when:
 
-- the solver has one deterministic naming and identity rule for lane-3 intermediates;
-- and the Reaction app only renders those ids instead of inventing local stand-ins.
+- the legacy solve-core has one deterministic naming and identity rule for lane-3 intermediates;
+- and the legacy prototype runtime only renders those ids instead of inventing local stand-ins.
 
 Current note:
 
-- Reaction now accepts explicit lane-3 identities and does not invent skipped middle participants during normal import/export;
+- the legacy prototype runtime now accepts explicit lane-3 identities and does not invent skipped middle participants during normal import/export;
 - migration code currently generates stable `flow_migration_*` intermediates where legacy accepted documents lacked a strict lane-3 carry participant;
-- native solver-owned naming for those carry-through intermediates still needs to replace the migration-era fallback names.
+- native solve-core-owned naming for those carry-through intermediates still needs to replace the migration-era fallback names.
 
-### 5. Simplify Reaction Rendering To Adjacent-Lane Routing
+### 5. Simplify Legacy Prototype Rendering To Adjacent-Lane Routing
 
 Status: `completed`
 
 Goal:
 
-- reduce the Reaction app to simple adjacent-lane connection rendering.
+- reduce the legacy prototype runtime to simple adjacent-lane connection rendering.
 
 Work:
 
@@ -282,12 +286,12 @@ Work:
 
 Done when:
 
-- Reaction routing code no longer reasons about legal multi-lane jumps;
-- and user-authored or solver-authored mappings both obey the same adjacent-lane rule.
+- legacy prototype routing code no longer reasons about legal multi-lane jumps;
+- and user-authored or solve-core-authored mappings both obey the same adjacent-lane rule.
 
 Result:
 
-- Reaction mapping affordances now treat the next lane to the right as the only legal forward target;
+- legacy prototype mapping affordances now treat the next lane to the right as the only legal forward target;
 - target highlighting and validation are aligned with the adjacent-only rule;
 - and composite title styling no longer carries special dissociation-state semantics.
 
@@ -297,11 +301,11 @@ Status: `completed`
 
 Goal:
 
-- make accepted JSON documents fully reflect the five-lane model.
+- make accepted legacy JSON documents fully reflect the five-lane model.
 
 Work:
 
-- update solved-document import/export checks so `Pass Thru` is legal and skip-lane mappings are illegal;
+- update legacy solved-document import/export checks so `Pass Thru` is legal and skip-lane mappings are illegal;
 - regenerate contract examples to use explicit lane-2 and lane-4 operators;
 - regenerate composite-source examples so flow starts from lane-1 row groups rather than from whole-composite forward mappings;
 - update fixture documents that currently use direct forward skips;
@@ -309,14 +313,14 @@ Work:
 
 Done when:
 
-- accepted `reaction-flow/v1` documents carry the full five-lane path explicitly;
+- accepted legacy `reaction-flow/v1` documents carry the full five-lane path explicitly;
 - and the accepted example set contains no legacy skip-lane examples.
 
 Result:
 
 - accepted document schema/layout now records explicit participant lane placement and operator lanes `2` / `4`;
 - contract examples have been regenerated into explicit five-lane documents;
-- the live Reaction library now points at request fixtures rather than checked-in solved artifacts;
+- the live prototype library now points at request fixtures rather than checked-in solved artifacts;
 - and legacy accepted solved documents are migrated by regeneration rather than left in mixed skip-lane form.
 
 ### 7. Add Transition Regressions
@@ -325,12 +329,12 @@ Status: `completed`
 
 Goal:
 
-- keep the cutover safe while both solver and Reaction change together.
+- keep the cutover safe while both legacy solve-core and legacy prototype runtime change together.
 
 Required tests:
 
 - reject any mapping whose source lane and target lane differ by anything other than `+1`;
-- verify `Pass Thru` imports, renders, exports, and participates in solver output;
+- verify `Pass Thru` imports, renders, exports, and participates in legacy solve-core output;
 - verify unchanged catalyst flow becomes `lane 1 -> lane 2 -> lane 3 -> lane 4 -> lane 5`;
 - verify a lane-1 whole composite never appears as a forward-moving source endpoint;
 - verify lane-1 composite flow starts from explicit row-level `assembly.group` entries;
@@ -342,17 +346,17 @@ Required tests:
 
 Done when:
 
-- the lane law, the new operator, and the updated flow families are all covered by focused tests in both solver and Reaction layers.
+- the lane law, the new operator, and the updated flow families are all covered by focused tests in both legacy solve-core and legacy prototype-runtime layers.
 
 Result:
 
-- Reaction export, request-backed library solve/import, participant rendering, and Composer handoff tests now cover the adjacent-only lane law and explicit five-lane documents;
+- legacy prototype export, request-backed library solve/import, participant rendering, and Composer handoff tests now cover the adjacent-only lane law and explicit five-lane documents;
 - and the accepted example fixtures are checked against the strict lane-complete contract.
 
 ## Implementation Notes
 
-- Make the solver transition first at the contract level, even if the first implementation temporarily emits more verbose intermediate groups than the final polished model.
-- Keep Reaction simple: render the solver-owned map and reject invalid lane jumps rather than trying to repair them.
+- Make the prototype solve-core transition first at the contract level, even if the first implementation temporarily emits more verbose intermediate groups than the final polished model.
+- Keep the legacy prototype runtime simple: render the solve-core-owned map and reject invalid lane jumps rather than trying to repair them.
 - Do not preserve old skip-lane compatibility in the final validation path. If temporary compatibility is needed during migration, keep it behind isolated conversion code and remove it once fixtures are regenerated.
-- The current isolated compatibility path is the five-lane regeneration runtime used to migrate accepted legacy solved documents into strict `reaction-flow/v1`.
+- The current isolated compatibility path is the five-lane regeneration runtime used to migrate accepted legacy solved documents into strict legacy `reaction-flow/v1`.
 - Composer imports the explicit five-lane graph by collapsing it back to outer reactant/product assemblies and traced transfers rather than by importing every intermediate helper node as a scene assembly.

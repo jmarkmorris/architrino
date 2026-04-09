@@ -69,20 +69,20 @@ For v1, the first top band contains exactly two controls aligned at the top righ
 - a JSON document selector;
 - and a home button immediately to its right.
 
-The JSON document selector should use the same manifest-driven picker pattern as the reaction app library picker.
+The JSON document selector should use the same compact manifest-driven picker pattern as the prototype authored-surface library picker, but it should now be treated as a Xyzzy-owned control.
 
 That means:
 
 - it is a compact header control, not a side panel;
 - it shows the currently selected document title in the closed state;
-- it opens a dropdown listbox of available solver JSON documents;
-- it supports the same basic open, close, and select behavior as the reaction app picker;
+- it opens a dropdown listbox of available authored-surface JSON documents;
+- it supports the same basic open, close, and select behavior expected of a compact manifest picker;
 - and it is the only selector control permitted in the v1 header.
 
 The home button:
 
 - sits at the far top right of the first band;
-- uses the same home icon as the main web app home button and the reaction app home link;
+- uses the same home icon as the main web app home button;
 - and navigates to `./index.html`.
 
 The exact header control geometry and appearance for v1 is now fixed.
@@ -246,7 +246,7 @@ Those values are not optional approximations.
 
 The shared JSON catalog, the JavaScript runtime, the review page, and the reference generator should all use that same frame position exactly.
 
-For the baseline tile family, that bordered inner rounded square may use one of three canonical stroke colors drawn from the current reaction app palette:
+For the baseline tile family, that bordered inner rounded square may use one of three canonical stroke colors drawn from the current prototype palette:
 
 - red: `#ff5a4a`;
 - blue: `#2d8cff`;
@@ -294,7 +294,7 @@ Therefore, when different tile types are shown side by side in a review strip, t
 
 Xyzzy standard text tiles may use up to three short lines of text inside the centered `72px x 72px` bordered square.
 
-The baseline text inventory should be derived from the current reaction app tile vocabulary, but Xyzzy should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
+The baseline text inventory should be derived from the current prototype tile vocabulary, but Xyzzy should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
 
 The standard tile should not use corner ledger numbers.
 
@@ -372,9 +372,9 @@ Proton and neutron are the exception:
 | `Neutral`    | `B Meson`     | `d !b`       | white                                 | purple       |
 | `Neutral`    | `B Meson`     | `b !d`       | white                                 | purple       |
 
-These text forms cover the current reaction app tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
+These text forms cover the current prototype tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
 
-The reaction app binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this Xyzzy baseline.
+The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this Xyzzy baseline.
 
 For the three operator tiles `Associate`, `Dissociate`, and `Pass Thru`, line 1 and line 3 are not ordinary words.
 
@@ -443,7 +443,7 @@ The two committed charge-glyph tiles are:
 
 ### Binary Tiles
 
-The reaction app also uses a distinct binary-glyph tile that is not a standard three-line text tile.
+The current prototype authored-surface renderer also uses a distinct binary-glyph tile that is not a standard three-line text tile.
 
 That binary tile is drawn in an SVG view box of `120 x 120` units and then scaled into the baseline `72px x 72px` inner tile square.
 

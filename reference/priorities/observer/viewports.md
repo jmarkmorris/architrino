@@ -23,9 +23,9 @@ The author should feel like they are shaping observation, not operating a film r
 
 Another boundary should stay explicit too:
 
-- viewport tools are downstream of accepted Reaction handoff;
-- they should not solve the reaction again or repair missing reaction geometry;
-- and they should treat upstream reaction structure as authored input, not as something to reinterpret.
+- viewport tools are downstream of accepted Xyzzy output or an equivalent downstream staging contract derived from it;
+- they should not solve the upstream composition again or repair missing upstream geometry;
+- and they should treat upstream structure as authored input, not as something to reinterpret.
 
 ## Standard designs
 
@@ -257,9 +257,9 @@ The Architrino-specific improvement is to make the observer itself frame-aware, 
 
 ## Related Priorities
 
-- [composer-reaction](../observer/observer.md)
+- [observer](../observer/observer.md)
 - [composer](../observer/composer.md)
-- [reaction](./old-reaction.md)
+- [xyzzy](./xyzzy.md)
 - [ellipsoid](../ellipsoid/ellipsoid.md)
 
 ## Related AAA Notes
