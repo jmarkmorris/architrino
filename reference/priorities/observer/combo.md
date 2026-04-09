@@ -403,7 +403,7 @@ The v1 assembly table should be:
 | `proton` | `Proton` | lanes `1`, `3`, `5` | \((15, 21)\) | intact baryon carry-through is legal |
 | `electron` | `Electron` | lanes `1`, `3`, `5` | \((9, 3)\) | charged lepton assembly |
 | `electron_antineutrino` | `Electron Antineutrino` | lanes `1`, `3`, `5` | \((6, 6)\) | neutral lepton assembly |
-| `noether_pair` | `Noether Pair` | lane `1` explicit support reactant only | \((6, 6)\) | explicit weak-support carrier; not a lane-3 assembly in v1 |
+| `noether_pair` | `Noether Pair` | lane `1` explicit support reactant only | \((12, 12)\) | explicit weak-support carrier; not a lane-3 assembly in v1 |
 | `2h` | `2H` | lane `1` or lane `5` boundary augmentation only | \((6, 6)\) | anonymous two-core spacetime supplement |
 | `4h` | `4H` | lane `1` or lane `5` boundary augmentation only | \((12, 12)\) | anonymous four-core spacetime supplement |
 
@@ -413,14 +413,14 @@ The frozen v1 bookkeeping values should therefore include:
 - \(\mu(\mathrm{neutron}) = \mu(u) + 2\mu(d) = (18, 18)\);
 - \(\mu(\mathrm{electron}) = (9, 3)\);
 - \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\);
-- \(\mu(\mathrm{noether\_pair}) = \mu(\mathrm{2h}) = (6, 6)\);
+- \(\mu(\mathrm{noether\_pair}) = \mu(\mathrm{4h}) = (12, 12)\);
 - and \(\mu(\mathrm{4h}) = 2\mu(\mathrm{2h}) = (12, 12)\).
 
 Combo v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
 
 In particular:
 
-- `noether_pair` and `2h` share the same primitive counts;
+- `noether_pair` and `4h` share the same primitive counts;
 - but they remain different assemblies with different provenance meaning and lane-role rules;
 - and no normalization or ranking rule should collapse them into one symbol merely because their primitive ledgers match.
 
