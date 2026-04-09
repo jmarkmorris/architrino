@@ -1,11 +1,11 @@
-# App Architecture
+# pdgapps
 
 ## LLM Instructions
 
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [composer](composer.md), [combo](combo.md), [xyzzy](xyzzy.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [composer](composer.md), [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
@@ -15,7 +15,7 @@ This document defines the overall architectural approach for incorporating dedic
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated apps such as Composer, Combo, and Xyzzy as independent runtimes within one repo;
+- the role of dedicated apps such as Composer, pdgsolve, and pdgedit as independent runtimes within one repo;
 - the rules for app boundaries, shared code, and cross-app exchange;
 - the modularity rules that keep app growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
@@ -31,7 +31,7 @@ It does not own:
 
 - The codebase now has `composer.html` as the only active standalone app entrypoint in the main web surface.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
-- The forward architectural split is now clearer in docs: `pdgfeed -> combo -> xyzzy -> composer`.
+- The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> composer`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
@@ -47,8 +47,8 @@ The intended shape is:
 - one repo;
 - one main Architrino discovery surface;
 - one Composer runtime;
-- one Combo runtime;
-- one Xyzzy runtime;
+- one pdgsolve runtime;
+- one pdgedit runtime;
 - and explicit data boundaries between those runtimes.
 
 This is not a multi-product split. It is one product with a launcher/discovery layer and dedicated tools that open into their own app runtimes when the user enters them.
@@ -68,7 +68,7 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated apps such as Composer, Combo, and Xyzzy should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated apps such as Composer, pdgsolve, and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
 
 Each dedicated app should own:
 
@@ -105,8 +105,8 @@ When dedicated apps exchange information, the exchange should happen through a v
 For the intended forward solve/publication chain:
 
 - `pdgfeed` emits explicit upstream request data;
-- Combo owns solve, review, acceptance, and publication;
-- Xyzzy owns final `xyzzy/v1` documents and direct authored-surface editing;
+- pdgsolve owns solve, review, acceptance, and publication;
+- pdgedit owns final `pdgedit/v1` documents and direct authored-surface editing;
 - and Composer owns downstream observer-stage staging and presentation.
 
 ### Composition Roots And Ownership
@@ -179,10 +179,10 @@ The main web app should hand off to dedicated apps through route, scene, or laun
 
 Dedicated apps should talk through versioned data contracts.
 
-For the intended Combo/Xyzzy/Composer architecture, that means:
+For the intended pdgsolve/pdgedit/Composer architecture, that means:
 
-- Combo owns accepted solve state and publication;
-- Xyzzy owns the final authored-surface document boundary;
+- pdgsolve owns accepted solve state and publication;
+- pdgedit owns the final authored-surface document boundary;
 - Composer owns downstream staging and explanatory presentation;
 - and the connections between them are explicit data rather than shared runtime logic.
 
@@ -218,8 +218,8 @@ The architecture should keep the following checks in place:
 
 - forbidden cross-import checks;
 - contract fixture validation;
-- Combo publication-contract tests;
-- Xyzzy document validation tests;
+- pdgsolve publication-contract tests;
+- pdgedit document validation tests;
 - Composer import tests;
 - and smoke tests proving each app boots independently.
 
@@ -244,7 +244,7 @@ Status: `active`
 
 Current:
 
-- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> combo -> xyzzy -> composer` chain;
+- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> pdgsolve -> pdgedit -> composer` chain;
 - and Composer already consumes upstream handoff data without importing upstream runtime code.
 
 Objective:
@@ -360,6 +360,6 @@ Practical order:
 
 - [observer](observer.md)
 - [composer](composer.md)
-- [combo](combo.md)
-- [xyzzy](xyzzy.md)
+- [pdgsolve](pdgsolve.md)
+- [pdgedit](pdgedit.md)
 - [pdgfeed](pdgfeed.md)

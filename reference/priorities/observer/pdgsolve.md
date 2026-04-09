@@ -1,67 +1,67 @@
-# Combo App
+# pdgsolve App
 
 ## LLM Instructions
 
-- Keep this document focused on Combo as the solve/review app paired with [xyzzy](./xyzzy.md).
+- Keep this document focused on pdgsolve as the solve/review app paired with [pdgedit](./pdgedit.md).
 - Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document shapes by inertia.
 - Keep `Design` about durable boundaries, solve-state concepts, and review/publication workflow ownership rather than temporary migration tactics.
 - Keep `Priorities` ordered as the active work queue.
-- Do not restate low-level PDG ingest internals or Xyzzy tile-rendering internals except where Combo depends on them.
+- Do not restate low-level PDG ingest internals or pdgedit tile-rendering internals except where pdgsolve depends on them.
 
 ## Purpose
 
-Combo is the solve-and-review app.
+pdgsolve is the solve-and-review app.
 
-It sits between upstream request sources and downstream Xyzzy documents.
+It sits between upstream request sources and downstream pdgedit documents.
 
 It owns:
 
 - intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), fixtures, and direct developer input;
-- normalization of those requests into a Combo-owned solve problem;
+- normalization of those requests into a pdgsolve-owned solve problem;
 - combinatorial search over conservative solve candidates;
 - review and acceptance of candidate solve outcomes;
-- publication of accepted results into final `xyzzy/v1` documents;
-- and the workflow state that connects upstream request choice to downstream Xyzzy launch.
+- publication of accepted results into final `pdgedit/v1` documents;
+- and the workflow state that connects upstream request choice to downstream pdgedit launch.
 
 It does not own:
 
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
-- Xyzzy tile grammar, placement grammar, manifest consumption, or direct object editing that belong in [xyzzy](./xyzzy.md);
-- observer-stage presentation/runtime behavior that belongs downstream of accepted Xyzzy output;
+- pdgedit tile grammar, placement grammar, manifest consumption, or direct object editing that belong in [pdgedit](./pdgedit.md);
+- observer-stage presentation/runtime behavior that belongs downstream of accepted pdgedit output;
 - or downstream presentation/runtime behavior that belongs outside the solve/review boundary.
 
 ## Current State
 
-- There is no dedicated Combo app runtime yet.
-- [xyzzy](./xyzzy.md) now defines the downstream authored-surface boundary clearly.
+- There is no dedicated pdgsolve app runtime yet.
+- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly.
 - [pdgfeed](./pdgfeed.md) already exists as an upstream request-producing component.
-- The next major design task is therefore not migration glue. It is defining Combo's native request model, native search model, native review boundary, and native publication path into Xyzzy.
+- The next major design task is therefore not migration glue. It is defining pdgsolve's native request model, native search model, native review boundary, and native publication path into pdgedit.
 
 ## Design
 
 ### Role In The Product
 
-Combo should become the dedicated solve-and-review app that mates with Xyzzy.
+pdgsolve should become the dedicated solve-and-review app that mates with pdgedit.
 
 The intended high-level flow is:
 
 - `pdgfeed` or another upstream source emits a solve request;
-- Combo loads that request;
-- Combo runs the solve;
-- Combo reviews one or more candidate outcomes;
-- Combo accepts one outcome for publication;
-- Combo publishes a final `xyzzy/v1` document;
-- and Xyzzy renders or edits that final authored-surface document.
+- pdgsolve loads that request;
+- pdgsolve runs the solve;
+- pdgsolve reviews one or more candidate outcomes;
+- pdgsolve accepts one outcome for publication;
+- pdgsolve publishes a final `pdgedit/v1` document;
+- and pdgedit renders or edits that final authored-surface document.
 
 ### Foundational Stance
 
-Combo should be designed from ground zero.
+pdgsolve should be designed from ground zero.
 
 That means:
 
-- Combo should define its own lane widgets, anchor ids, operator UI shapes, request/result contracts, and review model based on solve semantics, reviewability, determinism, and the downstream Xyzzy boundary;
+- pdgsolve should define its own lane widgets, anchor ids, operator UI shapes, request/result contracts, and review model based on solve semantics, reviewability, determinism, and the downstream pdgedit boundary;
 - the internal design should not inherit accidental constraints from earlier surfaces or tooling splits;
-- and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream Xyzzy boundary.
+- and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream pdgedit boundary.
 
 Useful prior work may still inform:
 
@@ -70,24 +70,24 @@ Useful prior work may still inform:
 - useful fixture cases;
 - and examples of successful or failed closure families.
 
-UI artifacts should not define Combo's architecture.
+UI artifacts should not define pdgsolve's architecture.
 
 ### Runtime Shape
 
-The durable Combo shape should separate:
+The durable pdgsolve shape should separate:
 
 - request intake;
 - request normalization;
 - solve-core search;
 - candidate review;
 - acceptance/publication;
-- and downstream Xyzzy launch or persistence.
+- and downstream pdgedit launch or persistence.
 
 Large coordinator files may assemble those pieces, but they should not become the long-term home of solver semantics.
 
 ### Fundamental Solve Geometry
 
-Combo should start from one deliberately limited solve geometry.
+pdgsolve should start from one deliberately limited solve geometry.
 
 The core ordered strip is:
 
@@ -108,7 +108,7 @@ The assembly grammar is:
 - lanes 2 and 4 contain operators only;
 - and all normal solve progress moves left-to-right through adjacent lanes only.
 
-Combo should treat this as a combinatorial state graph, not as screen geometry.
+pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
 
@@ -127,7 +127,7 @@ For the current working direction, that means:
 - they are not arbitrary middle-lane insertions;
 - and they are not free-floating geometry owned by the renderer.
 
-For mathematical purposes, Combo should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
+For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
 
 The current spacetime-boundary family is the distinguished subset
 
@@ -139,7 +139,7 @@ Each assembly lane should be represented as a multiset vector in \(\mathbb{N}^{\
 
 If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the inventory at lane \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that lane.
 
-For the current working boundary policy, Combo should enumerate over the finite augmentation family
+For the current working boundary policy, pdgsolve should enumerate over the finite augmentation family
 
 $$
 \mathcal{B} = \{0, e_{\mathrm{2H}}, e_{\mathrm{4H}}\},
@@ -155,11 +155,11 @@ $$
 
 with effective reactant inventory \(R + b^{-}\) and effective product inventory \(T + b^{+}\).
 
-This boundary family can later widen, but Combo v1 should keep it finite and explicit.
+This boundary family can later widen, but pdgsolve v1 should keep it finite and explicit.
 
 ### Operator Semantics
 
-Combo should keep the operator family deliberately small.
+pdgsolve should keep the operator family deliberately small.
 
 `Pass Thru` means:
 
@@ -181,11 +181,11 @@ Combo should keep the operator family deliberately small.
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
 - and the total conserved ledger is preserved across the gather-and-assemble step.
 
-Combo should not widen the operator family casually.
+pdgsolve should not widen the operator family casually.
 
 The more precise the operator grammar is, the more tractable the search space becomes.
 
-Combo should model the nontrivial operators as finite law tables.
+pdgsolve should model the nontrivial operators as finite law tables.
 
 For dissociation, each assembly \(a \in \mathcal{A}\) has a finite set
 
@@ -209,7 +209,7 @@ The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixe
 
 Unary assembly laws should remain the default.
 
-But Combo may also introduce a small number of finite local cluster laws over explicit reactant-side multisets when exact provenance requires a jointly treated local support cluster.
+But pdgsolve may also introduce a small number of finite local cluster laws over explicit reactant-side multisets when exact provenance requires a jointly treated local support cluster.
 
 That move is acceptable only when:
 
@@ -223,7 +223,7 @@ The first concrete worked weak family should be the free neutron `beta reaction`
 
 In the AAA ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
 
-Combo should therefore not claim that bare
+pdgsolve should therefore not claim that bare
 
 $$
 \Delta(\mathrm{neutron}) \ni \mathrm{proton} + e^- + \bar{\nu}_e
@@ -231,7 +231,7 @@ $$
 
 unless the required weak-support inventory is also explicit in the normalized reactant multiset.
 
-The clean Combo-v1 way to encode this is:
+The clean pdgsolve-v1 way to encode this is:
 
 - during normalization, when the request and active policy justify the free-neutron beta family, make the minimal weak-support environment explicit as a reactant-side `Noether Pair`;
 - represent the normalized reactant-side multiset as
@@ -271,7 +271,7 @@ In lane terms, the baseline exact family is:
 - lane 4: `Pass Thru` on each of those product assemblies;
 - lane 5: `proton + electron + electron-antineutrino`.
 
-This gives Combo its first fully readable weak worked example:
+This gives pdgsolve its first fully readable weak worked example:
 
 - one non-identity reactant-side operator;
 - zero product-side associations;
@@ -281,24 +281,24 @@ This gives Combo its first fully readable weak worked example:
 - explicit active-agent rewrite;
 - and explicit product provenance.
 
-If normalization cannot justify that explicit `Noether Pair` support reactant under the active request and policy bundle, Combo should not promote the branch to an exact neutron-beta closure.
+If normalization cannot justify that explicit `Noether Pair` support reactant under the active request and policy bundle, pdgsolve should not promote the branch to an exact neutron-beta closure.
 
 It should keep the case partial or unsupported until the missing support reactant or provenance assumptions are made explicit.
 
 ### Request Intake
 
-Combo should support a small number of explicit entry modes:
+pdgsolve should support a small number of explicit entry modes:
 
 - built-in request manifests backed by canonical fixtures;
 - PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
 - direct load of explicit request JSON by a developer or advanced user;
-- and reopened Combo work items carried by Combo-owned ids or records.
+- and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
 
-Combo should consume explicit request data rather than hidden app-local state.
+pdgsolve should consume explicit request data rather than hidden app-local state.
 
 ### Solve Problem Model
 
-Combo should define one Combo-owned solve problem model that is solver-native rather than UI-native.
+pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
 
 That solve problem model should describe:
 
@@ -318,7 +318,7 @@ That solve problem model should avoid:
 - UI-only node-key packing;
 - and other state that exists only because an earlier app rendered something first.
 
-Mathematically, Combo should describe one solve instance as
+Mathematically, pdgsolve should describe one solve instance as
 
 $$
 Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \mathcal{B}, \Delta, \Gamma, \Pi),
@@ -334,7 +334,7 @@ where:
 - \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
 - and \(\Pi\) is the active policy bundle.
 
-For Combo v1, the minimal explicit conserved basis should be
+For pdgsolve v1, the minimal explicit conserved basis should be
 
 $$
 \mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}.
@@ -359,7 +359,7 @@ That means:
 - if \(g \in \Gamma(a)\), then \(\mu(g) = \mu(a)\);
 - and `Pass Thru` preserves \(\mu\) trivially.
 
-For shorthand, Combo should define the primitive counts
+For shorthand, pdgsolve should define the primitive counts
 
 $$
 N_{E}(x) = \mu(x)_{\mathrm{Electrino}}, \qquad N_{P}(x) = \mu(x)_{\mathrm{Positrino}}.
@@ -369,9 +369,9 @@ These are the first conserved sums that must match across the solve.
 
 ### V1 Assembly Table
 
-Before Combo implementation begins, the first executable family should freeze one minimal assembly alphabet.
+Before pdgsolve implementation begins, the first executable family should freeze one minimal assembly alphabet.
 
-For Combo v1, that alphabet should be
+For pdgsolve v1, that alphabet should be
 
 $$
 \mathcal{A}_{\mathrm{v1}}
@@ -389,7 +389,7 @@ $$
 
 The v1 assembly table should be:
 
-| Canonical id | Display label | Allowed lane roles in Combo v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
+| Canonical id | Display label | Allowed lane roles in pdgsolve v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
 | --- | --- | --- | --- | --- |
 | `neutron` | `Neutron` | lanes `1`, `3`, `5` | \((18, 18)\) | intact baryon carry-through is legal |
 | `proton` | `Proton` | lanes `1`, `3`, `5` | \((15, 21)\) | intact baryon carry-through is legal |
@@ -408,7 +408,7 @@ The frozen v1 bookkeeping values should therefore include:
 - \(\mu(\mathrm{noether\_pair}) = \mu(\mathrm{4h}) = (12, 12)\);
 - and \(\mu(\mathrm{4h}) = 2\mu(\mathrm{2h}) = (12, 12)\).
 
-Combo v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
+pdgsolve v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
 
 In particular:
 
@@ -418,7 +418,7 @@ In particular:
 
 ### V1 Law Tables
 
-Combo v1 should freeze a deliberately small executable law family.
+pdgsolve v1 should freeze a deliberately small executable law family.
 
 For unary laws, the initial tables should be empty:
 
@@ -430,7 +430,7 @@ $$
 a \in \mathcal{A}_{\mathrm{v1}}.
 $$
 
-So in Combo v1, the only unary rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
+So in pdgsolve v1, the only unary rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
 
 The first and only non-identity executable law family should be the explicit neutron-beta support cluster rule
 
@@ -452,7 +452,7 @@ That law should be frozen as the following v1 record:
 | --- | --- | --- | --- | --- | --- |
 | `cluster.beta.neutron_noether_pair.v1` | `neutron + noether_pair` | `proton + electron + electron_antineutrino` | `Dissociate` | `Pass Thru`, `Pass Thru`, `Pass Thru` | spectator `u`, spectator `d`, active `d -> u`, and lepton-support provenance from `Noether Pair` |
 
-Combo v1 should admit no other non-identity law family.
+pdgsolve v1 should admit no other non-identity law family.
 
 That means:
 
@@ -464,13 +464,13 @@ That means:
 
 ### Normalization Rules
 
-Combo should normalize every upstream request into one explicit `combo-problem/v1` record before search begins.
+pdgsolve should normalize every upstream request into one explicit `pdgsolve-problem/v1` record before search begins.
 
 The raw request contract should remain small.
 
 It should carry:
 
-- `schema: "combo-request/v1"`;
+- `schema: "pdgsolve-request/v1"`;
 - `requestId`;
 - `source.kind`, for example `fixture`, `pdgfeed`, or `developer`;
 - explicit reactant-side and product-side occurrence lists;
@@ -478,36 +478,36 @@ It should carry:
 
 Normalization should then do the following, in order:
 
-1. canonicalize every upstream particle token into one Combo v1 assembly id, for example `n -> neutron`, `p -> proton`, `e- -> electron`, and `anti-electron-neutrino -> electron_antineutrino`;
+1. canonicalize every upstream particle token into one pdgsolve v1 assembly id, for example `n -> neutron`, `p -> proton`, `e- -> electron`, and `anti-electron-neutrino -> electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
-3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `combo.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `combo-laws/v1-beta-minimal`, and the augmentation family as \(\mathcal{B} = \{0, e_{\mathrm{2h}}, e_{\mathrm{4h}}\}\) unless the request narrows that family explicitly;
+3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `pdgsolve-laws/v1-beta-minimal`, and the augmentation family as \(\mathcal{B} = \{0, e_{\mathrm{2h}}, e_{\mathrm{4h}}\}\) unless the request narrows that family explicitly;
 5. build the requested multisets \(R\) and \(T\);
 6. preserve any explicit authored or request-side `noether_pair` reactant occurrence as authored support rather than rewriting it into `2h`;
-7. when the raw request is the free-neutron beta family and policy `betaSupportMode = allow-implied-noether-pair`, add one normalized `noether_pair` reactant occurrence if one is not already explicit, mark it as normalized support, and emit `combo.normalization.support_added.noether_pair`;
-8. when the raw request is the free-neutron beta family but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `combo.normalization.support_required.noether_pair`;
+7. when the raw request is the free-neutron beta family and policy `betaSupportMode = allow-implied-noether-pair`, add one normalized `noether_pair` reactant occurrence if one is not already explicit, mark it as normalized support, and emit `pdgsolve.normalization.support_added.noether_pair`;
+8. when the raw request is the free-neutron beta family but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_pair`;
 9. keep explicit request-side `2h` and `4h` occurrences in \(R\) or \(T\) only when they already occupy boundary-side roles in the request contract;
-10. keep `noether_pair` only as an explicit reactant-side support assembly in Combo v1;
-11. reject any attempt to place `noether_pair`, `2h`, or `4h` outside their frozen v1 lane-role rules with `combo.request.invalid_boundary_role`; and
+10. keep `noether_pair` only as an explicit reactant-side support assembly in pdgsolve v1;
+11. reject any attempt to place `noether_pair`, `2h`, or `4h` outside their frozen v1 lane-role rules with `pdgsolve.request.invalid_boundary_role`; and
 12. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
-The normalized Combo problem contract should be:
+The normalized pdgsolve problem contract should be:
 
-- `schema: "combo-problem/v1"`;
+- `schema: "pdgsolve-problem/v1"`;
 - `problemId`;
 - `requestId`;
 - `source`;
 - `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
-- `assemblyAlphabetId: "combo-assemblies/v1-minimal"`;
-- `primitiveBasisId: "combo-primitives/electrino-positrino/v1"`;
-- `lawTableId: "combo-laws/v1-beta-minimal"`;
+- `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
+- `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
+- `lawTableId: "pdgsolve-laws/v1-beta-minimal"`;
 - `allowedBoundaryAugmentations`, with left and right values drawn from `none`, `2h`, and `4h`;
 - `policy`;
 - and `normalization`, containing explicit notes about added support material and normalization diagnostics.
 
 ### Conserved Balance Equations
 
-Combo should make the balance laws explicit at assembly lanes 1, 3, and 5.
+pdgsolve should make the balance laws explicit at assembly lanes 1, 3, and 5.
 
 Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the correct solve picture is not a disappearing flow ledger.
 
@@ -544,7 +544,7 @@ $$
 \mu(x_{1}) = \mu(x_{3}) = \mu(x_{5}).
 $$
 
-In particular, Combo must preserve the Electrino and Positrino counts separately:
+In particular, pdgsolve must preserve the Electrino and Positrino counts separately:
 
 $$
 N_{E}(x_{1}) = N_{E}(x_{3}) = N_{E}(x_{5}),
@@ -558,7 +558,7 @@ So the reaction does not merely conserve totals in the aggregate.
 
 It preserves one underlying architrino population whose grouping changes from lane to lane.
 
-If a request fails these equalities at the boundary, Combo should not silently repair that mismatch.
+If a request fails these equalities at the boundary, pdgsolve should not silently repair that mismatch.
 
 Instead, it should report the primitive imbalance vector
 
@@ -575,7 +575,7 @@ $$
 
 If \(\delta(Q; b^{-}, b^{+}) \neq 0\), then exact closure is impossible for that augmentation pair.
 
-So at the first primitive level, Combo should always be able to say:
+So at the first primitive level, pdgsolve should always be able to say:
 
 - Electrinos balanced or imbalanced by \(\delta_{E}\);
 - Positrinos balanced or imbalanced by \(\delta_{P}\);
@@ -583,7 +583,7 @@ So at the first primitive level, Combo should always be able to say:
 
 ### Combinatorial Search Model
 
-Combo should treat solving as an explicit combinatorial search problem.
+pdgsolve should treat solving as an explicit combinatorial search problem.
 
 The search design should specify:
 
@@ -596,7 +596,7 @@ The search design should specify:
 
 The search model should remain planner-first rather than surface-first.
 
-Related search material elsewhere in the observer workstream remains useful neighboring groundwork, but it is not a finished Combo spec.
+Related search material elsewhere in the observer workstream remains useful neighboring groundwork, but it is not a finished pdgsolve spec.
 
 This limited geometry should be exploited aggressively.
 
@@ -615,7 +615,7 @@ $$
 
 be the subset of assemblies that are legal lane-3 assemblies in the active solve family.
 
-For lane 2, Combo should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For lane 2, pdgsolve should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
 \Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
@@ -627,7 +627,7 @@ Boundary-only support or augmentation assemblies are therefore not given unary l
 
 They enter the search only through approved cluster or boundary rules.
 
-For a small finite set of worked weak families, Combo may also define explicit local reactant-cluster rewrites over a reactant multiset
+For a small finite set of worked weak families, pdgsolve may also define explicit local reactant-cluster rewrites over a reactant multiset
 
 $$
 c \in \mathbb{N}^{\mathcal{A}},
@@ -651,7 +651,7 @@ $$
 
 Search should treat such a cluster as one assignable local lane-2 unit after reserving the participating reactant occurrences explicitly.
 
-For lane 4, Combo should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For lane 4, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
 \Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
@@ -708,7 +708,7 @@ where:
 - \(x_{3}^{R}\) is the partial middle inventory required by lane 5;
 - and \(W\) is the current partial provenance witness.
 
-Combo should execute this search as a bounded meet-in-the-middle enumeration.
+pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
 
 The operational loop should be:
 
@@ -730,7 +730,7 @@ Each branch decision is therefore one small legal rewrite choice, and each compl
 
 ### Pruning Rules
 
-Combo should prune partial branches aggressively.
+pdgsolve should prune partial branches aggressively.
 
 At minimum, the search should prune a branch under the following conditions:
 
@@ -759,7 +759,7 @@ The raw Cartesian product of all local rewrite choices may still be large, but m
 
 `Pass Thru` must be treated as a live fallback option until a specific assembly occurrence has actually been assigned a different rewrite.
 
-So Combo should not prune a branch merely because:
+So pdgsolve should not prune a branch merely because:
 
 - a reactant assembly has not yet been dissociated;
 - a product assembly has not yet been associated;
@@ -843,7 +843,7 @@ $$
 O_{\mathrm{raw}} = (b^{-}, b^{+}, \phi_{2}, \phi_{4}).
 $$
 
-From that raw option, Combo derives:
+From that raw option, pdgsolve derives:
 
 - the left-generated middle inventory \(x_{3}^{L}\);
 - the right-required middle inventory \(x_{3}^{R}\);
@@ -889,7 +889,7 @@ So yes, this limited geometry is not merely drawable. It is mathematically enume
 
 ### Solve Output Model
 
-Combo should return one Combo-owned internal search result model from the search core.
+pdgsolve should return one pdgsolve-owned internal search result model from the search core.
 
 That internal model should be solver-shaped rather than review-workflow-shaped.
 
@@ -899,27 +899,27 @@ It should be rich enough to carry:
 - any alternate candidate families worth surfacing;
 - diagnostics and unsupported notes;
 - explicit provenance/accounting summaries;
-- and the information needed to publish into `xyzzy/v1` without making Xyzzy reconstruct omitted semantics.
+- and the information needed to publish into `pdgedit/v1` without making pdgedit reconstruct omitted semantics.
 
-Combo should not reuse the external `combo-result/v1` document as the native in-memory search-core shape.
+pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core shape.
 
 Instead:
 
 - the search core should return its own internal result model;
 - the review layer should hold review workflow state such as selected family, accepted family, accepted record, and stale/published status;
 - the publication layer should hold downstream publication state;
-- and the app boundary should assemble `combo-result/v1` from those pieces.
+- and the app boundary should assemble `pdgsolve-result/v1` from those pieces.
 
 This means:
 
 - the search core does not own `review.state`, `acceptedFamilyId`, or `publication`;
-- `combo-result/v1` is the external review/result contract, not the internal solver contract;
+- `pdgsolve-result/v1` is the external review/result contract, not the internal solver contract;
 - the internal search result may later be serialized if another boundary genuinely needs it;
-- but Combo v1 should not force that internal model to become a public versioned JSON contract prematurely.
+- but pdgsolve v1 should not force that internal model to become a public versioned JSON contract prematurely.
 
 ### Option Family Identity
 
-Combo review should surface option families rather than raw branches.
+pdgsolve review should surface option families rather than raw branches.
 
 For completed raw options
 
@@ -972,19 +972,19 @@ So:
 
 The canonical representative of an option family should be the member with minimal deterministic tie-break key \(\tau\) inside that family.
 
-### Combo Result Contract
+### pdgsolve Result Contract
 
-Combo should freeze one external review/result contract named `combo-result/v1`.
+pdgsolve should freeze one external review/result contract named `pdgsolve-result/v1`.
 
 That contract should be assembled from:
 
-- the current internal Combo search result;
+- the current internal pdgsolve search result;
 - the current review-state record;
 - and the current publication-state record.
 
 At the top level, that contract should contain:
 
-- `schema: "combo-result/v1"`;
+- `schema: "pdgsolve-result/v1"`;
 - `problemId`;
 - `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
 - `bestFamilyId`;
@@ -1016,7 +1016,7 @@ Publication should populate `publication`.
 
 ### Candidate Scoring
 
-Combo should score candidates explicitly rather than relying on ad hoc success/failure buckets alone.
+pdgsolve should score candidates explicitly rather than relying on ad hoc success/failure buckets alone.
 
 The score model should prefer, in order:
 
@@ -1030,7 +1030,7 @@ The score model should prefer, in order:
 
 For the current working spacetime family, equal candidates should prefer the lower auxiliary boundary burden in the concrete order `none -> 2H -> 4H`.
 
-Combo should formalize that ranking as a lexicographic minimization problem.
+pdgsolve should formalize that ranking as a lexicographic minimization problem.
 
 For a terminal candidate
 
@@ -1078,7 +1078,7 @@ That means:
 7. then lower ambiguity/provenance penalty wins;
 8. and finally \(\tau(C)\) breaks any remaining tie deterministically.
 
-Combo should score partial branches too, using an optimistic lower-bound score derived from the same tuple shape.
+pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple shape.
 
 For a partial branch \(s\), the search should compute:
 
@@ -1126,7 +1126,7 @@ That means the review surface can show:
 
 ### Deterministic Tie-Break Rule
 
-Combo should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
+pdgsolve should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
 
 For candidate comparison, define
 
@@ -1153,11 +1153,11 @@ with lexicographic comparison and the concrete orders:
 - lane-4 operator order: the sequence of operator assignments in product-occurrence order;
 - and middle-inventory order: assembly counts listed in canonical assembly order.
 
-For Combo v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
+For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
 
 - `pass_thru`;
 - then `dissociate(cluster.beta.neutron_noether_pair.v1)`;
-- then any later law-family symbol in the order those law ids are admitted into Combo.
+- then any later law-family symbol in the order those law ids are admitted into pdgsolve.
 
 The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
 
@@ -1169,44 +1169,44 @@ This means repeated runs over the same normalized problem must produce the same 
 
 ### Diagnostic Codes
 
-Combo should freeze the first stable diagnostic ids now so later UI and fixture work does not guess at naming.
+pdgsolve should freeze the first stable diagnostic ids now so later UI and fixture work does not guess at naming.
 
 The initial v1 set should be:
 
 | Diagnostic id | Phase | Meaning | Required payload |
 | --- | --- | --- | --- |
-| `combo.request.unsupported_assembly` | request | the request names an assembly outside Combo v1 | requested token and attempted canonical id |
-| `combo.request.invalid_boundary_role` | normalization | a boundary-only assembly was requested in a non-boundary role | assembly id and attempted role |
-| `combo.normalization.support_added.noether_pair` | normalization | normalization added one implied `Noether Pair` support reactant | request id and added occurrence id |
-| `combo.normalization.support_required.noether_pair` | normalization | exact beta-family closure needs explicit or policy-allowed `Noether Pair` support | request id and policy mode |
-| `combo.search.primitive_imbalance` | search | \(\delta(Q; b^{-}, b^{+}) \neq 0\) for the retained branch or retained request summary | augmentation pair and \((\delta_E, \delta_P)\) |
-| `combo.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | augmentation pair and canonical mismatch vector |
-| `combo.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
-| `combo.search.unsupported_law_family` | search | exact closure would require a law family not admitted into Combo v1 | missing law family id or descriptive token |
-| `combo.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
-| `combo.review.missing_xyzzy_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted Xyzzy publication recipe | family id and missing recipe id or unit id |
-| `combo.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
+| `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
+| `pdgsolve.request.invalid_boundary_role` | normalization | a boundary-only assembly was requested in a non-boundary role | assembly id and attempted role |
+| `pdgsolve.normalization.support_added.noether_pair` | normalization | normalization added one implied `Noether Pair` support reactant | request id and added occurrence id |
+| `pdgsolve.normalization.support_required.noether_pair` | normalization | exact beta-family closure needs explicit or policy-allowed `Noether Pair` support | request id and policy mode |
+| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; b^{-}, b^{+}) \neq 0\) for the retained branch or retained request summary | augmentation pair and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | augmentation pair and canonical mismatch vector |
+| `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
+| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id or descriptive token |
+| `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
+| `pdgsolve.review.missing_xyzzy_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
+| `pdgsolve.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
 
 ### Review And Acceptance
 
-Combo should own the review boundary between solve-core output and Xyzzy publication.
+pdgsolve should own the review boundary between solve-core output and pdgedit publication.
 
 That means:
 
-- Combo may show candidate alternatives, ambiguity, residue, and unsupported families;
-- Combo should allow acceptance of one explicit publication candidate;
-- Combo should keep acceptance separate from mere solve completion;
-- and only accepted Combo state should become publishable downstream Xyzzy data.
+- pdgsolve may show candidate alternatives, ambiguity, residue, and unsupported families;
+- pdgsolve should allow acceptance of one explicit publication candidate;
+- pdgsolve should keep acceptance separate from mere solve completion;
+- and only accepted pdgsolve state should become publishable downstream pdgedit data.
 
-Combo should not require Xyzzy to host solver review semantics.
+pdgsolve should not require pdgedit to host solver review semantics.
 
 ### Review Workflow State
 
-Combo should keep one explicit review-state machine for each current `combo-result/v1` snapshot.
+pdgsolve should keep one explicit review-state machine for each current `pdgsolve-result/v1` snapshot.
 
 That review object should have
 
-- `schema: "combo-review-state/v1"`;
+- `schema: "pdgsolve-review-state/v1"`;
 - `state`;
 - `selectedFamilyId`, nullable;
 - `acceptedFamilyId`, nullable;
@@ -1232,13 +1232,13 @@ The required transitions should be:
 4. `accepted -> review_ready` or `published -> review_ready` by explicit reopen action;
 5. and any state -> `stale` whenever the normalized problem, policy bundle, law-table id, family key set, canonical representative, or score ordering changes.
 
-When the state becomes `stale`, Combo should clear `acceptedFamilyId`, `acceptedRecord`, and any downstream `publication` object derived from them.
+When the state becomes `stale`, pdgsolve should clear `acceptedFamilyId`, `acceptedRecord`, and any downstream `publication` object derived from them.
 
-So Combo must never quietly carry an old acceptance across a changed solve.
+So pdgsolve must never quietly carry an old acceptance across a changed solve.
 
 ### Review Actions
 
-Combo should expose a small operator-facing review action set.
+pdgsolve should expose a small operator-facing review action set.
 
 The core actions should be:
 
@@ -1253,15 +1253,15 @@ The core actions should be:
 - and `reject_all_for_now(note)`:
   leave the state in `review_ready` with no accepted family while preserving the reviewed result set and any operator note.
 
-Combo should allow at most one accepted family at a time.
+pdgsolve should allow at most one accepted family at a time.
 
 Accepting one family must therefore replace any earlier accepted family for that same result snapshot.
 
 ### Publication-Readiness Gates
 
-Combo should define `publicationReady` as an explicit derived gate, not as a vague UI hint.
+pdgsolve should define `publicationReady` as an explicit derived gate, not as a vague UI hint.
 
-For Combo v1, an option family \(F\) is publication-ready if and only if:
+For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
 
 - `kind(F) = exact`;
 - the current result snapshot is not `stale`;
@@ -1269,34 +1269,34 @@ For Combo v1, an option family \(F\) is publication-ready if and only if:
 - the family's primitive imbalance is zero;
 - the family's middle mismatch is zero;
 - the family's provenance witness is complete at the review-summary level;
-- every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted Xyzzy publication recipe;
+- every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted pdgedit publication recipe;
 - the family has no blocking diagnostic among:
-  `combo.request.unsupported_assembly`,
-  `combo.request.invalid_boundary_role`,
-  `combo.normalization.support_required.noether_pair`,
-  `combo.search.primitive_imbalance`,
-  `combo.search.middle_mismatch`,
-  `combo.search.provenance_failure`,
-  `combo.search.unsupported_law_family`,
-  `combo.review.missing_xyzzy_publication_recipe`,
+  `pdgsolve.request.unsupported_assembly`,
+  `pdgsolve.request.invalid_boundary_role`,
+  `pdgsolve.normalization.support_required.noether_pair`,
+  `pdgsolve.search.primitive_imbalance`,
+  `pdgsolve.search.middle_mismatch`,
+  `pdgsolve.search.provenance_failure`,
+  `pdgsolve.search.unsupported_law_family`,
+  `pdgsolve.review.missing_xyzzy_publication_recipe`,
   or any later diagnostic explicitly marked `blocking`;
 - and the family already carries the locked lane inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
 
-If any of those clauses fails, Combo should set `publicationReady = false`.
+If any of those clauses fails, pdgsolve should set `publicationReady = false`.
 
 In that case:
 
 - the family may still appear in review;
 - the operator may still inspect its diagnostics and provenance summary;
-- but `accept_family` must fail with `combo.review.not_publication_ready`.
+- but `accept_family` must fail with `pdgsolve.review.not_publication_ready`.
 
 ### Accepted Record
 
-Acceptance should lock one Combo-owned record before any Xyzzy translation happens.
+Acceptance should lock one pdgsolve-owned record before any pdgedit translation happens.
 
 That record should have
 
-- `schema: "combo-acceptance/v1"`;
+- `schema: "pdgsolve-acceptance/v1"`;
 - `problemId`;
 - `familyId`;
 - `resultDigest`, which is a deterministic digest of the normalized problem id, policy bundle, law-table id, family key, and canonical representative key;
@@ -1309,7 +1309,7 @@ That record should have
 - `lockedLane2Operators`;
 - `lockedLane4Operators`;
 - `lockedProvenanceSummary`;
-- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "combo-publication-graph/v1"` and must be the Combo-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
+- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
 - and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
 
 The accepted record should not contain the full raw-branch search tree.
@@ -1318,46 +1318,46 @@ It should contain exactly the information that must remain invariant once the op
 
 So the accepted record is the review-side lock point.
 
-The downstream publication step should read only from that lock record, not from a fresh search rerun and not from Xyzzy-side heuristics.
+The downstream publication step should read only from that lock record, not from a fresh search rerun and not from pdgedit-side heuristics.
 
-### Translation Boundary To Xyzzy
+### Translation Boundary To pdgedit
 
-The translation into `xyzzy/v1` should happen before Xyzzy reads the result.
+The translation into `pdgedit/v1` should happen before pdgedit reads the result.
 
 That translation layer should own:
 
-- mapping Combo-side assemblies and operators into explicit Xyzzy assemblies and operators;
-- choosing explicit Xyzzy tile payloads from Xyzzy-owned catalogs and rules;
-- converting solved connectivity into explicit Xyzzy links;
-- and carrying any display-only composite labels or spans as explicit Xyzzy-side publication data rather than as solver-owned geometry.
+- mapping pdgsolve-side assemblies and operators into explicit pdgedit assemblies and operators;
+- choosing explicit pdgedit tile payloads from pdgedit-owned catalogs and rules;
+- converting solved connectivity into explicit pdgedit links;
+- and carrying any display-only composite labels or spans as explicit pdgedit-side publication data rather than as solver-owned geometry.
 
-Combo should treat `xyzzy/v1` as a publication boundary, not as an internal convenience sketch.
+pdgsolve should treat `pdgedit/v1` as a publication boundary, not as an internal convenience sketch.
 
 ### Canonical Publication Pipeline
 
-Combo should support exactly one downstream publication pipeline:
+pdgsolve should support exactly one downstream publication pipeline:
 
-1. start from one `combo-acceptance/v1` lock record;
+1. start from one `pdgsolve-acceptance/v1` lock record;
 2. validate that the lock record is still fresh and publication-ready;
-3. translate `acceptedRecord.lockedSolveGraph` into one final `xyzzy/v1` document;
-4. validate that `xyzzy/v1` document against the Xyzzy boundary rules;
-5. either publish the document durably with a manifest entry or launch Xyzzy with that exact in-memory document;
-6. and record the publication outcome back into the Combo-side `publication` object.
+3. translate `acceptedRecord.lockedSolveGraph` into one final `pdgedit/v1` document;
+4. validate that `pdgedit/v1` document against the pdgedit boundary rules;
+5. either publish the document durably with a manifest entry or launch pdgedit with that exact in-memory document;
+6. and record the publication outcome back into the pdgsolve-side `publication` object.
 
 No other route should be supported.
 
 In particular:
 
-- Combo should not publish straight from a raw branch;
-- Combo should not publish straight from a non-accepted option family;
-- Combo should not ask Xyzzy to infer missing rows, tiles, links, or labels from solver-native data;
-- and Combo should not rerun search during publication.
+- pdgsolve should not publish straight from a raw branch;
+- pdgsolve should not publish straight from a non-accepted option family;
+- pdgsolve should not ask pdgedit to infer missing rows, tiles, links, or labels from solver-native data;
+- and pdgsolve should not rerun search during publication.
 
 ### Publication Graph Contract
 
 For publishable v1 families, `acceptedRecord.lockedSolveGraph` should use the following exact top-level shape:
 
-- `schema: "combo-publication-graph/v1"`;
+- `schema: "pdgsolve-publication-graph/v1"`;
 - `units`;
 - and `edges`.
 
@@ -1366,9 +1366,9 @@ Each `unit` record should contain:
 - `id`;
 - `kind`, with values `assembly` or `operator`;
 - `lane`, with values `1`, `2`, `3`, `4`, or `5`;
-- `recipeId`, naming the admitted Combo-to-Xyzzy publication recipe;
+- `recipeId`, naming the admitted pdgsolve-to-pdgedit publication recipe;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
-- `title`, the accepted semantic title before Xyzzy row-title expansion;
+- `title`, the accepted semantic title before pdgedit row-title expansion;
 - and any recipe-required anchor or port-selection fields.
 
 Each `edge` record should contain:
@@ -1379,45 +1379,45 @@ Each `edge` record should contain:
 - `toUnitId`;
 - and `toPortId`.
 
-So the accepted publication graph is still Combo-owned, but it is already explicit about:
+So the accepted publication graph is still pdgsolve-owned, but it is already explicit about:
 
 - which accepted units exist;
-- which recipe expands each unit into Xyzzy surface objects;
-- and which accepted left-to-right connections must become Xyzzy links.
+- which recipe expands each unit into pdgedit surface objects;
+- and which accepted left-to-right connections must become pdgedit links.
 
 ### Admitted Publication Recipe Family
 
-The first admitted recipe family should be `combo-xyzzy-recipes/v1-beta-minimal`.
+The first admitted recipe family should be `pdgsolve-pdgedit-recipes/v1-beta-minimal`.
 
 That family should support exactly the current publishable beta-minimal assemblies, boundary augmentations, and operators:
 
-| Combo unit | Admitted recipe id | Xyzzy type family | Expansion height | Boundary label text |
+| pdgsolve unit | Admitted recipe id | pdgedit type family | Expansion height | Boundary label text |
 | --- | --- | --- | --- | --- |
-| `neutron` | `combo.xyzzy.neutron.v1` | `pro-neutron-assembly` | `3` rows | `Neutron` |
-| `noether_pair` | `combo.xyzzy.noether_pair.v1` | `noether-pair-assembly` | `2` rows | `Noether Pair` |
-| `2h` | `combo.xyzzy.2h.v1` | `noether-pair-assembly` | `2` rows | `2H` |
-| `4h` | `combo.xyzzy.4h.v1` | `noether-quad-assembly` | `4` rows | `4H` |
-| `proton` | `combo.xyzzy.proton.v1` | `pro-proton-assembly` | `3` rows | `Proton` |
-| `electron` | `combo.xyzzy.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
-| `electron_antineutrino` | `combo.xyzzy.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
-| lane-2 `Dissociate` | `combo.xyzzy.operator.dissociate.v1` | `dissociate` | `1` row | none |
-| lane-2 or lane-4 `Pass Thru` | `combo.xyzzy.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
-| lane-4 `Associate` | `combo.xyzzy.operator.associate.v1` | `associate` | `1` row | none |
+| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-assembly` | `3` rows | `Neutron` |
+| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-assembly` | `2` rows | `Noether Pair` |
+| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-assembly` | `2` rows | `2H` |
+| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-assembly` | `4` rows | `4H` |
+| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-assembly` | `3` rows | `Proton` |
+| `electron` | `pdgsolve.pdgedit.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
+| `electron_antineutrino` | `pdgsolve.pdgedit.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
+| lane-2 `Dissociate` | `pdgsolve.pdgedit.operator.dissociate.v1` | `dissociate` | `1` row | none |
+| lane-2 or lane-4 `Pass Thru` | `pdgsolve.pdgedit.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
+| lane-4 `Associate` | `pdgsolve.pdgedit.operator.associate.v1` | `associate` | `1` row | none |
 
-The boundary augmentation assemblies `2h` and `4h` are therefore publishable in Combo v1.
+The boundary augmentation assemblies `2h` and `4h` are therefore publishable in pdgsolve v1.
 
 Their surface mapping should follow one explicit rule:
 
-- `2h` should publish through the admitted `combo.xyzzy.2h.v1` recipe using the existing Xyzzy `noether-pair-assembly` row family;
-- `4h` should publish through the admitted `combo.xyzzy.4h.v1` recipe using the existing Xyzzy `noether-quad-assembly` row family;
-- but those remain distinct Combo recipes with distinct recipe ids and boundary labels `2H` and `4H`;
-- so the publication layer must not rewrite `2h` into `noether_pair` or `4h` into any other Combo assembly merely because the Xyzzy-side row payloads reuse existing Noether-family surface rows.
+- `2h` should publish through the admitted `pdgsolve.pdgedit.2h.v1` recipe using the existing pdgedit `noether-pair-assembly` row family;
+- `4h` should publish through the admitted `pdgsolve.pdgedit.4h.v1` recipe using the existing pdgedit `noether-quad-assembly` row family;
+- but those remain distinct pdgsolve recipes with distinct recipe ids and boundary labels `2H` and `4H`;
+- so the publication layer must not rewrite `2h` into `noether_pair` or `4h` into any other pdgsolve assembly merely because the pdgedit-side row payloads reuse existing Noether-family surface rows.
 
 ### Layout And Object Emission Rules
 
-The publication adapter should materialize the final Xyzzy surface deterministically from the accepted publication graph and the admitted recipe family.
+The publication adapter should materialize the final pdgedit surface deterministically from the accepted publication graph and the admitted recipe family.
 
-The fixed Xyzzy band origins are:
+The fixed pdgedit band origins are:
 
 - reactant assemblies at `x = 2`;
 - left operators at `x = 7`;
@@ -1427,53 +1427,53 @@ The fixed Xyzzy band origins are:
 
 Assembly emission should follow these rules:
 
-- expand each assembly unit into the exact number of Xyzzy assembly rows required by its recipe;
-- assign the Xyzzy assembly `role` from the Combo lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
+- expand each assembly unit into the exact number of pdgedit assembly rows required by its recipe;
+- assign the pdgedit assembly `role` from the pdgsolve lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
 - place expanded rows contiguously in their band with no gaps;
 - pack each assembly band independently in accepted lane order, top to bottom;
 - emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
 - emit row titles from the recipe row-title sequence;
-- emit the exact `tiles` array from the admitted Xyzzy recipe, not by rebuilding tiles from Combo semantics at runtime;
+- emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from pdgsolve semantics at runtime;
 - and emit one `compositeLabels` record for every boundary-side assembly unit, with `side = left` for lane `1` and `side = right` for lane `5`, spanning that unit's full emitted row interval.
 
 Operator emission should follow these rules:
 
-- each operator unit becomes one Xyzzy operator record;
-- the Xyzzy operator `type` comes directly from the admitted operator recipe;
+- each operator unit becomes one pdgedit operator record;
+- the pdgedit operator `type` comes directly from the admitted operator recipe;
 - the visible operator `title` comes directly from that same recipe;
 - `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
-- `x` comes from the fixed Xyzzy operator band for that lane;
+- `x` comes from the fixed pdgedit operator band for that lane;
 - and `y` is computed from the operator unit's explicit accepted anchor reference in `lockedSolveGraph`, not from ad hoc visual inference.
 
 ### Link Emission Rules
 
-The publication adapter should emit Xyzzy links only from the accepted `edges` array plus the admitted port maps in the recipe family.
+The publication adapter should emit pdgedit links only from the accepted `edges` array plus the admitted port maps in the recipe family.
 
 That means:
 
 - assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
-- operator recipes must define their concrete Xyzzy endpoint id, which is the operator record id itself;
-- one accepted publication edge may therefore expand into one or more Xyzzy links when the accepted port map spans multiple emitted assembly rows;
-- every emitted Xyzzy link must already obey the neighboring-band rule and canonical left-to-right endpoint order;
-- and no Xyzzy link should be created by screen-geometry inference or by scanning nearby rows after the fact.
+- operator recipes must define their concrete pdgedit endpoint id, which is the operator record id itself;
+- one accepted publication edge may therefore expand into one or more pdgedit links when the accepted port map spans multiple emitted assembly rows;
+- every emitted pdgedit link must already obey the neighboring-band rule and canonical left-to-right endpoint order;
+- and no pdgedit link should be created by screen-geometry inference or by scanning nearby rows after the fact.
 
 So the adapter's job is explicit expansion, not reconstruction.
 
 ### Publication Output Contract
 
-The translation output should be one Combo-owned package named `combo-xyzzy-package/v1`.
+The translation output should be one pdgsolve-owned package named `pdgsolve-pdgedit-package/v1`.
 
 That package should contain:
 
-- `schema: "combo-xyzzy-package/v1"`;
+- `schema: "pdgsolve-pdgedit-package/v1"`;
 - `sourceAcceptanceDigest`;
 - `publicationMode`, with values `durable` or `launch`;
 - `documentId`, with the default stable form `<problemId>--<familyId>`;
 - `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
-- `xyzzyDocument`, which must already satisfy `schema: "xyzzy/v1"`;
+- `xyzzyDocument`, which must already satisfy `schema: "pdgedit/v1"`;
 - and nullable `manifestEntry`, which is present only for durable publication.
 
-When `manifestEntry` is present, it should already satisfy the Xyzzy-side `xyzzy-library-manifest/v1` entry rules:
+When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdgedit-library-manifest/v1` entry rules:
 
 - `id`, which should default to `documentId`;
 - `title`;
@@ -1482,78 +1482,78 @@ When `manifestEntry` is present, it should already satisfy the Xyzzy-side `xyzzy
 
 ### Durable Publish And Launch
 
-Combo should support two downstream actions over the same `combo-xyzzy-package/v1` shape.
+pdgsolve should support two downstream actions over the same `pdgsolve-pdgedit-package/v1` shape.
 
-For `publish_accepted("durable")`, Combo should:
+For `publish_accepted("durable")`, pdgsolve should:
 
-- generate the final `combo-xyzzy-package/v1` package;
+- generate the final `pdgsolve-pdgedit-package/v1` package;
 - write `xyzzyDocument` to the durable asset path selected by the publication runtime;
-- write or update exactly one matching Xyzzy manifest entry;
-- and then set the Combo review state to `published`.
+- write or update exactly one matching pdgedit manifest entry;
+- and then set the pdgsolve review state to `published`.
 
-For `publish_accepted("launch")`, Combo should:
+For `publish_accepted("launch")`, pdgsolve should:
 
-- generate the same final `combo-xyzzy-package/v1` package shape;
+- generate the same final `pdgsolve-pdgedit-package/v1` package shape;
 - omit any manifest write;
-- hand the in-memory `xyzzyDocument` directly to the Xyzzy launch path;
-- and still set the Combo review state to `published` for that accepted snapshot.
+- hand the in-memory `xyzzyDocument` directly to the pdgedit launch path;
+- and still set the pdgsolve review state to `published` for that accepted snapshot.
 
 So durable publish and launch differ only in destination handling, not in translation semantics.
 
 ### Persistence And Launch
 
-Combo should be able to hand accepted results downstream in one of two ways:
+pdgsolve should be able to hand accepted results downstream in one of two ways:
 
-- publish a durable `xyzzy/v1` document plus any needed manifest/library entry;
-- or launch Xyzzy with one explicit accepted in-memory document when persistence is not the goal.
+- publish a durable `pdgedit/v1` document plus any needed manifest/library entry;
+- or launch pdgedit with one explicit accepted in-memory document when persistence is not the goal.
 
 The durable path should be the canonical reviewable path.
 
-### Reverse Boundary From Xyzzy
+### Reverse Boundary From pdgedit
 
-For Combo v1, Xyzzy should be downstream-only.
+For pdgsolve v1, pdgedit should be downstream-only.
 
 That means:
 
-- a final `xyzzy/v1` document is a publication artifact, not a Combo solve request;
-- editing a Xyzzy document does not implicitly create or mutate Combo solve state;
-- Combo should not reverse-parse arbitrary Xyzzy assemblies, operators, links, or composite labels back into solver-native meaning;
-- and Xyzzy should not host candidate ranking, ambiguity handling, acceptance state, or other Combo review semantics.
+- a final `pdgedit/v1` document is a publication artifact, not a pdgsolve solve request;
+- editing a pdgedit document does not implicitly create or mutate pdgsolve solve state;
+- pdgsolve should not reverse-parse arbitrary pdgedit assemblies, operators, links, or composite labels back into solver-native meaning;
+- and pdgedit should not host candidate ranking, ambiguity handling, acceptance state, or other pdgsolve review semantics.
 
 So the v1 answer is:
 
-- Combo publishes to Xyzzy;
-- but Xyzzy does not originate a new Combo solve request from arbitrary authored surface state.
+- pdgsolve publishes to pdgedit;
+- but pdgedit does not originate a new pdgsolve solve request from arbitrary authored surface state.
 
-The only admitted reverse-adjacent operation in Combo v1 should be **reopen by Combo-owned reference**.
+The only admitted reverse-adjacent operation in pdgsolve v1 should be **reopen by pdgsolve-owned reference**.
 
 That means:
 
-- if the runtime still has a Combo work item id, accepted-record digest, or equivalent Combo-owned publication reference for the current Xyzzy document, it may offer a launcher-level action that reopens that Combo work item;
-- Combo must then reload its own normalized problem, accepted record, or stored review state from Combo-owned persistence;
-- and the Xyzzy document itself is not the source of truth for the reopened solve.
+- if the runtime still has a pdgsolve work item id, accepted-record digest, or equivalent pdgsolve-owned publication reference for the current pdgedit document, it may offer a launcher-level action that reopens that pdgsolve work item;
+- pdgsolve must then reload its own normalized problem, accepted record, or stored review state from pdgsolve-owned persistence;
+- and the pdgedit document itself is not the source of truth for the reopened solve.
 
-If that Combo-owned reference is missing, the Xyzzy document alone is not sufficient to reconstruct the Combo problem.
+If that pdgsolve-owned reference is missing, the pdgedit document alone is not sufficient to reconstruct the pdgsolve problem.
 
-So a published Xyzzy artifact may be viewable or editable as a Xyzzy document even when no reversible Combo session still exists.
+So a published pdgedit artifact may be viewable or editable as a pdgedit document even when no reversible pdgsolve session still exists.
 
-### Future Xyzzy-To-Combo Gate
+### Future pdgedit-To-pdgsolve Gate
 
-If a true Xyzzy-to-Combo authoring loop is ever admitted later, it should require a separate versioned transform contract rather than reverse use of raw `xyzzy/v1`.
+If a true pdgedit-to-pdgsolve authoring loop is ever admitted later, it should require a separate versioned transform contract rather than reverse use of raw `pdgedit/v1`.
 
 That future transform should be accepted only if all of the following are true:
 
 - the source document is intentionally marked as request-shaped rather than publication-shaped;
 - only explicit boundary-side authored assemblies are treated as request inputs and targets;
-- Xyzzy-only placement, link-routing, and composite-label details are ignored as non-solver semantics;
-- the transform runs outside the Xyzzy renderer;
-- and the output is an explicit Combo-owned request contract such as `combo-request/v1`, not an in-process callback into Combo review state.
+- pdgedit-only placement, link-routing, and composite-label details are ignored as non-solver semantics;
+- the transform runs outside the pdgedit renderer;
+- and the output is an explicit pdgsolve-owned request contract such as `pdgsolve-request/v1`, not an in-process callback into pdgsolve review state.
 
-Until such a contract is explicitly admitted, arbitrary `xyzzy/v1` documents should be treated as non-invertible downstream artifacts.
+Until such a contract is explicitly admitted, arbitrary `pdgedit/v1` documents should be treated as non-invertible downstream artifacts.
 
 ### App Boundary Rules
 
-Combo should follow the dedicated-app rules in [app-architecture](app-architecture.md):
+pdgsolve should follow the dedicated-app rules in [pdgapps](pdgapps.md):
 
 - explicit versioned data across app boundaries;
 - no direct cross-app runtime imports for app-specific behavior;
@@ -1562,58 +1562,58 @@ Combo should follow the dedicated-app rules in [app-architecture](app-architectu
 
 ### Minimum Regression Fixture Set
 
-Before Combo implementation is considered trustworthy, the first fixed regression denominator should be:
+Before pdgsolve implementation is considered trustworthy, the first fixed regression denominator should be:
 
 | Fixture id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
 | `free_neutron_beta_exact` | `neutron -> proton + electron + electron_antineutrino` | implied beta support allowed | normalization adds one `noether_pair`; best family is exact; auxiliary burden is `none`; publication is ready after acceptance |
-| `free_neutron_beta_support_disallowed` | `neutron -> proton + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `combo.normalization.support_required.noether_pair` is present; retained best family is partial or unsupported |
-| `primitive_imbalance_neutron_to_proton` | `neutron -> proton` | default | retained diagnostics include `combo.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `free_neutron_beta_support_disallowed` | `neutron -> proton + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_pair` is present; retained best family is partial or unsupported |
+| `primitive_imbalance_neutron_to_proton` | `neutron -> proton` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_neutron` | `neutron -> neutron` | default | one exact pass-thru family; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after the beta-minimal law set that yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
 The last fixture is a gate on the first post-beta expansion.
 
-So Combo should not consider itself beyond the minimal single-family stage until that first genuine multi-option exact case exists and is under regression.
+So pdgsolve should not consider itself beyond the minimal single-family stage until that first genuine multi-option exact case exists and is under regression.
 
 ## Interfaces
 
 ### Inputs
 
 - PDG-backed request data emitted by [pdgfeed](./pdgfeed.md);
-- built-in Combo fixture requests;
+- built-in pdgsolve fixture requests;
 - explicit developer-loaded request documents;
-- Combo-owned solve policy and review state;
-- and Combo-owned reopened work-item references when one already exists.
+- pdgsolve-owned solve policy and review state;
+- and pdgsolve-owned reopened work-item references when one already exists.
 
 ### Outputs
 
-- Combo-owned candidate solve results suitable for review;
-- accepted Combo publication state;
-- final `xyzzy/v1` documents;
-- Xyzzy manifest-ready publication entries or equivalent launch-ready selection state;
+- pdgsolve-owned candidate solve results suitable for review;
+- accepted pdgsolve publication state;
+- final `pdgedit/v1` documents;
+- pdgedit manifest-ready publication entries or equivalent launch-ready selection state;
 - and developer-facing diagnostics about solve completeness, ambiguity, unsupported families, and publish readiness.
 
 ### Upstream And Downstream Boundaries
 
-Combo should:
+pdgsolve should:
 
 - accept explicit upstream request data;
 - own solve normalization, search, review, and publication;
-- and hand explicit final Xyzzy documents downstream.
+- and hand explicit final pdgedit documents downstream.
 
-Combo should not:
+pdgsolve should not:
 
-- ask Xyzzy to parse raw solver-native problem or result data;
-- treat arbitrary `xyzzy/v1` documents as invertible Combo requests;
+- ask pdgedit to parse raw solver-native problem or result data;
+- treat arbitrary `pdgedit/v1` documents as invertible pdgsolve requests;
 - duplicate PDG normalization logic locally;
 - or let launcher/runtime concerns become the source of solve semantics.
 
 ### Neighboring Components
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
-- [xyzzy](./xyzzy.md) owns the final tile surface, placement grammar, and Xyzzy-side document model.
-- [app-architecture](app-architecture.md) owns the cross-app boundary and modularity rules that apply here.
+- [pdgedit](./pdgedit.md) owns the final tile surface, placement grammar, and pdgedit-side document model.
+- [pdgapps](pdgapps.md) owns the cross-app boundary and modularity rules that apply here.
 
 ## Priorities
 
@@ -1623,9 +1623,9 @@ No active items right now.
 
 - [observer](./observer.md)
 - [pdgfeed](./pdgfeed.md)
-- [xyzzy](./xyzzy.md)
-- [app-architecture](app-architecture.md)
+- [pdgedit](./pdgedit.md)
+- [pdgapps](pdgapps.md)
 
 ## Deferred Priorities
 
-1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then freeze its stable score order and stable family representatives under Combo regression. Status: `deferred`.
+1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then freeze its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.

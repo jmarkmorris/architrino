@@ -1,12 +1,12 @@
-# Xyzzy
+# pdgedit
 
 ## LLM Instructions
 
 - Keep `Priorities` ordered as the current work queue, with the most important active item first.
 - Keep `Design` descriptive and stable; move task-shaped material into `Priorities`.
-- Keep Xyzzy focused on the authoring surface, the visible tile grammar, and the JSON boundary with the solver.
+- Keep pdgedit focused on the authoring surface, the visible tile grammar, and the JSON boundary with the solver.
 - Prefer simple surface rules over inferred geometry, hidden spacing logic, or special-case rendering heuristics.
-- Use `xyzzy` in code and file naming for the new app family.
+- Use `pdgedit` in code and file naming for the new app family.
 - Do not introduce geometry concepts that depend on explicit gap calculation between tiles.
 - Do not invent surrounding app chrome, editor panels, status copy, or decorative framing that is not explicitly specified here.
 - Treat JSON as a boundary contract, not as permission to add a visible JSON editor panel by default.
@@ -15,7 +15,7 @@
 
 ## Purpose
 
-Xyzzy is the tile-based reaction-authoring surface.
+pdgedit is the tile-based reaction-authoring surface.
 
 Its job is to present a simpler authored graph made from:
 
@@ -28,7 +28,7 @@ It owns:
 
 - the visible tile grammar of the surface;
 - manual authorship of spline links between neighboring object bands;
-- JSON import and export at the Xyzzy boundary;
+- JSON import and export at the pdgedit boundary;
 - and the final rendered form of assemblies, operators, splines, and composite labels.
 
 It does not own:
@@ -42,11 +42,11 @@ It does not own:
 
 ### Surface Scope
 
-Xyzzy specifies the authored tile surface itself.
+pdgedit specifies the authored tile surface itself.
 
 Its purpose is not to invent a surrounding standalone app shell beyond what this document names explicitly.
 
-Xyzzy does include two minimal app-level bands at the top of the canvas.
+pdgedit does include two minimal app-level bands at the top of the canvas.
 
 The first top band is:
 
@@ -69,7 +69,7 @@ For v1, the first top band contains exactly two controls aligned at the top righ
 - a JSON document selector;
 - and a home button immediately to its right.
 
-The JSON document selector should use the same compact manifest-driven picker pattern as the prototype authored-surface library picker, but it should now be treated as a Xyzzy-owned control.
+The JSON document selector should use the same compact manifest-driven picker pattern as the prototype authored-surface library picker, but it should now be treated as a pdgedit-owned control.
 
 That means:
 
@@ -89,7 +89,7 @@ The exact header control geometry and appearance for v1 is now fixed.
 
 The two header controls must visually emulate the top-right search control and home button from the main web app HUD.
 
-For Xyzzy, that means:
+For pdgedit, that means:
 
 - the first top band keeps the same `80px` height already specified above;
 - the controls sit inside that band at the top right;
@@ -121,9 +121,9 @@ The exact JSON-selector trigger geometry is:
 - background `rgba(8, 10, 18, 0.75)`;
 - text color `#f5f7ff`;
 - backdrop blur matching the main app HUD treatment;
-- and pointer/hover/focus behavior should match the main web app control family rather than inventing a separate Xyzzy-only button style.
+- and pointer/hover/focus behavior should match the main web app control family rather than inventing a separate pdgedit-only button style.
 
-Unlike the main web app search control, the Xyzzy selector is not icon-only in the openable trigger state.
+Unlike the main web app search control, the pdgedit selector is not icon-only in the openable trigger state.
 
 Its closed trigger should therefore:
 
@@ -153,7 +153,7 @@ The exact selector-option appearance is:
 
 The exact accessible labels are:
 
-- JSON selector trigger: `Choose Xyzzy document`;
+- JSON selector trigger: `Choose pdgedit document`;
 - home button: `Go to home`.
 
 The first top band visual treatment is:
@@ -171,7 +171,7 @@ Below those two top bands, the authored surface should use the full available ca
 
 The implementation must not place the surface inside a decorative frame, bordered card, inset panel, padded sub-canvas, or any other inner wrapper that gives up horizontal screen real estate.
 
-For v1, the following are not part of the Xyzzy surface spec unless they are added here later:
+For v1, the following are not part of the pdgedit surface spec unless they are added here later:
 
 - title banners or subtitles above the surface;
 - any controls in the first top band other than the JSON selector and home button;
@@ -209,7 +209,7 @@ Therefore:
 
 ### Baseline Tile Box
 
-The baseline Xyzzy tile is a fixed `80px x 80px` square.
+The baseline pdgedit tile is a fixed `80px x 80px` square.
 
 That full `80px x 80px` tile area is filled solid black.
 
@@ -223,7 +223,7 @@ The centered inner rounded square is border only.
 
 Its interior is clear, so the tile continues to show the same black background through the middle of the bordered square.
 
-For Xyzzy v1, the position of that frame is also numerically locked.
+For pdgedit v1, the position of that frame is also numerically locked.
 
 In outer-edge terms, the rounded-square border occupies:
 
@@ -260,7 +260,7 @@ Text variants, text placement rules, and per-tile payload options should be spec
 
 #### Outline Conformance Standard
 
-All Xyzzy tile outlines belong to one locked geometry family.
+All pdgedit tile outlines belong to one locked geometry family.
 
 That requirement applies to:
 
@@ -292,9 +292,9 @@ Therefore, when different tile types are shown side by side in a review strip, t
 
 ### Standard Tile Text
 
-Xyzzy standard text tiles may use up to three short lines of text inside the centered `72px x 72px` bordered square.
+pdgedit standard text tiles may use up to three short lines of text inside the centered `72px x 72px` bordered square.
 
-The baseline text inventory should be derived from the current prototype tile vocabulary, but Xyzzy should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
+The baseline text inventory should be derived from the current prototype tile vocabulary, but pdgedit should express that vocabulary as explicit three-line tile text rather than corner counters or ad hoc line splitting.
 
 The standard tile should not use corner ledger numbers.
 
@@ -302,7 +302,7 @@ If a tile uses fewer than three visible lines, the unused lower lines remain bla
 
 The shared JSON tile catalog should be treated as the source of truth for this tile family.
 
-The JavaScript Xyzzy app should read that JSON directly.
+The JavaScript pdgedit app should read that JSON directly.
 
 The generator in `scripts/glyphs/glyph.py` should be treated as reference code that reads the same JSON and emits review SVGs.
 
@@ -374,7 +374,7 @@ Proton and neutron are the exception:
 
 These text forms cover the current prototype tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
 
-The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this Xyzzy baseline.
+The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this pdgedit baseline.
 
 For the three operator tiles `Associate`, `Dissociate`, and `Pass Thru`, line 1 and line 3 are not ordinary words.
 
@@ -406,7 +406,7 @@ If a later runtime wants to collapse those rows into one polarity-aware family a
 
 ### Charge Glyph Tiles
 
-Xyzzy also uses one non-binary glyph family for the middle two tiles of the unbound-architrino group.
+pdgedit also uses one non-binary glyph family for the middle two tiles of the unbound-architrino group.
 
 These are not ordinary three-line text tiles.
 
@@ -417,11 +417,11 @@ They use:
 - two centered text lines at the top;
 - and one centered charge circle in the lower half of the tile.
 
-For Xyzzy v1, the charge-glyph metrics below are locked.
+For pdgedit v1, the charge-glyph metrics below are locked.
 
 The JavaScript runtime and the reference SVG generator should use these exact values rather than improvising a separate layout rule.
 
-Charge-glyph tiles inherit the exact same outline geometry and centered border placement as every other Xyzzy tile.
+Charge-glyph tiles inherit the exact same outline geometry and centered border placement as every other pdgedit tile.
 
 Only the text block and charge circle may move within the tile.
 
@@ -447,9 +447,9 @@ The current prototype authored-surface renderer also uses a distinct binary-glyp
 
 That binary tile is drawn in an SVG view box of `120 x 120` units and then scaled into the baseline `72px x 72px` inner tile square.
 
-For Xyzzy v1, the binary-glyph metrics below are locked.
+For pdgedit v1, the binary-glyph metrics below are locked.
 
-The Xyzzy generator and review renderer should use these exact values rather than re-deriving them from runtime heuristics.
+The pdgedit generator and review renderer should use these exact values rather than re-deriving them from runtime heuristics.
 
 #### Orbital Ellipse
 
@@ -459,7 +459,7 @@ The Xyzzy generator and review renderer should use these exact values rather tha
 - stroke color: `rgba(162, 89, 255, 0.96)`;
 - stroke width: `5` in the generator specification, which corresponds to a `3px` display thickness after the `72/120` glyph fit.
 
-In the Xyzzy binary generator and review renderer, that orbit stroke scales with the `72/120` glyph fit, so it renders at `3px` inside the `72px x 72px` tile field.
+In the pdgedit binary generator and review renderer, that orbit stroke scales with the `72/120` glyph fit, so it renders at `3px` inside the `72px x 72px` tile field.
 
 Use the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
 
@@ -471,13 +471,13 @@ Use the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
 - stroke color: `rgba(162, 89, 255, 0.82)`;
 - stroke width: `4` in the generator specification, which corresponds to a `2.4px` display thickness after the `72/120` glyph fit.
 
-The current Xyzzy generator and review renderer also use:
+The current pdgedit generator and review renderer also use:
 
 - scaling stroke;
 - solid full-mode axis lines with butt line caps;
 - and overall axis opacity `0.84`.
 
-For Xyzzy v1, axis styling is mode-sensitive:
+For pdgedit v1, axis styling is mode-sensitive:
 
 - `full` mode keeps the solid vertical axis line with butt line caps;
 - `axis` mode uses the same geometry, color, stroke width, and opacity, but renders that vertical axis as a dotted line;
@@ -499,7 +499,7 @@ The left and right pole circles are the larger pair:
 - base right-pole center: `(95, 60)`;
 - each pole-circle radius: `8.3333333333` in the `120 x 120` glyph space, which renders as `5px` in the `72px x 72px` inner tile square.
 
-For Xyzzy v1, those two pole centers are fixed at those coordinates.
+For pdgedit v1, those two pole centers are fixed at those coordinates.
 
 The top and bottom circles sit on the vertical axis:
 
@@ -519,7 +519,7 @@ Use these glow filters:
 - electrino blue glow: `drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))`;
 - positrino red glow: `drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))`.
 
-The Xyzzy binary-tile border color follows the bottom/top polar code:
+The pdgedit binary-tile border color follows the bottom/top polar code:
 
 - `bb` uses a blue border;
 - `rr` uses a red border;
@@ -527,7 +527,7 @@ The Xyzzy binary-tile border color follows the bottom/top polar code:
 
 #### Locked Variant Family
 
-For the mixed-polarity dressed-binary family, Xyzzy should express the variants as the multiplicative combination
+For the mixed-polarity dressed-binary family, pdgedit should express the variants as the multiplicative combination
 
 - `(red/blue binary | blue/red binary) x (red/blue polar | blue/red polar)`.
 
@@ -538,14 +538,14 @@ In explicit placement terms:
 - `red/blue polar` means top red and bottom blue;
 - `blue/red polar` means top blue and bottom red.
 
-That produces exactly four locked Xyzzy binary-glyph variants:
+That produces exactly four locked pdgedit binary-glyph variants:
 
 - `blue/red binary x red/blue polar`;
 - `blue/red binary x blue/red polar`;
 - `red/blue binary x red/blue polar`;
 - `red/blue binary x blue/red polar`.
 
-These four variants are the Xyzzy expression of the factorization in which:
+These four variants are the pdgedit expression of the factorization in which:
 
 - the left/right binary pair is determined by binary polarity;
 - and the top/bottom polar pair is determined by the selected polar arrangement.
@@ -554,7 +554,7 @@ The left/right pair comes from the binary polarity swap, while the mixed top/bot
 
 #### Abbreviated Grammar
 
-Xyzzy should also use a short clueful grammar for binary-glyph variants:
+pdgedit should also use a short clueful grammar for binary-glyph variants:
 
 - `<mode>:<binary>:<polar>`.
 
@@ -589,11 +589,11 @@ Examples:
 - `full:rb:br` means left red, right blue, bottom blue, top red;
 - `polar:--:rb` means no binary scaffold and a bottom-red, top-blue polar pair.
 
-For Xyzzy, use `left/right` ordering for the binary field and `bottom/top` ordering for the polar field.
+For pdgedit, use `left/right` ordering for the binary field and `bottom/top` ordering for the polar field.
 
-Do not use north/east/south/west naming in the serialized Xyzzy grammar.
+Do not use north/east/south/west naming in the serialized pdgedit grammar.
 
-The shared Xyzzy binary-tile generator should expand the full valid family from this grammar:
+The shared pdgedit binary-tile generator should expand the full valid family from this grammar:
 
 - `full` mode: `2 x 4 = 8` variants;
 - `axis` mode: `2 x 4 = 8` variants;
@@ -603,15 +603,15 @@ That yields `20` generated binary-glyph tiles in total.
 
 ### Shared JSON Tile Catalog
 
-The baseline shared JSON catalog should live in the Xyzzy app directory as `src/apps/xyzzy/xyzzy-tiles.json`.
+The baseline shared JSON catalog should live in the pdgedit app directory as `src/apps/pdgedit/pdgedit-tiles.json`.
 
 The JavaScript app should use that JSON directly for tile lookup and dynamic count substitution.
 
-The app-local catalog at [`src/apps/xyzzy/xyzzy-tiles.json`](../../../src/apps/xyzzy/xyzzy-tiles.json) is the canonical catalog that should stay in sync with this document.
+The current app-local tile catalog in the implementation tree is the canonical catalog that should stay in sync with this document until the implementation directory is renamed.
 
-The JavaScript tile renderer at [`src/apps/xyzzy/XyzzyTileSvgRuntime.js`](../../../src/apps/xyzzy/XyzzyTileSvgRuntime.js) and the review app at [`src/apps/xyzzy/XyzzyTileReviewAppRuntime.js`](../../../src/apps/xyzzy/XyzzyTileReviewAppRuntime.js) are the baseline implementation the future Xyzzy app should use for tile rendering.
+The current JavaScript tile renderer and review app in the implementation tree are the baseline implementation the future pdgedit app should use for tile rendering.
 
-The review entrypoint at [`src/apps/xyzzy/review/main.js`](../../../src/apps/xyzzy/review/main.js) demonstrates how the app should load the JSON and render the full tile catalog in browser-side SVG.
+The current review entrypoint in the implementation tree demonstrates how the app should load the JSON and render the full tile catalog in browser-side SVG.
 
 The `glyph.py` script should remain reference and comparison code, not the runtime tile engine of the app.
 
@@ -636,7 +636,7 @@ That means:
 - a one-tile operator is one glyph tile;
 - the interior border of each tile belongs to that tile's own artwork;
 - the half-gap field sits outside that interior border on all four sides;
-- the JavaScript app should render those tiles from `src/apps/xyzzy/xyzzy-tiles.json` using the baseline renderer in `src/apps/xyzzy/`;
+- the JavaScript app should render those tiles from `src/apps/pdgedit/pdgedit-tiles.json` using the baseline renderer in `src/apps/pdgedit/`;
 - and the runtime should not fake this look by inserting layout gaps, panel padding, or extra wrapper borders between otherwise plain rectangles.
 
 ### Column And Row Model
@@ -747,14 +747,14 @@ An assembly is one horizontal strip of four abutted tiles.
 The baseline assembly shape is:
 
 - tile 1: title tile;
-- tile 2: standard Xyzzy tile from the JSON catalog;
-- tile 3: standard Xyzzy tile from the JSON catalog;
-- tile 4: standard Xyzzy tile from the JSON catalog.
+- tile 2: standard pdgedit tile from the JSON catalog;
+- tile 3: standard pdgedit tile from the JSON catalog;
+- tile 4: standard pdgedit tile from the JSON catalog.
 
 The typical assembly therefore contains:
 
 - one title tile;
-- and three standard Xyzzy tiles rendered through the shared JavaScript tile renderer.
+- and three standard pdgedit tiles rendered through the shared JavaScript tile renderer.
 
 An assembly is authored and stored as one object with one placement. Its four tiles are part of one visual unit, not four independent surface objects.
 
@@ -777,7 +777,7 @@ That means:
 
 ### Unbound Architrinos Assembly
 
-The solver-side participant at the JSON boundary is `Unbound Architrinos`, and the Xyzzy surface should render it as a four-tile group with the visible state title `Unbound`.
+The solver-side participant at the JSON boundary is `Unbound Architrinos`, and the pdgedit surface should render it as a four-tile group with the visible state title `Unbound`.
 
 `Unbound Architrinos` is one horizontal strip of four abutted tiles.
 
@@ -885,7 +885,7 @@ To create an assembly:
 - open the create picker with assembly entries only for that slot;
 - and click one assembly entry to create the assembly immediately in that row and close the picker.
 
-The chosen assembly entry must provide the full explicit assembly payload written to the working `xyzzy/v1` document:
+The chosen assembly entry must provide the full explicit assembly payload written to the working `pdgedit/v1` document:
 
 - one new stable `id`;
 - the assembly `type`;
@@ -975,7 +975,7 @@ The delete gesture is:
 
 - plain click an assembly or operator to select it;
 - press `Delete` or `Backspace`;
-- and remove that object from the working `xyzzy/v1` document immediately.
+- and remove that object from the working `pdgedit/v1` document immediately.
 
 When an object is deleted:
 
@@ -1167,7 +1167,7 @@ The implied reaction flow is left to right because the surface bands are ordered
 
 The link record stores two endpoints for validation and serialization, but the rendered spline should not display an arrow or any other direction marker.
 
-For `xyzzy/v1` serialization, each link record uses canonical left-to-right endpoint order:
+For `pdgedit/v1` serialization, each link record uses canonical left-to-right endpoint order:
 
 - `endpointA` is the id of the object in the left object band;
 - `endpointB` is the id of the object in the right object band;
@@ -1204,7 +1204,7 @@ The base reaction diagram should therefore include:
 
 Those reserved outer columns exist even when no composite labels are currently drawn.
 
-For `xyzzy/v1`, `compositeLabels` is always present as a top-level array.
+For `pdgedit/v1`, `compositeLabels` is always present as a top-level array.
 
 When no composite labels are drawn, that array should be `[]`.
 
@@ -1225,7 +1225,7 @@ Composite-label field rules are:
 - `side: "left"` renders in the reserved column-1 region;
 - and `side: "right"` renders in the reserved column-20 region.
 
-No explicit `x`, `width`, waypoint, or screen-coordinate fields belong in a `xyzzy/v1` composite-label record.
+No explicit `x`, `width`, waypoint, or screen-coordinate fields belong in a `pdgedit/v1` composite-label record.
 
 For v1, composite labels should be absent by default:
 
@@ -1246,9 +1246,9 @@ This keeps the primary object grammar stable and makes the label system an expli
 
 ### JSON Model
 
-The Xyzzy JSON contract should describe the authored surface directly.
+The pdgedit JSON contract should describe the authored surface directly.
 
-The top-level document should include `schema: "xyzzy/v1"`.
+The top-level document should include `schema: "pdgedit/v1"`.
 
 The contract should represent:
 
@@ -1263,9 +1263,9 @@ The contract should stay flat rather than hierarchical at the top level.
 
 The JSON contract is a boundary contract.
 
-It does not imply that the runtime should render a visible side-by-side JSON editing panel as part of the default Xyzzy surface.
+It does not imply that the runtime should render a visible side-by-side JSON editing panel as part of the default pdgedit surface.
 
-Exact object model for `xyzzy/v1`:
+Exact object model for `pdgedit/v1`:
 
 - every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
 - every operator record stores one grid position in an allowed one-tile operator band and a one-tile payload containing title plus positrino and electrino counts;
@@ -1302,11 +1302,11 @@ The exact assembly `tiles` field is:
 Assembly tile payload rules are:
 
 - tile 1 is the leftmost assembly tile and tiles 2-4 follow in visible left-to-right order;
-- every `tiles` entry must be one tile key that exists in the shared Xyzzy tile catalog;
+- every `tiles` entry must be one tile key that exists in the shared pdgedit tile catalog;
 - the runtime uses those tile keys directly as the visible display payload;
 - and the runtime must not rebuild the row from `type`, `title`, polarity, generation, family, or other semantic fields when `tiles` is present.
 
-For operator records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+For operator records, the exact allowed `type` values for `pdgedit/v1` are now fixed:
 
 - `associate`
 - `dissociate`
@@ -1319,10 +1319,10 @@ That means:
 - `associate` identifies the operator semantically and uses the visible operator title `Associate`;
 - `dissociate` identifies the operator semantically and uses the visible operator title `Dissociate`;
 - `pass-thru` identifies the operator semantically and uses the visible operator title `Pass Thru`;
-- no other operator `type` values are valid in `xyzzy/v1`;
+- no other operator `type` values are valid in `pdgedit/v1`;
 - and operator rendering may use the operator `type` to validate the expected title family and one-tile operator layout.
 
-For assembly records, the exact allowed `type` values for `xyzzy/v1` are now fixed:
+For assembly records, the exact allowed `type` values for `pdgedit/v1` are now fixed:
 
 - `unbound-architrinos-assembly`
 - `pro-tau-assembly`
@@ -1383,7 +1383,7 @@ That means:
 - assembly `type` may be used for validation, filtering, export, and transformation logic;
 - and the exact rendered appearance still comes only from the explicit `tiles` array.
 
-The `-assembly` suffix is the canonical naming form for assembly `type` values in `xyzzy/v1`.
+The `-assembly` suffix is the canonical naming form for assembly `type` values in `pdgedit/v1`.
 
 The assembly display payload remains the explicit `tiles` array.
 
@@ -1398,7 +1398,7 @@ Link field rules are:
 - `endpointA` and `endpointB` must each reference an existing assembly or operator id;
 - `endpointA` must reference the left-side object and `endpointB` the right-side object;
 - the endpoint pair must belong to one valid neighboring-band connection with one valid routing column between them;
-- and no extra geometry, style, or screen-coordinate fields belong in the `xyzzy/v1` link schema.
+- and no extra geometry, style, or screen-coordinate fields belong in the `pdgedit/v1` link schema.
 
 The exact composite-label schema is:
 
@@ -1414,11 +1414,11 @@ Composite-label field rules are:
 - `text` must be a non-empty string;
 - `rowStart` and `rowEnd` must be inclusive integer row coordinates using the same row numbering as object `y` positions;
 - `rowStart` must be less than or equal to `rowEnd`;
-- and no extra geometry or screen-coordinate fields belong in the `xyzzy/v1` composite-label schema.
+- and no extra geometry or screen-coordinate fields belong in the `pdgedit/v1` composite-label schema.
 
 The `tiles` field is the canonical display payload for the four assembly tiles.
 
-Exact top-level document shape for `xyzzy/v1`:
+Exact top-level document shape for `pdgedit/v1`:
 
 - `schema`
 - `assemblies`
@@ -1426,7 +1426,7 @@ Exact top-level document shape for `xyzzy/v1`:
 - `links`
 - `compositeLabels`
 
-All five top-level keys are required in a `xyzzy/v1` document.
+All five top-level keys are required in a `pdgedit/v1` document.
 
 If any of the four record collections has no entries, its value must be `[]`.
 
@@ -1466,7 +1466,7 @@ Because assemblies are fixed-width objects, overlap should be checked by occupie
 
 ### Naming
 
-The new app family should use `xyzzy` naming in file names, code identifiers, and app-specific documents.
+The new app family should use `pdgedit` naming in file names, code identifiers, and app-specific documents.
 
 The goal is one clear app identity rather than mixed naming across runtime, solver, and surface modules.
 
@@ -1474,14 +1474,14 @@ The goal is one clear app identity rather than mixed naming across runtime, solv
 
 ### Inputs
 
-- final `xyzzy/v1` JSON documents containing assemblies, operators, splines, and composite-label effects;
-- a manifest-driven list of available final `xyzzy/v1` documents for the header selector;
+- final `pdgedit/v1` JSON documents containing assemblies, operators, splines, and composite-label effects;
+- a manifest-driven list of available final `pdgedit/v1` documents for the header selector;
 - user-authored assembly and operator create, move, and delete gestures on the current document;
 - and user-authored adjacent-column spline links.
 
 Those JSON documents describe the contract boundary. They do not require a built-in visible JSON panel in the authored surface.
 
-For v1, direct object editing is part of Xyzzy itself.
+For v1, direct object editing is part of pdgedit itself.
 
 That direct authoring surface is limited to:
 
@@ -1490,7 +1490,7 @@ That direct authoring surface is limited to:
 - deleting the selected object with immediate link cleanup;
 - and authoring or deleting splines through the direct surface gestures defined here.
 
-Even with that authoring support, Xyzzy should still not introduce:
+Even with that authoring support, pdgedit should still not introduce:
 
 - extra top-band controls beyond the JSON selector and home button;
 - built-in visible JSON side panels;
@@ -1510,17 +1510,17 @@ This note currently defines:
 
 ### Document Selection And Bootstrap
 
-The header JSON selector should be populated from a manifest of available final `xyzzy/v1` documents.
+The header JSON selector should be populated from a manifest of available final `pdgedit/v1` documents.
 
-The manifest contract for Xyzzy v1 is now fixed.
+The manifest contract for pdgedit v1 is now fixed.
 
 The exact manifest schema id is:
 
-- `xyzzy-library-manifest/v1`
+- `pdgedit-library-manifest/v1`
 
 The canonical manifest file path is:
 
-- `content/contracts/examples/xyzzy/manifest.v1.json`
+- `content/contracts/examples/pdgedit/manifest.v1.json`
 
 The exact top-level manifest keys are:
 
@@ -1541,27 +1541,27 @@ Per-entry field rules are:
 - `id` must be a stable non-empty string;
 - `title` must be a non-empty source title;
 - `displayTitle` must be the label shown in the closed selector and dropdown options;
-- `documentPath` must be the final `xyzzy/v1` asset path consumed by the Xyzzy runtime;
+- `documentPath` must be the final `pdgedit/v1` asset path consumed by the pdgedit runtime;
 - `isDefault` is optional and may be used as a local redundancy marker for the default entry;
-- and no `requestPath`, `sourceRequestPath`, `solverRequest`, `solverResult`, or other upstream solve payload fields belong in the Xyzzy manifest contract.
+- and no `requestPath`, `sourceRequestPath`, `solverRequest`, `solverResult`, or other upstream solve payload fields belong in the pdgedit manifest contract.
 
-The exact path field used to load a final `xyzzy/v1` document is:
+The exact path field used to load a final `pdgedit/v1` document is:
 
 - `documentPath`
 
-That path field is canonical for Xyzzy.
+That path field is canonical for pdgedit.
 
 It does not alias to `requestPath`, `sourceRequestPath`, or any other alternate asset field name.
 
-For Xyzzy, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
+For pdgedit, the picker should use that manifest to load available authored-surface JSON documents rather than to open a visible editor.
 
-That manifest should point directly to final `xyzzy/v1` documents.
+That manifest should point directly to final `pdgedit/v1` documents.
 
 It should not point to raw `solver-request/v1` or `solver-result/v1` payloads.
 
-If an upstream solver pipeline starts from some non-Xyzzy request or result format, the translation into final `xyzzy/v1` should happen before the document is published to the Xyzzy manifest and before the Xyzzy runtime reads it.
+If an upstream solver pipeline starts from some non-pdgedit request or result format, the translation into final `pdgedit/v1` should happen before the document is published to the pdgedit manifest and before the pdgedit runtime reads it.
 
-Xyzzy v1 should still not include a built-in blank-document flow or new-document button in the top bands.
+pdgedit v1 should still not include a built-in blank-document flow or new-document button in the top bands.
 
 Direct surface authoring should instead operate on the currently loaded document.
 
@@ -1579,12 +1579,12 @@ When the user chooses a different item from the header selector, the app should 
 That selection behavior should:
 
 - clear the currently rendered surface objects and spline paths;
-- load the newly selected Xyzzy JSON document from the manifest entry's `documentPath`;
+- load the newly selected pdgedit JSON document from the manifest entry's `documentPath`;
 - and render only the selected document.
 
 ### Outputs
 
-- final `xyzzy/v1` documents with stable object ids and placements;
+- final `pdgedit/v1` documents with stable object ids and placements;
 - explicit spline link records;
 - and explicit composite-label records for the final rendering pass.
 
@@ -1592,20 +1592,20 @@ That selection behavior should:
 
 The preferred contract stance is:
 
-- the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by Xyzzy is final `xyzzy/v1`;
-- any translation from `solver-request/v1`, `solver-result/v1`, or another upstream solve format into `xyzzy/v1` happens outside the Xyzzy renderer;
-- the Xyzzy runtime receives explicit Xyzzy-owned JSON shapes;
-- assemblies and operators arrive as Xyzzy surface objects rather than as data that must be reinterpreted by the renderer;
+- the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by pdgedit is final `pdgedit/v1`;
+- any translation from `solver-request/v1`, `solver-result/v1`, or another upstream solve format into `pdgedit/v1` happens outside the pdgedit renderer;
+- the pdgedit runtime receives explicit pdgedit-owned JSON shapes;
+- assemblies and operators arrive as pdgedit surface objects rather than as data that must be reinterpreted by the renderer;
 - spline-producing relationships are explicit in JSON;
 - and composite-label after-effects remain explicit data rather than inferred presentation.
 
-The solver should not own screen coordinates or screen geometry details. Xyzzy owns the surface grid and final visual placement.
+The solver should not own screen coordinates or screen geometry details. pdgedit owns the surface grid and final visual placement.
 
 That means the practical v1 boundary is:
 
 - send any solver-facing request upstream through a separate solve or transformation step;
-- receive or publish a final `xyzzy/v1` document;
-- and let the Xyzzy runtime render that `xyzzy/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
+- receive or publish a final `pdgedit/v1` document;
+- and let the pdgedit runtime render that `pdgedit/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
 
 ## Priorities
 
@@ -1616,7 +1616,7 @@ Status: `deferred`
 Current:
 
 - the base direct object-editing workflow for single assemblies and operators is now defined;
-- Xyzzy now reserves the outer columns and renders optional composite labels as a final pass;
+- pdgedit now reserves the outer columns and renders optional composite labels as a final pass;
 - no richer composite-label semantics are intended beyond explicit visual grouping;
 - composite authoring still has no explicit surface workflow of its own;
 - and composite-aware assembly insertion behavior may remain deferred until that composite workflow is implemented.

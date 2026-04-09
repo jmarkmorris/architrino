@@ -7,7 +7,7 @@
 - Keep Composer focused on staging, observer work, overlays, playback, and scene output.
 - Do not restate solver internals or PDG-ingest plans here except where Composer must interface with them.
 - Keep cross-app handoff details brief here and prefer the contract-owning document when it exists.
-- Keep cross-cutting app-boundary and modularity doctrine in [app-architecture](app-architecture.md); keep only Composer-specific seams and boundaries here.
+- Keep cross-cutting app-boundary and modularity doctrine in [pdgapps](pdgapps.md); keep only Composer-specific seams and boundaries here.
 
 ## Purpose
 
@@ -48,8 +48,8 @@ It does not own:
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
 - Composer now sits cleanly on the downstream side of the solve/publication path.
-- Upstream request loading, solving, review, and publication stay entirely outside Composer; the intended forward input is accepted Xyzzy output or an equivalent downstream contract.
-- The next import and contract work is to define and cover that forward Combo/Xyzzy-to-Composer seam.
+- Upstream request loading, solving, review, and publication stay entirely outside Composer; the intended forward input is accepted pdgedit output or an equivalent downstream contract.
+- The next import and contract work is to define and cover that forward pdgsolve/pdgedit-to-Composer seam.
 
 ## Design
 
@@ -166,7 +166,7 @@ That means:
 
 - authored scene documents and local drafts;
 - assembly, path, and timing data authored directly in Composer;
-- imported accepted Xyzzy output or equivalent downstream staging contracts derived from it;
+- imported accepted pdgedit output or equivalent downstream staging contracts derived from it;
 - and referenced media assets for overlays and editorial material.
 
 ### Outputs
@@ -178,13 +178,13 @@ That means:
 
 ### Upstream And Downstream Boundaries
 
-Composer should consume accepted Xyzzy output or an equivalent explicit downstream staging contract derived from it and translate that data into Composer-owned scene state.
+Composer should consume accepted pdgedit output or an equivalent explicit downstream staging contract derived from it and translate that data into Composer-owned scene state.
 
 Composer should not:
 
 - solve the reaction again;
-- consume Combo review state or live upstream request selections directly;
-- import Combo or Xyzzy runtime code to perform the handoff;
+- consume pdgsolve review state or live upstream request selections directly;
+- import pdgsolve or pdgedit runtime code to perform the handoff;
 - or depend on shared live UI state across the upstream/downstream app boundary.
 
 The Composer-side intake should be strong enough to receive:
@@ -197,11 +197,11 @@ The Composer-side intake should be strong enough to receive:
 
 ### Neighboring Components
 
-- [combo](./combo.md) owns solve review, acceptance, and publication upstream of Composer.
-- [xyzzy](./xyzzy.md) owns the final authored surface and `xyzzy/v1` document model that should feed Composer.
+- [pdgsolve](./pdgsolve.md) owns solve review, acceptance, and publication upstream of Composer.
+- [pdgedit](./pdgedit.md) owns the final authored surface and `pdgedit/v1` document model that should feed Composer.
 - [pdgfeed](./pdgfeed.md) is future upstream seed/proposal work and should stay outside Composer runtime concerns.
-- [app-architecture](app-architecture.md) owns the app-boundary rule that keeps the handoff explicit.
-- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity discipline.
+- [pdgapps](pdgapps.md) owns the app-boundary rule that keeps the handoff explicit.
+- [pdgapps](pdgapps.md) owns the cross-cutting app-boundary and modularity discipline.
 
 ## Priorities
 
@@ -250,11 +250,11 @@ Status: `next`
 Current:
 
 - Composer no longer carries a live legacy handoff bridge in the active tree;
-- the accepted-Xyzzy downstream contract still needs schema, fixtures, and runtime coverage.
+- the accepted-pdgedit downstream contract still needs schema, fixtures, and runtime coverage.
 
 Objective:
 
-- land the accepted-Xyzzy downstream contract and prove that Composer stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
+- land the accepted-pdgedit downstream contract and prove that Composer stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
 
 ### 5. Move More Editing Onto Canonical Structure Transforms
 
@@ -272,10 +272,10 @@ Objective:
 ## Related Priorities
 
 - [observer](./observer.md)
-- [combo](./combo.md)
-- [xyzzy](./xyzzy.md)
+- [pdgsolve](./pdgsolve.md)
+- [pdgedit](./pdgedit.md)
 - [pdgfeed](./pdgfeed.md)
-- [app-architecture](app-architecture.md)
+- [pdgapps](pdgapps.md)
 - [viewports](viewports.md)
 
 ## Related AAA Notes
