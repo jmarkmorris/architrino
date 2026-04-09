@@ -67,7 +67,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`reaction`](../observer/reaction.md) | Reaction app | — | — | — |
 | — | [`solver`](../observer/solver.md) | Reaction solver | — | — | — |
 | — | [`pdgfeed`](../observer/pdgfeed.md) | PDG | — | — | — |
-| — | [`glyph`](../../architecture/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
+| — | [`glyph`](../observer/glyph.md) | Glyph system for `\mathbb{A}\mathbb{A}\mathbb{A}` | — | — | — |
 | — | [`viewports`](../observer/viewports.md) | Viewports | — | — | — |
 | — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |

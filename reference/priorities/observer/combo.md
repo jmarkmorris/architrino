@@ -466,7 +466,7 @@ The search design should specify:
 
 The search model should remain planner-first rather than surface-first.
 
-The exploratory note in [solver-network](./solver-network.md) is relevant here as a seed idea, not as a finished spec.
+The related search material in [solver](./solver.md) is relevant here as neighboring groundwork, not as a finished Combo spec.
 
 This limited geometry should be exploited aggressively.
 
@@ -942,7 +942,7 @@ Combo should not:
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
 - [xyzzy](./xyzzy.md) owns the final tile surface, placement grammar, and Xyzzy-side document model.
-- [solver-network](./solver-network.md) is an exploratory note related to combinatorial search ideas.
+- [solver](./solver.md) carries related search-strategy and branch-state design material.
 - [app-architecture](app-architecture.md) owns the cross-app boundary and modularity rules that apply here.
 
 ## Priorities
@@ -1030,7 +1030,7 @@ Objective:
 - [observer](./observer.md)
 - [pdgfeed](./pdgfeed.md)
 - [xyzzy](./xyzzy.md)
-- [solver-network](./solver-network.md)
+- [solver](./solver.md)
 - [app-architecture](app-architecture.md)
 
 ## Pre-Implementation To Do
