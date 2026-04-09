@@ -1,4 +1,4 @@
-# Observer Workstream
+# PDG Workstream
 
 ## Workstream Metadata
 
@@ -16,14 +16,13 @@
 - [pdgsolve](./pdgsolve.md) — pdgsolve app design as the request-intake, solve-review, acceptance, and pdgedit-publication surface.
 - [pdgedit](./pdgedit.md) — final authored-surface document model, tile grammar, manifest behavior, and direct object editing.
 - [pdgview](./pdgview.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
-- [viewports](./viewports.md) — observer-view and design-view guidance for downstream scene authoring.
 
 ## Current Cross-Doc Queue
 
 1. [pdgfeed](./pdgfeed.md) and [pdgsolve](./pdgsolve.md): keep upstream request emission explicit, proposal-aware, and ready for pdgsolve intake.
 2. [pdgsolve](./pdgsolve.md) and [pdgedit](./pdgedit.md): freeze the accepted publication path from reviewed solve state into final `pdgedit/v1`.
 3. [pdgedit](./pdgedit.md) and [pdgview](./pdgview.md): define the downstream handoff from accepted pdgedit output into observer-stage scene work.
-4. [pdgview](./pdgview.md) and [viewports](./viewports.md): finish observer framing, autoscale, overlays, and preview behavior on top of imported authored-surface content.
+4. [pdgview](./pdgview.md): finish observer framing, autoscale, overlays, and preview behavior on top of imported authored-surface content.
 5. [pdgapps](./pdgapps.md): keep these boundaries contract-first and prevent shared-runtime backsliding.
 
 ## Subapp Workflow Overview

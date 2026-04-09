@@ -3964,7 +3964,7 @@ const pdgviewSceneId = "pdgview";
 const pdgviewPreviewSceneId = "pdgview_preview";
 const pdgviewPreviewScenePath = "__pdgview_preview__";
 const pdgviewDocsPath =
-  "reference/priorities/observer/pdgview.md";
+  "reference/priorities/pdg/pdgview.md";
 const appMode = getPdgviewAppMode(globalThis.window);
 const isStandalonePdgviewApp = isStandalonePdgviewAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_PDGVIEW_NAVIGATOR_HREF;

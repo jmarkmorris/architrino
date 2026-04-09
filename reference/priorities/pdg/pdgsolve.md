@@ -1621,7 +1621,7 @@ No active items right now.
 
 ## Related Priorities
 
-- [observer](./observer.md)
+- [pdg](./pdg.md)
 - [pdgfeed](./pdgfeed.md)
 - [pdgedit](./pdgedit.md)
 - [pdgapps](pdgapps.md)

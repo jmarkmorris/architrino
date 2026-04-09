@@ -94,6 +94,208 @@ The target model is:
 
 The implementation may still use camera objects internally, but the author-facing model should consistently present observer behavior.
 
+### Design View And Observer View
+
+pdgview has two closely related but not identical visual jobs:
+
+- a design view where we place assemblies, paths, reactions, and timeline objects;
+- and an observer view where we judge what the authored interval actually shows.
+
+Those two readings should stay explicit.
+
+- The design view answers: "What is in the scene, where is it, and how is it moving?"
+- The observer view answers: "What will the observer actually see, when, and with what emphasis?"
+
+The same gesture can therefore mean different things in each context. Dragging an object in the design view changes scene structure. Dragging an observer guide in the observer view may instead change observation intent, follow behavior, or reveal emphasis.
+
+One language rule should stay explicit from the start:
+
+- `camera` may remain an internal runtime term;
+- `observer` should stay the user-facing metaphor.
+
+Another boundary should stay explicit too:
+
+- viewport tools are downstream of accepted pdgedit output or an equivalent downstream staging contract derived from it;
+- they should not solve upstream composition again or repair missing upstream geometry;
+- and they should treat upstream structure as authored input rather than something to reinterpret.
+
+### Viewport Layout Direction
+
+The standard layout choices are familiar and still useful here.
+
+#### 1. Single Design View With Observer Guides
+
+Advantages:
+
+- the author always works in one place;
+- structure edits and observer edits stay visibly connected;
+- and it uses screen space efficiently.
+
+Costs:
+
+- it can become visually busy;
+- the user must mentally translate from scene structure to observed result;
+- and subtle framing mistakes are easy to miss.
+
+#### 2. Split Design View And Observer Preview
+
+Advantages:
+
+- the division of purpose is immediately clear;
+- observation can be judged while the scene is still edited directly;
+- and shot and reveal decisions are easier to debug.
+
+Costs:
+
+- it consumes more screen space;
+- duplicated controls can become awkward;
+- and the relationship between the two views must stay tightly synchronized.
+
+#### 3. Picture-In-Picture Observer Preview
+
+Advantages:
+
+- it preserves canvas dominance;
+- keeps the active observer result visible;
+- and scales well for casual authoring.
+
+Costs:
+
+- small previews are weak for precise composition;
+- observer editing can feel secondary;
+- and the preview may be ignored unless it is made salient at the right times.
+
+#### 4. Dedicated Observer Mode
+
+Advantages:
+
+- strong focus;
+- fewer simultaneous controls;
+- and easier teaching for advanced observation design.
+
+Costs:
+
+- mode switching increases friction;
+- it is easy to lose spatial context;
+- and authors may feel like they are leaving the scene rather than refining it.
+
+### Shared And Divergent Controls
+
+The two views should not become unrelated tools. They should share one authoring grammar.
+
+Shared controls should include:
+
+- timeline scrub and play state;
+- active observer interval and active observer path;
+- selection and focus target;
+- point-of-interest targeting;
+- object visibility filters like labels, paths, envelopes, and history traces;
+- playback scale and pause/warp interpretation;
+- and object identity, so a selected assembly in one view is the same selected assembly in the other.
+
+The views should diverge only where author intent diverges.
+
+The design view should favor:
+
+- placing assemblies;
+- dragging path points;
+- arranging members and subassemblies;
+- and revealing structural guides.
+
+The observer view should favor:
+
+- emphasis;
+- composition;
+- follow and target behavior;
+- distance and proximity choices;
+- and timing of reveals, overlays, and explanatory attention.
+
+### Architrino-Specific Viewport Opportunity
+
+In pdgview the scene is not just geometry. It is assemblies, nested local frames, transport paths, reaction choreography, and delayed structure. That means the design view must remain truth-bearing about structure, while the observer view must remain truth-bearing about what the audience perceives.
+
+The strongest unifying idea is:
+
+- the observer is another authored participant attached to frames, paths, and targets rather than a detached global inspector.
+
+That suggests a more intuitive model.
+
+#### Observer As An Authored Participant
+
+Instead of treating the observer as only a hidden renderer, treat it as an authored participant with:
+
+- a position path;
+- a target relationship;
+- a reveal state;
+- and an overlay stack.
+
+Observer intervals can then use the same kinds of anchors already present elsewhere:
+
+- attach to scene root;
+- attach to an assembly frame;
+- follow a path point;
+- look toward a selected constituent;
+- and inherit a local frame before applying an offset.
+
+#### Observer Guides As Visible Scene Objects
+
+The observer view should be backed by visible guides in the design view:
+
+- observer origin marker;
+- focus target marker;
+- connecting sight line;
+- focus cone or attention corridor;
+- and optional composition or safe-region guides.
+
+These guides should be draggable and targetable like other pdgview objects rather than hidden in forms.
+
+#### One Scene, Two Readings
+
+The best near-term design is:
+
+- one dominant design view;
+- one smaller observer view or inset;
+- both reading from the same authored scene state;
+- and both sharing selection, time, and focus.
+
+The design view shows structure. The observer view shows perceived result. Clicking an assembly in either place should keep working on the same underlying object.
+
+#### Semantic Reveal Tied To Assembly Scale
+
+Because these scenes naturally move between proxy scale and constituent scale, the observer system should exploit that rather than fight it.
+
+An observer interval should be able to declare reveal behavior such as:
+
+- proxy-only;
+- proxy plus path;
+- shell-visible;
+- constituent-visible;
+- transfer-focused;
+- or reaction-stage focus.
+
+That keeps observation tied to the existing assembly architecture instead of treating it as mere motion through space.
+
+#### Overlays As Real Timeline Objects
+
+Text notes, arrows, bubbles, images, and other graphics should remain timeline objects with:
+
+- target attachment;
+- local or world anchoring;
+- fade-in and fade-out;
+- and visibility rules by observer interval or reveal state.
+
+That keeps design view and observer view synchronized because the overlay remains part of the authored scene language.
+
+### Practical Staged Direction
+
+The staged direction should be:
+
+1. Keep the design view dominant.
+2. Add the timeline object palette for overlays and observer-related items.
+3. Introduce a small observer view or inset tied to the active interval when necessary.
+4. Make observer guide objects directly manipulable in the design view.
+5. Let observer intervals bind to assembly frames, local targets, and reveal states rather than only raw world-space coordinates.
+
 ### Media And Overlay Boundary
 
 The current narrow media boundary should remain explicit.
@@ -271,12 +473,11 @@ Objective:
 
 ## Related Priorities
 
-- [observer](./observer.md)
+- [pdg](./pdg.md)
 - [pdgsolve](./pdgsolve.md)
 - [pdgedit](./pdgedit.md)
 - [pdgfeed](./pdgfeed.md)
 - [pdgapps](pdgapps.md)
-- [viewports](viewports.md)
 
 ## Related AAA Notes
 

@@ -358,7 +358,7 @@ Practical order:
 
 ## Related Priorities
 
-- [observer](observer.md)
+- [pdg](pdg.md)
 - [pdgview](pdgview.md)
 - [pdgsolve](pdgsolve.md)
 - [pdgedit](pdgedit.md)

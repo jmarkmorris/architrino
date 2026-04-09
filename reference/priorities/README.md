@@ -15,6 +15,6 @@ The current preferred style for live priority docs is:
 
 This pattern was applied across:
 
-- [reference/priorities/observer/pdgapps.md](observer/pdgapps.md)
-- [reference/priorities/observer/pdgview.md](../priorities/observer/pdgview.md)
-- [reference/priorities/observer/pdgfeed.md](../priorities/observer/pdgfeed.md)
+- [reference/priorities/pdg/pdgapps.md](pdg/pdgapps.md)
+- [reference/priorities/pdg/pdgview.md](../priorities/pdg/pdgview.md)
+- [reference/priorities/pdg/pdgfeed.md](../priorities/pdg/pdgfeed.md)
