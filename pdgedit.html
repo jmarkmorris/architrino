@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" style="background:#0b0e1a;color:#f5f7ff;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0e1a" />
+    <title>pdgedit</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0b0e1a;
+        color: #f5f7ff;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body {
+        min-width: 1648px;
+      }
+
+      #pdgedit-app {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at top, rgba(36, 48, 86, 0.45), transparent 42%),
+          linear-gradient(180deg, rgba(11, 14, 26, 0.98), rgba(5, 8, 18, 1));
+      }
+
+      .pdgedit-top-band {
+        position: relative;
+        width: 100%;
+        height: 80px;
+      }
+
+      .pdgedit-top-band-header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .pdgedit-top-tools {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      #pdgedit-home-button,
+      #pdgedit-document-trigger {
+        min-height: 32px;
+        border: 1px solid rgba(160, 170, 220, 0.25);
+        background: rgba(8, 10, 18, 0.75);
+        color: #f5f7ff;
+        backdrop-filter: blur(6px);
+      }
+
+      #pdgedit-home-button {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      #pdgedit-home-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      #pdgedit-document-trigger {
+        min-width: 260px;
+        max-width: min(80vw, 420px);
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 14px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      #pdgedit-document-trigger:hover,
+      #pdgedit-document-trigger:focus-visible,
+      #pdgedit-home-button:hover,
+      #pdgedit-home-button:focus-visible {
+        border-color: rgba(213, 220, 255, 0.6);
+      }
+
+      #pdgedit-document-trigger:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+
+      #pdgedit-document-panel,
+      #pdgedit-create-picker {
+        position: absolute;
+        min-width: 260px;
+        max-width: min(80vw, 360px);
+        border: 1px solid rgba(160, 170, 220, 0.25);
+        border-radius: 12px;
+        background: rgba(8, 10, 18, 0.75);
+        padding: 8px 10px;
+        backdrop-filter: blur(6px);
+        z-index: 12;
+      }
+
+      #pdgedit-document-panel {
+        top: 44px;
+        right: 0;
+      }
+
+      #pdgedit-document-panel[hidden],
+      #pdgedit-create-picker[hidden] {
+        display: none;
+      }
+
+      .pdgedit-document-option,
+      .pdgedit-create-option,
+      .pdgedit-operator-type-button,
+      .pdgedit-create-confirm {
+        width: 100%;
+        border: 1px solid rgba(160, 170, 220, 0.2);
+        border-radius: 10px;
+        background: transparent;
+        color: #f5f7ff;
+        text-align: left;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .pdgedit-document-option,
+      .pdgedit-create-option {
+        padding: 9px 10px;
+      }
+
+      .pdgedit-document-option + .pdgedit-document-option,
+      .pdgedit-create-option + .pdgedit-create-option {
+        margin-top: 6px;
+      }
+
+      .pdgedit-document-option.is-selected,
+      .pdgedit-operator-type-button.is-selected {
+        border-color: rgba(213, 220, 255, 0.55);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      #pdgedit-surface-region {
+        position: absolute;
+        inset: 160px 0 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .pdgedit-strip-wrap {
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0 0 48px;
+      }
+
+      #pdgedit-surface-strip {
+        position: relative;
+        width: 1600px;
+        min-height: 160px;
+      }
+
+      #pdgedit-object-layer,
+      #pdgedit-composite-layer,
+      #pdgedit-link-overlay {
+        position: absolute;
+        inset: 0;
+      }
+
+      #pdgedit-object-layer {
+        z-index: 2;
+      }
+
+      #pdgedit-link-overlay {
+        z-index: 3;
+        overflow: visible;
+      }
+
+      #pdgedit-composite-layer {
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .pdgedit-object {
+        position: absolute;
+        display: inline-flex;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .pdgedit-object:focus-visible {
+        outline: none;
+      }
+
+      .pdgedit-object.is-selected::after,
+      .pdgedit-object.is-link-pending::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 6px;
+      }
+
+      .pdgedit-object.is-selected::after {
+        border: 1px solid rgba(245, 247, 255, 0.82);
+      }
+
+      .pdgedit-object.is-link-pending::after {
+        border: 1px dashed rgba(245, 247, 255, 0.82);
+      }
+
+      .pdgedit-surface-tile,
+      .pdgedit-missing-tile {
+        flex: 0 0 80px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .pdgedit-missing-tile {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        border: 1px solid rgba(245, 247, 255, 0.18);
+        background: #000;
+        color: #f5f7ff;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .pdgedit-composite-label {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 4px;
+      }
+
+      .pdgedit-composite-label-left {
+        flex-direction: row;
+      }
+
+      .pdgedit-composite-label-right {
+        flex-direction: row-reverse;
+      }
+
+      .pdgedit-composite-line {
+        width: 1px;
+        height: 100%;
+        background: rgba(245, 247, 255, 0.7);
+      }
+
+      .pdgedit-composite-text {
+        max-width: 56px;
+        color: #f5f7ff;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        text-wrap: balance;
+      }
+
+      .pdgedit-create-list {
+        max-height: min(60vh, 480px);
+        overflow: auto;
+      }
+
+      .pdgedit-count-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .pdgedit-count-field input {
+        width: 100%;
+        min-height: 34px;
+        padding: 0 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(160, 170, 220, 0.25);
+        background: rgba(255, 255, 255, 0.04);
+        color: #f5f7ff;
+        font: inherit;
+      }
+
+      .pdgedit-operator-type-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .pdgedit-operator-type-button {
+        min-height: 34px;
+        padding: 0 8px;
+        text-align: center;
+      }
+
+      .pdgedit-create-confirm {
+        margin-top: 8px;
+        min-height: 36px;
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      .pdgedit-create-confirm:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pdgedit-app">
+      <div class="pdgedit-top-band pdgedit-top-band-header">
+        <div class="pdgedit-top-tools">
+          <button id="pdgedit-document-trigger" type="button" aria-label="Choose pdgedit document">
+            Choose pdgedit document
+          </button>
+          <div id="pdgedit-document-panel" role="listbox" aria-hidden="true" hidden></div>
+          <button id="pdgedit-home-button" type="button" aria-label="Go to home"></button>
+        </div>
+      </div>
+      <div class="pdgedit-top-band" aria-hidden="true"></div>
+      <div id="pdgedit-surface-region">
+        <div class="pdgedit-strip-wrap">
+          <div id="pdgedit-surface-strip">
+            <div id="pdgedit-object-layer"></div>
+            <svg id="pdgedit-link-overlay" aria-hidden="true"></svg>
+            <div id="pdgedit-composite-layer"></div>
+          </div>
+        </div>
+        <div id="pdgedit-create-picker" aria-hidden="true" hidden></div>
+      </div>
+    </div>
+    <script type="module" src="./src/apps/pdgedit/main.js"></script>
+  </body>
+</html>

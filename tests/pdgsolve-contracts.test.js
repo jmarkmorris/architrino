@@ -8,6 +8,7 @@ import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditR
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { buildPdgsolvePdgeditPackage, buildPdgeditDocumentFromPdgsolvePublicationGraph } from "../src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolvePdgeditRecipeCatalog } from "../src/apps/pdgsolve/PdgsolvePdgeditRecipeCatalogRuntime.js";
+import { solvePdgsolveRequest } from "../src/apps/pdgsolve/PdgsolveSolveRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -189,6 +190,16 @@ test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen
   assert.equal(passThruResult.optionFamilies[0].score.nonIdentityOperatorCount, 0);
   assert.equal(passThruResult.optionFamilies[0].score.dissociationCount, 0);
   assert.equal(passThruResult.optionFamilies[0].score.ambiguityPenalty, 0);
+});
+
+test("pdgsolve deterministic runtime reproduces every frozen result fixture from its request fixture", () => {
+  pdgsolveCorpus.cases.forEach((entry) => {
+    const request = readJson(entry.requestPath);
+    const expectedResult = readJson(entry.resultPath);
+    const builtResult = solvePdgsolveRequest(request);
+
+    assert.deepEqual(builtResult, expectedResult, `${entry.id} runtime result drifted from the frozen fixture`);
+  });
 });
 
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {

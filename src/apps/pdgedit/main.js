@@ -1,26 +1,51 @@
+import { PDGEDIT_APP_MODE } from "./PdgeditAppModeRuntime.js";
 import {
-  loadPdgeditLibraryManifest,
-  selectDefaultPdgeditLibraryManifestEntry,
-} from "./PdgeditLibraryManifestRuntime.js";
+  DEFAULT_PDGEDIT_MANIFEST_URL,
+  DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
+  DEFAULT_PDGEDIT_TILE_CATALOG_URL,
+} from "./PdgeditBootstrapRuntime.js";
+import { createPdgeditAppRuntime } from "./PdgeditAppRuntime.js";
 
-const DEFAULT_PDGEDIT_MANIFEST_URL = new URL(
-  "../../../content/contracts/examples/pdgedit/manifest.v1.json",
-  import.meta.url
-).href;
-
-// Reserved for the authored-surface bootstrap seed. The review harness lives under ./review/main.js.
-export async function loadPdgeditContractBootstrapSeed({
-  fetchImpl = typeof globalThis.fetch === "function" ? globalThis.fetch.bind(globalThis) : null,
+export function bootstrapPdgeditApp({
+  documentLike = globalThis.document,
+  windowLike = globalThis.window,
   manifestUrl = DEFAULT_PDGEDIT_MANIFEST_URL,
+  tileCatalogUrl = DEFAULT_PDGEDIT_TILE_CATALOG_URL,
+  templateCatalogUrl = DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
+  homeHref = "./index.html",
 } = {}) {
-  const manifest = await loadPdgeditLibraryManifest({
-    fetchImpl,
-    specUrl: manifestUrl,
+  if (!documentLike) {
+    throw new Error("pdgedit bootstrap requires document.");
+  }
+  const runtime = createPdgeditAppRuntime({
+    documentLike,
+    windowLike,
+    appElement: documentLike.getElementById("pdgedit-app"),
+    surfaceRegionElement: documentLike.getElementById("pdgedit-surface-region"),
+    surfaceStripElement: documentLike.getElementById("pdgedit-surface-strip"),
+    objectLayerElement: documentLike.getElementById("pdgedit-object-layer"),
+    linkOverlayElement: documentLike.getElementById("pdgedit-link-overlay"),
+    compositeLayerElement: documentLike.getElementById("pdgedit-composite-layer"),
+    documentTriggerElement: documentLike.getElementById("pdgedit-document-trigger"),
+    documentPanelElement: documentLike.getElementById("pdgedit-document-panel"),
+    homeButtonElement: documentLike.getElementById("pdgedit-home-button"),
+    createPickerElement: documentLike.getElementById("pdgedit-create-picker"),
+    manifestUrl,
+    tileCatalogUrl,
+    templateCatalogUrl,
+    homeHref,
   });
-  return {
-    manifest,
-    selectedEntry: selectDefaultPdgeditLibraryManifestEntry(manifest),
-  };
+  return runtime;
 }
 
-export { DEFAULT_PDGEDIT_MANIFEST_URL };
+if (typeof window !== "undefined") {
+  window.__ARCHITRINO_APP_MODE__ = PDGEDIT_APP_MODE;
+}
+
+if (typeof document !== "undefined") {
+  const runtime = bootstrapPdgeditApp();
+  if (typeof window !== "undefined") {
+    window.__ARCHITRINO_PDGEDIT_RUNTIME__ = runtime;
+  }
+  void runtime.init();
+}

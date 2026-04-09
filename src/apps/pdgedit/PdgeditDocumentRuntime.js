@@ -74,6 +74,30 @@ export function normalizePdgeditDocument(rawDocument = {}) {
   };
 }
 
+export function createEmptyPdgeditDocument() {
+  return {
+    schema: "pdgedit/v1",
+    assemblies: [],
+    operators: [],
+    links: [],
+    compositeLabels: [],
+  };
+}
+
+export async function loadPdgeditDocument({
+  fetchImpl = globalThis.fetch?.bind(globalThis),
+  specUrl,
+} = {}) {
+  if (typeof fetchImpl !== "function") {
+    throw new Error("pdgedit document loading requires fetch().");
+  }
+  const response = await fetchImpl(specUrl, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`Failed to load pdgedit document: ${response.status} ${response.statusText}`);
+  }
+  return normalizePdgeditDocument(await response.json());
+}
+
 export function getPdgeditAssemblyDisplayTileKeys(assembly = {}) {
   return normalizeTileKeys(assembly?.tiles);
 }

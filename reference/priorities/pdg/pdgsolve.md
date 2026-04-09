@@ -32,10 +32,10 @@ It does not own:
 
 ## Current State
 
-- There is no dedicated pdgsolve app runtime yet.
-- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly.
-- [pdgfeed](./pdgfeed.md) already exists as an upstream request-producing component.
-- The next major design task is therefore not migration glue. It is defining pdgsolve's native request model, native search model, native review boundary, and native publication path into pdgedit.
+- `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review runtime under `src/apps/pdgsolve/`.
+- The runtime already separates request intake/bootstrap, request normalization, deterministic v1 solve search, candidate review, explicit acceptance, and accepted-record-to-pdgedit preview derivation instead of hiding that flow inside `app.js` or a shared root coordinator.
+- The app already loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records, then derives ranked families and publication-ready accepted records against the frozen contracts.
+- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly, but durable publish location, manifest-entry emission, and launcher handoff still remain as the next seam to finish.
 
 ## Design
 

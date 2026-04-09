@@ -7,7 +7,8 @@ import {
   normalizePdgeditLibraryManifest,
   selectDefaultPdgeditLibraryManifestEntry,
 } from "../src/apps/pdgedit/PdgeditLibraryManifestRuntime.js";
-import { loadPdgeditContractBootstrapSeed } from "../src/apps/pdgedit/main.js";
+import { loadPdgeditContractBootstrapSeed } from "../src/apps/pdgedit/PdgeditBootstrapRuntime.js";
+import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemplateCatalogRuntime.js";
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import {
   getPdgeditDocumentAssemblyRows,
@@ -321,22 +322,47 @@ test("pdgedit manifest selection prefers the canonical beta fixture, then declar
 
 test("pdgedit main bootstrap seed stays contract-first and separate from the review harness", async () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
+  const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
   const fetchCalls = [];
   const source = fs.readFileSync(new URL("../src/apps/pdgedit/main.js", import.meta.url), "utf8");
-  const { manifest: loadedManifest, selectedEntry } = await loadPdgeditContractBootstrapSeed({
+  const { manifest: loadedManifest, tileCatalog: loadedTileCatalog, templateCatalog, selectedEntry } =
+    await loadPdgeditContractBootstrapSeed({
     manifestUrl: "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    tileCatalogUrl: "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
+    templateCatalogUrl:
+      "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
     fetchImpl: async (url) => {
       fetchCalls.push(url);
       return {
         ok: true,
-        json: async () => manifest,
+        json: async () => {
+          if (url.endsWith("manifest.v1.json")) {
+            return manifest;
+          }
+          if (url.endsWith("pdgedit-tiles.json")) {
+            return tileCatalog;
+          }
+          if (url.endsWith("four_tile_family_coverage.v1.json")) {
+            return templateSource;
+          }
+          const entry = manifest.entries.find((record) => url.endsWith(record.documentPath.split("/").pop()));
+          return readJson(entry.documentPath);
+        },
       };
     },
   });
 
-  assert.deepEqual(fetchCalls, ["https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json"]);
+  assert.deepEqual(fetchCalls, [
+    "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
+    "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
+    "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+  ]);
   assert.deepEqual(loadedManifest, normalizePdgeditLibraryManifest(manifest));
+  assert.deepEqual(loadedTileCatalog, normalizePdgeditTileCatalog(tileCatalog));
+  assert.deepEqual(templateCatalog, normalizePdgeditTemplateCatalog(templateSource));
   assert.equal(selectedEntry?.id, "free_neutron_beta_decay");
   assert.equal(source.includes("PdgeditTileReviewAppRuntime"), false);
-  assert.equal(source.includes("./review/main.js"), true);
+  assert.equal(source.includes("createPdgeditAppRuntime"), true);
 });
