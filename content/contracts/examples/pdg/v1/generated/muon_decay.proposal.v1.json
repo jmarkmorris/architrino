@@ -11,7 +11,7 @@
     "fixturePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
-      "downstreamSchema": "solver-request/v1",
+      "downstreamSchema": "pdgsolve-request/v1",
       "handoffMode": "upstream-only",
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
@@ -130,12 +130,15 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 100,
+    "score": 40,
     "reasons": [
       "fixture-source",
-      "all-participants-supported"
+      "contains-unsupported-participants"
     ]
   },
-  "notes": [],
-  "exportable": true
+  "notes": [
+    "unsupported:reactant:mu-:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping"
+  ],
+  "exportable": false
 }

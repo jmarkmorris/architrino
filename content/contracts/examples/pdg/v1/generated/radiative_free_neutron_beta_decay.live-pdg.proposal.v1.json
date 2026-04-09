@@ -13,7 +13,7 @@
     "liveCaseId": "radiative_free_neutron_beta_decay",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
-      "downstreamSchema": "solver-request/v1",
+      "downstreamSchema": "pdgsolve-request/v1",
       "handoffMode": "upstream-only",
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
@@ -149,12 +149,14 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 100,
+    "score": 70,
     "reasons": [
       "pdg-live-source",
-      "all-participants-supported"
+      "contains-unsupported-participants"
     ]
   },
-  "notes": [],
-  "exportable": true
+  "notes": [
+    "unsupported:product:gamma:no-pdgsolve-request-v1-mapping"
+  ],
+  "exportable": false
 }

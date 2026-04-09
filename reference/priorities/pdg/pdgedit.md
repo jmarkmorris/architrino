@@ -1557,7 +1557,7 @@ For pdgedit, the picker should use that manifest to load available authored-surf
 
 That manifest should point directly to final `pdgedit/v1` documents.
 
-It should not point to raw `solver-request/v1` or `solver-result/v1` payloads.
+It should not point to raw `pdgsolve-request/v1` or `pdgsolve-result/v1` payloads.
 
 If an upstream solver pipeline starts from some non-pdgedit request or result format, the translation into final `pdgedit/v1` should happen before the document is published to the pdgedit manifest and before the pdgedit runtime reads it.
 
@@ -1593,7 +1593,7 @@ That selection behavior should:
 The preferred contract stance is:
 
 - the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by pdgedit is final `pdgedit/v1`;
-- any translation from `solver-request/v1`, `solver-result/v1`, or another upstream solve format into `pdgedit/v1` happens outside the pdgedit renderer;
+- any translation from `pdgsolve-request/v1`, `pdgsolve-result/v1`, or another upstream solve format into `pdgedit/v1` happens outside the pdgedit renderer;
 - the pdgedit runtime receives explicit pdgedit-owned JSON shapes;
 - assemblies and operators arrive as pdgedit surface objects rather than as data that must be reinterpreted by the renderer;
 - spline-producing relationships are explicit in JSON;

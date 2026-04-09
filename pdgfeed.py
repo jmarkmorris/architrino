@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build PDG-derived proposal artifacts and solver-request candidates.
+"""Build PDG-derived proposal artifacts and pdgsolve-request candidates.
 
 The normal regression path is fixture-first so development stays stable offline.
 When the external `pdg` package is installed locally, selected live channels can
@@ -22,25 +22,24 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parent
 DEFAULT_FIXTURE_INDEX = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "index.json"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "generated"
-SOLVER_REQUEST_SCHEMA_PATH = REPO_ROOT / "src" / "contracts" / "solver-request" / "v1" / "schema.json"
+PDGSOLVE_REQUEST_SCHEMA_PATH = REPO_ROOT / "src" / "contracts" / "pdgsolve-request" / "v1" / "schema.json"
 
-SOLVER_REQUEST_SCHEMA = "solver-request/v1"
+PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
 PDG_FIXTURE_CORPUS_SCHEMA = "pdg-fixture-corpus/v1"
 PDG_FIXTURE_SOURCE_SCHEMA = "pdg-fixture-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
 PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
-DEFAULT_POLICY = {
-    "recruitmentMode": "allow-if-needed",
-    "lateBosonCollapseMode": "allow-exact",
-    "weakChannelMode": "v1-core-provenance-only",
-    "carryThroughMode": "exact-first",
+DEFAULT_PDGSOLVE_REQUEST_POLICY = {
+    "betaSupportMode": "allow-implied-noether-pair",
+    "exactClosureRequired": True,
+    "allowedBoundaryAugmentations": ["none", "2h", "4h"],
 }
 
 PDG_SOURCE_CONTRACT = {
     "upstreamSchema": PDG_PROPOSAL_SCHEMA,
-    "downstreamSchema": SOLVER_REQUEST_SCHEMA,
+    "downstreamSchema": PDGSOLVE_REQUEST_SCHEMA,
     "handoffMode": "upstream-only",
     "reactionAcceptanceRequired": True,
     "reactionAcceptanceBoundary": "reaction-review",
@@ -64,6 +63,8 @@ class PdgV1ParticleMapping:
     inventory_flags: tuple[str, ...] = ()
     export_policy: str = "supported"
     policy_reason: str = ""
+    pdgsolve_assembly_id: str | None = None
+    pdgsolve_title: str | None = None
 
     @property
     def exportable(self) -> bool:
@@ -82,6 +83,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         tags=("pdg:species:neutron",),
+        pdgsolve_assembly_id="neutron",
+        pdgsolve_title="Neutron",
     ),
     PdgV1ParticleMapping(
         canonical_name="anti-n",
@@ -106,6 +109,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         tags=("pdg:species:proton",),
+        pdgsolve_assembly_id="proton",
+        pdgsolve_title="Proton",
     ),
     PdgV1ParticleMapping(
         canonical_name="anti-p",
@@ -131,6 +136,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         positrino_count=6,
         tags=("pdg:species:electron", "pdg:generation:1"),
         inventory_flags=("generation:1", "charged-lepton"),
+        pdgsolve_assembly_id="electron",
+        pdgsolve_title="Electron",
     ),
     PdgV1ParticleMapping(
         canonical_name="e+",
@@ -196,6 +203,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         positrino_count=6,
         tags=("pdg:species:anti-electron-neutrino", "pdg:generation:1"),
         inventory_flags=("generation:1", "neutrino"),
+        pdgsolve_assembly_id="electron_antineutrino",
+        pdgsolve_title="Electron Antineutrino",
     ),
     PdgV1ParticleMapping(
         canonical_name="nu_mu",
@@ -410,35 +419,17 @@ class NormalizedParticipant:
     tags: tuple[str, ...] = ()
     pdg_name: str = ""
     pdg_id: str | None = None
+    pdgsolve_assembly_id: str | None = None
+    pdgsolve_title: str | None = None
 
-    def to_solver_participant(self) -> dict[str, Any]:
-        root_node_id = f"{self.participant_id}/root"
-        node = {
-            "id": root_node_id,
-            "templateId": self.template_id,
-            "label": self.label,
-            "family": self.family,
-            "isComposite": self.is_composite,
-            "inventory": dict(self.inventory),
-            "tags": ["root", *self.tags],
-        }
-        if self.polarity:
-            node["polarity"] = self.polarity
-        participant = {
+    def to_pdgsolve_request_occurrence(self) -> dict[str, Any]:
+        if not self.pdgsolve_assembly_id or not self.pdgsolve_title:
+            raise ValueError(f"Participant {self.participant_id} has no pdgsolve-request mapping.")
+        return {
             "id": self.participant_id,
-            "side": self.side,
-            "templateId": self.template_id,
-            "label": self.label,
-            "family": self.family,
-            "isComposite": self.is_composite,
-            "inventory": dict(self.inventory),
-            "rootNodeId": root_node_id,
-            "nodes": [node],
-            "tags": list(self.tags),
+            "assemblyId": self.pdgsolve_assembly_id,
+            "title": self.pdgsolve_title,
         }
-        if self.polarity:
-            participant["polarity"] = self.polarity
-        return participant
 
     def to_proposal_participant(self) -> dict[str, Any]:
         return {
@@ -677,7 +668,11 @@ def normalize_particle(particle: FixtureParticle, side: str, ordinal: int) -> tu
         tags=tuple(tags),
         pdg_name=canonical_name,
         pdg_id=particle.pdg_id,
+        pdgsolve_assembly_id=mapping.pdgsolve_assembly_id,
+        pdgsolve_title=mapping.pdgsolve_title,
     )
+    if not mapping.pdgsolve_assembly_id or not mapping.pdgsolve_title:
+        return participant, f"unsupported:{side}:{canonical_name}:no-pdgsolve-request-v1-mapping"
     return participant, None
 
 
@@ -723,54 +718,30 @@ def build_proposal(case: PdgCase) -> Proposal:
     )
 
 
-def build_solver_request_origin(proposal: Proposal) -> dict[str, str]:
+def build_pdgsolve_request_source(proposal: Proposal) -> dict[str, str]:
     return {
-        "sourceKind": "pdg-ingest",
-        "sourceDocumentId": f"pdg-proposal:{proposal.proposal_id}",
+        "kind": "pdgfeed",
         "title": proposal.title,
+        "sourceDocumentId": f"pdg-proposal:{proposal.proposal_id}",
     }
 
 
-def build_solver_request_upstream_context(proposal: Proposal) -> dict[str, Any]:
-    source = dict(proposal.source)
-    contract = source.get("contract")
-    return {
-        "sourceSchema": PDG_PROPOSAL_SCHEMA,
-        "proposalId": proposal.proposal_id,
-        "reviewBoundary": "reaction-review",
-        "source": source,
-        **({"contract": dict(contract)} if isinstance(contract, dict) else {}),
-        "ranking": {
-            "rank": int(proposal.ranking.get("rank", 0) or 0),
-            "score": float(proposal.ranking.get("score", 0) or 0),
-            "reasons": [str(reason) for reason in proposal.ranking.get("reasons", ()) if str(reason).strip()],
-        },
-        "notes": [str(note) for note in proposal.notes if str(note).strip()],
-    }
-
-
-def build_solver_request(proposal: Proposal) -> dict[str, Any] | None:
+def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
     if not proposal.exportable:
         return None
     request = {
-        "schema": SOLVER_REQUEST_SCHEMA,
+        "schema": PDGSOLVE_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
-        "origin": build_solver_request_origin(proposal),
-        "upstreamContext": build_solver_request_upstream_context(proposal),
-        "participants": [
-            participant.to_solver_participant()
-            for participant in (*proposal.reactants, *proposal.products, *proposal.centers)
-        ],
-        "manualOperators": [],
-        "manualMappings": [],
-        "dissociation": {
-            "manuallyOpenedParticipantIds": [],
-            "manuallyOpenedNodeIds": [],
-            "preserveManualState": True,
+        "source": build_pdgsolve_request_source(proposal),
+        "reactants": [participant.to_pdgsolve_request_occurrence() for participant in proposal.reactants],
+        "products": [participant.to_pdgsolve_request_occurrence() for participant in proposal.products],
+        "policy": {
+            "betaSupportMode": DEFAULT_PDGSOLVE_REQUEST_POLICY["betaSupportMode"],
+            "exactClosureRequired": DEFAULT_PDGSOLVE_REQUEST_POLICY["exactClosureRequired"],
+            "allowedBoundaryAugmentations": list(DEFAULT_PDGSOLVE_REQUEST_POLICY["allowedBoundaryAugmentations"]),
         },
-        "policy": dict(DEFAULT_POLICY),
     }
-    validate_solver_request_shape(request)
+    validate_pdgsolve_request_shape(request)
     return request
 
 
@@ -843,14 +814,14 @@ def validate_against_schema(value: Any, schema: dict[str, Any], path: str = "$",
 
 
 @lru_cache(maxsize=1)
-def load_solver_request_schema() -> dict[str, Any]:
-    return load_json(SOLVER_REQUEST_SCHEMA_PATH)
+def load_pdgsolve_request_schema() -> dict[str, Any]:
+    return load_json(PDGSOLVE_REQUEST_SCHEMA_PATH)
 
 
-def validate_solver_request_shape(request: dict[str, Any]) -> None:
-    errors = validate_against_schema(request, load_solver_request_schema())
+def validate_pdgsolve_request_shape(request: dict[str, Any]) -> None:
+    errors = validate_against_schema(request, load_pdgsolve_request_schema())
     if errors:
-        raise ValueError("solver-request/v1 validation failed:\n" + "\n".join(errors))
+        raise ValueError("pdgsolve-request/v1 validation failed:\n" + "\n".join(errors))
 
 
 def normalize_channel_description(text: str) -> str:
@@ -1048,7 +1019,7 @@ def build_live_manifest_payload(database_url: str | None = None, *, api: Any | N
             seen_keys.add(discovery_key)
             live_case = build_live_case_from_decay(api, particle, decay)
             proposal = build_proposal(live_case)
-            solver_request = build_solver_request(proposal)
+            pdgsolve_request = build_pdgsolve_request(proposal)
             unsupported_names = extract_unsupported_particle_names(proposal.notes)
             unsupported_particle_counts.update(unsupported_names)
             entry = {
@@ -1063,10 +1034,10 @@ def build_live_manifest_payload(database_url: str | None = None, *, api: Any | N
                 "unsupportedParticles": unsupported_names,
                 "proposal": proposal.to_dict(),
             }
-            if solver_request is None:
+            if pdgsolve_request is None:
                 unsupported_entries.append(entry)
                 continue
-            entry["solverRequest"] = solver_request
+            entry["pdgsolveRequest"] = pdgsolve_request
             exportable_entries.append(entry)
 
     exportable_entries.sort(
@@ -1156,10 +1127,10 @@ def emit_case(case: PdgCase, output_dir: Path) -> list[Path]:
     write_json(proposal_path, proposal.to_dict())
     written_paths.append(proposal_path)
 
-    solver_request = build_solver_request(proposal)
-    if solver_request is not None:
-        request_path = output_dir / f"{proposal.proposal_id}.solver-request.v1.json"
-        write_json(request_path, solver_request)
+    pdgsolve_request = build_pdgsolve_request(proposal)
+    if pdgsolve_request is not None:
+        request_path = output_dir / f"{proposal.proposal_id}.pdgsolve-request.v1.json"
+        write_json(request_path, pdgsolve_request)
         written_paths.append(request_path)
     return written_paths
 
@@ -1176,11 +1147,11 @@ def build_fixture_proposal(fixtures_by_id: dict[str, PdgCase], fixture_id: str) 
     return build_fixture_proposal_object(fixtures_by_id, fixture_id).to_dict()
 
 
-def build_fixture_solver_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
-    solver_request = build_solver_request(build_fixture_proposal_object(fixtures_by_id, fixture_id))
-    if solver_request is None:
-        raise SystemExit(f"Fixture {fixture_id!r} does not currently emit solver-request/v1.")
-    return solver_request
+def build_fixture_pdgsolve_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
+    pdgsolve_request = build_pdgsolve_request(build_fixture_proposal_object(fixtures_by_id, fixture_id))
+    if pdgsolve_request is None:
+        raise SystemExit(f"Fixture {fixture_id!r} does not currently emit pdgsolve-request/v1.")
+    return pdgsolve_request
 
 
 def build_live_case_proposal_object(case_id: str, database_url: str | None = None) -> Proposal:
@@ -1199,11 +1170,11 @@ def build_live_case_proposal(case_id: str, database_url: str | None = None) -> d
     return build_live_case_proposal_object(case_id, database_url).to_dict()
 
 
-def build_live_case_solver_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
-    solver_request = build_solver_request(build_live_case_proposal_object(case_id, database_url))
-    if solver_request is None:
-        raise SystemExit(f"Live case {case_id!r} does not currently emit solver-request/v1.")
-    return solver_request
+def build_live_case_pdgsolve_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
+    pdgsolve_request = build_pdgsolve_request(build_live_case_proposal_object(case_id, database_url))
+    if pdgsolve_request is None:
+        raise SystemExit(f"Live case {case_id!r} does not currently emit pdgsolve-request/v1.")
+    return pdgsolve_request
 
 
 def print_json(payload: dict[str, Any]) -> None:
@@ -1212,7 +1183,7 @@ def print_json(payload: dict[str, Any]) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and solver-request candidates.")
+    parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and pdgsolve-request candidates.")
     parser.add_argument(
         "--fixture-index",
         type=Path,
@@ -1238,7 +1209,7 @@ def parse_args() -> argparse.Namespace:
         help="Discover exportable live PDG decays and print a frozen batch manifest JSON payload.",
     )
 
-    emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and solver-request artifacts for one fixture.")
+    emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and pdgsolve-request artifacts for one fixture.")
     emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
     print_fixture_proposal_parser = subparsers.add_parser(
@@ -1248,14 +1219,14 @@ def parse_args() -> argparse.Namespace:
     print_fixture_proposal_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
     print_fixture_request_parser = subparsers.add_parser(
-        "print-fixture-solver-request",
-        help="Print one fixture solver-request/v1 JSON payload to stdout for piping.",
+        "print-fixture-pdgsolve-request",
+        help="Print one fixture pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
     print_fixture_request_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
 
-    subparsers.add_parser("emit-all-fixtures", help="Emit proposal and solver-request artifacts for all fixtures.")
+    subparsers.add_parser("emit-all-fixtures", help="Emit proposal and pdgsolve-request artifacts for all fixtures.")
 
-    emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and solver-request artifacts for one live PDG channel.")
+    emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and pdgsolve-request artifacts for one live PDG channel.")
     emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
     print_live_proposal_parser = subparsers.add_parser(
@@ -1265,12 +1236,12 @@ def parse_args() -> argparse.Namespace:
     print_live_proposal_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
     print_live_request_parser = subparsers.add_parser(
-        "print-live-solver-request",
-        help="Print one live-case solver-request/v1 JSON payload to stdout for piping.",
+        "print-live-pdgsolve-request",
+        help="Print one live-case pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
     print_live_request_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
 
-    subparsers.add_parser("emit-all-live-cases", help="Emit proposal and solver-request artifacts for all built-in live PDG channels.")
+    subparsers.add_parser("emit-all-live-cases", help="Emit proposal and pdgsolve-request artifacts for all built-in live PDG channels.")
     return parser.parse_args()
 
 
@@ -1306,8 +1277,8 @@ def main() -> int:
         print_json(build_fixture_proposal(fixtures_by_id, args.fixture_id))
         return 0
 
-    if args.command == "print-fixture-solver-request":
-        print_json(build_fixture_solver_request(fixtures_by_id, args.fixture_id))
+    if args.command == "print-fixture-pdgsolve-request":
+        print_json(build_fixture_pdgsolve_request(fixtures_by_id, args.fixture_id))
         return 0
 
     if args.command == "emit-all-fixtures":
@@ -1333,8 +1304,8 @@ def main() -> int:
         print_json(build_live_case_proposal(args.case_id, args.database_url))
         return 0
 
-    if args.command == "print-live-solver-request":
-        print_json(build_live_case_solver_request(args.case_id, args.database_url))
+    if args.command == "print-live-pdgsolve-request":
+        print_json(build_live_case_pdgsolve_request(args.case_id, args.database_url))
         return 0
 
     if args.command == "emit-all-live-cases":

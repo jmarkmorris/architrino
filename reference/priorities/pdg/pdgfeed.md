@@ -10,7 +10,7 @@
 
 ## Purpose
 
-The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into explicit solve-request state, and produces candidate proposals for pdgsolve-side review.
+The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into explicit `pdgsolve-request/v1` intake state, and produces candidate proposals for pdgsolve-side review.
 
 It owns:
 
@@ -33,19 +33,19 @@ It does not own:
 - `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
-- `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and future pdgsolve intake.
+- `pdgfeed.py` can list fixtures and emit proposal plus `pdgsolve-request/v1` artifacts from that local corpus.
+- `pdgfeed.py` now also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
 - `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
-- The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
-- Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
-- Exportable candidate requests currently exist for the neutron, muon, pion, kaon, and B-meson solver-facing particle sets that are in the locked v1 registry.
-- Exportable live-read candidate requests now also exist for neutron beta, radiative neutron beta, muon decay, radiative muon decay, muon decay with an added electron-positron pair, muon-to-electron-photon, charged-pion-to-muon-neutrino, neutral-pion discovery cases, the first charged/neutral kaon discovery cases, and the first charged/neutral B-meson discovery cases when a local `pdg` installation is present.
-- Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
+- The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
+- Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable pdgsolve surface.
+- Exportable candidate requests currently exist only for channels that fit the present `pdgsolve-request/v1` assembly vocabulary: neutron beta style inputs with `n`, `p`, `e-`, and `anti-nu_e`.
+- Exportable live-read candidate requests currently exist only for free neutron beta decay when a local `pdg` installation is present.
+- Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
-- Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
-- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
+- Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
+- Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
-- Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
+- Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
@@ -119,23 +119,23 @@ The current CLI surface is:
 - `python3 pdgfeed.py emit-fixture <fixture-id>`
 - `python3 pdgfeed.py emit-all-fixtures`
 - `python3 pdgfeed.py print-fixture-proposal <fixture-id>`
-- `python3 pdgfeed.py print-fixture-solver-request <fixture-id>`
+- `python3 pdgfeed.py print-fixture-pdgsolve-request <fixture-id>`
 - `python3 pdgfeed.py list-live-cases`
 - `python3 pdgfeed.py emit-live-case <case-id>`
 - `python3 pdgfeed.py emit-all-live-cases`
 - `python3 pdgfeed.py print-live-proposal <case-id>`
-- `python3 pdgfeed.py print-live-solver-request <case-id>`
+- `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`
 - `python3 pdgfeed.py build-live-manifest`
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
 The intended handoff modes are:
 
 - file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay`;
-- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay`.
+- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-pdgsolve-request free_neutron_beta_decay`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future pdgsolve intake.
 
-Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized participants instead of being rejected wholesale. That means channels like `pi0 -> 2gamma` can cross the request seam as two photon participants, while generic/textual items still remain proposal-only.
+Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized proposal participants instead of being rejected wholesale. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
 Active PDG work should treat request emission and manifest building as the live responsibilities until pdgsolve-side solve and review tooling exists.
 
@@ -162,7 +162,7 @@ Example full-manifest run:
 
 How to read the denominator:
 
-- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `solver-request/v1`;
+- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `pdgsolve-request/v1`;
 - in manifest mode, unsupported discoveries stay outside that denominator and are reported separately;
 - and manifest counts should be read as request-emission progress, not as solve-core closure metrics.
 
@@ -189,36 +189,18 @@ The first built-in live PDG cases are:
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
 
-The locked canonical v1 PDG-to-solver mapping table is:
+The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
 
-| Canonical PDG ASCII name | Export status | Solver templateId | Normalized label | Notes |
+| Canonical PDG ASCII name | Export status | pdgsolve `assemblyId` | Request `title` | Notes |
 | --- | --- | --- | --- | --- |
 | `n` | exportable | `neutron` | `Neutron` | baryon |
 | `p` | exportable | `proton` | `Proton` | baryon |
-| `e-` | exportable | `electron` | `Pro Electron` | charged lepton, generation 1 |
-| `e+` | exportable | `electron` | `Anti Electron` | charged lepton, generation 1 |
-| `mu-` | exportable | `electron` | `Pro Muon` | charged lepton, generation 2 |
-| `mu+` | exportable | `electron` | `Anti Muon` | charged lepton, generation 2 |
-| `nu_e` | exportable | `neutrino` | `Pro Electron Neutrino` | neutrino, generation 1 |
-| `anti-nu_e` | exportable | `neutrino` | `Anti Electron Neutrino` | neutrino, generation 1 |
-| `nu_mu` | exportable | `neutrino` | `Pro Muon Neutrino` | neutrino, generation 2 |
-| `anti-nu_mu` | exportable | `neutrino` | `Anti Muon Neutrino` | neutrino, generation 2 |
-| `gamma` | exportable | `photon` | `Photon` | boson |
-| `pi+` | exportable | `pi_plus` | `Positive Pion` | meson, `u + anti-d` |
-| `pi-` | exportable | `pi_minus` | `Negative Pion` | meson, `d + anti-u` |
-| `pi0` | exportable | `upi0` | `Neutral Pion` | PDG ingest normalizes neutral pion to one canonical authored form, while the solver treats `upi0` and `dpi0` as equivalent |
-| `K+` | exportable | `k_plus` | `Positive Kaon` | meson, `u + anti-s` |
-| `K-` | exportable | `k_minus` | `Negative Kaon` | meson, `s + anti-u` |
-| `K0` | exportable | `dk0` | `Neutral Kaon (d anti-s)` | meson, `d + anti-s` |
-| `anti-K0` | exportable | `sk0` | `Neutral Kaon (s anti-d)` | meson, `s + anti-d` |
-| `B+` | exportable | `b_plus` | `Positive B Meson` | meson, `u + anti-b` |
-| `B-` | exportable | `b_minus` | `Negative B Meson` | meson, `b + anti-u` |
-| `B0` | exportable | `dB0` | `Neutral B Meson (d anti-b)` | meson, `d + anti-b` |
-| `anti-B0` | exportable | `bB0` | `Neutral B Meson (b anti-d)` | meson, `b + anti-d` |
+| `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
+| `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
 
 The v1 unsupported-particle policy is:
 
-- only canonical PDG names in the exportable rows above may be emitted into `solver-request/v1`;
+- only canonical PDG names in the exportable rows above may be emitted into `pdgsolve-request/v1`;
 - local aliases may canonicalize into those names, but aliases do not define new solver mappings;
 - a particle explicitly marked proposal-only must remain in proposal metadata and notes only;
 - any particle absent from the table is also proposal-only by default;
@@ -230,19 +212,19 @@ Registry expansion should stay deliberate rather than opportunistic.
 That means:
 
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
-- each new row must name the solver `templateId`, the normalized author-facing label, and any note needed to keep neutral-state or constituent provenance conventions explicit;
+- each new row must name the pdgsolve `assemblyId`, the request `title`, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
-- every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `solver-request/v1` seam cleanly;
+- every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
 - and until that package of mapping, provenance, and regression coverage exists, the particle remains proposal-only by design.
 
-The first solver-facing target should be one `solver-request/v1` document per candidate, with:
+The first solver-facing target should be one `pdgsolve-request/v1` document per candidate, with:
 
-- `origin.sourceKind` set to `pdg-ingest`;
-- participants normalized into the solver contract rather than passed through as raw PDG objects;
-- empty `manualOperators` and `manualMappings` unless a later review stage adds them;
+- `source.kind` set to `pdgfeed`;
+- `source.sourceDocumentId` pointing back to the originating `pdg-proposal:<proposalId>` record;
+- `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
 - explicit `policy` values chosen by ingest rather than left implicit;
-- and PDG provenance kept either in `origin` fields or in sidecar proposal metadata, not hidden in ad hoc code paths.
+- and PDG provenance kept either in `source` fields or in sidecar proposal metadata, not hidden in ad hoc code paths.
 
 ### PDG Ecosystem
 
@@ -289,7 +271,7 @@ The normalized output should include:
 The first PDG seed boundary should use two repo-owned layers:
 
 - a normalized PDG proposal record used inside ingest;
-- and one exported `solver-request/v1` candidate per proposal.
+- and one exported `pdgsolve-request/v1` candidate per proposal.
 
 The normalized PDG proposal record should contain:
 
@@ -319,7 +301,7 @@ Each normalized participant record should contain at minimum:
 - a root node id and flat node list;
 - and PDG-side identity fields needed for provenance and traceability.
 
-Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `solver-request/v1` payloads without a resolved solver-facing `templateId`.
+Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve `assemblyId` and request `title`.
 
 For consistency with the current local corpus:
 
@@ -327,25 +309,21 @@ For consistency with the current local corpus:
 - live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
 - and changing the participant-side identity field shape is out of scope for the present v1 lock.
 
-The first exported `solver-request/v1` candidate should follow these rules:
+The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
-- `schema` is always `solver-request/v1`;
-- `origin.sourceKind` is `pdg-ingest`;
-- `origin.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
-- `title` should be a concise channel label suitable for fixtures and review;
-- `participants` are produced only from normalized proposal records, never from raw PDG objects at export time;
-- `manualOperators` is empty in the first ingest version;
-- `manualMappings` is empty in the first ingest version;
-- `dissociation.manuallyOpenedParticipantIds` and `dissociation.manuallyOpenedNodeIds` are empty in the first ingest version;
-- `dissociation.preserveManualState` is `true`;
+- `schema` is always `pdgsolve-request/v1`;
+- `source.kind` is `pdgfeed`;
+- `source.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
+- `source.title` should be a concise channel label suitable for fixtures and review;
+- `reactants` and `products` are produced only from normalized proposal records, never from raw PDG objects at export time;
+- each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
 - and `policy` is set explicitly by ingest, not inferred by the solver.
 
 The first exported `policy` baseline should be:
 
-- `recruitmentMode: "allow-if-needed"`
-- `lateBosonCollapseMode: "allow-exact"`
-- `weakChannelMode: "v1-core-provenance-only"`
-- `carryThroughMode: "exact-first"`
+- `betaSupportMode: "allow-implied-noether-pair"`
+- `exactClosureRequired: true`
+- `allowedBoundaryAugmentations: ["none", "2h", "4h"]`
 
 The first PDG version should also stay within these scope limits:
 
@@ -379,11 +357,11 @@ The first durable shape should be a repo-owned `pdg-review/v1` record with:
 Each stored alternative should carry:
 
 - its normalized `proposalId`;
-- whether it is exportable to `solver-request/v1`;
+- whether it is exportable to `pdgsolve-request/v1`;
 - ranking score, rank, and reason codes;
 - proposal notes, especially unsupported-particle or ambiguity notes;
 - a concise reactant/product summary suitable for CLI or future UI review;
-- and either the embedded `solver-request/v1` candidate or a stable reference to the generated request artifact.
+- and either the embedded `pdgsolve-request/v1` candidate or a stable reference to the generated request artifact.
 
 The first review semantics should be:
 
@@ -407,7 +385,7 @@ This review layer is still upstream of pdgsolve. It chooses among PDG-derived al
 ### Outputs
 
 - normalized seed data for pdgsolve intake;
-- candidate `solver-request/v1` payloads;
+- candidate `pdgsolve-request/v1` payloads;
 - ranked candidate proposals;
 - proposal-review state;
 - and provenance metadata attached to those artifacts.

@@ -11,7 +11,7 @@
     "fixturePath": "content/contracts/examples/pdg/v1/charged_pion_to_muon_neutrino.source.v1.json",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
-      "downstreamSchema": "solver-request/v1",
+      "downstreamSchema": "pdgsolve-request/v1",
       "handoffMode": "upstream-only",
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
@@ -101,14 +101,17 @@
   "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 95,
+    "score": 5,
     "reasons": [
       "fixture-source",
-      "all-participants-supported"
+      "contains-unsupported-participants"
     ]
   },
   "notes": [
-    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
+    "unsupported:reactant:pi+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:mu+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping"
   ],
-  "exportable": true
+  "exportable": false
 }

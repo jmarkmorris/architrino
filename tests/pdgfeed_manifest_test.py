@@ -62,7 +62,7 @@ class FakeApi:
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
-    def test_build_proposal_marks_the_pdg_to_solver_boundary_explicitly(self):
+    def test_build_proposal_marks_the_pdg_to_pdgsolve_request_boundary_explicitly(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
@@ -88,7 +88,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             proposal.source["contract"],
             {
                 "upstreamSchema": "pdg-proposal/v1",
-                "downstreamSchema": "solver-request/v1",
+                "downstreamSchema": "pdgsolve-request/v1",
                 "handoffMode": "upstream-only",
                 "reactionAcceptanceRequired": True,
                 "reactionAcceptanceBoundary": "reaction-review",
@@ -99,7 +99,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
         self.assertEqual(proposal.exportable, True)
 
-    def test_solver_request_origin_points_back_to_the_pdg_proposal_surface(self):
+    def test_pdgsolve_request_source_points_back_to_the_pdg_proposal_surface(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
@@ -115,19 +115,19 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         )
 
         proposal = pdgfeed.build_proposal(case)
-        solver_request = pdgfeed.build_solver_request(proposal)
+        pdgsolve_request = pdgfeed.build_pdgsolve_request(proposal)
 
-        self.assertIsNotNone(solver_request)
+        self.assertIsNotNone(pdgsolve_request)
         self.assertEqual(
-            solver_request["origin"],
+            pdgsolve_request["source"],
             {
-                "sourceKind": "pdg-ingest",
-                "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
+                "kind": "pdgfeed",
                 "title": "Free neutron beta decay",
+                "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
             },
         )
 
-    def test_manifest_assigns_incrementing_batch_ids_to_exportable_discoveries(self):
+    def test_manifest_assigns_incrementing_batch_ids_to_exportable_pdgsolve_requests(self):
         neutron_particle = FakeParticle(
             "n",
             "S017/2025",
@@ -172,27 +172,27 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
         self.assertEqual(manifest["schema"], "pdg-live-manifest/v1")
         self.assertEqual(manifest["edition"], "2025")
-        self.assertEqual(manifest["exportableCount"], 2)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
-        self.assertEqual(len(manifest["entries"]), 2)
+        self.assertEqual(manifest["exportableCount"], 1)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
+        self.assertEqual(len(manifest["entries"]), 1)
         self.assertEqual(manifest["entries"][0]["batchId"], 1)
-        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S008.1/2025")
-        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "pi+")
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S017.1/2025")
+        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "n")
         self.assertEqual(
-            manifest["entries"][0]["solverRequest"]["origin"]["sourceDocumentId"],
-            "pdg-proposal:s008_1_2025.live-pdg",
-        )
-        self.assertEqual(manifest["entries"][0]["solverRequest"]["schema"], "solver-request/v1")
-        self.assertEqual(manifest["entries"][1]["batchId"], 2)
-        self.assertEqual(manifest["entries"][1]["pdgIdentifier"], "S017.1/2025")
-        self.assertEqual(manifest["entries"][1]["lookupParticleName"], "n")
-        self.assertEqual(
-            manifest["entries"][1]["solverRequest"]["origin"]["sourceDocumentId"],
+            manifest["entries"][0]["pdgsolveRequest"]["source"]["sourceDocumentId"],
             "pdg-proposal:s017_1_2025.live-pdg",
         )
-        self.assertEqual(manifest["topUnsupportedParticles"], [])
+        self.assertEqual(manifest["entries"][0]["pdgsolveRequest"]["schema"], "pdgsolve-request/v1")
+        self.assertEqual(
+            manifest["topUnsupportedParticles"],
+            [
+                {"particle": "mu+", "count": 1},
+                {"particle": "nu_mu", "count": 1},
+                {"particle": "pi+", "count": 1},
+            ],
+        )
 
-    def test_manifest_expands_exportable_particle_multipliers_for_neutral_pion_decay(self):
+    def test_manifest_records_neutral_pion_decay_as_unsupported_when_gamma_lacks_a_pdgsolve_mapping(self):
         neutral_pion_particle = FakeParticle(
             "pi0",
             "S009/2025",
@@ -216,22 +216,18 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
         manifest = pdgfeed.build_live_manifest_payload(api=api)
 
-        self.assertEqual(manifest["exportableCount"], 1)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
-        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S009.1/2025")
+        self.assertEqual(manifest["exportableCount"], 0)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
+        self.assertEqual(manifest["entries"], [])
         self.assertEqual(
-            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
-            "upi0",
-        )
-        self.assertEqual(
+            manifest["topUnsupportedParticles"],
             [
-                participant["templateId"]
-                for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]
+                {"particle": "gamma", "count": 2},
+                {"particle": "pi0", "count": 1},
             ],
-            ["photon", "photon"],
         )
 
-    def test_manifest_exports_charged_kaon_decay_through_solver_request_v1(self):
+    def test_manifest_leaves_charged_kaon_decay_proposal_only_until_pdgsolve_request_v1_expands(self):
         charged_kaon_particle = FakeParticle(
             "K+",
             "S010/2025",
@@ -256,20 +252,15 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
         manifest = pdgfeed.build_live_manifest_payload(api=api)
 
-        self.assertEqual(manifest["exportableCount"], 1)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
-        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S010.1/2025")
-        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "K+")
-        self.assertEqual(
-            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
-            "k_plus",
-        )
-        self.assertEqual(
-            [participant["templateId"] for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]],
-            ["electron", "neutrino"],
+        self.assertEqual(manifest["exportableCount"], 0)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
+        self.assertEqual(manifest["entries"], [])
+        self.assertCountEqual(
+            [entry["particle"] for entry in manifest["topUnsupportedParticles"]],
+            ["K+", "mu+", "nu_mu"],
         )
 
-    def test_manifest_exports_charged_b_decay_through_solver_request_v1(self):
+    def test_manifest_leaves_charged_b_decay_proposal_only_until_pdgsolve_request_v1_expands(self):
         charged_b_particle = FakeParticle(
             "B+",
             "S041/2025",
@@ -294,20 +285,15 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
         manifest = pdgfeed.build_live_manifest_payload(api=api)
 
-        self.assertEqual(manifest["exportableCount"], 1)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 0)
-        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S041.183/2025")
-        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "B+")
-        self.assertEqual(
-            manifest["entries"][0]["solverRequest"]["participants"][0]["templateId"],
-            "b_plus",
-        )
-        self.assertEqual(
-            [participant["templateId"] for participant in manifest["entries"][0]["solverRequest"]["participants"][1:]],
-            ["electron", "neutrino"],
+        self.assertEqual(manifest["exportableCount"], 0)
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
+        self.assertEqual(manifest["entries"], [])
+        self.assertCountEqual(
+            [entry["particle"] for entry in manifest["topUnsupportedParticles"]],
+            ["B+", "mu+", "nu_mu"],
         )
 
-    def test_manifest_uses_anti_baryon_reactant_from_live_decay_description(self):
+    def test_build_live_case_uses_anti_baryon_reactant_from_live_decay_description(self):
         proton_particle = FakeParticle(
             "p",
             "S016/2025",
@@ -324,21 +310,18 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 )
             ],
         )
-        api = FakeApi(
-            [
-                FakeParticleList("S016/2025", "proton", [proton_particle]),
-            ]
-        )
+        api = FakeApi([FakeParticleList("S016/2025", "proton", [proton_particle])])
+        decay = proton_particle._decays[0]
 
-        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        live_case = pdgfeed.build_live_case_from_decay(api, proton_particle, decay)
+        proposal = pdgfeed.build_proposal(live_case)
 
-        self.assertEqual(manifest["exportableCount"], 1)
-        self.assertEqual(manifest["entries"][0]["lookupParticleName"], "anti-p")
-        self.assertEqual(manifest["entries"][0]["title"], "pbar -> e- pi0")
-        reactant = manifest["entries"][0]["proposal"]["reactants"][0]
-        self.assertEqual(reactant["templateId"], "proton")
-        self.assertEqual(reactant["polarity"], "anti")
-        self.assertEqual(reactant["pdgName"], "anti-p")
+        self.assertEqual(live_case.source["lookupParticleName"], "anti-p")
+        self.assertEqual(live_case.title, "pbar -> e- pi0")
+        reactant = proposal.reactants[0]
+        self.assertEqual(reactant.template_id, "proton")
+        self.assertEqual(reactant.polarity, "anti")
+        self.assertEqual(reactant.pdg_name, "anti-p")
 
     def test_extract_unsupported_particle_names_ignores_non_particle_text_tokens(self):
         notes = [

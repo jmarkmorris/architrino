@@ -89,87 +89,71 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
   return errors;
 }
 
-test("generated PDG solver-request fixtures validate against solver-request/v1", () => {
-  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+test("generated PDG pdgsolve-request fixtures validate against pdgsolve-request/v1", () => {
+  const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const generatedDir = new URL("../content/contracts/examples/pdg/v1/generated/", import.meta.url);
   const requestPaths = fs
     .readdirSync(generatedDir)
-    .filter((entry) => entry.endsWith(".solver-request.v1.json"))
+    .filter((entry) => entry.endsWith(".pdgsolve-request.v1.json"))
     .filter((entry) => !entry.includes(".live-pdg."))
     .sort();
 
-  assert.deepEqual(requestPaths, [
-    "charged_pion_to_muon_neutrino.solver-request.v1.json",
-    "free_neutron_beta_decay.solver-request.v1.json",
-    "muon_decay.solver-request.v1.json",
-  ]);
+  assert.deepEqual(requestPaths, ["free_neutron_beta_decay.pdgsolve-request.v1.json"]);
 
   requestPaths.forEach((entry) => {
     const request = JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"));
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
-    assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
-    assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
-    assert.equal(request.upstreamContext?.sourceSchema, "pdg-proposal/v1", `${entry} upstream source schema drifted`);
-    assert.equal(request.upstreamContext?.proposalId, request.requestId, `${entry} upstream proposal id drifted`);
-    assert.equal(request.upstreamContext?.reviewBoundary, "reaction-review", `${entry} upstream review boundary drifted`);
-    assert.equal(request.upstreamContext?.contract?.downstreamSchema, "solver-request/v1", `${entry} upstream contract drifted`);
-    assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
-    assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
+    assert.equal(request.source?.kind, "pdgfeed", `${entry} source kind drifted`);
+    assert.equal(request.source?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
+    assert.deepEqual(request.policy, {
+      betaSupportMode: "allow-implied-noether-pair",
+      exactClosureRequired: true,
+      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+    });
   });
 });
 
-test("generated live PDG solver-request artifacts validate against solver-request/v1", () => {
-  const schema = readJson("src/contracts/solver-request/v1/schema.json");
+test("generated live PDG pdgsolve-request artifacts validate against pdgsolve-request/v1", () => {
+  const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const generatedDir = new URL("../content/contracts/examples/pdg/v1/generated/", import.meta.url);
   const requestPaths = fs
     .readdirSync(generatedDir)
-    .filter((entry) => entry.endsWith(".live-pdg.solver-request.v1.json"))
+    .filter((entry) => entry.endsWith(".live-pdg.pdgsolve-request.v1.json"))
     .sort();
 
-  assert.deepEqual(requestPaths, [
-    "charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json",
-    "free_neutron_beta_decay.live-pdg.solver-request.v1.json",
-    "muon_decay.live-pdg.solver-request.v1.json",
-    "muon_decay_with_electron_positron_pair.live-pdg.solver-request.v1.json",
-    "muon_to_electron_photon.live-pdg.solver-request.v1.json",
-    "radiative_free_neutron_beta_decay.live-pdg.solver-request.v1.json",
-    "radiative_muon_decay.live-pdg.solver-request.v1.json",
-  ]);
+  assert.deepEqual(requestPaths, ["free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json"]);
 
   requestPaths.forEach((entry) => {
     const request = JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"));
     assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
-    assert.equal(request.origin?.sourceKind, "pdg-ingest", `${entry} sourceKind drifted`);
-    assert.equal(request.origin?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
-    assert.equal(request.upstreamContext?.sourceSchema, "pdg-proposal/v1", `${entry} upstream source schema drifted`);
-    assert.equal(request.upstreamContext?.proposalId, request.requestId, `${entry} upstream proposal id drifted`);
-    assert.equal(request.upstreamContext?.reviewBoundary, "reaction-review", `${entry} upstream review boundary drifted`);
-    assert.equal(request.upstreamContext?.contract?.downstreamSchema, "solver-request/v1", `${entry} upstream contract drifted`);
-    assert.deepEqual(request.manualOperators, [], `${entry} manualOperators drifted`);
-    assert.deepEqual(request.manualMappings, [], `${entry} manualMappings drifted`);
+    assert.equal(request.source?.kind, "pdgfeed", `${entry} source kind drifted`);
+    assert.equal(request.source?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
+    assert.deepEqual(request.policy, {
+      betaSupportMode: "allow-implied-noether-pair",
+      exactClosureRequired: true,
+      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+    });
   });
 });
 
-test("live PDG artifacts preserve the same normalized participant template surface as fixture exports", () => {
-  const fixtureNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
-  const liveNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.solver-request.v1.json");
-  const fixturePion = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json");
-  const livePion = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json");
-  const fixtureMuon = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.solver-request.v1.json");
-  const liveMuon = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.live-pdg.solver-request.v1.json");
+test("live neutron pdgsolve requests preserve the same occurrence surface as fixture exports", () => {
+  const fixtureNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
+  const liveNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json");
 
-  function summarizeParticipants(request) {
-    return request.participants.map((participant) => ({
-      side: participant.side,
-      templateId: participant.templateId,
-      label: participant.label,
-      polarity: participant.polarity,
-    }));
+  function summarizeOccurrences(request) {
+    return {
+      reactants: request.reactants.map((occurrence) => ({
+        assemblyId: occurrence.assemblyId,
+        title: occurrence.title,
+      })),
+      products: request.products.map((occurrence) => ({
+        assemblyId: occurrence.assemblyId,
+        title: occurrence.title,
+      })),
+    };
   }
 
-  assert.deepEqual(summarizeParticipants(liveNeutron), summarizeParticipants(fixtureNeutron));
-  assert.deepEqual(summarizeParticipants(livePion), summarizeParticipants(fixturePion));
-  assert.deepEqual(summarizeParticipants(liveMuon), summarizeParticipants(fixtureMuon));
+  assert.deepEqual(summarizeOccurrences(liveNeutron), summarizeOccurrences(fixtureNeutron));
 });
 
 test("live PDG proposals preserve live provenance while normalizing PDG aliases into the locked v1 particle vocabulary", () => {
@@ -205,7 +189,7 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
   assert.equal(pionProposal.source.pdgIdentifier, "S008.1/2025");
   assert.deepEqual(neutronProposal.source.contract, {
     upstreamSchema: "pdg-proposal/v1",
-    downstreamSchema: "solver-request/v1",
+    downstreamSchema: "pdgsolve-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
@@ -226,42 +210,38 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
   assert.equal(pionProposal.products[1].templateId, "neutrino");
 });
 
-test("charged pion fixture now emits a solver-request artifact through the stable v1 seam", () => {
+test("charged pion fixture stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.proposal.v1.json");
-  const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.solver-request.v1.json");
 
-  assert.equal(proposal.exportable, true);
+  assert.equal(proposal.exportable, false);
   assert.deepEqual(proposal.source.contract, {
     upstreamSchema: "pdg-proposal/v1",
-    downstreamSchema: "solver-request/v1",
+    downstreamSchema: "pdgsolve-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
     acceptedReactionHandoff: "reaction-owned",
     pdgviewHandoff: "accepted-reaction-only",
   });
-  assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino");
-  assert.equal(request.upstreamContext.sourceSchema, "pdg-proposal/v1");
-  assert.equal(request.upstreamContext.proposalId, "charged_pion_to_muon_neutrino");
-  assert.equal(request.upstreamContext.reviewBoundary, "reaction-review");
-  assert.deepEqual(request.upstreamContext.contract, proposal.source.contract);
-  assert.deepEqual(request.upstreamContext.notes, proposal.notes);
   assert.deepEqual(proposal.notes, [
     "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus",
+    "unsupported:reactant:pi+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:mu+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping",
   ]);
-  assert.equal(request.participants[0].templateId, "pi_plus");
-  assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
-  assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);
+  assert.equal(
+    fs.existsSync(new URL("../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.pdgsolve-request.v1.json", import.meta.url)),
+    false
+  );
 });
 
-test("charged pion live PDG channel now emits a solver-request artifact through the stable v1 seam", () => {
+test("charged pion live PDG channel stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
-  const request = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.solver-request.v1.json");
 
-  assert.equal(proposal.exportable, true);
+  assert.equal(proposal.exportable, false);
   assert.deepEqual(proposal.source.contract, {
     upstreamSchema: "pdg-proposal/v1",
-    downstreamSchema: "solver-request/v1",
+    downstreamSchema: "pdgsolve-request/v1",
     handoffMode: "upstream-only",
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
@@ -270,22 +250,23 @@ test("charged pion live PDG channel now emits a solver-request artifact through 
   });
   assert.equal(proposal.source.sourceMode, "pdg.connect");
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");
-  assert.deepEqual(proposal.notes, []);
-  assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino.live-pdg");
-  assert.equal(request.upstreamContext.sourceSchema, "pdg-proposal/v1");
-  assert.equal(request.upstreamContext.proposalId, "charged_pion_to_muon_neutrino.live-pdg");
-  assert.equal(request.upstreamContext.reviewBoundary, "reaction-review");
-  assert.deepEqual(request.upstreamContext.contract, proposal.source.contract);
-  assert.deepEqual(request.upstreamContext.notes, proposal.notes);
-  assert.equal(request.participants[0].templateId, "pi_plus");
-  assert.equal(request.participants[1].inventory.flags.includes("generation:2"), true);
-  assert.equal(request.participants[2].inventory.flags.includes("generation:2"), true);
+  assert.deepEqual(proposal.notes, [
+    "unsupported:reactant:pi+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:mu+:no-pdgsolve-request-v1-mapping",
+    "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping",
+  ]);
+  assert.equal(
+    fs.existsSync(
+      new URL("../content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.pdgsolve-request.v1.json", import.meta.url)
+    ),
+    false
+  );
 });
 
-test("pdgfeed can print fixture solver-request json to stdout for piping", () => {
-  const schema = readJson("src/contracts/solver-request/v1/schema.json");
-  const fixtureRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json");
-  const stdout = execFileSync("python3", ["pdgfeed.py", "print-fixture-solver-request", "free_neutron_beta_decay"], {
+test("pdgfeed can print fixture pdgsolve-request json to stdout for piping", () => {
+  const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
+  const fixtureRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
+  const stdout = execFileSync("python3", ["pdgfeed.py", "print-fixture-pdgsolve-request", "free_neutron_beta_decay"], {
     cwd: new URL("..", import.meta.url),
     encoding: "utf8",
   });

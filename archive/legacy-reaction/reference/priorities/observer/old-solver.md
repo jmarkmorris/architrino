@@ -1375,7 +1375,7 @@ The rebuilt solver should return explicit structured output rather than mutating
 
 This section owns the solver input/output boundary. The canonical machine-readable contracts now live in:
 
-- [`solver-request/v1`](../../../../../src/contracts/solver-request/v1/schema.json)
+- [`pdgsolve-request/v1`](../../../../../src/contracts/pdgsolve-request/v1/schema.json)
 - [`solver-result/v1`](../../../src/contracts/solver-result/v1/schema.json)
 
 Reference fixtures for the frozen v1 boundary now live in:
