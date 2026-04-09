@@ -15,6 +15,7 @@
 - [flow](./flow.md) — strict five-lane reaction-flow contract and the migration status for adjacent-only routing.
 - [reaction](./reaction.md) — `reaction` app design and `reaction`-owned priorities.
 - [solver](./solver.md) — `reaction`-side solver design, limits, and solver-owned priorities.
+- [combo](./combo.md) — Combo app design as the request-intake, solve-review, and Xyzzy-publication surface.
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, and proposal-review work.
 - [composer](./composer.md) — `composer` design and `composer`-owned priorities.
 
