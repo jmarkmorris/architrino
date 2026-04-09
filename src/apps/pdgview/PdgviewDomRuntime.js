@@ -22,12 +22,15 @@ export function getPdgviewDomElements(documentLike = globalThis.document) {
   const pdgviewHudPathsToggle = getElementById(documentLike, "pdgview-hud-paths-toggle");
   const pdgviewHudHistoryToggle = getElementById(documentLike, "pdgview-hud-history-toggle");
   const pdgviewHudEnvelopesToggle = getElementById(documentLike, "pdgview-hud-envelopes-toggle");
-  const pdgviewHudObserverToggle = getElementById(documentLike, "pdgview-hud-observer-toggle");
+  const pdgviewHudCameraGuidesToggle = getElementById(
+    documentLike,
+    "pdgview-hud-camera-guides-toggle"
+  );
 
   return {
     pdgviewOverlay,
     pdgviewViewDesignButton: getElementById(documentLike, "pdgview-view-design-button"),
-    pdgviewViewObserverButton: getElementById(documentLike, "pdgview-view-observer-button"),
+    pdgviewViewAuthoredButton: getElementById(documentLike, "pdgview-view-authored-button"),
     pdgviewSceneButton: getElementById(documentLike, "pdgview-scene-button"),
     pdgviewClearButton: getElementById(documentLike, "pdgview-clear-button"),
     pdgviewSaveButton: getElementById(documentLike, "pdgview-save-button"),
@@ -70,7 +73,7 @@ export function getPdgviewDomElements(documentLike = globalThis.document) {
     pdgviewHudPathsToggle,
     pdgviewHudHistoryToggle,
     pdgviewHudEnvelopesToggle,
-    pdgviewHudObserverToggle,
+    pdgviewHudCameraGuidesToggle,
     pdgviewHudViewportToggleBindings: [
       {
         button: pdgviewHudLabelsToggle,
@@ -93,7 +96,7 @@ export function getPdgviewDomElements(documentLike = globalThis.document) {
         label: "Envelopes",
       },
       {
-        button: pdgviewHudObserverToggle,
+        button: pdgviewHudCameraGuidesToggle,
         key: "showCameraGuides",
         label: "Observer Guides",
       },

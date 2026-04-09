@@ -30,7 +30,7 @@ test("pdgview dom runtime collects pdgview shell elements and bindings", () => {
   elementMap.set("pdgview-hud-paths-toggle", { id: "paths" });
   elementMap.set("pdgview-hud-history-toggle", { id: "history" });
   elementMap.set("pdgview-hud-envelopes-toggle", { id: "envelopes" });
-  elementMap.set("pdgview-hud-observer-toggle", { id: "observer" });
+  elementMap.set("pdgview-hud-camera-guides-toggle", { id: "camera_guides" });
 
   const dom = getPdgviewDomElements({
     getElementById(id) {

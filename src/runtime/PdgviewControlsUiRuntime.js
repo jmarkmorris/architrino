@@ -6,7 +6,7 @@ export function createPdgviewControlsUiRuntime(deps) {
     pdgviewExitButton,
     pdgviewPreviewButton,
     pdgviewViewDesignButton,
-    pdgviewViewObserverButton,
+    pdgviewViewAuthoredButton,
     pdgviewExportButton,
     pdgviewLibrarySaveButton,
     pdgviewRepoSaveButton,
@@ -114,8 +114,8 @@ export function createPdgviewControlsUiRuntime(deps) {
       });
     }
 
-    if (pdgviewViewObserverButton) {
-      pdgviewViewObserverButton.addEventListener("click", () => {
+    if (pdgviewViewAuthoredButton) {
+      pdgviewViewAuthoredButton.addEventListener("click", () => {
         if (pdgviewCameraFlightState.preview) {
           stopPdgviewCameraFlightPreview();
         }

@@ -202,7 +202,7 @@ export function createPdgviewStructureGeometryRuntime(options = {}) {
     return shellRadii.length ? Math.max(...shellRadii) * 1.02 : 1;
   }
 
-  function getPdgviewObserverPlaneBasisInFrame() {
+  function getPdgviewCameraPlaneBasisInFrame() {
     const frameGroup = getFrameGroup();
     const camera = getCamera();
     const frameQuaternion = frameGroup?.quaternion?.clone?.() ?? new THREE.Quaternion();
@@ -227,7 +227,7 @@ export function createPdgviewStructureGeometryRuntime(options = {}) {
   function getPdgviewPersonalitySlotLocalOffset(assembly, slotIndex) {
     const radius = getPdgviewPersonalityRingRadius(assembly);
     const angle = Math.max(0, Number(slotIndex) || 0) * (Math.PI / 3);
-    const { right, up } = getPdgviewObserverPlaneBasisInFrame();
+    const { right, up } = getPdgviewCameraPlaneBasisInFrame();
     return right
       .clone()
       .multiplyScalar(Math.cos(angle) * radius)
@@ -422,7 +422,7 @@ export function createPdgviewStructureGeometryRuntime(options = {}) {
     resolvePdgviewTransferEndpointPosition,
     findPdgviewCoreMemberId,
     getPdgviewPersonalityRingRadius,
-    getPdgviewObserverPlaneBasisInFrame,
+    getPdgviewCameraPlaneBasisInFrame,
     getPdgviewPersonalitySlotLocalOffset,
     getPdgviewAssemblyWorldCenterById,
     shiftPdgviewPointTriplets,

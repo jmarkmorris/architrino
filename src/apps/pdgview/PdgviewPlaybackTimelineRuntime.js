@@ -71,14 +71,14 @@ export function createPdgviewPlaybackTimelineRuntime(options = {}) {
   }
 
   function updatePdgviewViewportModeButtons() {
-    const isObserver = getViewportModeState().cameraSource === "authored";
+    const isAuthoredView = getViewportModeState().cameraSource === "authored";
     if (dom.viewDesignButton) {
-      dom.viewDesignButton.classList.toggle("is-active", !isObserver);
-      dom.viewDesignButton.setAttribute("aria-pressed", isObserver ? "false" : "true");
+      dom.viewDesignButton.classList.toggle("is-active", !isAuthoredView);
+      dom.viewDesignButton.setAttribute("aria-pressed", isAuthoredView ? "false" : "true");
     }
-    if (dom.viewObserverButton) {
-      dom.viewObserverButton.classList.toggle("is-active", isObserver);
-      dom.viewObserverButton.setAttribute("aria-pressed", isObserver ? "true" : "false");
+    if (dom.viewAuthoredButton) {
+      dom.viewAuthoredButton.classList.toggle("is-active", isAuthoredView);
+      dom.viewAuthoredButton.setAttribute("aria-pressed", isAuthoredView ? "true" : "false");
     }
   }
 
