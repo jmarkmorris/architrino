@@ -210,7 +210,7 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
     acceptedReactionHandoff: "reaction-owned",
-    composerHandoff: "accepted-reaction-only",
+    pdgviewHandoff: "accepted-reaction-only",
   });
   assert.equal(neutronProposal.products[2].pdgId, "nubar_e");
   assert.equal(neutronProposal.products[2].pdgName, "anti-nu_e");
@@ -238,7 +238,7 @@ test("charged pion fixture now emits a solver-request artifact through the stabl
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
     acceptedReactionHandoff: "reaction-owned",
-    composerHandoff: "accepted-reaction-only",
+    pdgviewHandoff: "accepted-reaction-only",
   });
   assert.equal(request.origin.sourceDocumentId, "pdg-proposal:charged_pion_to_muon_neutrino");
   assert.equal(request.upstreamContext.sourceSchema, "pdg-proposal/v1");
@@ -266,7 +266,7 @@ test("charged pion live PDG channel now emits a solver-request artifact through 
     reactionAcceptanceRequired: true,
     reactionAcceptanceBoundary: "reaction-review",
     acceptedReactionHandoff: "reaction-owned",
-    composerHandoff: "accepted-reaction-only",
+    pdgviewHandoff: "accepted-reaction-only",
   });
   assert.equal(proposal.source.sourceMode, "pdg.connect");
   assert.equal(proposal.source.pdgIdentifier, "S008.1/2025");

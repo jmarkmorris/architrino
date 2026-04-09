@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/pdgsolve-pdgedit-package/v1/schema.json",
+  "title": "pdgsolve pdgedit Package v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "sourceAcceptanceDigest",
+    "publicationMode",
+    "documentId",
+    "documentTitle",
+    "pdgeditDocument",
+    "manifestEntry"
+  ],
+  "properties": {
+    "schema": {
+      "const": "pdgsolve-pdgedit-package/v1"
+    },
+    "sourceAcceptanceDigest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publicationMode": {
+      "type": "string",
+      "enum": ["durable", "launch"]
+    },
+    "documentId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentTitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pdgeditDocument": {
+      "type": "object"
+    },
+    "manifestEntry": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["id", "title", "displayTitle", "documentPath"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "displayTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "documentPath": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title desc">
+  <title id="title">Negative W boson tile</title>
+  <desc id="desc">Negative W boson tile. pdgedit reference tile generated from pdgedit-tiles.json.</desc>
+  <rect width="80" height="80" fill="#000000"/>
+  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#2d8cff" stroke-width="4.00"/>
+  <text x="40.00" y="30.50" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Negative</text>
+  <text x="40.00" y="45.50" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">W</text>
+  <text x="40.00" y="57.50" fill="#f5f7ff" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11.75" font-weight="700" text-anchor="middle">Boson</text>
+</svg>

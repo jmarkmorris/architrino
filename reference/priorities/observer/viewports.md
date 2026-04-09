@@ -2,7 +2,7 @@
 
 ## Why this note exists
 
-The composer has two closely related but not identical visual jobs:
+pdgview has two closely related but not identical visual jobs:
 
 - a design view where we place assemblies, paths, reactions, and timeline objects;
 - and an observer view where we judge what the authored interval actually shows.
@@ -97,7 +97,7 @@ Costs:
 
 ## Why our case is harder
 
-In a generic editor, the scene is often a set of meshes plus view tracks. In the composer, the scene is not just geometry. It is assemblies, nested local frames, transport paths, reaction choreography, and delayed structure. That means the design view must remain truth-bearing about structure, while the observer view must remain truth-bearing about what the audience perceives.
+In a generic editor, the scene is often a set of meshes plus view tracks. In pdgview, the scene is not just geometry. It is assemblies, nested local frames, transport paths, reaction choreography, and delayed structure. That means the design view must remain truth-bearing about structure, while the observer view must remain truth-bearing about what the audience perceives.
 
 Those are different truths.
 
@@ -190,7 +190,7 @@ The observer view should be backed by visible guides in the design view:
 - focus cone or attention corridor;
 - and optional composition or safe-region guides.
 
-These guides should be draggable and targetable like other composer objects, not hidden in a form.
+These guides should be draggable and targetable like other pdgview objects, not hidden in a form.
 
 ### One scene, two readings
 
@@ -243,7 +243,7 @@ That gives us a standard, understandable workflow at first, while still opening 
 
 ## Recommendation
 
-The composer should not choose between design view and observer view as competing modes. It should treat them as synchronized readings of one authored assembly world.
+pdgview should not choose between design view and observer view as competing modes. It should treat them as synchronized readings of one authored assembly world.
 
 Standard tooling gives us the baseline:
 
@@ -258,7 +258,7 @@ The Architrino-specific improvement is to make the observer itself frame-aware, 
 ## Related Priorities
 
 - [observer](../observer/observer.md)
-- [composer](../observer/composer.md)
+- [pdgview](../observer/pdgview.md)
 - [pdgedit](./pdgedit.md)
 - [ellipsoid](../ellipsoid/ellipsoid.md)
 

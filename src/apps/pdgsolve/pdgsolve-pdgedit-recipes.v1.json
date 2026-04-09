@@ -1,0 +1,264 @@
+{
+  "schema": "pdgsolve-pdgedit-recipes/v1",
+  "version": 1,
+  "assemblyRecipes": [
+    {
+      "id": "pdgsolve.pdgedit.neutron.v1",
+      "pdgsolveAssemblyId": "neutron",
+      "pdgeditType": "pro-neutron-assembly",
+      "boundaryLabelText": "Neutron",
+      "primitiveCounts": {
+        "electrinoCount": 18,
+        "positrinoCount": 18
+      },
+      "rowTitles": [
+        "Neutron Row 1",
+        "Neutron Row 2",
+        "Neutron Row 3"
+      ],
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ]
+      ],
+      "ports": {
+        "input": [1, 2, 3],
+        "output": [1, 2, 3]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.noether_pair.v1",
+      "pdgsolveAssemblyId": "noether_pair",
+      "pdgeditType": "noether-pair-assembly",
+      "boundaryLabelText": "Noether Pair",
+      "primitiveCounts": {
+        "electrinoCount": 12,
+        "positrinoCount": 12
+      },
+      "rowTitles": [
+        "Noether Pair Row 1",
+        "Noether Pair Row 2"
+      ],
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ],
+      "ports": {
+        "input": [1, 2],
+        "output": [1, 2]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.2h.v1",
+      "pdgsolveAssemblyId": "2h",
+      "pdgeditType": "noether-pair-assembly",
+      "boundaryLabelText": "2H",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rowTitles": [
+        "2H Row 1",
+        "2H Row 2"
+      ],
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ],
+      "ports": {
+        "input": [1, 2],
+        "output": [1, 2]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.4h.v1",
+      "pdgsolveAssemblyId": "4h",
+      "pdgeditType": "noether-quad-assembly",
+      "boundaryLabelText": "4H",
+      "primitiveCounts": {
+        "electrinoCount": 12,
+        "positrinoCount": 12
+      },
+      "rowTitles": [
+        "4H Row 1",
+        "4H Row 2",
+        "4H Row 3",
+        "4H Row 4"
+      ],
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ],
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ],
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ],
+      "ports": {
+        "input": [1, 2, 3, 4],
+        "output": [1, 2, 3, 4]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.proton.v1",
+      "pdgsolveAssemblyId": "proton",
+      "pdgeditType": "pro-proton-assembly",
+      "boundaryLabelText": "Proton",
+      "primitiveCounts": {
+        "electrinoCount": 15,
+        "positrinoCount": 21
+      },
+      "rowTitles": [
+        "Proton Row 1",
+        "Proton Row 2",
+        "Proton Row 3"
+      ],
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ],
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ],
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ]
+      ],
+      "ports": {
+        "input": [1, 2, 3],
+        "output": [1, 2, 3]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.electron.v1",
+      "pdgsolveAssemblyId": "electron",
+      "pdgeditType": "pro-electron-assembly",
+      "boundaryLabelText": "Pro Electron",
+      "primitiveCounts": {
+        "electrinoCount": 9,
+        "positrinoCount": 3
+      },
+      "rowTitles": [
+        "Pro Electron"
+      ],
+      "rows": [
+        [
+          "pro-electron",
+          "binary-full-br-bb",
+          "binary-full-br-bb",
+          "binary-full-br-bb"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.electron_antineutrino.v1",
+      "pdgsolveAssemblyId": "electron_antineutrino",
+      "pdgeditType": "anti-electron-neutrino-assembly",
+      "boundaryLabelText": "Anti Electron Neutrino",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rowTitles": [
+        "Anti Electron Neutrino"
+      ],
+      "rows": [
+        [
+          "anti-electron-neutrino",
+          "binary-full-rb-rb",
+          "binary-full-rb-rb",
+          "binary-full-rb-rb"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    }
+  ],
+  "operatorRecipes": [
+    {
+      "id": "pdgsolve.pdgedit.operator.dissociate.v1",
+      "pdgsolveOperatorType": "dissociate",
+      "pdgeditType": "dissociate",
+      "title": "Dissociate"
+    },
+    {
+      "id": "pdgsolve.pdgedit.operator.pass_thru.v1",
+      "pdgsolveOperatorType": "pass-thru",
+      "pdgeditType": "pass-thru",
+      "title": "Pass Thru"
+    },
+    {
+      "id": "pdgsolve.pdgedit.operator.associate.v1",
+      "pdgsolveOperatorType": "associate",
+      "pdgeditType": "associate",
+      "title": "Associate"
+    }
+  ]
+}

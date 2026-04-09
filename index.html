@@ -204,73 +204,73 @@
           <div id="markdown-body"></div>
         </div>
       </div>
-      <div id="composer-overlay" aria-hidden="true">
-        <div class="composer-header">
-          <div class="composer-header-main">
-            <div id="composer-status" class="composer-header-status" aria-live="polite"></div>
+      <div id="pdgview-overlay" aria-hidden="true">
+        <div class="pdgview-header">
+          <div class="pdgview-header-main">
+            <div id="pdgview-status" class="pdgview-header-status" aria-live="polite"></div>
           </div>
-          <div class="composer-actions">
-            <div class="composer-view-toggle" role="group" aria-label="Viewport mode">
+          <div class="pdgview-actions">
+            <div class="pdgview-view-toggle" role="group" aria-label="Viewport mode">
               <button
-                id="composer-view-design-button"
+                id="pdgview-view-design-button"
                 type="button"
-                class="composer-view-toggle-button is-active"
+                class="pdgview-view-toggle-button is-active"
                 aria-pressed="true"
               >
                 Design
               </button>
               <button
-                id="composer-view-observer-button"
+                id="pdgview-view-observer-button"
                 type="button"
-                class="composer-view-toggle-button"
+                class="pdgview-view-toggle-button"
                 aria-pressed="false"
               >
                 Observer
               </button>
             </div>
-            <button id="composer-scene-button" type="button" aria-label="Open scene controls">
+            <button id="pdgview-scene-button" type="button" aria-label="Open scene controls">
               Scene
             </button>
-            <button id="composer-clear-button" type="button" aria-label="Clear the current scene">
+            <button id="pdgview-clear-button" type="button" aria-label="Clear the current scene">
               Clear
             </button>
-            <button id="composer-save-button" type="button" aria-label="Open library and save controls">
+            <button id="pdgview-save-button" type="button" aria-label="Open library and save controls">
               Library
             </button>
             <button
-              id="composer-docs-button"
+              id="pdgview-docs-button"
               type="button"
-              aria-label="Open Composer docs"
+              aria-label="Open pdgview docs"
             >
-              <span class="composer-docs-icon" aria-hidden="true">📚</span>
-              <span>Composer Docs</span>
+              <span class="pdgview-docs-icon" aria-hidden="true">📚</span>
+              <span>pdgview Docs</span>
             </button>
-            <button id="composer-exit-button" type="button" aria-label="Exit composer">
+            <button id="pdgview-exit-button" type="button" aria-label="Exit pdgview">
               Exit
             </button>
           </div>
         </div>
-        <div class="composer-workspace">
-          <main class="composer-main">
-            <div class="composer-canvas-wrap">
-              <canvas id="composer-canvas"></canvas>
-              <div id="composer-viewport-overlays" class="composer-viewport-overlays" aria-hidden="true"></div>
-              <div id="composer-assembly-menu" class="composer-assembly-menu" aria-hidden="true"></div>
-              <div class="composer-timeline-overlay">
-                <div class="composer-timeline-toolbar">
-                  <div class="composer-timeline-transport">
-                    <button id="composer-play-toggle" type="button" class="composer-transport-icon" aria-label="Play"></button>
-                    <button id="composer-play-reset" type="button" class="composer-transport-icon" aria-label="Restart"></button>
+        <div class="pdgview-workspace">
+          <main class="pdgview-main">
+            <div class="pdgview-canvas-wrap">
+              <canvas id="pdgview-canvas"></canvas>
+              <div id="pdgview-viewport-overlays" class="pdgview-viewport-overlays" aria-hidden="true"></div>
+              <div id="pdgview-assembly-menu" class="pdgview-assembly-menu" aria-hidden="true"></div>
+              <div class="pdgview-timeline-overlay">
+                <div class="pdgview-timeline-toolbar">
+                  <div class="pdgview-timeline-transport">
+                    <button id="pdgview-play-toggle" type="button" class="pdgview-transport-icon" aria-label="Play"></button>
+                    <button id="pdgview-play-reset" type="button" class="pdgview-transport-icon" aria-label="Restart"></button>
                   </div>
-                  <div id="composer-timeline-track" class="composer-timeline-track">
-                    <div id="composer-timeline-warps" class="composer-timeline-layer"></div>
-                    <div id="composer-timeline-pauses" class="composer-timeline-layer"></div>
-                    <div id="composer-timeline-markers" class="composer-timeline-layer"></div>
-                    <div id="composer-timeline-playhead" class="composer-timeline-playhead"></div>
+                  <div id="pdgview-timeline-track" class="pdgview-timeline-track">
+                    <div id="pdgview-timeline-warps" class="pdgview-timeline-layer"></div>
+                    <div id="pdgview-timeline-pauses" class="pdgview-timeline-layer"></div>
+                    <div id="pdgview-timeline-markers" class="pdgview-timeline-layer"></div>
+                    <div id="pdgview-timeline-playhead" class="pdgview-timeline-playhead"></div>
                   </div>
-                  <div class="composer-timeline-summary">
+                  <div class="pdgview-timeline-summary">
                     <button
-                      id="composer-timeline-summary"
+                      id="pdgview-timeline-summary"
                       type="button"
                       title="Click to edit duration and loop"
                       aria-label="Edit scene duration and loop"
@@ -278,63 +278,63 @@
                   </div>
                 </div>
               </div>
-              <div class="composer-canvas-hud">
+              <div class="pdgview-canvas-hud">
                 <span>Canvas UI</span>
                 <span>Click/Drag: 3D Rotate</span>
                 <span>Right-Click: Scene, Frame, Observer</span>
-                <div class="composer-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
-                  <button id="composer-hud-labels-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                <div class="pdgview-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
+                  <button id="pdgview-hud-labels-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
                     Observer Labels
                   </button>
-                  <button id="composer-hud-paths-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                  <button id="pdgview-hud-paths-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
                     Transport Paths
                   </button>
-                  <button id="composer-hud-history-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                  <button id="pdgview-hud-history-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
                     History Traces
                   </button>
-                  <button id="composer-hud-envelopes-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                  <button id="pdgview-hud-envelopes-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
                     Envelopes
                   </button>
-                  <button id="composer-hud-observer-toggle" type="button" class="composer-canvas-hud-toggle" aria-pressed="true">
+                  <button id="pdgview-hud-observer-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
                     Observer Guides
                   </button>
                 </div>
               </div>
             </div>
           </main>
-          <div class="composer-store" hidden aria-hidden="true">
-            <input id="composer-scene-id" type="text" value="composer_scene" />
-            <input id="composer-scene-name" type="text" value="Composer Scene" />
-            <input id="composer-scene-duration" type="number" min="1" step="0.5" value="24" />
-            <input id="composer-scene-loop" type="checkbox" />
+          <div class="pdgview-store" hidden aria-hidden="true">
+            <input id="pdgview-scene-id" type="text" value="pdgview_scene" />
+            <input id="pdgview-scene-name" type="text" value="pdgview Scene" />
+            <input id="pdgview-scene-duration" type="number" min="1" step="0.5" value="24" />
+            <input id="pdgview-scene-loop" type="checkbox" />
             <textarea
-              id="composer-marker-list"
+              id="pdgview-marker-list"
               rows="3"
               placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
             ></textarea>
-            <div id="composer-marker-status">No timeline notes authored.</div>
+            <div id="pdgview-marker-status">No timeline notes authored.</div>
             <textarea
-              id="composer-pause-list"
+              id="pdgview-pause-list"
               rows="2"
               placeholder="3.0, 1.0&#10;8.5, 0.6"
             ></textarea>
-            <div id="composer-pause-status">No pauses authored.</div>
+            <div id="pdgview-pause-status">No pauses authored.</div>
             <textarea
-              id="composer-warp-list"
+              id="pdgview-warp-list"
               rows="2"
               placeholder="7.0, 10.0, 0.5&#10;18.0, 24.0, 1.8"
             ></textarea>
-            <div id="composer-warp-status">No warps authored.</div>
-            <button id="composer-repo-save-button" type="button">Save Repo</button>
-            <button id="composer-library-save" type="button">Save Library</button>
-            <button id="composer-export-button" type="button">Export JSON</button>
-            <select id="composer-library-select">
+            <div id="pdgview-warp-status">No warps authored.</div>
+            <button id="pdgview-repo-save-button" type="button">Save Repo</button>
+            <button id="pdgview-library-save" type="button">Save Library</button>
+            <button id="pdgview-export-button" type="button">Export JSON</button>
+            <select id="pdgview-library-select">
               <option value="">No saved scenes</option>
             </select>
-            <button id="composer-library-load" type="button">Load Selected</button>
-            <button id="composer-library-delete" type="button">Delete</button>
-            <div id="composer-library-status">Library storage is browser-local for now.</div>
-            <pre id="composer-json-preview" class="composer-json-preview"></pre>
+            <button id="pdgview-library-load" type="button">Load Selected</button>
+            <button id="pdgview-library-delete" type="button">Delete</button>
+            <div id="pdgview-library-status">Library storage is browser-local for now.</div>
+            <pre id="pdgview-json-preview" class="pdgview-json-preview"></pre>
           </div>
         </div>
       </div>

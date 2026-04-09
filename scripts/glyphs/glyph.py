@@ -8,10 +8,10 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-NODE_RENDER_SCRIPT = REPO_ROOT / "scripts" / "xyzzy" / "render-reference-svg.mjs"
-NODE_CONTACT_SHEET_SCRIPT = REPO_ROOT / "scripts" / "export-xyzzy-review.mjs"
-DEFAULT_SPEC_JSON = REPO_ROOT / "src" / "apps" / "xyzzy" / "xyzzy-tiles.json"
-DEFAULT_GROUP_SPEC_JSON = REPO_ROOT / "src" / "apps" / "xyzzy" / "xyzzy-review-groups.json"
+NODE_RENDER_SCRIPT = REPO_ROOT / "scripts" / "pdgedit" / "render-reference-svg.mjs"
+NODE_CONTACT_SHEET_SCRIPT = REPO_ROOT / "scripts" / "export-pdgedit-review.mjs"
+DEFAULT_SPEC_JSON = REPO_ROOT / "src" / "apps" / "pdgedit" / "pdgedit-tiles.json"
+DEFAULT_GROUP_SPEC_JSON = REPO_ROOT / "src" / "apps" / "pdgedit" / "pdgedit-review-groups.json"
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent
 
 
@@ -31,12 +31,12 @@ def run_command(argv: list[str], *, capture_stdout: bool = False) -> int:
 
 def build_batch_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Generate JS-rendered Xyzzy reference SVG files from the shared JSON catalogs."
+        description="Generate JS-rendered pdgedit reference SVG files from the shared JSON catalogs."
     )
     parser.add_argument(
         "--spec-json",
         default=str(DEFAULT_SPEC_JSON),
-        help="Shared Xyzzy tile JSON catalog. Defaults to src/apps/xyzzy/xyzzy-tiles.json.",
+        help="Shared pdgedit tile JSON catalog. Defaults to src/apps/pdgedit/pdgedit-tiles.json.",
     )
     parser.add_argument(
         "--output-dir",
@@ -45,18 +45,18 @@ def build_batch_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--output-prefix",
-        default="xyzzy-tile-",
-        help="Filename prefix for generated SVG files. Defaults to xyzzy-tile-.",
+        default="pdgedit-tile-",
+        help="Filename prefix for generated SVG files. Defaults to pdgedit-tile-.",
     )
     parser.add_argument(
         "--group-spec-json",
         default=str(DEFAULT_GROUP_SPEC_JSON),
-        help="Shared Xyzzy review-group JSON catalog. Defaults to src/apps/xyzzy/xyzzy-review-groups.json.",
+        help="Shared pdgedit review-group JSON catalog. Defaults to src/apps/pdgedit/pdgedit-review-groups.json.",
     )
     parser.add_argument(
         "--group-output-prefix",
-        default="xyzzy-group-",
-        help="Filename prefix for generated Xyzzy group SVG files. Defaults to xyzzy-group-.",
+        default="pdgedit-group-",
+        help="Filename prefix for generated pdgedit group SVG files. Defaults to pdgedit-group-.",
     )
     parser.add_argument(
         "--top-count",
@@ -73,18 +73,18 @@ def build_batch_parser() -> argparse.ArgumentParser:
 
 def build_single_parser(kind: str) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description=f"Render one JS-backed Xyzzy {kind} reference SVG."
+        description=f"Render one JS-backed pdgedit {kind} reference SVG."
     )
-    parser.add_argument("key", help=f"Xyzzy {kind} key to render.")
+    parser.add_argument("key", help=f"pdgedit {kind} key to render.")
     parser.add_argument(
         "--spec-json",
         default=str(DEFAULT_SPEC_JSON),
-        help="Shared Xyzzy tile JSON catalog.",
+        help="Shared pdgedit tile JSON catalog.",
     )
     parser.add_argument(
         "--group-spec-json",
         default=str(DEFAULT_GROUP_SPEC_JSON),
-        help="Shared Xyzzy review-group JSON catalog.",
+        help="Shared pdgedit review-group JSON catalog.",
     )
     parser.add_argument(
         "--output-dir",

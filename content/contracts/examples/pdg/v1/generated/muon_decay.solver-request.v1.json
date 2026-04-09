@@ -24,7 +24,7 @@
         "reactionAcceptanceRequired": true,
         "reactionAcceptanceBoundary": "reaction-review",
         "acceptedReactionHandoff": "reaction-owned",
-        "composerHandoff": "accepted-reaction-only"
+        "pdgviewHandoff": "accepted-reaction-only"
       }
     },
     "contract": {
@@ -34,7 +34,7 @@
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
       "acceptedReactionHandoff": "reaction-owned",
-      "composerHandoff": "accepted-reaction-only"
+      "pdgviewHandoff": "accepted-reaction-only"
     },
     "ranking": {
       "rank": 1,

@@ -5,7 +5,7 @@
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
 - Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
-- Do not restate app-specific product design that belongs in [composer](composer.md), [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
+- Do not restate app-specific product design that belongs in [pdgview](pdgview.md), [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
 ## Purpose
@@ -15,7 +15,7 @@ This document defines the overall architectural approach for incorporating dedic
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated apps such as Composer, pdgsolve, and pdgedit as independent runtimes within one repo;
+- the role of dedicated apps such as pdgview, pdgsolve, and pdgedit as independent runtimes within one repo;
 - the rules for app boundaries, shared code, and cross-app exchange;
 - the modularity rules that keep app growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
@@ -29,9 +29,9 @@ It does not own:
 
 ## Current State
 
-- The codebase now has `composer.html` as the only active standalone app entrypoint in the main web surface.
-- Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
-- The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> composer`.
+- The codebase now has `pdgview.html` as the only active standalone app entrypoint in the main web surface for the current pdgview runtime.
+- pdgview now owns a meaningful app tree under `src/apps/pdgview/`, but too much live behavior still remains concentrated in `app.js`.
+- The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> pdgview`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
 - Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
@@ -46,7 +46,7 @@ The intended shape is:
 
 - one repo;
 - one main Architrino discovery surface;
-- one Composer runtime;
+- one pdgview runtime;
 - one pdgsolve runtime;
 - one pdgedit runtime;
 - and explicit data boundaries between those runtimes.
@@ -68,7 +68,7 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated apps such as Composer, pdgsolve, and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated apps such as pdgview, pdgsolve, and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
 
 Each dedicated app should own:
 
@@ -107,7 +107,7 @@ For the intended forward solve/publication chain:
 - `pdgfeed` emits explicit upstream request data;
 - pdgsolve owns solve, review, acceptance, and publication;
 - pdgedit owns final `pdgedit/v1` documents and direct authored-surface editing;
-- and Composer owns downstream observer-stage staging and presentation.
+- and pdgview owns downstream observer-stage staging and presentation.
 
 ### Composition Roots And Ownership
 
@@ -179,11 +179,11 @@ The main web app should hand off to dedicated apps through route, scene, or laun
 
 Dedicated apps should talk through versioned data contracts.
 
-For the intended pdgsolve/pdgedit/Composer architecture, that means:
+For the intended pdgsolve/pdgedit/pdgview architecture, that means:
 
 - pdgsolve owns accepted solve state and publication;
 - pdgedit owns the final authored-surface document boundary;
-- Composer owns downstream staging and explanatory presentation;
+- pdgview owns downstream staging and explanatory presentation;
 - and the connections between them are explicit data rather than shared runtime logic.
 
 Other dedicated-app relationships should follow the same rule:
@@ -220,23 +220,23 @@ The architecture should keep the following checks in place:
 - contract fixture validation;
 - pdgsolve publication-contract tests;
 - pdgedit document validation tests;
-- Composer import tests;
+- pdgview import tests;
 - and smoke tests proving each app boots independently.
 
 ## Priorities
 
-### 1. Finish The Standalone App Cut-Over For Composer
+### 1. Finish The Standalone App Cut-Over For pdgview
 
 Status: `active`
 
 Current:
 
-- standalone launch routing already exists for `composer` and the remaining prototype runtimes;
-- but `src/apps/composer/main.js` still hands control back to `app.js`.
+- standalone launch routing already exists for the current `pdgview` entrypoint and the remaining prototype runtimes;
+- but `src/apps/pdgview/main.js` still hands control back to `app.js`.
 
 Objective:
 
-- make the main web app a launcher and discovery surface only, with Composer and the forward dedicated apps each owning their own runtime path.
+- make the main web app a launcher and discovery surface only, with pdgview and the forward dedicated apps each owning their own runtime path.
 
 ### 2. Keep Cross-App Exchange Contract-First
 
@@ -244,8 +244,8 @@ Status: `active`
 
 Current:
 
-- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> pdgsolve -> pdgedit -> composer` chain;
-- and Composer already consumes upstream handoff data without importing upstream runtime code.
+- explicit app-boundary contracts already exist or are defined in the observer notes for the `pdgfeed -> pdgsolve -> pdgedit -> pdgview` chain;
+- and pdgview already consumes upstream handoff data without importing upstream runtime code.
 
 Objective:
 
@@ -284,7 +284,7 @@ Status: `pending`
 Current:
 
 - both apps now have substantial `src/apps/*` module families;
-- Composer still relies more heavily on shared `src/runtime/` surfaces than the intended app-owned pattern does.
+- pdgview still relies more heavily on shared `src/runtime/` surfaces than the intended app-owned pattern does.
 
 Objective:
 
@@ -359,7 +359,7 @@ Practical order:
 ## Related Priorities
 
 - [observer](observer.md)
-- [composer](composer.md)
+- [pdgview](pdgview.md)
 - [pdgsolve](pdgsolve.md)
 - [pdgedit](pdgedit.md)
 - [pdgfeed](pdgfeed.md)

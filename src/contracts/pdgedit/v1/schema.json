@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/pdgedit/v1/schema.json",
+  "title": "pdgedit Document v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "assemblies",
+    "operators",
+    "links",
+    "compositeLabels"
+  ],
+  "properties": {
+    "schema": {
+      "const": "pdgedit/v1"
+    },
+    "assemblies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "x",
+          "y",
+          "title",
+          "role",
+          "tiles"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "unbound-architrinos-assembly",
+              "pro-tau-assembly",
+              "anti-tau-assembly",
+              "pro-muon-assembly",
+              "anti-muon-assembly",
+              "pro-electron-assembly",
+              "anti-electron-assembly",
+              "pro-tau-neutrino-assembly",
+              "anti-tau-neutrino-assembly",
+              "pro-muon-neutrino-assembly",
+              "anti-muon-neutrino-assembly",
+              "pro-electron-neutrino-assembly",
+              "anti-electron-neutrino-assembly",
+              "pro-bottom-quark-assembly",
+              "anti-bottom-quark-assembly",
+              "pro-strange-quark-assembly",
+              "anti-strange-quark-assembly",
+              "pro-down-quark-assembly",
+              "anti-down-quark-assembly",
+              "pro-top-quark-assembly",
+              "anti-top-quark-assembly",
+              "pro-charm-quark-assembly",
+              "anti-charm-quark-assembly",
+              "pro-up-quark-assembly",
+              "anti-up-quark-assembly",
+              "up-quark-color-variations-assembly",
+              "down-quark-color-variations-family-i-assembly",
+              "down-quark-color-variations-family-ii-assembly",
+              "photon-assembly",
+              "noether-pair-assembly",
+              "noether-quad-assembly",
+              "pro-proton-assembly",
+              "anti-proton-assembly",
+              "pro-neutron-assembly",
+              "anti-neutron-assembly",
+              "positive-pion-assembly",
+              "negative-pion-assembly",
+              "neutral-pion-u-assembly",
+              "neutral-pion-d-assembly",
+              "positive-kaon-assembly",
+              "negative-kaon-assembly",
+              "neutral-kaon-d-assembly",
+              "neutral-kaon-s-assembly",
+              "positive-b-meson-assembly",
+              "negative-b-meson-assembly",
+              "neutral-b-meson-d-assembly",
+              "neutral-b-meson-b-assembly",
+              "pro-noether-core-assembly",
+              "anti-noether-core-assembly"
+            ]
+          },
+          "x": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "reactant",
+              "intermediate",
+              "product"
+            ]
+          },
+          "tiles": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "x",
+          "y",
+          "title",
+          "positrinoCount",
+          "electrinoCount"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "associate",
+              "dissociate",
+              "pass-thru"
+            ]
+          },
+          "x": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "positrinoCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "electrinoCount": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "endpointA",
+          "endpointB"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "endpointA": {
+            "type": "string",
+            "minLength": 1
+          },
+          "endpointB": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "compositeLabels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "side",
+          "text",
+          "rowStart",
+          "rowEnd"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rowStart": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rowEnd": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

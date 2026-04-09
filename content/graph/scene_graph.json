@@ -1727,9 +1727,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/archie/composer.json",
+      "id": "pdgview",
+      "name": "pdgview",
+      "path": "content/scenes/archie/pdgview.json",
       "nodeType": "scene"
     },
     {
@@ -2707,15 +2707,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/composer.json",
-      "nodeType": "scene",
-      "id": "composer",
-      "name": "Composer",
-      "path": "content/scenes/archie/composer.json",
-      "searchTarget": "content/scenes/archie/composer.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/archie/documentation.json",
       "nodeType": "scene",
       "id": "archie__documentation",
@@ -2776,6 +2767,15 @@
       "name": "Mathematical Terminology Reference",
       "path": "content/scenes/archie/mathematical_terminology.json",
       "searchTarget": "content/scenes/archie/mathematical_terminology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/pdgview.json",
+      "nodeType": "scene",
+      "id": "pdgview",
+      "name": "pdgview",
+      "path": "content/scenes/archie/pdgview.json",
+      "searchTarget": "content/scenes/archie/pdgview.json",
       "implicit": false
     },
     {
@@ -6454,7 +6454,7 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/composer.json",
+      "to": "scene:content/scenes/archie/pdgview.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"

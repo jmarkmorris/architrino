@@ -1,5 +1,5 @@
 const standaloneScenePathById = Object.freeze({
-  composer: "./composer.html",
+  pdgview: "./pdgview.html",
 });
 
 export function getStandaloneAppPathForScene(sceneId = "") {

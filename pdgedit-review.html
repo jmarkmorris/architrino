@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" style="background:#06070d;color:#f5f7ff;">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#06070d" />
+    <title>architrino pdgedit review</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --pdgedit-bg: #06070d;
+        --pdgedit-panel: #11131c;
+        --pdgedit-panel-border: rgba(255, 255, 255, 0.12);
+        --pdgedit-text: #f5f7ff;
+        --pdgedit-muted: rgba(245, 247, 255, 0.68);
+        --pdgedit-input: #0e1017;
+        --pdgedit-shadow: rgba(0, 0, 0, 0.42);
+        --pdgedit-app-tile-size: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top, rgba(45, 140, 255, 0.18), transparent 35%),
+          linear-gradient(180deg, #0a0c14 0%, var(--pdgedit-bg) 100%);
+        color: var(--pdgedit-text);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        padding: 24px;
+      }
+
+      .pdgedit-review-shell {
+        display: grid;
+        gap: 18px;
+        width: min(1400px, 100%);
+        margin: 0 auto;
+      }
+
+      .pdgedit-review-header,
+      .pdgedit-review-controls {
+        display: grid;
+        gap: 10px;
+        padding: 18px 20px;
+        border: 1px solid var(--pdgedit-panel-border);
+        border-radius: 18px;
+        background: rgba(17, 19, 28, 0.88);
+        box-shadow: 0 20px 40px var(--pdgedit-shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .pdgedit-review-header h1 {
+        margin: 0;
+        font-size: clamp(1.65rem, 2vw, 2.2rem);
+        line-height: 1.05;
+      }
+
+      .pdgedit-review-subtitle,
+      .pdgedit-review-meta,
+      .pdgedit-review-status {
+        margin: 0;
+        color: var(--pdgedit-muted);
+        font-size: 0.98rem;
+      }
+
+      .pdgedit-review-controls {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        align-items: end;
+      }
+
+      .pdgedit-review-field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .pdgedit-review-field label {
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--pdgedit-muted);
+      }
+
+      .pdgedit-review-field input {
+        width: 100%;
+        border: 1px solid var(--pdgedit-panel-border);
+        border-radius: 12px;
+        padding: 11px 12px;
+        background: var(--pdgedit-input);
+        color: var(--pdgedit-text);
+        font: inherit;
+      }
+
+      .pdgedit-review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+        gap: 16px;
+      }
+
+      .pdgedit-review-group-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 16px;
+      }
+
+      .pdgedit-review-section {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pdgedit-review-section-header {
+        display: grid;
+        gap: 4px;
+      }
+
+      .pdgedit-review-section-header h2 {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.15;
+      }
+
+      .pdgedit-review-section-note {
+        margin: 0;
+        color: var(--pdgedit-muted);
+        font-size: 0.9rem;
+      }
+
+      .pdgedit-review-card {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--pdgedit-panel-border);
+        border-radius: 18px;
+        background: rgba(11, 13, 20, 0.92);
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34);
+      }
+
+      .pdgedit-review-card-preview {
+        display: grid;
+        justify-items: center;
+        align-items: start;
+        min-height: var(--pdgedit-app-tile-size);
+      }
+
+      .pdgedit-review-group-preview {
+        justify-items: start;
+        min-height: var(--pdgedit-app-tile-size);
+        overflow-x: auto;
+      }
+
+      .pdgedit-review-group-stack {
+        display: grid;
+        gap: 0;
+        width: max-content;
+      }
+
+      .pdgedit-review-group-row {
+        display: flex;
+        gap: 0;
+        width: max-content;
+      }
+
+      .pdgedit-review-tile-svg {
+        width: var(--pdgedit-app-tile-size);
+        height: var(--pdgedit-app-tile-size);
+        display: block;
+      }
+
+      .pdgedit-review-group-tile {
+        width: var(--pdgedit-app-tile-size);
+        height: var(--pdgedit-app-tile-size);
+        flex: 0 0 auto;
+      }
+
+      .pdgedit-review-card-meta {
+        display: grid;
+        gap: 4px;
+      }
+
+      .pdgedit-review-card-title {
+        margin: 0;
+        font-size: 0.98rem;
+        line-height: 1.2;
+      }
+
+      .pdgedit-review-card-key {
+        color: var(--pdgedit-muted);
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 14px;
+        }
+
+        .pdgedit-review-header,
+        .pdgedit-review-controls {
+          padding: 16px;
+        }
+
+        .pdgedit-review-grid {
+          grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+        }
+
+        .pdgedit-review-group-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <main class="pdgedit-review-shell">
+      <section class="pdgedit-review-header">
+        <h1>pdgedit Tile Review</h1>
+        <p class="pdgedit-review-subtitle">
+          Browser-side SVG rendering from the shared JSON catalog.
+        </p>
+        <p id="pdgedit-review-catalog-meta" class="pdgedit-review-meta"></p>
+        <p id="pdgedit-review-status" class="pdgedit-review-status" aria-live="polite"></p>
+      </section>
+
+      <section class="pdgedit-review-controls" aria-label="pdgedit review controls">
+        <div class="pdgedit-review-field">
+          <label for="pdgedit-review-top-count">N Placeholder</label>
+          <input id="pdgedit-review-top-count" type="text" value="N" />
+        </div>
+        <div class="pdgedit-review-field">
+          <label for="pdgedit-review-bottom-count">M Placeholder</label>
+          <input id="pdgedit-review-bottom-count" type="text" value="M" />
+        </div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-special-groups-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-special-groups-heading">Special Single-Row Groups</h2>
+          <p class="pdgedit-review-section-note">
+            Explicit four-tile strips that are not part of the standard-model fermion family review.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-special-group-grid"
+          class="pdgedit-review-group-grid"
+          aria-label="pdgedit special single-row group review"
+        ></div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-single-row-groups-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-single-row-groups-heading">Standard Model Single-Row Groups</h2>
+          <p class="pdgedit-review-section-note">
+            All pro and anti quark and lepton rows rendered as four abutted pdgedit tiles.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-single-row-group-grid"
+          class="pdgedit-review-group-grid"
+          aria-label="pdgedit standard-model single-row group review"
+        ></div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-quark-color-groups-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-quark-color-groups-heading">Quark Color Example Groups</h2>
+          <p class="pdgedit-review-section-note">
+            Example four-tile quark rows showing axis-exceptionality permutations for up quarks and both current down-quark families.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-quark-color-group-grid"
+          class="pdgedit-review-group-grid"
+          aria-label="pdgedit quark color example group review"
+        ></div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-composite-groups-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-composite-groups-heading">Composite Groups</h2>
+          <p class="pdgedit-review-section-note">
+            Multi-row composites rendered as stacked four-tile strips from the shared pdgedit group catalog.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-composite-group-grid"
+          class="pdgedit-review-group-grid"
+          aria-label="pdgedit composite group review"
+        ></div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-title-tiles-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-title-tiles-heading">Catalog Tiles</h2>
+          <p class="pdgedit-review-section-note">
+            Standard text tiles and charge-bearing glyph tiles from the shared pdgedit catalog.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-title-grid"
+          class="pdgedit-review-grid"
+          aria-label="pdgedit title tile review grid"
+        ></div>
+      </section>
+
+      <section class="pdgedit-review-section" aria-labelledby="pdgedit-review-binary-tiles-heading">
+        <header class="pdgedit-review-section-header">
+          <h2 id="pdgedit-review-binary-tiles-heading">Binary Tiles</h2>
+          <p class="pdgedit-review-section-note">
+            Grammar-generated binary glyph variants from the shared pdgedit catalog.
+          </p>
+        </header>
+        <div
+          id="pdgedit-review-binary-grid"
+          class="pdgedit-review-grid"
+          aria-label="pdgedit binary tile review grid"
+        ></div>
+      </section>
+    </main>
+    <script type="module" src="./src/apps/pdgedit/review/main.js?v=2026-04-08-quark-color-title-tile"></script>
+  </body>
+</html>

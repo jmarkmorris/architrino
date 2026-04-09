@@ -1,0 +1,32 @@
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "primitive_imbalance_neutron_to_proton",
+  "source": {
+    "kind": "fixture",
+    "title": "Primitive imbalance neutron to proton",
+    "sourceDocumentId": "pdgsolve_fixture_primitive_imbalance_neutron_to_proton"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron",
+      "assemblyId": "neutron",
+      "title": "Neutron"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton",
+      "assemblyId": "proton",
+      "title": "Proton"
+    }
+  ],
+  "policy": {
+    "betaSupportMode": "allow-implied-noether-pair",
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none",
+      "2h",
+      "4h"
+    ]
+  }
+}

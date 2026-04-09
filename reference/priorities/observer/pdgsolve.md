@@ -1184,7 +1184,7 @@ The initial v1 set should be:
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
 | `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id or descriptive token |
 | `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
-| `pdgsolve.review.missing_xyzzy_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
+| `pdgsolve.review.missing_pdgedit_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
 | `pdgsolve.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
 
 ### Review And Acceptance
@@ -1278,7 +1278,7 @@ For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
   `pdgsolve.search.middle_mismatch`,
   `pdgsolve.search.provenance_failure`,
   `pdgsolve.search.unsupported_law_family`,
-  `pdgsolve.review.missing_xyzzy_publication_recipe`,
+  `pdgsolve.review.missing_pdgedit_publication_recipe`,
   or any later diagnostic explicitly marked `blocking`;
 - and the family already carries the locked lane inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
 
@@ -1470,7 +1470,7 @@ That package should contain:
 - `publicationMode`, with values `durable` or `launch`;
 - `documentId`, with the default stable form `<problemId>--<familyId>`;
 - `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
-- `xyzzyDocument`, which must already satisfy `schema: "pdgedit/v1"`;
+- `pdgeditDocument`, which must already satisfy `schema: "pdgedit/v1"`;
 - and nullable `manifestEntry`, which is present only for durable publication.
 
 When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdgedit-library-manifest/v1` entry rules:
@@ -1487,7 +1487,7 @@ pdgsolve should support two downstream actions over the same `pdgsolve-pdgedit-p
 For `publish_accepted("durable")`, pdgsolve should:
 
 - generate the final `pdgsolve-pdgedit-package/v1` package;
-- write `xyzzyDocument` to the durable asset path selected by the publication runtime;
+- write `pdgeditDocument` to the durable asset path selected by the publication runtime;
 - write or update exactly one matching pdgedit manifest entry;
 - and then set the pdgsolve review state to `published`.
 
@@ -1495,7 +1495,7 @@ For `publish_accepted("launch")`, pdgsolve should:
 
 - generate the same final `pdgsolve-pdgedit-package/v1` package shape;
 - omit any manifest write;
-- hand the in-memory `xyzzyDocument` directly to the pdgedit launch path;
+- hand the in-memory `pdgeditDocument` directly to the pdgedit launch path;
 - and still set the pdgsolve review state to `published` for that accepted snapshot.
 
 So durable publish and launch differ only in destination handling, not in translation semantics.

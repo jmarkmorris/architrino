@@ -6,7 +6,7 @@
 - Do not restate pdgsolve solve behavior here except where the PDG layer depends on the explicit request boundary.
 - Keep `Priorities` ordered as the active work queue.
 - Keep `Design` about durable component boundaries, not speculative product sprawl.
-- Treat downstream publication and staging as pdgsolve/pdgedit/Composer concerns, not as part of PDG ingest logic.
+- Treat downstream publication and staging as pdgsolve/pdgedit/pdgview concerns, not as part of PDG ingest logic.
 
 ## Purpose
 
@@ -24,7 +24,7 @@ It does not own:
 - solver search rules or solver internals;
 - pdgsolve review/runtime behavior;
 - pdgedit surface behavior;
-- Composer runtime behavior;
+- pdgview runtime behavior;
 - or downstream animation/export concerns.
 
 ## Current State
@@ -35,7 +35,7 @@ It does not own:
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
 - `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and future pdgsolve intake.
-- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and Composer stay downstream.
+- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron, muon, pion, kaon, and B-meson solver-facing particle sets that are in the locked v1 registry.
@@ -50,7 +50,7 @@ It does not own:
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has an explicit request seam that PDG should feed.
-- There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into Composer staging.
+- There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into pdgview staging.
 - The current local fixture corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
@@ -331,7 +331,7 @@ The first exported `solver-request/v1` candidate should follow these rules:
 
 - `schema` is always `solver-request/v1`;
 - `origin.sourceKind` is `pdg-ingest`;
-- `origin.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a Composer or accepted-Reaction document;
+- `origin.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
 - `title` should be a concise channel label suitable for fixtures and review;
 - `participants` are produced only from normalized proposal records, never from raw PDG objects at export time;
 - `manualOperators` is empty in the first ingest version;
@@ -358,8 +358,8 @@ The first PDG version should also stay within these scope limits:
 ### Boundary Rules
 
 - PDG feeds the explicit pdgsolve-intake solve seam; it does not define its own solve runtime.
-- PDG must not depend on Composer runtime code.
-- PDG must not bypass pdgsolve review and acceptance on the way to pdgedit or Composer.
+- PDG must not depend on pdgview runtime code.
+- PDG must not bypass pdgsolve review and acceptance on the way to pdgedit or pdgview.
 - PDG should talk to downstream code through explicit normalized contracts.
 
 ### Proposal Review
@@ -393,7 +393,7 @@ The first review semantics should be:
 - reranking after new ingest should preserve explicit review decisions where they still apply;
 - and unsupported alternatives may remain visible in review but must not cross the solver seam.
 
-This review layer is still upstream of pdgsolve. It chooses among PDG-derived alternatives and preserves provenance; it does not author solve-review state, pdgedit publication data, or Composer-facing output.
+This review layer is still upstream of pdgsolve. It chooses among PDG-derived alternatives and preserves provenance; it does not author solve-review state, pdgedit publication data, or pdgview-facing output.
 
 ## Interfaces
 
@@ -416,7 +416,7 @@ This review layer is still upstream of pdgsolve. It chooses among PDG-derived al
 
 - [pdgsolve](./pdgsolve.md) is the solve-review and acceptance app this component should feed.
 - [pdgedit](./pdgedit.md) remains downstream of accepted pdgsolve publication only.
-- [composer](./composer.md) remains downstream of accepted authored-surface output only.
+- [pdgview](./pdgview.md) remains downstream of accepted authored-surface output only.
 - [pdgapps](pdgapps.md) defines the app-boundary rule this component must respect.
 
 ### Deferred Feature: Package And Database Maintenance

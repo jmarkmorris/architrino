@@ -15,22 +15,22 @@
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, proposal review, and upstream request emission.
 - [pdgsolve](./pdgsolve.md) — pdgsolve app design as the request-intake, solve-review, acceptance, and pdgedit-publication surface.
 - [pdgedit](./pdgedit.md) — final authored-surface document model, tile grammar, manifest behavior, and direct object editing.
-- [composer](./composer.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
+- [pdgview](./pdgview.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
 - [viewports](./viewports.md) — observer-view and design-view guidance for downstream scene authoring.
 
 ## Current Cross-Doc Queue
 
 1. [pdgfeed](./pdgfeed.md) and [pdgsolve](./pdgsolve.md): keep upstream request emission explicit, proposal-aware, and ready for pdgsolve intake.
 2. [pdgsolve](./pdgsolve.md) and [pdgedit](./pdgedit.md): freeze the accepted publication path from reviewed solve state into final `pdgedit/v1`.
-3. [pdgedit](./pdgedit.md) and [composer](./composer.md): define the downstream handoff from accepted pdgedit output into observer-stage scene work.
-4. [composer](./composer.md) and [viewports](./viewports.md): finish observer framing, autoscale, overlays, and preview behavior on top of imported authored-surface content.
+3. [pdgedit](./pdgedit.md) and [pdgview](./pdgview.md): define the downstream handoff from accepted pdgedit output into observer-stage scene work.
+4. [pdgview](./pdgview.md) and [viewports](./viewports.md): finish observer framing, autoscale, overlays, and preview behavior on top of imported authored-surface content.
 5. [pdgapps](./pdgapps.md): keep these boundaries contract-first and prevent shared-runtime backsliding.
 
 ## Subapp Workflow Overview
 
 The intended pipeline is:
 
-`pdgfeed -> pdgsolve -> pdgedit -> composer`
+`pdgfeed -> pdgsolve -> pdgedit -> pdgview`
 
 This is a data pipeline, not a shared-runtime pipeline. Each stage should accept explicit versioned input, do its own job, and emit explicit output for the next stage.
 
@@ -121,7 +121,7 @@ Visual output:
 
 - yes: the final tile-based authored surface.
 
-#### `composer`
+#### `pdgview`
 
 Purpose:
 
@@ -172,11 +172,11 @@ Workflow:
 6. Review candidate solve families in pdgsolve and accept one outcome.
 7. Publish the accepted result into final `pdgedit/v1`.
 8. Open the published document in pdgedit for authored-surface inspection or editing.
-9. Hand accepted authored-surface content into Composer when observer-stage staging is needed.
+9. Hand accepted authored-surface content into pdgview when observer-stage staging is needed.
 
 Short form:
 
-- choose PDG channel -> emit request -> solve and review in pdgsolve -> publish pdgedit -> stage in Composer.
+- choose PDG channel -> emit request -> solve and review in pdgsolve -> publish pdgedit -> stage in pdgview.
 
 ### B. Start With `pdgsolve`
 
@@ -200,11 +200,11 @@ Workflow:
 5. Accept one family for publication.
 6. Publish the accepted result into final `pdgedit/v1`.
 7. Open the published document in pdgedit.
-8. Hand accepted authored-surface content into Composer if downstream scene staging is needed.
+8. Hand accepted authored-surface content into pdgview if downstream scene staging is needed.
 
 Short form:
 
-- choose request -> solve and review in pdgsolve -> publish pdgedit -> stage in Composer.
+- choose request -> solve and review in pdgsolve -> publish pdgedit -> stage in pdgview.
 
 ### C. Start With `pdgedit`
 
@@ -221,13 +221,13 @@ Workflow:
 2. Choose a manifest entry that points to a final `pdgedit/v1` document.
 3. Inspect or edit assemblies, operators, links, and composite-label effects directly on the surface.
 4. Save or persist the resulting authored-surface document as needed.
-5. Open the accepted authored-surface content in Composer if observer-stage work is the next step.
+5. Open the accepted authored-surface content in pdgview if observer-stage work is the next step.
 
 Short form:
 
-- open pdgedit document -> edit authored surface -> hand downstream to Composer when needed.
+- open pdgedit document -> edit authored surface -> hand downstream to pdgview when needed.
 
-### D. Start With `composer`
+### D. Start With `pdgview`
 
 Audience:
 
@@ -238,7 +238,7 @@ Use this when the immediate task is scene staging, observer framing, playback, o
 
 Workflow:
 
-1. Open Composer.
+1. Open pdgview.
 2. Load accepted pdgedit output or an explicit downstream staging contract derived from it.
 3. Inspect the imported assemblies, paths, labels, and timing.
 4. Adjust observer framing, overlays, media, pacing, and scene structure.
@@ -247,7 +247,7 @@ Workflow:
 
 Short form:
 
-- load accepted authored-surface content -> stage in Composer -> preview -> export or record.
+- load accepted authored-surface content -> stage in pdgview -> preview -> export or record.
 
 ## Workflow Rule
 
@@ -259,6 +259,6 @@ If work begins from PDG data, the workflow should be:
 - solve and review it in pdgsolve;
 - publish accepted output into final `pdgedit/v1`;
 - inspect or refine the authored surface in pdgedit as needed;
-- and only then hand accepted authored-surface content into Composer.
+- and only then hand accepted authored-surface content into pdgview.
 
 That keeps flexibility high without collapsing the app boundaries.

@@ -17,7 +17,7 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, composer, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 3 | Scene system, pdgview, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -134,20 +134,20 @@ Scoring system:
 - Test the first map against electron / muon / tau or hadron constraints.
 - Keep the constants question attached to the mass map only if it sharpens that derivation; otherwise leave it as background, not as part of the active deliverable.
 
-### 3. Scene system, composer, PDG solver, and remaining composer objectives
+### 3. Scene system, pdgview, PDG solver, and remaining pdgview objectives
 - Value `9`, Cost `4`, ROI `2.25`.
-- The canonical references now live in composer.md, reaction.md, and pdg-solver.md. Treat those notes as the implementation-aware references for the current composer, reaction, and PDG-solver surfaces rather than repeating the full completed baseline here.
+- The canonical references now live in pdgview.md, reaction.md, and pdg-solver.md. Treat those notes as the implementation-aware references for the current pdgview, reaction, and PDG-solver surfaces rather than repeating the full completed baseline here.
 - Current state, only what matters for the remainder:
-  - the composer shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model;
+  - the pdgview shell is already real enough that the remaining work is about closing specific gaps rather than inventing the whole authoring model;
   - the reaction app is now the primary manual provenance surface, and the old `Map On Canvas` bridge should be treated as transitional scaffolding only;
-  - the first shared canonical-structure bridge now exists in the composer as a read-only integration path, but it does not yet drive live structure mutations;
+  - the first shared canonical-structure bridge now exists in the pdgview as a read-only integration path, but it does not yet drive live structure mutations;
   - observer-path controls exist, but true authored observer intervals still do not;
   - and `Audio` remains placeholder-only.
-- Remaining composer objectives, in order:
+- Remaining pdgview objectives, in order:
   1. finish the reaction app as a genuinely usable manual provenance tool;
-  2. bridge solved reactions back into the main composer as staged animated results;
+  2. bridge solved reactions back into the main pdgview as staged animated results;
   3. replace observer/editorial placeholders with a real authored timeline model;
-  4. move composer-side structural editing and visualization onto the shared canonical structure model.
+  4. move pdgview-side structural editing and visualization onto the shared canonical structure model.
 - Priority 1: finish the reaction app manual workflow:
   - keep the current left / center / right hierarchy solver as the near-term reaction-authoring baseline rather than trying to jump immediately to full free placement;
   - improve state legibility inside the existing reaction app:
@@ -165,12 +165,12 @@ Scoring system:
     - timeline/reaction handoff assumptions,
     - and the remaining visual/manual regression points that still need refresh-and-audit checking;
   - keep the old straight transfer-drafting bridge only as compatibility scaffolding while the dedicated reaction app becomes the clear primary workflow.
-- Priority 2: bridge solved reactions back into the main composer:
+- Priority 2: bridge solved reactions back into the main pdgview:
   - convert an accepted reaction-app solve into durable reaction data rather than leaving it trapped in the temporary solver UI state;
   - feed solved participants, mappings, and provenance into the shared reaction item on the timeline;
   - define the first concrete handoff from hierarchy mappings to staged motion grammar such as `detach`, `flight`, and `reassemble`;
   - make the accepted mapping geometry become the starting point for observer-facing spline refinement rather than a disposable diagnostic overlay;
-  - and keep the normal composer responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
+  - and keep the normal pdgview responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
 - Priority 3: replace observer/editorial placeholders with a real authored timeline model:
   - turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
   - define the first concrete observer-object model for the design view, the observer path, and any future synchronized inset;
@@ -178,10 +178,10 @@ Scoring system:
   - improve timeline zoom and local navigation so short spans remain editable in long scenes;
   - improve media-asset entry beyond typed paths where practical;
   - continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
-- Priority 4: move composer-side structure onto the shared canonical model:
-  - keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc composer-only assembly helpers;
-  - extend the first composer-side visual path that already reads canonical structure into additional viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges;
-  - move at least one actual composer mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
+- Priority 4: move pdgview-side structure onto the shared canonical model:
+  - keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc pdgview-only assembly helpers;
+  - extend the first pdgview-side visual path that already reads canonical structure into additional viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges;
+  - move at least one actual pdgview mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
@@ -200,7 +200,7 @@ Scoring system:
     - external API use where it sharpens solving rather than distracting from the manual baseline,
     - possible MadGraph-assisted channel work,
     - and scene-builder / API-mode handoff once the stored reaction payload is stable;
-  - composer architecture follow-on:
+  - pdgview architecture follow-on:
     - retire the remaining raw timing / reaction text bridges once structured authoring can replace them cleanly;
     - close the gap between the current preview bridge and the dedicated `Scene-Composed-Animation` runtime path;
   - history traces and exclusion envelopes:
@@ -214,7 +214,7 @@ Scoring system:
     - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
     - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities.
 - Guardrails for the next pass:
-  - the composer should stay visual, canvas-first, and light on persistent text authoring;
+  - the pdgview should stay visual, canvas-first, and light on persistent text authoring;
   - anything about a given assembly should be managed through that assembly's center control point where practical;
   - path markers should remain directly draggable;
   - timeline items should become more authorable, not more abstract;

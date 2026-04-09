@@ -18,7 +18,7 @@
       "reactionAcceptanceRequired": true,
       "reactionAcceptanceBoundary": "reaction-review",
       "acceptedReactionHandoff": "reaction-owned",
-      "composerHandoff": "accepted-reaction-only"
+      "pdgviewHandoff": "accepted-reaction-only"
     }
   },
   "reactants": [

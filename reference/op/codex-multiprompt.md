@@ -15,7 +15,7 @@ When using multiple Codex threads in parallel against repo priorities:
   - Solver-core / regression work,
   - PDG ingest / mapping / contract work,
   - Architecture enforcement / scripts / tests,
-  - Composer timeline / observer / import work;
+  - pdgview timeline / observer / import work;
 - avoid pairing tasks that are the same cut-over seen from two sides, for example Reaction solver-cut-over work with Solver external-cut-over work;
 - avoid pairing tasks that both want to own the same report or sweep surface.
 
@@ -37,7 +37,6 @@ Suggested defaults:
 - `medium` for UI legibility, app-shell, contract-shape, and most scoped refactor tasks;
 - `high` for solver-core reasoning, provenance rules, search behavior, or other semantics-heavy work;
 - use `high` for large UI refactors only when the task likely requires deeper restructuring of a major coordinator or composition root.
-
 
 
 

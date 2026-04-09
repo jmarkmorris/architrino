@@ -12,8 +12,8 @@
     "hideScaleLabels": true,
     "children": [
       {
-        "nodeId": "composer",
-        "scenePath": "content/scenes/archie/composer.json"
+        "nodeId": "pdgview",
+        "scenePath": "content/scenes/archie/pdgview.json"
       },
       {
         "nodeId": "hyde_periodic_table",
@@ -39,11 +39,11 @@
   },
   "objects": [
     {
-      "id": "composer",
-      "title": "Composer",
+      "id": "pdgview",
+      "title": "pdgview",
       "radius": 2.2,
       "color": "#7ee0d7",
-      "labelTitle": "Composer"
+      "labelTitle": "pdgview"
     },
     {
       "id": "hyde_periodic_table",

@@ -45,7 +45,7 @@ PDG_SOURCE_CONTRACT = {
     "reactionAcceptanceRequired": True,
     "reactionAcceptanceBoundary": "reaction-review",
     "acceptedReactionHandoff": "reaction-owned",
-    "composerHandoff": "accepted-reaction-only",
+    "pdgviewHandoff": "accepted-reaction-only",
 }
 
 

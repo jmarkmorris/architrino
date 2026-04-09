@@ -71,7 +71,7 @@
             "reactionAcceptanceRequired",
             "reactionAcceptanceBoundary",
             "acceptedReactionHandoff",
-            "composerHandoff"
+            "pdgviewHandoff"
           ],
           "properties": {
             "upstreamSchema": {
@@ -97,7 +97,7 @@
               "type": "string",
               "minLength": 1
             },
-            "composerHandoff": {
+            "pdgviewHandoff": {
               "type": "string",
               "minLength": 1
             }

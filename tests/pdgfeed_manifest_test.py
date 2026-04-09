@@ -93,7 +93,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "reactionAcceptanceRequired": True,
                 "reactionAcceptanceBoundary": "reaction-review",
                 "acceptedReactionHandoff": "reaction-owned",
-                "composerHandoff": "accepted-reaction-only",
+                "pdgviewHandoff": "accepted-reaction-only",
             },
         )
         self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
