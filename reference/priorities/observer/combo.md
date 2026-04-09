@@ -1635,3 +1635,7 @@ No active items right now.
 - [xyzzy](./xyzzy.md)
 - [solver](./old-solver.md)
 - [app-architecture](app-architecture.md)
+
+## Deferred Priorities
+
+1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then freeze its stable score order and stable family representatives under Combo regression. Status: `deferred`.
