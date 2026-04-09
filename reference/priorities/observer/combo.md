@@ -1170,6 +1170,7 @@ The initial v1 set should be:
 | `combo.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
 | `combo.search.unsupported_law_family` | search | exact closure would require a law family not admitted into Combo v1 | missing law family id or descriptive token |
 | `combo.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
+| `combo.review.missing_xyzzy_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted Xyzzy publication recipe | family id and missing recipe id or unit id |
 | `combo.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
 
 ### Review And Acceptance
@@ -1254,6 +1255,7 @@ For Combo v1, an option family \(F\) is publication-ready if and only if:
 - the family's primitive imbalance is zero;
 - the family's middle mismatch is zero;
 - the family's provenance witness is complete at the review-summary level;
+- every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted Xyzzy publication recipe;
 - the family has no blocking diagnostic among:
   `combo.request.unsupported_assembly`,
   `combo.request.invalid_boundary_role`,
@@ -1262,6 +1264,7 @@ For Combo v1, an option family \(F\) is publication-ready if and only if:
   `combo.search.middle_mismatch`,
   `combo.search.provenance_failure`,
   `combo.search.unsupported_law_family`,
+  `combo.review.missing_xyzzy_publication_recipe`,
   or any later diagnostic explicitly marked `blocking`;
 - and the family already carries the locked lane inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
 
@@ -1292,7 +1295,7 @@ That record should have
 - `lockedLane2Operators`;
 - `lockedLane4Operators`;
 - `lockedProvenanceSummary`;
-- `lockedSolveGraph`, meaning the Combo-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
+- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "combo-publication-graph/v1"` and must be the Combo-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
 - and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
 
 The accepted record should not contain the full raw-branch search tree.
@@ -1315,6 +1318,170 @@ That translation layer should own:
 - and carrying any display-only composite labels or spans as explicit Xyzzy-side publication data rather than as solver-owned geometry.
 
 Combo should treat `xyzzy/v1` as a publication boundary, not as an internal convenience sketch.
+
+### Canonical Publication Pipeline
+
+Combo should support exactly one downstream publication pipeline:
+
+1. start from one `combo-acceptance/v1` lock record;
+2. validate that the lock record is still fresh and publication-ready;
+3. translate `acceptedRecord.lockedSolveGraph` into one final `xyzzy/v1` document;
+4. validate that `xyzzy/v1` document against the Xyzzy boundary rules;
+5. either publish the document durably with a manifest entry or launch Xyzzy with that exact in-memory document;
+6. and record the publication outcome back into the Combo-side `publication` object.
+
+No other route should be supported.
+
+In particular:
+
+- Combo should not publish straight from a raw branch;
+- Combo should not publish straight from a non-accepted option family;
+- Combo should not ask Xyzzy to infer missing rows, tiles, links, or labels from solver-native data;
+- and Combo should not rerun search during publication.
+
+### Publication Graph Contract
+
+For publishable v1 families, `acceptedRecord.lockedSolveGraph` should use the following exact top-level shape:
+
+- `schema: "combo-publication-graph/v1"`;
+- `units`;
+- and `edges`.
+
+Each `unit` record should contain:
+
+- `id`;
+- `kind`, with values `assembly` or `operator`;
+- `lane`, with values `1`, `2`, `3`, `4`, or `5`;
+- `recipeId`, naming the admitted Combo-to-Xyzzy publication recipe;
+- `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
+- `title`, the accepted semantic title before Xyzzy row-title expansion;
+- and any recipe-required anchor or port-selection fields.
+
+Each `edge` record should contain:
+
+- `id`;
+- `fromUnitId`;
+- `fromPortId`;
+- `toUnitId`;
+- and `toPortId`.
+
+So the accepted publication graph is still Combo-owned, but it is already explicit about:
+
+- which accepted units exist;
+- which recipe expands each unit into Xyzzy surface objects;
+- and which accepted left-to-right connections must become Xyzzy links.
+
+### Admitted Publication Recipe Family
+
+The first admitted recipe family should be `combo-xyzzy-recipes/v1-beta-minimal`.
+
+That family should support exactly the current publishable beta-minimal assemblies and operators:
+
+| Combo unit | Admitted recipe id | Xyzzy type family | Expansion height | Boundary label text |
+| --- | --- | --- | --- | --- |
+| `neutron` | `combo.xyzzy.neutron.v1` | `pro-neutron-assembly` | `3` rows | `Neutron` |
+| `noether_pair` | `combo.xyzzy.noether_pair.v1` | `noether-pair-assembly` | `2` rows | `Noether Pair` |
+| `proton` | `combo.xyzzy.proton.v1` | `pro-proton-assembly` | `3` rows | `Proton` |
+| `electron` | `combo.xyzzy.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
+| `electron_antineutrino` | `combo.xyzzy.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
+| lane-2 `Dissociate` | `combo.xyzzy.operator.dissociate.v1` | `dissociate` | `1` row | none |
+| lane-2 or lane-4 `Pass Thru` | `combo.xyzzy.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
+| lane-4 `Associate` | `combo.xyzzy.operator.associate.v1` | `associate` | `1` row | none |
+
+For Combo v1, the boundary augmentation assemblies `2h` and `4h` should not yet have admitted Xyzzy publication recipes.
+
+So:
+
+- they may still appear in solve search and review;
+- but any accepted family that still depends on them is not publication-ready in the current Xyzzy publication family;
+- and the review blocker should be `combo.review.missing_xyzzy_publication_recipe` until explicit Xyzzy publication recipes for those assemblies are admitted.
+
+### Layout And Object Emission Rules
+
+The publication adapter should materialize the final Xyzzy surface deterministically from the accepted publication graph and the admitted recipe family.
+
+The fixed Xyzzy band origins are:
+
+- reactant assemblies at `x = 2`;
+- left operators at `x = 7`;
+- intermediate assemblies at `x = 9`;
+- right operators at `x = 14`;
+- and product assemblies at `x = 16`.
+
+Assembly emission should follow these rules:
+
+- expand each assembly unit into the exact number of Xyzzy assembly rows required by its recipe;
+- assign the Xyzzy assembly `role` from the Combo lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
+- place expanded rows contiguously in their band with no gaps;
+- pack each assembly band independently in accepted lane order, top to bottom;
+- emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
+- emit row titles from the recipe row-title sequence;
+- emit the exact `tiles` array from the admitted Xyzzy recipe, not by rebuilding tiles from Combo semantics at runtime;
+- and emit one `compositeLabels` record for every boundary-side assembly unit, with `side = left` for lane `1` and `side = right` for lane `5`, spanning that unit's full emitted row interval.
+
+Operator emission should follow these rules:
+
+- each operator unit becomes one Xyzzy operator record;
+- the Xyzzy operator `type` comes directly from the admitted operator recipe;
+- the visible operator `title` comes directly from that same recipe;
+- `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
+- `x` comes from the fixed Xyzzy operator band for that lane;
+- and `y` is computed from the operator unit's explicit accepted anchor reference in `lockedSolveGraph`, not from ad hoc visual inference.
+
+### Link Emission Rules
+
+The publication adapter should emit Xyzzy links only from the accepted `edges` array plus the admitted port maps in the recipe family.
+
+That means:
+
+- assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
+- operator recipes must define their concrete Xyzzy endpoint id, which is the operator record id itself;
+- one accepted publication edge may therefore expand into one or more Xyzzy links when the accepted port map spans multiple emitted assembly rows;
+- every emitted Xyzzy link must already obey the neighboring-band rule and canonical left-to-right endpoint order;
+- and no Xyzzy link should be created by screen-geometry inference or by scanning nearby rows after the fact.
+
+So the adapter's job is explicit expansion, not reconstruction.
+
+### Publication Output Contract
+
+The translation output should be one Combo-owned package named `combo-xyzzy-package/v1`.
+
+That package should contain:
+
+- `schema: "combo-xyzzy-package/v1"`;
+- `sourceAcceptanceDigest`;
+- `publicationMode`, with values `durable` or `launch`;
+- `documentId`, with the default stable form `<problemId>--<familyId>`;
+- `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
+- `xyzzyDocument`, which must already satisfy `schema: "xyzzy/v1"`;
+- and nullable `manifestEntry`, which is present only for durable publication.
+
+When `manifestEntry` is present, it should already satisfy the Xyzzy-side `xyzzy-library-manifest/v1` entry rules:
+
+- `id`, which should default to `documentId`;
+- `title`;
+- `displayTitle`;
+- and `documentPath`.
+
+### Durable Publish And Launch
+
+Combo should support two downstream actions over the same `combo-xyzzy-package/v1` shape.
+
+For `publish_accepted("durable")`, Combo should:
+
+- generate the final `combo-xyzzy-package/v1` package;
+- write `xyzzyDocument` to the durable asset path selected by the publication runtime;
+- write or update exactly one matching Xyzzy manifest entry;
+- and then set the Combo review state to `published`.
+
+For `publish_accepted("launch")`, Combo should:
+
+- generate the same final `combo-xyzzy-package/v1` package shape;
+- omit any manifest write;
+- hand the in-memory `xyzzyDocument` directly to the Xyzzy launch path;
+- and still set the Combo review state to `published` for that accepted snapshot.
+
+So durable publish and launch differ only in destination handling, not in translation semantics.
 
 ### Persistence And Launch
 
@@ -1391,26 +1558,13 @@ Combo should not:
 
 ## Priorities
 
-### 1. Define The Canonical Publication Path Into `xyzzy/v1`
+### 1. Define How Combo And Xyzzy Interact In Both Directions
 
 Status: `active`
 
 Current:
 
-- Combo now owns the review state machine, acceptance gates, and accepted lock record;
-- [xyzzy](./xyzzy.md) already fixes the downstream document boundary;
-- but the canonical Combo-to-Xyzzy publication adapter is not yet defined.
-
-Objective:
-
-- define one explicit accepted-result-to-`xyzzy/v1` translation path and make it the only supported downstream publication route.
-
-### 2. Define How Combo And Xyzzy Interact In Both Directions
-
-Status: `pending`
-
-Current:
-
+- Combo now owns a frozen accepted-record boundary and one canonical publication path into `xyzzy/v1`;
 - Combo clearly publishes to Xyzzy;
 - but the reverse interaction, if any, is not yet frozen.
 
@@ -1418,7 +1572,7 @@ Objective:
 
 - decide whether Xyzzy may originate authored solve requests back into Combo and, if so, define that boundary without pushing solver review into Xyzzy.
 
-### 3. Build The First Combo Fixtures And Regression Surface
+### 2. Build The First Combo Fixtures And Regression Surface
 
 Status: `pending`
 
