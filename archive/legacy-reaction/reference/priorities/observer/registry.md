@@ -4,7 +4,7 @@ This document is the current code-backed snapshot of the legacy Reaction object 
 
 It remains useful as a prototype reference and code inventory.
 
-It does not define the forward Combo/Xyzzy architecture, which now lives in [combo](./combo.md) and [xyzzy](./xyzzy.md).
+It does not define the forward Combo/Xyzzy architecture. See the active observer docs for the current Combo and Xyzzy path.
 
 The canonical data lives in:
 
@@ -20,7 +20,7 @@ The current runtime/helper surface that consumes that registry includes:
 - [`ReactionSolverRequestExportRuntime.js`](../../../src/apps/reaction/ReactionSolverRequestExportRuntime.js)
 - [`ReactionSolverResultAdapterRuntime.js`](../../../src/apps/reaction/ReactionSolverResultAdapterRuntime.js)
 - [`reaction_solver_core.py`](../../../scripts/reaction_solver_core.py)
-- [`StructureAssemblyCatalog.js`](../../../src/domain/structure/StructureAssemblyCatalog.js)
+- [`StructureAssemblyCatalog.js`](../../../../../src/domain/structure/StructureAssemblyCatalog.js)
 - [`ReactionCompositeModeRuntime.js`](../../../src/apps/reaction/ReactionCompositeModeRuntime.js)
 - [`reaction-object-registry.test.js`](../../../tests/reaction-object-registry.test.js)
 

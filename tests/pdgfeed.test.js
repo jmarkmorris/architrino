@@ -305,24 +305,3 @@ test("pdgfeed can print fixture proposal json to stdout", () => {
 
   assert.deepEqual(proposal, fixtureProposal);
 });
-
-test("pdgfeed stdout solver-request can be piped directly into solve-reaction stdin", () => {
-  const requestStdout = execFileSync(
-    "python3",
-    ["pdgfeed.py", "print-fixture-solver-request", "free_neutron_beta_decay"],
-    {
-      cwd: new URL("..", import.meta.url),
-      encoding: "utf8",
-    }
-  );
-  const resultStdout = execFileSync(process.execPath, ["scripts/solve-reaction.mjs"], {
-    cwd: new URL("..", import.meta.url),
-    encoding: "utf8",
-    input: requestStdout,
-  });
-  const resultSchema = readJson("src/contracts/solver-result/v1/schema.json");
-  const result = JSON.parse(resultStdout);
-
-  assert.deepEqual(validateAgainstSchema(result, resultSchema), []);
-  assert.equal(result.request.requestId, "free_neutron_beta_decay");
-});

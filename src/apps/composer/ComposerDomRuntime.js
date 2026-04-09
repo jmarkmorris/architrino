@@ -31,7 +31,6 @@ export function getComposerDomElements(documentLike = globalThis.document) {
     composerSceneButton: getElementById(documentLike, "composer-scene-button"),
     composerClearButton: getElementById(documentLike, "composer-clear-button"),
     composerSaveButton: getElementById(documentLike, "composer-save-button"),
-    composerReactionBackButton: getElementById(documentLike, "composer-reaction-back-button"),
     composerDocsButton: getElementById(documentLike, "composer-docs-button"),
     composerExitButton: getElementById(documentLike, "composer-exit-button"),
     composerTabs:

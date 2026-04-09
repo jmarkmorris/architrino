@@ -128,7 +128,7 @@ Resolved v1 weak-channel provenance convention:
 - `W-` carries pro `Noether core` provenance;
 - and v1 solver rules should use that convention explicitly rather than treating `W^\pm` corridor core provenance as unresolved.
 
-Broader weak-channel theory may still need refinement in [standard-model-closure](../standard-model-closure/standard-model-closure.md), but the first solver should treat this boson-core assignment as settled working law rather than as an implementation guess.
+Broader weak-channel theory may still need refinement in [standard-model-closure](../../../../../reference/priorities/standard-model-closure/standard-model-closure.md), but the first solver should treat this boson-core assignment as settled working law rather than as an implementation guess.
 
 Implementation stance:
 
@@ -1375,7 +1375,7 @@ The rebuilt solver should return explicit structured output rather than mutating
 
 This section owns the solver input/output boundary. The canonical machine-readable contracts now live in:
 
-- [`solver-request/v1`](../../../src/contracts/solver-request/v1/schema.json)
+- [`solver-request/v1`](../../../../../src/contracts/solver-request/v1/schema.json)
 - [`solver-result/v1`](../../../src/contracts/solver-result/v1/schema.json)
 
 Reference fixtures for the frozen v1 boundary now live in:
@@ -1575,10 +1575,10 @@ Likely durable boundaries in the rearchitected system are:
 ### Neighboring Components
 
 - [reaction](./old-reaction.md) owns manual authoring, review, and the broader app workflow around the solver.
-- [pdgfeed](./pdgfeed.md) should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
-- [composer](./composer.md) is downstream and should consume accepted Reaction output rather than invoke solver runtime code.
-- [app-architecture](app-architecture.md) defines the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
-- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
+- The active PDG observer docs should eventually feed normalized seeds and candidate-review context into this solver rather than replacing it.
+- The active Composer observer docs are downstream and should consume accepted Reaction output rather than invoke solver runtime code.
+- The active app-architecture observer docs define the app-boundary rule that prohibits direct Composer/Reaction runtime coupling.
+- The active app-architecture observer docs own the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 

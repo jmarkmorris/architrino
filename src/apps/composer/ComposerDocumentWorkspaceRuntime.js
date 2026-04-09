@@ -6,62 +6,14 @@ import {
   formatComposerPauseList,
   formatComposerWarpList,
 } from "../../runtime/ComposerTimelineRuntime.js";
-import {
-  importReactionFlowToComposerDraft,
-  summarizeComposerReactionImport,
-} from "./ComposerReactionFlowImportRuntime.js";
 
 export function createComposerDocumentWorkspaceRuntime(options = {}) {
   const createSceneDocument = options.createSceneDocument ?? createComposerSceneDocument;
   const buildPreviewScene = options.buildPreviewSceneData ?? buildComposerPreviewSceneData;
-  const importReactionFlowDocument =
-    options.importReactionFlowDocument ?? importReactionFlowToComposerDraft;
   const documentLike = options.documentLike ?? globalThis.document ?? null;
   const storage = options.storage ?? globalThis.window?.localStorage ?? null;
   const storageKey = String(options.storageKey ?? "architrino.composer.library.v1");
   const nowIso = options.nowIso ?? (() => new Date().toISOString());
-  const pickReactionFlowText =
-    options.pickReactionFlowText ??
-    (async () => {
-      const picker = globalThis.window?.showOpenFilePicker;
-      if (typeof picker === "function") {
-        const [handle] = await picker({
-          multiple: false,
-          types: [
-            {
-              description: "Reaction Flow JSON",
-              accept: {
-                "application/json": [".json"],
-              },
-            },
-          ],
-        });
-        if (!handle) {
-          return null;
-        }
-        const file = await handle.getFile();
-        return typeof file?.text === "function" ? file.text() : null;
-      }
-      if (typeof documentLike?.createElement !== "function") {
-        return null;
-      }
-      return new Promise((resolve) => {
-        const input = documentLike.createElement("input");
-        input.type = "file";
-        input.accept = ".json,application/json";
-        input.style.display = "none";
-        input.addEventListener("change", async () => {
-          try {
-            const file = input.files?.[0] ?? null;
-            resolve(file && typeof file.text === "function" ? await file.text() : null);
-          } finally {
-            input.remove?.();
-          }
-        });
-        documentLike.body?.appendChild?.(input);
-        input.click?.();
-      });
-    });
   const confirmClear =
     options.confirmClear ??
     ((message) => globalThis.window?.confirm?.(message));
@@ -611,52 +563,6 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     }
   }
 
-  async function importReactionFlowFromPicker() {
-    let rawText = null;
-    try {
-      rawText = await pickReactionFlowText();
-    } catch (error) {
-      if (error?.name === "AbortError") {
-        setStatus("Reaction import canceled.");
-        return null;
-      }
-      setStatus("Reaction import failed before a file could be read.");
-      throw error;
-    }
-    if (typeof rawText !== "string" || !rawText.trim()) {
-      setStatus("Select a reaction-flow JSON file to import.");
-      return null;
-    }
-    return importReactionFlowFromText(rawText);
-  }
-
-  function importReactionFlowFromText(rawText = "") {
-    let parsedDocument = null;
-    try {
-      parsedDocument = JSON.parse(rawText);
-    } catch (_error) {
-      setStatus("Reaction import failed. The selected file is not valid JSON.");
-      return null;
-    }
-    let importPayload = null;
-    try {
-      importPayload = importReactionFlowDocument(parsedDocument, {
-        nowIso,
-      });
-    } catch (error) {
-      setStatus(error?.message || "Reaction import failed.");
-      return null;
-    }
-    if (!importPayload?.draftState) {
-      setStatus("Reaction import failed. Composer did not receive a draft scene.");
-      return null;
-    }
-    applyComposerDraftState(importPayload.draftState);
-    renderComposerJsonPreview();
-    setStatus(summarizeComposerReactionImport(importPayload.importResult));
-    return importPayload;
-  }
-
   return {
     readComposerFormState,
     readComposerDraftState,
@@ -672,7 +578,5 @@ export function createComposerDocumentWorkspaceRuntime(options = {}) {
     clearComposerScene,
     deleteComposerSceneFromLibrary,
     renderComposerJsonPreview,
-    importReactionFlowFromPicker,
-    importReactionFlowFromText,
   };
 }

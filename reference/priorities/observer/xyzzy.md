@@ -461,7 +461,7 @@ The Xyzzy generator and review renderer should use these exact values rather tha
 
 In the Xyzzy binary generator and review renderer, that orbit stroke scales with the `72/120` glyph fit, so it renders at `3px` inside the `72px x 72px` tile field.
 
-The current reaction-app rendering also applies the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
+The archived legacy Reaction prototype also applied the orbit glow filter `drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))`.
 
 #### Axis Line
 
@@ -509,12 +509,12 @@ The top and bottom circles sit on the vertical axis:
 
 With those centers and radii, each circle sits `6px` away from the inner edge of the purple interior border.
 
-The current reaction-app color definitions are:
+The archived legacy Reaction prototype used these color definitions:
 
 - electrino blue fill: `#1879ff`;
 - positrino red fill: `#ff3d3d`.
 
-The current reaction-app glow filters are:
+The archived legacy Reaction prototype used these glow filters:
 
 - electrino blue glow: `drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))`;
 - positrino red glow: `drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))`.
@@ -545,12 +545,12 @@ That produces exactly four locked Xyzzy binary-glyph variants:
 - `red/blue binary x red/blue polar`;
 - `red/blue binary x blue/red polar`.
 
-These four variants are the Xyzzy expression of the reaction-app factorization in which:
+These four variants are the Xyzzy expression of the legacy Reaction-prototype factorization in which:
 
 - the left/right binary pair is determined by binary polarity;
 - and the top/bottom polar pair is determined by the selected polar arrangement.
 
-In reaction-app terms, the left/right pair comes from the binary polarity swap, while the mixed top/bottom pair corresponds to the two neutral personality choices `p/e` and `e/p`.
+In the legacy Reaction-prototype terms, the left/right pair comes from the binary polarity swap, while the mixed top/bottom pair corresponds to the two neutral personality choices `p/e` and `e/p`.
 
 #### Abbreviated Grammar
 

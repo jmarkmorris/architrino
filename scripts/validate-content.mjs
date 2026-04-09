@@ -3,8 +3,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { isSceneVisibleInMainApp } from "../src/services/MainAppSceneVisibility.js";
-
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
@@ -263,11 +261,8 @@ function inferSceneName(scenePath, sceneMeta, sceneId) {
 }
 
 function buildGeneratedScenesIndex(scenePaths, sceneDataByPath, currentSceneEntries) {
-  const visibleScenePaths = scenePaths.filter((scenePath) =>
-    isSceneVisibleInMainApp(sceneDataByPath.get(scenePath))
-  );
   const derivedByPath = new Map(
-    visibleScenePaths.map((scenePath) => {
+    scenePaths.map((scenePath) => {
       const sceneData = sceneDataByPath.get(scenePath) || {};
       const sceneMeta = sceneData.scene || {};
       const sceneId = asText(sceneMeta.id) || inferSceneId(scenePath);
@@ -305,7 +300,7 @@ function buildGeneratedScenesIndex(scenePaths, sceneDataByPath, currentSceneEntr
     seenPaths.add(entry.path);
   }
 
-  const newPaths = visibleScenePaths
+  const newPaths = scenePaths
     .filter((scenePath) => !seenPaths.has(scenePath))
     .sort((a, b) => a.localeCompare(b));
   for (const scenePath of newPaths) {
@@ -891,9 +886,6 @@ for (const sceneJsonPath of allSceneJson) {
 
 sceneConfigs.sort((a, b) => a.localeCompare(b));
 ancillarySceneJson.sort((a, b) => a.localeCompare(b));
-const indexableSceneConfigs = sceneConfigs.filter((scenePath) =>
-  isSceneVisibleInMainApp(sceneDataByPath.get(scenePath))
-);
 
 if (ancillarySceneJson.length) {
   notes.push(
@@ -1038,7 +1030,7 @@ const generatedMarkdownIndex = {
   files: [...indexableMarkdownFiles],
 };
 
-const sceneIndexDrift = summarizeIndexDrift(indexedScenePaths, indexableSceneConfigs);
+const sceneIndexDrift = summarizeIndexDrift(indexedScenePaths, sceneConfigs);
 const markdownIndexDrift = summarizeIndexDrift(
   indexedMarkdownPaths,
   indexableMarkdownFiles

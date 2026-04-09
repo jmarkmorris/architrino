@@ -7,7 +7,6 @@ export function createComposerControlsUiRuntime(deps) {
     composerPreviewButton,
     composerViewDesignButton,
     composerViewObserverButton,
-    composerReactionBackButton,
     composerExportButton,
     composerLibrarySaveButton,
     composerRepoSaveButton,
@@ -70,7 +69,6 @@ export function createComposerControlsUiRuntime(deps) {
     loadComposerSceneFromLibrary,
     deleteComposerSceneFromLibrary,
     isTransitionActive,
-    exitReactionApp,
     exitComposer,
   } = deps;
 
@@ -98,12 +96,6 @@ export function createComposerControlsUiRuntime(deps) {
     if (composerExitButton) {
       composerExitButton.addEventListener("click", () => {
         exitComposer?.();
-      });
-    }
-
-    if (composerReactionBackButton) {
-      composerReactionBackButton.addEventListener("click", () => {
-        exitReactionApp?.();
       });
     }
 

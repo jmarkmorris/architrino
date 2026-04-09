@@ -52,7 +52,7 @@ export function openComposerMemberMenu(config) {
   );
   appendMenuNote(
     menu,
-    "Internal particle structure is read-only in the composer. Use the reaction workflow for split, regroup, remove, or other provenance-changing edits."
+    "Internal particle structure is read-only in the composer. Provenance-changing internal edits are not available here."
   );
 
   appendMenuButtonRow(menu, [
@@ -114,7 +114,7 @@ export function openComposerPersonalitySlotMenu(config) {
   );
   appendMenuNote(
     menu,
-    "Use the reaction workflow for provenance-changing internal edits."
+    "Provenance-changing internal edits are not available in the composer."
   );
 
   positionMenu(clientX, clientY, 236, 164);
@@ -180,7 +180,7 @@ export function openComposerSubassemblyMenu(config) {
   );
   appendMenuNote(
     menu,
-    "Group splitting and regrouping are being moved out of the composer and into the reaction workflow. This menu is now inspection-only."
+    "Group splitting and regrouping are not available in the composer. This menu is inspection-only."
   );
 
   appendMenuButtonRow(menu, [
@@ -461,7 +461,7 @@ export function openComposerAssemblyPropertiesMenu(config) {
   appendMenuSectionHeader(menu, "Structure", `${Array.isArray(assembly.members) ? assembly.members.length : 0}`);
   appendMenuNote(
     menu,
-    "Internal particle structure is now treated as read-only in the composer. Use the reaction workflow to split, regroup, remove constituents, or author provenance-changing edits."
+    "Internal particle structure is now treated as read-only in the composer. Provenance-changing internal edits are not available here."
   );
 
   const structureActions = document.createElement("div");

@@ -145,7 +145,7 @@ The solver component itself is documented in [solver](./old-solver.md). The solv
 - participant templates and operator choices exposed by the Reaction app;
 - current authored mappings and dissociation state;
 - structured solver results in the format owned by [solver](./old-solver.md#result-format);
-- and future normalized seeds or proposals from [pdgfeed](./pdgfeed.md).
+- and future normalized seeds or proposals from the active PDG observer docs.
 
 ### Outputs
 
@@ -172,9 +172,9 @@ Reaction should not:
 ### Neighboring Components
 
 - [solver](./old-solver.md) owns the Reaction-side solve engine and algorithmic constraints.
-- [pdgfeed](./pdgfeed.md) owns future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
-- [composer](./composer.md) is the downstream staging and explanation surface.
-- [app-architecture](app-architecture.md) owns the cross-cutting app-boundary and modularity rules that apply here.
+- The active PDG observer docs own future PDG-facing ingest, normalization, and proposal-review work upstream of Reaction acceptance.
+- The active Composer observer docs own the downstream staging and explanation surface.
+- The active app-architecture observer docs own the cross-cutting app-boundary and modularity rules that apply here.
 
 ## Priorities
 

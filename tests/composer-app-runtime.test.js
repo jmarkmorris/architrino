@@ -66,7 +66,6 @@ test("composer app runtime wires composer ui and controls through the app layer"
       composerCameraFlightState: { preview: false },
       isTransitionActive: () => false,
       exitComposer() {},
-      exitReactionApp() {},
       updateComposerPathGeometry() {},
       resetComposerPathPoints() {},
       setComposerFrameDefaults() {},

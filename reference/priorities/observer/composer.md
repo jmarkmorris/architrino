@@ -47,10 +47,10 @@ It does not own:
 - `ComposerViewportFramingRuntime.js` already normalizes shot framing, required versus optional assembly participation, and autoscale target selection.
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but composer-side structural editing is still incomplete.
-- The composer can now ingest a versioned upstream handoff document, preserve imported transfer and stage data, and instantiate a staged reaction scene from it.
-- The current legacy handoff intake now round-trips imported transfer ids and stage markers and keeps the Composer side of the bridge data-first.
-- Upstream request loading, solving, review, and publication stay entirely outside Composer; Composer only sees accepted handoff data.
-- The current import and contract coverage is still centered on the legacy prototype handoff fixture, so downstream particle-family-specific coverage remains thinner than the intended Combo/Xyzzy path requires.
+- The legacy Reaction handoff intake has been removed from the active Composer runtime.
+- Composer no longer consumes archived prototype `reaction-flow` documents inside the active app tree.
+- Upstream request loading, solving, review, and publication stay entirely outside Composer; the intended forward input is accepted Xyzzy output or an equivalent downstream contract.
+- The next import and contract work is to define and cover that forward Combo/Xyzzy-to-Composer seam.
 
 ## Design
 
@@ -250,12 +250,12 @@ Status: `next`
 
 Current:
 
-- Composer already consumes the current upstream handoff path, and the neutron baseline is covered by schema and import tests;
-- downstream coverage is still thin for newer assemblies and for the eventual accepted-Xyzzy publication path.
+- Composer no longer carries a live legacy handoff bridge in the active tree;
+- the accepted-Xyzzy downstream contract still needs schema, fixtures, and runtime coverage.
 
 Objective:
 
-- prove that Composer stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
+- land the accepted-Xyzzy downstream contract and prove that Composer stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
 
 ### 5. Move More Editing Onto Canonical Structure Transforms
 

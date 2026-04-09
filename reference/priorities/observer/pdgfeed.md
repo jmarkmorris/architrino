@@ -34,9 +34,8 @@ It does not own:
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
 - `pdgfeed.py` can list fixtures and emit proposal plus `solver-request/v1` artifacts from that local corpus.
-- `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and piping into the solver CLI.
+- `pdgfeed.py` now also has stdout-only commands that print a single `solver-request/v1` JSON document for automation and future Combo intake.
 - `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that Combo owns review and acceptance while Xyzzy and Composer stay downstream.
-- `scripts/pdg-closure-sweep.mjs` now exists as a developer batch runner that feeds many PDG cases through the same request/result seam, writes per-case logs under `/tmp` by default, and emits a closure summary report.
 - The current implementation now uses an explicit locked v1 PDG-to-solver mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable solver surface.
 - Exportable candidate requests currently exist for the neutron, muon, pion, kaon, and B-meson solver-facing particle sets that are in the locked v1 registry.
@@ -44,13 +43,13 @@ It does not own:
 - Charged and neutral pion, the four kaons, and the four B mesons now have explicit solver-facing mappings in the locked v1 registry, so those channels no longer stop at proposal-only classification merely because of particle vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require Combo-side acceptance before any downstream handoff can be considered.
 - Emitted `solver-request/v1` payloads now point `origin.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted Combo publication.
-- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts; current prototype tooling may still consume them directly, but the intended forward path is Combo intake.
+- Those emitted `solver-request/v1` payloads remain explicit upstream request artifacts intended for Combo intake; the archived prototype solve path is no longer part of the active workflow.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `solver-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
-- The repository already has a solver seam that PDG should feed.
+- The repository already has an explicit request seam that PDG should feed.
 - There is not yet a finalized accepted-publication payload path from PDG through Combo into Xyzzy and onward into Composer staging.
 - The current local fixture corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
@@ -131,53 +130,41 @@ The current CLI surface is:
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay` followed by the current prototype solve-core runner `node scripts/solve-reaction.mjs content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.solver-request.v1.json`;
-- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay | node scripts/solve-reaction.mjs`.
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay`;
+- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-solver-request free_neutron_beta_decay`.
 
-The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the pipe into `solve-reaction.mjs` stays reliable.
+The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future Combo intake.
 
 Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized participants instead of being rejected wholesale. That means channels like `pi0 -> 2gamma` can cross the request seam as two photon participants, while generic/textual items still remain proposal-only.
 
-For developer closure sweeps across many cases, use `node scripts/pdg-closure-sweep.mjs`. The sweep runner can either enumerate fixture/live cases directly or consume a frozen manifest built by `python3 pdgfeed.py build-live-manifest`. In direct mode it classifies unsupported-input cases from `pdg-proposal/v1` before solving, feeds only exportable requests through `pdgfeed.py` plus `solve-reaction.mjs`, writes a per-run log directory under `/tmp` by default, and finishes with a report containing reactions tested, analyzable reactions, exact-closure percentage over analyzable reactions only, reactions not yet analyzable, and the top unsupported particles ranked by appearance count in unsupported reactions.
+The legacy solve-core sweep tooling now lives under `archive/legacy-reaction/`. Active PDG work should treat request emission and manifest building as the live responsibilities until Combo-side solve and review tooling exists.
 
-For batch work over every exportable discovered live decay, first freeze a manifest, then advance through it with a cursor:
+For batch work over every exportable discovered live decay, first freeze a manifest:
 
 - `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
-- `node scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --cursor /tmp/pdg-live-cursor.json --limit 20`
-- `node scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --cursor /tmp/pdg-live-cursor.json --limit 34`
 
-The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery. The cursor stores the next `batchId`, so phrases like "the first 20" and "the next 34" can map to a frozen ordered list rather than agent memory.
+The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery, so downstream tooling can work from a frozen ordered list rather than agent memory.
 
-#### Frozen Manifest Sweep Workflow
+#### Frozen Manifest Workflow
 
-When the goal is to measure solve-core progress across many live PDG decays, the preferred path is the frozen-manifest sweep rather than the small built-in live-case list.
+When the goal is to inspect or batch-process many live PDG decays, the preferred path is the frozen manifest rather than the small built-in live-case list.
 
 Recommended workflow:
 
 1. build a frozen live manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
-2. run `scripts/pdg-closure-sweep.mjs` against that frozen manifest, optionally in batches with `--cursor` plus `--limit`;
-3. read `/tmp` run artifacts such as `summary.json` and `report.txt`;
-4. treat analyzable/exportable manifest entries as the solve-core denominator;
-5. separate unsupported-particle discovery from no-solution or partial solve cases.
+2. use that manifest as the stable ordered batch surface for downstream tooling;
+3. treat analyzable/exportable manifest entries as the current request-emission denominator;
+4. separate unsupported-particle discovery from request-emission progress.
 
 Example full-manifest run:
 
 - `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
-- `node /path/to/repo/scripts/pdg-closure-sweep.mjs --manifest /tmp/pdg-live-manifest.json --out-dir /tmp/pdg-closure-sweep`
 
 How to read the denominator:
 
 - `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `solver-request/v1`;
 - in manifest mode, unsupported discoveries stay outside that denominator and are reported separately;
-- `unsupportedInputs` should normally remain `0` in manifest mode because unsupported particle cases were filtered out before solving;
-- `exactClosurePercent` is computed over analyzable/exportable cases only, not over every discovered PDG reaction.
-
-How to interpret the sweep:
-
-- `exactClosures` are analyzable cases solved exactly;
-- `partialClosures` are analyzable cases where some products closed and some did not;
-- `noSolution` are analyzable cases where the solve core could not close the reaction;
-- `discoveredTopUnsupportedParticles` is the particle-vocabulary priority list, not a solve-core failure list.
+- and manifest counts should be read as request-emission progress, not as solve-core closure metrics.
 
 For solve-core progress reporting after each solve-rate change:
 
@@ -464,17 +451,17 @@ Objective:
 
 - move the real implementation under `scripts/` or another explicit PDG-owned runtime location while preserving a compatibility shim at the repo root until tests, tooling, and docs no longer depend on the old path.
 
-### 2. Use Frozen-Manifest Sweeps As The Progress Bar For PDG Support
+### 2. Use Frozen Manifests As The Stable Batch Surface For PDG Support
 
 Status: `active`
 
 Current:
 
-- `build-live-manifest` and `scripts/pdg-closure-sweep.mjs` already separate exportable/analyzable cases from unsupported discovery cases.
+- `build-live-manifest` already freezes exportable/analyzable cases into a stable ordered list separate from unsupported discovery cases.
 
 Objective:
 
-- keep solve-core progress reporting tied to the frozen-manifest denominator as particle coverage grows.
+- keep batch-oriented PDG work tied to the frozen-manifest denominator as particle coverage grows and Combo-side tooling comes online.
 
 ### 3. Promote Remaining PDG Developer Notes Into `reference/`
 

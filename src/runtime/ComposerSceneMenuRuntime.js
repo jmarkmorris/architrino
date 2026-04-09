@@ -198,7 +198,6 @@ export function buildComposerLibraryMenu(config) {
     composerRepoSaveButton,
     composerLibrarySaveButton,
     composerExportButton,
-    importReactionFlow,
     resetComposerAssemblyMenu,
     refreshComposerLibraryUi,
     appendComposerMenuBlock,
@@ -245,15 +244,6 @@ export function buildComposerLibraryMenu(config) {
       text: "JSON Preview",
       onClick: () => {
         openComposerJsonPreviewMenuAt(clientX, clientY);
-      },
-    },
-  ]);
-  appendComposerMenuButtonRow(saveBlock?.block, [
-    {
-      text: "Import Reaction",
-      onClick: () => {
-        closeComposerAssemblyMenu();
-        importReactionFlow?.();
       },
     },
   ]);

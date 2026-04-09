@@ -214,7 +214,6 @@ const {
   composerSceneButton,
   composerClearButton,
   composerSaveButton,
-  composerReactionBackButton,
   composerDocsButton,
   composerExitButton,
   composerTabs,
@@ -2243,7 +2242,6 @@ function openComposerLibraryMenuAt(clientX, clientY) {
     composerRepoSaveButton,
     composerLibrarySaveButton,
     composerExportButton,
-    importReactionFlow: importReactionFlowFromPicker,
     resetComposerAssemblyMenu,
     refreshComposerLibraryUi,
     appendComposerMenuBlock,
@@ -4600,7 +4598,6 @@ const {
   clearComposerScene,
   deleteComposerSceneFromLibrary,
   renderComposerJsonPreview,
-  importReactionFlowFromPicker,
 } = composerDocumentWorkspaceRuntime;
 
 const levels = new Map();
@@ -6486,7 +6483,6 @@ const composerAppRuntime = createComposerAppRuntime({
     composerPreviewButton,
     composerViewDesignButton,
     composerViewObserverButton,
-    composerReactionBackButton,
     composerExportButton,
     composerLibrarySaveButton,
     composerRepoSaveButton,
@@ -6548,9 +6544,6 @@ const composerAppRuntime = createComposerAppRuntime({
     loadComposerSceneFromLibrary,
     deleteComposerSceneFromLibrary,
     isTransitionActive: () => transitionState.active,
-    exitReactionApp: () => {
-      jumpToScene(composerScenePath, { mode: "instant" });
-    },
     exitComposer: () => {
       if (
         isStandaloneComposerApp &&

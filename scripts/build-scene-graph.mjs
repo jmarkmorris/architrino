@@ -3,8 +3,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { isSceneVisibleInMainApp } from "../src/services/MainAppSceneVisibility.js";
-
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const PERIODIC_TABLE_PATH = "content/scenes/chemistry/periodic_table.json";
@@ -525,22 +523,6 @@ for (const sceneEntry of sceneEntries) {
   }
   sceneDataByPath.set(sceneEntry.path, data);
 }
-
-for (let index = sceneEntries.length - 1; index >= 0; index -= 1) {
-  const sceneEntry = sceneEntries[index];
-  if (isSceneVisibleInMainApp(sceneDataByPath.get(sceneEntry.path))) {
-    continue;
-  }
-  sceneEntries.splice(index, 1);
-}
-sceneEntryByPath.clear();
-sceneEntryById.clear();
-sceneEntries.forEach((entry) => {
-  sceneEntryByPath.set(entry.path, entry);
-  if (entry.id && !sceneEntryById.has(entry.id)) {
-    sceneEntryById.set(entry.id, entry);
-  }
-});
 
 const markdownTitleByPath = new Map();
 const markdownTextByPath = new Map();

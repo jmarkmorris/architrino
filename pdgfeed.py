@@ -32,7 +32,7 @@ PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
 DEFAULT_POLICY = {
-    "recruitmentMode": "forbid",
+    "recruitmentMode": "allow-if-needed",
     "lateBosonCollapseMode": "allow-exact",
     "weakChannelMode": "v1-core-provenance-only",
     "carryThroughMode": "exact-first",

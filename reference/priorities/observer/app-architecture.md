@@ -29,9 +29,9 @@ It does not own:
 
 ## Current State
 
-- The codebase already has separate `composer.html` and legacy `reaction.html` entrypoints.
-- The main web app already launches those entrypoints from the scene network rather than treating everything as one runtime mode.
-- A legacy prototype Reaction runtime still exists in code, but it no longer defines the intended forward process.
+- The codebase now has `composer.html` as the only active standalone app entrypoint in the main web surface.
+- The main web app no longer launches the archived legacy Reaction path from the scene network.
+- The legacy Reaction runtime, standalone entrypoint, prototype solve API, and old handoff stack now live under `archive/legacy-reaction/`.
 - Composer now owns a meaningful app tree under `src/apps/composer/`, but too much live behavior still remains concentrated in `app.js`.
 - The forward architectural split is now clearer in docs: `pdgfeed -> combo -> xyzzy -> composer`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect the legacy prototype path.

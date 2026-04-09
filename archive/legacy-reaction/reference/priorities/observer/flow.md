@@ -13,7 +13,7 @@ This document records the former transition from a forward-only-but-skip-capable
 
 It remains useful as migration history and prototype reference material.
 
-It does not define the forward `pdgfeed -> combo -> xyzzy -> composer` process. For the intended active path, see [combo](./combo.md), [xyzzy](./xyzzy.md), and [observer](./observer.md).
+
 
 The target lane sequence is:
 
