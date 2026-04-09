@@ -974,10 +974,11 @@ At the top level, that contract should contain:
 - `problemId`;
 - `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
 - `bestFamilyId`;
-- `acceptedFamilyId`, nullable until review acceptance occurs;
+- `acceptedFamilyId`, nullable summary field mirroring `review.acceptedFamilyId`;
 - top-level `diagnostics`;
 - `optionFamilies`;
-- and nullable `publication`.
+- `review`, carrying the explicit review-state machine and any accepted lock record for the current result snapshot;
+- and nullable `publication`, carrying downstream publication state only after an accepted record has actually been published or launched.
 
 Each member of `optionFamilies` should contain:
 
@@ -993,18 +994,11 @@ Each member of `optionFamilies` should contain:
 - `publicationReady`, a boolean derived from exactness plus review-policy gates;
 - and `canonicalCandidate`, the fully specified representative candidate used for publication if accepted.
 
-The accepted-result handoff before Xyzzy translation should live in `publication`.
+So acceptance and publication are not the same state transition.
 
-That object should be null until one family is accepted.
+Acceptance should populate `review.acceptedRecord`.
 
-After acceptance, it should contain:
-
-- `schema: "combo-accepted-candidate/v1"`;
-- `familyId`;
-- `acceptedScore`;
-- `acceptedDiagnostics`;
-- `translationInput`, which is the only Combo-to-Xyzzy handoff shape used before `xyzzy/v1` translation;
-- and `reviewSummary`, carrying the accepted provenance and policy notes that remain relevant downstream.
+Publication should populate `publication`.
 
 ### Candidate Scoring
 
@@ -1191,6 +1185,124 @@ That means:
 
 Combo should not require Xyzzy to host solver review semantics.
 
+### Review Workflow State
+
+Combo should keep one explicit review-state machine for each current `combo-result/v1` snapshot.
+
+That review object should have
+
+- `schema: "combo-review-state/v1"`;
+- `state`;
+- `selectedFamilyId`, nullable;
+- `acceptedFamilyId`, nullable;
+- `acceptedRecord`, nullable;
+- and `blockingDiagnostics`, carrying any review-time blockers that are not already family-local.
+
+The review states should be:
+
+- `stale`:
+  the current solve result is no longer trusted for acceptance because the normalized problem, policy bundle, law-table id, or canonical family representatives have changed;
+- `review_ready`:
+  the current solve result is fresh and ranked, and the operator may inspect or accept eligible families;
+- `accepted`:
+  one explicit family has been locked as the accepted candidate for this exact result snapshot;
+- and `published`:
+  the accepted record has already been dispatched downstream, either durably or as an in-memory launch payload.
+
+The required transitions should be:
+
+1. `stale -> review_ready` when search completes for the current normalized problem and produces the current ranked family set;
+2. `review_ready -> accepted` only by explicit operator acceptance of one publication-ready family;
+3. `accepted -> published` only by explicit publish or launch action over the locked accepted record;
+4. `accepted -> review_ready` or `published -> review_ready` by explicit reopen action;
+5. and any state -> `stale` whenever the normalized problem, policy bundle, law-table id, family key set, canonical representative, or score ordering changes.
+
+When the state becomes `stale`, Combo should clear `acceptedFamilyId`, `acceptedRecord`, and any downstream `publication` object derived from them.
+
+So Combo must never quietly carry an old acceptance across a changed solve.
+
+### Review Actions
+
+Combo should expose a small operator-facing review action set.
+
+The core actions should be:
+
+- `select_family(familyId)`:
+  mark one visible family as the current inspection target without changing acceptance state;
+- `accept_family(familyId)`:
+  attempt to lock that family as the sole accepted candidate for the current result snapshot;
+- `reopen_acceptance(reason)`:
+  clear the current accepted lock and return to `review_ready`;
+- `publish_accepted(mode)`:
+  send the locked accepted record into the downstream publication path, where `mode` is either durable publish or in-memory launch;
+- and `reject_all_for_now(note)`:
+  leave the state in `review_ready` with no accepted family while preserving the reviewed result set and any operator note.
+
+Combo should allow at most one accepted family at a time.
+
+Accepting one family must therefore replace any earlier accepted family for that same result snapshot.
+
+### Publication-Readiness Gates
+
+Combo should define `publicationReady` as an explicit derived gate, not as a vague UI hint.
+
+For Combo v1, an option family \(F\) is publication-ready if and only if:
+
+- `kind(F) = exact`;
+- the current result snapshot is not `stale`;
+- the family's canonical representative has \(\epsilon(F) = 0\);
+- the family's primitive imbalance is zero;
+- the family's middle mismatch is zero;
+- the family's provenance witness is complete at the review-summary level;
+- the family has no blocking diagnostic among:
+  `combo.request.unsupported_assembly`,
+  `combo.request.invalid_boundary_role`,
+  `combo.normalization.support_required.noether_pair`,
+  `combo.search.primitive_imbalance`,
+  `combo.search.middle_mismatch`,
+  `combo.search.provenance_failure`,
+  `combo.search.unsupported_law_family`,
+  or any later diagnostic explicitly marked `blocking`;
+- and the family already carries the locked lane inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
+
+If any of those clauses fails, Combo should set `publicationReady = false`.
+
+In that case:
+
+- the family may still appear in review;
+- the operator may still inspect its diagnostics and provenance summary;
+- but `accept_family` must fail with `combo.review.not_publication_ready`.
+
+### Accepted Record
+
+Acceptance should lock one Combo-owned record before any Xyzzy translation happens.
+
+That record should have
+
+- `schema: "combo-acceptance/v1"`;
+- `problemId`;
+- `familyId`;
+- `resultDigest`, which is a deterministic digest of the normalized problem id, policy bundle, law-table id, family key, and canonical representative key;
+- `acceptedScore`;
+- `acceptedDiagnostics`;
+- `acceptedState: "accepted"`;
+- `lockedNormalizationSummary`;
+- `lockedPolicySummary`;
+- `lockedLaneInventories`;
+- `lockedLane2Operators`;
+- `lockedLane4Operators`;
+- `lockedProvenanceSummary`;
+- `lockedSolveGraph`, meaning the Combo-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
+- and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
+
+The accepted record should not contain the full raw-branch search tree.
+
+It should contain exactly the information that must remain invariant once the operator says, "this is the candidate we mean."
+
+So the accepted record is the review-side lock point.
+
+The downstream publication step should read only from that lock record, not from a fresh search rerun and not from Xyzzy-side heuristics.
+
 ### Translation Boundary To Xyzzy
 
 The translation into `xyzzy/v1` should happen before Xyzzy reads the result.
@@ -1279,25 +1391,13 @@ Combo should not:
 
 ## Priorities
 
-### 1. Define The Combo Review And Acceptance Boundary
+### 1. Define The Canonical Publication Path Into `xyzzy/v1`
 
 Status: `active`
 
 Current:
 
-- option-family identity, score ordering, result-contract shape, diagnostic ids, and acceptance handoff shape are now frozen;
-- but the accepted-state workflow and operator-facing review lifecycle are not yet specified end-to-end.
-
-Objective:
-
-- freeze Combo as the owner of candidate review, alternative selection, accepted-state workflow, and publication readiness.
-
-### 2. Define The Canonical Publication Path Into `xyzzy/v1`
-
-Status: `next`
-
-Current:
-
+- Combo now owns the review state machine, acceptance gates, and accepted lock record;
 - [xyzzy](./xyzzy.md) already fixes the downstream document boundary;
 - but the canonical Combo-to-Xyzzy publication adapter is not yet defined.
 
@@ -1305,7 +1405,7 @@ Objective:
 
 - define one explicit accepted-result-to-`xyzzy/v1` translation path and make it the only supported downstream publication route.
 
-### 3. Define How Combo And Xyzzy Interact In Both Directions
+### 2. Define How Combo And Xyzzy Interact In Both Directions
 
 Status: `pending`
 
@@ -1318,7 +1418,7 @@ Objective:
 
 - decide whether Xyzzy may originate authored solve requests back into Combo and, if so, define that boundary without pushing solver review into Xyzzy.
 
-### 4. Build The First Combo Fixtures And Regression Surface
+### 3. Build The First Combo Fixtures And Regression Surface
 
 Status: `pending`
 
