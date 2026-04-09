@@ -3963,7 +3963,6 @@ const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
 const composerScenePath = COMPOSER_SCENE_PATH;
 const composerSceneId = "composer";
-const reactionSceneId = "reaction_designer";
 const composerPreviewSceneId = "composer_preview";
 const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =

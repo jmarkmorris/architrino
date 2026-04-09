@@ -1,4 +1,5 @@
 import { shouldExcludeStructuredSpherePalette } from "./SceneCapabilitiesService.js";
+import { isSceneHiddenFromMainApp } from "./MainAppSceneVisibility.js";
 
 export class SceneRepository {
   constructor(deps) {
@@ -641,6 +642,9 @@ export class SceneRepository {
     if (!this.isAuthoredSceneData(configOrData)) {
       return configOrData;
     }
+    if (isSceneHiddenFromMainApp(configOrData)) {
+      return null;
+    }
     return this.createConfigFromSceneData(scenePath, configOrData);
   }
 
@@ -659,7 +663,12 @@ export class SceneRepository {
         }
         return response.json();
       })
-      .then((data) => this.createConfigFromSceneData(scenePath, data))
+      .then((data) => {
+        if (isSceneHiddenFromMainApp(data)) {
+          return null;
+        }
+        return this.createConfigFromSceneData(scenePath, data);
+      })
       .catch((error) => {
         console.error(error);
         this.sceneLoadPromises.delete(scenePath);

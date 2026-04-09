@@ -6,8 +6,8 @@ import {
   resolveStandaloneAppHrefForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 
-test("reaction designer scene resolves to the standalone reaction app path", () => {
-  assert.equal(getStandaloneAppPathForScene("reaction_designer"), "./reaction.html");
+test("legacy reaction designer scene no longer resolves to a standalone app path", () => {
+  assert.equal(getStandaloneAppPathForScene("reaction_designer"), null);
 });
 
 test("composer scene resolves to the standalone composer app path", () => {
@@ -25,7 +25,7 @@ test("standalone app href resolution uses the current page as the base URL", () 
     "http://127.0.0.1:5173/index.html"
   );
 
-  assert.equal(href, "http://127.0.0.1:5173/reaction.html");
+  assert.equal(href, null);
 });
 
 test("composer href resolution uses the current page as the base URL", () => {

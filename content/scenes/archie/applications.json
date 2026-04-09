@@ -16,10 +16,6 @@
         "scenePath": "content/scenes/archie/composer.json"
       },
       {
-        "nodeId": "reaction_designer",
-        "scenePath": "content/scenes/archie/reaction_designer.json"
-      },
-      {
         "nodeId": "hyde_periodic_table",
         "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
@@ -48,13 +44,6 @@
       "radius": 2.2,
       "color": "#7ee0d7",
       "labelTitle": "Composer"
-    },
-    {
-      "id": "reaction_designer",
-      "title": "Reaction Designer",
-      "radius": 2.2,
-      "color": "#36b3bc",
-      "labelTitle": "Reaction Designer"
     },
     {
       "id": "hyde_periodic_table",
