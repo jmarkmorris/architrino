@@ -215,6 +215,84 @@ where each \(g \in \Gamma(a)\) is one legal gathered input multiset that can ass
 
 The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixed solve family.
 
+Unary assembly laws should remain the default.
+
+But Combo may also introduce a small number of finite local cluster laws over explicit reactant-side multisets when exact provenance requires a jointly treated local support cluster.
+
+That move is acceptable only when:
+
+- the participating reactant-side assemblies remain explicit in the normalized solve problem;
+- the cluster law has fixed explicit conserved-content meaning;
+- and the cluster law removes ambiguity rather than hiding support inside a renamed unary symbol.
+
+### First Worked Weak Law: Free Neutron Beta Reaction
+
+The first concrete worked weak family should be the free neutron `beta reaction` (SM label: `free neutron decay`).
+
+In the AAA ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
+
+Combo should therefore not claim that bare
+
+$$
+\Delta(\mathrm{neutron}) \ni \mathrm{proton} + e^- + \bar{\nu}_e
+$$
+
+unless the required weak-support inventory is also explicit in the normalized reactant multiset.
+
+The clean Combo-v1 way to encode this is:
+
+- during normalization, when the request and active policy justify the free-neutron beta family, make the minimal weak-support environment explicit as a reactant-side `Noether Pair`;
+- represent the normalized reactant-side multiset as
+
+$$
+x_{1,\beta} = e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}};
+$$
+
+- and treat that pair as one admissible local weak-support cluster for a finite beta-family cluster law.
+
+Then the first worked dissociation law is the explicit local cluster rule
+
+$$
+\Delta_{\beta}\!\left(
+e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+\right)
+=
+\left\{
+e_{\mathrm{proton}} + e_{e^-} + e_{\bar{\nu}_e}
+\right\}.
+$$
+
+This law should carry the following provenance witness requirements:
+
+- one spectator \(u\) from the neutron passes into the proton unchanged;
+- one spectator \(d\) from the neutron passes into the proton unchanged;
+- one active \(d\) from the neutron rewrites into the proton's active \(u\);
+- the explicit `Noether Pair` dissociates into the minimal pro/anti weak-support carriers required by the accepted AAA beta ledger;
+- the electron and electron-antineutrino receive explicit provenance from that reactant-side support assembly according to that ledger;
+- and every product architrino is therefore traced either to the neutron or to the explicit `Noether Pair`.
+
+In lane terms, the baseline exact family is:
+
+- lane 1: two explicit reactant occurrences, `neutron` and `Noether Pair`;
+- lane 2: one beta-family `Dissociate` choice over that local reactant cluster;
+- lane 3: `proton + electron + electron-antineutrino`;
+- lane 4: `Pass Thru` on each of those product assemblies;
+- lane 5: `proton + electron + electron-antineutrino`.
+
+This gives Combo its first fully readable weak worked example:
+
+- one non-identity reactant-side operator;
+- zero product-side associations;
+- zero boundary `2H` / `4H` burden in the baseline exact family;
+- one explicit spacetime-style support reactant via `Noether Pair`;
+- explicit spectator carry-through;
+- explicit active-agent rewrite;
+- and explicit product provenance.
+
+If normalization cannot justify that explicit `Noether Pair` support reactant under the active request and policy bundle, Combo should not promote the branch to an exact neutron-beta closure.
+
+It should keep the case partial or unsupported until the missing support reactant or provenance assumptions are made explicit.
+
 ### Request Intake
 
 Combo should support a small number of explicit entry modes:
@@ -407,6 +485,30 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
 
+For a small finite set of worked weak families, Combo may also define explicit local reactant-cluster rewrites over a reactant multiset
+
+$$
+c \in \mathbb{N}^{\mathcal{A}},
+$$
+
+with a finite cluster family
+
+$$
+\Lambda_{2}^{\mathrm{cl}}(c).
+$$
+
+The free-neutron beta-family rule above is the first example:
+
+$$
+\Lambda_{2}^{\mathrm{cl}}\!\left(
+e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+\right)
+\ni
+e_{\mathrm{proton}} + e_{e^-} + e_{\bar{\nu}_e}.
+$$
+
+Search should treat such a cluster as one assignable local lane-2 unit after reserving the participating reactant occurrences explicitly.
+
 For lane 4, Combo should define the local product-closure family
 
 $$
@@ -454,6 +556,7 @@ $$
 where:
 
 - \(\phi_{2}\) is a partial assignment of lane-2 choices to reactant assembly occurrences;
+- \(\phi_{2}\) may assign either unary reactant occurrences or one approved local reactant cluster;
 - \(\phi_{4}\) is a partial assignment of lane-4 choices to product assembly occurrences;
 - \(x_{3}^{L}\) is the partial middle inventory generated from lane 1;
 - \(x_{3}^{R}\) is the partial middle inventory required by lane 5;
@@ -929,3 +1032,57 @@ Objective:
 - [xyzzy](./xyzzy.md)
 - [solver-network](./solver-network.md)
 - [app-architecture](app-architecture.md)
+
+## Pre-Implementation To Do
+
+Before writing Combo solver code, the remaining spec work should be:
+
+1. Freeze the v1 assembly table.
+
+- For each allowed v1 assembly, define:
+- canonical id;
+- display label;
+- allowed lane roles;
+- and the primitive count map \(\mu(a)\).
+
+2. Freeze the first executable law tables.
+
+- Define the actual v1 unary dissociation laws \(\Delta(a)\);
+- define the actual v1 unary association laws \(\Gamma(a)\);
+- and define the allowed local cluster laws such as the neutron-plus-`Noether Pair` beta family.
+
+3. Freeze normalization rules.
+
+- Define exactly how authored or PDG-backed requests become Combo-native normalized solve problems;
+- define when explicit support reactants such as `Noether Pair` are added or required;
+- and define what diagnostics appear when normalization cannot justify an exact family.
+
+4. Freeze the meaning of an option family.
+
+- Define when two raw branches collapse into the same review option;
+- define whether differing provenance-witness detail changes option identity or only diagnostics;
+- and define the canonical representative rule for each option family.
+
+5. Freeze the Combo result contract.
+
+- Define the candidate/result JSON shape;
+- define the option-family review shape;
+- define where scores, diagnostics, and provenance summaries live;
+- and define the downstream handoff shape used before translation into `xyzzy/v1`.
+
+6. Freeze diagnostic codes.
+
+- Define the stable diagnostic ids for balance failure, middle mismatch, provenance failure, support-reactant requirements, unsupported law families, and other first-class solver states.
+
+7. Freeze the deterministic tie-break rule.
+
+- Define the concrete meaning of \(\tau(C)\), including augmentation order, occurrence order, operator order, and any canonical assembly ordering needed for stable results.
+
+8. Freeze the minimum regression fixture set.
+
+- Define the first Combo-native fixtures required before implementation is considered trustworthy, including:
+- free neutron beta exact closure;
+- free neutron beta with support disallowed;
+- a primitive-imbalance failure case;
+- a pass-thru baseline case;
+- and at least one multi-option exact closure case.
