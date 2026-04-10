@@ -132,8 +132,13 @@ test("quark color example groups use the standard quark title tiles and expected
 });
 
 test("photon composite group starts with a pro Noether core row", () => {
+  const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.compositeGroups.map((group) => [group.key, group]));
+  const tileByKey = new Map(tileCatalog.tiles.map((tile) => [tile.key, tile]));
 
   assert.equal(groupByKey.get("photon")?.rows[0]?.[0], "pro-noether-core");
+  assert.equal(groupByKey.get("photon")?.rows[1]?.[0], "anti-noether-core");
+  assert.equal(groupByKey.get("photon")?.rows.flat().includes("photon"), false);
+  assert.equal(tileByKey.get("photon")?.type, "composite-label");
 });

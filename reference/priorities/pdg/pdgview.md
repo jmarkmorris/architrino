@@ -127,6 +127,7 @@ That means:
 
 - it is future post-solver grouping metadata over related 4-tile assemblies;
 - it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
+- a composite label may use an observer-facing label tile or label token such as `Photon`, but that tile/token is span-label artwork rather than an assembly row;
 - it is not itself a single assembly;
 - it is not a dissociate or associate target;
 - it should initially be limited to pdgview lanes `1` and `20`;

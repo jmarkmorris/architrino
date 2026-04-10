@@ -201,7 +201,20 @@ test("pdgedit example links and composite labels stay within the explicit bounda
       assert.equal(objectIds.has(link.endpointB), true, `${examplePath} link endpointB missing: ${link.id}`);
     });
 
+    example.assemblies.forEach((assembly) => {
+      assert.equal(
+        assembly.type.endsWith("-composite"),
+        false,
+        `${examplePath} assembly row uses composite type: ${assembly.id}`
+      );
+    });
+
     example.compositeLabels.forEach((label) => {
+      assert.equal(
+        label.type.endsWith("-composite"),
+        true,
+        `${examplePath} composite label missing composite type suffix: ${label.id}`
+      );
       assert.equal(
         label.rowStart <= label.rowEnd,
         true,

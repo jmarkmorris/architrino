@@ -6,7 +6,7 @@
       "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 0,
-      "title": "Proton Row 1",
+      "title": "Pro Up Quark",
       "role": "reactant",
       "tiles": [
         "pro-up-quark",
@@ -20,7 +20,7 @@
       "type": "pro-down-quark-assembly",
       "x": 2,
       "y": 1,
-      "title": "Proton Row 2",
+      "title": "Pro Down Quark",
       "role": "reactant",
       "tiles": [
         "pro-down-quark",
@@ -34,7 +34,7 @@
       "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 2,
-      "title": "Proton Row 3",
+      "title": "Pro Up Quark",
       "role": "reactant",
       "tiles": [
         "pro-up-quark",
@@ -45,13 +45,13 @@
     },
     {
       "id": "product_photon_row_1",
-      "type": "photon-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 16,
       "y": 0,
-      "title": "Photon Row 1",
+      "title": "Pro Noether Core",
       "role": "product",
       "tiles": [
-        "photon",
+        "pro-noether-core",
         "binary-bare-br-none",
         "binary-bare-br-none",
         "binary-bare-br-none"
@@ -59,10 +59,10 @@
     },
     {
       "id": "product_photon_row_2",
-      "type": "photon-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 1,
-      "title": "Photon Row 2",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",
@@ -77,6 +77,7 @@
   "compositeLabels": [
     {
       "id": "label_proton",
+      "type": "pro-proton-composite",
       "side": "left",
       "text": "Proton",
       "rowStart": 0,
@@ -84,6 +85,7 @@
     },
     {
       "id": "label_photon",
+      "type": "photon-composite",
       "side": "right",
       "text": "Photon",
       "rowStart": 0,

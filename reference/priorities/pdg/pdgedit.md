@@ -308,7 +308,9 @@ The generator in `scripts/glyphs/glyph.py` should be treated as reference code t
 
 `glyph.py` is not the runtime dependency of the app.
 
-Each row in the following table is one permitted standard-tile text form.
+Each row in the following table is one permitted row-level standard-tile text form.
+
+This table is not the composite-particle inventory. Composite particles and composite review groups are listed separately below because their visible label belongs to a cluster of assembly rows rather than to one four-tile row.
 
 For polarity-driven families, the table below lists the baseline `Pro` form.
 
@@ -336,13 +338,10 @@ Proton and neutron are the exception:
 | `<count> ϵ+` | `Pass Thru`   | `<count> ϵ-` | line 1 red; line 2 white; line 3 blue | purple       |
 |              | `Unbound`     |              | white                                 | purple       |
 |              | `Architrinos` |              | white                                 | purple       |
-|              | `Photon`      |              | white                                 | purple       |
 | `Pro`        | `Noether`     | `Core`       | white                                 | purple       |
 | `Negative`   | `W`           | `Boson`      | white                                 | blue         |
 | `Neutral`    | `Z`           | `Boson`      | white                                 | purple       |
 | `Positive`   | `W`           | `Boson`      | white                                 | red          |
-| `Noether`    | `Pair`        | `Pro+Anti`   | white                                 | purple       |
-| `Noether`    | `Quad`        | `Two Pair`   | white                                 | purple       |
 | `Pro`        | `Uni`         | `Binary`     | white                                 | purple       |
 | `Pro`        | `Bi`          | `Binary`     | white                                 | purple       |
 | `Pro`        | `Tau`         |              | white                                 | blue         |
@@ -357,22 +356,44 @@ Proton and neutron are the exception:
 | `Pro`        | `Top`         | `Quark`      | white                                 | red          |
 | `Pro`        | `Charm`       | `Quark`      | white                                 | red          |
 | `Pro`        | `Up`          | `Quark`      | white                                 | red          |
-| `Pro`        | `Proton`      | `u d u`      | white                                 | red          |
-| `Pro`        | `Neutron`     | `d u d`      | white                                 | purple       |
-| `Positive`   | `Pion`        | `u !d`       | white                                 | red          |
-| `Negative`   | `Pion`        | `d !u`       | white                                 | blue         |
-| `Neutral`    | `Pion`        | `u !u`       | white                                 | purple       |
-| `Neutral`    | `Pion`        | `d !d`       | white                                 | purple       |
-| `Positive`   | `Kaon`        | `u !s`       | white                                 | red          |
-| `Negative`   | `Kaon`        | `s !u`       | white                                 | blue         |
-| `Neutral`    | `Kaon`        | `d !s`       | white                                 | purple       |
-| `Neutral`    | `Kaon`        | `s !d`       | white                                 | purple       |
-| `Positive`   | `B Meson`     | `u !b`       | white                                 | red          |
-| `Negative`   | `B Meson`     | `b !u`       | white                                 | blue         |
-| `Neutral`    | `B Meson`     | `d !b`       | white                                 | purple       |
-| `Neutral`    | `B Meson`     | `b !d`       | white                                 | purple       |
 
-These text forms cover the current prototype tile labels, picker labels, and composite preview texts, but recast them into one explicit three-line standard-tile grammar.
+These text forms cover row-level prototype tile labels and picker labels, but recast them into one explicit three-line standard-tile grammar.
+
+### Composite Review Groups
+
+Composite labels such as `Photon`, `Pro Proton`, `Positive Pion`, and `Noether Pair` are not standalone four-tile labels in `pdgedit/v1`. They identify row clusters. The canonical review-row recipes for those clusters live in `src/apps/pdgedit/pdgedit-review-groups.json` under `compositeGroups`.
+
+In a concrete `pdgedit/v1` document, the row cluster is represented by ordinary `assemblies` rows plus a `compositeLabels` entry that names the admitted `-composite` type and spans those rows with `rowStart` and `rowEnd`. The `compositeLabels` entry is the instance-level label. The row payloads remain explicit in the `assemblies[].tiles` arrays.
+
+The current composite review groups are:
+
+| Composite Label | Row Recipe |
+| --------------- | ---------- |
+| `Photon` | `Pro Noether Core`; `Anti Noether Core` |
+| `Noether Pair` | `Pro Noether Core`; `Anti Noether Core` |
+| `Noether Quad` | `Pro Noether Core`; `Anti Noether Core`; `Pro Noether Core`; `Anti Noether Core` |
+| `Pro Proton` | `Pro Up Quark`; `Pro Down Quark`; `Pro Up Quark` |
+| `Anti Proton` | `Anti Up Quark`; `Anti Down Quark`; `Anti Up Quark` |
+| `Pro Neutron` | `Pro Down Quark`; `Pro Up Quark`; `Pro Down Quark` |
+| `Anti Neutron` | `Anti Down Quark`; `Anti Up Quark`; `Anti Down Quark` |
+| `Positive Pion` | `Pro Up Quark`; `Anti Down Quark` |
+| `Negative Pion` | `Pro Down Quark`; `Anti Up Quark` |
+| `Neutral Pion (u anti-u)` | `Pro Up Quark`; `Anti Up Quark` |
+| `Neutral Pion (d anti-d)` | `Pro Down Quark`; `Anti Down Quark` |
+| `Positive Kaon` | `Pro Up Quark`; `Anti Strange Quark` |
+| `Negative Kaon` | `Pro Strange Quark`; `Anti Up Quark` |
+| `Neutral Kaon (d anti-s)` | `Pro Down Quark`; `Anti Strange Quark` |
+| `Neutral Kaon (s anti-d)` | `Pro Strange Quark`; `Anti Down Quark` |
+| `Positive B Meson` | `Pro Up Quark`; `Anti Bottom Quark` |
+| `Negative B Meson` | `Pro Bottom Quark`; `Anti Up Quark` |
+| `Neutral B Meson (d anti-b)` | `Pro Down Quark`; `Anti Bottom Quark` |
+| `Neutral B Meson (b anti-d)` | `Pro Bottom Quark`; `Anti Down Quark` |
+
+The standard row-level tile set may include row-level constituent tiles that appear inside these recipes. It should not include a standalone four-tile `Photon` row: `Photon` is only the composite label over the Pro/Anti Noether Core pair.
+
+The shared review catalog may carry composite label tiles such as `Photon` as `type: "composite-label"` reference artwork. Those label tiles are span-label primitives, not valid row-level assembly payloads.
+
+When pdgview implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label/span primitive in the downstream staging layer, not as a row-level pdgedit assembly tile.
 
 The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this pdgedit baseline.
 
@@ -964,7 +985,7 @@ For assembly lanes, the intended authoring behavior is insertion-style reorderin
 Composite-aware insertion may remain deferred until composite authoring is implemented, but its behavior is already fixed:
 
 - a composite in one assembly lane should be hit-tested as one occupied `n-row x 4-column` rectangle;
-- dragging an assembly over that composite rectangle should shift the composite's member assemblies down together as one block;
+- dragging an assembly over that composite rectangle should shift the composite's member rows down together as one block;
 - and that insertion behavior should still preserve the dense no-gap lane rule.
 
 #### Deleting Assemblies And Operators
@@ -1211,6 +1232,7 @@ When no composite labels are drawn, that array should be `[]`.
 Each composite-label record uses this exact shape:
 
 - `id`
+- `type`
 - `side`
 - `text`
 - `rowStart`
@@ -1218,6 +1240,7 @@ Each composite-label record uses this exact shape:
 
 Composite-label field rules are:
 
+- `type` must be one admitted `-composite` type value;
 - `side` must be either `left` or `right`;
 - `text` must be a non-empty string;
 - `rowStart` and `rowEnd` must be inclusive integer row coordinates in the same row space used by assembly and operator `y` placement;
@@ -1270,7 +1293,7 @@ Exact object model for `pdgedit/v1`:
 - every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
 - every operator record stores one grid position in an allowed one-tile operator band and a one-tile payload containing title plus positrino and electrino counts;
 - every spline record stores exactly `id`, `endpointA`, and `endpointB`;
-- and every composite-label record stores exactly `id`, `side`, `text`, `rowStart`, and `rowEnd`.
+- and every composite-label record stores exactly `id`, `type`, `side`, `text`, `rowStart`, and `rowEnd`.
 
 The minimal operator schema should include:
 
@@ -1352,25 +1375,6 @@ For assembly records, the exact allowed `type` values for `pdgedit/v1` are now f
 - `up-quark-color-variations-assembly`
 - `down-quark-color-variations-family-i-assembly`
 - `down-quark-color-variations-family-ii-assembly`
-- `photon-assembly`
-- `noether-pair-assembly`
-- `noether-quad-assembly`
-- `pro-proton-assembly`
-- `anti-proton-assembly`
-- `pro-neutron-assembly`
-- `anti-neutron-assembly`
-- `positive-pion-assembly`
-- `negative-pion-assembly`
-- `neutral-pion-u-assembly`
-- `neutral-pion-d-assembly`
-- `positive-kaon-assembly`
-- `negative-kaon-assembly`
-- `neutral-kaon-d-assembly`
-- `neutral-kaon-s-assembly`
-- `positive-b-meson-assembly`
-- `negative-b-meson-assembly`
-- `neutral-b-meson-d-assembly`
-- `neutral-b-meson-b-assembly`
 - `pro-noether-core-assembly`
 - `anti-noether-core-assembly`
 
@@ -1386,6 +1390,32 @@ That means:
 The `-assembly` suffix is the canonical naming form for assembly `type` values in `pdgedit/v1`.
 
 The assembly display payload remains the explicit `tiles` array.
+
+For composite-label records, the exact allowed `type` values for `pdgedit/v1` are now fixed separately from assembly row types:
+
+- `photon-composite`
+- `noether-pair-composite`
+- `noether-quad-composite`
+- `pro-proton-composite`
+- `anti-proton-composite`
+- `pro-neutron-composite`
+- `anti-neutron-composite`
+- `positive-pion-composite`
+- `negative-pion-composite`
+- `neutral-pion-u-composite`
+- `neutral-pion-d-composite`
+- `positive-kaon-composite`
+- `negative-kaon-composite`
+- `neutral-kaon-d-composite`
+- `neutral-kaon-s-composite`
+- `positive-b-meson-composite`
+- `negative-b-meson-composite`
+- `neutral-b-meson-d-composite`
+- `neutral-b-meson-b-composite`
+
+The `-composite` suffix is the canonical naming form for composite-label `type` values in `pdgedit/v1`.
+
+Composite records identify multi-row spans over ordinary assembly rows. They must not appear as `assemblies[].type` values.
 
 The exact link schema is:
 
@@ -1403,6 +1433,7 @@ Link field rules are:
 The exact composite-label schema is:
 
 - `id`
+- `type`
 - `side`
 - `text`
 - `rowStart`
@@ -1410,6 +1441,7 @@ The exact composite-label schema is:
 
 Composite-label field rules are:
 
+- `type` must be one admitted `-composite` type value;
 - `side` must be `left` or `right`;
 - `text` must be a non-empty string;
 - `rowStart` and `rowEnd` must be inclusive integer row coordinates using the same row numbering as object `y` positions;
@@ -1618,11 +1650,11 @@ Current:
 - pdgedit now reserves the outer columns and renders optional composite labels as a final pass;
 - no richer composite-label semantics are intended beyond explicit visual grouping;
 - composite authoring still has no explicit surface workflow of its own;
-- and composite-aware assembly insertion behavior may remain deferred until that composite workflow is implemented.
+- and composite-aware insertion behavior may remain deferred until that composite workflow is implemented.
 
 Objective:
 
-- build on the direct object-editing workflow defined above so authored assemblies in lane columns 1, 3, and 5 can become a solver request and that same authoring flow can describe composite assemblies as well as individual assemblies;
+- build on the direct object-editing workflow defined above so authored assemblies in lane columns 1, 3, and 5 can become a solver request and that same authoring flow can describe composites made from assembly rows as well as individual assembly rows;
 - define a composite as one authored grouping of multiple assembly rows that belong together;
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
@@ -1640,7 +1672,7 @@ Purposes:
 
 Done when:
 
-- the composite workflow built on the direct object-editing model can create both individual assemblies and composite assemblies;
+- the composite workflow built on the direct object-editing model can create both individual assembly rows and composite row groups;
 - a composite can author multiple grouped rows in one action;
 - composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
 - dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;

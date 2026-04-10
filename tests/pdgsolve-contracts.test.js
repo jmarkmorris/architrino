@@ -311,7 +311,7 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
   });
 });
 
-test("pdgsolve pdgedit recipe catalog admits 2h and 4h as explicit publication recipes without collapsing them into support assemblies", () => {
+test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with constituent assembly row types", () => {
   const twoHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.2h.v1");
   const fourHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.4h.v1");
   const noetherPairRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.noether_pair.v1");
@@ -321,13 +321,19 @@ test("pdgsolve pdgedit recipe catalog admits 2h and 4h as explicit publication r
   assert.ok(noetherPairRecipe);
   assert.equal(twoHRecipe.pdgsolveAssemblyId, "2h");
   assert.equal(fourHRecipe.pdgsolveAssemblyId, "4h");
-  assert.equal(twoHRecipe.pdgeditType, "noether-pair-assembly");
-  assert.equal(fourHRecipe.pdgeditType, "noether-quad-assembly");
+  assert.equal(twoHRecipe.pdgeditType, "noether-pair-composite");
+  assert.equal(fourHRecipe.pdgeditType, "noether-quad-composite");
   assert.equal(twoHRecipe.boundaryLabelText, "2H");
   assert.equal(fourHRecipe.boundaryLabelText, "4H");
   assert.equal(noetherPairRecipe.boundaryLabelText, "Noether Pair");
   assert.notEqual(twoHRecipe.id, noetherPairRecipe.id);
-  assert.notDeepEqual(twoHRecipe.rowTitles, noetherPairRecipe.rowTitles);
+  assert.deepEqual(twoHRecipe.pdgeditRowTypes, ["pro-noether-core-assembly", "anti-noether-core-assembly"]);
+  assert.deepEqual(fourHRecipe.pdgeditRowTypes, [
+    "pro-noether-core-assembly",
+    "anti-noether-core-assembly",
+    "pro-noether-core-assembly",
+    "anti-noether-core-assembly",
+  ]);
 });
 
 test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payloads while keeping distinct labels", () => {
@@ -339,8 +345,13 @@ test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payload
 
   assert.deepEqual(twoHRecipe.rows, noetherPairRows);
   assert.deepEqual(fourHRecipe.rows, noetherQuadRows);
-  assert.deepEqual(twoHRecipe.rowTitles, ["2H Row 1", "2H Row 2"]);
-  assert.deepEqual(fourHRecipe.rowTitles, ["4H Row 1", "4H Row 2", "4H Row 3", "4H Row 4"]);
+  assert.deepEqual(twoHRecipe.rowTitles, ["Pro Noether Core", "Anti Noether Core"]);
+  assert.deepEqual(fourHRecipe.rowTitles, [
+    "Pro Noether Core",
+    "Anti Noether Core",
+    "Pro Noether Core",
+    "Anti Noether Core",
+  ]);
 });
 
 test("every recipeId used by pdgsolve publication-graph fixtures is admitted in the pdgsolve pdgedit recipe catalog", () => {

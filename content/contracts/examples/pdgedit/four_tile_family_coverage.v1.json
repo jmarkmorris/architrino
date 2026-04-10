@@ -479,13 +479,13 @@
     },
     {
       "id": "photon_row_1",
-      "type": "photon-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 9,
       "y": 11,
-      "title": "Photon Row 1",
+      "title": "Pro Noether Core",
       "role": "intermediate",
       "tiles": [
-        "photon",
+        "pro-noether-core",
         "binary-bare-br-none",
         "binary-bare-br-none",
         "binary-bare-br-none"
@@ -493,10 +493,10 @@
     },
     {
       "id": "photon_row_2",
-      "type": "photon-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 11,
-      "title": "Photon Row 2",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",
@@ -507,10 +507,10 @@
     },
     {
       "id": "noether_pair_row_1",
-      "type": "noether-pair-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 2,
       "y": 12,
-      "title": "Noether Pair Row 1",
+      "title": "Pro Noether Core",
       "role": "reactant",
       "tiles": [
         "pro-noether-core",
@@ -521,10 +521,10 @@
     },
     {
       "id": "noether_pair_row_2",
-      "type": "noether-pair-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 9,
       "y": 12,
-      "title": "Noether Pair Row 2",
+      "title": "Anti Noether Core",
       "role": "intermediate",
       "tiles": [
         "anti-noether-core",
@@ -535,10 +535,10 @@
     },
     {
       "id": "noether_quad_row_1",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 16,
       "y": 12,
-      "title": "Noether Quad Row 1",
+      "title": "Pro Noether Core",
       "role": "product",
       "tiles": [
         "pro-noether-core",
@@ -549,10 +549,10 @@
     },
     {
       "id": "noether_quad_row_2",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 2,
       "y": 13,
-      "title": "Noether Quad Row 2",
+      "title": "Anti Noether Core",
       "role": "reactant",
       "tiles": [
         "anti-noether-core",
@@ -563,10 +563,10 @@
     },
     {
       "id": "noether_quad_row_3",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 9,
       "y": 13,
-      "title": "Noether Quad Row 3",
+      "title": "Pro Noether Core",
       "role": "intermediate",
       "tiles": [
         "pro-noether-core",
@@ -577,10 +577,10 @@
     },
     {
       "id": "noether_quad_row_4",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 13,
-      "title": "Noether Quad Row 4",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",
@@ -591,10 +591,10 @@
     },
     {
       "id": "pro_proton_row_1",
-      "type": "pro-proton-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 14,
-      "title": "Pro Proton Row 1",
+      "title": "Pro Up Quark",
       "role": "reactant",
       "tiles": [
         "pro-up-quark",
@@ -605,10 +605,10 @@
     },
     {
       "id": "pro_proton_row_2",
-      "type": "pro-proton-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 9,
       "y": 14,
-      "title": "Pro Proton Row 2",
+      "title": "Pro Down Quark",
       "role": "intermediate",
       "tiles": [
         "pro-down-quark",
@@ -619,10 +619,10 @@
     },
     {
       "id": "pro_proton_row_3",
-      "type": "pro-proton-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 16,
       "y": 14,
-      "title": "Pro Proton Row 3",
+      "title": "Pro Up Quark",
       "role": "product",
       "tiles": [
         "pro-up-quark",
@@ -633,10 +633,10 @@
     },
     {
       "id": "anti_proton_row_1",
-      "type": "anti-proton-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 2,
       "y": 15,
-      "title": "Anti Proton Row 1",
+      "title": "Anti Up Quark",
       "role": "reactant",
       "tiles": [
         "anti-up-quark",
@@ -647,10 +647,10 @@
     },
     {
       "id": "anti_proton_row_2",
-      "type": "anti-proton-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 9,
       "y": 15,
-      "title": "Anti Proton Row 2",
+      "title": "Anti Down Quark",
       "role": "intermediate",
       "tiles": [
         "anti-down-quark",
@@ -661,10 +661,10 @@
     },
     {
       "id": "anti_proton_row_3",
-      "type": "anti-proton-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 16,
       "y": 15,
-      "title": "Anti Proton Row 3",
+      "title": "Anti Up Quark",
       "role": "product",
       "tiles": [
         "anti-up-quark",
@@ -675,10 +675,10 @@
     },
     {
       "id": "pro_neutron_row_1",
-      "type": "pro-neutron-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 2,
       "y": 16,
-      "title": "Pro Neutron Row 1",
+      "title": "Pro Down Quark",
       "role": "reactant",
       "tiles": [
         "pro-down-quark",
@@ -689,10 +689,10 @@
     },
     {
       "id": "pro_neutron_row_2",
-      "type": "pro-neutron-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 16,
-      "title": "Pro Neutron Row 2",
+      "title": "Pro Up Quark",
       "role": "intermediate",
       "tiles": [
         "pro-up-quark",
@@ -703,10 +703,10 @@
     },
     {
       "id": "pro_neutron_row_3",
-      "type": "pro-neutron-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 16,
       "y": 16,
-      "title": "Pro Neutron Row 3",
+      "title": "Pro Down Quark",
       "role": "product",
       "tiles": [
         "pro-down-quark",
@@ -717,10 +717,10 @@
     },
     {
       "id": "anti_neutron_row_1",
-      "type": "anti-neutron-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 2,
       "y": 17,
-      "title": "Anti Neutron Row 1",
+      "title": "Anti Down Quark",
       "role": "reactant",
       "tiles": [
         "anti-down-quark",
@@ -731,10 +731,10 @@
     },
     {
       "id": "anti_neutron_row_2",
-      "type": "anti-neutron-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 9,
       "y": 17,
-      "title": "Anti Neutron Row 2",
+      "title": "Anti Up Quark",
       "role": "intermediate",
       "tiles": [
         "anti-up-quark",
@@ -745,10 +745,10 @@
     },
     {
       "id": "anti_neutron_row_3",
-      "type": "anti-neutron-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 16,
       "y": 17,
-      "title": "Anti Neutron Row 3",
+      "title": "Anti Down Quark",
       "role": "product",
       "tiles": [
         "anti-down-quark",
@@ -759,10 +759,10 @@
     },
     {
       "id": "positive_pion_row_1",
-      "type": "positive-pion-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 2,
       "y": 18,
-      "title": "Positive Pion Row 1",
+      "title": "Pro Up Quark",
       "role": "reactant",
       "tiles": [
         "pro-up-quark",
@@ -773,10 +773,10 @@
     },
     {
       "id": "positive_pion_row_2",
-      "type": "positive-pion-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 9,
       "y": 18,
-      "title": "Positive Pion Row 2",
+      "title": "Anti Down Quark",
       "role": "intermediate",
       "tiles": [
         "anti-down-quark",
@@ -787,10 +787,10 @@
     },
     {
       "id": "negative_pion_row_1",
-      "type": "negative-pion-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 16,
       "y": 18,
-      "title": "Negative Pion Row 1",
+      "title": "Pro Down Quark",
       "role": "product",
       "tiles": [
         "pro-down-quark",
@@ -801,10 +801,10 @@
     },
     {
       "id": "negative_pion_row_2",
-      "type": "negative-pion-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 2,
       "y": 19,
-      "title": "Negative Pion Row 2",
+      "title": "Anti Up Quark",
       "role": "reactant",
       "tiles": [
         "anti-up-quark",
@@ -815,10 +815,10 @@
     },
     {
       "id": "neutral_pion_u_row_1",
-      "type": "neutral-pion-u-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 19,
-      "title": "Neutral Pion (u anti-u) Row 1",
+      "title": "Pro Up Quark",
       "role": "intermediate",
       "tiles": [
         "pro-up-quark",
@@ -829,10 +829,10 @@
     },
     {
       "id": "neutral_pion_u_row_2",
-      "type": "neutral-pion-u-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 16,
       "y": 19,
-      "title": "Neutral Pion (u anti-u) Row 2",
+      "title": "Anti Up Quark",
       "role": "product",
       "tiles": [
         "anti-up-quark",
@@ -843,10 +843,10 @@
     },
     {
       "id": "neutral_pion_d_row_1",
-      "type": "neutral-pion-d-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 2,
       "y": 20,
-      "title": "Neutral Pion (d anti-d) Row 1",
+      "title": "Pro Down Quark",
       "role": "reactant",
       "tiles": [
         "pro-down-quark",
@@ -857,10 +857,10 @@
     },
     {
       "id": "neutral_pion_d_row_2",
-      "type": "neutral-pion-d-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 9,
       "y": 20,
-      "title": "Neutral Pion (d anti-d) Row 2",
+      "title": "Anti Down Quark",
       "role": "intermediate",
       "tiles": [
         "anti-down-quark",
@@ -871,10 +871,10 @@
     },
     {
       "id": "positive_kaon_row_1",
-      "type": "positive-kaon-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 16,
       "y": 20,
-      "title": "Positive Kaon Row 1",
+      "title": "Pro Up Quark",
       "role": "product",
       "tiles": [
         "pro-up-quark",
@@ -885,10 +885,10 @@
     },
     {
       "id": "positive_kaon_row_2",
-      "type": "positive-kaon-assembly",
+      "type": "anti-strange-quark-assembly",
       "x": 2,
       "y": 21,
-      "title": "Positive Kaon Row 2",
+      "title": "Anti Strange Quark",
       "role": "reactant",
       "tiles": [
         "anti-strange-quark",
@@ -899,10 +899,10 @@
     },
     {
       "id": "negative_kaon_row_1",
-      "type": "negative-kaon-assembly",
+      "type": "pro-strange-quark-assembly",
       "x": 9,
       "y": 21,
-      "title": "Negative Kaon Row 1",
+      "title": "Pro Strange Quark",
       "role": "intermediate",
       "tiles": [
         "pro-strange-quark",
@@ -913,10 +913,10 @@
     },
     {
       "id": "negative_kaon_row_2",
-      "type": "negative-kaon-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 16,
       "y": 21,
-      "title": "Negative Kaon Row 2",
+      "title": "Anti Up Quark",
       "role": "product",
       "tiles": [
         "anti-up-quark",
@@ -927,10 +927,10 @@
     },
     {
       "id": "neutral_kaon_d_row_1",
-      "type": "neutral-kaon-d-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 2,
       "y": 22,
-      "title": "Neutral Kaon (d anti-s) Row 1",
+      "title": "Pro Down Quark",
       "role": "reactant",
       "tiles": [
         "pro-down-quark",
@@ -941,10 +941,10 @@
     },
     {
       "id": "neutral_kaon_d_row_2",
-      "type": "neutral-kaon-d-assembly",
+      "type": "anti-strange-quark-assembly",
       "x": 9,
       "y": 22,
-      "title": "Neutral Kaon (d anti-s) Row 2",
+      "title": "Anti Strange Quark",
       "role": "intermediate",
       "tiles": [
         "anti-strange-quark",
@@ -955,10 +955,10 @@
     },
     {
       "id": "neutral_kaon_s_row_1",
-      "type": "neutral-kaon-s-assembly",
+      "type": "pro-strange-quark-assembly",
       "x": 16,
       "y": 22,
-      "title": "Neutral Kaon (s anti-d) Row 1",
+      "title": "Pro Strange Quark",
       "role": "product",
       "tiles": [
         "pro-strange-quark",
@@ -969,10 +969,10 @@
     },
     {
       "id": "neutral_kaon_s_row_2",
-      "type": "neutral-kaon-s-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 2,
       "y": 23,
-      "title": "Neutral Kaon (s anti-d) Row 2",
+      "title": "Anti Down Quark",
       "role": "reactant",
       "tiles": [
         "anti-down-quark",
@@ -983,10 +983,10 @@
     },
     {
       "id": "positive_b_meson_row_1",
-      "type": "positive-b-meson-assembly",
+      "type": "pro-up-quark-assembly",
       "x": 9,
       "y": 23,
-      "title": "Positive B Meson Row 1",
+      "title": "Pro Up Quark",
       "role": "intermediate",
       "tiles": [
         "pro-up-quark",
@@ -997,10 +997,10 @@
     },
     {
       "id": "positive_b_meson_row_2",
-      "type": "positive-b-meson-assembly",
+      "type": "anti-bottom-quark-assembly",
       "x": 16,
       "y": 23,
-      "title": "Positive B Meson Row 2",
+      "title": "Anti Bottom Quark",
       "role": "product",
       "tiles": [
         "anti-bottom-quark",
@@ -1011,10 +1011,10 @@
     },
     {
       "id": "negative_b_meson_row_1",
-      "type": "negative-b-meson-assembly",
+      "type": "pro-bottom-quark-assembly",
       "x": 2,
       "y": 24,
-      "title": "Negative B Meson Row 1",
+      "title": "Pro Bottom Quark",
       "role": "reactant",
       "tiles": [
         "pro-bottom-quark",
@@ -1025,10 +1025,10 @@
     },
     {
       "id": "negative_b_meson_row_2",
-      "type": "negative-b-meson-assembly",
+      "type": "anti-up-quark-assembly",
       "x": 9,
       "y": 24,
-      "title": "Negative B Meson Row 2",
+      "title": "Anti Up Quark",
       "role": "intermediate",
       "tiles": [
         "anti-up-quark",
@@ -1039,10 +1039,10 @@
     },
     {
       "id": "neutral_b_meson_d_row_1",
-      "type": "neutral-b-meson-d-assembly",
+      "type": "pro-down-quark-assembly",
       "x": 16,
       "y": 24,
-      "title": "Neutral B Meson (d anti-b) Row 1",
+      "title": "Pro Down Quark",
       "role": "product",
       "tiles": [
         "pro-down-quark",
@@ -1053,10 +1053,10 @@
     },
     {
       "id": "neutral_b_meson_d_row_2",
-      "type": "neutral-b-meson-d-assembly",
+      "type": "anti-bottom-quark-assembly",
       "x": 2,
       "y": 25,
-      "title": "Neutral B Meson (d anti-b) Row 2",
+      "title": "Anti Bottom Quark",
       "role": "reactant",
       "tiles": [
         "anti-bottom-quark",
@@ -1067,10 +1067,10 @@
     },
     {
       "id": "neutral_b_meson_b_row_1",
-      "type": "neutral-b-meson-b-assembly",
+      "type": "pro-bottom-quark-assembly",
       "x": 9,
       "y": 25,
-      "title": "Neutral B Meson (b anti-d) Row 1",
+      "title": "Pro Bottom Quark",
       "role": "intermediate",
       "tiles": [
         "pro-bottom-quark",
@@ -1081,10 +1081,10 @@
     },
     {
       "id": "neutral_b_meson_b_row_2",
-      "type": "neutral-b-meson-b-assembly",
+      "type": "anti-down-quark-assembly",
       "x": 16,
       "y": 25,
-      "title": "Neutral B Meson (b anti-d) Row 2",
+      "title": "Anti Down Quark",
       "role": "product",
       "tiles": [
         "anti-down-quark",

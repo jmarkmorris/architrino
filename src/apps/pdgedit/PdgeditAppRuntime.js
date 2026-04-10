@@ -312,6 +312,7 @@ export function createPdgeditAppRuntime({
   function createCompositeLabelElement(label) {
     const wrapper = documentLike.createElement("div");
     wrapper.className = `pdgedit-composite-label pdgedit-composite-label-${label.side}`;
+    wrapper.dataset.compositeType = label.type;
     wrapper.style.top = `${(label.rowStart + PDGEDIT_RESERVED_TOP_ROW_COUNT) * PDGEDIT_TILE_SIZE_PX}px`;
     wrapper.style.height = `${(label.rowEnd - label.rowStart + 1) * PDGEDIT_TILE_SIZE_PX}px`;
     wrapper.style.left = label.side === "left" ? "0px" : `${(20 - 1) * PDGEDIT_TILE_SIZE_PX}px`;

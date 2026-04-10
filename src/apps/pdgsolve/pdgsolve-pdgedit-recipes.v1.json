@@ -5,16 +5,16 @@
     {
       "id": "pdgsolve.pdgedit.neutron.v1",
       "pdgsolveAssemblyId": "neutron",
-      "pdgeditType": "pro-neutron-assembly",
+      "pdgeditType": "pro-neutron-composite",
       "boundaryLabelText": "Neutron",
       "primitiveCounts": {
         "electrinoCount": 18,
         "positrinoCount": 18
       },
       "rowTitles": [
-        "Neutron Row 1",
-        "Neutron Row 2",
-        "Neutron Row 3"
+        "Pro Down Quark",
+        "Pro Up Quark",
+        "Pro Down Quark"
       ],
       "rows": [
         [
@@ -37,14 +37,34 @@
         ]
       ],
       "ports": {
-        "input": [1, 2, 3],
-        "output": [1, 2, 3],
-        "input.row.1": [1],
-        "input.row.2": [2],
-        "input.row.3": [3],
-        "output.row.1": [1],
-        "output.row.2": [2],
-        "output.row.3": [3]
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "output": [
+          1,
+          2,
+          3
+        ],
+        "input.row.1": [
+          1
+        ],
+        "input.row.2": [
+          2
+        ],
+        "input.row.3": [
+          3
+        ],
+        "output.row.1": [
+          1
+        ],
+        "output.row.2": [
+          2
+        ],
+        "output.row.3": [
+          3
+        ]
       },
       "portPrimitiveCounts": {
         "input.row.1": {
@@ -71,7 +91,12 @@
           "electrinoCount": 6,
           "positrinoCount": 6
         }
-      }
+      },
+      "pdgeditRowTypes": [
+        "pro-down-quark-assembly",
+        "pro-up-quark-assembly",
+        "pro-down-quark-assembly"
+      ]
     },
     {
       "id": "pdgsolve.pdgedit.pro_down_quark.v1",
@@ -94,8 +119,12 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     },
     {
@@ -119,8 +148,12 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     },
     {
@@ -144,8 +177,12 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     },
     {
@@ -169,22 +206,26 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     },
     {
       "id": "pdgsolve.pdgedit.noether_pair.v1",
       "pdgsolveAssemblyId": "noether_pair",
-      "pdgeditType": "noether-pair-assembly",
+      "pdgeditType": "noether-pair-composite",
       "boundaryLabelText": "Noether Pair",
       "primitiveCounts": {
         "electrinoCount": 6,
         "positrinoCount": 6
       },
       "rowTitles": [
-        "Noether Pair Row 1",
-        "Noether Pair Row 2"
+        "Pro Noether Core",
+        "Anti Noether Core"
       ],
       "rows": [
         [
@@ -201,22 +242,32 @@
         ]
       ],
       "ports": {
-        "input": [1, 2],
-        "output": [1, 2]
-      }
+        "input": [
+          1,
+          2
+        ],
+        "output": [
+          1,
+          2
+        ]
+      },
+      "pdgeditRowTypes": [
+        "pro-noether-core-assembly",
+        "anti-noether-core-assembly"
+      ]
     },
     {
       "id": "pdgsolve.pdgedit.2h.v1",
       "pdgsolveAssemblyId": "2h",
-      "pdgeditType": "noether-pair-assembly",
+      "pdgeditType": "noether-pair-composite",
       "boundaryLabelText": "2H",
       "primitiveCounts": {
         "electrinoCount": 6,
         "positrinoCount": 6
       },
       "rowTitles": [
-        "2H Row 1",
-        "2H Row 2"
+        "Pro Noether Core",
+        "Anti Noether Core"
       ],
       "rows": [
         [
@@ -233,24 +284,34 @@
         ]
       ],
       "ports": {
-        "input": [1, 2],
-        "output": [1, 2]
-      }
+        "input": [
+          1,
+          2
+        ],
+        "output": [
+          1,
+          2
+        ]
+      },
+      "pdgeditRowTypes": [
+        "pro-noether-core-assembly",
+        "anti-noether-core-assembly"
+      ]
     },
     {
       "id": "pdgsolve.pdgedit.4h.v1",
       "pdgsolveAssemblyId": "4h",
-      "pdgeditType": "noether-quad-assembly",
+      "pdgeditType": "noether-quad-composite",
       "boundaryLabelText": "4H",
       "primitiveCounts": {
         "electrinoCount": 12,
         "positrinoCount": 12
       },
       "rowTitles": [
-        "4H Row 1",
-        "4H Row 2",
-        "4H Row 3",
-        "4H Row 4"
+        "Pro Noether Core",
+        "Anti Noether Core",
+        "Pro Noether Core",
+        "Anti Noether Core"
       ],
       "rows": [
         [
@@ -279,23 +340,39 @@
         ]
       ],
       "ports": {
-        "input": [1, 2, 3, 4],
-        "output": [1, 2, 3, 4]
-      }
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "output": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pdgeditRowTypes": [
+        "pro-noether-core-assembly",
+        "anti-noether-core-assembly",
+        "pro-noether-core-assembly",
+        "anti-noether-core-assembly"
+      ]
     },
     {
       "id": "pdgsolve.pdgedit.proton.v1",
       "pdgsolveAssemblyId": "proton",
-      "pdgeditType": "pro-proton-assembly",
+      "pdgeditType": "pro-proton-composite",
       "boundaryLabelText": "Proton",
       "primitiveCounts": {
         "electrinoCount": 15,
         "positrinoCount": 21
       },
       "rowTitles": [
-        "Proton Row 1",
-        "Proton Row 2",
-        "Proton Row 3"
+        "Pro Up Quark",
+        "Pro Down Quark",
+        "Pro Up Quark"
       ],
       "rows": [
         [
@@ -318,14 +395,34 @@
         ]
       ],
       "ports": {
-        "input": [1, 2, 3],
-        "output": [1, 2, 3],
-        "input.row.1": [1],
-        "input.row.2": [2],
-        "input.row.3": [3],
-        "output.row.1": [1],
-        "output.row.2": [2],
-        "output.row.3": [3]
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "output": [
+          1,
+          2,
+          3
+        ],
+        "input.row.1": [
+          1
+        ],
+        "input.row.2": [
+          2
+        ],
+        "input.row.3": [
+          3
+        ],
+        "output.row.1": [
+          1
+        ],
+        "output.row.2": [
+          2
+        ],
+        "output.row.3": [
+          3
+        ]
       },
       "portPrimitiveCounts": {
         "input.row.1": {
@@ -352,7 +449,12 @@
           "electrinoCount": 6,
           "positrinoCount": 6
         }
-      }
+      },
+      "pdgeditRowTypes": [
+        "pro-up-quark-assembly",
+        "pro-down-quark-assembly",
+        "pro-up-quark-assembly"
+      ]
     },
     {
       "id": "pdgsolve.pdgedit.electron.v1",
@@ -375,8 +477,12 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     },
     {
@@ -400,8 +506,12 @@
         ]
       ],
       "ports": {
-        "input": [1],
-        "output": [1]
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
       }
     }
   ],

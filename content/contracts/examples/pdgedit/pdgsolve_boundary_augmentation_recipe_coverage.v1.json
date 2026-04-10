@@ -3,10 +3,10 @@
   "assemblies": [
     {
       "id": "unit_lane1_2h_left.row.1",
-      "type": "noether-pair-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 2,
       "y": 0,
-      "title": "2H Row 1",
+      "title": "Pro Noether Core",
       "role": "reactant",
       "tiles": [
         "pro-noether-core",
@@ -17,10 +17,10 @@
     },
     {
       "id": "unit_lane1_2h_left.row.2",
-      "type": "noether-pair-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 2,
       "y": 1,
-      "title": "2H Row 2",
+      "title": "Anti Noether Core",
       "role": "reactant",
       "tiles": [
         "anti-noether-core",
@@ -31,10 +31,10 @@
     },
     {
       "id": "unit_lane1_4h_left.row.1",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 2,
       "y": 2,
-      "title": "4H Row 1",
+      "title": "Pro Noether Core",
       "role": "reactant",
       "tiles": [
         "pro-noether-core",
@@ -45,10 +45,10 @@
     },
     {
       "id": "unit_lane1_4h_left.row.2",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 2,
       "y": 3,
-      "title": "4H Row 2",
+      "title": "Anti Noether Core",
       "role": "reactant",
       "tiles": [
         "anti-noether-core",
@@ -59,10 +59,10 @@
     },
     {
       "id": "unit_lane1_4h_left.row.3",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 2,
       "y": 4,
-      "title": "4H Row 3",
+      "title": "Pro Noether Core",
       "role": "reactant",
       "tiles": [
         "pro-noether-core",
@@ -73,10 +73,10 @@
     },
     {
       "id": "unit_lane1_4h_left.row.4",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 2,
       "y": 5,
-      "title": "4H Row 4",
+      "title": "Anti Noether Core",
       "role": "reactant",
       "tiles": [
         "anti-noether-core",
@@ -87,10 +87,10 @@
     },
     {
       "id": "unit_lane5_2h_right.row.1",
-      "type": "noether-pair-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 16,
       "y": 0,
-      "title": "2H Row 1",
+      "title": "Pro Noether Core",
       "role": "product",
       "tiles": [
         "pro-noether-core",
@@ -101,10 +101,10 @@
     },
     {
       "id": "unit_lane5_2h_right.row.2",
-      "type": "noether-pair-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 1,
-      "title": "2H Row 2",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",
@@ -115,10 +115,10 @@
     },
     {
       "id": "unit_lane5_4h_right.row.1",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 16,
       "y": 2,
-      "title": "4H Row 1",
+      "title": "Pro Noether Core",
       "role": "product",
       "tiles": [
         "pro-noether-core",
@@ -129,10 +129,10 @@
     },
     {
       "id": "unit_lane5_4h_right.row.2",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 3,
-      "title": "4H Row 2",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",
@@ -143,10 +143,10 @@
     },
     {
       "id": "unit_lane5_4h_right.row.3",
-      "type": "noether-quad-assembly",
+      "type": "pro-noether-core-assembly",
       "x": 16,
       "y": 4,
-      "title": "4H Row 3",
+      "title": "Pro Noether Core",
       "role": "product",
       "tiles": [
         "pro-noether-core",
@@ -157,10 +157,10 @@
     },
     {
       "id": "unit_lane5_4h_right.row.4",
-      "type": "noether-quad-assembly",
+      "type": "anti-noether-core-assembly",
       "x": 16,
       "y": 5,
-      "title": "4H Row 4",
+      "title": "Anti Noether Core",
       "role": "product",
       "tiles": [
         "anti-noether-core",

@@ -110,7 +110,7 @@ The assembly grammar is:
 
 In pdgsolve terminology, an **assembly** means one 4-tile assembly row that can participate in operator routing.
 
-pdgsolve should not use PDG particle-level names, display-grouping names, support-pair names, or support-quad names as solver-native assembly ids.
+pdgsolve should not use PDG particle-level names, display-grouping names, support-pair names, or support-quad names as solver-native assembly-row ids.
 
 Those names belong on either side of the solver boundary:
 
@@ -525,7 +525,7 @@ Normalization should then do the following, in order:
 5. build the requested multisets \(R\) and \(T\);
 6. when the row-level request matches the beta source signature and policy `betaSupportMode = allow-implied-noether-core-support`, add two `pro_noether_core` rows and two `anti_noether_core` rows if those rows are not already explicit, mark them as normalized support, and emit `pdgsolve.normalization.support_added.noether_core_rows`;
 7. when the row-level request matches the beta source signature but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_core_rows`;
-8. reject any particle-level or grouping-level assembly id that reaches pdgsolve with `pdgsolve.request.unsupported_assembly`; and
+8. reject any particle-level or grouping-level id that reaches pdgsolve as if it were one assembly row with `pdgsolve.request.unsupported_assembly`; and
 9. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 The normalized pdgsolve problem contract should be:
@@ -1437,21 +1437,26 @@ So the accepted publication graph is still pdgsolve-owned, but it is already exp
 
 The first admitted recipe family should be `pdgsolve-pdgedit-recipes/v1-beta-minimal`.
 
-That family should support exactly the current publishable beta-minimal row assemblies, support rows, and operators:
+That family should support exactly the current publishable beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators:
 
-| pdgsolve unit | Admitted recipe id | pdgedit type family | Expansion height | Display label text |
+| pdgsolve unit | Admitted recipe id | pdgedit row/composite type family | Expansion height | Display label text |
 | --- | --- | --- | --- | --- |
+| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-composite`; rows use quark `-assembly` types | `3` rows | `Neutron` |
 | `pro_down_quark` | `pdgsolve.pdgedit.pro_down_quark.v1` | `pro-down-quark-assembly` | `1` row | `Pro Down Quark` |
 | `pro_up_quark` | `pdgsolve.pdgedit.pro_up_quark.v1` | `pro-up-quark-assembly` | `1` row | `Pro Up Quark` |
 | `pro_noether_core` | `pdgsolve.pdgedit.pro_noether_core.v1` | `pro-noether-core-assembly` | `1` row | `Pro Noether Core` |
 | `anti_noether_core` | `pdgsolve.pdgedit.anti_noether_core.v1` | `anti-noether-core-assembly` | `1` row | `Anti Noether Core` |
+| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `Noether Pair` |
+| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `2H` |
+| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-composite`; rows use Noether Core `-assembly` types | `4` rows | `4H` |
+| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-composite`; rows use quark `-assembly` types | `3` rows | `Proton` |
 | `electron` | `pdgsolve.pdgedit.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
 | `electron_antineutrino` | `pdgsolve.pdgedit.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
 | lane-2 `Dissociate` | `pdgsolve.pdgedit.operator.dissociate.v1` | `dissociate` | `1` row | none |
 | lane-2 or lane-4 `Pass Thru` | `pdgsolve.pdgedit.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
 | lane-4 `Associate` | `pdgsolve.pdgedit.operator.associate.v1` | `associate` | `1` row | none |
 
-No publication recipe in this family may publish a paired support token, a quad support token, or a particle-level grouping token as one pdgsolve unit.
+No publication recipe in this family may publish a paired support token, a quad support token, or a particle-level grouping token as one pdgedit assembly row. Composite recipes must expand into explicit constituent row types.
 
 If grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to pdgsolve's internal assembly alphabet.
 

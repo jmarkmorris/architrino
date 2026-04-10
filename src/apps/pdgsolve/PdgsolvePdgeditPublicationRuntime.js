@@ -133,7 +133,7 @@ function buildAssemblyRecords(graph, catalog) {
       }
       return recipe.rows.map((tiles, index) => ({
         id: `${unit.id}.row.${index + 1}`,
-        type: recipe.pdgeditType,
+        type: recipe.pdgeditRowTypes[index] || recipe.pdgeditType,
         x,
         y: unit.anchorRow + index,
         title: recipe.rowTitles[index] || `${unit.title} Row ${index + 1}`,

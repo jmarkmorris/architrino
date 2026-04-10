@@ -25,10 +25,10 @@ function getTemplates() {
 
 test("assembly creation writes explicit payloads and preserves dense lanes", () => {
   const templates = getTemplates();
-  const neutron = templates.assemblyTemplateByType.get("pro-neutron-assembly");
-  const proton = templates.assemblyTemplateByType.get("pro-proton-assembly");
-  const firstCreate = createPdgeditAssembly(getPdgeditEmptyDocument(), neutron, "reactant", 0);
-  const secondCreate = createPdgeditAssembly(firstCreate.document, proton, "reactant", 5);
+  const downQuark = templates.assemblyTemplateByType.get("pro-down-quark-assembly");
+  const upQuark = templates.assemblyTemplateByType.get("pro-up-quark-assembly");
+  const firstCreate = createPdgeditAssembly(getPdgeditEmptyDocument(), downQuark, "reactant", 0);
+  const secondCreate = createPdgeditAssembly(firstCreate.document, upQuark, "reactant", 5);
 
   assert.equal(firstCreate.ok, true);
   assert.equal(secondCreate.ok, true);
@@ -42,18 +42,18 @@ test("assembly creation writes explicit payloads and preserves dense lanes", () 
     })),
     [
       {
-        type: "pro-neutron-assembly",
+        type: "pro-down-quark-assembly",
         x: 2,
         y: 0,
         role: "reactant",
-        tiles: neutron.tiles,
+        tiles: downQuark.tiles,
       },
       {
-        type: "pro-proton-assembly",
+        type: "pro-up-quark-assembly",
         x: 2,
         y: 1,
         role: "reactant",
-        tiles: proton.tiles,
+        tiles: upQuark.tiles,
       },
     ]
   );
@@ -61,12 +61,12 @@ test("assembly creation writes explicit payloads and preserves dense lanes", () 
 
 test("assembly movement reorders within one lane without leaving gaps", () => {
   const templates = getTemplates();
-  const neutron = templates.assemblyTemplateByType.get("pro-neutron-assembly");
-  const proton = templates.assemblyTemplateByType.get("pro-proton-assembly");
+  const downQuark = templates.assemblyTemplateByType.get("pro-down-quark-assembly");
+  const upQuark = templates.assemblyTemplateByType.get("pro-up-quark-assembly");
   const electron = templates.assemblyTemplateByType.get("pro-electron-assembly");
 
-  const first = createPdgeditAssembly(getPdgeditEmptyDocument(), neutron, "reactant", 0);
-  const second = createPdgeditAssembly(first.document, proton, "reactant", 1);
+  const first = createPdgeditAssembly(getPdgeditEmptyDocument(), downQuark, "reactant", 0);
+  const second = createPdgeditAssembly(first.document, upQuark, "reactant", 1);
   const third = createPdgeditAssembly(second.document, electron, "reactant", 2);
   const moved = movePdgeditObjectToRow(third.document, third.createdId, 0);
 
@@ -78,8 +78,8 @@ test("assembly movement reorders within one lane without leaving gaps", () => {
       .map((assembly) => [assembly.type, assembly.y]),
     [
       ["pro-electron-assembly", 0],
-      ["pro-neutron-assembly", 1],
-      ["pro-proton-assembly", 2],
+      ["pro-down-quark-assembly", 1],
+      ["pro-up-quark-assembly", 2],
     ]
   );
 });
@@ -119,11 +119,11 @@ test("operator creation and movement stay inside one fixed operator column and r
 
 test("deleting an assembly removes attached links and compacts the remaining lane", () => {
   const templates = getTemplates();
-  const neutron = templates.assemblyTemplateByType.get("pro-neutron-assembly");
-  const proton = templates.assemblyTemplateByType.get("pro-proton-assembly");
+  const downQuark = templates.assemblyTemplateByType.get("pro-down-quark-assembly");
+  const upQuark = templates.assemblyTemplateByType.get("pro-up-quark-assembly");
 
-  const firstAssembly = createPdgeditAssembly(getPdgeditEmptyDocument(), neutron, "reactant", 0);
-  const secondAssembly = createPdgeditAssembly(firstAssembly.document, proton, "reactant", 1);
+  const firstAssembly = createPdgeditAssembly(getPdgeditEmptyDocument(), downQuark, "reactant", 0);
+  const secondAssembly = createPdgeditAssembly(firstAssembly.document, upQuark, "reactant", 1);
   const operator = createPdgeditOperator(secondAssembly.document, {
     type: "associate",
     x: 7,
@@ -140,17 +140,17 @@ test("deleting an assembly removes attached links and compacts the remaining lan
     deleted.document.assemblies
       .filter((assembly) => assembly.role === "reactant")
       .map((assembly) => [assembly.type, assembly.y]),
-    [["pro-proton-assembly", 0]]
+    [["pro-up-quark-assembly", 0]]
   );
   assert.deepEqual(deleted.document.links, []);
 });
 
 test("link creation canonicalizes left-to-right endpoints and rejects duplicates or invalid spans", () => {
   const templates = getTemplates();
-  const neutron = templates.assemblyTemplateByType.get("pro-neutron-assembly");
-  const proton = templates.assemblyTemplateByType.get("pro-proton-assembly");
+  const downQuark = templates.assemblyTemplateByType.get("pro-down-quark-assembly");
+  const upQuark = templates.assemblyTemplateByType.get("pro-up-quark-assembly");
 
-  const reactant = createPdgeditAssembly(getPdgeditEmptyDocument(), neutron, "reactant", 0);
+  const reactant = createPdgeditAssembly(getPdgeditEmptyDocument(), downQuark, "reactant", 0);
   const operator = createPdgeditOperator(reactant.document, {
     type: "associate",
     x: 7,
@@ -158,7 +158,7 @@ test("link creation canonicalizes left-to-right endpoints and rejects duplicates
     positrinoCount: 3,
     electrinoCount: 3,
   });
-  const intermediate = createPdgeditAssembly(operator.document, proton, "intermediate", 0);
+  const intermediate = createPdgeditAssembly(operator.document, upQuark, "intermediate", 0);
   const canonical = createPdgeditLink(intermediate.document, operator.createdId, reactant.createdId);
   const duplicate = createPdgeditLink(canonical.document, reactant.createdId, operator.createdId);
   const invalid = createPdgeditLink(canonical.document, reactant.createdId, intermediate.createdId);
@@ -199,4 +199,3 @@ test("create slots admit only legal unoccupied object bands on authored rows", (
     column: 14,
   });
 });
-

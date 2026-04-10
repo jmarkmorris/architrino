@@ -12,9 +12,15 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
   const templateCatalog = normalizePdgeditTemplateCatalog(
     readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json")
   );
+  const deprecatedPhotonAssemblyType = ["photon", "assembly"].join("-");
 
-  assert.equal(templateCatalog.assemblyTemplates.length, 47);
+  assert.equal(templateCatalog.assemblyTemplates.length, 30);
   assert.equal(templateCatalog.operatorTemplates.length, 3);
+  assert.equal(templateCatalog.assemblyTemplateByType.has(deprecatedPhotonAssemblyType), false);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("photon-composite"), false);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("pro-proton-composite"), false);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("pro-noether-core-assembly"), true);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("anti-noether-core-assembly"), true);
   assert.deepEqual(
     templateCatalog.assemblyTemplateByType.get("unbound-architrinos-assembly"),
     {
@@ -30,8 +36,7 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
     ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"]
   );
   assert.equal(
-    templateCatalog.assemblyTemplateByType.get("neutral-b-meson-b-assembly")?.displayTitle,
-    "Neutral B Meson (b anti-d)"
+    templateCatalog.assemblyTemplateByType.get("anti-bottom-quark-assembly")?.displayTitle,
+    "Anti Bottom Quark"
   );
 });
-

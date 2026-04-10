@@ -22,7 +22,7 @@ export function normalizePdgeditTemplateCatalog(sourceDocument = {}) {
   const assemblyTemplateByType = new Map();
 
   document.assemblies.forEach((assembly) => {
-    if (!assembly.type || assemblyTemplateByType.has(assembly.type)) {
+    if (!assembly.type || assembly.type.endsWith("-composite") || assemblyTemplateByType.has(assembly.type)) {
       return;
     }
     assemblyTemplateByType.set(assembly.type, {
@@ -62,4 +62,3 @@ export async function loadPdgeditTemplateCatalog({
   }
   return normalizePdgeditTemplateCatalog(await response.json());
 }
-
