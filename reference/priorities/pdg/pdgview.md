@@ -119,6 +119,27 @@ Another boundary should stay explicit too:
 - they should not solve upstream composition again or repair missing upstream geometry;
 - and they should treat upstream structure as authored input rather than something to reinterpret.
 
+### Composite Of Assemblies Display Rule
+
+In pdgview, a composite is a **composite of assemblies**.
+
+That means:
+
+- it is a visual and structural grouping over related 4-tile assemblies;
+- it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
+- it is not itself a single assembly;
+- it is not a dissociate or associate target;
+- and pdgview must not introduce a composite-level `Dissociate` or `Associate` interpretation.
+
+When pdgview receives upstream stage timing for dissociate, transit, associate, or reassembly intervals, those timings should remain anchored to the upstream 4-tile assembly endpoints.
+
+Specifically:
+
+- a dissociate interval starts from one 4-tile assembly reactant;
+- an associate interval ends at one 4-tile assembly product;
+- a composite of assemblies may be highlighted or revealed around those rows;
+- but the composite grouping is not the thing being opened or gathered.
+
 ### Viewport Layout Direction
 
 The standard layout choices are familiar and still useful here.
@@ -199,7 +220,7 @@ The design view should favor:
 
 - placing assemblies;
 - dragging path points;
-- arranging members and subassemblies;
+- arranging members and nested assembly structure;
 - and revealing structural guides.
 
 The observer view should favor:
@@ -393,7 +414,7 @@ The pdgview-side intake should be strong enough to receive:
 
 - participant identities and roles;
 - solved mapping corridors or equivalent provenance paths;
-- stage timing such as dissociate, transit, and associate / reassembly intervals;
+- stage timing such as dissociate, transit, and associate / reassembly intervals anchored to 4-tile assembly endpoints;
 - observer hints such as initial framing targets or flyby anchors;
 - and labels or overlays needed to explain the reaction.
 
