@@ -115,8 +115,13 @@ pdgsolve should not use PDG particle-level names, display-grouping names, suppor
 Those names belong on either side of the solver boundary:
 
 - before pdgsolve, [pdgfeed](./pdgfeed.md) may know PDG particle names and expand them into individual 4-tile assembly rows;
+- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published lane-3 assembly rows and classify or group them as transient W/Z boson corridors where a dedicated downstream rule admits that reading;
 - after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved rows;
 - inside pdgsolve, all routing, scoring, and provenance should use individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `pro_noether_core`, and `anti_noether_core`.
+
+pdgsolve should not solve over `W-`, `W+`, or `Z` bosons as native lane units in the v1 strip.
+
+For the current boundary, W/Z boson language is a downstream interpretation of already-emitted lane-3 row assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or middle-lane search symbol.
 
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
@@ -497,6 +502,7 @@ pdgsolve v1 should admit no other non-identity law family.
 That means:
 
 - there is no unary particle-level dissociation rule in v1;
+- there is no W/Z boson production or absorption rule in v1;
 - there is no generic `Noether core -> ...` unary rule in v1;
 - Noether support rows do not receive unary pass-thru in v1 because they are support rows, not lane-3 assemblies;
 - there is no association table yet beyond identity pass-thru;
@@ -1460,6 +1466,8 @@ No publication recipe in this family may publish a paired support token, a quad 
 
 If grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to pdgsolve's internal assembly alphabet.
 
+Likewise, if the published lane-3 assembly rows should be presented as `W-`, `W+`, or `Z` boson corridors, that reclassification or grouping belongs to pdgedit after publication. pdgsolve should emit the row-level lane-3 material and provenance only.
+
 ### Layout And Object Emission Rules
 
 The publication adapter should materialize the final pdgedit surface deterministically from the accepted publication graph and the admitted recipe family.
@@ -1670,7 +1678,50 @@ pdgsolve should not:
 
 ## Priorities
 
-No active items right now.
+### 1. Replace The Fixture-Template Solver With Row-Level Search
+
+Status: `active`
+
+Current:
+
+- `PdgsolveSolveRuntime.js` still classifies a small set of assembly-count scenarios and patches frozen result fixtures into returned results;
+- that path preserves known examples, but it is not yet the row-level combinatorial solver described above;
+- and current solver-quality issues make this the highest-priority pdgsolve risk.
+
+Objective:
+
+- implement the solver-native row-level search over explicit assembly rows, local lane-2 and lane-4 operator choices, support-row reservations, conserved inventories, provenance witnesses, pruning, and deterministic scoring;
+- generate `pdgsolve-result/v1` option families from branch-state records rather than from patched result templates;
+- keep the existing request, review, acceptance, and pdgedit publication seams unless the new solver proves a contract change is required.
+
+### 2. Treat Frozen Result Fixtures As Regression Oracles
+
+Status: `active`
+
+Current:
+
+- frozen `pdgsolve-result/v1` fixtures are currently imported by the runtime solver and used as result templates;
+- those fixtures are valuable as regression examples, but they should not be the implementation of solving.
+
+Objective:
+
+- keep the current beta, support-disallowed, primitive-imbalance, pass-thru, and publication fixtures as expected-output oracles;
+- change the runtime solver so it computes those results from the row-level model;
+- update tests so fixture drift catches solver regressions without allowing fixture JSON to masquerade as solver logic.
+
+### 3. Keep Solver Correctness On The Active Priority Queue
+
+Status: `active`
+
+Current:
+
+- the prior priority list said there were no active pdgsolve items;
+- that is no longer an honest status while the current solver is known to perform poorly on candidate solutions.
+
+Objective:
+
+- keep pdgsolve solver correctness active until the row-level search replaces fixture-template solving and passes the frozen beta-minimal regression set;
+- promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact option families deterministically.
 
 ## Related Priorities
 

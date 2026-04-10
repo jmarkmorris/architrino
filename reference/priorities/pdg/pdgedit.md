@@ -395,6 +395,16 @@ The shared review catalog may carry composite label tiles such as `Photon` as `t
 
 When pdgview implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label/span primitive in the downstream staging layer, not as a row-level pdgedit assembly tile.
 
+### Weak Boson Lane-3 Classification
+
+pdgsolve does not solve over `W-`, `W+`, or `Z` bosons as native lane units.
+
+Instead, pdgedit owns the post-solver classification point for weak boson corridor display. After pdgsolve publishes explicit lane-3 assembly rows, pdgedit may examine those intermediate rows and reclassify or group them as `Negative W Boson`, `Positive W Boson`, or `Neutral Z Boson` where a dedicated pdgedit-side rule admits that reading.
+
+That classification is downstream presentation and authoring structure. It must preserve the published row-level assembly payloads and provenance enough that the solver result is still auditable. It must not require pdgsolve to introduce W/Z solver-native assembly ids, operator ids, dissociate targets, associate sources, or middle-lane search symbols.
+
+Until a concrete W/Z lane-3 classification contract is admitted, the W/Z standard tile keys remain available as tile artwork and review vocabulary, not as valid `pdgedit/v1` `assemblies[].type` values.
+
 The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this pdgedit baseline.
 
 For the three operator tiles `Associate`, `Dissociate`, and `Pass Thru`, line 1 and line 3 are not ordinary words.
