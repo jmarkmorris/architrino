@@ -1648,98 +1648,26 @@ That means the practical v1 boundary is:
 - receive or publish a final `pdgedit/v1` document;
 - and let the pdgedit runtime render that `pdgedit/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
 
-When the upstream source is pdgsolve, the solver should first emit a compact accepted-solution description. The translation from that compact solve description into final `pdgedit/v1` still happens outside the pdgedit renderer, but the surface-materialization rules belong here because they define the final pdgedit document shape.
+When the upstream source is pdgsolve, the solver should first emit a compact accepted-solution description. The translation from that compact solve description into final `pdgedit/v1` still happens outside the pdgedit renderer. This document should define only the final pdgedit document constraints that translation must satisfy.
 
-### Solver-Publication Materialization
+### Downstream Publication Constraints
 
-For solver publications that target pdgedit, pdgedit owns:
+For solver publications that target pdgedit:
 
-- the admitted recipe families that map accepted solver units into pdgedit rows, operators, and composites;
-- the fixed surface placement policy for those emitted objects;
-- the pdgedit-side link expansion rules;
-- and the final `pdgedit/v1` object grammar consumed by the renderer and editor.
+- pdgedit owns the final `pdgedit/v1` object grammar consumed by the renderer and editor;
+- pdgedit owns the fixed surface grid, visible placement rules, adjacent-column link rule, and other final document constraints;
+- the upstream solver-publication adapter owns the mapping from accepted solver units into concrete pdgedit rows, operators, links, and composites;
+- and the detailed accepted-solution-to-pdgedit translation contract should be documented with the solver/publication boundary in [pdgsolve](./pdgsolve.md), not here.
 
-The first admitted recipe family remains `pdgsolve-pdgedit-recipes/v1-beta-minimal` for existing publication fixtures, residue-row publication, and pass-through publication coverage.
+This document should therefore constrain the final published surface without becoming the primary specification for solver-side recipe families, accepted-unit mappings, adapter package formats, or accepted-graph expansion logic.
 
-That family should support the existing beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators used by accepted publication fixtures:
+The downstream constraints that remain important here are:
 
-| pdgsolve unit | Admitted recipe id | pdgedit row/composite type family | Expansion height | Display label text |
-| --- | --- | --- | --- | --- |
-| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-composite`; rows use quark `-assembly` types | `3` rows | `Neutron` |
-| `pro_down_quark` | `pdgsolve.pdgedit.pro_down_quark.v1` | `pro-down-quark-assembly` | `1` row | `Pro Down Quark` |
-| `pro_up_quark` | `pdgsolve.pdgedit.pro_up_quark.v1` | `pro-up-quark-assembly` | `1` row | `Pro Up Quark` |
-| `pro_noether_core` | `pdgsolve.pdgedit.pro_noether_core.v1` | `pro-noether-core-assembly` | `1` row | `Pro Noether Core` |
-| `anti_noether_core` | `pdgsolve.pdgedit.anti_noether_core.v1` | `anti-noether-core-assembly` | `1` row | `Anti Noether Core` |
-| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `Noether Pair` |
-| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `2H` |
-| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-composite`; rows use Noether Core `-assembly` types | `4` rows | `4H` |
-| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-composite`; rows use quark `-assembly` types | `3` rows | `Proton` |
-| `electron` | `pdgsolve.pdgedit.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
-| `electron_antineutrino` | `pdgsolve.pdgedit.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
-| `unbound_architrino_residue_e4_p8` | `pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1` | `unbound-architrino-residue-e4-p8-assembly` | `1` row | `Unbound Architrino Residue 4E/8P` |
-| `unbound_architrino_residue_e6_p6` | `pdgsolve.pdgedit.unbound_architrino_residue_e6_p6.v1` | `unbound-architrino-residue-e6-p6-assembly` | `1` row | `Unbound Architrino Residue 6E/6P` |
-| `unbound_architrino_residue_e9_p3` | `pdgsolve.pdgedit.unbound_architrino_residue_e9_p3.v1` | `unbound-architrino-residue-e9-p3-assembly` | `1` row | `Unbound Architrino Residue 9E/3P` |
-| lane-2 `Dissociate` | `pdgsolve.pdgedit.operator.dissociate.v1` | `dissociate` | `1` row | none |
-| lane-2 or lane-4 `Pass Thru` | `pdgsolve.pdgedit.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
-| lane-4 `Associate` | `pdgsolve.pdgedit.operator.associate.v1` | `associate` | `1` row | none |
-
-The existing accepted beta publication fixtures remain preserved as legacy downstream publication artifacts for regression coverage. Live pdgsolve solving now reaches exact closure through the residue-row family above rather than by reusing that older direct-beta publication graph.
-
-No recipe in this family may publish a paired support token, a quad support token, or a particle-level grouping token as one pdgedit assembly row. Composite recipes must expand into explicit constituent row types.
-
-If grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to the solver's internal assembly alphabet.
-
-If lane-3 published assembly rows are later presented as `W-`, `W+`, or `Z` boson corridors, that classification remains a pdgedit-side grouping or display rule layered over explicit published rows and provenance.
-
-### Solver-Publication Layout And Emission Rules
-
-The solver-publication adapter should materialize the final pdgedit surface deterministically from the accepted solver output and the admitted recipe family.
-
-The fixed pdgedit column origins are:
-
-- reactant assemblies at `x = 2`;
-- reactant operators at `x = 7`;
-- intermediate assemblies at `x = 9`;
-- product operators at `x = 14`;
-- and product assemblies at `x = 16`.
-
-Assembly emission should follow these rules:
-
-- expand each accepted assembly unit into the exact number of pdgedit assembly rows required by its recipe;
-- assign the pdgedit assembly `role` from the accepted solver lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
-- place expanded rows contiguously within their column origin with no gaps;
-- pack each assembly column independently in accepted lane order, top to bottom;
-- emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
-- emit row titles from the recipe row-title sequence;
-- emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from solver semantics at runtime;
-- and leave grouping-label output empty until a downstream display contract admits it.
-
-Operator emission should follow these rules:
-
-- each accepted operator unit becomes one pdgedit operator record;
-- the pdgedit operator `type` comes directly from the admitted operator recipe;
-- the visible operator `title` comes directly from that same recipe;
-- `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
-- `x` comes from the fixed pdgedit operator column origin for that lane;
-- and `y` is computed from the operator unit's explicit accepted anchor reference in the solver output, not from ad hoc visual inference.
-
-Operator links must preserve the same cardinality constraints as the accepted solver graph:
-
-- a lane-2 `Dissociate` object has exactly one incoming link, from one emitted 4-tile assembly reactant row;
-- a lane-4 `Associate` object has exactly one outgoing link, to one emitted 4-tile assembly product row;
-- and neither operator may use a grouping span as its endpoint.
-
-The solver-publication adapter should emit pdgedit links only from the accepted solver `edges` array plus the admitted port maps in the recipe family.
-
-That means:
-
-- assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
-- operator recipes must define their concrete pdgedit endpoint id, which is the operator record id itself;
-- one accepted publication edge may therefore expand into one or more pdgedit links when the accepted port map spans multiple emitted assembly rows;
-- every emitted pdgedit link must already obey the adjacent-column rule and canonical reactant-to-product endpoint order;
-- and no pdgedit link should be created by screen-geometry inference or by scanning nearby rows after the fact.
-
-So the adapter's job is explicit surface expansion, not reconstruction.
+- no published pdgedit assembly row may collapse a paired support token, a quad support token, or a particle-level grouping token into one assembly object;
+- composite publication must expand into explicit constituent row types before pdgedit reads the document;
+- if grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to the solver's internal assembly alphabet;
+- if published intermediate assembly rows are later presented as `W-`, `W+`, or `Z` boson corridors, that classification remains a pdgedit-side grouping or display rule layered over explicit published rows and provenance;
+- and the renderer/editor should consume the final `pdgedit/v1` document directly without reconstructing omitted solver meaning.
 
 ## Priorities
 
@@ -1757,7 +1685,7 @@ Current:
 
 Objective:
 
-- build on the direct object-editing workflow defined above so authored assemblies in lane columns 1, 3, and 5 can become a solver request and that same authoring flow can describe composites made from assembly rows as well as individual assembly rows;
+- build on the direct object-editing workflow defined above so authored assemblies in the reactant, intermediate, and product assembly columns can become a solver request and that same authoring flow can describe composites made from assembly rows as well as individual assembly rows;
 - define a composite as one authored grouping of multiple assembly rows that belong together;
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;

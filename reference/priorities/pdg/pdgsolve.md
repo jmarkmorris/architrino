@@ -1713,7 +1713,45 @@ Objective:
 - add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
 - and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
 
-### 2. Keep Solver Correctness On The Active Priority Queue
+### 2. Build The Dedicated Review Console UI
+
+Status: `active`
+
+Current:
+
+- the standalone `pdgsolve` app already has its own UI shell with request intake, diagnostics, candidate-family selection, accepted-family summary, and downstream preview;
+- but that shell still behaves more like a thin status dashboard than a true solve-review console;
+- the current family cards and accepted summary still expose internal `lane1`/`lane3`/`lane5` labels rather than the canonical product terminology `reactant assemblies`, `reactant-side operators`, `intermediate assemblies`, `product-side operators`, and `product assemblies`;
+- and the current layout does not yet present the accepted review workflow as a clear multi-pane console with distinct windows for request context, candidate families, accepted lock state, provenance/diagnostics, and publication output.
+
+Objective:
+
+- keep `pdgsolve` as a dedicated solve-and-review app with its own UI boundary rather than treating review and acceptance as hidden runtime state;
+- evolve the current standalone shell into a multi-pane review console whose windows map directly onto the solver-owned review tasks;
+- replace internal lane-number labels in the review UI with the canonical abbreviated symbols and canonical terminology already defined in this document;
+- make candidate selection, accepted-family locking, provenance inspection, and publication preview readable in one console without requiring raw JSON as the primary review surface;
+- and preserve the existing versioned contract boundaries while improving the review-facing presentation layer.
+
+### 3. Move Solver-Publication Adapter Ownership Upstream
+
+Status: `active`
+
+Current:
+
+- `pdgsolve` already claims ownership of accepted records, compact accepted-solution descriptions, downstream adapters, and final publication into `pdgedit/v1`;
+- but `pdgedit.md` had accumulated detailed solver-publication recipe-family, accepted-unit mapping, and adapter-emission rules that describe upstream translation work more than downstream surface rendering;
+- that drift makes `pdgedit` look more responsible for solve-publication expansion than it should be;
+- and it weakens the intended architecture in which `pdgedit` receives a final `pdgedit/v1` document while `pdgsolve` owns the accepted-solution-to-target translation path.
+
+Objective:
+
+- keep detailed accepted-solution translation, recipe-family ownership, adapter package contracts, and accepted-graph expansion rules with `pdgsolve`;
+- keep `pdgedit` focused on the final `pdgedit/v1` boundary, tile grammar, surface placement grammar, and direct object editing;
+- document in `pdgsolve` the exact upstream adapter responsibilities required to turn accepted solver output into final pdgedit documents;
+- make it unambiguous that `pdgedit` should have a fairly easy job: read final `pdgedit/v1`, render it, edit it, and export it without reconstructing solver intent;
+- and continue trimming downstream documents when solver-owned publication logic drifts into them.
+
+### 4. Keep Solver Correctness On The Active Priority Queue
 
 Status: `active`
 
