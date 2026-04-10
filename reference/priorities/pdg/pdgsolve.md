@@ -91,12 +91,12 @@ pdgsolve should speak first in solver and publication terms, not in screen-layou
 
 The visible surface is still useful as a learning tool, so this document should keep one deliberately limited translation between the visual UI and the solver's proper terminology.
 
-For orientation, the visible base array may be described as a simple grid of tiles that is `20` columns wide and organized into `5` semantic lanes.
+For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic lanes.
 
 | Lane              | 1                      | 2                                    | 3                           | 4                                   | 5                     |
 | ----------------- | ---------------------- | ------------------------------------ | --------------------------- | ----------------------------------- | --------------------- |
 | Surface role      | reactants              | dissociation and pass-thru operators | intermediates               | association and pass-thru operators | products              |
-| Visual/UI reading | reactant assembly band | reactant operator band               | intermediate assembly band  | product operator band               | product assembly band |
+| Visual/UI reading | reactant assemblies    | reactant operators                   | intermediate assemblies     | product operators                   | product assemblies    |
 
 That visual description is only a translation aid.
 
@@ -117,9 +117,9 @@ The preferred terminology mapping is:
 | tile group | assembly | Prefer `assembly` in documentation and code |
 | four-tile group | assembly | One row-level assembly occupies four horizontal tiles in downstream publication |
 | reactant lane | reactant-side assembly lane | Lane 1 |
-| reactant operator band | reactant-side operator lane | Lane 2 |
+| reactant operators | reactant-side operator lane | Lane 2 |
 | intermediate lane | intermediate assembly lane | Lane 3 |
-| product operator band | product-side operator lane | Lane 4 |
+| product operators | product-side operator lane | Lane 4 |
 | product lane | product-side assembly lane | Lane 5 |
 
 This translation should stay intentionally small.
@@ -1512,7 +1512,7 @@ So the accepted publication graph is still pdgsolve-owned, but it is already exp
 
 - which accepted units exist;
 - which recipe expands each unit into pdgedit surface objects;
-- and which accepted reactant-to-product neighboring-band connections must become pdgedit links.
+- and which accepted reactant-to-product adjacent-lane connections must become pdgedit links.
 
 ### Admitted Publication Recipe Family
 
@@ -1552,7 +1552,7 @@ Likewise, if the published lane-3 assembly rows should be presented as `W-`, `W+
 
 The publication adapter should materialize the final pdgedit surface deterministically from the accepted publication graph and the admitted recipe family.
 
-The fixed pdgedit band origins are:
+The fixed pdgedit `x` origins are:
 
 - reactant assemblies at `x = 2`;
 - reactant operators at `x = 7`;
@@ -1564,8 +1564,8 @@ Assembly emission should follow these rules:
 
 - expand each assembly unit into the exact number of pdgedit assembly rows required by its recipe;
 - assign the pdgedit assembly `role` from the pdgsolve lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
-- place expanded rows contiguously in their band with no gaps;
-- pack each assembly band independently in accepted lane order, top to bottom;
+- place expanded rows contiguously within their lane's assembly `x` origin with no gaps;
+- pack each assembly lane independently in accepted lane order, top to bottom;
 - emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
 - emit row titles from the recipe row-title sequence;
 - emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from pdgsolve semantics at runtime;
@@ -1577,7 +1577,7 @@ Operator emission should follow these rules:
 - the pdgedit operator `type` comes directly from the admitted operator recipe;
 - the visible operator `title` comes directly from that same recipe;
 - `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
-- `x` comes from the fixed pdgedit operator band for that lane;
+- `x` comes from the fixed pdgedit operator `x` origin for that lane;
 - and `y` is computed from the operator unit's explicit accepted anchor reference in `lockedSolveGraph`, not from ad hoc visual inference.
 
 Operator links must preserve the same cardinality constraints as the solver graph:
@@ -1595,7 +1595,7 @@ That means:
 - assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
 - operator recipes must define their concrete pdgedit endpoint id, which is the operator record id itself;
 - one accepted publication edge may therefore expand into one or more pdgedit links when the accepted port map spans multiple emitted assembly rows;
-- every emitted pdgedit link must already obey the neighboring-band rule and canonical reactant-to-product endpoint order;
+- every emitted pdgedit link must already obey the adjacent-lane rule and canonical reactant-to-product endpoint order;
 - and no pdgedit link should be created by screen-geometry inference or by scanning nearby rows after the fact.
 
 So the adapter's job is explicit expansion, not reconstruction.
