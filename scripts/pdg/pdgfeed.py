@@ -9,6 +9,7 @@ be read through `pdg.connect(...)` and normalized through the same export path.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import sys
@@ -22,6 +23,7 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_FIXTURE_INDEX = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "index.json"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "generated"
+DEFAULT_SUPPORTED_REACTION_CSV = DEFAULT_OUTPUT_DIR / "supported_reaction_primitive_deltas.v1.csv"
 PDGSOLVE_REQUEST_SCHEMA_PATH = REPO_ROOT / "src" / "contracts" / "pdgsolve-request" / "v1" / "schema.json"
 
 PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
@@ -390,6 +392,26 @@ PDGSOLVE_ROW_ASSEMBLY_EXPANSIONS: dict[str, tuple[tuple[str, str], ...]] = {
         ("pro_up_quark", "Pro Up Quark"),
     ),
 }
+
+PDGSOLVE_SINGLE_ROW_ASSEMBLY_COUNTS: dict[str, dict[str, int]] = {
+    "anti_noether_core": {"electrinoCount": 3, "positrinoCount": 3},
+    "electron": {"electrinoCount": 9, "positrinoCount": 3},
+    "electron_antineutrino": {"electrinoCount": 6, "positrinoCount": 6},
+    "pro_down_quark": {"electrinoCount": 7, "positrinoCount": 5},
+    "pro_noether_core": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_up_quark": {"electrinoCount": 4, "positrinoCount": 8},
+}
+
+SUPPORTED_REACTION_CSV_COLUMNS = (
+    "reactant_names_aaa",
+    "product_names_aaa",
+    "reactant_electrinos",
+    "product_electrinos",
+    "electrino_delta",
+    "reactant_positrinos",
+    "product_positrinos",
+    "positrino_delta",
+)
 
 PDG_V1_MAPPING_BY_NAME = {mapping.canonical_name: mapping for mapping in PDG_V1_PARTICLE_MAPPINGS}
 PDG_V1_CANONICAL_NAME_BY_ALIAS = {
@@ -1105,6 +1127,98 @@ def build_live_manifest_payload(database_url: str | None = None, *, api: Any | N
     }
 
 
+def format_proposal_side_names(participants: Any) -> str:
+    if not isinstance(participants, list):
+        return ""
+    return " + ".join(
+        str(participant.get("label") or participant.get("pdgName") or participant.get("id") or "").strip()
+        for participant in participants
+        if isinstance(participant, dict)
+        if str(participant.get("label") or participant.get("pdgName") or participant.get("id") or "").strip()
+    )
+
+
+def get_pdgsolve_occurrence_primitive_totals(occurrences: Any) -> dict[str, int] | None:
+    if not isinstance(occurrences, list):
+        return None
+    totals = {"electrinoCount": 0, "positrinoCount": 0}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            return None
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        counts = PDGSOLVE_SINGLE_ROW_ASSEMBLY_COUNTS.get(assembly_id)
+        if counts is None:
+            return None
+        totals["electrinoCount"] += counts["electrinoCount"]
+        totals["positrinoCount"] += counts["positrinoCount"]
+    return totals
+
+
+def build_supported_reaction_csv_row(
+    proposal_payload: dict[str, Any],
+    pdgsolve_request: dict[str, Any],
+) -> dict[str, str | int] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(pdgsolve_request.get("reactants", []))
+    product_totals = get_pdgsolve_occurrence_primitive_totals(pdgsolve_request.get("products", []))
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    reactant_names = format_proposal_side_names(proposal_payload.get("reactants", []))
+    product_names = format_proposal_side_names(proposal_payload.get("products", []))
+    if not reactant_names or not product_names:
+        return None
+
+    return {
+        "reactant_names_aaa": reactant_names,
+        "product_names_aaa": product_names,
+        "reactant_electrinos": reactant_totals["electrinoCount"],
+        "product_electrinos": product_totals["electrinoCount"],
+        "electrino_delta": reactant_totals["electrinoCount"] - product_totals["electrinoCount"],
+        "reactant_positrinos": reactant_totals["positrinoCount"],
+        "product_positrinos": product_totals["positrinoCount"],
+        "positrino_delta": reactant_totals["positrinoCount"] - product_totals["positrinoCount"],
+    }
+
+
+def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, str | int]]:
+    rows: list[dict[str, str | int]] = []
+    for case in cases:
+        proposal = build_proposal(case)
+        pdgsolve_request = build_pdgsolve_request(proposal)
+        if pdgsolve_request is None:
+            continue
+        row = build_supported_reaction_csv_row(proposal.to_dict(), pdgsolve_request)
+        if row is not None:
+            rows.append(row)
+    return rows
+
+
+def build_live_supported_reaction_csv_rows(
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+) -> list[dict[str, str | int]]:
+    manifest = build_live_manifest_payload(database_url, api=api)
+    rows: list[dict[str, str | int]] = []
+    for entry in manifest.get("entries", []):
+        if not isinstance(entry, dict):
+            continue
+        proposal_payload = entry.get("proposal", {})
+        pdgsolve_request = entry.get("pdgsolveRequest", {})
+        row = build_supported_reaction_csv_row(proposal_payload, pdgsolve_request)
+        if row is not None:
+            rows.append(row)
+    return rows
+
+
+def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=SUPPORTED_REACTION_CSV_COLUMNS)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[FixtureParticle], list[str]]:
     particle = api.get_particle_by_name(spec.reactant_name)
     expected_description = normalize_channel_description(spec.channel_description)
@@ -1218,6 +1332,13 @@ def print_json(payload: dict[str, Any]) -> None:
     sys.stdout.write("\n")
 
 
+def format_output_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and pdgsolve-request candidates.")
     parser.add_argument(
@@ -1243,6 +1364,24 @@ def parse_args() -> argparse.Namespace:
     subparsers.add_parser(
         "build-live-manifest",
         help="Discover exportable live PDG decays and print a frozen batch manifest JSON payload.",
+    )
+
+    supported_reaction_csv_parser = subparsers.add_parser(
+        "emit-supported-reaction-csv",
+        help="Emit a CSV primitive-count summary for supported PDG reactions.",
+    )
+    supported_reaction_csv_parser.add_argument(
+        "csv_path",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_SUPPORTED_REACTION_CSV,
+        help="Path where the supported reaction CSV is written.",
+    )
+    supported_reaction_csv_parser.add_argument(
+        "--source",
+        choices=("fixtures", "live"),
+        default="fixtures",
+        help="Use local fixtures or live PDG discovery as the CSV input source.",
     )
 
     emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and pdgsolve-request artifacts for one fixture.")
@@ -1298,6 +1437,15 @@ def main() -> int:
 
     if args.command == "build-live-manifest":
         print_json(build_live_manifest_payload(args.database_url))
+        return 0
+
+    if args.command == "emit-supported-reaction-csv":
+        if args.source == "live":
+            rows = build_live_supported_reaction_csv_rows(args.database_url)
+        else:
+            rows = build_supported_reaction_csv_rows(fixtures)
+        write_supported_reaction_csv(args.csv_path, rows)
+        print(format_output_path(args.csv_path))
         return 0
 
     if args.command == "emit-fixture":

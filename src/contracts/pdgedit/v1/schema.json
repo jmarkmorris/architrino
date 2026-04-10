@@ -38,6 +38,9 @@
             "type": "string",
             "enum": [
               "unbound-architrinos-assembly",
+              "unbound-architrino-residue-e4-p8-assembly",
+              "unbound-architrino-residue-e6-p6-assembly",
+              "unbound-architrino-residue-e9-p3-assembly",
               "pro-tau-assembly",
               "anti-tau-assembly",
               "pro-muon-assembly",

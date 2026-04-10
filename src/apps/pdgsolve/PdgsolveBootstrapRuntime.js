@@ -56,7 +56,7 @@ function buildBuiltinFixtureEntries() {
       return createPdgsolveRequestEntry({
         id: `fixture:${entry.id}`,
         title: normalizeText(entry?.label),
-        subtitle: "Frozen v1 corpus fixture",
+        subtitle: "Built-in v1 corpus request",
         sourceKind: "fixture",
         request,
       });
@@ -69,7 +69,7 @@ function buildBuiltinPdgfeedEntries() {
     createPdgsolveRequestEntry({
       id: "pdgfeed:fixture:free_neutron_beta_decay",
       title: "PDGfeed fixture export: Free neutron beta decay",
-      subtitle: "Generated pdgsolve request from the frozen fixture feed path",
+      subtitle: "Generated pdgsolve request from the fixture feed path",
       sourceKind: "pdgfeed",
       request: fixturePdgfeedRequestJson,
     }),

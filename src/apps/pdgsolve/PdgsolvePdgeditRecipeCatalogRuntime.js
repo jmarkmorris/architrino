@@ -1,4 +1,8 @@
 import pdgsolvePdgeditRecipesJson from "./pdgsolve-pdgedit-recipes.v1.json" with { type: "json" };
+import {
+  getPdgsolveAssemblyLedgerCounts,
+  isPdgsolveAssemblyLedgerId,
+} from "./PdgsolveAssemblyLedgerRuntime.js";
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -28,6 +32,12 @@ function normalizePrimitiveCounts(record = {}) {
   };
 }
 
+function normalizeRecipePrimitiveCounts(recipe = {}) {
+  return isPdgsolveAssemblyLedgerId(recipe?.pdgsolveAssemblyId)
+    ? getPdgsolveAssemblyLedgerCounts(recipe.pdgsolveAssemblyId)
+    : normalizePrimitiveCounts(recipe?.primitiveCounts);
+}
+
 function normalizePortPrimitiveCounts(record = {}) {
   return Object.fromEntries(
     Object.entries(record && typeof record === "object" ? record : {}).map(([portId, counts]) => [
@@ -51,7 +61,7 @@ function normalizeAssemblyRecipe(recipe = {}) {
     pdgeditType: normalizeText(recipe?.pdgeditType),
     pdgeditRowTypes,
     boundaryLabelText: normalizeText(recipe?.boundaryLabelText),
-    primitiveCounts: normalizePrimitiveCounts(recipe?.primitiveCounts),
+    primitiveCounts: normalizeRecipePrimitiveCounts(recipe),
     portPrimitiveCounts: normalizePortPrimitiveCounts(recipe?.portPrimitiveCounts),
     rowTitles,
     rows,

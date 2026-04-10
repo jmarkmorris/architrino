@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title desc">
-  <title id="title">Binary tile: polar:--:rb</title>
-  <desc id="desc">Binary tile: polar:--:rb. pdgedit reference tile generated from pdgedit-tiles.json.</desc>
+<svg viewBox="0 0 80 80" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title>Binary tile: polar:--:rb</title>
+  <desc>Binary tile: polar:--:rb. Pdgedit reference tile generated from pdgedit-tiles.json.</desc>
   <rect width="80" height="80" fill="#000000"/>
-  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4.00"/>
-  <svg x="4.00" y="4.00" width="72.00" height="72.00" viewBox="0 0 120 120" aria-hidden="true">
-    <circle cx="60.00" cy="25.00" r="8.33" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
-    <circle cx="60.00" cy="95.00" r="8.33" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
+  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4"/>
+  <svg x="4.00" y="4.00" width="72" height="72" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="25" r="8.3333333333" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+    <circle cx="60" cy="95" r="8.3333333333" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
   </svg>
 </svg>

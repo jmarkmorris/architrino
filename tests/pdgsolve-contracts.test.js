@@ -7,6 +7,8 @@ import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCata
 import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
+import { buildPdgsolveAcceptanceRecord } from "../src/apps/pdgsolve/PdgsolveAcceptanceRuntime.js";
+import { PDGSOLVE_ASSEMBLY_LEDGER_BY_ID } from "../src/apps/pdgsolve/PdgsolveAssemblyLedgerRuntime.js";
 import {
   buildPdgsolvePdgeditLaunchPayload,
   buildPdgsolvePdgeditPackage,
@@ -131,6 +133,49 @@ const pdgsolvePdgeditRecipeCatalog = normalizePdgsolvePdgeditRecipeCatalog(
   readJson("src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json")
 );
 
+test("pdgsolve publication recipes project the solver primitive ledger", () => {
+  const rawRecipeCatalog = readJson("src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json");
+  const rawAssemblyRecipeById = new Map(rawRecipeCatalog.assemblyRecipes.map((recipe) => [recipe.id, recipe]));
+
+  Object.entries(PDGSOLVE_ASSEMBLY_LEDGER_BY_ID).forEach(([assemblyId, ledger]) => {
+    const rawRecipe = rawAssemblyRecipeById.get(ledger.recipeId);
+    const normalizedRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get(ledger.recipeId);
+
+    assert.ok(rawRecipe, `${assemblyId} raw publication recipe missing`);
+    assert.ok(normalizedRecipe, `${assemblyId} normalized publication recipe missing`);
+    assert.deepEqual(rawRecipe.primitiveCounts, ledger.counts, `${assemblyId} raw recipe ledger drifted`);
+    assert.deepEqual(normalizedRecipe.primitiveCounts, ledger.counts, `${assemblyId} normalized recipe ledger drifted`);
+  });
+
+  const neutronRecipe = rawAssemblyRecipeById.get("pdgsolve.pdgedit.neutron.v1");
+  const protonRecipe = rawAssemblyRecipeById.get("pdgsolve.pdgedit.proton.v1");
+
+  assert.deepEqual(
+    neutronRecipe.portPrimitiveCounts["input.row.1"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
+  );
+  assert.deepEqual(
+    neutronRecipe.portPrimitiveCounts["input.row.2"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
+  );
+  assert.deepEqual(
+    neutronRecipe.portPrimitiveCounts["input.row.3"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
+  );
+  assert.deepEqual(
+    protonRecipe.portPrimitiveCounts["output.row.1"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
+  );
+  assert.deepEqual(
+    protonRecipe.portPrimitiveCounts["output.row.2"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
+  );
+  assert.deepEqual(
+    protonRecipe.portPrimitiveCounts["output.row.3"],
+    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
+  );
+});
+
 test("pdgsolve request fixtures match the versioned pdgsolve-request schema", () => {
   pdgsolveCorpus.cases.forEach((entry) => {
     const request = readJson(entry.requestPath);
@@ -143,13 +188,14 @@ test("pdgsolve request fixtures match the versioned pdgsolve-request schema", ()
   });
 });
 
-test("pdgsolve result fixtures match the versioned pdgsolve-result schema and corpus expectations", () => {
+test("pdgsolve runtime results match the versioned pdgsolve-result schema and corpus expectations", () => {
   pdgsolveCorpus.cases.forEach((entry) => {
-    const result = readJson(entry.resultPath);
+    const request = readJson(entry.requestPath);
+    const result = solvePdgsolveRequest(request);
     const errors = validateAgainstSchema(result, pdgsolveResultSchema);
     const bestFamily = result.optionFamilies.find((family) => family.familyId === result.bestFamilyId);
 
-    assert.deepEqual(errors, [], `${entry.resultPath} schema mismatch`);
+    assert.deepEqual(errors, [], `${entry.id} runtime result schema mismatch`);
     assert.ok(bestFamily, `${entry.id} best family missing`);
     assert.equal(result.searchStatus, entry.expectedSummary.searchStatus, `${entry.id} search status drifted`);
     assert.equal(bestFamily.kind, entry.expectedSummary.bestFamilyKind, `${entry.id} best family kind drifted`);
@@ -166,18 +212,32 @@ test("pdgsolve result fixtures match the versioned pdgsolve-result schema and co
   });
 });
 
-test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen in pdgsolve.md", () => {
-  const exactResult = readJson("content/contracts/examples/pdgsolve-result/free_neutron_beta_exact_result.v1.json");
-  const supportDisallowedResult = readJson(
-    "content/contracts/examples/pdgsolve-result/free_neutron_beta_support_disallowed_result.v1.json"
+test("pdgsolve computed results preserve the four concrete v1 expectations in pdgsolve.md", () => {
+  const betaLawUnsupportedResult = solvePdgsolveRequest(
+    readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json")
   );
-  const primitiveImbalanceResult = readJson(
-    "content/contracts/examples/pdgsolve-result/primitive_imbalance_neutron_to_proton_result.v1.json"
+  const supportDisallowedResult = solvePdgsolveRequest(
+    readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_support_disallowed.v1.json")
   );
-  const passThruResult = readJson("content/contracts/examples/pdgsolve-result/pass_thru_neutron_result.v1.json");
+  const primitiveImbalanceResult = solvePdgsolveRequest(
+    readJson("content/contracts/examples/pdgsolve-request/primitive_imbalance_neutron_to_proton.v1.json")
+  );
+  const passThruResult = solvePdgsolveRequest(readJson("content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json"));
 
-  assert.equal(exactResult.optionFamilies[0].publicationReady, true);
-  assert.equal(exactResult.optionFamilies[0].score.auxiliaryBurden, 0);
+  assert.equal(betaLawUnsupportedResult.searchStatus, "exact_available");
+  assert.equal(betaLawUnsupportedResult.bestFamilyId, "family.beta.fermion_decomposition.v1");
+  assert.equal(betaLawUnsupportedResult.optionFamilies[0].publicationReady, true);
+  assert.equal(betaLawUnsupportedResult.optionFamilies[0].score.auxiliaryBurden, 2);
+  assert.deepEqual(
+    betaLawUnsupportedResult.diagnostics.map((diagnostic) => diagnostic.id),
+    ["pdgsolve.normalization.support_added.noether_core_rows"]
+  );
+  assert.equal(
+    betaLawUnsupportedResult.optionFamilies[0].laneInventories.lane3.some(
+      (record) => record.assemblyId === "unbound_architrino_residue_e9_p3"
+    ),
+    true
+  );
 
   assert.equal(supportDisallowedResult.searchStatus, "unsupported");
   assert.equal(
@@ -201,57 +261,68 @@ test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen
   assert.equal(passThruResult.optionFamilies[0].score.ambiguityPenalty, 0);
 });
 
-test("pdgsolve deterministic runtime reproduces every frozen result fixture from its request fixture", () => {
-  pdgsolveCorpus.cases.forEach((entry) => {
-    const request = readJson(entry.requestPath);
-    const expectedResult = readJson(entry.resultPath);
-    const builtResult = solvePdgsolveRequest(request);
+test("pdgsolve solver runtime does not import result fixtures", () => {
+  const solveRuntimeSource = fs.readFileSync(
+    new URL("../src/apps/pdgsolve/PdgsolveSolveRuntime.js", import.meta.url),
+    "utf8"
+  );
+  const rowSearchSource = fs.readFileSync(
+    new URL("../src/apps/pdgsolve/PdgsolveRowSearchRuntime.js", import.meta.url),
+    "utf8"
+  );
 
-    assert.deepEqual(builtResult, expectedResult, `${entry.id} runtime result drifted from the frozen fixture`);
-  });
+  assert.doesNotMatch(solveRuntimeSource, /content\/contracts\/examples\/pdgsolve-result/);
+  assert.doesNotMatch(rowSearchSource, /content\/contracts\/examples\/pdgsolve-result/);
 });
 
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {
-  const result = readJson("content/contracts/examples/pdgsolve-result/free_neutron_beta_exact_result.v1.json");
-  const graph = readJson("content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json");
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const graph = acceptance.lockedSolveGraph;
   const packageFixture = readJson(
     "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json"
   );
-  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const pdgeditDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(graph, pdgsolvePdgeditRecipeCatalog);
+  const publicationPackage = buildPdgsolvePdgeditPackage({
+    sourceAcceptanceDigest: acceptance.resultDigest,
+    publicationMode: "durable",
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+    graph,
+    recipeCatalog: pdgsolvePdgeditRecipeCatalog,
+    durableDocumentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+  });
 
   assert.deepEqual(validateAgainstSchema(graph, pdgsolvePublicationGraphSchema), [], "publication graph schema drifted");
   assert.deepEqual(validateAgainstSchema(acceptance, pdgsolveAcceptanceSchema), [], "acceptance schema drifted");
-  assert.deepEqual(validateAgainstSchema(packageFixture, pdgsolvePdgeditPackageSchema), [], "package schema drifted");
+  assert.deepEqual(validateAgainstSchema(publicationPackage, pdgsolvePdgeditPackageSchema), [], "package schema drifted");
   assert.deepEqual(validateAgainstSchema(pdgeditDocument, pdgeditSchema), [], "pdgedit document schema drifted");
 
-  assert.deepEqual(result.optionFamilies[0].canonicalCandidate.solveGraph, graph);
   assert.deepEqual(acceptance.lockedSolveGraph, graph);
-  assert.equal(packageFixture.sourceAcceptanceDigest, acceptance.resultDigest);
+  assert.equal(publicationPackage.sourceAcceptanceDigest, acceptance.resultDigest);
   assert.equal(
-    packageFixture.manifestEntry.documentPath,
+    publicationPackage.manifestEntry.documentPath,
     "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json"
   );
   assert.equal(
     fs.existsSync(new URL("../content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json", import.meta.url)),
     true
   );
-  assert.deepEqual(packageFixture.pdgeditDocument, pdgeditDocument);
   assert.deepEqual(
     validateAgainstSchema(
       {
         schema: "pdgedit-library-manifest/v1",
-        defaultEntryId: packageFixture.manifestEntry.id,
-        entries: [{ ...packageFixture.manifestEntry, isDefault: true }],
+        defaultEntryId: publicationPackage.manifestEntry.id,
+        entries: [{ ...publicationPackage.manifestEntry, isDefault: true }],
       },
       pdgeditLibraryManifestSchema
     ),
     [],
     "beta package manifest entry drifted from pdgedit manifest contract"
   );
+  assert.equal(packageFixture.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
 });
 
-test("pdgsolve beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
+test("legacy beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
   const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const errors = validatePdgeditDocumentTilePayload(pdgeditDocument, catalog);
@@ -306,9 +377,85 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
     x: 7,
     y: 2,
     title: "Dissociate",
-    positrinoCount: 6,
-    electrinoCount: 6,
+    positrinoCount: 5,
+    electrinoCount: 7,
   });
+  assert.deepEqual(
+    pdgeditDocument.operators.map((operator) => ({
+      id: operator.id,
+      positrinoCount: operator.positrinoCount,
+      electrinoCount: operator.electrinoCount,
+    })),
+    [
+      { id: "unit_lane2_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_lane2_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_lane2_beta_dissociate", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_lane4_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_lane4_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_lane4_pass_thru_pro_up_quark_2", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_lane4_pass_thru_electron_1", positrinoCount: 3, electrinoCount: 9 },
+      { id: "unit_lane4_pass_thru_electron_antineutrino_1", positrinoCount: 6, electrinoCount: 6 },
+    ],
+    "published operator counts should match the accepted carrier rows"
+  );
+});
+
+test("admitted fermion-decomposition beta solving publishes residue rows with admitted recipes", () => {
+  const request = readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json");
+  const result = solvePdgsolveRequest(request);
+  const acceptance = buildPdgsolveAcceptanceRecord({
+    request,
+    result,
+    familyId: result.bestFamilyId,
+  });
+  const builtDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(
+    acceptance.lockedSolveGraph,
+    pdgsolvePdgeditRecipeCatalog
+  );
+  const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
+
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
+  assert.deepEqual(validateAgainstSchema(acceptance, pdgsolveAcceptanceSchema), [], "exact beta acceptance drifted");
+  assert.deepEqual(validateAgainstSchema(builtDocument, pdgeditSchema), [], "exact beta pdgedit schema drifted");
+  assert.deepEqual(validatePdgeditDocumentTilePayload(builtDocument, tileCatalog), [], "exact beta residue tile drifted");
+  assert.deepEqual(
+    builtDocument.assemblies
+      .filter((assembly) => assembly.role === "intermediate")
+      .map((assembly) => assembly.type),
+    [
+      "pro-down-quark-assembly",
+      "pro-up-quark-assembly",
+      "unbound-architrino-residue-e4-p8-assembly",
+      "unbound-architrino-residue-e9-p3-assembly",
+      "unbound-architrino-residue-e6-p6-assembly",
+    ]
+  );
+  assert.deepEqual(
+    builtDocument.operators
+      .filter((operator) => operator.type === "associate")
+      .map((operator) => ({
+        id: operator.id,
+        positrinoCount: operator.positrinoCount,
+        electrinoCount: operator.electrinoCount,
+      })),
+    [
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e4_p8_1",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e9_p3_1",
+        positrinoCount: 3,
+        electrinoCount: 9,
+      },
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e6_p6_1",
+        positrinoCount: 6,
+        electrinoCount: 6,
+      },
+    ]
+  );
 });
 
 test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with constituent assembly row types", () => {
@@ -334,6 +481,23 @@ test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with
     "pro-noether-core-assembly",
     "anti-noether-core-assembly",
   ]);
+});
+
+test("pdgsolve pdgedit recipe catalog admits the fermion-decomposition residue rows with solver-ledger counts", () => {
+  const residueRecipeIds = [
+    "pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1",
+    "pdgsolve.pdgedit.unbound_architrino_residue_e6_p6.v1",
+    "pdgsolve.pdgedit.unbound_architrino_residue_e9_p3.v1",
+  ];
+
+  residueRecipeIds.forEach((recipeId) => {
+    const recipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get(recipeId);
+    assert.ok(recipe, `${recipeId} missing`);
+    assert.equal(recipe.rows.length, 1);
+    assert.equal(recipe.ports.input[0], 1);
+    assert.equal(recipe.ports.output[0], 1);
+    assert.deepEqual(recipe.primitiveCounts, PDGSOLVE_ASSEMBLY_LEDGER_BY_ID[recipe.pdgsolveAssemblyId].counts);
+  });
 });
 
 test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payloads while keeping distinct labels", () => {

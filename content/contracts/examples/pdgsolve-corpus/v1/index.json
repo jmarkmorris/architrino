@@ -3,13 +3,13 @@
   "cases": [
     {
       "id": "free_neutron_beta_exact",
-      "label": "Free neutron beta exact with implied Noether-core support rows",
+      "label": "Free neutron beta exact via admitted fermion decomposition laws",
       "requestPath": "content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json",
-      "resultPath": "content/contracts/examples/pdgsolve-result/free_neutron_beta_exact_result.v1.json",
       "publicationGraphPath": "content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json",
       "acceptancePath": "content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json",
       "packagePath": "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json",
       "pdgeditDocumentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+      "legacyPublicationFixturePreserved": true,
       "expectedSummary": {
         "searchStatus": "exact_available",
         "bestFamilyKind": "exact",
@@ -23,7 +23,6 @@
       "id": "free_neutron_beta_support_disallowed",
       "label": "Free neutron beta without implied support",
       "requestPath": "content/contracts/examples/pdgsolve-request/free_neutron_beta_support_disallowed.v1.json",
-      "resultPath": "content/contracts/examples/pdgsolve-result/free_neutron_beta_support_disallowed_result.v1.json",
       "expectedSummary": {
         "searchStatus": "unsupported",
         "bestFamilyKind": "unsupported",
@@ -37,7 +36,6 @@
       "id": "primitive_imbalance_neutron_to_proton",
       "label": "Primitive imbalance neutron to proton",
       "requestPath": "content/contracts/examples/pdgsolve-request/primitive_imbalance_neutron_to_proton.v1.json",
-      "resultPath": "content/contracts/examples/pdgsolve-result/primitive_imbalance_neutron_to_proton_result.v1.json",
       "expectedSummary": {
         "searchStatus": "partial_only",
         "bestFamilyKind": "partial",
@@ -51,7 +49,6 @@
       "id": "pass_thru_neutron",
       "label": "Pass thru neutron exact family",
       "requestPath": "content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json",
-      "resultPath": "content/contracts/examples/pdgsolve-result/pass_thru_neutron_result.v1.json",
       "expectedSummary": {
         "searchStatus": "exact_available",
         "bestFamilyKind": "exact",

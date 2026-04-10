@@ -16,6 +16,42 @@
   ],
   "singleRowGroups": [
     {
+      "key": "unbound-architrino-residue-e4-p8",
+      "title": "Unbound Architrino Residue 4E/8P",
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-4",
+          "residue-positrinos-8",
+          "architrino-residue"
+        ]
+      ]
+    },
+    {
+      "key": "unbound-architrino-residue-e6-p6",
+      "title": "Unbound Architrino Residue 6E/6P",
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-6",
+          "residue-positrinos-6",
+          "architrino-residue"
+        ]
+      ]
+    },
+    {
+      "key": "unbound-architrino-residue-e9-p3",
+      "title": "Unbound Architrino Residue 9E/3P",
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-9",
+          "residue-positrinos-3",
+          "architrino-residue"
+        ]
+      ]
+    },
+    {
       "key": "pro-tau",
       "title": "Pro Tau",
       "rows": [

@@ -73,24 +73,32 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
   assert.deepEqual(seed.reopenedAcceptance, acceptanceFixture);
 });
 
-test("live pdgfeed neutron requests solve through the exact beta family with a live problem id", () => {
+test("live pdgfeed neutron requests solve exactly through the admitted fermion-decomposition family", () => {
   const request = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json");
   const result = solvePdgsolveRequest(request);
 
   assert.equal(result.problemId, "pdgsolve_problem_free_neutron_beta_decay.live-pdg");
   assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.exact.v1");
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
   assert.equal(result.diagnostics[0].payload.requestId, "free_neutron_beta_decay.live-pdg");
+  assert.equal(result.diagnostics[0].id, "pdgsolve.normalization.support_added.noether_core_rows");
+  assert.equal(result.optionFamilies[0].publicationReady, true);
+  assert.equal(
+    result.optionFamilies[0].laneInventories.lane3.some(
+      (record) => record.assemblyId === "unbound_architrino_residue_e4_p8"
+    ),
+    true
+  );
 });
 
-test("explicit Noether support requests land in the exact beta family without implied-support diagnostics", () => {
+test("explicit Noether support requests solve through the admitted fermion decomposition laws", () => {
   const request = {
     schema: "pdgsolve-request/v1",
-    requestId: "beta_exact_explicit_support",
+    requestId: "beta_explicit_support_with_decomposition_law",
     source: {
       kind: "developer",
       title: "Explicit beta support",
-      sourceDocumentId: "developer:beta_exact_explicit_support",
+      sourceDocumentId: "developer:beta_explicit_support_with_decomposition_law",
     },
     reactants: [
       {
@@ -166,9 +174,20 @@ test("explicit Noether support requests land in the exact beta family without im
   const result = solvePdgsolveRequest(request);
 
   assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.exact.v1");
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
   assert.deepEqual(result.diagnostics, []);
-  assert.deepEqual(result.review.blockingDiagnostics, []);
+  assert.equal(result.optionFamilies[0].publicationReady, true);
+  assert.equal(result.review.blockingDiagnostics.length, 0);
+  assert.deepEqual(
+    result.optionFamilies[0].lane4Operators
+      .filter((operator) => operator.type === "associate")
+      .map((operator) => operator.lawId),
+    [
+      "row.fermion_decomposition.unbound_architrino_residue_e4_p8_to_pro_up_quark.v1",
+      "row.fermion_decomposition.unbound_architrino_residue_e9_p3_to_electron.v1",
+      "row.fermion_decomposition.unbound_architrino_residue_e6_p6_to_electron_antineutrino.v1",
+    ]
+  );
 });
 
 test("acceptance runtime locks a publishable family and derives the pdgedit preview document", () => {
@@ -182,11 +201,11 @@ test("acceptance runtime locks a publishable family and derives the pdgedit prev
   const pdgeditPreview = buildPdgeditPreviewFromPdgsolveAcceptance(acceptance);
 
   assert.equal(acceptance.schema, "pdgsolve-acceptance/v1");
-  assert.equal(acceptance.resultDigest, "pdgsolve_problem_pass_thru_neutron::family.pass_thru.neutron.v1::v1");
+  assert.equal(acceptance.resultDigest, "pdgsolve_problem_pass_thru_neutron::family.pass_thru.rows.v1::v1");
   assert.equal(acceptance.lockedSolveGraph.schema, "pdgsolve-publication-graph/v1");
   assert.equal(pdgeditPreview.schema, "pdgedit/v1");
   assert.equal(pdgeditPreview.assemblies.length, 9);
-  assert.equal(pdgeditPreview.operators.length, 2);
+  assert.equal(pdgeditPreview.operators.length, 6);
   assert.equal(pdgeditPreview.links.length, 12);
 });
 
@@ -224,4 +243,41 @@ test("unmapped requests stay review-only with a blocking unsupported-family diag
   assert.equal(result.bestFamilyId, "family.unmapped_request.v1");
   assert.equal(result.optionFamilies[0].publicationReady, false);
   assert.equal(result.review.blockingDiagnostics[0].id, "pdgsolve.search.unmapped_request");
+});
+
+test("fermion-decomposition residue rows are rejected when requested directly in boundary lanes", () => {
+  const result = solvePdgsolveRequest({
+    schema: "pdgsolve-request/v1",
+    requestId: "invalid_boundary_residue_row",
+    source: {
+      kind: "developer",
+      title: "Invalid boundary residue row",
+      sourceDocumentId: "developer:invalid_boundary_residue_row",
+    },
+    reactants: [
+      {
+        id: "reactant_residue",
+        assemblyId: "unbound_architrino_residue_e4_p8",
+        title: "Unbound Architrino Residue 4E/8P",
+      },
+    ],
+    products: [
+      {
+        id: "product_residue",
+        assemblyId: "unbound_architrino_residue_e4_p8",
+        title: "Unbound Architrino Residue 4E/8P",
+      },
+    ],
+    policy: {
+      betaSupportMode: "allow-implied-noether-core-support",
+      exactClosureRequired: true,
+      allowedBoundaryAugmentations: ["none"],
+    },
+  });
+
+  assert.equal(result.searchStatus, "unsupported");
+  assert.equal(result.bestFamilyId, "family.request.invalid_lane_role.v1");
+  assert.equal(result.diagnostics[0].id, "pdgsolve.request.invalid_lane_role");
+  assert.equal(result.diagnostics[0].payload.assemblyId, "unbound_architrino_residue_e4_p8");
+  assert.deepEqual(result.diagnostics[0].payload.allowedLanes, [3]);
 });

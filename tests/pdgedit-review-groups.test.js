@@ -88,15 +88,17 @@ test("pdgedit review group catalog covers the requested single-row and composite
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
 
   assert.equal(reviewGroups.specialGroups.length, 1);
-  assert.equal(reviewGroups.singleRowGroups.length, 24);
+  assert.equal(reviewGroups.singleRowGroups.length, 27);
   assert.equal(reviewGroups.quarkColorGroups.length, 3);
   assert.equal(reviewGroups.compositeGroups.length, 19);
 });
 
-test("gen II and gen III fermion review rows use generation-trimmed polar tiles", () => {
+test("standard fermion review rows use generation-trimmed polar tiles", () => {
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
 
-  reviewGroups.singleRowGroups.forEach((group) => {
+  reviewGroups.singleRowGroups
+    .filter((group) => !group.key.startsWith("unbound-architrino-residue-"))
+    .forEach((group) => {
     assert.deepEqual(group.rows[0].slice(1), getExpectedGenerationTiles(group.key), group.key);
   });
 });

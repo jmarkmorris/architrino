@@ -107,12 +107,14 @@ export function buildPdgeditSplinePath({
   const start = getPdgeditObjectAnchor(leftObject, "right");
   const end = getPdgeditObjectAnchor(rightObject, "left");
   const routingSlotY = (start.y + end.y) / 2 + Number(slotOffsetPx || 0);
-  const controlPointOneX = start.x + 16;
-  const controlPointTwoX = end.x - 16;
+  const routingCenterlineX = getPdgeditRoutingColumnCenterlineX(routingColumn);
+  const routingSlotX = routingCenterlineX + Number(slotOffsetPx || 0);
+  const controlPointOneX = routingSlotX - 16;
+  const controlPointTwoX = routingSlotX + 16;
   const path = [
     `M ${start.x.toFixed(2)} ${start.y.toFixed(2)}`,
-    `C ${controlPointOneX.toFixed(2)} ${routingSlotY.toFixed(2)},`,
-    `${controlPointTwoX.toFixed(2)} ${routingSlotY.toFixed(2)},`,
+    `C ${controlPointOneX.toFixed(2)} ${start.y.toFixed(2)},`,
+    `${controlPointTwoX.toFixed(2)} ${end.y.toFixed(2)},`,
     `${end.x.toFixed(2)} ${end.y.toFixed(2)}`,
   ].join(" ");
   return {
@@ -121,7 +123,8 @@ export function buildPdgeditSplinePath({
     start,
     end,
     routingSlotY,
-    routingCenterlineX: getPdgeditRoutingColumnCenterlineX(routingColumn),
+    routingSlotX,
+    routingCenterlineX,
   };
 }
 
@@ -134,4 +137,3 @@ export function getPdgeditGridCellFromLocalPoint(localX = 0, localY = 0) {
     row: visualRow - PDGEDIT_RESERVED_TOP_ROW_COUNT,
   };
 }
-
