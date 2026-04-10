@@ -306,6 +306,146 @@
       ]
     },
     {
+      "key": "residue-electrinos-4",
+      "title": "Residue electrinos 4 tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Electrinos",
+          "color": "count_negative"
+        },
+        {
+          "type": "literal",
+          "text": "-4",
+          "color": "count_negative"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "residue-electrinos-6",
+      "title": "Residue electrinos 6 tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Electrinos",
+          "color": "count_negative"
+        },
+        {
+          "type": "literal",
+          "text": "-6",
+          "color": "count_negative"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "residue-electrinos-9",
+      "title": "Residue electrinos 9 tile",
+      "borderColor": "blue",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Electrinos",
+          "color": "count_negative"
+        },
+        {
+          "type": "literal",
+          "text": "-9",
+          "color": "count_negative"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "residue-positrinos-3",
+      "title": "Residue positrinos 3 tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positrinos",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "+3",
+          "color": "count_positive"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "residue-positrinos-6",
+      "title": "Residue positrinos 6 tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positrinos",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "+6",
+          "color": "count_positive"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "residue-positrinos-8",
+      "title": "Residue positrinos 8 tile",
+      "borderColor": "red",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Positrinos",
+          "color": "count_positive"
+        },
+        {
+          "type": "literal",
+          "text": "+8",
+          "color": "count_positive"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "architrino-residue",
+      "title": "Architrino residue title tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "literal",
+          "text": "Architrino",
+          "color": "white"
+        },
+        {
+          "type": "literal",
+          "text": "Residue",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
       "key": "photon",
       "title": "Photon label tile",
       "type": "composite-label",

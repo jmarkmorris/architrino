@@ -14,7 +14,7 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
   );
   const deprecatedPhotonAssemblyType = ["photon", "assembly"].join("-");
 
-  assert.equal(templateCatalog.assemblyTemplates.length, 30);
+  assert.equal(templateCatalog.assemblyTemplates.length, 33);
   assert.equal(templateCatalog.operatorTemplates.length, 3);
   assert.equal(templateCatalog.assemblyTemplateByType.has(deprecatedPhotonAssemblyType), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("photon-composite"), false);
@@ -29,6 +29,16 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
       title: "Unbound Architrinos",
       displayTitle: "Unbound Architrinos",
       tiles: ["unbound", "unbound-electrinos", "unbound-positrinos", "architrinos"],
+    }
+  );
+  assert.deepEqual(
+    templateCatalog.assemblyTemplateByType.get("unbound-architrino-residue-e4-p8-assembly"),
+    {
+      id: "unbound-architrino-residue-e4-p8-assembly",
+      type: "unbound-architrino-residue-e4-p8-assembly",
+      title: "Unbound Architrino Residue 4E/8P",
+      displayTitle: "Unbound Architrino Residue 4E/8P",
+      tiles: ["unbound", "residue-electrinos-4", "residue-positrinos-8", "architrino-residue"],
     }
   );
   assert.deepEqual(

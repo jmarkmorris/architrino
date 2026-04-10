@@ -224,20 +224,19 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
   );
   const passThruResult = solvePdgsolveRequest(readJson("content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json"));
 
-  assert.equal(betaLawUnsupportedResult.searchStatus, "unsupported");
-  assert.equal(betaLawUnsupportedResult.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
-  assert.equal(betaLawUnsupportedResult.optionFamilies[0].publicationReady, false);
+  assert.equal(betaLawUnsupportedResult.searchStatus, "exact_available");
+  assert.equal(betaLawUnsupportedResult.bestFamilyId, "family.beta.fermion_decomposition.v1");
+  assert.equal(betaLawUnsupportedResult.optionFamilies[0].publicationReady, true);
   assert.equal(betaLawUnsupportedResult.optionFamilies[0].score.auxiliaryBurden, 2);
   assert.deepEqual(
     betaLawUnsupportedResult.diagnostics.map((diagnostic) => diagnostic.id),
-    [
-      "pdgsolve.normalization.support_added.noether_core_rows",
-      "pdgsolve.search.unsupported_law_family",
-    ]
+    ["pdgsolve.normalization.support_added.noether_core_rows"]
   );
   assert.equal(
-    betaLawUnsupportedResult.diagnostics[1].payload.missingLawFamilyId,
-    "pdgsolve-laws/fermion-decomposition.v1"
+    betaLawUnsupportedResult.optionFamilies[0].laneInventories.lane3.some(
+      (record) => record.assemblyId === "unbound_architrino_residue_e9_p3"
+    ),
+    true
   );
 
   assert.equal(supportDisallowedResult.searchStatus, "unsupported");
@@ -323,7 +322,7 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
   assert.equal(packageFixture.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
 });
 
-test("pdgsolve beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
+test("legacy beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
   const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const errors = validatePdgeditDocumentTilePayload(pdgeditDocument, catalog);
@@ -401,6 +400,64 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
   );
 });
 
+test("admitted fermion-decomposition beta solving publishes residue rows with admitted recipes", () => {
+  const request = readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json");
+  const result = solvePdgsolveRequest(request);
+  const acceptance = buildPdgsolveAcceptanceRecord({
+    request,
+    result,
+    familyId: result.bestFamilyId,
+  });
+  const builtDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(
+    acceptance.lockedSolveGraph,
+    pdgsolvePdgeditRecipeCatalog
+  );
+  const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
+
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
+  assert.deepEqual(validateAgainstSchema(acceptance, pdgsolveAcceptanceSchema), [], "exact beta acceptance drifted");
+  assert.deepEqual(validateAgainstSchema(builtDocument, pdgeditSchema), [], "exact beta pdgedit schema drifted");
+  assert.deepEqual(validatePdgeditDocumentTilePayload(builtDocument, tileCatalog), [], "exact beta residue tile drifted");
+  assert.deepEqual(
+    builtDocument.assemblies
+      .filter((assembly) => assembly.role === "intermediate")
+      .map((assembly) => assembly.type),
+    [
+      "pro-down-quark-assembly",
+      "pro-up-quark-assembly",
+      "unbound-architrino-residue-e4-p8-assembly",
+      "unbound-architrino-residue-e9-p3-assembly",
+      "unbound-architrino-residue-e6-p6-assembly",
+    ]
+  );
+  assert.deepEqual(
+    builtDocument.operators
+      .filter((operator) => operator.type === "associate")
+      .map((operator) => ({
+        id: operator.id,
+        positrinoCount: operator.positrinoCount,
+        electrinoCount: operator.electrinoCount,
+      })),
+    [
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e4_p8_1",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e9_p3_1",
+        positrinoCount: 3,
+        electrinoCount: 9,
+      },
+      {
+        id: "unit_lane4_associate_unbound_architrino_residue_e6_p6_1",
+        positrinoCount: 6,
+        electrinoCount: 6,
+      },
+    ]
+  );
+});
+
 test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with constituent assembly row types", () => {
   const twoHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.2h.v1");
   const fourHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.4h.v1");
@@ -424,6 +481,23 @@ test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with
     "pro-noether-core-assembly",
     "anti-noether-core-assembly",
   ]);
+});
+
+test("pdgsolve pdgedit recipe catalog admits the fermion-decomposition residue rows with solver-ledger counts", () => {
+  const residueRecipeIds = [
+    "pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1",
+    "pdgsolve.pdgedit.unbound_architrino_residue_e6_p6.v1",
+    "pdgsolve.pdgedit.unbound_architrino_residue_e9_p3.v1",
+  ];
+
+  residueRecipeIds.forEach((recipeId) => {
+    const recipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get(recipeId);
+    assert.ok(recipe, `${recipeId} missing`);
+    assert.equal(recipe.rows.length, 1);
+    assert.equal(recipe.ports.input[0], 1);
+    assert.equal(recipe.ports.output[0], 1);
+    assert.deepEqual(recipe.primitiveCounts, PDGSOLVE_ASSEMBLY_LEDGER_BY_ID[recipe.pdgsolveAssemblyId].counts);
+  });
 });
 
 test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payloads while keeping distinct labels", () => {

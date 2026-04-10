@@ -215,6 +215,93 @@
       }
     },
     {
+      "id": "pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1",
+      "pdgsolveAssemblyId": "unbound_architrino_residue_e4_p8",
+      "pdgeditType": "unbound-architrino-residue-e4-p8-assembly",
+      "boundaryLabelText": "Unbound Architrino Residue 4E/8P",
+      "primitiveCounts": {
+        "electrinoCount": 4,
+        "positrinoCount": 8
+      },
+      "rowTitles": [
+        "Unbound Architrino Residue 4E/8P"
+      ],
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-4",
+          "residue-positrinos-8",
+          "architrino-residue"
+        ]
+      ],
+      "ports": {
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.unbound_architrino_residue_e6_p6.v1",
+      "pdgsolveAssemblyId": "unbound_architrino_residue_e6_p6",
+      "pdgeditType": "unbound-architrino-residue-e6-p6-assembly",
+      "boundaryLabelText": "Unbound Architrino Residue 6E/6P",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rowTitles": [
+        "Unbound Architrino Residue 6E/6P"
+      ],
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-6",
+          "residue-positrinos-6",
+          "architrino-residue"
+        ]
+      ],
+      "ports": {
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.unbound_architrino_residue_e9_p3.v1",
+      "pdgsolveAssemblyId": "unbound_architrino_residue_e9_p3",
+      "pdgeditType": "unbound-architrino-residue-e9-p3-assembly",
+      "boundaryLabelText": "Unbound Architrino Residue 9E/3P",
+      "primitiveCounts": {
+        "electrinoCount": 9,
+        "positrinoCount": 3
+      },
+      "rowTitles": [
+        "Unbound Architrino Residue 9E/3P"
+      ],
+      "rows": [
+        [
+          "unbound",
+          "residue-electrinos-9",
+          "residue-positrinos-3",
+          "architrino-residue"
+        ]
+      ],
+      "ports": {
+        "input": [
+          1
+        ],
+        "output": [
+          1
+        ]
+      }
+    },
+    {
       "id": "pdgsolve.pdgedit.noether_pair.v1",
       "pdgsolveAssemblyId": "noether_pair",
       "pdgeditType": "noether-pair-composite",

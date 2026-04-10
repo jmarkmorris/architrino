@@ -1092,6 +1092,48 @@
         "binary-full-rb-rr",
         "binary-full-rb-rb"
       ]
+    },
+    {
+      "id": "unbound_architrino_residue_e4_p8_row_1",
+      "type": "unbound-architrino-residue-e4-p8-assembly",
+      "x": 2,
+      "y": 26,
+      "title": "Unbound Architrino Residue 4E/8P",
+      "role": "reactant",
+      "tiles": [
+        "unbound",
+        "residue-electrinos-4",
+        "residue-positrinos-8",
+        "architrino-residue"
+      ]
+    },
+    {
+      "id": "unbound_architrino_residue_e6_p6_row_1",
+      "type": "unbound-architrino-residue-e6-p6-assembly",
+      "x": 9,
+      "y": 26,
+      "title": "Unbound Architrino Residue 6E/6P",
+      "role": "intermediate",
+      "tiles": [
+        "unbound",
+        "residue-electrinos-6",
+        "residue-positrinos-6",
+        "architrino-residue"
+      ]
+    },
+    {
+      "id": "unbound_architrino_residue_e9_p3_row_1",
+      "type": "unbound-architrino-residue-e9-p3-assembly",
+      "x": 16,
+      "y": 26,
+      "title": "Unbound Architrino Residue 9E/3P",
+      "role": "product",
+      "tiles": [
+        "unbound",
+        "residue-electrinos-9",
+        "residue-positrinos-3",
+        "architrino-residue"
+      ]
     }
   ],
   "operators": [],

@@ -144,7 +144,7 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
   );
 });
 
-test("pdgview staging fixture preserves the published beta data chain while live solving is law-gated", () => {
+test("pdgview staging fixture preserves the legacy beta publication data chain while live solving uses the admitted decomposition path", () => {
   const pdgfeedRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
   const pdgsolveResult = solvePdgsolveRequest(pdgfeedRequest);
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
@@ -153,8 +153,11 @@ test("pdgview staging fixture preserves the published beta data chain while live
   const pdgviewStaging = readJson("content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json");
 
   assert.equal(pdgfeedRequest.source.kind, "pdgfeed");
-  assert.equal(pdgsolveResult.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
-  assert.equal(pdgsolveResult.review.blockingDiagnostics[0].id, "pdgsolve.search.unsupported_law_family");
+  assert.equal(pdgsolveResult.bestFamilyId, "family.beta.fermion_decomposition.v1");
+  assert.deepEqual(
+    pdgsolveResult.diagnostics.map((diagnostic) => diagnostic.id),
+    ["pdgsolve.normalization.support_added.noether_core_rows"]
+  );
   assert.equal(publicationPackage.sourceAcceptanceDigest, acceptance.resultDigest);
   assert.deepEqual(publicationPackage.pdgeditDocument, pdgeditDocument);
   assert.equal(pdgviewStaging.source.schema, pdgeditDocument.schema);
