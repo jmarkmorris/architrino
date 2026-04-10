@@ -1569,8 +1569,7 @@ An author who wants a blank starting point should load a manifest entry whose `a
 
 When the app starts:
 
-- if an entry with id `free_neutron_beta_decay` is available, load that entry by default;
-- otherwise load the manifest's default entry if one is declared;
+- load the manifest's default entry if one is declared;
 - otherwise load the first available manifest entry;
 - and if no entries are available, leave the surface empty rather than inventing extra UI.
 

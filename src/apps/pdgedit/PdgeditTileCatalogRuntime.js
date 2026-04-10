@@ -329,8 +329,10 @@ export function resolvePdgeditTileReviewLines(tile, sampleCounts = {}) {
   if (!Array.isArray(tile?.lines)) {
     return [];
   }
-  const topCount = normalizeText(sampleCounts.topCount) || "N";
-  const bottomCount = normalizeText(sampleCounts.bottomCount) || "M";
+  const normalizedSampleCounts =
+    sampleCounts && typeof sampleCounts === "object" ? sampleCounts : {};
+  const topCount = normalizeText(normalizedSampleCounts.topCount) || "N";
+  const bottomCount = normalizeText(normalizedSampleCounts.bottomCount) || "M";
   function resolveCountPlaceholder(placeholder, index) {
     const normalizedPlaceholder = normalizeText(placeholder).toUpperCase();
     if (normalizedPlaceholder === "N") {

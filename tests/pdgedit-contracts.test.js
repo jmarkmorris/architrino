@@ -114,7 +114,6 @@ const PDGEDIT_EXAMPLE_PATHS = [
   "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
   "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
   "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
-  "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
   "content/contracts/examples/pdgedit/unbound_architrinos.v1.json",
   "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
   "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
@@ -210,8 +209,8 @@ test("pdgedit example links and composite labels stay within the explicit bounda
   });
 });
 
-test("the default free neutron beta decay pdgedit document uses the normalized unit, edge, and label id vocabulary", () => {
-  const example = readJson("content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json");
+test("the solver-published free neutron beta pdgedit document uses the normalized unit, edge, and label id vocabulary", () => {
+  const example = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
 
   assert.equal(
     example.assemblies.every((assembly) => assembly.id.startsWith("unit_") && assembly.id.includes(".row.")),
@@ -243,11 +242,11 @@ test("pdgedit examples include at least one explicit assembly payload for every 
   assert.deepEqual(missingRows, []);
 });
 
-test("pdgedit manifest defaults to the canonical free neutron beta decay document", () => {
+test("pdgedit manifest defaults to its declared starter document", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
   assert.equal(manifest.schema, "pdgedit-library-manifest/v1");
-  assert.equal(manifest.defaultEntryId, "free_neutron_beta_decay");
+  assert.equal(manifest.defaultEntryId, "pass_thru_up_quark");
   assert.deepEqual(Object.keys(manifest).sort(), ["defaultEntryId", "entries", "schema"]);
 
   const defaultEntry = getPdgeditLibraryManifestEntryById(normalizedManifest, normalizedManifest.defaultEntryId);
@@ -255,7 +254,7 @@ test("pdgedit manifest defaults to the canonical free neutron beta decay documen
   assert.equal(defaultEntry.isDefault, true);
   assert.equal(
     defaultEntry.documentPath,
-    "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json"
+    "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json"
   );
 
   manifest.entries.forEach((entry) => {
@@ -274,7 +273,7 @@ test("pdgedit manifest defaults to the canonical free neutron beta decay documen
   });
 });
 
-test("pdgedit manifest selection prefers the canonical beta fixture, then declared default, then first entry", () => {
+test("pdgedit manifest selection prefers the declared default, then the first entry", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const selectedFromFixture = selectDefaultPdgeditLibraryManifestEntry(manifest);
   const selectedFromDeclaredDefault = selectDefaultPdgeditLibraryManifestEntry({
@@ -285,7 +284,7 @@ test("pdgedit manifest selection prefers the canonical beta fixture, then declar
         id: "primary_document",
         title: "Primary document",
         displayTitle: "Primary document",
-        documentPath: "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+        documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
       },
       {
         id: "secondary_document",
@@ -304,7 +303,7 @@ test("pdgedit manifest selection prefers the canonical beta fixture, then declar
         id: "first_document",
         title: "First document",
         displayTitle: "First document",
-        documentPath: "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+        documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
       },
       {
         id: "second_document",
@@ -315,7 +314,7 @@ test("pdgedit manifest selection prefers the canonical beta fixture, then declar
     ],
   });
 
-  assert.equal(selectedFromFixture?.id, "free_neutron_beta_decay");
+  assert.equal(selectedFromFixture?.id, "pass_thru_up_quark");
   assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
   assert.equal(selectedFromFirstEntry?.id, "first_document");
 });
@@ -357,12 +356,12 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
     "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
     "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
-    "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
+    "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
   ]);
   assert.deepEqual(loadedManifest, normalizePdgeditLibraryManifest(manifest));
   assert.deepEqual(loadedTileCatalog, normalizePdgeditTileCatalog(tileCatalog));
   assert.deepEqual(templateCatalog, normalizePdgeditTemplateCatalog(templateSource));
-  assert.equal(selectedEntry?.id, "free_neutron_beta_decay");
+  assert.equal(selectedEntry?.id, "pass_thru_up_quark");
   assert.equal(source.includes("PdgeditTileReviewAppRuntime"), false);
   assert.equal(source.includes("createPdgeditAppRuntime"), true);
 });

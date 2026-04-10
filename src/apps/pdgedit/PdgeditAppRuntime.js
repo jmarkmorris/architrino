@@ -220,7 +220,7 @@ export function createPdgeditAppRuntime({
     );
   }
 
-  function createTileElement(tileKey, sampleCounts = null) {
+  function createTileElement(tileKey, sampleCounts = undefined) {
     const tile = state.tileByKey.get(tileKey);
     if (!tile) {
       return createTextElement(documentLike, "div", "pdgedit-missing-tile", tileKey);

@@ -60,7 +60,6 @@ export function getPdgeditLibraryManifestEntryById(manifest = {}, entryId = "") 
 export function selectDefaultPdgeditLibraryManifestEntry(manifest = {}) {
   const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
   return (
-    getPdgeditLibraryManifestEntryById(normalizedManifest, "free_neutron_beta_decay") ??
     getPdgeditLibraryManifestEntryById(normalizedManifest, normalizedManifest.defaultEntryId) ??
     normalizedManifest.entries[0] ??
     null
