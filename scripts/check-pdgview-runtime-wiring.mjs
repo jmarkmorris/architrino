@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const targetPath = path.resolve(process.cwd(), "app.js");
+const targetPath = path.resolve(process.cwd(), "src/apps/architrino/ArchitrinoSceneAppRuntime.js");
 const source = fs.readFileSync(targetPath, "utf8");
 const lines = source.split("\n");
 
@@ -205,7 +205,9 @@ for (const match of source.matchAll(runtimeStartRegex)) {
 if (issues.length) {
   console.error("pdgview runtime wiring check failed:");
   issues.forEach((issue) => {
-    console.error(`- app.js:${issue.line} uses '${issue.name}' before declaration or without import: ${issue.source}`);
+    console.error(
+      `- src/apps/architrino/ArchitrinoSceneAppRuntime.js:${issue.line} uses '${issue.name}' before declaration or without import: ${issue.source}`
+    );
   });
   process.exit(1);
 }

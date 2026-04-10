@@ -1444,6 +1444,16 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
+    },
+    {
+      "id": "pdgedit",
+      "name": "pdgedit",
+      "path": "content/scenes/archie/pdgedit.json"
+    },
+    {
+      "id": "pdgsolve",
+      "name": "pdgsolve",
+      "path": "content/scenes/archie/pdgsolve.json"
     }
   ]
 }

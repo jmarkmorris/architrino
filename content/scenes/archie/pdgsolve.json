@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "pdgsolve",
+    "title": "pdgsolve",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "hideScaleLabels": true,
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": [
+    {
+      "id": "pdgsolve_request",
+      "label": "Request",
+      "radius": 1.1,
+      "color": "#2f6b6f",
+      "labelTitle": "Request"
+    },
+    {
+      "id": "pdgsolve_review",
+      "label": "Solve Review",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "labelTitle": "Solve Review"
+    },
+    {
+      "id": "pdgsolve_accept",
+      "label": "Acceptance",
+      "radius": 1.1,
+      "color": "#3f6a5a",
+      "labelTitle": "Acceptance"
+    },
+    {
+      "id": "pdgsolve_publish",
+      "label": "Publish pdgedit",
+      "radius": 1.1,
+      "color": "#7a4a1f",
+      "labelTitle": "Publish pdgedit"
+    }
+  ]
+}

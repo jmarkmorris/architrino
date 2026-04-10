@@ -436,11 +436,12 @@ Status: `active`
 Current:
 
 - `src/apps/pdgview/` now covers import, draft state, document workspace, playback, pointer, viewport, and authoring runtimes;
-- but `src/apps/pdgview/main.js` still imports `app.js`, and `app.js` still holds substantial pdgview behavior at about 7.1k lines.
+- `src/apps/pdgview/main.js` no longer imports root `app.js`, and root `app.js` is now thin entry glue;
+- but substantial pdgview behavior still remains in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
 
 Objective:
 
-- leave `app.js` as thin shell glue and give pdgview a fully app-owned bootstrap/runtime path.
+- finish moving the remaining pdgview scene-shell behavior into a fully app-owned bootstrap/runtime path.
 
 ### 2. Finish Authored Observer Framing And Autoscale UI
 

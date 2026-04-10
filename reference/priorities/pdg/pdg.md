@@ -11,10 +11,9 @@
 
 ## Task Queue
 
-1. `launcher_and_boundary_cleanup` — Add `pdgsolve` and `pdgedit` to standalone launch routing, thin `app.js`, and keep new app behavior inside `src/apps/*` instead of the shared root. Status: `active`. Depends on: none.
-2. `pdgfeed_request_surface` — Keep `pdgfeed` explicit, frozen-manifest based, and relocated out of the repo root behind a compatibility shim. Status: `active`. Depends on: none.
-3. `pdgedit_to_pdgview_handoff` — Freeze the downstream contract from accepted `pdgedit/v1` output into `pdgview` import, framing, preview, and export coverage. Status: `next`. Depends on: none.
-4. `regression_and_enforcement` — Expand contract fixtures, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: `launcher_and_boundary_cleanup`, `pdgfeed_request_surface`, `pdgedit_to_pdgview_handoff`.
+1. `pdgfeed_request_surface` — Keep `pdgfeed` explicit, frozen-manifest based, and relocated out of the repo root behind a compatibility shim. Status: `active`. Depends on: none.
+2. `pdgedit_to_pdgview_handoff` — Freeze the downstream contract from accepted `pdgedit/v1` output into `pdgview` import, framing, preview, and export coverage. Status: `next`. Depends on: none.
+3. `regression_and_enforcement` — Expand contract fixtures, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: `pdgfeed_request_surface`, `pdgedit_to_pdgview_handoff`.
 
 ## Scope
 
@@ -41,27 +40,19 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 - `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review app that loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records; it runs deterministic v1 family search, presents ranked families, locks accepted records, and derives downstream `pdgedit` previews from the accepted solve graph.
 - `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
 - `content/contracts/examples/pdgedit/manifest.v1.json` now includes solver-published final pdgedit documents in the same manifest-driven picker without admitting raw solver request/result payloads into pdgedit.
-- `src/apps/navigator/StandaloneAppLaunchRuntime.js` still only knows `pdgview`, and `src/apps/pdgview/main.js` still imports `app.js`, so launcher cleanup and full dedicated-app routing remain open.
+- `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for all three, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
 - `pdgfeed.py` already emits proposal and request artifacts and already has fixture/live-case regression coverage, but the implementation still lives at the repo root and is still the caller-facing entrypoint.
 
 ## Development Plan
 
-### 1. Finish Launcher And Architecture Cleanup Around The New Apps
-
-- Extend `src/apps/navigator/StandaloneAppLaunchRuntime.js` beyond `pdgview` so the main app can route cleanly into `pdgsolve` and `pdgedit`.
-- Add dedicated HTML entrypoints and independent boot paths for `pdgsolve`, `pdgedit`, and the already-existing `pdgview` runtime family.
-- Keep new app logic under `src/apps/pdgsolve/`, `src/apps/pdgedit/`, and `src/apps/pdgview/`; do not add new app-specific behavior back into `app.js`.
-- Continue pushing pdgview off `app.js` so the main web app becomes launcher/discovery shell only, consistent with [pdgapps](./pdgapps.md).
-- Exit criterion: each dedicated app boots independently and the main app launches them without shared live runtime coupling.
-
-### 2. Keep Upstream And Downstream Neighbors In Lockstep
+### 1. Keep Upstream And Downstream Neighbors In Lockstep
 
 - Move the real `pdgfeed.py` implementation under a PDG-owned scripts location while preserving a root compatibility shim until callers migrate.
 - Keep frozen-manifest generation as the stable batch surface for PDG support and let pdgsolve consume that stable denominator rather than ad hoc case discovery.
 - Land pdgview-side accepted-pdgedit import coverage, observer framing, and preview/export fixtures against the same accepted downstream contract.
 - Exit criterion: the whole `pdgfeed -> pdgsolve -> pdgedit -> pdgview` chain can be exercised through fixtures and contracts without direct cross-app runtime imports.
 
-### 3. Put Regression And Boundary Enforcement On The Critical Path
+### 2. Put Regression And Boundary Enforcement On The Critical Path
 
 - Add standalone boot smoke tests for `pdgsolve`, `pdgedit`, and `pdgview`.
 - Expand contract and fixture tests around request emission, solve results, accepted records, publication graphs, publication packages, pdgedit documents, manifests, and downstream pdgview imports.
