@@ -38,7 +38,39 @@
       ],
       "ports": {
         "input": [1, 2, 3],
-        "output": [1, 2, 3]
+        "output": [1, 2, 3],
+        "input.row.1": [1],
+        "input.row.2": [2],
+        "input.row.3": [3],
+        "output.row.1": [1],
+        "output.row.2": [2],
+        "output.row.3": [3]
+      },
+      "portPrimitiveCounts": {
+        "input.row.1": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "input.row.2": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "input.row.3": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.1": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.2": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.3": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        }
       }
     },
     {
@@ -187,7 +219,39 @@
       ],
       "ports": {
         "input": [1, 2, 3],
-        "output": [1, 2, 3]
+        "output": [1, 2, 3],
+        "input.row.1": [1],
+        "input.row.2": [2],
+        "input.row.3": [3],
+        "output.row.1": [1],
+        "output.row.2": [2],
+        "output.row.3": [3]
+      },
+      "portPrimitiveCounts": {
+        "input.row.1": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "input.row.2": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "input.row.3": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.1": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.2": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        },
+        "output.row.3": {
+          "electrinoCount": 6,
+          "positrinoCount": 6
+        }
       }
     },
     {

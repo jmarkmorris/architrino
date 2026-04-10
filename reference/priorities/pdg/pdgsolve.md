@@ -116,6 +116,10 @@ That grouping may carry adjacency, a label tile, and a visual span, but the grou
 
 Do not describe this grouping as a `composite assembly`.
 
+pdgsolve may still work with composites of assemblies internally.
+
+The deferred part is not solver awareness of composites; the deferred part is requiring pdgedit to display composite grouping UI.
+
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
@@ -133,6 +137,8 @@ For the current working direction, that means:
 - they are beyond the current state of detection and should therefore carry explicit provenance rather than being treated as ordinary authored-visible assembly rows;
 - the solver may use a composite reactant logically by using its already-present constituent 4-tile assembly rows;
 - there is no separate solver action required to expose or open those constituent rows;
+- pdgsolve may carry the composite grouping internally for support, provenance, and inventory bookkeeping;
+- pdgedit publication may omit the grouping label/span until the composite-display contract is explicitly admitted;
 - they are not lane-3 center assemblies;
 - they are not arbitrary middle-lane insertions;
 - and they are not free-floating geometry owned by the renderer.
@@ -1365,7 +1371,7 @@ That translation layer should own:
 - mapping pdgsolve-side assemblies and operators into explicit pdgedit assemblies and operators;
 - choosing explicit pdgedit tile payloads from pdgedit-owned catalogs and rules;
 - converting solved connectivity into explicit pdgedit links;
-- and carrying any display-only composite labels or spans as explicit pdgedit-side publication data rather than as solver-owned geometry.
+- and deferring composite labels or spans unless a dedicated pdgedit-side composite-display contract is admitted.
 
 pdgsolve should treat `pdgedit/v1` as a publication boundary, not as an internal convenience sketch.
 
@@ -1449,9 +1455,13 @@ Their surface mapping should follow one explicit rule:
 - but those remain distinct pdgsolve recipes with distinct recipe ids and boundary labels `2H` and `4H`;
 - so the publication layer must not rewrite `2h` into `noether_pair` or `4h` into any other pdgsolve assembly merely because the pdgedit-side row payloads reuse existing Noether-family surface rows.
 
-Those publication recipes render composites of assemblies by emitting their constituent 4-tile assembly rows plus display grouping data.
+Those publication recipes render composites of assemblies by emitting their constituent 4-tile assembly rows.
 
 They must not introduce a composite-level `Dissociate` or `Associate` operation.
+
+They also do not have to emit `compositeLabels` yet.
+
+Composite labels, spans, and label tiles are the deferred display layer, not a prerequisite for pdgsolve to use composites internally.
 
 ### Layout And Object Emission Rules
 
@@ -1474,7 +1484,7 @@ Assembly emission should follow these rules:
 - emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
 - emit row titles from the recipe row-title sequence;
 - emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from pdgsolve semantics at runtime;
-- and emit one `compositeLabels` record for every boundary-side composite of assemblies, with `side = left` for lane `1` and `side = right` for lane `5`, spanning that grouping's full emitted row interval.
+- and leave `compositeLabels` empty until pdgedit admits the deferred composite-display contract.
 
 Operator emission should follow these rules:
 

@@ -260,7 +260,7 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
   assert.equal(passThruOperators.every((operator) => operator.x === 14), true);
   assert.deepEqual(
     reactantRows.map((assembly) => assembly.y),
-    [0, 1, 2, 3, 4],
+    [0, 1, 2],
     "reactant rows should pack contiguously"
   );
   assert.deepEqual(
@@ -273,16 +273,27 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
     [0, 1, 2, 3, 4],
     "product rows should pack contiguously"
   );
+  assert.deepEqual(pdgeditDocument.compositeLabels, []);
   assert.deepEqual(
-    pdgeditDocument.compositeLabels.map((label) => [label.side, label.text, label.rowStart, label.rowEnd]),
+    pdgeditDocument.links.filter((link) => link.endpointB === "unit_lane2_beta_dissociate"),
     [
-      ["left", "Neutron", 0, 2],
-      ["left", "Noether Pair", 3, 4],
-      ["right", "Proton", 0, 2],
-      ["right", "Pro Electron", 3, 3],
-      ["right", "Anti Electron Neutrino", 4, 4],
-    ]
+      {
+        id: "edge_neutron_to_beta_dissociate",
+        endpointA: "unit_lane1_neutron.row.3",
+        endpointB: "unit_lane2_beta_dissociate",
+      },
+    ],
+    "dissociate must have one incoming 4-tile assembly row link"
   );
+  assert.deepEqual(dissociateOperators[0], {
+    id: "unit_lane2_beta_dissociate",
+    type: "dissociate",
+    x: 7,
+    y: 2,
+    title: "Dissociate",
+    positrinoCount: 6,
+    electrinoCount: 6,
+  });
 });
 
 test("pdgsolve pdgedit recipe catalog admits 2h and 4h as explicit publication recipes without collapsing them into support assemblies", () => {

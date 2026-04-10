@@ -50,34 +50,6 @@
         ]
       },
       {
-        "id": "unit_lane1_noether_pair.row.1",
-        "type": "noether-pair-assembly",
-        "x": 2,
-        "y": 3,
-        "title": "Noether Pair Row 1",
-        "role": "reactant",
-        "tiles": [
-          "pro-noether-core",
-          "binary-bare-br-none",
-          "binary-bare-br-none",
-          "binary-bare-br-none"
-        ]
-      },
-      {
-        "id": "unit_lane1_noether_pair.row.2",
-        "type": "noether-pair-assembly",
-        "x": 2,
-        "y": 4,
-        "title": "Noether Pair Row 2",
-        "role": "reactant",
-        "tiles": [
-          "anti-noether-core",
-          "binary-bare-rb-none",
-          "binary-bare-rb-none",
-          "binary-bare-rb-none"
-        ]
-      },
-      {
         "id": "unit_lane3_proton.row.1",
         "type": "pro-proton-assembly",
         "x": 9,
@@ -225,8 +197,8 @@
         "x": 7,
         "y": 2,
         "title": "Dissociate",
-        "positrinoCount": 30,
-        "electrinoCount": 30
+        "positrinoCount": 6,
+        "electrinoCount": 6
       },
       {
         "id": "unit_lane4_pass_thru_proton",
@@ -258,42 +230,12 @@
     ],
     "links": [
       {
-        "id": "edge_neutron_to_beta_dissociate.link.1",
-        "endpointA": "unit_lane1_neutron.row.1",
-        "endpointB": "unit_lane2_beta_dissociate"
-      },
-      {
-        "id": "edge_neutron_to_beta_dissociate.link.2",
-        "endpointA": "unit_lane1_neutron.row.2",
-        "endpointB": "unit_lane2_beta_dissociate"
-      },
-      {
-        "id": "edge_neutron_to_beta_dissociate.link.3",
+        "id": "edge_neutron_to_beta_dissociate",
         "endpointA": "unit_lane1_neutron.row.3",
         "endpointB": "unit_lane2_beta_dissociate"
       },
       {
-        "id": "edge_noether_pair_to_beta_dissociate.link.1",
-        "endpointA": "unit_lane1_noether_pair.row.1",
-        "endpointB": "unit_lane2_beta_dissociate"
-      },
-      {
-        "id": "edge_noether_pair_to_beta_dissociate.link.2",
-        "endpointA": "unit_lane1_noether_pair.row.2",
-        "endpointB": "unit_lane2_beta_dissociate"
-      },
-      {
-        "id": "edge_beta_dissociate_to_proton.link.1",
-        "endpointA": "unit_lane2_beta_dissociate",
-        "endpointB": "unit_lane3_proton.row.1"
-      },
-      {
-        "id": "edge_beta_dissociate_to_proton.link.2",
-        "endpointA": "unit_lane2_beta_dissociate",
-        "endpointB": "unit_lane3_proton.row.2"
-      },
-      {
-        "id": "edge_beta_dissociate_to_proton.link.3",
+        "id": "edge_beta_dissociate_to_proton",
         "endpointA": "unit_lane2_beta_dissociate",
         "endpointB": "unit_lane3_proton.row.3"
       },
@@ -358,43 +300,7 @@
         "endpointB": "unit_lane5_electron_antineutrino.row.1"
       }
     ],
-    "compositeLabels": [
-      {
-        "id": "label.unit_lane1_neutron",
-        "side": "left",
-        "text": "Neutron",
-        "rowStart": 0,
-        "rowEnd": 2
-      },
-      {
-        "id": "label.unit_lane1_noether_pair",
-        "side": "left",
-        "text": "Noether Pair",
-        "rowStart": 3,
-        "rowEnd": 4
-      },
-      {
-        "id": "label.unit_lane5_proton",
-        "side": "right",
-        "text": "Proton",
-        "rowStart": 0,
-        "rowEnd": 2
-      },
-      {
-        "id": "label.unit_lane5_electron",
-        "side": "right",
-        "text": "Pro Electron",
-        "rowStart": 3,
-        "rowEnd": 3
-      },
-      {
-        "id": "label.unit_lane5_electron_antineutrino",
-        "side": "right",
-        "text": "Anti Electron Neutrino",
-        "rowStart": 4,
-        "rowEnd": 4
-      }
-    ]
+    "compositeLabels": []
   },
   "manifestEntry": {
     "id": "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",

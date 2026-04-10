@@ -28,6 +28,15 @@ function normalizePrimitiveCounts(record = {}) {
   };
 }
 
+function normalizePortPrimitiveCounts(record = {}) {
+  return Object.fromEntries(
+    Object.entries(record && typeof record === "object" ? record : {}).map(([portId, counts]) => [
+      normalizeText(portId),
+      normalizePrimitiveCounts(counts),
+    ])
+  );
+}
+
 function normalizeAssemblyRecipe(recipe = {}) {
   const rows = Array.isArray(recipe?.rows) ? recipe.rows.map(normalizeTileRow).filter((row) => row.length === 4) : [];
   const rowTitles = Array.isArray(recipe?.rowTitles)
@@ -39,6 +48,7 @@ function normalizeAssemblyRecipe(recipe = {}) {
     pdgeditType: normalizeText(recipe?.pdgeditType),
     boundaryLabelText: normalizeText(recipe?.boundaryLabelText),
     primitiveCounts: normalizePrimitiveCounts(recipe?.primitiveCounts),
+    portPrimitiveCounts: normalizePortPrimitiveCounts(recipe?.portPrimitiveCounts),
     rowTitles,
     rows,
     ports: Object.fromEntries(

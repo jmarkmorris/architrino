@@ -11,15 +11,6 @@
       "anchorRow": 0
     },
     {
-      "id": "unit_lane1_noether_pair",
-      "kind": "assembly",
-      "lane": 1,
-      "recipeId": "pdgsolve.pdgedit.noether_pair.v1",
-      "occurrenceKey": "lane1.noether_pair#1",
-      "title": "Noether Pair",
-      "anchorRow": 3
-    },
-    {
       "id": "unit_lane2_beta_dissociate",
       "kind": "operator",
       "lane": 2,
@@ -114,23 +105,16 @@
     {
       "id": "edge_neutron_to_beta_dissociate",
       "fromUnitId": "unit_lane1_neutron",
-      "fromPortId": "output",
+      "fromPortId": "output.row.3",
       "toUnitId": "unit_lane2_beta_dissociate",
-      "toPortId": "input.neutron"
-    },
-    {
-      "id": "edge_noether_pair_to_beta_dissociate",
-      "fromUnitId": "unit_lane1_noether_pair",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane2_beta_dissociate",
-      "toPortId": "input.noether_pair"
+      "toPortId": "input"
     },
     {
       "id": "edge_beta_dissociate_to_proton",
       "fromUnitId": "unit_lane2_beta_dissociate",
       "fromPortId": "output.proton",
       "toUnitId": "unit_lane3_proton",
-      "toPortId": "input"
+      "toPortId": "input.row.3"
     },
     {
       "id": "edge_beta_dissociate_to_electron",

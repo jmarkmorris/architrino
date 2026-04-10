@@ -101,43 +101,69 @@ function buildAssemblyRecords(graph, catalog) {
     });
 }
 
-function sumPrimitiveCounts(units, catalog) {
-  return units.reduce(
-    (totals, unit) => {
-      const recipe = getPdgsolvePdgeditAssemblyRecipe(unit.recipeId, catalog);
-      if (!recipe) {
-        throw new Error(`Unknown pdgsolve pdgedit assembly recipe: ${unit.recipeId}`);
-      }
-      totals.electrinoCount += recipe.primitiveCounts.electrinoCount;
-      totals.positrinoCount += recipe.primitiveCounts.positrinoCount;
-      return totals;
-    },
-    { electrinoCount: 0, positrinoCount: 0 }
-  );
+function getEdgeAssemblyCountSource(edge, side, unitById, catalog) {
+  const unitId = side === "from" ? edge.fromUnitId : edge.toUnitId;
+  const portId = side === "from" ? edge.fromPortId : edge.toPortId;
+  const unit = unitById.get(unitId);
+  if (unit?.kind !== "assembly") {
+    return null;
+  }
+  const recipe = getPdgsolvePdgeditAssemblyRecipe(unit.recipeId, catalog);
+  if (!recipe) {
+    throw new Error(`Unknown pdgsolve pdgedit assembly recipe: ${unit.recipeId}`);
+  }
+  return {
+    unit,
+    edge,
+    portId,
+    counts: recipe.portPrimitiveCounts?.[portId] ?? recipe.primitiveCounts,
+  };
 }
 
-function getAdjacentAssemblyUnits(operatorUnit, graph, unitById) {
-  const incomingAssemblies = [];
-  const outgoingAssemblies = [];
+function getOperatorAssemblyCountSources(operatorUnit, graph, unitById, catalog) {
+  const incoming = [];
+  const outgoing = [];
   graph.edges.forEach((edge) => {
     if (edge.toUnitId === operatorUnit.id) {
-      const sourceUnit = unitById.get(edge.fromUnitId);
-      if (sourceUnit?.kind === "assembly") {
-        incomingAssemblies.push(sourceUnit);
+      const source = getEdgeAssemblyCountSource(edge, "from", unitById, catalog);
+      if (source) {
+        incoming.push(source);
       }
     }
     if (edge.fromUnitId === operatorUnit.id) {
-      const targetUnit = unitById.get(edge.toUnitId);
-      if (targetUnit?.kind === "assembly") {
-        outgoingAssemblies.push(targetUnit);
+      const source = getEdgeAssemblyCountSource(edge, "to", unitById, catalog);
+      if (source) {
+        outgoing.push(source);
       }
     }
   });
-  const dedupeById = (units) => [...new Map(units.map((unit) => [unit.id, unit])).values()];
-  return {
-    incoming: dedupeById(incomingAssemblies),
-    outgoing: dedupeById(outgoingAssemblies),
-  };
+  return { incoming, outgoing };
+}
+
+function requireSingleOperatorCountSource(operatorUnit, sources, direction) {
+  if (sources.length !== 1) {
+    throw new Error(
+      `Publication operator ${operatorUnit.id} expected exactly one ${direction} assembly count source and found ${sources.length}`
+    );
+  }
+  return sources[0];
+}
+
+function selectOperatorCountSource(operatorUnit, recipe, graph, unitById, catalog) {
+  const sources = getOperatorAssemblyCountSources(operatorUnit, graph, unitById, catalog);
+  if (recipe.pdgsolveOperatorType === "dissociate") {
+    return requireSingleOperatorCountSource(operatorUnit, sources.incoming, "incoming");
+  }
+  if (recipe.pdgsolveOperatorType === "associate") {
+    return requireSingleOperatorCountSource(operatorUnit, sources.outgoing, "outgoing");
+  }
+  if (sources.incoming.length === 1) {
+    return sources.incoming[0];
+  }
+  if (sources.outgoing.length === 1) {
+    return sources.outgoing[0];
+  }
+  throw new Error(`Publication operator ${operatorUnit.id} needs one assembly count source`);
 }
 
 function buildOperatorRecords(graph, catalog) {
@@ -153,9 +179,8 @@ function buildOperatorRecords(graph, catalog) {
       if (x === undefined) {
         throw new Error(`Unsupported operator lane for publication: ${unit.lane}`);
       }
-      const adjacentUnits = getAdjacentAssemblyUnits(unit, graph, unitById);
-      const sourceUnits = adjacentUnits.incoming.length ? adjacentUnits.incoming : adjacentUnits.outgoing;
-      const counts = sumPrimitiveCounts(sourceUnits, catalog);
+      const countSource = selectOperatorCountSource(unit, recipe, graph, unitById, catalog);
+      const counts = countSource.counts;
       return {
         id: unit.id,
         type: recipe.pdgeditType,
@@ -198,22 +223,8 @@ function buildLinkRecords(graph, catalog) {
   });
 }
 
-function buildCompositeLabels(graph, catalog) {
-  return graph.units
-    .filter((unit) => unit.kind === "assembly" && (unit.lane === 1 || unit.lane === 5))
-    .map((unit) => {
-      const recipe = getPdgsolvePdgeditAssemblyRecipe(unit.recipeId, catalog);
-      if (!recipe) {
-        throw new Error(`Unknown pdgsolve pdgedit assembly recipe: ${unit.recipeId}`);
-      }
-      return {
-        id: `label.${unit.id}`,
-        side: unit.lane === 1 ? "left" : "right",
-        text: recipe.boundaryLabelText,
-        rowStart: unit.anchorRow,
-        rowEnd: unit.anchorRow + recipe.rows.length - 1,
-      };
-    });
+function buildCompositeLabels() {
+  return [];
 }
 
 export function buildPdgeditDocumentFromPdgsolvePublicationGraph(graph = {}, recipeCatalog = null) {

@@ -178,36 +178,7 @@
     ],
     "operators": [],
     "links": [],
-    "compositeLabels": [
-      {
-        "id": "label.unit_lane1_2h_left",
-        "side": "left",
-        "text": "2H",
-        "rowStart": 0,
-        "rowEnd": 1
-      },
-      {
-        "id": "label.unit_lane1_4h_left",
-        "side": "left",
-        "text": "4H",
-        "rowStart": 2,
-        "rowEnd": 5
-      },
-      {
-        "id": "label.unit_lane5_2h_right",
-        "side": "right",
-        "text": "2H",
-        "rowStart": 0,
-        "rowEnd": 1
-      },
-      {
-        "id": "label.unit_lane5_4h_right",
-        "side": "right",
-        "text": "4H",
-        "rowStart": 2,
-        "rowEnd": 5
-      }
-    ]
+    "compositeLabels": []
   },
   "manifestEntry": {
     "id": "pdgsolve_boundary_augmentation_recipe_coverage",
