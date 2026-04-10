@@ -93,15 +93,10 @@ The visible surface is still useful as a learning tool, so this document should 
 
 For orientation, the visible base array may be described as a simple grid of tiles that is `20` columns wide and organized into `5` semantic lanes.
 
-Those lanes are:
-
-- lane 1: reactants;
-- lane 2: dissociation and pass-thru operators;
-- lane 3: intermediates;
-- lane 4: association and pass-thru operators;
-- and lane 5: products.
-
-When the UI is being described visually, those five lanes may also be read as the left assembly band, left operator band, middle assembly band, right operator band, and right assembly band.
+| Lane              | 1                      | 2                                    | 3                           | 4                                   | 5                     |
+| ----------------- | ---------------------- | ------------------------------------ | --------------------------- | ----------------------------------- | --------------------- |
+| Surface role      | reactants              | dissociation and pass-thru operators | intermediates               | association and pass-thru operators | products              |
+| Visual/UI reading | reactant assembly band | reactant operator band               | intermediate assembly band  | product operator band               | product assembly band |
 
 That visual description is only a translation aid.
 
@@ -122,9 +117,9 @@ The preferred terminology mapping is:
 | tile group | assembly | Prefer `assembly` in documentation and code |
 | four-tile group | assembly | One row-level assembly occupies four horizontal tiles in downstream publication |
 | reactant lane | reactant-side assembly lane | Lane 1 |
-| left operator lane | reactant-side operator lane | Lane 2 |
+| reactant operator band | reactant-side operator lane | Lane 2 |
 | intermediate lane | intermediate assembly lane | Lane 3 |
-| right operator lane | product-side operator lane | Lane 4 |
+| product operator band | product-side operator lane | Lane 4 |
 | product lane | product-side assembly lane | Lane 5 |
 
 This translation should stay intentionally small.
@@ -154,7 +149,7 @@ The assembly grammar is:
 
 - lanes 1, 3, and 5 contain assemblies only;
 - lanes 2 and 4 contain operators only;
-- and all normal solve progress moves left-to-right through adjacent lanes only.
+- and all normal solve progress moves from reactant side to product side through adjacent semantic lanes only.
 
 In pdgsolve terminology, an **assembly** means one 4-tile assembly row that can participate in operator routing.
 
@@ -1517,7 +1512,7 @@ So the accepted publication graph is still pdgsolve-owned, but it is already exp
 
 - which accepted units exist;
 - which recipe expands each unit into pdgedit surface objects;
-- and which accepted left-to-right connections must become pdgedit links.
+- and which accepted reactant-to-product neighboring-band connections must become pdgedit links.
 
 ### Admitted Publication Recipe Family
 
@@ -1560,9 +1555,9 @@ The publication adapter should materialize the final pdgedit surface determinist
 The fixed pdgedit band origins are:
 
 - reactant assemblies at `x = 2`;
-- left operators at `x = 7`;
+- reactant operators at `x = 7`;
 - intermediate assemblies at `x = 9`;
-- right operators at `x = 14`;
+- product operators at `x = 14`;
 - and product assemblies at `x = 16`.
 
 Assembly emission should follow these rules:
@@ -1600,7 +1595,7 @@ That means:
 - assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
 - operator recipes must define their concrete pdgedit endpoint id, which is the operator record id itself;
 - one accepted publication edge may therefore expand into one or more pdgedit links when the accepted port map spans multiple emitted assembly rows;
-- every emitted pdgedit link must already obey the neighboring-band rule and canonical left-to-right endpoint order;
+- every emitted pdgedit link must already obey the neighboring-band rule and canonical reactant-to-product endpoint order;
 - and no pdgedit link should be created by screen-geometry inference or by scanning nearby rows after the fact.
 
 So the adapter's job is explicit expansion, not reconstruction.
