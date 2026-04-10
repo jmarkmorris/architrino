@@ -11,9 +11,7 @@
 
 ## Task Queue
 
-1. `pdgfeed_request_surface` — Keep `pdgfeed` explicit, frozen-manifest based, and relocated out of the repo root behind a compatibility shim. Status: `active`. Depends on: none.
-2. `pdgedit_to_pdgview_handoff` — Freeze the downstream contract from accepted `pdgedit/v1` output into `pdgview` import, framing, preview, and export coverage. Status: `next`. Depends on: none.
-3. `regression_and_enforcement` — Expand contract fixtures, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: `pdgfeed_request_surface`, `pdgedit_to_pdgview_handoff`.
+1. `regression_and_enforcement` — Expand contract fixtures, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: none.
 
 ## Scope
 
@@ -41,18 +39,12 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 - `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
 - `content/contracts/examples/pdgedit/manifest.v1.json` now includes solver-published final pdgedit documents in the same manifest-driven picker without admitting raw solver request/result payloads into pdgedit.
 - `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for all three, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
-- `pdgfeed.py` already emits proposal and request artifacts and already has fixture/live-case regression coverage, but the implementation still lives at the repo root and is still the caller-facing entrypoint.
+- `scripts/pdg/pdgfeed.py` now owns the real PDG feed implementation, while root `pdgfeed.py` remains a compatibility shim for existing CLI calls and Python module imports.
+- `src/contracts/pdgview-staging/v1/schema.json`, `content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json`, and `src/apps/pdgview/PdgviewPdgeditImportRuntime.js` now freeze accepted `pdgedit/v1` import into pdgview-owned staging, observer framing, preview, and export data without importing pdgsolve or pdgedit app runtimes.
 
 ## Development Plan
 
-### 1. Keep Upstream And Downstream Neighbors In Lockstep
-
-- Move the real `pdgfeed.py` implementation under a PDG-owned scripts location while preserving a root compatibility shim until callers migrate.
-- Keep frozen-manifest generation as the stable batch surface for PDG support and let pdgsolve consume that stable denominator rather than ad hoc case discovery.
-- Land pdgview-side accepted-pdgedit import coverage, observer framing, and preview/export fixtures against the same accepted downstream contract.
-- Exit criterion: the whole `pdgfeed -> pdgsolve -> pdgedit -> pdgview` chain can be exercised through fixtures and contracts without direct cross-app runtime imports.
-
-### 2. Put Regression And Boundary Enforcement On The Critical Path
+### 1. Put Regression And Boundary Enforcement On The Critical Path
 
 - Add standalone boot smoke tests for `pdgsolve`, `pdgedit`, and `pdgview`.
 - Expand contract and fixture tests around request emission, solve results, accepted records, publication graphs, publication packages, pdgedit documents, manifests, and downstream pdgview imports.
@@ -84,7 +76,7 @@ Input:
 
 Current run method:
 
-- command line through `pdgfeed.py`.
+- command line through the root compatibility shim `pdgfeed.py`, or directly through `scripts/pdg/pdgfeed.py`.
 
 Current CLI examples:
 

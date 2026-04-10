@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/pdgview-staging/v1/schema.json",
+  "title": "pdgview Staging Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "stagingId",
+    "source",
+    "observerFraming",
+    "draftState",
+    "preview",
+    "export"
+  ],
+  "properties": {
+    "schema": {
+      "const": "pdgview-staging/v1"
+    },
+    "stagingId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "documentId",
+        "title",
+        "sourcePath",
+        "assemblyCount",
+        "operatorCount",
+        "linkCount"
+      ],
+      "properties": {
+        "schema": {
+          "const": "pdgedit/v1"
+        },
+        "documentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "assemblyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "operatorCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "linkCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "observerFraming": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preset",
+        "autoscale",
+        "defaultAssemblyPolicy",
+        "requiredAssemblyIds",
+        "optionalAssemblyIds"
+      ],
+      "properties": {
+        "preset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "autoscale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultAssemblyPolicy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiredAssemblyIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "optionalAssemblyIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "draftState": {
+      "type": "object"
+    },
+    "preview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "sceneId",
+        "title",
+        "objectCount",
+        "linkCount",
+        "objectIds",
+        "linkIds"
+      ],
+      "properties": {
+        "schema": {
+          "const": "pdgview-preview/v1"
+        },
+        "sceneId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "linkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "objectIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "linkIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "defaultFileName",
+        "sceneDocument"
+      ],
+      "properties": {
+        "schema": {
+          "const": "pdgview-export/v1"
+        },
+        "defaultFileName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sceneDocument": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

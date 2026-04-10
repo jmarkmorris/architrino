@@ -49,7 +49,7 @@ It does not own:
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but pdgview-side structural editing is still incomplete.
 - pdgview now sits cleanly on the downstream side of the solve/publication path.
 - Upstream request loading, solving, review, and publication stay entirely outside pdgview; the intended forward input is accepted pdgedit output or an equivalent downstream contract.
-- The next import and contract work is to define and cover that forward pdgsolve/pdgedit-to-pdgview seam.
+- The first accepted-pdgedit import contract now exists as `pdgview-staging/v1`, with a frozen beta fixture that carries observer framing, preview identifiers, and export scene data from accepted `pdgedit/v1` output without importing upstream app runtimes.
 
 ## Design
 
@@ -468,20 +468,7 @@ Objective:
 
 - turn `Observer` into a true timeline object and either implement `Audio` or remove its placeholder path until it is real.
 
-### 4. Expand Contract-Driven Import Coverage For Downstream Authored-Surface Content
-
-Status: `next`
-
-Current:
-
-- pdgview no longer carries a live legacy handoff bridge in the active tree;
-- the accepted-pdgedit downstream contract still needs schema, fixtures, and runtime coverage.
-
-Objective:
-
-- land the accepted-pdgedit downstream contract and prove that pdgview stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
-
-### 5. Move More Editing Onto Canonical Structure Transforms
+### 4. Move More Editing Onto Canonical Structure Transforms
 
 Status: `pending`
 

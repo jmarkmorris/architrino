@@ -276,6 +276,27 @@ test("pdgfeed can print fixture pdgsolve-request json to stdout for piping", () 
   assert.deepEqual(request, fixtureRequest);
 });
 
+test("pdgfeed implementation lives under scripts/pdg while the root shim preserves callers", () => {
+  const rootShim = fs.readFileSync(new URL("../pdgfeed.py", import.meta.url), "utf8");
+  const implementation = fs.readFileSync(new URL("../scripts/pdg/pdgfeed.py", import.meta.url), "utf8");
+
+  assert.match(rootShim, /scripts" \/ "pdg" \/ "pdgfeed\.py"/);
+  assert.match(rootShim, /importlib\.util/);
+  assert.doesNotMatch(rootShim, /PDG_V1_PARTICLE_MAPPINGS/);
+  assert.match(implementation, /PDG_V1_PARTICLE_MAPPINGS/);
+});
+
+test("scripts/pdg pdgfeed implementation can print fixture pdgsolve-request json directly", () => {
+  const fixtureRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
+  const stdout = execFileSync("python3", ["scripts/pdg/pdgfeed.py", "print-fixture-pdgsolve-request", "free_neutron_beta_decay"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+  const request = JSON.parse(stdout);
+
+  assert.deepEqual(request, fixtureRequest);
+});
+
 test("pdgfeed can print fixture proposal json to stdout", () => {
   const fixtureProposal = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.proposal.v1.json");
   const stdout = execFileSync("python3", ["pdgfeed.py", "print-fixture-proposal", "free_neutron_beta_decay"], {
