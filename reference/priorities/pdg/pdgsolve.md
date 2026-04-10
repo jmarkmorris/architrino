@@ -1670,7 +1670,27 @@ pdgsolve should not:
 
 ## Priorities
 
-### 1. Make Support-Row Provenance Visible In The Accepted Solve Graph
+### 1. Define Unbound Architrino Residue Rows For Fermion Decomposition
+
+Status: `active`
+
+Current:
+
+- pdgsolve now blocks the direct row-level beta shortcut with `pdgsolve.search.unsupported_law_family`;
+- the missing law-family token is `pdgsolve-laws/fermion-decomposition.v1`;
+- pdgsolve has not yet defined canonical solver-native row symbols, primitive ledgers, publication recipes, lane-role permissions, or review labels for the unbound architrino residue rows that a real fermion decomposition law would emit;
+- and without those definitions, beta-shaped requests cannot become publishable exact solve families without reintroducing the hidden beta-only rewrite.
+
+Objective:
+
+- define the finite unbound-architrino residue row vocabulary needed for the first fermion decomposition law family, including canonical solver-native row ids and display labels;
+- assign separate Electrino and Positrino primitive ledger values for each admitted residue row and verify conservation for every admitted decomposition law;
+- define lane-role permissions and normalization rules for residue rows so they cannot enter through particle-level aliases, grouping labels, or renderer-only structures;
+- add pdgsolve publication recipes, plus any required downstream pdgedit recipe/tile references, for each residue row that may cross into accepted publication;
+- add review labels and diagnostics so missing or unsupported residue rows appear explicitly in candidate review;
+- and only after that, admit the first `pdgsolve-laws/fermion-decomposition.v1` entries and rebuild the beta-family support case as a composition of those primitive-preserving laws rather than as a direct beta rewrite.
+
+### 2. Make Support-Row Provenance Visible In The Accepted Solve Graph
 
 Status: `active`
 
@@ -1689,7 +1709,7 @@ Objective:
 - add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
 - and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
 
-### 2. Keep Solver Correctness On The Active Priority Queue
+### 3. Keep Solver Correctness On The Active Priority Queue
 
 Status: `active`
 
