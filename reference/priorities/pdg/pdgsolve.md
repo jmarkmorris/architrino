@@ -41,14 +41,14 @@ It does not own:
 
 ### Role In The Product
 
-pdgsolve should become the dedicated solve-and-review app that mates with pdgedit.
+pdgsolve should become the dedicated solve-and-score app that mates with pdgedit.
 
 The intended high-level flow is:
 
 - `pdgfeed` or another upstream source emits a solve request;
 - pdgsolve loads that request;
 - pdgsolve runs the solve;
-- pdgsolve reviews one or more candidate outcomes;
+- pdgsolve scores one or more candidate outcomes;
 - pdgsolve accepts one outcome for publication;
 - pdgsolve publishes a final `pdgedit/v1` document;
 - and pdgedit renders or edits that final authored-surface document.
@@ -89,7 +89,7 @@ Large coordinator files may assemble those pieces, but they should not become th
 
 pdgsolve should speak first in solver and publication terms, not in screen-layout shorthand.
 
-The visible surface is still useful as a learning tool, so this document should keep one deliberately limited translation between the visual UI and the solver's proper terminology.
+The visible surface of pdgedit may be useful as a visual metaphor for how the solve stages flow.
 
 For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic lanes.
 
@@ -98,35 +98,7 @@ For orientation, the visible base array may be described as a simple grid of til
 | Surface role      | reactants              | dissociation and pass-thru operators | intermediates               | association and pass-thru operators | products              |
 | Visual/UI reading | reactant assemblies    | reactant operators                   | intermediate assemblies     | product operators                   | product assemblies    |
 
-That visual description is only a translation aid.
-
-The solver-native meaning should remain:
-
-- lane 1: reactant-side assemblies;
-- lane 2: reactant-side operators;
-- lane 3: intermediate assemblies;
-- lane 4: product-side operators;
-- and lane 5: product-side assemblies.
-
-The preferred terminology mapping is:
-
-| Visual/UI description | Proper pdgsolve term | Notes |
-| --- | --- | --- |
-| grid of tiles | solve surface or publication surface | Useful for visual orientation only; not the solver's state model |
-| lane | semantic lane | The word `lane` is acceptable when it refers to solver meaning rather than pixel placement |
-| tile group | assembly | Prefer `assembly` in documentation and code |
-| four-tile group | assembly | One row-level assembly occupies four horizontal tiles in downstream publication |
-| reactant lane | reactant-side assembly lane | Lane 1 |
-| reactant operators | reactant-side operator lane | Lane 2 |
-| intermediate lane | intermediate assembly lane | Lane 3 |
-| product operators | product-side operator lane | Lane 4 |
-| product lane | product-side assembly lane | Lane 5 |
-
-This translation should stay intentionally small.
-
-It exists to help a reader move from what the UI shows to what the solver means.
-
-It should not let screen language replace the combinatorial model.
+That table is only a translation aid. The rest of this document should use solver-native lane, assembly, operator, provenance, and publication language rather than surface layout language.
 
 ### Fundamental Solve Geometry
 
@@ -1010,7 +982,7 @@ It should be rich enough to carry:
 - any alternate candidate families worth surfacing;
 - diagnostics and unsupported notes;
 - explicit provenance/accounting summaries;
-- and the information needed to publish into `pdgedit/v1` without making pdgedit reconstruct omitted semantics.
+- and the information needed to materialize downstream surface documents without making those downstream apps reconstruct omitted semantics.
 
 pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core shape.
 
@@ -1027,6 +999,16 @@ This means:
 - `pdgsolve-result/v1` is the external review/result contract, not the internal solver contract;
 - the internal search result may later be serialized if another boundary genuinely needs it;
 - but pdgsolve v1 should not force that internal model to become a public versioned JSON contract prematurely.
+
+For accepted outcomes, pdgsolve should also be able to materialize one compact accepted-solution description that is:
+
+- surface-agnostic rather than pdgedit-specific;
+- explicit about requested rows, normalization-added rows, accepted operators, accepted inventories, provenance, and diagnostics;
+- capable of describing unknown or newly introduced spacetime reactants or products when the accepted solve needs them;
+- small enough to be useful to downstream tools other than pdgedit;
+- and free of tile payloads, screen coordinates, manifest entries, or renderer-specific layout rules.
+
+That compact accepted-solution description is the better candidate for any future shared or standardized downstream solve boundary.
 
 ### Option Family Identity
 
@@ -1451,16 +1433,25 @@ The downstream publication step should read only from that lock record, not from
 
 ### Translation Boundary To pdgedit
 
-The translation into `pdgedit/v1` should happen before pdgedit reads the result.
+pdgsolve should not treat `pdgedit/v1` as its primary downstream meaning.
+
+The preferred downstream order is:
+
+1. pdgsolve accepts one solve family;
+2. pdgsolve materializes one compact accepted-solution description;
+3. a downstream adapter targets one concrete consumer such as `pdgedit/v1`;
+4. that adapter materializes the consumer-specific document;
+5. and the target app reads only its own final document contract.
+
+For pdgedit specifically, the translation into `pdgedit/v1` should happen before pdgedit reads the result.
 
 That translation layer should own:
 
-- mapping pdgsolve-side assemblies and operators into explicit pdgedit assemblies and operators;
-- choosing explicit pdgedit tile payloads from pdgedit-owned catalogs and rules;
-- converting solved connectivity into explicit pdgedit links;
-- and deferring grouping labels or spans unless a dedicated post-solver display contract is admitted.
+- mapping accepted solver-side meaning into explicit pdgedit-side objects;
+- applying pdgedit-owned materialization rules for rows, operators, links, and any admitted grouping effects;
+- and producing one final `pdgedit/v1` document before pdgedit reads the result.
 
-pdgsolve should treat `pdgedit/v1` as a publication boundary, not as an internal convenience sketch.
+pdgsolve should therefore treat `pdgedit/v1` as one downstream publication target, not as the native expression of solver output.
 
 ### Canonical Publication Pipeline
 
@@ -1468,10 +1459,11 @@ pdgsolve should support exactly one downstream publication pipeline:
 
 1. start from one `pdgsolve-acceptance/v1` lock record;
 2. validate that the lock record is still fresh and publication-ready;
-3. translate `acceptedRecord.lockedSolveGraph` into one final `pdgedit/v1` document;
-4. validate that `pdgedit/v1` document against the pdgedit boundary rules;
-5. either publish the document durably with a manifest entry or launch pdgedit with that exact in-memory document;
-6. and record the publication outcome back into the pdgsolve-side `publication` object.
+3. materialize one compact accepted-solution description from the accepted record;
+4. translate that accepted-solution description into one final target document such as `pdgedit/v1` when a downstream target is requested;
+5. validate that target document against the target app's boundary rules;
+6. either publish the target document durably with any needed catalog entry or launch the target app with that exact in-memory document;
+7. and record the publication outcome back into the pdgsolve-side `publication` object.
 
 No other route should be supported.
 
@@ -1479,14 +1471,14 @@ In particular:
 
 - pdgsolve should not publish straight from a raw branch;
 - pdgsolve should not publish straight from a non-accepted option family;
-- pdgsolve should not ask pdgedit to infer missing rows, tiles, links, or labels from solver-native data;
+- pdgsolve should not ask downstream apps to infer missing rows, tiles, links, labels, or other surface objects from solver-native data;
 - and pdgsolve should not rerun search during publication.
 
-### Publication Graph Contract
+### Accepted Solution Graph Contract
 
-For publishable v1 families, `acceptedRecord.lockedSolveGraph` should use the following exact top-level shape:
+For publishable v1 families, the accepted-solution graph should use the following exact top-level shape:
 
-- `schema: "pdgsolve-publication-graph/v1"`;
+- `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema;
 - `units`;
 - and `edges`.
 
@@ -1495,10 +1487,11 @@ Each `unit` record should contain:
 - `id`;
 - `kind`, with values `assembly` or `operator`;
 - `lane`, with values `1`, `2`, `3`, `4`, or `5`;
-- `recipeId`, naming the admitted pdgsolve-to-pdgedit publication recipe;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
-- `title`, the accepted semantic title before pdgedit row-title expansion;
-- and any recipe-required anchor or port-selection fields.
+- one solver-native semantic symbol id or equivalent canonical row/operator identifier;
+- `title`, the accepted semantic title before any downstream surface-specific title expansion;
+- the accepted primitive/provenance/accounting data needed for audit;
+- and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
 
 Each `edge` record should contain:
 
@@ -1508,101 +1501,32 @@ Each `edge` record should contain:
 - `toUnitId`;
 - and `toPortId`.
 
-So the accepted publication graph is still pdgsolve-owned, but it is already explicit about:
+So the accepted solution graph is still pdgsolve-owned, and it should be explicit about:
 
 - which accepted units exist;
-- which recipe expands each unit into pdgedit surface objects;
-- and which accepted reactant-to-product adjacent-lane connections must become pdgedit links.
+- how those accepted units connect;
+- and any provenance/accounting facts needed by downstream adapters.
 
-### Admitted Publication Recipe Family
+During the current transition, an accepted graph may still carry adapter-facing fields such as `recipeId` so the existing pdgedit translator can stay deterministic. Those fields should be treated as downstream adapter metadata rather than as the core solver meaning.
 
-The first admitted recipe family remains `pdgsolve-pdgedit-recipes/v1-beta-minimal` for existing publication fixtures, residue-row publication, and pass-through publication coverage.
+### Downstream Adapter Responsibilities
 
-That family should support the existing beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators used by accepted publication fixtures:
+Any downstream adapter that targets a concrete surface or document family should own:
 
-| pdgsolve unit | Admitted recipe id | pdgedit row/composite type family | Expansion height | Display label text |
-| --- | --- | --- | --- | --- |
-| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-composite`; rows use quark `-assembly` types | `3` rows | `Neutron` |
-| `pro_down_quark` | `pdgsolve.pdgedit.pro_down_quark.v1` | `pro-down-quark-assembly` | `1` row | `Pro Down Quark` |
-| `pro_up_quark` | `pdgsolve.pdgedit.pro_up_quark.v1` | `pro-up-quark-assembly` | `1` row | `Pro Up Quark` |
-| `pro_noether_core` | `pdgsolve.pdgedit.pro_noether_core.v1` | `pro-noether-core-assembly` | `1` row | `Pro Noether Core` |
-| `anti_noether_core` | `pdgsolve.pdgedit.anti_noether_core.v1` | `anti-noether-core-assembly` | `1` row | `Anti Noether Core` |
-| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `Noether Pair` |
-| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `2H` |
-| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-composite`; rows use Noether Core `-assembly` types | `4` rows | `4H` |
-| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-composite`; rows use quark `-assembly` types | `3` rows | `Proton` |
-| `electron` | `pdgsolve.pdgedit.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
-| `electron_antineutrino` | `pdgsolve.pdgedit.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
-| `unbound_architrino_residue_e4_p8` | `pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1` | `unbound-architrino-residue-e4-p8-assembly` | `1` row | `Unbound Architrino Residue 4E/8P` |
-| `unbound_architrino_residue_e6_p6` | `pdgsolve.pdgedit.unbound_architrino_residue_e6_p6.v1` | `unbound-architrino-residue-e6-p6-assembly` | `1` row | `Unbound Architrino Residue 6E/6P` |
-| `unbound_architrino_residue_e9_p3` | `pdgsolve.pdgedit.unbound_architrino_residue_e9_p3.v1` | `unbound-architrino-residue-e9-p3-assembly` | `1` row | `Unbound Architrino Residue 9E/3P` |
-| lane-2 `Dissociate` | `pdgsolve.pdgedit.operator.dissociate.v1` | `dissociate` | `1` row | none |
-| lane-2 or lane-4 `Pass Thru` | `pdgsolve.pdgedit.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
-| lane-4 `Associate` | `pdgsolve.pdgedit.operator.associate.v1` | `associate` | `1` row | none |
+- the mapping from accepted solver units into target-specific object types;
+- target-specific display payload selection;
+- target-specific placement and link endpoint rules;
+- and any catalog or manifest integration required by that target.
 
-The existing accepted beta publication fixtures remain preserved as legacy downstream publication artifacts for regression coverage. Live pdgsolve solving now reaches exact closure through the residue-row family above rather than by reusing that older direct-beta publication graph.
+Those are downstream document and surface concerns. They should not define pdgsolve's primary output contract.
 
-No publication recipe in this family may publish a paired support token, a quad support token, or a particle-level grouping token as one pdgedit assembly row. Composite recipes must expand into explicit constituent row types.
+### Current pdgedit Package Contract
 
-If grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to pdgsolve's internal assembly alphabet.
+The compact accepted-solution description should remain the preferred solver-owned downstream meaning.
 
-Likewise, if the published lane-3 assembly rows should be presented as `W-`, `W+`, or `Z` boson corridors, that reclassification or grouping belongs to pdgedit after publication. pdgsolve should emit the row-level lane-3 material and provenance only.
+However, the current pdgedit publication path already has one explicit package contract, and that contract should remain documented here because it is a boundary artifact rather than a surface-layout rule.
 
-### Layout And Object Emission Rules
-
-The publication adapter should materialize the final pdgedit surface deterministically from the accepted publication graph and the admitted recipe family.
-
-The fixed pdgedit `x` origins are:
-
-- reactant assemblies at `x = 2`;
-- reactant operators at `x = 7`;
-- intermediate assemblies at `x = 9`;
-- product operators at `x = 14`;
-- and product assemblies at `x = 16`.
-
-Assembly emission should follow these rules:
-
-- expand each assembly unit into the exact number of pdgedit assembly rows required by its recipe;
-- assign the pdgedit assembly `role` from the pdgsolve lane: lane `1 -> reactant`, lane `3 -> intermediate`, lane `5 -> product`;
-- place expanded rows contiguously within their lane's assembly `x` origin with no gaps;
-- pack each assembly lane independently in accepted lane order, top to bottom;
-- emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
-- emit row titles from the recipe row-title sequence;
-- emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from pdgsolve semantics at runtime;
-- and leave grouping-label output empty until a downstream display contract admits it.
-
-Operator emission should follow these rules:
-
-- each operator unit becomes one pdgedit operator record;
-- the pdgedit operator `type` comes directly from the admitted operator recipe;
-- the visible operator `title` comes directly from that same recipe;
-- `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
-- `x` comes from the fixed pdgedit operator `x` origin for that lane;
-- and `y` is computed from the operator unit's explicit accepted anchor reference in `lockedSolveGraph`, not from ad hoc visual inference.
-
-Operator links must preserve the same cardinality constraints as the solver graph:
-
-- a lane-2 `Dissociate` object has exactly one incoming link, from one emitted 4-tile assembly reactant row;
-- a lane-4 `Associate` object has exactly one outgoing link, to one emitted 4-tile assembly product row;
-- and neither operator may use a grouping span as its endpoint.
-
-### Link Emission Rules
-
-The publication adapter should emit pdgedit links only from the accepted `edges` array plus the admitted port maps in the recipe family.
-
-That means:
-
-- assembly recipes must define the concrete emitted row ids associated with each accepted `fromPortId` or `toPortId`;
-- operator recipes must define their concrete pdgedit endpoint id, which is the operator record id itself;
-- one accepted publication edge may therefore expand into one or more pdgedit links when the accepted port map spans multiple emitted assembly rows;
-- every emitted pdgedit link must already obey the adjacent-lane rule and canonical reactant-to-product endpoint order;
-- and no pdgedit link should be created by screen-geometry inference or by scanning nearby rows after the fact.
-
-So the adapter's job is explicit expansion, not reconstruction.
-
-### Publication Output Contract
-
-The translation output should be one pdgsolve-owned package named `pdgsolve-pdgedit-package/v1`.
+For the current pdgedit adapter, the translation output is one package named `pdgsolve-pdgedit-package/v1`.
 
 That package should contain:
 
@@ -1612,7 +1536,7 @@ That package should contain:
 - `documentId`, with the default stable form `<problemId>--<familyId>`;
 - `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
 - `pdgeditDocument`, which must already satisfy `schema: "pdgedit/v1"`;
-- and nullable `manifestEntry`, which is present only for durable publication.
+- and nullable `manifestEntry`, which is present only for durable publication and `null` for launch-only publication.
 
 When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdgedit-library-manifest/v1` entry rules:
 
@@ -1621,22 +1545,32 @@ When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdg
 - `displayTitle`;
 - and `documentPath`.
 
+This package is current implementation boundary, not the long-term solver-owned semantic ideal.
+
+In other words:
+
+- the compact accepted-solution description is the preferred stable solver output;
+- `pdgsolve-pdgedit-package/v1` is the current adapter/package boundary for the pdgedit target;
+- and target-specific package contracts may later be refactored once the solver/output rewrite is ready.
+
 ### Durable Publish And Launch
 
-pdgsolve should support two downstream actions over the same `pdgsolve-pdgedit-package/v1` shape.
+pdgsolve should support two downstream actions over the same accepted-solution description.
 
 For `publish_accepted("durable")`, pdgsolve should:
 
-- generate the final `pdgsolve-pdgedit-package/v1` package;
-- write `pdgeditDocument` to the durable asset path selected by the publication runtime;
-- write or update exactly one matching pdgedit manifest entry;
+- generate the compact accepted-solution description;
+- invoke the requested downstream adapter;
+- write the adapter's final target document to the durable asset path selected by the publication runtime;
+- write or update any matching downstream catalog entry required by that target;
 - and then set the pdgsolve review state to `published`.
 
 For `publish_accepted("launch")`, pdgsolve should:
 
-- generate the same final `pdgsolve-pdgedit-package/v1` package shape;
-- omit any manifest write;
-- hand the in-memory `pdgeditDocument` directly to the pdgedit launch path;
+- generate the same accepted-solution description;
+- invoke the requested downstream adapter without durable persistence;
+- omit any durable catalog write;
+- hand the in-memory target document directly to the chosen downstream launch path;
 - and still set the pdgsolve review state to `published` for that accepted snapshot.
 
 So durable publish and launch differ only in destination handling, not in translation semantics.
@@ -1645,8 +1579,8 @@ So durable publish and launch differ only in destination handling, not in transl
 
 pdgsolve should be able to hand accepted results downstream in one of two ways:
 
-- publish a durable `pdgedit/v1` document plus any needed manifest/library entry;
-- or launch pdgedit with one explicit accepted in-memory document when persistence is not the goal.
+- publish a durable downstream document plus any needed catalog/library entry;
+- or launch a downstream app with one explicit accepted in-memory document when persistence is not the goal.
 
 The durable path should be the canonical reviewable path.
 
@@ -1656,9 +1590,9 @@ For pdgsolve v1, pdgedit should be downstream-only.
 
 That means:
 
-- a final `pdgedit/v1` document is a publication artifact, not a pdgsolve solve request;
-- editing a pdgedit document does not implicitly create or mutate pdgsolve solve state;
-- pdgsolve should not reverse-parse arbitrary pdgedit assemblies, operators, links, or grouping labels back into solver-native meaning;
+- a final downstream surface document such as `pdgedit/v1` is a publication artifact, not a pdgsolve solve request;
+- editing a downstream document does not implicitly create or mutate pdgsolve solve state;
+- pdgsolve should not reverse-parse arbitrary downstream surface objects back into solver-native meaning;
 - and pdgedit should not host candidate ranking, ambiguity handling, acceptance state, or other pdgsolve review semantics.
 
 So the v1 answer is:
@@ -1730,9 +1664,10 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 ### Outputs
 
 - pdgsolve-owned candidate solve results suitable for review;
+- compact accepted-solution documents suitable for downstream adapters;
 - accepted pdgsolve publication state;
-- final `pdgedit/v1` documents;
-- pdgedit manifest-ready publication entries or equivalent launch-ready selection state;
+- adapter-produced downstream documents such as `pdgedit/v1`;
+- downstream catalog-ready publication entries or equivalent launch-ready selection state;
 - and developer-facing diagnostics about solve completeness, ambiguity, unsupported families, and publish readiness.
 
 ### Upstream And Downstream Boundaries
@@ -1741,7 +1676,8 @@ pdgsolve should:
 
 - accept explicit upstream request data;
 - own solve normalization, search, review, and publication;
-- and hand explicit final pdgedit documents downstream.
+- materialize compact accepted-solution descriptions for accepted outcomes;
+- and hand target-specific downstream documents to adapters only after that accepted-solution step.
 
 pdgsolve should not:
 
@@ -1753,7 +1689,7 @@ pdgsolve should not:
 ### Neighboring Components
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
-- [pdgedit](./pdgedit.md) owns the final tile surface, placement grammar, and pdgedit-side document model.
+- [pdgedit](./pdgedit.md) owns the final tile surface, placement grammar, pdgedit-side document model, and pdgedit-specific materialization rules for solver publications that target pdgedit.
 - [pdgapps](pdgapps.md) owns the cross-app boundary and modularity rules that apply here.
 
 ## Priorities
