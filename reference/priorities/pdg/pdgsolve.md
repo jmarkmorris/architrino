@@ -1694,7 +1694,64 @@ Objective:
 - generate `pdgsolve-result/v1` option families from branch-state records rather than from patched result templates;
 - keep the existing request, review, acceptance, and pdgedit publication seams unless the new solver proves a contract change is required.
 
-### 2. Treat Frozen Result Fixtures As Regression Oracles
+### 2. Reconcile Solver Ledgers With Publication Counts
+
+Status: `active`
+
+Current:
+
+- `pdgsolve.md` freezes solver-side primitive counts such as \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\), \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\), and \(\mu(\mathrm{electron}) = (9, 3)\);
+- `src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json` still carries independent quark row and port counts such as `6` Electrinos and `6` Positrinos for both pro-down-quark and pro-up-quark publication recipes;
+- the publication adapter derives visible pdgedit operator counts from the chosen pdgedit recipe-side count source, so a stale visual recipe can make the published surface contradict the solver ledger;
+- and this drift makes the visible `Dissociate` story look like one small incoming row is producing a larger outgoing set without an auditable primitive accounting path.
+
+Objective:
+
+- introduce one solver-owned primitive-ledger source of truth for the active solve family and use it for normalization, search, diagnostics, fixture assertions, accepted-graph accounting, and operator count emission;
+- stop treating pdgedit publication recipes as an independent authority for solver primitive counts; recipes may own row tiles, row titles, expansion height, and port expansion, but any primitive counts they expose must be a checked projection of the solver ledger;
+- add regression coverage that fails when a pdgedit publication recipe count disagrees with the solver ledger for a solver-native assembly id;
+- add regression coverage that fails when a published `Dissociate`, `Associate`, or `Pass Thru` operator displays counts inconsistent with the accepted primitive carrier set for that operator unit;
+- and make publication fail with a blocking diagnostic whenever the accepted graph cannot explain the exact Electrino and Positrino counts carried into and out of an operator.
+
+### 3. Replace The Beta-Only Dissociation Assumption With Explicit Fermion Decomposition Laws
+
+Status: `active`
+
+Current:
+
+- the current v1 law table intentionally admits no unary particle-level dissociation law and no non-identity law except the row-level beta support rewrite;
+- that shortcut lets the beta fixture say an active `pro_down_quark` `Dissociate`s directly into `pro_up_quark + electron + electron_antineutrino` with Noether support rows carried as external provenance requirements;
+- the candidate theory rule that every fermion dissociates into its appropriate Noether core plus unbound architrino polar-charge residue is not yet represented as a solver-native law table;
+- and pdgsolve has no canonical solver-native row symbols, primitive counts, publication recipes, or diagnostics for unbound architrino residuals emitted by such a dissociation.
+
+Objective:
+
+- decide and document the canonical fermion decomposition law family before adding more beta fixtures or weak-family shortcuts;
+- if the rule is admitted, add finite dissociation laws of the form `fermion -> appropriate Noether core row(s) + unbound architrino residue rows`, with exact separate Electrino and Positrino conservation for each admitted fermion;
+- define canonical solver-native ids, \(\mu\)-values, lane-role permissions, publication recipes, and review labels for the resulting Noether-core and unbound-architrino residue rows;
+- rebuild the row-level beta family as a composition of admitted primitive-preserving laws, or mark it unsupported until those laws exist;
+- and if the rule is not admitted, add an explicit unsupported-law diagnostic rather than continuing to rely on a direct beta rewrite that hides the missing decomposition decision.
+
+### 4. Make Support-Row Provenance Visible In The Accepted Solve Graph
+
+Status: `active`
+
+Current:
+
+- the beta fixture treats two `pro_noether_core` rows and two `anti_noether_core` rows as required support and product provenance sources, but not as second input edges into the lane-2 `Dissociate` operator;
+- this keeps the pdgedit link graph visually simple, but it also lets the accepted publication graph show one incoming active quark row and multiple outgoing assemblies without showing where the support carriers entered the operator accounting;
+- the review result records support-derived product provenance in text and arrays, but the accepted graph does not yet carry enough structured primitive-flow detail for the publication surface to explain the same fact;
+- and the result is a misleading visual: the operator can appear to violate the primitive balance even when the written fixture claims the support rows close the ledger.
+
+Objective:
+
+- extend the accepted solve graph or its review-visible provenance witness so support rows are explicit primitive-carrier inputs to the law, even if they are not rendered as ordinary pdgedit object-to-object spline links;
+- define how a lane-2 `Dissociate` operator reports its visible counts when a law has one active assembly input plus reserved support rows;
+- distinguish active input, reserved support input, and emitted output in the review data so the operator no longer appears to create unaccounted architrinos;
+- add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
+- and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
+
+### 5. Treat Frozen Result Fixtures As Regression Oracles
 
 Status: `active`
 
@@ -1709,7 +1766,7 @@ Objective:
 - change the runtime solver so it computes those results from the row-level model;
 - update tests so fixture drift catches solver regressions without allowing fixture JSON to masquerade as solver logic.
 
-### 3. Keep Solver Correctness On The Active Priority Queue
+### 6. Keep Solver Correctness On The Active Priority Queue
 
 Status: `active`
 
