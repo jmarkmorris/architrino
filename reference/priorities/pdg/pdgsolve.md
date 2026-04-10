@@ -59,7 +59,7 @@ pdgsolve should be designed from ground zero.
 
 That means:
 
-- pdgsolve should define its own lane widgets, anchor ids, operator UI shapes, request/result contracts, and review model based on solve semantics, reviewability, determinism, and the downstream pdgedit boundary;
+- pdgsolve should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, and product assemblies semantics, along with its provenance/accounting model, request/result contracts, and review workflow based on solve semantics, reviewability, determinism, and the downstream pdgedit boundary;
 - the internal design should not inherit accidental constraints from earlier surfaces or tooling splits;
 - and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream pdgedit boundary.
 
@@ -89,16 +89,16 @@ Large coordinator files may assemble those pieces, but they should not become th
 
 pdgsolve should speak first in solver and publication terms, not in screen-layout shorthand.
 
-The visible surface of pdgedit may be useful as a visual metaphor for how the solve stages flow.
+The visible surface of pdgedit may be useful as a visual metaphor for how the solve flow is organized.
 
-For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic lanes.
+For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic parts.
 
-| Lane              | 1                      | 2                                    | 3                           | 4                                   | 5                     |
-| ----------------- | ---------------------- | ------------------------------------ | --------------------------- | ----------------------------------- | --------------------- |
-| Surface role      | reactants              | dissociation and pass-thru operators | intermediates               | association and pass-thru operators | products              |
-| Visual/UI reading | reactant assemblies    | reactant operators                   | intermediate assemblies     | product operators                   | product assemblies    |
+| Semantic part | reactant assemblies | reactant-side operators              | intermediate assemblies         | product-side operators              | product assemblies |
+| ------------- | ------------------- | ------------------------------------ | ------------------------------- | ----------------------------------- | ------------------ |
+| Surface role  | reactants           | dissociation and pass-thru operators | intermediates                   | association and pass-thru operators | products           |
+| UI reading    | reactant assemblies | reactant operators                   | intermediate assemblies         | product operators                   | product assemblies |
 
-That table is only a translation aid. The rest of this document should use solver-native lane, assembly, operator, provenance, and publication language rather than surface layout language.
+That table is only a translation aid. The rest of this document should use reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance, and publication language rather than surface layout language.
 
 ### Fundamental Solve Geometry
 
@@ -106,22 +106,22 @@ pdgsolve should start from one deliberately limited solve geometry.
 
 The core ordered strip is:
 
-- lane 1: reactant-side assemblies;
-- lane 2: reactant-side operators;
-- lane 3: intermediate assemblies;
-- lane 4: product-side operators;
-- lane 5: product-side assemblies.
+- reactant assemblies;
+- reactant-side operators;
+- intermediate assemblies;
+- product-side operators;
+- product assemblies.
 
 The operator grammar is:
 
-- lane 2: `Pass Thru` or `Dissociate`;
-- lane 4: `Pass Thru` or `Associate`.
+- reactant-side operators: `Pass Thru` or `Dissociate`;
+- product-side operators: `Pass Thru` or `Associate`.
 
 The assembly grammar is:
 
-- lanes 1, 3, and 5 contain assemblies only;
-- lanes 2 and 4 contain operators only;
-- and all normal solve progress moves from reactant side to product side through adjacent semantic lanes only.
+- reactant assemblies, intermediate assemblies, and product assemblies contain assemblies only;
+- reactant-side operators and product-side operators contain operators only;
+- and all normal solve progress moves from reactant side to product side through adjacent semantic parts only.
 
 In pdgsolve terminology, an **assembly** means one 4-tile assembly row that can participate in operator routing.
 
@@ -130,19 +130,19 @@ pdgsolve should not use PDG particle-level names, display-grouping names, suppor
 Those names belong on either side of the solver boundary:
 
 - before pdgsolve, [pdgfeed](./pdgfeed.md) may know PDG particle names and expand them into individual 4-tile assembly rows;
-- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published lane-3 assembly rows and classify or group them as transient W/Z boson corridors where a dedicated downstream rule admits that reading;
+- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published intermediate assembly rows and classify or group them as transient W/Z boson corridors where a dedicated downstream rule admits that reading;
 - after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved rows;
 - inside pdgsolve, all routing, scoring, and provenance should use individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `pro_noether_core`, and `anti_noether_core`.
 
-pdgsolve should not solve over `W-`, `W+`, or `Z` bosons as native lane units in the v1 strip.
+pdgsolve should not solve over `W-`, `W+`, or `Z` bosons as native units in the v1 strip.
 
-For the current boundary, W/Z boson language is a downstream interpretation of already-emitted lane-3 row assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or middle-lane search symbol.
+For the current boundary, W/Z boson language is a downstream interpretation of already-emitted intermediate row assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
 
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
 
-- lane position is semantic;
+- position in this five-part solve flow is semantic;
 - row order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
 
@@ -156,8 +156,8 @@ For the current working direction, that means:
 - no paired, quad, or display-grouping support token is admitted as solver-native material;
 - there is no separate solver action required to expose or open a grouping;
 - pdgedit publication may omit any grouping label/span until the post-solver grouping contract is explicitly admitted;
-- support rows are not lane-3 center assemblies;
-- support rows are not arbitrary middle-lane insertions;
+- support rows are not intermediate assemblies by default;
+- support rows are not arbitrary insertions into the intermediate assemblies;
 - and support rows are not free-floating geometry owned by the renderer.
 
 For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
@@ -172,9 +172,9 @@ Those support symbols denote individual Noether core assembly rows.
 
 They do not become `Dissociate` or `Associate` endpoints merely because they are present in \(\mathcal{A}\).
 
-Each assembly lane should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
+Each of reactant assemblies, intermediate assemblies, and product assemblies should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
 
-If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the inventory at lane \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that lane.
+If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic part \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
 
 For the current working support policy, pdgsolve should enumerate over the finite balanced-support family
 
@@ -188,7 +188,7 @@ $$
 (R, T, s^{-}, s^{+}) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}} \times \mathcal{S} \times \mathcal{S},
 $$
 
-with effective reactant inventory \(R + s^{-}\) and effective product inventory \(T + s^{+}\).
+with effective reactant assemblies \(R + s^{-}\) and effective product assemblies \(T + s^{+}\).
 
 This support family can later widen, but pdgsolve v1 should keep it finite and explicit.
 
@@ -207,13 +207,13 @@ pdgsolve should keep the operator family deliberately small.
 - exactly one input is accepted;
 - that input must come from one 4-tile assembly reactant row, not from a grouping label or span;
 - one reactant-side 4-tile assembly is opened;
-- the resulting output is a constrained set of lane-3 assemblies determined by the decomposition law for that assembly family;
+- the resulting output is a constrained set of intermediate assemblies determined by the decomposition law for that assembly family;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
 
 `Associate` means:
 
-- one or more lane-3 assemblies are gathered into one lane-5 assembly;
+- one or more intermediate assemblies are gathered into one product assembly;
 - exactly one output is emitted;
 - that output must go to one 4-tile assembly product row, not to a grouping label or span;
 - the operation is legal only when the gathered material exactly satisfies the product assembly recipe;
@@ -222,10 +222,10 @@ pdgsolve should keep the operator family deliberately small.
 
 So the operator shape is asymmetric but strict:
 
-- a 4-tile assembly reactant may route to a lane-2 `Dissociate` operator;
-- a lane-2 `Dissociate` operator has only one input;
-- a lane-4 `Associate` operator has only one output;
-- and that lane-4 `Associate` output must route to a 4-tile assembly product.
+- a 4-tile assembly reactant may route to a reactant-side `Dissociate` operator;
+- a reactant-side `Dissociate` operator has only one input;
+- a product-side `Associate` operator has only one output;
+- and that product-side `Associate` output must route to a 4-tile assembly product.
 
 Post-solver grouping display can organize the rows that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
 
@@ -281,7 +281,7 @@ $$
 
 unless both of the following are true:
 
-- the required weak-support inventory is explicit in the normalized reactant multiset;
+- the required weak-support rows are explicit in the normalized reactant multiset;
 - and pdgsolve has an admitted primitive-preserving fermion decomposition law table that explains how the active fermion row and the reserved support rows produce the requested lepton rows.
 
 The clean pdgsolve-v1 way to encode the request shape is:
@@ -329,21 +329,21 @@ $$
 \},
 $$
 
-with separate Electrino and Positrino ledgers and lane-3-only permissions.
+with separate Electrino and Positrino ledgers and intermediate-assemblies-only permissions.
 
-The first admitted `pdgsolve-laws/fermion-decomposition.v1` family therefore works in two stages:
+The first admitted `pdgsolve-laws/fermion-decomposition.v1` family therefore works in two operator parts:
 
-- lane 2 dissociates the active `pro_down_quark` row, together with the reserved two `pro_noether_core` rows and two `anti_noether_core` rows, into the three residue rows above;
-- lane 4 associates those residue rows into `pro_up_quark`, `electron`, and `electron_antineutrino`;
+- the reactant-side operators dissociate the active `pro_down_quark` row, together with the reserved two `pro_noether_core` rows and two `anti_noether_core` rows, into the three residue rows above;
+- the product-side operators associate those residue rows into `pro_up_quark`, `electron`, and `electron_antineutrino`;
 - while the spectator `pro_up_quark` row and spectator `pro_down_quark` row still pass through unchanged.
 
-In lane terms, the admitted exact family is:
+Using the canonical five-part terminology, the admitted exact family is:
 
-- lane 1: `pro_down_quark + pro_up_quark + pro_down_quark` plus two `pro_noether_core` rows and two `anti_noether_core` rows;
-- lane 2: two `Pass Thru` operators for the spectator rows plus one admitted `Dissociate` operator for the active `pro_down_quark` row;
-- lane 3: `pro_down_quark + pro_up_quark + unbound_architrino_residue_e4_p8 + unbound_architrino_residue_e9_p3 + unbound_architrino_residue_e6_p6`;
-- lane 4: two `Pass Thru` operators plus three admitted `Associate` operators from the residue rows into final product rows;
-- lane 5: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron-antineutrino`.
+- reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark` plus two `pro_noether_core` rows and two `anti_noether_core` rows;
+- reactant-side operators: two `Pass Thru` operators for the spectator rows plus one admitted `Dissociate` operator for the active `pro_down_quark` row;
+- intermediate assemblies: `pro_down_quark + pro_up_quark + unbound_architrino_residue_e4_p8 + unbound_architrino_residue_e9_p3 + unbound_architrino_residue_e6_p6`;
+- product-side operators: two `Pass Thru` operators plus three admitted `Associate` operators from the residue rows into final product rows;
+- product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron-antineutrino`.
 
 If normalization cannot justify those explicit Noether core support rows under the active request and policy bundle, pdgsolve should emit `pdgsolve.normalization.support_required.noether_core_rows` and keep the beta-shaped case review-only.
 
@@ -353,15 +353,15 @@ The current admitted residue-row family is not yet the preferred structural expl
 
 The stronger preferred shape is:
 
-- a Noether core support row should be able to pass through from lane 1 into lane 3 as an explicit carrier rather than disappearing into a residue-only bookkeeping pile;
-- lane 3 should therefore preserve explicit support-carrier structure when a support row truly remains part of the provenance explanation;
-- a lane-4 `Associate` should be allowed to consume one explicit Noether core carrier together with the needed number of unbound architrinos to make a fermion row;
+- a Noether core support row should be able to pass through from reactant assemblies into intermediate assemblies as an explicit carrier rather than disappearing into a residue-only bookkeeping pile;
+- the intermediate assemblies should therefore preserve explicit support-carrier structure when a support row truly remains part of the provenance explanation;
+- a product-side `Associate` should be allowed to consume one explicit Noether core carrier together with the needed number of unbound architrinos to make a fermion row;
 - and a mapping that merely says "here is one pile with the correct ledger counts" should score below a mapping that preserves this carrier structure explicitly.
 
 In practical terms, pdgsolve should distinguish two classes of exact fermion-decomposition mapping:
 
-- a **residue-pile mapping**, where the middle lane contains only anonymous residue rows whose sole virtue is that their ledger counts match the needed outputs;
-- and a **carrier-preserving mapping**, where one or more Noether core rows remain explicit lane-3 carriers and the lane-4 assembly laws show how those carriers plus unbound architrino material form the final fermion rows.
+- a **residue-pile mapping**, where the intermediate assemblies contain only anonymous residue rows whose sole virtue is that their ledger counts match the needed outputs;
+- and a **carrier-preserving mapping**, where one or more Noether core rows remain explicit intermediate carriers and the product-side assembly laws show how those carriers plus unbound architrino material form the final fermion rows.
 
 Both mappings may be primitively exact.
 
@@ -371,7 +371,7 @@ The carrier-preserving mapping should rank higher because it:
 
 - keeps the support provenance visible rather than hiding it inside one counted residue row;
 - expresses fermion formation as a structured gather-and-assemble act rather than as a ledger-matching placeholder;
-- reduces the risk that the middle lane degenerates into an arbitrary pile vocabulary;
+- reduces the risk that the intermediate assemblies degenerate into an arbitrary pile vocabulary;
 - and better matches the intended meaning of Noether support entering from spacetime and participating in the final assembly.
 
 So the design rule is:
@@ -397,8 +397,8 @@ pdgsolve should define one pdgsolve-owned solve problem model that is solver-nat
 
 That solve problem model should describe:
 
-- reactant-side assemblies or inventories;
-- product-side assemblies or inventories;
+- reactant assemblies;
+- product assemblies;
 - any explicit center material;
 - any explicit Noether core support rows admitted by policy;
 - the permitted operator grammar;
@@ -409,7 +409,7 @@ That solve problem model should avoid:
 
 - DOM-derived geometry;
 - render-order assumptions;
-- CSS-lane artifacts;
+- CSS column artifacts;
 - UI-only node-key packing;
 - and other state that exists only because an earlier app rendered something first.
 
@@ -483,14 +483,14 @@ $$
 
 The v1 assembly table should be:
 
-| Canonical id | Display label | Allowed lane roles in pdgsolve v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
+| Canonical id | Display label | Allowed roles in pdgsolve v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
 | --- | --- | --- | --- | --- |
-| `pro_down_quark` | `Pro Down Quark` | lanes `1`, `3`, `5` | \((7, 5)\) | individual 4-tile quark row |
-| `pro_up_quark` | `Pro Up Quark` | lanes `1`, `3`, `5` | \((4, 8)\) | individual 4-tile quark row |
-| `electron` | `Electron` | lanes `1`, `3`, `5` | \((9, 3)\) | charged lepton assembly |
-| `electron_antineutrino` | `Electron Antineutrino` | lanes `1`, `3`, `5` | \((6, 6)\) | neutral lepton assembly |
-| `pro_noether_core` | `Pro Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
-| `anti_noether_core` | `Anti Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
+| `pro_down_quark` | `Pro Down Quark` | reactant assemblies, intermediate assemblies, and product assemblies | \((7, 5)\) | individual 4-tile quark row |
+| `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | \((4, 8)\) | individual 4-tile quark row |
+| `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | \((9, 3)\) | charged lepton assembly |
+| `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | \((6, 6)\) | neutral lepton assembly |
+| `pro_noether_core` | `Pro Noether Core` | reactant assemblies support rows only | \((3, 3)\) | added only in balanced pro/anti support pairs |
+| `anti_noether_core` | `Anti Noether Core` | reactant assemblies support rows only | \((3, 3)\) | added only in balanced pro/anti support pairs |
 
 The versioned v1 bookkeeping values should therefore include:
 
@@ -519,7 +519,7 @@ $$
 a \in \mathcal{A}_{\mathrm{v1}}.
 $$
 
-So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any lane-3-capable single assembly occurrence that is not part of an explicitly admitted local support-row family.
+So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies and is not part of an explicitly admitted local support-row family.
 
 The previously considered direct row-level beta support rule is now explicitly outside the admitted law table:
 
@@ -535,7 +535,7 @@ That means:
 - there is no direct row-level beta dissociation rule in v1;
 - there is no W/Z boson production or absorption rule in v1;
 - there is no generic `Noether core -> ...` unary rule in v1;
-- Noether support rows do not receive unary pass-thru in v1 because they are support rows, not lane-3 assemblies;
+- Noether support rows do not receive unary pass-thru in v1 because they are support rows, not intermediate assemblies;
 - there is no open-ended association table beyond identity pass-thru plus the admitted residue-to-product beta associations;
 - and any branch that requires a non-identity law family outside the admitted tables should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
@@ -581,13 +581,13 @@ The normalized pdgsolve problem contract should be:
 
 ### Conserved Balance Equations
 
-pdgsolve should make the balance laws explicit at assembly lanes 1, 3, and 5.
+pdgsolve should make the balance laws explicit across reactant assemblies, intermediate assemblies, and product assemblies.
 
 Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the correct solve picture is not a disappearing flow ledger.
 
-It is one fixed primitive carrier set viewed through three different lane-wise assembly partitions.
+It is one fixed primitive carrier set viewed through three different assembly partitions.
 
-For chosen support augmentations \((s^{-}, s^{+})\), define the full lane-1 and lane-5 inventories
+For chosen support augmentations \((s^{-}, s^{+})\), define the full reactant assemblies and product assemblies
 
 $$
 x_{1} = R + s^{-}, \qquad x_{5} = T + s^{+}.
@@ -595,16 +595,16 @@ $$
 
 An exact candidate must find:
 
-- a lane-3 inventory \(x_{3} \in \mathbb{N}^{\mathcal{A}}\);
+- intermediate assemblies \(x_{3} \in \mathbb{N}^{\mathcal{A}}\);
 - a finite primitive carrier set \(\Omega = \Omega_{E} \sqcup \Omega_{P}\);
-- and lane partitions \(P_{1}, P_{3}, P_{5}\) of \(\Omega\);
+- and assembly partitions \(P_{1}, P_{3}, P_{5}\) of \(\Omega\);
 
 such that:
 
 - \(P_{1}\) realizes \(x_{1}\);
 - \(P_{3}\) realizes \(x_{3}\);
 - \(P_{5}\) realizes \(x_{5}\);
-- and the lane-2 and lane-4 operators are legal provenance-preserving rewrites from \(P_{1}\) to \(P_{3}\) and from \(P_{3}\) to \(P_{5}\).
+- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from \(P_{1}\) to \(P_{3}\) and from \(P_{3}\) to \(P_{5}\).
 
 Here, "realizes" means:
 
@@ -612,7 +612,7 @@ Here, "realizes" means:
 - the block contains exactly \(\mu(a)_{\mathrm{Electrino}}\) Electrinos and \(\mu(a)_{\mathrm{Positrino}}\) Positrinos;
 - and the multiplicity of each label \(a\) agrees with \(x_{\ell}(a)\).
 
-The lane-wise primitive invariants are therefore
+The primitive invariants across these assembly partitions are therefore
 
 $$
 \mu(x_{1}) = \mu(x_{3}) = \mu(x_{5}).
@@ -630,7 +630,7 @@ $$
 
 So the reaction does not merely conserve totals in the aggregate.
 
-It preserves one underlying architrino population whose grouping changes from lane to lane.
+It preserves one underlying architrino population whose grouping changes across reactant assemblies, intermediate assemblies, and product assemblies.
 
 If a request fails these equalities at the boundary, pdgsolve should not silently repair that mismatch.
 
@@ -676,8 +676,8 @@ This limited geometry should be exploited aggressively.
 
 In particular:
 
-- each lane-1 lane-3-capable assembly presents a small action set, typically `Pass Thru` or `Dissociate`;
-- each lane-3 assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
+- each reactant assembly that is allowed to feed intermediate assemblies presents a small action set, typically `Pass Thru` or `Dissociate`;
+- each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
 - each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
 - each `Associate` choice emits exactly one 4-tile assembly product output;
 - support rows can constrain which row-level rewrite is available, but they are not local operator inputs;
@@ -690,9 +690,9 @@ $$
 \mathcal{A}_{\mathrm{mid}} \subset \mathcal{A}
 $$
 
-be the subset of assemblies that are legal lane-3 assemblies in the active solve family.
+be the subset of assemblies that are legal in the intermediate assemblies of the active solve family.
 
-For lane 2, pdgsolve should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For the reactant-side operators, pdgsolve should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
 \Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
@@ -700,7 +700,7 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
 
-Noether support rows are therefore not given unary lane-2 pass-thru merely by belonging to \(\mathcal{A}\).
+Noether support rows are therefore not given unary reactant-side pass-thru merely by belonging to \(\mathcal{A}\).
 
 They enter the search only as explicit support-row requirements for approved row-level laws.
 
@@ -732,17 +732,17 @@ $$
 
 remains outside that admitted family even though `pdgsolve-laws/fermion-decomposition.v1` is now present.
 
-Search should therefore create a lane-2 `Dissociate` unit only for the admitted residue-emitting family, not for the blocked direct shortcut.
+Search should therefore create a reactant-side `Dissociate` unit only for the admitted residue-emitting family, not for the blocked direct shortcut.
 
-For lane 4, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For the product-side operators, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
 \Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
 $$
 
-where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal lane-3 input multiset that can `Associate` into \(a\).
+where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal intermediate-assemblies input multiset that can `Associate` into \(a\).
 
-Given a full lane-1 inventory \(x_{1}\) and a chosen reservation of any support-row law occurrences, the remaining unary left-generated middle family is
+Given full reactant assemblies \(x_{1}\) and a chosen reservation of any support-row law occurrences, the remaining unary left-generated intermediate family is
 
 $$
 \mathfrak{L}(x_{1}) =
@@ -753,7 +753,7 @@ y_{a,i} \in \Lambda_{2}(a)
 \right\}.
 $$
 
-Given a full lane-5 inventory \(x_{5}\), the unary right-required middle family is
+Given full product assemblies \(x_{5}\), the unary right-required intermediate family is
 
 $$
 \mathfrak{R}(x_{5}) =
@@ -764,9 +764,9 @@ z_{a,j} \in \Lambda_{4}(a)
 \right\}.
 $$
 
-These unary families are understood after removing any occurrences already reserved into approved lane-2 support-row rewrites.
+These unary families are understood after removing any occurrences already reserved into approved reactant-side support-row rewrites.
 
-Because pdgsolve now admits one approved lane-2 support-row rewrite, the beta-family support rows may be reserved explicitly into the active fermion decomposition law while still remaining visible in lane 1 for review.
+Because pdgsolve now admits one approved reactant-side support-row rewrite, the beta-family support rows may be reserved explicitly into the active fermion decomposition law while still remaining visible in the reactant assemblies for review.
 
 An exact solve for the support choices \((s^{-}, s^{+})\) therefore requires
 
@@ -784,11 +784,11 @@ $$
 
 where:
 
-- \(\phi_{2}\) is a partial assignment of lane-2 choices to reactant assembly occurrences;
+- \(\phi_{2}\) is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
 - \(\phi_{2}\) may assign either unary reactant occurrences or one approved support-row law;
-- \(\phi_{4}\) is a partial assignment of lane-4 choices to product assembly occurrences;
-- \(x_{3}^{L}\) is the partial middle inventory generated from lane 1;
-- \(x_{3}^{R}\) is the partial middle inventory required by lane 5;
+- \(\phi_{4}\) is a partial assignment of product-side operator choices to product assembly occurrences;
+- \(x_{3}^{L}\) is the partial intermediate assemblies generated from the reactant assemblies;
+- \(x_{3}^{R}\) is the partial intermediate assemblies required by the product assemblies;
 - and \(W\) is the current partial provenance witness.
 
 pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
@@ -797,13 +797,13 @@ The operational loop should be:
 
 1. choose one support augmentation \((s^{-}, s^{+})\);
 2. reject that choice immediately if the primitive imbalance vector \(\delta(Q; s^{-}, s^{+})\) is nonzero and the current search mode requires exact closure;
-3. initialize the empty branch state with no lane-2 or lane-4 assignments;
-4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter middle-lane constraints;
+3. initialize the empty branch state with no reactant-side or product-side operator assignments;
+4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
 5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\), or reserve one approved support-row law when the active family allows it;
 6. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
 7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
 8. continue until all reactant and product occurrences are assigned;
-9. emit a terminal candidate when the completed branch has a complete provenance witness and a scored middle-lane outcome.
+9. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
 
 So the search does not guess full reactions in one jump.
 
@@ -820,9 +820,9 @@ At minimum, the search should prune a branch under the following conditions:
 - primitive impossibility:
   the chosen support augmentation already has nonzero primitive imbalance in an exact-closure search;
 - middle oversupply:
-  the current left-generated middle inventory already exceeds the maximum possible right-required middle inventory for some assembly coordinate;
+  the current left-generated intermediate assemblies already exceed the maximum possible right-required intermediate assemblies for some assembly coordinate;
 - middle undersupply:
-  the current right-required middle inventory already exceeds the maximum possible left-generated middle inventory for some assembly coordinate;
+  the current right-required intermediate assemblies already exceed the maximum possible left-generated intermediate assemblies for some assembly coordinate;
 - recipe impossibility:
   the remaining unassigned reactant occurrences cannot generate the assembly ingredients still required by unresolved product-side closures;
 - absorption impossibility:
@@ -852,7 +852,7 @@ Safe pruning therefore requires bounds that still include pass-thru.
 
 For a partial branch \(s\), let \(U_{2}(s)\) be the unresolved reactant occurrences and \(U_{4}(s)\) the unresolved product occurrences.
 
-For each middle-lane assembly coordinate \(m \in \mathcal{A}\), define the pass-thru-safe envelopes
+For each intermediate-assemblies coordinate \(m \in \mathcal{A}\), define the pass-thru-safe envelopes
 
 $$
 L^{-}_{s}(m)
@@ -896,7 +896,7 @@ For every unresolved occurrence whose assembly lies in \(\mathcal{A}_{\mathrm{mi
 
 So these envelopes automatically include the pass-thru possibility for every unresolved occurrence that is actually eligible for pass-thru.
 
-So a middle-lane prune is safe only if one of the coordinatewise intervals is already disjoint:
+So an intermediate-assemblies prune is safe only if one of the coordinatewise intervals is already disjoint:
 
 $$
 L^{-}_{s}(m) > R^{+}_{s}(m)
@@ -928,8 +928,8 @@ $$
 
 From that raw option, pdgsolve derives:
 
-- the left-generated middle inventory \(x_{3}^{L}\);
-- the right-required middle inventory \(x_{3}^{R}\);
+- the left-generated intermediate assemblies \(x_{3}^{L}\);
+- the right-required intermediate assemblies \(x_{3}^{R}\);
 - the completed provenance witness \(W\), if one exists;
 - and the candidate score tuple \(\kappa\).
 
@@ -946,7 +946,7 @@ A raw option becomes a partial review candidate when:
 
 Multiple raw options may canonicalize to the same review option family.
 
-That should happen when they publish the same lane-1/lane-3/lane-5 assembly inventories, the same lane-2/lane-4 operator choices, and the same effective provenance/accounting summary.
+That should happen when they publish the same reactant assemblies, intermediate assemblies, and product assemblies, the same reactant-side and product-side operator choices, and the same effective provenance/accounting summary.
 
 So the review surface should not show every raw branch separately.
 
@@ -962,8 +962,8 @@ This yields a finite branch graph for any finite request.
 The key reason is:
 
 - there are only finitely many support augmentations \((s^{-}, s^{+}) \in \mathcal{S} \times \mathcal{S}\);
-- each lane-3-capable reactant occurrence contributes one finite choice from \(\Lambda_{2}(a)\);
-- each lane-3-capable product occurrence contributes one finite choice from \(\Lambda_{4}(a)\);
+- each reactant occurrence that can feed intermediate assemblies contributes one finite choice from \(\Lambda_{2}(a)\);
+- each product occurrence that can be matched from intermediate assemblies contributes one finite choice from \(\Lambda_{4}(a)\);
 - each approved support-row law contributes one finite choice from its support-row family;
 - \(\mathfrak{L}(x_{1})\) and \(\mathfrak{R}(x_{5})\) are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
@@ -1023,9 +1023,9 @@ $$
 two branches should belong to the same option family exactly when they agree on the full review-visible solve summary:
 
 - the same support augmentation \((s^{-}, s^{+})\);
-- the same lane-1, lane-3, and lane-5 assembly inventories;
-- the same ordered lane-2 operator assignments after canonical reactant-occurrence ordering;
-- the same ordered lane-4 operator assignments after canonical product-occurrence ordering;
+- the same reactant assemblies, intermediate assemblies, and product assemblies;
+- the same ordered reactant-side operator assignments after canonical reactant-occurrence ordering;
+- the same ordered product-side operator assignments after canonical product-occurrence ordering;
 - the same score tuple \(\kappa\);
 - the same review-visible provenance summary;
 - and the same diagnostic id set.
@@ -1034,7 +1034,7 @@ Two completed raw branches should not split into different option families merel
 
 - rename primitive carriers inside the witness;
 - permute indistinguishable assembly occurrences with the same canonical occurrence index class;
-- or differ only in low-level witness detail that leaves the published lane inventories, operator choices, diagnostics, and provenance summary unchanged.
+- or differ only in low-level witness detail that leaves the published assembly inventories, operator choices, diagnostics, and provenance summary unchanged.
 
 The family key should therefore be
 
@@ -1093,7 +1093,7 @@ Each member of `optionFamilies` should contain:
 - `kind`, with values `exact`, `partial`, or `unsupported`;
 - `score`, carrying the concrete components of \(\kappa\);
 - `augmentation`, with explicit left and right support choices;
-- `laneInventories`, carrying canonical lane-1, lane-3, and lane-5 assembly multisets;
+- `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
 - `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
 - `provenanceSummary`, carrying the family-level witness summary that review must see;
 - `diagnostics`, carrying family-local diagnostics;
@@ -1114,7 +1114,7 @@ pdgsolve should score candidates explicitly rather than relying on ad hoc succes
 The score model should prefer, in order:
 
 - exact conservation and exact product closure;
-- zero primitive imbalance and zero middle-lane mismatch;
+- zero primitive imbalance and zero intermediate-assemblies mismatch;
 - fewer policy-added support rows;
 - fewer non-identity operators;
 - fewer dissociations when a less disruptive exact path exists;
@@ -1162,7 +1162,7 @@ with smaller values preferred, where:
 
 For the current weak-family direction, pdgsolve should begin with the finite structural penalty values:
 
-- \(m_{\mathrm{struct}}(C) = 0\) when every fermion-forming lane-4 association keeps its Noether support carrier explicit in lane 3 and the final fermion is assembled from `Noether core + unbound architrinos`;
+- \(m_{\mathrm{struct}}(C) = 0\) when every fermion-forming product-side association keeps its Noether support carrier explicit in the intermediate assemblies and the final fermion is assembled from `Noether core + unbound architrinos`;
 - \(m_{\mathrm{struct}}(C) = 1\) when the candidate is exact but some fermion is produced only from a residue-only ledger pile that hides the carrier structure;
 - and higher values may later be reserved for more severe structure loss if additional weak families widen the search space.
 
@@ -1172,7 +1172,7 @@ That means:
 
 1. every exact candidate beats every non-exact candidate;
 2. among exact candidates, lower primitive imbalance wins first;
-3. then lower middle-lane mismatch wins;
+3. then lower intermediate-assemblies mismatch wins;
 4. then lower auxiliary burden wins;
 5. then lower structural-explanation penalty wins;
 6. then fewer non-identity operators wins;
@@ -1186,7 +1186,7 @@ For a partial branch \(s\), the search should compute:
 
 - whether exact closure is still possible;
 - the unavoidable primitive imbalance already fixed by the chosen support augmentation;
-- the minimum possible eventual middle-lane mismatch after all remaining assignments;
+- the minimum possible eventual intermediate-assemblies mismatch after all remaining assignments;
 - the current auxiliary burden;
 - the minimum structural-explanation penalty already forced by any residue-only decisions that cannot later be repaired into carrier-preserving associations;
 - the minimum additional operator burden still forced, with unresolved pass-thru choices contributing zero unless non-identity is provably necessary;
@@ -1214,11 +1214,11 @@ $$
 \texttt{two\_balanced\_noether\_core\_pairs}.
 $$
 
-This means the limited lane/operator geometry is not just a legality constraint.
+This means the limited reactant/intermediate/product assemblies and reactant-side/product-side operators geometry is not just a legality constraint.
 
 It is also the basis of a useful score function:
 
-- whether the lane-1 and lane-5 primitive budgets match exactly;
+- whether the reactant and product primitive budgets match exactly;
 - whether the left-generated and right-required middle inventories meet exactly;
 - how much auxiliary material was required;
 - how much explicit support-carrier structure was preserved rather than collapsed into residue-only piles;
@@ -1259,9 +1259,9 @@ with lexicographic comparison and the concrete orders:
 - canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
-- lane-2 operator order: the sequence of operator assignments in reactant-occurrence order;
-- lane-4 operator order: the sequence of operator assignments in product-occurrence order;
-- and middle-inventory order: assembly counts listed in canonical assembly order.
+- reactant-side operator order: the sequence of operator assignments in reactant-occurrence order;
+- product-side operator order: the sequence of operator assignments in product-occurrence order;
+- and intermediate-assemblies order: assembly counts listed in canonical assembly order.
 
 For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
 
@@ -1287,7 +1287,7 @@ The initial v1 set should be:
 | Diagnostic id | Phase | Meaning | Required payload |
 | --- | --- | --- | --- |
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
-| `pdgsolve.request.invalid_lane_role` | request | a solver-native row was requested in a boundary lane where that row family is not admitted | assembly id, attempted lane, and allowed lanes |
+| `pdgsolve.request.invalid_lane_role` | request | a solver-native row was requested in a boundary role where that row family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.normalization.support_added.noether_core_rows` | normalization | normalization added balanced `pro_noether_core` and `anti_noether_core` support rows | request id and added occurrence ids |
 | `pdgsolve.normalization.support_required.noether_core_rows` | normalization | beta-family inspection needs explicit or policy-allowed balanced Noether core support rows | request id and policy mode |
 | `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; s^{-}, s^{+}) \neq 0\) for the retained branch or retained request summary | support choice and \((\delta_E, \delta_P)\) |
@@ -1391,7 +1391,7 @@ For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
   `pdgsolve.search.unsupported_law_family`,
   `pdgsolve.review.missing_pdgedit_publication_recipe`,
   or any later diagnostic explicitly marked `blocking`;
-- and the family already carries the locked lane inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
+- and the family already carries the locked assembly inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
 
 If any of those clauses fails, pdgsolve should set `publicationReady = false`.
 
@@ -1641,7 +1641,7 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 
 | Fixture id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `row_beta_fermion_decomposition_exact` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` rows and two `anti_noether_core` rows; best family is exact; lane 3 contains the admitted residue rows; publication is ready |
+| `row_beta_fermion_decomposition_exact` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` rows and two `anti_noether_core` rows; best family is exact; the intermediate assemblies contain the admitted residue rows; publication is ready |
 | `row_beta_support_disallowed` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_core_rows` is present; retained best family is unsupported |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru rows; zero non-identity operators; zero ambiguity penalty |
@@ -1700,7 +1700,7 @@ Status: `active`
 
 Current:
 
-- the existing beta publication fixture treats two `pro_noether_core` rows and two `anti_noether_core` rows as required support and product provenance sources, but not as second input edges into the lane-2 `Dissociate` operator;
+- the existing beta publication fixture treats two `pro_noether_core` rows and two `anti_noether_core` rows as required support and product provenance sources, but not as second input edges into the reactant-side `Dissociate` operator;
 - this keeps the pdgedit link graph visually simple, but it also lets the accepted publication graph show one incoming active quark row and multiple outgoing assemblies without showing where the support carriers entered the operator accounting;
 - the review result records support-derived product provenance in text and arrays, but the accepted graph does not yet carry enough structured primitive-flow detail for the publication surface to explain the same fact;
 - and the result is a misleading visual: the operator can appear to violate the primitive balance even when the written fixture claims the support rows close the ledger.
@@ -1708,7 +1708,7 @@ Current:
 Objective:
 
 - extend the accepted solve graph or its review-visible provenance witness so support rows are explicit primitive-carrier inputs to the law, even if they are not rendered as ordinary pdgedit object-to-object spline links;
-- define how a lane-2 `Dissociate` operator reports its visible counts when a law has one active assembly input plus reserved support rows;
+- define how a reactant-side `Dissociate` operator reports its visible counts when a law has one active assembly input plus reserved support rows;
 - distinguish active input, reserved support input, and emitted output in the review data so the operator no longer appears to create unaccounted architrinos;
 - add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
 - and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
