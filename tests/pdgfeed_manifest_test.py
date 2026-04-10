@@ -1,6 +1,9 @@
-from pathlib import Path
+import csv
+import subprocess
 import sys
+import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -331,6 +334,147 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         ]
 
         self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
+
+    def test_supported_reaction_csv_rows_use_aaa_labels_and_row_counts(self):
+        fixtures = pdgfeed.load_fixture_index(pdgfeed.DEFAULT_FIXTURE_INDEX)
+
+        rows = pdgfeed.build_supported_reaction_csv_rows(fixtures)
+
+        self.assertEqual(
+            rows,
+            [
+                {
+                    "reactant_names_aaa": "Neutron",
+                    "product_names_aaa": "Proton + Pro Electron + Anti Electron Neutrino",
+                    "reactant_electrinos": 18,
+                    "product_electrinos": 30,
+                    "electrino_delta": -12,
+                    "reactant_positrinos": 18,
+                    "product_positrinos": 30,
+                    "positrino_delta": -12,
+                }
+            ],
+        )
+
+    def test_supported_reaction_csv_rows_include_single_row_assemblies(self):
+        case = pdgfeed.PdgCase(
+            case_id="single_row_probe",
+            proposal_id="single_row_probe",
+            title="Single row probe",
+            source_kind="fixture",
+            source={"edition": "2026"},
+            reactants=(pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),),
+            products=(pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),
+        )
+
+        rows = pdgfeed.build_supported_reaction_csv_rows([case])
+
+        self.assertEqual(
+            rows,
+            [
+                {
+                    "reactant_names_aaa": "Pro Electron",
+                    "product_names_aaa": "Anti Electron Neutrino",
+                    "reactant_electrinos": 9,
+                    "product_electrinos": 6,
+                    "electrino_delta": 3,
+                    "reactant_positrinos": 3,
+                    "product_positrinos": 6,
+                    "positrino_delta": -3,
+                }
+            ],
+        )
+
+    def test_live_supported_reaction_csv_rows_use_manifest_exportable_denominator(self):
+        neutron_particle = FakeParticle(
+            "n",
+            "S017/2025",
+            [
+                FakeDecay(
+                    "S017.1/2025",
+                    "n --> p e- nubar_e",
+                    [
+                        FakeDecayProduct("p"),
+                        FakeDecayProduct("e-"),
+                        FakeDecayProduct("nubar_e"),
+                    ],
+                    mode_number=1,
+                    display_value_text="(100)",
+                )
+            ],
+        )
+        pion_particle = FakeParticle(
+            "pi+",
+            "S008/2025",
+            [
+                FakeDecay(
+                    "S008.1/2025",
+                    "pi+ -> mu+ nu_mu",
+                    [
+                        FakeDecayProduct("mu+"),
+                        FakeDecayProduct("nu_mu"),
+                    ],
+                    mode_number=1,
+                    display_value_text="(99.9)",
+                )
+            ],
+        )
+        api = FakeApi(
+            [
+                FakeParticleList("S017/2025", "neutron", [neutron_particle]),
+                FakeParticleList("S008/2025", "charged pion", [pion_particle]),
+            ]
+        )
+
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(
+            rows,
+            [
+                {
+                    "reactant_names_aaa": "Neutron",
+                    "product_names_aaa": "Proton + Pro Electron + Anti Electron Neutrino",
+                    "reactant_electrinos": 18,
+                    "product_electrinos": 30,
+                    "electrino_delta": -12,
+                    "reactant_positrinos": 18,
+                    "product_positrinos": 30,
+                    "positrino_delta": -12,
+                }
+            ],
+        )
+
+    def test_cli_emits_supported_reaction_csv_file(self):
+        repo_root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_path = Path(temp_dir) / "supported_reactions.csv"
+            result = subprocess.run(
+                [sys.executable, "pdgfeed.py", "emit-supported-reaction-csv", str(csv_path)],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(result.stdout.strip(), str(csv_path))
+            with csv_path.open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+
+        self.assertEqual(
+            rows,
+            [
+                {
+                    "reactant_names_aaa": "Neutron",
+                    "product_names_aaa": "Proton + Pro Electron + Anti Electron Neutrino",
+                    "reactant_electrinos": "18",
+                    "product_electrinos": "30",
+                    "electrino_delta": "-12",
+                    "reactant_positrinos": "18",
+                    "product_positrinos": "30",
+                    "positrino_delta": "-12",
+                }
+            ],
+        )
 
 
 if __name__ == "__main__":

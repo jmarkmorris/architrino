@@ -130,11 +130,13 @@ The current CLI surface is:
 - `python3 pdgfeed.py print-live-proposal <case-id>`
 - `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`
 - `python3 pdgfeed.py build-live-manifest`
+- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source fixtures|live]`
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
 The intended handoff modes are:
 
 - file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay`;
+- CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source live`;
 - and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-pdgsolve-request free_neutron_beta_decay`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future pdgsolve intake.

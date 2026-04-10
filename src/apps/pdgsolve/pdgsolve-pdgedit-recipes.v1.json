@@ -68,28 +68,28 @@
       },
       "portPrimitiveCounts": {
         "input.row.1": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         },
         "input.row.2": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         },
         "input.row.3": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         },
         "output.row.1": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         },
         "output.row.2": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         },
         "output.row.3": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         }
       },
       "pdgeditRowTypes": [
@@ -104,8 +104,8 @@
       "pdgeditType": "pro-down-quark-assembly",
       "boundaryLabelText": "Pro Down Quark",
       "primitiveCounts": {
-        "electrinoCount": 6,
-        "positrinoCount": 6
+        "electrinoCount": 7,
+        "positrinoCount": 5
       },
       "rowTitles": [
         "Pro Down Quark"
@@ -133,8 +133,8 @@
       "pdgeditType": "pro-up-quark-assembly",
       "boundaryLabelText": "Pro Up Quark",
       "primitiveCounts": {
-        "electrinoCount": 6,
-        "positrinoCount": 6
+        "electrinoCount": 4,
+        "positrinoCount": 8
       },
       "rowTitles": [
         "Pro Up Quark"
@@ -426,28 +426,28 @@
       },
       "portPrimitiveCounts": {
         "input.row.1": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         },
         "input.row.2": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         },
         "input.row.3": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         },
         "output.row.1": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         },
         "output.row.2": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 7,
+          "positrinoCount": 5
         },
         "output.row.3": {
-          "electrinoCount": 6,
-          "positrinoCount": 6
+          "electrinoCount": 4,
+          "positrinoCount": 8
         }
       },
       "pdgeditRowTypes": [

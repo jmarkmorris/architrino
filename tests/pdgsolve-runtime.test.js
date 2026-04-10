@@ -182,11 +182,11 @@ test("acceptance runtime locks a publishable family and derives the pdgedit prev
   const pdgeditPreview = buildPdgeditPreviewFromPdgsolveAcceptance(acceptance);
 
   assert.equal(acceptance.schema, "pdgsolve-acceptance/v1");
-  assert.equal(acceptance.resultDigest, "pdgsolve_problem_pass_thru_neutron::family.pass_thru.neutron.v1::v1");
+  assert.equal(acceptance.resultDigest, "pdgsolve_problem_pass_thru_neutron::family.pass_thru.rows.v1::v1");
   assert.equal(acceptance.lockedSolveGraph.schema, "pdgsolve-publication-graph/v1");
   assert.equal(pdgeditPreview.schema, "pdgedit/v1");
   assert.equal(pdgeditPreview.assemblies.length, 9);
-  assert.equal(pdgeditPreview.operators.length, 2);
+  assert.equal(pdgeditPreview.operators.length, 6);
   assert.equal(pdgeditPreview.links.length, 12);
 });
 

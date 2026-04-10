@@ -119,7 +119,7 @@
       "anchorRow": 2
     },
     {
-      "id": "unit_lane3_electron",
+      "id": "unit_lane3_electron_1",
       "kind": "assembly",
       "lane": 3,
       "recipeId": "pdgsolve.pdgedit.electron.v1",
@@ -128,7 +128,7 @@
       "anchorRow": 3
     },
     {
-      "id": "unit_lane3_electron_antineutrino",
+      "id": "unit_lane3_electron_antineutrino_1",
       "kind": "assembly",
       "lane": 3,
       "recipeId": "pdgsolve.pdgedit.electron_antineutrino.v1",
@@ -164,7 +164,7 @@
       "anchorRow": 2
     },
     {
-      "id": "unit_lane4_pass_thru_electron",
+      "id": "unit_lane4_pass_thru_electron_1",
       "kind": "operator",
       "lane": 4,
       "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
@@ -173,7 +173,7 @@
       "anchorRow": 3
     },
     {
-      "id": "unit_lane4_pass_thru_electron_antineutrino",
+      "id": "unit_lane4_pass_thru_electron_antineutrino_1",
       "kind": "operator",
       "lane": 4,
       "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
@@ -209,7 +209,7 @@
       "anchorRow": 2
     },
     {
-      "id": "unit_lane5_electron",
+      "id": "unit_lane5_electron_1",
       "kind": "assembly",
       "lane": 5,
       "recipeId": "pdgsolve.pdgedit.electron.v1",
@@ -218,7 +218,7 @@
       "anchorRow": 3
     },
     {
-      "id": "unit_lane5_electron_antineutrino",
+      "id": "unit_lane5_electron_antineutrino_1",
       "kind": "assembly",
       "lane": 5,
       "recipeId": "pdgsolve.pdgedit.electron_antineutrino.v1",
@@ -274,14 +274,14 @@
       "id": "edge_beta_dissociate_to_electron",
       "fromUnitId": "unit_lane2_beta_dissociate",
       "fromPortId": "output.electron",
-      "toUnitId": "unit_lane3_electron",
+      "toUnitId": "unit_lane3_electron_1",
       "toPortId": "input"
     },
     {
       "id": "edge_beta_dissociate_to_electron_antineutrino",
       "fromUnitId": "unit_lane2_beta_dissociate",
       "fromPortId": "output.electron_antineutrino",
-      "toUnitId": "unit_lane3_electron_antineutrino",
+      "toUnitId": "unit_lane3_electron_antineutrino_1",
       "toPortId": "input"
     },
     {
@@ -292,38 +292,17 @@
       "toPortId": "input"
     },
     {
-      "id": "edge_lane3_pro_up_quark_1_to_lane4_pass_thru",
-      "fromUnitId": "unit_lane3_pro_up_quark_1",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_1",
-      "toPortId": "input"
-    },
-    {
-      "id": "edge_lane3_pro_up_quark_2_to_lane4_pass_thru",
-      "fromUnitId": "unit_lane3_pro_up_quark_2",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_2",
-      "toPortId": "input"
-    },
-    {
-      "id": "edge_lane3_electron_to_lane4_pass_thru",
-      "fromUnitId": "unit_lane3_electron",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane4_pass_thru_electron",
-      "toPortId": "input"
-    },
-    {
-      "id": "edge_lane3_electron_antineutrino_to_lane4_pass_thru",
-      "fromUnitId": "unit_lane3_electron_antineutrino",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane4_pass_thru_electron_antineutrino",
-      "toPortId": "input"
-    },
-    {
       "id": "edge_lane4_pass_thru_to_lane5_pro_down_quark_1",
       "fromUnitId": "unit_lane4_pass_thru_pro_down_quark_1",
       "fromPortId": "output",
       "toUnitId": "unit_lane5_pro_down_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane3_pro_up_quark_1_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_pro_up_quark_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_1",
       "toPortId": "input"
     },
     {
@@ -334,6 +313,13 @@
       "toPortId": "input"
     },
     {
+      "id": "edge_lane3_pro_up_quark_2_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_pro_up_quark_2",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_2",
+      "toPortId": "input"
+    },
+    {
       "id": "edge_lane4_pass_thru_to_lane5_pro_up_quark_2",
       "fromUnitId": "unit_lane4_pass_thru_pro_up_quark_2",
       "fromPortId": "output",
@@ -341,17 +327,31 @@
       "toPortId": "input"
     },
     {
-      "id": "edge_lane4_pass_thru_to_lane5_electron",
-      "fromUnitId": "unit_lane4_pass_thru_electron",
+      "id": "edge_lane3_electron_1_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_electron_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane5_electron",
+      "toUnitId": "unit_lane4_pass_thru_electron_1",
       "toPortId": "input"
     },
     {
-      "id": "edge_lane4_pass_thru_to_lane5_electron_antineutrino",
-      "fromUnitId": "unit_lane4_pass_thru_electron_antineutrino",
+      "id": "edge_lane4_pass_thru_to_lane5_electron_1",
+      "fromUnitId": "unit_lane4_pass_thru_electron_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane5_electron_antineutrino",
+      "toUnitId": "unit_lane5_electron_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane3_electron_antineutrino_1_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_electron_antineutrino_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane4_pass_thru_electron_antineutrino_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane4_pass_thru_to_lane5_electron_antineutrino_1",
+      "fromUnitId": "unit_lane4_pass_thru_electron_antineutrino_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane5_electron_antineutrino_1",
       "toPortId": "input"
     }
   ]

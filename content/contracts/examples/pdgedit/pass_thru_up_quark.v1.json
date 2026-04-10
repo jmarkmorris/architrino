@@ -51,8 +51,8 @@
       "x": 7,
       "y": 1,
       "title": "Pass Thru",
-      "positrinoCount": 6,
-      "electrinoCount": 6
+      "positrinoCount": 8,
+      "electrinoCount": 4
     },
     {
       "id": "pass_thru_stage_2",
@@ -60,8 +60,8 @@
       "x": 14,
       "y": 1,
       "title": "Pass Thru",
-      "positrinoCount": 6,
-      "electrinoCount": 6
+      "positrinoCount": 8,
+      "electrinoCount": 4
     }
   ],
   "links": [

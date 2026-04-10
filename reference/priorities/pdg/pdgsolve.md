@@ -34,7 +34,7 @@ It does not own:
 
 - `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review runtime under `src/apps/pdgsolve/`.
 - The runtime already separates request intake/bootstrap, request normalization, deterministic v1 solve search, candidate review, explicit acceptance, and accepted-record-to-pdgedit preview derivation instead of hiding that flow inside `app.js` or a shared root coordinator.
-- The app already loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records, then derives ranked families and publication-ready accepted records against the frozen contracts.
+- The app already loads built-in corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records, then derives ranked families and publication-ready accepted records against the versioned contracts.
 - [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly, and the accepted-record publication seam now emits final `pdgedit/v1` documents, durable manifest-entry updates, and in-memory launch payloads without pdgedit-side solver reconstruction.
 
 ## Design
@@ -444,7 +444,7 @@ The v1 assembly table should be:
 | `pro_noether_core` | `Pro Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
 | `anti_noether_core` | `Anti Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
 
-The frozen v1 bookkeeping values should therefore include:
+The versioned v1 bookkeeping values should therefore include:
 
 - \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\);
 - \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\);
@@ -459,7 +459,7 @@ In particular, no normalization or ranking rule should collapse rows into a part
 
 ### V1 Law Tables
 
-pdgsolve v1 should freeze a deliberately small executable law family.
+pdgsolve v1 should define a deliberately small executable law family.
 
 For unary laws, the initial tables should be empty:
 
@@ -489,7 +489,7 @@ e_{\mathrm{pro\_up\_quark}}
 \right\}.
 $$
 
-That law should be frozen as the following v1 record:
+That law should be versioned as the following v1 record:
 
 | Law id | Lane-2 operator input | Required support rows | Output multiset | Lane-2 operator tag | Lane-4 operator tags | Required provenance summary |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -1022,7 +1022,7 @@ The canonical representative of an option family should be the member with minim
 
 ### pdgsolve Result Contract
 
-pdgsolve should freeze one external review/result contract named `pdgsolve-result/v1`.
+pdgsolve should define one external review/result contract named `pdgsolve-result/v1`.
 
 That contract should be assembled from:
 
@@ -1678,42 +1678,7 @@ pdgsolve should not:
 
 ## Priorities
 
-### 1. Replace The Fixture-Template Solver With Row-Level Search
-
-Status: `active`
-
-Current:
-
-- `PdgsolveSolveRuntime.js` still classifies a small set of assembly-count scenarios and patches frozen result fixtures into returned results;
-- that path preserves known examples, but it is not yet the row-level combinatorial solver described above;
-- and current solver-quality issues make this the highest-priority pdgsolve risk.
-
-Objective:
-
-- implement the solver-native row-level search over explicit assembly rows, local lane-2 and lane-4 operator choices, support-row reservations, conserved inventories, provenance witnesses, pruning, and deterministic scoring;
-- generate `pdgsolve-result/v1` option families from branch-state records rather than from patched result templates;
-- keep the existing request, review, acceptance, and pdgedit publication seams unless the new solver proves a contract change is required.
-
-### 2. Reconcile Solver Ledgers With Publication Counts
-
-Status: `active`
-
-Current:
-
-- `pdgsolve.md` freezes solver-side primitive counts such as \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\), \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\), and \(\mu(\mathrm{electron}) = (9, 3)\);
-- `src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json` still carries independent quark row and port counts such as `6` Electrinos and `6` Positrinos for both pro-down-quark and pro-up-quark publication recipes;
-- the publication adapter derives visible pdgedit operator counts from the chosen pdgedit recipe-side count source, so a stale visual recipe can make the published surface contradict the solver ledger;
-- and this drift makes the visible `Dissociate` story look like one small incoming row is producing a larger outgoing set without an auditable primitive accounting path.
-
-Objective:
-
-- introduce one solver-owned primitive-ledger source of truth for the active solve family and use it for normalization, search, diagnostics, fixture assertions, accepted-graph accounting, and operator count emission;
-- stop treating pdgedit publication recipes as an independent authority for solver primitive counts; recipes may own row tiles, row titles, expansion height, and port expansion, but any primitive counts they expose must be a checked projection of the solver ledger;
-- add regression coverage that fails when a pdgedit publication recipe count disagrees with the solver ledger for a solver-native assembly id;
-- add regression coverage that fails when a published `Dissociate`, `Associate`, or `Pass Thru` operator displays counts inconsistent with the accepted primitive carrier set for that operator unit;
-- and make publication fail with a blocking diagnostic whenever the accepted graph cannot explain the exact Electrino and Positrino counts carried into and out of an operator.
-
-### 3. Replace The Beta-Only Dissociation Assumption With Explicit Fermion Decomposition Laws
+### 1. Replace The Beta-Only Dissociation Assumption With Explicit Fermion Decomposition Laws
 
 Status: `active`
 
@@ -1732,7 +1697,7 @@ Objective:
 - rebuild the row-level beta family as a composition of admitted primitive-preserving laws, or mark it unsupported until those laws exist;
 - and if the rule is not admitted, add an explicit unsupported-law diagnostic rather than continuing to rely on a direct beta rewrite that hides the missing decomposition decision.
 
-### 4. Make Support-Row Provenance Visible In The Accepted Solve Graph
+### 2. Make Support-Row Provenance Visible In The Accepted Solve Graph
 
 Status: `active`
 
@@ -1751,33 +1716,18 @@ Objective:
 - add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
 - and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
 
-### 5. Treat Frozen Result Fixtures As Regression Oracles
+### 3. Keep Solver Correctness On The Active Priority Queue
 
 Status: `active`
 
 Current:
 
-- frozen `pdgsolve-result/v1` fixtures are currently imported by the runtime solver and used as result templates;
-- those fixtures are valuable as regression examples, but they should not be the implementation of solving.
+- computed row-level result construction is now in place;
+- but solver correctness remains active while beta-only dissociation assumptions and support-row provenance visibility are unresolved.
 
 Objective:
 
-- keep the current beta, support-disallowed, primitive-imbalance, pass-thru, and publication fixtures as expected-output oracles;
-- change the runtime solver so it computes those results from the row-level model;
-- update tests so fixture drift catches solver regressions without allowing fixture JSON to masquerade as solver logic.
-
-### 6. Keep Solver Correctness On The Active Priority Queue
-
-Status: `active`
-
-Current:
-
-- the prior priority list said there were no active pdgsolve items;
-- that is no longer an honest status while the current solver is known to perform poorly on candidate solutions.
-
-Objective:
-
-- keep pdgsolve solver correctness active until the row-level search replaces fixture-template solving and passes the frozen beta-minimal regression set;
+- keep pdgsolve solver correctness active until the remaining active pdgsolve priorities are resolved against computed row-level results;
 - promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact option families deterministically.
 
 ## Related Priorities
@@ -1789,4 +1739,4 @@ Objective:
 
 ## Deferred Priorities
 
-1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then freeze its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
+1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
