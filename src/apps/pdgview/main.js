@@ -10,4 +10,4 @@ if (typeof window !== "undefined") {
   }
 }
 
-await import("../../../app.js");
+await import("../architrino/ArchitrinoSceneAppRuntime.js");

@@ -78,7 +78,7 @@
           {
             "occurrenceKey": "lane5.proton#1",
             "provenanceClass": "mixed",
-            "supportSourceClass": "none",
+            "supportSourceRows": [],
             "ambiguous": true
           }
         ]
@@ -140,7 +140,7 @@
             {
               "occurrenceKey": "lane5.proton#1",
               "provenanceClass": "mixed",
-              "supportSourceClass": "none",
+              "supportSourceRows": [],
               "ambiguous": true
             }
           ]

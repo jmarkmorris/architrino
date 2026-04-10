@@ -65,25 +65,6 @@
               "up-quark-color-variations-assembly",
               "down-quark-color-variations-family-i-assembly",
               "down-quark-color-variations-family-ii-assembly",
-              "photon-assembly",
-              "noether-pair-assembly",
-              "noether-quad-assembly",
-              "pro-proton-assembly",
-              "anti-proton-assembly",
-              "pro-neutron-assembly",
-              "anti-neutron-assembly",
-              "positive-pion-assembly",
-              "negative-pion-assembly",
-              "neutral-pion-u-assembly",
-              "neutral-pion-d-assembly",
-              "positive-kaon-assembly",
-              "negative-kaon-assembly",
-              "neutral-kaon-d-assembly",
-              "neutral-kaon-s-assembly",
-              "positive-b-meson-assembly",
-              "negative-b-meson-assembly",
-              "neutral-b-meson-d-assembly",
-              "neutral-b-meson-b-assembly",
               "pro-noether-core-assembly",
               "anti-noether-core-assembly"
             ]
@@ -203,6 +184,7 @@
         "additionalProperties": false,
         "required": [
           "id",
+          "type",
           "side",
           "text",
           "rowStart",
@@ -212,6 +194,30 @@
           "id": {
             "type": "string",
             "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "photon-composite",
+              "noether-pair-composite",
+              "noether-quad-composite",
+              "pro-proton-composite",
+              "anti-proton-composite",
+              "pro-neutron-composite",
+              "anti-neutron-composite",
+              "positive-pion-composite",
+              "negative-pion-composite",
+              "neutral-pion-u-composite",
+              "neutral-pion-d-composite",
+              "positive-kaon-composite",
+              "negative-kaon-composite",
+              "neutral-kaon-d-composite",
+              "neutral-kaon-s-composite",
+              "positive-b-meson-composite",
+              "negative-b-meson-composite",
+              "neutral-b-meson-d-composite",
+              "neutral-b-meson-b-composite"
+            ]
           },
           "side": {
             "type": "string",

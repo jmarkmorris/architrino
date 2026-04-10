@@ -49,7 +49,7 @@ It does not own:
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but pdgview-side structural editing is still incomplete.
 - pdgview now sits cleanly on the downstream side of the solve/publication path.
 - Upstream request loading, solving, review, and publication stay entirely outside pdgview; the intended forward input is accepted pdgedit output or an equivalent downstream contract.
-- The next import and contract work is to define and cover that forward pdgsolve/pdgedit-to-pdgview seam.
+- The first accepted-pdgedit import contract now exists as `pdgview-staging/v1`, with a frozen beta fixture that carries observer framing, preview identifiers, and export scene data from accepted `pdgedit/v1` output without importing upstream app runtimes.
 
 ## Design
 
@@ -118,6 +118,29 @@ Another boundary should stay explicit too:
 - viewport tools are downstream of accepted pdgedit output or an equivalent downstream staging contract derived from it;
 - they should not solve upstream composition again or repair missing upstream geometry;
 - and they should treat upstream structure as authored input rather than something to reinterpret.
+
+### Post-Solver Grouping Display Rule
+
+In pdgview, the only admitted composite language is **composite of assemblies**.
+
+That means:
+
+- it is future post-solver grouping metadata over related 4-tile assemblies;
+- it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
+- a composite label may use an observer-facing label tile or label token such as `Photon`, but that tile/token is span-label artwork rather than an assembly row;
+- it is not itself a single assembly;
+- it is not a dissociate or associate target;
+- it should initially be limited to pdgview lanes `1` and `20`;
+- and pdgview must not introduce a grouping-level `Dissociate` or `Associate` interpretation.
+
+When pdgview receives upstream stage timing for dissociate, transit, associate, or reassembly intervals, those timings should remain anchored to the upstream 4-tile assembly endpoints.
+
+Specifically:
+
+- a dissociate interval starts from one 4-tile assembly reactant;
+- an associate interval ends at one 4-tile assembly product;
+- a composite of assemblies may be highlighted or revealed around those rows;
+- but the grouping is not the thing being opened or gathered.
 
 ### Viewport Layout Direction
 
@@ -199,7 +222,7 @@ The design view should favor:
 
 - placing assemblies;
 - dragging path points;
-- arranging members and subassemblies;
+- arranging members and nested assembly structure;
 - and revealing structural guides.
 
 The observer view should favor:
@@ -393,7 +416,7 @@ The pdgview-side intake should be strong enough to receive:
 
 - participant identities and roles;
 - solved mapping corridors or equivalent provenance paths;
-- stage timing such as dissociate, transit, and associate / reassembly intervals;
+- stage timing such as dissociate, transit, and associate / reassembly intervals anchored to 4-tile assembly endpoints;
 - observer hints such as initial framing targets or flyby anchors;
 - and labels or overlays needed to explain the reaction.
 
@@ -414,11 +437,12 @@ Status: `active`
 Current:
 
 - `src/apps/pdgview/` now covers import, draft state, document workspace, playback, pointer, viewport, and authoring runtimes;
-- but `src/apps/pdgview/main.js` still imports `app.js`, and `app.js` still holds substantial pdgview behavior at about 7.1k lines.
+- `src/apps/pdgview/main.js` no longer imports root `app.js`, and root `app.js` is now thin entry glue;
+- but substantial pdgview behavior still remains in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
 
 Objective:
 
-- leave `app.js` as thin shell glue and give pdgview a fully app-owned bootstrap/runtime path.
+- finish moving the remaining pdgview scene-shell behavior into a fully app-owned bootstrap/runtime path.
 
 ### 2. Finish Authored Observer Framing And Autoscale UI
 
@@ -445,20 +469,7 @@ Objective:
 
 - turn `Observer` into a true timeline object and either implement `Audio` or remove its placeholder path until it is real.
 
-### 4. Expand Contract-Driven Import Coverage For Downstream Authored-Surface Content
-
-Status: `next`
-
-Current:
-
-- pdgview no longer carries a live legacy handoff bridge in the active tree;
-- the accepted-pdgedit downstream contract still needs schema, fixtures, and runtime coverage.
-
-Objective:
-
-- land the accepted-pdgedit downstream contract and prove that pdgview stays a pure contract consumer as upstream particle, assembly, and authored-surface coverage grows.
-
-### 5. Move More Editing Onto Canonical Structure Transforms
+### 4. Move More Editing Onto Canonical Structure Transforms
 
 Status: `pending`
 

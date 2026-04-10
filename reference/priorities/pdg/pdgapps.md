@@ -29,8 +29,8 @@ It does not own:
 
 ## Current State
 
-- The codebase now has `pdgview.html` as the only active standalone app entrypoint in the main web surface for the current pdgview runtime.
-- pdgview now owns a meaningful app tree under `src/apps/pdgview/`, but too much live behavior still remains concentrated in `app.js`.
+- The codebase now has `pdgview.html`, `pdgsolve.html`, and `pdgedit.html` as active standalone app entrypoints in the main web surface.
+- pdgview now owns a meaningful app tree under `src/apps/pdgview/`, and root `app.js` has been thinned to entry glue, but too much live behavior still remains concentrated in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
 - The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> pdgview`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
@@ -231,12 +231,12 @@ Status: `active`
 
 Current:
 
-- standalone launch routing already exists for the current `pdgview` entrypoint and the remaining prototype runtimes;
-- but `src/apps/pdgview/main.js` still hands control back to `app.js`.
+- standalone launch routing now exists for `pdgview`, `pdgsolve`, and `pdgedit`;
+- but `pdgview` still shares the larger Architrino scene-shell runtime while the remaining pdgview-owned behavior is moved out of that shell.
 
 Objective:
 
-- make the main web app a launcher and discovery surface only, with pdgview and the forward dedicated apps each owning their own runtime path.
+- keep making the main web app a launcher and discovery surface only, with pdgview and the forward dedicated apps each owning their own runtime path.
 
 ### 2. Keep Cross-App Exchange Contract-First
 
@@ -270,7 +270,7 @@ Status: `active`
 
 Current:
 
-- `app.js` is still about 7.1k lines;
+- root `app.js` is now thin, while `src/apps/architrino/ArchitrinoSceneAppRuntime.js` still carries the large scene-shell composition root;
 - and some editor/runtime concentration is still larger than the intended long-term boundaries.
 
 Objective:

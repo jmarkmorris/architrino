@@ -171,6 +171,18 @@
                 "id": { "type": "string", "minLength": 1 },
                 "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
                 "lawId": { "type": ["string", "null"], "minLength": 1 },
+                "requiredSupportRows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["rowAssemblyId", "count"],
+                    "properties": {
+                      "rowAssemblyId": { "type": "string", "minLength": 1 },
+                      "count": { "type": "integer", "minimum": 0 }
+                    }
+                  }
+                },
                 "inputOccurrenceKeys": {
                   "type": "array",
                   "items": { "type": "string", "minLength": 1 }
@@ -217,16 +229,24 @@
                 "items": {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["occurrenceKey", "provenanceClass", "supportSourceClass", "ambiguous"],
+                  "required": ["occurrenceKey", "provenanceClass", "supportSourceRows", "ambiguous"],
                   "properties": {
                     "occurrenceKey": { "type": "string", "minLength": 1 },
                     "provenanceClass": {
                       "type": "string",
                       "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
                     },
-                    "supportSourceClass": {
-                      "type": "string",
-                      "enum": ["none", "noether_pair", "2h", "4h"]
+                    "supportSourceRows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["rowAssemblyId", "count"],
+                        "properties": {
+                          "rowAssemblyId": { "type": "string", "minLength": 1 },
+                          "count": { "type": "integer", "minimum": 0 }
+                        }
+                      }
                     },
                     "ambiguous": { "type": "boolean" }
                   }
@@ -329,6 +349,18 @@
                     "id": { "type": "string", "minLength": 1 },
                     "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
                     "lawId": { "type": ["string", "null"], "minLength": 1 },
+                    "requiredSupportRows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["rowAssemblyId", "count"],
+                        "properties": {
+                          "rowAssemblyId": { "type": "string", "minLength": 1 },
+                          "count": { "type": "integer", "minimum": 0 }
+                        }
+                      }
+                    },
                     "inputOccurrenceKeys": {
                       "type": "array",
                       "items": { "type": "string", "minLength": 1 }
@@ -372,16 +404,24 @@
                     "items": {
                       "type": "object",
                       "additionalProperties": false,
-                      "required": ["occurrenceKey", "provenanceClass", "supportSourceClass", "ambiguous"],
+                      "required": ["occurrenceKey", "provenanceClass", "supportSourceRows", "ambiguous"],
                       "properties": {
                         "occurrenceKey": { "type": "string", "minLength": 1 },
                         "provenanceClass": {
                           "type": "string",
                           "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
                         },
-                        "supportSourceClass": {
-                          "type": "string",
-                          "enum": ["none", "noether_pair", "2h", "4h"]
+                        "supportSourceRows": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["rowAssemblyId", "count"],
+                            "properties": {
+                              "rowAssemblyId": { "type": "string", "minLength": 1 },
+                              "count": { "type": "integer", "minimum": 0 }
+                            }
+                          }
                         },
                         "ambiguous": { "type": "boolean" }
                       }

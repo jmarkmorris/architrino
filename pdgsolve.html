@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" style="background:#101520;color:#f7f7f2;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101520" />
+    <title>pdgsolve</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top left, rgba(221, 119, 66, 0.18), transparent 28%),
+          radial-gradient(circle at top right, rgba(86, 164, 211, 0.18), transparent 24%),
+          linear-gradient(180deg, #101520, #06080d);
+        color: #f7f7f2;
+        font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      }
+
+      body {
+        min-width: 1180px;
+      }
+
+      #pdgsolve-app {
+        min-height: 100vh;
+        padding: 28px;
+      }
+
+      .pdgsolve-shell {
+        max-width: 1500px;
+        margin: 0 auto;
+      }
+
+      .pdgsolve-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .pdgsolve-title-block h1 {
+        margin: 0;
+        font-size: 40px;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pdgsolve-title-block p {
+        margin: 10px 0 0;
+        color: rgba(247, 247, 242, 0.74);
+        font-size: 14px;
+        max-width: 540px;
+      }
+
+      .pdgsolve-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        max-width: 760px;
+      }
+
+      .pdgsolve-toolbar button,
+      .pdgsolve-toolbar select {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        background: rgba(10, 12, 18, 0.72);
+        color: #f7f7f2;
+        min-height: 38px;
+        padding: 0 16px;
+        font: inherit;
+        backdrop-filter: blur(10px);
+      }
+
+      .pdgsolve-toolbar button {
+        cursor: pointer;
+      }
+
+      .pdgsolve-toolbar button:hover,
+      .pdgsolve-toolbar button:focus-visible,
+      .pdgsolve-toolbar select:hover,
+      .pdgsolve-toolbar select:focus-visible {
+        border-color: rgba(255, 255, 255, 0.34);
+        outline: none;
+      }
+
+      .pdgsolve-toolbar button:disabled,
+      .pdgsolve-toolbar select:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+
+      #pdgsolve-home-button {
+        width: 38px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #pdgsolve-home-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      #pdgsolve-request-select {
+        min-width: 340px;
+        max-width: 440px;
+      }
+
+      .pdgsolve-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr 1.15fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .pdgsolve-panel {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        background: rgba(8, 10, 15, 0.72);
+        padding: 18px 18px 20px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+        backdrop-filter: blur(12px);
+      }
+
+      .pdgsolve-panel + .pdgsolve-panel {
+        margin-top: 18px;
+      }
+
+      .pdgsolve-panel h2 {
+        margin: 0 0 14px;
+        font-size: 15px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(247, 247, 242, 0.78);
+      }
+
+      .pdgsolve-kv-row + .pdgsolve-kv-row,
+      .pdgsolve-meta-line + .pdgsolve-diagnostic,
+      .pdgsolve-diagnostic + .pdgsolve-diagnostic {
+        margin-top: 8px;
+      }
+
+      .pdgsolve-kv-key {
+        color: rgba(247, 247, 242, 0.6);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pdgsolve-kv-value,
+      .pdgsolve-meta-line,
+      .pdgsolve-diagnostic,
+      .pdgsolve-empty {
+        margin-top: 3px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .pdgsolve-diagnostic {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .pdgsolve-diagnostic.is-blocking,
+      .pdgsolve-diagnostic-error {
+        background: rgba(221, 119, 66, 0.16);
+      }
+
+      .pdgsolve-family-card {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 14px;
+        color: inherit;
+        text-align: left;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .pdgsolve-family-card + .pdgsolve-family-card {
+        margin-top: 10px;
+      }
+
+      .pdgsolve-family-card.is-selected {
+        border-color: rgba(86, 164, 211, 0.65);
+        background: rgba(86, 164, 211, 0.14);
+      }
+
+      .pdgsolve-family-title {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .pdgsolve-family-subtitle,
+      .pdgsolve-family-lanes {
+        margin-top: 6px;
+        color: rgba(247, 247, 242, 0.7);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .pdgsolve-json-preview {
+        margin: 14px 0 0;
+        max-height: 420px;
+        overflow: auto;
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.26);
+        color: #d8f4ff;
+        font: 12px/1.45 "SFMono-Regular", Menlo, monospace;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      @media (max-width: 1280px) {
+        body {
+          min-width: 0;
+        }
+
+        #pdgsolve-app {
+          padding: 20px;
+        }
+
+        .pdgsolve-topbar {
+          flex-direction: column;
+        }
+
+        .pdgsolve-toolbar {
+          justify-content: flex-start;
+        }
+
+        .pdgsolve-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pdgsolve-app">
+      <div class="pdgsolve-shell">
+        <div class="pdgsolve-topbar">
+          <div class="pdgsolve-title-block">
+            <h1>pdgsolve</h1>
+            <p>
+              Request intake, deterministic family search, explicit acceptance, and downstream authored-surface preview all stay on the contract boundary here.
+            </p>
+          </div>
+          <div class="pdgsolve-toolbar">
+            <button id="pdgsolve-home-button" type="button" aria-label="Go home">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <select id="pdgsolve-request-select" aria-label="Select request"></select>
+            <button id="pdgsolve-load-request-button" type="button">Load request JSON</button>
+            <button id="pdgsolve-reopen-acceptance-button" type="button">Reopen acceptance</button>
+            <button id="pdgsolve-solve-button" type="button">Run solve</button>
+            <button id="pdgsolve-accept-button" type="button">Accept selected family</button>
+            <button id="pdgsolve-launch-pdgedit-button" type="button" disabled>Open in pdgedit</button>
+          </div>
+        </div>
+
+        <input id="pdgsolve-request-file-input" type="file" accept=".json,application/json" />
+        <input id="pdgsolve-acceptance-file-input" type="file" accept=".json,application/json" />
+
+        <div class="pdgsolve-grid">
+          <div>
+            <section class="pdgsolve-panel">
+              <h2>Request</h2>
+              <div id="pdgsolve-request-summary"></div>
+            </section>
+            <section class="pdgsolve-panel">
+              <h2>Diagnostics</h2>
+              <div id="pdgsolve-diagnostics"></div>
+            </section>
+          </div>
+          <section class="pdgsolve-panel">
+            <h2>Families</h2>
+            <div id="pdgsolve-family-list"></div>
+          </section>
+          <div>
+            <section class="pdgsolve-panel">
+              <h2>Accepted Record</h2>
+              <div id="pdgsolve-accepted-summary"></div>
+            </section>
+            <section class="pdgsolve-panel">
+              <h2>pdgedit Preview</h2>
+              <div id="pdgsolve-publication-preview"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/apps/pdgsolve/main.js"></script>
+  </body>
+</html>

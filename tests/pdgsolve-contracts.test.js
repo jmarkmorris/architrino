@@ -2,11 +2,22 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
+import { createPdgeditLibraryManifestEntry } from "../src/apps/pdgedit/PdgeditLibraryManifestRuntime.js";
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
-import { buildPdgsolvePdgeditPackage, buildPdgeditDocumentFromPdgsolvePublicationGraph } from "../src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js";
+import { PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
+import {
+  buildPdgsolvePdgeditLaunchPayload,
+  buildPdgsolvePdgeditPackage,
+  buildPdgsolvePdgeditPackageFromAcceptance,
+  buildPdgeditDocumentFromPdgsolvePublicationGraph,
+  launchPdgeditFromPdgsolveAcceptance,
+  publishPdgsolveAcceptanceToPdgeditLibrary,
+  upsertPdgeditLibraryManifestEntryForPdgsolvePublication,
+} from "../src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolvePdgeditRecipeCatalog } from "../src/apps/pdgsolve/PdgsolvePdgeditRecipeCatalogRuntime.js";
+import { solvePdgsolveRequest } from "../src/apps/pdgsolve/PdgsolveSolveRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -114,6 +125,7 @@ const pdgsolveResultSchema = readJson("src/contracts/pdgsolve-result/v1/schema.j
 const pdgsolveAcceptanceSchema = readJson("src/contracts/pdgsolve-acceptance/v1/schema.json");
 const pdgsolvePublicationGraphSchema = readJson("src/contracts/pdgsolve-publication-graph/v1/schema.json");
 const pdgsolvePdgeditPackageSchema = readJson("src/contracts/pdgsolve-pdgedit-package/v1/schema.json");
+const pdgeditLibraryManifestSchema = readJson("src/contracts/pdgedit-library-manifest/v1/schema.json");
 const pdgeditSchema = readJson("src/contracts/pdgedit/v1/schema.json");
 const pdgsolvePdgeditRecipeCatalog = normalizePdgsolvePdgeditRecipeCatalog(
   readJson("src/apps/pdgsolve/pdgsolve-pdgedit-recipes.v1.json")
@@ -170,7 +182,7 @@ test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen
   assert.equal(supportDisallowedResult.searchStatus, "unsupported");
   assert.equal(
     supportDisallowedResult.diagnostics.some(
-      (diagnostic) => diagnostic.id === "pdgsolve.normalization.support_required.noether_pair"
+      (diagnostic) => diagnostic.id === "pdgsolve.normalization.support_required.noether_core_rows"
     ),
     true
   );
@@ -187,6 +199,16 @@ test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen
   assert.equal(passThruResult.optionFamilies[0].score.nonIdentityOperatorCount, 0);
   assert.equal(passThruResult.optionFamilies[0].score.dissociationCount, 0);
   assert.equal(passThruResult.optionFamilies[0].score.ambiguityPenalty, 0);
+});
+
+test("pdgsolve deterministic runtime reproduces every frozen result fixture from its request fixture", () => {
+  pdgsolveCorpus.cases.forEach((entry) => {
+    const request = readJson(entry.requestPath);
+    const expectedResult = readJson(entry.resultPath);
+    const builtResult = solvePdgsolveRequest(request);
+
+    assert.deepEqual(builtResult, expectedResult, `${entry.id} runtime result drifted from the frozen fixture`);
+  });
 });
 
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {
@@ -215,6 +237,18 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
     true
   );
   assert.deepEqual(packageFixture.pdgeditDocument, pdgeditDocument);
+  assert.deepEqual(
+    validateAgainstSchema(
+      {
+        schema: "pdgedit-library-manifest/v1",
+        defaultEntryId: packageFixture.manifestEntry.id,
+        entries: [{ ...packageFixture.manifestEntry, isDefault: true }],
+      },
+      pdgeditLibraryManifestSchema
+    ),
+    [],
+    "beta package manifest entry drifted from pdgedit manifest contract"
+  );
 });
 
 test("pdgsolve beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
@@ -225,17 +259,23 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
   const intermediateRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "intermediate");
   const productRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "product");
   const dissociateOperators = pdgeditDocument.operators.filter((operator) => operator.type === "dissociate");
-  const passThruOperators = pdgeditDocument.operators.filter((operator) => operator.type === "pass-thru");
+  const lane2PassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane2_")
+  );
+  const lane4PassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane4_")
+  );
 
   assert.deepEqual(errors, [], "pdgedit tile payload drifted");
   assert.equal(reactantRows.every((assembly) => assembly.x === 2), true);
   assert.equal(intermediateRows.every((assembly) => assembly.x === 9), true);
   assert.equal(productRows.every((assembly) => assembly.x === 16), true);
   assert.equal(dissociateOperators.every((operator) => operator.x === 7), true);
-  assert.equal(passThruOperators.every((operator) => operator.x === 14), true);
+  assert.equal(lane2PassThruOperators.every((operator) => operator.x === 7), true);
+  assert.equal(lane4PassThruOperators.every((operator) => operator.x === 14), true);
   assert.deepEqual(
     reactantRows.map((assembly) => assembly.y),
-    [0, 1, 2, 3, 4],
+    [0, 1, 2, 3, 4, 5, 6],
     "reactant rows should pack contiguously"
   );
   assert.deepEqual(
@@ -248,19 +288,30 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
     [0, 1, 2, 3, 4],
     "product rows should pack contiguously"
   );
+  assert.deepEqual(pdgeditDocument.compositeLabels, []);
   assert.deepEqual(
-    pdgeditDocument.compositeLabels.map((label) => [label.side, label.text, label.rowStart, label.rowEnd]),
+    pdgeditDocument.links.filter((link) => link.endpointB === "unit_lane2_beta_dissociate"),
     [
-      ["left", "Neutron", 0, 2],
-      ["left", "Noether Pair", 3, 4],
-      ["right", "Proton", 0, 2],
-      ["right", "Pro Electron", 3, 3],
-      ["right", "Anti Electron Neutrino", 4, 4],
-    ]
+      {
+        id: "edge_lane1_pro_down_quark_2_to_beta_dissociate",
+        endpointA: "unit_lane1_pro_down_quark_2.row.1",
+        endpointB: "unit_lane2_beta_dissociate",
+      },
+    ],
+    "dissociate must have one incoming 4-tile assembly row link"
   );
+  assert.deepEqual(dissociateOperators[0], {
+    id: "unit_lane2_beta_dissociate",
+    type: "dissociate",
+    x: 7,
+    y: 2,
+    title: "Dissociate",
+    positrinoCount: 6,
+    electrinoCount: 6,
+  });
 });
 
-test("pdgsolve pdgedit recipe catalog admits 2h and 4h as explicit publication recipes without collapsing them into support assemblies", () => {
+test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with constituent assembly row types", () => {
   const twoHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.2h.v1");
   const fourHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.4h.v1");
   const noetherPairRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.noether_pair.v1");
@@ -270,13 +321,19 @@ test("pdgsolve pdgedit recipe catalog admits 2h and 4h as explicit publication r
   assert.ok(noetherPairRecipe);
   assert.equal(twoHRecipe.pdgsolveAssemblyId, "2h");
   assert.equal(fourHRecipe.pdgsolveAssemblyId, "4h");
-  assert.equal(twoHRecipe.pdgeditType, "noether-pair-assembly");
-  assert.equal(fourHRecipe.pdgeditType, "noether-quad-assembly");
+  assert.equal(twoHRecipe.pdgeditType, "noether-pair-composite");
+  assert.equal(fourHRecipe.pdgeditType, "noether-quad-composite");
   assert.equal(twoHRecipe.boundaryLabelText, "2H");
   assert.equal(fourHRecipe.boundaryLabelText, "4H");
   assert.equal(noetherPairRecipe.boundaryLabelText, "Noether Pair");
   assert.notEqual(twoHRecipe.id, noetherPairRecipe.id);
-  assert.notDeepEqual(twoHRecipe.rowTitles, noetherPairRecipe.rowTitles);
+  assert.deepEqual(twoHRecipe.pdgeditRowTypes, ["pro-noether-core-assembly", "anti-noether-core-assembly"]);
+  assert.deepEqual(fourHRecipe.pdgeditRowTypes, [
+    "pro-noether-core-assembly",
+    "anti-noether-core-assembly",
+    "pro-noether-core-assembly",
+    "anti-noether-core-assembly",
+  ]);
 });
 
 test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payloads while keeping distinct labels", () => {
@@ -288,8 +345,13 @@ test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payload
 
   assert.deepEqual(twoHRecipe.rows, noetherPairRows);
   assert.deepEqual(fourHRecipe.rows, noetherQuadRows);
-  assert.deepEqual(twoHRecipe.rowTitles, ["2H Row 1", "2H Row 2"]);
-  assert.deepEqual(fourHRecipe.rowTitles, ["4H Row 1", "4H Row 2", "4H Row 3", "4H Row 4"]);
+  assert.deepEqual(twoHRecipe.rowTitles, ["Pro Noether Core", "Anti Noether Core"]);
+  assert.deepEqual(fourHRecipe.rowTitles, [
+    "Pro Noether Core",
+    "Anti Noether Core",
+    "Pro Noether Core",
+    "Anti Noether Core",
+  ]);
 });
 
 test("every recipeId used by pdgsolve publication-graph fixtures is admitted in the pdgsolve pdgedit recipe catalog", () => {
@@ -340,6 +402,15 @@ test("pdgsolve publication runtime builds the expected durable package for bound
 
   assert.deepEqual(validateAgainstSchema(builtPackage, pdgsolvePdgeditPackageSchema), [], "boundary package schema drifted");
   assert.deepEqual(builtPackage, expectedPackage);
+  assert.deepEqual(
+    builtPackage.manifestEntry,
+    createPdgeditLibraryManifestEntry({
+      id: "pdgsolve_boundary_augmentation_recipe_coverage",
+      title: "Boundary augmentation recipe coverage",
+      displayTitle: "Boundary augmentation recipe coverage",
+      documentPath: "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
+    })
+  );
 });
 
 test("pdgsolve publication runtime builds the expected beta pdgedit document from the accepted publication graph", () => {
@@ -368,4 +439,147 @@ test("pdgsolve publication runtime builds the expected durable beta package from
 
   assert.deepEqual(validateAgainstSchema(builtPackage, pdgsolvePdgeditPackageSchema), [], "beta package schema drifted");
   assert.deepEqual(builtPackage, expectedPackage);
+  assert.deepEqual(
+    builtPackage.manifestEntry,
+    createPdgeditLibraryManifestEntry({
+      id: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+      title: "Free neutron beta exact",
+      displayTitle: "Free neutron beta exact",
+      documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    })
+  );
+});
+
+test("pdgsolve publication runtime publishes only from an accepted record into one pdgedit document and one manifest entry", async () => {
+  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const manifest = readJson("content/contracts/examples/pdgedit/manifest.v1.json");
+  const expectedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const documentWrites = [];
+  const manifestWrites = [];
+
+  const publication = await publishPdgsolveAcceptanceToPdgeditLibrary({
+    acceptance,
+    manifest,
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+    durableDocumentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    documentWriter: async (write) => {
+      documentWrites.push(write);
+    },
+    manifestWriter: async (write) => {
+      manifestWrites.push(write);
+    },
+  });
+
+  assert.equal(publication.publicationMode, "durable");
+  assert.equal(documentWrites.length, 1);
+  assert.equal(manifestWrites.length, 1);
+  assert.equal(documentWrites[0].path, "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  assert.deepEqual(documentWrites[0].document, expectedDocument);
+  assert.equal(manifestWrites[0].path, "content/contracts/examples/pdgedit/manifest.v1.json");
+  assert.equal(
+    manifestWrites[0].manifest.entries.filter(
+      (entry) => entry.id === "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1"
+    ).length,
+    1
+  );
+  assert.deepEqual(
+    manifestWrites[0].manifest.entries.find(
+      (entry) => entry.id === "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1"
+    ),
+    publication.package.manifestEntry
+  );
+});
+
+test("pdgsolve publication manifest upsert replaces the matching durable entry instead of duplicating it", () => {
+  const manifest = {
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "old_entry",
+    entries: [
+      {
+        id: "old_entry",
+        title: "Old entry",
+        displayTitle: "Old entry",
+        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+        isDefault: true,
+      },
+      {
+        id: "published_entry",
+        title: "Stale published entry",
+        displayTitle: "Stale published entry",
+        documentPath: "content/contracts/examples/pdgedit/stale.v1.json",
+      },
+    ],
+  };
+
+  const updatedManifest = upsertPdgeditLibraryManifestEntryForPdgsolvePublication(manifest, {
+    id: "published_entry",
+    title: "Published entry",
+    displayTitle: "Published entry",
+    documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+  });
+
+  assert.equal(updatedManifest.entries.length, 2);
+  assert.equal(
+    updatedManifest.entries.filter((entry) => entry.id === "published_entry").length,
+    1
+  );
+  assert.deepEqual(updatedManifest.entries[1], {
+    id: "published_entry",
+    title: "Published entry",
+    displayTitle: "Published entry",
+    documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+  });
+  assert.equal(updatedManifest.defaultEntryId, "old_entry");
+  assert.equal(updatedManifest.entries[0].isDefault, true);
+});
+
+test("pdgsolve launch publication stores the exact accepted pdgedit document and opens pdgedit", () => {
+  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const expectedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const storageData = new Map();
+  let assignedHref = "";
+  const storage = {
+    setItem(key, value) {
+      storageData.set(key, value);
+    },
+  };
+  const windowLike = {
+    location: {
+      href: "http://127.0.0.1:5173/pdgsolve.html",
+      assign(href) {
+        assignedHref = href;
+      },
+    },
+  };
+
+  const launch = launchPdgeditFromPdgsolveAcceptance({
+    acceptance,
+    storage,
+    windowLike,
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+  });
+  const payload = JSON.parse(storageData.get(PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY));
+
+  assert.equal(launch.publicationMode, "launch");
+  assert.equal(launch.href, "http://127.0.0.1:5173/pdgedit.html");
+  assert.equal(assignedHref, "http://127.0.0.1:5173/pdgedit.html");
+  assert.equal(payload.schema, "pdgedit-launch/v1");
+  assert.equal(payload.sourceKind, "pdgsolve");
+  assert.equal(payload.sourceReference, acceptance.resultDigest);
+  assert.deepEqual(payload.pdgeditDocument, expectedDocument);
+});
+
+test("pdgsolve publication refuses arbitrary pdgedit documents as reverse solver input", () => {
+  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+
+  assert.throws(
+    () => buildPdgsolvePdgeditPackageFromAcceptance({ acceptance: pdgeditDocument }),
+    /pdgsolve-acceptance\/v1/
+  );
+  assert.throws(
+    () => buildPdgsolvePdgeditLaunchPayload({ acceptance: pdgeditDocument }),
+    /pdgsolve-acceptance\/v1/
+  );
 });

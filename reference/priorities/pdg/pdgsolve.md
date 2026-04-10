@@ -32,10 +32,10 @@ It does not own:
 
 ## Current State
 
-- There is no dedicated pdgsolve app runtime yet.
-- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly.
-- [pdgfeed](./pdgfeed.md) already exists as an upstream request-producing component.
-- The next major design task is therefore not migration glue. It is defining pdgsolve's native request model, native search model, native review boundary, and native publication path into pdgedit.
+- `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review runtime under `src/apps/pdgsolve/`.
+- The runtime already separates request intake/bootstrap, request normalization, deterministic v1 solve search, candidate review, explicit acceptance, and accepted-record-to-pdgedit preview derivation instead of hiding that flow inside `app.js` or a shared root coordinator.
+- The app already loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records, then derives ranked families and publication-ready accepted records against the frozen contracts.
+- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly, and the accepted-record publication seam now emits final `pdgedit/v1` documents, durable manifest-entry updates, and in-memory launch payloads without pdgedit-side solver reconstruction.
 
 ## Design
 
@@ -108,6 +108,21 @@ The assembly grammar is:
 - lanes 2 and 4 contain operators only;
 - and all normal solve progress moves left-to-right through adjacent lanes only.
 
+In pdgsolve terminology, an **assembly** means one 4-tile assembly row that can participate in operator routing.
+
+pdgsolve should not use PDG particle-level names, display-grouping names, support-pair names, or support-quad names as solver-native assembly-row ids.
+
+Those names belong on either side of the solver boundary:
+
+- before pdgsolve, [pdgfeed](./pdgfeed.md) may know PDG particle names and expand them into individual 4-tile assembly rows;
+- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published lane-3 assembly rows and classify or group them as transient W/Z boson corridors where a dedicated downstream rule admits that reading;
+- after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved rows;
+- inside pdgsolve, all routing, scoring, and provenance should use individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `pro_noether_core`, and `anti_noether_core`.
+
+pdgsolve should not solve over `W-`, `W+`, or `Z` bosons as native lane units in the v1 strip.
+
+For the current boundary, W/Z boson language is a downstream interpretation of already-emitted lane-3 row assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or middle-lane search symbol.
+
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
@@ -116,46 +131,51 @@ That means:
 - row order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
 
-If spacetime material is permitted, it should enter through a deliberately limited boundary rule rather than as arbitrary free placement.
+If Noether support material is permitted, it should enter through a deliberately limited row rule rather than as arbitrary free placement.
 
 For the current working direction, that means:
 
-- spacetime-derived composites such as `2H` and `4H` are legal assemblies;
-- they may appear only at the outer reactant/product boundaries as lane-1 reactants or lane-5 products;
-- they are beyond the current state of detection and should therefore carry explicit provenance rather than being treated as ordinary authored-visible assemblies;
-- they are not lane-3 center assemblies;
-- they are not arbitrary middle-lane insertions;
-- and they are not free-floating geometry owned by the renderer.
+- Noether support is added only as individual Noether core rows;
+- support rows are added in balanced pairs, one `pro_noether_core` and one `anti_noether_core` at a time;
+- the row-level beta family requires two `pro_noether_core` rows and two `anti_noether_core` rows;
+- no paired, quad, or display-grouping support token is admitted as solver-native material;
+- there is no separate solver action required to expose or open a grouping;
+- pdgedit publication may omit any grouping label/span until the post-solver grouping contract is explicitly admitted;
+- support rows are not lane-3 center assemblies;
+- support rows are not arbitrary middle-lane insertions;
+- and support rows are not free-floating geometry owned by the renderer.
 
 For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
 
-The current spacetime-boundary family is the distinguished subset
+The current Noether-support family is the distinguished row-level subset
 
 $$
-\mathcal{A}_{\mathrm{st}} = \{\mathrm{2H}, \mathrm{4H}\} \subset \mathcal{A}.
+\mathcal{A}_{\mathrm{st}} = \{\mathrm{pro\_noether\_core}, \mathrm{anti\_noether\_core}\} \subset \mathcal{A}.
 $$
+
+Those support symbols denote individual Noether core assembly rows.
+
+They do not become `Dissociate` or `Associate` endpoints merely because they are present in \(\mathcal{A}\).
 
 Each assembly lane should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
 
 If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the inventory at lane \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that lane.
 
-For the current working boundary policy, pdgsolve should enumerate over the finite augmentation family
+For the current working support policy, pdgsolve should enumerate over the finite balanced-support family
 
 $$
-\mathcal{B} = \{0, e_{\mathrm{2H}}, e_{\mathrm{4H}}\},
+\mathcal{S} = \{0, e_{\mathrm{pro\_noether\_core}} + e_{\mathrm{anti\_noether\_core}}, 2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}\}.
 $$
-
-where \(e_{a}\) is the unit multiset for assembly \(a\).
 
 A concrete solve attempt is therefore an augmented request
 
 $$
-(R, T, b^{-}, b^{+}) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}} \times \mathcal{B} \times \mathcal{B},
+(R, T, s^{-}, s^{+}) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}} \times \mathcal{S} \times \mathcal{S},
 $$
 
-with effective reactant inventory \(R + b^{-}\) and effective product inventory \(T + b^{+}\).
+with effective reactant inventory \(R + s^{-}\) and effective product inventory \(T + s^{+}\).
 
-This boundary family can later widen, but pdgsolve v1 should keep it finite and explicit.
+This support family can later widen, but pdgsolve v1 should keep it finite and explicit.
 
 ### Operator Semantics
 
@@ -169,7 +189,9 @@ pdgsolve should keep the operator family deliberately small.
 
 `Dissociate` means:
 
-- one reactant-side assembly is opened;
+- exactly one input is accepted;
+- that input must come from one 4-tile assembly reactant row, not from a grouping label or span;
+- one reactant-side 4-tile assembly is opened;
 - the resulting output is a constrained set of lane-3 assemblies determined by the decomposition law for that assembly family;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
@@ -177,9 +199,20 @@ pdgsolve should keep the operator family deliberately small.
 `Associate` means:
 
 - one or more lane-3 assemblies are gathered into one lane-5 assembly;
+- exactly one output is emitted;
+- that output must go to one 4-tile assembly product row, not to a grouping label or span;
 - the operation is legal only when the gathered material exactly satisfies the product assembly recipe;
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
 - and the total conserved ledger is preserved across the gather-and-assemble step.
+
+So the operator shape is asymmetric but strict:
+
+- a 4-tile assembly reactant may route to a lane-2 `Dissociate` operator;
+- a lane-2 `Dissociate` operator has only one input;
+- a lane-4 `Associate` operator has only one output;
+- and that lane-4 `Associate` output must route to a 4-tile assembly product.
+
+Post-solver grouping display can organize the rows that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
 
 pdgsolve should not widen the operator family casually.
 
@@ -187,7 +220,7 @@ The more precise the operator grammar is, the more tractable the search space be
 
 pdgsolve should model the nontrivial operators as finite law tables.
 
-For dissociation, each assembly \(a \in \mathcal{A}\) has a finite set
+For dissociation, each operator-admissible 4-tile assembly \(a \in \mathcal{A}\) has a finite set
 
 $$
 \Delta(a) \subset \mathbb{N}^{\mathcal{A}},
@@ -195,7 +228,7 @@ $$
 
 where each \(d \in \Delta(a)\) is one legal dissociation output multiset for \(a\).
 
-For association, each assembly \(a \in \mathcal{A}\) has a finite set
+For association, each operator-admissible 4-tile assembly \(a \in \mathcal{A}\) has a finite set
 
 $$
 \Gamma(a) \subset \mathbb{N}^{\mathcal{A}},
@@ -209,81 +242,95 @@ The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixe
 
 Unary assembly laws should remain the default.
 
-But pdgsolve may also introduce a small number of finite local cluster laws over explicit reactant-side multisets when exact provenance requires a jointly treated local support cluster.
+But pdgsolve may also introduce a small number of finite local support-row laws over explicit reactant-side multisets when exact provenance requires jointly checked support rows.
 
 That move is acceptable only when:
 
 - the participating reactant-side assemblies remain explicit in the normalized solve problem;
-- the cluster law has fixed explicit conserved-content meaning;
-- and the cluster law removes ambiguity rather than hiding support inside a renamed unary symbol.
+- the support-row law has fixed explicit conserved-content meaning;
+- and the support-row law removes ambiguity rather than hiding support inside a renamed unary symbol.
 
-### First Worked Weak Law: Free Neutron Beta Reaction
+### First Worked Weak Law: Row-Level Beta Reaction
 
-The first concrete worked weak family should be the free neutron `beta reaction` (SM label: `free neutron decay`).
+The first concrete worked weak family should be the row-level beta reaction emitted by the upstream PDG boundary adapter for the familiar beta-decay channel.
 
 In the AAA ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
 
-pdgsolve should therefore not claim that bare
+pdgsolve should therefore not claim that the bare row-level request
 
 $$
-\Delta(\mathrm{neutron}) \ni \mathrm{proton} + e^- + \bar{\nu}_e
+\Delta(2e_{\mathrm{pro\_down\_quark}} + e_{\mathrm{pro\_up\_quark}})
+\ni
+e_{\mathrm{pro\_down\_quark}} + 2e_{\mathrm{pro\_up\_quark}} + e^- + \bar{\nu}_e
 $$
 
 unless the required weak-support inventory is also explicit in the normalized reactant multiset.
 
 The clean pdgsolve-v1 way to encode this is:
 
-- during normalization, when the request and active policy justify the free-neutron beta family, make the minimal weak-support environment explicit as a reactant-side `Noether Pair`;
+- require [pdgfeed](./pdgfeed.md) or an equivalent boundary adapter to expand PDG particle names before pdgsolve sees the request;
+- during normalization, when the request and active policy justify the row-level beta family, make the minimal weak-support environment explicit as individual Noether core rows;
 - represent the normalized reactant-side multiset as
 
 $$
-x_{1,\beta} = e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}};
+x_{1,\beta}
+=
+2e_{\mathrm{pro\_down\_quark}}
++ e_{\mathrm{pro\_up\_quark}}
++ 2e_{\mathrm{pro\_noether\_core}}
++ 2e_{\mathrm{anti\_noether\_core}};
 $$
 
-- and treat that pair as one admissible local weak-support cluster for a finite beta-family cluster law.
+- and treat the two `pro_noether_core` rows plus the two `anti_noether_core` rows as explicit support rows for the beta-family rewrite.
 
-Then the first worked dissociation law is the explicit local cluster rule
+Then the first worked dissociation law is a single-input row rewrite with explicit support rows:
 
 $$
 \Delta_{\beta}\!\left(
-e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+e_{\mathrm{pro\_down\_quark}}
+\mid
+2e_{\mathrm{pro\_noether\_core}}
++ 2e_{\mathrm{anti\_noether\_core}}
 \right)
 =
 \left\{
-e_{\mathrm{proton}} + e_{e^-} + e_{\bar{\nu}_e}
+e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}
 \right\}.
 $$
 
+The lane-2 operator input remains exactly one 4-tile assembly reactant row: one `pro_down_quark`.
+
+The Noether core support rows are law preconditions and provenance sources, not second lane-2 operator inputs and not things that get dissociated.
+
 This law should carry the following provenance witness requirements:
 
-- one spectator \(u\) from the neutron passes into the proton unchanged;
-- one spectator \(d\) from the neutron passes into the proton unchanged;
-- one active \(d\) from the neutron rewrites into the proton's active \(u\);
-- the explicit `Noether Pair` dissociates into the minimal pro/anti weak-support carriers required by the accepted AAA beta ledger;
-- the electron and electron-antineutrino receive explicit provenance from that reactant-side support assembly according to that ledger;
-- and every product architrino is therefore traced either to the neutron or to the explicit `Noether Pair`.
+- one spectator `pro_up_quark` row passes through unchanged;
+- one spectator `pro_down_quark` row passes through unchanged;
+- one active `pro_down_quark` row rewrites into one `pro_up_quark` row;
+- the two `pro_noether_core` rows and two `anti_noether_core` rows provide the minimal pro/anti weak-support carriers required by the accepted AAA beta ledger;
+- the electron and electron-antineutrino receive explicit provenance from those support rows according to that ledger;
+- and every product architrino is therefore traced either to a row from the PDG-expanded reactant side or to the explicit Noether core support rows.
 
 In lane terms, the baseline exact family is:
 
-- lane 1: two explicit reactant occurrences, `neutron` and `Noether Pair`;
-- lane 2: one beta-family `Dissociate` choice over that local reactant cluster;
-- lane 3: `proton + electron + electron-antineutrino`;
+- lane 1: `pro_down_quark + pro_up_quark + pro_down_quark` plus two `pro_noether_core` rows and two `anti_noether_core` rows;
+- lane 2: two spectator `Pass Thru` choices and one beta-family `Dissociate` choice with one incoming link from the active `pro_down_quark` row;
+- lane 3: `pro_down_quark + pro_up_quark + pro_up_quark + electron + electron-antineutrino`;
 - lane 4: `Pass Thru` on each of those product assemblies;
-- lane 5: `proton + electron + electron-antineutrino`.
+- lane 5: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron-antineutrino`.
 
 This gives pdgsolve its first fully readable weak worked example:
 
-- one non-identity reactant-side operator;
+- one non-identity reactant-side operator over a single active row;
 - zero product-side associations;
-- zero boundary `2H` / `4H` burden in the baseline exact family;
-- one explicit spacetime-style support reactant via `Noether Pair`;
+- two balanced pro/anti Noether-core support pairs;
 - explicit spectator carry-through;
 - explicit active-agent rewrite;
 - and explicit product provenance.
 
-If normalization cannot justify that explicit `Noether Pair` support reactant under the active request and policy bundle, pdgsolve should not promote the branch to an exact neutron-beta closure.
+If normalization cannot justify those explicit Noether core support rows under the active request and policy bundle, pdgsolve should not promote the branch to exact beta closure.
 
-It should keep the case partial or unsupported until the missing support reactant or provenance assumptions are made explicit.
+It should keep the case partial or unsupported until the missing support rows or provenance assumptions are made explicit.
 
 ### Request Intake
 
@@ -305,7 +352,7 @@ That solve problem model should describe:
 - reactant-side assemblies or inventories;
 - product-side assemblies or inventories;
 - any explicit center material;
-- any optional spacetime-derived boundary assemblies such as `2H` or `4H`;
+- any explicit Noether core support rows admitted by policy;
 - the permitted operator grammar;
 - policy or theory gates;
 - and provenance/accounting requirements.
@@ -321,7 +368,7 @@ That solve problem model should avoid:
 Mathematically, pdgsolve should describe one solve instance as
 
 $$
-Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \mathcal{B}, \Delta, \Gamma, \Pi),
+Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \mathcal{S}, \Delta, \Gamma, \Pi),
 $$
 
 where:
@@ -330,7 +377,7 @@ where:
 - \(\mathcal{P}\) is the basis of conserved primitive content;
 - \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
 - \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the requested reactant and product multisets;
-- \(\mathcal{B}\) is the allowed spacetime-boundary augmentation family;
+- \(\mathcal{S}\) is the allowed finite support-row augmentation family;
 - \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
 - and \(\Pi\) is the active policy bundle.
 
@@ -377,13 +424,12 @@ $$
 \mathcal{A}_{\mathrm{v1}}
 =
 \{
-\mathrm{2h},
-\mathrm{4h},
+\mathrm{anti\_noether\_core},
 \mathrm{electron},
 \mathrm{electron\_antineutrino},
-\mathrm{neutron},
-\mathrm{noether\_pair},
-\mathrm{proton}
+\mathrm{pro\_down\_quark},
+\mathrm{pro\_noether\_core},
+\mathrm{pro\_up\_quark}
 \}.
 $$
 
@@ -391,30 +437,25 @@ The v1 assembly table should be:
 
 | Canonical id | Display label | Allowed lane roles in pdgsolve v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
 | --- | --- | --- | --- | --- |
-| `neutron` | `Neutron` | lanes `1`, `3`, `5` | \((18, 18)\) | intact baryon carry-through is legal |
-| `proton` | `Proton` | lanes `1`, `3`, `5` | \((15, 21)\) | intact baryon carry-through is legal |
+| `pro_down_quark` | `Pro Down Quark` | lanes `1`, `3`, `5` | \((7, 5)\) | individual 4-tile quark row |
+| `pro_up_quark` | `Pro Up Quark` | lanes `1`, `3`, `5` | \((4, 8)\) | individual 4-tile quark row |
 | `electron` | `Electron` | lanes `1`, `3`, `5` | \((9, 3)\) | charged lepton assembly |
 | `electron_antineutrino` | `Electron Antineutrino` | lanes `1`, `3`, `5` | \((6, 6)\) | neutral lepton assembly |
-| `noether_pair` | `Noether Pair` | lane `1` explicit support reactant only | \((12, 12)\) | explicit weak-support carrier; not a lane-3 assembly in v1 |
-| `2h` | `2H` | lane `1` or lane `5` boundary augmentation only | \((6, 6)\) | anonymous two-core spacetime supplement |
-| `4h` | `4H` | lane `1` or lane `5` boundary augmentation only | \((12, 12)\) | anonymous four-core spacetime supplement |
+| `pro_noether_core` | `Pro Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
+| `anti_noether_core` | `Anti Noether Core` | lane `1` support row only | \((3, 3)\) | added only in balanced pro/anti support pairs |
 
 The frozen v1 bookkeeping values should therefore include:
 
-- \(\mu(\mathrm{proton}) = 2\mu(u) + \mu(d) = (15, 21)\);
-- \(\mu(\mathrm{neutron}) = \mu(u) + 2\mu(d) = (18, 18)\);
+- \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\);
+- \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\);
 - \(\mu(\mathrm{electron}) = (9, 3)\);
 - \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\);
-- \(\mu(\mathrm{noether\_pair}) = \mu(\mathrm{4h}) = (12, 12)\);
-- and \(\mu(\mathrm{4h}) = 2\mu(\mathrm{2h}) = (12, 12)\).
+- \(\mu(\mathrm{pro\_noether\_core}) = (3, 3)\);
+- and \(\mu(\mathrm{anti\_noether\_core}) = (3, 3)\).
 
 pdgsolve v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
 
-In particular:
-
-- `noether_pair` and `4h` share the same primitive counts;
-- but they remain different assemblies with different provenance meaning and lane-role rules;
-- and no normalization or ranking rule should collapse them into one symbol merely because their primitive ledgers match.
+In particular, no normalization or ranking rule should collapse rows into a particle-level grouping merely because their primitive ledgers match.
 
 ### V1 Law Tables
 
@@ -432,15 +473,17 @@ $$
 
 So in pdgsolve v1, the only unary rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
 
-The first and only non-identity executable law family should be the explicit neutron-beta support cluster rule
+The first and only non-identity executable law family should be the explicit row-level beta support rule
 
 $$
-\Lambda_{2}^{\mathrm{cl}}\!\left(
-e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+\Lambda_{2}\!\left(
+e_{\mathrm{pro\_down\_quark}}
+\mid
+2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}
 \right)
 =
 \left\{
-e_{\mathrm{proton}}
+e_{\mathrm{pro\_up\_quark}}
 + e_{\mathrm{electron}}
 + e_{\mathrm{electron\_antineutrino}}
 \right\}.
@@ -448,17 +491,20 @@ $$
 
 That law should be frozen as the following v1 record:
 
-| Law id | Input multiset | Output multiset | Lane-2 operator tag | Lane-4 operator tags | Required provenance summary |
-| --- | --- | --- | --- | --- | --- |
-| `cluster.beta.neutron_noether_pair.v1` | `neutron + noether_pair` | `proton + electron + electron_antineutrino` | `Dissociate` | `Pass Thru`, `Pass Thru`, `Pass Thru` | spectator `u`, spectator `d`, active `d -> u`, and lepton-support provenance from `Noether Pair` |
+| Law id | Lane-2 operator input | Required support rows | Output multiset | Lane-2 operator tag | Lane-4 operator tags | Required provenance summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `2 x pro_noether_core`, `2 x anti_noether_core` | `pro_up_quark + electron + electron_antineutrino` | `Dissociate` | row-level `Pass Thru` on each final row | spectator rows pass through, active `pro_down_quark -> pro_up_quark`, and lepton-support provenance from individual Noether core rows |
+
+The support rows are not second input edges into the `Dissociate` operator.
 
 pdgsolve v1 should admit no other non-identity law family.
 
 That means:
 
-- there is no unary neutron dissociation rule in v1;
-- there is no generic `Noether Pair -> ...` unary rule in v1;
-- boundary-only assemblies such as `noether_pair`, `2h`, and `4h` do not receive unary pass-thru in v1 because they are not lane-3 assemblies;
+- there is no unary particle-level dissociation rule in v1;
+- there is no W/Z boson production or absorption rule in v1;
+- there is no generic `Noether core -> ...` unary rule in v1;
+- Noether support rows do not receive unary pass-thru in v1 because they are support rows, not lane-3 assemblies;
 - there is no association table yet beyond identity pass-thru;
 - and any branch that requires another non-identity law family should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
@@ -478,18 +524,15 @@ It should carry:
 
 Normalization should then do the following, in order:
 
-1. canonicalize every upstream particle token into one pdgsolve v1 assembly id, for example `n -> neutron`, `p -> proton`, `e- -> electron`, and `anti-electron-neutrino -> electron_antineutrino`;
+1. receive only row-level assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `pdgsolve-laws/v1-beta-minimal`, and the augmentation family as \(\mathcal{B} = \{0, e_{\mathrm{2h}}, e_{\mathrm{4h}}\}\) unless the request narrows that family explicitly;
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `pdgsolve-laws/v1-beta-minimal`, and the support family as balanced pro/anti Noether core row pairs unless the request narrows that family explicitly;
 5. build the requested multisets \(R\) and \(T\);
-6. preserve any explicit authored or request-side `noether_pair` reactant occurrence as authored support rather than rewriting it into `2h`;
-7. when the raw request is the free-neutron beta family and policy `betaSupportMode = allow-implied-noether-pair`, add one normalized `noether_pair` reactant occurrence if one is not already explicit, mark it as normalized support, and emit `pdgsolve.normalization.support_added.noether_pair`;
-8. when the raw request is the free-neutron beta family but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_pair`;
-9. keep explicit request-side `2h` and `4h` occurrences in \(R\) or \(T\) only when they already occupy boundary-side roles in the request contract;
-10. keep `noether_pair` only as an explicit reactant-side support assembly in pdgsolve v1;
-11. reject any attempt to place `noether_pair`, `2h`, or `4h` outside their frozen v1 lane-role rules with `pdgsolve.request.invalid_boundary_role`; and
-12. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
+6. when the row-level request matches the beta source signature and policy `betaSupportMode = allow-implied-noether-core-support`, add two `pro_noether_core` rows and two `anti_noether_core` rows if those rows are not already explicit, mark them as normalized support, and emit `pdgsolve.normalization.support_added.noether_core_rows`;
+7. when the row-level request matches the beta source signature but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_core_rows`;
+8. reject any particle-level or grouping-level id that reaches pdgsolve as if it were one assembly row with `pdgsolve.request.unsupported_assembly`; and
+9. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 The normalized pdgsolve problem contract should be:
 
@@ -501,7 +544,7 @@ The normalized pdgsolve problem contract should be:
 - `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
 - `lawTableId: "pdgsolve-laws/v1-beta-minimal"`;
-- `allowedBoundaryAugmentations`, with left and right values drawn from `none`, `2h`, and `4h`;
+- `allowedSupportAugmentations`, with values drawn from `none`, `one_balanced_noether_core_pair`, and `two_balanced_noether_core_pairs`;
 - `policy`;
 - and `normalization`, containing explicit notes about added support material and normalization diagnostics.
 
@@ -513,10 +556,10 @@ Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the c
 
 It is one fixed primitive carrier set viewed through three different lane-wise assembly partitions.
 
-For a chosen boundary augmentation pair \((b^{-}, b^{+})\), define the full boundary inventories
+For chosen support augmentations \((s^{-}, s^{+})\), define the full lane-1 and lane-5 inventories
 
 $$
-x_{1} = R + b^{-}, \qquad x_{5} = T + b^{+}.
+x_{1} = R + s^{-}, \qquad x_{5} = T + s^{+}.
 $$
 
 An exact candidate must find:
@@ -563,7 +606,7 @@ If a request fails these equalities at the boundary, pdgsolve should not silentl
 Instead, it should report the primitive imbalance vector
 
 $$
-\delta(Q; b^{-}, b^{+}) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
+\delta(Q; s^{-}, s^{+}) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
 $$
 
 with the concrete components
@@ -573,13 +616,13 @@ $$
 \delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5}).
 $$
 
-If \(\delta(Q; b^{-}, b^{+}) \neq 0\), then exact closure is impossible for that augmentation pair.
+If \(\delta(Q; s^{-}, s^{+}) \neq 0\), then exact closure is impossible for that support choice.
 
 So at the first primitive level, pdgsolve should always be able to say:
 
 - Electrinos balanced or imbalanced by \(\delta_{E}\);
 - Positrinos balanced or imbalanced by \(\delta_{P}\);
-- and whether any allowed boundary assemblies such as `2H` or `4H` remove that deficit exactly.
+- and whether any allowed balanced Noether core support rows remove that deficit exactly.
 
 ### Combinatorial Search Model
 
@@ -604,6 +647,9 @@ In particular:
 
 - each lane-1 lane-3-capable assembly presents a small action set, typically `Pass Thru` or `Dissociate`;
 - each lane-3 assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
+- each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
+- each `Associate` choice emits exactly one 4-tile assembly product output;
+- support rows can constrain which row-level rewrite is available, but they are not local operator inputs;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
@@ -623,33 +669,35 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
 
-Boundary-only support or augmentation assemblies are therefore not given unary lane-2 pass-thru merely by belonging to \(\mathcal{A}\).
+Noether support rows are therefore not given unary lane-2 pass-thru merely by belonging to \(\mathcal{A}\).
 
-They enter the search only through approved cluster or boundary rules.
+They enter the search only as explicit support-row requirements for approved row-level laws.
 
-For a small finite set of worked weak families, pdgsolve may also define explicit local reactant-cluster rewrites over a reactant multiset
+For a small finite set of worked weak families, pdgsolve may also define explicit support-row rewrites over a single operator input and a required reactant-side support multiset
 
 $$
 c \in \mathbb{N}^{\mathcal{A}},
 $$
 
-with a finite cluster family
+with a finite row-level family
 
 $$
-\Lambda_{2}^{\mathrm{cl}}(c).
+\Lambda_{2}(c).
 $$
 
-The free-neutron beta-family rule above is the first example:
+The row-level beta-family rule above is the first example:
 
 $$
-\Lambda_{2}^{\mathrm{cl}}\!\left(
-e_{\mathrm{neutron}} + e_{\mathrm{noether\_pair}}
+\Lambda_{2}\!\left(
+e_{\mathrm{pro\_down\_quark}}
+\mid
+2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}
 \right)
 \ni
-e_{\mathrm{proton}} + e_{e^-} + e_{\bar{\nu}_e}.
+e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}.
 $$
 
-Search should treat such a cluster as one assignable local lane-2 unit after reserving the participating reactant occurrences explicitly.
+Search should treat this as one assignable local lane-2 unit with one operator input after reserving the required support occurrences explicitly.
 
 For lane 4, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
@@ -659,7 +707,7 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal lane-3 input multiset that can `Associate` into \(a\).
 
-Given a full lane-1 inventory \(x_{1}\) and a chosen reservation of any cluster-assigned reactant occurrences, the remaining unary left-generated middle family is
+Given a full lane-1 inventory \(x_{1}\) and a chosen reservation of any support-row law occurrences, the remaining unary left-generated middle family is
 
 $$
 \mathfrak{L}(x_{1}) =
@@ -681,11 +729,11 @@ z_{a,j} \in \Lambda_{4}(a)
 \right\}.
 $$
 
-These unary families are understood after removing any occurrences already reserved into approved lane-2 cluster rewrites.
+These unary families are understood after removing any occurrences already reserved into approved lane-2 support-row rewrites.
 
-So in the beta-family case, the reserved cluster output is added into \(x_{3}^{L}\) before the meet-in-the-middle comparison is evaluated.
+So in the beta-family case, the reserved support-row rewrite output is added into \(x_{3}^{L}\) before the meet-in-the-middle comparison is evaluated.
 
-An exact solve for the augmentation pair \((b^{-}, b^{+})\) therefore requires
+An exact solve for the support choices \((s^{-}, s^{+})\) therefore requires
 
 $$
 \exists x_{3} \in \mathfrak{L}(x_{1}) \cap \mathfrak{R}(x_{5}),
@@ -696,13 +744,13 @@ together with a provenance witness showing that the chosen left and right rewrit
 One useful branch-state record is
 
 $$
-s = (b^{-}, b^{+}, \phi_{2}, \phi_{4}, x_{3}^{L}, x_{3}^{R}, W),
+s = (s^{-}, s^{+}, \phi_{2}, \phi_{4}, x_{3}^{L}, x_{3}^{R}, W),
 $$
 
 where:
 
 - \(\phi_{2}\) is a partial assignment of lane-2 choices to reactant assembly occurrences;
-- \(\phi_{2}\) may assign either unary reactant occurrences or one approved local reactant cluster;
+- \(\phi_{2}\) may assign either unary reactant occurrences or one approved support-row law;
 - \(\phi_{4}\) is a partial assignment of lane-4 choices to product assembly occurrences;
 - \(x_{3}^{L}\) is the partial middle inventory generated from lane 1;
 - \(x_{3}^{R}\) is the partial middle inventory required by lane 5;
@@ -712,11 +760,11 @@ pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
 
 The operational loop should be:
 
-1. choose one augmentation pair \((b^{-}, b^{+})\);
-2. reject that pair immediately if the primitive imbalance vector \(\delta(Q; b^{-}, b^{+})\) is nonzero and the current search mode requires exact closure;
+1. choose one support augmentation \((s^{-}, s^{+})\);
+2. reject that choice immediately if the primitive imbalance vector \(\delta(Q; s^{-}, s^{+})\) is nonzero and the current search mode requires exact closure;
 3. initialize the empty branch state with no lane-2 or lane-4 assignments;
 4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter middle-lane constraints;
-5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\), or reserve one approved local reactant cluster when the active family allows it;
+5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\), or reserve one approved support-row law when the active family allows it;
 6. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
 7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
 8. continue until all reactant and product occurrences are assigned;
@@ -735,7 +783,7 @@ pdgsolve should prune partial branches aggressively.
 At minimum, the search should prune a branch under the following conditions:
 
 - primitive impossibility:
-  the chosen augmentation pair already has nonzero primitive imbalance in an exact-closure search;
+  the chosen support augmentation already has nonzero primitive imbalance in an exact-closure search;
 - middle oversupply:
   the current left-generated middle inventory already exceeds the maximum possible right-required middle inventory for some assembly coordinate;
 - middle undersupply:
@@ -840,7 +888,7 @@ The rules lead to options in a direct way.
 A raw option is one complete assignment
 
 $$
-O_{\mathrm{raw}} = (b^{-}, b^{+}, \phi_{2}, \phi_{4}).
+O_{\mathrm{raw}} = (s^{-}, s^{+}, \phi_{2}, \phi_{4}).
 $$
 
 From that raw option, pdgsolve derives:
@@ -878,10 +926,10 @@ This yields a finite branch graph for any finite request.
 
 The key reason is:
 
-- there are only finitely many augmentation pairs \((b^{-}, b^{+}) \in \mathcal{B} \times \mathcal{B}\);
+- there are only finitely many support augmentations \((s^{-}, s^{+}) \in \mathcal{S} \times \mathcal{S}\);
 - each lane-3-capable reactant occurrence contributes one finite choice from \(\Lambda_{2}(a)\);
 - each lane-3-capable product occurrence contributes one finite choice from \(\Lambda_{4}(a)\);
-- each approved local reactant cluster contributes one finite choice from its cluster family;
+- each approved support-row law contributes one finite choice from its support-row family;
 - \(\mathfrak{L}(x_{1})\) and \(\mathfrak{R}(x_{5})\) are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
 
@@ -924,12 +972,12 @@ pdgsolve review should surface option families rather than raw branches.
 For completed raw options
 
 $$
-O_{\mathrm{raw}} = (b^{-}, b^{+}, \phi_{2}, \phi_{4}, W),
+O_{\mathrm{raw}} = (s^{-}, s^{+}, \phi_{2}, \phi_{4}, W),
 $$
 
 two branches should belong to the same option family exactly when they agree on the full review-visible solve summary:
 
-- the same augmentation pair \((b^{-}, b^{+})\);
+- the same support augmentation \((s^{-}, s^{+})\);
 - the same lane-1, lane-3, and lane-5 assembly inventories;
 - the same ordered lane-2 operator assignments after canonical reactant-occurrence ordering;
 - the same ordered lane-4 operator assignments after canonical product-occurrence ordering;
@@ -949,8 +997,8 @@ $$
 \operatorname{fam}(O_{\mathrm{raw}})
 =
 \bigl(
-b^{-},
-b^{+},
+s^{-},
+s^{+},
 x_{1},
 x_{3},
 x_{5},
@@ -999,7 +1047,7 @@ Each member of `optionFamilies` should contain:
 - `familyId`;
 - `kind`, with values `exact`, `partial`, or `unsupported`;
 - `score`, carrying the concrete components of \(\kappa\);
-- `augmentation`, with explicit left and right boundary choices;
+- `augmentation`, with explicit left and right support choices;
 - `laneInventories`, carrying canonical lane-1, lane-3, and lane-5 assembly multisets;
 - `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
 - `provenanceSummary`, carrying the family-level witness summary that review must see;
@@ -1022,20 +1070,20 @@ The score model should prefer, in order:
 
 - exact conservation and exact product closure;
 - zero primitive imbalance and zero middle-lane mismatch;
-- fewer spacetime introductions or returns;
+- fewer policy-added support rows;
 - fewer non-identity operators;
 - fewer dissociations when a less disruptive exact path exists;
 - stronger provenance clarity;
 - and stable deterministic tie-breaks over otherwise equal candidates.
 
-For the current working spacetime family, equal candidates should prefer the lower auxiliary boundary burden in the concrete order `none -> 2H -> 4H`.
+For the current working support family, equal candidates should prefer the lower auxiliary support burden in the concrete order `none -> one_balanced_noether_core_pair -> two_balanced_noether_core_pairs`.
 
 pdgsolve should formalize that ranking as a lexicographic minimization problem.
 
 For a terminal candidate
 
 $$
-C = (b^{-}_{C}, b^{+}_{C}, \phi_{2,C}, \phi_{4,C}, x_{3,C}^{L}, x_{3,C}^{R}, W_{C}),
+C = (s^{-}_{C}, s^{+}_{C}, \phi_{2,C}, \phi_{4,C}, x_{3,C}^{L}, x_{3,C}^{R}, W_{C}),
 $$
 
 define
@@ -1057,9 +1105,9 @@ $$
 with smaller values preferred, where:
 
 - \(\epsilon(C) = 0\) when \(x_{3,C}^{L} = x_{3,C}^{R}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
-- \(m_{\mathrm{prim}}(C) = \lVert \mu(R + b^{-}_{C}) - \mu(T + b^{+}_{C}) \rVert_{1}\);
+- \(m_{\mathrm{prim}}(C) = \lVert \mu(R + s^{-}_{C}) - \mu(T + s^{+}_{C}) \rVert_{1}\);
 - \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{L} - x_{3,C}^{R} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
-- \(m_{\mathrm{aux}}(C) = \alpha(b^{-}_{C}) + \alpha(b^{+}_{C})\);
+- \(m_{\mathrm{aux}}(C) = \alpha(s^{-}_{C}) + \alpha(s^{+}_{C})\);
 - \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
 - \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
 - \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
@@ -1083,7 +1131,7 @@ pdgsolve should score partial branches too, using an optimistic lower-bound scor
 For a partial branch \(s\), the search should compute:
 
 - whether exact closure is still possible;
-- the unavoidable primitive imbalance already fixed by the chosen augmentation pair;
+- the unavoidable primitive imbalance already fixed by the chosen support augmentation;
 - the minimum possible eventual middle-lane mismatch after all remaining assignments;
 - the current auxiliary burden;
 - the minimum additional operator burden still forced, with unresolved pass-thru choices contributing zero unless non-identity is provably necessary;
@@ -1093,16 +1141,22 @@ If that lower-bound branch score is already worse than the current incumbent exa
 
 This is the branch-and-bound bridge between search and scoring.
 
-For the current boundary family, the auxiliary burden weight should be
+For the current support family, the auxiliary burden weight should be
 
 $$
-\alpha(0) = 0, \qquad \alpha(e_{\mathrm{2H}}) = 1, \qquad \alpha(e_{\mathrm{4H}}) = 2.
+\alpha(0) = 0, \qquad
+\alpha(e_{\mathrm{pro\_noether\_core}} + e_{\mathrm{anti\_noether\_core}}) = 1, \qquad
+\alpha(2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}) = 2.
 $$
 
 This makes the current preference order exact in the math:
 
 $$
-\texttt{none} \prec \mathrm{2H} \prec \mathrm{4H}.
+\texttt{none}
+\prec
+\texttt{one\_balanced\_noether\_core\_pair}
+\prec
+\texttt{two\_balanced\_noether\_core\_pairs}.
 $$
 
 This means the limited lane/operator geometry is not just a legality constraint.
@@ -1134,8 +1188,8 @@ $$
 \tau(C)
 =
 \bigl(
-\operatorname{ord}(b^{-}_{C}),
-\operatorname{ord}(b^{+}_{C}),
+\operatorname{ord}(s^{-}_{C}),
+\operatorname{ord}(s^{+}_{C}),
 \sigma_{2}(C),
 \sigma_{4}(C),
 \sigma_{3}(C),
@@ -1145,7 +1199,7 @@ $$
 
 with lexicographic comparison and the concrete orders:
 
-- augmentation order: `none < 2h < 4h` on each side;
+- support augmentation order: `none < one_balanced_noether_core_pair < two_balanced_noether_core_pairs` on each side;
 - canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
@@ -1156,13 +1210,13 @@ with lexicographic comparison and the concrete orders:
 For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
 
 - `pass_thru`;
-- then `dissociate(cluster.beta.neutron_noether_pair.v1)`;
+- then `dissociate(row.beta.pro_down_quark_to_pro_up_quark.v1)`;
 - then any later law-family symbol in the order those law ids are admitted into pdgsolve.
 
 The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
 
 - whether each product occurrence is pure pass-thru, active rewrite output, or support-derived output;
-- the support source class, ordered as `none < noether_pair < 2h < 4h`;
+- the support source rows, ordered first by canonical assembly id and then by normalized occurrence index;
 - and any explicit ambiguity marker bits.
 
 This means repeated runs over the same normalized problem must produce the same best-family representative even when the raw search explores equal-score branches in a different transient order.
@@ -1176,11 +1230,11 @@ The initial v1 set should be:
 | Diagnostic id | Phase | Meaning | Required payload |
 | --- | --- | --- | --- |
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
-| `pdgsolve.request.invalid_boundary_role` | normalization | a boundary-only assembly was requested in a non-boundary role | assembly id and attempted role |
-| `pdgsolve.normalization.support_added.noether_pair` | normalization | normalization added one implied `Noether Pair` support reactant | request id and added occurrence id |
-| `pdgsolve.normalization.support_required.noether_pair` | normalization | exact beta-family closure needs explicit or policy-allowed `Noether Pair` support | request id and policy mode |
-| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; b^{-}, b^{+}) \neq 0\) for the retained branch or retained request summary | augmentation pair and \((\delta_E, \delta_P)\) |
-| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | augmentation pair and canonical mismatch vector |
+| `pdgsolve.request.invalid_support_role` | normalization | a support-only row was requested in a non-support role | assembly id and attempted role |
+| `pdgsolve.normalization.support_added.noether_core_rows` | normalization | normalization added balanced `pro_noether_core` and `anti_noether_core` support rows | request id and added occurrence ids |
+| `pdgsolve.normalization.support_required.noether_core_rows` | normalization | exact beta-family closure needs explicit or policy-allowed balanced Noether core support rows | request id and policy mode |
+| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; s^{-}, s^{+}) \neq 0\) for the retained branch or retained request summary | support choice and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | support choice and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
 | `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id or descriptive token |
 | `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
@@ -1272,8 +1326,8 @@ For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
 - every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted pdgedit publication recipe;
 - the family has no blocking diagnostic among:
   `pdgsolve.request.unsupported_assembly`,
-  `pdgsolve.request.invalid_boundary_role`,
-  `pdgsolve.normalization.support_required.noether_pair`,
+  `pdgsolve.request.invalid_support_role`,
+  `pdgsolve.normalization.support_required.noether_core_rows`,
   `pdgsolve.search.primitive_imbalance`,
   `pdgsolve.search.middle_mismatch`,
   `pdgsolve.search.provenance_failure`,
@@ -1329,7 +1383,7 @@ That translation layer should own:
 - mapping pdgsolve-side assemblies and operators into explicit pdgedit assemblies and operators;
 - choosing explicit pdgedit tile payloads from pdgedit-owned catalogs and rules;
 - converting solved connectivity into explicit pdgedit links;
-- and carrying any display-only composite labels or spans as explicit pdgedit-side publication data rather than as solver-owned geometry.
+- and deferring grouping labels or spans unless a dedicated post-solver display contract is admitted.
 
 pdgsolve should treat `pdgedit/v1` as a publication boundary, not as an internal convenience sketch.
 
@@ -1389,29 +1443,30 @@ So the accepted publication graph is still pdgsolve-owned, but it is already exp
 
 The first admitted recipe family should be `pdgsolve-pdgedit-recipes/v1-beta-minimal`.
 
-That family should support exactly the current publishable beta-minimal assemblies, boundary augmentations, and operators:
+That family should support exactly the current publishable beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators:
 
-| pdgsolve unit | Admitted recipe id | pdgedit type family | Expansion height | Boundary label text |
+| pdgsolve unit | Admitted recipe id | pdgedit row/composite type family | Expansion height | Display label text |
 | --- | --- | --- | --- | --- |
-| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-assembly` | `3` rows | `Neutron` |
-| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-assembly` | `2` rows | `Noether Pair` |
-| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-assembly` | `2` rows | `2H` |
-| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-assembly` | `4` rows | `4H` |
-| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-assembly` | `3` rows | `Proton` |
+| `neutron` | `pdgsolve.pdgedit.neutron.v1` | `pro-neutron-composite`; rows use quark `-assembly` types | `3` rows | `Neutron` |
+| `pro_down_quark` | `pdgsolve.pdgedit.pro_down_quark.v1` | `pro-down-quark-assembly` | `1` row | `Pro Down Quark` |
+| `pro_up_quark` | `pdgsolve.pdgedit.pro_up_quark.v1` | `pro-up-quark-assembly` | `1` row | `Pro Up Quark` |
+| `pro_noether_core` | `pdgsolve.pdgedit.pro_noether_core.v1` | `pro-noether-core-assembly` | `1` row | `Pro Noether Core` |
+| `anti_noether_core` | `pdgsolve.pdgedit.anti_noether_core.v1` | `anti-noether-core-assembly` | `1` row | `Anti Noether Core` |
+| `noether_pair` | `pdgsolve.pdgedit.noether_pair.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `Noether Pair` |
+| `2h` | `pdgsolve.pdgedit.2h.v1` | `noether-pair-composite`; rows use Noether Core `-assembly` types | `2` rows | `2H` |
+| `4h` | `pdgsolve.pdgedit.4h.v1` | `noether-quad-composite`; rows use Noether Core `-assembly` types | `4` rows | `4H` |
+| `proton` | `pdgsolve.pdgedit.proton.v1` | `pro-proton-composite`; rows use quark `-assembly` types | `3` rows | `Proton` |
 | `electron` | `pdgsolve.pdgedit.electron.v1` | `pro-electron-assembly` | `1` row | `Pro Electron` |
 | `electron_antineutrino` | `pdgsolve.pdgedit.electron_antineutrino.v1` | `anti-electron-neutrino-assembly` | `1` row | `Anti Electron Neutrino` |
 | lane-2 `Dissociate` | `pdgsolve.pdgedit.operator.dissociate.v1` | `dissociate` | `1` row | none |
 | lane-2 or lane-4 `Pass Thru` | `pdgsolve.pdgedit.operator.pass_thru.v1` | `pass-thru` | `1` row | none |
 | lane-4 `Associate` | `pdgsolve.pdgedit.operator.associate.v1` | `associate` | `1` row | none |
 
-The boundary augmentation assemblies `2h` and `4h` are therefore publishable in pdgsolve v1.
+No publication recipe in this family may publish a paired support token, a quad support token, or a particle-level grouping token as one pdgedit assembly row. Composite recipes must expand into explicit constituent row types.
 
-Their surface mapping should follow one explicit rule:
+If grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to pdgsolve's internal assembly alphabet.
 
-- `2h` should publish through the admitted `pdgsolve.pdgedit.2h.v1` recipe using the existing pdgedit `noether-pair-assembly` row family;
-- `4h` should publish through the admitted `pdgsolve.pdgedit.4h.v1` recipe using the existing pdgedit `noether-quad-assembly` row family;
-- but those remain distinct pdgsolve recipes with distinct recipe ids and boundary labels `2H` and `4H`;
-- so the publication layer must not rewrite `2h` into `noether_pair` or `4h` into any other pdgsolve assembly merely because the pdgedit-side row payloads reuse existing Noether-family surface rows.
+Likewise, if the published lane-3 assembly rows should be presented as `W-`, `W+`, or `Z` boson corridors, that reclassification or grouping belongs to pdgedit after publication. pdgsolve should emit the row-level lane-3 material and provenance only.
 
 ### Layout And Object Emission Rules
 
@@ -1434,7 +1489,7 @@ Assembly emission should follow these rules:
 - emit row ids as `<unitId>.row.<n>` with `n` starting at `1`;
 - emit row titles from the recipe row-title sequence;
 - emit the exact `tiles` array from the admitted pdgedit recipe, not by rebuilding tiles from pdgsolve semantics at runtime;
-- and emit one `compositeLabels` record for every boundary-side assembly unit, with `side = left` for lane `1` and `side = right` for lane `5`, spanning that unit's full emitted row interval.
+- and leave grouping-label output empty until a downstream display contract admits it.
 
 Operator emission should follow these rules:
 
@@ -1444,6 +1499,12 @@ Operator emission should follow these rules:
 - `positrinoCount` and `electrinoCount` are the primitive counts of the exact accepted multiset carried by that operator unit;
 - `x` comes from the fixed pdgedit operator band for that lane;
 - and `y` is computed from the operator unit's explicit accepted anchor reference in `lockedSolveGraph`, not from ad hoc visual inference.
+
+Operator links must preserve the same cardinality constraints as the solver graph:
+
+- a lane-2 `Dissociate` object has exactly one incoming link, from one emitted 4-tile assembly reactant row;
+- a lane-4 `Associate` object has exactly one outgoing link, to one emitted 4-tile assembly product row;
+- and neither operator may use a grouping span as its endpoint.
 
 ### Link Emission Rules
 
@@ -1517,7 +1578,7 @@ That means:
 
 - a final `pdgedit/v1` document is a publication artifact, not a pdgsolve solve request;
 - editing a pdgedit document does not implicitly create or mutate pdgsolve solve state;
-- pdgsolve should not reverse-parse arbitrary pdgedit assemblies, operators, links, or composite labels back into solver-native meaning;
+- pdgsolve should not reverse-parse arbitrary pdgedit assemblies, operators, links, or grouping labels back into solver-native meaning;
 - and pdgedit should not host candidate ranking, ambiguity handling, acceptance state, or other pdgsolve review semantics.
 
 So the v1 answer is:
@@ -1545,7 +1606,7 @@ That future transform should be accepted only if all of the following are true:
 
 - the source document is intentionally marked as request-shaped rather than publication-shaped;
 - only explicit boundary-side authored assemblies are treated as request inputs and targets;
-- pdgedit-only placement, link-routing, and composite-label details are ignored as non-solver semantics;
+- pdgedit-only placement, link-routing, and grouping-label details are ignored as non-solver semantics;
 - the transform runs outside the pdgedit renderer;
 - and the output is an explicit pdgsolve-owned request contract such as `pdgsolve-request/v1`, not an in-process callback into pdgsolve review state.
 
@@ -1566,10 +1627,10 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 
 | Fixture id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `free_neutron_beta_exact` | `neutron -> proton + electron + electron_antineutrino` | implied beta support allowed | normalization adds one `noether_pair`; best family is exact; auxiliary burden is `none`; publication is ready after acceptance |
-| `free_neutron_beta_support_disallowed` | `neutron -> proton + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_pair` is present; retained best family is partial or unsupported |
-| `primitive_imbalance_neutron_to_proton` | `neutron -> proton` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
-| `pass_thru_neutron` | `neutron -> neutron` | default | one exact pass-thru family; zero non-identity operators; zero ambiguity penalty |
+| `row_beta_exact` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` rows and two `anti_noether_core` rows; best family is exact; auxiliary burden is `two_balanced_noether_core_pairs`; publication is ready after acceptance |
+| `row_beta_support_disallowed` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_core_rows` is present; retained best family is partial or unsupported |
+| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru rows; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after the beta-minimal law set that yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
 The last fixture is a gate on the first post-beta expansion.
@@ -1617,7 +1678,50 @@ pdgsolve should not:
 
 ## Priorities
 
-No active items right now.
+### 1. Replace The Fixture-Template Solver With Row-Level Search
+
+Status: `active`
+
+Current:
+
+- `PdgsolveSolveRuntime.js` still classifies a small set of assembly-count scenarios and patches frozen result fixtures into returned results;
+- that path preserves known examples, but it is not yet the row-level combinatorial solver described above;
+- and current solver-quality issues make this the highest-priority pdgsolve risk.
+
+Objective:
+
+- implement the solver-native row-level search over explicit assembly rows, local lane-2 and lane-4 operator choices, support-row reservations, conserved inventories, provenance witnesses, pruning, and deterministic scoring;
+- generate `pdgsolve-result/v1` option families from branch-state records rather than from patched result templates;
+- keep the existing request, review, acceptance, and pdgedit publication seams unless the new solver proves a contract change is required.
+
+### 2. Treat Frozen Result Fixtures As Regression Oracles
+
+Status: `active`
+
+Current:
+
+- frozen `pdgsolve-result/v1` fixtures are currently imported by the runtime solver and used as result templates;
+- those fixtures are valuable as regression examples, but they should not be the implementation of solving.
+
+Objective:
+
+- keep the current beta, support-disallowed, primitive-imbalance, pass-thru, and publication fixtures as expected-output oracles;
+- change the runtime solver so it computes those results from the row-level model;
+- update tests so fixture drift catches solver regressions without allowing fixture JSON to masquerade as solver logic.
+
+### 3. Keep Solver Correctness On The Active Priority Queue
+
+Status: `active`
+
+Current:
+
+- the prior priority list said there were no active pdgsolve items;
+- that is no longer an honest status while the current solver is known to perform poorly on candidate solutions.
+
+Objective:
+
+- keep pdgsolve solver correctness active until the row-level search replaces fixture-template solving and passes the frozen beta-minimal regression set;
+- promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact option families deterministically.
 
 ## Related Priorities
 

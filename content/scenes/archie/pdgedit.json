@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "pdgedit",
+    "title": "pdgedit",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "hideScaleLabels": true,
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": [
+    {
+      "id": "pdgedit_manifest",
+      "label": "Manifest",
+      "radius": 1.1,
+      "color": "#2f6b6f",
+      "labelTitle": "Manifest"
+    },
+    {
+      "id": "pdgedit_surface",
+      "label": "Surface",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "labelTitle": "Surface"
+    },
+    {
+      "id": "pdgedit_links",
+      "label": "Links",
+      "radius": 1.1,
+      "color": "#3f6a5a",
+      "labelTitle": "Links"
+    },
+    {
+      "id": "pdgedit_export",
+      "label": "Export",
+      "radius": 1.1,
+      "color": "#7a4a1f",
+      "labelTitle": "Export"
+    }
+  ]
+}

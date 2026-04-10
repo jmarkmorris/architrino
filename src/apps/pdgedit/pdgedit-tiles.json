@@ -307,7 +307,8 @@
     },
     {
       "key": "photon",
-      "title": "Photon tile",
+      "title": "Photon label tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -392,6 +393,7 @@
     {
       "key": "noether-pair",
       "title": "Noether Pair tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -414,6 +416,7 @@
     {
       "key": "noether-quad",
       "title": "Noether Quad tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -436,6 +439,7 @@
     {
       "key": "positive-pion",
       "title": "Positive Pion tile",
+      "type": "composite-label",
       "borderColor": "red",
       "lines": [
         {
@@ -458,6 +462,7 @@
     {
       "key": "negative-pion",
       "title": "Negative Pion tile",
+      "type": "composite-label",
       "borderColor": "blue",
       "lines": [
         {
@@ -480,6 +485,7 @@
     {
       "key": "neutral-pion-u",
       "title": "Neutral Pion u anti-u tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -502,6 +508,7 @@
     {
       "key": "neutral-pion-d",
       "title": "Neutral Pion d anti-d tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -524,6 +531,7 @@
     {
       "key": "positive-kaon",
       "title": "Positive Kaon tile",
+      "type": "composite-label",
       "borderColor": "red",
       "lines": [
         {
@@ -546,6 +554,7 @@
     {
       "key": "negative-kaon",
       "title": "Negative Kaon tile",
+      "type": "composite-label",
       "borderColor": "blue",
       "lines": [
         {
@@ -568,6 +577,7 @@
     {
       "key": "neutral-kaon-d",
       "title": "Neutral Kaon d anti-s tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -590,6 +600,7 @@
     {
       "key": "neutral-kaon-s",
       "title": "Neutral Kaon s anti-d tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -612,6 +623,7 @@
     {
       "key": "positive-b-meson",
       "title": "Positive B Meson tile",
+      "type": "composite-label",
       "borderColor": "red",
       "lines": [
         {
@@ -634,6 +646,7 @@
     {
       "key": "negative-b-meson",
       "title": "Negative B Meson tile",
+      "type": "composite-label",
       "borderColor": "blue",
       "lines": [
         {
@@ -656,6 +669,7 @@
     {
       "key": "neutral-b-meson-d",
       "title": "Neutral B Meson d anti-b tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -678,6 +692,7 @@
     {
       "key": "neutral-b-meson-b",
       "title": "Neutral B Meson b anti-d tile",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -1348,6 +1363,7 @@
     {
       "key": "pro-proton",
       "title": "Pro Proton u d u",
+      "type": "composite-label",
       "borderColor": "red",
       "lines": [
         {
@@ -1370,6 +1386,7 @@
     {
       "key": "anti-proton",
       "title": "Anti Proton !u !d !u",
+      "type": "composite-label",
       "borderColor": "blue",
       "lines": [
         {
@@ -1392,6 +1409,7 @@
     {
       "key": "pro-neutron",
       "title": "Pro Neutron d u d",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
@@ -1414,6 +1432,7 @@
     {
       "key": "anti-neutron",
       "title": "Anti Neutron !d !u !d",
+      "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {

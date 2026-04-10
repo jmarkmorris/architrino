@@ -1,19 +1,25 @@
 {
   "schema": "pdgedit-library-manifest/v1",
-  "defaultEntryId": "free_neutron_beta_decay",
+  "defaultEntryId": "pass_thru_up_quark",
   "entries": [
-    {
-      "id": "free_neutron_beta_decay",
-      "title": "Free neutron beta decay",
-      "displayTitle": "Free neutron beta decay",
-      "documentPath": "content/contracts/examples/pdgedit/free_neutron_beta_decay.v1.json",
-      "isDefault": true
-    },
     {
       "id": "pass_thru_up_quark",
       "title": "Pass thru up quark",
       "displayTitle": "Pass thru up quark",
-      "documentPath": "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json"
+      "documentPath": "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+      "isDefault": true
+    },
+    {
+      "id": "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+      "title": "Free neutron beta exact",
+      "displayTitle": "Free neutron beta exact",
+      "documentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json"
+    },
+    {
+      "id": "pdgsolve_boundary_augmentation_recipe_coverage",
+      "title": "Boundary augmentation recipe coverage",
+      "displayTitle": "Boundary augmentation recipe coverage",
+      "documentPath": "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json"
     },
     {
       "id": "proton_to_photon_stack",

@@ -65,7 +65,7 @@ $$
 \Delta E_{e} = E_{\gamma} + \Delta E_{\mathrm{recoil}} + \Delta E_{\mathrm{med}},
 $$
 
-where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, and $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments). In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses photon-assembly stability threshold so discrete photon output is recovered from continuous transport.
+where $\Delta E_{e}$ is electron assembly energy loss, $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, and $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments). In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
 
 Interpretive takeaway: this section defines event-level state transition and bookkeeping, not a replacement of validated QED cross-sections.
 

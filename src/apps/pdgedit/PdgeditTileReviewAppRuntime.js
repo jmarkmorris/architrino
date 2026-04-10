@@ -122,6 +122,7 @@ export function createPdgeditTileReviewAppRuntime({
   quarkColorGroupElement,
   compositeGroupElement,
   titleGridElement,
+  labelGridElement,
   binaryGridElement,
   gridElement,
   topCountInput,
@@ -139,7 +140,7 @@ export function createPdgeditTileReviewAppRuntime({
   }
 
   function render() {
-    const hasTileGridElements = gridElement || titleGridElement || binaryGridElement;
+    const hasTileGridElements = gridElement || titleGridElement || labelGridElement || binaryGridElement;
     const hasGroupElements =
       specialGroupElement || singleRowGroupElement || quarkColorGroupElement || compositeGroupElement;
     if (!catalog || (!hasTileGridElements && !hasGroupElements)) {
@@ -147,9 +148,10 @@ export function createPdgeditTileReviewAppRuntime({
     }
 
     const sampleCounts = getSampleCounts();
-    const catalogTiles = catalog.tiles.filter((tile) => tile.type !== "binary-glyph");
+    const labelTiles = catalog.tiles.filter((tile) => tile.type === "composite-label");
+    const catalogTiles = catalog.tiles.filter((tile) => tile.type !== "binary-glyph" && tile.type !== "composite-label");
     const binaryTiles = catalog.tiles.filter((tile) => tile.type === "binary-glyph");
-    const fallbackGrid = !titleGridElement && !binaryGridElement ? gridElement : null;
+    const fallbackGrid = !titleGridElement && !labelGridElement && !binaryGridElement ? gridElement : null;
     const tileByKey = new Map(catalog.tiles.map((tile) => [tile.key, tile]));
 
     if (specialGroupElement && groupCatalog) {
@@ -187,6 +189,13 @@ export function createPdgeditTileReviewAppRuntime({
         )
       );
     }
+    if (labelGridElement) {
+      labelGridElement.replaceChildren(
+        ...labelTiles.map((tile) =>
+          createTileCard(documentLike, catalog, tile, sampleCounts, measurementContext)
+        )
+      );
+    }
     if (binaryGridElement) {
       binaryGridElement.replaceChildren(
         ...binaryTiles.map((tile) =>
@@ -208,7 +217,7 @@ export function createPdgeditTileReviewAppRuntime({
       const quarkColorGroupCount = groupCatalog?.quarkColorGroups?.length ?? 0;
       const compositeGroupCount = groupCatalog?.compositeGroups?.length ?? 0;
       statusElement.textContent =
-        `Rendered ${catalogTiles.length} catalog tiles, ${binaryTiles.length} binary tiles, ` +
+        `Rendered ${catalogTiles.length} catalog tiles, ${labelTiles.length} composite label tiles, ${binaryTiles.length} binary tiles, ` +
         `${specialGroupCount} special single-row groups, ${singleRowGroupCount} standard-model single-row groups, ` +
         `${quarkColorGroupCount} quark color example groups, and ${compositeGroupCount} composite groups ` +
         `from the JSON-driven Pdgedit catalogs. ` +
@@ -218,7 +227,7 @@ export function createPdgeditTileReviewAppRuntime({
   }
 
   async function init() {
-    const hasTileGridElements = gridElement || titleGridElement || binaryGridElement;
+    const hasTileGridElements = gridElement || titleGridElement || labelGridElement || binaryGridElement;
     const hasGroupElements =
       specialGroupElement || singleRowGroupElement || quarkColorGroupElement || compositeGroupElement;
     if (!hasTileGridElements && !hasGroupElements) {

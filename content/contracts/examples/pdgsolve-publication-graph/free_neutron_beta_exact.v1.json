@@ -2,40 +2,121 @@
   "schema": "pdgsolve-publication-graph/v1",
   "units": [
     {
-      "id": "unit_lane1_neutron",
+      "id": "unit_lane1_pro_down_quark_1",
       "kind": "assembly",
       "lane": 1,
-      "recipeId": "pdgsolve.pdgedit.neutron.v1",
-      "occurrenceKey": "lane1.neutron#1",
-      "title": "Neutron",
+      "recipeId": "pdgsolve.pdgedit.pro_down_quark.v1",
+      "occurrenceKey": "lane1.pro_down_quark#1",
+      "title": "Pro Down Quark",
       "anchorRow": 0
     },
     {
-      "id": "unit_lane1_noether_pair",
+      "id": "unit_lane1_pro_up_quark_1",
       "kind": "assembly",
       "lane": 1,
-      "recipeId": "pdgsolve.pdgedit.noether_pair.v1",
-      "occurrenceKey": "lane1.noether_pair#1",
-      "title": "Noether Pair",
+      "recipeId": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "occurrenceKey": "lane1.pro_up_quark#1",
+      "title": "Pro Up Quark",
+      "anchorRow": 1
+    },
+    {
+      "id": "unit_lane1_pro_down_quark_2",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "pdgsolve.pdgedit.pro_down_quark.v1",
+      "occurrenceKey": "lane1.pro_down_quark#2",
+      "title": "Pro Down Quark",
+      "anchorRow": 2
+    },
+    {
+      "id": "unit_lane1_pro_noether_core_1",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "pdgsolve.pdgedit.pro_noether_core.v1",
+      "occurrenceKey": "lane1.pro_noether_core#1",
+      "title": "Pro Noether Core",
       "anchorRow": 3
+    },
+    {
+      "id": "unit_lane1_anti_noether_core_1",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "pdgsolve.pdgedit.anti_noether_core.v1",
+      "occurrenceKey": "lane1.anti_noether_core#1",
+      "title": "Anti Noether Core",
+      "anchorRow": 4
+    },
+    {
+      "id": "unit_lane1_pro_noether_core_2",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "pdgsolve.pdgedit.pro_noether_core.v1",
+      "occurrenceKey": "lane1.pro_noether_core#2",
+      "title": "Pro Noether Core",
+      "anchorRow": 5
+    },
+    {
+      "id": "unit_lane1_anti_noether_core_2",
+      "kind": "assembly",
+      "lane": 1,
+      "recipeId": "pdgsolve.pdgedit.anti_noether_core.v1",
+      "occurrenceKey": "lane1.anti_noether_core#2",
+      "title": "Anti Noether Core",
+      "anchorRow": 6
+    },
+    {
+      "id": "unit_lane2_pass_thru_pro_down_quark_1",
+      "kind": "operator",
+      "lane": 2,
+      "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
+      "occurrenceKey": "lane2.pass_thru.pro_down_quark#1",
+      "title": "Pass Thru",
+      "anchorRow": 0
+    },
+    {
+      "id": "unit_lane2_pass_thru_pro_up_quark_1",
+      "kind": "operator",
+      "lane": 2,
+      "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
+      "occurrenceKey": "lane2.pass_thru.pro_up_quark#1",
+      "title": "Pass Thru",
+      "anchorRow": 1
     },
     {
       "id": "unit_lane2_beta_dissociate",
       "kind": "operator",
       "lane": 2,
       "recipeId": "pdgsolve.pdgedit.operator.dissociate.v1",
-      "occurrenceKey": "lane2.cluster.beta.neutron_noether_pair#1",
+      "occurrenceKey": "lane2.row.beta.pro_down_quark_to_pro_up_quark#1",
       "title": "Dissociate",
       "anchorRow": 2
     },
     {
-      "id": "unit_lane3_proton",
+      "id": "unit_lane3_pro_down_quark_1",
       "kind": "assembly",
       "lane": 3,
-      "recipeId": "pdgsolve.pdgedit.proton.v1",
-      "occurrenceKey": "lane3.proton#1",
-      "title": "Proton",
+      "recipeId": "pdgsolve.pdgedit.pro_down_quark.v1",
+      "occurrenceKey": "lane3.pro_down_quark#1",
+      "title": "Pro Down Quark",
       "anchorRow": 0
+    },
+    {
+      "id": "unit_lane3_pro_up_quark_1",
+      "kind": "assembly",
+      "lane": 3,
+      "recipeId": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "occurrenceKey": "lane3.pro_up_quark#1",
+      "title": "Pro Up Quark",
+      "anchorRow": 1
+    },
+    {
+      "id": "unit_lane3_pro_up_quark_2",
+      "kind": "assembly",
+      "lane": 3,
+      "recipeId": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "occurrenceKey": "lane3.pro_up_quark#2",
+      "title": "Pro Up Quark",
+      "anchorRow": 2
     },
     {
       "id": "unit_lane3_electron",
@@ -43,7 +124,7 @@
       "lane": 3,
       "recipeId": "pdgsolve.pdgedit.electron.v1",
       "occurrenceKey": "lane3.electron#1",
-      "title": "Pro Electron",
+      "title": "Electron",
       "anchorRow": 3
     },
     {
@@ -52,17 +133,35 @@
       "lane": 3,
       "recipeId": "pdgsolve.pdgedit.electron_antineutrino.v1",
       "occurrenceKey": "lane3.electron_antineutrino#1",
-      "title": "Anti Electron Neutrino",
+      "title": "Electron Antineutrino",
       "anchorRow": 4
     },
     {
-      "id": "unit_lane4_pass_thru_proton",
+      "id": "unit_lane4_pass_thru_pro_down_quark_1",
       "kind": "operator",
       "lane": 4,
       "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
-      "occurrenceKey": "lane4.pass_thru.proton#1",
+      "occurrenceKey": "lane4.pass_thru.pro_down_quark#1",
+      "title": "Pass Thru",
+      "anchorRow": 0
+    },
+    {
+      "id": "unit_lane4_pass_thru_pro_up_quark_1",
+      "kind": "operator",
+      "lane": 4,
+      "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
+      "occurrenceKey": "lane4.pass_thru.pro_up_quark#1",
       "title": "Pass Thru",
       "anchorRow": 1
+    },
+    {
+      "id": "unit_lane4_pass_thru_pro_up_quark_2",
+      "kind": "operator",
+      "lane": 4,
+      "recipeId": "pdgsolve.pdgedit.operator.pass_thru.v1",
+      "occurrenceKey": "lane4.pass_thru.pro_up_quark#2",
+      "title": "Pass Thru",
+      "anchorRow": 2
     },
     {
       "id": "unit_lane4_pass_thru_electron",
@@ -83,13 +182,31 @@
       "anchorRow": 4
     },
     {
-      "id": "unit_lane5_proton",
+      "id": "unit_lane5_pro_up_quark_1",
       "kind": "assembly",
       "lane": 5,
-      "recipeId": "pdgsolve.pdgedit.proton.v1",
-      "occurrenceKey": "lane5.proton#1",
-      "title": "Proton",
+      "recipeId": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "occurrenceKey": "lane5.pro_up_quark#1",
+      "title": "Pro Up Quark",
       "anchorRow": 0
+    },
+    {
+      "id": "unit_lane5_pro_down_quark_1",
+      "kind": "assembly",
+      "lane": 5,
+      "recipeId": "pdgsolve.pdgedit.pro_down_quark.v1",
+      "occurrenceKey": "lane5.pro_down_quark#1",
+      "title": "Pro Down Quark",
+      "anchorRow": 1
+    },
+    {
+      "id": "unit_lane5_pro_up_quark_2",
+      "kind": "assembly",
+      "lane": 5,
+      "recipeId": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "occurrenceKey": "lane5.pro_up_quark#2",
+      "title": "Pro Up Quark",
+      "anchorRow": 2
     },
     {
       "id": "unit_lane5_electron",
@@ -97,7 +214,7 @@
       "lane": 5,
       "recipeId": "pdgsolve.pdgedit.electron.v1",
       "occurrenceKey": "lane5.electron#1",
-      "title": "Pro Electron",
+      "title": "Electron",
       "anchorRow": 3
     },
     {
@@ -106,30 +223,51 @@
       "lane": 5,
       "recipeId": "pdgsolve.pdgedit.electron_antineutrino.v1",
       "occurrenceKey": "lane5.electron_antineutrino#1",
-      "title": "Anti Electron Neutrino",
+      "title": "Electron Antineutrino",
       "anchorRow": 4
     }
   ],
   "edges": [
     {
-      "id": "edge_neutron_to_beta_dissociate",
-      "fromUnitId": "unit_lane1_neutron",
+      "id": "edge_lane1_pro_down_quark_1_to_lane2_pass_thru",
+      "fromUnitId": "unit_lane1_pro_down_quark_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane2_beta_dissociate",
-      "toPortId": "input.neutron"
+      "toUnitId": "unit_lane2_pass_thru_pro_down_quark_1",
+      "toPortId": "input"
     },
     {
-      "id": "edge_noether_pair_to_beta_dissociate",
-      "fromUnitId": "unit_lane1_noether_pair",
+      "id": "edge_lane1_pro_up_quark_1_to_lane2_pass_thru",
+      "fromUnitId": "unit_lane1_pro_up_quark_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane2_beta_dissociate",
-      "toPortId": "input.noether_pair"
+      "toUnitId": "unit_lane2_pass_thru_pro_up_quark_1",
+      "toPortId": "input"
     },
     {
-      "id": "edge_beta_dissociate_to_proton",
+      "id": "edge_lane1_pro_down_quark_2_to_beta_dissociate",
+      "fromUnitId": "unit_lane1_pro_down_quark_2",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane2_beta_dissociate",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane2_pass_thru_to_lane3_pro_down_quark_1",
+      "fromUnitId": "unit_lane2_pass_thru_pro_down_quark_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane3_pro_down_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane2_pass_thru_to_lane3_pro_up_quark_1",
+      "fromUnitId": "unit_lane2_pass_thru_pro_up_quark_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane3_pro_up_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_beta_dissociate_to_pro_up_quark_2",
       "fromUnitId": "unit_lane2_beta_dissociate",
-      "fromPortId": "output.proton",
-      "toUnitId": "unit_lane3_proton",
+      "fromPortId": "output.pro_up_quark",
+      "toUnitId": "unit_lane3_pro_up_quark_2",
       "toPortId": "input"
     },
     {
@@ -147,17 +285,24 @@
       "toPortId": "input"
     },
     {
-      "id": "edge_lane3_proton_to_lane4_pass_thru",
-      "fromUnitId": "unit_lane3_proton",
+      "id": "edge_lane3_pro_down_quark_1_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_pro_down_quark_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane4_pass_thru_proton",
+      "toUnitId": "unit_lane4_pass_thru_pro_down_quark_1",
       "toPortId": "input"
     },
     {
-      "id": "edge_lane4_pass_thru_to_lane5_proton",
-      "fromUnitId": "unit_lane4_pass_thru_proton",
+      "id": "edge_lane3_pro_up_quark_1_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_pro_up_quark_1",
       "fromPortId": "output",
-      "toUnitId": "unit_lane5_proton",
+      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane3_pro_up_quark_2_to_lane4_pass_thru",
+      "fromUnitId": "unit_lane3_pro_up_quark_2",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane4_pass_thru_pro_up_quark_2",
       "toPortId": "input"
     },
     {
@@ -168,17 +313,38 @@
       "toPortId": "input"
     },
     {
-      "id": "edge_lane4_pass_thru_to_lane5_electron",
-      "fromUnitId": "unit_lane4_pass_thru_electron",
-      "fromPortId": "output",
-      "toUnitId": "unit_lane5_electron",
-      "toPortId": "input"
-    },
-    {
       "id": "edge_lane3_electron_antineutrino_to_lane4_pass_thru",
       "fromUnitId": "unit_lane3_electron_antineutrino",
       "fromPortId": "output",
       "toUnitId": "unit_lane4_pass_thru_electron_antineutrino",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane4_pass_thru_to_lane5_pro_down_quark_1",
+      "fromUnitId": "unit_lane4_pass_thru_pro_down_quark_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane5_pro_down_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane4_pass_thru_to_lane5_pro_up_quark_1",
+      "fromUnitId": "unit_lane4_pass_thru_pro_up_quark_1",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane5_pro_up_quark_1",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane4_pass_thru_to_lane5_pro_up_quark_2",
+      "fromUnitId": "unit_lane4_pass_thru_pro_up_quark_2",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane5_pro_up_quark_2",
+      "toPortId": "input"
+    },
+    {
+      "id": "edge_lane4_pass_thru_to_lane5_electron",
+      "fromUnitId": "unit_lane4_pass_thru_electron",
+      "fromPortId": "output",
+      "toUnitId": "unit_lane5_electron",
       "toPortId": "input"
     },
     {

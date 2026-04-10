@@ -49,6 +49,7 @@ function normalizeLink(record) {
 function normalizeCompositeLabel(record) {
   return {
     id: normalizeText(record?.id),
+    type: normalizeText(record?.type),
     side: normalizeText(record?.side),
     text: normalizeText(record?.text),
     rowStart: normalizeInteger(record?.rowStart),
@@ -74,6 +75,30 @@ export function normalizePdgeditDocument(rawDocument = {}) {
   };
 }
 
+export function createEmptyPdgeditDocument() {
+  return {
+    schema: "pdgedit/v1",
+    assemblies: [],
+    operators: [],
+    links: [],
+    compositeLabels: [],
+  };
+}
+
+export async function loadPdgeditDocument({
+  fetchImpl = globalThis.fetch?.bind(globalThis),
+  specUrl,
+} = {}) {
+  if (typeof fetchImpl !== "function") {
+    throw new Error("pdgedit document loading requires fetch().");
+  }
+  const response = await fetchImpl(specUrl, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`Failed to load pdgedit document: ${response.status} ${response.statusText}`);
+  }
+  return normalizePdgeditDocument(await response.json());
+}
+
 export function getPdgeditAssemblyDisplayTileKeys(assembly = {}) {
   return normalizeTileKeys(assembly?.tiles);
 }
@@ -91,10 +116,10 @@ export function getPdgeditDocumentAssemblyRows(document = {}) {
 
 export function validatePdgeditDocumentTilePayload(document = {}, catalog = {}) {
   const errors = [];
-  const tileByKey = new Set(
+  const tileTypeByKey = new Map(
     (Array.isArray(catalog?.tiles) ? catalog.tiles : [])
-      .map((tile) => normalizeText(tile?.key))
-      .filter(Boolean)
+      .map((tile) => [normalizeText(tile?.key), normalizeText(tile?.type)])
+      .filter(([tileKey]) => Boolean(tileKey))
   );
 
   normalizePdgeditDocument(document).assemblies.forEach((assembly, assemblyIndex) => {
@@ -108,8 +133,11 @@ export function validatePdgeditDocumentTilePayload(document = {}, catalog = {}) 
         errors.push(`$.assemblies[${assemblyIndex}].tiles[${tileIndex}]: expected a non-empty tile key`);
         return;
       }
-      if (tileByKey.size && !tileByKey.has(tileKey)) {
+      if (tileTypeByKey.size && !tileTypeByKey.has(tileKey)) {
         errors.push(`$.assemblies[${assemblyIndex}].tiles[${tileIndex}]: unknown tile key ${tileKey}`);
+      }
+      if (tileTypeByKey.get(tileKey) === "composite-label") {
+        errors.push(`$.assemblies[${assemblyIndex}].tiles[${tileIndex}]: composite label tile ${tileKey} is not a row-level assembly tile`);
       }
     });
   });

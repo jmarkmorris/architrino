@@ -29,16 +29,17 @@ It does not own:
 
 ## Current State
 
-- `pdgfeed.py` now exists as a fixture-first local PDG pipeline.
+- `scripts/pdg/pdgfeed.py` now exists as the fixture-first local PDG pipeline implementation.
+- Root `pdgfeed.py` remains as a compatibility shim for existing `python3 pdgfeed.py ...` calls and `import pdgfeed` tests/tooling.
 - `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
 - A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- `pdgfeed.py` can list fixtures and emit proposal plus `pdgsolve-request/v1` artifacts from that local corpus.
-- `pdgfeed.py` now also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
-- `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
+- The PDG feed CLI can list fixtures and emit proposal plus `pdgsolve-request/v1` artifacts from that local corpus through either the root shim or the direct implementation path.
+- The PDG feed CLI also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
+- The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable pdgsolve surface.
-- Exportable candidate requests currently exist only for channels that fit the present `pdgsolve-request/v1` assembly vocabulary: neutron beta style inputs with `n`, `p`, `e-`, and `anti-nu_e`.
+- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` row assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
 - Exportable live-read candidate requests currently exist only for free neutron beta decay when a local `pdg` installation is present.
 - Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
@@ -86,7 +87,7 @@ The Python program should keep these responsibilities distinct even in the first
 
 ### Implementation Baseline
 
-The first implementation should assume:
+The implementation assumes:
 
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
@@ -101,17 +102,20 @@ Suggested local environment setup:
 - `python -m pip install -r requirements.txt`
 - `echo $VIRTUAL_ENV` to confirm the venv is active.
 
-The first program should have two surfaces:
+The implementation has two surfaces:
 
-- a library entrypoint implemented first in `pdgfeed.py` that returns normalized PDG-derived candidates;
-- and a CLI entrypoint in `pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests.
+- a library entrypoint in `scripts/pdg/pdgfeed.py` that returns normalized PDG-derived candidates;
+- and a CLI entrypoint in `scripts/pdg/pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests.
 
-The first implementation should start in one Python file:
+The root path remains a compatibility layer:
 
 - `pdgfeed.py`:
-  connects to the local PDG database, performs the first PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
+  imports and delegates to `scripts/pdg/pdgfeed.py` so old commands and Python imports keep working while new implementation ownership is explicit.
 
-If `pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers. The initial implementation should not force a multi-file layout before the first working path exists.
+- `scripts/pdg/pdgfeed.py`:
+  connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
+
+If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers.
 
 The current CLI surface is:
 
@@ -191,10 +195,10 @@ The first built-in live PDG cases are:
 
 The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
 
-| Canonical PDG ASCII name | Export status | pdgsolve `assemblyId` | Request `title` | Notes |
+| Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
 | --- | --- | --- | --- | --- |
-| `n` | exportable | `neutron` | `Neutron` | baryon |
-| `p` | exportable | `proton` | `Proton` | baryon |
+| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
+| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
 | `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
 | `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
 
@@ -212,7 +216,7 @@ Registry expansion should stay deliberate rather than opportunistic.
 That means:
 
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
-- each new row must name the pdgsolve `assemblyId`, the request `title`, and any note needed to keep provenance conventions explicit;
+- each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
 - every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
@@ -225,6 +229,10 @@ The first solver-facing target should be one `pdgsolve-request/v1` document per 
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
 - explicit `policy` values chosen by ingest rather than left implicit;
 - and PDG provenance kept either in `source` fields or in sidecar proposal metadata, not hidden in ad hoc code paths.
+
+A single PDG participant may expand into multiple emitted request occurrences.
+
+That expansion is a pdgfeed responsibility and must happen before `pdgsolve-request/v1` crosses into pdgsolve.
 
 ### PDG Ecosystem
 
@@ -296,12 +304,12 @@ Each normalized participant record should contain at minimum:
 - solver-facing `templateId` for every exportable candidate;
 - human-readable `label`;
 - explicit `side`;
-- particle/composite flags;
+- PDG particle/grouping flags used only inside ingest;
 - normalized inventory ledger fields required by the solver;
 - a root node id and flat node list;
 - and PDG-side identity fields needed for provenance and traceability.
 
-Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve `assemblyId` and request `title`.
+Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve request expansion and request title pattern.
 
 For consistency with the current local corpus:
 
@@ -321,9 +329,9 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
 The first exported `policy` baseline should be:
 
-- `betaSupportMode: "allow-implied-noether-pair"`
+- `betaSupportMode: "allow-implied-noether-core-support"`
 - `exactClosureRequired: true`
-- `allowedBoundaryAugmentations: ["none", "2h", "4h"]`
+- `allowedSupportAugmentations: ["none", "one_balanced_noether_core_pair", "two_balanced_noether_core_pairs"]`
 
 The first PDG version should also stay within these scope limits:
 
@@ -416,20 +424,7 @@ Possible future automation:
 
 ## Priorities
 
-### 1. Move `pdgfeed.py` Out Of The Repo Root Without Breaking Callers
-
-Status: `active`
-
-Current:
-
-- `pdgfeed.py` still sits at the repo root even though it is operationally a PDG CLI and script entrypoint;
-- the same file is also imported directly by Python tests and is invoked by JS tests, sweep tooling, and docs through `python3 pdgfeed.py ...`.
-
-Objective:
-
-- move the real implementation under `scripts/` or another explicit PDG-owned runtime location while preserving a compatibility shim at the repo root until tests, tooling, and docs no longer depend on the old path.
-
-### 2. Use Frozen Manifests As The Stable Batch Surface For PDG Support
+### 1. Use Frozen Manifests As The Stable Batch Surface For PDG Support
 
 Status: `active`
 
@@ -441,7 +436,7 @@ Objective:
 
 - keep batch-oriented PDG work tied to the frozen-manifest denominator as particle coverage grows and pdgsolve-side tooling comes online.
 
-### 3. Promote Remaining PDG Developer Notes Into `reference/`
+### 2. Promote Remaining PDG Developer Notes Into `reference/`
 
 Status: `pending`
 
