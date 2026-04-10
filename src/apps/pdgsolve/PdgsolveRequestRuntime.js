@@ -7,11 +7,10 @@ function normalizeBoolean(value) {
 }
 
 const ALLOW_IMPLIED_NOETHER_CORE_SUPPORT = "allow-implied-noether-core-support";
-const LEGACY_ALLOW_IMPLIED_NOETHER_PAIR = "allow-implied-noether-pair";
 
 function normalizeBetaSupportMode(value) {
   const normalizedValue = normalizeText(value);
-  if (!normalizedValue || normalizedValue === LEGACY_ALLOW_IMPLIED_NOETHER_PAIR) {
+  if (!normalizedValue) {
     return ALLOW_IMPLIED_NOETHER_CORE_SUPPORT;
   }
   return normalizedValue;

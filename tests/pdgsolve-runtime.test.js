@@ -94,21 +94,56 @@ test("explicit Noether support requests land in the exact beta family without im
     },
     reactants: [
       {
-        id: "reactant_neutron",
-        assemblyId: "neutron",
-        title: "Neutron",
+        id: "reactant_neutron.row.1",
+        assemblyId: "pro_down_quark",
+        title: "Pro Down Quark",
       },
       {
-        id: "reactant_noether_pair",
-        assemblyId: "noether_pair",
-        title: "Noether Pair",
+        id: "reactant_neutron.row.2",
+        assemblyId: "pro_up_quark",
+        title: "Pro Up Quark",
+      },
+      {
+        id: "reactant_neutron.row.3",
+        assemblyId: "pro_down_quark",
+        title: "Pro Down Quark",
+      },
+      {
+        id: "reactant_support_pro_noether_core_1",
+        assemblyId: "pro_noether_core",
+        title: "Pro Noether Core",
+      },
+      {
+        id: "reactant_support_anti_noether_core_1",
+        assemblyId: "anti_noether_core",
+        title: "Anti Noether Core",
+      },
+      {
+        id: "reactant_support_pro_noether_core_2",
+        assemblyId: "pro_noether_core",
+        title: "Pro Noether Core",
+      },
+      {
+        id: "reactant_support_anti_noether_core_2",
+        assemblyId: "anti_noether_core",
+        title: "Anti Noether Core",
       },
     ],
     products: [
       {
-        id: "product_proton",
-        assemblyId: "proton",
-        title: "Proton",
+        id: "product_proton.row.1",
+        assemblyId: "pro_up_quark",
+        title: "Pro Up Quark",
+      },
+      {
+        id: "product_proton.row.2",
+        assemblyId: "pro_down_quark",
+        title: "Pro Down Quark",
+      },
+      {
+        id: "product_proton.row.3",
+        assemblyId: "pro_up_quark",
+        title: "Pro Up Quark",
       },
       {
         id: "product_electron",
@@ -179,7 +214,7 @@ test("unmapped requests stay review-only with a blocking unsupported-family diag
       },
     ],
     policy: {
-      betaSupportMode: "allow-implied-noether-pair",
+      betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
       allowedBoundaryAugmentations: ["none"],
     },

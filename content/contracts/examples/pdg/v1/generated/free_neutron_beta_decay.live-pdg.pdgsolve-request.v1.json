@@ -8,16 +8,36 @@
   },
   "reactants": [
     {
-      "id": "reactant_neutron_1",
-      "assemblyId": "neutron",
-      "title": "Neutron"
+      "id": "reactant_neutron_1.row.1",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.2",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.3",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
     }
   ],
   "products": [
     {
-      "id": "product_proton_1",
-      "assemblyId": "proton",
-      "title": "Proton"
+      "id": "product_proton_1.row.1",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "product_proton_1.row.2",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "product_proton_1.row.3",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
     },
     {
       "id": "product_pro_electron_2",
@@ -31,7 +51,7 @@
     }
   ],
   "policy": {
-    "betaSupportMode": "allow-implied-noether-pair",
+    "betaSupportMode": "allow-implied-noether-core-support",
     "exactClosureRequired": true,
     "allowedBoundaryAugmentations": [
       "none",

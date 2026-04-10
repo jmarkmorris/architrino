@@ -106,7 +106,7 @@ test("generated PDG pdgsolve-request fixtures validate against pdgsolve-request/
     assert.equal(request.source?.kind, "pdgfeed", `${entry} source kind drifted`);
     assert.equal(request.source?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
     assert.deepEqual(request.policy, {
-      betaSupportMode: "allow-implied-noether-pair",
+      betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
       allowedBoundaryAugmentations: ["none", "2h", "4h"],
     });
@@ -129,7 +129,7 @@ test("generated live PDG pdgsolve-request artifacts validate against pdgsolve-re
     assert.equal(request.source?.kind, "pdgfeed", `${entry} source kind drifted`);
     assert.equal(request.source?.sourceDocumentId, `pdg-proposal:${request.requestId}`, `${entry} sourceDocumentId drifted`);
     assert.deepEqual(request.policy, {
-      betaSupportMode: "allow-implied-noether-pair",
+      betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
       allowedBoundaryAugmentations: ["none", "2h", "4h"],
     });

@@ -182,7 +182,7 @@ test("pdgsolve result fixtures preserve the four concrete v1 expectations frozen
   assert.equal(supportDisallowedResult.searchStatus, "unsupported");
   assert.equal(
     supportDisallowedResult.diagnostics.some(
-      (diagnostic) => diagnostic.id === "pdgsolve.normalization.support_required.noether_pair"
+      (diagnostic) => diagnostic.id === "pdgsolve.normalization.support_required.noether_core_rows"
     ),
     true
   );
@@ -259,17 +259,23 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
   const intermediateRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "intermediate");
   const productRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "product");
   const dissociateOperators = pdgeditDocument.operators.filter((operator) => operator.type === "dissociate");
-  const passThruOperators = pdgeditDocument.operators.filter((operator) => operator.type === "pass-thru");
+  const lane2PassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane2_")
+  );
+  const lane4PassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane4_")
+  );
 
   assert.deepEqual(errors, [], "pdgedit tile payload drifted");
   assert.equal(reactantRows.every((assembly) => assembly.x === 2), true);
   assert.equal(intermediateRows.every((assembly) => assembly.x === 9), true);
   assert.equal(productRows.every((assembly) => assembly.x === 16), true);
   assert.equal(dissociateOperators.every((operator) => operator.x === 7), true);
-  assert.equal(passThruOperators.every((operator) => operator.x === 14), true);
+  assert.equal(lane2PassThruOperators.every((operator) => operator.x === 7), true);
+  assert.equal(lane4PassThruOperators.every((operator) => operator.x === 14), true);
   assert.deepEqual(
     reactantRows.map((assembly) => assembly.y),
-    [0, 1, 2],
+    [0, 1, 2, 3, 4, 5, 6],
     "reactant rows should pack contiguously"
   );
   assert.deepEqual(
@@ -287,8 +293,8 @@ test("pdgsolve beta pdgedit publication regression keeps the fixed band layout a
     pdgeditDocument.links.filter((link) => link.endpointB === "unit_lane2_beta_dissociate"),
     [
       {
-        id: "edge_neutron_to_beta_dissociate",
-        endpointA: "unit_lane1_neutron.row.3",
+        id: "edge_lane1_pro_down_quark_2_to_beta_dissociate",
+        endpointA: "unit_lane1_pro_down_quark_2.row.1",
         endpointB: "unit_lane2_beta_dissociate",
       },
     ],

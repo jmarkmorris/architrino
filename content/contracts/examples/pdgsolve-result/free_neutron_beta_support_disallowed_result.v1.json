@@ -6,9 +6,9 @@
   "acceptedFamilyId": null,
   "diagnostics": [
     {
-      "id": "pdgsolve.normalization.support_required.noether_pair",
+      "id": "pdgsolve.normalization.support_required.noether_core_rows",
       "phase": "normalization",
-      "message": "Exact beta-family closure requires an explicit or policy-allowed Noether Pair support reactant.",
+      "message": "Exact beta-family closure requires explicit or policy-allowed Noether-core support rows.",
       "blocking": true,
       "payload": {
         "requestId": "free_neutron_beta_support_disallowed",
@@ -28,7 +28,7 @@
         "nonIdentityOperatorCount": 0,
         "dissociationCount": 0,
         "ambiguityPenalty": 3,
-        "tieBreakKey": "none|none|lane2:none|lane4:none|lane3:none|rho:missing_noether_pair"
+        "tieBreakKey": "none|none|lane2:none|lane4:none|lane3:none|rho:missing_noether_core_rows"
       },
       "augmentation": {
         "left": "none",
@@ -60,7 +60,7 @@
       "lane2Operators": [],
       "lane4Operators": [],
       "provenanceSummary": {
-        "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether Pair support reactant.",
+        "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether-core support rows.",
         "outputs": [
           {
             "occurrenceKey": "lane5.proton#1",
@@ -86,10 +86,10 @@
         {
           "id": "pdgsolve.search.unsupported_law_family",
           "phase": "search",
-          "message": "The retained beta branch would require the admitted neutron-plus-noether-pair cluster law, which is unavailable without explicit support material.",
+          "message": "The retained beta branch would require the admitted row-level beta law with Noether-core support rows, which is unavailable without explicit support material.",
           "blocking": true,
           "payload": {
-            "missingLawFamilyId": "cluster.beta.neutron_noether_pair.v1"
+            "missingLawFamilyId": "row.beta.pro_down_quark_to_pro_up_quark.v1"
           }
         }
       ],
@@ -124,7 +124,7 @@
         "lane2Operators": [],
         "lane4Operators": [],
         "provenanceSummary": {
-          "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether Pair support reactant.",
+          "summaryText": "No exact beta-family provenance witness is available because the request did not admit the required Noether-core support rows.",
           "outputs": [
             {
               "occurrenceKey": "lane5.proton#1",
@@ -158,9 +158,9 @@
     "acceptedRecord": null,
     "blockingDiagnostics": [
       {
-        "id": "pdgsolve.normalization.support_required.noether_pair",
+        "id": "pdgsolve.normalization.support_required.noether_core_rows",
         "phase": "normalization",
-        "message": "Exact beta-family closure requires an explicit or policy-allowed Noether Pair support reactant.",
+        "message": "Exact beta-family closure requires explicit or policy-allowed Noether-core support rows.",
         "blocking": true,
         "payload": {
           "requestId": "free_neutron_beta_support_disallowed",
