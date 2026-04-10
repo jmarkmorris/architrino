@@ -3,7 +3,18 @@ import {
   getPdgsolvePdgeditOperatorRecipe,
   normalizePdgsolvePdgeditRecipeCatalog,
 } from "./PdgsolvePdgeditRecipeCatalogRuntime.js";
-import { createPdgeditLibraryManifestEntry } from "../pdgedit/PdgeditLibraryManifestRuntime.js";
+import {
+  createPdgeditLibraryManifestEntry,
+  normalizePdgeditLibraryManifest,
+} from "../pdgedit/PdgeditLibraryManifestRuntime.js";
+import {
+  PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
+  createPdgeditLaunchPayload,
+} from "../pdgedit/PdgeditLaunchPayloadRuntime.js";
+
+export const PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH = "content/contracts/examples/pdgedit";
+export const PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH = "content/contracts/examples/pdgedit/manifest.v1.json";
+export const PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH = "./pdgedit.html";
 
 const ASSEMBLY_X_BY_LANE = Object.freeze({
   1: 2,
@@ -26,9 +37,40 @@ function normalizeText(value = "") {
   return String(value ?? "").trim();
 }
 
+function cloneJson(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 function normalizeInteger(value, fallback = 0) {
   const number = Number(value);
   return Number.isInteger(number) ? number : fallback;
+}
+
+function formatTitleToken(value = "") {
+  return normalizeText(value)
+    .replace(/^pdgsolve_problem_/, "")
+    .split(/[._-]+/g)
+    .filter(Boolean)
+    .map((token) => `${token.slice(0, 1).toUpperCase()}${token.slice(1)}`)
+    .join(" ");
+}
+
+function normalizePathSlug(value = "") {
+  const normalized = normalizeText(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  return normalized || "pdgsolve_pdgedit_publication";
+}
+
+function resolveLaunchHref(pdgeditHref = PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH, windowLike = globalThis.window) {
+  const href = normalizeText(pdgeditHref) || PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH;
+  const baseHref = normalizeText(windowLike?.location?.href) || "http://localhost/";
+  try {
+    return new URL(href, baseHref).href;
+  } catch {
+    return href;
+  }
 }
 
 function normalizeUnit(unit = {}) {
@@ -265,6 +307,268 @@ export function buildPdgsolvePdgeditPackage({
             displayTitle: normalizeText(documentTitle),
             documentPath: normalizeText(durableDocumentPath),
           })
-        : null,
+      : null,
+  };
+}
+
+export function normalizePdgsolveAcceptanceForPdgeditPublication(acceptance = {}) {
+  const normalizedAcceptance = cloneJson(acceptance ?? {});
+  if (normalizeText(normalizedAcceptance?.schema) !== "pdgsolve-acceptance/v1") {
+    throw new Error("pdgsolve pdgedit publication requires a pdgsolve-acceptance/v1 record.");
+  }
+  if (normalizeText(normalizedAcceptance?.acceptedState) !== "accepted") {
+    throw new Error("pdgsolve pdgedit publication requires an accepted record.");
+  }
+  if (!normalizeText(normalizedAcceptance?.problemId) || !normalizeText(normalizedAcceptance?.familyId)) {
+    throw new Error("pdgsolve pdgedit publication requires a locked problem id and family id.");
+  }
+  if (!normalizeText(normalizedAcceptance?.resultDigest)) {
+    throw new Error("pdgsolve pdgedit publication requires a source acceptance digest.");
+  }
+  if (normalizeText(normalizedAcceptance?.lockedSolveGraph?.schema) !== "pdgsolve-publication-graph/v1") {
+    throw new Error("pdgsolve pdgedit publication requires a locked publication graph.");
+  }
+  return normalizedAcceptance;
+}
+
+export function buildPdgsolvePdgeditDocumentId(acceptance = {}) {
+  const normalizedAcceptance = normalizePdgsolveAcceptanceForPdgeditPublication(acceptance);
+  return `${normalizeText(normalizedAcceptance.problemId)}--${normalizeText(normalizedAcceptance.familyId)}`;
+}
+
+export function buildPdgsolvePdgeditDocumentTitle(acceptance = {}) {
+  const normalizedAcceptance = normalizePdgsolveAcceptanceForPdgeditPublication(acceptance);
+  return formatTitleToken(normalizedAcceptance.problemId) || normalizeText(normalizedAcceptance.problemId);
+}
+
+export function buildPdgsolvePdgeditDurableDocumentPath({
+  documentId = "",
+  durableDocumentLibraryPath = PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH,
+} = {}) {
+  return `${normalizeText(durableDocumentLibraryPath) || PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH}/${normalizePathSlug(documentId)}.v1.json`;
+}
+
+export function buildPdgsolvePdgeditPackageFromAcceptance({
+  acceptance = {},
+  publicationMode = "launch",
+  documentId = "",
+  documentTitle = "",
+  durableDocumentPath = "",
+  durableDocumentLibraryPath = PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH,
+  recipeCatalog = null,
+} = {}) {
+  const normalizedAcceptance = normalizePdgsolveAcceptanceForPdgeditPublication(acceptance);
+  const normalizedMode = normalizeText(publicationMode) === "durable" ? "durable" : "launch";
+  const normalizedDocumentId = normalizeText(documentId) || buildPdgsolvePdgeditDocumentId(normalizedAcceptance);
+  const normalizedDocumentTitle = normalizeText(documentTitle) || buildPdgsolvePdgeditDocumentTitle(normalizedAcceptance);
+  const normalizedDurableDocumentPath =
+    normalizedMode === "durable"
+      ? normalizeText(durableDocumentPath) ||
+        buildPdgsolvePdgeditDurableDocumentPath({
+          documentId: normalizedDocumentId,
+          durableDocumentLibraryPath,
+        })
+      : "";
+
+  return buildPdgsolvePdgeditPackage({
+    sourceAcceptanceDigest: normalizedAcceptance.resultDigest,
+    publicationMode: normalizedMode,
+    documentId: normalizedDocumentId,
+    documentTitle: normalizedDocumentTitle,
+    graph: normalizedAcceptance.lockedSolveGraph,
+    recipeCatalog,
+    durableDocumentPath: normalizedDurableDocumentPath,
+  });
+}
+
+export function upsertPdgeditLibraryManifestEntryForPdgsolvePublication(
+  manifest = {},
+  manifestEntry = {},
+  { makeDefault = false } = {}
+) {
+  const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
+  const existingEntry =
+    normalizedManifest.entries.find((entry) => entry.id === normalizeText(manifestEntry?.id)) ?? null;
+  const nextEntry = createPdgeditLibraryManifestEntry({
+    id: manifestEntry?.id,
+    title: manifestEntry?.title,
+    displayTitle: manifestEntry?.displayTitle,
+    documentPath: manifestEntry?.documentPath,
+    isDefault: makeDefault || existingEntry?.isDefault === true || manifestEntry?.isDefault === true,
+  });
+  if (!nextEntry.id || !nextEntry.documentPath) {
+    throw new Error("pdgsolve durable publication requires a manifest entry id and document path.");
+  }
+
+  const entries = [];
+  let didReplace = false;
+  normalizedManifest.entries.forEach((entry) => {
+    if (entry.id === nextEntry.id) {
+      entries.push(nextEntry);
+      didReplace = true;
+      return;
+    }
+    if (makeDefault && entry.isDefault) {
+      const { isDefault, ...entryWithoutDefault } = entry;
+      entries.push(entryWithoutDefault);
+      return;
+    }
+    entries.push(entry);
+  });
+  if (!didReplace) {
+    entries.push(nextEntry);
+  }
+
+  return {
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: makeDefault ? nextEntry.id : normalizedManifest.defaultEntryId,
+    entries,
+  };
+}
+
+export async function publishPdgsolveAcceptanceToPdgeditLibrary({
+  acceptance = {},
+  manifest = {},
+  documentWriter,
+  manifestWriter,
+  manifestPath = PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH,
+  makeDefault = false,
+  documentId = "",
+  documentTitle = "",
+  durableDocumentPath = "",
+  durableDocumentLibraryPath = PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH,
+  recipeCatalog = null,
+} = {}) {
+  if (typeof documentWriter !== "function") {
+    throw new Error("pdgsolve durable publication requires a document writer.");
+  }
+  if (typeof manifestWriter !== "function") {
+    throw new Error("pdgsolve durable publication requires a manifest writer.");
+  }
+
+  const pdgeditPackage = buildPdgsolvePdgeditPackageFromAcceptance({
+    acceptance,
+    publicationMode: "durable",
+    documentId,
+    documentTitle,
+    durableDocumentPath,
+    durableDocumentLibraryPath,
+    recipeCatalog,
+  });
+  const updatedManifest = upsertPdgeditLibraryManifestEntryForPdgsolvePublication(
+    manifest,
+    pdgeditPackage.manifestEntry,
+    { makeDefault }
+  );
+
+  await documentWriter({
+    path: pdgeditPackage.manifestEntry.documentPath,
+    document: cloneJson(pdgeditPackage.pdgeditDocument),
+    package: cloneJson(pdgeditPackage),
+  });
+  await manifestWriter({
+    path: normalizeText(manifestPath) || PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH,
+    manifest: cloneJson(updatedManifest),
+    manifestEntry: cloneJson(pdgeditPackage.manifestEntry),
+    package: cloneJson(pdgeditPackage),
+  });
+
+  return {
+    schema: "pdgsolve-pdgedit-publication/v1",
+    publicationState: "published",
+    publicationMode: "durable",
+    sourceAcceptanceDigest: pdgeditPackage.sourceAcceptanceDigest,
+    documentId: pdgeditPackage.documentId,
+    documentTitle: pdgeditPackage.documentTitle,
+    documentPath: pdgeditPackage.manifestEntry.documentPath,
+    manifestPath: normalizeText(manifestPath) || PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH,
+    package: pdgeditPackage,
+    manifest: updatedManifest,
+  };
+}
+
+export function buildPdgsolvePdgeditLaunchPayload({
+  acceptance = {},
+  documentId = "",
+  documentTitle = "",
+  recipeCatalog = null,
+} = {}) {
+  const pdgeditPackage = buildPdgsolvePdgeditPackageFromAcceptance({
+    acceptance,
+    publicationMode: "launch",
+    documentId,
+    documentTitle,
+    recipeCatalog,
+  });
+  return {
+    package: pdgeditPackage,
+    payload: createPdgeditLaunchPayload({
+      sourceKind: "pdgsolve",
+      sourceReference: pdgeditPackage.sourceAcceptanceDigest,
+      documentId: pdgeditPackage.documentId,
+      documentTitle: pdgeditPackage.documentTitle,
+      pdgeditDocument: pdgeditPackage.pdgeditDocument,
+    }),
+  };
+}
+
+export function writePdgsolvePdgeditLaunchPayload({
+  acceptance = {},
+  storage = globalThis.window?.sessionStorage ?? null,
+  storageKey = PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
+  documentId = "",
+  documentTitle = "",
+  recipeCatalog = null,
+} = {}) {
+  if (typeof storage?.setItem !== "function") {
+    throw new Error("pdgsolve pdgedit launch requires writable browser storage.");
+  }
+  const launch = buildPdgsolvePdgeditLaunchPayload({
+    acceptance,
+    documentId,
+    documentTitle,
+    recipeCatalog,
+  });
+  storage.setItem(normalizeText(storageKey) || PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY, JSON.stringify(launch.payload));
+  return {
+    schema: "pdgsolve-pdgedit-publication/v1",
+    publicationState: "published",
+    publicationMode: "launch",
+    sourceAcceptanceDigest: launch.package.sourceAcceptanceDigest,
+    documentId: launch.package.documentId,
+    documentTitle: launch.package.documentTitle,
+    storageKey: normalizeText(storageKey) || PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
+    package: launch.package,
+    payload: launch.payload,
+  };
+}
+
+export function launchPdgeditFromPdgsolveAcceptance({
+  acceptance = {},
+  storage = globalThis.window?.sessionStorage ?? null,
+  storageKey = PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
+  windowLike = globalThis.window,
+  pdgeditHref = PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH,
+  documentId = "",
+  documentTitle = "",
+  recipeCatalog = null,
+} = {}) {
+  const publication = writePdgsolvePdgeditLaunchPayload({
+    acceptance,
+    storage,
+    storageKey,
+    documentId,
+    documentTitle,
+    recipeCatalog,
+  });
+  const href = resolveLaunchHref(pdgeditHref, windowLike);
+  if (typeof windowLike?.location?.assign === "function") {
+    windowLike.location.assign(href);
+  } else if (typeof windowLike?.open === "function") {
+    windowLike.open(href, "_self");
+  }
+  return {
+    ...publication,
+    href,
   };
 }

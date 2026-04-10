@@ -6,7 +6,16 @@ import { createPdgeditLibraryManifestEntry } from "../src/apps/pdgedit/PdgeditLi
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
-import { buildPdgsolvePdgeditPackage, buildPdgeditDocumentFromPdgsolvePublicationGraph } from "../src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js";
+import { PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
+import {
+  buildPdgsolvePdgeditLaunchPayload,
+  buildPdgsolvePdgeditPackage,
+  buildPdgsolvePdgeditPackageFromAcceptance,
+  buildPdgeditDocumentFromPdgsolvePublicationGraph,
+  launchPdgeditFromPdgsolveAcceptance,
+  publishPdgsolveAcceptanceToPdgeditLibrary,
+  upsertPdgeditLibraryManifestEntryForPdgsolvePublication,
+} from "../src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolvePdgeditRecipeCatalog } from "../src/apps/pdgsolve/PdgsolvePdgeditRecipeCatalogRuntime.js";
 import { solvePdgsolveRequest } from "../src/apps/pdgsolve/PdgsolveSolveRuntime.js";
 
@@ -421,5 +430,139 @@ test("pdgsolve publication runtime builds the expected durable beta package from
       displayTitle: "Free neutron beta exact",
       documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
     })
+  );
+});
+
+test("pdgsolve publication runtime publishes only from an accepted record into one pdgedit document and one manifest entry", async () => {
+  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const manifest = readJson("content/contracts/examples/pdgedit/manifest.v1.json");
+  const expectedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const documentWrites = [];
+  const manifestWrites = [];
+
+  const publication = await publishPdgsolveAcceptanceToPdgeditLibrary({
+    acceptance,
+    manifest,
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+    durableDocumentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    documentWriter: async (write) => {
+      documentWrites.push(write);
+    },
+    manifestWriter: async (write) => {
+      manifestWrites.push(write);
+    },
+  });
+
+  assert.equal(publication.publicationMode, "durable");
+  assert.equal(documentWrites.length, 1);
+  assert.equal(manifestWrites.length, 1);
+  assert.equal(documentWrites[0].path, "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  assert.deepEqual(documentWrites[0].document, expectedDocument);
+  assert.equal(manifestWrites[0].path, "content/contracts/examples/pdgedit/manifest.v1.json");
+  assert.equal(
+    manifestWrites[0].manifest.entries.filter(
+      (entry) => entry.id === "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1"
+    ).length,
+    1
+  );
+  assert.deepEqual(
+    manifestWrites[0].manifest.entries.find(
+      (entry) => entry.id === "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1"
+    ),
+    publication.package.manifestEntry
+  );
+});
+
+test("pdgsolve publication manifest upsert replaces the matching durable entry instead of duplicating it", () => {
+  const manifest = {
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "old_entry",
+    entries: [
+      {
+        id: "old_entry",
+        title: "Old entry",
+        displayTitle: "Old entry",
+        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+        isDefault: true,
+      },
+      {
+        id: "published_entry",
+        title: "Stale published entry",
+        displayTitle: "Stale published entry",
+        documentPath: "content/contracts/examples/pdgedit/stale.v1.json",
+      },
+    ],
+  };
+
+  const updatedManifest = upsertPdgeditLibraryManifestEntryForPdgsolvePublication(manifest, {
+    id: "published_entry",
+    title: "Published entry",
+    displayTitle: "Published entry",
+    documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+  });
+
+  assert.equal(updatedManifest.entries.length, 2);
+  assert.equal(
+    updatedManifest.entries.filter((entry) => entry.id === "published_entry").length,
+    1
+  );
+  assert.deepEqual(updatedManifest.entries[1], {
+    id: "published_entry",
+    title: "Published entry",
+    displayTitle: "Published entry",
+    documentPath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+  });
+  assert.equal(updatedManifest.defaultEntryId, "old_entry");
+  assert.equal(updatedManifest.entries[0].isDefault, true);
+});
+
+test("pdgsolve launch publication stores the exact accepted pdgedit document and opens pdgedit", () => {
+  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const expectedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const storageData = new Map();
+  let assignedHref = "";
+  const storage = {
+    setItem(key, value) {
+      storageData.set(key, value);
+    },
+  };
+  const windowLike = {
+    location: {
+      href: "http://127.0.0.1:5173/pdgsolve.html",
+      assign(href) {
+        assignedHref = href;
+      },
+    },
+  };
+
+  const launch = launchPdgeditFromPdgsolveAcceptance({
+    acceptance,
+    storage,
+    windowLike,
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+  });
+  const payload = JSON.parse(storageData.get(PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY));
+
+  assert.equal(launch.publicationMode, "launch");
+  assert.equal(launch.href, "http://127.0.0.1:5173/pdgedit.html");
+  assert.equal(assignedHref, "http://127.0.0.1:5173/pdgedit.html");
+  assert.equal(payload.schema, "pdgedit-launch/v1");
+  assert.equal(payload.sourceKind, "pdgsolve");
+  assert.equal(payload.sourceReference, acceptance.resultDigest);
+  assert.deepEqual(payload.pdgeditDocument, expectedDocument);
+});
+
+test("pdgsolve publication refuses arbitrary pdgedit documents as reverse solver input", () => {
+  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+
+  assert.throws(
+    () => buildPdgsolvePdgeditPackageFromAcceptance({ acceptance: pdgeditDocument }),
+    /pdgsolve-acceptance\/v1/
+  );
+  assert.throws(
+    () => buildPdgsolvePdgeditLaunchPayload({ acceptance: pdgeditDocument }),
+    /pdgsolve-acceptance\/v1/
   );
 });

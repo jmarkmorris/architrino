@@ -33,6 +33,7 @@ export function bootstrapPdgsolveApp({
     homeButtonElement: documentLike.getElementById("pdgsolve-home-button"),
     solveButtonElement: documentLike.getElementById("pdgsolve-solve-button"),
     acceptButtonElement: documentLike.getElementById("pdgsolve-accept-button"),
+    launchPdgeditButtonElement: documentLike.getElementById("pdgsolve-launch-pdgedit-button"),
     requestSummaryElement: documentLike.getElementById("pdgsolve-request-summary"),
     diagnosticsElement: documentLike.getElementById("pdgsolve-diagnostics"),
     familyListElement: documentLike.getElementById("pdgsolve-family-list"),

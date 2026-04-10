@@ -35,7 +35,7 @@ It does not own:
 - `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review runtime under `src/apps/pdgsolve/`.
 - The runtime already separates request intake/bootstrap, request normalization, deterministic v1 solve search, candidate review, explicit acceptance, and accepted-record-to-pdgedit preview derivation instead of hiding that flow inside `app.js` or a shared root coordinator.
 - The app already loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records, then derives ranked families and publication-ready accepted records against the frozen contracts.
-- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly, but durable publish location, manifest-entry emission, and launcher handoff still remain as the next seam to finish.
+- [pdgedit](./pdgedit.md) now defines the downstream authored-surface boundary clearly, and the accepted-record publication seam now emits final `pdgedit/v1` documents, durable manifest-entry updates, and in-memory launch payloads without pdgedit-side solver reconstruction.
 
 ## Design
 

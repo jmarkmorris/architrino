@@ -12,8 +12,10 @@ import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemp
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
 import {
   getPdgeditDocumentAssemblyRows,
+  normalizePdgeditDocument,
   validatePdgeditDocumentTilePayload,
 } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
+import { createPdgeditLaunchPayload } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
 import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 
 function readJson(relativePath) {
@@ -364,4 +366,55 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
   assert.equal(selectedEntry?.id, "pass_thru_up_quark");
   assert.equal(source.includes("PdgeditTileReviewAppRuntime"), false);
   assert.equal(source.includes("createPdgeditAppRuntime"), true);
+});
+
+test("pdgedit bootstrap opens an explicit launch payload without reconstructing solver data", async () => {
+  const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
+  const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
+  const launchedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const launchPayload = createPdgeditLaunchPayload({
+    sourceKind: "pdgsolve",
+    sourceReference: "pdgsolve_problem_free_neutron_beta_exact::family.beta.exact.v1::v1",
+    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+    documentTitle: "Free neutron beta exact",
+    pdgeditDocument: launchedDocument,
+  });
+  const fetchCalls = [];
+  const bootstrap = await loadPdgeditContractBootstrapSeed({
+    manifestUrl: "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    tileCatalogUrl: "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
+    templateCatalogUrl:
+      "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
+    launchPayload,
+    fetchImpl: async (url) => {
+      fetchCalls.push(url);
+      return {
+        ok: true,
+        json: async () => {
+          if (url.endsWith("manifest.v1.json")) {
+            return manifest;
+          }
+          if (url.endsWith("pdgedit-tiles.json")) {
+            return tileCatalog;
+          }
+          if (url.endsWith("four_tile_family_coverage.v1.json")) {
+            return templateSource;
+          }
+          throw new Error(`unexpected document fetch ${url}`);
+        },
+      };
+    },
+  });
+
+  assert.deepEqual(fetchCalls, [
+    "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
+    "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
+  ]);
+  assert.equal(bootstrap.selectedEntry.id, "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1");
+  assert.equal(bootstrap.selectedEntry.displayTitle, "Free neutron beta exact");
+  assert.equal(bootstrap.selectedEntry.documentPath, "");
+  assert.deepEqual(bootstrap.document, normalizePdgeditDocument(launchedDocument));
+  assert.deepEqual(bootstrap.launchPayload, launchPayload);
 });

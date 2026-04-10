@@ -5,6 +5,7 @@ import {
   normalizePdgsolveAcceptanceRecord,
 } from "./PdgsolveAcceptanceRuntime.js";
 import { loadPdgsolveBootstrapSeed } from "./PdgsolveBootstrapRuntime.js";
+import { launchPdgeditFromPdgsolveAcceptance } from "./PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolveRequest } from "./PdgsolveRequestRuntime.js";
 import { selectPdgsolveResultFamily, solvePdgsolveRequest } from "./PdgsolveSolveRuntime.js";
 
@@ -85,6 +86,7 @@ export function createPdgsolveAppRuntime({
   requestSolver = solvePdgsolveRequest,
   acceptanceBuilder = buildPdgsolveAcceptanceRecord,
   acceptancePreviewBuilder = buildPdgeditPreviewFromPdgsolveAcceptance,
+  publicationLauncher = launchPdgeditFromPdgsolveAcceptance,
   appElement,
   requestSelectElement,
   requestFileInputElement,
@@ -94,6 +96,7 @@ export function createPdgsolveAppRuntime({
   homeButtonElement,
   solveButtonElement,
   acceptButtonElement,
+  launchPdgeditButtonElement,
   requestSummaryElement,
   diagnosticsElement,
   familyListElement,
@@ -125,6 +128,7 @@ export function createPdgsolveAppRuntime({
     selectedFamilyId: "",
     acceptance: null,
     pdgeditPreview: null,
+    publication: null,
     errorMessage: "",
   };
 
@@ -148,6 +152,7 @@ export function createPdgsolveAppRuntime({
       acceptButtonElement,
       !selectedFamily || !selectedFamily.publicationReady || !selectedFamily?.canonicalCandidate?.solveGraph
     );
+    setDisabled(launchPdgeditButtonElement, !state.acceptance);
   }
 
   function renderRequestPicker() {
@@ -298,6 +303,13 @@ export function createPdgsolveAppRuntime({
         summarizeLane(state.acceptance.lockedLaneInventories?.lane5)
       )
     );
+    if (state.publication) {
+      acceptedSummaryElement.append(
+        createKeyValueRow(documentLike, "Publication", state.publication.publicationState),
+        createKeyValueRow(documentLike, "Publication mode", state.publication.publicationMode),
+        createKeyValueRow(documentLike, "Published document", state.publication.documentTitle)
+      );
+    }
   }
 
   function renderPublicationPreview() {
@@ -348,6 +360,7 @@ export function createPdgsolveAppRuntime({
     state.selectedFamilyId = "";
     state.acceptance = null;
     state.pdgeditPreview = null;
+    state.publication = null;
     state.errorMessage = "";
     render();
   }
@@ -387,6 +400,7 @@ export function createPdgsolveAppRuntime({
         normalizeText(state.result?.bestFamilyId);
       state.acceptance = null;
       state.pdgeditPreview = null;
+      state.publication = null;
       state.errorMessage = "";
     } catch (error) {
       state.errorMessage = error instanceof Error ? error.message : String(error);
@@ -394,6 +408,7 @@ export function createPdgsolveAppRuntime({
       state.selectedFamilyId = "";
       state.acceptance = null;
       state.pdgeditPreview = null;
+      state.publication = null;
     }
     render();
   }
@@ -411,6 +426,7 @@ export function createPdgsolveAppRuntime({
       });
       state.acceptance = acceptance;
       state.pdgeditPreview = acceptancePreviewBuilder(acceptance);
+      state.publication = null;
       state.errorMessage = "";
       state.result = {
         ...state.result,
@@ -421,6 +437,23 @@ export function createPdgsolveAppRuntime({
           acceptedRecord: acceptance,
         },
       };
+    } catch (error) {
+      state.errorMessage = error instanceof Error ? error.message : String(error);
+    }
+    render();
+  }
+
+  function launchAcceptedPdgeditDocument() {
+    if (!state.acceptance) {
+      return;
+    }
+    try {
+      state.publication = publicationLauncher({
+        acceptance: state.acceptance,
+        windowLike,
+        storage: windowLike?.sessionStorage,
+      });
+      state.errorMessage = "";
     } catch (error) {
       state.errorMessage = error instanceof Error ? error.message : String(error);
     }
@@ -443,6 +476,7 @@ export function createPdgsolveAppRuntime({
     const acceptance = normalizePdgsolveAcceptanceRecord(raw);
     state.acceptance = acceptance;
     state.pdgeditPreview = acceptancePreviewBuilder(acceptance);
+    state.publication = null;
     state.errorMessage = "";
     render();
   }
@@ -471,6 +505,10 @@ export function createPdgsolveAppRuntime({
 
   acceptButtonElement?.addEventListener("click", () => {
     acceptSelectedFamily();
+  });
+
+  launchPdgeditButtonElement?.addEventListener("click", () => {
+    launchAcceptedPdgeditDocument();
   });
 
   loadRequestButtonElement?.addEventListener("click", () => {
@@ -525,6 +563,7 @@ export function createPdgsolveAppRuntime({
       state.selectedFamilyId = "";
       state.acceptance = seed?.reopenedAcceptance ?? null;
       state.pdgeditPreview = state.acceptance ? acceptancePreviewBuilder(state.acceptance) : null;
+      state.publication = null;
       state.errorMessage = "";
       render();
       if (!state.acceptance && getSelectedRequestEntry()) {
@@ -544,6 +583,9 @@ export function createPdgsolveAppRuntime({
     readCurrentPdgeditPreview() {
       return state.pdgeditPreview;
     },
+    readCurrentPublication() {
+      return state.publication;
+    },
     loadDirectRequest(rawRequest = {}, metadata = {}) {
       appendRequestEntry(rawRequest, metadata);
       runSolve();
@@ -552,6 +594,7 @@ export function createPdgsolveAppRuntime({
     reopenAcceptedRecord(rawAcceptance = {}) {
       state.acceptance = normalizePdgsolveAcceptanceRecord(rawAcceptance);
       state.pdgeditPreview = acceptancePreviewBuilder(state.acceptance);
+      state.publication = null;
       state.errorMessage = "";
       render();
       return state.acceptance;

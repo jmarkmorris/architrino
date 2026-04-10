@@ -1,8 +1,13 @@
 import {
   createEmptyPdgeditDocument,
   loadPdgeditDocument,
+  normalizePdgeditDocument,
 } from "./PdgeditDocumentRuntime.js";
 import { loadPdgeditLibraryManifest, selectDefaultPdgeditLibraryManifestEntry } from "./PdgeditLibraryManifestRuntime.js";
+import {
+  normalizePdgeditLaunchPayload,
+  readPdgeditLaunchPayloadFromStorage,
+} from "./PdgeditLaunchPayloadRuntime.js";
 import { loadPdgeditTileCatalog } from "./PdgeditTileCatalogRuntime.js";
 import { loadPdgeditTemplateCatalog } from "./PdgeditTemplateCatalogRuntime.js";
 
@@ -23,6 +28,8 @@ export async function loadPdgeditContractBootstrapSeed({
   manifestUrl = DEFAULT_PDGEDIT_MANIFEST_URL,
   tileCatalogUrl = DEFAULT_PDGEDIT_TILE_CATALOG_URL,
   templateCatalogUrl = DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
+  launchPayload = null,
+  launchPayloadLoader = () => readPdgeditLaunchPayloadFromStorage({ consume: true }),
 } = {}) {
   const [tileCatalog, manifest, templateCatalog] = await Promise.all([
     loadPdgeditTileCatalog({
@@ -38,8 +45,20 @@ export async function loadPdgeditContractBootstrapSeed({
       specUrl: templateCatalogUrl,
     }),
   ]);
-  const selectedEntry = selectDefaultPdgeditLibraryManifestEntry(manifest);
-  const document = selectedEntry
+  const normalizedLaunchPayload =
+    normalizePdgeditLaunchPayload(launchPayload) ??
+    normalizePdgeditLaunchPayload(typeof launchPayloadLoader === "function" ? await launchPayloadLoader() : null);
+  const selectedEntry = normalizedLaunchPayload
+    ? {
+        id: normalizedLaunchPayload.documentId,
+        title: normalizedLaunchPayload.documentTitle,
+        displayTitle: normalizedLaunchPayload.documentTitle,
+        documentPath: "",
+      }
+    : selectDefaultPdgeditLibraryManifestEntry(manifest);
+  const document = normalizedLaunchPayload
+    ? normalizePdgeditDocument(normalizedLaunchPayload.pdgeditDocument)
+    : selectedEntry
     ? await loadPdgeditDocument({
         fetchImpl,
         specUrl: selectedEntry.documentPath,
@@ -52,6 +71,6 @@ export async function loadPdgeditContractBootstrapSeed({
     templateCatalog,
     selectedEntry,
     document,
+    launchPayload: normalizedLaunchPayload,
   };
 }
-
