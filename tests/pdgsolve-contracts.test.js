@@ -213,7 +213,9 @@ test("pdgsolve runtime results match the versioned pdgsolve-result schema and co
 });
 
 test("pdgsolve computed results preserve the four concrete v1 expectations in pdgsolve.md", () => {
-  const exactResult = solvePdgsolveRequest(readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json"));
+  const betaLawUnsupportedResult = solvePdgsolveRequest(
+    readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json")
+  );
   const supportDisallowedResult = solvePdgsolveRequest(
     readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_support_disallowed.v1.json")
   );
@@ -222,8 +224,21 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
   );
   const passThruResult = solvePdgsolveRequest(readJson("content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json"));
 
-  assert.equal(exactResult.optionFamilies[0].publicationReady, true);
-  assert.equal(exactResult.optionFamilies[0].score.auxiliaryBurden, 2);
+  assert.equal(betaLawUnsupportedResult.searchStatus, "unsupported");
+  assert.equal(betaLawUnsupportedResult.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
+  assert.equal(betaLawUnsupportedResult.optionFamilies[0].publicationReady, false);
+  assert.equal(betaLawUnsupportedResult.optionFamilies[0].score.auxiliaryBurden, 2);
+  assert.deepEqual(
+    betaLawUnsupportedResult.diagnostics.map((diagnostic) => diagnostic.id),
+    [
+      "pdgsolve.normalization.support_added.noether_core_rows",
+      "pdgsolve.search.unsupported_law_family",
+    ]
+  );
+  assert.equal(
+    betaLawUnsupportedResult.diagnostics[1].payload.missingLawFamilyId,
+    "pdgsolve-laws/fermion-decomposition.v1"
+  );
 
   assert.equal(supportDisallowedResult.searchStatus, "unsupported");
   assert.equal(
@@ -262,13 +277,7 @@ test("pdgsolve solver runtime does not import result fixtures", () => {
 });
 
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {
-  const request = readJson("content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json");
-  const result = solvePdgsolveRequest(request);
-  const acceptance = buildPdgsolveAcceptanceRecord({
-    request,
-    result,
-    familyId: result.bestFamilyId,
-  });
+  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
   const graph = acceptance.lockedSolveGraph;
   const packageFixture = readJson(
     "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json"
@@ -289,7 +298,6 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
   assert.deepEqual(validateAgainstSchema(publicationPackage, pdgsolvePdgeditPackageSchema), [], "package schema drifted");
   assert.deepEqual(validateAgainstSchema(pdgeditDocument, pdgeditSchema), [], "pdgedit document schema drifted");
 
-  assert.deepEqual(result.optionFamilies[0].canonicalCandidate.solveGraph, graph);
   assert.deepEqual(acceptance.lockedSolveGraph, graph);
   assert.equal(publicationPackage.sourceAcceptanceDigest, acceptance.resultDigest);
   assert.equal(

@@ -73,24 +73,27 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
   assert.deepEqual(seed.reopenedAcceptance, acceptanceFixture);
 });
 
-test("live pdgfeed neutron requests solve through the exact beta family with a live problem id", () => {
+test("live pdgfeed neutron requests stop at the explicit fermion-decomposition law gap", () => {
   const request = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json");
   const result = solvePdgsolveRequest(request);
 
   assert.equal(result.problemId, "pdgsolve_problem_free_neutron_beta_decay.live-pdg");
-  assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.exact.v1");
+  assert.equal(result.searchStatus, "unsupported");
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
   assert.equal(result.diagnostics[0].payload.requestId, "free_neutron_beta_decay.live-pdg");
+  assert.equal(result.diagnostics[1].id, "pdgsolve.search.unsupported_law_family");
+  assert.equal(result.diagnostics[1].payload.missingLawFamilyId, "pdgsolve-laws/fermion-decomposition.v1");
+  assert.equal(result.optionFamilies[0].publicationReady, false);
 });
 
-test("explicit Noether support requests land in the exact beta family without implied-support diagnostics", () => {
+test("explicit Noether support requests still require admitted fermion decomposition laws", () => {
   const request = {
     schema: "pdgsolve-request/v1",
-    requestId: "beta_exact_explicit_support",
+    requestId: "beta_explicit_support_missing_decomposition_law",
     source: {
       kind: "developer",
       title: "Explicit beta support",
-      sourceDocumentId: "developer:beta_exact_explicit_support",
+      sourceDocumentId: "developer:beta_explicit_support_missing_decomposition_law",
     },
     reactants: [
       {
@@ -165,10 +168,18 @@ test("explicit Noether support requests land in the exact beta family without im
 
   const result = solvePdgsolveRequest(request);
 
-  assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.exact.v1");
-  assert.deepEqual(result.diagnostics, []);
-  assert.deepEqual(result.review.blockingDiagnostics, []);
+  assert.equal(result.searchStatus, "unsupported");
+  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
+  assert.deepEqual(
+    result.diagnostics.map((diagnostic) => diagnostic.id),
+    ["pdgsolve.search.unsupported_law_family"]
+  );
+  assert.equal(result.diagnostics[0].payload.supportMaterial, "available");
+  assert.equal(result.diagnostics[0].payload.missingLawFamilyId, "pdgsolve-laws/fermion-decomposition.v1");
+  assert.deepEqual(
+    result.review.blockingDiagnostics.map((diagnostic) => diagnostic.id),
+    ["pdgsolve.search.unsupported_law_family"]
+  );
 });
 
 test("acceptance runtime locks a publishable family and derives the pdgedit preview document", () => {

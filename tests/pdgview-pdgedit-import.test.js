@@ -144,18 +144,17 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
   );
 });
 
-test("pdgview staging fixture exercises the pdgfeed to pdgsolve to pdgedit to pdgview contract chain", () => {
+test("pdgview staging fixture preserves the published beta data chain while live solving is law-gated", () => {
   const pdgfeedRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
   const pdgsolveResult = solvePdgsolveRequest(pdgfeedRequest);
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
   const publicationPackage = readJson("content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json");
   const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
   const pdgviewStaging = readJson("content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json");
-  const acceptedFamily = pdgsolveResult.optionFamilies.find((family) => family.familyId === acceptance.familyId);
 
   assert.equal(pdgfeedRequest.source.kind, "pdgfeed");
-  assert.equal(pdgsolveResult.bestFamilyId, acceptance.familyId);
-  assert.deepEqual(acceptedFamily.canonicalCandidate.solveGraph, acceptance.lockedSolveGraph);
+  assert.equal(pdgsolveResult.bestFamilyId, "family.beta.fermion_decomposition_unsupported.v1");
+  assert.equal(pdgsolveResult.review.blockingDiagnostics[0].id, "pdgsolve.search.unsupported_law_family");
   assert.equal(publicationPackage.sourceAcceptanceDigest, acceptance.resultDigest);
   assert.deepEqual(publicationPackage.pdgeditDocument, pdgeditDocument);
   assert.equal(pdgviewStaging.source.schema, pdgeditDocument.schema);

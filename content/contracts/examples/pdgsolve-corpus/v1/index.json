@@ -3,18 +3,19 @@
   "cases": [
     {
       "id": "free_neutron_beta_exact",
-      "label": "Free neutron beta exact with implied Noether-core support rows",
+      "label": "Free neutron beta blocked on missing fermion decomposition laws",
       "requestPath": "content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json",
       "publicationGraphPath": "content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json",
       "acceptancePath": "content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json",
       "packagePath": "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json",
       "pdgeditDocumentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
       "expectedSummary": {
-        "searchStatus": "exact_available",
-        "bestFamilyKind": "exact",
-        "publicationReady": true,
+        "searchStatus": "unsupported",
+        "bestFamilyKind": "unsupported",
+        "publicationReady": false,
         "diagnosticIds": [
-          "pdgsolve.normalization.support_added.noether_core_rows"
+          "pdgsolve.normalization.support_added.noether_core_rows",
+          "pdgsolve.search.unsupported_law_family"
         ]
       }
     },
@@ -27,7 +28,8 @@
         "bestFamilyKind": "unsupported",
         "publicationReady": false,
         "diagnosticIds": [
-          "pdgsolve.normalization.support_required.noether_core_rows"
+          "pdgsolve.normalization.support_required.noether_core_rows",
+          "pdgsolve.search.unsupported_law_family"
         ]
       }
     },

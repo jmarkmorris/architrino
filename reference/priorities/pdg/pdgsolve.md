@@ -250,11 +250,11 @@ That move is acceptable only when:
 - the support-row law has fixed explicit conserved-content meaning;
 - and the support-row law removes ambiguity rather than hiding support inside a renamed unary symbol.
 
-### First Worked Weak Law: Row-Level Beta Reaction
+### First Worked Weak Gate: Row-Level Beta Reaction
 
 The first concrete worked weak family should be the row-level beta reaction emitted by the upstream PDG boundary adapter for the familiar beta-decay channel.
 
-In the AAA ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
 
 pdgsolve should therefore not claim that the bare row-level request
 
@@ -264,12 +264,15 @@ $$
 e_{\mathrm{pro\_down\_quark}} + 2e_{\mathrm{pro\_up\_quark}} + e^- + \bar{\nu}_e
 $$
 
-unless the required weak-support inventory is also explicit in the normalized reactant multiset.
+unless both of the following are true:
 
-The clean pdgsolve-v1 way to encode this is:
+- the required weak-support inventory is explicit in the normalized reactant multiset;
+- and pdgsolve has an admitted primitive-preserving fermion decomposition law table that explains how the active fermion row and the reserved support rows produce the requested lepton rows.
+
+The clean pdgsolve-v1 way to encode the request shape is:
 
 - require [pdgfeed](./pdgfeed.md) or an equivalent boundary adapter to expand PDG particle names before pdgsolve sees the request;
-- during normalization, when the request and active policy justify the row-level beta family, make the minimal weak-support environment explicit as individual Noether core rows;
+- during normalization, when the request and active policy justify inspecting the row-level beta family, make the minimal weak-support environment explicit as individual Noether core rows;
 - represent the normalized reactant-side multiset as
 
 $$
@@ -281,9 +284,10 @@ x_{1,\beta}
 + 2e_{\mathrm{anti\_noether\_core}};
 $$
 
-- and treat the two `pro_noether_core` rows plus the two `anti_noether_core` rows as explicit support rows for the beta-family rewrite.
+- treat the two `pro_noether_core` rows plus the two `anti_noether_core` rows as explicit support rows for beta-family review;
+- and stop before publication unless the fermion decomposition laws needed by the active row are admitted.
 
-Then the first worked dissociation law is a single-input row rewrite with explicit support rows:
+The previously considered shortcut would have been a single-input row rewrite with explicit support rows:
 
 $$
 \Delta_{\beta}\!\left(
@@ -298,39 +302,37 @@ e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}
 \right\}.
 $$
 
-The lane-2 operator input remains exactly one 4-tile assembly reactant row: one `pro_down_quark`.
+That shortcut is not admitted in the active pdgsolve v1 law table.
 
-The Noether core support rows are law preconditions and provenance sources, not second lane-2 operator inputs and not things that get dissociated.
+The reason is precise: pdgsolve has not yet defined canonical solver-native row symbols, primitive ledgers, publication recipes, lane-role permissions, and review labels for the unbound architrino residue rows that a real fermion decomposition law would emit.
 
-This law should carry the following provenance witness requirements:
+Until those rows and laws exist, the beta-shaped request should carry the following review-visible facts:
 
-- one spectator `pro_up_quark` row passes through unchanged;
-- one spectator `pro_down_quark` row passes through unchanged;
-- one active `pro_down_quark` row rewrites into one `pro_up_quark` row;
-- the two `pro_noether_core` rows and two `anti_noether_core` rows provide the minimal pro/anti weak-support carriers required by the accepted AAA beta ledger;
-- the electron and electron-antineutrino receive explicit provenance from those support rows according to that ledger;
-- and every product architrino is therefore traced either to a row from the PDG-expanded reactant side or to the explicit Noether core support rows.
+- one spectator `pro_up_quark` row and one spectator `pro_down_quark` row would remain pass-through candidates;
+- one active `pro_down_quark` row would need a non-identity fermion decomposition path;
+- the two `pro_noether_core` rows and two `anti_noether_core` rows provide the minimal pro/anti weak-support carriers required for the candidate beta ledger;
+- the electron and electron-antineutrino product rows cannot receive accepted provenance until the decomposition law table explains the active row plus support rows without violating the separate Electrino and Positrino ledgers;
+- and no lane-2 `Dissociate` operator should be emitted for this request while that law table is absent.
 
-In lane terms, the baseline exact family is:
+In lane terms, the current review-only family is:
 
 - lane 1: `pro_down_quark + pro_up_quark + pro_down_quark` plus two `pro_noether_core` rows and two `anti_noether_core` rows;
-- lane 2: two spectator `Pass Thru` choices and one beta-family `Dissociate` choice with one incoming link from the active `pro_down_quark` row;
-- lane 3: `pro_down_quark + pro_up_quark + pro_up_quark + electron + electron-antineutrino`;
-- lane 4: `Pass Thru` on each of those product assemblies;
+- lane 2: no non-identity operator, because the direct beta shortcut is not admitted;
+- lane 3: no accepted middle inventory for the beta request;
+- lane 4: no product-side operator for the beta request;
 - lane 5: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron-antineutrino`.
 
-This gives pdgsolve its first fully readable weak worked example:
+This gives pdgsolve its first explicit weak-law gate:
 
-- one non-identity reactant-side operator over a single active row;
-- zero product-side associations;
 - two balanced pro/anti Noether-core support pairs;
-- explicit spectator carry-through;
-- explicit active-agent rewrite;
-- and explicit product provenance.
+- a primitive-balanced augmented request when implied support is allowed;
+- no accepted active-agent rewrite;
+- no accepted product provenance for the lepton rows;
+- and a blocking `pdgsolve.search.unsupported_law_family` diagnostic naming the missing `pdgsolve-laws/fermion-decomposition.v1` law table.
 
-If normalization cannot justify those explicit Noether core support rows under the active request and policy bundle, pdgsolve should not promote the branch to exact beta closure.
+If normalization cannot justify those explicit Noether core support rows under the active request and policy bundle, pdgsolve should also emit `pdgsolve.normalization.support_required.noether_core_rows`.
 
-It should keep the case partial or unsupported until the missing support rows or provenance assumptions are made explicit.
+In either case, it should keep the beta-shaped case unsupported until the missing support rows and decomposition-law assumptions are made explicit.
 
 ### Request Intake
 
@@ -471,42 +473,27 @@ $$
 a \in \mathcal{A}_{\mathrm{v1}}.
 $$
 
-So in pdgsolve v1, the only unary rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
+So in pdgsolve v1, the only executable rewrite available for any lane-3-capable single assembly occurrence is `Pass Thru`.
 
-The first and only non-identity executable law family should be the explicit row-level beta support rule
+The previously considered direct row-level beta support rule is now explicitly outside the admitted law table:
 
-$$
-\Lambda_{2}\!\left(
-e_{\mathrm{pro\_down\_quark}}
-\mid
-2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}
-\right)
-=
-\left\{
-e_{\mathrm{pro\_up\_quark}}
-+ e_{\mathrm{electron}}
-+ e_{\mathrm{electron\_antineutrino}}
-\right\}.
-$$
+| Blocked law id | Blocked input | Required support rows | Blocked output multiset | Why blocked |
+| --- | --- | --- | --- | --- |
+| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `2 x pro_noether_core`, `2 x anti_noether_core` | `pro_up_quark + electron + electron_antineutrino` | it hides the missing primitive-preserving fermion decomposition law family and the missing unbound-architrino residue row vocabulary |
 
-That law should be versioned as the following v1 record:
+The current missing law-family token is `pdgsolve-laws/fermion-decomposition.v1`.
 
-| Law id | Lane-2 operator input | Required support rows | Output multiset | Lane-2 operator tag | Lane-4 operator tags | Required provenance summary |
-| --- | --- | --- | --- | --- | --- | --- |
-| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `2 x pro_noether_core`, `2 x anti_noether_core` | `pro_up_quark + electron + electron_antineutrino` | `Dissociate` | row-level `Pass Thru` on each final row | spectator rows pass through, active `pro_down_quark -> pro_up_quark`, and lepton-support provenance from individual Noether core rows |
-
-The support rows are not second input edges into the `Dissociate` operator.
-
-pdgsolve v1 should admit no other non-identity law family.
+pdgsolve v1 should admit no non-identity law family until that table exists.
 
 That means:
 
 - there is no unary particle-level dissociation rule in v1;
+- there is no direct row-level beta dissociation rule in v1;
 - there is no W/Z boson production or absorption rule in v1;
 - there is no generic `Noether core -> ...` unary rule in v1;
 - Noether support rows do not receive unary pass-thru in v1 because they are support rows, not lane-3 assemblies;
 - there is no association table yet beyond identity pass-thru;
-- and any branch that requires another non-identity law family should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
+- and any branch that requires a non-identity law family should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
 ### Normalization Rules
 
@@ -527,7 +514,7 @@ Normalization should then do the following, in order:
 1. receive only row-level assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the law table as `pdgsolve-laws/v1-beta-minimal`, and the support family as balanced pro/anti Noether core row pairs unless the request narrows that family explicitly;
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the executable law table as `pdgsolve-laws/v1-pass-thru-only`, and the support family as balanced pro/anti Noether core row pairs unless the request narrows that family explicitly;
 5. build the requested multisets \(R\) and \(T\);
 6. when the row-level request matches the beta source signature and policy `betaSupportMode = allow-implied-noether-core-support`, add two `pro_noether_core` rows and two `anti_noether_core` rows if those rows are not already explicit, mark them as normalized support, and emit `pdgsolve.normalization.support_added.noether_core_rows`;
 7. when the row-level request matches the beta source signature but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_core_rows`;
@@ -543,7 +530,7 @@ The normalized pdgsolve problem contract should be:
 - `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
 - `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
-- `lawTableId: "pdgsolve-laws/v1-beta-minimal"`;
+- `lawTableId: "pdgsolve-laws/v1-pass-thru-only"`;
 - `allowedSupportAugmentations`, with values drawn from `none`, `one_balanced_noether_core_pair`, and `two_balanced_noether_core_pairs`;
 - `policy`;
 - and `normalization`, containing explicit notes about added support material and normalization diagnostics.
@@ -685,7 +672,9 @@ $$
 \Lambda_{2}(c).
 $$
 
-The row-level beta-family rule above is the first example:
+The current admitted pdgsolve v1 value of \(\Lambda_{2}(c)\) contains no non-identity local row-level law.
+
+The beta-shaped request that would need
 
 $$
 \Lambda_{2}\!\left(
@@ -694,10 +683,12 @@ e_{\mathrm{pro\_down\_quark}}
 2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}
 \right)
 \ni
-e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}.
+e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}
 $$
 
-Search should treat this as one assignable local lane-2 unit with one operator input after reserving the required support occurrences explicitly.
+must therefore terminate with `pdgsolve.search.unsupported_law_family` until `pdgsolve-laws/fermion-decomposition.v1` is admitted.
+
+Search should not create a lane-2 `Dissociate` unit for that blocked shortcut.
 
 For lane 4, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
@@ -731,7 +722,7 @@ $$
 
 These unary families are understood after removing any occurrences already reserved into approved lane-2 support-row rewrites.
 
-So in the beta-family case, the reserved support-row rewrite output is added into \(x_{3}^{L}\) before the meet-in-the-middle comparison is evaluated.
+Because pdgsolve currently admits no approved lane-2 support-row rewrite, the beta-family support rows may be present in lane 1 for review, but no reserved support-row output is added into \(x_{3}^{L}\).
 
 An exact solve for the support choices \((s^{-}, s^{+})\) therefore requires
 
@@ -1210,8 +1201,9 @@ with lexicographic comparison and the concrete orders:
 For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
 
 - `pass_thru`;
-- then `dissociate(row.beta.pro_down_quark_to_pro_up_quark.v1)`;
 - then any later law-family symbol in the order those law ids are admitted into pdgsolve.
+
+The blocked `row.beta.pro_down_quark_to_pro_up_quark.v1` shortcut is not part of this order because it is not an admitted operator symbol.
 
 The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
 
@@ -1232,11 +1224,11 @@ The initial v1 set should be:
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
 | `pdgsolve.request.invalid_support_role` | normalization | a support-only row was requested in a non-support role | assembly id and attempted role |
 | `pdgsolve.normalization.support_added.noether_core_rows` | normalization | normalization added balanced `pro_noether_core` and `anti_noether_core` support rows | request id and added occurrence ids |
-| `pdgsolve.normalization.support_required.noether_core_rows` | normalization | exact beta-family closure needs explicit or policy-allowed balanced Noether core support rows | request id and policy mode |
+| `pdgsolve.normalization.support_required.noether_core_rows` | normalization | beta-family inspection needs explicit or policy-allowed balanced Noether core support rows | request id and policy mode |
 | `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; s^{-}, s^{+}) \neq 0\) for the retained branch or retained request summary | support choice and \((\delta_E, \delta_P)\) |
 | `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | support choice and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
-| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id or descriptive token |
+| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id, blocked shortcut id when applicable, and descriptive token |
 | `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
 | `pdgsolve.review.missing_pdgedit_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
 | `pdgsolve.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
@@ -1441,9 +1433,9 @@ So the accepted publication graph is still pdgsolve-owned, but it is already exp
 
 ### Admitted Publication Recipe Family
 
-The first admitted recipe family should be `pdgsolve-pdgedit-recipes/v1-beta-minimal`.
+The first admitted recipe family remains `pdgsolve-pdgedit-recipes/v1-beta-minimal` for existing publication fixtures and pass-through publication coverage.
 
-That family should support exactly the current publishable beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators:
+That family should support the existing beta-minimal row assemblies, composite recipes that expand into row assemblies, support rows, and operators used by accepted publication fixtures:
 
 | pdgsolve unit | Admitted recipe id | pdgedit row/composite type family | Expansion height | Display label text |
 | --- | --- | --- | --- | --- |
@@ -1627,15 +1619,15 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 
 | Fixture id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `row_beta_exact` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` rows and two `anti_noether_core` rows; best family is exact; auxiliary burden is `two_balanced_noether_core_pairs`; publication is ready after acceptance |
-| `row_beta_support_disallowed` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_core_rows` is present; retained best family is partial or unsupported |
+| `row_beta_law_unsupported` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` rows and two `anti_noether_core` rows; best family is unsupported; `pdgsolve.search.unsupported_law_family` names `pdgsolve-laws/fermion-decomposition.v1`; publication is not ready |
+| `row_beta_support_disallowed` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_core_rows` and `pdgsolve.search.unsupported_law_family` are present; retained best family is unsupported |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru rows; zero non-identity operators; zero ambiguity penalty |
-| `first_multi_option_exact` | the first request admitted after the beta-minimal law set that yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
+| `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
-The last fixture is a gate on the first post-beta expansion.
+The last fixture is a gate on the first post-pass-through expansion.
 
-So pdgsolve should not consider itself beyond the minimal single-family stage until that first genuine multi-option exact case exists and is under regression.
+So pdgsolve should not consider itself beyond the pass-through-only executable stage until that first genuine multi-option exact case exists and is under regression.
 
 ## Interfaces
 
@@ -1678,32 +1670,13 @@ pdgsolve should not:
 
 ## Priorities
 
-### 1. Replace The Beta-Only Dissociation Assumption With Explicit Fermion Decomposition Laws
+### 1. Make Support-Row Provenance Visible In The Accepted Solve Graph
 
 Status: `active`
 
 Current:
 
-- the current v1 law table intentionally admits no unary particle-level dissociation law and no non-identity law except the row-level beta support rewrite;
-- that shortcut lets the beta fixture say an active `pro_down_quark` `Dissociate`s directly into `pro_up_quark + electron + electron_antineutrino` with Noether support rows carried as external provenance requirements;
-- the candidate theory rule that every fermion dissociates into its appropriate Noether core plus unbound architrino polar-charge residue is not yet represented as a solver-native law table;
-- and pdgsolve has no canonical solver-native row symbols, primitive counts, publication recipes, or diagnostics for unbound architrino residuals emitted by such a dissociation.
-
-Objective:
-
-- decide and document the canonical fermion decomposition law family before adding more beta fixtures or weak-family shortcuts;
-- if the rule is admitted, add finite dissociation laws of the form `fermion -> appropriate Noether core row(s) + unbound architrino residue rows`, with exact separate Electrino and Positrino conservation for each admitted fermion;
-- define canonical solver-native ids, \(\mu\)-values, lane-role permissions, publication recipes, and review labels for the resulting Noether-core and unbound-architrino residue rows;
-- rebuild the row-level beta family as a composition of admitted primitive-preserving laws, or mark it unsupported until those laws exist;
-- and if the rule is not admitted, add an explicit unsupported-law diagnostic rather than continuing to rely on a direct beta rewrite that hides the missing decomposition decision.
-
-### 2. Make Support-Row Provenance Visible In The Accepted Solve Graph
-
-Status: `active`
-
-Current:
-
-- the beta fixture treats two `pro_noether_core` rows and two `anti_noether_core` rows as required support and product provenance sources, but not as second input edges into the lane-2 `Dissociate` operator;
+- the existing beta publication fixture treats two `pro_noether_core` rows and two `anti_noether_core` rows as required support and product provenance sources, but not as second input edges into the lane-2 `Dissociate` operator;
 - this keeps the pdgedit link graph visually simple, but it also lets the accepted publication graph show one incoming active quark row and multiple outgoing assemblies without showing where the support carriers entered the operator accounting;
 - the review result records support-derived product provenance in text and arrays, but the accepted graph does not yet carry enough structured primitive-flow detail for the publication surface to explain the same fact;
 - and the result is a misleading visual: the operator can appear to violate the primitive balance even when the written fixture claims the support rows close the ledger.
@@ -1716,14 +1689,14 @@ Objective:
 - add publication checks that reject any accepted graph whose support-derived outputs cannot be traced to explicit support-row occurrences and primitive counts;
 - and only then decide whether pdgedit should show support provenance as ordinary splines, special review affordances, or no extra surface link at all.
 
-### 3. Keep Solver Correctness On The Active Priority Queue
+### 2. Keep Solver Correctness On The Active Priority Queue
 
 Status: `active`
 
 Current:
 
 - computed row-level result construction is now in place;
-- but solver correctness remains active while beta-only dissociation assumptions and support-row provenance visibility are unresolved.
+- but solver correctness remains active while support-row provenance visibility is unresolved and the first admitted non-identity fermion decomposition laws remain absent.
 
 Objective:
 
@@ -1739,4 +1712,4 @@ Objective:
 
 ## Deferred Priorities
 
-1. `first_multi_option_exact` — Add the first post-beta regression fixture that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
+1. `first_multi_option_exact` — Add the first post-pass-through regression fixture that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
