@@ -74,13 +74,113 @@
       }
     },
     {
+      "id": "pdgsolve.pdgedit.pro_down_quark.v1",
+      "pdgsolveAssemblyId": "pro_down_quark",
+      "pdgeditType": "pro-down-quark-assembly",
+      "boundaryLabelText": "Pro Down Quark",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rowTitles": [
+        "Pro Down Quark"
+      ],
+      "rows": [
+        [
+          "pro-down-quark",
+          "binary-full-br-br",
+          "binary-full-br-bb",
+          "binary-full-br-br"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.pro_up_quark.v1",
+      "pdgsolveAssemblyId": "pro_up_quark",
+      "pdgeditType": "pro-up-quark-assembly",
+      "boundaryLabelText": "Pro Up Quark",
+      "primitiveCounts": {
+        "electrinoCount": 6,
+        "positrinoCount": 6
+      },
+      "rowTitles": [
+        "Pro Up Quark"
+      ],
+      "rows": [
+        [
+          "pro-up-quark",
+          "binary-full-br-rr",
+          "binary-full-br-br",
+          "binary-full-br-rr"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.pro_noether_core.v1",
+      "pdgsolveAssemblyId": "pro_noether_core",
+      "pdgeditType": "pro-noether-core-assembly",
+      "boundaryLabelText": "Pro Noether Core",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rowTitles": [
+        "Pro Noether Core"
+      ],
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    },
+    {
+      "id": "pdgsolve.pdgedit.anti_noether_core.v1",
+      "pdgsolveAssemblyId": "anti_noether_core",
+      "pdgeditType": "anti-noether-core-assembly",
+      "boundaryLabelText": "Anti Noether Core",
+      "primitiveCounts": {
+        "electrinoCount": 3,
+        "positrinoCount": 3
+      },
+      "rowTitles": [
+        "Anti Noether Core"
+      ],
+      "rows": [
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ],
+      "ports": {
+        "input": [1],
+        "output": [1]
+      }
+    },
+    {
       "id": "pdgsolve.pdgedit.noether_pair.v1",
       "pdgsolveAssemblyId": "noether_pair",
       "pdgeditType": "noether-pair-assembly",
       "boundaryLabelText": "Noether Pair",
       "primitiveCounts": {
-        "electrinoCount": 12,
-        "positrinoCount": 12
+        "electrinoCount": 6,
+        "positrinoCount": 6
       },
       "rowTitles": [
         "Noether Pair Row 1",

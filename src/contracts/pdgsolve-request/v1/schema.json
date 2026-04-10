@@ -55,10 +55,14 @@
             "enum": [
               "2h",
               "4h",
+              "anti_noether_core",
               "electron",
               "electron_antineutrino",
               "neutron",
               "noether_pair",
+              "pro_down_quark",
+              "pro_noether_core",
+              "pro_up_quark",
               "proton"
             ]
           },
@@ -85,10 +89,14 @@
             "enum": [
               "2h",
               "4h",
+              "anti_noether_core",
               "electron",
               "electron_antineutrino",
               "neutron",
               "noether_pair",
+              "pro_down_quark",
+              "pro_noether_core",
+              "pro_up_quark",
               "proton"
             ]
           },
@@ -110,7 +118,7 @@
       "properties": {
         "betaSupportMode": {
           "type": "string",
-          "enum": ["allow-implied-noether-pair", "explicit-only"]
+          "enum": ["allow-implied-noether-core-support", "explicit-only"]
         },
         "exactClosureRequired": {
           "type": "boolean"

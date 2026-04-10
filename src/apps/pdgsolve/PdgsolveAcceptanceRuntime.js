@@ -34,7 +34,12 @@ function buildLockedNormalizationSummary(result = {}) {
     : [];
   return {
     addedSupportOccurrences: diagnostics
-      .map((diagnostic) => normalizeText(diagnostic?.payload?.addedOccurrenceId))
+      .flatMap((diagnostic) => {
+        const addedOccurrenceIds = Array.isArray(diagnostic?.payload?.addedOccurrenceIds)
+          ? diagnostic.payload.addedOccurrenceIds
+          : [diagnostic?.payload?.addedOccurrenceId];
+        return addedOccurrenceIds.map((occurrenceId) => normalizeText(occurrenceId));
+      })
       .filter(Boolean),
     diagnostics: cloneJson(diagnostics),
   };

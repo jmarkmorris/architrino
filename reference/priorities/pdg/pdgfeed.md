@@ -38,7 +38,7 @@ It does not own:
 - `pdgfeed.py` now marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable pdgsolve surface.
-- Exportable candidate requests currently exist only for channels that fit the present `pdgsolve-request/v1` assembly vocabulary: neutron beta style inputs with `n`, `p`, `e-`, and `anti-nu_e`.
+- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` row assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
 - Exportable live-read candidate requests currently exist only for free neutron beta decay when a local `pdg` installation is present.
 - Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
@@ -191,10 +191,10 @@ The first built-in live PDG cases are:
 
 The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
 
-| Canonical PDG ASCII name | Export status | pdgsolve `assemblyId` | Request `title` | Notes |
+| Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
 | --- | --- | --- | --- | --- |
-| `n` | exportable | `neutron` | `Neutron` | baryon |
-| `p` | exportable | `proton` | `Proton` | baryon |
+| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
+| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
 | `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
 | `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
 
@@ -212,7 +212,7 @@ Registry expansion should stay deliberate rather than opportunistic.
 That means:
 
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
-- each new row must name the pdgsolve `assemblyId`, the request `title`, and any note needed to keep provenance conventions explicit;
+- each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
 - every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
@@ -225,6 +225,10 @@ The first solver-facing target should be one `pdgsolve-request/v1` document per 
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
 - explicit `policy` values chosen by ingest rather than left implicit;
 - and PDG provenance kept either in `source` fields or in sidecar proposal metadata, not hidden in ad hoc code paths.
+
+A single PDG participant may expand into multiple emitted request occurrences.
+
+That expansion is a pdgfeed responsibility and must happen before `pdgsolve-request/v1` crosses into pdgsolve.
 
 ### PDG Ecosystem
 
@@ -296,12 +300,12 @@ Each normalized participant record should contain at minimum:
 - solver-facing `templateId` for every exportable candidate;
 - human-readable `label`;
 - explicit `side`;
-- particle/composite flags;
+- PDG particle/grouping flags used only inside ingest;
 - normalized inventory ledger fields required by the solver;
 - a root node id and flat node list;
 - and PDG-side identity fields needed for provenance and traceability.
 
-Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve `assemblyId` and request `title`.
+Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve request expansion and request title pattern.
 
 For consistency with the current local corpus:
 
@@ -321,9 +325,9 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
 The first exported `policy` baseline should be:
 
-- `betaSupportMode: "allow-implied-noether-pair"`
+- `betaSupportMode: "allow-implied-noether-core-support"`
 - `exactClosureRequired: true`
-- `allowedBoundaryAugmentations: ["none", "2h", "4h"]`
+- `allowedSupportAugmentations: ["none", "one_balanced_noether_core_pair", "two_balanced_noether_core_pairs"]`
 
 The first PDG version should also stay within these scope limits:
 

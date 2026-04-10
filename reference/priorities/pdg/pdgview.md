@@ -119,17 +119,18 @@ Another boundary should stay explicit too:
 - they should not solve upstream composition again or repair missing upstream geometry;
 - and they should treat upstream structure as authored input rather than something to reinterpret.
 
-### Composite Of Assemblies Display Rule
+### Post-Solver Grouping Display Rule
 
-In pdgview, a composite is a **composite of assemblies**.
+In pdgview, the only admitted composite language is **composite of assemblies**.
 
 That means:
 
-- it is a visual and structural grouping over related 4-tile assemblies;
+- it is future post-solver grouping metadata over related 4-tile assemblies;
 - it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
 - it is not itself a single assembly;
 - it is not a dissociate or associate target;
-- and pdgview must not introduce a composite-level `Dissociate` or `Associate` interpretation.
+- it should initially be limited to pdgview lanes `1` and `20`;
+- and pdgview must not introduce a grouping-level `Dissociate` or `Associate` interpretation.
 
 When pdgview receives upstream stage timing for dissociate, transit, associate, or reassembly intervals, those timings should remain anchored to the upstream 4-tile assembly endpoints.
 
@@ -138,7 +139,7 @@ Specifically:
 - a dissociate interval starts from one 4-tile assembly reactant;
 - an associate interval ends at one 4-tile assembly product;
 - a composite of assemblies may be highlighted or revealed around those rows;
-- but the composite grouping is not the thing being opened or gathered.
+- but the grouping is not the thing being opened or gathered.
 
 ### Viewport Layout Direction
 

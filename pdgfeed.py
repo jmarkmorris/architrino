@@ -32,7 +32,7 @@ PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
 DEFAULT_PDGSOLVE_REQUEST_POLICY = {
-    "betaSupportMode": "allow-implied-noether-pair",
+    "betaSupportMode": "allow-implied-noether-core-support",
     "exactClosureRequired": True,
     "allowedBoundaryAugmentations": ["none", "2h", "4h"],
 }
@@ -378,6 +378,19 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
     ),
 )
 
+PDGSOLVE_ROW_ASSEMBLY_EXPANSIONS: dict[str, tuple[tuple[str, str], ...]] = {
+    "neutron": (
+        ("pro_down_quark", "Pro Down Quark"),
+        ("pro_up_quark", "Pro Up Quark"),
+        ("pro_down_quark", "Pro Down Quark"),
+    ),
+    "proton": (
+        ("pro_up_quark", "Pro Up Quark"),
+        ("pro_down_quark", "Pro Down Quark"),
+        ("pro_up_quark", "Pro Up Quark"),
+    ),
+}
+
 PDG_V1_MAPPING_BY_NAME = {mapping.canonical_name: mapping for mapping in PDG_V1_PARTICLE_MAPPINGS}
 PDG_V1_CANONICAL_NAME_BY_ALIAS = {
     alias.lower(): mapping.canonical_name
@@ -430,6 +443,21 @@ class NormalizedParticipant:
             "assemblyId": self.pdgsolve_assembly_id,
             "title": self.pdgsolve_title,
         }
+
+    def to_pdgsolve_request_occurrences(self) -> tuple[dict[str, Any], ...]:
+        if not self.pdgsolve_assembly_id or not self.pdgsolve_title:
+            raise ValueError(f"Participant {self.participant_id} has no pdgsolve-request mapping.")
+        row_expansion = PDGSOLVE_ROW_ASSEMBLY_EXPANSIONS.get(self.pdgsolve_assembly_id)
+        if not row_expansion:
+            return (self.to_pdgsolve_request_occurrence(),)
+        return tuple(
+            {
+                "id": f"{self.participant_id}.row.{index}",
+                "assemblyId": assembly_id,
+                "title": title,
+            }
+            for index, (assembly_id, title) in enumerate(row_expansion, start=1)
+        )
 
     def to_proposal_participant(self) -> dict[str, Any]:
         return {
@@ -733,8 +761,16 @@ def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
         "schema": PDGSOLVE_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
         "source": build_pdgsolve_request_source(proposal),
-        "reactants": [participant.to_pdgsolve_request_occurrence() for participant in proposal.reactants],
-        "products": [participant.to_pdgsolve_request_occurrence() for participant in proposal.products],
+        "reactants": [
+            occurrence
+            for participant in proposal.reactants
+            for occurrence in participant.to_pdgsolve_request_occurrences()
+        ],
+        "products": [
+            occurrence
+            for participant in proposal.products
+            for occurrence in participant.to_pdgsolve_request_occurrences()
+        ],
         "policy": {
             "betaSupportMode": DEFAULT_PDGSOLVE_REQUEST_POLICY["betaSupportMode"],
             "exactClosureRequired": DEFAULT_PDGSOLVE_REQUEST_POLICY["exactClosureRequired"],

@@ -10,10 +10,12 @@ import {
   normalizePdgsolveRequest,
 } from "./PdgsolveRequestRuntime.js";
 
-const BETA_PRODUCT_KEY = "electron:1|electron_antineutrino:1|proton:1";
-const NEUTRON_ONLY_KEY = "neutron:1";
-const NEUTRON_WITH_SUPPORT_KEY = "neutron:1|noether_pair:1";
-const PROTON_ONLY_KEY = "proton:1";
+const BETA_PRODUCT_KEY = "electron:1|electron_antineutrino:1|pro_down_quark:1|pro_up_quark:2";
+const NEUTRON_ROW_KEY = "pro_down_quark:2|pro_up_quark:1";
+const NEUTRON_ROWS_WITH_CORE_SUPPORT_KEY =
+  "anti_noether_core:2|pro_down_quark:2|pro_noether_core:2|pro_up_quark:1";
+const PROTON_ROW_KEY = "pro_down_quark:1|pro_up_quark:2";
+const ALLOW_IMPLIED_NOETHER_CORE_SUPPORT = "allow-implied-noether-core-support";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -53,6 +55,19 @@ function patchResultTemplate(template, request) {
   return nextResult;
 }
 
+function clearNormalizationDiagnostics(result) {
+  result.diagnostics = (Array.isArray(result?.diagnostics) ? result.diagnostics : []).filter(
+    (diagnostic) => normalizeText(diagnostic?.phase) !== "normalization"
+  );
+  if (result?.review) {
+    result.review.blockingDiagnostics = (Array.isArray(result.review.blockingDiagnostics)
+      ? result.review.blockingDiagnostics
+      : []
+    ).filter((diagnostic) => normalizeText(diagnostic?.phase) !== "normalization");
+  }
+  return result;
+}
+
 function buildOutputOccurrenceModels(products = []) {
   const outputs = [];
   const counts = new Map();
@@ -66,7 +81,7 @@ function buildOutputOccurrenceModels(products = []) {
     outputs.push({
       occurrenceKey: `lane5.${assemblyId}#${count}`,
       provenanceClass: "mixed",
-      supportSourceClass: "none",
+      supportSourceRows: [],
       ambiguous: true,
     });
   });
@@ -167,22 +182,22 @@ export function classifyPdgsolveRequestScenario(request = {}) {
   const supportMode = normalizeText(normalizedRequest?.policy?.betaSupportMode);
 
   if (productKey === BETA_PRODUCT_KEY) {
-    if (reactantKey === NEUTRON_WITH_SUPPORT_KEY) {
+    if (reactantKey === NEUTRON_ROWS_WITH_CORE_SUPPORT_KEY) {
       return "beta_exact_explicit_support";
     }
-    if (reactantKey === NEUTRON_ONLY_KEY && supportMode === "allow-implied-noether-pair") {
+    if (reactantKey === NEUTRON_ROW_KEY && supportMode === ALLOW_IMPLIED_NOETHER_CORE_SUPPORT) {
       return "beta_exact_implied_support";
     }
-    if (reactantKey === NEUTRON_ONLY_KEY && supportMode === "explicit-only") {
+    if (reactantKey === NEUTRON_ROW_KEY && supportMode === "explicit-only") {
       return "beta_support_required";
     }
   }
 
-  if (reactantKey === NEUTRON_ONLY_KEY && productKey === PROTON_ONLY_KEY) {
+  if (reactantKey === NEUTRON_ROW_KEY && productKey === PROTON_ROW_KEY) {
     return "primitive_imbalance_neutron_to_proton";
   }
 
-  if (reactantKey === NEUTRON_ONLY_KEY && productKey === NEUTRON_ONLY_KEY) {
+  if (reactantKey === NEUTRON_ROW_KEY && productKey === NEUTRON_ROW_KEY) {
     return "pass_thru_neutron";
   }
 
@@ -196,8 +211,7 @@ export function solvePdgsolveRequest(request = {}) {
       return patchResultTemplate(freeNeutronBetaExactResultJson, normalizedRequest);
     case "beta_exact_explicit_support": {
       const result = patchResultTemplate(freeNeutronBetaExactResultJson, normalizedRequest);
-      result.diagnostics = [];
-      result.review.blockingDiagnostics = [];
+      clearNormalizationDiagnostics(result);
       return result;
     }
     case "beta_support_required":
