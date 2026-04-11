@@ -122,32 +122,18 @@ pdgsolve should keep the operator family deliberately small.
 
 `Dissociate` means:
 
-- exactly one input is accepted;
-- that input must come from one explicit reactant assembly, not from a composite term, grouping label, or span;
-- one reactant-side 4-tile assembly is opened;
-- the resulting output is a constrained set of explicit intermediate assemblies determined by the dissociation law for that assembly family;
+- exactly one explicit reactant assembly is accepted;
+- that reactant assembly is opened into an allowed output multiset of explicit intermediate assemblies;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
 
 `Associate` means:
 
-- one or more explicit intermediate assemblies are gathered into one explicit product assembly;
+- an allowed gathered input multiset of explicit intermediate assemblies is closed into one explicit product assembly;
 - exactly one output is emitted;
-- that output must go to one explicit product assembly, not to a composite term, grouping label, or span;
 - the operation is legal only when the gathered material exactly satisfies the product assembly recipe;
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
-- and the total conserved ledger is preserved across the gather-and-assemble step.
-
-So the operator structure is asymmetric but strict:
-
-- a 4-tile assembly reactant may route to a reactant-side `Dissociate` operator;
-- a reactant-side `Dissociate` operator has only one input;
-- a product-side `Associate` operator has only one output;
-- and that product-side `Associate` output must route to a 4-tile assembly product.
-
-pdgsolve should not widen the operator family.
-
-The more precise the operator grammar is, the more tractable the search space becomes.
+- and the total conserved ledger is preserved across the associate step.
 
 pdgsolve should model the nontrivial operators as finite law tables.
 
@@ -159,7 +145,7 @@ $$
 
 where each $d \in \Delta(a)$ is one legal dissociation output multiset for $a$.
 
-For association, each operator-admissible 4-tile assembly $a \in \mathcal{A}$ has a finite set
+For association, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set
 
 $$
 \Gamma(a) \subset \mathbb{N}^{\mathcal{A}},
@@ -171,15 +157,14 @@ where each $g \in \Gamma(a)$ is one legal gathered input multiset that can assem
 
 The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed solve family.
 
-Unary assembly laws should remain the default.
+By default, every executable law is local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly. Any law that is not organized this way is a non-default extension.
 
 Any future non-unary law remains acceptable only when:
 
 - every participating input and output is still written entirely in explicit admitted assembly ids from $\mathcal{A}$;
 - the law has fixed explicit conserved-content meaning;
-- and the law does not smuggle in higher-scale semantics by renaming a composite interpretation as if it were one assembly symbol.
 
-### First Worked Weak Gate: Assembly-Level Beta Boundary
+### First Test Case: Assembly-Level Beta Boundary
 
 The familiar beta-decay channel is the first boundary example precisely because multiple descriptive scales may appear around the same event.
 
@@ -191,7 +176,6 @@ Applied to beta-decay, the same rule means the pdgsolve-core expression must be 
 From that point forward:
 
 - the core search may use only explicit assembly ids from $\mathcal{A}$;
-- the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
 - if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
 - and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
@@ -297,11 +281,6 @@ The versioned v1 bookkeeping values should therefore include:
 - and $\mu(\mathrm{electron\_antineutrino}) = (6, 6)$.
 
 pdgsolve v1 should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
-
-In particular:
-
-- no normalization or ranking rule should collapse assemblies into a higher-scale grouping merely because their primitive ledgers match;
-- and no non-Standard-Model support token or residue token should be added to the v1 alphabet merely to make a higher-scale story easier to tell.
 
 ### V1 Law Tables
 
