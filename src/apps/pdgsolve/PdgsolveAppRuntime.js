@@ -58,8 +58,8 @@ function formatScoreLine(score = {}) {
   return `exactness ${score.exactness}, primitive ${score.primitiveMismatch}, middle ${score.middleMismatch}, auxiliary ${score.auxiliaryBurden}`;
 }
 
-function summarizeLane(laneEntries = []) {
-  return (Array.isArray(laneEntries) ? laneEntries : [])
+function summarizeAssemblies(entries = []) {
+  return (Array.isArray(entries) ? entries : [])
     .map((entry) => `${entry.assemblyId} x${entry.count}`)
     .join(", ");
 }
@@ -255,18 +255,18 @@ export function createPdgsolveAppRuntime({
           createLine(documentLike, "pdgsolve-family-subtitle", buildFamilySubtitle(family)),
           createLine(
             documentLike,
-            "pdgsolve-family-lanes",
-            `reactant assemblies: ${summarizeLane(family.laneInventories?.lane1)}`
+            "pdgsolve-family-stages",
+            `reactant assemblies: ${summarizeAssemblies(family.reactantAssemblies)}`
           ),
           createLine(
             documentLike,
-            "pdgsolve-family-lanes",
-            `intermediate assemblies: ${summarizeLane(family.laneInventories?.lane3)}`
+            "pdgsolve-family-stages",
+            `intermediate assemblies: ${summarizeAssemblies(family.intermediateAssemblies)}`
           ),
           createLine(
             documentLike,
-            "pdgsolve-family-lanes",
-            `product assemblies: ${summarizeLane(family.laneInventories?.lane5)}`
+            "pdgsolve-family-stages",
+            `product assemblies: ${summarizeAssemblies(family.productAssemblies)}`
           )
         );
         return button;
@@ -294,12 +294,17 @@ export function createPdgsolveAppRuntime({
       createKeyValueRow(
         documentLike,
         "Locked reactant assemblies",
-        summarizeLane(state.acceptance.lockedLaneInventories?.lane1)
+        summarizeAssemblies(state.acceptance.lockedReactantAssemblies)
+      ),
+      createKeyValueRow(
+        documentLike,
+        "Locked intermediate assemblies",
+        summarizeAssemblies(state.acceptance.lockedIntermediateAssemblies)
       ),
       createKeyValueRow(
         documentLike,
         "Locked product assemblies",
-        summarizeLane(state.acceptance.lockedLaneInventories?.lane5)
+        summarizeAssemblies(state.acceptance.lockedProductAssemblies)
       )
     );
     if (state.publication) {

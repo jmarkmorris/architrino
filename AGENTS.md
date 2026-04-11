@@ -96,9 +96,7 @@ This document distinguishes three audience scopes:
 - After identifying the real cause, search for other instances of the same or similar code elsewhere in the codebase that could produce the same class of problem.
 - In operator/developer-facing communication, avoid the phrase `instead of guessing`.
 
-### Reaction Solver Geometry
 
-- Reaction solver lane geometry must have one source of truth. Use the explicit periodic-table-style surface grid model and dedicated lane-slot elements for runtime lane centers; do not duplicate lane widths/gaps in both CSS and JS, infer visible centers from rendered content offsets, or hide spacing in ad hoc per-column padding.
 
 ## Commit Audits
 

@@ -137,7 +137,7 @@ pdgsolve should keep the operator family deliberately small.
 
 pdgsolve should model the nontrivial operators as finite law tables.
 
-For dissociation, each operator-admissible 4-tile assembly $a \in \mathcal{A}$ has a finite set
+For dissociation, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set
 
 $$
 \Delta(a) \subset \mathbb{N}^{\mathcal{A}},
@@ -241,11 +241,11 @@ $$
 
 These are the first conserved sums that must match across the solve.
 
-### Assembly Alphabet
+### Assembly Table
 
 pdgsolve should use the full admitted Standard Model assembly alphabet for mapped PDG requests.
 
-For pdgsolve v1, denote that alphabet by
+For pdgsolve, denote that alphabet by
 
 $$
 \mathcal{A}_{\mathrm{v1}}
@@ -253,16 +253,16 @@ $$
 
 where $\mathcal{A}_{\mathrm{v1}}$ is the complete canonical assembly table shared by `pdgfeed` translation and pdgsolve normalization.
 
-The table below lists the running-example rows used elsewhere in this document:
+The assembly table should list the full Standard Model inventory:
 
-| Canonical id | Display label | Allowed roles in pdgsolve | $\mu(a) = (N_E, N_P)$ | note |
-| --- | --- | --- | --- | --- |
-| `pro_down_quark` | `Pro Down Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(7, 5)$ | individual quark assembly |
-| `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(4, 8)$ | individual quark assembly |
-| `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | $(9, 3)$ | charged lepton assembly |
-| `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | $(6, 6)$ | neutral lepton assembly |
-
-The bookkeeping values for the running examples include:
+| Assembly family | Admitted Standard Model assemblies | Allowed stages in pdgsolve | note |
+| --- | --- | --- | --- |
+| charged leptons | electron, muon, tau, and their antiparticle variants | reactant assemblies, intermediate assemblies, and product assemblies | separate matter and antimatter assemblies remain explicit ids |
+| neutrinos | electron neutrino, muon neutrino, tau neutrino, and their antineutrino variants | reactant assemblies, intermediate assemblies, and product assemblies | neutrino and antineutrino assemblies remain explicit ids |
+| up-type quarks | up, charm, top, and their antiquark variants | reactant assemblies, intermediate assemblies, and product assemblies | quark and antiquark assemblies remain explicit ids |
+| down-type quarks | down, strange, bottom, and their antiquark variants | reactant assemblies, intermediate assemblies, and product assemblies | quark and antiquark assemblies remain explicit ids |
+| Noether cores | pro and anti variants | reactant assemblies, intermediate assemblies, and product assemblies | |
+The concrete conserved-content rows for every admitted assembly in that table should be written here rather than deferred to a later phase. The running beta-boundary bookkeeping values already used elsewhere in this document include:
 
 - $\mu(\mathrm{pro\_down\_quark}) = (7, 5)$;
 - $\mu(\mathrm{pro\_up\_quark}) = (4, 8)$;
@@ -271,7 +271,7 @@ The bookkeeping values for the running examples include:
 
 pdgsolve should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
 
-### Law Tables
+### Rule Table
 
 pdgsolve should use the full admitted assembly-native law tables needed to close PDG-mappable requests.
 
@@ -396,8 +396,8 @@ In particular:
 
 - each reactant assembly that is allowed to feed intermediate assemblies presents a small action set, typically `Pass Thru` or `Dissociate`;
 - each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
-- each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
-- each `Associate` choice emits exactly one 4-tile assembly product output;
+- each `Dissociate` choice consumes exactly one assembly reactant input;
+- each `Associate` choice emits exactly one assembly product output;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
@@ -894,7 +894,7 @@ The v1 set should be:
 | --- | --- | --- | --- |
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
 | `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
-| `pdgsolve.request.invalid_lane_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
+| `pdgsolve.request.invalid_boundary_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained branch or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
@@ -989,7 +989,7 @@ For pdgsolve v1, an option family $F$ is publication-ready if and only if:
 - the family has no blocking diagnostic among:
   `pdgsolve.request.unsupported_assembly`,
   `pdgsolve.request.unmappable_request`,
-  `pdgsolve.request.invalid_lane_role`,
+  `pdgsolve.request.invalid_boundary_role`,
   `pdgsolve.search.primitive_imbalance`,
   `pdgsolve.search.middle_mismatch`,
   `pdgsolve.search.provenance_failure`,
@@ -1274,8 +1274,11 @@ Each member of `optionFamilies` should contain:
 - `familyId`;
 - `kind`, with values `exact`, `partial`, or `no_exact_closure`;
 - `score`, carrying the concrete components of $\kappa$;
-- `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
-- `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
+- `reactantAssemblies`, carrying the canonical reactant-assemblies;
+- `reactantSideOperators`, carrying the canonical reactant-side-operator choices;
+- `intermediateAssemblies`, carrying the canonical intermediate-assemblies;
+- `productSideOperators`, carrying the canonical product-side-operator choices;
+- `productAssemblies`, carrying the canonical product-assemblies;
 - `provenanceSummary`, carrying the family-level witness summary that review must see;
 - `diagnostics`, carrying family-local diagnostics;
 - `rawBranchCount`, the number of raw branches folded into the family;
@@ -1293,9 +1296,11 @@ Each member of `optionFamilies` should contain:
 - `acceptedState: "accepted"`;
 - `lockedNormalizationSummary`;
 - `lockedPolicySummary`;
-- `lockedLaneInventories`;
-- `lockedLane2Operators`;
-- `lockedLane4Operators`;
+- `lockedReactantAssemblies`;
+- `lockedReactantSideOperators`;
+- `lockedIntermediateAssemblies`;
+- `lockedProductSideOperators`;
+- `lockedProductAssemblies`;
 - `lockedProvenanceSummary`;
 - `lockedSolveGraph`, which for publishable families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
 - and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
@@ -1311,7 +1316,7 @@ Each `unit` record should contain:
 
 - `id`;
 - `kind`, with values `assembly` or `operator`;
-- `lane`, with values `1`, `2`, `3`, `4`, or `5`;
+- `stage`, with values `reactantAssemblies`, `reactantSideOperators`, `intermediateAssemblies`, `productSideOperators`, or `productAssemblies`;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
 - one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
 - for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id;
@@ -1393,14 +1398,14 @@ Current:
 
 - the standalone `pdgsolve` app already has its own UI shell with request intake, diagnostics, candidate-family selection, accepted-family summary, and downstream preview;
 - but that shell still behaves more like a thin status dashboard than a true solve-review console;
-- the current family cards and accepted summary still expose internal `lane1`/`lane3`/`lane5` labels rather than the canonical product terminology `reactant assemblies`, `reactant-side operators`, `intermediate assemblies`, `product-side operators`, and `product assemblies`;
+- the current family cards and accepted summary still expose internal stage-field drift rather than the canonical terminology `reactant assemblies`, `reactant-side operators`, `intermediate assemblies`, `product-side operators`, and `product assemblies`;
 - and the current layout does not yet present the accepted review workflow as a clear multi-pane console with distinct windows for request context, candidate families, accepted lock state, provenance/diagnostics, and publication output.
 
 Objective:
 
 - keep `pdgsolve` as a dedicated solve-and-review app with its own UI boundary rather than treating review and acceptance as hidden runtime state;
 - evolve the current standalone shell into a multi-pane review console whose windows map directly onto the solver-owned review tasks;
-- replace internal lane-number labels in the review UI with the canonical abbreviated symbols and canonical terminology already defined in this document;
+- replace internal stage-field drift in the review UI with the canonical stage terminology already defined in this document;
 - make candidate selection, accepted-family locking, provenance inspection, and publication preview readable in one console without requiring raw JSON as the primary review surface;
 - add a downstream preview path that can materialize clickable `pdgedit`-rendered `.png` images for the selected candidate family so review can inspect the likely surface result before disposition, while keeping that image strictly advisory rather than solver-owned source of truth;
 - and preserve the existing versioned contract boundaries while improving the review-facing presentation layer.

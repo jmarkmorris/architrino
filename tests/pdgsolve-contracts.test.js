@@ -240,7 +240,7 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
     ["pdgsolve.normalization.support_added.noether_core_rows"]
   );
   assert.equal(
-    betaLawUnsupportedResult.optionFamilies[0].laneInventories.lane3.some(
+    betaLawUnsupportedResult.optionFamilies[0].intermediateAssemblies.some(
       (record) => record.assemblyId === "unbound_architrino_residue_e9_p3"
     ),
     true
@@ -256,8 +256,8 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
 
   assert.deepEqual(primitiveImbalanceResult.diagnostics[0].payload, {
     augmentation: {
-      left: "none",
-      right: "none",
+      reactantSide: "none",
+      productSide: "none",
     },
     deltaE: 3,
     deltaP: -3,
@@ -337,11 +337,11 @@ test("legacy beta pdgedit publication regression keeps the fixed band layout and
   const intermediateRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "intermediate");
   const productRows = pdgeditDocument.assemblies.filter((assembly) => assembly.role === "product");
   const dissociateOperators = pdgeditDocument.operators.filter((operator) => operator.type === "dissociate");
-  const lane2PassThruOperators = pdgeditDocument.operators.filter(
-    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane2_")
+  const reactantSidePassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_reactantSideOperators_")
   );
-  const lane4PassThruOperators = pdgeditDocument.operators.filter(
-    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_lane4_")
+  const productSidePassThruOperators = pdgeditDocument.operators.filter(
+    (operator) => operator.type === "pass-thru" && operator.id.startsWith("unit_productSideOperators_")
   );
 
   assert.deepEqual(errors, [], "pdgedit tile payload drifted");
@@ -349,8 +349,8 @@ test("legacy beta pdgedit publication regression keeps the fixed band layout and
   assert.equal(intermediateRows.every((assembly) => assembly.x === 9), true);
   assert.equal(productRows.every((assembly) => assembly.x === 16), true);
   assert.equal(dissociateOperators.every((operator) => operator.x === 7), true);
-  assert.equal(lane2PassThruOperators.every((operator) => operator.x === 7), true);
-  assert.equal(lane4PassThruOperators.every((operator) => operator.x === 14), true);
+  assert.equal(reactantSidePassThruOperators.every((operator) => operator.x === 7), true);
+  assert.equal(productSidePassThruOperators.every((operator) => operator.x === 14), true);
   assert.deepEqual(
     reactantRows.map((assembly) => assembly.y),
     [0, 1, 2, 3, 4, 5, 6],
@@ -368,18 +368,18 @@ test("legacy beta pdgedit publication regression keeps the fixed band layout and
   );
   assert.deepEqual(pdgeditDocument.compositeLabels, []);
   assert.deepEqual(
-    pdgeditDocument.links.filter((link) => link.endpointB === "unit_lane2_beta_dissociate"),
+    pdgeditDocument.links.filter((link) => link.endpointB === "unit_reactantSideOperators_beta_dissociate"),
     [
       {
-        id: "edge_lane1_pro_down_quark_2_to_beta_dissociate",
-        endpointA: "unit_lane1_pro_down_quark_2.row.1",
-        endpointB: "unit_lane2_beta_dissociate",
+        id: "edge_reactantAssemblies_pro_down_quark_2_to_reactantSideOperators_beta_dissociate",
+        endpointA: "unit_reactantAssemblies_pro_down_quark_2.row.1",
+        endpointB: "unit_reactantSideOperators_beta_dissociate",
       },
     ],
     "dissociate must have one incoming 4-tile assembly row link"
   );
   assert.deepEqual(dissociateOperators[0], {
-    id: "unit_lane2_beta_dissociate",
+    id: "unit_reactantSideOperators_beta_dissociate",
     type: "dissociate",
     x: 7,
     y: 2,
@@ -394,14 +394,14 @@ test("legacy beta pdgedit publication regression keeps the fixed band layout and
       electrinoCount: operator.electrinoCount,
     })),
     [
-      { id: "unit_lane2_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
-      { id: "unit_lane2_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
-      { id: "unit_lane2_beta_dissociate", positrinoCount: 5, electrinoCount: 7 },
-      { id: "unit_lane4_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
-      { id: "unit_lane4_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
-      { id: "unit_lane4_pass_thru_pro_up_quark_2", positrinoCount: 8, electrinoCount: 4 },
-      { id: "unit_lane4_pass_thru_electron_1", positrinoCount: 3, electrinoCount: 9 },
-      { id: "unit_lane4_pass_thru_electron_antineutrino_1", positrinoCount: 6, electrinoCount: 6 },
+      { id: "unit_reactantSideOperators_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_reactantSideOperators_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_reactantSideOperators_beta_dissociate", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_productSideOperators_pass_thru_pro_down_quark_1", positrinoCount: 5, electrinoCount: 7 },
+      { id: "unit_productSideOperators_pass_thru_pro_up_quark_1", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_productSideOperators_pass_thru_pro_up_quark_2", positrinoCount: 8, electrinoCount: 4 },
+      { id: "unit_productSideOperators_pass_thru_electron_1", positrinoCount: 3, electrinoCount: 9 },
+      { id: "unit_productSideOperators_pass_thru_electron_antineutrino_1", positrinoCount: 6, electrinoCount: 6 },
     ],
     "published operator counts should match the accepted carrier rows"
   );
@@ -447,17 +447,17 @@ test("admitted fermion-decomposition beta solving publishes residue rows with ad
       })),
     [
       {
-        id: "unit_lane4_associate_unbound_architrino_residue_e4_p8_1",
+        id: "unit_productSideOperators_associate_unbound_architrino_residue_e4_p8_1",
         positrinoCount: 8,
         electrinoCount: 4,
       },
       {
-        id: "unit_lane4_associate_unbound_architrino_residue_e9_p3_1",
+        id: "unit_productSideOperators_associate_unbound_architrino_residue_e9_p3_1",
         positrinoCount: 3,
         electrinoCount: 9,
       },
       {
-        id: "unit_lane4_associate_unbound_architrino_residue_e6_p6_1",
+        id: "unit_productSideOperators_associate_unbound_architrino_residue_e6_p6_1",
         positrinoCount: 6,
         electrinoCount: 6,
       },

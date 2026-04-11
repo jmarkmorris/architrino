@@ -41,13 +41,13 @@ It does not own:
 - The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for test-case convenience, but they do not widen the exportable pdgsolve surface.
-- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
+- The intended exportable request surface is every channel whose PDG particle names can be translated all the way into explicit admitted Standard Model assemblies.
+- If a particle or channel cannot be translated into explicit admitted Standard Model assemblies, it is un-mappable and must remain upstream as proposal metadata rather than leaking a non-native solver request through the boundary.
 - After removing the baked-in historical cases, there is no longer a built-in live-read case that crosses the full request boundary with the current locked mapping table.
-- Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
 - Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
 - Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
-- Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
+- Unsupported channels currently remain un-mappable rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
 - Live PDG package access now exists as a guarded CLI path alongside test cases, but test cases remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
@@ -94,7 +94,7 @@ pdgfeed is the upstream owner of composite-to-assembly translation for PDG-facin
 That means:
 
 - PDG names such as `n` and `p` may be expanded into explicit emitted assembly occurrences before the request crosses into pdgsolve;
-- unsupported or ambiguous higher-scale terms must remain proposal-only rather than leaking into solver-native request ids;
+- unsupported or ambiguous higher-scale terms must remain un-mappable rather than leaking into solver-native request ids;
 - if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
 - and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
 
@@ -205,7 +205,7 @@ The first built-in live PDG cases are:
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
 
-The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
+The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table should cover every canonical PDG particle name that `pdgfeed` can translate into explicit admitted Standard Model assemblies. Representative currently-admitted rows include:
 
 | Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
 | --- | --- | --- | --- | --- |
@@ -214,14 +214,14 @@ The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
 | `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
 | `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
 
-The v1 unsupported-particle policy is:
+The v1 un-mappable-particle policy is:
 
-- only canonical PDG names in the exportable rows above may be emitted into `pdgsolve-request/v1`;
+- only canonical PDG names with an explicit Standard Model assembly translation may be emitted into `pdgsolve-request/v1`;
 - local aliases may canonicalize into those names, but aliases do not define new solver mappings;
-- a particle explicitly marked proposal-only must remain in proposal metadata and notes only;
-- any particle absent from the table is also proposal-only by default;
+- a particle explicitly marked un-mappable must remain in proposal metadata and notes only;
+- any particle absent from the table is also un-mappable by default;
 - decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
-- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit assembly-native upstream translation rule exists.
+- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays un-mappable until an explicit assembly-native upstream translation rule exists.
 
 Registry expansion should stay deliberate rather than opportunistic.
 
@@ -230,9 +230,9 @@ That means:
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
 - each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
-- every proposal-only to exportable transition should land with test-case or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
+- every newly admitted exportable row should land with test-case or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
-- and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains proposal-only by design.
+- and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains un-mappable by design.
 
 The first solver-facing target should be one `pdgsolve-request/v1` document per candidate, with:
 

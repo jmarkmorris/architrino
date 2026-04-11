@@ -395,15 +395,15 @@ The shared review catalog may carry composite label tiles such as `Photon` as `t
 
 When pdgview implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label/span primitive in the downstream staging layer, not as a row-level pdgedit assembly tile.
 
-### Weak Boson Lane-3 Classification
+### Weak Boson Intermediate-Assemblies Classification
 
-pdgsolve does not solve over `W-`, `W+`, or `Z` bosons as native lane units.
+pdgsolve does not solve over `W-`, `W+`, or `Z` bosons as native stage units.
 
-Instead, pdgedit owns the post-solver classification point for weak boson corridor display. After pdgsolve publishes explicit lane-3 assembly rows, pdgedit may examine those intermediate rows and reclassify or group them as `Negative W Boson`, `Positive W Boson`, or `Neutral Z Boson` where a dedicated pdgedit-side rule admits that reading.
+Instead, pdgedit owns the post-solver classification point for weak boson corridor display. After pdgsolve publishes explicit intermediate-assemblies rows, pdgedit may examine those intermediate rows and reclassify or group them as `Negative W Boson`, `Positive W Boson`, or `Neutral Z Boson` where a dedicated pdgedit-side rule admits that reading.
 
-That classification is downstream presentation and authoring structure. It must preserve the published row-level assembly payloads and provenance enough that the solver result is still auditable. It must not require pdgsolve to introduce W/Z solver-native assembly ids, operator ids, dissociate targets, associate sources, or middle-lane search symbols.
+That classification is downstream presentation and authoring structure. It must preserve the published row-level assembly payloads and provenance enough that the solver result is still auditable. It must not require pdgsolve to introduce W/Z solver-native assembly ids, operator ids, dissociate targets, associate sources, or intermediate-assemblies search symbols.
 
-Until a concrete W/Z lane-3 classification contract is admitted, the W/Z standard tile keys remain available as tile artwork and review vocabulary, not as valid `pdgedit/v1` `assemblies[].type` values.
+Until a concrete W/Z intermediate-assemblies classification contract is admitted, the W/Z standard tile keys remain available as tile artwork and review vocabulary, not as valid `pdgedit/v1` `assemblies[].type` values.
 
 The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this pdgedit baseline.
 
@@ -703,14 +703,14 @@ That reserved top row:
 
 Normal authored rows therefore begin below that reserved top row.
 
-Within each assembly band, authored placement should follow a dense lane standard.
+Within each assembly band, authored placement should follow a dense cell standard.
 
 That means:
 
-- between the topmost and bottommost occupied assembly extents in one assembly band, there should be no empty lane row;
+- between the topmost and bottommost occupied assembly extents in one assembly cell, there should be no empty cells;
 - the only routine blank row in the grid is the one reserved top row described above;
-- a later composite occupying `n` rows in one assembly band counts as one occupied `n x 4` lane rectangle for this density rule;
-- and create, drag, delete, and composite-edit behavior in an assembly band should preserve that no-gap lane standard.
+- a later composite occupying `n` rows in one assembly cell counts as one occupied `n x 4` cell rectangle for this density rule;
+- and create, drag, delete, and composite-edit behavior in an assembly band should preserve that no-gap cell standard.
 
 Spline attachment should use only the outer rectangle bounds of the two linked objects.
 
@@ -966,7 +966,7 @@ For assemblies, the drag affordance should cover the full four-tile rectangle:
 
 - a pointer-down anywhere inside the visible `4x1` assembly bounds may begin the drag;
 - no separate grab handle is permitted;
-- and the drag should read as moving the whole assembly group up or down its lane rather than moving one internal tile.
+- and the drag should read as moving the whole assembly group up or down its assembly band rather than moving one internal tile.
 
 When the user drags an object:
 
@@ -979,24 +979,24 @@ When the user drags an object:
 On drop:
 
 - releasing an operator on one valid free row commits the new `y`;
-- releasing an assembly in one assembly band should preserve the dense lane standard for that band;
+- releasing an assembly in one assembly band should preserve the dense cell standard for that band;
 - releasing anywhere else returns the object to its original row;
 - no automatic row shuffling or collision resolution should occur for operators;
 - and the object's stable `id` must not change.
 
 Because movement stays inside the current band, existing spline links stay attached to the same object ids and remain valid after the move.
 
-For assembly lanes, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
+For assembly cells, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
 
-- dragging one assembly over another assembly row should open an insertion position in that lane rather than requiring a permanently empty destination row;
-- the affected lower assemblies in that same lane should shift down as needed to make room for the dragged assembly;
-- and dropping an assembly should leave that lane with no empty rows between occupied assembly extents.
+- dragging one assembly over another assembly row should open an insertion position in that assembly cell rather than requiring a permanently empty destination row;
+- the affected lower assemblies in that same assembly cell should shift down as needed to make room for the dragged assembly;
+- and dropping an assembly should leave that assembly cell with no empty rows between occupied assembly extents.
 
 Composite-aware insertion may remain deferred until composite authoring is implemented, but its behavior is already fixed:
 
-- a composite in one assembly lane should be hit-tested as one occupied `n-row x 4-column` rectangle;
+- a composite in one assembly cell should be hit-tested as one occupied `n-row x 4-column` rectangle;
 - dragging an assembly over that composite rectangle should shift the composite's member rows down together as one block;
-- and that insertion behavior should still preserve the dense no-gap lane rule.
+- and that insertion behavior should still preserve the dense no-gap cell rule.
 
 #### Deleting Assemblies And Operators
 
@@ -1011,7 +1011,7 @@ The delete gesture is:
 When an object is deleted:
 
 - delete every link whose `endpointA` or `endpointB` references that object's id in the same edit action;
-- if deleting an assembly would leave an empty lane row inside that assembly band, compact the lower assemblies in that same band upward to close the gap;
+- if deleting an assembly would leave an empty cell row inside that assembly band, compact the lower assemblies in that same band upward to close the gap;
 - leave unrelated objects and composite-label records unchanged;
 - and do not show a confirmation dialog in v1.
 
@@ -1692,13 +1692,13 @@ Objective:
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
 - place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
-- treat the composite's occupied area in one lane as one `n-row x 4-column` rectangle for drag hit testing and insertion;
+- treat the composite's occupied area in one assembly cell as one `n-row x 4-column` rectangle for drag hit testing and insertion;
 - and keep the composite label and optional span-bar records downstream-only unless a separate boundary transform later chooses to ignore, strip, or expand them before building an explicit assembly-native solve request.
 
 Purposes:
 
 - make it easy to add a composite from the same surface-local create-picker family;
-- make it easy to move all rows belonging to a composite together by dragging the composite vertically within a lane;
+- make it easy to move all rows belonging to a composite together by dragging the composite vertically within an assembly stage;
 - make it easy to drag an assembly over a composite rectangle and have that composite shift down as one block to make room;
 - make it easy to delete a composite from its composite label tile without a side panel workflow;
 - and preserve composite labels and spans as visual organizing graphics for still reaction images.
@@ -1708,7 +1708,7 @@ Done when:
 - the composite workflow built on the direct object-editing model can create both individual assembly rows and composite row groups;
 - a composite can author multiple grouped rows in one action;
 - composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
-- dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;
-- assembly lanes remain densely packed with no empty rows between occupied assembly or composite extents;
+- dragging an assembly over a composite's `n-row x 4-column` assembly-cellrectangle inserts relative to that composite as one block;
+- assembly cells remain densely packed with no empty rows between occupied assembly or composite extents;
 - optional span bars remain visual-only grouping graphics;
 - and any future pdgedit-to-solve transform proves that composite label/span data stays outside solver-core ontology by stripping or expanding it before the explicit request seam.

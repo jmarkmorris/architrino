@@ -15,6 +15,190 @@
     "review",
     "publication"
   ],
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "phase", "message", "blocking", "payload"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "phase": { "type": "string", "minLength": 1 },
+        "message": { "type": "string", "minLength": 1 },
+        "blocking": { "type": "boolean" },
+        "payload": { "type": "object" }
+      }
+    },
+    "countedAssemblies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["assemblyId", "count"],
+        "properties": {
+          "assemblyId": { "type": "string", "minLength": 1 },
+          "count": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "operatorChoice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
+        "lawId": { "type": ["string", "null"], "minLength": 1 },
+        "requiredSupportRows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rowAssemblyId", "count"],
+            "properties": {
+              "rowAssemblyId": { "type": "string", "minLength": 1 },
+              "count": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "inputOccurrenceKeys": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "outputOccurrenceKeys": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "provenanceSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summaryText", "outputs"],
+      "properties": {
+        "summaryText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["occurrenceKey", "provenanceClass", "supportSourceRows", "ambiguous"],
+            "properties": {
+              "occurrenceKey": { "type": "string", "minLength": 1 },
+              "provenanceClass": {
+                "type": "string",
+                "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
+              },
+              "supportSourceRows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["rowAssemblyId", "count"],
+                  "properties": {
+                    "rowAssemblyId": { "type": "string", "minLength": 1 },
+                    "count": { "type": "integer", "minimum": 0 }
+                  }
+                }
+              },
+              "ambiguous": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exactness",
+        "primitiveMismatch",
+        "middleMismatch",
+        "auxiliaryBurden",
+        "nonIdentityOperatorCount",
+        "dissociationCount",
+        "ambiguityPenalty",
+        "tieBreakKey"
+      ],
+      "properties": {
+        "exactness": { "type": "integer", "minimum": 0 },
+        "primitiveMismatch": { "type": "integer", "minimum": 0 },
+        "middleMismatch": { "type": "integer", "minimum": 0 },
+        "auxiliaryBurden": { "type": "integer", "minimum": 0 },
+        "nonIdentityOperatorCount": { "type": "integer", "minimum": 0 },
+        "dissociationCount": { "type": "integer", "minimum": 0 },
+        "ambiguityPenalty": { "type": "integer", "minimum": 0 },
+        "tieBreakKey": { "type": "string", "minLength": 1 }
+      }
+    },
+    "publicationUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "stage",
+        "recipeId",
+        "occurrenceKey",
+        "title",
+        "anchorRow"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "enum": ["assembly", "operator"] },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "reactantAssemblies",
+            "reactantSideOperators",
+            "intermediateAssemblies",
+            "productSideOperators",
+            "productAssemblies"
+          ]
+        },
+        "recipeId": { "type": "string", "minLength": 1 },
+        "occurrenceKey": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "anchorRow": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "publicationEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "fromUnitId", "fromPortId", "toUnitId", "toPortId"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "fromUnitId": { "type": "string", "minLength": 1 },
+        "fromPortId": { "type": "string", "minLength": 1 },
+        "toUnitId": { "type": "string", "minLength": 1 },
+        "toPortId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "publicationGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "units", "edges"],
+      "properties": {
+        "schema": {
+          "const": "pdgsolve-publication-graph/v1"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/publicationUnit"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/publicationEdge"
+          }
+        }
+      }
+    }
+  },
   "properties": {
     "schema": {
       "const": "pdgsolve-result/v1"
@@ -25,7 +209,7 @@
     },
     "searchStatus": {
       "type": "string",
-      "enum": ["exact_available", "partial_only", "unsupported"]
+      "enum": ["exact_available", "partial_only", "no_exact_closure"]
     },
     "bestFamilyId": {
       "type": "string",
@@ -38,16 +222,7 @@
     "diagnostics": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["id", "phase", "message", "blocking", "payload"],
-        "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "phase": { "type": "string", "minLength": 1 },
-          "message": { "type": "string", "minLength": 1 },
-          "blocking": { "type": "boolean" },
-          "payload": { "type": "object" }
-        }
+        "$ref": "#/$defs/diagnostic"
       }
     },
     "optionFamilies": {
@@ -61,9 +236,11 @@
           "kind",
           "score",
           "augmentation",
-          "laneInventories",
-          "lane2Operators",
-          "lane4Operators",
+          "reactantAssemblies",
+          "reactantSideOperators",
+          "intermediateAssemblies",
+          "productSideOperators",
+          "productAssemblies",
           "provenanceSummary",
           "diagnostics",
           "rawBranchCount",
@@ -77,196 +254,54 @@
           },
           "kind": {
             "type": "string",
-            "enum": ["exact", "partial", "unsupported"]
+            "enum": ["exact", "partial", "no_exact_closure"]
           },
           "score": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "exactness",
-              "primitiveMismatch",
-              "middleMismatch",
-              "auxiliaryBurden",
-              "nonIdentityOperatorCount",
-              "dissociationCount",
-              "ambiguityPenalty",
-              "tieBreakKey"
-            ],
-            "properties": {
-              "exactness": { "type": "integer", "minimum": 0 },
-              "primitiveMismatch": { "type": "integer", "minimum": 0 },
-              "middleMismatch": { "type": "integer", "minimum": 0 },
-              "auxiliaryBurden": { "type": "integer", "minimum": 0 },
-              "nonIdentityOperatorCount": { "type": "integer", "minimum": 0 },
-              "dissociationCount": { "type": "integer", "minimum": 0 },
-              "ambiguityPenalty": { "type": "integer", "minimum": 0 },
-              "tieBreakKey": { "type": "string", "minLength": 1 }
-            }
+            "$ref": "#/$defs/score"
           },
           "augmentation": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["left", "right"],
+            "required": ["reactantSide", "productSide"],
             "properties": {
-              "left": {
+              "reactantSide": {
                 "type": "string",
                 "enum": ["none", "2h", "4h"]
               },
-              "right": {
+              "productSide": {
                 "type": "string",
                 "enum": ["none", "2h", "4h"]
               }
             }
           },
-          "laneInventories": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["lane1", "lane3", "lane5"],
-            "properties": {
-              "lane1": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["assemblyId", "count"],
-                  "properties": {
-                    "assemblyId": { "type": "string", "minLength": 1 },
-                    "count": { "type": "integer", "minimum": 0 }
-                  }
-                }
-              },
-              "lane3": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["assemblyId", "count"],
-                  "properties": {
-                    "assemblyId": { "type": "string", "minLength": 1 },
-                    "count": { "type": "integer", "minimum": 0 }
-                  }
-                }
-              },
-              "lane5": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["assemblyId", "count"],
-                  "properties": {
-                    "assemblyId": { "type": "string", "minLength": 1 },
-                    "count": { "type": "integer", "minimum": 0 }
-                  }
-                }
-              }
-            }
+          "reactantAssemblies": {
+            "$ref": "#/$defs/countedAssemblies"
           },
-          "lane2Operators": {
+          "reactantSideOperators": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
-              "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
-                "lawId": { "type": ["string", "null"], "minLength": 1 },
-                "requiredSupportRows": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": ["rowAssemblyId", "count"],
-                    "properties": {
-                      "rowAssemblyId": { "type": "string", "minLength": 1 },
-                      "count": { "type": "integer", "minimum": 0 }
-                    }
-                  }
-                },
-                "inputOccurrenceKeys": {
-                  "type": "array",
-                  "items": { "type": "string", "minLength": 1 }
-                },
-                "outputOccurrenceKeys": {
-                  "type": "array",
-                  "items": { "type": "string", "minLength": 1 }
-                }
-              }
+              "$ref": "#/$defs/operatorChoice"
             }
           },
-          "lane4Operators": {
+          "intermediateAssemblies": {
+            "$ref": "#/$defs/countedAssemblies"
+          },
+          "productSideOperators": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
-              "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
-                "lawId": { "type": ["string", "null"], "minLength": 1 },
-                "inputOccurrenceKeys": {
-                  "type": "array",
-                  "items": { "type": "string", "minLength": 1 }
-                },
-                "outputOccurrenceKeys": {
-                  "type": "array",
-                  "items": { "type": "string", "minLength": 1 }
-                }
-              }
+              "$ref": "#/$defs/operatorChoice"
             }
+          },
+          "productAssemblies": {
+            "$ref": "#/$defs/countedAssemblies"
           },
           "provenanceSummary": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["summaryText", "outputs"],
-            "properties": {
-              "summaryText": {
-                "type": "string",
-                "minLength": 1
-              },
-              "outputs": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["occurrenceKey", "provenanceClass", "supportSourceRows", "ambiguous"],
-                  "properties": {
-                    "occurrenceKey": { "type": "string", "minLength": 1 },
-                    "provenanceClass": {
-                      "type": "string",
-                      "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
-                    },
-                    "supportSourceRows": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "required": ["rowAssemblyId", "count"],
-                        "properties": {
-                          "rowAssemblyId": { "type": "string", "minLength": 1 },
-                          "count": { "type": "integer", "minimum": 0 }
-                        }
-                      }
-                    },
-                    "ambiguous": { "type": "boolean" }
-                  }
-                }
-              }
-            }
+            "$ref": "#/$defs/provenanceSummary"
           },
           "diagnostics": {
             "type": "array",
             "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["id", "phase", "message", "blocking", "payload"],
-              "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "phase": { "type": "string", "minLength": 1 },
-                "message": { "type": "string", "minLength": 1 },
-                "blocking": { "type": "boolean" },
-                "payload": { "type": "object" }
-              }
+              "$ref": "#/$defs/diagnostic"
             }
           },
           "rawBranchCount": {
@@ -282,9 +317,11 @@
             "required": [
               "candidateId",
               "exact",
-              "laneInventories",
-              "lane2Operators",
-              "lane4Operators",
+              "reactantAssemblies",
+              "reactantSideOperators",
+              "intermediateAssemblies",
+              "productSideOperators",
+              "productAssemblies",
               "provenanceSummary",
               "solveGraph"
             ],
@@ -296,188 +333,39 @@
               "exact": {
                 "type": "boolean"
               },
-              "laneInventories": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["lane1", "lane3", "lane5"],
-                "properties": {
-                  "lane1": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": ["assemblyId", "count"],
-                      "properties": {
-                        "assemblyId": { "type": "string", "minLength": 1 },
-                        "count": { "type": "integer", "minimum": 0 }
-                      }
-                    }
-                  },
-                  "lane3": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": ["assemblyId", "count"],
-                      "properties": {
-                        "assemblyId": { "type": "string", "minLength": 1 },
-                        "count": { "type": "integer", "minimum": 0 }
-                      }
-                    }
-                  },
-                  "lane5": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": ["assemblyId", "count"],
-                      "properties": {
-                        "assemblyId": { "type": "string", "minLength": 1 },
-                        "count": { "type": "integer", "minimum": 0 }
-                      }
-                    }
-                  }
-                }
+              "reactantAssemblies": {
+                "$ref": "#/$defs/countedAssemblies"
               },
-              "lane2Operators": {
+              "reactantSideOperators": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
-                  "properties": {
-                    "id": { "type": "string", "minLength": 1 },
-                    "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
-                    "lawId": { "type": ["string", "null"], "minLength": 1 },
-                    "requiredSupportRows": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "required": ["rowAssemblyId", "count"],
-                        "properties": {
-                          "rowAssemblyId": { "type": "string", "minLength": 1 },
-                          "count": { "type": "integer", "minimum": 0 }
-                        }
-                      }
-                    },
-                    "inputOccurrenceKeys": {
-                      "type": "array",
-                      "items": { "type": "string", "minLength": 1 }
-                    },
-                    "outputOccurrenceKeys": {
-                      "type": "array",
-                      "items": { "type": "string", "minLength": 1 }
-                    }
-                  }
+                  "$ref": "#/$defs/operatorChoice"
                 }
               },
-              "lane4Operators": {
+              "intermediateAssemblies": {
+                "$ref": "#/$defs/countedAssemblies"
+              },
+              "productSideOperators": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": ["id", "type", "lawId", "inputOccurrenceKeys", "outputOccurrenceKeys"],
-                  "properties": {
-                    "id": { "type": "string", "minLength": 1 },
-                    "type": { "type": "string", "enum": ["associate", "dissociate", "pass-thru"] },
-                    "lawId": { "type": ["string", "null"], "minLength": 1 },
-                    "inputOccurrenceKeys": {
-                      "type": "array",
-                      "items": { "type": "string", "minLength": 1 }
-                    },
-                    "outputOccurrenceKeys": {
-                      "type": "array",
-                      "items": { "type": "string", "minLength": 1 }
-                    }
-                  }
+                  "$ref": "#/$defs/operatorChoice"
                 }
+              },
+              "productAssemblies": {
+                "$ref": "#/$defs/countedAssemblies"
               },
               "provenanceSummary": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["summaryText", "outputs"],
-                "properties": {
-                  "summaryText": { "type": "string", "minLength": 1 },
-                  "outputs": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": ["occurrenceKey", "provenanceClass", "supportSourceRows", "ambiguous"],
-                      "properties": {
-                        "occurrenceKey": { "type": "string", "minLength": 1 },
-                        "provenanceClass": {
-                          "type": "string",
-                          "enum": ["pass_thru", "active_rewrite", "support_derived", "mixed"]
-                        },
-                        "supportSourceRows": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "required": ["rowAssemblyId", "count"],
-                            "properties": {
-                              "rowAssemblyId": { "type": "string", "minLength": 1 },
-                              "count": { "type": "integer", "minimum": 0 }
-                            }
-                          }
-                        },
-                        "ambiguous": { "type": "boolean" }
-                      }
-                    }
-                  }
-                }
+                "$ref": "#/$defs/provenanceSummary"
               },
               "solveGraph": {
-                "type": ["object", "null"],
-                "additionalProperties": false,
-                "required": ["schema", "units", "edges"],
-                "properties": {
-                  "schema": {
-                    "const": "pdgsolve-publication-graph/v1"
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/publicationGraph"
                   },
-                  "units": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": [
-                        "id",
-                        "kind",
-                        "lane",
-                        "recipeId",
-                        "occurrenceKey",
-                        "title",
-                        "anchorRow"
-                      ],
-                      "properties": {
-                        "id": { "type": "string", "minLength": 1 },
-                        "kind": { "type": "string", "enum": ["assembly", "operator"] },
-                        "lane": { "type": "integer", "minimum": 1 },
-                        "recipeId": { "type": "string", "minLength": 1 },
-                        "occurrenceKey": { "type": "string", "minLength": 1 },
-                        "title": { "type": "string", "minLength": 1 },
-                        "anchorRow": { "type": "integer", "minimum": 0 }
-                      }
-                    }
-                  },
-                  "edges": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "required": ["id", "fromUnitId", "fromPortId", "toUnitId", "toPortId"],
-                      "properties": {
-                        "id": { "type": "string", "minLength": 1 },
-                        "fromUnitId": { "type": "string", "minLength": 1 },
-                        "fromPortId": { "type": "string", "minLength": 1 },
-                        "toUnitId": { "type": "string", "minLength": 1 },
-                        "toPortId": { "type": "string", "minLength": 1 }
-                      }
-                    }
+                  {
+                    "type": "null"
                   }
-                }
+                ]
               }
             }
           }
@@ -517,16 +405,7 @@
         "blockingDiagnostics": {
           "type": "array",
           "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["id", "phase", "message", "blocking", "payload"],
-            "properties": {
-              "id": { "type": "string", "minLength": 1 },
-              "phase": { "type": "string", "minLength": 1 },
-              "message": { "type": "string", "minLength": 1 },
-              "blocking": { "type": "boolean" },
-              "payload": { "type": "object" }
-            }
+            "$ref": "#/$defs/diagnostic"
           }
         }
       }

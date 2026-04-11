@@ -73,7 +73,7 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
   assert.deepEqual(seed.reopenedAcceptance, acceptanceTestCase);
 });
 
-test("explicit Noether support requests solve through the admitted fermion decomposition laws", () => {
+test("explicit Noether support requests stay review-only when no exact closure family is admitted", () => {
   const request = {
     schema: "pdgsolve-request/v1",
     requestId: "beta_explicit_support_with_decomposition_law",
@@ -155,21 +155,12 @@ test("explicit Noether support requests solve through the admitted fermion decom
 
   const result = solvePdgsolveRequest(request);
 
-  assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
-  assert.deepEqual(result.diagnostics, []);
-  assert.equal(result.optionFamilies[0].publicationReady, true);
-  assert.equal(result.review.blockingDiagnostics.length, 0);
-  assert.deepEqual(
-    result.optionFamilies[0].lane4Operators
-      .filter((operator) => operator.type === "associate")
-      .map((operator) => operator.lawId),
-    [
-      "row.fermion_decomposition.unbound_architrino_residue_e4_p8_to_pro_up_quark.v1",
-      "row.fermion_decomposition.unbound_architrino_residue_e9_p3_to_electron.v1",
-      "row.fermion_decomposition.unbound_architrino_residue_e6_p6_to_electron_antineutrino.v1",
-    ]
-  );
+  assert.equal(result.searchStatus, "no_exact_closure");
+  assert.equal(result.bestFamilyId, "family.no_exact_closure.v1");
+  assert.equal(result.optionFamilies[0].publicationReady, false);
+  assert.equal(result.review.blockingDiagnostics.length, 1);
+  assert.deepEqual(result.diagnostics.map((diagnostic) => diagnostic.id), ["pdgsolve.search.no_exact_closure"]);
+  assert.deepEqual(result.optionFamilies[0].productSideOperators, []);
 });
 
 test("acceptance runtime locks a publishable family and derives the pdgedit preview document", () => {
@@ -191,7 +182,7 @@ test("acceptance runtime locks a publishable family and derives the pdgedit prev
   assert.equal(pdgeditPreview.links.length, 12);
 });
 
-test("unmapped requests stay review-only with a blocking unsupported-family diagnostic", () => {
+test("unmapped requests stay review-only with a blocking no-exact-closure diagnostic", () => {
   const result = solvePdgsolveRequest({
     schema: "pdgsolve-request/v1",
     requestId: "gamma_only_request",
@@ -221,13 +212,13 @@ test("unmapped requests stay review-only with a blocking unsupported-family diag
     },
   });
 
-  assert.equal(result.searchStatus, "unsupported");
-  assert.equal(result.bestFamilyId, "family.unmapped_request.v1");
+  assert.equal(result.searchStatus, "no_exact_closure");
+  assert.equal(result.bestFamilyId, "family.no_exact_closure.v1");
   assert.equal(result.optionFamilies[0].publicationReady, false);
-  assert.equal(result.review.blockingDiagnostics[0].id, "pdgsolve.search.unmapped_request");
+  assert.equal(result.review.blockingDiagnostics[0].id, "pdgsolve.search.no_exact_closure");
 });
 
-test("fermion-decomposition residue rows are rejected when requested directly in boundary lanes", () => {
+test("fermion-decomposition residue rows are rejected when requested directly in boundary stages", () => {
   const result = solvePdgsolveRequest({
     schema: "pdgsolve-request/v1",
     requestId: "invalid_boundary_residue_row",
@@ -257,9 +248,13 @@ test("fermion-decomposition residue rows are rejected when requested directly in
     },
   });
 
-  assert.equal(result.searchStatus, "unsupported");
-  assert.equal(result.bestFamilyId, "family.request.invalid_lane_role.v1");
-  assert.equal(result.diagnostics[0].id, "pdgsolve.request.invalid_lane_role");
-  assert.equal(result.diagnostics[0].payload.assemblyId, "unbound_architrino_residue_e4_p8");
-  assert.deepEqual(result.diagnostics[0].payload.allowedLanes, [3]);
+  assert.equal(result.searchStatus, "no_exact_closure");
+  assert.equal(result.bestFamilyId, "family.no_exact_closure.v1");
+  assert.equal(result.diagnostics[0].id, "pdgsolve.search.no_exact_closure");
+  assert.deepEqual(result.diagnostics[0].payload.reactants, [
+    {
+      assemblyId: "unbound_architrino_residue_e4_p8",
+      count: 1,
+    },
+  ]);
 });

@@ -11,26 +11,27 @@ import {
   PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
   createPdgeditLaunchPayload,
 } from "../pdgedit/PdgeditLaunchPayloadRuntime.js";
+import { PDGSOLVE_STAGE_IDS } from "./PdgsolveStageRuntime.js";
 
 export const PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH = "content/contracts/examples/pdgedit";
 export const PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH = "content/contracts/examples/pdgedit/manifest.v1.json";
 export const PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH = "./pdgedit.html";
 
-const ASSEMBLY_X_BY_LANE = Object.freeze({
-  1: 2,
-  3: 9,
-  5: 16,
+const ASSEMBLY_X_BY_STAGE = Object.freeze({
+  [PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES]: 2,
+  [PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES]: 9,
+  [PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES]: 16,
 });
 
-const OPERATOR_X_BY_LANE = Object.freeze({
-  2: 7,
-  4: 14,
+const OPERATOR_X_BY_STAGE = Object.freeze({
+  [PDGSOLVE_STAGE_IDS.REACTANT_SIDE_OPERATORS]: 7,
+  [PDGSOLVE_STAGE_IDS.PRODUCT_SIDE_OPERATORS]: 14,
 });
 
-const ROLE_BY_LANE = Object.freeze({
-  1: "reactant",
-  3: "intermediate",
-  5: "product",
+const ROLE_BY_STAGE = Object.freeze({
+  [PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES]: "reactant",
+  [PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES]: "intermediate",
+  [PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES]: "product",
 });
 
 function normalizeText(value = "") {
@@ -39,11 +40,6 @@ function normalizeText(value = "") {
 
 function cloneJson(value) {
   return JSON.parse(JSON.stringify(value));
-}
-
-function normalizeInteger(value, fallback = 0) {
-  const number = Number(value);
-  return Number.isInteger(number) ? number : fallback;
 }
 
 function formatTitleToken(value = "") {
@@ -77,11 +73,11 @@ function normalizeUnit(unit = {}) {
   return {
     id: normalizeText(unit?.id),
     kind: normalizeText(unit?.kind),
-    lane: normalizeInteger(unit?.lane, 0),
+    stage: normalizeText(unit?.stage),
     recipeId: normalizeText(unit?.recipeId),
     occurrenceKey: normalizeText(unit?.occurrenceKey),
     title: normalizeText(unit?.title),
-    anchorRow: normalizeInteger(unit?.anchorRow, 0),
+    anchorRow: Number.isInteger(Number(unit?.anchorRow)) ? Number(unit.anchorRow) : 0,
   };
 }
 
@@ -126,10 +122,10 @@ function buildAssemblyRecords(graph, catalog) {
       if (!recipe) {
         throw new Error(`Unknown pdgsolve pdgedit assembly recipe: ${unit.recipeId}`);
       }
-      const role = ROLE_BY_LANE[unit.lane];
-      const x = ASSEMBLY_X_BY_LANE[unit.lane];
+      const role = ROLE_BY_STAGE[unit.stage];
+      const x = ASSEMBLY_X_BY_STAGE[unit.stage];
       if (!role || x === undefined) {
-        throw new Error(`Unsupported assembly lane for publication: ${unit.lane}`);
+        throw new Error(`Unsupported assembly stage for publication: ${unit.stage}`);
       }
       return recipe.rows.map((tiles, index) => ({
         id: `${unit.id}.row.${index + 1}`,
@@ -217,9 +213,9 @@ function buildOperatorRecords(graph, catalog) {
       if (!recipe) {
         throw new Error(`Unknown pdgsolve pdgedit operator recipe: ${unit.recipeId}`);
       }
-      const x = OPERATOR_X_BY_LANE[unit.lane];
+      const x = OPERATOR_X_BY_STAGE[unit.stage];
       if (x === undefined) {
-        throw new Error(`Unsupported operator lane for publication: ${unit.lane}`);
+        throw new Error(`Unsupported operator stage for publication: ${unit.stage}`);
       }
       const countSource = selectOperatorCountSource(unit, recipe, graph, unitById, catalog);
       const counts = countSource.counts;

@@ -5,21 +5,30 @@ import {
   normalizePdgsolveRequest,
 } from "./PdgsolveRequestRuntime.js";
 import {
-  getPdgsolveAssemblyAllowedLanes,
+  getPdgsolveAssemblyAllowedStages,
   getPdgsolveAssemblyLedgerCounts,
   getPdgsolveAssemblyLedgerRecipeId,
   getPdgsolveAssemblyLedgerReviewLabel,
   getPdgsolveAssemblyLedgerTitle,
-  isPdgsolveAssemblyAllowedInLane,
+  isPdgsolveAssemblyAllowedInStage,
   isPdgsolveAssemblyLedgerId,
 } from "./PdgsolveAssemblyLedgerRuntime.js";
+import { PDGSOLVE_STAGE_IDS } from "./PdgsolveStageRuntime.js";
 
 const INVALID_BOUNDARY_ROLE_FAMILY_ID = "family.request.invalid_boundary_role.v1";
 const INVALID_BOUNDARY_ROLE_CANDIDATE_ID = "candidate.request.invalid_boundary_role.v1";
 const PASS_THRU_EXACT_FAMILY_ID = "family.pass_thru.exact.v1";
 const PASS_THRU_EXACT_CANDIDATE_ID = "candidate.pass_thru.exact.v1";
-const UNMAPPED_REQUEST_FAMILY_ID = "family.unmapped_request.v1";
-const UNMAPPED_REQUEST_CANDIDATE_ID = "candidate.unmapped_request.v1";
+const NO_EXACT_CLOSURE_FAMILY_ID = "family.no_exact_closure.v1";
+const NO_EXACT_CLOSURE_CANDIDATE_ID = "candidate.no_exact_closure.v1";
+
+const {
+  REACTANT_ASSEMBLIES,
+  REACTANT_SIDE_OPERATORS,
+  INTERMEDIATE_ASSEMBLIES,
+  PRODUCT_SIDE_OPERATORS,
+  PRODUCT_ASSEMBLIES,
+} = PDGSOLVE_STAGE_IDS;
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -53,13 +62,31 @@ function isAdmittedAssemblyId(assemblyId = "") {
   return isPdgsolveAssemblyLedgerId(normalizeText(assemblyId));
 }
 
-function allRecordsUseAdmittedAssemblies(records = [], lane = 0) {
+function buildOccurrenceKey(stageId = "", assemblyId = "", ordinal = 0) {
+  return `${normalizeText(stageId)}.${normalizeText(assemblyId)}#${Math.max(0, Number(ordinal) || 0)}`;
+}
+
+function buildPassThruOperatorOccurrenceKey(stageId = "", occurrence = {}) {
+  return `${normalizeText(stageId)}.pass_thru.${normalizeText(occurrence?.assemblyId)}#${Math.max(
+    0,
+    Number(occurrence?.ordinal) || 0
+  )}`;
+}
+
+function buildPassThruChoiceId(stageId = "", occurrence = {}) {
+  return `${normalizeText(stageId)}_pass_thru_${normalizeText(occurrence?.assemblyId)}_${Math.max(
+    0,
+    Number(occurrence?.ordinal) || 0
+  )}`;
+}
+
+function allRecordsUseAdmittedAssemblies(records = [], stageId = "") {
   return (Array.isArray(records) ? records : []).every((record) => {
     const assemblyId = normalizeText(record?.assemblyId);
     if (!assemblyId || !isAdmittedAssemblyId(assemblyId)) {
       return false;
     }
-    return lane > 0 ? isPdgsolveAssemblyAllowedInLane(assemblyId, lane) : true;
+    return stageId ? isPdgsolveAssemblyAllowedInStage(assemblyId, stageId) : true;
   });
 }
 
@@ -77,7 +104,7 @@ function countOccurrences(occurrences = []) {
     .sort((left, right) => left.assemblyId.localeCompare(right.assemblyId));
 }
 
-function createOccurrences(records = [], lane = 1) {
+function createOccurrences(records = [], stageId = REACTANT_ASSEMBLIES) {
   const counts = new Map();
   return (Array.isArray(records) ? records : []).map((record, index) => {
     const assemblyId = normalizeText(record?.assemblyId);
@@ -86,7 +113,7 @@ function createOccurrences(records = [], lane = 1) {
     return {
       assemblyId,
       title: getAssemblyTitle(assemblyId, record?.title),
-      occurrenceKey: `lane${lane}.${assemblyId}#${ordinal}`,
+      occurrenceKey: buildOccurrenceKey(stageId, assemblyId, ordinal),
       ordinal,
       anchorRow: index,
     };
@@ -97,11 +124,11 @@ function unitIdForOccurrence(occurrence = {}) {
   return `unit_${normalizeText(occurrence.occurrenceKey).replace(/[.#]/gu, "_")}`;
 }
 
-function makeAssemblyUnit(occurrence = {}, lane = 1, anchorRow = occurrence.anchorRow) {
+function makeAssemblyUnit(occurrence = {}, stage = REACTANT_ASSEMBLIES, anchorRow = occurrence.anchorRow) {
   return {
     id: unitIdForOccurrence(occurrence),
     kind: "assembly",
-    lane,
+    stage,
     recipeId: getAssemblyRecipeId(occurrence.assemblyId),
     occurrenceKey: occurrence.occurrenceKey,
     title: getAssemblyTitle(occurrence.assemblyId, occurrence.title),
@@ -111,7 +138,7 @@ function makeAssemblyUnit(occurrence = {}, lane = 1, anchorRow = occurrence.anch
 
 function makeOperator({
   id = "",
-  lane = 2,
+  stage = REACTANT_SIDE_OPERATORS,
   recipeId = "pdgsolve.pdgedit.operator.pass_thru.v1",
   occurrenceKey = "",
   title = "Pass Thru",
@@ -120,7 +147,7 @@ function makeOperator({
   return {
     id,
     kind: "operator",
-    lane,
+    stage,
     recipeId,
     occurrenceKey,
     title,
@@ -153,11 +180,13 @@ function makeOutputModel(occurrence = {}, provenanceClass = "mixed", spontaneous
 
 function makeFamily({
   familyId = "",
-  kind = "unsupported",
+  kind = "no_exact_closure",
   score = {},
-  laneInventories = {},
-  lane2Operators = [],
-  lane4Operators = [],
+  reactantAssemblies = [],
+  reactantSideOperators = [],
+  intermediateAssemblies = [],
+  productSideOperators = [],
+  productAssemblies = [],
   provenanceSummary = {},
   diagnostics = [],
   rawBranchCount = 0,
@@ -165,22 +194,19 @@ function makeFamily({
   candidateId = "",
   solveGraph = null,
 } = {}) {
-  const normalizedLaneInventories = {
-    lane1: laneInventories.lane1 ?? [],
-    lane3: laneInventories.lane3 ?? [],
-    lane5: laneInventories.lane5 ?? [],
-  };
   return {
     familyId,
     kind,
     score,
     augmentation: {
-      left: "none",
-      right: "none",
+      reactantSide: "none",
+      productSide: "none",
     },
-    laneInventories: normalizedLaneInventories,
-    lane2Operators,
-    lane4Operators,
+    reactantAssemblies,
+    reactantSideOperators,
+    intermediateAssemblies,
+    productSideOperators,
+    productAssemblies,
     provenanceSummary,
     diagnostics,
     rawBranchCount,
@@ -188,9 +214,11 @@ function makeFamily({
     canonicalCandidate: {
       candidateId,
       exact: kind === "exact",
-      laneInventories: cloneJson(normalizedLaneInventories),
-      lane2Operators: cloneJson(lane2Operators),
-      lane4Operators: cloneJson(lane4Operators),
+      reactantAssemblies: cloneJson(reactantAssemblies),
+      reactantSideOperators: cloneJson(reactantSideOperators),
+      intermediateAssemblies: cloneJson(intermediateAssemblies),
+      productSideOperators: cloneJson(productSideOperators),
+      productAssemblies: cloneJson(productAssemblies),
       provenanceSummary: cloneJson(provenanceSummary),
       solveGraph,
     },
@@ -206,7 +234,7 @@ function makeReviewResult({ problemId = "", family = {}, diagnostics = [] } = {}
         ? "exact_available"
         : family.kind === "partial"
           ? "partial_only"
-          : "unsupported",
+          : "no_exact_closure",
     bestFamilyId: family.familyId,
     acceptedFamilyId: null,
     diagnostics,
@@ -235,20 +263,23 @@ function getPrimitiveTotals(occurrences = []) {
   );
 }
 
-function getPrimitiveDelta(leftOccurrences = [], rightOccurrences = []) {
-  const left = getPrimitiveTotals(leftOccurrences);
-  const right = getPrimitiveTotals(rightOccurrences);
+function getPrimitiveDelta(reactantOccurrences = [], productOccurrences = []) {
+  const reactants = getPrimitiveTotals(reactantOccurrences);
+  const products = getPrimitiveTotals(productOccurrences);
   return {
-    deltaE: left.electrinoCount - right.electrinoCount,
-    deltaP: left.positrinoCount - right.positrinoCount,
+    deltaE: reactants.electrinoCount - products.electrinoCount,
+    deltaP: reactants.positrinoCount - products.positrinoCount,
   };
 }
 
-function makeGenericPassThruUnitId(lane = 2, occurrence = {}) {
-  return `unit_lane${lane}_pass_thru_${occurrence.assemblyId}_${occurrence.ordinal}`;
+function makeGenericPassThruUnitId(stageId = REACTANT_SIDE_OPERATORS, occurrence = {}) {
+  return `unit_${normalizeText(stageId)}_pass_thru_${normalizeText(occurrence?.assemblyId)}_${Math.max(
+    0,
+    Number(occurrence?.ordinal) || 0
+  )}`;
 }
 
-function getInvalidBoundaryRoleDiagnostic(request = {}, occurrence = {}, lane = 0) {
+function getInvalidBoundaryRoleDiagnostic(request = {}, occurrence = {}, stageId = "") {
   return {
     id: "pdgsolve.request.invalid_boundary_role",
     phase: "request",
@@ -261,8 +292,8 @@ function getInvalidBoundaryRoleDiagnostic(request = {}, occurrence = {}, lane = 
       reviewLabel:
         getPdgsolveAssemblyLedgerReviewLabel(occurrence?.assemblyId) ||
         getAssemblyTitle(occurrence?.assemblyId, occurrence?.title),
-      attemptedLane: lane,
-      allowedLanes: getPdgsolveAssemblyAllowedLanes(occurrence?.assemblyId),
+      attemptedStage: stageId,
+      allowedStages: getPdgsolveAssemblyAllowedStages(occurrence?.assemblyId),
     },
   };
 }
@@ -271,30 +302,36 @@ function findInvalidBoundaryRole(request = {}) {
   const reactants = Array.isArray(request?.reactants) ? request.reactants : [];
   const products = Array.isArray(request?.products) ? request.products : [];
   for (const occurrence of reactants) {
-    if (isAdmittedAssemblyId(occurrence?.assemblyId) && !isPdgsolveAssemblyAllowedInLane(occurrence?.assemblyId, 1)) {
-      return { occurrence, lane: 1 };
+    if (
+      isAdmittedAssemblyId(occurrence?.assemblyId) &&
+      !isPdgsolveAssemblyAllowedInStage(occurrence?.assemblyId, REACTANT_ASSEMBLIES)
+    ) {
+      return { occurrence, stage: REACTANT_ASSEMBLIES };
     }
   }
   for (const occurrence of products) {
-    if (isAdmittedAssemblyId(occurrence?.assemblyId) && !isPdgsolveAssemblyAllowedInLane(occurrence?.assemblyId, 5)) {
-      return { occurrence, lane: 5 };
+    if (
+      isAdmittedAssemblyId(occurrence?.assemblyId) &&
+      !isPdgsolveAssemblyAllowedInStage(occurrence?.assemblyId, PRODUCT_ASSEMBLIES)
+    ) {
+      return { occurrence, stage: PRODUCT_ASSEMBLIES };
     }
   }
   return null;
 }
 
 function buildInvalidBoundaryRoleResult(request = {}, violation = {}) {
-  const diagnostic = getInvalidBoundaryRoleDiagnostic(request, violation.occurrence, violation.lane);
+  const diagnostic = getInvalidBoundaryRoleDiagnostic(request, violation.occurrence, violation.stage);
   const reactantAssemblies = countPdgsolveAssemblies(request.reactants);
   const productAssemblies = countPdgsolveAssemblies(request.products);
   const provenanceSummary = {
     summaryText:
       "The request stops before search because at least one boundary assembly is not admitted in that boundary role.",
-    outputs: createOccurrences(request.products, 5).map((occurrence) => makeOutputModel(occurrence)),
+    outputs: createOccurrences(request.products, PRODUCT_ASSEMBLIES).map((occurrence) => makeOutputModel(occurrence)),
   };
   const family = makeFamily({
     familyId: INVALID_BOUNDARY_ROLE_FAMILY_ID,
-    kind: "unsupported",
+    kind: "no_exact_closure",
     score: {
       exactness: 1,
       primitiveMismatch: 999,
@@ -303,13 +340,14 @@ function buildInvalidBoundaryRoleResult(request = {}, violation = {}) {
       nonIdentityOperatorCount: 0,
       dissociationCount: 0,
       ambiguityPenalty: 1,
-      tieBreakKey: "none|none|lane2:none|lane4:none|lane3:none|rho:invalid_boundary_role",
+      tieBreakKey:
+        "none|none|reactantSideOperators:none|productSideOperators:none|intermediateAssemblies:none|rho:invalid_boundary_role",
     },
-    laneInventories: {
-      lane1: reactantAssemblies,
-      lane3: [],
-      lane5: productAssemblies,
-    },
+    reactantAssemblies,
+    reactantSideOperators: [],
+    intermediateAssemblies: [],
+    productSideOperators: [],
+    productAssemblies,
     provenanceSummary,
     diagnostics: [diagnostic],
     rawBranchCount: 0,
@@ -324,109 +362,137 @@ function buildInvalidBoundaryRoleResult(request = {}, violation = {}) {
   });
 }
 
-function buildPassThruPublicationGraph({ lane1 = [], lane3 = [], lane5 = [] } = {}) {
-  const lane1Units = lane1.map((occurrence, index) => makeAssemblyUnit(occurrence, 1, index));
-  const lane2Units = lane1.map((occurrence) =>
+function buildPassThruPublicationGraph({
+  reactantAssemblies = [],
+  intermediateAssemblies = [],
+  productAssemblies = [],
+} = {}) {
+  const reactantAssemblyUnits = reactantAssemblies.map((occurrence, index) =>
+    makeAssemblyUnit(occurrence, REACTANT_ASSEMBLIES, index)
+  );
+  const reactantSideOperatorUnits = reactantAssemblies.map((occurrence) =>
     makeOperator({
-      id: makeGenericPassThruUnitId(2, occurrence),
-      lane: 2,
-      occurrenceKey: `lane2.pass_thru.${occurrence.assemblyId}#${occurrence.ordinal}`,
+      id: makeGenericPassThruUnitId(REACTANT_SIDE_OPERATORS, occurrence),
+      stage: REACTANT_SIDE_OPERATORS,
+      occurrenceKey: buildPassThruOperatorOccurrenceKey(REACTANT_SIDE_OPERATORS, occurrence),
       title: "Pass Thru",
       anchorRow: occurrence.anchorRow,
     })
   );
-  const lane3Units = lane3.map((occurrence, index) => makeAssemblyUnit(occurrence, 3, index));
-  const lane4Units = lane3.map((occurrence) =>
+  const intermediateAssemblyUnits = intermediateAssemblies.map((occurrence, index) =>
+    makeAssemblyUnit(occurrence, INTERMEDIATE_ASSEMBLIES, index)
+  );
+  const productSideOperatorUnits = intermediateAssemblies.map((occurrence) =>
     makeOperator({
-      id: makeGenericPassThruUnitId(4, occurrence),
-      lane: 4,
-      occurrenceKey: `lane4.pass_thru.${occurrence.assemblyId}#${occurrence.ordinal}`,
+      id: makeGenericPassThruUnitId(PRODUCT_SIDE_OPERATORS, occurrence),
+      stage: PRODUCT_SIDE_OPERATORS,
+      occurrenceKey: buildPassThruOperatorOccurrenceKey(PRODUCT_SIDE_OPERATORS, occurrence),
       title: "Pass Thru",
       anchorRow: occurrence.anchorRow,
     })
   );
-  const lane5Units = lane5.map((occurrence, index) => makeAssemblyUnit(occurrence, 5, index));
-  const lane1UnitByKey = new Map(lane1Units.map((unit) => [unit.occurrenceKey, unit]));
-  const lane3UnitByKey = new Map(lane3Units.map((unit) => [unit.occurrenceKey, unit]));
-  const lane5UnitByKey = new Map(lane5Units.map((unit) => [unit.occurrenceKey, unit]));
-  const lane2UnitByLane1Key = new Map(lane1.map((occurrence, index) => [occurrence.occurrenceKey, lane2Units[index]]));
-  const lane4UnitByLane3Key = new Map(lane3.map((occurrence, index) => [occurrence.occurrenceKey, lane4Units[index]]));
+  const productAssemblyUnits = productAssemblies.map((occurrence, index) =>
+    makeAssemblyUnit(occurrence, PRODUCT_ASSEMBLIES, index)
+  );
+
+  const reactantAssemblyUnitByKey = new Map(reactantAssemblyUnits.map((unit) => [unit.occurrenceKey, unit]));
+  const intermediateAssemblyUnitByKey = new Map(
+    intermediateAssemblyUnits.map((unit) => [unit.occurrenceKey, unit])
+  );
+  const productAssemblyUnitByKey = new Map(productAssemblyUnits.map((unit) => [unit.occurrenceKey, unit]));
+  const reactantSideOperatorUnitByReactantKey = new Map(
+    reactantAssemblies.map((occurrence, index) => [occurrence.occurrenceKey, reactantSideOperatorUnits[index]])
+  );
+  const productSideOperatorUnitByIntermediateKey = new Map(
+    intermediateAssemblies.map((occurrence, index) => [occurrence.occurrenceKey, productSideOperatorUnits[index]])
+  );
   const edges = [];
 
-  lane1.forEach((occurrence) => {
-    const lane1Unit = lane1UnitByKey.get(occurrence.occurrenceKey);
-    const lane2Unit = lane2UnitByLane1Key.get(occurrence.occurrenceKey);
-    const lane3Key = `lane3.${occurrence.assemblyId}#${occurrence.ordinal}`;
-    const lane3Unit = lane3UnitByKey.get(lane3Key);
+  reactantAssemblies.forEach((occurrence) => {
+    const reactantAssemblyUnit = reactantAssemblyUnitByKey.get(occurrence.occurrenceKey);
+    const reactantSideOperatorUnit = reactantSideOperatorUnitByReactantKey.get(occurrence.occurrenceKey);
+    const intermediateAssemblyKey = buildOccurrenceKey(
+      INTERMEDIATE_ASSEMBLIES,
+      occurrence.assemblyId,
+      occurrence.ordinal
+    );
+    const intermediateAssemblyUnit = intermediateAssemblyUnitByKey.get(intermediateAssemblyKey);
     edges.push({
-      id: `edge_lane1_${occurrence.assemblyId}_${occurrence.ordinal}_to_lane2_pass_thru`,
-      fromUnitId: lane1Unit.id,
+      id: `edge_reactantAssemblies_${occurrence.assemblyId}_${occurrence.ordinal}_to_reactantSideOperators_pass_thru`,
+      fromUnitId: reactantAssemblyUnit.id,
       fromPortId: "output",
-      toUnitId: lane2Unit.id,
+      toUnitId: reactantSideOperatorUnit.id,
       toPortId: "input",
     });
     edges.push({
-      id: `edge_lane2_pass_thru_to_lane3_${occurrence.assemblyId}_${occurrence.ordinal}`,
-      fromUnitId: lane2Unit.id,
+      id: `edge_reactantSideOperators_pass_thru_to_intermediateAssemblies_${occurrence.assemblyId}_${occurrence.ordinal}`,
+      fromUnitId: reactantSideOperatorUnit.id,
       fromPortId: "output",
-      toUnitId: lane3Unit.id,
+      toUnitId: intermediateAssemblyUnit.id,
       toPortId: "input",
     });
   });
 
-  lane3.forEach((occurrence) => {
-    const lane3Unit = lane3UnitByKey.get(occurrence.occurrenceKey);
-    const lane4Unit = lane4UnitByLane3Key.get(occurrence.occurrenceKey);
-    const lane5Unit = lane5UnitByKey.get(`lane5.${occurrence.assemblyId}#${occurrence.ordinal}`);
+  intermediateAssemblies.forEach((occurrence) => {
+    const intermediateAssemblyUnit = intermediateAssemblyUnitByKey.get(occurrence.occurrenceKey);
+    const productSideOperatorUnit = productSideOperatorUnitByIntermediateKey.get(occurrence.occurrenceKey);
+    const productAssemblyKey = buildOccurrenceKey(PRODUCT_ASSEMBLIES, occurrence.assemblyId, occurrence.ordinal);
+    const productAssemblyUnit = productAssemblyUnitByKey.get(productAssemblyKey);
     edges.push({
-      id: `edge_lane3_${occurrence.assemblyId}_${occurrence.ordinal}_to_lane4_pass_thru`,
-      fromUnitId: lane3Unit.id,
+      id: `edge_intermediateAssemblies_${occurrence.assemblyId}_${occurrence.ordinal}_to_productSideOperators_pass_thru`,
+      fromUnitId: intermediateAssemblyUnit.id,
       fromPortId: "output",
-      toUnitId: lane4Unit.id,
+      toUnitId: productSideOperatorUnit.id,
       toPortId: "input",
     });
     edges.push({
-      id: `edge_lane4_pass_thru_to_lane5_${occurrence.assemblyId}_${occurrence.ordinal}`,
-      fromUnitId: lane4Unit.id,
+      id: `edge_productSideOperators_pass_thru_to_productAssemblies_${occurrence.assemblyId}_${occurrence.ordinal}`,
+      fromUnitId: productSideOperatorUnit.id,
       fromPortId: "output",
-      toUnitId: lane5Unit.id,
+      toUnitId: productAssemblyUnit.id,
       toPortId: "input",
     });
   });
 
   return {
     schema: "pdgsolve-publication-graph/v1",
-    units: [...lane1Units, ...lane2Units, ...lane3Units, ...lane4Units, ...lane5Units],
+    units: [
+      ...reactantAssemblyUnits,
+      ...reactantSideOperatorUnits,
+      ...intermediateAssemblyUnits,
+      ...productSideOperatorUnits,
+      ...productAssemblyUnits,
+    ],
     edges,
   };
 }
 
 function buildPassThruResult(request = {}) {
-  const reactantAssemblies = createOccurrences(request.reactants, 1);
-  const intermediateAssemblies = createOccurrences(request.reactants, 3);
-  const productAssemblies = createOccurrences(request.products, 5);
-  const lane2Operators = reactantAssemblies.map((occurrence) =>
+  const reactantOccurrences = createOccurrences(request.reactants, REACTANT_ASSEMBLIES);
+  const intermediateOccurrences = createOccurrences(request.reactants, INTERMEDIATE_ASSEMBLIES);
+  const productOccurrences = createOccurrences(request.products, PRODUCT_ASSEMBLIES);
+  const reactantSideOperators = reactantOccurrences.map((occurrence) =>
     makePassThruChoice({
-      id: `lane2_pass_thru_${occurrence.assemblyId}_${occurrence.ordinal}`,
+      id: buildPassThruChoiceId(REACTANT_SIDE_OPERATORS, occurrence),
       inputOccurrenceKey: occurrence.occurrenceKey,
-      outputOccurrenceKey: `lane3.${occurrence.assemblyId}#${occurrence.ordinal}`,
+      outputOccurrenceKey: buildOccurrenceKey(INTERMEDIATE_ASSEMBLIES, occurrence.assemblyId, occurrence.ordinal),
     })
   );
-  const lane4Operators = intermediateAssemblies.map((occurrence) =>
+  const productSideOperators = intermediateOccurrences.map((occurrence) =>
     makePassThruChoice({
-      id: `lane4_pass_thru_${occurrence.assemblyId}_${occurrence.ordinal}`,
+      id: buildPassThruChoiceId(PRODUCT_SIDE_OPERATORS, occurrence),
       inputOccurrenceKey: occurrence.occurrenceKey,
-      outputOccurrenceKey: `lane5.${occurrence.assemblyId}#${occurrence.ordinal}`,
+      outputOccurrenceKey: buildOccurrenceKey(PRODUCT_ASSEMBLIES, occurrence.assemblyId, occurrence.ordinal),
     })
   );
   const provenanceSummary = {
     summaryText: "Each reactant assembly carries through unchanged to the requested product assembly.",
-    outputs: productAssemblies.map((occurrence) => makeOutputModel(occurrence, "pass_thru", [], false)),
+    outputs: productOccurrences.map((occurrence) => makeOutputModel(occurrence, "pass_thru", [], false)),
   };
   const graph = buildPassThruPublicationGraph({
-    lane1: reactantAssemblies,
-    lane3: intermediateAssemblies,
-    lane5: productAssemblies,
+    reactantAssemblies: reactantOccurrences,
+    intermediateAssemblies: intermediateOccurrences,
+    productAssemblies: productOccurrences,
   });
   const family = makeFamily({
     familyId: PASS_THRU_EXACT_FAMILY_ID,
@@ -439,17 +505,15 @@ function buildPassThruResult(request = {}) {
       nonIdentityOperatorCount: 0,
       dissociationCount: 0,
       ambiguityPenalty: 0,
-      tieBreakKey: `none|none|lane2:pass-thru(${reactantAssemblies.length})|lane4:pass-thru(${intermediateAssemblies.length})|lane3:${buildPdgsolveAssemblyCountKey(
+      tieBreakKey: `none|none|reactantSideOperators:pass-thru(${reactantOccurrences.length})|productSideOperators:pass-thru(${intermediateOccurrences.length})|intermediateAssemblies:${buildPdgsolveAssemblyCountKey(
         request.reactants
       )}|rho:pass_thru`,
     },
-    laneInventories: {
-      lane1: countOccurrences(reactantAssemblies),
-      lane3: countOccurrences(intermediateAssemblies),
-      lane5: countOccurrences(productAssemblies),
-    },
-    lane2Operators,
-    lane4Operators,
+    reactantAssemblies: countOccurrences(reactantOccurrences),
+    reactantSideOperators,
+    intermediateAssemblies: countOccurrences(intermediateOccurrences),
+    productSideOperators,
+    productAssemblies: countOccurrences(productOccurrences),
     provenanceSummary,
     diagnostics: [],
     rawBranchCount: 1,
@@ -464,17 +528,17 @@ function buildPassThruResult(request = {}) {
   });
 }
 
-function buildUnmappedResult(request = {}) {
+function buildNoExactClosureResult(request = {}) {
   const normalizedRequest = normalizePdgsolveRequest(request);
   const reactantAssemblies = countPdgsolveAssemblies(normalizedRequest.reactants);
   const productAssemblies = countPdgsolveAssemblies(normalizedRequest.products);
-  const reactantOccurrences = createOccurrences(normalizedRequest.reactants, 1);
-  const productOccurrences = createOccurrences(normalizedRequest.products, 5);
+  const reactantOccurrences = createOccurrences(normalizedRequest.reactants, REACTANT_ASSEMBLIES);
+  const productOccurrences = createOccurrences(normalizedRequest.products, PRODUCT_ASSEMBLIES);
   const delta = getPrimitiveDelta(reactantOccurrences, productOccurrences);
   const diagnostic = {
-    id: "pdgsolve.search.unmapped_request",
+    id: "pdgsolve.search.no_exact_closure",
     phase: "search",
-    message: "No admitted deterministic pdgsolve family matches this request yet.",
+    message: "No admitted deterministic pdgsolve family closes this request exactly.",
     blocking: true,
     payload: {
       requestId: normalizedRequest.requestId,
@@ -485,12 +549,12 @@ function buildUnmappedResult(request = {}) {
   };
   const provenanceSummary = {
     summaryText:
-      "The request does not yet land inside an admitted pdgsolve law family, so the review surface preserves only the requested boundary assemblies and the blocking diagnostic.",
+      "The request does not yet close inside an admitted pdgsolve law family, so the review surface preserves only the requested boundary assemblies and the blocking diagnostic.",
     outputs: productOccurrences.map((occurrence) => makeOutputModel(occurrence)),
   };
   const family = makeFamily({
-    familyId: UNMAPPED_REQUEST_FAMILY_ID,
-    kind: "unsupported",
+    familyId: NO_EXACT_CLOSURE_FAMILY_ID,
+    kind: "no_exact_closure",
     score: {
       exactness: 1,
       primitiveMismatch: Math.abs(delta.deltaE) + Math.abs(delta.deltaP),
@@ -499,20 +563,19 @@ function buildUnmappedResult(request = {}) {
       nonIdentityOperatorCount: 0,
       dissociationCount: 0,
       ambiguityPenalty: 1,
-      tieBreakKey: "none|none|lane2:none|lane4:none|lane3:none|rho:unmapped_request",
+      tieBreakKey:
+        "none|none|reactantSideOperators:none|productSideOperators:none|intermediateAssemblies:none|rho:no_exact_closure",
     },
-    laneInventories: {
-      lane1: reactantAssemblies,
-      lane3: [],
-      lane5: productAssemblies,
-    },
-    lane2Operators: [],
-    lane4Operators: [],
+    reactantAssemblies,
+    reactantSideOperators: [],
+    intermediateAssemblies: [],
+    productSideOperators: [],
+    productAssemblies,
     provenanceSummary,
     diagnostics: [diagnostic],
     rawBranchCount: 0,
     publicationReady: false,
-    candidateId: UNMAPPED_REQUEST_CANDIDATE_ID,
+    candidateId: NO_EXACT_CLOSURE_CANDIDATE_ID,
     solveGraph: null,
   });
   return makeReviewResult({
@@ -530,13 +593,13 @@ export function classifyPdgsolveRequestScenario(request = {}) {
   if (
     reactantKey &&
     reactantKey === productKey &&
-    allRecordsUseAdmittedAssemblies(normalizedRequest.reactants, 1) &&
-    allRecordsUseAdmittedAssemblies(normalizedRequest.products, 5)
+    allRecordsUseAdmittedAssemblies(normalizedRequest.reactants, REACTANT_ASSEMBLIES) &&
+    allRecordsUseAdmittedAssemblies(normalizedRequest.products, PRODUCT_ASSEMBLIES)
   ) {
     return "pass_thru_exact";
   }
 
-  return "unmapped_request";
+  return "no_exact_closure";
 }
 
 export function solvePdgsolveSearch(request = {}) {
@@ -550,6 +613,6 @@ export function solvePdgsolveSearch(request = {}) {
     case "pass_thru_exact":
       return buildPassThruResult(normalizedRequest);
     default:
-      return buildUnmappedResult(normalizedRequest);
+      return buildNoExactClosureResult(normalizedRequest);
   }
 }

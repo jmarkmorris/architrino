@@ -17,7 +17,7 @@
         "required": [
           "id",
           "kind",
-          "lane",
+          "stage",
           "recipeId",
           "occurrenceKey",
           "title",
@@ -32,9 +32,15 @@
             "type": "string",
             "enum": ["assembly", "operator"]
           },
-          "lane": {
-            "type": "integer",
-            "minimum": 1
+          "stage": {
+            "type": "string",
+            "enum": [
+              "reactantAssemblies",
+              "reactantSideOperators",
+              "intermediateAssemblies",
+              "productSideOperators",
+              "productAssemblies"
+            ]
           },
           "recipeId": {
             "type": "string",

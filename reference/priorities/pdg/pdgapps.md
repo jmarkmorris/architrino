@@ -154,7 +154,7 @@ Behaviorally meaningful facts should have one authoritative definition.
 
 Do not duplicate:
 
-- geometry and lane layout;
+- geometry and stage layout;
 - anchor semantics;
 - mapping-validity rules;
 - contract structure;

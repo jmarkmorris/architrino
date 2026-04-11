@@ -1,30 +1,48 @@
+import { PDGSOLVE_STAGE_IDS } from "./PdgsolveStageRuntime.js";
+
 const ASSEMBLY_LEDGER_BY_ID = Object.freeze({
   electron: {
     title: "Electron",
     reviewLabel: "Electron",
     recipeId: "pdgsolve.pdgedit.electron.v1",
-    allowedLanes: Object.freeze([1, 3, 5]),
+    allowedStages: Object.freeze([
+      PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES,
+    ]),
     counts: Object.freeze({ electrinoCount: 9, positrinoCount: 3 }),
   },
   electron_antineutrino: {
     title: "Electron Antineutrino",
     reviewLabel: "Electron Antineutrino",
     recipeId: "pdgsolve.pdgedit.electron_antineutrino.v1",
-    allowedLanes: Object.freeze([1, 3, 5]),
+    allowedStages: Object.freeze([
+      PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES,
+    ]),
     counts: Object.freeze({ electrinoCount: 6, positrinoCount: 6 }),
   },
   pro_down_quark: {
     title: "Pro Down Quark",
     reviewLabel: "Pro Down Quark",
     recipeId: "pdgsolve.pdgedit.pro_down_quark.v1",
-    allowedLanes: Object.freeze([1, 3, 5]),
+    allowedStages: Object.freeze([
+      PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES,
+    ]),
     counts: Object.freeze({ electrinoCount: 7, positrinoCount: 5 }),
   },
   pro_up_quark: {
     title: "Pro Up Quark",
     reviewLabel: "Pro Up Quark",
     recipeId: "pdgsolve.pdgedit.pro_up_quark.v1",
-    allowedLanes: Object.freeze([1, 3, 5]),
+    allowedStages: Object.freeze([
+      PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES,
+      PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES,
+    ]),
     counts: Object.freeze({ electrinoCount: 4, positrinoCount: 8 }),
   },
 });
@@ -62,12 +80,12 @@ export function getPdgsolveAssemblyLedgerReviewLabel(assemblyId = "") {
   return getPdgsolveAssemblyLedger(assemblyId)?.reviewLabel ?? "";
 }
 
-export function getPdgsolveAssemblyAllowedLanes(assemblyId = "") {
-  return [...(getPdgsolveAssemblyLedger(assemblyId)?.allowedLanes ?? [])];
+export function getPdgsolveAssemblyAllowedStages(assemblyId = "") {
+  return [...(getPdgsolveAssemblyLedger(assemblyId)?.allowedStages ?? [])];
 }
 
-export function isPdgsolveAssemblyAllowedInLane(assemblyId = "", lane = 0) {
-  return getPdgsolveAssemblyAllowedLanes(assemblyId).includes(Number(lane));
+export function isPdgsolveAssemblyAllowedInStage(assemblyId = "", stageId = "") {
+  return getPdgsolveAssemblyAllowedStages(assemblyId).includes(String(stageId ?? "").trim());
 }
 
 export function getPdgsolveAssemblyLedgerCounts(assemblyId = "") {
