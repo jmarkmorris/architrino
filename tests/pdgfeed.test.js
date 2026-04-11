@@ -108,7 +108,7 @@ test("generated PDG pdgsolve-request test cases validate against pdgsolve-reques
     assert.deepEqual(request.policy, {
       betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
-      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+      allowedBoundaryAugmentations: ["none"],
     });
   });
 });
@@ -131,7 +131,7 @@ test("generated live PDG pdgsolve-request artifacts validate against pdgsolve-re
     assert.deepEqual(request.policy, {
       betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
-      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+      allowedBoundaryAugmentations: ["none"],
     });
   });
 });

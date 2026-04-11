@@ -266,11 +266,11 @@
             "properties": {
               "reactantSide": {
                 "type": "string",
-                "enum": ["none", "2h", "4h"]
+                "enum": ["none", "hp", "hq"]
               },
               "productSide": {
                 "type": "string",
-                "enum": ["none", "2h", "4h"]
+                "enum": ["none", "hp", "hq"]
               }
             }
           },

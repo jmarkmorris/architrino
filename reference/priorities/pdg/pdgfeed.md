@@ -485,12 +485,12 @@ Examples:
 | `P.e.av` | proton, electron, anti-neutrino |
 | `1:1@.P.e` | explicit `Unbound Architrinos` ledger plus proton and electron |
 
-Example command, free neutron decay with an added `4h` reactant:
+Example command, free neutron decay with an added `hq` reactant:
 
 | Form      | Command                       |
 | --------- | ----------------------------- |
-| compact   | `pdgfeed --r N4h --p Peav`    |
-| separated | `pdgfeed --r N.4h --p P.e.av` |
+| compact   | `pdgfeed --r Nhq --p Peav`    |
+| separated | `pdgfeed --r N.hq --p P.e.av` |
 
 
 Anti-ness should be handled with `a` only:
@@ -499,6 +499,8 @@ Anti-ness should be handled with `a` only:
 | --- | --- |
 | `x` | pro form is implied |
 | `ax` | anti form |
+
+For named mixed-core composites, use `hp` and `hq`. Do not spell those objects with raw concatenations of `h` and `ah`.
 
 Current compact AAA notation:
 
@@ -524,8 +526,8 @@ Current compact AAA notation:
 | `h`          | Noether core                 | base core symbol                                                   | `n/a`            |
 | `h2`         | Bi Binary                    | reduced `Noether core` form                                        | `n/a`            |
 | `h3`         | Uni Binary                   | reduced `Noether core` form                                        | `n/a`            |
-| `hah`        | Noether Pair or Photon       | pro `Noether core` and anti `Noether core` (spacetime composites)  | `n/a`            |
-| `hahhah`     | Noether Quad                 | 2 pro `Noether core` and 2 anti `Noether core`                     | `n/a`            |
+| `hp`         | Noether Pair or Photon       | atomic mixed-core shorthand for `h.ah`                             | `n/a`            |
+| `hq`         | Noether Quad                 | atomic mixed-core shorthand for `h.h.ah.ah`                        | `n/a`            |
 | `e:p@`       | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
 
 The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
@@ -599,7 +601,7 @@ Current token families:
 | nucleon | `a? P` or `a? N` | anti allowed for nucleons |
 | weak boson | `W+`, `W-`, `Z` | `W+` and `W-` are atomic two-character tokens |
 | core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether core` forms |
-| whole-core aggregate | `2h`, `4h` | only these two aggregate forms are currently valid |
+| named core composite | `hp`, `hq` | atomic mixed-core shorthand for Noether Pair and Noether Quad |
 | unbound-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
 
 Equivalent EBNF-style sketch:
@@ -607,7 +609,7 @@ Equivalent EBNF-style sketch:
 ```text
 reaction_arg   := token { separator* token }
 separator      := "." | "," | "_" | whitespace
-token          := fermion | nucleon | weak_boson | core_form | whole_core_aggregate | unbound_architrino_ledger
+token          := fermion | nucleon | weak_boson | core_form | named_core_composite | unbound_architrino_ledger
 fermion        := anti? family generation?
 anti           := "a"
 family         := "e" | "u" | "d" | "v"
@@ -615,7 +617,7 @@ generation     := "1" | "2" | "3"
 nucleon        := anti? ("P" | "N")
 weak_boson     := "W+" | "W-" | "Z"
 core_form      := anti? ("h" | "h2" | "h3")
-whole_core_aggregate := "2h" | "4h"
+named_core_composite := "hp" | "hq"
 unbound_architrino_ledger := count ":" count "@"
 count          := digit { digit }
 ```
@@ -625,7 +627,7 @@ Interpretation rules:
 - `a` binds only to the single token immediately following it;
 - `a` is currently valid for fermions, nucleons, and `Noether core` forms `h`, `h2`, and `h3`;
 - generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
-- prefix counts belong only to aggregate whole-core forms such as `2h` and `4h`;
+- `hp` and `hq` are dedicated atomic tokens for the Noether Pair and Noether Quad, rather than prefix-count variants of `h`;
 - `Unbound Architrinos` use a dedicated two-sided ledger token `e:p@`;
 - separators are optional for any adjacent token sequence whose left-to-right longest-match tokenization remains unambiguous;
 - and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.
@@ -645,13 +647,12 @@ Current recommended conflict checks:
 
 | Potential conflict          | Why it is risky                                                           | Recommended rule |
 | --------------------------- | ------------------------------------------------------------------------- | ---------------- |
-| `2h2`, `4h3`, `3h2`         | mixes prefix-count and suffix-core-form roles on one token                | forbid entirely  |
-| `a2h`, `a4h`, `2ah`         | unclear whether anti applies to an aggregate or to a core token inside it | forbid entirely  |
+| `hp2`, `hq3`, `ahp`, `ahq` | named core composites are atomic tokens and do not take suffixes or anti prefixes | forbid entirely  |
+| `2h`, `4h`, `0h`, `3h`, `5h`, `12h` | numeric whole-core aggregate notation is retired; use `hp` or `hq` when appropriate | forbid entirely  |
+| raw concatenations of `h` and `ah` for mixed-core composites | obscures anti scope and constituent boundaries; use `hp` or `hq` | forbid entirely  |
 | `aae`, `aav2`, `aah`        | stacked anti prefixes add no meaning and create parser noise              | forbid entirely  |
 | `aW+`, `aW-`, `aZ`, `a1:1@` | anti is not currently defined for these families                          | forbid entirely  |
 | `e0`, `e4`, `u9`, `v7`      | generation outside `1`, `2`, `3`                                          | forbid entirely  |
-| `0h`                        | zero-count whole-core aggregate is not meaningful in the current grammar  | forbid entirely  |
-| `3h`, `5h`, `12h`           | only `2h` and `4h` are currently committed aggregate tokens               | forbid entirely  |
 | `0:0@`                      | null `Unbound Architrinos` ledger carries no usable content                  | forbid entirely  |
 | `h23`, `u23`, `e12`         | visually suggests one token but leaves trailing digits ambiguous          | forbid entirely  |
 | `@`, `2@`, `227@`           | omitted ledger side makes the unbound-architrino token ambiguous             | forbid entirely  |
@@ -662,7 +663,7 @@ Operational lexer guidance:
 
 - treat `W+` and `W-` as atomic two-character tokens;
 - recognize `h2` and `h3` before bare `h`;
-- recognize `2h` and `4h` as committed aggregate tokens before testing bare `h`;
+- recognize `hp` and `hq` as committed named core-composite tokens before testing bare `h`;
 - recognize `[digits]:[digits]@` as one `Unbound Architrinos` ledger token that ends at `@`;
 - do not require separators around any token family when the surrounding token boundaries are already unambiguous under longest-match tokenization;
 - and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
@@ -671,7 +672,7 @@ Operational lexer guidance:
 
 Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form.
 
-For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `2h`, `4h`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
+For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `hp`, `hq`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
 
 #### Assemblies
 
@@ -716,8 +717,8 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 | `anti_proton` | Anti Proton | `anti-p` | `aP` | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)` | `21:15@` | baryon | I | anti | no |
 | `neutron` | Neutron | `n` | `N` | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)` | `18:18@` | baryon | I | pro | no |
 | `anti_neutron` | Anti Neutron | `anti-n` | `aN` | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)` | `18:18@` | baryon | I | anti | no |
-| `photon` | Photon | `gamma` | `2h` | composite | `h.h` | `6:6@` | boson | `n/a` | self-conjugate | no |
-| `higgs_cluster` | Higgs Cluster | `H` | `4h` | composite | `h.h.ah.ah` | `12:12@` | boson | `n/a` | mixed | no |
+| `photon` | Photon | `gamma` | `hp` | composite | `h.ah` | `6:6@` | boson | `n/a` | self-conjugate | no |
+| `higgs_cluster` | Higgs Cluster | `H` | `hq` | composite | `h.h.ah.ah` | `12:12@` | boson | `n/a` | mixed | no |
 | `w_plus_corridor` | W+ Boson | `W+` | `W+` | composite | `ah.ah + 0:6@` | `6:12@` | weak boson | `n/a` | mixed | no |
 | `w_minus_corridor` | W- Boson | `W-` | `W-` | composite | `h.h + 6:0@` | `12:6@` | weak boson | `n/a` | mixed | no |
 | `z_corridor` | Z Boson | `Z` | `Z` | composite | `h.ah` | `6:6@` | weak boson | `n/a` | self-conjugate | no |

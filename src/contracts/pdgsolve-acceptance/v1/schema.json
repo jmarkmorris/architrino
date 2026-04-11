@@ -270,7 +270,7 @@
           "minItems": 1,
           "items": {
             "type": "string",
-            "enum": ["none", "2h", "4h"]
+            "enum": ["none", "hp", "hq"]
           }
         }
       }
