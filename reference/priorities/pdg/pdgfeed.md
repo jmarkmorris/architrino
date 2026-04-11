@@ -39,8 +39,8 @@ It does not own:
 - The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
 - Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable pdgsolve surface.
-- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` row assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
-- Exportable live-read candidate requests currently exist only for free neutron beta decay when a local `pdg` installation is present.
+- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
+- After removing the baked-in historical cases, there is no longer a built-in live-read case that crosses the full request boundary with the current locked mapping table.
 - Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
 - Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
@@ -135,9 +135,9 @@ The current CLI surface is:
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture free_neutron_beta_decay`;
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture muon_decay`;
 - CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source live`;
-- and stdout-only request emission as the automation workflow, for example `python3 pdgfeed.py print-fixture-pdgsolve-request free_neutron_beta_decay`.
+- and stdout-only request emission as the automation workflow when an exportable case exists, for example `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future pdgsolve intake.
 
@@ -181,14 +181,11 @@ For solve-core progress reporting after each solve-rate change:
 
 The first local fixture corpus is:
 
-- `free_neutron_beta_decay`
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
 
 The first built-in live PDG cases are:
 
-- `free_neutron_beta_decay`
-- `radiative_free_neutron_beta_decay`
 - `muon_decay`
 - `radiative_muon_decay`
 - `muon_decay_with_electron_positron_pair`
@@ -199,8 +196,8 @@ The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
 
 | Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
 | --- | --- | --- | --- | --- |
-| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
-| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | row titles from each emitted assembly | PDG particle name expanded before solver handoff |
+| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
+| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
 | `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
 | `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
 
@@ -331,9 +328,8 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
 The first exported `policy` baseline should be:
 
-- `betaSupportMode: "allow-implied-noether-core-support"`
 - `exactClosureRequired: true`
-- `allowedSupportAugmentations: ["none", "one_balanced_noether_core_pair", "two_balanced_noether_core_pairs"]`
+- `allowedBoundaryAugmentations: ["none"]`
 
 The first PDG version should also stay within these scope limits:
 

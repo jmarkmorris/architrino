@@ -184,7 +184,6 @@ export function createPdgsolveAppRuntime({
         "Products",
         request.products.map((entry) => `${entry.title || entry.assemblyId} (${entry.assemblyId})`)
       ),
-      createKeyValueRow(documentLike, "Beta support mode", request.policy.betaSupportMode),
       createKeyValueRow(
         documentLike,
         "Boundary augmentations",
@@ -257,17 +256,17 @@ export function createPdgsolveAppRuntime({
           createLine(
             documentLike,
             "pdgsolve-family-lanes",
-            `lane1: ${summarizeLane(family.laneInventories?.lane1)}`
+            `reactant assemblies: ${summarizeLane(family.laneInventories?.lane1)}`
           ),
           createLine(
             documentLike,
             "pdgsolve-family-lanes",
-            `lane3: ${summarizeLane(family.laneInventories?.lane3)}`
+            `intermediate assemblies: ${summarizeLane(family.laneInventories?.lane3)}`
           ),
           createLine(
             documentLike,
             "pdgsolve-family-lanes",
-            `lane5: ${summarizeLane(family.laneInventories?.lane5)}`
+            `product assemblies: ${summarizeLane(family.laneInventories?.lane5)}`
           )
         );
         return button;
@@ -289,17 +288,17 @@ export function createPdgsolveAppRuntime({
       createKeyValueRow(documentLike, "Family", state.acceptance.familyId),
       createKeyValueRow(
         documentLike,
-        "Support additions",
+        "Normalization additions",
         state.acceptance.lockedNormalizationSummary.addedSupportOccurrences.join(", ") || "none"
       ),
       createKeyValueRow(
         documentLike,
-        "Locked lane 1",
+        "Locked reactant assemblies",
         summarizeLane(state.acceptance.lockedLaneInventories?.lane1)
       ),
       createKeyValueRow(
         documentLike,
-        "Locked lane 5",
+        "Locked product assemblies",
         summarizeLane(state.acceptance.lockedLaneInventories?.lane5)
       )
     );

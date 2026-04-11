@@ -34,9 +34,8 @@ PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 
 DEFAULT_PDGSOLVE_REQUEST_POLICY = {
-    "betaSupportMode": "allow-implied-noether-core-support",
     "exactClosureRequired": True,
-    "allowedBoundaryAugmentations": ["none", "2h", "4h"],
+    "allowedBoundaryAugmentations": ["none"],
 }
 
 PDG_SOURCE_CONTRACT = {
@@ -538,20 +537,6 @@ class LiveChannelSpec:
 
 LIVE_CHANNEL_SPECS: tuple[LiveChannelSpec, ...] = (
     LiveChannelSpec(
-        case_id="free_neutron_beta_decay",
-        title="Free neutron beta decay",
-        reactant_name="n",
-        product_names=("p", "e-", "anti-nu_e"),
-        channel_description="n -> p e- anti-nu_e",
-    ),
-    LiveChannelSpec(
-        case_id="radiative_free_neutron_beta_decay",
-        title="Radiative free neutron beta decay",
-        reactant_name="n",
-        product_names=("p", "e-", "anti-nu_e", "gamma"),
-        channel_description="n -> p e- anti-nu_e gamma",
-    ),
-    LiveChannelSpec(
         case_id="muon_decay",
         title="Muon decay",
         reactant_name="mu-",
@@ -794,7 +779,6 @@ def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
             for occurrence in participant.to_pdgsolve_request_occurrences()
         ],
         "policy": {
-            "betaSupportMode": DEFAULT_PDGSOLVE_REQUEST_POLICY["betaSupportMode"],
             "exactClosureRequired": DEFAULT_PDGSOLVE_REQUEST_POLICY["exactClosureRequired"],
             "allowedBoundaryAugmentations": list(DEFAULT_PDGSOLVE_REQUEST_POLICY["allowedBoundaryAugmentations"]),
         },

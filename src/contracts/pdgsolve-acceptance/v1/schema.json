@@ -111,15 +111,10 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "betaSupportMode",
         "exactClosureRequired",
         "allowedBoundaryAugmentations"
       ],
       "properties": {
-        "betaSupportMode": {
-          "type": "string",
-          "enum": ["allow-implied-noether-core-support", "explicit-only"]
-        },
         "exactClosureRequired": {
           "type": "boolean"
         },
