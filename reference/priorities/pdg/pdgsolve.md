@@ -50,7 +50,7 @@ Useful prior work may still inform:
 
 UI artifacts should not define pdgsolve's architecture.
 
-### Runtime Shape
+### Runtime Process
 
 The durable pdgsolve structure should separate:
 
@@ -63,18 +63,38 @@ The durable pdgsolve structure should separate:
 
 Large coordinator files may assemble those pieces, but they should not become the long-term home of solver semantics.
 
-### Core Ontology Boundary
+### Composite And Higher-Scale Terms Are Out Of Scope.
 
-pdgsolve core should be assembly-native and Standard-Model-assembly-only.
 
 That means:
 
-- every solver-native reactant assembly, intermediate assembly, and product assembly is one explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to admitted Standard Model content;
 - composites of assemblies are higher-scale grouping interpretations, not solver-native assemblies;
 - composites are not dissociation inputs, association outputs, intermediate assemblies, or solver search symbols;
 - higher-scale reactant terms and product terms belong to boundary translation, not to solver-core ontology;
 - an upstream translation layer may expand higher-scale descriptions into explicit assemblies before pdgsolve sees the request;
 - a downstream translation layer may collapse explicit accepted assemblies into higher-scale descriptions after pdgsolve finishes;
+
+Post-solver grouping display can organize the assemblies that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
+
+pdgsolve should not use composite particle names, display-grouping names, support-pair names, support-quad names, residue labels, or other interpreted higher-scale terms as solver-native assembly ids.
+
+Those names belong on either side of the solver boundary:
+
+- before pdgsolve, [pdgfeed](./pdgfeed.md) or another boundary adapter may know higher-scale particle or reaction names and expand them into explicit individual assemblies;
+- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published explicit assemblies and classify or group them where a dedicated downstream rule admits that reading;
+- after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved assemblies;
+
+pdgsolve should not solve over `neutron`, `proton`, `W-`, `W+`, or `Z` as native units in the v1 strip when those names are being used as composite labels, corridor interpretations, or other higher-scale descriptions over multiple assemblies.
+
+For the current boundary, such language is a boundary-side interpretation of already-emitted explicit assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
+
+This is the controlling scope rule for the rest of the document. Later sections may not refer to composites, grouping interpretations, or higher-scale terms to explain why pdgsolve excludes them, how boundary adapters must translate them, or how diagnostics should report them.
+
+### Core Ontology Boundary
+
+pdgsolve core should be assembly-native and Standard-Model-assembly-only.
+
+- every solver-native reactant assembly, intermediate assembly, and product assembly is one explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to admitted Standard Model content;
 - and once a request enters pdgsolve, the solver should operate only on explicit admitted assemblies until it hands the accepted result back to a boundary adapter.
 
 For orientation, the visible pdgedit surface may be read as organized into `5` semantic stages:
@@ -96,19 +116,9 @@ The strip uses a deliberately limited grammar:
 - the solver does have a degree of freedom to add pro/anti Noether cores as pairs of reactant or product assemblies, although that pairing is not carried through the solving process – instead being techniques to add spacetime assemblies to enable solution closure.
 
 In pdgsolve terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
-
-pdgsolve should not use composite particle names, display-grouping names, support-pair names, support-quad names, residue labels, or other interpreted higher-scale terms as solver-native assembly ids.
-
-Those names belong on either side of the solver boundary:
-
-- before pdgsolve, [pdgfeed](./pdgfeed.md) or another boundary adapter may know higher-scale particle or reaction names and expand them into explicit individual assemblies;
-- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published explicit assemblies and classify or group them where a dedicated downstream rule admits that reading;
-- after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved assemblies;
 - and inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
 
-pdgsolve should not solve over `neutron`, `proton`, `W-`, `W+`, or `Z` as native units in the v1 strip when those names are being used as composite labels, corridor interpretations, or other higher-scale descriptions over multiple assemblies.
 
-For the current boundary, such language is a boundary-side interpretation of already-emitted explicit assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
 
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
@@ -153,7 +163,7 @@ So the operator structure is asymmetric but strict:
 - a product-side `Associate` operator has only one output;
 - and that product-side `Associate` output must route to a 4-tile assembly product.
 
-Post-solver grouping display can organize the assemblies that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
+
 
 pdgsolve should not widen the operator family casually.
 
@@ -193,9 +203,7 @@ Any future non-unary law remains acceptable only when:
 
 The familiar beta-decay channel is the first boundary example precisely because multiple descriptive scales may appear around the same event.
 
-Upstream or downstream tools may speak in higher-scale terms such as neutron/proton language or transient boson/grouping language, but pdgsolve must not treat those terms as native solver objects.
-
-If that family is admitted at all, the pdgsolve-core expression must be written only in explicit assemblies already present in the active assembly alphabet, for example:
+Applied to beta-decay, the same rule means the pdgsolve-core expression must be written only in explicit assemblies already present in the active assembly alphabet, for example:
 
 - reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark`;
 - product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron_antineutrino`.
@@ -205,7 +213,7 @@ From that point forward:
 - the core search may use only explicit assembly ids from \(\mathcal{A}\);
 - the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
 - if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
-- and any request that arrives with higher-scale reactant or product terms must be expanded or rejected at the boundary before search begins.
+- and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
 
@@ -226,7 +234,7 @@ pdgsolve should support a small number of explicit entry modes:
 - direct load of explicit request JSON by a developer or advanced user;
 - and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
 
-pdgsolve should consume explicit request data rather than hidden app-local state. By the time a request reaches pdgsolve core, any higher-scale upstream description has already been expanded into explicit assemblies or rejected at the boundary.
+pdgsolve should consume explicit request data rather than hidden app-local state.
 
 pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
 
@@ -362,20 +370,9 @@ $$
 
 So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies.
 
-The previously considered direct assembly-level beta shortcut is explicitly outside the admitted law table:
 
-| Blocked law id | Blocked input | Blocked output multiset | Why blocked |
-| --- | --- | --- | --- |
-| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `pro_up_quark + electron + electron_antineutrino` | no admitted assembly-native Standard-Model law family exists yet, and pdgsolve core may not compensate by introducing composite or non-native substitute symbols |
 
-That means:
 
-- there is no unary particle-level dissociation rule in v1;
-- there is no direct assembly-level beta dissociation rule in v1;
-- there is no W/Z boson production or absorption rule in v1;
-- there is no composite-aware law family in v1;
-- there is no residue or support-token vocabulary in v1;
-- and any branch that requires a non-identity law family outside the admitted tables should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
 ### Normalization Rules
 
