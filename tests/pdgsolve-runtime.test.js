@@ -16,17 +16,17 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
 }
 
-test("default pdgsolve bootstrap entries include corpus fixtures and pdgfeed-emitted requests", () => {
+test("default pdgsolve bootstrap entries include corpus test cases and pdgfeed-emitted requests", () => {
   const entries = getDefaultPdgsolveBootstrapEntries();
 
   assert.deepEqual(
     entries.map((entry) => entry.id),
     [
-      "fixture:free_neutron_beta_exact",
-      "fixture:free_neutron_beta_support_disallowed",
-      "fixture:primitive_imbalance_neutron_to_proton",
-      "fixture:pass_thru_neutron",
-      "pdgfeed:fixture:free_neutron_beta_decay",
+      "test_case:free_neutron_beta_exact",
+      "test_case:free_neutron_beta_support_disallowed",
+      "test_case:primitive_imbalance_neutron_to_proton",
+      "test_case:pass_thru_neutron",
+      "pdgfeed:test_case:free_neutron_beta_decay",
       "pdgfeed:live:free_neutron_beta_decay",
     ]
   );

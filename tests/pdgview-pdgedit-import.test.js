@@ -144,7 +144,7 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
   );
 });
 
-test("pdgview staging fixture preserves the legacy beta publication data chain while live solving uses the admitted decomposition path", () => {
+test("pdgview staging test case preserves the legacy beta publication data chain while live solving uses the admitted decomposition path", () => {
   const pdgfeedRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
   const pdgsolveResult = solvePdgsolveRequest(pdgfeedRequest);
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");

@@ -261,7 +261,7 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
   assert.equal(passThruResult.optionFamilies[0].score.ambiguityPenalty, 0);
 });
 
-test("pdgsolve solver runtime does not import result fixtures", () => {
+test("pdgsolve solver runtime does not import result test cases", () => {
   const solveRuntimeSource = fs.readFileSync(
     new URL("../src/apps/pdgsolve/PdgsolveSolveRuntime.js", import.meta.url),
     "utf8"
@@ -518,7 +518,7 @@ test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payload
   ]);
 });
 
-test("every recipeId used by pdgsolve publication-graph fixtures is admitted in the pdgsolve pdgedit recipe catalog", () => {
+test("every recipeId used by pdgsolve publication-graph test cases is admitted in the pdgsolve pdgedit recipe catalog", () => {
   const graphPaths = [
     "content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json",
     "content/contracts/examples/pdgsolve-publication-graph/boundary_augmentation_recipe_coverage.v1.json",

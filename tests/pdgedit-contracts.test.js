@@ -133,7 +133,7 @@ test("pdgedit example documents match the versioned pdgedit schema", () => {
   });
 });
 
-test("pdgedit manifest fixture matches the versioned manifest schema", () => {
+test("pdgedit manifest test case matches the versioned manifest schema", () => {
   const schema = readJson("src/contracts/pdgedit-library-manifest/v1/schema.json");
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const errors = validateAgainstSchema(manifest, schema);
