@@ -159,7 +159,7 @@ The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed so
 
 By default, every executable law is local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly. Any law that is not organized this way is a non-default extension.
 
-Any future non-unary law remains acceptable only when:
+Any future law that is not local to one explicit assembly id remains acceptable only when:
 
 - every participating input and output is still written entirely in explicit admitted assembly ids from $\mathcal{A}$;
 - the law has fixed explicit conserved-content meaning;
@@ -286,7 +286,7 @@ pdgsolve v1 should treat equality of $\mu$ as necessary for conservation, not as
 
 pdgsolve v1 should define a deliberately small executable law family.
 
-For ordinary unary particle-level laws, the initial tables should be empty:
+For the ordinary one-assembly-at-a-time laws, the initial tables should be empty:
 
 $$
 \Delta(a) = \varnothing,
@@ -429,7 +429,7 @@ $$
 
 be the subset of assemblies that are legal in the intermediate assemblies of the active solve family.
 
-For the reactant-side operators, pdgsolve should define the unary local reactant rewrite family only on $\mathcal{A}_{\mathrm{mid}}$:
+For the reactant-side operators, pdgsolve should define the one-assembly reactant rewrite family only on $\mathcal{A}_{\mathrm{mid}}$:
 
 $$
 \Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
@@ -437,7 +437,7 @@ $$
 
 where $e_{a}$ represents `Pass Thru` and each $d \in \Delta(a)$ represents one legal `Dissociate` output.
 
-For the product-side operators, pdgsolve should define the unary local product-closure family only on $\mathcal{A}_{\mathrm{mid}}$:
+For the product-side operators, pdgsolve should define the one-assembly product-closure family only on $\mathcal{A}_{\mathrm{mid}}$:
 
 $$
 \Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
@@ -445,10 +445,10 @@ $$
 
 where $e_{a}$ represents `Pass Thru` and each $g \in \Gamma(a)$ represents one legal intermediate-assemblies input multiset that can `Associate` into $a$.
 
-Given full reactant assemblies $x_{1}$, the unary left-generated intermediate family is
+Given full reactant assemblies $x_{1}$, the reactant-side-generated intermediate family from one-assembly choices is
 
 $$
-\mathfrak{L}(x_{1}) =
+\mathfrak{M}_{\mathrm{reactant}}(x_{1}) =
 \left\{
 \sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{i=1}^{x_{1}(a)} y_{a,i}
 \;\middle|\;
@@ -456,10 +456,10 @@ y_{a,i} \in \Lambda_{2}(a)
 \right\}.
 $$
 
-Given full product assemblies $x_{5}$, the unary right-required intermediate family is
+Given full product assemblies $x_{5}$, the product-side-required intermediate family from one-assembly choices is
 
 $$
-\mathfrak{R}(x_{5}) =
+\mathfrak{M}_{\mathrm{product}}(x_{5}) =
 \left\{
 \sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{j=1}^{x_{5}(a)} z_{a,j}
 \;\middle|\;
@@ -470,23 +470,23 @@ $$
 An exact solve therefore requires
 
 $$
-\exists x_{3} \in \mathfrak{L}(x_{1}) \cap \mathfrak{R}(x_{5}),
+\exists x_{3} \in \mathfrak{M}_{\mathrm{reactant}}(x_{1}) \cap \mathfrak{M}_{\mathrm{product}}(x_{5}),
 $$
 
-together with a provenance witness showing that the chosen left and right rewrite families act on the same fixed primitive carrier set $\Omega$.
+together with a provenance witness showing that the chosen reactant-side and product-side rewrite families act on the same fixed primitive carrier set $\Omega$.
 
 One useful branch-state record is
 
 $$
-s = (\phi_{2}, \phi_{4}, x_{3}^{L}, x_{3}^{R}, W),
+s = (\phi_{2}, \phi_{4}, x_{3}^{\mathrm{reactant}}, x_{3}^{\mathrm{product}}, W),
 $$
 
 where:
 
 - $\phi_{2}$ is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
 - $\phi_{4}$ is a partial assignment of product-side operator choices to product assembly occurrences;
-- $x_{3}^{L}$ is the partial intermediate assemblies generated from the reactant assemblies;
-- $x_{3}^{R}$ is the partial intermediate assemblies required by the product assemblies;
+- $x_{3}^{\mathrm{reactant}}$ is the partial intermediate assemblies generated from the reactant assemblies;
+- $x_{3}^{\mathrm{product}}$ is the partial intermediate assemblies required by the product assemblies;
 - and $W$ is the current partial provenance witness.
 
 pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
@@ -497,7 +497,7 @@ The operational loop should be:
 2. initialize the empty branch state with no reactant-side or product-side operator assignments;
 3. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
 4. expand that occurrence by one member of $\Lambda_{2}(a)$ or $\Lambda_{4}(a)$;
-5. update the partial middle inventories $x_{3}^{L}$ and $x_{3}^{R}$, and update the partial provenance witness $W$;
+5. update the partial middle inventories $x_{3}^{\mathrm{reactant}}$ and $x_{3}^{\mathrm{product}}$, and update the partial provenance witness $W$;
 6. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
 7. continue until all reactant and product occurrences are assigned;
 8. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
@@ -517,9 +517,9 @@ At minimum, the search should prune a branch under the following conditions:
 - primitive impossibility:
   the request already has nonzero primitive imbalance in an exact-closure search;
 - middle oversupply:
-  the current left-generated intermediate assemblies already exceed the maximum possible right-required intermediate assemblies for some assembly coordinate;
+  the current reactant-side-generated intermediate assemblies already exceed the maximum possible product-side-required intermediate assemblies for some assembly coordinate;
 - middle undersupply:
-  the current right-required intermediate assemblies already exceed the maximum possible left-generated intermediate assemblies for some assembly coordinate;
+  the current product-side-required intermediate assemblies already exceed the maximum possible reactant-side-generated intermediate assemblies for some assembly coordinate;
 - recipe impossibility:
   the remaining unassigned reactant occurrences cannot generate the assembly ingredients still required by unresolved product-side closures;
 - absorption impossibility:
@@ -552,36 +552,36 @@ For a partial branch $s$, let $U_{2}(s)$ be the unresolved reactant occurrences 
 For each intermediate-assemblies coordinate $m \in \mathcal{A}$, define the pass-thru-safe envelopes
 
 $$
-L^{-}_{s}(m)
+M^{-}_{\mathrm{reactant},s}(m)
 =
-x_{3}^{L}(m)
+x_{3}^{\mathrm{reactant}}(m)
 
 + \sum_{\rho \in U_{2}(s)}
 \min_{y \in \Lambda_{2}(a_{\rho})} y(m),
 $$
 
 $$
-L^{+}_{s}(m)
+M^{+}_{\mathrm{reactant},s}(m)
 =
-x_{3}^{L}(m)
+x_{3}^{\mathrm{reactant}}(m)
 
 + \sum_{\rho \in U_{2}(s)}
 \max_{y \in \Lambda_{2}(a_{\rho})} y(m),
 $$
 
 $$
-R^{-}_{s}(m)
+M^{-}_{\mathrm{product},s}(m)
 =
-x_{3}^{R}(m)
+x_{3}^{\mathrm{product}}(m)
 
 + \sum_{\pi \in U_{4}(s)}
 \min_{z \in \Lambda_{4}(a_{\pi})} z(m),
 $$
 
 $$
-R^{+}_{s}(m)
+M^{+}_{\mathrm{product},s}(m)
 =
-x_{3}^{R}(m)
+x_{3}^{\mathrm{product}}(m)
 
 + \sum_{\pi \in U_{4}(s)}
 \max_{z \in \Lambda_{4}(a_{\pi})} z(m).
@@ -596,9 +596,9 @@ So these envelopes automatically include the pass-thru possibility for every unr
 So an intermediate-assemblies prune is safe only if one of the coordinatewise intervals is already disjoint:
 
 $$
-L^{-}_{s}(m) > R^{+}_{s}(m)
+M^{-}_{\mathrm{reactant},s}(m) > M^{+}_{\mathrm{product},s}(m)
 \quad\text{or}\quad
-R^{-}_{s}(m) > L^{+}_{s}(m)
+M^{-}_{\mathrm{product},s}(m) > M^{+}_{\mathrm{reactant},s}(m)
 $$
 
 for some $m \in \mathcal{A}$.
@@ -625,14 +625,14 @@ $$
 
 From that raw option, pdgsolve derives:
 
-- the left-generated intermediate assemblies $x_{3}^{L}$;
-- the right-required intermediate assemblies $x_{3}^{R}$;
+- the reactant-side-generated intermediate assemblies $x_{3}^{\mathrm{reactant}}$;
+- the product-side-required intermediate assemblies $x_{3}^{\mathrm{product}}$;
 - the completed provenance witness $W$, if one exists;
 - and the candidate score tuple $\kappa$.
 
 A raw option becomes an exact review candidate when:
 
-- $x_{3}^{L} = x_{3}^{R}$;
+- $x_{3}^{\mathrm{reactant}} = x_{3}^{\mathrm{product}}$;
 - the primitive imbalance is zero;
 - and $W$ closes as a complete provenance witness.
 
@@ -660,7 +660,7 @@ The key reason is:
 
 - each reactant occurrence that can feed intermediate assemblies contributes one finite choice from $\Lambda_{2}(a)$;
 - each product occurrence that can be matched from intermediate assemblies contributes one finite choice from $\Lambda_{4}(a)$;
-- $\mathfrak{L}(x_{1})$ and $\mathfrak{R}(x_{5})$ are therefore finite;
+- $\mathfrak{M}_{\mathrm{reactant}}(x_{1})$ and $\mathfrak{M}_{\mathrm{product}}(x_{5})$ are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
 
 So yes, this limited geometry is not merely drawable. It is mathematically enumerable.
@@ -852,7 +852,7 @@ This means the limited reactant/intermediate/product assemblies and reactant-sid
 It is also the basis of a useful score function:
 
 - whether the reactant and product primitive budgets match exactly;
-- whether the left-generated and right-required middle inventories meet exactly;
+- whether the reactant-side-generated and product-side-required middle inventories meet exactly;
 - how much structure had to be opened;
 - how much structure had to be rebuilt;
 - whether the branch stayed entirely within the admitted explicit assembly ontology;
@@ -916,7 +916,7 @@ The initial v1 set should be:
 | `pdgsolve.request.composite_requires_boundary_expansion` | request | the request names a higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that must be translated outside pdgsolve core | raw token, attempted role, and required boundary translator |
 | `pdgsolve.request.invalid_lane_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained branch or retained request summary | request id and $(\delta_E, \delta_P)$ |
-| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | request id and canonical mismatch vector |
+| `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
 | `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 or would require leaving the explicit assembly-native ontology | missing law family id and descriptive token |
 | `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
