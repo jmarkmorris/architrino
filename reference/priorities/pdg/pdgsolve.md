@@ -151,31 +151,31 @@ The more precise the operator grammar is, the more tractable the search space be
 
 pdgsolve should model the nontrivial operators as finite law tables.
 
-For dissociation, each operator-admissible 4-tile assembly \(a \in \mathcal{A}\) has a finite set
+For dissociation, each operator-admissible 4-tile assembly $a \in \mathcal{A}$ has a finite set
 
 $$
 \Delta(a) \subset \mathbb{N}^{\mathcal{A}},
 $$
 
-where each \(d \in \Delta(a)\) is one legal dissociation output multiset for \(a\).
+where each $d \in \Delta(a)$ is one legal dissociation output multiset for $a$.
 
-For association, each operator-admissible 4-tile assembly \(a \in \mathcal{A}\) has a finite set
+For association, each operator-admissible 4-tile assembly $a \in \mathcal{A}$ has a finite set
 
 $$
 \Gamma(a) \subset \mathbb{N}^{\mathcal{A}},
 $$
 
-where each \(g \in \Gamma(a)\) is one legal gathered input multiset that can assemble into \(a\).
+where each $g \in \Gamma(a)$ is one legal gathered input multiset that can assemble into $a$.
 
 `Pass Thru` is the identity law and therefore does not need a separate family table.
 
-The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixed solve family.
+The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed solve family.
 
 Unary assembly laws should remain the default.
 
 Any future non-unary law remains acceptable only when:
 
-- every participating input and output is still written entirely in explicit admitted assembly ids from \(\mathcal{A}\);
+- every participating input and output is still written entirely in explicit admitted assembly ids from $\mathcal{A}$;
 - the law has fixed explicit conserved-content meaning;
 - and the law does not smuggle in higher-scale semantics by renaming a composite interpretation as if it were one assembly symbol.
 
@@ -190,7 +190,7 @@ Applied to beta-decay, the same rule means the pdgsolve-core expression must be 
 
 From that point forward:
 
-- the core search may use only explicit assembly ids from \(\mathcal{A}\);
+- the core search may use only explicit assembly ids from $\mathcal{A}$;
 - the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
 - if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
 - and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
@@ -221,14 +221,14 @@ $$
 
 where:
 
-- \(\mathcal{A}\) is the finite assembly alphabet of explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies for the active solve family;
-- \(\mathcal{P}\) is the basis of conserved primitive content;
-- \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
-- \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the requested reactant and product multisets;
-- \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
-- and \(\Pi\) is the active policy bundle.
+- $\mathcal{A}$ is the finite assembly alphabet of explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies for the active solve family;
+- $\mathcal{P}$ is the basis of conserved primitive content;
+- $\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}$ is the conserved-content map;
+- $R, T \in \mathbb{N}^{\mathcal{A}}$ are the requested reactant and product multisets;
+- $\Delta$ and $\Gamma$ are the dissociation and association law tables;
+- and $\Pi$ is the active policy bundle.
 
-By the time \(R\) and \(T\) exist, any higher-scale upstream description has already been expanded into explicit assembly multisets or rejected at the boundary.
+By the time $R$ and $T$ exist, any higher-scale upstream description has already been expanded into explicit assembly multisets or rejected at the boundary.
 
 For pdgsolve v1, the minimal explicit conserved basis should be
 
@@ -236,10 +236,10 @@ $$
 \mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}.
 $$
 
-That means the first concrete interpretation of \(\mu\) is:
+That means the first concrete interpretation of $\mu$ is:
 
-- \(\mu(a)_{\mathrm{Electrino}}\) = the number of Electrinos carried by assembly \(a\);
-- \(\mu(a)_{\mathrm{Positrino}}\) = the number of Positrinos carried by assembly \(a\).
+- $\mu(a)_{\mathrm{Electrino}}$ = the number of Electrinos carried by assembly $a$;
+- $\mu(a)_{\mathrm{Positrino}}$ = the number of Positrinos carried by assembly $a$.
 
 The conserved-content map should extend linearly from assemblies to multisets:
 
@@ -251,9 +251,9 @@ Every legal operator law should preserve this ledger.
 
 That means:
 
-- if \(d \in \Delta(a)\), then \(\mu(d) = \mu(a)\);
-- if \(g \in \Gamma(a)\), then \(\mu(g) = \mu(a)\);
-- and `Pass Thru` preserves \(\mu\) trivially.
+- if $d \in \Delta(a)$, then $\mu(d) = \mu(a)$;
+- if $g \in \Gamma(a)$, then $\mu(g) = \mu(a)$;
+- and `Pass Thru` preserves $\mu$ trivially.
 
 For shorthand, pdgsolve should define the primitive counts
 
@@ -282,21 +282,21 @@ $$
 
 The v1 assembly table should be:
 
-| Canonical id | Display label | Allowed roles in pdgsolve v1 | \(\mu(a) = (N_E, N_P)\) | v1 note |
+| Canonical id | Display label | Allowed roles in pdgsolve v1 | $\mu(a) = (N_E, N_P)$ | v1 note |
 | --- | --- | --- | --- | --- |
-| `pro_down_quark` | `Pro Down Quark` | reactant assemblies, intermediate assemblies, and product assemblies | \((7, 5)\) | individual quark assembly |
-| `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | \((4, 8)\) | individual quark assembly |
-| `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | \((9, 3)\) | charged lepton assembly |
-| `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | \((6, 6)\) | neutral lepton assembly |
+| `pro_down_quark` | `Pro Down Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(7, 5)$ | individual quark assembly |
+| `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(4, 8)$ | individual quark assembly |
+| `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | $(9, 3)$ | charged lepton assembly |
+| `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | $(6, 6)$ | neutral lepton assembly |
 
 The versioned v1 bookkeeping values should therefore include:
 
-- \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\);
-- \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\);
-- \(\mu(\mathrm{electron}) = (9, 3)\);
-- and \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\).
+- $\mu(\mathrm{pro\_down\_quark}) = (7, 5)$;
+- $\mu(\mathrm{pro\_up\_quark}) = (4, 8)$;
+- $\mu(\mathrm{electron}) = (9, 3)$;
+- and $\mu(\mathrm{electron\_antineutrino}) = (6, 6)$.
 
-pdgsolve v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
+pdgsolve v1 should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
 
 In particular:
 
@@ -332,17 +332,17 @@ Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
-3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
+3. reject any assembly outside $\mathcal{A}_{\mathrm{v1}}$ with `pdgsolve.request.unsupported_assembly`;
 
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
-5. build the requested multisets \(R\) and \(T\);
+4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
+5. build the requested multisets $R$ and $T$;
 6. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 ### Conserved Balance Equations
 
 pdgsolve should make the balance laws explicit across reactant assemblies, intermediate assemblies, and product assemblies.
 
-Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the correct solve picture is not a disappearing flow ledger.
+Because architrinos have provenance in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correct solve picture is not a disappearing flow ledger.
 
 It is one fixed primitive carrier set viewed through three different assembly partitions.
 
@@ -354,22 +354,22 @@ $$
 
 An exact candidate must find:
 
-- intermediate assemblies \(x_{3} \in \mathbb{N}^{\mathcal{A}}\);
-- a finite primitive carrier set \(\Omega = \Omega_{E} \sqcup \Omega_{P}\);
-- and assembly partitions \(P_{1}, P_{3}, P_{5}\) of \(\Omega\);
+- intermediate assemblies $x_{3} \in \mathbb{N}^{\mathcal{A}}$;
+- a finite primitive carrier set $\Omega = \Omega_{E} \sqcup \Omega_{P}$;
+- and assembly partitions $P_{1}, P_{3}, P_{5}$ of $\Omega$;
 
 such that:
 
-- \(P_{1}\) realizes \(x_{1}\);
-- \(P_{3}\) realizes \(x_{3}\);
-- \(P_{5}\) realizes \(x_{5}\);
-- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from \(P_{1}\) to \(P_{3}\) and from \(P_{3}\) to \(P_{5}\).
+- $P_{1}$ realizes $x_{1}$;
+- $P_{3}$ realizes $x_{3}$;
+- $P_{5}$ realizes $x_{5}$;
+- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from $P_{1}$ to $P_{3}$ and from $P_{3}$ to $P_{5}$.
 
 Here, "realizes" means:
 
-- each block in \(P_{\ell}\) is labeled by some assembly \(a \in \mathcal{A}\);
-- the block contains exactly \(\mu(a)_{\mathrm{Electrino}}\) Electrinos and \(\mu(a)_{\mathrm{Positrino}}\) Positrinos;
-- and the multiplicity of each label \(a\) agrees with \(x_{\ell}(a)\).
+- each block in $P_{\ell}$ is labeled by some assembly $a \in \mathcal{A}$;
+- the block contains exactly $\mu(a)_{\mathrm{Electrino}}$ Electrinos and $\mu(a)_{\mathrm{Positrino}}$ Positrinos;
+- and the multiplicity of each label $a$ agrees with $x_{\ell}(a)$.
 
 The primitive invariants across these assembly partitions are therefore
 
@@ -406,12 +406,12 @@ $$
 \delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5}).
 $$
 
-If \(\delta(Q) \neq 0\), then exact closure is impossible for that request under the active assembly-native law table.
+If $\delta(Q) \neq 0$, then exact closure is impossible for that request under the active assembly-native law table.
 
 So at the first primitive level, pdgsolve should always be able to say:
 
-- Electrinos balanced or imbalanced by \(\delta_{E}\);
-- Positrinos balanced or imbalanced by \(\delta_{P}\);
+- Electrinos balanced or imbalanced by $\delta_{E}$;
+- Positrinos balanced or imbalanced by $\delta_{P}$;
 - and whether the explicit admitted assembly request can possibly close without leaving the assembly-native ontology.
 
 ### Combinatorial Search Model
@@ -450,23 +450,23 @@ $$
 
 be the subset of assemblies that are legal in the intermediate assemblies of the active solve family.
 
-For the reactant-side operators, pdgsolve should define the unary local reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For the reactant-side operators, pdgsolve should define the unary local reactant rewrite family only on $\mathcal{A}_{\mathrm{mid}}$:
 
 $$
 \Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
 $$
 
-where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
+where $e_{a}$ represents `Pass Thru` and each $d \in \Delta(a)$ represents one legal `Dissociate` output.
 
-For the product-side operators, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
+For the product-side operators, pdgsolve should define the unary local product-closure family only on $\mathcal{A}_{\mathrm{mid}}$:
 
 $$
 \Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
 $$
 
-where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal intermediate-assemblies input multiset that can `Associate` into \(a\).
+where $e_{a}$ represents `Pass Thru` and each $g \in \Gamma(a)$ represents one legal intermediate-assemblies input multiset that can `Associate` into $a$.
 
-Given full reactant assemblies \(x_{1}\), the unary left-generated intermediate family is
+Given full reactant assemblies $x_{1}$, the unary left-generated intermediate family is
 
 $$
 \mathfrak{L}(x_{1}) =
@@ -477,7 +477,7 @@ y_{a,i} \in \Lambda_{2}(a)
 \right\}.
 $$
 
-Given full product assemblies \(x_{5}\), the unary right-required intermediate family is
+Given full product assemblies $x_{5}$, the unary right-required intermediate family is
 
 $$
 \mathfrak{R}(x_{5}) =
@@ -494,7 +494,7 @@ $$
 \exists x_{3} \in \mathfrak{L}(x_{1}) \cap \mathfrak{R}(x_{5}),
 $$
 
-together with a provenance witness showing that the chosen left and right rewrite families act on the same fixed primitive carrier set \(\Omega\).
+together with a provenance witness showing that the chosen left and right rewrite families act on the same fixed primitive carrier set $\Omega$.
 
 One useful branch-state record is
 
@@ -504,21 +504,21 @@ $$
 
 where:
 
-- \(\phi_{2}\) is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
-- \(\phi_{4}\) is a partial assignment of product-side operator choices to product assembly occurrences;
-- \(x_{3}^{L}\) is the partial intermediate assemblies generated from the reactant assemblies;
-- \(x_{3}^{R}\) is the partial intermediate assemblies required by the product assemblies;
-- and \(W\) is the current partial provenance witness.
+- $\phi_{2}$ is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
+- $\phi_{4}$ is a partial assignment of product-side operator choices to product assembly occurrences;
+- $x_{3}^{L}$ is the partial intermediate assemblies generated from the reactant assemblies;
+- $x_{3}^{R}$ is the partial intermediate assemblies required by the product assemblies;
+- and $W$ is the current partial provenance witness.
 
 pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
 
 The operational loop should be:
 
-1. reject the request immediately if the primitive imbalance vector \(\delta(Q)\) is nonzero and the current search mode requires exact closure;
+1. reject the request immediately if the primitive imbalance vector $\delta(Q)$ is nonzero and the current search mode requires exact closure;
 2. initialize the empty branch state with no reactant-side or product-side operator assignments;
 3. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
-4. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
-5. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
+4. expand that occurrence by one member of $\Lambda_{2}(a)$ or $\Lambda_{4}(a)$;
+5. update the partial middle inventories $x_{3}^{L}$ and $x_{3}^{R}$, and update the partial provenance witness $W$;
 6. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
 7. continue until all reactant and product occurrences are assigned;
 8. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
@@ -546,7 +546,7 @@ At minimum, the search should prune a branch under the following conditions:
 - absorption impossibility:
   the remaining unassigned product occurrences cannot absorb the middle assemblies already forced by the reactant-side choices;
 - provenance impossibility:
-  the partial provenance witness \(W\) can no longer be extended to a full carrier partition consistent with the chosen dissociate/associate laws;
+  the partial provenance witness $W$ can no longer be extended to a full carrier partition consistent with the chosen dissociate/associate laws;
 - dominance:
   another branch with the same unresolved occurrence set is already no worse on middle mismatch, operator count, dissociation count, and provenance penalty;
 - bound failure:
@@ -568,9 +568,9 @@ So pdgsolve should not prune a branch merely because:
 
 Safe pruning therefore requires bounds that still include pass-thru.
 
-For a partial branch \(s\), let \(U_{2}(s)\) be the unresolved reactant occurrences and \(U_{4}(s)\) the unresolved product occurrences.
+For a partial branch $s$, let $U_{2}(s)$ be the unresolved reactant occurrences and $U_{4}(s)$ the unresolved product occurrences.
 
-For each intermediate-assemblies coordinate \(m \in \mathcal{A}\), define the pass-thru-safe envelopes
+For each intermediate-assemblies coordinate $m \in \mathcal{A}$, define the pass-thru-safe envelopes
 
 $$
 L^{-}_{s}(m)
@@ -608,9 +608,9 @@ x_{3}^{R}(m)
 \max_{z \in \Lambda_{4}(a_{\pi})} z(m).
 $$
 
-Here \(a_{\rho}\) and \(a_{\pi}\) are the assemblies attached to those unresolved occurrences.
+Here $a_{\rho}$ and $a_{\pi}$ are the assemblies attached to those unresolved occurrences.
 
-For every unresolved occurrence whose assembly lies in \(\mathcal{A}_{\mathrm{mid}}\), the corresponding family still contains the identity element \(e_{a}\).
+For every unresolved occurrence whose assembly lies in $\mathcal{A}_{\mathrm{mid}}$, the corresponding family still contains the identity element $e_{a}$.
 
 So these envelopes automatically include the pass-thru possibility for every unresolved occurrence that is actually eligible for pass-thru.
 
@@ -622,7 +622,7 @@ L^{-}_{s}(m) > R^{+}_{s}(m)
 R^{-}_{s}(m) > L^{+}_{s}(m)
 $$
 
-for some \(m \in \mathcal{A}\).
+for some $m \in \mathcal{A}$.
 
 In plain language:
 
@@ -646,16 +646,16 @@ $$
 
 From that raw option, pdgsolve derives:
 
-- the left-generated intermediate assemblies \(x_{3}^{L}\);
-- the right-required intermediate assemblies \(x_{3}^{R}\);
-- the completed provenance witness \(W\), if one exists;
-- and the candidate score tuple \(\kappa\).
+- the left-generated intermediate assemblies $x_{3}^{L}$;
+- the right-required intermediate assemblies $x_{3}^{R}$;
+- the completed provenance witness $W$, if one exists;
+- and the candidate score tuple $\kappa$.
 
 A raw option becomes an exact review candidate when:
 
-- \(x_{3}^{L} = x_{3}^{R}\);
+- $x_{3}^{L} = x_{3}^{R}$;
 - the primitive imbalance is zero;
-- and \(W\) closes as a complete provenance witness.
+- and $W$ closes as a complete provenance witness.
 
 A raw option becomes a partial review candidate when:
 
@@ -679,9 +679,9 @@ This yields a finite branch graph for any finite request.
 
 The key reason is:
 
-- each reactant occurrence that can feed intermediate assemblies contributes one finite choice from \(\Lambda_{2}(a)\);
-- each product occurrence that can be matched from intermediate assemblies contributes one finite choice from \(\Lambda_{4}(a)\);
-- \(\mathfrak{L}(x_{1})\) and \(\mathfrak{R}(x_{5})\) are therefore finite;
+- each reactant occurrence that can feed intermediate assemblies contributes one finite choice from $\Lambda_{2}(a)$;
+- each product occurrence that can be matched from intermediate assemblies contributes one finite choice from $\Lambda_{4}(a)$;
+- $\mathfrak{L}(x_{1})$ and $\mathfrak{R}(x_{5})$ are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
 
 So yes, this limited geometry is not merely drawable. It is mathematically enumerable.
@@ -741,7 +741,7 @@ two branches should belong to the same option family exactly when they agree on 
 - the same reactant assemblies, intermediate assemblies, and product assemblies;
 - the same ordered reactant-side operator assignments after canonical reactant-occurrence ordering;
 - the same ordered product-side operator assignments after canonical product-occurrence ordering;
-- the same score tuple \(\kappa\);
+- the same score tuple $\kappa$;
 - the same review-visible provenance summary;
 - and the same diagnostic id set.
 
@@ -767,16 +767,16 @@ x_{5},
 \bigr),
 $$
 
-where \(\sigma_{2}\) and \(\sigma_{4}\) are the canonical ordered operator signatures and \(\rho\) is the canonical review-visible provenance summary.
+where $\sigma_{2}$ and $\sigma_{4}$ are the canonical ordered operator signatures and $\rho$ is the canonical review-visible provenance summary.
 
-Differing provenance-witness detail should create a different option family only when it changes \(\rho\).
+Differing provenance-witness detail should create a different option family only when it changes $\rho$.
 
 So:
 
 - witness detail that changes which assembly occurrence is the active rewrite source, spectator source, or ambiguous source does change family identity;
 - but witness detail that only renames equivalent primitive carriers does not.
 
-The canonical representative of an option family should be the member with minimal deterministic tie-break key \(\tau\) inside that family.
+The canonical representative of an option family should be the member with minimal deterministic tie-break key $\tau$ inside that family.
 
 ### pdgsolve Result Contract
 
@@ -834,13 +834,13 @@ $$
 
 with smaller values preferred, where:
 
-- \(\epsilon(C) = 0\) when \(x_{3,C}^{L} = x_{3,C}^{R}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
-- \(m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}\);
-- \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{L} - x_{3,C}^{R} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
-- \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
-- \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
-- \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
-- and \(\tau(C)\) is a deterministic tie-break key.
+- $\epsilon(C) = 0$ when $x_{3,C}^{L} = x_{3,C}^{R}$ and $W_{C}$ is a complete provenance witness, and $1$ otherwise;
+- $m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}$;
+- $m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{L} - x_{3,C}^{R} \rVert_{1}$, viewing the difference in $\mathbb{Z}^{\mathcal{A}}$;
+- $n_{\mathrm{op}}(C)$ is the total non-identity operator count in $\phi_{2,C}$ and $\phi_{4,C}$;
+- $n_{\mathrm{diss}}(C)$ is the dissociation count in $\phi_{2,C}$;
+- $n_{\mathrm{amb}}(C)$ is the explicit ambiguity/provenance penalty count;
+- and $\tau(C)$ is a deterministic tie-break key.
 
 Candidate comparison should be strictly lexicographic.
 
@@ -852,11 +852,11 @@ That means:
 4. then fewer non-identity operators wins;
 5. then fewer dissociations wins;
 6. then lower ambiguity/provenance penalty wins;
-7. and finally \(\tau(C)\) breaks any remaining tie deterministically.
+7. and finally $\tau(C)$ breaks any remaining tie deterministically.
 
 pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple structure.
 
-For a partial branch \(s\), the search should compute:
+For a partial branch $s$, the search should compute:
 
 - whether exact closure is still possible;
 - the unavoidable primitive imbalance already fixed by the explicit request;
@@ -889,7 +889,7 @@ That means the review surface can show:
 
 ### Deterministic Tie-Break Rule
 
-pdgsolve should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
+pdgsolve should freeze the deterministic tie-break key $\tau(C)$ rather than leaving it implicit.
 
 For candidate comparison, define
 
@@ -906,19 +906,19 @@ $$
 
 with lexicographic comparison and the concrete orders:
 
-- canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
+- canonical assembly order: lexicographic order of the canonical ids in $\mathcal{A}_{\mathrm{v1}}$;
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - reactant-side operator order: the sequence of operator assignments in reactant-occurrence order;
 - product-side operator order: the sequence of operator assignments in product-occurrence order;
 - and intermediate-assemblies order: assembly counts listed in canonical assembly order.
 
-For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
+For pdgsolve v1, the operator symbol order inside $\sigma_{2}$ and $\sigma_{4}$ should be:
 
 - `pass_thru`;
 - then any later law-family symbol in the order those law ids are admitted into pdgsolve.
 
-The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
+The provenance signature $\rho(C)$ should summarize, in canonical product-occurrence order:
 
 - whether each product occurrence is pure pass-thru or active rewrite output;
 - and any explicit ambiguity marker bits.
@@ -936,7 +936,7 @@ The initial v1 set should be:
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
 | `pdgsolve.request.composite_requires_boundary_expansion` | request | the request names a higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that must be translated outside pdgsolve core | raw token, attempted role, and required boundary translator |
 | `pdgsolve.request.invalid_lane_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
-| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q) \neq 0\) for the retained branch or retained request summary | request id and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained branch or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
 | `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 or would require leaving the explicit assembly-native ontology | missing law family id and descriptive token |
@@ -1018,11 +1018,11 @@ Accepting one family must therefore replace any earlier accepted family for that
 
 pdgsolve should define `publicationReady` as an explicit derived gate, not as a vague UI hint.
 
-For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
+For pdgsolve v1, an option family $F$ is publication-ready if and only if:
 
 - `kind(F) = exact`;
 - the current result snapshot is not `stale`;
-- the family's canonical representative has \(\epsilon(F) = 0\);
+- the family's canonical representative has $\epsilon(F) = 0$;
 - the family's primitive imbalance is zero;
 - the family's middle mismatch is zero;
 - the family's provenance witness is complete at the review-summary level;
@@ -1237,7 +1237,7 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
 | `explicit_beta_request_requires_assembly_native_law` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | no exact family exists until an admitted explicit assembly-native law family is present; retained diagnostics include `pdgsolve.search.unsupported_law_family`; no composite or non-native symbol is introduced |
-| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
@@ -1317,7 +1317,7 @@ Each member of `optionFamilies` should contain:
 
 - `familyId`;
 - `kind`, with values `exact`, `partial`, or `unsupported`;
-- `score`, carrying the concrete components of \(\kappa\);
+- `score`, carrying the concrete components of $\kappa$;
 - `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
 - `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
 - `provenanceSummary`, carrying the family-level witness summary that review must see;
