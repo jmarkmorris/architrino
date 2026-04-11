@@ -1033,7 +1033,7 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 }
 ```
 
-##### Free neutron beta decay from a live PDG read
+##### Free neutron beta decay from a PDG database read
 
 ```json
 {

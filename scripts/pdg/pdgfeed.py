@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build PDG-derived proposal artifacts and pdgsolve-request candidates.
 
-The normal regression path is test-case-first so development stays stable offline.
-When the external `pdg` package is installed locally, selected live channels can
-be read through `pdg.connect(...)` and normalized through the same export path.
+The normal regression path is built around PDG test reactions so development
+stays stable offline. When the external `pdg` package is installed locally,
+selected PDG reactions can be read through `pdg.connect(...)` and normalized
+through the same export path.
 """
 
 from __future__ import annotations
@@ -48,6 +49,32 @@ PDG_SOURCE_CONTRACT = {
     "pdgviewHandoff": "accepted-reaction-only",
 }
 
+CLI_COMMAND_ALIASES = {
+    "list-test-cases": "list-pdg-test-reactions",
+    "emit-test-case": "emit-pdg-test-reaction",
+    "print-test-case-proposal": "print-pdg-test-reaction-proposal",
+    "print-test-case-pdgsolve-request": "print-pdg-test-reaction-pdgsolve-request",
+    "emit-all-test-cases": "emit-all-pdg-test-reactions",
+    "list-live-cases": "list-pdg-reactions",
+    "list-pdg-database-cases": "list-pdg-reactions",
+    "build-live-manifest": "build-pdg-reaction-manifest",
+    "build-pdg-database-manifest": "build-pdg-reaction-manifest",
+    "emit-live-case": "emit-pdg-reaction",
+    "emit-pdg-database-case": "emit-pdg-reaction",
+    "print-live-proposal": "print-pdg-reaction-proposal",
+    "print-pdg-database-proposal": "print-pdg-reaction-proposal",
+    "print-live-pdgsolve-request": "print-pdg-reaction-pdgsolve-request",
+    "print-pdg-database-pdgsolve-request": "print-pdg-reaction-pdgsolve-request",
+    "emit-all-live-cases": "emit-all-pdg-reactions",
+    "emit-all-pdg-database-cases": "emit-all-pdg-reactions",
+}
+
+CSV_SOURCE_ALIASES = {
+    "test-cases": "pdg-test-reactions",
+    "live": "pdg-reactions",
+    "pdg-database": "pdg-reactions",
+}
+
 def generation_adjusted_primitive_counts(base_counts: tuple[int, int], generation: int) -> tuple[int, int]:
     if generation < 1:
         raise ValueError(f"Generation must be >= 1, got {generation}")
@@ -61,6 +88,14 @@ def generation_adjusted_primitive_counts(base_counts: tuple[int, int], generatio
 
 def fermion_generation_primitive_counts(generation: int) -> tuple[int, int]:
     return generation_adjusted_primitive_counts((6, 6), generation)
+
+
+def normalize_cli_args(args: argparse.Namespace) -> argparse.Namespace:
+    args.command = CLI_COMMAND_ALIASES.get(args.command, args.command)
+    source = getattr(args, "source", None)
+    if isinstance(source, str):
+        args.source = CSV_SOURCE_ALIASES.get(source, source)
+    return args
 
 
 PROPOSAL_PRIMITIVE_COUNTS_BY_CANONICAL_NAME: dict[str, tuple[int, int]] = {
@@ -685,7 +720,7 @@ def connect_pdg(database_url: str | None = None, *, pedantic: bool = False) -> A
         import pdg as pdg_package
     except ImportError as exc:  # pragma: no cover - environment-dependent
         raise RuntimeError(
-            "The `pdg` package is not installed. Install it before using live PDG access."
+            "The `pdg` package is not installed. Install it before using PDG database access."
         ) from exc
     return pdg_package.connect(database_url, pedantic=pedantic) if database_url else pdg_package.connect(
         pedantic=pedantic
@@ -1129,7 +1164,7 @@ def build_live_case_from_decay(api: Any, particle: Any, decay: Any) -> PdgCase:
     source: dict[str, Any] = {
         "edition": str(getattr(api, "edition", "")),
         "channelDescription": description or f"{particle_name} decay",
-        "citation": safe_api_info(api, "citation") or "PDG Python API live read",
+        "citation": safe_api_info(api, "citation") or "PDG Python API database read",
         "branchingDisplay": str(getattr(decay, "display_value_text", "") or ""),
         "sourceMode": "pdg.connect",
         "lookupParticleName": particle_name,
@@ -1326,7 +1361,7 @@ def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[TestCase
         product_matches.sort(key=lambda entry: (not entry[3], len(entry[2]), getattr(entry[0], "mode_number", 0)))
         decay, products, notes, _ = product_matches[0]
         return decay, products, notes
-    raise LookupError(f"Could not locate live PDG decay matching {spec.channel_description!r}")
+    raise LookupError(f"Could not locate PDG database decay matching {spec.channel_description!r}")
 
 
 def load_live_case(spec: LiveChannelSpec, database_url: str | None = None) -> PdgCase:
@@ -1336,7 +1371,7 @@ def load_live_case(spec: LiveChannelSpec, database_url: str | None = None) -> Pd
     source: dict[str, Any] = {
         "edition": str(getattr(api, "edition", "")),
         "channelDescription": normalize_channel_description(getattr(decay, "description", spec.channel_description)),
-        "citation": safe_api_info(api, "citation") or "PDG Python API live read",
+        "citation": safe_api_info(api, "citation") or "PDG Python API database read",
         "branchingDisplay": str(getattr(decay, "display_value_text", "") or ""),
         "sourceMode": "pdg.connect",
         "lookupParticleName": spec.reactant_name,
@@ -1376,7 +1411,7 @@ def build_test_case_proposal_object(test_cases_by_id: dict[str, PdgCase], test_c
     test_case = test_cases_by_id.get(test_case_id)
     if test_case is None:
         available = ", ".join(sorted(test_cases_by_id))
-        raise SystemExit(f"Unknown test-case id {test_case_id!r}. Available: {available}")
+        raise SystemExit(f"Unknown PDG test reaction id {test_case_id!r}. Available: {available}")
     return build_proposal(test_case)
 
 
@@ -1387,7 +1422,7 @@ def build_test_case_proposal(test_cases_by_id: dict[str, PdgCase], test_case_id:
 def build_test_case_pdgsolve_request(test_cases_by_id: dict[str, PdgCase], test_case_id: str) -> dict[str, Any]:
     pdgsolve_request = build_pdgsolve_request(build_test_case_proposal_object(test_cases_by_id, test_case_id))
     if pdgsolve_request is None:
-        raise SystemExit(f"Test case {test_case_id!r} does not currently emit pdgsolve-request/v1.")
+        raise SystemExit(f"PDG test reaction {test_case_id!r} does not currently emit pdgsolve-request/v1.")
     return pdgsolve_request
 
 
@@ -1395,7 +1430,7 @@ def build_live_case_proposal_object(case_id: str, database_url: str | None = Non
     spec = LIVE_CHANNEL_SPEC_BY_ID.get(case_id)
     if spec is None:
         available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
-        raise SystemExit(f"Unknown live case id {case_id!r}. Available: {available}")
+        raise SystemExit(f"Unknown PDG reaction id {case_id!r}. Available: {available}")
     try:
         live_case = load_live_case(spec, database_url)
     except (LookupError, RuntimeError) as exc:
@@ -1410,7 +1445,7 @@ def build_live_case_proposal(case_id: str, database_url: str | None = None) -> d
 def build_live_case_pdgsolve_request(case_id: str, database_url: str | None = None) -> dict[str, Any]:
     pdgsolve_request = build_pdgsolve_request(build_live_case_proposal_object(case_id, database_url))
     if pdgsolve_request is None:
-        raise SystemExit(f"Live case {case_id!r} does not currently emit pdgsolve-request/v1.")
+        raise SystemExit(f"PDG reaction {case_id!r} does not currently emit pdgsolve-request/v1.")
     return pdgsolve_request
 
 
@@ -1427,12 +1462,14 @@ def format_output_path(path: Path) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build local PDG proposal test cases and pdgsolve-request candidates.")
+    parser = argparse.ArgumentParser(description="Build PDG proposal artifacts and pdgsolve-request candidates from PDG test reactions and PDG reactions.")
     parser.add_argument(
+        "--test-reaction-index",
         "--test-case-index",
+        dest="test_case_index",
         type=Path,
         default=DEFAULT_TEST_CASE_INDEX,
-        help="Path to the local PDG test-case corpus index.",
+        help="Path to the local PDG test reaction corpus index.",
     )
     parser.add_argument(
         "--output-dir",
@@ -1442,15 +1479,24 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--database-url",
-        help="Optional database URL passed through to pdg.connect(...) for live reads.",
+        help="Optional database URL passed through to pdg.connect(...) for PDG database reads.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    subparsers.add_parser("list-test-cases", help="List available local PDG test cases.")
-    subparsers.add_parser("list-live-cases", help="List the first live PDG channels supported by this script.")
     subparsers.add_parser(
-        "build-live-manifest",
-        help="Discover exportable live PDG decays and print a frozen batch manifest JSON payload.",
+        "list-pdg-test-reactions",
+        aliases=["list-test-cases"],
+        help="List available local PDG test reactions.",
+    )
+    subparsers.add_parser(
+        "list-pdg-reactions",
+        aliases=["list-pdg-database-cases", "list-live-cases"],
+        help="List the first built-in PDG reactions supported by this script.",
+    )
+    subparsers.add_parser(
+        "build-pdg-reaction-manifest",
+        aliases=["build-pdg-database-manifest", "build-live-manifest"],
+        help="Discover exportable PDG reactions and print a frozen batch manifest JSON payload.",
     )
 
     supported_reaction_csv_parser = subparsers.add_parser(
@@ -1466,68 +1512,88 @@ def parse_args() -> argparse.Namespace:
     )
     supported_reaction_csv_parser.add_argument(
         "--source",
-        choices=("test-cases", "live"),
-        default="test-cases",
-        help="Use local test cases or live PDG discovery as the CSV input source.",
+        choices=("pdg-test-reactions", "pdg-reactions", "test-cases", "pdg-database", "live"),
+        default="pdg-test-reactions",
+        help="Use PDG test reactions or PDG reactions as the CSV input source. Older `test-cases`, `pdg-database`, and `live` spellings remain accepted as aliases.",
     )
 
-    emit_test_case_parser = subparsers.add_parser("emit-test-case", help="Emit proposal and pdgsolve-request artifacts for one test case.")
-    emit_test_case_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
+    emit_test_case_parser = subparsers.add_parser(
+        "emit-pdg-test-reaction",
+        aliases=["emit-test-case"],
+        help="Emit proposal and pdgsolve-request artifacts for one PDG test reaction.",
+    )
+    emit_test_case_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
     print_test_case_proposal_parser = subparsers.add_parser(
-        "print-test-case-proposal",
-        help="Print one test-case pdg-proposal/v1 JSON payload to stdout.",
+        "print-pdg-test-reaction-proposal",
+        aliases=["print-test-case-proposal"],
+        help="Print one PDG test reaction pdg-proposal/v1 JSON payload to stdout.",
     )
-    print_test_case_proposal_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
+    print_test_case_proposal_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
     print_test_case_request_parser = subparsers.add_parser(
-        "print-test-case-pdgsolve-request",
-        help="Print one test-case pdgsolve-request/v1 JSON payload to stdout for piping.",
+        "print-pdg-test-reaction-pdgsolve-request",
+        aliases=["print-test-case-pdgsolve-request"],
+        help="Print one PDG test reaction pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
-    print_test_case_request_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
+    print_test_case_request_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
-    subparsers.add_parser("emit-all-test-cases", help="Emit proposal and pdgsolve-request artifacts for all test cases.")
+    subparsers.add_parser(
+        "emit-all-pdg-test-reactions",
+        aliases=["emit-all-test-cases"],
+        help="Emit proposal and pdgsolve-request artifacts for all PDG test reactions.",
+    )
 
-    emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and pdgsolve-request artifacts for one live PDG channel.")
-    emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+    emit_live_parser = subparsers.add_parser(
+        "emit-pdg-reaction",
+        aliases=["emit-pdg-database-case", "emit-live-case"],
+        help="Emit proposal and pdgsolve-request artifacts for one PDG reaction.",
+    )
+    emit_live_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
     print_live_proposal_parser = subparsers.add_parser(
-        "print-live-proposal",
-        help="Print one live-case pdg-proposal/v1 JSON payload to stdout.",
+        "print-pdg-reaction-proposal",
+        aliases=["print-pdg-database-proposal", "print-live-proposal"],
+        help="Print one PDG reaction pdg-proposal/v1 JSON payload to stdout.",
     )
-    print_live_proposal_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+    print_live_proposal_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
     print_live_request_parser = subparsers.add_parser(
-        "print-live-pdgsolve-request",
-        help="Print one live-case pdgsolve-request/v1 JSON payload to stdout for piping.",
+        "print-pdg-reaction-pdgsolve-request",
+        aliases=["print-pdg-database-pdgsolve-request", "print-live-pdgsolve-request"],
+        help="Print one PDG reaction pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
-    print_live_request_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
+    print_live_request_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
-    subparsers.add_parser("emit-all-live-cases", help="Emit proposal and pdgsolve-request artifacts for all built-in live PDG channels.")
+    subparsers.add_parser(
+        "emit-all-pdg-reactions",
+        aliases=["emit-all-pdg-database-cases", "emit-all-live-cases"],
+        help="Emit proposal and pdgsolve-request artifacts for all built-in PDG reactions.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
-    args = parse_args()
+    args = normalize_cli_args(parse_args())
     test_cases = load_test_case_index(args.test_case_index)
     test_cases_by_id = {test_case.case_id: test_case for test_case in test_cases}
 
-    if args.command == "list-test-cases":
+    if args.command == "list-pdg-test-reactions":
         for test_case in test_cases:
             print(f"{test_case.case_id}\t{test_case.title}")
         return 0
 
-    if args.command == "list-live-cases":
+    if args.command == "list-pdg-reactions":
         for spec in LIVE_CHANNEL_SPECS:
             print(f"{spec.case_id}\t{spec.title}")
         return 0
 
-    if args.command == "build-live-manifest":
+    if args.command == "build-pdg-reaction-manifest":
         print_json(build_live_manifest_payload(args.database_url))
         return 0
 
     if args.command == "emit-supported-reaction-csv":
-        if args.source == "live":
+        if args.source == "pdg-reactions":
             rows = build_live_supported_reaction_csv_rows(args.database_url)
         else:
             rows = build_supported_reaction_csv_rows(test_cases)
@@ -1535,34 +1601,34 @@ def main() -> int:
         print(format_output_path(args.csv_path))
         return 0
 
-    if args.command == "emit-test-case":
+    if args.command == "emit-pdg-test-reaction":
         test_case = test_cases_by_id.get(args.test_case_id)
         if test_case is None:
             available = ", ".join(sorted(test_cases_by_id))
-            raise SystemExit(f"Unknown test-case id {args.test_case_id!r}. Available: {available}")
+            raise SystemExit(f"Unknown PDG test reaction id {args.test_case_id!r}. Available: {available}")
         for path in emit_case(test_case, args.output_dir):
             print(path.relative_to(REPO_ROOT))
         return 0
 
-    if args.command == "print-test-case-proposal":
+    if args.command == "print-pdg-test-reaction-proposal":
         print_json(build_test_case_proposal(test_cases_by_id, args.test_case_id))
         return 0
 
-    if args.command == "print-test-case-pdgsolve-request":
+    if args.command == "print-pdg-test-reaction-pdgsolve-request":
         print_json(build_test_case_pdgsolve_request(test_cases_by_id, args.test_case_id))
         return 0
 
-    if args.command == "emit-all-test-cases":
+    if args.command == "emit-all-pdg-test-reactions":
         for test_case in test_cases:
             for path in emit_case(test_case, args.output_dir):
                 print(path.relative_to(REPO_ROOT))
         return 0
 
-    if args.command == "emit-live-case":
+    if args.command == "emit-pdg-reaction":
         spec = LIVE_CHANNEL_SPEC_BY_ID.get(args.case_id)
         if spec is None:
             available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
-            raise SystemExit(f"Unknown live case id {args.case_id!r}. Available: {available}")
+            raise SystemExit(f"Unknown PDG reaction id {args.case_id!r}. Available: {available}")
         try:
             live_case = load_live_case(spec, args.database_url)
         except (LookupError, RuntimeError) as exc:
@@ -1571,15 +1637,15 @@ def main() -> int:
             print(path.relative_to(REPO_ROOT))
         return 0
 
-    if args.command == "print-live-proposal":
+    if args.command == "print-pdg-reaction-proposal":
         print_json(build_live_case_proposal(args.case_id, args.database_url))
         return 0
 
-    if args.command == "print-live-pdgsolve-request":
+    if args.command == "print-pdg-reaction-pdgsolve-request":
         print_json(build_live_case_pdgsolve_request(args.case_id, args.database_url))
         return 0
 
-    if args.command == "emit-all-live-cases":
+    if args.command == "emit-all-pdg-reactions":
         try:
             live_cases = [load_live_case(spec, args.database_url) for spec in LIVE_CHANNEL_SPECS]
         except (LookupError, RuntimeError) as exc:

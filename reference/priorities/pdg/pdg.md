@@ -78,8 +78,8 @@ Purpose:
 
 Input:
 
-- PDG test-case data stored in the repo;
-- or live PDG data through the local Python `pdg` package and local SQLite access.
+- PDG test reaction data stored in the repo;
+- or PDG reaction data through the local Python `pdg` package and local SQLite access.
 
 Current run method:
 
@@ -87,10 +87,10 @@ Current run method:
 
 Current CLI examples:
 
-- `python3 pdgfeed.py list-test-cases`
-- `python3 pdgfeed.py emit-test-case <test-case-id>`
-- `python3 pdgfeed.py list-live-cases`
-- `python3 pdgfeed.py emit-live-case <case-id>`
+- `python3 pdgfeed.py list-pdg-test-reactions`
+- `python3 pdgfeed.py emit-pdg-test-reaction <reaction-id>`
+- `python3 pdgfeed.py list-pdg-reactions`
+- `python3 pdgfeed.py emit-pdg-reaction <reaction-id>`
 
 Output:
 
@@ -113,7 +113,7 @@ Purpose:
 
 Input:
 
-- built-in request manifests backed by canonical test cases;
+- built-in request manifests backed by canonical PDG test reactions;
 - PDG-backed requests emitted by `pdgfeed`;
 - direct load of explicit request JSON by a developer or advanced user;
 - or reopened pdgsolve work items carried by pdgsolve-owned ids or records.
@@ -199,7 +199,7 @@ Boundary rule:
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
-2. Choose a built-in test case, a built-in live PDG case, or a user-specified PDG reaction or channel.
+2. Choose a built-in PDG test reaction, a built-in PDG reaction, or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
 4. Emit an explicit request artifact for pdgsolve intake.
 5. Load that request into pdgsolve.

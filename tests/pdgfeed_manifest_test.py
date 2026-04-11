@@ -1,3 +1,4 @@
+import argparse
 import csv
 import json
 import subprocess
@@ -62,10 +63,23 @@ class FakeApi:
         return aliases.get(name, name)
 
     def info(self, _key):
-        return "PDG Python API live read"
+        return "PDG Python API database read"
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
+    def test_normalize_cli_args_promotes_pdg_reaction_wording_and_keeps_legacy_aliases_working(self):
+        pdg_reaction_args = argparse.Namespace(command="list-pdg-reactions")
+        legacy_live_args = argparse.Namespace(command="list-live-cases", source="live")
+        legacy_test_case_args = argparse.Namespace(command="list-test-cases", source="test-cases")
+
+        self.assertEqual(pdgfeed.normalize_cli_args(pdg_reaction_args).command, "list-pdg-reactions")
+        normalized_legacy_args = pdgfeed.normalize_cli_args(legacy_live_args)
+        self.assertEqual(normalized_legacy_args.command, "list-pdg-reactions")
+        self.assertEqual(normalized_legacy_args.source, "pdg-reactions")
+        normalized_test_case_args = pdgfeed.normalize_cli_args(legacy_test_case_args)
+        self.assertEqual(normalized_test_case_args.command, "list-pdg-test-reactions")
+        self.assertEqual(normalized_test_case_args.source, "pdg-test-reactions")
+
     def test_build_proposal_marks_the_pdg_to_pdgsolve_request_boundary_explicitly(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",
@@ -75,7 +89,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             source={
                 "edition": "2025",
                 "channelDescription": "n -> p e- anti-nu_e",
-                "citation": "Local PDG test-case seed",
+                "citation": "Local PDG test reaction seed",
                 "branchingDisplay": "dominant neutron decay channel",
             },
             reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
@@ -754,7 +768,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 [
                     sys.executable,
                     "pdgfeed.py",
-                    "--test-case-index",
+                    "--test-reaction-index",
                     str(index_path),
                     "emit-supported-reaction-csv",
                     str(csv_path),

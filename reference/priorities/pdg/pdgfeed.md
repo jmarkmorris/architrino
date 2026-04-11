@@ -31,30 +31,30 @@ It does not own:
 
 ## Current State
 
-- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around test cases first.
+- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around PDG test reactions first.
 - Root `pdgfeed.py` remains as a compatibility shim for existing `python3 pdgfeed.py ...` calls and `import pdgfeed` tests/tooling.
 - `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
-- A local test-case corpus now exists under `content/contracts/examples/pdg/v1/`.
+- A local PDG test reaction corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- The PDG feed CLI can list test cases and emit proposal plus `pdgsolve-request/v1` artifacts from that local test-case corpus through either the root shim or the direct implementation path.
+- The PDG feed CLI can list PDG test reactions and emit proposal plus `pdgsolve-request/v1` artifacts from that local PDG test reaction corpus through either the root shim or the direct implementation path.
 - The PDG feed CLI also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
 - The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
-- Local aliases may canonicalize into that registry for test-case convenience, but they do not widen the exportable pdgsolve surface.
+- Local aliases may canonicalize into that registry for PDG test reaction convenience, but they do not widen the exportable pdgsolve surface.
 - The intended exportable request surface is every channel whose PDG particle names can be translated all the way into explicit admitted Standard Model assemblies.
 - If a particle or channel cannot be translated into explicit admitted Standard Model assemblies, it is un-mappable and must remain upstream as proposal metadata rather than leaking a non-native solver request through the boundary.
-- After removing the baked-in historical cases, there is no longer a built-in live-read case that crosses the full request boundary with the current locked mapping table.
+- After removing the baked-in historical cases, there is no longer a built-in PDG reaction from the local database path that crosses the full request boundary with the current locked mapping table.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
 - Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
 - Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
 - Unsupported channels currently remain un-mappable rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
-- Live PDG package access now exists as a guarded CLI path alongside test cases, but test cases remain the stable regression and day-to-day development path.
+- PDG reaction access through the local database path now exists as a guarded CLI path alongside PDG test reactions, but PDG test reactions remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has an explicit request seam that PDG should feed.
 - There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into pdgview staging.
-- The current local test-case corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
+- The current local PDG test reaction corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; PDG reaction reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
 
@@ -70,7 +70,7 @@ The intended program structure is:
 4. rank or filter candidate proposals at the PDG layer;
 5. hand normalized state and provenance into pdgsolve intake and the explicit upstream request seam.
 
-Routine ingest should not depend on live calls to the PDG website.
+Routine ingest should not depend on web calls to the PDG website.
 
 ### Program Structure
 
@@ -105,8 +105,8 @@ The implementation assumes:
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
-- no live PDG website dependency during normal ingest;
-- and explicit JSON artifacts for test cases and debugging.
+- no PDG website dependency during normal ingest;
+- and explicit JSON artifacts for PDG test reactions and debugging.
 
 Suggested local environment setup:
 
@@ -128,56 +128,58 @@ The root path remains a compatibility layer:
 - `scripts/pdg/pdgfeed.py`:
   connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or helpers for test-case handling.
+If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or helpers for PDG test reaction handling.
 
 The current CLI surface is:
 
-- `python3 pdgfeed.py list-test-cases`
-- `python3 pdgfeed.py emit-test-case <test-case-id>`
-- `python3 pdgfeed.py emit-all-test-cases`
-- `python3 pdgfeed.py print-test-case-proposal <test-case-id>`
-- `python3 pdgfeed.py print-test-case-pdgsolve-request <test-case-id>`
-- `python3 pdgfeed.py list-live-cases`
-- `python3 pdgfeed.py emit-live-case <case-id>`
-- `python3 pdgfeed.py emit-all-live-cases`
-- `python3 pdgfeed.py print-live-proposal <case-id>`
-- `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`
-- `python3 pdgfeed.py build-live-manifest`
-- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source test-cases|live]`
-- optional `--database-url <sqlalchemy-url>` for the live commands
+- `python3 pdgfeed.py list-pdg-test-reactions`
+- `python3 pdgfeed.py emit-pdg-test-reaction <reaction-id>`
+- `python3 pdgfeed.py emit-all-pdg-test-reactions`
+- `python3 pdgfeed.py print-pdg-test-reaction-proposal <reaction-id>`
+- `python3 pdgfeed.py print-pdg-test-reaction-pdgsolve-request <reaction-id>`
+- `python3 pdgfeed.py list-pdg-reactions`
+- `python3 pdgfeed.py emit-pdg-reaction <reaction-id>`
+- `python3 pdgfeed.py emit-all-pdg-reactions`
+- `python3 pdgfeed.py print-pdg-reaction-proposal <reaction-id>`
+- `python3 pdgfeed.py print-pdg-reaction-pdgsolve-request <reaction-id>`
+- `python3 pdgfeed.py build-pdg-reaction-manifest`
+- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source pdg-test-reactions|pdg-reactions]`
+- optional `--database-url <sqlalchemy-url>` for the PDG reaction commands
+
+Legacy `test-case`, `pdg-database`, and `live` command spellings remain accepted as compatibility aliases, but authored docs should use `PDG test reaction` and `PDG reaction` wording.
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-test-case muon_decay`;
-- CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source live`;
-- and stdout-only request emission as the automation workflow when an exportable case exists, for example `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`.
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-pdg-test-reaction muon_decay`;
+- CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source pdg-reactions`;
+- and stdout-only request emission as the automation workflow when an exportable reaction exists, for example `python3 pdgfeed.py print-pdg-reaction-pdgsolve-request <reaction-id>`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future pdgsolve intake.
 
-Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized proposal participants instead of being rejected wholesale. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
+PDG reaction multiplicities for concrete mapped particles are now expanded into repeated normalized proposal participants instead of being rejected wholesale. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
-Active PDG work should treat request emission and manifest building as the live responsibilities until pdgsolve-side solve and review tooling exists.
+Active PDG work should treat request emission and manifest building as the PDG reaction responsibilities until pdgsolve-side solve and review tooling exists.
 
-For batch work over every exportable discovered live decay, first freeze a manifest:
+For batch work over every exportable discovered PDG reaction, first freeze a manifest:
 
-- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
 
 The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery, so downstream tooling can work from a frozen ordered list rather than agent memory.
 
 #### Frozen Manifest Workflow
 
-When the goal is to inspect or batch-process many live PDG decays, the preferred path is the frozen manifest rather than the small built-in live-case list.
+When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than the small built-in PDG reaction list.
 
 Recommended workflow:
 
-1. build a frozen live manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
+1. build a frozen PDG reaction manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
 2. use that manifest as the stable ordered batch surface for downstream tooling;
 3. treat analyzable/exportable manifest entries as the current request-emission denominator;
 4. separate unsupported-particle discovery from request-emission progress.
 
 Example full-manifest run:
 
-- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
 
 How to read the denominator:
 
@@ -192,12 +194,12 @@ For solve-core progress reporting after each solve-rate change:
 - compare `exactClosureCount`, `exactClosurePercent`, and case-level movements from `no-solution` to `partial` or `exact`;
 - and do not count unsupported-particle discoveries as solver failures.
 
-The first local test-case corpus is:
+The first local PDG test reaction corpus is:
 
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
 
-The first built-in live PDG cases are:
+The first built-in PDG reactions are:
 
 - `muon_decay`
 - `radiative_muon_decay`
@@ -230,7 +232,7 @@ That means:
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
 - each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
-- every newly admitted exportable row should land with test-case or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
+- every newly admitted exportable row should land with PDG test reaction or PDG reaction coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
 - and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains un-mappable by design.
 
@@ -263,7 +265,7 @@ The integration options are:
 - secondary:
   direct SQL against that same local database when the Python API does not expose the needed traversal cleanly;
 - incidental only:
-  the REST API for inspection, experiments, or test-case capture, not for the normal ingest path.
+  the REST API for inspection, experiments, or PDG test reaction capture, not for the normal ingest path.
 
 ### Database Policy
 
@@ -296,7 +298,7 @@ The first PDG seed boundary should use two repo-owned layers:
 The normalized PDG proposal record should contain:
 
 - `proposalId`:
-  stable ingest-local identity for ranking, test cases, and review;
+  stable ingest-local identity for ranking, PDG test reactions, and review;
 - `source`:
   PDG provenance including edition, schema/release metadata, PDG Identifier, description text, and any branching or limit semantics used by the proposal;
 - `reactants`:
@@ -327,8 +329,8 @@ Composite or higher-scale PDG terms therefore belong to the PDG proposal/review 
 
 For consistency with the current local corpus:
 
-- test-case participant `pdgId` fields presently carry canonical PDG ASCII particle names;
-- live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
+- PDG test reaction participant `pdgId` fields presently carry canonical PDG ASCII particle names;
+- PDG reaction reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
 - and changing the participant-side identity field structure is out of scope for the present v1 lock.
 
 The first exported `pdgsolve-request/v1` candidate should follow these rules:
@@ -336,7 +338,7 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 - `schema` is always `pdgsolve-request/v1`;
 - `source.kind` is `pdgfeed`;
 - `source.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
-- `source.title` should be a concise channel label suitable for test cases and review;
+- `source.title` should be a concise channel label suitable for PDG test reactions and review;
 - `reactants` and `products` are produced only from normalized proposal records, never from raw PDG objects at export time;
 - `reactants` and `products` contain only explicit assembly-native occurrences, never composite/grouping ids;
 - each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
@@ -447,7 +449,7 @@ Status: `active`
 
 Current:
 
-- `build-live-manifest` already freezes exportable/analyzable cases into a stable ordered list separate from unsupported discovery cases.
+- `build-pdg-reaction-manifest` already freezes exportable/analyzable reactions into a stable ordered list separate from unsupported discovery reactions.
 
 Objective:
 
@@ -504,31 +506,31 @@ For named mixed-core composites, use `hp` and `hq`. Do not spell those objects w
 
 Current compact AAA notation:
 
-| AAA Notation | Name                         | Notes                                                              | PDG API Notation |
-| ------------ | ---------------------------- | ------------------------------------------------------------------ | ---------------- |
-| `d1` or `d`  | down quark                   | generation I may omit the `1`                                      | `d`              |
-| `d2`         | strange quark                | generation II down-family                                          | `s`              |
-| `d3`         | bottom quark                 | generation III down-family                                         | `b`              |
-| `e1` or `e`  | electron                     | generation I may omit the `1`                                      | `e-`             |
-| `e2`         | muon                         | generation II charged lepton                                       | `mu-`            |
-| `e3`         | tau                          | generation III charged lepton                                      | `tau-`           |
-| `N`          | neutron                      | aligns with existing `Pro Neutron` support                         | `n`              |
-| `P`          | proton                       | aligns with existing `Pro Proton` support                          | `p`              |
-| `u1` or `u`  | up quark                     | generation I may omit the `1`                                      | `u`              |
-| `u2`         | charm quark                  | generation II up-family                                            | `c`              |
-| `u3`         | top quark                    | generation III up-family                                           | `t`              |
-| `v1` or `v`  | neutrino                     | generation I may omit the `1`                                      | `nu_e`           |
-| `v2`         | muon neutrino                | generation II neutrino                                             | `nu_mu`          |
-| `v3`         | tau neutrino                 | generation III neutrino                                            | `nu_tau`         |
-| `W+`         | `W+` boson                   | two-character token                                                | `W+`             |
-| `W-`         | `W-` boson                   | two-character token                                                | `W-`             |
-| `Z`          | `Z` boson                    | direct match                                                       | `Z`              |
-| `h`          | Noether core                 | base core symbol                                                   | `n/a`            |
-| `h2`         | Bi Binary                    | reduced `Noether core` form                                        | `n/a`            |
-| `h3`         | Uni Binary                   | reduced `Noether core` form                                        | `n/a`            |
-| `hp`         | Noether Pair or Photon       | atomic mixed-core shorthand for `h.ah`                             | `n/a`            |
-| `hq`         | Noether Quad                 | atomic mixed-core shorthand for `h.h.ah.ah`                        | `n/a`            |
-| `e:p@`       | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
+| AAA Notation | Name                             | Notes                                                              | PDG API Notation |
+| ------------ | -------------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `d1` or `d`  | down quark                       | generation I may omit the `1`                                      | `d`              |
+| `d2`         | strange quark                    | generation II down-family                                          | `s`              |
+| `d3`         | bottom quark                     | generation III down-family                                         | `b`              |
+| `e1` or `e`  | electron                         | generation I may omit the `1`                                      | `e-`             |
+| `e2`         | muon                             | generation II charged lepton                                       | `mu-`            |
+| `e3`         | tau                              | generation III charged lepton                                      | `tau-`           |
+| `N`          | neutron                          | aligns with existing `Pro Neutron` support                         | `n`              |
+| `P`          | proton                           | aligns with existing `Pro Proton` support                          | `p`              |
+| `u1` or `u`  | up quark                         | generation I may omit the `1`                                      | `u`              |
+| `u2`         | charm quark                      | generation II up-family                                            | `c`              |
+| `u3`         | top quark                        | generation III up-family                                           | `t`              |
+| `v1` or `v`  | neutrino                         | generation I may omit the `1`                                      | `nu_e`           |
+| `v2`         | muon neutrino                    | generation II neutrino                                             | `nu_mu`          |
+| `v3`         | tau neutrino                     | generation III neutrino                                            | `nu_tau`         |
+| `W+`         | `W+` boson                       | two-character token                                                | `W+`             |
+| `W-`         | `W-` boson                       | two-character token                                                | `W-`             |
+| `Z`          | `Z` boson                        | direct match                                                       | `Z`              |
+| `h`          | Noether core                     | base core symbol                                                   | `n/a`            |
+| `h2`         | Bi Binary                        | reduced `Noether core` form                                        | `n/a`            |
+| `h3`         | Uni Binary                       | reduced `Noether core` form                                        | `n/a`            |
+| `hp`         | Noether Pair or Photon           | mixed-core shorthand for `h.ah`                                    | `gamma`          |
+| `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.h.ah.ah`                               | `n/a`            |
+| `e:p@`       | `Unbound Architrinos` ledger     | explicit electrino:positrino count, with both sides always present | `n/a`            |
 
 The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
 
