@@ -107,12 +107,11 @@ pdgsolve should speak first in solver and publication terms, not in screen-layou
 
 The visible surface of pdgedit may be useful as a visual metaphor for how the solve flow is organized.
 
-For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic parts.
+For orientation, the visible base array may be described as organized into `5` semantic stages.
 
-| Semantic part | reactant assemblies | reactant-side operators              | intermediate assemblies         | product-side operators              | product assemblies |
-| ------------- | ------------------- | ------------------------------------ | ------------------------------- | ----------------------------------- | ------------------ |
-| Surface role  | reactants           | dissociation and pass-thru operators | intermediates                   | association and pass-thru operators | products           |
-| UI reading    | reactant assemblies | reactant operators                   | intermediate assemblies         | product operators                   | product assemblies |
+| Semantic stage | reactant assemblies | reactant-side operators              | intermediate assemblies | product-side operators              | product assemblies |
+| -------------- | ------------------- | ------------------------------------ | ----------------------- | ----------------------------------- | ------------------ |
+| Surface role   | reactants           | dissociation and pass-thru operators | intermediates           | association and pass-thru operators | products           |
 
 That table is only a translation aid. The rest of this document should use reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance, and publication language rather than surface layout language.
 
@@ -137,8 +136,9 @@ The assembly grammar is:
 
 - reactant assemblies, intermediate assemblies, and product assemblies contain assemblies only;
 - reactant-side operators and product-side operators contain operators only;
-- all normal solve progress moves from reactant side to product side through adjacent semantic parts only;
-- and every solver-native assembly in those parts is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content.
+- all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
+- and every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content.
+- the solver does have a degree of freedom to add pro/anti Noether cores as pairs of reactant or product assemblies, although that pairing is not carried through the solving process – instead being techniques to add spacetime assemblies to enable solution closure.
 
 In pdgsolve terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
@@ -159,7 +159,7 @@ pdgsolve should treat this as a combinatorial state graph, not as screen geometr
 
 That means:
 
-- position in this five-part solve flow is semantic;
+- position in this five-stage solve flow is semantic;
 - assembly order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
 
@@ -167,7 +167,7 @@ For mathematical purposes, pdgsolve should model one solve family with a finite 
 
 Each of reactant assemblies, intermediate assemblies, and product assemblies should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
 
-If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic part \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
+If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic stage \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
 
 A concrete solve attempt is therefore a request
 
