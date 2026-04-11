@@ -17,7 +17,7 @@ It sits between upstream request sources and downstream pdgedit documents.
 It owns:
 
 - intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), fixtures, and direct developer input;
-- normalization of those requests into a pdgsolve-owned solve problem;
+- normalization of those requests into a pdgsolve-owned solve problem expressed only in explicit admitted assemblies;
 - combinatorial search over conservative solve candidates;
 - review and acceptance of candidate solve outcomes;
 - publication of accepted results into final `pdgedit/v1` documents;
@@ -85,6 +85,22 @@ The durable pdgsolve shape should separate:
 
 Large coordinator files may assemble those pieces, but they should not become the long-term home of solver semantics.
 
+### Core Ontology Boundary
+
+pdgsolve core should be assembly-native and Standard-Model-assembly-only.
+
+That means:
+
+- every solver-native reactant assembly, intermediate assembly, and product assembly is one explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to admitted Standard Model content;
+- composites of assemblies are higher-scale grouping interpretations, not solver-native assemblies;
+- composites are not dissociation inputs, association outputs, intermediate assemblies, or solver search symbols;
+- higher-scale reactant terms and product terms belong to boundary translation, not to solver-core ontology;
+- an upstream translation layer may expand higher-scale descriptions into explicit assemblies before pdgsolve sees the request;
+- a downstream translation layer may collapse explicit accepted assemblies into higher-scale descriptions after pdgsolve finishes;
+- and once a request enters pdgsolve, the solver should operate only on explicit admitted assemblies until it hands the accepted result back to a boundary adapter.
+
+This boundary should stay explicit in the request contract, the solve problem model, the operator laws, the search state, the accepted-solution graph, and the downstream publication handoff.
+
 ### Limited Terminology For Visual Translation
 
 pdgsolve should speak first in solver and publication terms, not in screen-layout shorthand.
@@ -121,22 +137,23 @@ The assembly grammar is:
 
 - reactant assemblies, intermediate assemblies, and product assemblies contain assemblies only;
 - reactant-side operators and product-side operators contain operators only;
-- and all normal solve progress moves from reactant side to product side through adjacent semantic parts only.
+- all normal solve progress moves from reactant side to product side through adjacent semantic parts only;
+- and every solver-native assembly in those parts is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content.
 
-In pdgsolve terminology, an **assembly** is one solver-native assembly object that can participate in operator routing.
+In pdgsolve terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
-pdgsolve should not use PDG particle-level names, display-grouping names, support-pair names, or support-quad names as solver-native assembly ids.
+pdgsolve should not use composite particle names, display-grouping names, support-pair names, support-quad names, residue labels, or other interpreted higher-scale terms as solver-native assembly ids.
 
 Those names belong on either side of the solver boundary:
 
-- before pdgsolve, [pdgfeed](./pdgfeed.md) may know PDG particle names and expand them into individual assemblies;
-- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published intermediate assemblies and classify or group them as transient W/Z boson corridors where a dedicated downstream rule admits that reading;
+- before pdgsolve, [pdgfeed](./pdgfeed.md) or another boundary adapter may know higher-scale particle or reaction names and expand them into explicit individual assemblies;
+- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published explicit assemblies and classify or group them where a dedicated downstream rule admits that reading;
 - after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved assemblies;
-- inside pdgsolve, all routing, scoring, and provenance should use individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `pro_noether_core`, and `anti_noether_core`.
+- and inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
 
-pdgsolve should not solve over `W-`, `W+`, or `Z` bosons as native units in the v1 strip.
+pdgsolve should not solve over `neutron`, `proton`, `W-`, `W+`, or `Z` as native units in the v1 strip when those names are being used as composite labels, corridor interpretations, or other higher-scale descriptions over multiple assemblies.
 
-For the current boundary, W/Z boson language is a downstream interpretation of already-emitted intermediate assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
+For the current boundary, such language is a boundary-side interpretation of already-emitted explicit assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
 
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
@@ -146,53 +163,19 @@ That means:
 - assembly order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
 
-If Noether spontaneous material is permitted, it should enter through a deliberately limited spontaneous-assembly rule rather than as arbitrary free placement.
-
-In this document, a **spontaneous assembly** is an ordinary assembly that appears through an admitted law as auxiliary causal input rather than as one of the primary requested boundary assemblies. It is not a separate object type. `Spontaneous` names how the assembly enters the channel, not what kind of thing it is.
-
-For the current working direction, that means:
-
-- Noether spontaneous material is added only as individual Noether core assemblies;
-- spontaneous assemblies are added in balanced pairs, one `pro_noether_core` and one `anti_noether_core` at a time;
-- the assembly-level beta family requires two `pro_noether_core` assemblies and two `anti_noether_core` assemblies;
-- no paired, quad, or display-grouping support token is admitted as solver-native material;
-- there is no separate solver action required to expose or open a grouping;
-- pdgedit publication may omit any grouping label/span until the post-solver grouping contract is explicitly admitted;
-- spontaneous assemblies are not intermediate assemblies by default;
-- spontaneous assemblies are not arbitrary insertions into the intermediate assemblies;
-- and spontaneous assemblies are not free-floating geometry owned by the renderer.
-
 For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
-
-The current Noether spontaneous family is the distinguished assembly-level subset
-
-$$
-\mathcal{A}_{\mathrm{st}} = \{\mathrm{pro\_noether\_core}, \mathrm{anti\_noether\_core}\} \subset \mathcal{A}.
-$$
-
-Those symbols denote individual Noether core assemblies that may appear as spontaneous assemblies in an admitted law.
-
-They do not become `Dissociate` or `Associate` endpoints merely because they are present in \(\mathcal{A}\).
 
 Each of reactant assemblies, intermediate assemblies, and product assemblies should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
 
 If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic part \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
 
-For the current working support policy, pdgsolve should enumerate over the finite balanced-support family
+A concrete solve attempt is therefore a request
 
 $$
-\mathcal{S} = \{0, e_{\mathrm{pro\_noether\_core}} + e_{\mathrm{anti\_noether\_core}}, 2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}\}.
+(R, T) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}},
 $$
 
-A concrete solve attempt is therefore an augmented request
-
-$$
-(R, T, s^{-}, s^{+}) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}} \times \mathcal{S} \times \mathcal{S},
-$$
-
-with effective reactant assemblies \(R + s^{-}\) and effective product assemblies \(T + s^{+}\).
-
-This support family can later widen, but pdgsolve v1 should keep it finite and explicit.
+with explicit reactant assemblies \(R\) and explicit product assemblies \(T\).
 
 ### Operator Semantics
 
@@ -207,17 +190,17 @@ pdgsolve should keep the operator family deliberately small.
 `Dissociate` means:
 
 - exactly one input is accepted;
-- that input must come from one reactant assembly, not from a grouping label or span;
+- that input must come from one explicit reactant assembly, not from a composite term, grouping label, or span;
 - one reactant-side 4-tile assembly is opened;
-- the resulting output is a constrained set of intermediate assemblies determined by the decomposition law for that assembly family;
+- the resulting output is a constrained set of explicit intermediate assemblies determined by the decomposition law for that assembly family;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
 
 `Associate` means:
 
-- one or more intermediate assemblies are gathered into one product assembly;
+- one or more explicit intermediate assemblies are gathered into one explicit product assembly;
 - exactly one output is emitted;
-- that output must go to one product assembly, not to a grouping label or span;
+- that output must go to one explicit product assembly, not to a composite term, grouping label, or span;
 - the operation is legal only when the gathered material exactly satisfies the product assembly recipe;
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
 - and the total conserved ledger is preserved across the gather-and-assemble step.
@@ -259,128 +242,43 @@ The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixe
 
 Unary assembly laws should remain the default.
 
-But pdgsolve may also introduce a small number of finite local spontaneous-assembly laws over explicit reactant-side multisets when exact provenance requires jointly checked spontaneous assemblies.
+Any future non-unary law remains acceptable only when:
 
-That move is acceptable only when:
+- every participating input and output is still written entirely in explicit admitted assembly ids from \(\mathcal{A}\);
+- the law has fixed explicit conserved-content meaning;
+- and the law does not smuggle in higher-scale semantics by renaming a composite interpretation as if it were one assembly symbol.
 
-- the participating reactant-side assemblies remain explicit in the normalized solve problem;
-- the spontaneous-assembly law has fixed explicit conserved-content meaning;
-- and the spontaneous-assembly law removes ambiguity rather than hiding spontaneous input inside a renamed unary symbol.
+### First Worked Weak Gate: Assembly-Level Beta Boundary
 
-### First Worked Weak Gate: Assembly-Level Beta Reaction
+The familiar beta-decay channel is the right first boundary example precisely because multiple descriptive scales may appear around the same event.
 
-The first concrete worked weak family should be the assembly-level beta reaction emitted by the upstream PDG boundary adapter for the familiar beta-decay channel.
+Upstream or downstream tools may speak in higher-scale terms such as neutron/proton language or transient boson/grouping language.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger, one \(u\) and one \(d\) are spectators, while the second \(d\) is the active agent, and the reaction also relies on a minimal neutral weak-support environment.
+pdgsolve must not treat those higher-scale terms as native solver objects.
 
-pdgsolve should therefore not claim that the bare assembly request
+The pdgsolve-core expression of that family, if it is admitted at all, must be written only in explicit assemblies already present in the active assembly alphabet, for example:
 
-$$
-\Delta(2e_{\mathrm{pro\_down\_quark}} + e_{\mathrm{pro\_up\_quark}})
-\ni
-e_{\mathrm{pro\_down\_quark}} + 2e_{\mathrm{pro\_up\_quark}} + e^- + \bar{\nu}_e
-$$
+- reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark`;
+- product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron_antineutrino`.
 
-unless both of the following are true:
+From that point forward:
 
-- the required spontaneous assemblies are explicit in the normalized reactant multiset;
-- and pdgsolve has an admitted primitive-preserving fermion decomposition law table that explains how the active fermion assembly and the reserved spontaneous assemblies produce the requested lepton assemblies.
+- the core search may use only explicit assembly ids from \(\mathcal{A}\);
+- the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
+- if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
+- and any request that arrives with higher-scale reactant or product terms must be expanded or rejected at the boundary before search begins.
 
-The clean pdgsolve-v1 way to encode the request shape is:
+### Preferred Assembly Dissociation and Association Pattern
 
-- require [pdgfeed](./pdgfeed.md) or an equivalent boundary adapter to expand PDG particle names before pdgsolve sees the request;
-- during normalization, when the request and active policy justify inspecting the assembly-level beta family, make the minimal spontaneous environment explicit as individual Noether core assemblies;
-- represent the normalized reactant-side multiset as
+Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
 
-$$
-x_{1,\beta}
-=
-2e_{\mathrm{pro\_down\_quark}}
-+ e_{\mathrm{pro\_up\_quark}}
-+ 2e_{\mathrm{pro\_noether\_core}}
-+ 2e_{\mathrm{anti\_noether\_core}};
-$$
-
-- treat the two `pro_noether_core` assemblies plus the two `anti_noether_core` assemblies as explicit spontaneous assemblies for beta-family review;
-- and route the active `pro_down_quark` assembly through an admitted primitive-preserving fermion decomposition family instead of a hidden direct beta shortcut.
-
-The previously considered shortcut would have been a single-input assembly rewrite with explicit spontaneous assemblies:
-
-$$
-\Delta_{\beta}\!\left(
-e_{\mathrm{pro\_down\_quark}}
-\mid
-2e_{\mathrm{pro\_noether\_core}}
-+ 2e_{\mathrm{anti\_noether\_core}}
-\right)
-=
-\left\{
-e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}
-\right\}.
-$$
-
-That shortcut remains blocked in the active pdgsolve v1 law table.
-
-Instead, pdgsolve now admits the finite residue-assembly vocabulary
-
-$$
-\{
-\mathrm{unbound\_architrino\_residue\_e4\_p8},
-\mathrm{unbound\_architrino\_residue\_e9\_p3},
-\mathrm{unbound\_architrino\_residue\_e6\_p6}
-\},
-$$
-
-with separate Electrino and Positrino ledgers and intermediate-assemblies-only permissions.
-
-The first admitted `pdgsolve-laws/fermion-decomposition.v1` family therefore works in two operator parts:
-
-- the reactant-side operators dissociate the active `pro_down_quark` assembly, together with the reserved two `pro_noether_core` assemblies and two `anti_noether_core` assemblies, into the three residue assemblies above;
-- the product-side operators associate those residue assemblies into `pro_up_quark`, `electron`, and `electron_antineutrino`;
-- while the spectator `pro_up_quark` assembly and spectator `pro_down_quark` assembly still pass through unchanged.
-
-Using the canonical five-part terminology, the admitted exact family is:
-
-- reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark` plus two `pro_noether_core` assemblies and two `anti_noether_core` assemblies;
-- reactant-side operators: two `Pass Thru` operators for the spectator assemblies plus one admitted `Dissociate` operator for the active `pro_down_quark` assembly;
-- intermediate assemblies: `pro_down_quark + pro_up_quark + unbound_architrino_residue_e4_p8 + unbound_architrino_residue_e9_p3 + unbound_architrino_residue_e6_p6`;
-- product-side operators: two `Pass Thru` operators plus three admitted `Associate` operators from the residue assemblies into final product assemblies;
-- product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron-antineutrino`.
-
-If normalization cannot justify those explicit Noether core spontaneous assemblies under the active request and policy bundle, pdgsolve should emit `pdgsolve.normalization.support_required.noether_core_rows` and keep the beta-shaped case review-only.
-
-### Preferred Assembly Dissociation and Association Patterns And Structural Ranking
-
-The current admitted residue-assembly family is not yet the preferred structural explanation.
-
-The stronger preferred shape is:
-
-- a Noether core spontaneous assembly should be able to pass through from reactant assemblies into intermediate assemblies as an explicit carrier rather than disappearing into a residue-only bookkeeping pile;
-- the intermediate assemblies should therefore preserve explicit spontaneous-carrier structure when a spontaneous assembly truly remains part of the provenance explanation;
-- a product-side `Associate` should be allowed to consume one explicit Noether core carrier together with the needed number of unbound architrinos to make a fermion assembly;
-- and a mapping that merely says "here is one pile with the correct ledger counts" should score below a mapping that preserves this carrier structure explicitly.
-
-In practical terms, pdgsolve should distinguish two classes of exact fermion-decomposition mapping:
-
-- a **residue-pile mapping**, where the intermediate assemblies contain only anonymous residue assemblies whose sole virtue is that their ledger counts match the needed outputs;
-- and a **carrier-preserving mapping**, where one or more Noether core assemblies remain explicit intermediate carriers and the product-side assembly laws show how those carriers plus unbound architrino material form the final fermion assemblies.
-
-Both mappings may be primitively exact.
-
-But they are not equally good explanations.
-
-The carrier-preserving mapping should rank higher because it:
-
-- keeps the spontaneous-assembly provenance visible rather than hiding it inside one counted residue assembly;
-- expresses fermion formation as a structured gather-and-assemble act rather than as a ledger-matching placeholder;
-- reduces the risk that the intermediate assemblies degenerate into an arbitrary pile vocabulary;
-- and better matches the intended meaning of Noether support entering from spacetime and participating in the final assembly.
+It should not be judged on whether the branch happens to match a preferred higher-scale nickname or grouping interpretation.
 
 So the design rule is:
 
-- residue assemblies are acceptable as explicit temporary material;
-- residue-only exact closure is allowed when no better admitted mapping exists;
-- but once a carrier-preserving exact mapping exists for the same normalized request, pdgsolve should score it above the residue-only alternative.
+- the solver core reasons only over explicit admitted assemblies and explicit admitted operators;
+- any composite label, aggregate name, or corridor reading is optional boundary-side explanatory metadata;
+- and downstream grouping or naming may summarize an accepted explicit-assembly solution, but it must not define the ontology of the solve itself.
 
 ### Request Intake
 
@@ -393,6 +291,8 @@ pdgsolve should support a small number of explicit entry modes:
 
 pdgsolve should consume explicit request data rather than hidden app-local state.
 
+If an upstream surface lets an operator speak in higher-scale reactant or product terms, that surface or its boundary adapter should expand those terms into explicit assemblies before pdgsolve core sees the request.
+
 ### Solve Problem Model
 
 pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
@@ -401,11 +301,19 @@ That solve problem model should describe:
 
 - reactant assemblies;
 - product assemblies;
-- any explicit center material;
-- any explicit Noether core spontaneous assemblies admitted by policy;
+- the admitted intermediate-assembly alphabet;
 - the permitted operator grammar;
 - policy or theory gates;
 - and provenance/accounting requirements.
+
+That solve problem model should contain only explicit admitted assemblies.
+
+It should not contain:
+
+- higher-scale reactant or product labels;
+- grouping interpretations over multiple assemblies;
+- residue labels or other non-Standard-Model substitute symbols;
+- or any other boundary-translation artifacts.
 
 That solve problem model should avoid:
 
@@ -418,18 +326,19 @@ That solve problem model should avoid:
 Mathematically, pdgsolve should describe one solve instance as
 
 $$
-Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \mathcal{S}, \Delta, \Gamma, \Pi),
+Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \Delta, \Gamma, \Pi),
 $$
 
 where:
 
-- \(\mathcal{A}\) is the finite assembly alphabet for the active solve family;
+- \(\mathcal{A}\) is the finite assembly alphabet of explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies for the active solve family;
 - \(\mathcal{P}\) is the basis of conserved primitive content;
 - \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
 - \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the requested reactant and product multisets;
-- \(\mathcal{S}\) is the allowed finite spontaneous-assembly augmentation family;
 - \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
 - and \(\Pi\) is the active policy bundle.
+
+By the time \(R\) and \(T\) exist, any higher-scale upstream description has already been expanded into explicit assembly multisets or rejected at the boundary.
 
 For pdgsolve v1, the minimal explicit conserved basis should be
 
@@ -474,11 +383,9 @@ $$
 \mathcal{A}_{\mathrm{v1}}
 =
 \{
-\mathrm{anti\_noether\_core},
 \mathrm{electron},
 \mathrm{electron\_antineutrino},
 \mathrm{pro\_down\_quark},
-\mathrm{pro\_noether\_core},
 \mathrm{pro\_up\_quark}
 \}.
 $$
@@ -491,21 +398,20 @@ The v1 assembly table should be:
 | `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | \((4, 8)\) | individual quark assembly |
 | `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | \((9, 3)\) | charged lepton assembly |
 | `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | \((6, 6)\) | neutral lepton assembly |
-| `pro_noether_core` | `Pro Noether Core` | reactant assemblies support only | \((3, 3)\) | added only in balanced pro/anti support pairs |
-| `anti_noether_core` | `Anti Noether Core` | reactant assemblies support only | \((3, 3)\) | added only in balanced pro/anti support pairs |
 
 The versioned v1 bookkeeping values should therefore include:
 
 - \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\);
 - \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\);
 - \(\mu(\mathrm{electron}) = (9, 3)\);
-- \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\);
-- \(\mu(\mathrm{pro\_noether\_core}) = (3, 3)\);
-- and \(\mu(\mathrm{anti\_noether\_core}) = (3, 3)\).
+- and \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\).
 
 pdgsolve v1 should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
 
-In particular, no normalization or ranking rule should collapse assemblies into a particle-level grouping merely because their primitive ledgers match.
+In particular:
+
+- no normalization or ranking rule should collapse assemblies into a higher-scale grouping merely because their primitive ledgers match;
+- and no non-Standard-Model support token or residue token should be added to the v1 alphabet merely to make a higher-scale story easier to tell.
 
 ### V1 Law Tables
 
@@ -521,24 +427,21 @@ $$
 a \in \mathcal{A}_{\mathrm{v1}}.
 $$
 
-So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies and is not part of an explicitly admitted local spontaneous-assembly family.
+So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies.
 
-The previously considered direct assembly-level beta support rule is now explicitly outside the admitted law table:
+The previously considered direct assembly-level beta shortcut is explicitly outside the admitted law table:
 
-| Blocked law id | Blocked input | Required spontaneous assemblies | Blocked output multiset | Why blocked |
-| --- | --- | --- | --- | --- |
-| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `2 x pro_noether_core`, `2 x anti_noether_core` | `pro_up_quark + electron + electron_antineutrino` | it hides the missing primitive-preserving fermion decomposition law family and the missing unbound-architrino residue-assembly vocabulary |
-
-The missing-law gap is now closed by the finite admitted table `pdgsolve-laws/fermion-decomposition.v1`.
+| Blocked law id | Blocked input | Blocked output multiset | Why blocked |
+| --- | --- | --- | --- |
+| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `pro_up_quark + electron + electron_antineutrino` | no admitted assembly-native Standard-Model law family exists yet, and pdgsolve core may not compensate by introducing composite or non-native substitute symbols |
 
 That means:
 
 - there is no unary particle-level dissociation rule in v1;
 - there is no direct assembly-level beta dissociation rule in v1;
 - there is no W/Z boson production or absorption rule in v1;
-- there is no generic `Noether core -> ...` unary rule in v1;
-- Noether spontaneous assemblies do not receive unary pass-thru in v1 because they are spontaneous assemblies, not intermediate assemblies;
-- there is no open-ended association table beyond identity pass-thru plus the admitted residue-to-product beta associations;
+- there is no composite-aware law family in v1;
+- there is no residue or support-token vocabulary in v1;
 - and any branch that requires a non-identity law family outside the admitted tables should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
 ### Normalization Rules
@@ -555,17 +458,17 @@ It should carry:
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides.
 
+If a source begins from higher-scale terms, the expansion into explicit assemblies should happen before those occurrence lists are formed.
+
 Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\), the executable law table as `pdgsolve-laws/v1-pass-thru-only`, and the spontaneous-assembly family as balanced pro/anti Noether core assembly pairs unless the request narrows that family explicitly;
-5. build the requested multisets \(R\) and \(T\);
-6. when the assembly request matches the beta source signature and policy `betaSupportMode = allow-implied-noether-core-support`, add two `pro_noether_core` assemblies and two `anti_noether_core` assemblies if those assemblies are not already explicit, mark them as normalized spontaneous assemblies, and emit `pdgsolve.normalization.support_added.noether_core_rows`;
-7. when the assembly request matches the beta source signature but policy `betaSupportMode = explicit-only`, do not synthesize support; keep \(R\) unchanged and emit `pdgsolve.normalization.support_required.noether_core_rows`;
-8. reject any particle-level or grouping-level id that reaches pdgsolve as if it were one assembly with `pdgsolve.request.unsupported_assembly`; and
-9. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
+4. reject any higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that reaches pdgsolve core with `pdgsolve.request.composite_requires_boundary_expansion`;
+5. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
+6. build the requested multisets \(R\) and \(T\);
+7. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 The normalized pdgsolve problem contract should be:
 
@@ -577,9 +480,8 @@ The normalized pdgsolve problem contract should be:
 - `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
 - `lawTableId: "pdgsolve-laws/v1-pass-thru-only"`;
-- `allowedSupportAugmentations`, with values drawn from `none`, `one_balanced_noether_core_pair`, and `two_balanced_noether_core_pairs`;
 - `policy`;
-- and `normalization`, containing explicit notes about added support material and normalization diagnostics.
+- and `normalization`, containing explicit notes about boundary translation assumptions and normalization diagnostics.
 
 ### Conserved Balance Equations
 
@@ -589,10 +491,10 @@ Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the c
 
 It is one fixed primitive carrier set viewed through three different assembly partitions.
 
-For chosen support augmentations \((s^{-}, s^{+})\), define the full reactant assemblies and product assemblies
+Define the explicit reactant assemblies and explicit product assemblies
 
 $$
-x_{1} = R + s^{-}, \qquad x_{5} = T + s^{+}.
+x_{1} = R, \qquad x_{5} = T.
 $$
 
 An exact candidate must find:
@@ -639,7 +541,7 @@ If a request fails these equalities at the boundary, pdgsolve should not silentl
 Instead, it should report the primitive imbalance vector
 
 $$
-\delta(Q; s^{-}, s^{+}) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
+\delta(Q) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
 $$
 
 with the concrete components
@@ -649,13 +551,13 @@ $$
 \delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5}).
 $$
 
-If \(\delta(Q; s^{-}, s^{+}) \neq 0\), then exact closure is impossible for that support choice.
+If \(\delta(Q) \neq 0\), then exact closure is impossible for that request under the active assembly-native law table.
 
 So at the first primitive level, pdgsolve should always be able to say:
 
 - Electrinos balanced or imbalanced by \(\delta_{E}\);
 - Positrinos balanced or imbalanced by \(\delta_{P}\);
-- and whether any allowed balanced Noether core spontaneous assemblies remove that deficit exactly.
+- and whether the explicit admitted assembly request can possibly close without leaving the assembly-native ontology.
 
 ### Combinatorial Search Model
 
@@ -667,7 +569,7 @@ The search design should specify:
 - what counts as one candidate expansion;
 - how operators such as `Pass Thru`, `Dissociate`, and `Associate` expand the state;
 - how conservation and provenance prune illegal branches;
-- how residue, ambiguity, and unsupported cases are represented explicitly;
+- how mismatch, ambiguity, and unsupported cases are represented explicitly;
 - and how deterministic ranking chooses one accepted candidate over other legal candidates.
 
 The search model should remain planner-first rather than surface-first.
@@ -682,7 +584,7 @@ In particular:
 - each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
 - each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
 - each `Associate` choice emits exactly one 4-tile assembly product output;
-- spontaneous assemblies can constrain which assembly-level rewrite is available, but they are not local operator inputs;
+- no composite label or other higher-scale term participates as a dissociation input, association output, or search symbol;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
@@ -702,40 +604,6 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
 
-Noether spontaneous assemblies are therefore not given unary reactant-side pass-thru merely by belonging to \(\mathcal{A}\).
-
-They enter the search only as explicit spontaneous-assembly requirements for approved assembly-level laws.
-
-For a small finite set of worked weak families, pdgsolve may also define explicit spontaneous-assembly rewrites over a single operator input and a required reactant-side spontaneous multiset
-
-$$
-c \in \mathbb{N}^{\mathcal{A}},
-$$
-
-with a finite assembly-level family
-
-$$
-\Lambda_{2}(c).
-$$
-
-The current admitted pdgsolve v1 value of \(\Lambda_{2}(c)\) contains one explicit local assembly-level beta decomposition family for the active `pro_down_quark` plus two balanced pro/anti Noether-core spontaneous pairs.
-
-The blocked shortcut
-
-$$
-\Lambda_{2}\!\left(
-e_{\mathrm{pro\_down\_quark}}
-\mid
-2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}
-\right)
-\ni
-e_{\mathrm{pro\_up\_quark}} + e_{e^-} + e_{\bar{\nu}_e}
-$$
-
-remains outside that admitted family even though `pdgsolve-laws/fermion-decomposition.v1` is now present.
-
-Search should therefore create a reactant-side `Dissociate` unit only for the admitted residue-emitting family, not for the blocked direct shortcut.
-
 For the product-side operators, pdgsolve should define the unary local product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
 
 $$
@@ -744,7 +612,7 @@ $$
 
 where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal intermediate-assemblies input multiset that can `Associate` into \(a\).
 
-Given full reactant assemblies \(x_{1}\) and a chosen reservation of any spontaneous-assembly law occurrences, the remaining unary left-generated intermediate family is
+Given full reactant assemblies \(x_{1}\), the unary left-generated intermediate family is
 
 $$
 \mathfrak{L}(x_{1}) =
@@ -766,11 +634,7 @@ z_{a,j} \in \Lambda_{4}(a)
 \right\}.
 $$
 
-These unary families are understood after removing any occurrences already reserved into approved reactant-side spontaneous-assembly rewrites.
-
-Because pdgsolve now admits one approved reactant-side spontaneous-assembly rewrite, the beta-family spontaneous assemblies may be reserved explicitly into the active fermion decomposition law while still remaining visible in the reactant assemblies for review.
-
-An exact solve for the support choices \((s^{-}, s^{+})\) therefore requires
+An exact solve therefore requires
 
 $$
 \exists x_{3} \in \mathfrak{L}(x_{1}) \cap \mathfrak{R}(x_{5}),
@@ -781,13 +645,12 @@ together with a provenance witness showing that the chosen left and right rewrit
 One useful branch-state record is
 
 $$
-s = (s^{-}, s^{+}, \phi_{2}, \phi_{4}, x_{3}^{L}, x_{3}^{R}, W),
+s = (\phi_{2}, \phi_{4}, x_{3}^{L}, x_{3}^{R}, W),
 $$
 
 where:
 
 - \(\phi_{2}\) is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
-- \(\phi_{2}\) may assign either unary reactant occurrences or one approved spontaneous-assembly law;
 - \(\phi_{4}\) is a partial assignment of product-side operator choices to product assembly occurrences;
 - \(x_{3}^{L}\) is the partial intermediate assemblies generated from the reactant assemblies;
 - \(x_{3}^{R}\) is the partial intermediate assemblies required by the product assemblies;
@@ -797,15 +660,14 @@ pdgsolve should execute this search as a bounded meet-in-the-middle enumeration.
 
 The operational loop should be:
 
-1. choose one support augmentation \((s^{-}, s^{+})\);
-2. reject that choice immediately if the primitive imbalance vector \(\delta(Q; s^{-}, s^{+})\) is nonzero and the current search mode requires exact closure;
-3. initialize the empty branch state with no reactant-side or product-side operator assignments;
-4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
-5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\), or reserve one approved spontaneous-assembly law when the active family allows it;
-6. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
-7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
-8. continue until all reactant and product occurrences are assigned;
-9. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
+1. reject the request immediately if the primitive imbalance vector \(\delta(Q)\) is nonzero and the current search mode requires exact closure;
+2. initialize the empty branch state with no reactant-side or product-side operator assignments;
+3. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
+4. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
+5. update the partial middle inventories \(x_{3}^{L}\) and \(x_{3}^{R}\), and update the partial provenance witness \(W\);
+6. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
+7. continue until all reactant and product occurrences are assigned;
+8. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
 
 So the search does not guess full reactions in one jump.
 
@@ -820,7 +682,7 @@ pdgsolve should prune partial branches aggressively.
 At minimum, the search should prune a branch under the following conditions:
 
 - primitive impossibility:
-  the chosen support augmentation already has nonzero primitive imbalance in an exact-closure search;
+  the request already has nonzero primitive imbalance in an exact-closure search;
 - middle oversupply:
   the current left-generated intermediate assemblies already exceed the maximum possible right-required intermediate assemblies for some assembly coordinate;
 - middle undersupply:
@@ -832,7 +694,7 @@ At minimum, the search should prune a branch under the following conditions:
 - provenance impossibility:
   the partial provenance witness \(W\) can no longer be extended to a full carrier partition consistent with the chosen dissociate/associate laws;
 - dominance:
-  another branch with the same unresolved occurrence set is already no worse on middle mismatch, auxiliary burden, operator count, dissociation count, and provenance penalty;
+  another branch with the same unresolved occurrence set is already no worse on middle mismatch, operator count, dissociation count, and provenance penalty;
 - bound failure:
   the optimistic lower-bound score for the partial branch is already worse than the current best exact candidate or worse than the review threshold for retained alternates.
 
@@ -925,7 +787,7 @@ The rules lead to options in a direct way.
 A raw option is one complete assignment
 
 $$
-O_{\mathrm{raw}} = (s^{-}, s^{+}, \phi_{2}, \phi_{4}).
+O_{\mathrm{raw}} = (\phi_{2}, \phi_{4}).
 $$
 
 From that raw option, pdgsolve derives:
@@ -963,10 +825,8 @@ This yields a finite branch graph for any finite request.
 
 The key reason is:
 
-- there are only finitely many support augmentations \((s^{-}, s^{+}) \in \mathcal{S} \times \mathcal{S}\);
 - each reactant occurrence that can feed intermediate assemblies contributes one finite choice from \(\Lambda_{2}(a)\);
 - each product occurrence that can be matched from intermediate assemblies contributes one finite choice from \(\Lambda_{4}(a)\);
-- each approved spontaneous-assembly law contributes one finite choice from its spontaneous-assembly family;
 - \(\mathfrak{L}(x_{1})\) and \(\mathfrak{R}(x_{5})\) are therefore finite;
 - and provenance matching is performed over a finite primitive carrier set.
 
@@ -1005,7 +865,7 @@ This means:
 For accepted outcomes, pdgsolve should also be able to materialize one compact accepted-solution description that is:
 
 - surface-agnostic rather than pdgedit-specific;
-- explicit about requested assemblies, normalization-added assemblies, accepted operators, accepted inventories, provenance, and diagnostics;
+- explicit about requested assemblies, accepted operators, accepted inventories, provenance, and diagnostics;
 - capable of describing unknown or newly introduced spacetime reactants or products when the accepted solve needs them;
 - small enough to be useful to downstream tools other than pdgedit;
 - and free of tile payloads, screen coordinates, manifest entries, or renderer-specific layout rules.
@@ -1019,12 +879,11 @@ pdgsolve review should surface option families rather than raw branches.
 For completed raw options
 
 $$
-O_{\mathrm{raw}} = (s^{-}, s^{+}, \phi_{2}, \phi_{4}, W),
+O_{\mathrm{raw}} = (\phi_{2}, \phi_{4}, W),
 $$
 
 two branches should belong to the same option family exactly when they agree on the full review-visible solve summary:
 
-- the same support augmentation \((s^{-}, s^{+})\);
 - the same reactant assemblies, intermediate assemblies, and product assemblies;
 - the same ordered reactant-side operator assignments after canonical reactant-occurrence ordering;
 - the same ordered product-side operator assignments after canonical product-occurrence ordering;
@@ -1044,8 +903,6 @@ $$
 \operatorname{fam}(O_{\mathrm{raw}})
 =
 \bigl(
-s^{-},
-s^{+},
 x_{1},
 x_{3},
 x_{5},
@@ -1062,7 +919,7 @@ Differing provenance-witness detail should create a different option family only
 
 So:
 
-- witness detail that changes which assembly occurrence is the active rewrite source, spectator source, support source, or ambiguous source does change family identity;
+- witness detail that changes which assembly occurrence is the active rewrite source, spectator source, or ambiguous source does change family identity;
 - but witness detail that only renames equivalent primitive carriers does not.
 
 The canonical representative of an option family should be the member with minimal deterministic tie-break key \(\tau\) inside that family.
@@ -1094,7 +951,6 @@ Each member of `optionFamilies` should contain:
 - `familyId`;
 - `kind`, with values `exact`, `partial`, or `unsupported`;
 - `score`, carrying the concrete components of \(\kappa\);
-- `augmentation`, with explicit left and right support choices;
 - `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
 - `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
 - `provenanceSummary`, carrying the family-level witness summary that review must see;
@@ -1117,20 +973,17 @@ The score model should prefer, in order:
 
 - exact conservation and exact product closure;
 - zero primitive imbalance and zero intermediate-assemblies mismatch;
-- fewer policy-added spontaneous assemblies;
 - fewer non-identity operators;
 - fewer dissociations when a less disruptive exact path exists;
 - stronger provenance clarity;
 - and stable deterministic tie-breaks over otherwise equal candidates.
-
-For the current working support family, equal candidates should prefer the lower auxiliary support burden in the concrete order `none -> one_balanced_noether_core_pair -> two_balanced_noether_core_pairs`.
 
 pdgsolve should formalize that ranking as a lexicographic minimization problem.
 
 For a terminal candidate
 
 $$
-C = (s^{-}_{C}, s^{+}_{C}, \phi_{2,C}, \phi_{4,C}, x_{3,C}^{L}, x_{3,C}^{R}, W_{C}),
+C = (\phi_{2,C}, \phi_{4,C}, x_{3,C}^{L}, x_{3,C}^{R}, W_{C}),
 $$
 
 define
@@ -1141,8 +994,6 @@ $$
 \epsilon(C),
 m_{\mathrm{prim}}(C),
 m_{\mathrm{mid}}(C),
-m_{\mathrm{aux}}(C),
-m_{\mathrm{struct}}(C),
 n_{\mathrm{op}}(C),
 n_{\mathrm{diss}}(C),
 n_{\mathrm{amb}}(C),
@@ -1153,20 +1004,12 @@ $$
 with smaller values preferred, where:
 
 - \(\epsilon(C) = 0\) when \(x_{3,C}^{L} = x_{3,C}^{R}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
-- \(m_{\mathrm{prim}}(C) = \lVert \mu(R + s^{-}_{C}) - \mu(T + s^{+}_{C}) \rVert_{1}\);
+- \(m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}\);
 - \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{L} - x_{3,C}^{R} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
-- \(m_{\mathrm{aux}}(C) = \alpha(s^{-}_{C}) + \alpha(s^{+}_{C})\);
-- \(m_{\mathrm{struct}}(C)\) is the structural-explanation penalty, measuring how much the candidate relies on residue-only pile mappings instead of carrier-preserving fermion assembly;
 - \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
 - \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
 - \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
 - and \(\tau(C)\) is a deterministic tie-break key.
-
-For the current weak-family direction, pdgsolve should begin with the finite structural penalty values:
-
-- \(m_{\mathrm{struct}}(C) = 0\) when every fermion-forming product-side association keeps its Noether spontaneous assembly explicit in the intermediate assemblies and the final fermion is assembled from `Noether core + unbound architrinos`;
-- \(m_{\mathrm{struct}}(C) = 1\) when the candidate is exact but some fermion is produced only from a residue-only ledger pile that hides the carrier structure;
-- and higher values may later be reserved for more severe structure loss if additional weak families widen the search space.
 
 Candidate comparison should be strictly lexicographic.
 
@@ -1175,22 +1018,18 @@ That means:
 1. every exact candidate beats every non-exact candidate;
 2. among exact candidates, lower primitive imbalance wins first;
 3. then lower intermediate-assemblies mismatch wins;
-4. then lower auxiliary burden wins;
-5. then lower structural-explanation penalty wins;
-6. then fewer non-identity operators wins;
-7. then fewer dissociations wins;
-8. then lower ambiguity/provenance penalty wins;
-9. and finally \(\tau(C)\) breaks any remaining tie deterministically.
+4. then fewer non-identity operators wins;
+5. then fewer dissociations wins;
+6. then lower ambiguity/provenance penalty wins;
+7. and finally \(\tau(C)\) breaks any remaining tie deterministically.
 
 pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple shape.
 
 For a partial branch \(s\), the search should compute:
 
 - whether exact closure is still possible;
-- the unavoidable primitive imbalance already fixed by the chosen support augmentation;
+- the unavoidable primitive imbalance already fixed by the explicit request;
 - the minimum possible eventual intermediate-assemblies mismatch after all remaining assignments;
-- the current auxiliary burden;
-- the minimum structural-explanation penalty already forced by any residue-only decisions that cannot later be repaired into carrier-preserving associations;
 - the minimum additional operator burden still forced, with unresolved pass-thru choices contributing zero unless non-identity is provably necessary;
 - and the minimum remaining ambiguity/provenance penalty.
 
@@ -1198,34 +1037,15 @@ If that lower-bound branch score is already worse than the current incumbent exa
 
 This is the branch-and-bound bridge between search and scoring.
 
-For the current support family, the auxiliary burden weight should be
-
-$$
-\alpha(0) = 0, \qquad
-\alpha(e_{\mathrm{pro\_noether\_core}} + e_{\mathrm{anti\_noether\_core}}) = 1, \qquad
-\alpha(2e_{\mathrm{pro\_noether\_core}} + 2e_{\mathrm{anti\_noether\_core}}) = 2.
-$$
-
-This makes the current preference order exact in the math:
-
-$$
-\texttt{none}
-\prec
-\texttt{one\_balanced\_noether\_core\_pair}
-\prec
-\texttt{two\_balanced\_noether\_core\_pairs}.
-$$
-
 This means the limited reactant/intermediate/product assemblies and reactant-side/product-side operators geometry is not just a legality constraint.
 
 It is also the basis of a useful score function:
 
 - whether the reactant and product primitive budgets match exactly;
 - whether the left-generated and right-required middle inventories meet exactly;
-- how much auxiliary material was required;
-- how much explicit support-carrier structure was preserved rather than collapsed into residue-only piles;
 - how much structure had to be opened;
 - how much structure had to be rebuilt;
+- whether the branch stayed entirely within the admitted explicit assembly ontology;
 - and how directly the accepted product set was reached.
 
 An option family should inherit the score of its best canonical representative.
@@ -1246,8 +1066,6 @@ $$
 \tau(C)
 =
 \bigl(
-\operatorname{ord}(s^{-}_{C}),
-\operatorname{ord}(s^{+}_{C}),
 \sigma_{2}(C),
 \sigma_{4}(C),
 \sigma_{3}(C),
@@ -1257,7 +1075,6 @@ $$
 
 with lexicographic comparison and the concrete orders:
 
-- support augmentation order: `none < one_balanced_noether_core_pair < two_balanced_noether_core_pairs` on each side;
 - canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
@@ -1270,12 +1087,9 @@ For pdgsolve v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4
 - `pass_thru`;
 - then any later law-family symbol in the order those law ids are admitted into pdgsolve.
 
-The blocked `row.beta.pro_down_quark_to_pro_up_quark.v1` shortcut is not part of this order because it is not an admitted operator symbol.
-
 The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
 
-- whether each product occurrence is pure pass-thru, active rewrite output, or spontaneous-derived output;
-- the support source assemblies, ordered first by canonical assembly id and then by normalized occurrence index;
+- whether each product occurrence is pure pass-thru or active rewrite output;
 - and any explicit ambiguity marker bits.
 
 This means repeated runs over the same normalized problem must produce the same best-family representative even when the raw search explores equal-score branches in a different transient order.
@@ -1289,13 +1103,12 @@ The initial v1 set should be:
 | Diagnostic id | Phase | Meaning | Required payload |
 | --- | --- | --- | --- |
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
+| `pdgsolve.request.composite_requires_boundary_expansion` | request | the request names a higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that must be translated outside pdgsolve core | raw token, attempted role, and required boundary translator |
 | `pdgsolve.request.invalid_lane_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
-| `pdgsolve.normalization.support_added.noether_core_rows` | normalization | normalization added balanced `pro_noether_core` and `anti_noether_core` spontaneous assemblies | request id and added occurrence ids |
-| `pdgsolve.normalization.support_required.noether_core_rows` | normalization | beta-family inspection needs explicit or policy-allowed balanced Noether core spontaneous assemblies | request id and policy mode |
-| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q; s^{-}, s^{+}) \neq 0\) for the retained branch or retained request summary | support choice and \((\delta_E, \delta_P)\) |
-| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | support choice and canonical mismatch vector |
+| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q) \neq 0\) for the retained branch or retained request summary | request id and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.middle_mismatch` | search | left-generated and right-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
-| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 | missing law family id, blocked shortcut id when applicable, and descriptive token |
+| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 or would require leaving the explicit assembly-native ontology | missing law family id and descriptive token |
 | `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
 | `pdgsolve.review.missing_pdgedit_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
 | `pdgsolve.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
@@ -1306,7 +1119,7 @@ pdgsolve should own the review boundary between solve-core output and pdgedit pu
 
 That means:
 
-- pdgsolve may show candidate alternatives, ambiguity, residue, and unsupported families;
+- pdgsolve may show candidate alternatives, ambiguity, and unsupported families;
 - pdgsolve should allow acceptance of one explicit publication candidate;
 - pdgsolve should keep acceptance separate from mere solve completion;
 - and only accepted pdgsolve state should become publishable downstream pdgedit data.
@@ -1385,8 +1198,8 @@ For pdgsolve v1, an option family \(F\) is publication-ready if and only if:
 - every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted pdgedit publication recipe;
 - the family has no blocking diagnostic among:
   `pdgsolve.request.unsupported_assembly`,
+  `pdgsolve.request.composite_requires_boundary_expansion`,
   `pdgsolve.request.invalid_lane_role`,
-  `pdgsolve.normalization.support_required.noether_core_rows`,
   `pdgsolve.search.primitive_imbalance`,
   `pdgsolve.search.middle_mismatch`,
   `pdgsolve.search.provenance_failure`,
@@ -1450,6 +1263,7 @@ For pdgedit specifically, the translation into `pdgedit/v1` should happen before
 That translation layer should own:
 
 - mapping accepted solver-side meaning into explicit pdgedit-side objects;
+- collapsing explicit accepted assemblies into any target-specific higher-scale descriptions only when the target explicitly calls for that translation;
 - applying pdgedit-owned materialization rules for assemblies, operators, links, and any admitted grouping effects;
 - and producing one final `pdgedit/v1` document before pdgedit reads the result.
 
@@ -1491,6 +1305,7 @@ Each `unit` record should contain:
 - `lane`, with values `1`, `2`, `3`, `4`, or `5`;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
 - one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
+- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id rather than a composite, grouping label, or other higher-scale interpretation;
 - `title`, the accepted semantic title before any downstream surface-specific title expansion;
 - the accepted primitive/provenance/accounting data needed for audit;
 - and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
@@ -1643,8 +1458,8 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 
 | Fixture id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `row_beta_fermion_decomposition_exact` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | implied beta support allowed | normalization adds two `pro_noether_core` assemblies and two `anti_noether_core` assemblies; best family is exact; the intermediate assemblies contain the admitted residue assemblies; publication is ready |
-| `row_beta_support_disallowed` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | `betaSupportMode = explicit-only` | no exact family; `pdgsolve.normalization.support_required.noether_core_rows` is present; retained best family is unsupported |
+| `composite_beta_request_requires_boundary_expansion` | `neutron -> proton + electron + electron_antineutrino` | default | request is expanded by an upstream translator before pdgsolve core sees it, or else pdgsolve emits `pdgsolve.request.composite_requires_boundary_expansion`; no composite token enters search |
+| `explicit_beta_request_requires_assembly_native_law` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | no exact family exists until an admitted explicit assembly-native law family is present; retained diagnostics include `pdgsolve.search.unsupported_law_family`; no composite or non-native symbol is introduced |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
@@ -1657,7 +1472,7 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 
 ### Inputs
 
-- PDG-backed request data emitted by [pdgfeed](./pdgfeed.md);
+- explicit assembly-native request data emitted by [pdgfeed](./pdgfeed.md) or another boundary adapter;
 - built-in pdgsolve fixture requests;
 - explicit developer-loaded request documents;
 - pdgsolve-owned solve policy and review state;
@@ -1666,7 +1481,7 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 ### Outputs
 
 - pdgsolve-owned candidate solve results suitable for review;
-- compact accepted-solution documents suitable for downstream adapters;
+- compact accepted-solution documents suitable for downstream adapters, still expressed in explicit admitted assemblies;
 - accepted pdgsolve publication state;
 - adapter-produced downstream documents such as `pdgedit/v1`;
 - downstream catalog-ready publication entries or equivalent launch-ready selection state;
@@ -1676,13 +1491,14 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 
 pdgsolve should:
 
-- accept explicit upstream request data;
-- own solve normalization, search, review, and publication;
-- materialize compact accepted-solution descriptions for accepted outcomes;
-- and hand target-specific downstream documents to adapters only after that accepted-solution step.
+- accept explicit upstream request data after any required higher-scale-to-assembly expansion;
+- own solve normalization, search, review, and publication inside the explicit assembly-native ontology;
+- materialize compact accepted-solution descriptions for accepted outcomes in explicit admitted assemblies only;
+- and hand target-specific downstream documents to adapters only after that accepted-solution step, allowing those adapters to collapse explicit assemblies into higher-scale descriptions when a target explicitly requires it.
 
 pdgsolve should not:
 
+- accept higher-scale composite terms as solver-native request ids;
 - ask pdgedit to parse raw solver-native problem or result data;
 - treat arbitrary `pdgedit/v1` documents as invertible pdgsolve requests;
 - duplicate PDG normalization logic locally;
@@ -1696,24 +1512,23 @@ pdgsolve should not:
 
 ## Priorities
 
-### 1. Make Spontaneous-Assembly Provenance Visible In The Accepted Solve Graph
+### 1. Enforce The Assembly-Native Composite Boundary
 
 Status: `active`
 
 Current:
 
-- the existing beta publication fixture treats two `pro_noether_core` assemblies and two `anti_noether_core` assemblies as required spontaneous and product provenance sources, but not as second input edges into the reactant-side `Dissociate` operator;
-- this keeps the pdgedit link graph visually simple, but it also lets the accepted publication graph show one incoming active quark assembly and multiple outgoing assemblies without showing where the spontaneous assemblies entered the operator accounting;
-- the review result records spontaneous-derived product provenance in text and arrays, but the accepted graph does not yet carry enough structured primitive-flow detail for the publication surface to explain the same fact;
-- and the result is a misleading visual: the operator can appear to violate the primitive balance even when the written fixture claims the spontaneous assemblies close the ledger.
+- higher-scale beta language still has enough historical weight in the surrounding workstream that it can leak into solver discussions as if it were native ontology;
+- that creates risk that request ids, search symbols, or accepted-graph units drift away from explicit admitted assemblies and toward composite placeholders;
+- and the document set still needs stronger regression and diagnostic framing around the rule that higher-scale reactant and product terms belong to boundary translation only.
 
 Objective:
 
-- extend the accepted solve graph or its review-visible provenance witness so spontaneous assemblies are explicit primitive-carrier inputs to the law, even if they are not rendered as ordinary pdgedit object-to-object spline links;
-- define how a reactant-side `Dissociate` operator reports its visible counts when a law has one active assembly input plus reserved spontaneous assemblies;
-- distinguish active input, reserved spontaneous input, and emitted output in the review data so the operator no longer appears to create unaccounted architrinos;
-- add publication checks that reject any accepted graph whose spontaneous-derived outputs cannot be traced to explicit spontaneous-assembly occurrences and primitive counts;
-- and only then decide whether pdgedit should show spontaneous-assembly provenance as ordinary splines, special review affordances, or no extra surface link at all.
+- keep every solver-native input, intermediate, operator law, search symbol, and accepted output expressed only in explicit admitted Standard Model assemblies;
+- add or retain diagnostics that make boundary-translation failures explicit when a composite term reaches pdgsolve core;
+- keep accepted-solution graphs and downstream handoff contracts free of composite ids;
+- make downstream grouping or naming clearly adapter-owned rather than solver-owned;
+- and keep the regression set centered on proving that composites are expanded or collapsed only outside the solve core.
 
 ### 2. Build The Dedicated Review Console UI
 
@@ -1761,13 +1576,14 @@ Status: `active`
 Current:
 
 - computed assembly-level result construction is now in place;
-- the first admitted non-identity fermion decomposition laws are now in place;
-- but solver correctness remains active while spontaneous-assembly provenance visibility is unresolved and the next multi-option exact family is still absent.
+- the core boundary is now intentionally stricter than some earlier beta-family drafts;
+- and solver correctness remains active while the first admitted non-identity assembly-native law family and the next multi-option exact family are still absent.
 
 Objective:
 
-- keep pdgsolve solver correctness active until the remaining active pdgsolve priorities are resolved against computed assembly-level results;
-- promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact option families deterministically.
+- keep pdgsolve solver correctness active until the remaining active priorities are resolved against explicit assembly-native results;
+- admit future non-identity laws only when they stay entirely inside the explicit assembly ontology;
+- and promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
 
 ## Related Priorities
 
