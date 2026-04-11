@@ -10,12 +10,6 @@
       "isDefault": true
     },
     {
-      "id": "pdgsolve_boundary_augmentation_recipe_coverage",
-      "title": "Boundary augmentation recipe coverage",
-      "displayTitle": "Boundary augmentation recipe coverage",
-      "documentPath": "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json"
-    },
-    {
       "id": "proton_to_photon_stack",
       "title": "Proton to photon stack",
       "displayTitle": "Proton to photon stack",

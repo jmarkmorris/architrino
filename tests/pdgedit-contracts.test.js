@@ -113,7 +113,6 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const PDGEDIT_EXAMPLE_PATHS = [
-  "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
   "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
   "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   "content/contracts/examples/pdgedit/unbound_architrinos.v1.json",

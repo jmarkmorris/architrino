@@ -53,16 +53,10 @@
           "assemblyId": {
             "type": "string",
             "enum": [
-              "2h",
-              "4h",
-              "anti_noether_core",
               "electron",
               "electron_antineutrino",
-              "neutron",
               "pro_down_quark",
-              "pro_noether_core",
-              "pro_up_quark",
-              "proton"
+              "pro_up_quark"
             ]
           },
           "title": {
@@ -86,16 +80,10 @@
           "assemblyId": {
             "type": "string",
             "enum": [
-              "2h",
-              "4h",
-              "anti_noether_core",
               "electron",
               "electron_antineutrino",
-              "neutron",
               "pro_down_quark",
-              "pro_noether_core",
-              "pro_up_quark",
-              "proton"
+              "pro_up_quark"
             ]
           },
           "title": {
