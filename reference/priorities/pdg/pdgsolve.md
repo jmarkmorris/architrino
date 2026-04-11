@@ -67,7 +67,7 @@ Large coordinator files may assemble those pieces, but they should not become th
 
 Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects.
 
-They do not enter pdgsolve as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must expand them into explicit admitted assemblies before pdgsolve sees the request. If downstream surfaces want higher-scale summaries, they may derive them only after pdgsolve has finished.
+They do not enter pdgsolve as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must translate them into explicit admitted Standard Model assemblies before pdgsolve sees the request. If that translation cannot be completed, the source request is un-mappable and should remain upstream in `pdgfeed` rather than being emitted to pdgsolve. If downstream surfaces want higher-scale summaries, they may derive them only after pdgsolve has finished.
 
 Post-solver grouping display may describe solved assemblies, but grouping metadata is not itself opened, gathered, dissociated, associated, or searched.
 
@@ -157,12 +157,7 @@ where each $g \in \Gamma(a)$ is one legal gathered input multiset that can assem
 
 The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed solve family.
 
-By default, every executable law is local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly. Any law that is not organized this way is a non-default extension.
-
-Any future law that is not local to one explicit assembly id remains acceptable only when:
-
-- every participating input and output is still written entirely in explicit admitted assembly ids from $\mathcal{A}$;
-- the law has fixed explicit conserved-content meaning;
+Every executable law should be local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly.
 
 ### First Test Case: Assembly-Level Beta Boundary
 
@@ -176,7 +171,6 @@ Applied to beta-decay, the same rule means the pdgsolve-core expression must be 
 From that point forward:
 
 - the core search may use only explicit assembly ids from $\mathcal{A}$;
-- if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
 - and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
@@ -212,9 +206,9 @@ where:
 - $\Delta$ and $\Gamma$ are the dissociation and association law tables;
 - and $\Pi$ is the active policy bundle.
 
-By the time $R$ and $T$ exist, any higher-scale upstream description has already been expanded into explicit assembly multisets or rejected at the boundary.
+By the time $R$ and $T$ exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
 
-For pdgsolve v1, the minimal explicit conserved basis should be
+For pdgsolve v1, the explicit conserved basis should be
 
 $$
 \mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}.
@@ -247,56 +241,43 @@ $$
 
 These are the first conserved sums that must match across the solve.
 
-### V1 Assembly Table
+### Assembly Alphabet
 
-Before pdgsolve implementation begins, the first executable family should freeze one minimal assembly alphabet.
+pdgsolve should use the full admitted Standard Model assembly alphabet for mapped PDG requests.
 
-For pdgsolve v1, that alphabet should be
+For pdgsolve v1, denote that alphabet by
 
 $$
 \mathcal{A}_{\mathrm{v1}}
-=
-\{
-\mathrm{electron},
-\mathrm{electron\_antineutrino},
-\mathrm{pro\_down\_quark},
-\mathrm{pro\_up\_quark}
-\}.
 $$
 
-The v1 assembly table should be:
+where $\mathcal{A}_{\mathrm{v1}}$ is the complete canonical assembly table shared by `pdgfeed` translation and pdgsolve normalization.
 
-| Canonical id | Display label | Allowed roles in pdgsolve v1 | $\mu(a) = (N_E, N_P)$ | v1 note |
+The table below lists the running-example rows used elsewhere in this document:
+
+| Canonical id | Display label | Allowed roles in pdgsolve | $\mu(a) = (N_E, N_P)$ | note |
 | --- | --- | --- | --- | --- |
 | `pro_down_quark` | `Pro Down Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(7, 5)$ | individual quark assembly |
 | `pro_up_quark` | `Pro Up Quark` | reactant assemblies, intermediate assemblies, and product assemblies | $(4, 8)$ | individual quark assembly |
 | `electron` | `Electron` | reactant assemblies, intermediate assemblies, and product assemblies | $(9, 3)$ | charged lepton assembly |
 | `electron_antineutrino` | `Electron Antineutrino` | reactant assemblies, intermediate assemblies, and product assemblies | $(6, 6)$ | neutral lepton assembly |
 
-The versioned v1 bookkeeping values should therefore include:
+The bookkeeping values for the running examples include:
 
 - $\mu(\mathrm{pro\_down\_quark}) = (7, 5)$;
 - $\mu(\mathrm{pro\_up\_quark}) = (4, 8)$;
 - $\mu(\mathrm{electron}) = (9, 3)$;
 - and $\mu(\mathrm{electron\_antineutrino}) = (6, 6)$.
 
-pdgsolve v1 should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
+pdgsolve should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
 
-### V1 Law Tables
+### Law Tables
 
-pdgsolve v1 should define a deliberately small executable law family.
+pdgsolve should use the full admitted assembly-native law tables needed to close PDG-mappable requests.
 
-For the ordinary one-assembly-at-a-time laws, the initial tables should be empty:
+A specific assembly may still have an empty dissociation or association set when no legal dissociation or association exists for that assembly. Empty tables are not the intended global default.
 
-$$
-\Delta(a) = \varnothing,
-\qquad
-\Gamma(a) = \varnothing,
-\qquad
-a \in \mathcal{A}_{\mathrm{v1}}.
-$$
-
-So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies.
+`Pass Thru` remains the identity case inside those law tables, but it is not the only solver behavior the document is targeting.
 
 
 ### Normalization Rules
@@ -305,15 +286,14 @@ pdgsolve should normalize every upstream request into one explicit `pdgsolve-pro
 
 The concrete field inventories for `pdgsolve-request/v1` and `pdgsolve-problem/v1` are collected under `Interfaces -> Inputs` near the end of this document.
 
-Normalization assumes those occurrence lists already contain explicit assemblies rather than higher-scale boundary terms.
+Normalization assumes those occurrence lists already contain explicit assemblies rather than higher-scale boundary terms. If `pdgfeed` cannot translate a source request into explicit Standard Model assemblies, it should classify that source request as un-mappable and should not emit a pdgsolve request for it.
 
 Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside $\mathcal{A}_{\mathrm{v1}}$ with `pdgsolve.request.unsupported_assembly`;
-
-4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
+4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-standard-model`;
 5. build the requested multisets $R$ and $T$;
 6. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
@@ -403,7 +383,7 @@ The search design should specify:
 - what counts as one candidate expansion;
 - how operators such as `Pass Thru`, `Dissociate`, and `Associate` expand the state;
 - how conservation and provenance prune illegal branches;
-- how mismatch, ambiguity, and unsupported cases are represented explicitly;
+- how mismatch, ambiguity, and no-exact-closure cases are represented explicitly;
 - and how deterministic ranking chooses one accepted candidate over other legal candidates.
 
 The search model should remain planner-first rather than surface-first.
@@ -675,7 +655,7 @@ It should be rich enough to carry:
 
 - the selected candidate graph;
 - any alternate candidate families worth surfacing;
-- diagnostics and unsupported notes;
+- diagnostics and no-exact-closure notes;
 - explicit provenance/accounting summaries;
 - and the information needed to materialize downstream surface documents without making those downstream apps reconstruct omitted semantics.
 
@@ -692,8 +672,8 @@ This means:
 
 - the search core does not own `review.state`, `acceptedFamilyId`, or `publication`;
 - `pdgsolve-result/v1` is the external review/result contract, not the internal solver contract;
-- the internal search result may later be serialized if another boundary genuinely needs it;
-- but pdgsolve v1 should not force that internal model to become a public versioned JSON contract prematurely.
+- the internal search result may be serialized if another boundary genuinely needs it;
+- but pdgsolve should not force that internal model to become a public versioned JSON contract prematurely.
 
 For accepted outcomes, pdgsolve should also be able to materialize one compact accepted-solution description that is:
 
@@ -703,7 +683,7 @@ For accepted outcomes, pdgsolve should also be able to materialize one compact a
 - small enough to be useful to downstream tools other than pdgedit;
 - and free of tile payloads, screen coordinates, manifest entries, or renderer-specific layout rules.
 
-That compact accepted-solution description is the better candidate for any future shared or standardized downstream solve boundary.
+That compact accepted-solution description is the right candidate for any shared or standardized downstream solve boundary.
 
 ### Option Family Identity
 
@@ -793,7 +773,7 @@ pdgsolve should formalize that ranking as a lexicographic minimization problem.
 For a terminal candidate
 
 $$
-C = (\phi_{2,C}, \phi_{4,C}, x_{3,C}^{L}, x_{3,C}^{R}, W_{C}),
+C = (\phi_{2,C}, \phi_{4,C}, x_{3,C}^{\mathrm{reactant}}, x_{3,C}^{\mathrm{product}}, W_{C}),
 $$
 
 define
@@ -813,9 +793,9 @@ $$
 
 with smaller values preferred, where:
 
-- $\epsilon(C) = 0$ when $x_{3,C}^{L} = x_{3,C}^{R}$ and $W_{C}$ is a complete provenance witness, and $1$ otherwise;
+- $\epsilon(C) = 0$ when $x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}$ and $W_{C}$ is a complete provenance witness, and $1$ otherwise;
 - $m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}$;
-- $m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{L} - x_{3,C}^{R} \rVert_{1}$, viewing the difference in $\mathbb{Z}^{\mathcal{A}}$;
+- $m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}$, viewing the difference in $\mathbb{Z}^{\mathcal{A}}$;
 - $n_{\mathrm{op}}(C)$ is the total non-identity operator count in $\phi_{2,C}$ and $\phi_{4,C}$;
 - $n_{\mathrm{diss}}(C)$ is the dissociation count in $\phi_{2,C}$;
 - $n_{\mathrm{amb}}(C)$ is the explicit ambiguity/provenance penalty count;
@@ -864,7 +844,7 @@ That means the review surface can show:
 
 - the best option first;
 - alternate exact options next, in score order;
-- and partial or unsupported options after that, also in score order with explicit diagnostics.
+- and partial or non-closing options after that, also in score order with explicit diagnostics.
 
 ### Deterministic Tie-Break Rule
 
@@ -895,7 +875,7 @@ with lexicographic comparison and the concrete orders:
 For pdgsolve v1, the operator symbol order inside $\sigma_{2}$ and $\sigma_{4}$ should be:
 
 - `pass_thru`;
-- then any later law-family symbol in the order those law ids are admitted into pdgsolve.
+- then the remaining admitted law-family symbols in the fixed canonical order of the active law table.
 
 The provenance signature $\rho(C)$ should summarize, in canonical product-occurrence order:
 
@@ -906,20 +886,20 @@ This means repeated runs over the same normalized problem must produce the same 
 
 ### Diagnostic Codes
 
-pdgsolve should freeze the first stable diagnostic ids now so later UI and test-case work does not guess at naming.
+pdgsolve should freeze the stable diagnostic ids now so later UI and test-case work does not guess at naming.
 
-The initial v1 set should be:
+The v1 set should be:
 
 | Diagnostic id | Phase | Meaning | Required payload |
 | --- | --- | --- | --- |
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside pdgsolve v1 | requested token and attempted canonical id |
-| `pdgsolve.request.composite_requires_boundary_expansion` | request | the request names a higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that must be translated outside pdgsolve core | raw token, attempted role, and required boundary translator |
+| `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
 | `pdgsolve.request.invalid_lane_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained branch or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
-| `pdgsolve.search.unsupported_law_family` | search | exact closure would require a law family not admitted into pdgsolve v1 or would require leaving the explicit assembly-native ontology | missing law family id and descriptive token |
-| `pdgsolve.search.non_exact_candidate_retained` | search | a partial or unsupported family was kept for review with explicit failure context | family id and retained failure mode |
+| `pdgsolve.search.no_exact_closure` | search | the request is assembly-native, but no exact closure was found inside the admitted explicit assembly ontology | request id and retained closure-failure summary |
+| `pdgsolve.search.non_exact_candidate_retained` | search | a partial or non-closing family was kept for review with explicit failure context | family id and retained failure mode |
 | `pdgsolve.review.missing_pdgedit_publication_recipe` | review | the accepted family cannot yet be translated because one locked solve-graph unit has no admitted pdgedit publication recipe | family id and missing recipe id or unit id |
 | `pdgsolve.review.not_publication_ready` | review | a family may be visible in review but is not publishable | family id and blocking reason |
 
@@ -929,7 +909,7 @@ pdgsolve should own the review boundary between solve-core output and pdgedit pu
 
 That means:
 
-- pdgsolve may show candidate alternatives, ambiguity, and unsupported families;
+- pdgsolve may show candidate alternatives, ambiguity, and non-closing families;
 - pdgsolve should allow acceptance of one explicit publication candidate;
 - pdgsolve should keep acceptance separate from mere solve completion;
 - and only accepted pdgsolve state should become publishable downstream pdgedit data.
@@ -1008,12 +988,12 @@ For pdgsolve v1, an option family $F$ is publication-ready if and only if:
 - every assembly and operator unit in the family's canonical accepted-candidate graph, meaning the graph that would become `acceptedRecord.lockedSolveGraph` upon acceptance, has one admitted pdgedit publication recipe;
 - the family has no blocking diagnostic among:
   `pdgsolve.request.unsupported_assembly`,
-  `pdgsolve.request.composite_requires_boundary_expansion`,
+  `pdgsolve.request.unmappable_request`,
   `pdgsolve.request.invalid_lane_role`,
   `pdgsolve.search.primitive_imbalance`,
   `pdgsolve.search.middle_mismatch`,
   `pdgsolve.search.provenance_failure`,
-  `pdgsolve.search.unsupported_law_family`,
+  `pdgsolve.search.no_exact_closure`,
   `pdgsolve.review.missing_pdgedit_publication_recipe`,
   or any later diagnostic explicitly marked `blocking`;
 - and the family already carries the locked assembly inventories, operator assignments, provenance summary, and accepted-solve graph needed for downstream translation without re-running search.
@@ -1209,24 +1189,20 @@ pdgsolve should follow the dedicated-app rules in [pdgapps](pdgapps.md):
 - no hidden coupling through launcher-state assumptions;
 - and one source of truth for solve semantics, publication semantics, and downstream document structure.
 
-### Minimum Regression Test-Case Set
+### Core Regression Test-Case Set
 
-Before pdgsolve implementation is considered trustworthy, the first fixed regression denominator should be:
+Before pdgsolve implementation is considered trustworthy, the core regression denominator should be:
 
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `explicit_beta_request_requires_assembly_native_law` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | no exact family exists until an admitted explicit assembly-native law family is present; retained diagnostics include `pdgsolve.search.unsupported_law_family`; no composite or non-native symbol is introduced |
+| `explicit_beta_request_exact_closure` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | at least one exact assembly-native family exists; no composite or non-native symbol is introduced |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
-| `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
+| `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
-Positive regression coverage for composite-to-assembly expansion belongs in [pdgfeed](./pdgfeed.md), not in pdgsolve.
+Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](./pdgfeed.md), not in pdgsolve.
 
 pdgsolve should keep only assembly-native solve regressions plus boundary rejection coverage for direct developer-loaded or request-URL-loaded inputs.
-
-The last test case is a gate on the first post-pass-through expansion.
-
-So pdgsolve should not consider itself beyond the pass-through-only executable stage until that first genuine multi-option exact case exists and is under regression.
 
 ## Interfaces
 
@@ -1254,9 +1230,9 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 - `requestId`;
 - `source`;
 - `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
-- `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
+- `assemblyAlphabetId: "pdgsolve-assemblies/v1-standard-model"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
-- `lawTableId: "pdgsolve-laws/v1-pass-thru-only"`;
+- `lawTableId: "pdgsolve-laws/v1-standard-model"`;
 - `policy`;
 - and `normalization`, containing explicit notes about boundary translation assumptions and normalization diagnostics.
 
@@ -1266,7 +1242,8 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 
 #### Input Boundary Conditions
 
-- accept explicit upstream request data only after any required higher-scale-to-assembly expansion;
+- accept explicit upstream request data only after successful higher-scale-to-assembly translation;
+- if `pdgfeed` cannot translate a source request into explicit admitted Standard Model assemblies, classify that source request as un-mappable and do not emit a pdgsolve request for it;
 - accept higher-scale composite terms only at the boundary adapter, never as solver-native request ids;
 - keep solver-native request content assembly-native, with no DOM-derived geometry, render-order artifacts, or other UI-only state;
 - and treat arbitrary `pdgedit/v1` documents as downstream artifacts rather than invertible pdgsolve requests.
@@ -1278,13 +1255,13 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 - pdgsolve-owned internal search results suitable for review;
 - pdgsolve-owned candidate families, diagnostics, and provenance/accounting summaries;
 - accepted pdgsolve publication state;
-- and developer-facing diagnostics about solve completeness, ambiguity, unsupported families, and publish readiness.
+- and developer-facing diagnostics about solve completeness, ambiguity, non-closing families, and publish readiness.
 
 #### Review Result Contract: `pdgsolve-result/v1`
 
 - `schema: "pdgsolve-result/v1"`;
 - `problemId`;
-- `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
+- `searchStatus`, with values `exact_available`, `partial_only`, or `no_exact_closure`;
 - `bestFamilyId`;
 - `acceptedFamilyId`, nullable summary field mirroring `review.acceptedFamilyId`;
 - top-level `diagnostics`;
@@ -1295,7 +1272,7 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 Each member of `optionFamilies` should contain:
 
 - `familyId`;
-- `kind`, with values `exact`, `partial`, or `unsupported`;
+- `kind`, with values `exact`, `partial`, or `no_exact_closure`;
 - `score`, carrying the concrete components of $\kappa$;
 - `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
 - `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
@@ -1320,7 +1297,7 @@ Each member of `optionFamilies` should contain:
 - `lockedLane2Operators`;
 - `lockedLane4Operators`;
 - `lockedProvenanceSummary`;
-- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
+- `lockedSolveGraph`, which for publishable families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
 - and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
 
 #### Accepted-Solution Description And Graph
@@ -1403,7 +1380,7 @@ Current:
 Objective:
 
 - keep every solver-native input, intermediate, operator law, search symbol, and accepted output expressed only in explicit admitted Standard Model assemblies;
-- add or retain diagnostics that make boundary-translation failures explicit when a composite term reaches pdgsolve core;
+- keep `pdgfeed` responsible for classifying source requests as un-mappable when translation into explicit Standard Model assemblies fails, while keeping malformed direct pdgsolve inputs explicit in diagnostics;
 - keep accepted-solution graphs and downstream handoff contracts free of composite ids;
 - make downstream grouping or naming clearly adapter-owned rather than solver-owned;
 - and keep the regression set centered on proving that composites are expanded or collapsed only outside the solve core.
@@ -1455,14 +1432,10 @@ Current:
 
 - computed assembly-level result construction is now in place;
 - the core boundary is now intentionally stricter than some earlier beta-family drafts;
-- and solver correctness remains active while the first admitted non-identity assembly-native law family and the next multi-option exact family are still absent.
+- and solver correctness remains active until full PDG-mappable exact closure and deterministic ranking are under regression across the admitted assembly-native law set.
 
 Objective:
 
 - keep pdgsolve solver correctness active until the remaining active priorities are resolved against explicit assembly-native results;
-- admit future non-identity laws only when they stay entirely inside the explicit assembly ontology;
-- and promote the deferred `first_multi_option_exact` test case only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
-
-### 5. Keep Solver Correctness On The Active Priority Queue
-
-`first_multi_option_exact` — Add the first post-pass-through regression test case that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. 
+- keep every admitted law entirely inside the explicit assembly ontology;
+- and expand regression coverage across representative exact and multi-option exact PDG requests so deterministic ranking and explanation are proven on the full intended scope.
