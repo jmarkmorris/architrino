@@ -466,56 +466,13 @@ Objective:
 
 - move the remaining PDG-specific and development-specific notes into `reference/` so the editorial and developer boundaries stay clean.
 
-## Code Map
+## Grammar Map
 
 ### Invocation Modes
 
-The external solver should support two input modes:
+The solver should support stdout text form PDG reactions for Op use, not for downstream consumption at this time.
 
-- structured JSON for full-fidelity solving, regression fixtures, and app integration;
-- and a compact command-line shorthand for quick experiments and batch runs.
-
-The compact shorthand should stay intentionally short. The intended shape is:
-
-- `--r [Pe2u3dW+2h4h...]`
-- `--i [h.W-.1:1@...]`
-- `--I [h.W-.1:1@...]`
-- `--p [Pe2u3dW+2h4h...]`
-
-Here:
-
-- `--r` supplies authored reactants;
-- `--i` supplies optional or preferred authored center-lane intermediates or center assemblies that may be skipped if a better closure exists without them;
-- `--I` supplies stronger authored center-lane intermediates or center assemblies that the solver should use if any closure exists that can account for them;
-- and `--p` supplies authored products.
-
-`--i` and `--I` may be used together in one solver call. In that case, `--I` is the stronger constraint layer and `--i` remains a weaker preference layer.
-
-Those concise strings should be treated as a convenience syntax over the same normalized solver request, not as a second independent model.
-
-The authored middle lane should constrain the solve just like authored reactants and products do, but it should not admit arbitrary assembly kinds. For v1, both `--i` and `--I` should be limited to explicitly supported center-assembly families rather than "anything the user can name."
-
-Recommended initial `--i` / `--I` families:
-
-- authored `W+`, `W-`, and `Z`;
-- authored `Unbound Architrinos` ledgers;
-- and authored `Noether core` forms that the active model already supports as center assemblies.
-
-Recommended non-goal for v1:
-
-- do not let `--i` or `--I` become a generic slot for arbitrary composites or arbitrary recruited source material;
-- do not treat `Higgs Cluster` as a default middle-lane `--i` or `--I` family;
-- instead, treat authored `Higgs Cluster` as a reactant-side input via `--r` when the user really wants it authored, or as a solver-recruited spacetime source when the active recruitment policy permits it.
-
-The compact string should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The parser should ignore `.`, `,`, and `_` when they appear between valid tokens.
-
-Recommended human-facing separator:
-
-| Separator | Status | Notes |
-| --- | --- | --- |
-| `.` | preferred | no shift key, shell-safe, visually light |
-| `,` | allowed | also shell-safe and easy to scan |
-| `_` | allowed | readable, but less pleasant to type |
+The output will use compact strings and should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The default separator should be `.`.
 
 Examples:
 
@@ -530,38 +487,38 @@ Examples:
 
 Example command, free neutron decay with an added `4h` reactant:
 
-| Form | Command |
-| --- | --- |
-| compact | `solver --r N4h --p Peav` |
-| separated | `solver --r N.4h --p P.e.av` |
+| Form      | Command                       |
+| --------- | ----------------------------- |
+| compact   | `pdgfeed --r N4h --p Peav`    |
+| separated | `pdgfeed --r N.4h --p P.e.av` |
 
-Current compact notation:
+Current compact AAA notation:
 
-| Notation    | Meaning                   | Notes                                                              | PDG API Notation |
-| ----------- | ------------------------- | ------------------------------------------------------------------ | ---------------- |
-| `d1` or `d` | down quark                | generation I may omit the `1`                                      | `d`              |
-| `d2`        | strange quark             | generation II down-family                                          | `s`              |
-| `d3`        | bottom quark              | generation III down-family                                         | `b`              |
-| `e1` or `e` | electron                  | generation I may omit the `1`                                      | `e-`             |
-| `e2`        | muon                      | generation II charged lepton                                       | `mu-`            |
-| `e3`        | tau                       | generation III charged lepton                                      | `tau-`           |
-| `h`         | Noether core              | base core symbol                                                   | `n/a`            |
-| `h2`        | Bi Binary                 | reduced `Noether core` form                                        | `n/a`            |
-| `h3`        | Uni Binary                | reduced `Noether core` form                                        | `n/a`            |
-| `2h`        | photon                    | two-core photon shorthand                                          | `gamma`          |
-| `4h`        | Higgs cluster             | four-core Higgs-cluster shorthand                                  | `n/a`            |
-| `e:p@`      | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
-| `N`         | neutron                   | aligns with existing `Pro Neutron` support                         | `n`              |
-| `P`         | proton                    | aligns with existing `Pro Proton` support                          | `p`              |
-| `u1` or `u` | up quark                  | generation I may omit the `1`                                      | `u`              |
-| `u2`        | charm quark               | generation II up-family                                            | `c`              |
-| `u3`        | top quark                 | generation III up-family                                           | `t`              |
-| `v1` or `v` | neutrino                  | generation I may omit the `1`                                      | `nu_e`           |
-| `v2`        | muon neutrino             | generation II neutrino                                             | `nu_mu`          |
-| `v3`        | tau neutrino              | generation III neutrino                                            | `nu_tau`         |
-| `W+`        | `W+` boson                | two-character token                                                | `W+`             |
-| `W-`        | `W-` boson                | two-character token                                                | `W-`             |
-| `Z`         | `Z` boson                 | direct match                                                       | `Z`              |
+| AAA Notation | Name                         | Notes                                                              | PDG API Notation |
+| ------------ | ---------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `d1` or `d`  | down quark                   | generation I may omit the `1`                                      | `d`              |
+| `d2`         | strange quark                | generation II down-family                                          | `s`              |
+| `d3`         | bottom quark                 | generation III down-family                                         | `b`              |
+| `e1` or `e`  | electron                     | generation I may omit the `1`                                      | `e-`             |
+| `e2`         | muon                         | generation II charged lepton                                       | `mu-`            |
+| `e3`         | tau                          | generation III charged lepton                                      | `tau-`           |
+| `h`          | Noether core                 | base core symbol                                                   | `n/a`            |
+| `h2`         | Bi Binary                    | reduced `Noether core` form                                        | `n/a`            |
+| `h3`         | Uni Binary                   | reduced `Noether core` form                                        | `n/a`            |
+| `2h`         | photon                       | two-core photon shorthand                                          | `gamma`          |
+| `4h`         | Higgs cluster                | four-core Higgs-cluster shorthand                                  | `n/a`            |
+| `e:p@`       | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
+| `N`          | neutron                      | aligns with existing `Pro Neutron` support                         | `n`              |
+| `P`          | proton                       | aligns with existing `Pro Proton` support                          | `p`              |
+| `u1` or `u`  | up quark                     | generation I may omit the `1`                                      | `u`              |
+| `u2`         | charm quark                  | generation II up-family                                            | `c`              |
+| `u3`         | top quark                    | generation III up-family                                           | `t`              |
+| `v1` or `v`  | neutrino                     | generation I may omit the `1`                                      | `nu_e`           |
+| `v2`         | muon neutrino                | generation II neutrino                                             | `nu_mu`          |
+| `v3`         | tau neutrino                 | generation III neutrino                                            | `nu_tau`         |
+| `W+`         | `W+` boson                   | two-character token                                                | `W+`             |
+| `W-`         | `W-` boson                   | two-character token                                                | `W-`             |
+| `Z`          | `Z` boson                    | direct match                                                       | `Z`              |
 
 The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
 
@@ -574,7 +531,7 @@ Generation numbers should be interpreted as family indices for fermions:
 | `d` | down quark | strange quark | bottom quark |
 | `v` | neutrino | muon neutrino | tau neutrino |
 
-Polarity should be handled with `a` only:
+Anti-ness should be handled with `a` only:
 
 | Notation form | Meaning |
 | --- | --- |
@@ -583,22 +540,22 @@ Polarity should be handled with `a` only:
 
 Examples:
 
-| Notation | Meaning |
-| --- | --- |
-| `P` | pro proton |
-| `aP` | anti proton |
-| `N` | pro neutron |
-| `aN` | anti neutron |
-| `e` | pro electron |
-| `ae` | anti electron |
-| `e2` | pro muon |
-| `ae2` | anti muon |
-| `v` | pro neutrino |
-| `av3` | anti tau neutrino |
-| `h` | pro `Noether core` |
-| `ah` | anti `Noether core` |
+| Notation | Name                |
+| -------- | ------------------- |
+| `P`      | pro proton          |
+| `aP`     | anti proton         |
+| `N`      | pro neutron         |
+| `aN`     | anti neutron        |
+| `e`      | pro electron        |
+| `ae`     | anti electron       |
+| `e2`     | pro muon            |
+| `ae2`    | anti muon           |
+| `v`      | pro neutrino        |
+| `av3`    | anti tau neutrino   |
+| `h`      | pro `Noether core`  |
+| `ah`     | anti `Noether core` |
 
-`Unbound Architrinos` are the exception to that polarity rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
+`Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
 The `h` notation now has two different numeric roles, and both should stay explicit:
 
@@ -609,13 +566,13 @@ The `h` notation now has two different numeric roles, and both should stay expli
 
 Current intended `h` family examples:
 
-| Notation | Meaning |
-| --- | --- |
-| `h` | tri-binary `Noether core` |
-| `h2` | Bi Binary |
-| `h3` | Uni Binary |
-| `2h` | two `Noether cores`, currently used as photon shorthand |
-| `4h` | four `Noether cores`, currently used as Higgs-cluster shorthand |
+| Notation | Name                                                            |
+| -------- | --------------------------------------------------------------- |
+| `h`      | tri-binary `Noether core`                                       |
+| `h2`     | Bi Binary                                                       |
+| `h3`     | Uni Binary                                                      |
+| `2h`     | two `Noether cores`, currently used as photon shorthand         |
+| `4h`     | four `Noether cores`, currently used as Higgs-cluster shorthand |
 
 For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The grammar should not treat arbitrary `nh` forms as generally valid unless that aggregate family is expanded deliberately in a later revision.
 
