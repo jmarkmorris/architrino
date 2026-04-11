@@ -88,7 +88,7 @@ The strip uses a deliberately limited grammar:
 - reactant-side operators and product-side operators contain operators only;
 - all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
 - every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content;
-- and the solver does have a degree of freedom to add pro/anti Noether cores as pairs of reactant or product assemblies, although that pairing is not carried through the solving process, instead being a technique to add spacetime assemblies that enable solution closure.
+- and the solver may, when policy permits it, augment one boundary side by zero or more explicit Noether pairs, where one Noether pair is exactly one pro Noether core plus one anti Noether core; that augmentation is a bounded boundary choice rather than a new operator family, and after it is chosen each core continues as an ordinary assembly occurrence.
 
 In `pdgsolve` terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
@@ -169,6 +169,48 @@ Candidate quality should be judged on assembly-native legality, conservation, pr
 
 So the design rule is: the solver core reasons only over explicit admitted assemblies and explicit admitted operators.
 
+### Noether-Pair Boundary Augmentation
+
+`pdgsolve` should model the wildcard-like Noether freedom as a bounded boundary augmentation, not as a solver-native composite, grouping label, dissociation target, or association target.
+
+Define one Noether-pair augmentation unit by the explicit two-assembly multiset
+
+$$
+N_{\mathrm{Noether}}
+=
+\mathbf{1}_{\mathrm{pro\ Noether\ core}}
++
+\mathbf{1}_{\mathrm{anti\ Noether\ core}}.
+$$
+
+A raw request still enters as requested boundary multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\).
+
+If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set
+
+$$
+B(\Pi) \subset \mathbb{N} \times \mathbb{N},
+$$
+
+where one choice \(b = (\alpha, \beta)\) means:
+
+$$
+R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}, \qquad
+T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}.
+$$
+
+For `pdgsolve` v1, one emitted family should augment at most one boundary side, so \(\alpha \beta = 0\). That prevents redundant add-on-both-sides variants that do not add solve meaning.
+
+After one augmentation choice \(b\) is fixed:
+
+- every added Noether core is just one ordinary assembly occurrence;
+- the pair is not carried through the interior search as a composite symbol;
+- `Dissociate` and `Associate` still act only on ordinary assembly laws, not on a special wildcard operator;
+- and emitted families list the added Noether cores as assemblies in the chosen reactant or product boundary.
+
+So the wildcard behavior is not a placeholder inside the solve core.
+
+It is a bounded pre-search freedom over which explicit assemblies may be present at the boundary.
+
 ### Request Intake
 
 `pdgsolve` should accept only explicit request-side data.
@@ -194,11 +236,13 @@ where:
 - \(\mathcal{A}\) is the finite assembly alphabet of explicit admitted \(\mathbb{A}\mathbb{A}\mathbb{A}\) assemblies for the active solve family;
 - \(\mathcal{P}\) is the basis of conserved primitive content;
 - \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
-- \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the requested reactant and product multisets;
+- \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the active reactant and product multisets for the solve instance after any admitted boundary augmentation has been fixed;
 - \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
 - and \(\Pi\) is the active policy bundle.
 
 By the time \(R\) and \(T\) exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
+
+If boundary augmentation is enabled, \(R\) and \(T\) should be understood as one augmented solve instance derived from the requested boundary multisets under the active policy bundle \(\Pi\).
 
 For `pdgsolve` v1, the explicit conserved basis should be
 
@@ -286,8 +330,10 @@ Normalization should then do the following, in order:
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
 4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-standard-model`;
-5. build the requested multisets \(R\) and \(T\);
-6. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup.
+5. build the requested multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\);
+6. normalize the finite Noether-pair boundary augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
+7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether core then anti Noether core, with pair indices ascending;
+8. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup, including the requested multisets and the finite augmentation modes to enumerate.
 
 ### Conserved Balance Equations
 
@@ -382,6 +428,19 @@ The search model should remain solution-focused.
 
 This limited geometry should be exploited aggressively.
 
+If policy admits Noether-pair augmentation, the search should enumerate the finite augmentation set \(B(\Pi)\) before ordinary operator assignment begins.
+
+For each augmentation mode \(b = (\alpha, \beta) \in B(\Pi)\), the search should define
+
+$$
+x_{1}^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}, \qquad
+x_{5}^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}},
+$$
+
+and then run the ordinary meet-in-the-middle operator search on that augmented boundary pair.
+
+That augmentation choice belongs to candidate identity, scoring, and output, but it is not itself a reactant-side or product-side operator.
+
 In particular:
 
 - each reactant assembly that is allowed to feed intermediate assemblies presents a small action set, typically `Pass Thru` or `Dissociate`;
@@ -448,11 +507,12 @@ together with a provenance witness showing that the chosen reactant-side and pro
 One useful branch-state record is
 
 $$
-s = (\phi_{2}, \phi_{4}, x_{3}^{\mathrm{reactant}}, x_{3}^{\mathrm{product}}, W),
+s = (b, \phi_{2}, \phi_{4}, x_{3}^{\mathrm{reactant}}, x_{3}^{\mathrm{product}}, W),
 $$
 
 where:
 
+- \(b \in B(\Pi)\) is the active Noether-pair boundary augmentation choice;
 - \(\phi_{2}\) is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
 - \(\phi_{4}\) is a partial assignment of product-side operator choices to product assembly occurrences;
 - \(x_{3}^{\mathrm{reactant}}\) is the partial intermediate assemblies generated from the reactant assemblies;
@@ -463,14 +523,15 @@ where:
 
 The operational loop should be:
 
-1. reject the request immediately if the primitive imbalance vector \(\delta(Q)\) is nonzero and the current search mode requires exact closure;
-2. initialize the empty branch state with no reactant-side or product-side operator assignments;
-3. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
-4. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
-5. update the partial middle inventories \(x_{3}^{\mathrm{reactant}}\) and \(x_{3}^{\mathrm{product}}\), and update the partial provenance witness \(W\);
-6. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
-7. continue until all reactant and product occurrences are assigned;
-8. emit a terminal candidate when the completed branch has a complete provenance witness and a scored intermediate-assemblies outcome.
+1. enumerate the finite boundary augmentation mode set derived from policy, defaulting to the no-augmentation mode only;
+2. for each augmentation mode, reject that mode immediately if the primitive imbalance vector \(\delta(Q)\) is nonzero and the current search mode requires exact closure;
+3. initialize the empty branch state for that augmentation mode with no reactant-side or product-side operator assignments;
+4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
+5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
+6. update the partial middle inventories \(x_{3}^{\mathrm{reactant}}\) and \(x_{3}^{\mathrm{product}}\), and update the partial provenance witness \(W\);
+7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
+8. continue until all reactant and product occurrences are assigned;
+9. emit a terminal candidate when the completed branch has a complete provenance witness, a scored intermediate-assemblies outcome, and one explicit boundary augmentation summary.
 
 So the search does not guess full reactions in one jump.
 
@@ -590,11 +651,12 @@ The rules lead to solution families in a direct way.
 A raw option is one complete assignment
 
 $$
-O_{\mathrm{raw}} = (\phi_{2}, \phi_{4}).
+O_{\mathrm{raw}} = (b, \phi_{2}, \phi_{4}).
 $$
 
 From that raw option, `pdgsolve` derives:
 
+- the active boundary augmentation summary attached to \(b\);
 - the reactant-side-generated intermediate assemblies \(x_{3}^{\mathrm{reactant}}\);
 - the product-side-required intermediate assemblies \(x_{3}^{\mathrm{product}}\);
 - the completed provenance witness \(W\), if one exists;
@@ -613,7 +675,7 @@ A raw option becomes a partial solve candidate when:
 
 Multiple raw options may canonicalize to the same solution family.
 
-That should happen when they emit the same reactant assemblies, intermediate assemblies, and product assemblies, the same reactant-side and product-side operator choices, and the same effective provenance/accounting summary.
+That should happen when they emit the same boundary augmentation summary, the same reactant assemblies, intermediate assemblies, and product assemblies, the same reactant-side and product-side operator choices, and the same effective provenance/accounting summary.
 
 So the emitted solve outputs should not show every raw branch separately.
 
@@ -658,11 +720,12 @@ At the batch boundary, this model should serialize into one `pdgsolve-result/v1`
 For completed raw options
 
 $$
-O_{\mathrm{raw}} = (\phi_{2}, \phi_{4}, W),
+O_{\mathrm{raw}} = (b, \phi_{2}, \phi_{4}, W),
 $$
 
 two branches should belong to the same solution family exactly when they agree on the full emitted solve summary:
 
+- the same boundary augmentation summary;
 - the same reactant assemblies, intermediate assemblies, and product assemblies;
 - the same ordered reactant-side operator assignments after canonical reactant-occurrence ordering;
 - the same ordered product-side operator assignments after canonical product-occurrence ordering;
@@ -724,6 +787,7 @@ The score model should prefer, in order:
 
 - exact conservation and exact product closure;
 - zero primitive imbalance and zero intermediate-assemblies mismatch;
+- fewer Noether-pair boundary augmentations;
 - fewer non-identity operators;
 - fewer dissociations when a less disruptive exact path exists;
 - stronger provenance clarity;
@@ -734,7 +798,7 @@ The score model should prefer, in order:
 For a terminal candidate
 
 $$
-C = (\phi_{2,C}, \phi_{4,C}, x_{3,C}^{\mathrm{reactant}}, x_{3,C}^{\mathrm{product}}, W_{C}),
+C = (b_{C}, \phi_{2,C}, \phi_{4,C}, x_{3,C}^{\mathrm{reactant}}, x_{3,C}^{\mathrm{product}}, W_{C}),
 $$
 
 define
@@ -745,6 +809,7 @@ $$
 \epsilon(C),
 m_{\mathrm{prim}}(C),
 m_{\mathrm{mid}}(C),
+n_{\mathrm{aug}}(C),
 n_{\mathrm{op}}(C),
 n_{\mathrm{diss}}(C),
 n_{\mathrm{amb}}(C),
@@ -757,6 +822,7 @@ with smaller values preferred, where:
 - \(\epsilon(C) = 0\) when \(x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
 - \(m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}\);
 - \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
+- \(n_{\mathrm{aug}}(C)\) is the number of Noether pairs added by the chosen boundary augmentation mode;
 - \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
 - \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
 - \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
@@ -769,10 +835,11 @@ That means:
 1. every exact candidate beats every non-exact candidate;
 2. among exact candidates, lower primitive imbalance wins first;
 3. then lower intermediate-assemblies mismatch wins;
-4. then fewer non-identity operators wins;
-5. then fewer dissociations wins;
-6. then lower ambiguity/provenance penalty wins;
-7. and finally \(\tau(C)\) breaks any remaining tie deterministically.
+4. then fewer Noether-pair boundary augmentations wins;
+5. then fewer non-identity operators wins;
+6. then fewer dissociations wins;
+7. then lower ambiguity/provenance penalty wins;
+8. and finally \(\tau(C)\) breaks any remaining tie deterministically.
 
 `pdgsolve` should score partial branches too, using an optimistic lower-bound score derived from the same tuple structure.
 
@@ -781,6 +848,7 @@ For a partial branch \(s\), the search should compute:
 - whether exact closure is still possible;
 - the unavoidable primitive imbalance already fixed by the explicit request;
 - the minimum possible eventual intermediate-assemblies mismatch after all remaining assignments;
+- the boundary augmentation burden already fixed by the chosen augmentation mode;
 - the minimum additional operator burden still forced, with unresolved pass-thru choices contributing zero unless non-identity is provably necessary;
 - and the minimum remaining ambiguity/provenance penalty.
 
@@ -856,6 +924,7 @@ The v1 set should be:
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside `pdgsolve` v1 | requested token and attempted canonical id |
 | `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
 | `pdgsolve.request.invalid_boundary_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
+| `pdgsolve.request.unsupported_boundary_augmentation` | request | the request policy asks for a boundary augmentation mode outside the admitted v1 Noether-pair augmentation set | requested augmentation token and allowed augmentation set |
 | `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q) \neq 0\) for the retained branch or retained request summary | request id and \((\delta_E, \delta_P)\) |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
@@ -872,6 +941,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
+| `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
 Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](./pdgfeed.md), not in `pdgsolve`.
 
@@ -893,7 +963,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 - `requestId`;
 - `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
 - explicit reactant-side and product-side occurrence lists;
-- and optional policy overrides.
+- and optional policy overrides, including `allowedBoundaryAugmentations`, `allowedNoetherPairSides`, and `maxNoetherPairsPerSide`.
 
 #### Example `pdgfeed` Requests
 
@@ -1068,6 +1138,7 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 - `requestId`;
 - `source`;
 - `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
+- `boundaryAugmentationModes`, carrying the finite normalized Noether-pair augmentation choices derived from policy;
 - `assemblyAlphabetId: "pdgsolve-assemblies/v1-standard-model"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
 - `lawTableId: "pdgsolve-laws/v1-standard-model"`;
@@ -1083,6 +1154,7 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 - accept explicit upstream request data only after successful higher-scale-to-assembly translation;
 - if `pdgfeed` cannot translate a source request into explicit admitted Standard Model assemblies, classify that source request as un-mappable and do not emit a `pdgsolve` request for it;
 - accept higher-scale composite terms only at the boundary adapter, never as solver-native request ids;
+- allow wildcard-like boundary freedom only through explicit Noether-pair augmentation modes derived from policy, never through placeholder wildcard ids or composite boundary terms;
 - keep solver-native request content assembly-native, with no presentation-only state;
 - and treat downstream authored documents as downstream artifacts rather than invertible `pdgsolve` requests.
 
@@ -1113,6 +1185,7 @@ Each member of `exactFamilies` and `partialFamilies` should contain:
 - `kind`, with values `exact` or `partial`;
 - `rank`;
 - `score`, carrying the concrete components of \(\kappa\);
+- `boundaryAugmentation`, carrying the chosen augmentation kind, side, pair count, and the added occurrence ids;
 - `reactantAssemblies`, carrying the canonical reactant assemblies;
 - `reactantSideOperators`, carrying the canonical reactant-side operator choices;
 - `intermediateAssemblies`, carrying the canonical intermediate assemblies;
@@ -1132,6 +1205,7 @@ When `pdgsolve` emits more than one JSON artifact for a run, the preferred layou
 
 - own solve normalization, search, scoring, and output emission inside the explicit assembly-native ontology;
 - emit exact and partial solution families in explicit admitted assemblies only;
+- when Noether-pair augmentation is used, emit the added Noether cores as explicit assemblies plus an explicit boundary augmentation summary;
 - include the scores for all emitted families;
 - do not ask downstream tools to infer missing solve semantics;
 - do not duplicate PDG normalization logic locally;

@@ -1,4 +1,5 @@
 import csv
+import json
 import subprocess
 import sys
 import tempfile
@@ -128,6 +129,68 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "title": "Free neutron beta decay",
                 "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
             },
+        )
+
+    def test_baryon_proposal_inventory_counts_sum_quark_constituents(self):
+        case = pdgfeed.PdgCase(
+            case_id="baryon_inventory_probe",
+            proposal_id="baryon_inventory_probe",
+            title="Baryon inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="n", pdg_id="n"),
+                pdgfeed.TestCaseParticle(name="anti-p", pdg_id="anti-p"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="anti-n", pdg_id="anti-n"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 18,
+                    "positrinoCount": 18,
+                    "flags": [
+                        "pdg-id:n",
+                        "pdg-name:n",
+                    ],
+                },
+                {
+                    "electrinoCount": 21,
+                    "positrinoCount": 15,
+                    "flags": [
+                        "pdg-id:anti-p",
+                        "pdg-name:anti-p",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 15,
+                    "positrinoCount": 21,
+                    "flags": [
+                        "pdg-id:p",
+                        "pdg-name:p",
+                    ],
+                },
+                {
+                    "electrinoCount": 18,
+                    "positrinoCount": 18,
+                    "flags": [
+                        "pdg-id:anti-n",
+                        "pdg-name:anti-n",
+                    ],
+                },
+            ],
         )
 
     def test_pdgfeed_expands_composite_neutron_channel_terms_into_explicit_request_side_assemblies(self):
@@ -374,9 +437,21 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
 
     def test_supported_reaction_csv_rows_use_aaa_labels_and_row_counts(self):
-        test_cases = pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
 
-        rows = pdgfeed.build_supported_reaction_csv_rows(test_cases)
+        rows = pdgfeed.build_supported_reaction_csv_rows([case])
 
         self.assertEqual(
             rows,
@@ -484,17 +559,60 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
     def test_cli_emits_supported_reaction_csv_file(self):
         repo_root = Path(__file__).resolve().parents[1]
-        with tempfile.TemporaryDirectory() as temp_dir:
+        with tempfile.TemporaryDirectory(dir=repo_root) as temp_dir:
+            temp_path = Path(temp_dir)
             csv_path = Path(temp_dir) / "supported_reactions.csv"
+            source_path = temp_path / "free_neutron_beta_decay.source.v1.json"
+            index_path = temp_path / "index.json"
+
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "schema": pdgfeed.PDG_TEST_CASE_SOURCE_SCHEMA,
+                        "testCaseId": "free_neutron_beta_decay",
+                        "title": "Free neutron beta decay",
+                        "source": {"edition": "2025"},
+                        "reactants": [{"name": "n", "pdgId": "n"}],
+                        "products": [
+                            {"name": "p", "pdgId": "p"},
+                            {"name": "e-", "pdgId": "e-"},
+                            {"name": "anti-nu_e", "pdgId": "anti-nu_e"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            index_path.write_text(
+                json.dumps(
+                    {
+                        "schema": pdgfeed.PDG_TEST_CASE_CORPUS_SCHEMA,
+                        "cases": [
+                            {
+                                "id": "free_neutron_beta_decay",
+                                "title": "Free neutron beta decay",
+                                "sourcePath": str(source_path.relative_to(repo_root)),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             result = subprocess.run(
-                [sys.executable, "pdgfeed.py", "emit-supported-reaction-csv", str(csv_path)],
+                [
+                    sys.executable,
+                    "pdgfeed.py",
+                    "--test-case-index",
+                    str(index_path),
+                    "emit-supported-reaction-csv",
+                    str(csv_path),
+                ],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
                 text=True,
             )
 
-            self.assertEqual(result.stdout.strip(), str(csv_path))
+            self.assertEqual(result.stdout.strip(), str(csv_path.relative_to(repo_root)))
             with csv_path.open(encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))
 

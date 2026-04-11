@@ -207,12 +207,12 @@ The first built-in live PDG cases are:
 
 The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table should cover every canonical PDG particle name that `pdgfeed` can translate into explicit admitted Standard Model assemblies. Representative currently-admitted rows include:
 
-| Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
-| --- | --- | --- | --- | --- |
-| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
-| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
-| `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
-| `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
+| Canonical PDG ASCII name | Export status | pdgsolve request expansion                         | Request title pattern                      | Notes                                                          |
+| ------------------------ | ------------- | -------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- |
+| `n`                      | exportable    | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
+| `p`                      | exportable    | `pro_up_quark`, `pro_down_quark`, `pro_up_quark`   | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
+| `e-`                     | exportable    | `electron`                                         | `Electron`                                 | charged lepton, generation 1                                   |
+| `anti-nu_e`              | exportable    | `electron_antineutrino`                            | `Electron Antineutrino`                    | neutrino, generation 1                                         |
 
 The v1 un-mappable-particle policy is:
 

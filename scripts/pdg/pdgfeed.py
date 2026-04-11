@@ -48,6 +48,34 @@ PDG_SOURCE_CONTRACT = {
     "pdgviewHandoff": "accepted-reaction-only",
 }
 
+PROPOSAL_PRIMITIVE_COUNTS_BY_CANONICAL_NAME: dict[str, tuple[int, int]] = {
+    "u": (4, 8),
+    "d": (7, 5),
+    "anti-u": (8, 4),
+    "anti-d": (5, 7),
+}
+
+BARYON_QUARK_CONSTITUENTS_BY_CANONICAL_NAME: dict[str, tuple[str, ...]] = {
+    "n": ("u", "d", "d"),
+    "p": ("u", "u", "d"),
+    "anti-n": ("anti-u", "anti-d", "anti-d"),
+    "anti-p": ("anti-u", "anti-u", "anti-d"),
+}
+
+
+def sum_proposal_primitive_counts(*canonical_names: str) -> tuple[int, int]:
+    electrinos = 0
+    positrinos = 0
+    for canonical_name in canonical_names:
+        electrino_count, positrino_count = PROPOSAL_PRIMITIVE_COUNTS_BY_CANONICAL_NAME[canonical_name]
+        electrinos += electrino_count
+        positrinos += positrino_count
+    return electrinos, positrinos
+
+
+def baryon_proposal_primitive_counts(canonical_name: str) -> tuple[int, int]:
+    return sum_proposal_primitive_counts(*BARYON_QUARK_CONSTITUENTS_BY_CANONICAL_NAME[canonical_name])
+
 
 @dataclass(frozen=True)
 class PdgV1ParticleMapping:
@@ -81,8 +109,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="baryon",
         polarity="pro",
         is_composite=True,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=baryon_proposal_primitive_counts("n")[0],
+        positrino_count=baryon_proposal_primitive_counts("n")[1],
         tags=("pdg:species:neutron",),
         pdgsolve_assembly_id="neutron",
         pdgsolve_title="Neutron",
@@ -95,8 +123,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="baryon",
         polarity="anti",
         is_composite=True,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=baryon_proposal_primitive_counts("anti-n")[0],
+        positrino_count=baryon_proposal_primitive_counts("anti-n")[1],
         tags=("pdg:species:anti-neutron",),
     ),
     PdgV1ParticleMapping(
@@ -107,8 +135,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="baryon",
         polarity="pro",
         is_composite=True,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=baryon_proposal_primitive_counts("p")[0],
+        positrino_count=baryon_proposal_primitive_counts("p")[1],
         tags=("pdg:species:proton",),
         pdgsolve_assembly_id="proton",
         pdgsolve_title="Proton",
@@ -121,8 +149,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="baryon",
         polarity="anti",
         is_composite=True,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=baryon_proposal_primitive_counts("anti-p")[0],
+        positrino_count=baryon_proposal_primitive_counts("anti-p")[1],
         tags=("pdg:species:anti-proton",),
     ),
     PdgV1ParticleMapping(
