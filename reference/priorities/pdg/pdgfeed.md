@@ -492,6 +492,14 @@ Example command, free neutron decay with an added `4h` reactant:
 | compact   | `pdgfeed --r N4h --p Peav`    |
 | separated | `pdgfeed --r N.4h --p P.e.av` |
 
+
+Anti-ness should be handled with `a` only:
+
+| Notation form | Meaning |
+| --- | --- |
+| `x` | pro form is implied |
+| `ax` | anti form |
+
 Current compact AAA notation:
 
 | AAA Notation | Name                         | Notes                                                              | PDG API Notation |
@@ -502,12 +510,6 @@ Current compact AAA notation:
 | `e1` or `e`  | electron                     | generation I may omit the `1`                                      | `e-`             |
 | `e2`         | muon                         | generation II charged lepton                                       | `mu-`            |
 | `e3`         | tau                          | generation III charged lepton                                      | `tau-`           |
-| `h`          | Noether core                 | base core symbol                                                   | `n/a`            |
-| `h2`         | Bi Binary                    | reduced `Noether core` form                                        | `n/a`            |
-| `h3`         | Uni Binary                   | reduced `Noether core` form                                        | `n/a`            |
-| `2h`         | photon                       | two-core photon shorthand                                          | `gamma`          |
-| `4h`         | Higgs cluster                | four-core Higgs-cluster shorthand                                  | `n/a`            |
-| `e:p@`       | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
 | `N`          | neutron                      | aligns with existing `Pro Neutron` support                         | `n`              |
 | `P`          | proton                       | aligns with existing `Pro Proton` support                          | `p`              |
 | `u1` or `u`  | up quark                     | generation I may omit the `1`                                      | `u`              |
@@ -519,6 +521,12 @@ Current compact AAA notation:
 | `W+`         | `W+` boson                   | two-character token                                                | `W+`             |
 | `W-`         | `W-` boson                   | two-character token                                                | `W-`             |
 | `Z`          | `Z` boson                    | direct match                                                       | `Z`              |
+| `h`          | Noether core                 | base core symbol                                                   | `n/a`            |
+| `h2`         | Bi Binary                    | reduced `Noether core` form                                        | `n/a`            |
+| `h3`         | Uni Binary                   | reduced `Noether core` form                                        | `n/a`            |
+| `hah`        | Noether Pair or Photon       | pro `Noether core` and anti `Noether core` (spacetime composites)  | `n/a`            |
+| `hahhah`     | Noether Quad                 | 2 pro `Noether core` and 2 anti `Noether core`                     | `n/a`            |
+| `e:p@`       | `Unbound Architrinos` ledger | explicit electrino:positrino count, with both sides always present | `n/a`            |
 
 The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
 
@@ -531,12 +539,6 @@ Generation numbers should be interpreted as family indices for fermions:
 | `d` | down quark | strange quark | bottom quark |
 | `v` | neutrino | muon neutrino | tau neutrino |
 
-Anti-ness should be handled with `a` only:
-
-| Notation form | Meaning |
-| --- | --- |
-| `x` | pro form is implied |
-| `ax` | anti form |
 
 Examples:
 
@@ -557,24 +559,9 @@ Examples:
 
 `Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
-The `h` notation now has two different numeric roles, and both should stay explicit:
 
-| Notation form | Meaning |
-| --- | --- |
-| `nh` | `n` whole `Noether cores` |
-| `hn` | a reduced `Noether core` form |
 
-Current intended `h` family examples:
 
-| Notation | Name                                                            |
-| -------- | --------------------------------------------------------------- |
-| `h`      | tri-binary `Noether core`                                       |
-| `h2`     | Bi Binary                                                       |
-| `h3`     | Uni Binary                                                      |
-| `2h`     | two `Noether cores`, currently used as photon shorthand         |
-| `4h`     | four `Noether cores`, currently used as Higgs-cluster shorthand |
-
-For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The grammar should not treat arbitrary `nh` forms as generally valid unless that aggregate family is expanded deliberately in a later revision.
 
 `Unbound Architrinos` should be written with an explicit electrino:positrino ledger:
 
@@ -589,7 +576,7 @@ Both sides of the ledger should always be present. If one side is zero, the zero
 
 The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a unbound electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
 
-This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
+This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `ah`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
 For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. For v1, the boson-core convention is fixed: `W+` carries anti `Noether core` provenance and `W-` carries pro `Noether core` provenance.
 
@@ -679,3 +666,71 @@ Operational lexer guidance:
 - recognize `[digits]:[digits]@` as one `Unbound Architrinos` ledger token that ends at `@`;
 - do not require separators around any token family when the surrounding token boundaries are already unambiguous under longest-match tokenization;
 - and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
+
+### Proposed Registry Table
+
+Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form.
+
+For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `2h`, `4h`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
+
+#### Assemblies
+
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `pro_noether_core_I` | Pro Noether Core | `n/a` | `h` | assembly | `h` | `3:3@` | Noether core | I | pro | yes |
+| `anti_noether_core_I` | Anti Noether Core | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether core | I | anti | yes |
+| `pro_noether_core_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether core | II | pro | yes |
+| `anti_noether_core_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether core | II | anti | yes |
+| `pro_noether_core_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether core | III | pro | yes |
+| `anti_noether_core_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether core | III | anti | yes |
+| `pro_electron_I` | Electron | `e-` | `e` | assembly | `h + 6:0@` | `9:3@` | charged lepton | I | pro | yes |
+| `anti_electron_I` | Positron | `e+` | `ae` | assembly | `ah + 0:6@` | `3:9@` | charged lepton | I | anti | yes |
+| `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h` | `3:3@` | neutrino | I | pro | yes |
+| `anti_electron_neutrino_I` | Anti Electron Neutrino | `anti-nu_e` | `av` | assembly | `ah` | `3:3@` | neutrino | I | anti | yes |
+| `pro_up_quark_I` | Up Quark | `u` | `u` | assembly | `h + 1:5@` | `4:8@` | up-type quark | I | pro | yes |
+| `anti_up_quark_I` | Anti Up Quark | `anti-u` | `au` | assembly | `ah + 5:1@` | `8:4@` | up-type quark | I | anti | yes |
+| `pro_down_quark_I` | Down Quark | `d` | `d` | assembly | `h + 4:2@` | `7:5@` | down-type quark | I | pro | yes |
+| `anti_down_quark_I` | Anti Down Quark | `anti-d` | `ad` | assembly | `ah + 2:4@` | `5:7@` | down-type quark | I | anti | yes |
+| `pro_muon_II` | Muon | `mu-` | `e2` | assembly | `h2 + 6:0@` | `8:2@` | charged lepton | II | pro | yes |
+| `anti_muon_II` | Anti Muon | `mu+` | `ae2` | assembly | `ah2 + 0:6@` | `2:8@` | charged lepton | II | anti | yes |
+| `pro_muon_neutrino_II` | Muon Neutrino | `nu_mu` | `v2` | assembly | `h2` | `2:2@` | neutrino | II | pro | yes |
+| `anti_muon_neutrino_II` | Anti Muon Neutrino | `anti-nu_mu` | `av2` | assembly | `ah2` | `2:2@` | neutrino | II | anti | yes |
+| `pro_charm_quark_II` | Charm Quark | `c` | `u2` | assembly | `h2 + 1:5@` | `3:7@` | up-type quark | II | pro | yes |
+| `anti_charm_quark_II` | Anti Charm Quark | `anti-c` | `au2` | assembly | `ah2 + 5:1@` | `7:3@` | up-type quark | II | anti | yes |
+| `pro_strange_quark_II` | Strange Quark | `s` | `d2` | assembly | `h2 + 4:2@` | `6:4@` | down-type quark | II | pro | yes |
+| `anti_strange_quark_II` | Anti Strange Quark | `anti-s` | `ad2` | assembly | `ah2 + 2:4@` | `4:6@` | down-type quark | II | anti | yes |
+| `pro_tau_III` | Tau | `tau-` | `e3` | assembly | `h3 + 6:0@` | `7:1@` | charged lepton | III | pro | yes |
+| `anti_tau_III` | Anti Tau | `tau+` | `ae3` | assembly | `ah3 + 0:6@` | `1:7@` | charged lepton | III | anti | yes |
+| `pro_tau_neutrino_III` | Tau Neutrino | `nu_tau` | `v3` | assembly | `h3` | `1:1@` | neutrino | III | pro | yes |
+| `anti_tau_neutrino_III` | Anti Tau Neutrino | `anti-nu_tau` | `av3` | assembly | `ah3` | `1:1@` | neutrino | III | anti | yes |
+| `pro_top_quark_III` | Top Quark | `t` | `u3` | assembly | `h3 + 1:5@` | `2:6@` | up-type quark | III | pro | yes |
+| `anti_top_quark_III` | Anti Top Quark | `anti-t` | `au3` | assembly | `ah3 + 5:1@` | `6:2@` | up-type quark | III | anti | yes |
+| `pro_bottom_quark_III` | Bottom Quark | `b` | `d3` | assembly | `h3 + 4:2@` | `5:3@` | down-type quark | III | pro | yes |
+| `anti_bottom_quark_III` | Anti Bottom Quark | `anti-b` | `ad3` | assembly | `ah3 + 2:4@` | `3:5@` | down-type quark | III | anti | yes |
+
+#### Composites
+
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `proton` | Proton | `p` | `P` | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)` | `15:21@` | baryon | I | pro | no |
+| `anti_proton` | Anti Proton | `anti-p` | `aP` | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)` | `21:15@` | baryon | I | anti | no |
+| `neutron` | Neutron | `n` | `N` | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)` | `18:18@` | baryon | I | pro | no |
+| `anti_neutron` | Anti Neutron | `anti-n` | `aN` | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)` | `18:18@` | baryon | I | anti | no |
+| `photon` | Photon | `gamma` | `2h` | composite | `h.h` | `6:6@` | boson | `n/a` | self-conjugate | no |
+| `higgs_cluster` | Higgs Cluster | `H` | `4h` | composite | `h.h.ah.ah` | `12:12@` | boson | `n/a` | mixed | no |
+| `w_plus_corridor` | W+ Boson | `W+` | `W+` | composite | `ah.ah + 0:6@` | `6:12@` | weak boson | `n/a` | mixed | no |
+| `w_minus_corridor` | W- Boson | `W-` | `W-` | composite | `h.h + 6:0@` | `12:6@` | weak boson | `n/a` | mixed | no |
+| `z_corridor` | Z Boson | `Z` | `Z` | composite | `h.ah` | `6:6@` | weak boson | `n/a` | self-conjugate | no |
+| `positive_pion` | Positive Pion | `pi+` | `u.ad` | composite | `u.ad = (h + 1:5@).(ah + 2:4@)` | `9:15@` | meson | I | mixed | no |
+| `neutral_pion` | Neutral Pion | `pi0` | `u.au / d.ad` | composite | `u.au or d.ad` | `12:12@` | meson | I | self-conjugate | no |
+| `negative_pion` | Negative Pion | `pi-` | `d.au` | composite | `d.au = (h + 4:2@).(ah + 5:1@)` | `15:9@` | meson | I | mixed | no |
+| `positive_kaon` | Positive Kaon | `K+` | `u.ad2` | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)` | `8:14@` | meson | `I+II` | mixed | no |
+| `neutral_kaon` | Neutral Kaon | `K0` | `d.ad2` | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)` | `11:11@` | meson | `I+II` | mixed | no |
+| `negative_kaon` | Negative Kaon | `K-` | `au.d2` | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)` | `14:8@` | meson | `I+II` | mixed | no |
+| `anti_neutral_kaon` | Anti Neutral Kaon | `anti-K0` | `ad.d2` | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)` | `11:11@` | meson | `I+II` | mixed | no |
+| `positive_b_meson` | Positive B Meson | `B+` | `u.ad3` | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)` | `7:13@` | meson | `I+III` | mixed | no |
+| `neutral_b_meson` | Neutral B Meson | `B0` | `d.ad3` | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)` | `10:10@` | meson | `I+III` | mixed | no |
+| `negative_b_meson` | Negative B Meson | `B-` | `au.d3` | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)` | `13:7@` | meson | `I+III` | mixed | no |
+| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0` | `ad.d3` | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)` | `10:10@` | meson | `I+III` | mixed | no |
+
+The photon, Higgs-cluster, and weak-corridor rows above are still shorthand structural sketches, not closed microstate derivations. They belong in the composite half of the registry because the solver-native export surface should stay limited to the assembly rows only.
