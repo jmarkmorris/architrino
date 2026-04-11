@@ -1,20 +1,5 @@
-import pdgsolveCorpusJson from "../../../content/contracts/examples/pdgsolve-corpus/v1/index.json" with { type: "json" };
-import freeNeutronBetaExactRequestJson from "../../../content/contracts/examples/pdgsolve-request/free_neutron_beta_exact.v1.json" with { type: "json" };
-import freeNeutronBetaSupportDisallowedRequestJson from "../../../content/contracts/examples/pdgsolve-request/free_neutron_beta_support_disallowed.v1.json" with { type: "json" };
-import passThruNeutronRequestJson from "../../../content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json" with { type: "json" };
-import primitiveImbalanceNeutronToProtonRequestJson from "../../../content/contracts/examples/pdgsolve-request/primitive_imbalance_neutron_to_proton.v1.json" with { type: "json" };
-import fixturePdgfeedRequestJson from "../../../content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json" with { type: "json" };
-import livePdgfeedRequestJson from "../../../content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json" with { type: "json" };
-
 import { loadPdgsolveAcceptanceRecord } from "./PdgsolveAcceptanceRuntime.js";
 import { loadPdgsolveRequest, normalizePdgsolveRequest } from "./PdgsolveRequestRuntime.js";
-
-const builtinRequestJsonById = Object.freeze({
-  free_neutron_beta_exact: freeNeutronBetaExactRequestJson,
-  free_neutron_beta_support_disallowed: freeNeutronBetaSupportDisallowedRequestJson,
-  primitive_imbalance_neutron_to_proton: primitiveImbalanceNeutronToProtonRequestJson,
-  pass_thru_neutron: passThruNeutronRequestJson,
-});
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -43,44 +28,6 @@ function createPdgsolveRequestEntry({
     sourceKind: normalizeText(sourceKind) || normalizedRequest.source.kind,
     request: normalizedRequest,
   };
-}
-
-function buildBuiltinFixtureEntries() {
-  const corpusCases = Array.isArray(pdgsolveCorpusJson?.cases) ? pdgsolveCorpusJson.cases : [];
-  return corpusCases
-    .map((entry) => {
-      const request = builtinRequestJsonById[normalizeText(entry?.id)];
-      if (!request) {
-        return null;
-      }
-      return createPdgsolveRequestEntry({
-        id: `fixture:${entry.id}`,
-        title: normalizeText(entry?.label),
-        subtitle: "Built-in v1 corpus request",
-        sourceKind: "fixture",
-        request,
-      });
-    })
-    .filter(Boolean);
-}
-
-function buildBuiltinPdgfeedEntries() {
-  return [
-    createPdgsolveRequestEntry({
-      id: "pdgfeed:fixture:free_neutron_beta_decay",
-      title: "PDGfeed fixture export: Free neutron beta decay",
-      subtitle: "Generated pdgsolve request from the fixture feed path",
-      sourceKind: "pdgfeed",
-      request: fixturePdgfeedRequestJson,
-    }),
-    createPdgsolveRequestEntry({
-      id: "pdgfeed:live:free_neutron_beta_decay",
-      title: "PDGfeed live export: Free neutron beta decay",
-      subtitle: "Generated pdgsolve request from the live PDG feed path",
-      sourceKind: "pdgfeed",
-      request: livePdgfeedRequestJson,
-    }),
-  ];
 }
 
 async function loadPdgfeedManifestEntries({
@@ -127,7 +74,7 @@ function dedupeRequestEntries(entries = []) {
 }
 
 export function getDefaultPdgsolveBootstrapEntries() {
-  return dedupeRequestEntries([...buildBuiltinFixtureEntries(), ...buildBuiltinPdgfeedEntries()]);
+  return [];
 }
 
 export async function loadPdgsolveBootstrapSeed({

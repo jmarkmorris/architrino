@@ -6,16 +6,6 @@ function normalizeBoolean(value) {
   return value === true;
 }
 
-const ALLOW_IMPLIED_NOETHER_CORE_SUPPORT = "allow-implied-noether-core-support";
-
-function normalizeBetaSupportMode(value) {
-  const normalizedValue = normalizeText(value);
-  if (!normalizedValue) {
-    return ALLOW_IMPLIED_NOETHER_CORE_SUPPORT;
-  }
-  return normalizedValue;
-}
-
 function normalizeRequestParty(record = {}) {
   return {
     id: normalizeText(record?.id),
@@ -29,7 +19,6 @@ export function normalizePdgsolvePolicy(policy = {}) {
     ? [...new Set(policy.allowedBoundaryAugmentations.map((value) => normalizeText(value)).filter(Boolean))]
     : [];
   return {
-    betaSupportMode: normalizeBetaSupportMode(policy?.betaSupportMode),
     exactClosureRequired: normalizeBoolean(policy?.exactClosureRequired),
     allowedBoundaryAugmentations: allowedBoundaryAugmentations.length ? allowedBoundaryAugmentations : ["none"],
   };

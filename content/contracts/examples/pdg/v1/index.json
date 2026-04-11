@@ -2,11 +2,6 @@
   "schema": "pdg-fixture-corpus/v1",
   "cases": [
     {
-      "id": "free_neutron_beta_decay",
-      "title": "Free neutron beta decay",
-      "sourcePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json"
-    },
-    {
       "id": "muon_decay",
       "title": "Muon decay",
       "sourcePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json"

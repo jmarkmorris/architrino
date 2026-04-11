@@ -1,6 +1,6 @@
 import {
   classifyPdgsolveRequestScenario,
-  solvePdgsolveRowSearch,
+  solvePdgsolveSearch,
 } from "./PdgsolveRowSearchRuntime.js";
 
 function normalizeText(value) {
@@ -10,7 +10,7 @@ function normalizeText(value) {
 export { classifyPdgsolveRequestScenario };
 
 export function solvePdgsolveRequest(request = {}) {
-  return solvePdgsolveRowSearch(request);
+  return solvePdgsolveSearch(request);
 }
 
 export function selectPdgsolveResultFamily(result = {}, familyId = "") {

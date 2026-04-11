@@ -79,6 +79,14 @@ Each dedicated app should own:
 
 Each dedicated app should avoid reaching back into another app's runtime for behavior that belongs behind an explicit data boundary.
 
+Boundary translation should usually live inside the app that owns that boundary rather than becoming a new middle app by default.
+
+In particular:
+
+- upstream components may translate higher-scale composite language into explicit assembly-native request data before that data reaches pdgsolve;
+- downstream components may translate explicit accepted assemblies into grouping/composite display language after pdgsolve finishes;
+- and pdgsolve core should not absorb either translation job.
+
 ### Cross-App Boundary Rule
 
 The preferred boundary between dedicated apps is explicit versioned data, not shared live behavior.
@@ -104,10 +112,28 @@ When dedicated apps exchange information, the exchange should happen through a v
 
 For the intended forward solve/publication chain:
 
-- `pdgfeed` emits explicit upstream request data;
+- `pdgfeed` emits explicit upstream request data and owns upstream composite-to-assembly translation for PDG-facing terms;
 - pdgsolve owns solve, review, acceptance, and publication;
-- pdgedit owns final `pdgedit/v1` documents and direct authored-surface editing;
-- and pdgview owns downstream observer-stage staging and presentation.
+- pdgedit owns final `pdgedit/v1` documents, direct authored-surface editing, and downstream visual grouping effects in that document family;
+- and pdgview owns downstream observer-stage staging, presentation, and any later observer-facing grouping overlays.
+
+### Boundary Translation Ownership
+
+The preferred pattern is boundary translators/adapters, not extra dedicated apps inserted into the middle of the chain.
+
+That means:
+
+- if a higher-scale description such as `neutron`, `proton`, or another composite term needs to become explicit assemblies, that translation belongs to the upstream boundary owner;
+- if explicit accepted assemblies later need to reappear as composite labels, spans, or observer-facing groupings, that translation belongs to the downstream boundary owner;
+- and dedicated new apps should be added only when the translation step itself becomes a substantial operator-facing workflow with its own independent review/runtime needs.
+
+So the default answer is not "add a composite app between pdgfeed and pdgsolve."
+
+The default answer is:
+
+- keep the existing app chain;
+- sharpen the versioned contracts;
+- and keep translation modules/review surfaces with the app that already owns the relevant seam.
 
 ### Composition Roots And Ownership
 
@@ -184,6 +210,7 @@ For the intended pdgsolve/pdgedit/pdgview architecture, that means:
 - pdgsolve owns accepted solve state and publication;
 - pdgedit owns the final authored-surface document boundary;
 - pdgview owns downstream staging and explanatory presentation;
+- any composite/grouping translation happens in boundary adapters owned by the upstream or downstream app rather than in shared middle runtime logic;
 - and the connections between them are explicit data rather than shared runtime logic.
 
 Other dedicated-app relationships should follow the same rule:

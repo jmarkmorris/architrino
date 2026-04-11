@@ -21,6 +21,12 @@ This workstream owns the forward app split
 
 as one product with explicit versioned data boundaries between stages.
 
+Within that split, higher-scale composite language should be handled only at the boundaries:
+
+- upstream boundary translation may expand composite or PDG-facing terms into explicit assembly-native request data before pdgsolve;
+- pdgsolve core remains assembly-native only;
+- and downstream publication or staging may collapse explicit accepted assemblies back into composite/grouping language only after solve.
+
 The active job is not to invent a different pipeline. It is to keep hardening launcher boundaries, upstream request handling, and downstream handoff around the now-real dedicated `pdgsolve` and `pdgedit` apps while keeping the accepted-record publication seam frozen, `pdgfeed` explicit upstream, `pdgview` explicit downstream, and `app.js` on a path toward launcher-only ownership.
 
 ## Directory Guide
@@ -35,12 +41,12 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 
 - `src/contracts/` plus `content/contracts/examples/` now carry the request, result, acceptance, publication-graph, package, pdgedit library-manifest, and `pdgedit/v1` schemas and fixtures that freeze the shared JSON denominator across the PDG chain.
 - `pdgedit.html` plus `src/apps/pdgedit/main.js` now boot the authored surface directly, while the catalog-review harness stays isolated under `src/apps/pdgedit/review/`; the manifest picker, home control, fixed-column strip, spline rendering, composite labels, and direct object editing now live under `src/apps/pdgedit/`.
-- `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review app that loads frozen corpus requests, `pdgfeed`-emitted requests, direct JSON requests, and reopened acceptance records; it runs deterministic v1 family search, presents ranked families, locks accepted records, and derives downstream `pdgedit` previews from the accepted solve graph.
+- `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review app that loads explicit request URLs, pdgfeed-manifest requests, direct JSON requests, and reopened acceptance records; it runs deterministic v1 family search, presents ranked families, locks accepted records, and derives downstream `pdgedit` previews from the accepted solve graph.
 - `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
 - `content/contracts/examples/pdgedit/manifest.v1.json` now includes solver-published final pdgedit documents in the same manifest-driven picker without admitting raw solver request/result payloads into pdgedit.
 - `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for all three, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
 - `scripts/pdg/pdgfeed.py` now owns the real PDG feed implementation, while root `pdgfeed.py` remains a compatibility shim for existing CLI calls and Python module imports.
-- `src/contracts/pdgview-staging/v1/schema.json`, `content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json`, and `src/apps/pdgview/PdgviewPdgeditImportRuntime.js` now freeze accepted `pdgedit/v1` import into pdgview-owned staging, observer framing, preview, and export data without importing pdgsolve or pdgedit app runtimes.
+- `src/contracts/pdgview-staging/v1/schema.json` and `src/apps/pdgview/PdgviewPdgeditImportRuntime.js` now freeze accepted `pdgedit/v1` import into pdgview-owned staging, observer framing, preview, and export data without importing pdgsolve or pdgedit app runtimes.
 
 ## Development Plan
 
@@ -66,7 +72,8 @@ This is a data pipeline, not a shared-runtime pipeline. Each stage should accept
 Purpose:
 
 - reads PDG-backed decay or channel data;
-- normalizes that data into Architrino-owned proposal and request artifacts;
+- normalizes that data into Architrino-owned proposal artifacts plus explicit assembly-native request artifacts;
+- expands admitted higher-scale source terms into explicit assemblies before solver handoff;
 - and emits explicit upstream request data for pdgsolve.
 
 Input:
@@ -88,7 +95,7 @@ Current CLI examples:
 Output:
 
 - proposal-review JSON artifacts for inspection;
-- and explicit request JSON for pdgsolve intake.
+- and explicit assembly-native request JSON for pdgsolve intake.
 
 Visual output:
 
@@ -99,7 +106,7 @@ Visual output:
 Purpose:
 
 - loads explicit solve requests;
-- normalizes them into a pdgsolve-owned solve problem;
+- normalizes them into a pdgsolve-owned solve problem expressed only in explicit assemblies;
 - computes and reviews conservative candidate outcomes;
 - accepts one outcome for publication;
 - and publishes final `pdgedit/v1` documents.
@@ -140,6 +147,7 @@ Output:
 
 - final `pdgedit/v1` documents with stable object ids and placements;
 - explicit spline link records;
+- explicit composite-label/grouping records for downstream display only;
 - and manifest-ready authored-surface assets for downstream staging.
 
 Visual output:
@@ -152,6 +160,7 @@ Purpose:
 
 - stages the downstream observer-facing scene;
 - turns accepted authored-surface content into framing, overlays, timing, playback, and media presentation;
+- may add observer-facing grouping or composite language over explicit assemblies after import;
 - and exports scene output or recorded presentation material.
 
 Input:
