@@ -65,30 +65,13 @@ Large coordinator files may assemble those pieces, but they should not become th
 
 ### Composite And Higher-Scale Terms Are Out Of Scope.
 
+Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects.
 
-That means:
+They do not enter pdgsolve as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must expand them into explicit admitted assemblies before pdgsolve sees the request. If downstream surfaces want higher-scale summaries, they may derive them only after pdgsolve has finished.
 
-- composites of assemblies are higher-scale grouping interpretations, not solver-native assemblies;
-- composites are not dissociation inputs, association outputs, intermediate assemblies, or solver search symbols;
-- higher-scale reactant terms and product terms belong to boundary translation, not to solver-core ontology;
-- an upstream translation layer may expand higher-scale descriptions into explicit assemblies before pdgsolve sees the request;
-- a downstream translation layer may collapse explicit accepted assemblies into higher-scale descriptions after pdgsolve finishes;
+Post-solver grouping display may describe solved assemblies, but grouping metadata is not itself opened, gathered, dissociated, associated, or searched.
 
-Post-solver grouping display can organize the assemblies that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
-
-pdgsolve should not use composite particle names, display-grouping names, support-pair names, support-quad names, residue labels, or other interpreted higher-scale terms as solver-native assembly ids.
-
-Those names belong on either side of the solver boundary:
-
-- before pdgsolve, [pdgfeed](./pdgfeed.md) or another boundary adapter may know higher-scale particle or reaction names and expand them into explicit individual assemblies;
-- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published explicit assemblies and classify or group them where a dedicated downstream rule admits that reading;
-- after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved assemblies;
-
-pdgsolve should not solve over `neutron`, `proton`, `W-`, `W+`, or `Z` as native units in the v1 strip when those names are being used as composite labels, corridor interpretations, or other higher-scale descriptions over multiple assemblies.
-
-For the current boundary, such language is a boundary-side interpretation of already-emitted explicit assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
-
-This is the controlling scope rule for the rest of the document. Later sections may not refer to composites, grouping interpretations, or higher-scale terms to explain why pdgsolve excludes them, how boundary adapters must translate them, or how diagnostics should report them.
+This is the controlling scope rule for the rest of the document.
 
 ### Core Ontology Boundary
 
@@ -116,7 +99,8 @@ The strip uses a deliberately limited grammar:
 - the solver does have a degree of freedom to add pro/anti Noether cores as pairs of reactant or product assemblies, although that pairing is not carried through the solving process – instead being techniques to add spacetime assemblies to enable solution closure.
 
 In pdgsolve terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
-- and inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
+
+Inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
 
 
 
