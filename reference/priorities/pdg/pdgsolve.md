@@ -102,8 +102,6 @@ In pdgsolve terminology, an **assembly** is one solver-native AAA assembly objec
 
 Inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
 
-
-
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
@@ -147,9 +145,7 @@ So the operator structure is asymmetric but strict:
 - a product-side `Associate` operator has only one output;
 - and that product-side `Associate` output must route to a 4-tile assembly product.
 
-
-
-pdgsolve should not widen the operator family casually.
+pdgsolve should not widen the operator family.
 
 The more precise the operator grammar is, the more tractable the search space becomes.
 
@@ -201,13 +197,7 @@ From that point forward:
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
 
-It should not be judged on whether the branch happens to match a preferred higher-scale nickname or grouping interpretation.
-
-So the design rule is:
-
-- the solver core reasons only over explicit admitted assemblies and explicit admitted operators;
-- any composite label, aggregate name, or corridor reading is optional boundary-side explanatory metadata;
-- and downstream grouping or naming may summarize an accepted explicit-assembly solution, but it must not define the ontology of the solve itself.
+So the design rule is:  the solver core reasons only over explicit admitted assemblies and explicit admitted operators;
 
 ### Request Intake
 
@@ -221,22 +211,7 @@ pdgsolve should define one pdgsolve-owned solve problem model that is solver-nat
 
 That solve problem model should describe reactant assemblies, product assemblies, the admitted intermediate-assembly alphabet, the permitted operator grammar, policy or theory gates, and provenance/accounting requirements.
 
-That solve problem model should contain only explicit admitted assemblies.
-
-It should not contain:
-
-- higher-scale reactant or product labels;
-- grouping interpretations over multiple assemblies;
-- residue labels or other non-Standard-Model substitute symbols;
-- or any other boundary-translation artifacts.
-
-That solve problem model should avoid:
-
-- DOM-derived geometry;
-- render-order assumptions;
-- CSS column artifacts;
-- UI-only node-key packing;
-- and other state that exists only because an earlier app rendered something first.
+That solve problem model must contain only explicit admitted assemblies.
 
 Mathematically, pdgsolve should describe one solve instance as
 
