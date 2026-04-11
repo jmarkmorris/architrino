@@ -48,11 +48,34 @@ PDG_SOURCE_CONTRACT = {
     "pdgviewHandoff": "accepted-reaction-only",
 }
 
+def generation_adjusted_primitive_counts(base_counts: tuple[int, int], generation: int) -> tuple[int, int]:
+    if generation < 1:
+        raise ValueError(f"Generation must be >= 1, got {generation}")
+    generation_loss = generation - 1
+    electrinos = base_counts[0] - generation_loss
+    positrinos = base_counts[1] - generation_loss
+    if electrinos < 0 or positrinos < 0:
+        raise ValueError(f"Invalid primitive-count underflow for generation {generation}")
+    return electrinos, positrinos
+
+
+def fermion_generation_primitive_counts(generation: int) -> tuple[int, int]:
+    return generation_adjusted_primitive_counts((6, 6), generation)
+
+
 PROPOSAL_PRIMITIVE_COUNTS_BY_CANONICAL_NAME: dict[str, tuple[int, int]] = {
-    "u": (4, 8),
-    "d": (7, 5),
-    "anti-u": (8, 4),
-    "anti-d": (5, 7),
+    "u": generation_adjusted_primitive_counts((4, 8), 1),
+    "c": generation_adjusted_primitive_counts((4, 8), 2),
+    "t": generation_adjusted_primitive_counts((4, 8), 3),
+    "d": generation_adjusted_primitive_counts((7, 5), 1),
+    "s": generation_adjusted_primitive_counts((7, 5), 2),
+    "b": generation_adjusted_primitive_counts((7, 5), 3),
+    "anti-u": generation_adjusted_primitive_counts((8, 4), 1),
+    "anti-c": generation_adjusted_primitive_counts((8, 4), 2),
+    "anti-t": generation_adjusted_primitive_counts((8, 4), 3),
+    "anti-d": generation_adjusted_primitive_counts((5, 7), 1),
+    "anti-s": generation_adjusted_primitive_counts((5, 7), 2),
+    "anti-b": generation_adjusted_primitive_counts((5, 7), 3),
 }
 
 BARYON_QUARK_CONSTITUENTS_BY_CANONICAL_NAME: dict[str, tuple[str, ...]] = {
@@ -161,8 +184,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="pro",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(1)[0],
+        positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:electron", "pdg:generation:1"),
         inventory_flags=("generation:1", "charged-lepton"),
         pdgsolve_assembly_id="electron",
@@ -176,8 +199,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="anti",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(1)[0],
+        positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:positron", "pdg:generation:1"),
         inventory_flags=("generation:1", "charged-lepton"),
     ),
@@ -189,8 +212,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="pro",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(2)[0],
+        positrino_count=fermion_generation_primitive_counts(2)[1],
         tags=("pdg:species:muon", "pdg:generation:2"),
         inventory_flags=("generation:2", "charged-lepton"),
     ),
@@ -202,10 +225,36 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="anti",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(2)[0],
+        positrino_count=fermion_generation_primitive_counts(2)[1],
         tags=("pdg:species:anti-muon", "pdg:generation:2"),
         inventory_flags=("generation:2", "charged-lepton"),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="tau-",
+        aliases=("tau-", "tau", "tauon"),
+        template_id="electron",
+        label="Pro Tau",
+        family="lepton",
+        polarity="pro",
+        is_composite=False,
+        electrino_count=fermion_generation_primitive_counts(3)[0],
+        positrino_count=fermion_generation_primitive_counts(3)[1],
+        tags=("pdg:species:tau", "pdg:generation:3"),
+        inventory_flags=("generation:3", "charged-lepton"),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="tau+",
+        aliases=("tau+", "anti-tau"),
+        template_id="electron",
+        label="Anti Tau",
+        family="lepton",
+        polarity="anti",
+        is_composite=False,
+        electrino_count=fermion_generation_primitive_counts(3)[0],
+        positrino_count=fermion_generation_primitive_counts(3)[1],
+        tags=("pdg:species:anti-tau", "pdg:generation:3"),
+        inventory_flags=("generation:3", "charged-lepton"),
     ),
     PdgV1ParticleMapping(
         canonical_name="nu_e",
@@ -215,8 +264,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="pro",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(1)[0],
+        positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:electron-neutrino", "pdg:generation:1"),
         inventory_flags=("generation:1", "neutrino"),
     ),
@@ -228,8 +277,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="anti",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(1)[0],
+        positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:anti-electron-neutrino", "pdg:generation:1"),
         inventory_flags=("generation:1", "neutrino"),
         pdgsolve_assembly_id="electron_antineutrino",
@@ -243,8 +292,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="pro",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(2)[0],
+        positrino_count=fermion_generation_primitive_counts(2)[1],
         tags=("pdg:species:muon-neutrino", "pdg:generation:2"),
         inventory_flags=("generation:2", "neutrino"),
     ),
@@ -256,10 +305,36 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         family="lepton",
         polarity="anti",
         is_composite=False,
-        electrino_count=6,
-        positrino_count=6,
+        electrino_count=fermion_generation_primitive_counts(2)[0],
+        positrino_count=fermion_generation_primitive_counts(2)[1],
         tags=("pdg:species:anti-muon-neutrino", "pdg:generation:2"),
         inventory_flags=("generation:2", "neutrino"),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="nu_tau",
+        aliases=("nu_tau", "tau-neutrino"),
+        template_id="neutrino",
+        label="Pro Tau Neutrino",
+        family="lepton",
+        polarity="pro",
+        is_composite=False,
+        electrino_count=fermion_generation_primitive_counts(3)[0],
+        positrino_count=fermion_generation_primitive_counts(3)[1],
+        tags=("pdg:species:tau-neutrino", "pdg:generation:3"),
+        inventory_flags=("generation:3", "neutrino"),
+    ),
+    PdgV1ParticleMapping(
+        canonical_name="anti-nu_tau",
+        aliases=("anti-nu_tau", "nubar_tau", "anti-tau-neutrino"),
+        template_id="neutrino",
+        label="Anti Tau Neutrino",
+        family="lepton",
+        polarity="anti",
+        is_composite=False,
+        electrino_count=fermion_generation_primitive_counts(3)[0],
+        positrino_count=fermion_generation_primitive_counts(3)[1],
+        tags=("pdg:species:anti-tau-neutrino", "pdg:generation:3"),
+        inventory_flags=("generation:3", "neutrino"),
     ),
     PdgV1ParticleMapping(
         canonical_name="gamma",

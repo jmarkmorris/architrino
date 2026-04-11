@@ -264,7 +264,7 @@ Causal root structure, self-interaction, multiplicity
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, ∂t$\phi$, ∇$\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
 - Method 2: Exact potentials in free space; gradients give forces; care is needed near |1−$\mathbf{n}\cdot\mathbf{v}_s$/$c$| → 0 geometries.
-- Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi$$\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
+- Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi_\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
 
 Numerical stability and well-posedness
 - Method 1: CFL constraints; dispersion/reflection control needed; robust under regularized sources; well posed on grids.

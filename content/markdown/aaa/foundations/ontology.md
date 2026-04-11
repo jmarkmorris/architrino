@@ -1288,7 +1288,7 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 **Key properties:**
 
 - **Density**: $\rho_{vac}(\mathbf{x}, t)$ (number of cores per unit volume)
-- **Energy density**: $\rho_{vac} \times E_{\text{core}}$ (where \$E_{\text{core}}$ is the binding energy of a single core)
+- **Energy density**: $\rho_{vac} \times E_{\text{core}}$ (where $E_{\text{core}}$ is the binding energy of a single core)
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
 

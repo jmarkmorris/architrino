@@ -193,6 +193,159 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             ],
         )
 
+    def test_generation_adjusted_fermion_counts_step_down_each_generation(self):
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(1), (6, 6))
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(2), (5, 5))
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(3), (4, 4))
+
+    def test_gen_two_lepton_proposal_inventory_counts_drop_by_one_from_gen_one(self):
+        case = pdgfeed.PdgCase(
+            case_id="generation_two_lepton_inventory_probe",
+            proposal_id="generation_two_lepton_inventory_probe",
+            title="Generation two lepton inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="mu-", pdg_id="mu-"),
+                pdgfeed.TestCaseParticle(name="mu+", pdg_id="mu+"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="nu_mu", pdg_id="nu_mu"),
+                pdgfeed.TestCaseParticle(name="anti-nu_mu", pdg_id="anti-nu_mu"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "charged-lepton",
+                        "pdg-id:mu-",
+                        "pdg-name:mu-",
+                    ],
+                },
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "charged-lepton",
+                        "pdg-id:mu+",
+                        "pdg-name:mu+",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "neutrino",
+                        "pdg-id:nu_mu",
+                        "pdg-name:nu_mu",
+                    ],
+                },
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "neutrino",
+                        "pdg-id:anti-nu_mu",
+                        "pdg-name:anti-nu_mu",
+                    ],
+                },
+            ],
+        )
+
+    def test_gen_three_lepton_proposal_inventory_counts_drop_by_one_from_gen_two(self):
+        case = pdgfeed.PdgCase(
+            case_id="generation_three_lepton_inventory_probe",
+            proposal_id="generation_three_lepton_inventory_probe",
+            title="Generation three lepton inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="tau", pdg_id="tau-"),
+                pdgfeed.TestCaseParticle(name="tau+", pdg_id="tau+"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="nu_tau", pdg_id="nu_tau"),
+                pdgfeed.TestCaseParticle(name="nubar_tau", pdg_id="nubar_tau"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.pdg_name for participant in proposal.reactants],
+            ["tau-", "tau+"],
+        )
+        self.assertEqual(
+            [participant.pdg_name for participant in proposal.products],
+            ["nu_tau", "anti-nu_tau"],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "charged-lepton",
+                        "pdg-id:tau-",
+                        "pdg-name:tau-",
+                    ],
+                },
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "charged-lepton",
+                        "pdg-id:tau+",
+                        "pdg-name:tau+",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "neutrino",
+                        "pdg-id:nu_tau",
+                        "pdg-name:nu_tau",
+                    ],
+                },
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "neutrino",
+                        "pdg-id:nubar_tau",
+                        "pdg-name:anti-nu_tau",
+                    ],
+                },
+            ],
+        )
+
     def test_pdgfeed_expands_composite_neutron_channel_terms_into_explicit_request_side_assemblies(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",

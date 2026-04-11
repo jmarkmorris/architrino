@@ -164,7 +164,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 2. **Drag Force Derivation**:
  - Model the assembly as a "defect" in the lattice. As it moves, it creates a wake of perturbed Noether-Sea nodes.
- - Use continuum mechanics (or lattice simulations) to compute the drag force \$F_{\text{drag}} = -\beta v$, where $\beta$ is the drag coefficient.
+ - Use continuum mechanics (or lattice simulations) to compute the drag force $F_{\text{drag}} = -\beta v$, where $\beta$ is the drag coefficient.
  - **Prediction:** $\beta \propto \rho_{\text{vac}} \times (\text{cross-section})$.
 
 3. **Effective Mass Formula**:
@@ -182,7 +182,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 **Actions:**
 1. **Electron Mass Calculation**:
- - Input: Tri-binary radius, frequency, axial layer (\$6E$).
+ - Input: Tri-binary radius, frequency, axial layer ($6E$).
  - Compute: $E_{\text{internal}}$, $\zeta$, $\beta$.
  - Output: Predicted $m_e$.
  - **Target:** Match $m_e = 0.511$ MeV to within 10%.
