@@ -70,11 +70,11 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
             title="Free neutron beta decay",
-            source_kind="fixture",
+            source_kind="test_case",
             source={
                 "edition": "2025",
                 "channelDescription": "n -> p e- anti-nu_e",
-                "citation": "Local PDG fixture seed",
+                "citation": "Local PDG test-case seed",
                 "branchingDisplay": "dominant neutron decay channel",
             },
             reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
@@ -99,7 +99,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "pdgviewHandoff": "accepted-reaction-only",
             },
         )
-        self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
+        self.assertEqual(proposal.source["testCaseId"], "free_neutron_beta_decay")
         self.assertEqual(proposal.exportable, True)
 
     def test_pdgsolve_request_source_points_back_to_the_pdg_proposal_surface(self):
@@ -107,7 +107,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
             title="Free neutron beta decay",
-            source_kind="fixture",
+            source_kind="test_case",
             source={"edition": "2025"},
             reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
             products=(
@@ -336,9 +336,9 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
 
     def test_supported_reaction_csv_rows_use_aaa_labels_and_row_counts(self):
-        fixtures = pdgfeed.load_fixture_index(pdgfeed.DEFAULT_FIXTURE_INDEX)
+        test_cases = pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
 
-        rows = pdgfeed.build_supported_reaction_csv_rows(fixtures)
+        rows = pdgfeed.build_supported_reaction_csv_rows(test_cases)
 
         self.assertEqual(
             rows,
@@ -361,7 +361,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="single_row_probe",
             proposal_id="single_row_probe",
             title="Single row probe",
-            source_kind="fixture",
+            source_kind="test_case",
             source={"edition": "2026"},
             reactants=(pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),),
             products=(pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),

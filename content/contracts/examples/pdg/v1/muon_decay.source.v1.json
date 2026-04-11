@@ -1,11 +1,11 @@
 {
-  "schema": "pdg-fixture-source/v1",
-  "fixtureId": "muon_decay",
+  "schema": "pdg-test-case-source/v1",
+  "testCaseId": "muon_decay",
   "title": "Muon decay",
   "source": {
     "edition": "2026",
     "channelDescription": "mu- -> e- anti-nu_e nu_mu",
-    "citation": "Local PDG fixture seed",
+    "citation": "Local PDG test-case seed",
     "branchingDisplay": "dominant muon decay channel"
   },
   "reactants": [

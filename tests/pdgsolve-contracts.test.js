@@ -176,7 +176,7 @@ test("pdgsolve publication recipes project the solver primitive ledger", () => {
   );
 });
 
-test("pdgsolve request fixtures match the versioned pdgsolve-request schema", () => {
+test("pdgsolve request test cases match the versioned pdgsolve-request schema", () => {
   pdgsolveCorpus.cases.forEach((entry) => {
     const request = readJson(entry.requestPath);
     const errors = validateAgainstSchema(request, pdgsolveRequestSchema);
@@ -184,7 +184,7 @@ test("pdgsolve request fixtures match the versioned pdgsolve-request schema", ()
     assert.deepEqual(errors, [], `${entry.requestPath} schema mismatch`);
     assert.equal(request.schema, "pdgsolve-request/v1");
     assert.equal(request.requestId, entry.id);
-    assert.equal(request.source.kind, "fixture");
+    assert.equal(request.source.kind, "test_case");
   });
 });
 

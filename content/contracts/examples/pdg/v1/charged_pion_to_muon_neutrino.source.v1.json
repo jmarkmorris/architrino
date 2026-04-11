@@ -1,11 +1,11 @@
 {
-  "schema": "pdg-fixture-source/v1",
-  "fixtureId": "charged_pion_to_muon_neutrino",
+  "schema": "pdg-test-case-source/v1",
+  "testCaseId": "charged_pion_to_muon_neutrino",
   "title": "Charged pion to muon neutrino",
   "source": {
     "edition": "2026",
     "channelDescription": "pi+ -> mu+ nu_mu",
-    "citation": "Local PDG fixture seed",
+    "citation": "Local PDG test-case seed",
     "branchingDisplay": "dominant charged pion decay channel"
   },
   "reactants": [
@@ -28,6 +28,6 @@
     }
   ],
   "notes": [
-    "unsupported reactant fixture used to keep a real PDG decay channel in the first local corpus"
+    "unsupported reactant test case used to keep a real PDG decay channel in the first local corpus"
   ]
 }

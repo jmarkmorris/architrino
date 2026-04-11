@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build PDG-derived proposal artifacts and pdgsolve-request candidates.
 
-The normal regression path is fixture-first so development stays stable offline.
+The normal regression path is test-case-first so development stays stable offline.
 When the external `pdg` package is installed locally, selected live channels can
 be read through `pdg.connect(...)` and normalized through the same export path.
 """
@@ -21,14 +21,14 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_FIXTURE_INDEX = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "index.json"
+DEFAULT_TEST_CASE_INDEX = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "index.json"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "generated"
 DEFAULT_SUPPORTED_REACTION_CSV = DEFAULT_OUTPUT_DIR / "supported_reaction_primitive_deltas.v1.csv"
 PDGSOLVE_REQUEST_SCHEMA_PATH = REPO_ROOT / "src" / "contracts" / "pdgsolve-request" / "v1" / "schema.json"
 
 PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
-PDG_FIXTURE_CORPUS_SCHEMA = "pdg-fixture-corpus/v1"
-PDG_FIXTURE_SOURCE_SCHEMA = "pdg-fixture-source/v1"
+PDG_TEST_CASE_CORPUS_SCHEMA = "pdg-test-case-corpus/v1"
+PDG_TEST_CASE_SOURCE_SCHEMA = "pdg-test-case-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
 PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
@@ -598,31 +598,31 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
-def load_fixture_index(index_path: Path) -> list[PdgCase]:
+def load_test_case_index(index_path: Path) -> list[PdgCase]:
     index_payload = load_json(index_path)
-    if index_payload.get("schema") != PDG_FIXTURE_CORPUS_SCHEMA:
-        raise ValueError(f"Unexpected fixture index schema in {index_path}")
-    fixtures: list[PdgCase] = []
+    if index_payload.get("schema") != PDG_TEST_CASE_CORPUS_SCHEMA:
+        raise ValueError(f"Unexpected test-case index schema in {index_path}")
+    test_cases: list[PdgCase] = []
     for case in index_payload.get("cases", []):
         source_path = REPO_ROOT / case["sourcePath"]
-        fixture_payload = load_json(source_path)
-        if fixture_payload.get("schema") != PDG_FIXTURE_SOURCE_SCHEMA:
-            raise ValueError(f"Unexpected fixture source schema in {source_path}")
-        case_id = str(fixture_payload["fixtureId"])
-        fixtures.append(
+        test_case_payload = load_json(source_path)
+        if test_case_payload.get("schema") != PDG_TEST_CASE_SOURCE_SCHEMA:
+            raise ValueError(f"Unexpected test-case source schema in {source_path}")
+        case_id = str(test_case_payload["testCaseId"])
+        test_cases.append(
             PdgCase(
                 case_id=case_id,
                 proposal_id=case_id,
-                title=str(fixture_payload["title"]),
-                source_kind="fixture",
-                source=dict(fixture_payload["source"]),
+                title=str(test_case_payload["title"]),
+                source_kind="test_case",
+                source=dict(test_case_payload["source"]),
                 reactants=tuple(
                     FixtureParticle(
                         name=str(entry["name"]),
                         pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
                         display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
                     )
-                    for entry in fixture_payload.get("reactants", [])
+                    for entry in test_case_payload.get("reactants", [])
                 ),
                 products=tuple(
                     FixtureParticle(
@@ -630,13 +630,13 @@ def load_fixture_index(index_path: Path) -> list[PdgCase]:
                         pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
                         display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
                     )
-                    for entry in fixture_payload.get("products", [])
+                    for entry in test_case_payload.get("products", [])
                 ),
-                notes=tuple(str(note) for note in fixture_payload.get("notes", [])),
+                notes=tuple(str(note) for note in test_case_payload.get("notes", [])),
                 source_path=source_path,
             )
         )
-    return fixtures
+    return test_cases
 
 
 def slugify(text: str) -> str:
@@ -667,10 +667,10 @@ def build_inventory(mapping: PdgV1ParticleMapping, particle: FixtureParticle) ->
 
 def build_proposal_source(case: PdgCase) -> dict[str, Any]:
     source = dict(case.source)
-    if case.source_kind == "fixture":
-        source["fixtureId"] = case.case_id
+    if case.source_kind == "test_case":
+        source["testCaseId"] = case.case_id
         if case.source_path is not None:
-            source["fixturePath"] = str(case.source_path.relative_to(REPO_ROOT))
+            source["testCasePath"] = str(case.source_path.relative_to(REPO_ROOT))
     elif case.source_kind == "pdg-live":
         source["liveCaseId"] = case.case_id
     source["contract"] = dict(PDG_SOURCE_CONTRACT)
@@ -1269,22 +1269,22 @@ def emit_case(case: PdgCase, output_dir: Path) -> list[Path]:
     return written_paths
 
 
-def build_fixture_proposal_object(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> Proposal:
-    fixture = fixtures_by_id.get(fixture_id)
-    if fixture is None:
-        available = ", ".join(sorted(fixtures_by_id))
-        raise SystemExit(f"Unknown fixture id {fixture_id!r}. Available: {available}")
-    return build_proposal(fixture)
+def build_test_case_proposal_object(test_cases_by_id: dict[str, PdgCase], test_case_id: str) -> Proposal:
+    test_case = test_cases_by_id.get(test_case_id)
+    if test_case is None:
+        available = ", ".join(sorted(test_cases_by_id))
+        raise SystemExit(f"Unknown test-case id {test_case_id!r}. Available: {available}")
+    return build_proposal(test_case)
 
 
-def build_fixture_proposal(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
-    return build_fixture_proposal_object(fixtures_by_id, fixture_id).to_dict()
+def build_test_case_proposal(test_cases_by_id: dict[str, PdgCase], test_case_id: str) -> dict[str, Any]:
+    return build_test_case_proposal_object(test_cases_by_id, test_case_id).to_dict()
 
 
-def build_fixture_pdgsolve_request(fixtures_by_id: dict[str, PdgCase], fixture_id: str) -> dict[str, Any]:
-    pdgsolve_request = build_pdgsolve_request(build_fixture_proposal_object(fixtures_by_id, fixture_id))
+def build_test_case_pdgsolve_request(test_cases_by_id: dict[str, PdgCase], test_case_id: str) -> dict[str, Any]:
+    pdgsolve_request = build_pdgsolve_request(build_test_case_proposal_object(test_cases_by_id, test_case_id))
     if pdgsolve_request is None:
-        raise SystemExit(f"Fixture {fixture_id!r} does not currently emit pdgsolve-request/v1.")
+        raise SystemExit(f"Test case {test_case_id!r} does not currently emit pdgsolve-request/v1.")
     return pdgsolve_request
 
 
@@ -1324,12 +1324,12 @@ def format_output_path(path: Path) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build local PDG proposal fixtures and pdgsolve-request candidates.")
+    parser = argparse.ArgumentParser(description="Build local PDG proposal test cases and pdgsolve-request candidates.")
     parser.add_argument(
-        "--fixture-index",
+        "--test-case-index",
         type=Path,
-        default=DEFAULT_FIXTURE_INDEX,
-        help="Path to the local PDG fixture corpus index.",
+        default=DEFAULT_TEST_CASE_INDEX,
+        help="Path to the local PDG test-case corpus index.",
     )
     parser.add_argument(
         "--output-dir",
@@ -1343,7 +1343,7 @@ def parse_args() -> argparse.Namespace:
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    subparsers.add_parser("list-fixtures", help="List available local PDG fixtures.")
+    subparsers.add_parser("list-test-cases", help="List available local PDG test cases.")
     subparsers.add_parser("list-live-cases", help="List the first live PDG channels supported by this script.")
     subparsers.add_parser(
         "build-live-manifest",
@@ -1363,27 +1363,27 @@ def parse_args() -> argparse.Namespace:
     )
     supported_reaction_csv_parser.add_argument(
         "--source",
-        choices=("fixtures", "live"),
-        default="fixtures",
-        help="Use local fixtures or live PDG discovery as the CSV input source.",
+        choices=("test-cases", "live"),
+        default="test-cases",
+        help="Use local test cases or live PDG discovery as the CSV input source.",
     )
 
-    emit_fixture_parser = subparsers.add_parser("emit-fixture", help="Emit proposal and pdgsolve-request artifacts for one fixture.")
-    emit_fixture_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+    emit_test_case_parser = subparsers.add_parser("emit-test-case", help="Emit proposal and pdgsolve-request artifacts for one test case.")
+    emit_test_case_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
 
-    print_fixture_proposal_parser = subparsers.add_parser(
-        "print-fixture-proposal",
-        help="Print one fixture pdg-proposal/v1 JSON payload to stdout.",
+    print_test_case_proposal_parser = subparsers.add_parser(
+        "print-test-case-proposal",
+        help="Print one test-case pdg-proposal/v1 JSON payload to stdout.",
     )
-    print_fixture_proposal_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+    print_test_case_proposal_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
 
-    print_fixture_request_parser = subparsers.add_parser(
-        "print-fixture-pdgsolve-request",
-        help="Print one fixture pdgsolve-request/v1 JSON payload to stdout for piping.",
+    print_test_case_request_parser = subparsers.add_parser(
+        "print-test-case-pdgsolve-request",
+        help="Print one test-case pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
-    print_fixture_request_parser.add_argument("fixture_id", help="Fixture id from the local PDG corpus.")
+    print_test_case_request_parser.add_argument("test_case_id", help="Test-case id from the local PDG corpus.")
 
-    subparsers.add_parser("emit-all-fixtures", help="Emit proposal and pdgsolve-request artifacts for all fixtures.")
+    subparsers.add_parser("emit-all-test-cases", help="Emit proposal and pdgsolve-request artifacts for all test cases.")
 
     emit_live_parser = subparsers.add_parser("emit-live-case", help="Emit proposal and pdgsolve-request artifacts for one live PDG channel.")
     emit_live_parser.add_argument("case_id", help="Live case id from the built-in live PDG registry.")
@@ -1406,12 +1406,12 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    fixtures = load_fixture_index(args.fixture_index)
-    fixtures_by_id = {fixture.case_id: fixture for fixture in fixtures}
+    test_cases = load_test_case_index(args.test_case_index)
+    test_cases_by_id = {test_case.case_id: test_case for test_case in test_cases}
 
-    if args.command == "list-fixtures":
-        for fixture in fixtures:
-            print(f"{fixture.case_id}\t{fixture.title}")
+    if args.command == "list-test-cases":
+        for test_case in test_cases:
+            print(f"{test_case.case_id}\t{test_case.title}")
         return 0
 
     if args.command == "list-live-cases":
@@ -1427,31 +1427,31 @@ def main() -> int:
         if args.source == "live":
             rows = build_live_supported_reaction_csv_rows(args.database_url)
         else:
-            rows = build_supported_reaction_csv_rows(fixtures)
+            rows = build_supported_reaction_csv_rows(test_cases)
         write_supported_reaction_csv(args.csv_path, rows)
         print(format_output_path(args.csv_path))
         return 0
 
-    if args.command == "emit-fixture":
-        fixture = fixtures_by_id.get(args.fixture_id)
-        if fixture is None:
-            available = ", ".join(sorted(fixtures_by_id))
-            raise SystemExit(f"Unknown fixture id {args.fixture_id!r}. Available: {available}")
-        for path in emit_case(fixture, args.output_dir):
+    if args.command == "emit-test-case":
+        test_case = test_cases_by_id.get(args.test_case_id)
+        if test_case is None:
+            available = ", ".join(sorted(test_cases_by_id))
+            raise SystemExit(f"Unknown test-case id {args.test_case_id!r}. Available: {available}")
+        for path in emit_case(test_case, args.output_dir):
             print(path.relative_to(REPO_ROOT))
         return 0
 
-    if args.command == "print-fixture-proposal":
-        print_json(build_fixture_proposal(fixtures_by_id, args.fixture_id))
+    if args.command == "print-test-case-proposal":
+        print_json(build_test_case_proposal(test_cases_by_id, args.test_case_id))
         return 0
 
-    if args.command == "print-fixture-pdgsolve-request":
-        print_json(build_fixture_pdgsolve_request(fixtures_by_id, args.fixture_id))
+    if args.command == "print-test-case-pdgsolve-request":
+        print_json(build_test_case_pdgsolve_request(test_cases_by_id, args.test_case_id))
         return 0
 
-    if args.command == "emit-all-fixtures":
-        for fixture in fixtures:
-            for path in emit_case(fixture, args.output_dir):
+    if args.command == "emit-all-test-cases":
+        for test_case in test_cases:
+            for path in emit_case(test_case, args.output_dir):
                 print(path.relative_to(REPO_ROOT))
         return 0
 
