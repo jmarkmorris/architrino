@@ -587,7 +587,7 @@ For now, `2h` and `4h` are the only committed whole-core aggregate tokens. The g
 
 Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
 
-The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a free electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
+The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a unbound electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
 
 This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `2h`, `4h`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
@@ -613,14 +613,14 @@ Current token families:
 | weak boson | `W+`, `W-`, `Z` | `W+` and `W-` are atomic two-character tokens |
 | core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether core` forms |
 | whole-core aggregate | `2h`, `4h` | only these two aggregate forms are currently valid |
-| free-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
+| unbound-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
 
 Equivalent EBNF-style sketch:
 
 ```text
 reaction_arg   := token { separator* token }
 separator      := "." | "," | "_" | whitespace
-token          := fermion | nucleon | weak_boson | core_form | whole_core_aggregate | free_architrino_ledger
+token          := fermion | nucleon | weak_boson | core_form | whole_core_aggregate | unbound_architrino_ledger
 fermion        := anti? family generation?
 anti           := "a"
 family         := "e" | "u" | "d" | "v"
@@ -629,7 +629,7 @@ nucleon        := anti? ("P" | "N")
 weak_boson     := "W+" | "W-" | "Z"
 core_form      := anti? ("h" | "h2" | "h3")
 whole_core_aggregate := "2h" | "4h"
-free_architrino_ledger := count ":" count "@"
+unbound_architrino_ledger := count ":" count "@"
 count          := digit { digit }
 ```
 
@@ -667,7 +667,7 @@ Current recommended conflict checks:
 | `3h`, `5h`, `12h`           | only `2h` and `4h` are currently committed aggregate tokens               | forbid entirely  |
 | `0:0@`                      | null `Unbound Architrinos` ledger carries no usable content                  | forbid entirely  |
 | `h23`, `u23`, `e12`         | visually suggests one token but leaves trailing digits ambiguous          | forbid entirely  |
-| `@`, `2@`, `227@`           | omitted ledger side makes the free-architrino token ambiguous             | forbid entirely  |
+| `@`, `2@`, `227@`           | omitted ledger side makes the unbound-architrino token ambiguous             | forbid entirely  |
 | `:120@`, `227:@`            | omitted ledger side creates a special-case parse                          | forbid entirely  |
 | `227:120@3`, `1:1@2`        | payload after `@` collides with the token boundary                        | forbid entirely  |
 
