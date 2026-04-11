@@ -1368,11 +1368,14 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `composite_beta_request_requires_boundary_expansion` | `neutron -> proton + electron + electron_antineutrino` | default | request is expanded by an upstream translator before pdgsolve core sees it, or else pdgsolve emits `pdgsolve.request.composite_requires_boundary_expansion`; no composite token enters search |
 | `explicit_beta_request_requires_assembly_native_law` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | no exact family exists until an admitted explicit assembly-native law family is present; retained diagnostics include `pdgsolve.search.unsupported_law_family`; no composite or non-native symbol is introduced |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
+
+Positive regression coverage for composite-to-assembly expansion belongs in [pdgfeed](./pdgfeed.md), not in pdgsolve.
+
+pdgsolve should keep only assembly-native solve regressions plus boundary rejection coverage for direct developer-loaded or request-URL-loaded inputs.
 
 The last test case is a gate on the first post-pass-through expansion.
 

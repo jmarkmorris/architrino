@@ -130,6 +130,44 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             },
         )
 
+    def test_pdgfeed_expands_composite_neutron_channel_terms_into_explicit_request_side_assemblies(self):
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        pdgsolve_request = pdgfeed.build_pdgsolve_request(proposal)
+
+        self.assertIsNotNone(pdgsolve_request)
+        self.assertEqual(
+            [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["reactants"]],
+            [
+                ("pro_down_quark", "Pro Down Quark"),
+                ("pro_up_quark", "Pro Up Quark"),
+                ("pro_down_quark", "Pro Down Quark"),
+            ],
+        )
+        self.assertEqual(
+            [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["products"]],
+            [
+                ("pro_up_quark", "Pro Up Quark"),
+                ("pro_down_quark", "Pro Down Quark"),
+                ("pro_up_quark", "Pro Up Quark"),
+                ("electron", "Electron"),
+                ("electron_antineutrino", "Electron Antineutrino"),
+            ],
+        )
+
     def test_manifest_assigns_incrementing_batch_ids_to_exportable_pdgsolve_requests(self):
         neutron_particle = FakeParticle(
             "n",

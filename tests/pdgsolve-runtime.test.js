@@ -73,24 +73,6 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
   assert.deepEqual(seed.reopenedAcceptance, acceptanceTestCase);
 });
 
-test("live pdgfeed neutron requests solve exactly through the admitted fermion-decomposition family", () => {
-  const request = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json");
-  const result = solvePdgsolveRequest(request);
-
-  assert.equal(result.problemId, "pdgsolve_problem_free_neutron_beta_decay.live-pdg");
-  assert.equal(result.searchStatus, "exact_available");
-  assert.equal(result.bestFamilyId, "family.beta.fermion_decomposition.v1");
-  assert.equal(result.diagnostics[0].payload.requestId, "free_neutron_beta_decay.live-pdg");
-  assert.equal(result.diagnostics[0].id, "pdgsolve.normalization.support_added.noether_core_rows");
-  assert.equal(result.optionFamilies[0].publicationReady, true);
-  assert.equal(
-    result.optionFamilies[0].laneInventories.lane3.some(
-      (record) => record.assemblyId === "unbound_architrino_residue_e4_p8"
-    ),
-    true
-  );
-});
-
 test("explicit Noether support requests solve through the admitted fermion decomposition laws", () => {
   const request = {
     schema: "pdgsolve-request/v1",

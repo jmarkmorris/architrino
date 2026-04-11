@@ -342,6 +342,8 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 - each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
 - and `policy` is set explicitly by ingest, not inferred by the solver.
 
+Positive regression coverage for composite-to-assembly expansion belongs here, because pdgfeed owns that translation before the request crosses into pdgsolve.
+
 The first exported `policy` baseline should be:
 
 - `exactClosureRequired: true`
