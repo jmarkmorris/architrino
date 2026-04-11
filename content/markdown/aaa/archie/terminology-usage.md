@@ -230,6 +230,22 @@ Use `Noether core` for the central tri-binary scaffold. Use `particle` mainly at
 
 This distinction prevents a common scale-collapse in exposition. The `Noether core` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
 
+## Spontaneous Assembly and Pair Production
+
+Use `spontaneous assembly` when the prose needs to name an auxiliary assembly that appears through a causal channel without being one of the explicitly supplied boundary assemblies.
+
+This term is important because $\mathbb{A}\mathbb{A}\mathbb{A}$ should not borrow the Standard Model habit of making such events sound either magical or ontologically empty. A spontaneous assembly is still an ordinary assembly. `Spontaneous` names how it enters the channel at the level of the description: the assembly was not listed as an explicit incoming boundary assembly, but it still appears through a causal local process.
+
+This wording is especially useful in pair-production prose. Standard quantum language often says that a strong field or unstable vacuum can produce a particle-antiparticle pair "spontaneously." In $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be recast as spontaneous assembly production from a causal local source architecture rather than as uncaused emergence from nothing.
+
+The canonical local source architecture for this phenomenon is a `Noether Pair`. When the local energy and bookkeeping conditions are right, a Noether Pair can furnish the spontaneous assemblies needed for a pro-anti fermion pair. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local Noether-pair state, ambient medium conditions, and energy transfer open the channel.
+
+| When you mean... | Prefer | Avoid by default | Example |
+| --- | --- | --- | --- |
+| an auxiliary assembly entering a channel without being listed as a primary boundary input | `spontaneous assembly` | `support assembly` when the quantum-production linkage matters | "The beta-family law admits two spontaneous assemblies of Noether-core type." |
+| a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` | bare `vacuum fluctuation` language as ontology | "A Noether Pair can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
+| an observer-level description that keeps the trigger unresolved but not uncaused | `spontaneous` plus explicit causal qualification | wording that implies acausal creation from nothing | "The pair appears spontaneous at observer level, but the local Noether Pair supplies the neutral source architecture." |
+
 ## Association and Dissociation in Reactions
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$-first reaction prose, do not use `decay` as the native verb for an assembly event. Use `associate` for the formation or docking of a reaction-built sub-assembly, and use `dissociate` for the breakup, release, or channel exit of that assembly.

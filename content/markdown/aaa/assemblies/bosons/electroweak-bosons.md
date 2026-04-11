@@ -120,9 +120,10 @@ The Higgs is not a propagating assembly *through* the ambient medium; it is a re
 
 ## Pair production (note)
 
-- A neutral Noether Sea cluster (e.g., two neutral cores, 3P/3E each) contains the ingredients for a particle–antiparticle pair. With sufficient energy input (e.g., $\gamma\gamma \to e^+ e^-$), a pair-conversion mode can unpack that cluster into $e^-$ and $e^+$ while returning the cores to neutrality.
-- In photon–photon pair production, the photons supply the energy; the Sea contributes neutral cores, and the six-architrino axial excess arranges into the $\pm e$ axial inventories of the outgoing pair. Electric bookkeeping and architrino counts stay balanced because the cores are returned neutral.
-- Sketch model: energy in → pair-conversion mode forms using neutral cores + six-architrino axial split → particle + antiparticle → neutral cores relax back to the Sea.
+- A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether-core bookkeeping to overall neutrality.
+- In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral core content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
+- In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
+- Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 
 ## Closure Interface: Corridor Operators for Mixing
 
