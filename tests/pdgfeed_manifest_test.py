@@ -77,11 +77,11 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "citation": "Local PDG test-case seed",
                 "branchingDisplay": "dominant neutron decay channel",
             },
-            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
             products=(
-                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
-                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
-                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
             ),
         )
 
@@ -109,11 +109,11 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             title="Free neutron beta decay",
             source_kind="test_case",
             source={"edition": "2025"},
-            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
             products=(
-                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
-                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
-                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
             ),
         )
 
@@ -363,8 +363,8 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             title="Single row probe",
             source_kind="test_case",
             source={"edition": "2026"},
-            reactants=(pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),),
-            products=(pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),
+            reactants=(pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),),
+            products=(pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),
         )
 
         rows = pdgfeed.build_supported_reaction_csv_rows([case])

@@ -30,7 +30,7 @@ This document distinguishes three audience scopes:
 - For fixed-choice prompts, always list options in your, the agent, ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator/developer choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
 - In operator/developer communication, do not assume shared understanding of technical or project-specific terminology before proceeding. When such terms are needed, define them immediately in plain language and explain how they relate to the surrounding concepts.
-- In operator/developer communication and authored markdown, avoid obscuring jargon or vague placeholder terms such as `shape`, `fixture`, `surface`, `anchor`, and similar stand-ins when a proper project term exists. Use the correct product or project terminology. If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
+- In operator/developer communication and authored markdown, avoid obscuring jargon or vague placeholder terms such as `shape`, `example`, `surface`, `anchor`, and similar stand-ins when a proper project term exists. Use the correct product or project terminology. If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
 
 ### Workspace Workflow

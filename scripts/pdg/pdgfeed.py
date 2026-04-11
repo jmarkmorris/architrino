@@ -421,7 +421,7 @@ PDG_V1_CANONICAL_NAME_BY_ALIAS = {
 
 
 @dataclass(frozen=True)
-class FixtureParticle:
+class TestCaseParticle:
     name: str
     pdg_id: str | None = None
     display_label: str | None = None
@@ -434,8 +434,8 @@ class PdgCase:
     title: str
     source_kind: str
     source: dict[str, Any]
-    reactants: tuple[FixtureParticle, ...]
-    products: tuple[FixtureParticle, ...]
+    reactants: tuple[TestCaseParticle, ...]
+    products: tuple[TestCaseParticle, ...]
     notes: tuple[str, ...] = ()
     source_path: Path | None = None
 
@@ -617,7 +617,7 @@ def load_test_case_index(index_path: Path) -> list[PdgCase]:
                 source_kind="test_case",
                 source=dict(test_case_payload["source"]),
                 reactants=tuple(
-                    FixtureParticle(
+                    TestCaseParticle(
                         name=str(entry["name"]),
                         pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
                         display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
@@ -625,7 +625,7 @@ def load_test_case_index(index_path: Path) -> list[PdgCase]:
                     for entry in test_case_payload.get("reactants", [])
                 ),
                 products=tuple(
-                    FixtureParticle(
+                    TestCaseParticle(
                         name=str(entry["name"]),
                         pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
                         display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
@@ -651,7 +651,7 @@ def canonicalize_pdg_name(name: str) -> str:
     return PDG_V1_CANONICAL_NAME_BY_ALIAS.get(stripped.lower(), stripped)
 
 
-def build_inventory(mapping: PdgV1ParticleMapping, particle: FixtureParticle) -> dict[str, Any]:
+def build_inventory(mapping: PdgV1ParticleMapping, particle: TestCaseParticle) -> dict[str, Any]:
     flags = [*mapping.inventory_flags]
     if particle.pdg_id:
         flags.append(f"pdg-id:{particle.pdg_id}")
@@ -677,7 +677,7 @@ def build_proposal_source(case: PdgCase) -> dict[str, Any]:
     return source
 
 
-def normalize_particle(particle: FixtureParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
+def normalize_particle(particle: TestCaseParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
     canonical_name = canonicalize_pdg_name(particle.name)
     mapping = PDG_V1_MAPPING_BY_NAME.get(canonical_name)
     if mapping is None:
@@ -699,7 +699,7 @@ def normalize_particle(particle: FixtureParticle, side: str, ordinal: int) -> tu
         family=mapping.family,
         polarity=mapping.polarity,
         is_composite=mapping.is_composite,
-        inventory=build_inventory(mapping, FixtureParticle(name=canonical_name, pdg_id=particle.pdg_id)),
+        inventory=build_inventory(mapping, TestCaseParticle(name=canonical_name, pdg_id=particle.pdg_id)),
         tags=tuple(tags),
         pdg_name=canonical_name,
         pdg_id=particle.pdg_id,
@@ -924,8 +924,8 @@ def safe_decay_item_particle(item: Any) -> Any | None:
         return None
 
 
-def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list[str]]:
-    particles: list[FixtureParticle] = []
+def extract_live_decay_products(decay: Any) -> tuple[list[TestCaseParticle], list[str]]:
+    particles: list[TestCaseParticle] = []
     notes: list[str] = []
     for decay_product in getattr(decay, "decay_products", ()) or ():
         multiplier = int(getattr(decay_product, "multiplier", 1) or 1)
@@ -944,11 +944,11 @@ def extract_live_decay_products(decay: Any) -> tuple[list[FixtureParticle], list
             notes.append(f"unsupported:product:{item_name}:multiplier-{multiplier}")
             continue
         for _ in range(multiplier):
-            particles.append(FixtureParticle(name=str(item_name), pdg_id=str(item_name)))
+            particles.append(TestCaseParticle(name=str(item_name), pdg_id=str(item_name)))
     return particles, notes
 
 
-def build_live_product_signature(api: Any, particles: list[FixtureParticle]) -> Counter[str]:
+def build_live_product_signature(api: Any, particles: list[TestCaseParticle]) -> Counter[str]:
     return Counter(canonicalize_api_particle_name(api, particle.name) for particle in particles)
 
 
@@ -1040,7 +1040,7 @@ def build_live_case_from_decay(api: Any, particle: Any, decay: Any) -> PdgCase:
         title=description or f"{particle_name} decay",
         source_kind="pdg-live",
         source=source,
-        reactants=(FixtureParticle(name=particle_name, pdg_id=particle_name),),
+        reactants=(TestCaseParticle(name=particle_name, pdg_id=particle_name),),
         products=tuple(products),
         notes=tuple(notes),
     )
@@ -1203,11 +1203,11 @@ def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -
         writer.writerows(rows)
 
 
-def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[FixtureParticle], list[str]]:
+def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[TestCaseParticle], list[str]]:
     particle = api.get_particle_by_name(spec.reactant_name)
     expected_description = normalize_channel_description(spec.channel_description)
     expected_signature = Counter(spec.product_names)
-    product_matches: list[tuple[Any, list[FixtureParticle], list[str], bool]] = []
+    product_matches: list[tuple[Any, list[TestCaseParticle], list[str], bool]] = []
     for decay in iter_candidate_branching_fractions(particle):
         description = normalize_channel_description(getattr(decay, "description", ""))
         products, notes = extract_live_decay_products(decay)
@@ -1248,7 +1248,7 @@ def load_live_case(spec: LiveChannelSpec, database_url: str | None = None) -> Pd
         title=spec.title,
         source_kind="pdg-live",
         source=source,
-        reactants=(FixtureParticle(name=spec.reactant_name, pdg_id=spec.reactant_name),),
+        reactants=(TestCaseParticle(name=spec.reactant_name, pdg_id=spec.reactant_name),),
         products=tuple(products),
         notes=tuple(notes),
     )

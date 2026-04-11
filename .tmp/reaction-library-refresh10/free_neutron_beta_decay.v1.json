@@ -672,10 +672,10 @@
         "source": {
           "edition": "2026",
           "channelDescription": "n -> p e- anti-nu_e",
-          "citation": "Local PDG fixture seed",
+          "citation": "Local PDG test-case seed",
           "branchingDisplay": "dominant neutron decay channel",
-          "fixtureId": "free_neutron_beta_decay",
-          "fixturePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json",
+          "testCaseId": "free_neutron_beta_decay",
+          "testCasePath": "content/contracts/examples/pdg/v1/free_neutron_beta_decay.source.v1.json",
           "contract": {
             "upstreamSchema": "pdg-proposal/v1",
             "downstreamSchema": "solver-request/v1",
@@ -699,7 +699,7 @@
           "rank": 1,
           "score": 100,
           "reasons": [
-            "fixture-source",
+            "test_case-source",
             "all-participants-supported"
           ]
         },
