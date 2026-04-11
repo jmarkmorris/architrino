@@ -371,9 +371,6 @@ $$
 So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies.
 
 
-
-
-
 ### Normalization Rules
 
 pdgsolve should normalize every upstream request into one explicit `pdgsolve-problem/v1` record before search begins.
@@ -395,10 +392,10 @@ Normalization should then do the following, in order:
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. reject any higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that reaches pdgsolve core with `pdgsolve.request.composite_requires_boundary_expansion`;
-5. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
-6. build the requested multisets \(R\) and \(T\);
-7. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
+
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
+5. build the requested multisets \(R\) and \(T\);
+6. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 The normalized pdgsolve problem contract should be:
 
@@ -514,7 +511,6 @@ In particular:
 - each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
 - each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
 - each `Associate` choice emits exactly one 4-tile assembly product output;
-- no composite label or other higher-scale term participates as a dissociation input, association output, or search symbol;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
@@ -1235,7 +1231,7 @@ Each `unit` record should contain:
 - `lane`, with values `1`, `2`, `3`, `4`, or `5`;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
 - one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
-- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id rather than a composite, grouping label, or other higher-scale interpretation;
+- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id;
 - `title`, the accepted semantic title before any downstream surface-specific title expansion;
 - the accepted primitive/provenance/accounting data needed for audit;
 - and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
