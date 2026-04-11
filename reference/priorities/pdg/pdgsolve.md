@@ -3,7 +3,7 @@
 ## LLM Instructions
 
 - Keep this document focused on pdgsolve as the solve/review app paired with [pdgedit](./pdgedit.md).
-- Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document shapes by inertia.
+- Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document structures by inertia.
 - Keep `Design` about durable boundaries, solve-state concepts, and review/publication workflow ownership rather than temporary migration tactics.
 - Keep `Priorities` ordered as the active work queue.
 - Do not restate low-level PDG ingest internals or pdgedit tile-rendering internals except where pdgsolve depends on them.
@@ -74,7 +74,7 @@ UI artifacts should not define pdgsolve's architecture.
 
 ### Runtime Shape
 
-The durable pdgsolve shape should separate:
+The durable pdgsolve structure should separate:
 
 - request intake;
 - request normalization;
@@ -205,7 +205,7 @@ pdgsolve should keep the operator family deliberately small.
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
 - and the total conserved ledger is preserved across the gather-and-assemble step.
 
-So the operator shape is asymmetric but strict:
+So the operator structure is asymmetric but strict:
 
 - a 4-tile assembly reactant may route to a reactant-side `Dissociate` operator;
 - a reactant-side `Dissociate` operator has only one input;
@@ -846,7 +846,7 @@ It should be rich enough to carry:
 - explicit provenance/accounting summaries;
 - and the information needed to materialize downstream surface documents without making those downstream apps reconstruct omitted semantics.
 
-pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core shape.
+pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core structure.
 
 Instead:
 
@@ -1023,7 +1023,7 @@ That means:
 6. then lower ambiguity/provenance penalty wins;
 7. and finally \(\tau(C)\) breaks any remaining tie deterministically.
 
-pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple shape.
+pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple structure.
 
 For a partial branch \(s\), the search should compute:
 
@@ -1292,7 +1292,7 @@ In particular:
 
 ### Accepted Solution Graph Contract
 
-For publishable v1 families, the accepted-solution graph should use the following exact top-level shape:
+For publishable v1 families, the accepted-solution graph should use the following exact top-level structure:
 
 - `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema;
 - `units`;

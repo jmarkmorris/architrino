@@ -62,7 +62,7 @@ It does not own:
 
 The normal ingest path should be local and offline once dependencies are installed.
 
-The intended program shape is:
+The intended program structure is:
 
 1. connect to the local PDG database through the official `pdg` Python package;
 2. retrieve particles, branching fractions, decay products, subdecays, and related metadata;
@@ -329,7 +329,7 @@ For consistency with the current local corpus:
 
 - test-case participant `pdgId` fields presently carry canonical PDG ASCII particle names;
 - live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
-- and changing the participant-side identity field shape is out of scope for the present v1 lock.
+- and changing the participant-side identity field structure is out of scope for the present v1 lock.
 
 The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
@@ -369,7 +369,7 @@ PDG needs an explicit upstream review boundary between raw proposal generation a
 
 That boundary should let ingest keep more than one normalized interpretation of the same PDG channel without pretending that rank alone is acceptance. The top-ranked candidate may be the default exportable choice, but review must still be able to preserve the rest of the candidate set, explain why the default was chosen, and mark certain alternatives as intentionally preferred or intentionally excluded.
 
-The first durable shape should be a repo-owned `pdg-review/v1` record with:
+The first durable structure should be a repo-owned `pdg-review/v1` record with:
 
 - a stable `reviewId` for one source channel or decay selection;
 - source provenance copied from the PDG proposal layer rather than re-derived later;

@@ -4,7 +4,7 @@
 
 - Keep this document focused on the overall architectural approach for how dedicated apps fit inside the broader Architrino web app.
 - Keep `Design` descriptive and durable; move task-shaped work into `Priorities`.
-- Prefer app-boundary rules, ownership, and runtime-shape guidance over file-by-file migration detail.
+- Prefer app-boundary rules, ownership, and runtime-structure guidance over file-by-file migration detail.
 - Do not restate app-specific product design that belongs in [pdgview](pdgview.md), [pdgsolve](pdgsolve.md), [pdgedit](pdgedit.md), or [pdgfeed](pdgfeed.md).
 - Keep app-specific migration inventories in the owning app docs rather than turning this architecture note into a file-by-file tracker.
 
@@ -42,7 +42,7 @@ It does not own:
 
 The Architrino web app should be understood as one product with multiple dedicated runtimes.
 
-The intended shape is:
+The intended structure is:
 
 - one repo;
 - one main Architrino discovery surface;
@@ -169,14 +169,14 @@ State should be explicit.
 Prefer:
 
 - explicit stores and state builders;
-- typed or structured document shapes;
+- typed or structured document structures;
 - explicit import/export adapters;
 - and data contracts that survive independent app evolution.
 
 Avoid:
 
 - closure-owned mutable registries;
-- DOM-shape inference as a data source;
+- DOM-structure inference as a data source;
 - or state that only exists because render order happened to create it.
 
 ### Why This Architecture Matters
@@ -350,7 +350,7 @@ You should refactor when:
 
 - a new feature would place app-owned logic back into a shared root such as `app.js`;
 - a file that should be wiring-only is starting to accumulate domain behavior;
-- the same geometry, mapping rule, or contract shape is about to be defined in two places;
+- the same geometry, mapping rule, or contract structure is about to be defined in two places;
 - app ownership is obscured by compatibility naming or legacy wrapper layers;
 - a cross-app interaction is starting to rely on shared runtime behavior instead of explicit data;
 - or the next feature would be substantially harder to build or test without first extracting a clear seam.

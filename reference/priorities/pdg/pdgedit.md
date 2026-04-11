@@ -775,7 +775,7 @@ That means:
 
 An assembly is one horizontal strip of four abutted tiles.
 
-The baseline assembly shape is:
+The baseline assembly structure is:
 
 - tile 1: title tile;
 - tile 2: standard pdgedit tile from the JSON catalog;
@@ -803,7 +803,7 @@ For the JSON contract, the assembly display payload should still be explicit.
 That means:
 
 - the record stores one origin position for placement;
-- the four tile offsets are implied by the fixed `4x1` assembly shape;
+- the four tile offsets are implied by the fixed `4x1` assembly structure;
 - but the display content for tiles 1-4 is carried explicitly in assembly data rather than guessed only from `type`.
 
 ### Unbound Architrinos Assembly
@@ -1042,7 +1042,7 @@ That means:
 
 - the link starts on the left side of that routing column;
 - the link ends on the right side of that same routing column;
-- and the spline shape belongs to that one routing column rather than spanning multiple routing columns.
+- and the spline structure belongs to that one routing column rather than spanning multiple routing columns.
 
 For v1 rendering, there should be exactly one simple spline style:
 
@@ -1107,7 +1107,7 @@ The exact cubic Bezier rule is:
 - the routing-slot y position is the routing-column midpoint between the two endpoint y values plus the assigned slot offset;
 - and no additional waypoints or alternate control rules are permitted in v1.
 
-In plain terms, the spline should leave each object only a short horizontal distance, commit early toward its assigned routing slot inside the one-tile channel, and stay as taut and diagonal as possible rather than expanding into a broad S-shape through the middle.
+In plain terms, the spline should leave each object only a short horizontal distance, commit early toward its assigned routing slot inside the one-tile channel, and stay as taut and diagonal as possible rather than expanding into a broad S-structure through the middle.
 
 The exact routing-column slot-offset set is:
 
@@ -1146,7 +1146,7 @@ For the first implementation:
 - splines should be uncolored;
 - spline meaning should not depend on color;
 - the runtime should treat all splines as one visual class;
-- one spline shape only should be supported in v1;
+- one spline structure only should be supported in v1;
 - no alternate routing styles should be supported in v1;
 - and manual bend editing should not exist in v1.
 
@@ -1239,7 +1239,7 @@ For `pdgedit/v1`, `compositeLabels` is always present as a top-level array.
 
 When no composite labels are drawn, that array should be `[]`.
 
-Each composite-label record uses this exact shape:
+Each composite-label record uses this exact structure:
 
 - `id`
 - `type`
@@ -1460,7 +1460,7 @@ Composite-label field rules are:
 
 The `tiles` field is the canonical display payload for the four assembly tiles.
 
-Exact top-level document shape for `pdgedit/v1`:
+Exact top-level document structure for `pdgedit/v1`:
 
 - `schema`
 - `assemblies`
@@ -1547,7 +1547,7 @@ This note currently defines:
 - surface grammar;
 - placement and validation rules;
 - direct create, move, delete, and link interactions;
-- JSON shape constraints;
+- JSON structure constraints;
 - and header document selection and bootstrap behavior.
 
 ### Document Selection And Bootstrap
@@ -1634,9 +1634,9 @@ That selection behavior should:
 The preferred contract stance is:
 
 - if a future authored-surface workflow ever originates a solve request, that request must be produced by a separate boundary transform that emits explicit assembly-native solve data rather than raw pdgedit composite/grouping data;
-- the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by pdgedit is final `pdgedit/v1`;
+- the upstream solve path may begin from any solver-facing request structure, but the JSON boundary consumed by pdgedit is final `pdgedit/v1`;
 - any translation from `pdgsolve-request/v1`, `pdgsolve-result/v1`, or another upstream solve format into `pdgedit/v1` happens outside the pdgedit renderer;
-- the pdgedit runtime receives explicit pdgedit-owned JSON shapes;
+- the pdgedit runtime receives explicit pdgedit-owned JSON structures;
 - assemblies and operators arrive as pdgedit surface objects rather than as data that must be reinterpreted by the renderer;
 - spline-producing relationships are explicit in JSON;
 - and composite-label after-effects remain explicit data rather than inferred presentation.
