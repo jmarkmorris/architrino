@@ -10,9 +10,7 @@
 
 ## Purpose
 
-pdgsolve is the solve-and-review app.
-
-It sits between upstream request sources and downstream pdgedit documents.
+pdgsolve is the dedicated solve-and-review app between upstream request sources and downstream pdgedit documents.
 
 It owns:
 
@@ -40,8 +38,6 @@ It does not own:
 ## Design
 
 ### Foundational Stance
-
-pdgsolve is the dedicated solve-and-review app between upstream request sources and downstream pdgedit documents.
 
 It should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance/accounting model, request/result contracts, and review/publication workflow from first principles rather than inheriting accidental constraints from earlier surfaces or tooling splits.
 
@@ -137,7 +133,7 @@ pdgsolve should keep the operator family deliberately small.
 - exactly one input is accepted;
 - that input must come from one explicit reactant assembly, not from a composite term, grouping label, or span;
 - one reactant-side 4-tile assembly is opened;
-- the resulting output is a constrained set of explicit intermediate assemblies determined by the decomposition law for that assembly family;
+- the resulting output is a constrained set of explicit intermediate assemblies determined by the dissociation law for that assembly family;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
 
