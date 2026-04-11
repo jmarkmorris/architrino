@@ -89,7 +89,7 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
   return errors;
 }
 
-test("generated PDG pdgsolve-request test cases validate against pdgsolve-request/v1", () => {
+test("generated PDG pdgsolve-request PDG test reactions validate against pdgsolve-request/v1", () => {
   const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const generatedDir = new URL("../content/contracts/examples/pdg/v1/generated/", import.meta.url);
   const requestPaths = fs
@@ -108,7 +108,7 @@ test("generated PDG pdgsolve-request test cases validate against pdgsolve-reques
     assert.deepEqual(request.policy, {
       betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
-      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+      allowedBoundaryAugmentations: ["none"],
     });
   });
 });
@@ -131,12 +131,12 @@ test("generated live PDG pdgsolve-request artifacts validate against pdgsolve-re
     assert.deepEqual(request.policy, {
       betaSupportMode: "allow-implied-noether-core-support",
       exactClosureRequired: true,
-      allowedBoundaryAugmentations: ["none", "2h", "4h"],
+      allowedBoundaryAugmentations: ["none"],
     });
   });
 });
 
-test("live neutron pdgsolve requests preserve the same occurrence surface as test-case exports", () => {
+test("PDG reaction neutron pdgsolve requests preserve the same occurrence surface as PDG test reaction exports", () => {
   const testCaseNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
   const liveNeutron = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.live-pdg.pdgsolve-request.v1.json");
 
@@ -210,7 +210,7 @@ test("live PDG proposals preserve live provenance while normalizing PDG aliases 
   assert.equal(pionProposal.products[1].templateId, "neutrino");
 });
 
-test("charged pion test case stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
+test("charged pion PDG test reaction stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.proposal.v1.json");
 
   assert.equal(proposal.exportable, false);
@@ -235,7 +235,7 @@ test("charged pion test case stays proposal-only until pdgsolve-request/v1 gains
   );
 });
 
-test("charged pion live PDG channel stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
+test("charged pion PDG reaction stays proposal-only until pdgsolve-request/v1 gains matching assemblies", () => {
   const proposal = readJson("content/contracts/examples/pdg/v1/generated/charged_pion_to_muon_neutrino.live-pdg.proposal.v1.json");
 
   assert.equal(proposal.exportable, false);
@@ -263,10 +263,10 @@ test("charged pion live PDG channel stays proposal-only until pdgsolve-request/v
   );
 });
 
-test("pdgfeed can print test-case pdgsolve-request json to stdout for piping", () => {
+test("pdgfeed can print PDG test reaction pdgsolve-request json to stdout for piping", () => {
   const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const testCaseRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
-  const stdout = execFileSync("python3", ["pdgfeed.py", "print-test-case-pdgsolve-request", "free_neutron_beta_decay"], {
+  const stdout = execFileSync("python3", ["pdgfeed.py", "print-pdg-test-reaction-pdgsolve-request", "free_neutron_beta_decay"], {
     cwd: new URL("..", import.meta.url),
     encoding: "utf8",
   });
@@ -286,9 +286,9 @@ test("pdgfeed implementation lives under scripts/pdg while the root shim preserv
   assert.match(implementation, /PDG_V1_PARTICLE_MAPPINGS/);
 });
 
-test("scripts/pdg pdgfeed implementation can print test-case pdgsolve-request json directly", () => {
+test("scripts/pdg pdgfeed implementation can print PDG test reaction pdgsolve-request json directly", () => {
   const testCaseRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
-  const stdout = execFileSync("python3", ["scripts/pdg/pdgfeed.py", "print-test-case-pdgsolve-request", "free_neutron_beta_decay"], {
+  const stdout = execFileSync("python3", ["scripts/pdg/pdgfeed.py", "print-pdg-test-reaction-pdgsolve-request", "free_neutron_beta_decay"], {
     cwd: new URL("..", import.meta.url),
     encoding: "utf8",
   });
@@ -297,9 +297,9 @@ test("scripts/pdg pdgfeed implementation can print test-case pdgsolve-request js
   assert.deepEqual(request, testCaseRequest);
 });
 
-test("pdgfeed can print test-case proposal json to stdout", () => {
+test("pdgfeed can print PDG test reaction proposal json to stdout", () => {
   const testCaseProposal = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.proposal.v1.json");
-  const stdout = execFileSync("python3", ["pdgfeed.py", "print-test-case-proposal", "free_neutron_beta_decay"], {
+  const stdout = execFileSync("python3", ["pdgfeed.py", "print-pdg-test-reaction-proposal", "free_neutron_beta_decay"], {
     cwd: new URL("..", import.meta.url),
     encoding: "utf8",
   });

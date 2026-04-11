@@ -5,7 +5,7 @@ export const PDGEDIT_RESERVED_TOP_ROW_COUNT = 1;
 export const PDGEDIT_HEADER_BAND_HEIGHT_PX = 80;
 export const PDGEDIT_LINK_SLOT_OFFSETS_PX = Object.freeze([0, -6, 6, -12, 12]);
 
-const ASSEMBLY_BAND_X_BY_ROLE = Object.freeze({
+const ASSEMBLY_STAGE_X_BY_ROLE = Object.freeze({
   reactant: 2,
   intermediate: 9,
   product: 16,
@@ -41,8 +41,8 @@ function getVisualRowTop(row) {
   return (normalizeInteger(row) + PDGEDIT_RESERVED_TOP_ROW_COUNT) * PDGEDIT_TILE_SIZE_PX;
 }
 
-export function getPdgeditAssemblyBandXForRole(role = "") {
-  return ASSEMBLY_BAND_X_BY_ROLE[normalizeText(role)] ?? null;
+export function getPdgeditAssemblyStageXForRole(role = "") {
+  return ASSEMBLY_STAGE_X_BY_ROLE[normalizeText(role)] ?? null;
 }
 
 export function getPdgeditRoleForAssemblyX(x = 0) {

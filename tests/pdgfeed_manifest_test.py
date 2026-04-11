@@ -1,4 +1,6 @@
+import argparse
 import csv
+import json
 import subprocess
 import sys
 import tempfile
@@ -61,10 +63,23 @@ class FakeApi:
         return aliases.get(name, name)
 
     def info(self, _key):
-        return "PDG Python API live read"
+        return "PDG Python API database read"
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
+    def test_normalize_cli_args_promotes_pdg_reaction_wording_and_keeps_legacy_aliases_working(self):
+        pdg_reaction_args = argparse.Namespace(command="list-pdg-reactions")
+        legacy_live_args = argparse.Namespace(command="list-live-cases", source="live")
+        legacy_test_case_args = argparse.Namespace(command="list-test-cases", source="test-cases")
+
+        self.assertEqual(pdgfeed.normalize_cli_args(pdg_reaction_args).command, "list-pdg-reactions")
+        normalized_legacy_args = pdgfeed.normalize_cli_args(legacy_live_args)
+        self.assertEqual(normalized_legacy_args.command, "list-pdg-reactions")
+        self.assertEqual(normalized_legacy_args.source, "pdg-reactions")
+        normalized_test_case_args = pdgfeed.normalize_cli_args(legacy_test_case_args)
+        self.assertEqual(normalized_test_case_args.command, "list-pdg-test-reactions")
+        self.assertEqual(normalized_test_case_args.source, "pdg-test-reactions")
+
     def test_build_proposal_marks_the_pdg_to_pdgsolve_request_boundary_explicitly(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",
@@ -74,7 +89,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             source={
                 "edition": "2025",
                 "channelDescription": "n -> p e- anti-nu_e",
-                "citation": "Local PDG test-case seed",
+                "citation": "Local PDG test reaction seed",
                 "branchingDisplay": "dominant neutron decay channel",
             },
             reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
@@ -128,6 +143,221 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "title": "Free neutron beta decay",
                 "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
             },
+        )
+
+    def test_baryon_proposal_inventory_counts_sum_quark_constituents(self):
+        case = pdgfeed.PdgCase(
+            case_id="baryon_inventory_probe",
+            proposal_id="baryon_inventory_probe",
+            title="Baryon inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="n", pdg_id="n"),
+                pdgfeed.TestCaseParticle(name="anti-p", pdg_id="anti-p"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="anti-n", pdg_id="anti-n"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 18,
+                    "positrinoCount": 18,
+                    "flags": [
+                        "pdg-id:n",
+                        "pdg-name:n",
+                    ],
+                },
+                {
+                    "electrinoCount": 21,
+                    "positrinoCount": 15,
+                    "flags": [
+                        "pdg-id:anti-p",
+                        "pdg-name:anti-p",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 15,
+                    "positrinoCount": 21,
+                    "flags": [
+                        "pdg-id:p",
+                        "pdg-name:p",
+                    ],
+                },
+                {
+                    "electrinoCount": 18,
+                    "positrinoCount": 18,
+                    "flags": [
+                        "pdg-id:anti-n",
+                        "pdg-name:anti-n",
+                    ],
+                },
+            ],
+        )
+
+    def test_generation_adjusted_fermion_counts_step_down_each_generation(self):
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(1), (6, 6))
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(2), (5, 5))
+        self.assertEqual(pdgfeed.fermion_generation_primitive_counts(3), (4, 4))
+
+    def test_gen_two_lepton_proposal_inventory_counts_drop_by_one_from_gen_one(self):
+        case = pdgfeed.PdgCase(
+            case_id="generation_two_lepton_inventory_probe",
+            proposal_id="generation_two_lepton_inventory_probe",
+            title="Generation two lepton inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="mu-", pdg_id="mu-"),
+                pdgfeed.TestCaseParticle(name="mu+", pdg_id="mu+"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="nu_mu", pdg_id="nu_mu"),
+                pdgfeed.TestCaseParticle(name="anti-nu_mu", pdg_id="anti-nu_mu"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "charged-lepton",
+                        "pdg-id:mu-",
+                        "pdg-name:mu-",
+                    ],
+                },
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "charged-lepton",
+                        "pdg-id:mu+",
+                        "pdg-name:mu+",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "neutrino",
+                        "pdg-id:nu_mu",
+                        "pdg-name:nu_mu",
+                    ],
+                },
+                {
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                    "flags": [
+                        "generation:2",
+                        "neutrino",
+                        "pdg-id:anti-nu_mu",
+                        "pdg-name:anti-nu_mu",
+                    ],
+                },
+            ],
+        )
+
+    def test_gen_three_lepton_proposal_inventory_counts_drop_by_one_from_gen_two(self):
+        case = pdgfeed.PdgCase(
+            case_id="generation_three_lepton_inventory_probe",
+            proposal_id="generation_three_lepton_inventory_probe",
+            title="Generation three lepton inventory probe",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(
+                pdgfeed.TestCaseParticle(name="tau", pdg_id="tau-"),
+                pdgfeed.TestCaseParticle(name="tau+", pdg_id="tau+"),
+            ),
+            products=(
+                pdgfeed.TestCaseParticle(name="nu_tau", pdg_id="nu_tau"),
+                pdgfeed.TestCaseParticle(name="nubar_tau", pdg_id="nubar_tau"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertEqual(
+            [participant.pdg_name for participant in proposal.reactants],
+            ["tau-", "tau+"],
+        )
+        self.assertEqual(
+            [participant.pdg_name for participant in proposal.products],
+            ["nu_tau", "anti-nu_tau"],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.reactants],
+            [
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "charged-lepton",
+                        "pdg-id:tau-",
+                        "pdg-name:tau-",
+                    ],
+                },
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "charged-lepton",
+                        "pdg-id:tau+",
+                        "pdg-name:tau+",
+                    ],
+                },
+            ],
+        )
+        self.assertEqual(
+            [participant.inventory for participant in proposal.products],
+            [
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "neutrino",
+                        "pdg-id:nu_tau",
+                        "pdg-name:nu_tau",
+                    ],
+                },
+                {
+                    "electrinoCount": 4,
+                    "positrinoCount": 4,
+                    "flags": [
+                        "generation:3",
+                        "neutrino",
+                        "pdg-id:nubar_tau",
+                        "pdg-name:anti-nu_tau",
+                    ],
+                },
+            ],
         )
 
     def test_pdgfeed_expands_composite_neutron_channel_terms_into_explicit_request_side_assemblies(self):
@@ -374,9 +604,21 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
 
     def test_supported_reaction_csv_rows_use_aaa_labels_and_row_counts(self):
-        test_cases = pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
 
-        rows = pdgfeed.build_supported_reaction_csv_rows(test_cases)
+        rows = pdgfeed.build_supported_reaction_csv_rows([case])
 
         self.assertEqual(
             rows,
@@ -484,17 +726,60 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
 
     def test_cli_emits_supported_reaction_csv_file(self):
         repo_root = Path(__file__).resolve().parents[1]
-        with tempfile.TemporaryDirectory() as temp_dir:
+        with tempfile.TemporaryDirectory(dir=repo_root) as temp_dir:
+            temp_path = Path(temp_dir)
             csv_path = Path(temp_dir) / "supported_reactions.csv"
+            source_path = temp_path / "free_neutron_beta_decay.source.v1.json"
+            index_path = temp_path / "index.json"
+
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "schema": pdgfeed.PDG_TEST_CASE_SOURCE_SCHEMA,
+                        "testCaseId": "free_neutron_beta_decay",
+                        "title": "Free neutron beta decay",
+                        "source": {"edition": "2025"},
+                        "reactants": [{"name": "n", "pdgId": "n"}],
+                        "products": [
+                            {"name": "p", "pdgId": "p"},
+                            {"name": "e-", "pdgId": "e-"},
+                            {"name": "anti-nu_e", "pdgId": "anti-nu_e"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            index_path.write_text(
+                json.dumps(
+                    {
+                        "schema": pdgfeed.PDG_TEST_CASE_CORPUS_SCHEMA,
+                        "cases": [
+                            {
+                                "id": "free_neutron_beta_decay",
+                                "title": "Free neutron beta decay",
+                                "sourcePath": str(source_path.relative_to(repo_root)),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             result = subprocess.run(
-                [sys.executable, "pdgfeed.py", "emit-supported-reaction-csv", str(csv_path)],
+                [
+                    sys.executable,
+                    "pdgfeed.py",
+                    "--test-reaction-index",
+                    str(index_path),
+                    "emit-supported-reaction-csv",
+                    str(csv_path),
+                ],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
                 text=True,
             )
 
-            self.assertEqual(result.stdout.strip(), str(csv_path))
+            self.assertEqual(result.stdout.strip(), str(csv_path.relative_to(repo_root)))
             with csv_path.open(encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))
 

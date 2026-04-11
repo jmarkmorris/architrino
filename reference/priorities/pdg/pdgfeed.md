@@ -31,30 +31,30 @@ It does not own:
 
 ## Current State
 
-- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around test cases first.
+- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around PDG test reactions first.
 - Root `pdgfeed.py` remains as a compatibility shim for existing `python3 pdgfeed.py ...` calls and `import pdgfeed` tests/tooling.
 - `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
-- A local test-case corpus now exists under `content/contracts/examples/pdg/v1/`.
+- A local PDG test reaction corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- The PDG feed CLI can list test cases and emit proposal plus `pdgsolve-request/v1` artifacts from that local test-case corpus through either the root shim or the direct implementation path.
+- The PDG feed CLI can list PDG test reactions and emit proposal plus `pdgsolve-request/v1` artifacts from that local PDG test reaction corpus through either the root shim or the direct implementation path.
 - The PDG feed CLI also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
 - The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
-- Local aliases may canonicalize into that registry for test-case convenience, but they do not widen the exportable pdgsolve surface.
-- Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
-- After removing the baked-in historical cases, there is no longer a built-in live-read case that crosses the full request boundary with the current locked mapping table.
-- Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
+- Local aliases may canonicalize into that registry for PDG test reaction convenience, but they do not widen the exportable pdgsolve surface.
+- The intended exportable request surface is every channel whose PDG particle names can be translated all the way into explicit admitted Standard Model assemblies.
+- If a particle or channel cannot be translated into explicit admitted Standard Model assemblies, it is un-mappable and must remain upstream as proposal metadata rather than leaking a non-native solver request through the boundary.
+- After removing the baked-in historical cases, there is no longer a built-in PDG reaction from the local database path that crosses the full request boundary with the current locked mapping table.
 - Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
 - Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
 - Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
-- Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
+- Unsupported channels currently remain un-mappable rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
-- Live PDG package access now exists as a guarded CLI path alongside test cases, but test cases remain the stable regression and day-to-day development path.
+- PDG reaction access through the local database path now exists as a guarded CLI path alongside PDG test reactions, but PDG test reactions remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has an explicit request seam that PDG should feed.
 - There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into pdgview staging.
-- The current local test-case corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
+- The current local PDG test reaction corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; PDG reaction reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
 
@@ -70,7 +70,7 @@ The intended program structure is:
 4. rank or filter candidate proposals at the PDG layer;
 5. hand normalized state and provenance into pdgsolve intake and the explicit upstream request seam.
 
-Routine ingest should not depend on live calls to the PDG website.
+Routine ingest should not depend on web calls to the PDG website.
 
 ### Program Structure
 
@@ -94,7 +94,7 @@ pdgfeed is the upstream owner of composite-to-assembly translation for PDG-facin
 That means:
 
 - PDG names such as `n` and `p` may be expanded into explicit emitted assembly occurrences before the request crosses into pdgsolve;
-- unsupported or ambiguous higher-scale terms must remain proposal-only rather than leaking into solver-native request ids;
+- unsupported or ambiguous higher-scale terms must remain un-mappable rather than leaking into solver-native request ids;
 - if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
 - and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
 
@@ -105,8 +105,8 @@ The implementation assumes:
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
-- no live PDG website dependency during normal ingest;
-- and explicit JSON artifacts for test cases and debugging.
+- no PDG website dependency during normal ingest;
+- and explicit JSON artifacts for PDG test reactions and debugging.
 
 Suggested local environment setup:
 
@@ -128,56 +128,58 @@ The root path remains a compatibility layer:
 - `scripts/pdg/pdgfeed.py`:
   connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or helpers for test-case handling.
+If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or helpers for PDG test reaction handling.
 
 The current CLI surface is:
 
-- `python3 pdgfeed.py list-test-cases`
-- `python3 pdgfeed.py emit-test-case <test-case-id>`
-- `python3 pdgfeed.py emit-all-test-cases`
-- `python3 pdgfeed.py print-test-case-proposal <test-case-id>`
-- `python3 pdgfeed.py print-test-case-pdgsolve-request <test-case-id>`
-- `python3 pdgfeed.py list-live-cases`
-- `python3 pdgfeed.py emit-live-case <case-id>`
-- `python3 pdgfeed.py emit-all-live-cases`
-- `python3 pdgfeed.py print-live-proposal <case-id>`
-- `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`
-- `python3 pdgfeed.py build-live-manifest`
-- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source test-cases|live]`
-- optional `--database-url <sqlalchemy-url>` for the live commands
+- `python3 pdgfeed.py list-pdg-test-reactions`
+- `python3 pdgfeed.py emit-pdg-test-reaction <reaction-id>`
+- `python3 pdgfeed.py emit-all-pdg-test-reactions`
+- `python3 pdgfeed.py print-pdg-test-reaction-proposal <reaction-id>`
+- `python3 pdgfeed.py print-pdg-test-reaction-pdgsolve-request <reaction-id>`
+- `python3 pdgfeed.py list-pdg-reactions`
+- `python3 pdgfeed.py emit-pdg-reaction <reaction-id>`
+- `python3 pdgfeed.py emit-all-pdg-reactions`
+- `python3 pdgfeed.py print-pdg-reaction-proposal <reaction-id>`
+- `python3 pdgfeed.py print-pdg-reaction-pdgsolve-request <reaction-id>`
+- `python3 pdgfeed.py build-pdg-reaction-manifest`
+- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source pdg-test-reactions|pdg-reactions]`
+- optional `--database-url <sqlalchemy-url>` for the PDG reaction commands
+
+Legacy `test-case`, `pdg-database`, and `live` command spellings remain accepted as compatibility aliases, but authored docs should use `PDG test reaction` and `PDG reaction` wording.
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-test-case muon_decay`;
-- CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source live`;
-- and stdout-only request emission as the automation workflow when an exportable case exists, for example `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`.
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-pdg-test-reaction muon_decay`;
+- CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source pdg-reactions`;
+- and stdout-only request emission as the automation workflow when an exportable reaction exists, for example `python3 pdgfeed.py print-pdg-reaction-pdgsolve-request <reaction-id>`.
 
 The stdout-print commands must write only JSON to `stdout`; any diagnostics belong on `stderr` so the request output stays pipe-safe for automation and future pdgsolve intake.
 
-Live PDG multiplicities for concrete mapped particles are now expanded into repeated normalized proposal participants instead of being rejected wholesale. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
+PDG reaction multiplicities for concrete mapped particles are now expanded into repeated normalized proposal participants instead of being rejected wholesale. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
-Active PDG work should treat request emission and manifest building as the live responsibilities until pdgsolve-side solve and review tooling exists.
+Active PDG work should treat request emission and manifest building as the PDG reaction responsibilities until pdgsolve-side solve and review tooling exists.
 
-For batch work over every exportable discovered live decay, first freeze a manifest:
+For batch work over every exportable discovered PDG reaction, first freeze a manifest:
 
-- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
 
 The manifest assigns sequential `batchId` values and records the PDG decay identifier for each exportable discovery, so downstream tooling can work from a frozen ordered list rather than agent memory.
 
 #### Frozen Manifest Workflow
 
-When the goal is to inspect or batch-process many live PDG decays, the preferred path is the frozen manifest rather than the small built-in live-case list.
+When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than the small built-in PDG reaction list.
 
 Recommended workflow:
 
-1. build a frozen live manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
+1. build a frozen PDG reaction manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
 2. use that manifest as the stable ordered batch surface for downstream tooling;
 3. treat analyzable/exportable manifest entries as the current request-emission denominator;
 4. separate unsupported-particle discovery from request-emission progress.
 
 Example full-manifest run:
 
-- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-live-manifest > /tmp/pdg-live-manifest.json`
+- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
 
 How to read the denominator:
 
@@ -192,12 +194,12 @@ For solve-core progress reporting after each solve-rate change:
 - compare `exactClosureCount`, `exactClosurePercent`, and case-level movements from `no-solution` to `partial` or `exact`;
 - and do not count unsupported-particle discoveries as solver failures.
 
-The first local test-case corpus is:
+The first local PDG test reaction corpus is:
 
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
 
-The first built-in live PDG cases are:
+The first built-in PDG reactions are:
 
 - `muon_decay`
 - `radiative_muon_decay`
@@ -205,23 +207,23 @@ The first built-in live PDG cases are:
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
 
-The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table is currently:
+The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table should cover every canonical PDG particle name that `pdgfeed` can translate into explicit admitted Standard Model assemblies. Representative currently-admitted rows include:
 
-| Canonical PDG ASCII name | Export status | pdgsolve request expansion | Request title pattern | Notes |
-| --- | --- | --- | --- | --- |
-| `n` | exportable | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
-| `p` | exportable | `pro_up_quark`, `pro_down_quark`, `pro_up_quark` | assembly titles from each emitted assembly | PDG particle name expanded before solver handoff |
-| `e-` | exportable | `electron` | `Electron` | charged lepton, generation 1 |
-| `anti-nu_e` | exportable | `electron_antineutrino` | `Electron Antineutrino` | neutrino, generation 1 |
+| Canonical PDG ASCII name | Export status | pdgsolve request expansion                         | Request title pattern                      | Notes                                                          |
+| ------------------------ | ------------- | -------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- |
+| `n`                      | exportable    | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
+| `p`                      | exportable    | `pro_up_quark`, `pro_down_quark`, `pro_up_quark`   | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
+| `e-`                     | exportable    | `electron`                                         | `Electron`                                 | charged lepton, generation 1                                   |
+| `anti-nu_e`              | exportable    | `electron_antineutrino`                            | `Electron Antineutrino`                    | neutrino, generation 1                                         |
 
-The v1 unsupported-particle policy is:
+The v1 un-mappable-particle policy is:
 
-- only canonical PDG names in the exportable rows above may be emitted into `pdgsolve-request/v1`;
+- only canonical PDG names with an explicit Standard Model assembly translation may be emitted into `pdgsolve-request/v1`;
 - local aliases may canonicalize into those names, but aliases do not define new solver mappings;
-- a particle explicitly marked proposal-only must remain in proposal metadata and notes only;
-- any particle absent from the table is also proposal-only by default;
+- a particle explicitly marked un-mappable must remain in proposal metadata and notes only;
+- any particle absent from the table is also un-mappable by default;
 - decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
-- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit assembly-native upstream translation rule exists.
+- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays un-mappable until an explicit assembly-native upstream translation rule exists.
 
 Registry expansion should stay deliberate rather than opportunistic.
 
@@ -230,9 +232,9 @@ That means:
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
 - each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
-- every proposal-only to exportable transition should land with test-case or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
+- every newly admitted exportable row should land with PDG test reaction or PDG reaction coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
-- and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains proposal-only by design.
+- and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains un-mappable by design.
 
 The first solver-facing target should be one `pdgsolve-request/v1` document per candidate, with:
 
@@ -263,7 +265,7 @@ The integration options are:
 - secondary:
   direct SQL against that same local database when the Python API does not expose the needed traversal cleanly;
 - incidental only:
-  the REST API for inspection, experiments, or test-case capture, not for the normal ingest path.
+  the REST API for inspection, experiments, or PDG test reaction capture, not for the normal ingest path.
 
 ### Database Policy
 
@@ -296,7 +298,7 @@ The first PDG seed boundary should use two repo-owned layers:
 The normalized PDG proposal record should contain:
 
 - `proposalId`:
-  stable ingest-local identity for ranking, test cases, and review;
+  stable ingest-local identity for ranking, PDG test reactions, and review;
 - `source`:
   PDG provenance including edition, schema/release metadata, PDG Identifier, description text, and any branching or limit semantics used by the proposal;
 - `reactants`:
@@ -327,8 +329,8 @@ Composite or higher-scale PDG terms therefore belong to the PDG proposal/review 
 
 For consistency with the current local corpus:
 
-- test-case participant `pdgId` fields presently carry canonical PDG ASCII particle names;
-- live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
+- PDG test reaction participant `pdgId` fields presently carry canonical PDG ASCII particle names;
+- PDG reaction reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
 - and changing the participant-side identity field structure is out of scope for the present v1 lock.
 
 The first exported `pdgsolve-request/v1` candidate should follow these rules:
@@ -336,7 +338,7 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 - `schema` is always `pdgsolve-request/v1`;
 - `source.kind` is `pdgfeed`;
 - `source.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
-- `source.title` should be a concise channel label suitable for test cases and review;
+- `source.title` should be a concise channel label suitable for PDG test reactions and review;
 - `reactants` and `products` are produced only from normalized proposal records, never from raw PDG objects at export time;
 - `reactants` and `products` contain only explicit assembly-native occurrences, never composite/grouping ids;
 - each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
@@ -447,7 +449,7 @@ Status: `active`
 
 Current:
 
-- `build-live-manifest` already freezes exportable/analyzable cases into a stable ordered list separate from unsupported discovery cases.
+- `build-pdg-reaction-manifest` already freezes exportable/analyzable reactions into a stable ordered list separate from unsupported discovery reactions.
 
 Objective:
 
@@ -465,3 +467,273 @@ Current:
 Objective:
 
 - move the remaining PDG-specific and development-specific notes into `reference/` so the editorial and developer boundaries stay clean.
+
+## Grammar Map
+
+### Invocation Modes
+
+The solver should support stdout text form PDG reactions for Op use, not for downstream consumption at this time.
+
+The output will use compact strings and should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The default separator should be `.`.
+
+Examples:
+
+| Notation | Meaning |
+| --- | --- |
+| `Pe2v` | compact form with no separators |
+| `P.e2.v` | same input with preferred separators |
+| `P,e2,v` | same input with comma separators |
+| `h2.W-.P` | distinct assemblies made easier to scan |
+| `P.e.av` | proton, electron, anti-neutrino |
+| `1:1@.P.e` | explicit `Unbound Architrinos` ledger plus proton and electron |
+
+Example command, free neutron decay with an added `hq` reactant:
+
+| Form      | Command                       |
+| --------- | ----------------------------- |
+| compact   | `pdgfeed --r Nhq --p Peav`    |
+| separated | `pdgfeed --r N.hq --p P.e.av` |
+
+
+Anti-ness should be handled with `a` only:
+
+| Notation form | Meaning |
+| --- | --- |
+| `x` | pro form is implied |
+| `ax` | anti form |
+
+For named mixed-core composites, use `hp` and `hq`. Do not spell those objects with raw concatenations of `h` and `ah`.
+
+Current compact AAA notation:
+
+| AAA Notation | Name                             | Notes                                                              | PDG API Notation |
+| ------------ | -------------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `d1` or `d`  | down quark                       | generation I may omit the `1`                                      | `d`              |
+| `d2`         | strange quark                    | generation II down-family                                          | `s`              |
+| `d3`         | bottom quark                     | generation III down-family                                         | `b`              |
+| `e1` or `e`  | electron                         | generation I may omit the `1`                                      | `e-`             |
+| `e2`         | muon                             | generation II charged lepton                                       | `mu-`            |
+| `e3`         | tau                              | generation III charged lepton                                      | `tau-`           |
+| `N`          | neutron                          | aligns with existing `Pro Neutron` support                         | `n`              |
+| `P`          | proton                           | aligns with existing `Pro Proton` support                          | `p`              |
+| `u1` or `u`  | up quark                         | generation I may omit the `1`                                      | `u`              |
+| `u2`         | charm quark                      | generation II up-family                                            | `c`              |
+| `u3`         | top quark                        | generation III up-family                                           | `t`              |
+| `v1` or `v`  | neutrino                         | generation I may omit the `1`                                      | `nu_e`           |
+| `v2`         | muon neutrino                    | generation II neutrino                                             | `nu_mu`          |
+| `v3`         | tau neutrino                     | generation III neutrino                                            | `nu_tau`         |
+| `W+`         | `W+` boson                       | two-character token                                                | `W+`             |
+| `W-`         | `W-` boson                       | two-character token                                                | `W-`             |
+| `Z`          | `Z` boson                        | direct match                                                       | `Z`              |
+| `h`          | Noether core                     | base core symbol                                                   | `n/a`            |
+| `h2`         | Bi Binary                        | reduced `Noether core` form                                        | `n/a`            |
+| `h3`         | Uni Binary                       | reduced `Noether core` form                                        | `n/a`            |
+| `hp`         | Noether Pair or Photon           | mixed-core shorthand for `h.ah`                                    | `gamma`          |
+| `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.h.ah.ah`                               | `n/a`            |
+| `e:p@`       | `Unbound Architrinos` ledger     | explicit electrino:positrino count, with both sides always present | `n/a`            |
+
+The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
+
+Generation numbers should be interpreted as family indices for fermions:
+
+| Family letter | Generation I | Generation II | Generation III |
+| --- | --- | --- | --- |
+| `e` | electron | muon | tau |
+| `u` | up quark | charm quark | top quark |
+| `d` | down quark | strange quark | bottom quark |
+| `v` | neutrino | muon neutrino | tau neutrino |
+
+
+Examples:
+
+| Notation | Name                |
+| -------- | ------------------- |
+| `P`      | pro proton          |
+| `aP`     | anti proton         |
+| `N`      | pro neutron         |
+| `aN`     | anti neutron        |
+| `e`      | pro electron        |
+| `ae`     | anti electron       |
+| `e2`     | pro muon            |
+| `ae2`    | anti muon           |
+| `v`      | pro neutrino        |
+| `av3`    | anti tau neutrino   |
+| `h`      | pro `Noether core`  |
+| `ah`     | anti `Noether core` |
+
+`Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
+
+
+
+
+
+`Unbound Architrinos` should be written with an explicit electrino:positrino ledger:
+
+| Notation | Meaning |
+| --- | --- |
+| `1:1@` | one electrino and one positrino |
+| `227:120@` | `227` electrinos and `120` positrinos |
+| `227:0@` | `227` electrinos and zero positrinos |
+| `0:120@` | zero electrinos and `120` positrinos |
+
+Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
+
+The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a unbound electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
+
+This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `ah`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
+
+For the `W` bosons, the preferred notation is the explicit two-character form `W+` and `W-` rather than encoding charge through case. That keeps the shorthand physically legible and consistent with the authored labels already used in the app and docs. `W+` and `W-` should be treated as atomic two-character tokens. Anti weak-boson forms should remain forbidden in this grammar: `W+` and `W-` already stand in antiparticle relation to each other, and `Z` is self-conjugate, so `aW+`, `aW-`, and `aZ` should not be introduced. For v1, the boson-core convention is fixed: `W+` carries anti `Noether core` provenance and `W-` carries pro `Noether core` provenance.
+
+### Compact Grammar
+
+The compact notation should be treated as a small lexer-first language rather than as ad hoc string guessing.
+
+Preferred lexer rule:
+
+- strip or ignore benign separators first: `.`, `,`, `_`, and whitespace;
+- then tokenize left to right;
+- use longest-match tokenization whenever two token families share a prefix;
+- and reject the whole string if any character sequence cannot be consumed as exactly one valid token.
+
+Current token families:
+
+| Token family | Form | Notes |
+| --- | --- | --- |
+| fermion | `a? [eudv] [123]?` | `1` may be omitted only for generation I |
+| nucleon | `a? P` or `a? N` | anti allowed for nucleons |
+| weak boson | `W+`, `W-`, `Z` | `W+` and `W-` are atomic two-character tokens |
+| core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether core` forms |
+| named core composite | `hp`, `hq` | atomic mixed-core shorthand for Noether Pair and Noether Quad |
+| unbound-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
+
+Equivalent EBNF-style sketch:
+
+```text
+reaction_arg   := token { separator* token }
+separator      := "." | "," | "_" | whitespace
+token          := fermion | nucleon | weak_boson | core_form | named_core_composite | unbound_architrino_ledger
+fermion        := anti? family generation?
+anti           := "a"
+family         := "e" | "u" | "d" | "v"
+generation     := "1" | "2" | "3"
+nucleon        := anti? ("P" | "N")
+weak_boson     := "W+" | "W-" | "Z"
+core_form      := anti? ("h" | "h2" | "h3")
+named_core_composite := "hp" | "hq"
+unbound_architrino_ledger := count ":" count "@"
+count          := digit { digit }
+```
+
+Interpretation rules:
+
+- `a` binds only to the single token immediately following it;
+- `a` is currently valid for fermions, nucleons, and `Noether core` forms `h`, `h2`, and `h3`;
+- generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
+- `hp` and `hq` are dedicated atomic tokens for the Noether Pair and Noether Quad, rather than prefix-count variants of `h`;
+- `Unbound Architrinos` use a dedicated two-sided ledger token `e:p@`;
+- separators are optional for any adjacent token sequence whose left-to-right longest-match tokenization remains unambiguous;
+- and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.
+
+### Ambiguity Discipline
+
+The parser itself is not the hard part. The important requirement is that a human and a machine should see the same segmentation without guesswork.
+
+The current grammar should therefore aim for:
+
+- one obvious reading for every valid string;
+- no silent reinterpretation through parser cleverness;
+- no special omission rules that make zero or missing counts context-dependent;
+- and explicit rejection of token shapes that would otherwise admit multiple readings.
+
+Current recommended conflict checks:
+
+| Potential conflict          | Why it is risky                                                           | Recommended rule |
+| --------------------------- | ------------------------------------------------------------------------- | ---------------- |
+| `hp2`, `hq3`, `ahp`, `ahq` | named core composites are atomic tokens and do not take suffixes or anti prefixes | forbid entirely  |
+| `2h`, `4h`, `0h`, `3h`, `5h`, `12h` | numeric whole-core aggregate notation is retired; use `hp` or `hq` when appropriate | forbid entirely  |
+| raw concatenations of `h` and `ah` for mixed-core composites | obscures anti scope and constituent boundaries; use `hp` or `hq` | forbid entirely  |
+| `aae`, `aav2`, `aah`        | stacked anti prefixes add no meaning and create parser noise              | forbid entirely  |
+| `aW+`, `aW-`, `aZ`, `a1:1@` | anti is not currently defined for these families                          | forbid entirely  |
+| `e0`, `e4`, `u9`, `v7`      | generation outside `1`, `2`, `3`                                          | forbid entirely  |
+| `0:0@`                      | null `Unbound Architrinos` ledger carries no usable content                  | forbid entirely  |
+| `h23`, `u23`, `e12`         | visually suggests one token but leaves trailing digits ambiguous          | forbid entirely  |
+| `@`, `2@`, `227@`           | omitted ledger side makes the unbound-architrino token ambiguous             | forbid entirely  |
+| `:120@`, `227:@`            | omitted ledger side creates a special-case parse                          | forbid entirely  |
+| `227:120@3`, `1:1@2`        | payload after `@` collides with the token boundary                        | forbid entirely  |
+
+Operational lexer guidance:
+
+- treat `W+` and `W-` as atomic two-character tokens;
+- recognize `h2` and `h3` before bare `h`;
+- recognize `hp` and `hq` as committed named core-composite tokens before testing bare `h`;
+- recognize `[digits]:[digits]@` as one `Unbound Architrinos` ledger token that ends at `@`;
+- do not require separators around any token family when the surrounding token boundaries are already unambiguous under longest-match tokenization;
+- and reject any `@` form that does not contain both explicit ledger sides before the trailing `@`.
+
+### Proposed Registry Table
+
+Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form.
+
+For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `hp`, `hq`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
+
+#### Assemblies
+
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `pro_noether_core_I` | Pro Noether Core | `n/a` | `h` | assembly | `h` | `3:3@` | Noether core | I | pro | yes |
+| `anti_noether_core_I` | Anti Noether Core | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether core | I | anti | yes |
+| `pro_noether_core_II` | Pro Bi-Binary | `n/a` | `h2` | assembly | `h2` | `2:2@` | Noether core | II | pro | yes |
+| `anti_noether_core_II` | Anti Bi-Binary | `n/a` | `ah2` | assembly | `ah2` | `2:2@` | Noether core | II | anti | yes |
+| `pro_noether_core_III` | Pro Uni-Binary | `n/a` | `h3` | assembly | `h3` | `1:1@` | Noether core | III | pro | yes |
+| `anti_noether_core_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether core | III | anti | yes |
+| `pro_electron_I` | Electron | `e-` | `e` | assembly | `h + 6:0@` | `9:3@` | charged lepton | I | pro | yes |
+| `anti_electron_I` | Positron | `e+` | `ae` | assembly | `ah + 0:6@` | `3:9@` | charged lepton | I | anti | yes |
+| `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h` | `3:3@` | neutrino | I | pro | yes |
+| `anti_electron_neutrino_I` | Anti Electron Neutrino | `anti-nu_e` | `av` | assembly | `ah` | `3:3@` | neutrino | I | anti | yes |
+| `pro_up_quark_I` | Up Quark | `u` | `u` | assembly | `h + 1:5@` | `4:8@` | up-type quark | I | pro | yes |
+| `anti_up_quark_I` | Anti Up Quark | `anti-u` | `au` | assembly | `ah + 5:1@` | `8:4@` | up-type quark | I | anti | yes |
+| `pro_down_quark_I` | Down Quark | `d` | `d` | assembly | `h + 4:2@` | `7:5@` | down-type quark | I | pro | yes |
+| `anti_down_quark_I` | Anti Down Quark | `anti-d` | `ad` | assembly | `ah + 2:4@` | `5:7@` | down-type quark | I | anti | yes |
+| `pro_muon_II` | Muon | `mu-` | `e2` | assembly | `h2 + 6:0@` | `8:2@` | charged lepton | II | pro | yes |
+| `anti_muon_II` | Anti Muon | `mu+` | `ae2` | assembly | `ah2 + 0:6@` | `2:8@` | charged lepton | II | anti | yes |
+| `pro_muon_neutrino_II` | Muon Neutrino | `nu_mu` | `v2` | assembly | `h2` | `2:2@` | neutrino | II | pro | yes |
+| `anti_muon_neutrino_II` | Anti Muon Neutrino | `anti-nu_mu` | `av2` | assembly | `ah2` | `2:2@` | neutrino | II | anti | yes |
+| `pro_charm_quark_II` | Charm Quark | `c` | `u2` | assembly | `h2 + 1:5@` | `3:7@` | up-type quark | II | pro | yes |
+| `anti_charm_quark_II` | Anti Charm Quark | `anti-c` | `au2` | assembly | `ah2 + 5:1@` | `7:3@` | up-type quark | II | anti | yes |
+| `pro_strange_quark_II` | Strange Quark | `s` | `d2` | assembly | `h2 + 4:2@` | `6:4@` | down-type quark | II | pro | yes |
+| `anti_strange_quark_II` | Anti Strange Quark | `anti-s` | `ad2` | assembly | `ah2 + 2:4@` | `4:6@` | down-type quark | II | anti | yes |
+| `pro_tau_III` | Tau | `tau-` | `e3` | assembly | `h3 + 6:0@` | `7:1@` | charged lepton | III | pro | yes |
+| `anti_tau_III` | Anti Tau | `tau+` | `ae3` | assembly | `ah3 + 0:6@` | `1:7@` | charged lepton | III | anti | yes |
+| `pro_tau_neutrino_III` | Tau Neutrino | `nu_tau` | `v3` | assembly | `h3` | `1:1@` | neutrino | III | pro | yes |
+| `anti_tau_neutrino_III` | Anti Tau Neutrino | `anti-nu_tau` | `av3` | assembly | `ah3` | `1:1@` | neutrino | III | anti | yes |
+| `pro_top_quark_III` | Top Quark | `t` | `u3` | assembly | `h3 + 1:5@` | `2:6@` | up-type quark | III | pro | yes |
+| `anti_top_quark_III` | Anti Top Quark | `anti-t` | `au3` | assembly | `ah3 + 5:1@` | `6:2@` | up-type quark | III | anti | yes |
+| `pro_bottom_quark_III` | Bottom Quark | `b` | `d3` | assembly | `h3 + 4:2@` | `5:3@` | down-type quark | III | pro | yes |
+| `anti_bottom_quark_III` | Anti Bottom Quark | `anti-b` | `ad3` | assembly | `ah3 + 2:4@` | `3:5@` | down-type quark | III | anti | yes |
+
+#### Composites
+
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `proton` | Proton | `p` | `P` | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)` | `15:21@` | baryon | I | pro | no |
+| `anti_proton` | Anti Proton | `anti-p` | `aP` | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)` | `21:15@` | baryon | I | anti | no |
+| `neutron` | Neutron | `n` | `N` | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)` | `18:18@` | baryon | I | pro | no |
+| `anti_neutron` | Anti Neutron | `anti-n` | `aN` | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)` | `18:18@` | baryon | I | anti | no |
+| `photon` | Photon | `gamma` | `hp` | composite | `h.ah` | `6:6@` | boson | `n/a` | self-conjugate | no |
+| `higgs_cluster` | Higgs Cluster | `H` | `hq` | composite | `h.h.ah.ah` | `12:12@` | boson | `n/a` | mixed | no |
+| `w_plus_corridor` | W+ Boson | `W+` | `W+` | composite | `ah.ah + 0:6@` | `6:12@` | weak boson | `n/a` | mixed | no |
+| `w_minus_corridor` | W- Boson | `W-` | `W-` | composite | `h.h + 6:0@` | `12:6@` | weak boson | `n/a` | mixed | no |
+| `z_corridor` | Z Boson | `Z` | `Z` | composite | `h.ah` | `6:6@` | weak boson | `n/a` | self-conjugate | no |
+| `positive_pion` | Positive Pion | `pi+` | `u.ad` | composite | `u.ad = (h + 1:5@).(ah + 2:4@)` | `9:15@` | meson | I | mixed | no |
+| `neutral_pion` | Neutral Pion | `pi0` | `u.au / d.ad` | composite | `u.au or d.ad` | `12:12@` | meson | I | self-conjugate | no |
+| `negative_pion` | Negative Pion | `pi-` | `d.au` | composite | `d.au = (h + 4:2@).(ah + 5:1@)` | `15:9@` | meson | I | mixed | no |
+| `positive_kaon` | Positive Kaon | `K+` | `u.ad2` | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)` | `8:14@` | meson | `I+II` | mixed | no |
+| `neutral_kaon` | Neutral Kaon | `K0` | `d.ad2` | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)` | `11:11@` | meson | `I+II` | mixed | no |
+| `negative_kaon` | Negative Kaon | `K-` | `au.d2` | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)` | `14:8@` | meson | `I+II` | mixed | no |
+| `anti_neutral_kaon` | Anti Neutral Kaon | `anti-K0` | `ad.d2` | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)` | `11:11@` | meson | `I+II` | mixed | no |
+| `positive_b_meson` | Positive B Meson | `B+` | `u.ad3` | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)` | `7:13@` | meson | `I+III` | mixed | no |
+| `neutral_b_meson` | Neutral B Meson | `B0` | `d.ad3` | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)` | `10:10@` | meson | `I+III` | mixed | no |
+| `negative_b_meson` | Negative B Meson | `B-` | `au.d3` | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)` | `13:7@` | meson | `I+III` | mixed | no |
+| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0` | `ad.d3` | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)` | `10:10@` | meson | `I+III` | mixed | no |
+
+The photon, Higgs-cluster, and weak-corridor rows above are still shorthand structural sketches, not closed microstate derivations. They belong in the composite half of the registry because the solver-native export surface should stay limited to the assembly rows only.

@@ -1,6 +1,5 @@
 const standaloneScenePathById = Object.freeze({
   pdgedit: "./pdgedit.html",
-  pdgsolve: "./pdgsolve.html",
   pdgview: "./pdgview.html",
 });
 

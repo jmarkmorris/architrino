@@ -8,7 +8,6 @@ import {
 import {
   resolvePdgviewViewportFramingState,
 } from "../src/runtime/PdgviewViewportFramingRuntime.js";
-import { solvePdgsolveRequest } from "../src/apps/pdgsolve/PdgsolveSolveRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -142,27 +141,6 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
     ),
     true
   );
-});
-
-test("pdgview staging test case preserves the legacy beta publication data chain while live solving uses the admitted decomposition path", () => {
-  const pdgfeedRequest = readJson("content/contracts/examples/pdg/v1/generated/free_neutron_beta_decay.pdgsolve-request.v1.json");
-  const pdgsolveResult = solvePdgsolveRequest(pdgfeedRequest);
-  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
-  const publicationPackage = readJson("content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json");
-  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
-  const pdgviewStaging = readJson("content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json");
-
-  assert.equal(pdgfeedRequest.source.kind, "pdgfeed");
-  assert.equal(pdgsolveResult.bestFamilyId, "family.beta.fermion_decomposition.v1");
-  assert.deepEqual(
-    pdgsolveResult.diagnostics.map((diagnostic) => diagnostic.id),
-    ["pdgsolve.normalization.support_added.noether_core_rows"]
-  );
-  assert.equal(publicationPackage.sourceAcceptanceDigest, acceptance.resultDigest);
-  assert.deepEqual(publicationPackage.pdgeditDocument, pdgeditDocument);
-  assert.equal(pdgviewStaging.source.schema, pdgeditDocument.schema);
-  assert.equal(pdgviewStaging.source.documentId, "pdgsolve_free_neutron_beta_exact");
-  assert.equal(pdgviewStaging.export.sceneDocument.metadata.sourceContract.upstreamSchema, "pdgedit/v1");
 });
 
 test("pdgview pdgedit import runtime stays on the data side of the app boundary", () => {

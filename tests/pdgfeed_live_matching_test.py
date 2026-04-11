@@ -117,7 +117,7 @@ class FindLiveDecayTests(unittest.TestCase):
             ]
         )
         api.edition = "2025"
-        api.info = lambda key: "PDG Python API live read"
+        api.info = lambda key: "PDG Python API database read"
         spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["charged_pion_to_muon_neutrino"]
 
         with patch.object(pdgfeed, "connect_pdg", return_value=api):

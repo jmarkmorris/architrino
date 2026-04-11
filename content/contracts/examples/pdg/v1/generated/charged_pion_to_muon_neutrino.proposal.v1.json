@@ -54,8 +54,8 @@
       "polarity": "anti",
       "isComposite": false,
       "inventory": {
-        "electrinoCount": 6,
-        "positrinoCount": 6,
+        "electrinoCount": 5,
+        "positrinoCount": 5,
         "flags": [
           "generation:2",
           "charged-lepton",
@@ -80,8 +80,8 @@
       "polarity": "pro",
       "isComposite": false,
       "inventory": {
-        "electrinoCount": 6,
-        "positrinoCount": 6,
+        "electrinoCount": 5,
+        "positrinoCount": 5,
         "flags": [
           "generation:2",
           "neutrino",

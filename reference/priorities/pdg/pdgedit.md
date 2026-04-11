@@ -21,13 +21,13 @@ Its job is to present a simpler authored graph made from:
 
 - assemblies;
 - operators;
-- direct splines between neighboring object bands;
+- direct splines between neighboring object stages;
 - and late-drawn composite labels.
 
 It owns:
 
 - the visible tile grammar of the surface;
-- manual authorship of spline links between neighboring object bands;
+- manual authorship of spline links between neighboring object stages;
 - JSON import and export at the pdgedit boundary;
 - and the final rendered form of assemblies, operators, splines, and composite labels.
 
@@ -395,15 +395,15 @@ The shared review catalog may carry composite label tiles such as `Photon` as `t
 
 When pdgview implements composite labels and spans, it may need a `Photon` label tile or label token for the observer-facing span. That should be modeled as a label/span primitive in the downstream staging layer, not as a row-level pdgedit assembly tile.
 
-### Weak Boson Lane-3 Classification
+### Weak Boson Intermediate-Assemblies Classification
 
-pdgsolve does not solve over `W-`, `W+`, or `Z` bosons as native lane units.
+pdgsolve does not solve over `W-`, `W+`, or `Z` bosons as native stage units.
 
-Instead, pdgedit owns the post-solver classification point for weak boson corridor display. After pdgsolve publishes explicit lane-3 assembly rows, pdgedit may examine those intermediate rows and reclassify or group them as `Negative W Boson`, `Positive W Boson`, or `Neutral Z Boson` where a dedicated pdgedit-side rule admits that reading.
+Instead, pdgedit owns the post-solver classification point for weak boson corridor display. After pdgsolve publishes explicit intermediate-assemblies rows, pdgedit may examine those intermediate rows and reclassify or group them as `Negative W Boson`, `Positive W Boson`, or `Neutral Z Boson` where a dedicated pdgedit-side rule admits that reading.
 
-That classification is downstream presentation and authoring structure. It must preserve the published row-level assembly payloads and provenance enough that the solver result is still auditable. It must not require pdgsolve to introduce W/Z solver-native assembly ids, operator ids, dissociate targets, associate sources, or middle-lane search symbols.
+That classification is downstream presentation and authoring structure. It must preserve the published row-level assembly payloads and provenance enough that the solver result is still auditable. It must not require pdgsolve to introduce W/Z solver-native assembly ids, operator ids, dissociate targets, associate sources, or intermediate-assemblies search symbols.
 
-Until a concrete W/Z lane-3 classification contract is admitted, the W/Z standard tile keys remain available as tile artwork and review vocabulary, not as valid `pdgedit/v1` `assemblies[].type` values.
+Until a concrete W/Z intermediate-assemblies classification contract is admitted, the W/Z standard tile keys remain available as tile artwork and review vocabulary, not as valid `pdgedit/v1` `assemblies[].type` values.
 
 The prototype binary-personality selector choices such as `e/e`, `p/e`, and `p/p` are not standard text tiles in this pdgedit baseline.
 
@@ -703,14 +703,14 @@ That reserved top row:
 
 Normal authored rows therefore begin below that reserved top row.
 
-Within each assembly band, authored placement should follow a dense lane standard.
+Within each assembly stage, authored placement should follow a dense cell standard.
 
 That means:
 
-- between the topmost and bottommost occupied assembly extents in one assembly band, there should be no empty lane row;
+- between the topmost and bottommost occupied assembly extents in one assembly cell, there should be no empty cells;
 - the only routine blank row in the grid is the one reserved top row described above;
-- a later composite occupying `n` rows in one assembly band counts as one occupied `n x 4` lane rectangle for this density rule;
-- and create, drag, delete, and composite-edit behavior in an assembly band should preserve that no-gap lane standard.
+- a later composite occupying `n` rows in one assembly cell counts as one occupied `n x 4` cell rectangle for this density rule;
+- and create, drag, delete, and composite-edit behavior in an assembly stage should preserve that no-gap cell standard.
 
 Spline attachment should use only the outer rectangle bounds of the two linked objects.
 
@@ -723,22 +723,22 @@ At the baseline tile size of `80px`, that strip is a fixed rendered width of `16
 Those columns are:
 
 - column 1: blank, reserved for future composite-label use;
-- columns 2-5: reactant assembly band;
-- column 6: spline routing band;
-- column 7: operator band;
-- column 8: spline routing band;
-- columns 9-12: intermediate assembly band;
-- column 13: spline routing band;
-- column 14: operator band;
-- column 15: spline routing band;
-- columns 16-19: product assembly band;
+- columns 2-5: reactant assemblies stage;
+- column 6: routing column between reactant assemblies and reactant-side operators;
+- column 7: reactant-side operators stage;
+- column 8: routing column between reactant-side operators and intermediate assemblies;
+- columns 9-12: intermediate assemblies stage;
+- column 13: routing column between intermediate assemblies and product-side operators;
+- column 14: product-side operators stage;
+- column 15: routing column between product-side operators and product assemblies;
+- columns 16-19: product assemblies stage;
 - column 20: blank, reserved for future composite-label use.
 
 This makes the surface grammar explicit:
 
-- assemblies always live in one of the four-tile assembly bands;
-- operators always live in one of the one-tile operator bands;
-- splines use the dedicated routing bands between those object bands;
+- assemblies always live in one of the three four-tile assembly stages;
+- operators always live in one of the two one-tile operator stages;
+- splines use the dedicated routing columns between neighboring object stages;
 - and the outer blank columns remain reserved for later composite-label work.
 
 The runtime should not infer column meaning from object type or current occupancy. Column meaning is fixed by the strip definition.
@@ -909,7 +909,7 @@ The picker should never open on:
 
 To create an assembly:
 
-- double-click an empty tile position in one of the three assembly bands on a normal authored row;
+- double-click an empty tile position in one of the three assembly stages on a normal authored row;
 - treat any clicked tile in columns 2-5 as the reactant assembly slot for that row;
 - treat any clicked tile in columns 9-12 as the intermediate assembly slot for that row;
 - treat any clicked tile in columns 16-19 as the product assembly slot for that row;
@@ -921,9 +921,9 @@ The chosen assembly entry must provide the full explicit assembly payload writte
 - one new stable `id`;
 - the assembly `type`;
 - the visible `title`;
-- the band-fixed `x` origin (`2`, `9`, or `16`);
+- the fixed `x` origin for that stage (`2`, `9`, or `16`);
 - the clicked row as `y`;
-- the role implied by the chosen band (`reactant`, `intermediate`, or `product`);
+- the role implied by the chosen stage (`reactant`, `intermediate`, or `product`);
 - and the exact four-entry `tiles` array for that assembly.
 
 The runtime must not create an assembly by storing only `type` and later guessing the `tiles` payload.
@@ -956,22 +956,22 @@ Object movement should be direct drag on the object itself.
 
 The movement rule is intentionally simple in v1:
 
-- assemblies move only vertically within their current assembly band;
-- operators move only vertically within their current operator column;
-- horizontal reassignment between object bands is not part of the v1 direct-editing workflow;
-- to place an object in a different band, create a new object there and delete the old one;
+- assemblies move only vertically within their current assembly stage;
+- operators move only vertically within their current operator stage;
+- horizontal reassignment between object stages is not part of the v1 direct-editing workflow;
+- to place an object in a different stage, create a new object there and delete the old one;
 - and `Shift`-drag has no alternate move meaning.
 
 For assemblies, the drag affordance should cover the full four-tile rectangle:
 
 - a pointer-down anywhere inside the visible `4x1` assembly bounds may begin the drag;
 - no separate grab handle is permitted;
-- and the drag should read as moving the whole assembly group up or down its lane rather than moving one internal tile.
+- and the drag should read as moving the whole assembly group up or down its assembly stage rather than moving one internal tile.
 
 When the user drags an object:
 
 - the drag preview should snap to whole-row positions;
-- the object's `x`, width, and height remain fixed by object class and current band;
+- the object's `x`, width, and height remain fixed by object class and current stage;
 - only `y` is eligible to change;
 - the reserved top row is never a valid drop target;
 - and any row whose occupied cells would overlap another object is invalid.
@@ -979,24 +979,24 @@ When the user drags an object:
 On drop:
 
 - releasing an operator on one valid free row commits the new `y`;
-- releasing an assembly in one assembly band should preserve the dense lane standard for that band;
+- releasing an assembly in one assembly stage should preserve the dense cell standard for that stage;
 - releasing anywhere else returns the object to its original row;
 - no automatic row shuffling or collision resolution should occur for operators;
 - and the object's stable `id` must not change.
 
-Because movement stays inside the current band, existing spline links stay attached to the same object ids and remain valid after the move.
+Because movement stays inside the current stage, existing spline links stay attached to the same object ids and remain valid after the move.
 
-For assembly lanes, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
+For assembly cells, the intended authoring behavior is insertion-style reordering rather than sparse absolute placement:
 
-- dragging one assembly over another assembly row should open an insertion position in that lane rather than requiring a permanently empty destination row;
-- the affected lower assemblies in that same lane should shift down as needed to make room for the dragged assembly;
-- and dropping an assembly should leave that lane with no empty rows between occupied assembly extents.
+- dragging one assembly over another assembly row should open an insertion position in that assembly cell rather than requiring a permanently empty destination row;
+- the affected lower assemblies in that same assembly cell should shift down as needed to make room for the dragged assembly;
+- and dropping an assembly should leave that assembly cell with no empty rows between occupied assembly extents.
 
 Composite-aware insertion may remain deferred until composite authoring is implemented, but its behavior is already fixed:
 
-- a composite in one assembly lane should be hit-tested as one occupied `n-row x 4-column` rectangle;
+- a composite in one assembly cell should be hit-tested as one occupied `n-row x 4-column` rectangle;
 - dragging an assembly over that composite rectangle should shift the composite's member rows down together as one block;
-- and that insertion behavior should still preserve the dense no-gap lane rule.
+- and that insertion behavior should still preserve the dense no-gap cell rule.
 
 #### Deleting Assemblies And Operators
 
@@ -1011,7 +1011,7 @@ The delete gesture is:
 When an object is deleted:
 
 - delete every link whose `endpointA` or `endpointB` references that object's id in the same edit action;
-- if deleting an assembly would leave an empty lane row inside that assembly band, compact the lower assemblies in that same band upward to close the gap;
+- if deleting an assembly would leave an empty cell row inside that assembly stage, compact the lower assemblies in that same stage upward to close the gap;
 - leave unrelated objects and composite-label records unchanged;
 - and do not show a confirmation dialog in v1.
 
@@ -1023,7 +1023,7 @@ The interaction model is:
 
 - hold `Shift`;
 - click one assembly or operator as `endpointA`;
-- while still holding `Shift`, click a second assembly or operator in the next allowed object band to the left or right as `endpointB`;
+- while still holding `Shift`, click a second assembly or operator in the next allowed object stage to the left or right as `endpointB`;
 - create a spline between them.
 
 The spline should attach:
@@ -1033,10 +1033,10 @@ The spline should attach:
 
 This means:
 
-- links between neighboring object bands attach from the right edge of the left-side object to the left edge of the right-side object;
+- links between neighboring object stages attach from the right edge of the left-side object to the left edge of the right-side object;
 - and the two clicked endpoints are only the two linked objects, not directional source and target roles.
 
-Each link should route through the single routing column between the two neighboring object bands.
+Each link should route through the single routing column between the two neighboring object stages.
 
 That means:
 
@@ -1162,46 +1162,46 @@ For v1 interaction behavior:
 
 ### Adjacency Rule
 
-Spline creation should be limited to neighboring object bands separated by one routing band.
+Spline creation should be limited to neighboring object stages separated by one routing column.
 
-In this document, `neighboring object bands` means the next legal pair of object bands separated by exactly one routing column.
+In this document, `neighboring object stages` means the next legal pair of object stages separated by exactly one routing column.
 
 That rule keeps the authored graph legible and keeps the gesture model simple.
 
 A valid authored spline therefore requires:
 
-- one endpoint object in one object band;
-- the other endpoint object in the next object band to the left or right;
-- and the dedicated routing band between them.
+- one endpoint object in one object stage;
+- the other endpoint object in the next object stage to the left or right;
+- and the dedicated routing column between them.
 
-Links may connect objects on any rows as long as the objects are in neighboring object bands with the correct routing column between them.
+Links may connect objects on any rows as long as the objects are in neighboring object stages with the correct routing column between them.
 
-The intended neighboring-band pairs are:
+The intended adjacent stage pairs are:
 
-- reactant assembly band to operator column 7;
-- operator column 7 to intermediate assembly band;
-- intermediate assembly band to operator column 14;
-- operator column 14 to product assembly band.
+- reactant assemblies stage to reactant-side operators stage;
+- reactant-side operators stage to intermediate assemblies stage;
+- intermediate assemblies stage to product-side operators stage;
+- product-side operators stage to product assemblies stage.
 
 Their routing columns are:
 
-- reactant assembly band to operator column 7 uses routing column 6;
-- operator column 7 to intermediate assembly band uses routing column 8;
-- intermediate assembly band to operator column 14 uses routing column 13;
-- operator column 14 to product assembly band uses routing column 15.
+- reactant assemblies stage to reactant-side operators stage uses routing column 6;
+- reactant-side operators stage to intermediate assemblies stage uses routing column 8;
+- intermediate assemblies stage to product-side operators stage uses routing column 13;
+- product-side operators stage to product assemblies stage uses routing column 15.
 
-Non-neighboring object-band links should not be created directly by the basic interaction.
+Non-neighboring object-stage links should not be created directly by the basic interaction.
 
 Links are not visually directed.
 
-The implied reaction flow is left to right because the surface bands are ordered left to right from reactants toward products.
+The implied reaction flow is left to right because the surface stages are ordered left to right from reactants toward products.
 
 The link record stores two endpoints for validation and serialization, but the rendered spline should not display an arrow or any other direction marker.
 
 For `pdgedit/v1` serialization, each link record uses canonical left-to-right endpoint order:
 
-- `endpointA` is the id of the object in the left object band;
-- `endpointB` is the id of the object in the right object band;
+- `endpointA` is the id of the object in the left object stage;
+- `endpointB` is the id of the object in the right object stage;
 - and no extra bend, waypoint, color, or screen-geometry fields belong in the link record.
 
 Links are undirected at the authored-surface level:
@@ -1300,8 +1300,8 @@ It does not imply that the runtime should render a visible side-by-side JSON edi
 
 Exact object model for `pdgedit/v1`:
 
-- every assembly record stores one origin tile position in an allowed four-tile assembly band, an explicit semantic role, and an explicit four-tile display payload;
-- every operator record stores one grid position in an allowed one-tile operator band and a one-tile payload containing title plus positrino and electrino counts;
+- every assembly record stores one origin tile position in an allowed four-tile assembly stage, an explicit semantic role, and an explicit four-tile display payload;
+- every operator record stores one grid position in an allowed one-tile operator stage and a one-tile payload containing title plus positrino and electrino counts;
 - every spline record stores exactly `id`, `endpointA`, and `endpointB`;
 - and every composite-label record stores exactly `id`, `type`, `side`, `text`, `rowStart`, and `rowEnd`.
 
@@ -1437,7 +1437,7 @@ Link field rules are:
 
 - `endpointA` and `endpointB` must each reference an existing assembly or operator id;
 - `endpointA` must reference the left-side object and `endpointB` the right-side object;
-- the endpoint pair must belong to one valid neighboring-band connection with one valid routing column between them;
+- the endpoint pair must belong to one valid connection between adjacent object stages with one valid routing column between them;
 - and no extra geometry, style, or screen-coordinate fields belong in the `pdgedit/v1` link schema.
 
 The exact composite-label schema is:
@@ -1491,7 +1491,7 @@ The runtime should reject:
 
 - self-links;
 - duplicate links between the same two endpoint objects;
-- and links that do not belong to one valid routing column between neighboring object bands.
+- and links that do not belong to one valid routing column between neighboring object stages.
 
 The runtime should validate placement against the fixed column strip:
 
@@ -1528,7 +1528,7 @@ For v1, direct object editing is part of pdgedit itself.
 That direct authoring surface is limited to:
 
 - creating assemblies and operators through the surface-local create picker defined above;
-- moving them by band-constrained vertical drag;
+- moving them by stage-constrained vertical drag;
 - deleting the selected object with immediate link cleanup;
 - and authoring or deleting splines through the direct surface gestures defined here.
 
@@ -1692,13 +1692,13 @@ Objective:
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
 - place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
-- treat the composite's occupied area in one lane as one `n-row x 4-column` rectangle for drag hit testing and insertion;
+- treat the composite's occupied area in one assembly cell as one `n-row x 4-column` rectangle for drag hit testing and insertion;
 - and keep the composite label and optional span-bar records downstream-only unless a separate boundary transform later chooses to ignore, strip, or expand them before building an explicit assembly-native solve request.
 
 Purposes:
 
 - make it easy to add a composite from the same surface-local create-picker family;
-- make it easy to move all rows belonging to a composite together by dragging the composite vertically within a lane;
+- make it easy to move all rows belonging to a composite together by dragging the composite vertically within an assembly stage;
 - make it easy to drag an assembly over a composite rectangle and have that composite shift down as one block to make room;
 - make it easy to delete a composite from its composite label tile without a side panel workflow;
 - and preserve composite labels and spans as visual organizing graphics for still reaction images.
@@ -1708,7 +1708,7 @@ Done when:
 - the composite workflow built on the direct object-editing model can create both individual assembly rows and composite row groups;
 - a composite can author multiple grouped rows in one action;
 - composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
-- dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;
-- assembly lanes remain densely packed with no empty rows between occupied assembly or composite extents;
+- dragging an assembly over a composite's `n-row x 4-column` assembly-cellrectangle inserts relative to that composite as one block;
+- assembly cells remain densely packed with no empty rows between occupied assembly or composite extents;
 - optional span bars remain visual-only grouping graphics;
 - and any future pdgedit-to-solve transform proves that composite label/span data stays outside solver-core ontology by stripping or expanding it before the explicit request seam.
