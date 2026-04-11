@@ -117,6 +117,7 @@ Another boundary should stay explicit too:
 
 - viewport tools are downstream of accepted pdgedit output or an equivalent downstream staging contract derived from it;
 - they should not solve upstream composition again or repair missing upstream geometry;
+- any composite/grouping metadata seen here should come from downstream staging/adapters over explicit accepted assemblies rather than from solver-core ontology;
 - and they should treat upstream structure as authored input rather than something to reinterpret.
 
 ### Post-Solver Grouping Display Rule
@@ -126,6 +127,7 @@ In pdgview, the only admitted composite language is **composite of assemblies**.
 That means:
 
 - it is future post-solver grouping metadata over related 4-tile assemblies;
+- it may be created or refined by downstream staging/adapters after import;
 - it may carry adjacency, label, span, reveal, and proxy/constituent presentation metadata;
 - a composite label may use an observer-facing label tile or label token such as `Photon`, but that tile/token is span-label artwork rather than an assembly row;
 - it is not itself a single assembly;

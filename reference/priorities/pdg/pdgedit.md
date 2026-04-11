@@ -1633,6 +1633,7 @@ That selection behavior should:
 
 The preferred contract stance is:
 
+- if a future authored-surface workflow ever originates a solve request, that request must be produced by a separate boundary transform that emits explicit assembly-native solve data rather than raw pdgedit composite/grouping data;
 - the upstream solve path may begin from any solver-facing request shape, but the JSON boundary consumed by pdgedit is final `pdgedit/v1`;
 - any translation from `pdgsolve-request/v1`, `pdgsolve-result/v1`, or another upstream solve format into `pdgedit/v1` happens outside the pdgedit renderer;
 - the pdgedit runtime receives explicit pdgedit-owned JSON shapes;
@@ -1644,7 +1645,7 @@ The solver should not own screen coordinates or screen geometry details. pdgedit
 
 That means the practical v1 boundary is:
 
-- send any solver-facing request upstream through a separate solve or transformation step;
+- send any solver-facing request upstream through a separate solve or transformation step that strips or expands composite/grouping data before pdgsolve sees it;
 - receive or publish a final `pdgedit/v1` document;
 - and let the pdgedit runtime render that `pdgedit/v1` document directly without app-side reconstruction of tile payloads, placement conventions, or link intent.
 
@@ -1656,7 +1657,7 @@ For solver publications that target pdgedit:
 
 - pdgedit owns the final `pdgedit/v1` object grammar consumed by the renderer and editor;
 - pdgedit owns the fixed surface grid, visible placement rules, adjacent-column link rule, and other final document constraints;
-- the upstream solver-publication adapter owns the mapping from accepted solver units into concrete pdgedit rows, operators, links, and composites;
+- the upstream solver-publication adapter owns the mapping from accepted solver units into concrete pdgedit rows, operators, links, and downstream composite label/span effects;
 - and the detailed accepted-solution-to-pdgedit translation contract should be documented with the solver/publication boundary in [pdgsolve](./pdgsolve.md), not here.
 
 This document should therefore constrain the final published surface without becoming the primary specification for solver-side recipe families, accepted-unit mappings, adapter package formats, or accepted-graph expansion logic.
@@ -1667,11 +1668,12 @@ The downstream constraints that remain important here are:
 - composite publication must expand into explicit constituent row types before pdgedit reads the document;
 - if grouping labels, spans, or label tiles are later needed, they belong to the downstream display contract after solver publication, not to the solver's internal assembly alphabet;
 - if published intermediate assembly rows are later presented as `W-`, `W+`, or `Z` boson corridors, that classification remains a pdgedit-side grouping or display rule layered over explicit published rows and provenance;
+- if pdgedit-originated content is ever transformed upstream for solve, `compositeLabels` and other grouping metadata must stay outside the solver-core request ontology and be ignored, stripped, or expanded by the boundary transform;
 - and the renderer/editor should consume the final `pdgedit/v1` document directly without reconstructing omitted solver meaning.
 
 ## Priorities
 
-### 1. Define Composite Authoring On Top Of The Direct Object-Editing Workflow
+### 1. Define Downstream Composite Grouping Authoring On Top Of The Direct Object-Editing Workflow
 
 Status: `deferred`
 
@@ -1685,13 +1687,13 @@ Current:
 
 Objective:
 
-- build on the direct object-editing workflow defined above so authored assemblies in the reactant, intermediate, and product assembly columns can become a solver request and that same authoring flow can describe composites made from assembly rows as well as individual assembly rows;
+- build on the direct object-editing workflow defined above so pdgedit can describe downstream visual composites made from explicit assembly rows without redefining solver ontology;
 - define a composite as one authored grouping of multiple assembly rows that belong together;
 - allow one optional visual span bar to illustrate the grouping, but for visual effect only;
 - place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
 - place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
 - treat the composite's occupied area in one lane as one `n-row x 4-column` rectangle for drag hit testing and insertion;
-- and include the composite label and optional span-bar records in the solver request only as pass-through display data that the solver returns without using for solve logic.
+- and keep the composite label and optional span-bar records downstream-only unless a separate boundary transform later chooses to ignore, strip, or expand them before building an explicit assembly-native solve request.
 
 Purposes:
 
@@ -1709,4 +1711,4 @@ Done when:
 - dragging an assembly over a composite's `n-row x 4-column` lane rectangle inserts relative to that composite as one block;
 - assembly lanes remain densely packed with no empty rows between occupied assembly or composite extents;
 - optional span bars remain visual-only grouping graphics;
-- and composite label and span data round-trip through the solver request and response path without becoming solver-owned decision logic.
+- and any future pdgedit-to-solve transform proves that composite label/span data stays outside solver-core ontology by stripping or expanding it before the explicit request seam.

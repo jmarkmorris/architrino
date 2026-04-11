@@ -21,6 +21,12 @@ This workstream owns the forward app split
 
 as one product with explicit versioned data boundaries between stages.
 
+Within that split, higher-scale composite language should be handled only at the boundaries:
+
+- upstream boundary translation may expand composite or PDG-facing terms into explicit assembly-native request data before pdgsolve;
+- pdgsolve core remains assembly-native only;
+- and downstream publication or staging may collapse explicit accepted assemblies back into composite/grouping language only after solve.
+
 The active job is not to invent a different pipeline. It is to keep hardening launcher boundaries, upstream request handling, and downstream handoff around the now-real dedicated `pdgsolve` and `pdgedit` apps while keeping the accepted-record publication seam frozen, `pdgfeed` explicit upstream, `pdgview` explicit downstream, and `app.js` on a path toward launcher-only ownership.
 
 ## Directory Guide
@@ -66,7 +72,8 @@ This is a data pipeline, not a shared-runtime pipeline. Each stage should accept
 Purpose:
 
 - reads PDG-backed decay or channel data;
-- normalizes that data into Architrino-owned proposal and request artifacts;
+- normalizes that data into Architrino-owned proposal artifacts plus explicit assembly-native request artifacts;
+- expands admitted higher-scale source terms into explicit assemblies before solver handoff;
 - and emits explicit upstream request data for pdgsolve.
 
 Input:
@@ -88,7 +95,7 @@ Current CLI examples:
 Output:
 
 - proposal-review JSON artifacts for inspection;
-- and explicit request JSON for pdgsolve intake.
+- and explicit assembly-native request JSON for pdgsolve intake.
 
 Visual output:
 
@@ -99,7 +106,7 @@ Visual output:
 Purpose:
 
 - loads explicit solve requests;
-- normalizes them into a pdgsolve-owned solve problem;
+- normalizes them into a pdgsolve-owned solve problem expressed only in explicit assemblies;
 - computes and reviews conservative candidate outcomes;
 - accepts one outcome for publication;
 - and publishes final `pdgedit/v1` documents.
@@ -140,6 +147,7 @@ Output:
 
 - final `pdgedit/v1` documents with stable object ids and placements;
 - explicit spline link records;
+- explicit composite-label/grouping records for downstream display only;
 - and manifest-ready authored-surface assets for downstream staging.
 
 Visual output:
@@ -152,6 +160,7 @@ Purpose:
 
 - stages the downstream observer-facing scene;
 - turns accepted authored-surface content into framing, overlays, timing, playback, and media presentation;
+- may add observer-facing grouping or composite language over explicit assemblies after import;
 - and exports scene output or recorded presentation material.
 
 Input:

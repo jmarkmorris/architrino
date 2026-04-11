@@ -10,12 +10,13 @@
 
 ## Purpose
 
-The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into explicit `pdgsolve-request/v1` intake state, and produces candidate proposals for pdgsolve-side review.
+The PDG component is the future upstream Python layer that reads PDG channel data, normalizes it into explicit assembly-native `pdgsolve-request/v1` intake state, and produces candidate proposals for pdgsolve-side review.
 
 It owns:
 
 - PDG data access through the official Python ecosystem;
-- normalization into the solver's abstract state model;
+- normalization into the solver's assembly-native request model;
+- upstream translation from PDG-facing particle/channel language into explicit admitted assemblies when such a translation is supported;
 - proposal generation and ranking from PDG-sourced channels;
 - and PDG-side provenance metadata needed for review.
 
@@ -25,6 +26,7 @@ It does not own:
 - pdgsolve review/runtime behavior;
 - pdgedit surface behavior;
 - pdgview runtime behavior;
+- downstream collapse of accepted assemblies back into composite/grouping display language;
 - or downstream animation/export concerns.
 
 ## Current State
@@ -64,7 +66,7 @@ The intended program shape is:
 
 1. connect to the local PDG database through the official `pdg` Python package;
 2. retrieve particles, branching fractions, decay products, subdecays, and related metadata;
-3. normalize that data into explicit request-side seed and proposal records;
+3. normalize that data into explicit proposal records plus explicit assembly-native request candidates when the boundary rules admit that translation;
 4. rank or filter candidate proposals at the PDG layer;
 5. hand normalized state and provenance into pdgsolve intake and the explicit upstream request seam.
 
@@ -83,7 +85,18 @@ The Python program should keep these responsibilities distinct even in the first
 - provenance:
   records PDG edition, schema/release metadata, PDG Identifier, descriptions, and any limit or confidence semantics needed for review;
 - export boundary:
-  emits normalized data for pdgsolve intake and upstream review flow.
+  emits explicit assembly-native request data for pdgsolve intake and upstream review flow.
+
+### Composite-To-Assembly Boundary
+
+pdgfeed is the upstream owner of composite-to-assembly translation for PDG-facing language.
+
+That means:
+
+- PDG names such as `n` and `p` may be expanded into explicit emitted assembly occurrences before the request crosses into pdgsolve;
+- unsupported or ambiguous higher-scale terms must remain proposal-only rather than leaking into solver-native request ids;
+- if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
+- and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
 
 ### Implementation Baseline
 
@@ -208,7 +221,7 @@ The v1 unsupported-particle policy is:
 - a particle explicitly marked proposal-only must remain in proposal metadata and notes only;
 - any particle absent from the table is also proposal-only by default;
 - decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
-- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit solver-facing rule exists.
+- and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays proposal-only until an explicit assembly-native upstream translation rule exists.
 
 Registry expansion should stay deliberate rather than opportunistic.
 
@@ -219,7 +232,7 @@ That means:
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
 - every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
-- and until that package of mapping, provenance, and regression coverage exists, the particle remains proposal-only by design.
+- and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains proposal-only by design.
 
 The first solver-facing target should be one `pdgsolve-request/v1` document per candidate, with:
 
@@ -303,12 +316,14 @@ Each normalized participant record should contain at minimum:
 - solver-facing `templateId` for every exportable candidate;
 - human-readable `label`;
 - explicit `side`;
-- PDG particle/grouping flags used only inside ingest;
+- PDG particle/grouping flags used only inside ingest and upstream review;
 - normalized inventory ledger fields required by the solver;
 - a root node id and flat node list;
 - and PDG-side identity fields needed for provenance and traceability.
 
 Unsupported PDG particles may remain in proposal metadata and notes, but they must not be emitted into `pdgsolve-request/v1` payloads without a resolved pdgsolve request expansion and request title pattern.
+
+Composite or higher-scale PDG terms therefore belong to the PDG proposal/review layer until they have been explicitly expanded into solver-admissible assemblies.
 
 For consistency with the current local corpus:
 
@@ -323,6 +338,7 @@ The first exported `pdgsolve-request/v1` candidate should follow these rules:
 - `source.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
 - `source.title` should be a concise channel label suitable for fixtures and review;
 - `reactants` and `products` are produced only from normalized proposal records, never from raw PDG objects at export time;
+- `reactants` and `products` contain only explicit assembly-native occurrences, never composite/grouping ids;
 - each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
 - and `policy` is set explicitly by ingest, not inferred by the solver.
 
@@ -342,6 +358,7 @@ The first PDG version should also stay within these scope limits:
 ### Boundary Rules
 
 - PDG feeds the explicit pdgsolve-intake solve seam; it does not define its own solve runtime.
+- PDG owns upstream composite-to-assembly translation for the PDG-facing seam.
 - PDG must not depend on pdgview runtime code.
 - PDG must not bypass pdgsolve review and acceptance on the way to pdgedit or pdgview.
 - PDG should talk to downstream code through explicit normalized contracts.
