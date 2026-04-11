@@ -39,29 +39,11 @@ It does not own:
 
 ## Design
 
-### Role In The Product
-
-pdgsolve should become the dedicated solve-and-score app that mates with pdgedit.
-
-The intended high-level flow is:
-
-- `pdgfeed` or another upstream source emits a solve request;
-- pdgsolve loads that request;
-- pdgsolve runs the solve;
-- pdgsolve scores one or more candidate outcomes;
-- pdgsolve accepts one outcome for publication;
-- pdgsolve publishes a final `pdgedit/v1` document;
-- and pdgedit renders or edits that final authored-surface document.
-
 ### Foundational Stance
 
-pdgsolve should be designed from ground zero.
+pdgsolve is the dedicated solve-and-review app between upstream request sources and downstream pdgedit documents.
 
-That means:
-
-- pdgsolve should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, and product assemblies semantics, along with its provenance/accounting model, request/result contracts, and review workflow based on solve semantics, reviewability, determinism, and the downstream pdgedit boundary;
-- the internal design should not inherit accidental constraints from earlier surfaces or tooling splits;
-- and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream pdgedit boundary.
+It should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance/accounting model, request/result contracts, and review/publication workflow from first principles rather than inheriting accidental constraints from earlier surfaces or tooling splits.
 
 Useful prior work may still inform:
 
@@ -99,27 +81,7 @@ That means:
 - a downstream translation layer may collapse explicit accepted assemblies into higher-scale descriptions after pdgsolve finishes;
 - and once a request enters pdgsolve, the solver should operate only on explicit admitted assemblies until it hands the accepted result back to a boundary adapter.
 
-This boundary should stay explicit in the request contract, the solve problem model, the operator laws, the search state, the accepted-solution graph, and the downstream publication handoff.
-
-### Limited Terminology For Visual Translation
-
-pdgsolve should speak first in solver and publication terms, not in screen-layout shorthand.
-
-The visible surface of pdgedit may be useful as a visual metaphor for how the solve flow is organized.
-
-For orientation, the visible base array may be described as organized into `5` semantic stages.
-
-| Semantic stage | reactant assemblies | reactant-side operators              | intermediate assemblies | product-side operators              | product assemblies |
-| -------------- | ------------------- | ------------------------------------ | ----------------------- | ----------------------------------- | ------------------ |
-| Surface role   | reactants           | dissociation and pass-thru operators | intermediates           | association and pass-thru operators | products           |
-
-That table is only a translation aid. The rest of this document should use reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance, and publication language rather than surface layout language.
-
-### Fundamental Solve Geometry
-
-pdgsolve should start from one deliberately limited solve geometry.
-
-The core ordered strip is:
+For orientation, the visible pdgedit surface may be read as organized into `5` semantic stages:
 
 - reactant assemblies;
 - reactant-side operators;
@@ -127,13 +89,10 @@ The core ordered strip is:
 - product-side operators;
 - product assemblies.
 
-The operator grammar is:
+The strip uses a deliberately limited grammar:
 
 - reactant-side operators: `Pass Thru` or `Dissociate`;
 - product-side operators: `Pass Thru` or `Associate`.
-
-The assembly grammar is:
-
 - reactant assemblies, intermediate assemblies, and product assemblies contain assemblies only;
 - reactant-side operators and product-side operators contain operators only;
 - all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
@@ -162,20 +121,6 @@ That means:
 - position in this five-stage solve flow is semantic;
 - assembly order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
-
-For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
-
-Each of reactant assemblies, intermediate assemblies, and product assemblies should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
-
-If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic stage \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
-
-A concrete solve attempt is therefore a request
-
-$$
-(R, T) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}},
-$$
-
-with explicit reactant assemblies \(R\) and explicit product assemblies \(T\).
 
 ### Operator Semantics
 
@@ -250,13 +195,11 @@ Any future non-unary law remains acceptable only when:
 
 ### First Worked Weak Gate: Assembly-Level Beta Boundary
 
-The familiar beta-decay channel is the right first boundary example precisely because multiple descriptive scales may appear around the same event.
+The familiar beta-decay channel is the first boundary example precisely because multiple descriptive scales may appear around the same event.
 
-Upstream or downstream tools may speak in higher-scale terms such as neutron/proton language or transient boson/grouping language.
+Upstream or downstream tools may speak in higher-scale terms such as neutron/proton language or transient boson/grouping language, but pdgsolve must not treat those terms as native solver objects.
 
-pdgsolve must not treat those higher-scale terms as native solver objects.
-
-The pdgsolve-core expression of that family, if it is admitted at all, must be written only in explicit assemblies already present in the active assembly alphabet, for example:
+If that family is admitted at all, the pdgsolve-core expression must be written only in explicit assemblies already present in the active assembly alphabet, for example:
 
 - reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark`;
 - product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron_antineutrino`.
@@ -267,8 +210,6 @@ From that point forward:
 - the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
 - if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
 - and any request that arrives with higher-scale reactant or product terms must be expanded or rejected at the boundary before search begins.
-
-### Preferred Assembly Dissociation and Association Pattern
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
 
@@ -289,11 +230,7 @@ pdgsolve should support a small number of explicit entry modes:
 - direct load of explicit request JSON by a developer or advanced user;
 - and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
 
-pdgsolve should consume explicit request data rather than hidden app-local state.
-
-If an upstream surface lets an operator speak in higher-scale reactant or product terms, that surface or its boundary adapter should expand those terms into explicit assemblies before pdgsolve core sees the request.
-
-### Solve Problem Model
+pdgsolve should consume explicit request data rather than hidden app-local state. By the time a request reaches pdgsolve core, any higher-scale upstream description has already been expanded into explicit assemblies or rejected at the boundary.
 
 pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
 
@@ -458,7 +395,7 @@ It should carry:
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides.
 
-If a source begins from higher-scale terms, the expansion into explicit assemblies should happen before those occurrence lists are formed.
+Normalization assumes those occurrence lists already contain explicit assemblies rather than higher-scale boundary terms.
 
 Normalization should then do the following, in order:
 
