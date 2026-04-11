@@ -11,27 +11,32 @@ import {
   PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY,
   createPdgeditLaunchPayload,
 } from "../pdgedit/PdgeditLaunchPayloadRuntime.js";
-import { PDGSOLVE_STAGE_IDS } from "./PdgsolveStageRuntime.js";
 
 export const PDGSOLVE_PDGEDIT_DURABLE_DOCUMENT_LIBRARY_PATH = "content/contracts/examples/pdgedit";
 export const PDGSOLVE_PDGEDIT_DURABLE_MANIFEST_PATH = "content/contracts/examples/pdgedit/manifest.v1.json";
 export const PDGSOLVE_PDGEDIT_LAUNCH_APP_PATH = "./pdgedit.html";
 
+const REACTANT_ASSEMBLIES_STAGE = "reactantAssemblies";
+const REACTANT_SIDE_OPERATORS_STAGE = "reactantSideOperators";
+const INTERMEDIATE_ASSEMBLIES_STAGE = "intermediateAssemblies";
+const PRODUCT_SIDE_OPERATORS_STAGE = "productSideOperators";
+const PRODUCT_ASSEMBLIES_STAGE = "productAssemblies";
+
 const ASSEMBLY_X_BY_STAGE = Object.freeze({
-  [PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES]: 2,
-  [PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES]: 9,
-  [PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES]: 16,
+  [REACTANT_ASSEMBLIES_STAGE]: 2,
+  [INTERMEDIATE_ASSEMBLIES_STAGE]: 9,
+  [PRODUCT_ASSEMBLIES_STAGE]: 16,
 });
 
 const OPERATOR_X_BY_STAGE = Object.freeze({
-  [PDGSOLVE_STAGE_IDS.REACTANT_SIDE_OPERATORS]: 7,
-  [PDGSOLVE_STAGE_IDS.PRODUCT_SIDE_OPERATORS]: 14,
+  [REACTANT_SIDE_OPERATORS_STAGE]: 7,
+  [PRODUCT_SIDE_OPERATORS_STAGE]: 14,
 });
 
 const ROLE_BY_STAGE = Object.freeze({
-  [PDGSOLVE_STAGE_IDS.REACTANT_ASSEMBLIES]: "reactant",
-  [PDGSOLVE_STAGE_IDS.INTERMEDIATE_ASSEMBLIES]: "intermediate",
-  [PDGSOLVE_STAGE_IDS.PRODUCT_ASSEMBLIES]: "product",
+  [REACTANT_ASSEMBLIES_STAGE]: "reactant",
+  [INTERMEDIATE_ASSEMBLIES_STAGE]: "intermediate",
+  [PRODUCT_ASSEMBLIES_STAGE]: "product",
 });
 
 function normalizeText(value = "") {

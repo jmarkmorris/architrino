@@ -7,10 +7,18 @@ import {
 import { loadPdgsolveBootstrapSeed } from "./PdgsolveBootstrapRuntime.js";
 import { launchPdgeditFromPdgsolveAcceptance } from "./PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolveRequest } from "./PdgsolveRequestRuntime.js";
-import { selectPdgsolveResultFamily, solvePdgsolveRequest } from "./PdgsolveSolveRuntime.js";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function selectPdgsolveResultFamily(result = {}, familyId = "") {
+  const normalizedFamilyId = normalizeText(familyId);
+  const families = Array.isArray(result?.optionFamilies) ? result.optionFamilies : [];
+  if (normalizedFamilyId) {
+    return families.find((family) => family.familyId === normalizedFamilyId) ?? null;
+  }
+  return families.find((family) => family.familyId === result?.bestFamilyId) ?? families[0] ?? null;
 }
 
 function formatSourceKind(sourceKind = "") {
@@ -83,7 +91,7 @@ export function createPdgsolveAppRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
   bootstrapLoader = loadPdgsolveBootstrapSeed,
-  requestSolver = solvePdgsolveRequest,
+  requestSolver = null,
   acceptanceBuilder = buildPdgsolveAcceptanceRecord,
   acceptancePreviewBuilder = buildPdgeditPreviewFromPdgsolveAcceptance,
   publicationLauncher = launchPdgeditFromPdgsolveAcceptance,
@@ -147,7 +155,7 @@ export function createPdgsolveAppRuntime({
     const selectedEntry = getSelectedRequestEntry();
     const selectedFamily = selectPdgsolveResultFamily(state.result, state.selectedFamilyId);
     setDisabled(requestSelectElement, !state.requestEntries.length);
-    setDisabled(solveButtonElement, !selectedEntry);
+    setDisabled(solveButtonElement, !selectedEntry || typeof requestSolver !== "function");
     setDisabled(
       acceptButtonElement,
       !selectedFamily || !selectedFamily.publicationReady || !selectedFamily?.canonicalCandidate?.solveGraph
@@ -395,6 +403,16 @@ export function createPdgsolveAppRuntime({
   function runSolve() {
     const selectedEntry = getSelectedRequestEntry();
     if (!selectedEntry) {
+      return;
+    }
+    if (typeof requestSolver !== "function") {
+      state.errorMessage = "No pdgsolve solver runtime is installed.";
+      state.result = null;
+      state.selectedFamilyId = "";
+      state.acceptance = null;
+      state.pdgeditPreview = null;
+      state.publication = null;
+      render();
       return;
     }
     try {

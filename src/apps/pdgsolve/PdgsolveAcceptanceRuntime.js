@@ -1,6 +1,5 @@
 import { buildPdgeditDocumentFromPdgsolvePublicationGraph } from "./PdgsolvePdgeditPublicationRuntime.js";
 import { normalizePdgsolvePolicy } from "./PdgsolveRequestRuntime.js";
-import { selectPdgsolveResultFamily } from "./PdgsolveSolveRuntime.js";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -8,6 +7,15 @@ function normalizeText(value) {
 
 function cloneJson(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function selectPdgsolveResultFamily(result = {}, familyId = "") {
+  const normalizedFamilyId = normalizeText(familyId);
+  const families = Array.isArray(result?.optionFamilies) ? result.optionFamilies : [];
+  if (normalizedFamilyId) {
+    return families.find((family) => family.familyId === normalizedFamilyId) ?? null;
+  }
+  return families.find((family) => family.familyId === result?.bestFamilyId) ?? families[0] ?? null;
 }
 
 export function normalizePdgsolveAcceptanceRecord(record = {}) {

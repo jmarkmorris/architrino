@@ -15,8 +15,7 @@ test("pdgview scene resolves to the standalone pdgview app path", () => {
   assert.equal(getStandaloneAppPathForScene("pdgview"), "./pdgview.html");
 });
 
-test("pdgsolve and pdgedit scenes resolve to dedicated standalone app paths", () => {
-  assert.equal(getStandaloneAppPathForScene("pdgsolve"), "./pdgsolve.html");
+test("pdgedit scene resolves to the standalone pdgedit app path", () => {
   assert.equal(getStandaloneAppPathForScene("pdgedit"), "./pdgedit.html");
 });
 
@@ -34,11 +33,7 @@ test("pdgview href resolution uses the current page as the base URL", () => {
   assert.equal(href, "http://127.0.0.1:5173/pdgview.html");
 });
 
-test("pdgsolve and pdgedit href resolution stays route-only", () => {
-  assert.equal(
-    resolveStandaloneAppHrefForScene("pdgsolve", "http://127.0.0.1:5173/index.html"),
-    "http://127.0.0.1:5173/pdgsolve.html"
-  );
+test("pdgedit href resolution stays route-only", () => {
   assert.equal(
     resolveStandaloneAppHrefForScene("pdgedit", "http://127.0.0.1:5173/index.html"),
     "http://127.0.0.1:5173/pdgedit.html"
@@ -48,7 +43,6 @@ test("pdgsolve and pdgedit href resolution stays route-only", () => {
 test("standalone app entrypoints stay outside root app.js", () => {
   const rootEntrypoint = readRepoFile("app.js").trim();
   const pdgviewEntrypoint = readRepoFile("src/apps/pdgview/main.js");
-  const pdgsolveEntrypoint = readRepoFile("src/apps/pdgsolve/main.js");
   const pdgeditEntrypoint = readRepoFile("src/apps/pdgedit/main.js");
 
   assert.equal(
@@ -57,6 +51,5 @@ test("standalone app entrypoints stay outside root app.js", () => {
   );
   assert.equal(pdgviewEntrypoint.includes("../../../app.js"), false);
   assert.equal(pdgviewEntrypoint.includes("../architrino/ArchitrinoSceneAppRuntime.js"), true);
-  assert.equal(pdgsolveEntrypoint.includes("../../../app.js"), false);
   assert.equal(pdgeditEntrypoint.includes("../../../app.js"), false);
 });

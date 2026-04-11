@@ -1223,6 +1223,172 @@ pdgsolve should keep only assembly-native solve regressions plus boundary reject
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides.
 
+#### Example `pdgfeed` Requests
+
+The following frozen JSON blocks show the handoff shape that pdgsolve should accept from [pdgfeed](./pdgfeed.md). The neutron beta examples remain the clearest boundary reference because they show how composite neutron and proton terms are expanded into explicit request-side assemblies before solve.
+
+##### Free neutron beta decay from a local PDG test case
+
+```json
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "free_neutron_beta_decay",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "Free neutron beta decay",
+    "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron_1.row.1",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.2",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.3",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton_1.row.1",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "product_proton_1.row.2",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "product_proton_1.row.3",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "product_pro_electron_2",
+      "assemblyId": "electron",
+      "title": "Electron"
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "assemblyId": "electron_antineutrino",
+      "title": "Electron Antineutrino"
+    }
+  ],
+  "policy": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  }
+}
+```
+
+##### Free neutron beta decay from a live PDG read
+
+```json
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "free_neutron_beta_decay.live-pdg",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "Free neutron beta decay",
+    "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay.live-pdg"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron_1.row.1",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.2",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.3",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton_1.row.1",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "product_proton_1.row.2",
+      "assemblyId": "pro_down_quark",
+      "title": "Pro Down Quark"
+    },
+    {
+      "id": "product_proton_1.row.3",
+      "assemblyId": "pro_up_quark",
+      "title": "Pro Up Quark"
+    },
+    {
+      "id": "product_pro_electron_2",
+      "assemblyId": "electron",
+      "title": "Electron"
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "assemblyId": "electron_antineutrino",
+      "title": "Electron Antineutrino"
+    }
+  ],
+  "policy": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  }
+}
+```
+
+##### Minimal future exportable `pdgfeed` request template
+
+```json
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "<proposal-id>",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "<channel title>",
+    "sourceDocumentId": "pdg-proposal:<proposal-id>"
+  },
+  "reactants": [
+    {
+      "id": "<reactant occurrence id>",
+      "assemblyId": "<solver assembly id>",
+      "title": "<solver title>"
+    }
+  ],
+  "products": [
+    {
+      "id": "<product occurrence id>",
+      "assemblyId": "<solver assembly id>",
+      "title": "<solver title>"
+    }
+  ],
+  "policy": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  }
+}
+```
+
 #### Normalized Problem Contract: `pdgsolve-problem/v1`
 
 - `schema: "pdgsolve-problem/v1"`;
