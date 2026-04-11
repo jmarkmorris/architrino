@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `regression_and_enforcement` — Expand contract fixtures, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: none.
+1. `regression_and_enforcement` — Expand contract test cases, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: none.
 
 ## Scope
 
@@ -39,7 +39,7 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 
 ## Current State
 
-- `src/contracts/` plus `content/contracts/examples/` now carry the request, result, acceptance, publication-graph, package, pdgedit library-manifest, and `pdgedit/v1` schemas and fixtures that freeze the shared JSON denominator across the PDG chain.
+- `src/contracts/` plus `content/contracts/examples/` now carry the request, result, acceptance, publication-graph, package, pdgedit library-manifest, and `pdgedit/v1` schemas and test cases that freeze the shared JSON denominator across the PDG chain.
 - `pdgedit.html` plus `src/apps/pdgedit/main.js` now boot the authored surface directly, while the catalog-review harness stays isolated under `src/apps/pdgedit/review/`; the manifest picker, home control, fixed-column strip, spline rendering, composite labels, and direct object editing now live under `src/apps/pdgedit/`.
 - `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review app that loads explicit request URLs, pdgfeed-manifest requests, direct JSON requests, and reopened acceptance records; it runs deterministic v1 family search, presents ranked families, locks accepted records, and derives downstream `pdgedit` previews from the accepted solve graph.
 - `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
@@ -53,7 +53,7 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 ### 1. Put Regression And Boundary Enforcement On The Critical Path
 
 - Add standalone boot smoke tests for `pdgsolve`, `pdgedit`, and `pdgview`.
-- Expand contract and fixture tests around request emission, solve results, accepted records, publication graphs, publication packages, pdgedit documents, manifests, and downstream pdgview imports.
+- Expand contract validation and test cases around request emission, solve results, accepted records, publication graphs, publication packages, pdgedit documents, manifests, and downstream pdgview imports.
 - Tighten boundary checks so direct cross-app runtime imports and shared-root backsliding fail quickly.
 - Exit criterion: contract drift or boundary regressions fail in automated checks rather than surfacing later during manual review.
 
@@ -78,7 +78,7 @@ Purpose:
 
 Input:
 
-- PDG fixture data stored in the repo;
+- PDG test-case data stored in the repo;
 - or live PDG data through the local Python `pdg` package and local SQLite access.
 
 Current run method:
@@ -87,8 +87,8 @@ Current run method:
 
 Current CLI examples:
 
-- `python3 pdgfeed.py list-fixtures`
-- `python3 pdgfeed.py emit-fixture <fixture-id>`
+- `python3 pdgfeed.py list-test-cases`
+- `python3 pdgfeed.py emit-test-case <test-case-id>`
 - `python3 pdgfeed.py list-live-cases`
 - `python3 pdgfeed.py emit-live-case <case-id>`
 
@@ -113,7 +113,7 @@ Purpose:
 
 Input:
 
-- built-in request manifests backed by canonical fixtures;
+- built-in request manifests backed by canonical test cases;
 - PDG-backed requests emitted by `pdgfeed`;
 - direct load of explicit request JSON by a developer or advanced user;
 - or reopened pdgsolve work items carried by pdgsolve-owned ids or records.
@@ -199,7 +199,7 @@ Boundary rule:
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
-2. Choose a built-in fixture, a built-in live PDG case, or a user-specified PDG reaction or channel.
+2. Choose a built-in test case, a built-in live PDG case, or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
 4. Emit an explicit request artifact for pdgsolve intake.
 5. Load that request into pdgsolve.

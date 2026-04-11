@@ -16,7 +16,7 @@ It sits between upstream request sources and downstream pdgedit documents.
 
 It owns:
 
-- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), fixtures, and direct developer input;
+- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a pdgsolve-owned solve problem expressed only in explicit admitted assemblies;
 - combinatorial search over conservative solve candidates;
 - review and acceptance of candidate solve outcomes;
@@ -67,7 +67,7 @@ Useful prior work may still inform:
 
 - conserved-ledger semantics;
 - operator family meaning;
-- useful fixture cases;
+- useful test cases;
 - and examples of successful or failed closure families.
 
 UI artifacts should not define pdgsolve's architecture.
@@ -284,7 +284,7 @@ So the design rule is:
 
 pdgsolve should support a small number of explicit entry modes:
 
-- built-in request manifests backed by canonical fixtures;
+- built-in request manifests backed by canonical test cases;
 - PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
 - direct load of explicit request JSON by a developer or advanced user;
 - and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
@@ -454,7 +454,7 @@ It should carry:
 
 - `schema: "pdgsolve-request/v1"`;
 - `requestId`;
-- `source.kind`, for example `fixture`, `pdgfeed`, or `developer`;
+- `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides.
 
@@ -1096,7 +1096,7 @@ This means repeated runs over the same normalized problem must produce the same 
 
 ### Diagnostic Codes
 
-pdgsolve should freeze the first stable diagnostic ids now so later UI and fixture work does not guess at naming.
+pdgsolve should freeze the first stable diagnostic ids now so later UI and test-case work does not guess at naming.
 
 The initial v1 set should be:
 
@@ -1464,7 +1464,7 @@ Before pdgsolve implementation is considered trustworthy, the first fixed regres
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
-The last fixture is a gate on the first post-pass-through expansion.
+The last test case is a gate on the first post-pass-through expansion.
 
 So pdgsolve should not consider itself beyond the pass-through-only executable stage until that first genuine multi-option exact case exists and is under regression.
 
@@ -1473,7 +1473,7 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 ### Inputs
 
 - explicit assembly-native request data emitted by [pdgfeed](./pdgfeed.md) or another boundary adapter;
-- built-in pdgsolve fixture requests;
+- built-in pdgsolve requests backed by test cases;
 - explicit developer-loaded request documents;
 - pdgsolve-owned solve policy and review state;
 - and pdgsolve-owned reopened work-item references when one already exists.
@@ -1583,7 +1583,7 @@ Objective:
 
 - keep pdgsolve solver correctness active until the remaining active priorities are resolved against explicit assembly-native results;
 - admit future non-identity laws only when they stay entirely inside the explicit assembly ontology;
-- and promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
+- and promote the deferred `first_multi_option_exact` test case only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
 
 ## Related Priorities
 
@@ -1594,4 +1594,4 @@ Objective:
 
 ## Deferred Priorities
 
-1. `first_multi_option_exact` — Add the first post-pass-through regression fixture that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
+1. `first_multi_option_exact` — Add the first post-pass-through regression test case that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.

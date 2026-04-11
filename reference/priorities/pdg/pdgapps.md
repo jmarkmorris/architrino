@@ -97,8 +97,8 @@ Allowed sharing:
 - generic platform or shell infrastructure;
 - static schemas and contract definitions;
 - static catalogs as data when they are truly app-neutral;
-- request manifests and fixtures that stay on the data side of the seam;
-- fixtures, example documents, and enforcement rules.
+- request manifests and test cases that stay on the data side of the seam;
+- test cases, example documents, and enforcement rules.
 
 Not allowed:
 
@@ -227,7 +227,7 @@ Good shared surfaces:
 
 - build and deploy tooling;
 - platform shell utilities;
-- schemas and fixtures;
+- schemas and test cases;
 - generic rendering or utility helpers that carry no app semantics;
 - and enforcement scripts that protect boundaries.
 
@@ -244,7 +244,7 @@ Bad shared surfaces:
 The architecture should keep the following checks in place:
 
 - forbidden cross-import checks;
-- contract fixture validation;
+- contract validation for test cases;
 - pdgsolve publication-contract tests;
 - pdgedit document validation tests;
 - pdgview import tests;
@@ -328,7 +328,7 @@ Best practices:
 - decide the target ownership first, so each move has an obvious destination rather than becoming one more temporary stop;
 - move one responsibility cluster at a time instead of trying to "clean up everything" in one pass;
 - keep composition roots thin while you refactor, rather than adding new behavior there because it feels convenient during the transition;
-- add or preserve tests and contract fixtures before high-risk moves so the refactor has a visible safety rail;
+- add or preserve tests and contract test cases before high-risk moves so the refactor has a visible safety rail;
 - prefer explicit adapters, facades, and temporary re-exports over hidden compatibility behavior;
 - keep temporary shims obviously temporary and delete them once callers migrate;
 - avoid mixing app-boundary cleanup with unrelated behavior changes unless the two are tightly coupled;
