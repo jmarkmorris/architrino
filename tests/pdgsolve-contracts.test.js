@@ -278,7 +278,7 @@ test("pdgsolve solver runtime does not import result test cases", () => {
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
   const graph = acceptance.lockedSolveGraph;
-  const packageFixture = readJson(
+  const packageTestCase = readJson(
     "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json"
   );
   const pdgeditDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(graph, pdgsolvePdgeditRecipeCatalog);
@@ -319,7 +319,7 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
     [],
     "beta package manifest entry drifted from pdgedit manifest contract"
   );
-  assert.equal(packageFixture.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
+  assert.equal(packageTestCase.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
 });
 
 test("legacy beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {

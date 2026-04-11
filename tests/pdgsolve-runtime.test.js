@@ -33,9 +33,9 @@ test("default pdgsolve bootstrap entries include corpus test cases and pdgfeed-e
 });
 
 test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptance record", async () => {
-  const acceptanceFixture = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
-  const requestFixture = readJson("content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json");
-  const manifestFixture = {
+  const acceptanceTestCase = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
+  const requestTestCase = readJson("content/contracts/examples/pdgsolve-request/pass_thru_neutron.v1.json");
+  const manifestTestCase = {
     schema: "pdg-live-manifest/v1",
     edition: "2025",
     exportableCount: 1,
@@ -46,17 +46,17 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
         batchId: 7,
         title: "Manifest free neutron",
         channelDescription: "n -> p e nu",
-        pdgsolveRequest: requestFixture,
+        pdgsolveRequest: requestTestCase,
       },
     ],
   };
 
   const fetchImpl = async (url) => {
     if (url === "https://example.test/manifest.json") {
-      return { ok: true, json: async () => manifestFixture };
+      return { ok: true, json: async () => manifestTestCase };
     }
     if (url === "https://example.test/acceptance.json") {
-      return { ok: true, json: async () => acceptanceFixture };
+      return { ok: true, json: async () => acceptanceTestCase };
     }
     throw new Error(`unexpected url ${url}`);
   };
@@ -70,7 +70,7 @@ test("bootstrap seed can append pdgfeed manifest requests and reopen an acceptan
 
   assert.equal(seed.requestEntries.some((entry) => entry.id === "pdgfeed-manifest:7"), true);
   assert.equal(seed.selectedRequestEntry.request.requestId, "pass_thru_neutron");
-  assert.deepEqual(seed.reopenedAcceptance, acceptanceFixture);
+  assert.deepEqual(seed.reopenedAcceptance, acceptanceTestCase);
 });
 
 test("live pdgfeed neutron requests solve exactly through the admitted fermion-decomposition family", () => {

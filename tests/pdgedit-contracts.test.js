@@ -290,7 +290,7 @@ test("pdgedit manifest defaults to its declared starter document", () => {
 
 test("pdgedit manifest selection prefers the declared default, then the first entry", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
-  const selectedFromFixture = selectDefaultPdgeditLibraryManifestEntry(manifest);
+  const selectedFromTestCase = selectDefaultPdgeditLibraryManifestEntry(manifest);
   const selectedFromDeclaredDefault = selectDefaultPdgeditLibraryManifestEntry({
     schema: "pdgedit-library-manifest/v1",
     defaultEntryId: "secondary_document",
@@ -329,7 +329,7 @@ test("pdgedit manifest selection prefers the declared default, then the first en
     ],
   });
 
-  assert.equal(selectedFromFixture?.id, "pass_thru_up_quark");
+  assert.equal(selectedFromTestCase?.id, "pass_thru_up_quark");
   assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
   assert.equal(selectedFromFirstEntry?.id, "first_document");
 });

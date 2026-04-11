@@ -18,7 +18,7 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
 }
 
-function readSvgFixture(filename) {
+function readSvgTestCase(filename) {
   return fs.readFileSync(path.join(glyphOutputDirPath, filename), "utf8");
 }
 
@@ -218,7 +218,7 @@ test("the JS pdgedit tile renderer stays aligned with representative committed r
     assert.ok(tile, `missing sample tile ${tileKey}`);
 
     const jsSemanticTree = renderComparableTileSvg(tile, catalog, renderContext);
-    const referenceSemanticTree = toComparableSvgTree(parseSvgTree(readSvgFixture(`pdgedit-tile-${tileKey}.svg`)), {
+    const referenceSemanticTree = toComparableSvgTree(parseSvgTree(readSvgTestCase(`pdgedit-tile-${tileKey}.svg`)), {
       isRoot: true,
     });
 
@@ -251,7 +251,7 @@ test("the JS tile renderer can reconstruct representative committed pdgedit revi
     assert.ok(group, `missing sample group ${groupKey}`);
 
     const jsSemanticTree = renderComparableGroupSvg(group, tileByKey, catalog, renderContext);
-    const referenceSemanticTree = toComparableSvgTree(parseSvgTree(readSvgFixture(`pdgedit-group-${groupKey}.svg`)), {
+    const referenceSemanticTree = toComparableSvgTree(parseSvgTree(readSvgTestCase(`pdgedit-group-${groupKey}.svg`)), {
       isRoot: true,
     });
 
