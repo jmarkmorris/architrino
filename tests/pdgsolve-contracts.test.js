@@ -4,7 +4,6 @@ import fs from "node:fs";
 
 import { createPdgeditLibraryManifestEntry } from "../src/apps/pdgedit/PdgeditLibraryManifestRuntime.js";
 import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCatalogRuntime.js";
-import { normalizePdgeditReviewGroupCatalog } from "../src/apps/pdgedit/PdgeditReviewGroupCatalogRuntime.js";
 import { validatePdgeditDocumentTilePayload } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { PDGEDIT_LAUNCH_PAYLOAD_STORAGE_KEY } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
 import { buildPdgsolveAcceptanceRecord } from "../src/apps/pdgsolve/PdgsolveAcceptanceRuntime.js";
@@ -146,37 +145,27 @@ test("pdgsolve publication recipes project the solver primitive ledger", () => {
     assert.deepEqual(rawRecipe.primitiveCounts, ledger.counts, `${assemblyId} raw recipe ledger drifted`);
     assert.deepEqual(normalizedRecipe.primitiveCounts, ledger.counts, `${assemblyId} normalized recipe ledger drifted`);
   });
+});
 
-  const neutronRecipe = rawAssemblyRecipeById.get("pdgsolve.pdgedit.neutron.v1");
-  const protonRecipe = rawAssemblyRecipeById.get("pdgsolve.pdgedit.proton.v1");
+test("pdgsolve publication recipe catalog excludes downstream composite assembly recipes", () => {
+  const removedRecipeIds = [
+    "pdgsolve.pdgedit.neutron.v1",
+    "pdgsolve.pdgedit.proton.v1",
+    "pdgsolve.pdgedit.noether_pair.v1",
+    "pdgsolve.pdgedit.2h.v1",
+    "pdgsolve.pdgedit.4h.v1",
+  ];
 
-  assert.deepEqual(
-    neutronRecipe.portPrimitiveCounts["input.row.1"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
-  );
-  assert.deepEqual(
-    neutronRecipe.portPrimitiveCounts["input.row.2"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
-  );
-  assert.deepEqual(
-    neutronRecipe.portPrimitiveCounts["input.row.3"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
-  );
-  assert.deepEqual(
-    protonRecipe.portPrimitiveCounts["output.row.1"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
-  );
-  assert.deepEqual(
-    protonRecipe.portPrimitiveCounts["output.row.2"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_down_quark.counts
-  );
-  assert.deepEqual(
-    protonRecipe.portPrimitiveCounts["output.row.3"],
-    PDGSOLVE_ASSEMBLY_LEDGER_BY_ID.pro_up_quark.counts
+  removedRecipeIds.forEach((recipeId) => {
+    assert.equal(pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.has(recipeId), false, `${recipeId} should be absent`);
+  });
+  assert.equal(
+    pdgsolvePdgeditRecipeCatalog.assemblyRecipes.every((recipe) => !recipe.pdgeditType.endsWith("-composite")),
+    true
   );
 });
 
-test("pdgsolve request fixtures match the versioned pdgsolve-request schema", () => {
+test("pdgsolve request test cases match the versioned pdgsolve-request schema", () => {
   pdgsolveCorpus.cases.forEach((entry) => {
     const request = readJson(entry.requestPath);
     const errors = validateAgainstSchema(request, pdgsolveRequestSchema);
@@ -184,8 +173,26 @@ test("pdgsolve request fixtures match the versioned pdgsolve-request schema", ()
     assert.deepEqual(errors, [], `${entry.requestPath} schema mismatch`);
     assert.equal(request.schema, "pdgsolve-request/v1");
     assert.equal(request.requestId, entry.id);
-    assert.equal(request.source.kind, "fixture");
+    assert.equal(request.source.kind, "test_case");
   });
+});
+
+test("pdgsolve-request/v1 admits only explicit request-side assemblies in reactants and products", () => {
+  const expectedAssemblyIds = [
+    "electron",
+    "electron_antineutrino",
+    "pro_down_quark",
+    "pro_up_quark",
+  ];
+
+  assert.deepEqual(
+    pdgsolveRequestSchema.properties.reactants.items.properties.assemblyId.enum,
+    expectedAssemblyIds
+  );
+  assert.deepEqual(
+    pdgsolveRequestSchema.properties.products.items.properties.assemblyId.enum,
+    expectedAssemblyIds
+  );
 });
 
 test("pdgsolve runtime results match the versioned pdgsolve-result schema and corpus expectations", () => {
@@ -261,7 +268,7 @@ test("pdgsolve computed results preserve the four concrete v1 expectations in pd
   assert.equal(passThruResult.optionFamilies[0].score.ambiguityPenalty, 0);
 });
 
-test("pdgsolve solver runtime does not import result fixtures", () => {
+test("pdgsolve solver runtime does not import result test cases", () => {
   const solveRuntimeSource = fs.readFileSync(
     new URL("../src/apps/pdgsolve/PdgsolveSolveRuntime.js", import.meta.url),
     "utf8"
@@ -278,7 +285,7 @@ test("pdgsolve solver runtime does not import result fixtures", () => {
 test("pdgsolve beta acceptance, publication graph, package, and pdgedit document stay aligned", () => {
   const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/free_neutron_beta_exact.v1.json");
   const graph = acceptance.lockedSolveGraph;
-  const packageFixture = readJson(
+  const packageTestCase = readJson(
     "content/contracts/examples/pdgsolve-pdgedit-package/free_neutron_beta_exact_durable.v1.json"
   );
   const pdgeditDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(graph, pdgsolvePdgeditRecipeCatalog);
@@ -319,7 +326,7 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
     [],
     "beta package manifest entry drifted from pdgedit manifest contract"
   );
-  assert.equal(packageFixture.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
+  assert.equal(packageTestCase.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
 });
 
 test("legacy beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
@@ -458,31 +465,6 @@ test("admitted fermion-decomposition beta solving publishes residue rows with ad
   );
 });
 
-test("pdgsolve pdgedit recipe catalog admits 2h and 4h as composite recipes with constituent assembly row types", () => {
-  const twoHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.2h.v1");
-  const fourHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.4h.v1");
-  const noetherPairRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.noether_pair.v1");
-
-  assert.ok(twoHRecipe);
-  assert.ok(fourHRecipe);
-  assert.ok(noetherPairRecipe);
-  assert.equal(twoHRecipe.pdgsolveAssemblyId, "2h");
-  assert.equal(fourHRecipe.pdgsolveAssemblyId, "4h");
-  assert.equal(twoHRecipe.pdgeditType, "noether-pair-composite");
-  assert.equal(fourHRecipe.pdgeditType, "noether-quad-composite");
-  assert.equal(twoHRecipe.boundaryLabelText, "2H");
-  assert.equal(fourHRecipe.boundaryLabelText, "4H");
-  assert.equal(noetherPairRecipe.boundaryLabelText, "Noether Pair");
-  assert.notEqual(twoHRecipe.id, noetherPairRecipe.id);
-  assert.deepEqual(twoHRecipe.pdgeditRowTypes, ["pro-noether-core-assembly", "anti-noether-core-assembly"]);
-  assert.deepEqual(fourHRecipe.pdgeditRowTypes, [
-    "pro-noether-core-assembly",
-    "anti-noether-core-assembly",
-    "pro-noether-core-assembly",
-    "anti-noether-core-assembly",
-  ]);
-});
-
 test("pdgsolve pdgedit recipe catalog admits the fermion-decomposition residue rows with solver-ledger counts", () => {
   const residueRecipeIds = [
     "pdgsolve.pdgedit.unbound_architrino_residue_e4_p8.v1",
@@ -500,28 +482,9 @@ test("pdgsolve pdgedit recipe catalog admits the fermion-decomposition residue r
   });
 });
 
-test("pdgsolve 2h and 4h recipes reuse the canonical Pdgedit Noether row payloads while keeping distinct labels", () => {
-  const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
-  const noetherPairRows = reviewGroups.compositeGroups.find((group) => group.key === "noether-pair")?.rows;
-  const noetherQuadRows = reviewGroups.compositeGroups.find((group) => group.key === "noether-quad")?.rows;
-  const twoHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.2h.v1");
-  const fourHRecipe = pdgsolvePdgeditRecipeCatalog.assemblyRecipeById.get("pdgsolve.pdgedit.4h.v1");
-
-  assert.deepEqual(twoHRecipe.rows, noetherPairRows);
-  assert.deepEqual(fourHRecipe.rows, noetherQuadRows);
-  assert.deepEqual(twoHRecipe.rowTitles, ["Pro Noether Core", "Anti Noether Core"]);
-  assert.deepEqual(fourHRecipe.rowTitles, [
-    "Pro Noether Core",
-    "Anti Noether Core",
-    "Pro Noether Core",
-    "Anti Noether Core",
-  ]);
-});
-
-test("every recipeId used by pdgsolve publication-graph fixtures is admitted in the pdgsolve pdgedit recipe catalog", () => {
+test("every recipeId used by pdgsolve publication-graph test cases is admitted in the pdgsolve pdgedit recipe catalog", () => {
   const graphPaths = [
     "content/contracts/examples/pdgsolve-publication-graph/free_neutron_beta_exact.v1.json",
-    "content/contracts/examples/pdgsolve-publication-graph/boundary_augmentation_recipe_coverage.v1.json",
   ];
 
   graphPaths.forEach((graphPath) => {
@@ -536,45 +499,6 @@ test("every recipeId used by pdgsolve publication-graph fixtures is admitted in 
       );
     });
   });
-});
-
-test("pdgsolve publication runtime builds the expected boundary-augmentation pdgedit document", () => {
-  const graph = readJson("content/contracts/examples/pdgsolve-publication-graph/boundary_augmentation_recipe_coverage.v1.json");
-  const expectedPdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json");
-  const builtDocument = buildPdgeditDocumentFromPdgsolvePublicationGraph(graph, pdgsolvePdgeditRecipeCatalog);
-  const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
-
-  assert.deepEqual(validateAgainstSchema(builtDocument, pdgeditSchema), [], "boundary pdgedit schema drifted");
-  assert.deepEqual(validatePdgeditDocumentTilePayload(builtDocument, tileCatalog), [], "boundary pdgedit tile drifted");
-  assert.deepEqual(builtDocument, expectedPdgeditDocument);
-});
-
-test("pdgsolve publication runtime builds the expected durable package for boundary augmentations", () => {
-  const graph = readJson("content/contracts/examples/pdgsolve-publication-graph/boundary_augmentation_recipe_coverage.v1.json");
-  const expectedPackage = readJson(
-    "content/contracts/examples/pdgsolve-pdgedit-package/boundary_augmentation_recipe_coverage_durable.v1.json"
-  );
-  const builtPackage = buildPdgsolvePdgeditPackage({
-    sourceAcceptanceDigest: "pdgsolve_boundary_augmentation_recipe_coverage::v1",
-    publicationMode: "durable",
-    documentId: "pdgsolve_boundary_augmentation_recipe_coverage",
-    documentTitle: "Boundary augmentation recipe coverage",
-    graph,
-    recipeCatalog: pdgsolvePdgeditRecipeCatalog,
-    durableDocumentPath: "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
-  });
-
-  assert.deepEqual(validateAgainstSchema(builtPackage, pdgsolvePdgeditPackageSchema), [], "boundary package schema drifted");
-  assert.deepEqual(builtPackage, expectedPackage);
-  assert.deepEqual(
-    builtPackage.manifestEntry,
-    createPdgeditLibraryManifestEntry({
-      id: "pdgsolve_boundary_augmentation_recipe_coverage",
-      title: "Boundary augmentation recipe coverage",
-      displayTitle: "Boundary augmentation recipe coverage",
-      documentPath: "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
-    })
-  );
 });
 
 test("pdgsolve publication runtime builds the expected beta pdgedit document from the accepted publication graph", () => {

@@ -3,20 +3,18 @@
 ## LLM Instructions
 
 - Keep this document focused on pdgsolve as the solve/review app paired with [pdgedit](./pdgedit.md).
-- Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document shapes by inertia.
+- Re-evaluate rules from first principles rather than preserving inherited UI artifacts, anchor conventions, or document structures by inertia.
 - Keep `Design` about durable boundaries, solve-state concepts, and review/publication workflow ownership rather than temporary migration tactics.
 - Keep `Priorities` ordered as the active work queue.
 - Do not restate low-level PDG ingest internals or pdgedit tile-rendering internals except where pdgsolve depends on them.
 
 ## Purpose
 
-pdgsolve is the solve-and-review app.
-
-It sits between upstream request sources and downstream pdgedit documents.
+pdgsolve is the dedicated solve-and-review app between upstream request sources and downstream pdgedit documents.
 
 It owns:
 
-- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), fixtures, and direct developer input;
+- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a pdgsolve-owned solve problem expressed only in explicit admitted assemblies;
 - combinatorial search over conservative solve candidates;
 - review and acceptance of candidate solve outcomes;
@@ -39,42 +37,22 @@ It does not own:
 
 ## Design
 
-### Role In The Product
-
-pdgsolve should become the dedicated solve-and-score app that mates with pdgedit.
-
-The intended high-level flow is:
-
-- `pdgfeed` or another upstream source emits a solve request;
-- pdgsolve loads that request;
-- pdgsolve runs the solve;
-- pdgsolve scores one or more candidate outcomes;
-- pdgsolve accepts one outcome for publication;
-- pdgsolve publishes a final `pdgedit/v1` document;
-- and pdgedit renders or edits that final authored-surface document.
-
 ### Foundational Stance
 
-pdgsolve should be designed from ground zero.
-
-That means:
-
-- pdgsolve should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, and product assemblies semantics, along with its provenance/accounting model, request/result contracts, and review workflow based on solve semantics, reviewability, determinism, and the downstream pdgedit boundary;
-- the internal design should not inherit accidental constraints from earlier surfaces or tooling splits;
-- and every retained rule should justify itself in terms of solve semantics, reviewability, determinism, and the downstream pdgedit boundary.
+It should define its own reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance/accounting model, request/result contracts, and review/publication workflow from first principles rather than inheriting accidental constraints from earlier surfaces or tooling splits.
 
 Useful prior work may still inform:
 
 - conserved-ledger semantics;
 - operator family meaning;
-- useful fixture cases;
+- useful test cases;
 - and examples of successful or failed closure families.
 
 UI artifacts should not define pdgsolve's architecture.
 
-### Runtime Shape
+### Runtime Process
 
-The durable pdgsolve shape should separate:
+The durable pdgsolve structure should separate:
 
 - request intake;
 - request normalization;
@@ -85,42 +63,24 @@ The durable pdgsolve shape should separate:
 
 Large coordinator files may assemble those pieces, but they should not become the long-term home of solver semantics.
 
+### Composite And Higher-Scale Terms Are Out Of Scope.
+
+Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects.
+
+They do not enter pdgsolve as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must expand them into explicit admitted assemblies before pdgsolve sees the request. If downstream surfaces want higher-scale summaries, they may derive them only after pdgsolve has finished.
+
+Post-solver grouping display may describe solved assemblies, but grouping metadata is not itself opened, gathered, dissociated, associated, or searched.
+
+This is the controlling scope rule for the rest of the document.
+
 ### Core Ontology Boundary
 
 pdgsolve core should be assembly-native and Standard-Model-assembly-only.
 
-That means:
-
 - every solver-native reactant assembly, intermediate assembly, and product assembly is one explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to admitted Standard Model content;
-- composites of assemblies are higher-scale grouping interpretations, not solver-native assemblies;
-- composites are not dissociation inputs, association outputs, intermediate assemblies, or solver search symbols;
-- higher-scale reactant terms and product terms belong to boundary translation, not to solver-core ontology;
-- an upstream translation layer may expand higher-scale descriptions into explicit assemblies before pdgsolve sees the request;
-- a downstream translation layer may collapse explicit accepted assemblies into higher-scale descriptions after pdgsolve finishes;
 - and once a request enters pdgsolve, the solver should operate only on explicit admitted assemblies until it hands the accepted result back to a boundary adapter.
 
-This boundary should stay explicit in the request contract, the solve problem model, the operator laws, the search state, the accepted-solution graph, and the downstream publication handoff.
-
-### Limited Terminology For Visual Translation
-
-pdgsolve should speak first in solver and publication terms, not in screen-layout shorthand.
-
-The visible surface of pdgedit may be useful as a visual metaphor for how the solve flow is organized.
-
-For orientation, the visible base array may be described as a simple grid of tiles that is `20` tiles wide and organized into `5` semantic parts.
-
-| Semantic part | reactant assemblies | reactant-side operators              | intermediate assemblies         | product-side operators              | product assemblies |
-| ------------- | ------------------- | ------------------------------------ | ------------------------------- | ----------------------------------- | ------------------ |
-| Surface role  | reactants           | dissociation and pass-thru operators | intermediates                   | association and pass-thru operators | products           |
-| UI reading    | reactant assemblies | reactant operators                   | intermediate assemblies         | product operators                   | product assemblies |
-
-That table is only a translation aid. The rest of this document should use reactant assemblies, reactant-side operators, intermediate assemblies, product-side operators, product assemblies, provenance, and publication language rather than surface layout language.
-
-### Fundamental Solve Geometry
-
-pdgsolve should start from one deliberately limited solve geometry.
-
-The core ordered strip is:
+For orientation, the visible pdgedit surface may be read as organized into `5` semantic stages:
 
 - reactant assemblies;
 - reactant-side operators;
@@ -128,54 +88,29 @@ The core ordered strip is:
 - product-side operators;
 - product assemblies.
 
-The operator grammar is:
+The strip uses a deliberately limited grammar:
 
 - reactant-side operators: `Pass Thru` or `Dissociate`;
 - product-side operators: `Pass Thru` or `Associate`.
-
-The assembly grammar is:
-
 - reactant assemblies, intermediate assemblies, and product assemblies contain assemblies only;
 - reactant-side operators and product-side operators contain operators only;
-- all normal solve progress moves from reactant side to product side through adjacent semantic parts only;
-- and every solver-native assembly in those parts is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content.
+- all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
+- and every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content.
+- the solver does have a degree of freedom to add pro/anti Noether cores as pairs of reactant or product assemblies, although that pairing is not carried through the solving process – instead being techniques to add spacetime assemblies to enable solution closure.
 
 In pdgsolve terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
-pdgsolve should not use composite particle names, display-grouping names, support-pair names, support-quad names, residue labels, or other interpreted higher-scale terms as solver-native assembly ids.
+Inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
 
-Those names belong on either side of the solver boundary:
 
-- before pdgsolve, [pdgfeed](./pdgfeed.md) or another boundary adapter may know higher-scale particle or reaction names and expand them into explicit individual assemblies;
-- after pdgsolve, [pdgedit](./pdgedit.md) may inspect published explicit assemblies and classify or group them where a dedicated downstream rule admits that reading;
-- after pdgsolve, [pdgview](./pdgview.md) may later display grouping spans or labels over already-solved assemblies;
-- and inside pdgsolve, all routing, scoring, provenance, search symbols, and accepted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
-
-pdgsolve should not solve over `neutron`, `proton`, `W-`, `W+`, or `Z` as native units in the v1 strip when those names are being used as composite labels, corridor interpretations, or other higher-scale descriptions over multiple assemblies.
-
-For the current boundary, such language is a boundary-side interpretation of already-emitted explicit assemblies. It is not a solver-native assembly id, operator id, dissociate target, associate source, or intermediate-assembly search symbol.
 
 pdgsolve should treat this as a combinatorial state graph, not as screen geometry.
 
 That means:
 
-- position in this five-part solve flow is semantic;
+- position in this five-stage solve flow is semantic;
 - assembly order may matter for deterministic identity and publication order;
 - but solve legality must not depend on DOM layout, pixel coordinates, or render-time anchor inference.
-
-For mathematical purposes, pdgsolve should model one solve family with a finite assembly alphabet \(\mathcal{A}\).
-
-Each of reactant assemblies, intermediate assemblies, and product assemblies should be represented as a multiset vector in \(\mathbb{N}^{\mathcal{A}}\).
-
-If \(x_{\ell} \in \mathbb{N}^{\mathcal{A}}\) is the assembly multiset at semantic part \(\ell \in \{1, 3, 5\}\), then \(x_{\ell}(a)\) is the multiplicity of assembly \(a\) in that multiset.
-
-A concrete solve attempt is therefore a request
-
-$$
-(R, T) \in \mathbb{N}^{\mathcal{A}} \times \mathbb{N}^{\mathcal{A}},
-$$
-
-with explicit reactant assemblies \(R\) and explicit product assemblies \(T\).
 
 ### Operator Semantics
 
@@ -192,7 +127,7 @@ pdgsolve should keep the operator family deliberately small.
 - exactly one input is accepted;
 - that input must come from one explicit reactant assembly, not from a composite term, grouping label, or span;
 - one reactant-side 4-tile assembly is opened;
-- the resulting output is a constrained set of explicit intermediate assemblies determined by the decomposition law for that assembly family;
+- the resulting output is a constrained set of explicit intermediate assemblies determined by the dissociation law for that assembly family;
 - the original provenance block is refined into smaller provenance blocks with the same union;
 - and the total conserved ledger is preserved across the split.
 
@@ -205,14 +140,14 @@ pdgsolve should keep the operator family deliberately small.
 - the gathered provenance blocks are coarsened into one larger provenance block with the same union;
 - and the total conserved ledger is preserved across the gather-and-assemble step.
 
-So the operator shape is asymmetric but strict:
+So the operator structure is asymmetric but strict:
 
 - a 4-tile assembly reactant may route to a reactant-side `Dissociate` operator;
 - a reactant-side `Dissociate` operator has only one input;
 - a product-side `Associate` operator has only one output;
 - and that product-side `Associate` output must route to a 4-tile assembly product.
 
-Post-solver grouping display can organize the assemblies that participate in these laws, but grouping metadata is not itself opened, gathered, dissociated, or associated.
+
 
 pdgsolve should not widen the operator family casually.
 
@@ -250,13 +185,9 @@ Any future non-unary law remains acceptable only when:
 
 ### First Worked Weak Gate: Assembly-Level Beta Boundary
 
-The familiar beta-decay channel is the right first boundary example precisely because multiple descriptive scales may appear around the same event.
+The familiar beta-decay channel is the first boundary example precisely because multiple descriptive scales may appear around the same event.
 
-Upstream or downstream tools may speak in higher-scale terms such as neutron/proton language or transient boson/grouping language.
-
-pdgsolve must not treat those higher-scale terms as native solver objects.
-
-The pdgsolve-core expression of that family, if it is admitted at all, must be written only in explicit assemblies already present in the active assembly alphabet, for example:
+Applied to beta-decay, the same rule means the pdgsolve-core expression must be written only in explicit assemblies already present in the active assembly alphabet, for example:
 
 - reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark`;
 - product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron_antineutrino`.
@@ -266,9 +197,7 @@ From that point forward:
 - the core search may use only explicit assembly ids from \(\mathcal{A}\);
 - the core may not introduce `neutron`, `proton`, `W-`, `W+`, `Z`, residue labels, support tokens, or other higher-scale substitute symbols;
 - if the active law table cannot close the request using admitted explicit assembly laws, pdgsolve should emit `pdgsolve.search.unsupported_law_family`;
-- and any request that arrives with higher-scale reactant or product terms must be expanded or rejected at the boundary before search begins.
-
-### Preferred Assembly Dissociation and Association Pattern
+- and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
 
@@ -284,16 +213,12 @@ So the design rule is:
 
 pdgsolve should support a small number of explicit entry modes:
 
-- built-in request manifests backed by canonical fixtures;
+- built-in request manifests backed by canonical test cases;
 - PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
 - direct load of explicit request JSON by a developer or advanced user;
 - and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
 
 pdgsolve should consume explicit request data rather than hidden app-local state.
-
-If an upstream surface lets an operator speak in higher-scale reactant or product terms, that surface or its boundary adapter should expand those terms into explicit assemblies before pdgsolve core sees the request.
-
-### Solve Problem Model
 
 pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
 
@@ -429,20 +354,6 @@ $$
 
 So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for any single assembly occurrence that is allowed in the intermediate assemblies.
 
-The previously considered direct assembly-level beta shortcut is explicitly outside the admitted law table:
-
-| Blocked law id | Blocked input | Blocked output multiset | Why blocked |
-| --- | --- | --- | --- |
-| `row.beta.pro_down_quark_to_pro_up_quark.v1` | `pro_down_quark` | `pro_up_quark + electron + electron_antineutrino` | no admitted assembly-native Standard-Model law family exists yet, and pdgsolve core may not compensate by introducing composite or non-native substitute symbols |
-
-That means:
-
-- there is no unary particle-level dissociation rule in v1;
-- there is no direct assembly-level beta dissociation rule in v1;
-- there is no W/Z boson production or absorption rule in v1;
-- there is no composite-aware law family in v1;
-- there is no residue or support-token vocabulary in v1;
-- and any branch that requires a non-identity law family outside the admitted tables should terminate with an explicit unsupported-law diagnostic rather than a guessed closure.
 
 ### Normalization Rules
 
@@ -454,21 +365,21 @@ It should carry:
 
 - `schema: "pdgsolve-request/v1"`;
 - `requestId`;
-- `source.kind`, for example `fixture`, `pdgfeed`, or `developer`;
+- `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides.
 
-If a source begins from higher-scale terms, the expansion into explicit assemblies should happen before those occurrence lists are formed.
+Normalization assumes those occurrence lists already contain explicit assemblies rather than higher-scale boundary terms.
 
 Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. reject any higher-scale reactant term, product term, grouping label, or other interpreted multi-assembly token that reaches pdgsolve core with `pdgsolve.request.composite_requires_boundary_expansion`;
-5. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
-6. build the requested multisets \(R\) and \(T\);
-7. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
+
+4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
+5. build the requested multisets \(R\) and \(T\);
+6. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
 
 The normalized pdgsolve problem contract should be:
 
@@ -584,7 +495,6 @@ In particular:
 - each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
 - each `Dissociate` choice consumes exactly one 4-tile assembly reactant input;
 - each `Associate` choice emits exactly one 4-tile assembly product output;
-- no composite label or other higher-scale term participates as a dissociation input, association output, or search symbol;
 - candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
 - and that bounded choice structure makes branch scoring and pruning practical.
 
@@ -846,7 +756,7 @@ It should be rich enough to carry:
 - explicit provenance/accounting summaries;
 - and the information needed to materialize downstream surface documents without making those downstream apps reconstruct omitted semantics.
 
-pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core shape.
+pdgsolve should not reuse the external `pdgsolve-result/v1` document as the native in-memory search-core structure.
 
 Instead:
 
@@ -1023,7 +933,7 @@ That means:
 6. then lower ambiguity/provenance penalty wins;
 7. and finally \(\tau(C)\) breaks any remaining tie deterministically.
 
-pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple shape.
+pdgsolve should score partial branches too, using an optimistic lower-bound score derived from the same tuple structure.
 
 For a partial branch \(s\), the search should compute:
 
@@ -1096,7 +1006,7 @@ This means repeated runs over the same normalized problem must produce the same 
 
 ### Diagnostic Codes
 
-pdgsolve should freeze the first stable diagnostic ids now so later UI and fixture work does not guess at naming.
+pdgsolve should freeze the first stable diagnostic ids now so later UI and test-case work does not guess at naming.
 
 The initial v1 set should be:
 
@@ -1292,7 +1202,7 @@ In particular:
 
 ### Accepted Solution Graph Contract
 
-For publishable v1 families, the accepted-solution graph should use the following exact top-level shape:
+For publishable v1 families, the accepted-solution graph should use the following exact top-level structure:
 
 - `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema;
 - `units`;
@@ -1305,7 +1215,7 @@ Each `unit` record should contain:
 - `lane`, with values `1`, `2`, `3`, `4`, or `5`;
 - `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
 - one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
-- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id rather than a composite, grouping label, or other higher-scale interpretation;
+- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id;
 - `title`, the accepted semantic title before any downstream surface-specific title expansion;
 - the accepted primitive/provenance/accounting data needed for audit;
 - and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
@@ -1452,19 +1362,22 @@ pdgsolve should follow the dedicated-app rules in [pdgapps](pdgapps.md):
 - no hidden coupling through launcher-state assumptions;
 - and one source of truth for solve semantics, publication semantics, and downstream document structure.
 
-### Minimum Regression Fixture Set
+### Minimum Regression Test-Case Set
 
 Before pdgsolve implementation is considered trustworthy, the first fixed regression denominator should be:
 
-| Fixture id | Raw request | Key policy | Minimum expected outcome |
+| Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `composite_beta_request_requires_boundary_expansion` | `neutron -> proton + electron + electron_antineutrino` | default | request is expanded by an upstream translator before pdgsolve core sees it, or else pdgsolve emits `pdgsolve.request.composite_requires_boundary_expansion`; no composite token enters search |
 | `explicit_beta_request_requires_assembly_native_law` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | no exact family exists until an admitted explicit assembly-native law family is present; retained diagnostics include `pdgsolve.search.unsupported_law_family`; no composite or non-native symbol is introduced |
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `first_multi_option_exact` | the first request admitted after a non-identity law set exists and yields at least two distinct exact option families | default | at least two exact option families remain after canonicalization, with stable score order and stable family representatives |
 
-The last fixture is a gate on the first post-pass-through expansion.
+Positive regression coverage for composite-to-assembly expansion belongs in [pdgfeed](./pdgfeed.md), not in pdgsolve.
+
+pdgsolve should keep only assembly-native solve regressions plus boundary rejection coverage for direct developer-loaded or request-URL-loaded inputs.
+
+The last test case is a gate on the first post-pass-through expansion.
 
 So pdgsolve should not consider itself beyond the pass-through-only executable stage until that first genuine multi-option exact case exists and is under regression.
 
@@ -1473,7 +1386,7 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 ### Inputs
 
 - explicit assembly-native request data emitted by [pdgfeed](./pdgfeed.md) or another boundary adapter;
-- built-in pdgsolve fixture requests;
+- built-in pdgsolve requests backed by test cases;
 - explicit developer-loaded request documents;
 - pdgsolve-owned solve policy and review state;
 - and pdgsolve-owned reopened work-item references when one already exists.
@@ -1583,7 +1496,7 @@ Objective:
 
 - keep pdgsolve solver correctness active until the remaining active priorities are resolved against explicit assembly-native results;
 - admit future non-identity laws only when they stay entirely inside the explicit assembly ontology;
-- and promote the deferred `first_multi_option_exact` fixture only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
+- and promote the deferred `first_multi_option_exact` test case only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
 
 ## Related Priorities
 
@@ -1594,4 +1507,4 @@ Objective:
 
 ## Deferred Priorities
 
-1. `first_multi_option_exact` — Add the first post-pass-through regression fixture that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
+1. `first_multi_option_exact` — Add the first post-pass-through regression test case that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.

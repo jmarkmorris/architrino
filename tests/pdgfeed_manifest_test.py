@@ -70,18 +70,18 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
             title="Free neutron beta decay",
-            source_kind="fixture",
+            source_kind="test_case",
             source={
                 "edition": "2025",
                 "channelDescription": "n -> p e- anti-nu_e",
-                "citation": "Local PDG fixture seed",
+                "citation": "Local PDG test-case seed",
                 "branchingDisplay": "dominant neutron decay channel",
             },
-            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
             products=(
-                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
-                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
-                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
             ),
         )
 
@@ -99,7 +99,7 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "pdgviewHandoff": "accepted-reaction-only",
             },
         )
-        self.assertEqual(proposal.source["fixtureId"], "free_neutron_beta_decay")
+        self.assertEqual(proposal.source["testCaseId"], "free_neutron_beta_decay")
         self.assertEqual(proposal.exportable, True)
 
     def test_pdgsolve_request_source_points_back_to_the_pdg_proposal_surface(self):
@@ -107,13 +107,13 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="free_neutron_beta_decay",
             proposal_id="free_neutron_beta_decay",
             title="Free neutron beta decay",
-            source_kind="fixture",
+            source_kind="test_case",
             source={"edition": "2025"},
-            reactants=(pdgfeed.FixtureParticle(name="n", pdg_id="n"),),
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
             products=(
-                pdgfeed.FixtureParticle(name="p", pdg_id="p"),
-                pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),
-                pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
             ),
         )
 
@@ -128,6 +128,44 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
                 "title": "Free neutron beta decay",
                 "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
             },
+        )
+
+    def test_pdgfeed_expands_composite_neutron_channel_terms_into_explicit_request_side_assemblies(self):
+        case = pdgfeed.PdgCase(
+            case_id="free_neutron_beta_decay",
+            proposal_id="free_neutron_beta_decay",
+            title="Free neutron beta decay",
+            source_kind="test_case",
+            source={"edition": "2025"},
+            reactants=(pdgfeed.TestCaseParticle(name="n", pdg_id="n"),),
+            products=(
+                pdgfeed.TestCaseParticle(name="p", pdg_id="p"),
+                pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        pdgsolve_request = pdgfeed.build_pdgsolve_request(proposal)
+
+        self.assertIsNotNone(pdgsolve_request)
+        self.assertEqual(
+            [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["reactants"]],
+            [
+                ("pro_down_quark", "Pro Down Quark"),
+                ("pro_up_quark", "Pro Up Quark"),
+                ("pro_down_quark", "Pro Down Quark"),
+            ],
+        )
+        self.assertEqual(
+            [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["products"]],
+            [
+                ("pro_up_quark", "Pro Up Quark"),
+                ("pro_down_quark", "Pro Down Quark"),
+                ("pro_up_quark", "Pro Up Quark"),
+                ("electron", "Electron"),
+                ("electron_antineutrino", "Electron Antineutrino"),
+            ],
         )
 
     def test_manifest_assigns_incrementing_batch_ids_to_exportable_pdgsolve_requests(self):
@@ -336,9 +374,9 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(pdgfeed.extract_unsupported_particle_names(notes), ["pi+"])
 
     def test_supported_reaction_csv_rows_use_aaa_labels_and_row_counts(self):
-        fixtures = pdgfeed.load_fixture_index(pdgfeed.DEFAULT_FIXTURE_INDEX)
+        test_cases = pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
 
-        rows = pdgfeed.build_supported_reaction_csv_rows(fixtures)
+        rows = pdgfeed.build_supported_reaction_csv_rows(test_cases)
 
         self.assertEqual(
             rows,
@@ -361,10 +399,10 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
             case_id="single_row_probe",
             proposal_id="single_row_probe",
             title="Single row probe",
-            source_kind="fixture",
+            source_kind="test_case",
             source={"edition": "2026"},
-            reactants=(pdgfeed.FixtureParticle(name="e-", pdg_id="e-"),),
-            products=(pdgfeed.FixtureParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),
+            reactants=(pdgfeed.TestCaseParticle(name="e-", pdg_id="e-"),),
+            products=(pdgfeed.TestCaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),),
         )
 
         rows = pdgfeed.build_supported_reaction_csv_rows([case])

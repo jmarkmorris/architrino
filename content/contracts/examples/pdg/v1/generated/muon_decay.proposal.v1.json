@@ -5,10 +5,10 @@
   "source": {
     "edition": "2026",
     "channelDescription": "mu- -> e- anti-nu_e nu_mu",
-    "citation": "Local PDG fixture seed",
+    "citation": "Local PDG test-case seed",
     "branchingDisplay": "dominant muon decay channel",
-    "fixtureId": "muon_decay",
-    "fixturePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json",
+    "testCaseId": "muon_decay",
+    "testCasePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
       "downstreamSchema": "pdgsolve-request/v1",
@@ -132,7 +132,7 @@
     "rank": 1,
     "score": 40,
     "reasons": [
-      "fixture-source",
+      "test_case-source",
       "contains-unsupported-participants"
     ]
   },

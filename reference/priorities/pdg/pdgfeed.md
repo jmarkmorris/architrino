@@ -31,16 +31,16 @@ It does not own:
 
 ## Current State
 
-- `scripts/pdg/pdgfeed.py` now exists as the fixture-first local PDG pipeline implementation.
+- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around test cases first.
 - Root `pdgfeed.py` remains as a compatibility shim for existing `python3 pdgfeed.py ...` calls and `import pdgfeed` tests/tooling.
 - `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
-- A local fixture corpus now exists under `content/contracts/examples/pdg/v1/`.
+- A local test-case corpus now exists under `content/contracts/examples/pdg/v1/`.
 - Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- The PDG feed CLI can list fixtures and emit proposal plus `pdgsolve-request/v1` artifacts from that local corpus through either the root shim or the direct implementation path.
+- The PDG feed CLI can list test cases and emit proposal plus `pdgsolve-request/v1` artifacts from that local test-case corpus through either the root shim or the direct implementation path.
 - The PDG feed CLI also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
 - The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
 - The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
-- Local aliases may canonicalize into that registry for fixture convenience, but they do not widen the exportable pdgsolve surface.
+- Local aliases may canonicalize into that registry for test-case convenience, but they do not widen the exportable pdgsolve surface.
 - Exportable candidate requests currently exist only for channels whose PDG particle names can be expanded into the present `pdgsolve-request/v1` assembly vocabulary: `n`, `p`, `e-`, and `anti-nu_e`.
 - After removing the baked-in historical cases, there is no longer a built-in live-read case that crosses the full request boundary with the current locked mapping table.
 - Muon, pion, kaon, B-meson, photon-bearing, and other broader PDG channels may still normalize into proposal records, but they remain proposal-only until `pdgsolve-request/v1` grows the needed assembly vocabulary.
@@ -49,12 +49,12 @@ It does not own:
 - Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
 - Unsupported channels currently remain proposal-only rather than emitting invalid solver requests.
 - Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
-- Live PDG package access now exists as a guarded CLI path alongside fixtures, but fixtures remain the stable regression and day-to-day development path.
+- Live PDG package access now exists as a guarded CLI path alongside test cases, but test cases remain the stable regression and day-to-day development path.
 - There is no dedicated PDG review surface yet.
 - There is no stored alternative-candidate review flow yet.
 - The repository already has an explicit request seam that PDG should feed.
 - There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into pdgview staging.
-- The current local fixture corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
+- The current local test-case corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
 
 ## Design
 
@@ -62,7 +62,7 @@ It does not own:
 
 The normal ingest path should be local and offline once dependencies are installed.
 
-The intended program shape is:
+The intended program structure is:
 
 1. connect to the local PDG database through the official `pdg` Python package;
 2. retrieve particles, branching fractions, decay products, subdecays, and related metadata;
@@ -106,7 +106,7 @@ The implementation assumes:
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
 - no live PDG website dependency during normal ingest;
-- and explicit JSON artifacts for fixtures and debugging.
+- and explicit JSON artifacts for test cases and debugging.
 
 Suggested local environment setup:
 
@@ -128,27 +128,27 @@ The root path remains a compatibility layer:
 - `scripts/pdg/pdgfeed.py`:
   connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or fixture helpers.
+If `scripts/pdg/pdgfeed.py` grows too large, later extractions may split out source, normalization, proposal, export, or helpers for test-case handling.
 
 The current CLI surface is:
 
-- `python3 pdgfeed.py list-fixtures`
-- `python3 pdgfeed.py emit-fixture <fixture-id>`
-- `python3 pdgfeed.py emit-all-fixtures`
-- `python3 pdgfeed.py print-fixture-proposal <fixture-id>`
-- `python3 pdgfeed.py print-fixture-pdgsolve-request <fixture-id>`
+- `python3 pdgfeed.py list-test-cases`
+- `python3 pdgfeed.py emit-test-case <test-case-id>`
+- `python3 pdgfeed.py emit-all-test-cases`
+- `python3 pdgfeed.py print-test-case-proposal <test-case-id>`
+- `python3 pdgfeed.py print-test-case-pdgsolve-request <test-case-id>`
 - `python3 pdgfeed.py list-live-cases`
 - `python3 pdgfeed.py emit-live-case <case-id>`
 - `python3 pdgfeed.py emit-all-live-cases`
 - `python3 pdgfeed.py print-live-proposal <case-id>`
 - `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`
 - `python3 pdgfeed.py build-live-manifest`
-- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source fixtures|live]`
+- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source test-cases|live]`
 - optional `--database-url <sqlalchemy-url>` for the live commands
 
 The intended handoff modes are:
 
-- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-fixture muon_decay`;
+- file-based artifact emission as the normal manual and regression workflow, for example `python3 pdgfeed.py emit-test-case muon_decay`;
 - CSV primitive-count summaries for supported rows, for example `python3 pdgfeed.py emit-supported-reaction-csv /tmp/pdg-supported-reactions.csv --source live`;
 - and stdout-only request emission as the automation workflow when an exportable case exists, for example `python3 pdgfeed.py print-live-pdgsolve-request <case-id>`.
 
@@ -192,7 +192,7 @@ For solve-core progress reporting after each solve-rate change:
 - compare `exactClosureCount`, `exactClosurePercent`, and case-level movements from `no-solution` to `partial` or `exact`;
 - and do not count unsupported-particle discoveries as solver failures.
 
-The first local fixture corpus is:
+The first local test-case corpus is:
 
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
@@ -230,7 +230,7 @@ That means:
 - new exportable particle vocabulary enters only by adding an explicit canonical PDG-name row to the locked table;
 - each new row must name the pdgsolve request expansion, the request title pattern, and any note needed to keep provenance conventions explicit;
 - local aliases may improve ingest convenience, but they must never create exportability on their own;
-- every proposal-only to exportable transition should land with fixture or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
+- every proposal-only to exportable transition should land with test-case or live-case coverage that proves the new row crosses the `pdg-proposal/v1` to `pdgsolve-request/v1` seam cleanly;
 - sweep reporting should then measure solver closure on those newly exportable cases rather than silently mixing vocabulary growth with solver progress;
 - and until that package of assembly-native translation, provenance, and regression coverage exists, the particle remains proposal-only by design.
 
@@ -263,7 +263,7 @@ The integration options are:
 - secondary:
   direct SQL against that same local database when the Python API does not expose the needed traversal cleanly;
 - incidental only:
-  the REST API for inspection, experiments, or fixture capture, not for the normal ingest path.
+  the REST API for inspection, experiments, or test-case capture, not for the normal ingest path.
 
 ### Database Policy
 
@@ -296,7 +296,7 @@ The first PDG seed boundary should use two repo-owned layers:
 The normalized PDG proposal record should contain:
 
 - `proposalId`:
-  stable ingest-local identity for ranking, fixtures, and review;
+  stable ingest-local identity for ranking, test cases, and review;
 - `source`:
   PDG provenance including edition, schema/release metadata, PDG Identifier, description text, and any branching or limit semantics used by the proposal;
 - `reactants`:
@@ -327,20 +327,22 @@ Composite or higher-scale PDG terms therefore belong to the PDG proposal/review 
 
 For consistency with the current local corpus:
 
-- fixture participant `pdgId` fields presently carry canonical PDG ASCII particle names;
+- test-case participant `pdgId` fields presently carry canonical PDG ASCII particle names;
 - live reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one;
-- and changing the participant-side identity field shape is out of scope for the present v1 lock.
+- and changing the participant-side identity field structure is out of scope for the present v1 lock.
 
 The first exported `pdgsolve-request/v1` candidate should follow these rules:
 
 - `schema` is always `pdgsolve-request/v1`;
 - `source.kind` is `pdgfeed`;
 - `source.sourceDocumentId` should identify the originating `pdg-proposal:<proposalId>` record rather than a pdgview or accepted authored-surface document;
-- `source.title` should be a concise channel label suitable for fixtures and review;
+- `source.title` should be a concise channel label suitable for test cases and review;
 - `reactants` and `products` are produced only from normalized proposal records, never from raw PDG objects at export time;
 - `reactants` and `products` contain only explicit assembly-native occurrences, never composite/grouping ids;
 - each emitted request occurrence carries stable `id`, `assemblyId`, and `title` fields;
 - and `policy` is set explicitly by ingest, not inferred by the solver.
+
+Positive regression coverage for composite-to-assembly expansion belongs here, because pdgfeed owns that translation before the request crosses into pdgsolve.
 
 The first exported `policy` baseline should be:
 
@@ -369,7 +371,7 @@ PDG needs an explicit upstream review boundary between raw proposal generation a
 
 That boundary should let ingest keep more than one normalized interpretation of the same PDG channel without pretending that rank alone is acceptance. The top-ranked candidate may be the default exportable choice, but review must still be able to preserve the rest of the candidate set, explain why the default was chosen, and mark certain alternatives as intentionally preferred or intentionally excluded.
 
-The first durable shape should be a repo-owned `pdg-review/v1` record with:
+The first durable structure should be a repo-owned `pdg-review/v1` record with:
 
 - a stable `reviewId` for one source channel or decay selection;
 - source provenance copied from the PDG proposal layer rather than re-derived later;

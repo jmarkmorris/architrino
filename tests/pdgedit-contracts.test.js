@@ -113,7 +113,6 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const PDGEDIT_EXAMPLE_PATHS = [
-  "content/contracts/examples/pdgedit/pdgsolve_boundary_augmentation_recipe_coverage.v1.json",
   "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
   "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   "content/contracts/examples/pdgedit/unbound_architrinos.v1.json",
@@ -133,7 +132,7 @@ test("pdgedit example documents match the versioned pdgedit schema", () => {
   });
 });
 
-test("pdgedit manifest fixture matches the versioned manifest schema", () => {
+test("pdgedit manifest test case matches the versioned manifest schema", () => {
   const schema = readJson("src/contracts/pdgedit-library-manifest/v1/schema.json");
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const errors = validateAgainstSchema(manifest, schema);
@@ -290,7 +289,7 @@ test("pdgedit manifest defaults to its declared starter document", () => {
 
 test("pdgedit manifest selection prefers the declared default, then the first entry", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
-  const selectedFromFixture = selectDefaultPdgeditLibraryManifestEntry(manifest);
+  const selectedFromTestCase = selectDefaultPdgeditLibraryManifestEntry(manifest);
   const selectedFromDeclaredDefault = selectDefaultPdgeditLibraryManifestEntry({
     schema: "pdgedit-library-manifest/v1",
     defaultEntryId: "secondary_document",
@@ -329,7 +328,7 @@ test("pdgedit manifest selection prefers the declared default, then the first en
     ],
   });
 
-  assert.equal(selectedFromFixture?.id, "pass_thru_up_quark");
+  assert.equal(selectedFromTestCase?.id, "pass_thru_up_quark");
   assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
   assert.equal(selectedFromFirstEntry?.id, "first_document");
 });

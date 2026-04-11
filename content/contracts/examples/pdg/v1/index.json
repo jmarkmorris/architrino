@@ -1,5 +1,5 @@
 {
-  "schema": "pdg-fixture-corpus/v1",
+  "schema": "pdg-test-case-corpus/v1",
   "cases": [
     {
       "id": "muon_decay",
