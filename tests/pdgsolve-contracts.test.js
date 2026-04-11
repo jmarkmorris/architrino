@@ -329,7 +329,7 @@ test("pdgsolve beta acceptance, publication graph, package, and pdgedit document
   assert.equal(packageTestCase.manifestEntry.documentPath, publicationPackage.manifestEntry.documentPath);
 });
 
-test("legacy beta pdgedit publication regression keeps the fixed band layout and valid tile payloads", () => {
+test("legacy beta pdgedit publication regression keeps the fixed stage layout and valid tile payloads", () => {
   const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const errors = validatePdgeditDocumentTilePayload(pdgeditDocument, catalog);

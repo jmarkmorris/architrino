@@ -173,7 +173,7 @@ test("link creation canonicalizes left-to-right endpoints and rejects duplicates
   assert.equal(invalid.ok, false);
 });
 
-test("create slots admit only legal unoccupied object bands on authored rows", () => {
+test("create slots admit only legal unoccupied object stages on authored rows", () => {
   const operator = createPdgeditOperator(getPdgeditEmptyDocument(), {
     type: "associate",
     x: 7,

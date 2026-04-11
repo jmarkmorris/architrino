@@ -3,7 +3,7 @@ import {
   normalizePdgeditDocument,
 } from "./PdgeditDocumentRuntime.js";
 import {
-  getPdgeditAssemblyBandXForRole,
+  getPdgeditAssemblyStageXForRole,
   getPdgeditObjectRect,
   getPdgeditRoleForAssemblyX,
   getPdgeditRoutingColumnForObjectPair,
@@ -54,10 +54,10 @@ function cloneDocument(document = {}) {
   };
 }
 
-function getBandForColumn(column = 0) {
+function getStageForColumn(column = 0) {
   const normalizedColumn = normalizeInteger(column, -1);
   return ASSEMBLY_COLUMN_RANGES.find(
-    (band) => normalizedColumn >= band.columnStart && normalizedColumn <= band.columnEnd
+    (stage) => normalizedColumn >= stage.columnStart && normalizedColumn <= stage.columnEnd
   ) ?? null;
 }
 
@@ -188,12 +188,12 @@ export function getPdgeditCreateSlot(column = 0, row = -1, document = {}) {
   if (RESERVED_COLUMNS.has(normalizedColumn) || ROUTING_COLUMNS.has(normalizedColumn)) {
     return null;
   }
-  const band = getBandForColumn(normalizedColumn);
-  if (band) {
+  const stage = getStageForColumn(normalizedColumn);
+  if (stage) {
     const candidate = {
       id: "__slot__",
       kind: "assembly",
-      x: getPdgeditAssemblyBandXForRole(band.role),
+      x: getPdgeditAssemblyStageXForRole(stage.role),
       y: normalizedRow,
     };
     if (hasOverlapWithObjects(candidate, getObjects(document))) {
@@ -201,8 +201,8 @@ export function getPdgeditCreateSlot(column = 0, row = -1, document = {}) {
     }
     return {
       kind: "assembly",
-      role: band.role,
-      x: getPdgeditAssemblyBandXForRole(band.role),
+      role: stage.role,
+      x: getPdgeditAssemblyStageXForRole(stage.role),
       y: normalizedRow,
       column: normalizedColumn,
     };
@@ -229,31 +229,31 @@ export function getPdgeditCreateSlot(column = 0, row = -1, document = {}) {
 
 export function createPdgeditAssembly(document = {}, template = {}, role = "", requestedRow = 0) {
   const normalizedRole = normalizeText(role);
-  const laneX = getPdgeditAssemblyBandXForRole(normalizedRole);
-  if (!laneX || !Array.isArray(template?.tiles) || template.tiles.length !== 4) {
+  const stageX = getPdgeditAssemblyStageXForRole(normalizedRole);
+  if (!stageX || !Array.isArray(template?.tiles) || template.tiles.length !== 4) {
     return { ok: false, document: normalizePdgeditDocument(document) };
   }
   const normalizedDocument = normalizePdgeditDocument(document);
   const insertionRow = normalizeAssemblyInsertionRow(normalizedDocument, normalizedRole, requestedRow);
-  const compactLane = getCompactAssembliesForRole(normalizedDocument, normalizedRole);
-  const nextLane = [
-    ...compactLane.slice(0, insertionRow),
+  const compactStage = getCompactAssembliesForRole(normalizedDocument, normalizedRole);
+  const nextStage = [
+    ...compactStage.slice(0, insertionRow),
     {
       id: buildAssemblyId(normalizedDocument, template.type),
       type: normalizeText(template.type),
-      x: laneX,
+      x: stageX,
       y: insertionRow,
       title: normalizeText(template.title) || normalizeText(template.displayTitle) || normalizeText(template.type),
       role: normalizedRole,
       tiles: template.tiles.map((tileKey) => normalizeText(tileKey)),
     },
-    ...compactLane.slice(insertionRow),
+    ...compactStage.slice(insertionRow),
   ].map((assembly, index) => ({
     ...assembly,
     y: index,
   }));
-  const nextDocument = replaceAssembliesForRole(normalizedDocument, normalizedRole, nextLane);
-  const createdAssembly = nextLane[insertionRow];
+  const nextDocument = replaceAssembliesForRole(normalizedDocument, normalizedRole, nextStage);
+  const createdAssembly = nextStage[insertionRow];
   return {
     ok: true,
     document: nextDocument,
@@ -465,4 +465,3 @@ export function getPdgeditCanonicalLinkEndpoints(document = {}, endpointA = "", 
 export function getPdgeditAssemblyRoleForX(x = 0) {
   return getPdgeditRoleForAssemblyX(x);
 }
-
