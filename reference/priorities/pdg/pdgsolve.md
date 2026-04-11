@@ -211,25 +211,15 @@ So the design rule is:
 
 ### Request Intake
 
-pdgsolve should support a small number of explicit entry modes:
+pdgsolve should accept only explicit request-side data and pdgsolve-owned reopen references.
 
-- built-in request manifests backed by canonical test cases;
-- PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
-- direct load of explicit request JSON by a developer or advanced user;
-- and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
+The concrete source inventory and request-contract field lists are collected under `Interfaces -> Inputs` near the end of this document.
 
 pdgsolve should consume explicit request data rather than hidden app-local state.
 
 pdgsolve should define one pdgsolve-owned solve problem model that is solver-native rather than UI-native.
 
-That solve problem model should describe:
-
-- reactant assemblies;
-- product assemblies;
-- the admitted intermediate-assembly alphabet;
-- the permitted operator grammar;
-- policy or theory gates;
-- and provenance/accounting requirements.
+That solve problem model should describe reactant assemblies, product assemblies, the admitted intermediate-assembly alphabet, the permitted operator grammar, policy or theory gates, and provenance/accounting requirements.
 
 That solve problem model should contain only explicit admitted assemblies.
 
@@ -359,15 +349,7 @@ So in pdgsolve v1, `Pass Thru` remains the only executable rewrite available for
 
 pdgsolve should normalize every upstream request into one explicit `pdgsolve-problem/v1` record before search begins.
 
-The raw request contract should remain small.
-
-It should carry:
-
-- `schema: "pdgsolve-request/v1"`;
-- `requestId`;
-- `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
-- explicit reactant-side and product-side occurrence lists;
-- and optional policy overrides.
+The concrete field inventories for `pdgsolve-request/v1` and `pdgsolve-problem/v1` are collected under `Interfaces -> Inputs` near the end of this document.
 
 Normalization assumes those occurrence lists already contain explicit assemblies rather than higher-scale boundary terms.
 
@@ -380,19 +362,6 @@ Normalization should then do the following, in order:
 4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-pass-thru-only`;
 5. build the requested multisets \(R\) and \(T\);
 6. emit one solver-native problem record whose content is fully sufficient for search without any DOM or renderer lookup.
-
-The normalized pdgsolve problem contract should be:
-
-- `schema: "pdgsolve-problem/v1"`;
-- `problemId`;
-- `requestId`;
-- `source`;
-- `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
-- `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
-- `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
-- `lawTableId: "pdgsolve-laws/v1-pass-thru-only"`;
-- `policy`;
-- and `normalization`, containing explicit notes about boundary translation assumptions and normalization diagnostics.
 
 ### Conserved Balance Equations
 
@@ -844,30 +813,7 @@ That contract should be assembled from:
 - the current review-state record;
 - and the current publication-state record.
 
-At the top level, that contract should contain:
-
-- `schema: "pdgsolve-result/v1"`;
-- `problemId`;
-- `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
-- `bestFamilyId`;
-- `acceptedFamilyId`, nullable summary field mirroring `review.acceptedFamilyId`;
-- top-level `diagnostics`;
-- `optionFamilies`;
-- `review`, carrying the explicit review-state machine and any accepted lock record for the current result snapshot;
-- and nullable `publication`, carrying downstream publication state only after an accepted record has actually been published or launched.
-
-Each member of `optionFamilies` should contain:
-
-- `familyId`;
-- `kind`, with values `exact`, `partial`, or `unsupported`;
-- `score`, carrying the concrete components of \(\kappa\);
-- `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
-- `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
-- `provenanceSummary`, carrying the family-level witness summary that review must see;
-- `diagnostics`, carrying family-local diagnostics;
-- `rawBranchCount`, the number of raw branches folded into the family;
-- `publicationReady`, a boolean derived from exactness plus review-policy gates;
-- and `canonicalCandidate`, the fully specified representative candidate used for publication if accepted.
+The concrete field inventory for `pdgsolve-result/v1` and its `optionFamilies` members is collected under `Interfaces -> Outputs` near the end of this document.
 
 So acceptance and publication are not the same state transition.
 
@@ -1130,23 +1076,7 @@ In that case:
 
 Acceptance should lock one pdgsolve-owned record before any pdgedit translation happens.
 
-That record should have
-
-- `schema: "pdgsolve-acceptance/v1"`;
-- `problemId`;
-- `familyId`;
-- `resultDigest`, which is a deterministic digest of the normalized problem id, policy bundle, law-table id, family key, and canonical representative key;
-- `acceptedScore`;
-- `acceptedDiagnostics`;
-- `acceptedState: "accepted"`;
-- `lockedNormalizationSummary`;
-- `lockedPolicySummary`;
-- `lockedLaneInventories`;
-- `lockedLane2Operators`;
-- `lockedLane4Operators`;
-- `lockedProvenanceSummary`;
-- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
-- and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
+The concrete field inventory for `pdgsolve-acceptance/v1` is collected under `Interfaces -> Outputs` near the end of this document.
 
 The accepted record should not contain the full raw-branch search tree.
 
@@ -1202,31 +1132,9 @@ In particular:
 
 ### Accepted Solution Graph Contract
 
-For publishable v1 families, the accepted-solution graph should use the following exact top-level structure:
+For publishable v1 families, the accepted-solution graph should use `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema.
 
-- `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema;
-- `units`;
-- and `edges`.
-
-Each `unit` record should contain:
-
-- `id`;
-- `kind`, with values `assembly` or `operator`;
-- `lane`, with values `1`, `2`, `3`, `4`, or `5`;
-- `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
-- one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
-- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id;
-- `title`, the accepted semantic title before any downstream surface-specific title expansion;
-- the accepted primitive/provenance/accounting data needed for audit;
-- and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
-
-Each `edge` record should contain:
-
-- `id`;
-- `fromUnitId`;
-- `fromPortId`;
-- `toUnitId`;
-- and `toPortId`.
+The concrete unit and edge field inventory for that graph contract is collected under `Interfaces -> Outputs` near the end of this document.
 
 So the accepted solution graph is still pdgsolve-owned, and it should be explicit about:
 
@@ -1255,22 +1163,7 @@ However, the current pdgedit publication path already has one explicit package c
 
 For the current pdgedit adapter, the translation output is one package named `pdgsolve-pdgedit-package/v1`.
 
-That package should contain:
-
-- `schema: "pdgsolve-pdgedit-package/v1"`;
-- `sourceAcceptanceDigest`;
-- `publicationMode`, with values `durable` or `launch`;
-- `documentId`, with the default stable form `<problemId>--<familyId>`;
-- `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
-- `pdgeditDocument`, which must already satisfy `schema: "pdgedit/v1"`;
-- and nullable `manifestEntry`, which is present only for durable publication and `null` for launch-only publication.
-
-When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdgedit-library-manifest/v1` entry rules:
-
-- `id`, which should default to `documentId`;
-- `title`;
-- `displayTitle`;
-- and `documentPath`.
+The concrete field inventory for `pdgsolve-pdgedit-package/v1` and its durable `manifestEntry` payload is collected under `Interfaces -> Outputs` near the end of this document.
 
 This package is current implementation boundary, not the long-term solver-owned semantic ideal.
 
@@ -1385,39 +1278,157 @@ So pdgsolve should not consider itself beyond the pass-through-only executable s
 
 ### Inputs
 
-- explicit assembly-native request data emitted by [pdgfeed](./pdgfeed.md) or another boundary adapter;
-- built-in pdgsolve requests backed by test cases;
-- explicit developer-loaded request documents;
-- pdgsolve-owned solve policy and review state;
-- and pdgsolve-owned reopened work-item references when one already exists.
+#### Source Inventory
+
+- built-in request manifests backed by canonical test cases;
+- PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
+- direct load of explicit request JSON by a developer or advanced user;
+- and reopened pdgsolve work items carried by pdgsolve-owned ids or records.
+
+#### Raw Request Contract: `pdgsolve-request/v1`
+
+- `schema: "pdgsolve-request/v1"`;
+- `requestId`;
+- `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
+- explicit reactant-side and product-side occurrence lists;
+- and optional policy overrides.
+
+#### Normalized Problem Contract: `pdgsolve-problem/v1`
+
+- `schema: "pdgsolve-problem/v1"`;
+- `problemId`;
+- `requestId`;
+- `source`;
+- `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
+- `assemblyAlphabetId: "pdgsolve-assemblies/v1-minimal"`;
+- `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
+- `lawTableId: "pdgsolve-laws/v1-pass-thru-only"`;
+- `policy`;
+- and `normalization`, containing explicit notes about boundary translation assumptions and normalization diagnostics.
+
+#### Supporting Runtime Inputs
+
+- pdgsolve-owned solve policy and review state.
+
+#### Input Boundary Conditions
+
+- accept explicit upstream request data only after any required higher-scale-to-assembly expansion;
+- accept higher-scale composite terms only at the boundary adapter, never as solver-native request ids;
+- keep solver-native request content assembly-native, with no DOM-derived geometry, render-order artifacts, or other UI-only state;
+- and treat arbitrary `pdgedit/v1` documents as downstream artifacts rather than invertible pdgsolve requests.
 
 ### Outputs
 
-- pdgsolve-owned candidate solve results suitable for review;
-- compact accepted-solution documents suitable for downstream adapters, still expressed in explicit admitted assemblies;
+#### Search-Core And Review Outputs
+
+- pdgsolve-owned internal search results suitable for review;
+- pdgsolve-owned candidate families, diagnostics, and provenance/accounting summaries;
 - accepted pdgsolve publication state;
-- adapter-produced downstream documents such as `pdgedit/v1`;
-- downstream catalog-ready publication entries or equivalent launch-ready selection state;
 - and developer-facing diagnostics about solve completeness, ambiguity, unsupported families, and publish readiness.
 
-### Upstream And Downstream Boundaries
+#### Review Result Contract: `pdgsolve-result/v1`
 
-pdgsolve should:
+- `schema: "pdgsolve-result/v1"`;
+- `problemId`;
+- `searchStatus`, with values `exact_available`, `partial_only`, or `unsupported`;
+- `bestFamilyId`;
+- `acceptedFamilyId`, nullable summary field mirroring `review.acceptedFamilyId`;
+- top-level `diagnostics`;
+- `optionFamilies`;
+- `review`, carrying the explicit review-state machine and any accepted lock record for the current result snapshot;
+- and nullable `publication`, carrying downstream publication state only after an accepted record has actually been published or launched.
 
-- accept explicit upstream request data after any required higher-scale-to-assembly expansion;
+Each member of `optionFamilies` should contain:
+
+- `familyId`;
+- `kind`, with values `exact`, `partial`, or `unsupported`;
+- `score`, carrying the concrete components of \(\kappa\);
+- `laneInventories`, carrying canonical reactant assemblies, intermediate assemblies, and product assemblies as multisets;
+- `lane2Operators` and `lane4Operators`, each already ordered canonically by occurrence;
+- `provenanceSummary`, carrying the family-level witness summary that review must see;
+- `diagnostics`, carrying family-local diagnostics;
+- `rawBranchCount`, the number of raw branches folded into the family;
+- `publicationReady`, a boolean derived from exactness plus review-policy gates;
+- and `canonicalCandidate`, the fully specified representative candidate used for publication if accepted.
+
+#### Acceptance Record: `pdgsolve-acceptance/v1`
+
+- `schema: "pdgsolve-acceptance/v1"`;
+- `problemId`;
+- `familyId`;
+- `resultDigest`, which is a deterministic digest of the normalized problem id, policy bundle, law-table id, family key, and canonical representative key;
+- `acceptedScore`;
+- `acceptedDiagnostics`;
+- `acceptedState: "accepted"`;
+- `lockedNormalizationSummary`;
+- `lockedPolicySummary`;
+- `lockedLaneInventories`;
+- `lockedLane2Operators`;
+- `lockedLane4Operators`;
+- `lockedProvenanceSummary`;
+- `lockedSolveGraph`, which for publishable v1 families must obey `schema: "pdgsolve-publication-graph/v1"` and must be the pdgsolve-owned accepted candidate graph that downstream publication will translate rather than reconstruct;
+- and optional operator metadata such as `acceptedAt`, `acceptedBy`, and `acceptanceNote` when the runtime has them.
+
+#### Accepted-Solution Description And Graph
+
+- compact accepted-solution documents suitable for downstream adapters, still expressed in explicit admitted assemblies;
+- `schema: "pdgsolve-publication-graph/v1"` or a successor compact accepted-solution graph schema;
+- `units`;
+- and `edges`.
+
+Each `unit` record should contain:
+
+- `id`;
+- `kind`, with values `assembly` or `operator`;
+- `lane`, with values `1`, `2`, `3`, `4`, or `5`;
+- `occurrenceKey`, the stable accepted occurrence identity from the locked solve;
+- one solver-native semantic symbol id or equivalent canonical assembly/operator identifier;
+- for `kind: "assembly"`, that symbol id must be one explicit admitted assembly id;
+- `title`, the accepted semantic title before any downstream surface-specific title expansion;
+- the accepted primitive/provenance/accounting data needed for audit;
+- and any downstream-adapter metadata in a clearly separated adapter field rather than in the solver-core identity fields.
+
+Each `edge` record should contain:
+
+- `id`;
+- `fromUnitId`;
+- `fromPortId`;
+- `toUnitId`;
+- and `toPortId`.
+
+#### Downstream Adapter Outputs
+
+- adapter-produced downstream documents such as `pdgedit/v1`;
+- downstream catalog-ready publication entries or equivalent launch-ready selection state;
+- and `pdgsolve-pdgedit-package/v1`.
+
+The current `pdgsolve-pdgedit-package/v1` payload should contain:
+
+- `schema: "pdgsolve-pdgedit-package/v1"`;
+- `sourceAcceptanceDigest`;
+- `publicationMode`, with values `durable` or `launch`;
+- `documentId`, with the default stable form `<problemId>--<familyId>`;
+- `documentTitle`, with a stable accepted-publication title derived from the request title or accepted family summary;
+- `pdgeditDocument`, which must already satisfy `schema: "pdgedit/v1"`;
+- and nullable `manifestEntry`, which is present only for durable publication and `null` for launch-only publication.
+
+When `manifestEntry` is present, it should already satisfy the pdgedit-side `pdgedit-library-manifest/v1` entry rules:
+
+- `id`, which should default to `documentId`;
+- `title`;
+- `displayTitle`;
+- and `documentPath`.
+
+#### Output Boundary Conditions
+
 - own solve normalization, search, review, and publication inside the explicit assembly-native ontology;
 - materialize compact accepted-solution descriptions for accepted outcomes in explicit admitted assemblies only;
-- and hand target-specific downstream documents to adapters only after that accepted-solution step, allowing those adapters to collapse explicit assemblies into higher-scale descriptions when a target explicitly requires it.
+- hand target-specific downstream documents to adapters only after that accepted-solution step, allowing those adapters to collapse explicit assemblies into higher-scale descriptions when a target explicitly requires it;
+- do not ask pdgedit to parse raw solver-native problem or result data;
+- do not duplicate PDG normalization logic locally;
+- and do not let launcher/runtime concerns become the source of solve semantics.
 
-pdgsolve should not:
-
-- accept higher-scale composite terms as solver-native request ids;
-- ask pdgedit to parse raw solver-native problem or result data;
-- treat arbitrary `pdgedit/v1` documents as invertible pdgsolve requests;
-- duplicate PDG normalization logic locally;
-- or let launcher/runtime concerns become the source of solve semantics.
-
-### Neighboring Components
+### Neighboring Components, Each with Related Priorities
 
 - [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
 - [pdgedit](./pdgedit.md) owns the final tile surface, placement grammar, pdgedit-side document model, and pdgedit-specific materialization rules for solver publications that target pdgedit.
@@ -1498,13 +1509,6 @@ Objective:
 - admit future non-identity laws only when they stay entirely inside the explicit assembly ontology;
 - and promote the deferred `first_multi_option_exact` test case only after the new search core can produce, canonicalize, score, and explain multiple exact assembly-native option families deterministically.
 
-## Related Priorities
+### 5. Keep Solver Correctness On The Active Priority Queue
 
-- [pdg](./pdg.md)
-- [pdgfeed](./pdgfeed.md)
-- [pdgedit](./pdgedit.md)
-- [pdgapps](pdgapps.md)
-
-## Deferred Priorities
-
-1. `first_multi_option_exact` — Add the first post-pass-through regression test case that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. Status: `deferred`.
+`first_multi_option_exact` — Add the first post-pass-through regression test case that yields at least two distinct exact option families after canonicalization, then version its stable score order and stable family representatives under pdgsolve regression. 
