@@ -40,6 +40,7 @@ Assumptions:
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
+- for live PDG work in this workspace, the shared venv at `/Users/markmorris/vibe/.venv`;
 - no PDG website dependency during normal ingest.
 
 Policy:
@@ -56,7 +57,7 @@ Policy:
 
 The normal ingest path should be local and offline once dependencies are installed. `scripts/pdg/pdgfeed.py` connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-The implementation exposes two runtime surfaces:
+The implementation exposes two primary runtime surfaces plus a compatibility shim:
 
 - a library entrypoint in `scripts/pdg/pdgfeed.py` that returns normalized PDG-derived candidates;
 - a CLI entrypoint in `scripts/pdg/pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests;
@@ -70,9 +71,9 @@ Conceptually, `pdgfeed` does only five things:
 4. build PDG reaction output for multi-reaction work;
 5. export a support summary for many reactions.
 
-The CLI can therefore list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build PDG reaction outputs for multi-reaction work, and export supported-reaction CSV summaries. The implementation also writes text output for Op usage as well as explicit JSON artifacts for PDG reactions and debugging.
+The CLI therefore supports listing, one-reaction proposal builds, one-reaction request builds, live-manifest builds, and support-summary exports. Output formats are plain text for lists, JSON for proposal/request/manifest payloads, and CSV for support summaries.
 
-The current CLI still carries compatibility wrappers, but the minimal canonical surface should be only five subcommands. All calls below use the root `pdgfeed.py` shim. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
+The canonical CLI surface should be only five subcommands. All calls below use the root `pdgfeed.py` shim. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
 
 | Call | Options | Output content | Output format | Output location |
 | --- | --- | --- | --- | --- |
@@ -82,15 +83,13 @@ The current CLI still carries compatibility wrappers, but the minimal canonical 
 | `pdgfeed.py manifest` | none beyond top-level options | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries. This replaces the separate manifest wrapper. | JSON | `stdout` |
 | `pdgfeed.py supported-csv [CSV_PATH]` | `--source {pdg-test-reactions,pdg-reactions}`, optional `CSV_PATH` | Writes primitive-count summary rows for exportable reactions from the selected source. Source selection replaces the duplicate CSV export wrapper. | CSV | `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv` |
 
-The redundant commands should be treated as legacy compatibility aliases around that five-command surface:
+Any redundant commands should be treated as legacy compatibility aliases around that five-command surface:
 
 - `list-pdg-test-reactions` and `list-pdg-reactions` collapse into `list --source ...`;
 - `build-pdg-reaction-manifest` collapses into `manifest`;
 - `emit-supported-reaction-csv` collapses into `supported-csv`;
 - `print-pdg-test-reaction-proposal`, `print-pdg-test-reaction-pdgsolve-request`, `print-pdg-reaction-proposal`, and `print-pdg-reaction-pdgsolve-request` collapse into `proposal` and `request` with `--source`;
-- and `emit-pdg-test-reaction`, `emit-pdg-reaction`, `emit-all-pdg-test-reactions`, and `emit-all-pdg-reactions` represent file-writing and batch-mode concerns that should be expressed as options on the canonical commands rather than as separate verbs.
-
-Current implementation note: `proposal --write` still flows through the shared artifact emitter, so exportable cases may also write the sibling `pdgsolve-request/v1` file even though the minimal interface should keep proposal and request emission conceptually separate.
+- and `emit-pdg-test-reaction`, `emit-pdg-reaction`, `emit-all-pdg-test-reactions`, and `emit-all-pdg-reactions` represent file-writing and batch-mode concerns that should be expressed as options such as `--write` and `--all` on the canonical commands rather than as separate verbs.
 
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -138,7 +137,7 @@ PDG reaction multiplicities for concrete mapped particles may expand into repeat
 
 #### Test Reactions
 
-The stable day-to-day regression path are the repo-owned PDG test reactions under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
+The stable day-to-day regression path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
 
 PDG test reactions:
 
@@ -148,24 +147,22 @@ PDG test reactions:
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
 
-Example run:
+The live reaction registry should mirror these same ids whenever live equivalents exist, so local regression and live ingest stay comparable channel by channel.
 
-- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-list.json`
+Representative regression commands:
 
-Interpretation:
+- `python pdgfeed.py list --source pdg-test-reactions`
+- `python pdgfeed.py request muon_decay --source pdg-test-reactions > /tmp/muon_decay.request.json`
+- `python pdgfeed.py supported-csv /tmp/pdg-supported.csv --source pdg-test-reactions`
+- `python pdgfeed.py manifest > /tmp/pdg-live-manifest.json`
 
-- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `pdgsolve-request/v1`;
-- in this output, unsupported discoveries stay outside that denominator and are reported separately;
-- and these counts should be read as request-emission progress, not as solve-core closure metrics.
+Regression expectations:
 
-The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table defines the exportable vocabulary. Representative rows include:
+- exportable test reactions continue to emit stable `pdg-proposal/v1` and `pdgsolve-request/v1` artifacts;
+- proposal-only reactions stay proposal-only with explicit unsupported notes rather than guessed request output;
+- and live discovery manifests report exportable channels and unsupported discoveries separately.
 
-| Canonical PDG ASCII name | Export status | pdgsolve request expansion                         | Request title pattern                      | Notes                                                          |
-| ------------------------ | ------------- | -------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------- |
-| `n`                      | exportable    | `pro_down_quark`, `pro_up_quark`, `pro_down_quark` | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
-| `p`                      | exportable    | `pro_up_quark`, `pro_down_quark`, `pro_up_quark`   | assembly titles from each emitted assembly | PDG particle name expanded to assemblies before solver handoff |
-| `e-`                     | exportable    | `electron`                                         | `Electron`                                 | charged lepton, generation 1                                   |
-| `anti-nu_e`              | exportable    | `electron_antineutrino`                            | `Electron Antineutrino`                    | neutrino, generation 1                                         |
+The detailed canonical-name export policy is summarized in the registry material below.
 
 The v1 un-mappable-particle policy is:
 
@@ -194,9 +191,9 @@ A single PDG participant may expand into multiple emitted request occurrences. T
 
 ### Invocation Modes
 
-The solver should support stdout text form PDG reactions for Op use.
 
-The output will use compact strings and should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The default separator should be `.`.
+
+The reaction-string notation should use compact strings and should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The default separator should be `.`.
 
 Examples:
 
@@ -209,12 +206,12 @@ Examples:
 | `P.e.av` | proton, electron, anti-neutrino |
 | `1:1@.P.e` | explicit `Unbound Architrinos` ledger plus proton and electron |
 
-Example command, free neutron decay with an added `hq` reactant:
+Example reaction strings, free neutron decay with an added `hq` reactant:
 
-| Form      | Command                       |
-| --------- | ----------------------------- |
-| compact   | `pdgfeed --r Nhq --p Peav`    |
-| separated | `pdgfeed --r N.hq --p P.e.av` |
+| Form      | Reactants | Products |
+| --------- | --------- | -------- |
+| compact   | `Nhq`     | `Peav`   |
+| separated | `N.hq`    | `P.e.av` |
 
 Anti-ness should be handled with `a` only:
 
@@ -386,7 +383,7 @@ Operational lexer guidance:
 
 ### Proposed Registry Table
 
-Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form.
+Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form. For composites, `Exportable to pdgsolve` means the composite has an explicit v1 translation across the request boundary, whether that translation is direct or a fixed row expansion into explicit emitted assemblies.
 
 For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `hp`, `hq`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
 
