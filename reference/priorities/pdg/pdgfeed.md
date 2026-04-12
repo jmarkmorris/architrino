@@ -98,9 +98,7 @@ The root path remains a compatibility layer:
 
 ### Operator View
 
-Do not think of `pdgfeed` as a large menu of unrelated commands.
-
-Conceptually, it does only five things:
+Conceptually, `pdgfeed` does only five things:
 
 1. list available reactions;
 2. build a proposal for one reaction;
@@ -108,20 +106,11 @@ Conceptually, it does only five things:
 4. build PDG reaction output for multi-reaction work;
 5. export a support summary for many reactions.
 
-The longer command list in the implementation is mostly duplication:
-
-- test-corpus versus live-PDG variants;
-- file-emission versus stdout variants;
-- one-reaction versus all-reaction variants;
-- and older parallel command families that now should be considered legacy implementation detail.
-
-That larger command list should be treated as implementation detail, not as the public mental model for the tool. In authored docs, prefer `PDG test reaction` and `PDG reaction` wording. Stdout-print commands must write only JSON to `stdout`; diagnostics belong on `stderr`.
-
 PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
 #### Test Reactions
 
-The stable day-to-day regression path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
+The stable day-to-day regression path are the repo-owned PDG test reactions under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
 
 PDG test reactions:
 
@@ -130,15 +119,6 @@ PDG test reactions:
 - `muon_decay_with_electron_positron_pair`
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
-
-When the goal is to inspect or process many PDG reactions, the preferred path is the explicit PDG reaction output from `pdgfeed`, not ad hoc one-off commands.
-
-Recommended workflow:
-
-1. build the PDG reaction output with the repo venv Python so the PDG environment is explicit and stable for the whole run;
-2. use that output as the stable ordered source for downstream tooling;
-3. treat analyzable/exportable entries in that output as the current request-emission denominator;
-4. separate unsupported-particle discovery from request-emission progress.
 
 Example run:
 
@@ -209,10 +189,6 @@ Requests should be emitted only from normalized proposal records, never directly
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
-### Proposal Review
-
-PDG needs an explicit upstream review boundary between proposal generation and `pdgsolve` acceptance. Ranking is only a provisional default. Unsupported or ambiguous alternatives may remain visible upstream, but they must not cross the solver seam.
-
 ## Interfaces
 
 ### Inputs
@@ -229,44 +205,11 @@ PDG needs an explicit upstream review boundary between proposal generation and `
 - proposal-review state;
 - and provenance metadata attached to those artifacts.
 
-### Neighboring Components
-
-- [pdgsolve](./pdgsolve.md) is the solve-review and acceptance app this component should feed.
-- [pdgedit](./pdgedit.md) remains downstream of accepted pdgsolve publication only.
-- [pdgview](./pdgview.md) remains downstream of accepted authored-surface output only.
-- [pdgapps](pdgapps.md) defines the app-boundary rule this component must respect.
-
-### Deferred Feature: Package And Database Maintenance
-
-Routine PDG use should not require visiting the PDG website during normal solver use.
-
-For now:
-
-- developers install and pin the `pdg` package version deliberately;
-- developers choose whether to rely on the package-bundled database or point the API at a separately downloaded pinned SQLite file;
-- and ingest code assumes that the required local package and database are already present.
-
-## Priorities
-
-### 1. Use Test Reactions As The Stable Surface For PDG Support
-
-Status: `active`
-
-Current:
-
-- `build-pdg-reaction-manifest` already writes exportable/analyzable reactions into explicit PDG reaction output separate from unsupported discovery reactions.
-
-Objective:
-
-- keep PDG support anchored in the stable test reactions while particle coverage grows and pdgsolve-side tooling comes online.
-
-
-
 ## Grammar Map
 
 ### Invocation Modes
 
-The solver should support stdout text form PDG reactions for Op use, not for downstream consumption at this time.
+The solver should support stdout text form PDG reactions for Op use.
 
 The output will use compact strings and should also allow optional benign separators between tokens so humans can make distinct assemblies easier to read. The default separator should be `.`.
 
@@ -287,7 +230,6 @@ Example command, free neutron decay with an added `hq` reactant:
 | --------- | ----------------------------- |
 | compact   | `pdgfeed --r Nhq --p Peav`    |
 | separated | `pdgfeed --r N.hq --p P.e.av` |
-
 
 Anti-ness should be handled with `a` only:
 
