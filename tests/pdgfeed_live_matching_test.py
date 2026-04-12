@@ -1,156 +1,170 @@
-from pathlib import Path
-import sys
 import unittest
-from unittest.mock import patch
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pdgfeed
 
 
 class FakeItem:
-    def __init__(self, name, *, has_particle=True):
+    def __init__(self, name, *, item_type="particle", particle=True):
         self.name = name
-        self.particle = object() if has_particle else None
+        self.item_type = item_type
+        self.particle = particle
 
 
 class FakeDecayProduct:
-    def __init__(self, name, *, multiplier=1, has_particle=True):
+    def __init__(self, name, *, multiplier=1, subdecay=None, particle=True, item_type="particle"):
         self.multiplier = multiplier
-        self.item = FakeItem(name, has_particle=has_particle)
+        self.subdecay = subdecay
+        self.item = FakeItem(name, item_type=item_type, particle=particle)
 
 
 class FakeDecay:
-    def __init__(self, description, products, *, mode_number=0, subdecays=None):
+    def __init__(self, description, products, *, pdgid="fake", mode_number=1, display_value_text=""):
         self.description = description
         self.decay_products = products
+        self.pdgid = pdgid
         self.mode_number = mode_number
-        self._subdecays = list(subdecays or [])
-
-    def subdecays(self):
-        return list(self._subdecays)
+        self.display_value_text = display_value_text
 
 
 class FakeParticle:
-    def __init__(self, decays):
+    def __init__(self, name, decays, *, mcid=None):
+        self.name = name
         self._decays = list(decays)
+        self.mcid = mcid
 
-    def exclusive_branching_fractions(self):
+    def exclusive_branching_fractions(self, *args, **kwargs):
         return list(self._decays)
 
 
 class FakeApi:
-    def __init__(self, decays):
-        self._particle = FakeParticle(decays)
+    def __init__(self, particles):
+        self._particles = {particle.name: particle for particle in particles}
+        self._particle_lists = [[particle] for particle in particles]
+        self.edition = "2025"
 
     def get_particle_by_name(self, name):
-        self.last_particle_name = name
-        return self._particle
+        return self._particles[name]
+
+    def get_particles(self):
+        return list(self._particle_lists)
 
     def get_canonical_name(self, name):
-        return name
-
-
-class FindLiveDecayTests(unittest.TestCase):
-    def test_matches_by_product_signature_when_description_order_differs(self):
-        api = FakeApi(
-            [
-                FakeDecay(
-                    "n --> p anti-nu_e e-",
-                    [
-                        FakeDecayProduct("p"),
-                        FakeDecayProduct("nubar_e"),
-                        FakeDecayProduct("e-"),
-                    ],
-                    mode_number=2,
-                )
-            ]
-        )
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["free_neutron_beta_decay"]
-
-        decay, products, notes = pdgfeed.find_live_decay(api, spec)
-
-        self.assertEqual(decay.description, "n --> p anti-nu_e e-")
-        self.assertEqual([product.name for product in products], ["p", "nubar_e", "e-"])
-        self.assertEqual(notes, [])
-
-    def test_prefers_exact_description_when_multiple_product_matches_exist(self):
-        api = FakeApi(
-            [
-                FakeDecay(
-                    "mu- --> nu_mu e- anti-nu_e",
-                    [
-                        FakeDecayProduct("nu_mu"),
-                        FakeDecayProduct("e-"),
-                        FakeDecayProduct("anti-nu_e"),
-                    ],
-                    mode_number=2,
-                ),
-                FakeDecay(
-                    "mu- -> e- anti-nu_e nu_mu",
-                    [
-                        FakeDecayProduct("e-"),
-                        FakeDecayProduct("anti-nu_e"),
-                        FakeDecayProduct("nu_mu"),
-                    ],
-                    mode_number=3,
-                ),
-            ]
-        )
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["muon_decay"]
-
-        decay, _, _ = pdgfeed.find_live_decay(api, spec)
-
-        self.assertEqual(decay.description, "mu- -> e- anti-nu_e nu_mu")
-
-    def test_live_charged_pion_case_stays_proposal_only_until_pdgsolve_request_v1_expands(self):
-        api = FakeApi(
-            [
-                FakeDecay(
-                    "pi+ -> mu+ nu_mu",
-                    [
-                        FakeDecayProduct("mu+"),
-                        FakeDecayProduct("nu_mu"),
-                    ],
-                    mode_number=1,
-                )
-            ]
-        )
-        api.edition = "2025"
-        api.info = lambda key: "PDG Python API database read"
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["charged_pion_to_muon_neutrino"]
-
-        with patch.object(pdgfeed, "connect_pdg", return_value=api):
-            live_case = pdgfeed.load_live_case(spec)
-
-        proposal = pdgfeed.build_proposal(live_case)
-
-        self.assertEqual(live_case.source_kind, "pdg-live")
-        self.assertEqual(live_case.case_id, "charged_pion_to_muon_neutrino")
-        self.assertEqual(proposal.exportable, False)
-        self.assertEqual(
-            proposal.notes,
-            (
-                "unsupported:reactant:pi+:no-pdgsolve-request-v1-mapping",
-                "unsupported:product:mu+:no-pdgsolve-request-v1-mapping",
-                "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping",
-            ),
-        )
-        pdgsolve_request = pdgfeed.build_pdgsolve_request(proposal)
-        self.assertIsNone(pdgsolve_request)
-
-    def test_live_registry_includes_supported_radiative_and_pair_extension_cases(self):
-        expected_case_ids = {
-            "free_neutron_beta_decay",
-            "radiative_free_neutron_beta_decay",
-            "muon_decay",
-            "radiative_muon_decay",
-            "muon_decay_with_electron_positron_pair",
-            "muon_to_electron_photon",
-            "charged_pion_to_muon_neutrino",
+        aliases = {
+            "nubar_e": "anti-nu_e",
+            "nubar_mu": "anti-nu_mu",
         }
+        return aliases.get(name, name)
 
-        self.assertTrue(expected_case_ids.issubset(set(pdgfeed.LIVE_CHANNEL_SPEC_BY_ID)))
+    def info(self, _key):
+        return "PDG Python API database read"
+
+
+class PdgfeedLiveTests(unittest.TestCase):
+    def test_known_status_uses_exact_mcid_and_pdg_identifier_key(self):
+        self.assertEqual(
+            pdgfeed.known_reaction_status_from_source({"mcid": 13, "pdgIdentifier": "S004.1/2025"}),
+            "k",
+        )
+        self.assertEqual(
+            pdgfeed.known_reaction_status_from_source({"mcid": -13, "pdgIdentifier": "S004.1/2025"}),
+            "u",
+        )
+        self.assertEqual(
+            pdgfeed.known_reaction_status_from_source({"mcid": 13, "pdgIdentifier": "S004.1/2024"}),
+            "u",
+        )
+
+    def test_load_live_case_from_decay_uses_particle_identity_for_channel_and_case_id(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B-",
+                    [
+                        FakeDecay(
+                            "B+ --> e+ nu_e",
+                            [FakeDecayProduct("e+"), FakeDecayProduct("nu_e")],
+                            pdgid="S041.473/2025",
+                            mode_number=2,
+                        )
+                    ],
+                    mcid=-521,
+                )
+            ]
+        )
+        particle = api.get_particle_by_name("B-")
+        decay = particle.exclusive_branching_fractions()[0]
+
+        case = pdgfeed.load_live_case_from_decay(particle, decay, api=api)
+
+        self.assertEqual(case.case_id, "b_minus_s041_473")
+        self.assertEqual(case.source["channelDescription"], "B- -> e+ nu_e")
+        self.assertEqual(case.source["knownStatus"], "u")
+
+    def test_load_live_cases_orders_known_reactions_first(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "mu+",
+                    [
+                        FakeDecay(
+                            "mu+ -> e+ nu_e nubar_mu",
+                            [FakeDecayProduct("e+"), FakeDecayProduct("nu_e"), FakeDecayProduct("nubar_mu")],
+                            pdgid="S004.1/2025",
+                            mode_number=1,
+                        )
+                    ],
+                    mcid=-13,
+                ),
+                FakeParticle(
+                    "pi+",
+                    [
+                        FakeDecay(
+                            "pi+ -> mu+ nu_mu",
+                            [FakeDecayProduct("mu+"), FakeDecayProduct("nu_mu")],
+                            pdgid="S008.1/2025",
+                            mode_number=1,
+                        )
+                    ],
+                    mcid=211,
+                ),
+                FakeParticle(
+                    "mu-",
+                    [
+                        FakeDecay(
+                            "mu- -> e- nubar_e nu_mu",
+                            [FakeDecayProduct("e-"), FakeDecayProduct("nubar_e"), FakeDecayProduct("nu_mu")],
+                            pdgid="S004.1/2025",
+                            mode_number=1,
+                        ),
+                        FakeDecay(
+                            "mu- -> e- nubar_e nu_mu gamma",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("nubar_e"),
+                                FakeDecayProduct("nu_mu"),
+                                FakeDecayProduct("gamma"),
+                            ],
+                            pdgid="S004.2/2025",
+                            mode_number=2,
+                        ),
+                    ],
+                    mcid=13,
+                ),
+            ]
+        )
+
+        cases = pdgfeed.load_live_cases(api=api)
+
+        self.assertEqual(
+            [case.case_id for case in cases],
+            [
+                "mu_minus_s004_1",
+                "mu_minus_s004_2",
+                "pi_plus_s008_1",
+                "mu_plus_s004_1",
+            ],
+        )
+        self.assertEqual([pdgfeed.known_reaction_status(case) for case in cases], ["k", "k", "k", "u"])
 
 
 if __name__ == "__main__":

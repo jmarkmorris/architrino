@@ -27,7 +27,7 @@
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["test_case", "pdgfeed", "developer", "pdgsolve-reopen"]
+          "enum": ["pdgfeed", "developer", "pdgsolve-reopen"]
         },
         "title": {
           "type": "string",
@@ -53,10 +53,36 @@
           "assemblyId": {
             "type": "string",
             "enum": [
-              "electron",
-              "electron_antineutrino",
-              "pro_down_quark",
-              "pro_up_quark"
+              "pro_noether_core_I",
+              "anti_noether_core_I",
+              "pro_noether_core_II",
+              "anti_noether_core_II",
+              "pro_noether_core_III",
+              "anti_noether_core_III",
+              "pro_electron_I",
+              "anti_electron_I",
+              "pro_electron_neutrino_I",
+              "anti_electron_neutrino_I",
+              "pro_up_quark_I",
+              "anti_up_quark_I",
+              "pro_down_quark_I",
+              "anti_down_quark_I",
+              "pro_muon_II",
+              "anti_muon_II",
+              "pro_muon_neutrino_II",
+              "anti_muon_neutrino_II",
+              "pro_charm_quark_II",
+              "anti_charm_quark_II",
+              "pro_strange_quark_II",
+              "anti_strange_quark_II",
+              "pro_tau_III",
+              "anti_tau_III",
+              "pro_tau_neutrino_III",
+              "anti_tau_neutrino_III",
+              "pro_top_quark_III",
+              "anti_top_quark_III",
+              "pro_bottom_quark_III",
+              "anti_bottom_quark_III"
             ]
           },
           "title": {
@@ -80,10 +106,36 @@
           "assemblyId": {
             "type": "string",
             "enum": [
-              "electron",
-              "electron_antineutrino",
-              "pro_down_quark",
-              "pro_up_quark"
+              "pro_noether_core_I",
+              "anti_noether_core_I",
+              "pro_noether_core_II",
+              "anti_noether_core_II",
+              "pro_noether_core_III",
+              "anti_noether_core_III",
+              "pro_electron_I",
+              "anti_electron_I",
+              "pro_electron_neutrino_I",
+              "anti_electron_neutrino_I",
+              "pro_up_quark_I",
+              "anti_up_quark_I",
+              "pro_down_quark_I",
+              "anti_down_quark_I",
+              "pro_muon_II",
+              "anti_muon_II",
+              "pro_muon_neutrino_II",
+              "anti_muon_neutrino_II",
+              "pro_charm_quark_II",
+              "anti_charm_quark_II",
+              "pro_strange_quark_II",
+              "anti_strange_quark_II",
+              "pro_tau_III",
+              "anti_tau_III",
+              "pro_tau_neutrino_III",
+              "anti_tau_neutrino_III",
+              "pro_top_quark_III",
+              "anti_top_quark_III",
+              "pro_bottom_quark_III",
+              "anti_bottom_quark_III"
             ]
           },
           "title": {

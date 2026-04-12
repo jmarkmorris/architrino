@@ -550,6 +550,23 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 - the next branch name breaks the periodic-table sequence without an explicit reason,
 - or the next branch would depend on unmerged work that is not meant to stay coupled.
 
+## Final Response Requirements
+
+When this procedure is executed, the final response should not stop at generic git status reporting.
+
+- Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
+- If a new branch was created, include the exact new branch name and whether it was published to `origin`.
+- If a new branch was created from the periodic-table sequence, include one substantive paragraph about the element named by that branch.
+- That element paragraph should include, when applicable and known:
+  - the atomic number,
+  - the chemical symbol,
+  - the broad classification such as noble gas, alkali metal, alkaline earth metal, transition metal, halogen, lanthanide, actinide, metalloid, or nonmetal,
+  - whether it is a metal, nonmetal, or metalloid,
+  - the usual electron-orbital configuration or shell/orbital description,
+  - common ion or oxidation states,
+  - and a few physically or chemically distinctive traits that help identify the element.
+- The element paragraph should be detailed enough to be informative, not just a one-line gloss.
+
 ## Expected Outcome
 
 After a healthy wrap-up cycle:

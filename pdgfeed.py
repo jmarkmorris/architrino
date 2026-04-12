@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility shim for the PDG feed CLI and module imports.
+"""Delegating entrypoint for the PDG feed CLI and module imports.
 
 The implementation lives in scripts/pdg/pdgfeed.py.
 """

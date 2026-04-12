@@ -45,7 +45,7 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 - `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
 - `content/contracts/examples/pdgedit/manifest.v1.json` now includes solver-published final pdgedit documents in the same manifest-driven picker without admitting raw solver request/result payloads into pdgedit.
 - `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for all three, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
-- `scripts/pdg/pdgfeed.py` now owns the real PDG feed implementation, while root `pdgfeed.py` remains a compatibility shim for existing CLI calls and Python module imports.
+- `scripts/pdg/pdgfeed.py` now owns the PDG feed implementation, and root `pdgfeed.py` delegates CLI and Python module entry into it.
 - `src/contracts/pdgview-staging/v1/schema.json` and `src/apps/pdgview/PdgviewPdgeditImportRuntime.js` now freeze accepted `pdgedit/v1` import into pdgview-owned staging, observer framing, preview, and export data without importing pdgsolve or pdgedit app runtimes.
 
 ## Development Plan
@@ -78,19 +78,18 @@ Purpose:
 
 Input:
 
-- PDG test reaction data stored in the repo;
-- or PDG reaction data through the local Python `pdg` package and local SQLite access.
+- PDG reaction data through the local Python `pdg` package and local SQLite access.
 
 Current run method:
 
-- command line through the root compatibility shim `pdgfeed.py`, or directly through `scripts/pdg/pdgfeed.py`.
+- command line through root `pdgfeed.py`, or directly through `scripts/pdg/pdgfeed.py`.
 
 Current CLI examples:
 
-- `python3 pdgfeed.py list-pdg-test-reactions`
-- `python3 pdgfeed.py emit-pdg-test-reaction <reaction-id>`
-- `python3 pdgfeed.py list-pdg-reactions`
-- `python3 pdgfeed.py emit-pdg-reaction <reaction-id>`
+- `python3 pdgfeed.py list --source pdg-reactions`
+- `python3 pdgfeed.py proposal <reaction-id> --source pdg-reactions`
+- `python3 pdgfeed.py request <reaction-id> --source pdg-reactions`
+- `python3 pdgfeed.py manifest`
 
 Output:
 
@@ -199,7 +198,7 @@ Boundary rule:
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
-2. Choose a built-in PDG test reaction, a built-in PDG reaction, or a user-specified PDG reaction or channel.
+2. Choose a PDG test reaction or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
 4. Emit an explicit request artifact for pdgsolve intake.
 5. Load that request into pdgsolve.
