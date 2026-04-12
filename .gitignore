@@ -1,6 +1,7 @@
 .DS_Store
 __pycache__/
 *.pyc
+.tmp/
 .tmp/pdgfeed.list.*.md
 .tmp/pdgfeed.supported.*.md
 .tmp/pdgfeed.supported.*.csv
