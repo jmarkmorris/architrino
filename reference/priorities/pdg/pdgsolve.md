@@ -92,7 +92,7 @@ The strip uses a deliberately limited grammar:
 
 In `pdgsolve` terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
-Inside `pdgsolve`, all routing, scoring, provenance, search symbols, and emitted output should use only individual assembly ids such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`.
+Inside `pdgsolve`, all routing, scoring, provenance, search symbols, and emitted output should use only individual assembly ids such as `pro_down_quark_I`, `pro_up_quark_I`, `pro_electron_I`, and `anti_electron_neutrino_I`.
 
 `pdgsolve` should treat this as a combinatorial state graph, not as presentation geometry.
 
@@ -157,8 +157,8 @@ The familiar beta-decay channel is the first boundary example precisely because 
 
 Applied to beta-decay, the same rule means the `pdgsolve` core expression must be written only in explicit assemblies already present in the active assembly alphabet, for example:
 
-- reactant assemblies: `pro_down_quark + pro_up_quark + pro_down_quark`;
-- product assemblies: `pro_up_quark + pro_down_quark + pro_up_quark + electron + electron_antineutrino`.
+- reactant assemblies: `pro_down_quark_I + pro_up_quark_I + pro_down_quark_I`;
+- product assemblies: `pro_up_quark_I + pro_down_quark_I + pro_up_quark_I + pro_electron_I + anti_electron_neutrino_I`.
 
 From that point forward:
 
@@ -301,10 +301,10 @@ The assembly table should list the full Standard Model inventory:
 
 The concrete conserved-content rows for every admitted assembly in that table should be written here rather than deferred to a later phase. The running beta-boundary bookkeeping values already used elsewhere in this document include:
 
-- \(\mu(\mathrm{pro\_down\_quark}) = (7, 5)\);
-- \(\mu(\mathrm{pro\_up\_quark}) = (4, 8)\);
-- \(\mu(\mathrm{electron}) = (9, 3)\);
-- and \(\mu(\mathrm{electron\_antineutrino}) = (6, 6)\).
+- \(\mu(\mathrm{pro\_down\_quark\_I}) = (7, 5)\);
+- \(\mu(\mathrm{pro\_up\_quark\_I}) = (4, 8)\);
+- \(\mu(\mathrm{pro\_electron\_I}) = (9, 3)\);
+- and \(\mu(\mathrm{anti\_electron\_neutrino\_I}) = (6, 6)\).
 
 `pdgsolve` should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
 
@@ -326,7 +326,7 @@ Normalization assumes those occurrence lists already contain explicit assemblies
 
 Normalization should then do the following, in order:
 
-1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark`, `pro_up_quark`, `electron`, and `electron_antineutrino`;
+1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark_I`, `pro_up_quark_I`, `pro_electron_I`, and `anti_electron_neutrino_I`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
 3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
 4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-standard-model`;
@@ -937,9 +937,9 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
-| `explicit_beta_request_exact_closure` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark + electron + electron_antineutrino` | default | at least one exact assembly-native family exists; no composite or non-native symbol is introduced |
-| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark + pro_up_quark -> pro_down_quark + 2 pro_up_quark` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
-| `pass_thru_row_beta_source` | `2 pro_down_quark + pro_up_quark -> 2 pro_down_quark + pro_up_quark` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
+| `explicit_beta_request_exact_closure` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I + pro_electron_I + anti_electron_neutrino_I` | default | at least one exact assembly-native family exists; no composite or non-native symbol is introduced |
+| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `pass_thru_row_beta_source` | `2 pro_down_quark_I + pro_up_quark_I -> 2 pro_down_quark_I + pro_up_quark_I` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
 | `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
@@ -983,45 +983,45 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
   "reactants": [
     {
       "id": "reactant_neutron_1.row.1",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     },
     {
       "id": "reactant_neutron_1.row.2",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "reactant_neutron_1.row.3",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     }
   ],
   "products": [
     {
       "id": "product_proton_1.row.1",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "product_proton_1.row.2",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     },
     {
       "id": "product_proton_1.row.3",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "product_pro_electron_2",
-      "assemblyId": "electron",
+      "assemblyId": "pro_electron_I",
       "title": "Electron"
     },
     {
       "id": "product_anti_electron_neutrino_3",
-      "assemblyId": "electron_antineutrino",
-      "title": "Electron Antineutrino"
+      "assemblyId": "anti_electron_neutrino_I",
+      "title": "Anti Electron Neutrino"
     }
   ],
   "policy": {
@@ -1047,45 +1047,45 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
   "reactants": [
     {
       "id": "reactant_neutron_1.row.1",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     },
     {
       "id": "reactant_neutron_1.row.2",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "reactant_neutron_1.row.3",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     }
   ],
   "products": [
     {
       "id": "product_proton_1.row.1",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "product_proton_1.row.2",
-      "assemblyId": "pro_down_quark",
-      "title": "Pro Down Quark"
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
     },
     {
       "id": "product_proton_1.row.3",
-      "assemblyId": "pro_up_quark",
-      "title": "Pro Up Quark"
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
     },
     {
       "id": "product_pro_electron_2",
-      "assemblyId": "electron",
+      "assemblyId": "pro_electron_I",
       "title": "Electron"
     },
     {
       "id": "product_anti_electron_neutrino_3",
-      "assemblyId": "electron_antineutrino",
-      "title": "Electron Antineutrino"
+      "assemblyId": "anti_electron_neutrino_I",
+      "title": "Anti Electron Neutrino"
     }
   ],
   "policy": {

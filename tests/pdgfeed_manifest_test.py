@@ -405,19 +405,19 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(
             [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["reactants"]],
             [
-                ("pro_down_quark", "Pro Down Quark"),
-                ("pro_up_quark", "Pro Up Quark"),
-                ("pro_down_quark", "Pro Down Quark"),
+                ("pro_down_quark_I", "Down Quark"),
+                ("pro_up_quark_I", "Up Quark"),
+                ("pro_down_quark_I", "Down Quark"),
             ],
         )
         self.assertEqual(
             [(entry["assemblyId"], entry["title"]) for entry in pdgsolve_request["products"]],
             [
-                ("pro_up_quark", "Pro Up Quark"),
-                ("pro_down_quark", "Pro Down Quark"),
-                ("pro_up_quark", "Pro Up Quark"),
-                ("electron", "Electron"),
-                ("electron_antineutrino", "Electron Antineutrino"),
+                ("pro_up_quark_I", "Up Quark"),
+                ("pro_down_quark_I", "Down Quark"),
+                ("pro_up_quark_I", "Up Quark"),
+                ("pro_electron_I", "Electron"),
+                ("anti_electron_neutrino_I", "Anti Electron Neutrino"),
             ],
         )
 

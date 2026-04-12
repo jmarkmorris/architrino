@@ -187,7 +187,7 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:electron", "pdg:generation:1"),
         inventory_flags=("generation:1", "charged-lepton"),
-        pdgsolve_assembly_id="electron",
+        pdgsolve_assembly_id="pro_electron_I",
         pdgsolve_title="Electron",
     ),
     PdgV1ParticleMapping(
@@ -280,8 +280,8 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
         positrino_count=fermion_generation_primitive_counts(1)[1],
         tags=("pdg:species:anti-electron-neutrino", "pdg:generation:1"),
         inventory_flags=("generation:1", "neutrino"),
-        pdgsolve_assembly_id="electron_antineutrino",
-        pdgsolve_title="Electron Antineutrino",
+        pdgsolve_assembly_id="anti_electron_neutrino_I",
+        pdgsolve_title="Anti Electron Neutrino",
     ),
     PdgV1ParticleMapping(
         canonical_name="nu_mu",
@@ -483,24 +483,24 @@ PDG_V1_PARTICLE_MAPPINGS: tuple[PdgV1ParticleMapping, ...] = (
 
 PDGSOLVE_ROW_ASSEMBLY_EXPANSIONS: dict[str, tuple[tuple[str, str], ...]] = {
     "neutron": (
-        ("pro_down_quark", "Pro Down Quark"),
-        ("pro_up_quark", "Pro Up Quark"),
-        ("pro_down_quark", "Pro Down Quark"),
+        ("pro_down_quark_I", "Down Quark"),
+        ("pro_up_quark_I", "Up Quark"),
+        ("pro_down_quark_I", "Down Quark"),
     ),
     "proton": (
-        ("pro_up_quark", "Pro Up Quark"),
-        ("pro_down_quark", "Pro Down Quark"),
-        ("pro_up_quark", "Pro Up Quark"),
+        ("pro_up_quark_I", "Up Quark"),
+        ("pro_down_quark_I", "Down Quark"),
+        ("pro_up_quark_I", "Up Quark"),
     ),
 }
 
 PDGSOLVE_SINGLE_ROW_ASSEMBLY_COUNTS: dict[str, dict[str, int]] = {
-    "anti_noether_core": {"electrinoCount": 3, "positrinoCount": 3},
-    "electron": {"electrinoCount": 9, "positrinoCount": 3},
-    "electron_antineutrino": {"electrinoCount": 6, "positrinoCount": 6},
-    "pro_down_quark": {"electrinoCount": 7, "positrinoCount": 5},
-    "pro_noether_core": {"electrinoCount": 3, "positrinoCount": 3},
-    "pro_up_quark": {"electrinoCount": 4, "positrinoCount": 8},
+    "anti_electron_neutrino_I": {"electrinoCount": 6, "positrinoCount": 6},
+    "anti_noether_core_I": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_down_quark_I": {"electrinoCount": 7, "positrinoCount": 5},
+    "pro_electron_I": {"electrinoCount": 9, "positrinoCount": 3},
+    "pro_noether_core_I": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_up_quark_I": {"electrinoCount": 4, "positrinoCount": 8},
 }
 
 SUPPORTED_REACTION_CSV_COLUMNS = (
