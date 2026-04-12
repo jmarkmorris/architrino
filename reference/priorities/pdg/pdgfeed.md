@@ -33,7 +33,7 @@ It does not own:
 
 `pdgfeed` currently lives in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim for older commands and imports. The stable development path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
 
-The CLI can list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build frozen PDG reaction manifests, and export supported-reaction CSV summaries. Real PDG database reads through the local `pdg` package also exist, but they are still the secondary path. The regression baseline is the local PDG test corpus.
+The CLI can list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build frozen PDG reaction manifests, and export supported-reaction CSV summaries. Real PDG database reads also exist, but they are still the secondary path. The regression baseline is the local PDG test corpus.
 
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -47,7 +47,7 @@ The normal ingest path should be local and offline once dependencies are install
 
 The practical flow is:
 
-1. connect to the local PDG database through the official `pdg` Python package;
+1. connect to the local PDG source;
 2. retrieve the reaction data we actually use;
 3. normalize that data into explicit proposal records;
 4. emit `pdgsolve-request/v1` only when the channel is fully mappable;
@@ -60,7 +60,7 @@ Routine ingest should not depend on web calls to the PDG website.
 The Python program should keep these responsibilities distinct even if the implementation stays in one file:
 
 - PDG adapter:
-  uses `pdg.connect(...)` against a local SQLite database and exposes the PDG objects and metadata we actually consume;
+  exposes the PDG objects and metadata we actually consume;
 - normalization:
   converts PDG particles, identifiers, decay products, multiplicities, and subdecay structure into repo-owned records;
 - proposal assembly:
@@ -81,15 +81,28 @@ That means:
 - if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
 - and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
 
-### Implementation Baseline
+### Environment And PDG Package
 
-The implementation assumes:
+`pdgfeed` uses the official Python `pdg` package against a local SQLite database.
+
+Assumptions:
 
 - Python 3 runtime;
 - installed `pdg` package from `requirements.txt`;
 - local SQLite database access through `pdg.connect(...)`;
-- no PDG website dependency during normal ingest;
-- and explicit JSON artifacts for PDG test reactions and debugging.
+- no PDG website dependency during normal ingest.
+
+Policy:
+
+- the local database is the SQLite file bundled with the installed `pdg` package unless a different database URL is supplied explicitly;
+- package and database updates are a developer-maintained concern, not a runtime ingest concern;
+- the primary integration path is the official Python API over the local SQLite database;
+- direct SQL is secondary and should be used only when the Python API does not expose the needed traversal cleanly;
+- and REST or website access is incidental only, for inspection or experiments, not for normal ingest.
+
+### Implementation Baseline
+
+The implementation writes explicit JSON artifacts for PDG test reactions and debugging.
 
 The implementation has two surfaces:
 
@@ -191,19 +204,6 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - and keep PDG provenance in `source` fields or sidecar proposal metadata.
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
-
-### PDG Ecosystem
-
-The ingest program should assume that the required package and database are already installed locally. Package/database updates are a developer-maintained concern, not a runtime ingest concern.
-
-The integration options are:
-
-- primary:
-  the official Python API over a local SQLite database file; The local database is the SQLite file bundled with the installed `pdg` package;
-- secondary:
-  direct SQL against that same local database when the Python API does not expose the needed traversal cleanly;
-- incidental only:
-  the REST API for inspection or experiments, not for the normal ingest path.
 
 ### Normalization Contract
 
