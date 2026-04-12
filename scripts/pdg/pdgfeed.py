@@ -51,33 +51,13 @@ PDG_SOURCE_CONTRACT = {
 
 CLI_COMMAND_ALIASES = {
     "list": "list",
-    "list-test-cases": "list-pdg-test-reactions",
-    "emit-test-case": "emit-pdg-test-reaction",
-    "print-test-case-proposal": "print-pdg-test-reaction-proposal",
-    "print-test-case-pdgsolve-request": "print-pdg-test-reaction-pdgsolve-request",
-    "emit-all-test-cases": "emit-all-pdg-test-reactions",
     "proposal": "proposal",
     "request": "request",
     "manifest": "manifest",
     "supported-csv": "supported-csv",
-    "list-live-cases": "list-pdg-reactions",
-    "list-pdg-database-cases": "list-pdg-reactions",
-    "build-live-manifest": "build-pdg-reaction-manifest",
-    "build-pdg-database-manifest": "build-pdg-reaction-manifest",
-    "emit-live-case": "emit-pdg-reaction",
-    "emit-pdg-database-case": "emit-pdg-reaction",
-    "print-live-proposal": "print-pdg-reaction-proposal",
-    "print-pdg-database-proposal": "print-pdg-reaction-proposal",
-    "print-live-pdgsolve-request": "print-pdg-reaction-pdgsolve-request",
-    "print-pdg-database-pdgsolve-request": "print-pdg-reaction-pdgsolve-request",
-    "emit-all-live-cases": "emit-all-pdg-reactions",
-    "emit-all-pdg-database-cases": "emit-all-pdg-reactions",
 }
 
 CSV_SOURCE_ALIASES = {
-    "test-cases": "pdg-test-reactions",
-    "live": "pdg-reactions",
-    "pdg-database": "pdg-reactions",
     "test": "pdg-test-reactions",
     "pdg": "pdg-reactions",
 }
@@ -1543,7 +1523,7 @@ def parse_args() -> argparse.Namespace:
     )
     list_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "pdg"),
         default="pdg-test-reactions",
         help="Choose the reaction source.",
     )
@@ -1555,7 +1535,7 @@ def parse_args() -> argparse.Namespace:
     proposal_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     proposal_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "pdg"),
         default="pdg-test-reactions",
         help="Choose the reaction source.",
     )
@@ -1572,7 +1552,7 @@ def parse_args() -> argparse.Namespace:
     request_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     request_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "pdg"),
         default="pdg-test-reactions",
         help="Choose the reaction source.",
     )
@@ -1600,24 +1580,21 @@ def parse_args() -> argparse.Namespace:
     )
     supported_csv_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions", "test", "test-cases", "pdg-database", "live"),
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "pdg"),
         default="pdg-test-reactions",
         help="Choose the reaction source.",
     )
 
     subparsers.add_parser(
         "list-pdg-test-reactions",
-        aliases=["list-test-cases"],
         help="List available local PDG test reactions.",
     )
     subparsers.add_parser(
         "list-pdg-reactions",
-        aliases=["list-pdg-database-cases", "list-live-cases"],
         help="List the first built-in PDG reactions supported by this script.",
     )
     subparsers.add_parser(
         "build-pdg-reaction-manifest",
-        aliases=["build-pdg-database-manifest", "build-live-manifest"],
         help="Discover exportable PDG reactions and print a frozen batch manifest JSON payload.",
     )
 
@@ -1641,55 +1618,47 @@ def parse_args() -> argparse.Namespace:
 
     emit_test_case_parser = subparsers.add_parser(
         "emit-pdg-test-reaction",
-        aliases=["emit-test-case"],
         help="Emit proposal and pdgsolve-request artifacts for one PDG test reaction.",
     )
     emit_test_case_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
     print_test_case_proposal_parser = subparsers.add_parser(
         "print-pdg-test-reaction-proposal",
-        aliases=["print-test-case-proposal"],
         help="Print one PDG test reaction pdg-proposal/v1 JSON payload to stdout.",
     )
     print_test_case_proposal_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
     print_test_case_request_parser = subparsers.add_parser(
         "print-pdg-test-reaction-pdgsolve-request",
-        aliases=["print-test-case-pdgsolve-request"],
         help="Print one PDG test reaction pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
     print_test_case_request_parser.add_argument("test_case_id", help="PDG test reaction id from the local corpus.")
 
     subparsers.add_parser(
         "emit-all-pdg-test-reactions",
-        aliases=["emit-all-test-cases"],
         help="Emit proposal and pdgsolve-request artifacts for all PDG test reactions.",
     )
 
     emit_live_parser = subparsers.add_parser(
         "emit-pdg-reaction",
-        aliases=["emit-pdg-database-case", "emit-live-case"],
         help="Emit proposal and pdgsolve-request artifacts for one PDG reaction.",
     )
     emit_live_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
     print_live_proposal_parser = subparsers.add_parser(
         "print-pdg-reaction-proposal",
-        aliases=["print-pdg-database-proposal", "print-live-proposal"],
         help="Print one PDG reaction pdg-proposal/v1 JSON payload to stdout.",
     )
     print_live_proposal_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
     print_live_request_parser = subparsers.add_parser(
         "print-pdg-reaction-pdgsolve-request",
-        aliases=["print-pdg-database-pdgsolve-request", "print-live-pdgsolve-request"],
         help="Print one PDG reaction pdgsolve-request/v1 JSON payload to stdout for piping.",
     )
     print_live_request_parser.add_argument("case_id", help="PDG reaction id from the built-in reaction registry.")
 
     subparsers.add_parser(
         "emit-all-pdg-reactions",
-        aliases=["emit-all-pdg-database-cases", "emit-all-live-cases"],
         help="Emit proposal and pdgsolve-request artifacts for all built-in PDG reactions.",
     )
     return parser.parse_args()

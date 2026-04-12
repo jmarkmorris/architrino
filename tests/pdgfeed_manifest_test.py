@@ -67,25 +67,21 @@ class FakeApi:
 
 
 class BuildLiveManifestPayloadTests(unittest.TestCase):
-    def test_normalize_cli_args_promotes_pdg_reaction_wording_and_keeps_legacy_aliases_working(self):
+    def test_normalize_cli_args_promotes_canonical_source_wording(self):
         pdg_reaction_args = argparse.Namespace(command="list-pdg-reactions")
-        legacy_live_args = argparse.Namespace(command="list-live-cases", source="live")
-        legacy_test_case_args = argparse.Namespace(command="list-test-cases", source="test-cases")
+        canonical_test_args = argparse.Namespace(command="list-pdg-test-reactions", source="pdg-test-reactions")
 
         self.assertEqual(pdgfeed.normalize_cli_args(pdg_reaction_args).command, "list-pdg-reactions")
-        normalized_legacy_args = pdgfeed.normalize_cli_args(legacy_live_args)
-        self.assertEqual(normalized_legacy_args.command, "list-pdg-reactions")
-        self.assertEqual(normalized_legacy_args.source, "pdg-reactions")
-        normalized_test_case_args = pdgfeed.normalize_cli_args(legacy_test_case_args)
-        self.assertEqual(normalized_test_case_args.command, "list-pdg-test-reactions")
-        self.assertEqual(normalized_test_case_args.source, "pdg-test-reactions")
+        normalized_test_args = pdgfeed.normalize_cli_args(canonical_test_args)
+        self.assertEqual(normalized_test_args.command, "list-pdg-test-reactions")
+        self.assertEqual(normalized_test_args.source, "pdg-test-reactions")
 
     def test_normalize_cli_args_supports_the_new_five_job_operator_surface(self):
         list_args = argparse.Namespace(command="list", source="test")
-        proposal_args = argparse.Namespace(command="proposal", source="live", reaction_id="muon_decay")
+        proposal_args = argparse.Namespace(command="proposal", source="pdg", reaction_id="muon_decay")
         request_args = argparse.Namespace(command="request", source="pdg", reaction_id="muon_decay")
         manifest_args = argparse.Namespace(command="manifest")
-        supported_csv_args = argparse.Namespace(command="supported-csv", source="test-cases")
+        supported_csv_args = argparse.Namespace(command="supported-csv", source="test")
 
         normalized_list_args = pdgfeed.normalize_cli_args(list_args)
         self.assertEqual(normalized_list_args.command, "list")
