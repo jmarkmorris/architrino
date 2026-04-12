@@ -26,11 +26,20 @@ from scripts.pdg.pdgfeed_model import (
     NormalizedParticipant,
     SUPPORTED_REACTION_CSV_COLUMNS,
 )
-from scripts.pdg.pdgfeed_registry import REQUEST_ASSEMBLY_COUNTS, canonicalize_pdg_name, lookup_particle_mapping
+from scripts.pdg.pdgfeed_registry import (
+    REQUEST_ASSEMBLY_COUNTS,
+    REQUEST_ASSEMBLY_MAPPINGS,
+    canonicalize_pdg_name,
+    lookup_particle_mapping,
+)
 
 
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 DEFAULT_TMP_DIR = Path(__file__).resolve().parents[2] / ".tmp"
+REQUEST_ASSEMBLY_AAA_BY_ID = {
+    mapping.canonical_id: mapping.aaa_notation
+    for mapping in REQUEST_ASSEMBLY_MAPPINGS
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -325,6 +334,33 @@ def get_pdgsolve_occurrence_primitive_totals(occurrences: Any) -> dict[str, int]
     return totals
 
 
+def format_primitive_ledger(electrino_count: Any, positrino_count: Any) -> str:
+    return f"{electrino_count}.{positrino_count}@"
+
+
+def format_delta_ledger(
+    reactant_electrinos: Any,
+    product_electrinos: Any,
+    reactant_positrinos: Any,
+    product_positrinos: Any,
+) -> str:
+    return f"{reactant_electrinos - product_electrinos}.{reactant_positrinos - product_positrinos}@"
+
+
+def format_request_side_aaa(occurrences: Any) -> str:
+    if not isinstance(occurrences, list):
+        return ""
+    tokens: list[str] = []
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            return ""
+        aaa_notation = REQUEST_ASSEMBLY_AAA_BY_ID.get(str(occurrence.get("assemblyId", "")), "")
+        if not aaa_notation:
+            return ""
+        tokens.append(aaa_notation)
+    return ".".join(tokens)
+
+
 def build_supported_reaction_csv_row(
     case: PdgCase,
     proposal_payload: dict[str, Any],
@@ -337,7 +373,9 @@ def build_supported_reaction_csv_row(
 
     reactant_names = format_proposal_side_aaa(proposal_payload.get("reactants", []))
     product_names = format_proposal_side_aaa(proposal_payload.get("products", []))
-    if not reactant_names or not product_names:
+    transformed_reactant_names = format_request_side_aaa(pdgsolve_request.get("reactants", []))
+    transformed_product_names = format_request_side_aaa(pdgsolve_request.get("products", []))
+    if not reactant_names or not product_names or not transformed_reactant_names or not transformed_product_names:
         return None
 
     return {
@@ -348,6 +386,8 @@ def build_supported_reaction_csv_row(
         "title": case.title,
         "reactant_names_aaa": reactant_names,
         "product_names_aaa": product_names,
+        "transformed_reactant_names_aaa": transformed_reactant_names,
+        "transformed_product_names_aaa": transformed_product_names,
         "reactant_electrinos": reactant_totals["electrinoCount"],
         "product_electrinos": product_totals["electrinoCount"],
         "electrino_delta": reactant_totals["electrinoCount"] - product_totals["electrinoCount"],
@@ -461,7 +501,13 @@ def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=SUPPORTED_REACTION_CSV_COLUMNS)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(
+            {
+                column: row.get(column, "")
+                for column in SUPPORTED_REACTION_CSV_COLUMNS
+            }
+            for row in rows
+        )
 
 
 def format_output_path(path: Path) -> str:
@@ -574,12 +620,11 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
             "Title",
             "Reactant AAA",
             "Product AAA",
-            "Reactant Electrinos",
-            "Product Electrinos",
-            "Electrino Delta",
-            "Reactant Positrinos",
-            "Product Positrinos",
-            "Positrino Delta",
+            "Transformed Reactant AAA",
+            "Transformed Product AAA",
+            "Reactant Ledger",
+            "Product Ledger",
+            "Delta Ledger",
         ),
         [
             (
@@ -590,12 +635,22 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
                 row.get("title", ""),
                 row.get("reactant_names_aaa", ""),
                 row.get("product_names_aaa", ""),
-                row.get("reactant_electrinos", ""),
-                row.get("product_electrinos", ""),
-                row.get("electrino_delta", ""),
-                row.get("reactant_positrinos", ""),
-                row.get("product_positrinos", ""),
-                row.get("positrino_delta", ""),
+                row.get("transformed_reactant_names_aaa", ""),
+                row.get("transformed_product_names_aaa", ""),
+                format_primitive_ledger(
+                    row.get("reactant_electrinos", ""),
+                    row.get("reactant_positrinos", ""),
+                ),
+                format_primitive_ledger(
+                    row.get("product_electrinos", ""),
+                    row.get("product_positrinos", ""),
+                ),
+                format_delta_ledger(
+                    row.get("reactant_electrinos", ""),
+                    row.get("product_electrinos", ""),
+                    row.get("reactant_positrinos", ""),
+                    row.get("product_positrinos", ""),
+                ),
             )
             for row in rows
         ],

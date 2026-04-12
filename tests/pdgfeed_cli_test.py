@@ -21,7 +21,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     "mu-",
                     [
                         FakeDecay(
-                            "S004.1/2025",
+                            "TEST.MU.1",
                             "mu- -> e- nubar_e nu_mu",
                             [
                                 FakeDecayProduct("e-"),
@@ -30,7 +30,7 @@ class PdgfeedCliTests(unittest.TestCase):
                             ],
                         ),
                         FakeDecay(
-                            "S004.2/2025",
+                            "TEST.MU.GAMMA",
                             "mu- -> e- nubar_e nu_mu gamma",
                             [
                                 FakeDecayProduct("e-"),
@@ -46,7 +46,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     "pi+",
                     [
                         FakeDecay(
-                            "S008.1/2025",
+                            "TEST.PI.PLUS",
                             "pi+ -> mu+ nu_mu",
                             [
                                 FakeDecayProduct("mu+"),
@@ -73,6 +73,16 @@ class PdgfeedCliTests(unittest.TestCase):
             ]
         )
 
+    def parse_markdown_table(self, lines):
+        headers = [cell.strip() for cell in lines[0].strip("|").split("|")]
+        rows = []
+        for line in lines[2:]:
+            if not line.strip():
+                continue
+            values = [cell.strip() for cell in line.strip("|").split("|")]
+            rows.append(dict(zip(headers, values)))
+        return headers, rows
+
     def run_main(self, args, api, tmp_dir):
         stdout = io.StringIO()
         with (
@@ -94,32 +104,32 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(output, expected_path)
 
             lines = (tmp_dir / "pdgfeed.list.pdg_reactions.md").read_text(encoding="utf-8").strip().splitlines()
-            self.assertEqual(
-                lines[:6],
-                [
-                    "| K/U | MCID | PDG ID | Reaction ID | Title | Channel | Status |",
-                    "| --- | --- | --- | --- | --- | --- | --- |",
-                    "| k | 13 | S004.1/2025 | mu_minus_s004_1 | mu- decay mode 1 | mu- -> e- nubar_e nu_mu | ready |",
-                    "| k | 13 | S004.2/2025 | mu_minus_s004_2 | mu- decay mode 1 | mu- -> e- nubar_e nu_mu gamma | ready |",
-                    "| k | 211 | S008.1/2025 | pi_plus_s008_1 | pi+ decay mode 1 | pi+ -> mu+ nu_mu | ready |",
-                    "| u | 111 | fake | pi0_fake | pi0 decay mode 1 | pi0 -> gamma gamma | ready |",
-                ],
-            )
+            headers, rows = self.parse_markdown_table(lines)
+            self.assertEqual(headers, ["K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Status"])
+            self.assertEqual(len(rows), 4)
+            self.assertEqual(rows[0]["Reaction ID"], "mu_minus_test_mu_1")
+            self.assertEqual(rows[0]["Status"], "ready")
+            self.assertEqual(rows[1]["Reaction ID"], "mu_minus_test_mu_gamma")
+            self.assertEqual(rows[1]["Status"], "ready")
+            self.assertEqual(rows[2]["Reaction ID"], "pi_plus_test_pi_plus")
+            self.assertEqual(rows[2]["Status"], "ready")
+            self.assertEqual(rows[3]["Reaction ID"], "pi0_fake")
+            self.assertEqual(rows[3]["Status"], "ready")
 
     def test_proposal_output_does_not_include_exportable_field(self):
         api = self.build_api()
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            proposal_json = self.run_main(["proposal", "mu_minus_s004_1", "--source", "pdg-reactions"], api, Path(tmp_dir_name))
+            proposal_json = self.run_main(["proposal", "mu_minus_test_mu_1", "--source", "pdg-reactions"], api, Path(tmp_dir_name))
             proposal = json.loads(proposal_json)
 
-            self.assertEqual(proposal["proposalId"], "mu_minus_s004_1")
+            self.assertEqual(proposal["proposalId"], "mu_minus_test_mu_1")
             self.assertNotIn("exportable", proposal)
-            self.assertEqual(proposal["source"]["knownStatus"], "k")
+            self.assertEqual(proposal["source"]["knownStatus"], "u")
 
     def test_request_output_uses_transformed_rows_only(self):
         api = self.build_api()
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            request_json = self.run_main(["request", "pi_plus_s008_1", "--source", "pdg-reactions"], api, Path(tmp_dir_name))
+            request_json = self.run_main(["request", "pi_plus_test_pi_plus", "--source", "pdg-reactions"], api, Path(tmp_dir_name))
             request = json.loads(request_json)
 
             self.assertEqual(
@@ -159,12 +169,45 @@ class PdgfeedCliTests(unittest.TestCase):
                 csv_lines[:5],
                 [
                     "known_status,reaction_id,mcid,pdg_identifier,title,reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
-                    "k,mu_minus_s004_1,13,S004.1/2025,mu- decay mode 1,e2,e.av.v2,8,20,-12,2,14,-12",
-                    "k,mu_minus_s004_2,13,S004.2/2025,mu- decay mode 1,e2,e.av.v2.hp,8,26,-18,2,20,-18",
-                    "k,pi_plus_s008_1,211,S008.1/2025,pi+ decay mode 1,u.ad,ae2.v2,9,7,2,15,13,2",
+                    "u,mu_minus_test_mu_1,13,TEST.MU.1,mu- decay mode 1,e2,e.av.v2,8,20,-12,2,14,-12",
+                    "u,mu_minus_test_mu_gamma,13,TEST.MU.GAMMA,mu- decay mode 1,e2,e.av.v2.hp,8,26,-18,2,20,-18",
+                    "u,pi_plus_test_pi_plus,211,TEST.PI.PLUS,pi+ decay mode 1,u.ad,ae2.v2,9,7,2,15,13,2",
                     "u,pi0_fake,111,fake,pi0 decay mode 1,u.au / d.ad,hp.hp,12,12,0,12,12,0",
                 ],
             )
+
+            markdown_lines = (tmp_dir / "pdgfeed.supported.pdg_reactions.md").read_text(encoding="utf-8").strip().splitlines()
+            headers, rows = self.parse_markdown_table(markdown_lines)
+            self.assertEqual(
+                headers,
+                [
+                    "K/U",
+                    "Reaction ID",
+                    "MCID",
+                    "PDG ID",
+                    "Title",
+                    "Reactant AAA",
+                    "Product AAA",
+                    "Transformed Reactant AAA",
+                    "Transformed Product AAA",
+                    "Reactant Ledger",
+                    "Product Ledger",
+                    "Delta Ledger",
+                ],
+            )
+            row_by_id = {row["Reaction ID"]: row for row in rows}
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Transformed Reactant AAA"], "e2")
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Transformed Product AAA"], "e.av.v2")
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Reactant Ledger"], "8.2@")
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Product Ledger"], "20.14@")
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Delta Ledger"], "-12.-12@")
+            self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Transformed Product AAA"], "e.av.v2.h.ah")
+            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Reactant AAA"], "u.ad")
+            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Product AAA"], "ae2.v2")
+            self.assertEqual(row_by_id["pi0_fake"]["Reactant AAA"], "u.au / d.ad")
+            self.assertEqual(row_by_id["pi0_fake"]["Transformed Reactant AAA"], "u.au")
+            self.assertEqual(row_by_id["pi0_fake"]["Transformed Product AAA"], "h.ah.h.ah")
+            self.assertEqual(row_by_id["pi0_fake"]["Delta Ledger"], "0.0@")
 
 
 if __name__ == "__main__":
