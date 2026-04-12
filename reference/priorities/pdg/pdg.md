@@ -199,7 +199,7 @@ Boundary rule:
 Workflow:
 
 1. Run `pdgfeed.py` from the command line.
-2. Choose a built-in PDG test reaction, a built-in PDG reaction, or a user-specified PDG reaction or channel.
+2. Choose a PDG test reaction or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
 4. Emit an explicit request artifact for pdgsolve intake.
 5. Load that request into pdgsolve.

@@ -31,30 +31,11 @@ It does not own:
 
 ## Current State
 
-- `scripts/pdg/pdgfeed.py` now exists as the local PDG pipeline implementation built around PDG test reactions first.
-- Root `pdgfeed.py` remains as a compatibility shim for existing `python3 pdgfeed.py ...` calls and `import pdgfeed` tests/tooling.
-- `requirements.txt` now exists at repo root and currently lists the external `pdg` package.
-- A local PDG test reaction corpus now exists under `content/contracts/examples/pdg/v1/`.
-- Generated proposal and candidate request artifacts now land under `content/contracts/examples/pdg/v1/generated/`.
-- The PDG feed CLI can list PDG test reactions and emit proposal plus `pdgsolve-request/v1` artifacts from that local PDG test reaction corpus through either the root shim or the direct implementation path.
-- The PDG feed CLI also has stdout-only commands that print a single `pdgsolve-request/v1` JSON document for automation and future pdgsolve intake.
-- The PDG feed implementation marks proposal source metadata with an explicit upstream/downstream contract boundary for the request seam, including that pdgsolve owns review and acceptance while pdgedit and pdgview stay downstream.
-- The current implementation now uses an explicit locked v1 PDG-to-`pdgsolve-request/v1` mapping registry keyed by canonical PDG ASCII particle names.
-- Local aliases may canonicalize into that registry for PDG test reaction convenience, but they do not widen the exportable pdgsolve surface.
-- The intended exportable request surface is every channel whose PDG particle names can be translated all the way into explicit admitted Standard Model assemblies.
-- If a particle or channel cannot be translated into explicit admitted Standard Model assemblies, it is un-mappable and must remain upstream as proposal metadata rather than leaking a non-native solver request through the boundary.
-- After removing the baked-in historical cases, there is no longer a built-in PDG reaction from the local database path that crosses the full request boundary with the current locked mapping table.
-- Proposal exports now carry an explicit source contract marker that says they are upstream-only and still require pdgsolve-side acceptance before any downstream handoff can be considered.
-- Emitted `pdgsolve-request/v1` payloads now point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the downstream seam stays traceable to a PDG proposal rather than implying accepted pdgsolve publication.
-- Those emitted `pdgsolve-request/v1` payloads remain explicit upstream request artifacts intended for pdgsolve intake.
-- Unsupported channels currently remain un-mappable rather than emitting invalid solver requests.
-- Emitted candidate payloads are now checked against `pdgsolve-request/v1` rather than only by ad hoc required-key checks.
-- PDG reaction access through the local database path now exists as a guarded CLI path alongside PDG test reactions, but PDG test reactions remain the stable regression and day-to-day development path.
-- There is no dedicated PDG review surface yet.
-- There is no stored alternative-candidate review flow yet.
-- The repository already has an explicit request seam that PDG should feed.
-- There is not yet a finalized accepted-publication payload path from PDG through pdgsolve into pdgedit and onward into pdgview staging.
-- The current local PDG test reaction corpus still uses canonical PDG ASCII particle names in `pdgId` fields for regression stability; PDG reaction reads may additionally record a PDG Identifier in proposal `source` metadata when the API exposes one.
+`pdgfeed` is now a Python CLI centered on `scripts/pdg/pdgfeed.py`, with root `pdgfeed.py` kept only as a compatibility shim for older commands and imports. The stable day-to-day path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`. The CLI can list reactions, emit proposal plus request artifacts, print pipe-safe request JSON to stdout, build frozen PDG reaction manifests, and export supported-reaction CSV summaries. Real PDG database reads also exist through the local `pdg` package, but they are still the secondary path; the regression baseline remains the local test corpus.
+
+The export boundary is stricter than the prose used to imply. `pdgfeed` now owns a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names for convenience, but they do not create new exportable vocabulary. If a particle or full channel cannot be translated all the way into explicit admitted Standard Model assemblies, the case stays upstream as proposal metadata and does not emit a solver request. Emitted requests are schema-validated, carry explicit upstream-only source-contract metadata, and point `source.sourceDocumentId` back to the originating `pdg-proposal:<proposalId>` record so the seam remains traceable.
+
+What is still missing is just as important: there is no dedicated PDG review surface yet, no stored alternative-candidate review flow, and no fully finalized accepted-publication path from `pdgfeed` through the downstream solve and publication chain. In practice, `pdgfeed` should be read today as an upstream normalization and request-emission tool with a stable offline regression corpus, a guarded live-PDG access path, and a deliberately narrow export surface rather than as a complete end-to-end PDG workflow.
 
 ## Design
 
@@ -168,7 +149,7 @@ The manifest assigns sequential `batchId` values and records the PDG decay ident
 
 #### Frozen Manifest Workflow
 
-When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than the small built-in PDG reaction list.
+When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than the small PDG test reaction list.
 
 Recommended workflow:
 
@@ -199,7 +180,7 @@ The first local PDG test reaction corpus is:
 - `muon_decay`
 - `charged_pion_to_muon_neutrino`
 
-The first built-in PDG reactions are:
+The first PDG test reactions are:
 
 - `muon_decay`
 - `radiative_muon_decay`
