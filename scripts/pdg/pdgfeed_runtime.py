@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import re
 import sys
 from collections import Counter
@@ -178,12 +179,104 @@ def transform_participants_for_pdgsolve(
     return transformed_rows
 
 
+def add_minimum_noether_pair_reactants_for_balance(
+    reactants: list[dict[str, str]],
+    products: list[dict[str, str]],
+) -> list[dict[str, str]] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
+    product_totals = get_pdgsolve_occurrence_primitive_totals(products)
+    noether_pair_totals = {
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+    }
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    electrino_deficit = max(0, product_totals["electrinoCount"] - reactant_totals["electrinoCount"])
+    positrino_deficit = max(0, product_totals["positrinoCount"] - reactant_totals["positrinoCount"])
+    pair_count = max(
+        math.ceil(electrino_deficit / noether_pair_totals["electrinoCount"]) if electrino_deficit else 0,
+        math.ceil(positrino_deficit / noether_pair_totals["positrinoCount"]) if positrino_deficit else 0,
+    )
+    if pair_count == 0:
+        return reactants
+
+    augmented_reactants = list(reactants)
+    for index in range(1, pair_count + 1):
+        augmented_reactants.append(
+            {
+                "id": f"reactant_noether_pair_{index}.row.1",
+                "assemblyId": "pro_noether_core_I",
+                "title": "Pro Noether Core",
+            }
+        )
+        augmented_reactants.append(
+            {
+                "id": f"reactant_noether_pair_{index}.row.2",
+                "assemblyId": "anti_noether_core_I",
+                "title": "Anti Noether Core",
+            }
+        )
+    return augmented_reactants
+
+
+def add_maximum_noether_pair_products_from_surplus(
+    reactants: list[dict[str, str]],
+    products: list[dict[str, str]],
+) -> list[dict[str, str]] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
+    product_totals = get_pdgsolve_occurrence_primitive_totals(products)
+    noether_pair_totals = {
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+    }
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    electrino_surplus = max(0, reactant_totals["electrinoCount"] - product_totals["electrinoCount"])
+    positrino_surplus = max(0, reactant_totals["positrinoCount"] - product_totals["positrinoCount"])
+    pair_count = min(
+        electrino_surplus // noether_pair_totals["electrinoCount"],
+        positrino_surplus // noether_pair_totals["positrinoCount"],
+    )
+    if pair_count == 0:
+        return products
+
+    augmented_products = list(products)
+    for index in range(1, pair_count + 1):
+        augmented_products.append(
+            {
+                "id": f"product_noether_pair_{index}.row.1",
+                "assemblyId": "pro_noether_core_I",
+                "title": "Pro Noether Core",
+            }
+        )
+        augmented_products.append(
+            {
+                "id": f"product_noether_pair_{index}.row.2",
+                "assemblyId": "anti_noether_core_I",
+                "title": "Anti Noether Core",
+            }
+        )
+    return augmented_products
+
+
 def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, str]]] | None:
     if has_unsupported_transform_notes(proposal.notes):
         return None
     reactants = transform_participants_for_pdgsolve(proposal.reactants)
     products = transform_participants_for_pdgsolve(proposal.products)
     if reactants is None or products is None:
+        return None
+    reactants = add_minimum_noether_pair_reactants_for_balance(reactants, products)
+    if reactants is None:
+        return None
+    products = add_maximum_noether_pair_products_from_surplus(reactants, products)
+    if products is None:
         return None
     return {
         "reactants": reactants,
@@ -397,6 +490,21 @@ def build_supported_reaction_csv_row(
     }
 
 
+def supported_reaction_sort_key(row: dict[str, str | int]) -> tuple[int, int, int, int, int, str, str]:
+    known_rank = 0 if row.get("known_status", "") == "k" else 1
+    electrino_delta = int(row.get("electrino_delta", 0) or 0)
+    positrino_delta = int(row.get("positrino_delta", 0) or 0)
+    return (
+        known_rank,
+        electrino_delta + positrino_delta,
+        electrino_delta,
+        positrino_delta,
+        int(row.get("mcid", 0) or 0),
+        str(row.get("pdg_identifier", "")),
+        str(row.get("reaction_id", "")),
+    )
+
+
 def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, str | int]]:
     rows: list[dict[str, str | int]] = []
     for case in cases:
@@ -407,7 +515,7 @@ def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, st
         row = build_supported_reaction_csv_row(case, proposal.to_dict(), pdgsolve_request)
         if row is not None:
             rows.append(row)
-    return rows
+    return sorted(rows, key=supported_reaction_sort_key)
 
 
 def build_live_manifest_payload(
@@ -493,7 +601,7 @@ def build_live_supported_reaction_csv_rows(
         row = build_supported_reaction_csv_row(case, entry.get("proposal", {}), entry.get("pdgsolveRequest", {}))
         if row is not None:
             rows.append(row)
-    return rows
+    return sorted(rows, key=supported_reaction_sort_key)
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:

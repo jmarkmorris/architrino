@@ -55,6 +55,16 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(proposal.products[1].pdg_name, "anti-nu_e")
         self.assertIsNotNone(request)
         self.assertEqual(
+            [entry["assemblyId"] for entry in request["reactants"]],
+            [
+                "pro_muon_II",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
+        )
+        self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             ["pro_electron_I", "anti_electron_neutrino_I", "pro_muon_neutrino_II"],
         )
@@ -79,6 +89,15 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(
             [entry["assemblyId"] for entry in request["reactants"]],
             ["pro_up_quark_I", "anti_up_quark_I"],
+        )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["products"]],
+            [
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
         )
 
     def test_supported_csv_rows_include_known_status_and_exact_ids(self):
@@ -183,6 +202,18 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertIsNotNone(muon_request)
         self.assertIsNotNone(pion_request)
         self.assertEqual(
+            [entry["assemblyId"] for entry in muon_request["reactants"]],
+            [
+                "pro_muon_II",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
+        )
+        self.assertEqual(
             [entry["assemblyId"] for entry in muon_request["products"]],
             [
                 "pro_electron_I",
@@ -237,7 +268,7 @@ class PdgfeedContractTests(unittest.TestCase):
                     source_kind="pdg-live",
                     source={"mcid": 0, "pdgIdentifier": "fake"},
                     reactants=(pdgfeed.CaseParticle(name=particle_name, pdg_id=particle_name),),
-                    products=(pdgfeed.CaseParticle(name="mu+", pdg_id="mu+"),),
+                    products=(),
                 )
                 proposal = pdgfeed.build_proposal(case)
                 transformed = pdgfeed.transform_proposal_for_pdgsolve(proposal)

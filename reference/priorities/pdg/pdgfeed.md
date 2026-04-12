@@ -117,6 +117,8 @@ Requests should be emitted only from normalized proposal records, never directly
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
+For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit Noether-pair reactants, each pair being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`.
+
 The practical flow is:
 
 1. connect to the local PDG database;
