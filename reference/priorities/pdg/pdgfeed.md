@@ -154,7 +154,7 @@ Interpretation:
 - in manifest mode, unsupported discoveries stay outside that denominator and are reported separately;
 - and manifest counts should be read as request-emission progress, not as solve-core closure metrics.
 
-Current PDG test reactions:
+PDG test reactions:
 
 - `muon_decay`
 - `radiative_muon_decay`
@@ -515,24 +515,24 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 | `anti_noether_core_III` | Anti Uni-Binary | `n/a` | `ah3` | assembly | `ah3` | `1:1@` | Noether core | III | anti | yes |
 | `pro_electron_I` | Electron | `e-` | `e` | assembly | `h + 6:0@` | `9:3@` | charged lepton | I | pro | yes |
 | `anti_electron_I` | Positron | `e+` | `ae` | assembly | `ah + 0:6@` | `3:9@` | charged lepton | I | anti | yes |
-| `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h` | `3:3@` | neutrino | I | pro | yes |
-| `anti_electron_neutrino_I` | Anti Electron Neutrino | `anti-nu_e` | `av` | assembly | `ah` | `3:3@` | neutrino | I | anti | yes |
+| `pro_electron_neutrino_I` | Electron Neutrino | `nu_e` | `v` | assembly | `h + 3:3@` | `6:6@` | neutrino | I | pro | yes |
+| `anti_electron_neutrino_I` | Anti Electron Neutrino | `anti-nu_e` | `av` | assembly | `ah + 3:3@` | `6:6@` | neutrino | I | anti | yes |
 | `pro_up_quark_I` | Up Quark | `u` | `u` | assembly | `h + 1:5@` | `4:8@` | up-type quark | I | pro | yes |
 | `anti_up_quark_I` | Anti Up Quark | `anti-u` | `au` | assembly | `ah + 5:1@` | `8:4@` | up-type quark | I | anti | yes |
 | `pro_down_quark_I` | Down Quark | `d` | `d` | assembly | `h + 4:2@` | `7:5@` | down-type quark | I | pro | yes |
 | `anti_down_quark_I` | Anti Down Quark | `anti-d` | `ad` | assembly | `ah + 2:4@` | `5:7@` | down-type quark | I | anti | yes |
 | `pro_muon_II` | Muon | `mu-` | `e2` | assembly | `h2 + 6:0@` | `8:2@` | charged lepton | II | pro | yes |
 | `anti_muon_II` | Anti Muon | `mu+` | `ae2` | assembly | `ah2 + 0:6@` | `2:8@` | charged lepton | II | anti | yes |
-| `pro_muon_neutrino_II` | Muon Neutrino | `nu_mu` | `v2` | assembly | `h2` | `2:2@` | neutrino | II | pro | yes |
-| `anti_muon_neutrino_II` | Anti Muon Neutrino | `anti-nu_mu` | `av2` | assembly | `ah2` | `2:2@` | neutrino | II | anti | yes |
+| `pro_muon_neutrino_II` | Muon Neutrino | `nu_mu` | `v2` | assembly | `h2 + 3:3@` | `5:5@` | neutrino | II | pro | yes |
+| `anti_muon_neutrino_II` | Anti Muon Neutrino | `anti-nu_mu` | `av2` | assembly | `ah2 + 3:3@` | `5:5@` | neutrino | II | anti | yes |
 | `pro_charm_quark_II` | Charm Quark | `c` | `u2` | assembly | `h2 + 1:5@` | `3:7@` | up-type quark | II | pro | yes |
 | `anti_charm_quark_II` | Anti Charm Quark | `anti-c` | `au2` | assembly | `ah2 + 5:1@` | `7:3@` | up-type quark | II | anti | yes |
 | `pro_strange_quark_II` | Strange Quark | `s` | `d2` | assembly | `h2 + 4:2@` | `6:4@` | down-type quark | II | pro | yes |
 | `anti_strange_quark_II` | Anti Strange Quark | `anti-s` | `ad2` | assembly | `ah2 + 2:4@` | `4:6@` | down-type quark | II | anti | yes |
 | `pro_tau_III` | Tau | `tau-` | `e3` | assembly | `h3 + 6:0@` | `7:1@` | charged lepton | III | pro | yes |
 | `anti_tau_III` | Anti Tau | `tau+` | `ae3` | assembly | `ah3 + 0:6@` | `1:7@` | charged lepton | III | anti | yes |
-| `pro_tau_neutrino_III` | Tau Neutrino | `nu_tau` | `v3` | assembly | `h3` | `1:1@` | neutrino | III | pro | yes |
-| `anti_tau_neutrino_III` | Anti Tau Neutrino | `anti-nu_tau` | `av3` | assembly | `ah3` | `1:1@` | neutrino | III | anti | yes |
+| `pro_tau_neutrino_III` | Tau Neutrino | `nu_tau` | `v3` | assembly | `h3 + 3:3@` | `4:4@` | neutrino | III | pro | yes |
+| `anti_tau_neutrino_III` | Anti Tau Neutrino | `anti-nu_tau` | `av3` | assembly | `ah3 + 3:3@` | `4:4@` | neutrino | III | anti | yes |
 | `pro_top_quark_III` | Top Quark | `t` | `u3` | assembly | `h3 + 1:5@` | `2:6@` | up-type quark | III | pro | yes |
 | `anti_top_quark_III` | Anti Top Quark | `anti-t` | `au3` | assembly | `ah3 + 5:1@` | `6:2@` | up-type quark | III | anti | yes |
 | `pro_bottom_quark_III` | Bottom Quark | `b` | `d3` | assembly | `h3 + 4:2@` | `5:3@` | down-type quark | III | pro | yes |
