@@ -194,20 +194,16 @@ A single PDG participant may expand into multiple emitted request occurrences. T
 
 ### PDG Ecosystem
 
+The ingest program should assume that the required package and database are already installed locally. Package/database updates are a developer-maintained concern, not a runtime ingest concern.
+
 The integration options are:
 
 - primary:
-  the official Python API over a local SQLite database file;
+  the official Python API over a local SQLite database file; The local database is the SQLite file bundled with the installed `pdg` package;
 - secondary:
   direct SQL against that same local database when the Python API does not expose the needed traversal cleanly;
 - incidental only:
   the REST API for inspection or experiments, not for the normal ingest path.
-
-### Database Policy
-
-The local database is the SQLite file bundled with the installed `pdg` package.
-
-The ingest program should assume that the required package and database are already installed locally. Package/database updates are a developer-maintained concern, not a runtime ingest concern.
 
 ### Normalization Contract
 
@@ -289,18 +285,7 @@ Objective:
 
 - keep batch-oriented PDG work tied to the frozen-manifest denominator as particle coverage grows and pdgsolve-side tooling comes online.
 
-### 2. Promote Remaining PDG Developer Notes Into `reference/`
 
-Status: `pending`
-
-Current:
-
-- some PDG-adjacent development notes still live outside `reference/`;
-- at least one covers the PDG package itself, while others are general development notes that should no longer live in AAA-facing locations.
-
-Objective:
-
-- move the remaining PDG-specific and development-specific notes into `reference/` so the editorial and developer boundaries stay clean.
 
 ## Grammar Map
 
@@ -363,7 +348,7 @@ Current compact AAA notation:
 | `h2`         | Bi Binary                        | reduced `Noether core` form                                        | `n/a`            |
 | `h3`         | Uni Binary                       | reduced `Noether core` form                                        | `n/a`            |
 | `hp`         | Noether Pair or Photon           | mixed-core shorthand for `h.ah`                                    | `gamma`          |
-| `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.h.ah.ah`                               | `n/a`            |
+| `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.ah.h.ah`                               | `n/a`            |
 | `e:p@`       | `Unbound Architrinos` ledger     | explicit electrino:positrino count, with both sides always present | `n/a`            |
 
 The `PDG API Notation` column is a naming bridge for API alignment only. It is not a claim of exact one-to-one ontology, especially for solver-only constructs such as `h`, `h2`, `h3`, and the `e:p@` ledger token.
@@ -396,16 +381,16 @@ Examples:
 
 `Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
-| Notation   | Meaning                               |
-| ---------- | ------------------------------------- |
-| `1:1@`     | one electrino and one positrino       |
-| `227:120@` | `227` electrinos and `120` positrinos |
-| `227:0@`   | `227` electrinos and zero positrinos  |
-| `0:120@`   | zero electrinos and `120` positrinos  |
+| Notation | Meaning                             |
+| -------- | ----------------------------------- |
+| `1:1@`   | one electrino and one positrino     |
+| `7:12@`  | `7` electrinos and `12` positrinos  |
+| `7:0@`   | `7` electrinos and zero positrinos  |
+| `0:12@`  | zero electrinos and `12` positrinos |
 
-Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
+Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `7@` means `7:0@`, `0:7@`, or something else.
 
-The choice of `@` for `Unbound Architrinos` is now intentional rather than provisional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a unbound electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
+The choice of `@` for `Unbound Architrinos` is intentional. It works well at the shell level because it is safe in unquoted command-line arguments, but it also carries a useful visual and conceptual resonance. The symbol reads like a curling or spiraling enclosure, which fits the intuition that a unbound electrino and positrino meeting in isolation would tend toward a tighter orbital closure. At the same time, the historical bookkeeping meaning of the at sign ties neatly into the solver's conservation and provenance ledger: `@` already carries the feel of accounting, relation, and counted association. That makes it a rare symbol that is compact, typeable, shell-safe, visually suggestive, and semantically aligned with the solver's charge-routing and ledger language.
 
 This direction is simpler for the intended audience because it avoids a large inventory of unrelated one-letter symbols. A small set of family letters plus generation indices covers the fermion families cleanly, while `h`, `ah`, and explicit `e:p@` ledgers preserve the assembly-side intuition.
 
@@ -540,27 +525,25 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 
 #### Composites
 
-| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `proton` | Proton | `p` | `P` | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)` | `15:21@` | baryon | I | pro | no |
-| `anti_proton` | Anti Proton | `anti-p` | `aP` | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)` | `21:15@` | baryon | I | anti | no |
-| `neutron` | Neutron | `n` | `N` | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)` | `18:18@` | baryon | I | pro | no |
-| `anti_neutron` | Anti Neutron | `anti-n` | `aN` | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)` | `18:18@` | baryon | I | anti | no |
-| `photon` | Photon | `gamma` | `hp` | composite | `h.ah` | `6:6@` | boson | `n/a` | self-conjugate | no |
-| `higgs_cluster` | Higgs Cluster | `H` | `hq` | composite | `h.h.ah.ah` | `12:12@` | boson | `n/a` | mixed | no |
-| `w_plus_corridor` | W+ Boson | `W+` | `W+` | composite | `ah.ah + 0:6@` | `6:12@` | weak boson | `n/a` | mixed | no |
-| `w_minus_corridor` | W- Boson | `W-` | `W-` | composite | `h.h + 6:0@` | `12:6@` | weak boson | `n/a` | mixed | no |
-| `z_corridor` | Z Boson | `Z` | `Z` | composite | `h.ah` | `6:6@` | weak boson | `n/a` | self-conjugate | no |
-| `positive_pion` | Positive Pion | `pi+` | `u.ad` | composite | `u.ad = (h + 1:5@).(ah + 2:4@)` | `9:15@` | meson | I | mixed | no |
-| `neutral_pion` | Neutral Pion | `pi0` | `u.au / d.ad` | composite | `u.au or d.ad` | `12:12@` | meson | I | self-conjugate | no |
-| `negative_pion` | Negative Pion | `pi-` | `d.au` | composite | `d.au = (h + 4:2@).(ah + 5:1@)` | `15:9@` | meson | I | mixed | no |
-| `positive_kaon` | Positive Kaon | `K+` | `u.ad2` | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)` | `8:14@` | meson | `I+II` | mixed | no |
-| `neutral_kaon` | Neutral Kaon | `K0` | `d.ad2` | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)` | `11:11@` | meson | `I+II` | mixed | no |
-| `negative_kaon` | Negative Kaon | `K-` | `au.d2` | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)` | `14:8@` | meson | `I+II` | mixed | no |
-| `anti_neutral_kaon` | Anti Neutral Kaon | `anti-K0` | `ad.d2` | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)` | `11:11@` | meson | `I+II` | mixed | no |
-| `positive_b_meson` | Positive B Meson | `B+` | `u.ad3` | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)` | `7:13@` | meson | `I+III` | mixed | no |
-| `neutral_b_meson` | Neutral B Meson | `B0` | `d.ad3` | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)` | `10:10@` | meson | `I+III` | mixed | no |
-| `negative_b_meson` | Negative B Meson | `B-` | `au.d3` | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)` | `13:7@` | meson | `I+III` | mixed | no |
-| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0` | `ad.d3` | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)` | `10:10@` | meson | `I+III` | mixed | no |
-
-The photon, Higgs-cluster, and weak-corridor rows above are still shorthand structural sketches, not closed microstate derivations. They belong in the composite half of the registry because the solver-native export surface should stay limited to the assembly rows only.
+| Canonical ID           | Full Name            | PDG Notation | AAA Notation  | Type      | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family     | Generation | Pro or Anti    | Exportable to pdgsolve |
+| ---------------------- | -------------------- | ------------ | ------------- | --------- | ------------------------------------------------------------------------- | ----------------- | ---------- | ---------- | -------------- | ---------------------- |
+| `proton`               | Proton               | `p`          | `P`           | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)`                                | `15:21@`          | baryon     | I          | pro            | no                     |
+| `anti_proton`          | Anti Proton          | `anti-p`     | `aP`          | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)`                          | `21:15@`          | baryon     | I          | anti           | no                     |
+| `neutron`              | Neutron              | `n`          | `N`           | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)`                                | `18:18@`          | baryon     | I          | pro            | no                     |
+| `anti_neutron`         | Anti Neutron         | `anti-n`     | `aN`          | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)`                          | `18:18@`          | baryon     | I          | anti           | no                     |
+| `photon`               | Photon               | `gamma`      | `hp`          | composite | `h.ah`                                                                    | `6:6@`            | boson      | `n/a`      | self-conjugate | no                     |
+| `higgs_cluster`        | Higgs Cluster        | `H`          | `hq`          | composite | `h.ah.h.ah`                                                               | `12:12@`          | boson      | `n/a`      | mixed          | no                     |
+| `w_plus_corridor`      | W+ Boson             | `W+`         | `W+`          | composite | `h + 0:6@`                                                                | `3:9@`            | weak boson | `n/a`      | pro            | no                     |
+| `w_minus_corridor`     | W- Boson             | `W-`         | `W-`          | composite | `ah + 6:0@`                                                               | `9:3@`            | weak boson | `n/a`      | anti           | no                     |
+| `z_corridor`           | Z Boson              | `Z`          | `Z`           | composite | `h.ah`                                                                    | `6:6@`            | weak boson | `n/a`      | self-conjugate | no                     |
+| `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | no                     |
+| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`                                                            | `12:12@`          | meson      | I          | self-conjugate | no                     |
+| `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | no                     |
+| `positive_kaon`        | Positive Kaon        | `K+`         | `u.ad2`       | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)`                                         | `8:14@`           | meson      | `I+II`     | mixed          | no                     |
+| `neutral_kaon`         | Neutral Kaon         | `K0`         | `d.ad2`       | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | no                     |
+| `negative_kaon`        | Negative Kaon        | `K-`         | `au.d2`       | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)`                                         | `14:8@`           | meson      | `I+II`     | mixed          | no                     |
+| `anti_neutral_kaon`    | Anti Neutral Kaon    | `anti-K0`    | `ad.d2`       | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | no                     |
+| `positive_b_meson`     | Positive B Meson     | `B+`         | `u.ad3`       | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)`                                         | `7:13@`           | meson      | `I+III`    | mixed          | no                     |
+| `neutral_b_meson`      | Neutral B Meson      | `B0`         | `d.ad3`       | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | no                     |
+| `negative_b_meson`     | Negative B Meson     | `B-`         | `au.d3`       | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)`                                         | `13:7@`           | meson      | `I+III`    | mixed          | no                     |
+| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0`    | `ad.d3`       | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | no                     |

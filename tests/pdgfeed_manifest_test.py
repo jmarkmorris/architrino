@@ -80,6 +80,33 @@ class BuildLiveManifestPayloadTests(unittest.TestCase):
         self.assertEqual(normalized_test_case_args.command, "list-pdg-test-reactions")
         self.assertEqual(normalized_test_case_args.source, "pdg-test-reactions")
 
+    def test_normalize_cli_args_supports_the_new_five_job_operator_surface(self):
+        list_args = argparse.Namespace(command="list", source="test")
+        proposal_args = argparse.Namespace(command="proposal", source="live", reaction_id="muon_decay")
+        request_args = argparse.Namespace(command="request", source="pdg", reaction_id="muon_decay")
+        manifest_args = argparse.Namespace(command="manifest")
+        supported_csv_args = argparse.Namespace(command="supported-csv", source="test-cases")
+
+        normalized_list_args = pdgfeed.normalize_cli_args(list_args)
+        self.assertEqual(normalized_list_args.command, "list")
+        self.assertEqual(normalized_list_args.source, "pdg-test-reactions")
+
+        normalized_proposal_args = pdgfeed.normalize_cli_args(proposal_args)
+        self.assertEqual(normalized_proposal_args.command, "proposal")
+        self.assertEqual(normalized_proposal_args.source, "pdg-reactions")
+        self.assertEqual(normalized_proposal_args.test_case_id, "muon_decay")
+        self.assertEqual(normalized_proposal_args.case_id, "muon_decay")
+
+        normalized_request_args = pdgfeed.normalize_cli_args(request_args)
+        self.assertEqual(normalized_request_args.command, "request")
+        self.assertEqual(normalized_request_args.source, "pdg-reactions")
+
+        self.assertEqual(pdgfeed.normalize_cli_args(manifest_args).command, "manifest")
+
+        normalized_supported_csv_args = pdgfeed.normalize_cli_args(supported_csv_args)
+        self.assertEqual(normalized_supported_csv_args.command, "supported-csv")
+        self.assertEqual(normalized_supported_csv_args.source, "pdg-test-reactions")
+
     def test_build_proposal_marks_the_pdg_to_pdgsolve_request_boundary_explicitly(self):
         case = pdgfeed.PdgCase(
             case_id="free_neutron_beta_decay",

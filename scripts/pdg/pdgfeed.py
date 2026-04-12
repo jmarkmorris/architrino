@@ -50,11 +50,16 @@ PDG_SOURCE_CONTRACT = {
 }
 
 CLI_COMMAND_ALIASES = {
+    "list": "list",
     "list-test-cases": "list-pdg-test-reactions",
     "emit-test-case": "emit-pdg-test-reaction",
     "print-test-case-proposal": "print-pdg-test-reaction-proposal",
     "print-test-case-pdgsolve-request": "print-pdg-test-reaction-pdgsolve-request",
     "emit-all-test-cases": "emit-all-pdg-test-reactions",
+    "proposal": "proposal",
+    "request": "request",
+    "manifest": "manifest",
+    "supported-csv": "supported-csv",
     "list-live-cases": "list-pdg-reactions",
     "list-pdg-database-cases": "list-pdg-reactions",
     "build-live-manifest": "build-pdg-reaction-manifest",
@@ -73,6 +78,8 @@ CSV_SOURCE_ALIASES = {
     "test-cases": "pdg-test-reactions",
     "live": "pdg-reactions",
     "pdg-database": "pdg-reactions",
+    "test": "pdg-test-reactions",
+    "pdg": "pdg-reactions",
 }
 
 def generation_adjusted_primitive_counts(base_counts: tuple[int, int], generation: int) -> tuple[int, int]:
@@ -95,6 +102,12 @@ def normalize_cli_args(args: argparse.Namespace) -> argparse.Namespace:
     source = getattr(args, "source", None)
     if isinstance(source, str):
         args.source = CSV_SOURCE_ALIASES.get(source, source)
+    reaction_id = getattr(args, "reaction_id", None)
+    if reaction_id:
+        if not getattr(args, "test_case_id", None):
+            args.test_case_id = reaction_id
+        if not getattr(args, "case_id", None):
+            args.case_id = reaction_id
     return args
 
 
@@ -1461,8 +1474,49 @@ def format_output_path(path: Path) -> str:
         return str(path)
 
 
+def build_cases_by_source(
+    source: str,
+    test_cases: list[PdgCase],
+    database_url: str | None = None,
+) -> list[PdgCase]:
+    if source == "pdg-test-reactions":
+        return list(test_cases)
+    if source != "pdg-reactions":
+        raise SystemExit(f"Unsupported source: {source}")
+    try:
+        return [load_live_case(spec, database_url) for spec in LIVE_CHANNEL_SPECS]
+    except (LookupError, RuntimeError) as exc:
+        raise SystemExit(str(exc)) from exc
+
+
+def resolve_case_by_source(
+    source: str,
+    reaction_id: str,
+    test_cases_by_id: dict[str, PdgCase],
+    database_url: str | None = None,
+) -> PdgCase:
+    if source == "pdg-test-reactions":
+        test_case = test_cases_by_id.get(reaction_id)
+        if test_case is None:
+            available = ", ".join(sorted(test_cases_by_id))
+            raise SystemExit(f"Unknown PDG test reaction id {reaction_id!r}. Available: {available}")
+        return test_case
+    if source == "pdg-reactions":
+        spec = LIVE_CHANNEL_SPEC_BY_ID.get(reaction_id)
+        if spec is None:
+            available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
+            raise SystemExit(f"Unknown PDG reaction id {reaction_id!r}. Available: {available}")
+        try:
+            return load_live_case(spec, database_url)
+        except (LookupError, RuntimeError) as exc:
+            raise SystemExit(str(exc)) from exc
+    raise SystemExit(f"Unsupported source: {source}")
+
+
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build PDG proposal artifacts and pdgsolve-request candidates from PDG test reactions and PDG reactions.")
+    parser = argparse.ArgumentParser(
+        description="List PDG reactions, build proposals, emit pdgsolve requests, and prepare batch manifests."
+    )
     parser.add_argument(
         "--test-reaction-index",
         "--test-case-index",
@@ -1482,6 +1536,74 @@ def parse_args() -> argparse.Namespace:
         help="Optional database URL passed through to pdg.connect(...) for PDG database reads.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    list_parser = subparsers.add_parser(
+        "list",
+        help="List available reactions from either the repo test corpus or the local PDG database.",
+    )
+    list_parser.add_argument(
+        "--source",
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        default="pdg-test-reactions",
+        help="Choose the reaction source.",
+    )
+
+    proposal_parser = subparsers.add_parser(
+        "proposal",
+        help="Print one proposal JSON payload or write proposal artifacts for one reaction.",
+    )
+    proposal_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
+    proposal_parser.add_argument(
+        "--source",
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        default="pdg-test-reactions",
+        help="Choose the reaction source.",
+    )
+    proposal_parser.add_argument(
+        "--write",
+        action="store_true",
+        help="Write proposal artifacts to --output-dir instead of printing JSON to stdout.",
+    )
+
+    request_parser = subparsers.add_parser(
+        "request",
+        help="Print one pdgsolve-request JSON payload or write artifacts for one reaction when exportable.",
+    )
+    request_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
+    request_parser.add_argument(
+        "--source",
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "live", "pdg-database"),
+        default="pdg-test-reactions",
+        help="Choose the reaction source.",
+    )
+    request_parser.add_argument(
+        "--write",
+        action="store_true",
+        help="Write request-capable artifacts to --output-dir instead of printing JSON to stdout.",
+    )
+
+    subparsers.add_parser(
+        "manifest",
+        help="Discover exportable PDG reactions and print a frozen batch manifest JSON payload.",
+    )
+
+    supported_csv_parser = subparsers.add_parser(
+        "supported-csv",
+        help="Emit a CSV primitive-count summary for supported reactions.",
+    )
+    supported_csv_parser.add_argument(
+        "csv_path",
+        nargs="?",
+        type=Path,
+        default=DEFAULT_SUPPORTED_REACTION_CSV,
+        help="Path where the supported reaction CSV is written.",
+    )
+    supported_csv_parser.add_argument(
+        "--source",
+        choices=("pdg-test-reactions", "pdg-reactions", "test", "test-cases", "pdg-database", "live"),
+        default="pdg-test-reactions",
+        help="Choose the reaction source.",
+    )
 
     subparsers.add_parser(
         "list-pdg-test-reactions",
@@ -1577,6 +1699,51 @@ def main() -> int:
     args = normalize_cli_args(parse_args())
     test_cases = load_test_case_index(args.test_case_index)
     test_cases_by_id = {test_case.case_id: test_case for test_case in test_cases}
+
+    if args.command == "list":
+        if args.source == "pdg-test-reactions":
+            for test_case in test_cases:
+                print(f"{test_case.case_id}\t{test_case.title}")
+            return 0
+        for spec in LIVE_CHANNEL_SPECS:
+            print(f"{spec.case_id}\t{spec.title}")
+        return 0
+
+    if args.command == "proposal":
+        case = resolve_case_by_source(args.source, args.reaction_id, test_cases_by_id, args.database_url)
+        if args.write:
+            for path in emit_case(case, args.output_dir):
+                if path.name.endswith(".proposal.v1.json"):
+                    print(format_output_path(path))
+            return 0
+        print_json(build_proposal(case).to_dict())
+        return 0
+
+    if args.command == "request":
+        case = resolve_case_by_source(args.source, args.reaction_id, test_cases_by_id, args.database_url)
+        if args.write:
+            for path in emit_case(case, args.output_dir):
+                print(format_output_path(path))
+            return 0
+        pdgsolve_request = build_pdgsolve_request(build_proposal(case))
+        if pdgsolve_request is None:
+            source_label = "PDG test reaction" if args.source == "pdg-test-reactions" else "PDG reaction"
+            raise SystemExit(f"{source_label} {args.reaction_id!r} does not currently emit pdgsolve-request/v1.")
+        print_json(pdgsolve_request)
+        return 0
+
+    if args.command == "manifest":
+        print_json(build_live_manifest_payload(args.database_url))
+        return 0
+
+    if args.command == "supported-csv":
+        if args.source == "pdg-reactions":
+            rows = build_live_supported_reaction_csv_rows(args.database_url)
+        else:
+            rows = build_supported_reaction_csv_rows(test_cases)
+        write_supported_reaction_csv(args.csv_path, rows)
+        print(format_output_path(args.csv_path))
+        return 0
 
     if args.command == "list-pdg-test-reactions":
         for test_case in test_cases:
