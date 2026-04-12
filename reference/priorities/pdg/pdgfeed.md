@@ -31,9 +31,9 @@ It does not own:
 
 ## Current State
 
-`pdgfeed` currently lives in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim for older commands and imports. The stable development path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
+`pdgfeed` currently lives in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim for older commands and imports.
 
-The CLI can list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build frozen PDG reaction manifests, and export supported-reaction CSV summaries. Real PDG database reads also exist, but they are still the secondary path. The regression baseline is the local PDG test corpus.
+The CLI can list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build PDG reaction outputs for multi-reaction work, and export supported-reaction CSV summaries. Real PDG database reads also exist, but they are still the secondary path.
 
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -126,7 +126,7 @@ Conceptually, it does only five things:
 1. list available reactions;
 2. build a proposal for one reaction;
 3. build a `pdgsolve-request/v1` for one reaction when exportable;
-4. build a frozen manifest for batch work;
+4. build PDG reaction output for multi-reaction work;
 5. export a support summary for many reactions.
 
 The longer command list in the implementation is mostly historical duplication:
@@ -140,32 +140,9 @@ That larger command list should be treated as implementation detail, not as the 
 
 PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
-For batch work over many exportable PDG reactions, first freeze a manifest:
+#### Test Reactions
 
-- `VIRTUAL_ENV=/path/to/venv /path/to/venv/bin/python pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
-
-The manifest gives downstream tooling a frozen ordered list rather than relying on memory.
-
-#### Frozen Manifest Workflow
-
-When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than ad hoc one-off commands.
-
-Recommended workflow:
-
-1. build a frozen PDG reaction manifest with the repo venv Python so the PDG environment is explicit and stable for the whole run;
-2. use that manifest as the stable ordered batch surface for downstream tooling;
-3. treat analyzable/exportable manifest entries as the current request-emission denominator;
-4. separate unsupported-particle discovery from request-emission progress.
-
-Example full-manifest run:
-
-- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-manifest.json`
-
-Interpretation:
-
-- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `pdgsolve-request/v1`;
-- in manifest mode, unsupported discoveries stay outside that denominator and are reported separately;
-- and manifest counts should be read as request-emission progress, not as solve-core closure metrics.
+The stable day-to-day regression path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
 
 PDG test reactions:
 
@@ -174,6 +151,25 @@ PDG test reactions:
 - `muon_decay_with_electron_positron_pair`
 - `muon_to_electron_photon`
 - `charged_pion_to_muon_neutrino`
+
+When the goal is to inspect or process many PDG reactions, the preferred path is the explicit PDG reaction output from `pdgfeed`, not ad hoc one-off commands.
+
+Recommended workflow:
+
+1. build the PDG reaction output with the repo venv Python so the PDG environment is explicit and stable for the whole run;
+2. use that output as the stable ordered source for downstream tooling;
+3. treat analyzable/exportable entries in that output as the current request-emission denominator;
+4. separate unsupported-particle discovery from request-emission progress.
+
+Example run:
+
+- `/path/to/repo/.venv/bin/python /path/to/repo/pdgfeed.py build-pdg-reaction-manifest > /tmp/pdg-reaction-list.json`
+
+Interpretation:
+
+- `analyzableReactions` means entries that successfully crossed the PDG-to-solver boundary and produced a valid `pdgsolve-request/v1`;
+- in this output, unsupported discoveries stay outside that denominator and are reported separately;
+- and these counts should be read as request-emission progress, not as solve-core closure metrics.
 
 The locked canonical v1 PDG-to-`pdgsolve-request/v1` mapping table defines the exportable vocabulary. Representative rows include:
 
@@ -273,17 +269,17 @@ For now:
 
 ## Priorities
 
-### 1. Use Frozen Manifests As The Stable Batch Surface For PDG Support
+### 1. Use Test Reactions As The Stable Surface For PDG Support
 
 Status: `active`
 
 Current:
 
-- `build-pdg-reaction-manifest` already freezes exportable/analyzable reactions into a stable ordered list separate from unsupported discovery reactions.
+- `build-pdg-reaction-manifest` already writes exportable/analyzable reactions into explicit PDG reaction output separate from unsupported discovery reactions.
 
 Objective:
 
-- keep batch-oriented PDG work tied to the frozen-manifest denominator as particle coverage grows and pdgsolve-side tooling comes online.
+- keep PDG support anchored in the stable test reactions while particle coverage grows and pdgsolve-side tooling comes online.
 
 
 
