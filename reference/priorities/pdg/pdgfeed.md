@@ -52,45 +52,15 @@ Policy:
 
 ### Runtime Model
 
-`pdgfeed` currently lives in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim for older commands and imports.
+`pdgfeed` implementation ownership is in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim so older commands and imports keep working while the implementation lives under `scripts/pdg/`.
 
-The CLI can list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build PDG reaction outputs for multi-reaction work, and export supported-reaction CSV summaries. 
+The normal ingest path should be local and offline once dependencies are installed. `scripts/pdg/pdgfeed.py` connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
-
-The normal ingest path should be local and offline once dependencies are installed.
-
-The practical flow is:
-
-1. connect to the local PDG database; 
-2. retrieve reaction data; the  PDG adapter exposes the PDG objects and metadata we actually consume;
-3. normalize that data into explicit proposal records;   converts PDG particles, identifiers, decay products, multiplicities, and subdecay structure into repo-owned records;
-4. emit `pdgsolve-request/v1` only when the channel is fully mappable;   builds proposal candidates and attaches ranking metadata;   records the source information needed for later review;
-5. otherwise keep the case upstream as proposal-only output.
-
-pdgfeed is the upstream owner of composite-to-assembly translation for PDG-facing language.
-
-That means:
-
-- PDG names such as `n` and `p` may be expanded into explicit emitted assembly occurrences before the request crosses into pdgsolve;
-- unsupported or ambiguous higher-scale terms must remain un-mappable rather than leaking into solver-native request ids;
-- if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
-- and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
-
-The implementation writes text output for Op usage as well as explicit JSON artifacts for PDG reactions and debugging.
-
-The implementation has two surfaces:
+The implementation exposes two runtime surfaces:
 
 - a library entrypoint in `scripts/pdg/pdgfeed.py` that returns normalized PDG-derived candidates;
-- and a CLI entrypoint in `scripts/pdg/pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests.
-
-The root path remains a compatibility layer:
-
-- `pdgfeed.py`:
-  imports and delegates to `scripts/pdg/pdgfeed.py` so old commands and Python imports keep working while new implementation ownership is explicit.
-
-- `scripts/pdg/pdgfeed.py`:
-  connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
+- a CLI entrypoint in `scripts/pdg/pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests;
+- and the root `pdgfeed.py` compatibility layer, which imports and delegates to `scripts/pdg/pdgfeed.py`.
 
 Conceptually, `pdgfeed` does only five things:
 
@@ -100,17 +70,25 @@ Conceptually, `pdgfeed` does only five things:
 4. build PDG reaction output for multi-reaction work;
 5. export a support summary for many reactions.
 
-PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
+The CLI can therefore list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build PDG reaction outputs for multi-reaction work, and export supported-reaction CSV summaries. The implementation also writes text output for Op usage as well as explicit JSON artifacts for PDG reactions and debugging.
 
+The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
+
+`pdgfeed` is the upstream owner of composite-to-assembly translation for PDG-facing language.
+
+That means:
+
+- PDG names such as `n` and `p` may be expanded into explicit emitted assembly occurrences before the request crosses into pdgsolve;
+- unsupported or ambiguous higher-scale terms must remain un-mappable rather than leaking into solver-native request ids;
+- if multiple upstream interpretations are plausible, that ambiguity belongs in PDG proposal/review state rather than in pdgsolve ontology;
+- and the default architecture should use PDG-side translators and review artifacts rather than adding a new dedicated app between pdgfeed and pdgsolve.
 
 The proposal and request boundary should use two repo-owned layers:
 
 - a normalized PDG proposal record used inside ingest;
 - and one exported `pdgsolve-request/v1` candidate per exportable proposal.
 
-Proposal records should carry stable identity, source provenance, normalized participants, ranking metadata, and notes about ambiguity or unsupported structure.
-
-Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
+Proposal records should carry stable identity, source provenance, normalized participants, ranking metadata, and notes about ambiguity or unsupported structure. Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
 
 The normalized output should include:
 
@@ -127,6 +105,16 @@ Requests should be emitted only from normalized proposal records, never directly
 - point `source.sourceDocumentId` to `pdg-proposal:<proposalId>`;
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
+
+The practical flow is:
+
+1. connect to the local PDG database;
+2. retrieve reaction data, with the PDG adapter exposing the PDG objects and metadata the ingest layer actually consumes;
+3. normalize PDG particles, identifiers, decay products, multiplicities, and subdecay structure into explicit repo-owned proposal records;
+4. build proposal candidates, attach ranking metadata, record the source information needed for later review, and emit `pdgsolve-request/v1` only when the channel is fully mappable;
+5. otherwise keep the case upstream as proposal-only output.
+
+PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
 #### Test Reactions
 
