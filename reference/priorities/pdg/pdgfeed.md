@@ -77,7 +77,7 @@ The canonical CLI surface should be only five subcommands. All calls below use t
 
 | Call | Options | Output content | Output format | Output location |
 | --- | --- | --- | --- | --- |
-| `pdgfeed.py list` | `--source {pdg-test-reactions,pdg-reactions}` | Lists reaction ids and titles from the selected source. | plain text (`<id>\t<title>`) | `stdout` |
+| `pdgfeed.py list` | `--source {pdg-test-reactions,pdg-reactions}` | Lists reaction ids, titles, channel descriptions, and export status from the selected source. | plain text (`<id>\t<title>\t<channel>\t<status>`) | `stdout` |
 | `pdgfeed.py proposal REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
 | `pdgfeed.py request REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
 | `pdgfeed.py manifest` | none beyond top-level options | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries. | JSON | `stdout` |

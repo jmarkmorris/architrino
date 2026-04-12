@@ -157,11 +157,11 @@ test("generated PDG proposal fixtures cover the documented five-case split", () 
 test("root CLI list, proposal, and request outputs match the committed fixtures", () => {
   const listResult = runPdgfeed(["list", "--source", "pdg-test-reactions"]);
   assert.deepEqual(listResult.stdout.trim().split("\n"), [
-    "muon_decay\tMuon decay",
-    "radiative_muon_decay\tRadiative muon decay",
-    "muon_decay_with_electron_positron_pair\tMuon decay with electron-positron pair",
-    "muon_to_electron_photon\tMuon to electron photon",
-    "charged_pion_to_muon_neutrino\tCharged pion to muon neutrino",
+    "muon_decay\tMuon decay\tmu- -> e- anti-nu_e nu_mu\texportable",
+    "radiative_muon_decay\tRadiative muon decay\tmu- -> e- anti-nu_e nu_mu gamma\tproposal-only",
+    "muon_decay_with_electron_positron_pair\tMuon decay with electron-positron pair\tmu- -> e- anti-nu_e nu_mu e+ e-\texportable",
+    "muon_to_electron_photon\tMuon to electron photon\tmu- -> e- gamma\tproposal-only",
+    "charged_pion_to_muon_neutrino\tCharged pion to muon neutrino\tpi+ -> mu+ nu_mu\tproposal-only",
   ]);
 
   const expectedProposal = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.proposal.v1.json");

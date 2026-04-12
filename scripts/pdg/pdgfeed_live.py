@@ -7,7 +7,7 @@ from scripts.pdg.pdgfeed_model import LiveChannelSpec, PdgCase, TestCaseParticle
 from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name, lookup_particle_mapping
 
 
-LIVE_CHANNEL_SPECS: tuple[LiveChannelSpec, ...] = (
+TEST_REACTIONS: tuple[LiveChannelSpec, ...] = (
     LiveChannelSpec(
         case_id="muon_decay",
         title="Muon decay",
@@ -45,7 +45,7 @@ LIVE_CHANNEL_SPECS: tuple[LiveChannelSpec, ...] = (
     ),
 )
 
-LIVE_CHANNEL_SPEC_BY_ID = {spec.case_id: spec for spec in LIVE_CHANNEL_SPECS}
+TEST_REACTION_BY_ID = {spec.case_id: spec for spec in TEST_REACTIONS}
 
 
 def connect_pdg(database_url: str | None = None, *, pedantic: bool = False) -> Any:
@@ -220,4 +220,3 @@ def load_live_case(
         products=tuple(products),
         notes=tuple(notes),
     )
-

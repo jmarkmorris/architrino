@@ -10,7 +10,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Sequence
 
-from scripts.pdg.pdgfeed_live import LIVE_CHANNEL_SPEC_BY_ID, LIVE_CHANNEL_SPECS, connect_pdg, load_live_case
+from scripts.pdg.pdgfeed_live import TEST_REACTION_BY_ID, TEST_REACTIONS, connect_pdg, load_live_case
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
     DEFAULT_PDGSOLVE_REQUEST_POLICY,
@@ -396,7 +396,7 @@ def build_live_manifest_payload(
     unsupported_entries: list[dict[str, Any]] = []
     unsupported_particle_counts: Counter[str] = Counter()
 
-    for spec in LIVE_CHANNEL_SPECS:
+    for spec in TEST_REACTIONS:
         live_case = load_live_case(spec, database_url, api=api)
         proposal = build_proposal(live_case)
         pdgsolve_request = build_pdgsolve_request(proposal)
@@ -512,7 +512,34 @@ def build_cases_by_source(
     if source != "pdg-reactions":
         raise SystemExit(f"Unsupported source: {source}")
     api = connect_pdg(database_url, pedantic=False)
-    return [load_live_case(spec, database_url, api=api) for spec in LIVE_CHANNEL_SPECS]
+    return [load_live_case(spec, database_url, api=api) for spec in TEST_REACTIONS]
+
+
+def format_list_channel_description(case: PdgCase) -> str:
+    channel_description = str(case.source.get("channelDescription", "")).strip()
+    if channel_description:
+        return channel_description
+    reactants = " + ".join(str(particle.display_label or particle.name).strip() for particle in case.reactants if str(particle.display_label or particle.name).strip())
+    products = " + ".join(str(particle.display_label or particle.name).strip() for particle in case.products if str(particle.display_label or particle.name).strip())
+    if reactants or products:
+        return f"{reactants} -> {products}".strip()
+    return ""
+
+
+def sanitize_tsv_field(value: Any) -> str:
+    return str(value).replace("\t", " ").replace("\n", " ").strip()
+
+
+def format_list_row(case: PdgCase) -> str:
+    proposal = build_proposal(case)
+    status = "exportable" if proposal.exportable else "proposal-only"
+    fields = (
+        case.case_id,
+        case.title,
+        format_list_channel_description(case),
+        status,
+    )
+    return "\t".join(sanitize_tsv_field(field) for field in fields)
 
 
 def resolve_case_by_source(
@@ -529,9 +556,9 @@ def resolve_case_by_source(
         return test_case
 
     if source == "pdg-reactions":
-        spec = LIVE_CHANNEL_SPEC_BY_ID.get(reaction_id)
+        spec = TEST_REACTION_BY_ID.get(reaction_id)
         if spec is None:
-            available = ", ".join(sorted(LIVE_CHANNEL_SPEC_BY_ID))
+            available = ", ".join(sorted(TEST_REACTION_BY_ID))
             raise SystemExit(f"Unknown PDG reaction id {reaction_id!r}. Available: {available}")
         return load_live_case(spec, database_url)
 
@@ -643,10 +670,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "list":
         if args.source == "pdg-test-reactions":
             for test_case in get_test_cases():
-                print(f"{test_case.case_id}\t{test_case.title}")
+                print(format_list_row(test_case))
             return 0
-        for spec in LIVE_CHANNEL_SPECS:
-            print(f"{spec.case_id}\t{spec.title}")
+        for case in build_cases_by_source(args.source, get_test_cases(), args.database_url):
+            print(format_list_row(case))
         return 0
 
     if args.command == "proposal":

@@ -72,7 +72,7 @@ class FindLiveDecayTests(unittest.TestCase):
                 )
             ]
         )
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["muon_decay"]
+        spec = pdgfeed.TEST_REACTION_BY_ID["muon_decay"]
 
         decay, products, notes = pdgfeed.find_live_decay(api, spec)
 
@@ -110,7 +110,7 @@ class FindLiveDecayTests(unittest.TestCase):
                 )
             ]
         )
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["muon_decay"]
+        spec = pdgfeed.TEST_REACTION_BY_ID["muon_decay"]
 
         decay, _, _ = pdgfeed.find_live_decay(api, spec)
 
@@ -135,7 +135,7 @@ class FindLiveDecayTests(unittest.TestCase):
                 )
             ]
         )
-        spec = pdgfeed.LIVE_CHANNEL_SPEC_BY_ID["muon_decay"]
+        spec = pdgfeed.TEST_REACTION_BY_ID["muon_decay"]
 
         live_case = pdgfeed.load_live_case(spec, api=api)
         proposal = pdgfeed.build_proposal(live_case)
@@ -152,4 +152,3 @@ class FindLiveDecayTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

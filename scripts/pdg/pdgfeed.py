@@ -17,8 +17,6 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.pdg.pdgfeed_live import (  # noqa: E402
-    LIVE_CHANNEL_SPEC_BY_ID,
-    LIVE_CHANNEL_SPECS,
     canonicalize_api_particle_name,
     connect_pdg,
     extract_live_decay_products,
@@ -26,6 +24,8 @@ from scripts.pdg.pdgfeed_live import (  # noqa: E402
     iter_candidate_branching_fractions,
     load_live_case,
     normalize_channel_description,
+    TEST_REACTION_BY_ID,
+    TEST_REACTIONS,
 )
 from scripts.pdg.pdgfeed_model import (  # noqa: E402
     DEFAULT_OUTPUT_DIR,
@@ -97,8 +97,6 @@ __all__ = [
     "DEFAULT_PDGSOLVE_REQUEST_POLICY",
     "DEFAULT_SUPPORTED_REACTION_CSV",
     "DEFAULT_TEST_CASE_INDEX",
-    "LIVE_CHANNEL_SPEC_BY_ID",
-    "LIVE_CHANNEL_SPECS",
     "LiveChannelSpec",
     "NormalizedParticipant",
     "PDGSOLVE_REQUEST_SCHEMA",
@@ -119,6 +117,8 @@ __all__ = [
     "REQUEST_ASSEMBLY_MAPPINGS",
     "RequestOccurrenceTemplate",
     "TestCaseParticle",
+    "TEST_REACTION_BY_ID",
+    "TEST_REACTIONS",
     "build_cases_by_source",
     "build_live_manifest_payload",
     "build_live_supported_reaction_csv_rows",
@@ -164,4 +164,3 @@ __all__ = [
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
