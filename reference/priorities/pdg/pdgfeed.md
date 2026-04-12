@@ -67,7 +67,7 @@ Conceptually, `pdgfeed` does only five things:
 
 1. list available reactions;
 2. build a proposal for one reaction;
-3. build a `pdgsolve-request/v1` for one reaction when exportable;
+3. build a `pdgsolve-request/v1` for one reaction when its PDG participants transform fully into admitted assembly rows;
 4. build PDG reaction output for multi-reaction work;
 5. export a support summary for many reactions.
 
@@ -77,13 +77,13 @@ The canonical CLI surface should be only five subcommands. All calls below use t
 
 | Call                                  | Options                                                            | Output content                                                                                                                                                                                                                        | Output format           | Output location                                                                                                                                                                                             |
 | ------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and export status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
+| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and `pdgsolve` readiness status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
 | `pdgfeed.py proposal REACTION_ID`     | `--source pdg-reactions`, `--write`                                | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory.                   | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
-| `pdgfeed.py request REACTION_ID`      | `--source pdg-reactions`, `--write`                                | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
-| `pdgfeed.py manifest`                 | none beyond top-level options                                      | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries.                                   | JSON                    | `stdout`                                                                                                                                                                                                    |
-| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for exportable reactions from the full live PDG decay database, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `.tmp`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
+| `pdgfeed.py request REACTION_ID`      | `--source pdg-reactions`, `--write`                                | Emits one `pdgsolve-request/v1` payload when the selected reaction transforms fully into admitted assembly rows. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
+| `pdgfeed.py manifest`                 | none beyond top-level options                                      | Prints one `pdg-live-manifest/v1` payload with ready live-PDG entries, blocked-discovery counts, top blocked particles, and embedded proposal/request sidecars for ready entries.                                                  | JSON                    | `stdout`                                                                                                                                                                                                    |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for reactions that are ready for `pdgsolve` after transform, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `.tmp`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
 
-The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
+The `pdgsolve` handoff surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new handoff vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
 `pdgfeed` is the upstream owner of composite-to-assembly translation for PDG-facing language.
 
@@ -97,7 +97,7 @@ That means:
 The proposal and request boundary should use two repo-owned layers:
 
 - a normalized PDG proposal record used inside ingest;
-- and one exported `pdgsolve-request/v1` candidate per exportable proposal.
+- and one emitted `pdgsolve-request/v1` candidate per reaction that is ready for `pdgsolve` after transform.
 
 Proposal records should carry stable identity, source provenance, normalized participants, ranking metadata, and notes about ambiguity or unsupported structure. Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
 
@@ -117,13 +117,15 @@ Requests should be emitted only from normalized proposal records, never directly
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
+For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit Noether-pair reactants, each pair being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`.
+
 The practical flow is:
 
 1. connect to the local PDG database;
 2. retrieve reaction data, with the PDG adapter exposing the PDG objects and metadata the ingest layer actually consumes;
 3. normalize PDG particles, identifiers, decay products, multiplicities, and subdecay structure into explicit repo-owned proposal records;
 4. build proposal candidates, attach ranking metadata, record the source information needed for later review, and emit `pdgsolve-request/v1` only when the channel is fully mappable;
-5. otherwise keep the case upstream as proposal-only output.
+5. otherwise keep the case upstream as blocked proposal output.
 
 PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
@@ -149,9 +151,9 @@ Representative regression commands:
 Regression expectations:
 
 - known reactions appear first in reaction listings and carry the `k` marker, while all others carry `u`;
-- exportable reactions continue to emit stable `pdg-proposal/v1` and `pdgsolve-request/v1` artifacts keyed by live `(mcid, pdgIdentifier)` provenance;
-- proposal-only reactions stay proposal-only with explicit unsupported notes rather than guessed request output;
-- and live discovery manifests report exportable channels and unsupported discoveries separately.
+- ready reactions continue to emit stable `pdg-proposal/v1` and `pdgsolve-request/v1` artifacts keyed by live `(mcid, pdgIdentifier)` provenance;
+- blocked reactions stay blocked with explicit unsupported notes rather than guessed request output;
+- and live discovery manifests report ready channels and blocked discoveries separately.
 
 The detailed canonical-name export policy is summarized in the registry material below.
 
@@ -164,7 +166,7 @@ The v1 un-mappable-particle policy is:
 - decay products with concrete mapped particle identities may expand multiplicities into repeated normalized participants;
 - and any decay product that arrives as a generic/textual PDG item or requires subdecay-specific interpretation stays un-mappable until an explicit assembly-native upstream translation rule exists.
 
-Registry expansion should stay deliberate. New exportable vocabulary should enter only by adding an explicit canonical PDG-name row to the locked table with matching request expansion and regression coverage.
+Registry expansion should stay deliberate. New transform coverage should enter only by adding an explicit canonical PDG-name row to the locked table with matching request expansion and regression coverage.
 
 Each emitted `pdgsolve-request/v1` candidate should:
 
@@ -374,13 +376,13 @@ Operational lexer guidance:
 
 ### Proposed Registry Table
 
-Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form. For composites, `Exportable to pdgsolve` means the composite has an explicit v1 translation across the request boundary, whether that translation is direct or a fixed row expansion into explicit emitted assemblies.
+Assemblies come first because they are the solver-native export surface. In the `Pro or Anti` column, `mixed` means the whole object is built from both pro and anti ingredients, while `self-conjugate` means the current shorthand is its own anti form. Composites never cross directly into `pdgsolve`. The last column records whether `pdgfeed` currently has a fixed transform from the composite into admitted assembly rows before handoff.
 
 For composites, the `AAA Notation` column uses the current atomic shorthand when one exists (`P`, `N`, `hp`, `hq`, `W+`, `W-`, `Z`). Otherwise it uses a constituent expression built from assembly-level AAA tokens.
 
 #### Assemblies
 
-| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Exportable to pdgsolve |
+| Canonical ID | Full Name | PDG Notation | AAA Notation | Type | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family | Generation | Pro or Anti | Transforms to pdgsolve rows |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `pro_noether_core_I` | Pro Noether Core | `n/a` | `h` | assembly | `h` | `3:3@` | Noether core | I | pro | yes |
 | `anti_noether_core_I` | Anti Noether Core | `n/a` | `ah` | assembly | `ah` | `3:3@` | Noether core | I | anti | yes |
@@ -415,25 +417,25 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 
 #### Composites
 
-| Canonical ID           | Full Name            | PDG Notation | AAA Notation  | Type      | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family     | Generation | Pro or Anti    | Exportable to pdgsolve |
+| Canonical ID           | Full Name            | PDG Notation | AAA Notation  | Type      | Breakdown into AAA notation at Noether core and unbound architrinos layer | Total architrinos | Family     | Generation | Pro or Anti    | Transforms to pdgsolve rows |
 | ---------------------- | -------------------- | ------------ | ------------- | --------- | ------------------------------------------------------------------------- | ----------------- | ---------- | ---------- | -------------- | ---------------------- |
-| `proton`               | Proton               | `p`          | `P`           | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)`                                | `15:21@`          | baryon     | I          | pro            | no                     |
-| `anti_proton`          | Anti Proton          | `anti-p`     | `aP`          | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)`                          | `21:15@`          | baryon     | I          | anti           | no                     |
-| `neutron`              | Neutron              | `n`          | `N`           | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)`                                | `18:18@`          | baryon     | I          | pro            | no                     |
-| `anti_neutron`         | Anti Neutron         | `anti-n`     | `aN`          | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)`                          | `18:18@`          | baryon     | I          | anti           | no                     |
-| `photon`               | Photon               | `gamma`      | `hp`          | composite | `h.ah`                                                                    | `6:6@`            | boson      | `n/a`      | self-conjugate | no                     |
+| `proton`               | Proton               | `p`          | `P`           | composite | `u.u.d = (h + 1:5@).(h + 1:5@).(h + 4:2@)`                                | `15:21@`          | baryon     | I          | pro            | yes                    |
+| `anti_proton`          | Anti Proton          | `anti-p`     | `aP`          | composite | `au.au.ad = (ah + 5:1@).(ah + 5:1@).(ah + 2:4@)`                          | `21:15@`          | baryon     | I          | anti           | yes                    |
+| `neutron`              | Neutron              | `n`          | `N`           | composite | `u.d.d = (h + 1:5@).(h + 4:2@).(h + 4:2@)`                                | `18:18@`          | baryon     | I          | pro            | yes                    |
+| `anti_neutron`         | Anti Neutron         | `anti-n`     | `aN`          | composite | `au.ad.ad = (ah + 5:1@).(ah + 2:4@).(ah + 2:4@)`                          | `18:18@`          | baryon     | I          | anti           | yes                    |
+| `photon`               | Photon               | `gamma`      | `hp`          | composite | `h.ah`                                                                    | `6:6@`            | boson      | `n/a`      | self-conjugate | yes                    |
 | `higgs_cluster`        | Higgs Cluster        | `H`          | `hq`          | composite | `h.ah.h.ah`                                                               | `12:12@`          | boson      | `n/a`      | mixed          | no                     |
 | `w_plus_corridor`      | W+ Boson             | `W+`         | `W+`          | composite | `h + 0:6@`                                                                | `3:9@`            | weak boson | `n/a`      | pro            | no                     |
 | `w_minus_corridor`     | W- Boson             | `W-`         | `W-`          | composite | `ah + 6:0@`                                                               | `9:3@`            | weak boson | `n/a`      | anti           | no                     |
 | `z_corridor`           | Z Boson              | `Z`          | `Z`           | composite | `h.ah`                                                                    | `6:6@`            | weak boson | `n/a`      | self-conjugate | no                     |
-| `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | no                     |
-| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`                                                            | `12:12@`          | meson      | I          | self-conjugate | no                     |
-| `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | no                     |
-| `positive_kaon`        | Positive Kaon        | `K+`         | `u.ad2`       | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)`                                         | `8:14@`           | meson      | `I+II`     | mixed          | no                     |
-| `neutral_kaon`         | Neutral Kaon         | `K0`         | `d.ad2`       | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | no                     |
-| `negative_kaon`        | Negative Kaon        | `K-`         | `au.d2`       | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)`                                         | `14:8@`           | meson      | `I+II`     | mixed          | no                     |
-| `anti_neutral_kaon`    | Anti Neutral Kaon    | `anti-K0`    | `ad.d2`       | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | no                     |
-| `positive_b_meson`     | Positive B Meson     | `B+`         | `u.ad3`       | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)`                                         | `7:13@`           | meson      | `I+III`    | mixed          | no                     |
-| `neutral_b_meson`      | Neutral B Meson      | `B0`         | `d.ad3`       | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | no                     |
-| `negative_b_meson`     | Negative B Meson     | `B-`         | `au.d3`       | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)`                                         | `13:7@`           | meson      | `I+III`    | mixed          | no                     |
-| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0`    | `ad.d3`       | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | no                     |
+| `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | yes                    |
+| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`; v1 request transform canonicalizes to `u.au`             | `12:12@`          | meson      | I          | self-conjugate | yes                    |
+| `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | yes                    |
+| `positive_kaon`        | Positive Kaon        | `K+`         | `u.ad2`       | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)`                                         | `8:14@`           | meson      | `I+II`     | mixed          | yes                    |
+| `neutral_kaon`         | Neutral Kaon         | `K0`         | `d.ad2`       | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | yes                    |
+| `negative_kaon`        | Negative Kaon        | `K-`         | `au.d2`       | composite | `au.d2 = (ah + 5:1@).(h2 + 4:2@)`                                         | `14:8@`           | meson      | `I+II`     | mixed          | yes                    |
+| `anti_neutral_kaon`    | Anti Neutral Kaon    | `anti-K0`    | `ad.d2`       | composite | `ad.d2 = (ah + 2:4@).(h2 + 4:2@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | yes                    |
+| `positive_b_meson`     | Positive B Meson     | `B+`         | `u.ad3`       | composite | `u.ad3 = (h + 1:5@).(ah3 + 2:4@)`                                         | `7:13@`           | meson      | `I+III`    | mixed          | yes                    |
+| `neutral_b_meson`      | Neutral B Meson      | `B0`         | `d.ad3`       | composite | `d.ad3 = (h + 4:2@).(ah3 + 2:4@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | yes                    |
+| `negative_b_meson`     | Negative B Meson     | `B-`         | `au.d3`       | composite | `au.d3 = (ah + 5:1@).(h3 + 4:2@)`                                         | `13:7@`           | meson      | `I+III`    | mixed          | yes                    |
+| `anti_neutral_b_meson` | Anti Neutral B Meson | `anti-B0`    | `ad.d3`       | composite | `ad.d3 = (ah + 2:4@).(h3 + 4:2@)`                                         | `10:10@`          | meson      | `I+III`    | mixed          | yes                    |

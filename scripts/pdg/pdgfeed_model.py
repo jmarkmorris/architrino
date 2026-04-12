@@ -81,7 +81,7 @@ class ParticleMapping:
         return self.particle_type == "composite"
 
     @property
-    def exportable_to_request(self) -> bool:
+    def has_request_transform(self) -> bool:
         return bool(self.request_occurrences)
 
 
@@ -162,10 +162,6 @@ class Proposal:
     ranking: dict[str, Any]
     notes: tuple[str, ...] = ()
 
-    @property
-    def exportable(self) -> bool:
-        return not any(str(note).startswith("unsupported:") for note in self.notes)
-
     def to_dict(self) -> dict[str, Any]:
         return {
             "schema": PDG_PROPOSAL_SCHEMA,
@@ -176,7 +172,4 @@ class Proposal:
             "products": [participant.to_proposal_participant() for participant in self.products],
             "ranking": dict(self.ranking),
             "notes": list(self.notes),
-            "exportable": self.exportable,
         }
-
-

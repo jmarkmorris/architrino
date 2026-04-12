@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import re
 import sys
 from collections import Counter
@@ -26,11 +27,20 @@ from scripts.pdg.pdgfeed_model import (
     NormalizedParticipant,
     SUPPORTED_REACTION_CSV_COLUMNS,
 )
-from scripts.pdg.pdgfeed_registry import REQUEST_ASSEMBLY_COUNTS, canonicalize_pdg_name, lookup_particle_mapping
+from scripts.pdg.pdgfeed_registry import (
+    REQUEST_ASSEMBLY_COUNTS,
+    REQUEST_ASSEMBLY_MAPPINGS,
+    canonicalize_pdg_name,
+    lookup_particle_mapping,
+)
 
 
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
 DEFAULT_TMP_DIR = Path(__file__).resolve().parents[2] / ".tmp"
+REQUEST_ASSEMBLY_AAA_BY_ID = {
+    mapping.canonical_id: mapping.aaa_notation
+    for mapping in REQUEST_ASSEMBLY_MAPPINGS
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -97,8 +107,10 @@ def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple
         request_translation=mapping.request_translation,
         request_occurrences=mapping.request_occurrences,
     )
-    if not mapping.exportable_to_request:
+    if not mapping.has_request_transform:
         return participant, f"unsupported:{side}:{canonical_name}:no-pdgsolve-request-v1-mapping"
+    if canonical_name == "pi0":
+        return participant, "transform:canonical-choice:pi0:u.au:alternate:d.ad"
     return participant, None
 
 
@@ -149,23 +161,143 @@ def build_pdgsolve_request_source(proposal: Proposal) -> dict[str, str]:
     }
 
 
+def has_unsupported_transform_notes(notes: tuple[str, ...] | list[str]) -> bool:
+    return any(str(note).startswith("unsupported:") for note in notes)
+
+
+def transform_participants_for_pdgsolve(
+    participants: Sequence[NormalizedParticipant],
+) -> list[dict[str, str]] | None:
+    transformed_rows: list[dict[str, str]] = []
+    for participant in participants:
+        if not participant.request_occurrences:
+            return None
+        occurrences = list(participant.to_request_occurrences())
+        if any(str(occurrence.get("assemblyId", "")) not in REQUEST_ASSEMBLY_COUNTS for occurrence in occurrences):
+            return None
+        transformed_rows.extend(occurrences)
+    return transformed_rows
+
+
+def add_minimum_noether_pair_reactants_for_balance(
+    reactants: list[dict[str, str]],
+    products: list[dict[str, str]],
+) -> list[dict[str, str]] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
+    product_totals = get_pdgsolve_occurrence_primitive_totals(products)
+    noether_pair_totals = {
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+    }
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    electrino_deficit = max(0, product_totals["electrinoCount"] - reactant_totals["electrinoCount"])
+    positrino_deficit = max(0, product_totals["positrinoCount"] - reactant_totals["positrinoCount"])
+    pair_count = max(
+        math.ceil(electrino_deficit / noether_pair_totals["electrinoCount"]) if electrino_deficit else 0,
+        math.ceil(positrino_deficit / noether_pair_totals["positrinoCount"]) if positrino_deficit else 0,
+    )
+    if pair_count == 0:
+        return reactants
+
+    augmented_reactants = list(reactants)
+    for index in range(1, pair_count + 1):
+        augmented_reactants.append(
+            {
+                "id": f"reactant_noether_pair_{index}.row.1",
+                "assemblyId": "pro_noether_core_I",
+                "title": "Pro Noether Core",
+            }
+        )
+        augmented_reactants.append(
+            {
+                "id": f"reactant_noether_pair_{index}.row.2",
+                "assemblyId": "anti_noether_core_I",
+                "title": "Anti Noether Core",
+            }
+        )
+    return augmented_reactants
+
+
+def add_maximum_noether_pair_products_from_surplus(
+    reactants: list[dict[str, str]],
+    products: list[dict[str, str]],
+) -> list[dict[str, str]] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
+    product_totals = get_pdgsolve_occurrence_primitive_totals(products)
+    noether_pair_totals = {
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+    }
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    electrino_surplus = max(0, reactant_totals["electrinoCount"] - product_totals["electrinoCount"])
+    positrino_surplus = max(0, reactant_totals["positrinoCount"] - product_totals["positrinoCount"])
+    pair_count = min(
+        electrino_surplus // noether_pair_totals["electrinoCount"],
+        positrino_surplus // noether_pair_totals["positrinoCount"],
+    )
+    if pair_count == 0:
+        return products
+
+    augmented_products = list(products)
+    for index in range(1, pair_count + 1):
+        augmented_products.append(
+            {
+                "id": f"product_noether_pair_{index}.row.1",
+                "assemblyId": "pro_noether_core_I",
+                "title": "Pro Noether Core",
+            }
+        )
+        augmented_products.append(
+            {
+                "id": f"product_noether_pair_{index}.row.2",
+                "assemblyId": "anti_noether_core_I",
+                "title": "Anti Noether Core",
+            }
+        )
+    return augmented_products
+
+
+def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, str]]] | None:
+    if has_unsupported_transform_notes(proposal.notes):
+        return None
+    reactants = transform_participants_for_pdgsolve(proposal.reactants)
+    products = transform_participants_for_pdgsolve(proposal.products)
+    if reactants is None or products is None:
+        return None
+    reactants = add_minimum_noether_pair_reactants_for_balance(reactants, products)
+    if reactants is None:
+        return None
+    products = add_maximum_noether_pair_products_from_surplus(reactants, products)
+    if products is None:
+        return None
+    return {
+        "reactants": reactants,
+        "products": products,
+    }
+
+
+def proposal_is_ready_for_pdgsolve(proposal: Proposal) -> bool:
+    return transform_proposal_for_pdgsolve(proposal) is not None
+
+
 def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
-    if not proposal.exportable:
+    transformed = transform_proposal_for_pdgsolve(proposal)
+    if transformed is None:
         return None
     request = {
         "schema": PDGSOLVE_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
         "source": build_pdgsolve_request_source(proposal),
-        "reactants": [
-            occurrence
-            for participant in proposal.reactants
-            for occurrence in participant.to_request_occurrences()
-        ],
-        "products": [
-            occurrence
-            for participant in proposal.products
-            for occurrence in participant.to_request_occurrences()
-        ],
+        "reactants": transformed["reactants"],
+        "products": transformed["products"],
         "policy": {
             "exactClosureRequired": DEFAULT_PDGSOLVE_REQUEST_POLICY["exactClosureRequired"],
             "allowedBoundaryAugmentations": list(DEFAULT_PDGSOLVE_REQUEST_POLICY["allowedBoundaryAugmentations"]),
@@ -272,11 +404,16 @@ def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> li
 def format_proposal_side_aaa(participants: Any) -> str:
     if not isinstance(participants, list):
         return ""
-    tokens = [
-        str(participant.get("aaaNotation", "")).strip()
-        for participant in participants
-        if isinstance(participant, dict) and str(participant.get("aaaNotation", "")).strip()
-    ]
+    tokens: list[str] = []
+    for participant in participants:
+        if not isinstance(participant, dict):
+            continue
+        aaa_notation = str(participant.get("aaaNotation", "")).strip()
+        if not aaa_notation:
+            continue
+        if str(participant.get("canonicalId", "")) == "neutral_pion":
+            aaa_notation = "u.au"
+        tokens.append(aaa_notation)
     return ".".join(tokens)
 
 
@@ -295,6 +432,33 @@ def get_pdgsolve_occurrence_primitive_totals(occurrences: Any) -> dict[str, int]
     return totals
 
 
+def format_primitive_ledger(electrino_count: Any, positrino_count: Any) -> str:
+    return f"{electrino_count}.{positrino_count}@"
+
+
+def format_delta_ledger(
+    reactant_electrinos: Any,
+    product_electrinos: Any,
+    reactant_positrinos: Any,
+    product_positrinos: Any,
+) -> str:
+    return f"{reactant_electrinos - product_electrinos}.{reactant_positrinos - product_positrinos}@"
+
+
+def format_request_side_aaa(occurrences: Any) -> str:
+    if not isinstance(occurrences, list):
+        return ""
+    tokens: list[str] = []
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            return ""
+        aaa_notation = REQUEST_ASSEMBLY_AAA_BY_ID.get(str(occurrence.get("assemblyId", "")), "")
+        if not aaa_notation:
+            return ""
+        tokens.append(aaa_notation)
+    return ".".join(tokens)
+
+
 def build_supported_reaction_csv_row(
     case: PdgCase,
     proposal_payload: dict[str, Any],
@@ -307,7 +471,9 @@ def build_supported_reaction_csv_row(
 
     reactant_names = format_proposal_side_aaa(proposal_payload.get("reactants", []))
     product_names = format_proposal_side_aaa(proposal_payload.get("products", []))
-    if not reactant_names or not product_names:
+    transformed_reactant_names = format_request_side_aaa(pdgsolve_request.get("reactants", []))
+    transformed_product_names = format_request_side_aaa(pdgsolve_request.get("products", []))
+    if not reactant_names or not product_names or not transformed_reactant_names or not transformed_product_names:
         return None
 
     return {
@@ -318,6 +484,8 @@ def build_supported_reaction_csv_row(
         "title": case.title,
         "reactant_names_aaa": reactant_names,
         "product_names_aaa": product_names,
+        "transformed_reactant_names_aaa": transformed_reactant_names,
+        "transformed_product_names_aaa": transformed_product_names,
         "reactant_electrinos": reactant_totals["electrinoCount"],
         "product_electrinos": product_totals["electrinoCount"],
         "electrino_delta": reactant_totals["electrinoCount"] - product_totals["electrinoCount"],
@@ -325,6 +493,21 @@ def build_supported_reaction_csv_row(
         "product_positrinos": product_totals["positrinoCount"],
         "positrino_delta": reactant_totals["positrinoCount"] - product_totals["positrinoCount"],
     }
+
+
+def supported_reaction_sort_key(row: dict[str, str | int]) -> tuple[int, int, int, int, int, str, str]:
+    known_rank = 0 if row.get("known_status", "") == "k" else 1
+    electrino_delta = int(row.get("electrino_delta", 0) or 0)
+    positrino_delta = int(row.get("positrino_delta", 0) or 0)
+    return (
+        known_rank,
+        electrino_delta + positrino_delta,
+        electrino_delta,
+        positrino_delta,
+        int(row.get("mcid", 0) or 0),
+        str(row.get("pdg_identifier", "")),
+        str(row.get("reaction_id", "")),
+    )
 
 
 def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, str | int]]:
@@ -337,7 +520,7 @@ def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, st
         row = build_supported_reaction_csv_row(case, proposal.to_dict(), pdgsolve_request)
         if row is not None:
             rows.append(row)
-    return rows
+    return sorted(rows, key=supported_reaction_sort_key)
 
 
 def build_live_manifest_payload(
@@ -346,15 +529,15 @@ def build_live_manifest_payload(
     api: Any | None = None,
 ) -> dict[str, Any]:
     api = api or connect_pdg(database_url, pedantic=False)
-    exportable_entries: list[dict[str, Any]] = []
-    unsupported_entries: list[dict[str, Any]] = []
-    unsupported_particle_counts: Counter[str] = Counter()
+    ready_entries: list[dict[str, Any]] = []
+    blocked_entries: list[dict[str, Any]] = []
+    blocked_particle_counts: Counter[str] = Counter()
 
     for live_case in load_live_cases(database_url, api=api):
         proposal = build_proposal(live_case)
         pdgsolve_request = build_pdgsolve_request(proposal)
-        unsupported_names = extract_unsupported_particle_names(proposal.notes)
-        unsupported_particle_counts.update(unsupported_names)
+        blocked_names = extract_unsupported_particle_names(proposal.notes)
+        blocked_particle_counts.update(blocked_names)
         entry = {
             "batchId": 0,
             "knownStatus": known_reaction_status(live_case),
@@ -366,22 +549,22 @@ def build_live_manifest_payload(
             "pdgIdentifier": str(live_case.source.get("pdgIdentifier", "")),
             "channelDescription": str(live_case.source.get("channelDescription", "")),
             "branchingDisplay": str(live_case.source.get("branchingDisplay", "")),
-            "unsupportedParticles": unsupported_names,
+            "blockedParticles": blocked_names,
             "proposal": proposal.to_dict(),
         }
         if pdgsolve_request is None:
-            unsupported_entries.append(entry)
+            blocked_entries.append(entry)
             continue
         entry["pdgsolveRequest"] = pdgsolve_request
-        exportable_entries.append(entry)
+        ready_entries.append(entry)
 
-    for index, entry in enumerate(exportable_entries, start=1):
+    for index, entry in enumerate(ready_entries, start=1):
         entry["batchId"] = index
 
-    top_unsupported_particles = [
+    top_blocked_particles = [
         {"particle": particle_name, "count": count}
         for particle_name, count in sorted(
-            unsupported_particle_counts.items(),
+            blocked_particle_counts.items(),
             key=lambda item: (-item[1], item[0]),
         )[:5]
     ]
@@ -389,11 +572,11 @@ def build_live_manifest_payload(
     return {
         "schema": PDG_LIVE_MANIFEST_SCHEMA,
         "edition": str(getattr(api, "edition", "")),
-        "exportableCount": len(exportable_entries),
-        "unsupportedDiscoveryCount": len(unsupported_entries),
-        "topUnsupportedParticles": top_unsupported_particles,
-        "entries": exportable_entries,
-        "unsupportedEntries": unsupported_entries,
+        "readyCount": len(ready_entries),
+        "blockedCount": len(blocked_entries),
+        "topBlockedParticles": top_blocked_particles,
+        "readyEntries": ready_entries,
+        "blockedEntries": blocked_entries,
     }
 
 
@@ -404,7 +587,7 @@ def build_live_supported_reaction_csv_rows(
 ) -> list[dict[str, str | int]]:
     manifest = build_live_manifest_payload(database_url, api=api)
     rows: list[dict[str, str | int]] = []
-    for entry in manifest.get("entries", []):
+    for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
         case = PdgCase(
@@ -423,7 +606,7 @@ def build_live_supported_reaction_csv_rows(
         row = build_supported_reaction_csv_row(case, entry.get("proposal", {}), entry.get("pdgsolveRequest", {}))
         if row is not None:
             rows.append(row)
-    return rows
+    return sorted(rows, key=supported_reaction_sort_key)
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -431,7 +614,13 @@ def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=SUPPORTED_REACTION_CSV_COLUMNS)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(
+            {
+                column: row.get(column, "")
+                for column in SUPPORTED_REACTION_CSV_COLUMNS
+            }
+            for row in rows
+        )
 
 
 def format_output_path(path: Path) -> str:
@@ -521,7 +710,7 @@ def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequ
 
 def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, str]:
     proposal = build_proposal(case)
-    status = "exportable" if proposal.exportable else "proposal-only"
+    status = "ready" if proposal_is_ready_for_pdgsolve(proposal) else "blocked"
     return (
         known_reaction_status(case),
         sanitize_tsv_field(int(case.source.get("mcid", 0) or 0)),
@@ -539,33 +728,40 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
         (
             "K/U",
             "Reaction ID",
-            "MCID",
             "PDG ID",
             "Title",
             "Reactant AAA",
             "Product AAA",
-            "Reactant Electrinos",
-            "Product Electrinos",
-            "Electrino Delta",
-            "Reactant Positrinos",
-            "Product Positrinos",
-            "Positrino Delta",
+            "Transformed Reactant AAA",
+            "Transformed Product AAA",
+            "Reactant Ledger",
+            "Product Ledger",
+            "Delta Ledger",
         ),
         [
             (
                 row.get("known_status", ""),
                 row.get("reaction_id", ""),
-                row.get("mcid", ""),
                 row.get("pdg_identifier", ""),
                 row.get("title", ""),
                 row.get("reactant_names_aaa", ""),
                 row.get("product_names_aaa", ""),
-                row.get("reactant_electrinos", ""),
-                row.get("product_electrinos", ""),
-                row.get("electrino_delta", ""),
-                row.get("reactant_positrinos", ""),
-                row.get("product_positrinos", ""),
-                row.get("positrino_delta", ""),
+                row.get("transformed_reactant_names_aaa", ""),
+                row.get("transformed_product_names_aaa", ""),
+                format_primitive_ledger(
+                    row.get("reactant_electrinos", ""),
+                    row.get("reactant_positrinos", ""),
+                ),
+                format_primitive_ledger(
+                    row.get("product_electrinos", ""),
+                    row.get("product_positrinos", ""),
+                ),
+                format_delta_ledger(
+                    row.get("reactant_electrinos", ""),
+                    row.get("product_electrinos", ""),
+                    row.get("reactant_positrinos", ""),
+                    row.get("product_positrinos", ""),
+                ),
             )
             for row in rows
         ],
@@ -626,7 +822,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
     request_parser = subparsers.add_parser(
         "request",
-        help="Emit one pdgsolve-request/v1 payload for a reaction when it is fully exportable.",
+        help="Emit one pdgsolve-request/v1 payload for a reaction when its PDG participants transform fully into admitted assembly rows.",
     )
     request_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     request_parser.add_argument(
@@ -645,7 +841,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
     supported_csv_parser = subparsers.add_parser(
         "supported-csv",
-        help="Write a primitive-count CSV summary for exportable reactions.",
+        help="Write a primitive-count CSV summary for reactions ready for pdgsolve after transform.",
     )
     supported_csv_parser.add_argument(
         "csv_path",
@@ -696,7 +892,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         proposal = build_proposal(case)
         pdgsolve_request = build_pdgsolve_request(proposal)
         if pdgsolve_request is None:
-            raise SystemExit(f"PDG reaction {args.reaction_id!r} does not currently emit pdgsolve-request/v1.")
+            raise SystemExit(
+                f"PDG reaction {args.reaction_id!r} is not ready for pdgsolve because its participants do not yet transform fully into admitted assembly rows."
+            )
         if args.write:
             for path in write_request_artifacts(case, args.output_dir):
                 print(format_output_path(path))

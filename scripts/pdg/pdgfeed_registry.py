@@ -574,6 +574,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         aliases=("photon",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_noether_core_I", "Pro Noether Core"),
+            _occurrence("anti_noether_core_I", "Anti Noether Core"),
+        ),
     ),
     _mapping(
         canonical_name="H",
@@ -639,6 +644,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=9,
         positrino_count=15,
         aliases=("positive-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+        ),
     ),
     _mapping(
         canonical_name="pi0",
@@ -652,6 +662,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=12,
         positrino_count=12,
         aliases=("neutral-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+        ),
     ),
     _mapping(
         canonical_name="pi-",
@@ -665,6 +680,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=15,
         positrino_count=9,
         aliases=("negative-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K+",
@@ -678,6 +698,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=8,
         positrino_count=14,
         aliases=("k+", "positive-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_strange_quark_II", "Anti Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K0",
@@ -691,6 +716,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=11,
         positrino_count=11,
         aliases=("k0", "neutral-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_strange_quark_II", "Anti Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K-",
@@ -704,6 +734,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=14,
         positrino_count=8,
         aliases=("k-", "negative-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+            _occurrence("pro_strange_quark_II", "Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="anti-K0",
@@ -717,6 +752,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=11,
         positrino_count=11,
         aliases=("anti-k0", "Kbar0", "kbar0", "anti-kaon0"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+            _occurrence("pro_strange_quark_II", "Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B+",
@@ -730,6 +770,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=7,
         positrino_count=13,
         aliases=("b+", "positive-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_bottom_quark_III", "Anti Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B0",
@@ -743,6 +788,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=10,
         positrino_count=10,
         aliases=("b0", "neutral-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_bottom_quark_III", "Anti Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B-",
@@ -756,6 +806,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=13,
         positrino_count=7,
         aliases=("b-", "negative-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+            _occurrence("pro_bottom_quark_III", "Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="anti-B0",
@@ -769,8 +824,129 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=10,
         positrino_count=10,
         aliases=("anti-b0", "Bbar0", "bbar0", "anti-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+            _occurrence("pro_bottom_quark_III", "Bottom Quark"),
+        ),
     ),
 )
+
+
+PARTICLE_CHARGE_THIRDS: dict[str, int] = {
+    "h": 0,
+    "ah": 0,
+    "h2": 0,
+    "ah2": 0,
+    "h3": 0,
+    "ah3": 0,
+    "e-": -3,
+    "e+": 3,
+    "nu_e": 0,
+    "anti-nu_e": 0,
+    "u": 2,
+    "anti-u": -2,
+    "d": -1,
+    "anti-d": 1,
+    "mu-": -3,
+    "mu+": 3,
+    "nu_mu": 0,
+    "anti-nu_mu": 0,
+    "c": 2,
+    "anti-c": -2,
+    "s": -1,
+    "anti-s": 1,
+    "tau-": -3,
+    "tau+": 3,
+    "nu_tau": 0,
+    "anti-nu_tau": 0,
+    "t": 2,
+    "anti-t": -2,
+    "b": -1,
+    "anti-b": 1,
+    "p": 3,
+    "anti-p": -3,
+    "n": 0,
+    "anti-n": 0,
+    "gamma": 0,
+    "H": 0,
+    "W+": 3,
+    "W-": -3,
+    "Z": 0,
+    "pi+": 3,
+    "pi0": 0,
+    "pi-": -3,
+    "K+": 3,
+    "K0": 0,
+    "K-": -3,
+    "anti-K0": 0,
+    "B+": 3,
+    "B0": 0,
+    "B-": -3,
+    "anti-B0": 0,
+}
+
+
+PARTICLE_CHARGE_CONJUGATES: dict[str, str] = {
+    "h": "ah",
+    "ah": "h",
+    "h2": "ah2",
+    "ah2": "h2",
+    "h3": "ah3",
+    "ah3": "h3",
+    "e-": "e+",
+    "e+": "e-",
+    "nu_e": "anti-nu_e",
+    "anti-nu_e": "nu_e",
+    "u": "anti-u",
+    "anti-u": "u",
+    "d": "anti-d",
+    "anti-d": "d",
+    "mu-": "mu+",
+    "mu+": "mu-",
+    "nu_mu": "anti-nu_mu",
+    "anti-nu_mu": "nu_mu",
+    "c": "anti-c",
+    "anti-c": "c",
+    "s": "anti-s",
+    "anti-s": "s",
+    "tau-": "tau+",
+    "tau+": "tau-",
+    "nu_tau": "anti-nu_tau",
+    "anti-nu_tau": "nu_tau",
+    "t": "anti-t",
+    "anti-t": "t",
+    "b": "anti-b",
+    "anti-b": "b",
+    "p": "anti-p",
+    "anti-p": "p",
+    "n": "anti-n",
+    "anti-n": "n",
+    "gamma": "gamma",
+    "H": "H",
+    "W+": "W-",
+    "W-": "W+",
+    "Z": "Z",
+    "pi+": "pi-",
+    "pi0": "pi0",
+    "pi-": "pi+",
+    "K+": "K-",
+    "K0": "anti-K0",
+    "K-": "K+",
+    "anti-K0": "K0",
+    "B+": "B-",
+    "B0": "anti-B0",
+    "B-": "B+",
+    "anti-B0": "B0",
+}
+
+
+def particle_charge_thirds(canonical_name: str) -> int | None:
+    return PARTICLE_CHARGE_THIRDS.get(canonical_name)
+
+
+def conjugate_canonical_name(canonical_name: str) -> str | None:
+    return PARTICLE_CHARGE_CONJUGATES.get(canonical_name)
 
 PDG_MAPPING_BY_CANONICAL_NAME = {
     mapping.canonical_name: mapping
