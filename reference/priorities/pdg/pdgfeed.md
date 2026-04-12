@@ -104,23 +104,26 @@ The root path remains a compatibility layer:
 - `scripts/pdg/pdgfeed.py`:
   connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-The current CLI surface is:
+### Operator View
 
-- `python3 pdgfeed.py list-pdg-test-reactions`
-- `python3 pdgfeed.py emit-pdg-test-reaction <reaction-id>`
-- `python3 pdgfeed.py emit-all-pdg-test-reactions`
-- `python3 pdgfeed.py print-pdg-test-reaction-proposal <reaction-id>`
-- `python3 pdgfeed.py print-pdg-test-reaction-pdgsolve-request <reaction-id>`
-- `python3 pdgfeed.py list-pdg-reactions`
-- `python3 pdgfeed.py emit-pdg-reaction <reaction-id>`
-- `python3 pdgfeed.py emit-all-pdg-reactions`
-- `python3 pdgfeed.py print-pdg-reaction-proposal <reaction-id>`
-- `python3 pdgfeed.py print-pdg-reaction-pdgsolve-request <reaction-id>`
-- `python3 pdgfeed.py build-pdg-reaction-manifest`
-- `python3 pdgfeed.py emit-supported-reaction-csv [csv-path] [--source pdg-test-reactions|pdg-reactions]`
-- optional `--database-url <sqlalchemy-url>` for the PDG reaction commands
+Do not think of `pdgfeed` as a large menu of unrelated commands.
 
-Legacy `test-case`, `pdg-database`, and `live` command spellings remain accepted as compatibility aliases, but authored docs should use `PDG test reaction` and `PDG reaction` wording. Stdout-print commands must write only JSON to `stdout`; diagnostics belong on `stderr`.
+Conceptually, it does only five things:
+
+1. list available reactions;
+2. build a proposal for one reaction;
+3. build a `pdgsolve-request/v1` for one reaction when exportable;
+4. build a frozen manifest for batch work;
+5. export a support summary for many reactions.
+
+The longer command list in the implementation is mostly historical duplication:
+
+- test-corpus versus live-PDG variants;
+- file-emission versus stdout variants;
+- one-reaction versus all-reaction variants;
+- and compatibility aliases from older naming.
+
+That larger command list should be treated as implementation detail, not as the public mental model for the tool. In authored docs, prefer `PDG test reaction` and `PDG reaction` wording. Stdout-print commands must write only JSON to `stdout`; diagnostics belong on `stderr`.
 
 PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
@@ -132,7 +135,7 @@ The manifest gives downstream tooling a frozen ordered list rather than relying 
 
 #### Frozen Manifest Workflow
 
-When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than the small PDG test reaction list.
+When the goal is to inspect or batch-process many PDG reactions, the preferred path is the frozen manifest rather than ad hoc one-off commands.
 
 Recommended workflow:
 
@@ -191,14 +194,6 @@ A single PDG participant may expand into multiple emitted request occurrences. T
 
 ### PDG Ecosystem
 
-The surrounding PDG resources are:
-
-- Python API docs: <https://pdgapi.lbl.gov/doc/pythonapi.html>
-- REST API docs: <https://pdgapi.lbl.gov/doc/restapi.html>
-- database schema docs: <https://pdgapi.lbl.gov/doc/schema.html>
-- downloadable SQLite database files from the PDG API overview page;
-- and PDG Identifiers as the stable IDs for particles, properties, and decays.
-
 The integration options are:
 
 - primary:
@@ -242,14 +237,6 @@ Requests should be emitted only from normalized proposal records, never directly
 - point `source.sourceDocumentId` to `pdg-proposal:<proposalId>`;
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
-
-### Boundary Rules
-
-- PDG feeds the explicit pdgsolve-intake solve seam; it does not define its own solve runtime.
-- PDG owns upstream composite-to-assembly translation for the PDG-facing seam.
-- PDG must not depend on pdgview runtime code.
-- PDG must not bypass pdgsolve review and acceptance on the way to pdgedit or pdgview.
-- PDG should talk to downstream code through explicit normalized contracts.
 
 ### Proposal Review
 
