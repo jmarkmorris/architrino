@@ -99,6 +99,8 @@ def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple
     )
     if not mapping.has_request_transform:
         return participant, f"unsupported:{side}:{canonical_name}:no-pdgsolve-request-v1-mapping"
+    if canonical_name == "pi0":
+        return participant, "transform:canonical-choice:pi0:u.au:alternate:d.ad"
     return participant, None
 
 

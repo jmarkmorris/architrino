@@ -85,7 +85,7 @@ class PdgfeedCliTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         return stdout.getvalue().strip()
 
-    def test_list_writes_ready_and_blocked_statuses(self):
+    def test_list_writes_ready_statuses(self):
         api = self.build_api()
         with tempfile.TemporaryDirectory() as tmp_dir_name:
             tmp_dir = Path(tmp_dir_name)
@@ -102,7 +102,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     "| k | 13 | S004.1/2025 | mu_minus_s004_1 | mu- decay mode 1 | mu- -> e- nubar_e nu_mu | ready |",
                     "| k | 13 | S004.2/2025 | mu_minus_s004_2 | mu- decay mode 1 | mu- -> e- nubar_e nu_mu gamma | ready |",
                     "| k | 211 | S008.1/2025 | pi_plus_s008_1 | pi+ decay mode 1 | pi+ -> mu+ nu_mu | ready |",
-                    "| u | 111 | fake | pi0_fake | pi0 decay mode 1 | pi0 -> gamma gamma | blocked |",
+                    "| u | 111 | fake | pi0_fake | pi0 decay mode 1 | pi0 -> gamma gamma | ready |",
                 ],
             )
 
@@ -131,20 +131,19 @@ class PdgfeedCliTests(unittest.TestCase):
                 ["anti_muon_II", "pro_muon_neutrino_II"],
             )
 
-    def test_request_reports_blocked_transform_state(self):
+    def test_request_uses_canonical_pi_zero_transform(self):
         api = self.build_api()
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            with (
-                patch.object(pdgfeed_runtime, "connect_pdg", return_value=api),
-                patch.object(pdgfeed_live, "connect_pdg", return_value=api),
-                patch.object(pdgfeed_runtime, "DEFAULT_TMP_DIR", Path(tmp_dir_name)),
-            ):
-                with self.assertRaises(SystemExit) as exc:
-                    pdgfeed.main(["request", "pi0_fake", "--source", "pdg-reactions"])
+            request_json = self.run_main(["request", "pi0_fake", "--source", "pdg-reactions"], api, Path(tmp_dir_name))
+            request = json.loads(request_json)
 
         self.assertEqual(
-            str(exc.exception),
-            "PDG reaction 'pi0_fake' is not ready for pdgsolve because its participants do not yet transform fully into admitted assembly rows.",
+            [entry["assemblyId"] for entry in request["reactants"]],
+            ["pro_up_quark_I", "anti_up_quark_I"],
+        )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["products"]],
+            ["pro_noether_core_I", "anti_noether_core_I", "pro_noether_core_I", "anti_noether_core_I"],
         )
 
     def test_supported_csv_writes_ready_rows_and_markdown_sidecar(self):
@@ -157,12 +156,13 @@ class PdgfeedCliTests(unittest.TestCase):
 
             csv_lines = csv_path.read_text(encoding="utf-8").strip().splitlines()
             self.assertEqual(
-                csv_lines[:4],
+                csv_lines[:5],
                 [
                     "known_status,reaction_id,mcid,pdg_identifier,title,reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
                     "k,mu_minus_s004_1,13,S004.1/2025,mu- decay mode 1,e2,e.av.v2,8,20,-12,2,14,-12",
                     "k,mu_minus_s004_2,13,S004.2/2025,mu- decay mode 1,e2,e.av.v2.hp,8,26,-18,2,20,-18",
                     "k,pi_plus_s008_1,211,S008.1/2025,pi+ decay mode 1,u.ad,ae2.v2,9,7,2,15,13,2",
+                    "u,pi0_fake,111,fake,pi0 decay mode 1,u.au / d.ad,hp.hp,12,12,0,12,12,0",
                 ],
             )
 

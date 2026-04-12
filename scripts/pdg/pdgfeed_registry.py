@@ -662,6 +662,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=12,
         positrino_count=12,
         aliases=("neutral-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+        ),
     ),
     _mapping(
         canonical_name="pi-",

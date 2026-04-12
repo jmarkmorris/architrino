@@ -59,7 +59,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_electron_I", "anti_electron_neutrino_I", "pro_muon_neutrino_II"],
         )
 
-    def test_neutral_pion_is_not_ready_for_pdgsolve(self):
+    def test_neutral_pion_uses_canonical_u_anti_u_transform_for_pdgsolve(self):
         case = pdgfeed.PdgCase(
             case_id="pi_zero_case",
             proposal_id="pi_zero_case",
@@ -71,9 +71,15 @@ class PdgfeedContractTests(unittest.TestCase):
         )
 
         proposal = pdgfeed.build_proposal(case)
+        request = pdgfeed.build_pdgsolve_request(proposal)
 
-        self.assertFalse(pdgfeed.proposal_is_ready_for_pdgsolve(proposal))
-        self.assertIsNone(pdgfeed.build_pdgsolve_request(proposal))
+        self.assertTrue(pdgfeed.proposal_is_ready_for_pdgsolve(proposal))
+        self.assertIn("transform:canonical-choice:pi0:u.au:alternate:d.ad", proposal.notes)
+        self.assertIsNotNone(request)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["reactants"]],
+            ["pro_up_quark_I", "anti_up_quark_I"],
+        )
 
     def test_supported_csv_rows_include_known_status_and_exact_ids(self):
         api = FakeApi(
@@ -189,6 +195,25 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["reactants"]],
             ["pro_up_quark_I", "anti_down_quark_I"],
+        )
+
+    def test_neutral_pion_transform_uses_u_anti_u_rows(self):
+        case = pdgfeed.PdgCase(
+            case_id="pi_zero_case",
+            proposal_id="pi_zero_case",
+            title="pi0",
+            source_kind="pdg-live",
+            source={"mcid": 111, "pdgIdentifier": "fake"},
+            reactants=(pdgfeed.CaseParticle(name="pi0", pdg_id="pi0"),),
+            products=(pdgfeed.CaseParticle(name="gamma", pdg_id="gamma"),),
+        )
+        proposal = pdgfeed.build_proposal(case)
+        transformed = pdgfeed.transform_proposal_for_pdgsolve(proposal)
+
+        self.assertIsNotNone(transformed)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in transformed["reactants"]],
+            ["pro_up_quark_I", "anti_up_quark_I"],
         )
 
     def test_kaons_and_b_mesons_expand_into_assembly_rows(self):
