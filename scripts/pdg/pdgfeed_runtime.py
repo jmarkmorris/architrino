@@ -33,6 +33,7 @@ from scripts.pdg.pdgfeed_registry import REQUEST_ASSEMBLY_COUNTS, canonicalize_p
 
 
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
+DEFAULT_TMP_DIR = Path(__file__).resolve().parents[2] / ".tmp"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -542,6 +543,70 @@ def format_list_row(case: PdgCase) -> str:
     return "\t".join(sanitize_tsv_field(field) for field in fields)
 
 
+def list_markdown_output_path(source: str) -> Path:
+    return DEFAULT_TMP_DIR / f"pdgfeed.list.{slugify(source)}.md"
+
+
+def supported_markdown_output_path(source: str) -> Path:
+    return DEFAULT_TMP_DIR / f"pdgfeed.supported.{slugify(source)}.md"
+
+
+def escape_markdown_table_cell(value: Any) -> str:
+    return str(value).replace("|", r"\|").replace("\n", " ").strip()
+
+
+def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequence[Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    header_row = "| " + " | ".join(escape_markdown_table_cell(header) for header in headers) + " |"
+    divider_row = "| " + " | ".join("---" for _ in headers) + " |"
+    body_rows = [
+        "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+        for row in rows
+    ]
+    lines = [header_row, divider_row, *body_rows]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str]:
+    proposal = build_proposal(case)
+    status = "exportable" if proposal.exportable else "proposal-only"
+    return (
+        sanitize_tsv_field(case.case_id),
+        sanitize_tsv_field(case.title),
+        sanitize_tsv_field(format_list_channel_description(case)),
+        status,
+    )
+
+
+def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str | int]]) -> None:
+    write_markdown_table(
+        path,
+        (
+            "Reactant AAA",
+            "Product AAA",
+            "Reactant Electrinos",
+            "Product Electrinos",
+            "Electrino Delta",
+            "Reactant Positrinos",
+            "Product Positrinos",
+            "Positrino Delta",
+        ),
+        [
+            (
+                row.get("reactant_names_aaa", ""),
+                row.get("product_names_aaa", ""),
+                row.get("reactant_electrinos", ""),
+                row.get("product_electrinos", ""),
+                row.get("electrino_delta", ""),
+                row.get("reactant_positrinos", ""),
+                row.get("product_positrinos", ""),
+                row.get("positrino_delta", ""),
+            )
+            for row in rows
+        ],
+    )
+
+
 def resolve_case_by_source(
     source: str,
     reaction_id: str,
@@ -668,12 +733,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         return test_cases_cache
 
     if args.command == "list":
-        if args.source == "pdg-test-reactions":
-            for test_case in get_test_cases():
-                print(format_list_row(test_case))
-            return 0
-        for case in build_cases_by_source(args.source, get_test_cases(), args.database_url):
-            print(format_list_row(case))
+        cases = (
+            get_test_cases()
+            if args.source == "pdg-test-reactions"
+            else build_cases_by_source(args.source, get_test_cases(), args.database_url)
+        )
+        output_path = list_markdown_output_path(args.source)
+        write_markdown_table(
+            output_path,
+            ("Reaction ID", "Title", "Channel", "Status"),
+            [build_list_row_cells(case) for case in cases],
+        )
+        print(format_output_path(output_path))
         return 0
 
     if args.command == "proposal":
@@ -710,7 +781,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             rows = build_supported_reaction_csv_rows(get_test_cases())
         write_supported_reaction_csv(args.csv_path, rows)
+        markdown_path = supported_markdown_output_path(args.source)
+        write_supported_reaction_markdown(markdown_path, rows)
         print(format_output_path(args.csv_path))
+        print(format_output_path(markdown_path))
         return 0
 
     raise SystemExit(f"Unsupported command: {args.command}")

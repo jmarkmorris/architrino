@@ -156,13 +156,19 @@ test("generated PDG proposal fixtures cover the documented five-case split", () 
 
 test("root CLI list, proposal, and request outputs match the committed fixtures", () => {
   const listResult = runPdgfeed(["list", "--source", "pdg-test-reactions"]);
-  assert.deepEqual(listResult.stdout.trim().split("\n"), [
-    "muon_decay\tMuon decay\tmu- -> e- anti-nu_e nu_mu\texportable",
-    "radiative_muon_decay\tRadiative muon decay\tmu- -> e- anti-nu_e nu_mu gamma\tproposal-only",
-    "muon_decay_with_electron_positron_pair\tMuon decay with electron-positron pair\tmu- -> e- anti-nu_e nu_mu e+ e-\texportable",
-    "muon_to_electron_photon\tMuon to electron photon\tmu- -> e- gamma\tproposal-only",
-    "charged_pion_to_muon_neutrino\tCharged pion to muon neutrino\tpi+ -> mu+ nu_mu\tproposal-only",
-  ]);
+  assert.equal(listResult.stdout.trim(), ".tmp/pdgfeed.list.pdg_test_reactions.md");
+  assert.equal(
+    fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.list.pdg_test_reactions.md"), "utf8").trim(),
+    [
+      "| Reaction ID | Title | Channel | Status |",
+      "| --- | --- | --- | --- |",
+      "| muon_decay | Muon decay | mu- -> e- anti-nu_e nu_mu | exportable |",
+      "| radiative_muon_decay | Radiative muon decay | mu- -> e- anti-nu_e nu_mu gamma | proposal-only |",
+      "| muon_decay_with_electron_positron_pair | Muon decay with electron-positron pair | mu- -> e- anti-nu_e nu_mu e+ e- | exportable |",
+      "| muon_to_electron_photon | Muon to electron photon | mu- -> e- gamma | proposal-only |",
+      "| charged_pion_to_muon_neutrino | Charged pion to muon neutrino | pi+ -> mu+ nu_mu | proposal-only |",
+    ].join("\n")
+  );
 
   const expectedProposal = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.proposal.v1.json");
   const proposalResult = runPdgfeed(["proposal", "muon_decay", "--source", "pdg-test-reactions"]);
@@ -187,13 +193,22 @@ test("supported-csv emits only the exportable AAA summaries", () => {
 
   const result = runPdgfeed(["supported-csv", csvPath, "--source", "pdg-test-reactions"]);
 
-  assert.equal(result.stdout.trim(), csvPath);
+  assert.deepEqual(result.stdout.trim().split("\n"), [csvPath, ".tmp/pdgfeed.supported.pdg_test_reactions.md"]);
   const lines = fs.readFileSync(csvPath, "utf8").trim().split(/\r?\n/);
   assert.deepEqual(lines, [
     "reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
     "e2,e.av.v2,8,20,-12,2,14,-12",
     "e2,e.av.v2.ae.e,8,32,-24,2,26,-24",
   ]);
+  assert.equal(
+    fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.supported.pdg_test_reactions.md"), "utf8").trim(),
+    [
+      "| Reactant AAA | Product AAA | Reactant Electrinos | Product Electrinos | Electrino Delta | Reactant Positrinos | Product Positrinos | Positrino Delta |",
+      "| --- | --- | --- | --- | --- | --- | --- | --- |",
+      "| e2 | e.av.v2 | 8 | 20 | -12 | 2 | 14 | -12 |",
+      "| e2 | e.av.v2.ae.e | 8 | 32 | -24 | 2 | 26 | -24 |",
+    ].join("\n")
+  );
 });
 
 test("direct script entrypoint matches the root delegator for request output", () => {
