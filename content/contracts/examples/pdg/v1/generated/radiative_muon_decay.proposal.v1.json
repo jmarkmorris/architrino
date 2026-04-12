@@ -1,16 +1,14 @@
 {
   "schema": "pdg-proposal/v1",
-  "proposalId": "radiative_muon_decay.live-pdg",
+  "proposalId": "radiative_muon_decay",
   "title": "Radiative muon decay",
   "source": {
-    "edition": "2025",
-    "channelDescription": "mu- -> e- nubar_e nu_mu gamma",
-    "citation": "S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update",
-    "branchingDisplay": "(6.0+-0.5)E-8",
-    "sourceMode": "pdg.connect",
-    "lookupParticleName": "mu-",
-    "pdgIdentifier": "S004.2/2025",
-    "liveCaseId": "radiative_muon_decay",
+    "edition": "2026",
+    "channelDescription": "mu- -> e- anti-nu_e nu_mu gamma",
+    "citation": "Local PDG test-case seed",
+    "branchingDisplay": "radiative muon decay channel",
+    "testCaseId": "radiative_muon_decay",
+    "testCasePath": "content/contracts/examples/pdg/v1/radiative_muon_decay.source.v1.json",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
       "downstreamSchema": "pdgsolve-request/v1",
@@ -23,147 +21,142 @@
   },
   "reactants": [
     {
-      "id": "reactant_pro_muon_1",
+      "id": "reactant_muon_1",
       "side": "reactant",
-      "templateId": "electron",
-      "label": "Pro Muon",
-      "family": "lepton",
+      "canonicalId": "pro_muon_II",
+      "templateId": "pro_muon_II",
+      "label": "Muon",
+      "aaaNotation": "e2",
+      "family": "charged lepton",
+      "generation": "II",
       "polarity": "pro",
       "isComposite": false,
       "inventory": {
-        "electrinoCount": 5,
-        "positrinoCount": 5,
+        "electrinoCount": 8,
+        "positrinoCount": 2,
         "flags": [
-          "generation:2",
-          "charged-lepton",
+          "canonical-id:pro_muon_II",
+          "request-translation:direct",
           "pdg-id:mu-",
           "pdg-name:mu-"
         ]
       },
       "pdgName": "mu-",
       "pdgId": "mu-",
-      "tags": [
-        "pdg:species:muon",
-        "pdg:generation:2",
-        "pdg-id:mu-"
-      ]
+      "requestTranslation": "direct"
     }
   ],
   "products": [
     {
-      "id": "product_pro_electron_1",
+      "id": "product_electron_1",
       "side": "product",
-      "templateId": "electron",
-      "label": "Pro Electron",
-      "family": "lepton",
+      "canonicalId": "pro_electron_I",
+      "templateId": "pro_electron_I",
+      "label": "Electron",
+      "aaaNotation": "e",
+      "family": "charged lepton",
+      "generation": "I",
       "polarity": "pro",
       "isComposite": false,
       "inventory": {
-        "electrinoCount": 6,
-        "positrinoCount": 6,
+        "electrinoCount": 9,
+        "positrinoCount": 3,
         "flags": [
-          "generation:1",
-          "charged-lepton",
+          "canonical-id:pro_electron_I",
+          "request-translation:direct",
           "pdg-id:e-",
           "pdg-name:e-"
         ]
       },
       "pdgName": "e-",
       "pdgId": "e-",
-      "tags": [
-        "pdg:species:electron",
-        "pdg:generation:1",
-        "pdg-id:e-"
-      ]
+      "requestTranslation": "direct"
     },
     {
       "id": "product_anti_electron_neutrino_2",
       "side": "product",
-      "templateId": "neutrino",
+      "canonicalId": "anti_electron_neutrino_I",
+      "templateId": "anti_electron_neutrino_I",
       "label": "Anti Electron Neutrino",
-      "family": "lepton",
+      "aaaNotation": "av",
+      "family": "neutrino",
+      "generation": "I",
       "polarity": "anti",
       "isComposite": false,
       "inventory": {
         "electrinoCount": 6,
         "positrinoCount": 6,
         "flags": [
-          "generation:1",
-          "neutrino",
-          "pdg-id:nubar_e",
+          "canonical-id:anti_electron_neutrino_I",
+          "request-translation:direct",
+          "pdg-id:anti-nu_e",
           "pdg-name:anti-nu_e"
         ]
       },
       "pdgName": "anti-nu_e",
-      "pdgId": "nubar_e",
-      "tags": [
-        "pdg:species:anti-electron-neutrino",
-        "pdg:generation:1",
-        "pdg-id:nubar_e"
-      ]
+      "pdgId": "anti-nu_e",
+      "requestTranslation": "direct"
     },
     {
-      "id": "product_pro_muon_neutrino_3",
+      "id": "product_muon_neutrino_3",
       "side": "product",
-      "templateId": "neutrino",
-      "label": "Pro Muon Neutrino",
-      "family": "lepton",
+      "canonicalId": "pro_muon_neutrino_II",
+      "templateId": "pro_muon_neutrino_II",
+      "label": "Muon Neutrino",
+      "aaaNotation": "v2",
+      "family": "neutrino",
+      "generation": "II",
       "polarity": "pro",
       "isComposite": false,
       "inventory": {
         "electrinoCount": 5,
         "positrinoCount": 5,
         "flags": [
-          "generation:2",
-          "neutrino",
+          "canonical-id:pro_muon_neutrino_II",
+          "request-translation:direct",
           "pdg-id:nu_mu",
           "pdg-name:nu_mu"
         ]
       },
       "pdgName": "nu_mu",
       "pdgId": "nu_mu",
-      "tags": [
-        "pdg:species:muon-neutrino",
-        "pdg:generation:2",
-        "pdg-id:nu_mu"
-      ]
+      "requestTranslation": "direct"
     },
     {
       "id": "product_photon_4",
       "side": "product",
+      "canonicalId": "photon",
       "templateId": "photon",
       "label": "Photon",
+      "aaaNotation": "hp",
       "family": "boson",
-      "polarity": "",
+      "generation": "n/a",
+      "polarity": "self-conjugate",
       "isComposite": true,
       "inventory": {
         "electrinoCount": 6,
         "positrinoCount": 6,
         "flags": [
+          "canonical-id:photon",
+          "request-translation:none",
           "pdg-id:gamma",
           "pdg-name:gamma"
         ]
       },
       "pdgName": "gamma",
       "pdgId": "gamma",
-      "tags": [
-        "pdg:species:photon",
-        "pdg-id:gamma"
-      ]
+      "requestTranslation": "none"
     }
   ],
-  "centers": [],
   "ranking": {
     "rank": 1,
-    "score": 10,
+    "score": 80,
     "reasons": [
-      "pdg-live-source",
-      "contains-unsupported-participants"
+      "test_case-source",
+      "contains-unsupported-structure"
     ]
   },
   "notes": [
-    "unsupported:reactant:mu-:no-pdgsolve-request-v1-mapping",
-    "unsupported:product:nu_mu:no-pdgsolve-request-v1-mapping",
     "unsupported:product:gamma:no-pdgsolve-request-v1-mapping"
   ],
   "exportable": false

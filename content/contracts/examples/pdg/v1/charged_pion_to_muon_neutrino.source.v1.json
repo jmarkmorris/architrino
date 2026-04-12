@@ -11,23 +11,17 @@
   "reactants": [
     {
       "name": "pi+",
-      "displayLabel": "Positive Pion",
       "pdgId": "pi+"
     }
   ],
   "products": [
     {
       "name": "mu+",
-      "displayLabel": "Anti Muon",
       "pdgId": "mu+"
     },
     {
       "name": "nu_mu",
-      "displayLabel": "Pro Muon Neutrino",
       "pdgId": "nu_mu"
     }
-  ],
-  "notes": [
-    "unsupported reactant test case used to keep a real PDG decay channel in the first local corpus"
   ]
 }

@@ -1,0 +1,49 @@
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "muon_decay_with_electron_positron_pair",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "Muon decay with electron-positron pair",
+    "sourceDocumentId": "pdg-proposal:muon_decay_with_electron_positron_pair"
+  },
+  "reactants": [
+    {
+      "id": "reactant_muon_1",
+      "assemblyId": "pro_muon_II",
+      "title": "Muon"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_electron_1",
+      "assemblyId": "pro_electron_I",
+      "title": "Electron"
+    },
+    {
+      "id": "product_anti_electron_neutrino_2",
+      "assemblyId": "anti_electron_neutrino_I",
+      "title": "Anti Electron Neutrino"
+    },
+    {
+      "id": "product_muon_neutrino_3",
+      "assemblyId": "pro_muon_neutrino_II",
+      "title": "Muon Neutrino"
+    },
+    {
+      "id": "product_positron_4",
+      "assemblyId": "anti_electron_I",
+      "title": "Positron"
+    },
+    {
+      "id": "product_electron_5",
+      "assemblyId": "pro_electron_I",
+      "title": "Electron"
+    }
+  ],
+  "policy": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  }
+}

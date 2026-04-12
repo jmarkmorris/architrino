@@ -1,12 +1,12 @@
 {
   "schema": "pdg-test-case-source/v1",
-  "testCaseId": "muon_decay",
-  "title": "Muon decay",
+  "testCaseId": "radiative_muon_decay",
+  "title": "Radiative muon decay",
   "source": {
     "edition": "2026",
-    "channelDescription": "mu- -> e- anti-nu_e nu_mu",
+    "channelDescription": "mu- -> e- anti-nu_e nu_mu gamma",
     "citation": "Local PDG test-case seed",
-    "branchingDisplay": "dominant muon decay channel"
+    "branchingDisplay": "radiative muon decay channel"
   },
   "reactants": [
     {
@@ -26,6 +26,10 @@
     {
       "name": "nu_mu",
       "pdgId": "nu_mu"
+    },
+    {
+      "name": "gamma",
+      "pdgId": "gamma"
     }
   ]
 }

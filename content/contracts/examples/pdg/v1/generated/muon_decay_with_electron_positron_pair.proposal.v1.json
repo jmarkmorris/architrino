@@ -1,14 +1,14 @@
 {
   "schema": "pdg-proposal/v1",
-  "proposalId": "muon_decay",
-  "title": "Muon decay",
+  "proposalId": "muon_decay_with_electron_positron_pair",
+  "title": "Muon decay with electron-positron pair",
   "source": {
     "edition": "2026",
-    "channelDescription": "mu- -> e- anti-nu_e nu_mu",
+    "channelDescription": "mu- -> e- anti-nu_e nu_mu e+ e-",
     "citation": "Local PDG test-case seed",
-    "branchingDisplay": "dominant muon decay channel",
-    "testCaseId": "muon_decay",
-    "testCasePath": "content/contracts/examples/pdg/v1/muon_decay.source.v1.json",
+    "branchingDisplay": "muon decay channel with internal pair production",
+    "testCaseId": "muon_decay_with_electron_positron_pair",
+    "testCasePath": "content/contracts/examples/pdg/v1/muon_decay_with_electron_positron_pair.source.v1.json",
     "contract": {
       "upstreamSchema": "pdg-proposal/v1",
       "downstreamSchema": "pdgsolve-request/v1",
@@ -120,6 +120,56 @@
       },
       "pdgName": "nu_mu",
       "pdgId": "nu_mu",
+      "requestTranslation": "direct"
+    },
+    {
+      "id": "product_positron_4",
+      "side": "product",
+      "canonicalId": "anti_electron_I",
+      "templateId": "anti_electron_I",
+      "label": "Positron",
+      "aaaNotation": "ae",
+      "family": "charged lepton",
+      "generation": "I",
+      "polarity": "anti",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 3,
+        "positrinoCount": 9,
+        "flags": [
+          "canonical-id:anti_electron_I",
+          "request-translation:direct",
+          "pdg-id:e+",
+          "pdg-name:e+"
+        ]
+      },
+      "pdgName": "e+",
+      "pdgId": "e+",
+      "requestTranslation": "direct"
+    },
+    {
+      "id": "product_electron_5",
+      "side": "product",
+      "canonicalId": "pro_electron_I",
+      "templateId": "pro_electron_I",
+      "label": "Electron",
+      "aaaNotation": "e",
+      "family": "charged lepton",
+      "generation": "I",
+      "polarity": "pro",
+      "isComposite": false,
+      "inventory": {
+        "electrinoCount": 9,
+        "positrinoCount": 3,
+        "flags": [
+          "canonical-id:pro_electron_I",
+          "request-translation:direct",
+          "pdg-id:e-",
+          "pdg-name:e-"
+        ]
+      },
+      "pdgName": "e-",
+      "pdgId": "e-",
       "requestTranslation": "direct"
     }
   ],

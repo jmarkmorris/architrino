@@ -1,12 +1,12 @@
 {
   "schema": "pdg-test-case-source/v1",
-  "testCaseId": "muon_decay",
-  "title": "Muon decay",
+  "testCaseId": "muon_to_electron_photon",
+  "title": "Muon to electron photon",
   "source": {
     "edition": "2026",
-    "channelDescription": "mu- -> e- anti-nu_e nu_mu",
+    "channelDescription": "mu- -> e- gamma",
     "citation": "Local PDG test-case seed",
-    "branchingDisplay": "dominant muon decay channel"
+    "branchingDisplay": "muon to electron photon channel"
   },
   "reactants": [
     {
@@ -20,12 +20,8 @@
       "pdgId": "e-"
     },
     {
-      "name": "anti-nu_e",
-      "pdgId": "anti-nu_e"
-    },
-    {
-      "name": "nu_mu",
-      "pdgId": "nu_mu"
+      "name": "gamma",
+      "pdgId": "gamma"
     }
   ]
 }
