@@ -53,15 +53,15 @@ Policy:
 
 ### Runtime Model
 
-`pdgfeed` implementation ownership is in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` remains only as a compatibility shim so older commands and imports keep working while the implementation lives under `scripts/pdg/`.
+`pdgfeed` implementation ownership is in `scripts/pdg/pdgfeed.py`. Root `pdgfeed.py` delegates CLI and module entry into that implementation.
 
 The normal ingest path should be local and offline once dependencies are installed. `scripts/pdg/pdgfeed.py` connects to the local PDG database, performs PDG lookups, normalizes PDG objects into repo-owned records, builds ranked proposals, and emits solver-facing payloads plus sidecar proposal metadata.
 
-The implementation exposes two primary runtime surfaces plus a compatibility shim:
+The implementation exposes two primary runtime surfaces plus the root entrypoint:
 
 - a library entrypoint in `scripts/pdg/pdgfeed.py` that returns normalized PDG-derived candidates;
 - a CLI entrypoint in `scripts/pdg/pdgfeed.py` that reads local PDG data and writes JSON artifacts for inspection and tests;
-- and the root `pdgfeed.py` compatibility layer, which imports and delegates to `scripts/pdg/pdgfeed.py`.
+- and the root `pdgfeed.py` entrypoint, which imports and delegates to `scripts/pdg/pdgfeed.py`.
 
 Conceptually, `pdgfeed` does only five things:
 
@@ -73,23 +73,15 @@ Conceptually, `pdgfeed` does only five things:
 
 The CLI therefore supports listing, one-reaction proposal builds, one-reaction request builds, live-manifest builds, and support-summary exports. Output formats are plain text for lists, JSON for proposal/request/manifest payloads, and CSV for support summaries.
 
-The canonical CLI surface should be only five subcommands. All calls below use the root `pdgfeed.py` shim. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
+The canonical CLI surface should be only five subcommands. All calls below use the root `pdgfeed.py` entrypoint. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
 
 | Call | Options | Output content | Output format | Output location |
 | --- | --- | --- | --- | --- |
-| `pdgfeed.py list` | `--source {pdg-test-reactions,pdg-reactions}` | Lists reaction ids and titles from the selected source. Source selection replaces the older source-specific list wrappers. | plain text (`<id>\t<title>`) | `stdout` |
+| `pdgfeed.py list` | `--source {pdg-test-reactions,pdg-reactions}` | Lists reaction ids and titles from the selected source. | plain text (`<id>\t<title>`) | `stdout` |
 | `pdgfeed.py proposal REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
 | `pdgfeed.py request REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
-| `pdgfeed.py manifest` | none beyond top-level options | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries. This replaces the separate manifest wrapper. | JSON | `stdout` |
-| `pdgfeed.py supported-csv [CSV_PATH]` | `--source {pdg-test-reactions,pdg-reactions}`, optional `CSV_PATH` | Writes primitive-count summary rows for exportable reactions from the selected source. Source selection replaces the duplicate CSV export wrapper. | CSV | `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv` |
-
-Any redundant commands should be treated as legacy compatibility aliases around that five-command surface:
-
-- `list-pdg-test-reactions` and `list-pdg-reactions` collapse into `list --source ...`;
-- `build-pdg-reaction-manifest` collapses into `manifest`;
-- `emit-supported-reaction-csv` collapses into `supported-csv`;
-- `print-pdg-test-reaction-proposal`, `print-pdg-test-reaction-pdgsolve-request`, `print-pdg-reaction-proposal`, and `print-pdg-reaction-pdgsolve-request` collapse into `proposal` and `request` with `--source`;
-- and `emit-pdg-test-reaction`, `emit-pdg-reaction`, `emit-all-pdg-test-reactions`, and `emit-all-pdg-reactions` represent file-writing and batch-mode concerns that should be expressed as options such as `--write` and `--all` on the canonical commands rather than as separate verbs.
+| `pdgfeed.py manifest` | none beyond top-level options | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries. | JSON | `stdout` |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source {pdg-test-reactions,pdg-reactions}`, optional `CSV_PATH` | Writes primitive-count summary rows for exportable reactions from the selected source. | CSV | `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv` |
 
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 

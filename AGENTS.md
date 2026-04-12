@@ -86,6 +86,7 @@ This document distinguishes three audience scopes:
 - Treat `app.js` and similarly large entrypoint/runtime files as startup and assembly files, not as the long-term home for new feature logic.
 - When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes limited to straightforward setup only.
 - Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.
+- When coding in this workspace, do not design for backward compatibility unless the operator/developer explicitly requests it. We are in development mode, so prefer clean replacements over compatibility shims, dual paths, adapter layers, or preserving superseded interfaces.
 - If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a small dedicated module or helper so later extraction is straightforward instead of leaving another layer of spaghetti.
