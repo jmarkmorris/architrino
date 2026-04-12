@@ -72,6 +72,26 @@ Conceptually, `pdgfeed` does only five things:
 
 The CLI can therefore list reactions, emit proposal and request artifacts, print pipe-safe request JSON to stdout, build PDG reaction outputs for multi-reaction work, and export supported-reaction CSV summaries. The implementation also writes text output for Op usage as well as explicit JSON artifacts for PDG reactions and debugging.
 
+The current CLI still carries compatibility wrappers, but the minimal canonical surface should be only five subcommands. All calls below use the root `pdgfeed.py` shim. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
+
+| Call | Options | Output content | Output format | Output location |
+| --- | --- | --- | --- | --- |
+| `pdgfeed.py list` | `--source {pdg-test-reactions,pdg-reactions}` | Lists reaction ids and titles from the selected source. Source selection replaces the older source-specific list wrappers. | plain text (`<id>\t<title>`) | `stdout` |
+| `pdgfeed.py proposal REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
+| `pdgfeed.py request REACTION_ID` | `--source {pdg-test-reactions,pdg-reactions}`, `--write` | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`) |
+| `pdgfeed.py manifest` | none beyond top-level options | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries. This replaces the separate manifest wrapper. | JSON | `stdout` |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source {pdg-test-reactions,pdg-reactions}`, optional `CSV_PATH` | Writes primitive-count summary rows for exportable reactions from the selected source. Source selection replaces the duplicate CSV export wrapper. | CSV | `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv` |
+
+The redundant commands should be treated as legacy compatibility aliases around that five-command surface:
+
+- `list-pdg-test-reactions` and `list-pdg-reactions` collapse into `list --source ...`;
+- `build-pdg-reaction-manifest` collapses into `manifest`;
+- `emit-supported-reaction-csv` collapses into `supported-csv`;
+- `print-pdg-test-reaction-proposal`, `print-pdg-test-reaction-pdgsolve-request`, `print-pdg-reaction-proposal`, and `print-pdg-reaction-pdgsolve-request` collapse into `proposal` and `request` with `--source`;
+- and `emit-pdg-test-reaction`, `emit-pdg-reaction`, `emit-all-pdg-test-reactions`, and `emit-all-pdg-reactions` represent file-writing and batch-mode concerns that should be expressed as options on the canonical commands rather than as separate verbs.
+
+Current implementation note: `proposal --write` still flows through the shared artifact emitter, so exportable cases may also write the sibling `pdgsolve-request/v1` file even though the minimal interface should keep proposal and request emission conceptually separate.
+
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
 `pdgfeed` is the upstream owner of composite-to-assembly translation for PDG-facing language.
