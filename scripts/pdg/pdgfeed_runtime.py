@@ -404,11 +404,16 @@ def extract_unsupported_particle_names(notes: list[str] | tuple[str, ...]) -> li
 def format_proposal_side_aaa(participants: Any) -> str:
     if not isinstance(participants, list):
         return ""
-    tokens = [
-        str(participant.get("aaaNotation", "")).strip()
-        for participant in participants
-        if isinstance(participant, dict) and str(participant.get("aaaNotation", "")).strip()
-    ]
+    tokens: list[str] = []
+    for participant in participants:
+        if not isinstance(participant, dict):
+            continue
+        aaa_notation = str(participant.get("aaaNotation", "")).strip()
+        if not aaa_notation:
+            continue
+        if str(participant.get("canonicalId", "")) == "neutral_pion":
+            aaa_notation = "u.au"
+        tokens.append(aaa_notation)
     return ".".join(tokens)
 
 
@@ -723,7 +728,6 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
         (
             "K/U",
             "Reaction ID",
-            "MCID",
             "PDG ID",
             "Title",
             "Reactant AAA",
@@ -738,7 +742,6 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
             (
                 row.get("known_status", ""),
                 row.get("reaction_id", ""),
-                row.get("mcid", ""),
                 row.get("pdg_identifier", ""),
                 row.get("title", ""),
                 row.get("reactant_names_aaa", ""),

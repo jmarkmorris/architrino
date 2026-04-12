@@ -181,8 +181,8 @@ class PdgfeedCliTests(unittest.TestCase):
                     "known_status,reaction_id,mcid,pdg_identifier,title,reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
                     "u,mu_minus_test_mu_1,13,TEST.MU.1,mu- decay mode 1,e2,e.av.v2,20,20,0,14,14,0",
                     "u,mu_minus_test_mu_gamma,13,TEST.MU.GAMMA,mu- decay mode 1,e2,e.av.v2.hp,26,26,0,20,20,0",
-                    "u,pi0_test_pi_zero_one_gamma,111,TEST.PI.ZERO.ONE.GAMMA,pi0 decay mode 1,u.au / d.ad,hp,12,12,0,12,12,0",
-                    "u,pi0_fake,111,fake,pi0 decay mode 2,u.au / d.ad,hp.hp,12,12,0,12,12,0",
+                    "u,pi0_test_pi_zero_one_gamma,111,TEST.PI.ZERO.ONE.GAMMA,pi0 decay mode 1,u.au,hp,12,12,0,12,12,0",
+                    "u,pi0_fake,111,fake,pi0 decay mode 2,u.au,hp.hp,12,12,0,12,12,0",
                     "u,pi_plus_test_pi_plus,211,TEST.PI.PLUS,pi+ decay mode 1,u.ad,ae2.v2,9,7,2,15,13,2",
                 ],
             )
@@ -194,7 +194,6 @@ class PdgfeedCliTests(unittest.TestCase):
                 [
                     "K/U",
                     "Reaction ID",
-                    "MCID",
                     "PDG ID",
                     "Title",
                     "Reactant AAA",
@@ -225,14 +224,14 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Transformed Reactant AAA"], "e2.h.ah.h.ah.h.ah")
             self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Transformed Product AAA"], "e.av.v2.h.ah")
             self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Delta Ledger"], "0.0@")
-            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Reactant AAA"], "u.au / d.ad")
+            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Reactant AAA"], "u.au")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Reactant AAA"], "u.au")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Product AAA"], "h.ah.h.ah")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Delta Ledger"], "0.0@")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Reactant AAA"], "u.ad")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Product AAA"], "ae2.v2")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Delta Ledger"], "2.2@")
-            self.assertEqual(row_by_id["pi0_fake"]["Reactant AAA"], "u.au / d.ad")
+            self.assertEqual(row_by_id["pi0_fake"]["Reactant AAA"], "u.au")
             self.assertEqual(row_by_id["pi0_fake"]["Transformed Reactant AAA"], "u.au")
             self.assertEqual(row_by_id["pi0_fake"]["Transformed Product AAA"], "h.ah.h.ah")
             self.assertEqual(row_by_id["pi0_fake"]["Delta Ledger"], "0.0@")

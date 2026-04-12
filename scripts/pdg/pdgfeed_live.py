@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from scripts.pdg.pdgfeed_model import CaseParticle, PdgCase
-from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name
+from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name, conjugate_canonical_name, particle_charge_thirds
 
 
 KNOWN_REACTION_KEYS: tuple[tuple[int, str], ...] = (
@@ -99,6 +99,54 @@ def extract_live_decay_products(decay: Any) -> tuple[list[CaseParticle], list[st
         for _ in range(multiplier):
             particles.append(CaseParticle(name=str(item_name), pdg_id=str(item_name)))
     return particles, notes
+
+
+def total_charge_thirds(names: list[str]) -> int | None:
+    total = 0
+    for name in names:
+        charge = particle_charge_thirds(name)
+        if charge is None:
+            return None
+        total += charge
+    return total
+
+
+def maybe_charge_conjugate_products(
+    reactant_name: str,
+    products: list[CaseParticle],
+    notes: list[str],
+    *,
+    api: Any,
+) -> tuple[list[CaseParticle], list[str]]:
+    reactant_canonical = canonicalize_api_particle_name(api, reactant_name)
+    reactant_charge = particle_charge_thirds(reactant_canonical)
+    if reactant_charge is None:
+        return products, notes
+
+    canonical_product_names = [canonicalize_api_particle_name(api, product.name) for product in products]
+    product_charge = total_charge_thirds(canonical_product_names)
+    if product_charge is None:
+        return products, notes
+    if reactant_charge == product_charge:
+        return products, notes
+
+    conjugated_product_names: list[str] = []
+    for product_name in canonical_product_names:
+        conjugated_name = conjugate_canonical_name(product_name)
+        if conjugated_name is None:
+            return products, notes
+        conjugated_product_names.append(conjugated_name)
+
+    conjugated_charge = total_charge_thirds(conjugated_product_names)
+    if conjugated_charge == reactant_charge:
+        notes.append(f"transform:charge-conjugated-products:{reactant_canonical}")
+        return [
+            CaseParticle(name=conjugated_name, pdg_id=conjugated_name)
+            for conjugated_name in conjugated_product_names
+        ], notes
+
+    notes.append(f"unsupported:charge-mismatch:{reactant_canonical}:{reactant_charge}:{product_charge}")
+    return products, notes
 
 
 def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
@@ -218,6 +266,7 @@ def load_live_case_from_decay(
 
     fallback_description = str(getattr(decay, "description", "") or "")
     reactant_name = canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+    products, notes = maybe_charge_conjugate_products(reactant_name, products, notes, api=api)
     channel_description = build_live_channel_description(reactant_name, products, fallback_description)
     source: dict[str, Any] = {
         "edition": str(getattr(api, "edition", "")),

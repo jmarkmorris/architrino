@@ -42,8 +42,35 @@ class PdgfeedLiveTests(unittest.TestCase):
         case = pdgfeed.load_live_case_from_decay(particle, decay, api=api)
 
         self.assertEqual(case.case_id, "b_minus_s041_473")
-        self.assertEqual(case.source["channelDescription"], "B- -> e+ nu_e")
+        self.assertEqual(case.source["channelDescription"], "B- -> e- anti-nu_e")
         self.assertEqual(case.source["knownStatus"], "u")
+        self.assertEqual([product.name for product in case.products], ["e-", "anti-nu_e"])
+
+    def test_load_live_case_from_decay_marks_unresolved_charge_mismatch_unsupported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B-",
+                    [
+                        FakeDecay(
+                            "TEST.B.MINUS.BAD",
+                            "B+ --> gamma",
+                            [FakeDecayProduct("gamma")],
+                            mode_number=1,
+                        )
+                    ],
+                    mcid=-521,
+                )
+            ]
+        )
+        particle = api.get_particle_by_name("B-")
+        decay = particle.exclusive_branching_fractions()[0]
+
+        case = pdgfeed.load_live_case_from_decay(particle, decay, api=api)
+        proposal = pdgfeed.build_proposal(case)
+
+        self.assertIn("unsupported:charge-mismatch:B-:-3:0", proposal.notes)
+        self.assertFalse(pdgfeed.proposal_is_ready_for_pdgsolve(proposal))
 
     def test_load_live_cases_orders_known_reactions_first(self):
         api = FakeApi(
