@@ -1,51 +1,19 @@
 from __future__ import annotations
 
-from collections import Counter
 from typing import Any
 
-from scripts.pdg.pdgfeed_model import LiveChannelSpec, PdgCase, TestCaseParticle
-from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name, lookup_particle_mapping
+from scripts.pdg.pdgfeed_model import CaseParticle, PdgCase
+from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name
 
 
-TEST_REACTIONS: tuple[LiveChannelSpec, ...] = (
-    LiveChannelSpec(
-        case_id="muon_decay",
-        title="Muon decay",
-        reactant_name="mu-",
-        product_names=("e-", "anti-nu_e", "nu_mu"),
-        channel_description="mu- -> e- anti-nu_e nu_mu",
-    ),
-    LiveChannelSpec(
-        case_id="radiative_muon_decay",
-        title="Radiative muon decay",
-        reactant_name="mu-",
-        product_names=("e-", "anti-nu_e", "nu_mu", "gamma"),
-        channel_description="mu- -> e- anti-nu_e nu_mu gamma",
-    ),
-    LiveChannelSpec(
-        case_id="muon_decay_with_electron_positron_pair",
-        title="Muon decay with electron-positron pair",
-        reactant_name="mu-",
-        product_names=("e-", "anti-nu_e", "nu_mu", "e+", "e-"),
-        channel_description="mu- -> e- anti-nu_e nu_mu e+ e-",
-    ),
-    LiveChannelSpec(
-        case_id="muon_to_electron_photon",
-        title="Muon to electron photon",
-        reactant_name="mu-",
-        product_names=("e-", "gamma"),
-        channel_description="mu- -> e- gamma",
-    ),
-    LiveChannelSpec(
-        case_id="charged_pion_to_muon_neutrino",
-        title="Charged pion to muon neutrino",
-        reactant_name="pi+",
-        product_names=("mu+", "nu_mu"),
-        channel_description="pi+ -> mu+ nu_mu",
-    ),
+KNOWN_REACTION_KEYS: tuple[tuple[int, str], ...] = (
+    (13, "S004.1/2025"),
+    (13, "S004.2/2025"),
+    (13, "S004.7/2025"),
+    (13, "S004.4/2025"),
+    (211, "S008.1/2025"),
 )
-
-TEST_REACTION_BY_ID = {spec.case_id: spec for spec in TEST_REACTIONS}
+KNOWN_REACTION_ORDER = {key: index for index, key in enumerate(KNOWN_REACTION_KEYS)}
 
 
 def connect_pdg(database_url: str | None = None, *, pedantic: bool = False) -> Any:
@@ -74,6 +42,23 @@ def safe_api_info(api: Any, key: str) -> str | None:
     return str(value)
 
 
+def identifier_token(text: str) -> str:
+    token_parts: list[str] = []
+    for ch in str(text).strip().lower():
+        if ch.isalnum():
+            token_parts.append(ch)
+        elif ch == "+":
+            token_parts.append("_plus_")
+        elif ch == "-":
+            token_parts.append("_minus_")
+        else:
+            token_parts.append("_")
+    token = "".join(token_parts)
+    while "__" in token:
+        token = token.replace("__", "_")
+    return token.strip("_") or "item"
+
+
 def canonicalize_api_particle_name(api: Any, name: str) -> str:
     stripped = str(name).strip()
     if not stripped:
@@ -92,8 +77,8 @@ def safe_decay_item_particle(item: Any) -> Any | None:
         return None
 
 
-def extract_live_decay_products(decay: Any) -> tuple[list[TestCaseParticle], list[str]]:
-    particles: list[TestCaseParticle] = []
+def extract_live_decay_products(decay: Any) -> tuple[list[CaseParticle], list[str]]:
+    particles: list[CaseParticle] = []
     notes: list[str] = []
     for decay_product in getattr(decay, "decay_products", ()) or ():
         multiplier = int(getattr(decay_product, "multiplier", 1) or 1)
@@ -112,24 +97,20 @@ def extract_live_decay_products(decay: Any) -> tuple[list[TestCaseParticle], lis
             notes.append(f"unsupported:product:{item_name}:multiplier-{multiplier}")
             continue
         for _ in range(multiplier):
-            particles.append(TestCaseParticle(name=str(item_name), pdg_id=str(item_name)))
+            particles.append(CaseParticle(name=str(item_name), pdg_id=str(item_name)))
     return particles, notes
-
-
-def build_live_product_signature(api: Any, particles: list[TestCaseParticle]) -> Counter[str]:
-    return Counter(canonicalize_api_particle_name(api, particle.name) for particle in particles)
 
 
 def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
     decays: list[Any] = []
-    seen_ids: set[str] = set()
+    seen_ids: set[tuple[str, int | None]] = set()
 
     def extend(entries: Any) -> None:
         for decay in entries:
-            decay_id = str(getattr(decay, "pdgid", id(decay)))
-            if decay_id in seen_ids:
+            identity = (str(getattr(decay, "pdgid", id(decay))), getattr(decay, "mode_number", None))
+            if identity in seen_ids:
                 continue
-            seen_ids.add(decay_id)
+            seen_ids.add(identity)
             decays.append(decay)
 
     try:
@@ -152,71 +133,147 @@ def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
     return decays
 
 
-def infer_reactant_name_from_description(api: Any, particle: Any, description: str) -> str:
-    normalized_description = normalize_channel_description(description)
-    left_side = normalized_description.partition("->")[0].strip()
-    if left_side and " " not in left_side:
-        canonical_left = canonicalize_api_particle_name(api, left_side)
-        if lookup_particle_mapping(canonical_left) is not None:
-            return canonical_left
-    return canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+def build_live_case_id(particle: Any, decay: Any) -> str:
+    particle_token = identifier_token(str(getattr(particle, "name", "") or getattr(particle, "description", "") or "particle"))
+    raw_decay_identifier = str(
+        getattr(decay, "baseid", "") or getattr(decay, "pdgid", "") or getattr(decay, "mode_number", "") or "mode"
+    )
+    decay_token = identifier_token(raw_decay_identifier.partition("/")[0])
+    return f"{particle_token}_{decay_token}"
 
 
-def find_live_decay(api: Any, spec: LiveChannelSpec) -> tuple[Any, list[TestCaseParticle], list[str]]:
-    particle = api.get_particle_by_name(spec.reactant_name)
-    expected_description = normalize_channel_description(spec.channel_description)
-    expected_signature = Counter(spec.product_names)
-    matches: list[tuple[Any, list[TestCaseParticle], list[str], bool]] = []
-    for decay in iter_candidate_branching_fractions(particle):
-        description = normalize_channel_description(getattr(decay, "description", ""))
-        products, notes = extract_live_decay_products(decay)
-        actual_signature = build_live_product_signature(api, products)
-        if actual_signature == expected_signature:
-            matches.append((decay, products, notes, description == expected_description))
-
-    if not matches:
-        raise LookupError(f"Could not locate PDG database decay matching {spec.channel_description!r}")
-
-    matches.sort(key=lambda entry: (not entry[3], len(entry[2]), getattr(entry[0], "mode_number", 0)))
-    decay, products, notes, _ = matches[0]
-    return decay, products, notes
+def build_live_case_title(particle: Any, decay: Any) -> str:
+    mode_number = getattr(decay, "mode_number", None)
+    particle_name = str(getattr(particle, "name", "") or getattr(particle, "description", "") or "particle")
+    if isinstance(mode_number, int) and mode_number > 0:
+        return f"{particle_name} decay mode {mode_number}"
+    description = normalize_channel_description(getattr(decay, "description", ""))
+    if description:
+        return description
+    return f"{particle_name} decay"
 
 
-def load_live_case(
-    spec: LiveChannelSpec,
-    database_url: str | None = None,
+def build_live_channel_description(reactant_name: str, products: list[CaseParticle], fallback_description: str) -> str:
+    product_names = [
+        str(product.display_label or product.name).strip()
+        for product in products
+        if str(product.display_label or product.name).strip()
+    ]
+    if reactant_name and product_names:
+        return f"{reactant_name} -> {' '.join(product_names)}"
+    fallback = normalize_channel_description(fallback_description)
+    left, separator, right = fallback.partition("->")
+    if reactant_name and separator and right.strip():
+        return f"{reactant_name} -> {right.strip()}"
+    return fallback
+
+
+def iter_live_particles(api: Any) -> Any:
+    for particle_list in api.get_particles():
+        for particle in particle_list:
+            yield particle
+
+
+def reaction_source_key(source: dict[str, Any]) -> tuple[int, str] | None:
+    mcid = source.get("mcid")
+    pdg_identifier = str(source.get("pdgIdentifier", "")).strip()
+    if not isinstance(mcid, int) or not pdg_identifier:
+        return None
+    return (mcid, pdg_identifier)
+
+
+def known_reaction_status_from_source(source: dict[str, Any]) -> str:
+    return "k" if reaction_source_key(source) in KNOWN_REACTION_ORDER else "u"
+
+
+def known_reaction_status(case: PdgCase) -> str:
+    return known_reaction_status_from_source(case.source)
+
+
+def known_reaction_sort_key(case: PdgCase) -> tuple[int, int, str, int, str, str]:
+    source_key = reaction_source_key(case.source)
+    known_index = KNOWN_REACTION_ORDER.get(source_key)
+    return (
+        0 if known_index is not None else 1,
+        known_index if known_index is not None else len(KNOWN_REACTION_ORDER),
+        str(case.source.get("lookupParticleName", "")),
+        int(case.source.get("modeNumber", 0) or 0),
+        str(case.source.get("pdgIdentifier", "")),
+        case.case_id,
+    )
+
+
+def load_live_case_from_decay(
+    particle: Any,
+    decay: Any,
     *,
-    api: Any | None = None,
+    api: Any,
 ) -> PdgCase:
-    api = api or connect_pdg(database_url, pedantic=False)
-    decay, products, notes = find_live_decay(api, spec)
-
+    products, notes = extract_live_decay_products(decay)
     subdecay_count = sum(
         1 for product in getattr(decay, "decay_products", ()) or () if getattr(product, "subdecay", None)
     )
     if subdecay_count:
         notes.append(f"unsupported:channel-subdecays:{subdecay_count}")
 
-    reactant_name = infer_reactant_name_from_description(api, api.get_particle_by_name(spec.reactant_name), spec.channel_description)
+    fallback_description = str(getattr(decay, "description", "") or "")
+    reactant_name = canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+    channel_description = build_live_channel_description(reactant_name, products, fallback_description)
     source: dict[str, Any] = {
         "edition": str(getattr(api, "edition", "")),
-        "channelDescription": normalize_channel_description(getattr(decay, "description", spec.channel_description)),
+        "channelDescription": channel_description,
         "citation": safe_api_info(api, "citation") or "PDG Python API database read",
         "branchingDisplay": str(getattr(decay, "display_value_text", "") or ""),
         "sourceMode": "pdg.connect",
         "lookupParticleName": reactant_name,
+        "particleName": str(getattr(particle, "name", "") or ""),
+        "modeNumber": int(getattr(decay, "mode_number", 0) or 0),
+        "isSubdecay": bool(getattr(decay, "is_subdecay", False)),
+        "subdecayLevel": int(getattr(decay, "subdecay_level", 0) or 0),
     }
+    particle_mcid = getattr(particle, "mcid", None)
+    if particle_mcid is not None:
+        source["mcid"] = int(particle_mcid)
     decay_pdgid = getattr(decay, "pdgid", None)
     if decay_pdgid:
         source["pdgIdentifier"] = str(decay_pdgid)
+    source["knownStatus"] = known_reaction_status_from_source(source)
 
+    case_id = build_live_case_id(particle, decay)
     return PdgCase(
-        case_id=spec.case_id,
-        proposal_id=f"{spec.case_id}.live-pdg",
-        title=spec.title,
+        case_id=case_id,
+        proposal_id=case_id,
+        title=build_live_case_title(particle, decay),
         source_kind="pdg-live",
         source=source,
-        reactants=(TestCaseParticle(name=reactant_name, pdg_id=reactant_name),),
+        reactants=(CaseParticle(name=reactant_name, pdg_id=reactant_name),),
         products=tuple(products),
         notes=tuple(notes),
     )
+
+
+def load_live_cases(
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+) -> list[PdgCase]:
+    api = api or connect_pdg(database_url, pedantic=False)
+    cases = [
+        load_live_case_from_decay(particle, decay, api=api)
+        for particle in iter_live_particles(api)
+        for decay in iter_candidate_branching_fractions(particle)
+    ]
+    return sorted(cases, key=known_reaction_sort_key)
+
+
+def load_live_case_by_id(
+    reaction_id: str,
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+) -> PdgCase:
+    api = api or connect_pdg(database_url, pedantic=False)
+    for case in load_live_cases(database_url, api=api):
+        if case.case_id == reaction_id:
+            return case
+    raise LookupError(f"Unknown PDG reaction id {reaction_id!r}.")

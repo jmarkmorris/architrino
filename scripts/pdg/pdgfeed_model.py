@@ -6,14 +6,11 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_TEST_CASE_INDEX = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "index.json"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "content" / "contracts" / "examples" / "pdg" / "v1" / "generated"
 DEFAULT_SUPPORTED_REACTION_CSV = DEFAULT_OUTPUT_DIR / "supported_reaction_primitive_deltas.v1.csv"
 PDGSOLVE_REQUEST_SCHEMA_PATH = REPO_ROOT / "src" / "contracts" / "pdgsolve-request" / "v1" / "schema.json"
 
 PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
-PDG_TEST_CASE_CORPUS_SCHEMA = "pdg-test-case-corpus/v1"
-PDG_TEST_CASE_SOURCE_SCHEMA = "pdg-test-case-source/v1"
 PDG_PROPOSAL_SCHEMA = "pdg-proposal/v1"
 PDG_LIVE_MANIFEST_SCHEMA = "pdg-live-manifest/v1"
 
@@ -33,6 +30,11 @@ PDG_SOURCE_CONTRACT = {
 }
 
 SUPPORTED_REACTION_CSV_COLUMNS = (
+    "known_status",
+    "reaction_id",
+    "mcid",
+    "pdg_identifier",
+    "title",
     "reactant_names_aaa",
     "product_names_aaa",
     "reactant_electrinos",
@@ -84,7 +86,7 @@ class ParticleMapping:
 
 
 @dataclass(frozen=True)
-class TestCaseParticle:
+class CaseParticle:
     name: str
     pdg_id: str | None = None
     display_label: str | None = None
@@ -97,10 +99,9 @@ class PdgCase:
     title: str
     source_kind: str
     source: dict[str, Any]
-    reactants: tuple[TestCaseParticle, ...]
-    products: tuple[TestCaseParticle, ...]
+    reactants: tuple[CaseParticle, ...]
+    products: tuple[CaseParticle, ...]
     notes: tuple[str, ...] = ()
-    source_path: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -178,12 +179,4 @@ class Proposal:
             "exportable": self.exportable,
         }
 
-
-@dataclass(frozen=True)
-class LiveChannelSpec:
-    case_id: str
-    title: str
-    reactant_name: str
-    product_names: tuple[str, ...]
-    channel_description: str
 

@@ -78,8 +78,7 @@ Purpose:
 
 Input:
 
-- PDG test reaction data stored in the repo;
-- or PDG reaction data through the local Python `pdg` package and local SQLite access.
+- PDG reaction data through the local Python `pdg` package and local SQLite access.
 
 Current run method:
 
@@ -87,9 +86,9 @@ Current run method:
 
 Current CLI examples:
 
-- `python3 pdgfeed.py list --source pdg-test-reactions`
-- `python3 pdgfeed.py proposal <reaction-id> --source pdg-test-reactions`
-- `python3 pdgfeed.py request <reaction-id> --source pdg-test-reactions`
+- `python3 pdgfeed.py list --source pdg-reactions`
+- `python3 pdgfeed.py proposal <reaction-id> --source pdg-reactions`
+- `python3 pdgfeed.py request <reaction-id> --source pdg-reactions`
 - `python3 pdgfeed.py manifest`
 
 Output:

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -106,6 +107,7 @@ function readJson(relativePath) {
 
 function walkFiles(relativeDir, predicate, options = {}) {
   const ignoreDirNames = options.ignoreDirNames ?? new Set();
+  const shouldIgnorePath = options.shouldIgnorePath ?? (() => false);
   const absoluteDir = path.join(rootDir, relativeDir);
   const result = [];
   const stack = [absoluteDir];
@@ -116,6 +118,10 @@ function walkFiles(relativeDir, predicate, options = {}) {
       .sort((a, b) => a.name.localeCompare(b.name));
     for (const entry of entries) {
       const absolutePath = path.join(currentDir, entry.name);
+      const relativePath = normalizePath(path.relative(rootDir, absolutePath));
+      if (shouldIgnorePath(relativePath, entry)) {
+        continue;
+      }
       if (entry.isDirectory()) {
         if (ignoreDirNames.has(entry.name)) {
           continue;
@@ -133,6 +139,25 @@ function walkFiles(relativeDir, predicate, options = {}) {
     }
   }
   return result.sort((a, b) => a.localeCompare(b));
+}
+
+const gitIgnoreCache = new Map();
+
+function isGitIgnored(relativePath) {
+  const normalized = normalizePath(relativePath);
+  if (!normalized) {
+    return false;
+  }
+  if (gitIgnoreCache.has(normalized)) {
+    return gitIgnoreCache.get(normalized);
+  }
+  const result = spawnSync("git", ["check-ignore", "--quiet", normalized], {
+    cwd: rootDir,
+    stdio: "ignore",
+  });
+  const ignored = result.status === 0;
+  gitIgnoreCache.set(normalized, ignored);
+  return ignored;
 }
 
 function createLowerMap(paths) {
@@ -854,6 +879,7 @@ const allMarkdownFiles = walkFiles(MARKDOWN_DIR, (name) => name.toLowerCase().en
 const indexableMarkdownFiles = allMarkdownFiles;
 const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
   ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
+  shouldIgnorePath: (relativePath) => isGitIgnored(relativePath),
 });
 
 const sceneConfigs = [];

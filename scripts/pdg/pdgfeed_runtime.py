@@ -10,24 +10,21 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Sequence
 
-from scripts.pdg.pdgfeed_live import TEST_REACTION_BY_ID, TEST_REACTIONS, connect_pdg, load_live_case
+from scripts.pdg.pdgfeed_live import connect_pdg, known_reaction_status, load_live_case_by_id, load_live_cases
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
     DEFAULT_PDGSOLVE_REQUEST_POLICY,
     DEFAULT_SUPPORTED_REACTION_CSV,
-    DEFAULT_TEST_CASE_INDEX,
     PDGSOLVE_REQUEST_SCHEMA,
     PDGSOLVE_REQUEST_SCHEMA_PATH,
     PDG_LIVE_MANIFEST_SCHEMA,
     PDG_PROPOSAL_SCHEMA,
     PDG_SOURCE_CONTRACT,
-    PDG_TEST_CASE_CORPUS_SCHEMA,
-    PDG_TEST_CASE_SOURCE_SCHEMA,
+    CaseParticle,
     Proposal,
     PdgCase,
     NormalizedParticipant,
     SUPPORTED_REACTION_CSV_COLUMNS,
-    TestCaseParticle,
 )
 from scripts.pdg.pdgfeed_registry import REQUEST_ASSEMBLY_COUNTS, canonicalize_pdg_name, lookup_particle_mapping
 
@@ -52,53 +49,7 @@ def slugify(text: str) -> str:
     return compact.strip("_") or "item"
 
 
-def load_test_case_index(index_path: Path) -> list[PdgCase]:
-    repo_root = Path(__file__).resolve().parents[2]
-    index_payload = load_json(index_path)
-    if index_payload.get("schema") != PDG_TEST_CASE_CORPUS_SCHEMA:
-        raise ValueError(f"Unexpected test-case index schema in {index_path}")
-
-    test_cases: list[PdgCase] = []
-    for case in index_payload.get("cases", []):
-        source_path = Path(case["sourcePath"])
-        if not source_path.is_absolute():
-            source_path = repo_root / source_path
-        test_case_payload = load_json(source_path)
-        if test_case_payload.get("schema") != PDG_TEST_CASE_SOURCE_SCHEMA:
-            raise ValueError(f"Unexpected test-case source schema in {source_path}")
-
-        case_id = str(test_case_payload["testCaseId"])
-        test_cases.append(
-            PdgCase(
-                case_id=case_id,
-                proposal_id=case_id,
-                title=str(test_case_payload["title"]),
-                source_kind="test_case",
-                source=dict(test_case_payload["source"]),
-                reactants=tuple(
-                    TestCaseParticle(
-                        name=str(entry["name"]),
-                        pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
-                        display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
-                    )
-                    for entry in test_case_payload.get("reactants", [])
-                ),
-                products=tuple(
-                    TestCaseParticle(
-                        name=str(entry["name"]),
-                        pdg_id=str(entry["pdgId"]) if entry.get("pdgId") else None,
-                        display_label=str(entry["displayLabel"]) if entry.get("displayLabel") else None,
-                    )
-                    for entry in test_case_payload.get("products", [])
-                ),
-                notes=tuple(str(note) for note in test_case_payload.get("notes", [])),
-                source_path=source_path,
-            )
-        )
-    return test_cases
-
-
-def build_inventory(mapping: Any, particle: TestCaseParticle) -> dict[str, Any]:
+def build_inventory(mapping: Any, particle: CaseParticle) -> dict[str, Any]:
     flags = [
         f"canonical-id:{mapping.canonical_id}",
         f"request-translation:{mapping.request_translation}",
@@ -115,17 +66,13 @@ def build_inventory(mapping: Any, particle: TestCaseParticle) -> dict[str, Any]:
 
 def build_proposal_source(case: PdgCase) -> dict[str, Any]:
     source = dict(case.source)
-    if case.source_kind == "test_case":
-        source["testCaseId"] = case.case_id
-        if case.source_path is not None:
-            source["testCasePath"] = str(case.source_path.relative_to(Path(__file__).resolve().parents[2]))
-    elif case.source_kind == "pdg-live":
+    if case.source_kind == "pdg-live":
         source["liveCaseId"] = case.case_id
     source["contract"] = dict(PDG_SOURCE_CONTRACT)
     return source
 
 
-def normalize_particle(particle: TestCaseParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
+def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
     canonical_name = canonicalize_pdg_name(particle.name)
     mapping = lookup_particle_mapping(canonical_name)
     if mapping is None:
@@ -349,6 +296,7 @@ def get_pdgsolve_occurrence_primitive_totals(occurrences: Any) -> dict[str, int]
 
 
 def build_supported_reaction_csv_row(
+    case: PdgCase,
     proposal_payload: dict[str, Any],
     pdgsolve_request: dict[str, Any],
 ) -> dict[str, str | int] | None:
@@ -363,6 +311,11 @@ def build_supported_reaction_csv_row(
         return None
 
     return {
+        "known_status": known_reaction_status(case),
+        "reaction_id": case.case_id,
+        "mcid": int(case.source.get("mcid", 0) or 0),
+        "pdg_identifier": str(case.source.get("pdgIdentifier", "")),
+        "title": case.title,
         "reactant_names_aaa": reactant_names,
         "product_names_aaa": product_names,
         "reactant_electrinos": reactant_totals["electrinoCount"],
@@ -381,7 +334,7 @@ def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, st
         pdgsolve_request = build_pdgsolve_request(proposal)
         if pdgsolve_request is None:
             continue
-        row = build_supported_reaction_csv_row(proposal.to_dict(), pdgsolve_request)
+        row = build_supported_reaction_csv_row(case, proposal.to_dict(), pdgsolve_request)
         if row is not None:
             rows.append(row)
     return rows
@@ -397,17 +350,18 @@ def build_live_manifest_payload(
     unsupported_entries: list[dict[str, Any]] = []
     unsupported_particle_counts: Counter[str] = Counter()
 
-    for spec in TEST_REACTIONS:
-        live_case = load_live_case(spec, database_url, api=api)
+    for live_case in load_live_cases(database_url, api=api):
         proposal = build_proposal(live_case)
         pdgsolve_request = build_pdgsolve_request(proposal)
         unsupported_names = extract_unsupported_particle_names(proposal.notes)
         unsupported_particle_counts.update(unsupported_names)
         entry = {
             "batchId": 0,
+            "knownStatus": known_reaction_status(live_case),
             "caseId": live_case.case_id,
             "proposalId": proposal.proposal_id,
             "title": live_case.title,
+            "mcid": int(live_case.source.get("mcid", 0) or 0),
             "lookupParticleName": str(live_case.source.get("lookupParticleName", "")),
             "pdgIdentifier": str(live_case.source.get("pdgIdentifier", "")),
             "channelDescription": str(live_case.source.get("channelDescription", "")),
@@ -453,7 +407,20 @@ def build_live_supported_reaction_csv_rows(
     for entry in manifest.get("entries", []):
         if not isinstance(entry, dict):
             continue
-        row = build_supported_reaction_csv_row(entry.get("proposal", {}), entry.get("pdgsolveRequest", {}))
+        case = PdgCase(
+            case_id=str(entry.get("caseId", "")),
+            proposal_id=str(entry.get("proposalId", "")),
+            title=str(entry.get("title", "")),
+            source_kind="pdg-live",
+            source={
+                "mcid": int(entry.get("mcid", 0) or 0),
+                "pdgIdentifier": str(entry.get("pdgIdentifier", "")),
+                "knownStatus": str(entry.get("knownStatus", "u")),
+            },
+            reactants=(),
+            products=(),
+        )
+        row = build_supported_reaction_csv_row(case, entry.get("proposal", {}), entry.get("pdgsolveRequest", {}))
         if row is not None:
             rows.append(row)
     return rows
@@ -505,15 +472,12 @@ def write_request_artifacts(case: PdgCase, output_dir: Path) -> list[Path]:
 
 def build_cases_by_source(
     source: str,
-    test_cases: list[PdgCase],
     database_url: str | None = None,
 ) -> list[PdgCase]:
-    if source == "pdg-test-reactions":
-        return list(test_cases)
     if source != "pdg-reactions":
         raise SystemExit(f"Unsupported source: {source}")
     api = connect_pdg(database_url, pedantic=False)
-    return [load_live_case(spec, database_url, api=api) for spec in TEST_REACTIONS]
+    return load_live_cases(database_url, api=api)
 
 
 def format_list_channel_description(case: PdgCase) -> str:
@@ -529,18 +493,6 @@ def format_list_channel_description(case: PdgCase) -> str:
 
 def sanitize_tsv_field(value: Any) -> str:
     return str(value).replace("\t", " ").replace("\n", " ").strip()
-
-
-def format_list_row(case: PdgCase) -> str:
-    proposal = build_proposal(case)
-    status = "exportable" if proposal.exportable else "proposal-only"
-    fields = (
-        case.case_id,
-        case.title,
-        format_list_channel_description(case),
-        status,
-    )
-    return "\t".join(sanitize_tsv_field(field) for field in fields)
 
 
 def list_markdown_output_path(source: str) -> Path:
@@ -567,10 +519,13 @@ def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequ
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str]:
+def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, str]:
     proposal = build_proposal(case)
     status = "exportable" if proposal.exportable else "proposal-only"
     return (
+        known_reaction_status(case),
+        sanitize_tsv_field(int(case.source.get("mcid", 0) or 0)),
+        sanitize_tsv_field(case.source.get("pdgIdentifier", "")),
         sanitize_tsv_field(case.case_id),
         sanitize_tsv_field(case.title),
         sanitize_tsv_field(format_list_channel_description(case)),
@@ -582,6 +537,11 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
     write_markdown_table(
         path,
         (
+            "K/U",
+            "Reaction ID",
+            "MCID",
+            "PDG ID",
+            "Title",
             "Reactant AAA",
             "Product AAA",
             "Reactant Electrinos",
@@ -593,6 +553,11 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
         ),
         [
             (
+                row.get("known_status", ""),
+                row.get("reaction_id", ""),
+                row.get("mcid", ""),
+                row.get("pdg_identifier", ""),
+                row.get("title", ""),
                 row.get("reactant_names_aaa", ""),
                 row.get("product_names_aaa", ""),
                 row.get("reactant_electrinos", ""),
@@ -610,22 +575,13 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
 def resolve_case_by_source(
     source: str,
     reaction_id: str,
-    test_cases_by_id: dict[str, PdgCase],
     database_url: str | None = None,
 ) -> PdgCase:
-    if source == "pdg-test-reactions":
-        test_case = test_cases_by_id.get(reaction_id)
-        if test_case is None:
-            available = ", ".join(sorted(test_cases_by_id))
-            raise SystemExit(f"Unknown PDG test reaction id {reaction_id!r}. Available: {available}")
-        return test_case
-
     if source == "pdg-reactions":
-        spec = TEST_REACTION_BY_ID.get(reaction_id)
-        if spec is None:
-            available = ", ".join(sorted(TEST_REACTION_BY_ID))
-            raise SystemExit(f"Unknown PDG reaction id {reaction_id!r}. Available: {available}")
-        return load_live_case(spec, database_url)
+        try:
+            return load_live_case_by_id(reaction_id, database_url)
+        except LookupError as exc:
+            raise SystemExit(str(exc)) from exc
 
     raise SystemExit(f"Unsupported source: {source}")
 
@@ -633,14 +589,6 @@ def resolve_case_by_source(
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="List PDG reactions, build proposals, emit pdgsolve requests, and prepare live manifests."
-    )
-    parser.add_argument(
-        "--test-reaction-index",
-        "--test-case-index",
-        dest="test_case_index",
-        type=Path,
-        default=DEFAULT_TEST_CASE_INDEX,
-        help="Path to the local PDG test reaction corpus index.",
     )
     parser.add_argument(
         "--output-dir",
@@ -657,8 +605,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     list_parser = subparsers.add_parser("list", help="List reaction ids and titles from the selected source.")
     list_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions"),
-        default="pdg-test-reactions",
+        choices=("pdg-reactions",),
+        default="pdg-reactions",
         help="Choose the reaction source.",
     )
 
@@ -666,8 +614,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     proposal_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     proposal_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions"),
-        default="pdg-test-reactions",
+        choices=("pdg-reactions",),
+        default="pdg-reactions",
         help="Choose the reaction source.",
     )
     proposal_parser.add_argument(
@@ -683,8 +631,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     request_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     request_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions"),
-        default="pdg-test-reactions",
+        choices=("pdg-reactions",),
+        default="pdg-reactions",
         help="Choose the reaction source.",
     )
     request_parser.add_argument(
@@ -708,8 +656,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     supported_csv_parser.add_argument(
         "--source",
-        choices=("pdg-test-reactions", "pdg-reactions"),
-        default="pdg-test-reactions",
+        choices=("pdg-reactions",),
+        default="pdg-reactions",
         help="Choose the reaction source.",
     )
 
@@ -724,32 +672,19 @@ def print_json(payload: dict[str, Any]) -> None:
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
 
-    test_cases_cache: list[PdgCase] | None = None
-
-    def get_test_cases() -> list[PdgCase]:
-        nonlocal test_cases_cache
-        if test_cases_cache is None:
-            test_cases_cache = load_test_case_index(args.test_case_index)
-        return test_cases_cache
-
     if args.command == "list":
-        cases = (
-            get_test_cases()
-            if args.source == "pdg-test-reactions"
-            else build_cases_by_source(args.source, get_test_cases(), args.database_url)
-        )
+        cases = build_cases_by_source(args.source, args.database_url)
         output_path = list_markdown_output_path(args.source)
         write_markdown_table(
             output_path,
-            ("Reaction ID", "Title", "Channel", "Status"),
+            ("K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Status"),
             [build_list_row_cells(case) for case in cases],
         )
         print(format_output_path(output_path))
         return 0
 
     if args.command == "proposal":
-        test_cases = get_test_cases()
-        case = resolve_case_by_source(args.source, args.reaction_id, {item.case_id: item for item in test_cases}, args.database_url)
+        case = resolve_case_by_source(args.source, args.reaction_id, args.database_url)
         if args.write:
             print(format_output_path(write_proposal_artifact(case, args.output_dir)))
             return 0
@@ -757,13 +692,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.command == "request":
-        test_cases = get_test_cases()
-        case = resolve_case_by_source(args.source, args.reaction_id, {item.case_id: item for item in test_cases}, args.database_url)
+        case = resolve_case_by_source(args.source, args.reaction_id, args.database_url)
         proposal = build_proposal(case)
         pdgsolve_request = build_pdgsolve_request(proposal)
         if pdgsolve_request is None:
-            source_label = "PDG test reaction" if args.source == "pdg-test-reactions" else "PDG reaction"
-            raise SystemExit(f"{source_label} {args.reaction_id!r} does not currently emit pdgsolve-request/v1.")
+            raise SystemExit(f"PDG reaction {args.reaction_id!r} does not currently emit pdgsolve-request/v1.")
         if args.write:
             for path in write_request_artifacts(case, args.output_dir):
                 print(format_output_path(path))
@@ -776,10 +709,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.command == "supported-csv":
-        if args.source == "pdg-reactions":
-            rows = build_live_supported_reaction_csv_rows(args.database_url)
-        else:
-            rows = build_supported_reaction_csv_rows(get_test_cases())
+        rows = build_live_supported_reaction_csv_rows(args.database_url)
         write_supported_reaction_csv(args.csv_path, rows)
         markdown_path = supported_markdown_output_path(args.source)
         write_supported_reaction_markdown(markdown_path, rows)

@@ -27,9 +27,10 @@ class FakeDecay:
 
 
 class FakeParticle:
-    def __init__(self, name, decays):
+    def __init__(self, name, decays, *, mcid=None):
         self.name = name
         self._decays = list(decays)
+        self.mcid = mcid
 
     def exclusive_branching_fractions(self, *args, **kwargs):
         return list(self._decays)
@@ -38,10 +39,14 @@ class FakeParticle:
 class FakeApi:
     def __init__(self, particles, *, edition="2025"):
         self._particles = {particle.name: particle for particle in particles}
+        self._particle_lists = [[particle] for particle in particles]
         self.edition = edition
 
     def get_particle_by_name(self, name):
         return self._particles[name]
+
+    def get_particles(self):
+        return list(self._particle_lists)
 
     def get_canonical_name(self, name):
         aliases = {
@@ -57,144 +62,118 @@ class FakeApi:
 
 class PdgfeedContractTests(unittest.TestCase):
     def test_parse_args_exposes_the_five_subcommands(self):
-        list_args = pdgfeed.parse_args(["list", "--source", "pdg-test-reactions"])
-        proposal_args = pdgfeed.parse_args(["proposal", "muon_decay"])
-        request_args = pdgfeed.parse_args(["request", "muon_decay_with_electron_positron_pair"])
+        list_args = pdgfeed.parse_args(["list"])
+        proposal_args = pdgfeed.parse_args(["proposal", "mu_minus_s004_1"])
+        request_args = pdgfeed.parse_args(["request", "mu_minus_s004_7"])
         manifest_args = pdgfeed.parse_args(["manifest"])
         supported_csv_args = pdgfeed.parse_args(["supported-csv"])
 
         self.assertEqual(list_args.command, "list")
-        self.assertEqual(list_args.source, "pdg-test-reactions")
+        self.assertEqual(list_args.source, "pdg-reactions")
         self.assertEqual(proposal_args.command, "proposal")
-        self.assertEqual(proposal_args.reaction_id, "muon_decay")
+        self.assertEqual(proposal_args.reaction_id, "mu_minus_s004_1")
         self.assertEqual(request_args.command, "request")
-        self.assertEqual(request_args.reaction_id, "muon_decay_with_electron_positron_pair")
+        self.assertEqual(request_args.reaction_id, "mu_minus_s004_7")
         self.assertEqual(manifest_args.command, "manifest")
         self.assertEqual(supported_csv_args.command, "supported-csv")
+        self.assertEqual(supported_csv_args.source, "pdg-reactions")
 
-    def test_test_case_corpus_matches_the_documented_five_case_set(self):
-        cases = pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
-
-        self.assertEqual(
-            [case.case_id for case in cases],
+    def test_known_muon_decay_is_exportable_and_emits_generation_suffixed_request_ids(self):
+        api = FakeApi(
             [
-                "muon_decay",
-                "radiative_muon_decay",
-                "muon_decay_with_electron_positron_pair",
-                "muon_to_electron_photon",
-                "charged_pion_to_muon_neutrino",
-            ],
+                FakeParticle(
+                    "mu-",
+                    [
+                        FakeDecay(
+                            "S004.1/2025",
+                            "mu- -> e- nubar_e nu_mu",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("nubar_e"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                            display_value_text="~100",
+                        )
+                    ],
+                    mcid=13,
+                )
+            ]
         )
-
-    def test_muon_decay_is_exportable_and_emits_generation_suffixed_request_ids(self):
-        case = next(
-            case
-            for case in pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
-            if case.case_id == "muon_decay"
-        )
+        particle = api.get_particle_by_name("mu-")
+        case = pdgfeed.load_live_case_from_decay(particle, particle.exclusive_branching_fractions()[0], api=api)
 
         proposal = pdgfeed.build_proposal(case)
         request = pdgfeed.build_pdgsolve_request(proposal)
 
+        self.assertEqual(case.case_id, "mu_minus_s004_1")
+        self.assertEqual(case.source["knownStatus"], "k")
         self.assertTrue(proposal.exportable)
-        self.assertEqual(proposal.notes, ())
-        self.assertEqual(proposal.reactants[0].canonical_id, "pro_muon_II")
-        self.assertEqual([participant.canonical_id for participant in proposal.products], [
-            "pro_electron_I",
-            "anti_electron_neutrino_I",
-            "pro_muon_neutrino_II",
-        ])
+        self.assertEqual(proposal.products[1].pdg_name, "anti-nu_e")
         self.assertIsNotNone(request)
-        pdgfeed.validate_pdgsolve_request_shape(request)
-        self.assertEqual(
-            [entry["assemblyId"] for entry in request["reactants"]],
-            ["pro_muon_II"],
-        )
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             ["pro_electron_I", "anti_electron_neutrino_I", "pro_muon_neutrino_II"],
         )
 
-    def test_pair_production_case_keeps_repeated_products_explicit(self):
-        case = next(
-            case
-            for case in pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
-            if case.case_id == "muon_decay_with_electron_positron_pair"
-        )
-
-        proposal = pdgfeed.build_proposal(case)
-        request = pdgfeed.build_pdgsolve_request(proposal)
-
-        self.assertTrue(proposal.exportable)
-        self.assertIsNotNone(request)
-        self.assertEqual(
-            [(entry["assemblyId"], entry["title"]) for entry in request["products"]],
-            [
-                ("pro_electron_I", "Electron"),
-                ("anti_electron_neutrino_I", "Anti Electron Neutrino"),
-                ("pro_muon_neutrino_II", "Muon Neutrino"),
-                ("anti_electron_I", "Positron"),
-                ("pro_electron_I", "Electron"),
-            ],
-        )
-
-    def test_radiative_and_pion_cases_stay_proposal_only(self):
-        cases = {
-            case.case_id: case
-            for case in pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
-        }
-
-        radiative = pdgfeed.build_proposal(cases["radiative_muon_decay"])
-        pion = pdgfeed.build_proposal(cases["charged_pion_to_muon_neutrino"])
-
-        self.assertFalse(radiative.exportable)
-        self.assertEqual(
-            radiative.notes,
-            ("unsupported:product:gamma:no-pdgsolve-request-v1-mapping",),
-        )
-        self.assertIsNone(pdgfeed.build_pdgsolve_request(radiative))
-
-        self.assertFalse(pion.exportable)
-        self.assertEqual(
-            pion.notes,
-            ("unsupported:reactant:pi+:no-pdgsolve-request-v1-mapping",),
-        )
-        self.assertIsNone(pdgfeed.build_pdgsolve_request(pion))
-
-    def test_supported_csv_rows_use_aaa_side_notation_for_exportable_cases(self):
-        rows = pdgfeed.build_supported_reaction_csv_rows(
-            pdgfeed.load_test_case_index(pdgfeed.DEFAULT_TEST_CASE_INDEX)
-        )
-
-        self.assertEqual(
-            rows,
-            [
-                {
-                    "reactant_names_aaa": "e2",
-                    "product_names_aaa": "e.av.v2",
-                    "reactant_electrinos": 8,
-                    "product_electrinos": 20,
-                    "electrino_delta": -12,
-                    "reactant_positrinos": 2,
-                    "product_positrinos": 14,
-                    "positrino_delta": -12,
-                },
-                {
-                    "reactant_names_aaa": "e2",
-                    "product_names_aaa": "e.av.v2.ae.e",
-                    "reactant_electrinos": 8,
-                    "product_electrinos": 32,
-                    "electrino_delta": -24,
-                    "reactant_positrinos": 2,
-                    "product_positrinos": 26,
-                    "positrino_delta": -24,
-                },
-            ],
-        )
-
-    def test_curated_live_manifest_separates_exportable_and_unsupported_channels(self):
+    def test_supported_csv_rows_include_known_status_and_exact_ids(self):
         api = FakeApi(
             [
+                FakeParticle(
+                    "mu-",
+                    [
+                        FakeDecay(
+                            "S004.1/2025",
+                            "mu- -> e- anti-nu_e nu_mu",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("anti-nu_e"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                        ),
+                        FakeDecay(
+                            "S004.7/2025",
+                            "mu- -> e- anti-nu_e nu_mu e+ e-",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("anti-nu_e"),
+                                FakeDecayProduct("nu_mu"),
+                                FakeDecayProduct("e+"),
+                                FakeDecayProduct("e-"),
+                            ],
+                        ),
+                    ],
+                    mcid=13,
+                )
+            ]
+        )
+
+        rows = pdgfeed.build_supported_reaction_csv_rows(pdgfeed.load_live_cases(api=api))
+
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]["known_status"], "k")
+        self.assertEqual(rows[0]["reaction_id"], "mu_minus_s004_1")
+        self.assertEqual(rows[0]["mcid"], 13)
+        self.assertEqual(rows[0]["pdg_identifier"], "S004.1/2025")
+        self.assertEqual(rows[1]["reaction_id"], "mu_minus_s004_7")
+
+    def test_live_manifest_marks_known_reactions_and_orders_them_first(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "mu+",
+                    [
+                        FakeDecay(
+                            "S004.1/2025",
+                            "mu+ -> e+ nu_e nubar_mu",
+                            [
+                                FakeDecayProduct("e+"),
+                                FakeDecayProduct("nu_e"),
+                                FakeDecayProduct("nubar_mu"),
+                            ],
+                        )
+                    ],
+                    mcid=-13,
+                ),
                 FakeParticle(
                     "mu-",
                     [
@@ -219,42 +198,8 @@ class PdgfeedContractTests(unittest.TestCase):
                             ],
                             display_value_text="(rad)",
                         ),
-                        FakeDecay(
-                            "S004.7/2025",
-                            "mu- -> e- anti-nu_e nu_mu e+ e-",
-                            [
-                                FakeDecayProduct("e-"),
-                                FakeDecayProduct("anti-nu_e"),
-                                FakeDecayProduct("nu_mu"),
-                                FakeDecayProduct("e+"),
-                                FakeDecayProduct("e-"),
-                            ],
-                            display_value_text="(pair)",
-                        ),
-                        FakeDecay(
-                            "S004.4/2025",
-                            "mu- -> e- gamma",
-                            [
-                                FakeDecayProduct("e-"),
-                                FakeDecayProduct("gamma"),
-                            ],
-                            display_value_text="(photonic)",
-                        ),
                     ],
-                ),
-                FakeParticle(
-                    "pi+",
-                    [
-                        FakeDecay(
-                            "S008.1/2025",
-                            "pi+ -> mu+ nu_mu",
-                            [
-                                FakeDecayProduct("mu+"),
-                                FakeDecayProduct("nu_mu"),
-                            ],
-                            display_value_text="(dominant)",
-                        )
-                    ],
+                    mcid=13,
                 ),
             ]
         )
@@ -263,26 +208,18 @@ class PdgfeedContractTests(unittest.TestCase):
 
         self.assertEqual(manifest["schema"], "pdg-live-manifest/v1")
         self.assertEqual(manifest["exportableCount"], 2)
-        self.assertEqual(manifest["unsupportedDiscoveryCount"], 3)
-        self.assertEqual([entry["caseId"] for entry in manifest["entries"]], [
-            "muon_decay",
-            "muon_decay_with_electron_positron_pair",
-        ])
-        self.assertEqual([entry["caseId"] for entry in manifest["unsupportedEntries"]], [
-            "radiative_muon_decay",
-            "muon_to_electron_photon",
-            "charged_pion_to_muon_neutrino",
-        ])
+        self.assertEqual(manifest["unsupportedDiscoveryCount"], 1)
         self.assertEqual(
-            manifest["topUnsupportedParticles"],
-            [
-                {"particle": "gamma", "count": 2},
-                {"particle": "pi+", "count": 1},
-            ],
+            [(entry["knownStatus"], entry["caseId"]) for entry in manifest["entries"]],
+            [("k", "mu_minus_s004_1"), ("u", "mu_plus_s004_1")],
         )
-        self.assertEqual(manifest["entries"][0]["pdgsolveRequest"]["schema"], "pdgsolve-request/v1")
+        self.assertEqual(
+            [(entry["knownStatus"], entry["caseId"]) for entry in manifest["unsupportedEntries"]],
+            [("k", "mu_minus_s004_2")],
+        )
+        self.assertEqual(manifest["entries"][0]["pdgIdentifier"], "S004.1/2025")
+        self.assertEqual(manifest["entries"][0]["mcid"], 13)
 
 
 if __name__ == "__main__":
     unittest.main()
-

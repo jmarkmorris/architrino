@@ -961,7 +961,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 
 - `schema: "pdgsolve-request/v1"`;
 - `requestId`;
-- `source.kind`, for example `test_case`, `pdgfeed`, or `developer`;
+- `source.kind`, for example `pdgfeed`, `developer`, or `pdgsolve-reopen`;
 - explicit reactant-side and product-side occurrence lists;
 - and optional policy overrides, including `allowedBoundaryAugmentations`, `allowedNoetherPairSides`, and `maxNoetherPairsPerSide`.
 

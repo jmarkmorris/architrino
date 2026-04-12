@@ -7,6 +7,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const REPO_ROOT = fileURLToPath(new URL("../", import.meta.url));
+const SHARED_PYTHON = "/Users/markmorris/vibe/.venv/bin/python";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
@@ -95,7 +96,7 @@ function validateAgainstSchema(value, schema, pathLabel = "$", errors = []) {
 }
 
 function runPdgfeed(args, { expectFailure = false } = {}) {
-  const result = spawnSync("python3", ["pdgfeed.py", ...args], {
+  const result = spawnSync(SHARED_PYTHON, ["pdgfeed.py", ...args], {
     cwd: REPO_ROOT,
     encoding: "utf8",
   });
@@ -107,118 +108,83 @@ function runPdgfeed(args, { expectFailure = false } = {}) {
   return result;
 }
 
-test("generated PDG request fixtures validate against the full v1 schema", () => {
+test("root CLI list writes known reactions first with k/u and exact IDs", () => {
+  const listResult = runPdgfeed(["list", "--source", "pdg-reactions"]);
+  assert.equal(listResult.stdout.trim(), ".tmp/pdgfeed.list.pdg_reactions.md");
+
+  const lines = fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.list.pdg_reactions.md"), "utf8").trim().split("\n");
+  assert.deepEqual(lines.slice(0, 7), [
+    "| K/U | MCID | PDG ID | Reaction ID | Title | Channel | Status |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+    "| k | 13 | S004.1/2025 | mu_minus_s004_1 | mu- decay mode 1 | mu- -> e- nubar_e nu_mu | exportable |",
+    "| k | 13 | S004.2/2025 | mu_minus_s004_2 | mu- decay mode 2 | mu- -> e- nubar_e nu_mu gamma | proposal-only |",
+    "| k | 13 | S004.7/2025 | mu_minus_s004_7 | mu- decay mode 3 | mu- -> e- nubar_e nu_mu e+ e- | exportable |",
+    "| k | 13 | S004.4/2025 | mu_minus_s004_4 | mu- decay mode 5 | mu- -> e- gamma | proposal-only |",
+    "| k | 211 | S008.1/2025 | pi_plus_s008_1 | pi+ decay mode 1 | pi+ -> mu+ nu_mu | proposal-only |",
+  ]);
+});
+
+test("proposal emits live known reaction metadata", () => {
+  const proposalResult = runPdgfeed(["proposal", "mu_minus_s004_1", "--source", "pdg-reactions"]);
+  const proposal = JSON.parse(proposalResult.stdout);
+
+  assert.equal(proposal.schema, "pdg-proposal/v1");
+  assert.equal(proposal.proposalId, "mu_minus_s004_1");
+  assert.equal(proposal.source.mcid, 13);
+  assert.equal(proposal.source.pdgIdentifier, "S004.1/2025");
+  assert.equal(proposal.source.knownStatus, "k");
+  assert.equal(proposal.exportable, true);
+});
+
+test("request emits a valid pdgsolve-request for a known exportable reaction", () => {
   const schema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
-  const generatedDir = new URL("../content/contracts/examples/pdg/v1/generated/", import.meta.url);
-  const requestPaths = fs
-    .readdirSync(generatedDir)
-    .filter((entry) => entry.endsWith(".pdgsolve-request.v1.json"))
-    .sort();
+  const requestResult = runPdgfeed(["request", "mu_minus_s004_1", "--source", "pdg-reactions"]);
+  const request = JSON.parse(requestResult.stdout);
 
-  assert.deepEqual(requestPaths, [
-    "muon_decay.pdgsolve-request.v1.json",
-    "muon_decay_with_electron_positron_pair.pdgsolve-request.v1.json",
-  ]);
-
-  requestPaths.forEach((entry) => {
-    const request = JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"));
-    assert.deepEqual(validateAgainstSchema(request, schema), [], `${entry} schema mismatch`);
-    assert.equal(request.source.kind, "pdgfeed");
-    assert.equal(request.source.sourceDocumentId, `pdg-proposal:${request.requestId}`);
-  });
+  assert.deepEqual(validateAgainstSchema(request, schema), [], "request schema mismatch");
+  assert.equal(request.requestId, "mu_minus_s004_1");
+  assert.equal(request.source.kind, "pdgfeed");
 });
 
-test("generated PDG proposal fixtures cover the documented five-case split", () => {
-  const generatedDir = new URL("../content/contracts/examples/pdg/v1/generated/", import.meta.url);
-  const proposalPaths = fs
-    .readdirSync(generatedDir)
-    .filter((entry) => entry.endsWith(".proposal.v1.json"))
-    .sort();
-
-  assert.deepEqual(proposalPaths, [
-    "charged_pion_to_muon_neutrino.proposal.v1.json",
-    "muon_decay.proposal.v1.json",
-    "muon_decay_with_electron_positron_pair.proposal.v1.json",
-    "muon_to_electron_photon.proposal.v1.json",
-    "radiative_muon_decay.proposal.v1.json",
-  ]);
-
-  const proposals = Object.fromEntries(
-    proposalPaths.map((entry) => [entry, JSON.parse(fs.readFileSync(new URL(entry, generatedDir), "utf8"))])
-  );
-
-  assert.equal(proposals["muon_decay.proposal.v1.json"].exportable, true);
-  assert.equal(proposals["muon_decay_with_electron_positron_pair.proposal.v1.json"].exportable, true);
-  assert.equal(proposals["radiative_muon_decay.proposal.v1.json"].exportable, false);
-  assert.equal(proposals["muon_to_electron_photon.proposal.v1.json"].exportable, false);
-  assert.equal(proposals["charged_pion_to_muon_neutrino.proposal.v1.json"].exportable, false);
-});
-
-test("root CLI list, proposal, and request outputs match the committed fixtures", () => {
-  const listResult = runPdgfeed(["list", "--source", "pdg-test-reactions"]);
-  assert.equal(listResult.stdout.trim(), ".tmp/pdgfeed.list.pdg_test_reactions.md");
-  assert.equal(
-    fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.list.pdg_test_reactions.md"), "utf8").trim(),
-    [
-      "| Reaction ID | Title | Channel | Status |",
-      "| --- | --- | --- | --- |",
-      "| muon_decay | Muon decay | mu- -> e- anti-nu_e nu_mu | exportable |",
-      "| radiative_muon_decay | Radiative muon decay | mu- -> e- anti-nu_e nu_mu gamma | proposal-only |",
-      "| muon_decay_with_electron_positron_pair | Muon decay with electron-positron pair | mu- -> e- anti-nu_e nu_mu e+ e- | exportable |",
-      "| muon_to_electron_photon | Muon to electron photon | mu- -> e- gamma | proposal-only |",
-      "| charged_pion_to_muon_neutrino | Charged pion to muon neutrino | pi+ -> mu+ nu_mu | proposal-only |",
-    ].join("\n")
-  );
-
-  const expectedProposal = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.proposal.v1.json");
-  const proposalResult = runPdgfeed(["proposal", "muon_decay", "--source", "pdg-test-reactions"]);
-  assert.deepEqual(JSON.parse(proposalResult.stdout), expectedProposal);
-
-  const expectedRequest = readJson("content/contracts/examples/pdg/v1/generated/muon_decay.pdgsolve-request.v1.json");
-  const requestResult = runPdgfeed(["request", "muon_decay", "--source", "pdg-test-reactions"]);
-  assert.deepEqual(JSON.parse(requestResult.stdout), expectedRequest);
-});
-
-test("proposal-only request command fails cleanly", () => {
-  const result = runPdgfeed(["request", "radiative_muon_decay", "--source", "pdg-test-reactions"], {
+test("proposal-only request command fails cleanly for a known unsupported reaction", () => {
+  const result = runPdgfeed(["request", "mu_minus_s004_2", "--source", "pdg-reactions"], {
     expectFailure: true,
   });
 
-  assert.equal(result.stderr.trim(), "PDG test reaction 'radiative_muon_decay' does not currently emit pdgsolve-request/v1.");
+  assert.equal(result.stderr.trim(), "PDG reaction 'mu_minus_s004_2' does not currently emit pdgsolve-request/v1.");
 });
 
-test("supported-csv emits only the exportable AAA summaries", () => {
+test("supported-csv writes known-first rows with exact IDs and markdown sidecar", () => {
   const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "pdgfeed-test-"));
   const csvPath = path.join(outputDir, "supported.csv");
+  const result = runPdgfeed(["supported-csv", csvPath, "--source", "pdg-reactions"]);
 
-  const result = runPdgfeed(["supported-csv", csvPath, "--source", "pdg-test-reactions"]);
+  assert.deepEqual(result.stdout.trim().split("\n"), [csvPath, ".tmp/pdgfeed.supported.pdg_reactions.md"]);
 
-  assert.deepEqual(result.stdout.trim().split("\n"), [csvPath, ".tmp/pdgfeed.supported.pdg_test_reactions.md"]);
   const lines = fs.readFileSync(csvPath, "utf8").trim().split(/\r?\n/);
-  assert.deepEqual(lines, [
-    "reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
-    "e2,e.av.v2,8,20,-12,2,14,-12",
-    "e2,e.av.v2.ae.e,8,32,-24,2,26,-24",
+  assert.deepEqual(lines.slice(0, 3), [
+    "known_status,reaction_id,mcid,pdg_identifier,title,reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
+    "k,mu_minus_s004_1,13,S004.1/2025,mu- decay mode 1,e2,e.av.v2,8,20,-12,2,14,-12",
+    "k,mu_minus_s004_7,13,S004.7/2025,mu- decay mode 3,e2,e.av.v2.ae.e,8,32,-24,2,26,-24",
   ]);
-  assert.equal(
-    fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.supported.pdg_test_reactions.md"), "utf8").trim(),
-    [
-      "| Reactant AAA | Product AAA | Reactant Electrinos | Product Electrinos | Electrino Delta | Reactant Positrinos | Product Positrinos | Positrino Delta |",
-      "| --- | --- | --- | --- | --- | --- | --- | --- |",
-      "| e2 | e.av.v2 | 8 | 20 | -12 | 2 | 14 | -12 |",
-      "| e2 | e.av.v2.ae.e | 8 | 32 | -24 | 2 | 26 | -24 |",
-    ].join("\n")
-  );
+
+  const markdownLines = fs.readFileSync(path.join(REPO_ROOT, ".tmp", "pdgfeed.supported.pdg_reactions.md"), "utf8").trim().split("\n");
+  assert.deepEqual(markdownLines.slice(0, 4), [
+    "| K/U | Reaction ID | MCID | PDG ID | Title | Reactant AAA | Product AAA | Reactant Electrinos | Product Electrinos | Electrino Delta | Reactant Positrinos | Product Positrinos | Positrino Delta |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    "| k | mu_minus_s004_1 | 13 | S004.1/2025 | mu- decay mode 1 | e2 | e.av.v2 | 8 | 20 | -12 | 2 | 14 | -12 |",
+    "| k | mu_minus_s004_7 | 13 | S004.7/2025 | mu- decay mode 3 | e2 | e.av.v2.ae.e | 8 | 32 | -24 | 2 | 26 | -24 |",
+  ]);
 });
 
 test("direct script entrypoint matches the root delegator for request output", () => {
-  const rootStdout = execFileSync("python3", ["pdgfeed.py", "request", "muon_decay", "--source", "pdg-test-reactions"], {
+  const rootStdout = execFileSync(SHARED_PYTHON, ["pdgfeed.py", "request", "mu_minus_s004_1", "--source", "pdg-reactions"], {
     cwd: REPO_ROOT,
     encoding: "utf8",
   });
   const directStdout = execFileSync(
-    "python3",
-    ["scripts/pdg/pdgfeed.py", "request", "muon_decay", "--source", "pdg-test-reactions"],
+    SHARED_PYTHON,
+    ["scripts/pdg/pdgfeed.py", "request", "mu_minus_s004_1", "--source", "pdg-reactions"],
     {
       cwd: REPO_ROOT,
       encoding: "utf8",

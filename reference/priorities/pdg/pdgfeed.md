@@ -73,15 +73,15 @@ Conceptually, `pdgfeed` does only five things:
 
 The CLI therefore supports listing, one-reaction proposal builds, one-reaction request builds, live-manifest builds, and support-summary exports. Output formats are plain text for lists, JSON for proposal/request/manifest payloads, and CSV for support summaries.
 
-The canonical CLI surface should be only five subcommands. All calls below use the root `pdgfeed.py` entrypoint. Top-level `--test-reaction-index PATH`, `--output-dir DIR`, and `--database-url URL` may be placed before the subcommand.
+The canonical CLI surface should be only five subcommands. All calls below use the root `pdgfeed.py` entrypoint. Top-level `--output-dir DIR` and `--database-url URL` may be placed before the subcommand.
 
 | Call                                  | Options                                                            | Output content                                                                                                                                                                                                                        | Output format           | Output location                                                                                                                                                                                             |
 | ------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pdgfeed.py list`                     | `--source {pdg-test-reactions,pdg-reactions}`                      | Writes a Markdown table containing reaction ids, titles, channel descriptions, and export status from the selected source.                                                                                                            | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
-| `pdgfeed.py proposal REACTION_ID`     | `--source {pdg-test-reactions,pdg-reactions}`, `--write`           | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory.                   | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
-| `pdgfeed.py request REACTION_ID`      | `--source {pdg-test-reactions,pdg-reactions}`, `--write`           | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
+| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and export status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
+| `pdgfeed.py proposal REACTION_ID`     | `--source pdg-reactions`, `--write`                                | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory.                   | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
+| `pdgfeed.py request REACTION_ID`      | `--source pdg-reactions`, `--write`                                | Emits one `pdgsolve-request/v1` payload when the selected reaction is fully exportable. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
 | `pdgfeed.py manifest`                 | none beyond top-level options                                      | Prints one `pdg-live-manifest/v1` payload with exportable live-PDG entries, unsupported-discovery counts, top unsupported particles, and embedded proposal/request sidecars for exportable entries.                                   | JSON                    | `stdout`                                                                                                                                                                                                    |
-| `pdgfeed.py supported-csv [CSV_PATH]` | `--source {pdg-test-reactions,pdg-reactions}`, optional `CSV_PATH` | Writes primitive-count summary rows for exportable reactions from the selected source, and also writes a Markdown table sidecar under `.tmp`.                                                                                         | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for exportable reactions from the full live PDG decay database, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `.tmp`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
 
 The export surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new exportable vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -127,30 +127,29 @@ The practical flow is:
 
 PDG reaction multiplicities for concrete mapped particles may expand into repeated normalized participants. Those repetitions only cross the request seam when every repeated particle has an explicit `pdgsolve-request/v1` mapping.
 
-#### Test Reactions
+#### Known Reactions
 
-The stable day-to-day regression path is the repo-owned PDG test reaction corpus under `content/contracts/examples/pdg/v1/`, with generated proposal and `pdgsolve-request/v1` artifacts written under `content/contracts/examples/pdg/v1/generated/`.
+The only repo-owned reaction data kept in source is the exact known-reaction key list:
 
-PDG test reactions:
+- `(13, "S004.1/2025")`
+- `(13, "S004.2/2025")`
+- `(13, "S004.7/2025")`
+- `(13, "S004.4/2025")`
+- `(211, "S008.1/2025")`
 
-- `muon_decay`
-- `radiative_muon_decay`
-- `muon_decay_with_electron_positron_pair`
-- `muon_to_electron_photon`
-- `charged_pion_to_muon_neutrino`
-
-The live reaction registry should mirror these same ids whenever live equivalents exist, so local regression and live ingest stay comparable channel by channel.
+Each key is `(source.mcid, source.pdgIdentifier)`. No separate repo-owned reaction corpus, alias list, or copied reaction payload set should be kept alongside these keys.
 
 Representative regression commands:
 
-- `python pdgfeed.py list --source pdg-test-reactions`
-- `python pdgfeed.py request muon_decay --source pdg-test-reactions > /tmp/muon_decay.request.json`
-- `python pdgfeed.py supported-csv /tmp/pdg-supported.csv --source pdg-test-reactions`
+- `python pdgfeed.py list --source pdg-reactions`
+- `python pdgfeed.py request mu_minus_s004_1 --source pdg-reactions > /tmp/mu_minus_s004_1.request.json`
+- `python pdgfeed.py supported-csv /tmp/pdg-supported.csv --source pdg-reactions`
 - `python pdgfeed.py manifest > /tmp/pdg-live-manifest.json`
 
 Regression expectations:
 
-- exportable test reactions continue to emit stable `pdg-proposal/v1` and `pdgsolve-request/v1` artifacts;
+- known reactions appear first in reaction listings and carry the `k` marker, while all others carry `u`;
+- exportable reactions continue to emit stable `pdg-proposal/v1` and `pdgsolve-request/v1` artifacts keyed by live `(mcid, pdgIdentifier)` provenance;
 - proposal-only reactions stay proposal-only with explicit unsupported notes rather than guessed request output;
 - and live discovery manifests report exportable channels and unsupported discoveries separately.
 

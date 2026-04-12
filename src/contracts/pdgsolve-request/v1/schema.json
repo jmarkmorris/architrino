@@ -27,7 +27,7 @@
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["test_case", "pdgfeed", "developer", "pdgsolve-reopen"]
+          "enum": ["pdgfeed", "developer", "pdgsolve-reopen"]
         },
         "title": {
           "type": "string",
