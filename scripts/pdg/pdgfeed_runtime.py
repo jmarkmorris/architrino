@@ -97,7 +97,7 @@ def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple
         request_translation=mapping.request_translation,
         request_occurrences=mapping.request_occurrences,
     )
-    if not mapping.exportable_to_request:
+    if not mapping.has_request_transform:
         return participant, f"unsupported:{side}:{canonical_name}:no-pdgsolve-request-v1-mapping"
     return participant, None
 
@@ -149,23 +149,51 @@ def build_pdgsolve_request_source(proposal: Proposal) -> dict[str, str]:
     }
 
 
+def has_unsupported_transform_notes(notes: tuple[str, ...] | list[str]) -> bool:
+    return any(str(note).startswith("unsupported:") for note in notes)
+
+
+def transform_participants_for_pdgsolve(
+    participants: Sequence[NormalizedParticipant],
+) -> list[dict[str, str]] | None:
+    transformed_rows: list[dict[str, str]] = []
+    for participant in participants:
+        if not participant.request_occurrences:
+            return None
+        occurrences = list(participant.to_request_occurrences())
+        if any(str(occurrence.get("assemblyId", "")) not in REQUEST_ASSEMBLY_COUNTS for occurrence in occurrences):
+            return None
+        transformed_rows.extend(occurrences)
+    return transformed_rows
+
+
+def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, str]]] | None:
+    if has_unsupported_transform_notes(proposal.notes):
+        return None
+    reactants = transform_participants_for_pdgsolve(proposal.reactants)
+    products = transform_participants_for_pdgsolve(proposal.products)
+    if reactants is None or products is None:
+        return None
+    return {
+        "reactants": reactants,
+        "products": products,
+    }
+
+
+def proposal_is_ready_for_pdgsolve(proposal: Proposal) -> bool:
+    return transform_proposal_for_pdgsolve(proposal) is not None
+
+
 def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
-    if not proposal.exportable:
+    transformed = transform_proposal_for_pdgsolve(proposal)
+    if transformed is None:
         return None
     request = {
         "schema": PDGSOLVE_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
         "source": build_pdgsolve_request_source(proposal),
-        "reactants": [
-            occurrence
-            for participant in proposal.reactants
-            for occurrence in participant.to_request_occurrences()
-        ],
-        "products": [
-            occurrence
-            for participant in proposal.products
-            for occurrence in participant.to_request_occurrences()
-        ],
+        "reactants": transformed["reactants"],
+        "products": transformed["products"],
         "policy": {
             "exactClosureRequired": DEFAULT_PDGSOLVE_REQUEST_POLICY["exactClosureRequired"],
             "allowedBoundaryAugmentations": list(DEFAULT_PDGSOLVE_REQUEST_POLICY["allowedBoundaryAugmentations"]),
@@ -346,15 +374,15 @@ def build_live_manifest_payload(
     api: Any | None = None,
 ) -> dict[str, Any]:
     api = api or connect_pdg(database_url, pedantic=False)
-    exportable_entries: list[dict[str, Any]] = []
-    unsupported_entries: list[dict[str, Any]] = []
-    unsupported_particle_counts: Counter[str] = Counter()
+    ready_entries: list[dict[str, Any]] = []
+    blocked_entries: list[dict[str, Any]] = []
+    blocked_particle_counts: Counter[str] = Counter()
 
     for live_case in load_live_cases(database_url, api=api):
         proposal = build_proposal(live_case)
         pdgsolve_request = build_pdgsolve_request(proposal)
-        unsupported_names = extract_unsupported_particle_names(proposal.notes)
-        unsupported_particle_counts.update(unsupported_names)
+        blocked_names = extract_unsupported_particle_names(proposal.notes)
+        blocked_particle_counts.update(blocked_names)
         entry = {
             "batchId": 0,
             "knownStatus": known_reaction_status(live_case),
@@ -366,22 +394,22 @@ def build_live_manifest_payload(
             "pdgIdentifier": str(live_case.source.get("pdgIdentifier", "")),
             "channelDescription": str(live_case.source.get("channelDescription", "")),
             "branchingDisplay": str(live_case.source.get("branchingDisplay", "")),
-            "unsupportedParticles": unsupported_names,
+            "blockedParticles": blocked_names,
             "proposal": proposal.to_dict(),
         }
         if pdgsolve_request is None:
-            unsupported_entries.append(entry)
+            blocked_entries.append(entry)
             continue
         entry["pdgsolveRequest"] = pdgsolve_request
-        exportable_entries.append(entry)
+        ready_entries.append(entry)
 
-    for index, entry in enumerate(exportable_entries, start=1):
+    for index, entry in enumerate(ready_entries, start=1):
         entry["batchId"] = index
 
-    top_unsupported_particles = [
+    top_blocked_particles = [
         {"particle": particle_name, "count": count}
         for particle_name, count in sorted(
-            unsupported_particle_counts.items(),
+            blocked_particle_counts.items(),
             key=lambda item: (-item[1], item[0]),
         )[:5]
     ]
@@ -389,11 +417,11 @@ def build_live_manifest_payload(
     return {
         "schema": PDG_LIVE_MANIFEST_SCHEMA,
         "edition": str(getattr(api, "edition", "")),
-        "exportableCount": len(exportable_entries),
-        "unsupportedDiscoveryCount": len(unsupported_entries),
-        "topUnsupportedParticles": top_unsupported_particles,
-        "entries": exportable_entries,
-        "unsupportedEntries": unsupported_entries,
+        "readyCount": len(ready_entries),
+        "blockedCount": len(blocked_entries),
+        "topBlockedParticles": top_blocked_particles,
+        "readyEntries": ready_entries,
+        "blockedEntries": blocked_entries,
     }
 
 
@@ -404,7 +432,7 @@ def build_live_supported_reaction_csv_rows(
 ) -> list[dict[str, str | int]]:
     manifest = build_live_manifest_payload(database_url, api=api)
     rows: list[dict[str, str | int]] = []
-    for entry in manifest.get("entries", []):
+    for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
         case = PdgCase(
@@ -521,7 +549,7 @@ def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequ
 
 def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, str]:
     proposal = build_proposal(case)
-    status = "exportable" if proposal.exportable else "proposal-only"
+    status = "ready" if proposal_is_ready_for_pdgsolve(proposal) else "blocked"
     return (
         known_reaction_status(case),
         sanitize_tsv_field(int(case.source.get("mcid", 0) or 0)),
@@ -626,7 +654,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
     request_parser = subparsers.add_parser(
         "request",
-        help="Emit one pdgsolve-request/v1 payload for a reaction when it is fully exportable.",
+        help="Emit one pdgsolve-request/v1 payload for a reaction when its PDG participants transform fully into admitted assembly rows.",
     )
     request_parser.add_argument("reaction_id", help="Reaction id from the selected source.")
     request_parser.add_argument(
@@ -645,7 +673,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
     supported_csv_parser = subparsers.add_parser(
         "supported-csv",
-        help="Write a primitive-count CSV summary for exportable reactions.",
+        help="Write a primitive-count CSV summary for reactions ready for pdgsolve after transform.",
     )
     supported_csv_parser.add_argument(
         "csv_path",
@@ -696,7 +724,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         proposal = build_proposal(case)
         pdgsolve_request = build_pdgsolve_request(proposal)
         if pdgsolve_request is None:
-            raise SystemExit(f"PDG reaction {args.reaction_id!r} does not currently emit pdgsolve-request/v1.")
+            raise SystemExit(
+                f"PDG reaction {args.reaction_id!r} is not ready for pdgsolve because its participants do not yet transform fully into admitted assembly rows."
+            )
         if args.write:
             for path in write_request_artifacts(case, args.output_dir):
                 print(format_output_path(path))

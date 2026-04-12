@@ -574,6 +574,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=6,
         positrino_count=6,
         aliases=("photon",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_noether_core_I", "Pro Noether Core"),
+            _occurrence("anti_noether_core_I", "Anti Noether Core"),
+        ),
     ),
     _mapping(
         canonical_name="H",
@@ -639,6 +644,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=9,
         positrino_count=15,
         aliases=("positive-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+        ),
     ),
     _mapping(
         canonical_name="pi0",
@@ -665,6 +675,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=15,
         positrino_count=9,
         aliases=("negative-pion",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K+",
@@ -678,6 +693,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=8,
         positrino_count=14,
         aliases=("k+", "positive-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_strange_quark_II", "Anti Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K0",
@@ -691,6 +711,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=11,
         positrino_count=11,
         aliases=("k0", "neutral-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_strange_quark_II", "Anti Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="K-",
@@ -704,6 +729,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=14,
         positrino_count=8,
         aliases=("k-", "negative-kaon"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+            _occurrence("pro_strange_quark_II", "Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="anti-K0",
@@ -717,6 +747,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=11,
         positrino_count=11,
         aliases=("anti-k0", "Kbar0", "kbar0", "anti-kaon0"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+            _occurrence("pro_strange_quark_II", "Strange Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B+",
@@ -730,6 +765,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=7,
         positrino_count=13,
         aliases=("b+", "positive-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_up_quark_I", "Up Quark"),
+            _occurrence("anti_bottom_quark_III", "Anti Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B0",
@@ -743,6 +783,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=10,
         positrino_count=10,
         aliases=("b0", "neutral-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_down_quark_I", "Down Quark"),
+            _occurrence("anti_bottom_quark_III", "Anti Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="B-",
@@ -756,6 +801,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=13,
         positrino_count=7,
         aliases=("b-", "negative-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_up_quark_I", "Anti Up Quark"),
+            _occurrence("pro_bottom_quark_III", "Bottom Quark"),
+        ),
     ),
     _mapping(
         canonical_name="anti-B0",
@@ -769,6 +819,11 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         electrino_count=10,
         positrino_count=10,
         aliases=("anti-b0", "Bbar0", "bbar0", "anti-b-meson"),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("anti_down_quark_I", "Anti Down Quark"),
+            _occurrence("pro_bottom_quark_III", "Bottom Quark"),
+        ),
     ),
 )
 
