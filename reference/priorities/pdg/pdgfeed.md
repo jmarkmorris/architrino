@@ -178,6 +178,63 @@ Each emitted `pdgsolve-request/v1` candidate should:
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
 
+## Priorities
+
+### 1. Add A Charge-Closure Expansion Layer For Generic `pi`, `N`, And `Nbar` Products
+
+Status: `next`
+
+Current:
+
+- many blocked live-PDG channels include generic product tokens such as `pi`, `N`, and `Nbar`;
+- the PDG Python API exposes those entries as generic items rather than as one unique concrete particle object;
+- the current ingest therefore records them as unsupported generic/textual products and blocks downstream request emission;
+- the mapping table already supports concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, and `anti-n`;
+- and the missing capability is not assembly mapping but upstream charge-state resolution when the PDG channel omits the exact member of the family.
+
+Objective:
+
+- add one PDG-side rule layer that runs before proposal normalization and turns generic family tokens into explicit charge-resolved products only when the resolution is uniquely forced;
+- support v1 generic-family expansion only for `pi`, `N`, and `Nbar`;
+- use only explicit upstream information already present in the reaction record, especially parent charge, concrete sibling-product charges, multiplicity, and total final-state charge closure;
+- emit concrete resolved products such as `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, and `anti-n` only when there is exactly one allowed assignment;
+- keep the reaction blocked when two or more valid assignments remain;
+- and keep this layer as a focused PDG translator rather than leaking generic family tokens into `pdgsolve-request/v1`.
+
+Rules:
+
+- treat the generic-family expansion as a finite charge-balance solver over a small candidate set:
+- `pi` may resolve to `pi+`, `pi0`, or `pi-`;
+- `N` may resolve to `p` or `n`;
+- `Nbar` may resolve to `anti-p` or `anti-n`;
+- subtract the charges of all already-concrete reactants and products from the channel total, then solve only the remaining generic slots;
+- accept the expansion only when exactly one unordered assignment satisfies charge closure;
+- do not use hidden resonance lore, branching-ratio preference, or isospin heuristics in v1;
+- do not branch one PDG channel into multiple proposal alternatives in v1;
+- and preserve the current blocked behavior whenever the generic slots are still underdetermined after charge closure.
+
+Examples:
+
+- `Delta(1232)++ -> N pi` should resolve to `p pi+` because that is the only charge-balanced assignment;
+- `Delta(1232)- -> N pi` should resolve to `n pi-` for the same reason;
+- `rho(770)+ -> pi pi` should resolve to `pi+ pi0` because one neutral and one positive pion is the only two-pion assignment with total charge `+1`;
+- `Delta(1232)+ -> N pi` should remain blocked because both `p pi0` and `n pi+` satisfy charge closure;
+- and `rho(1900)0 -> Nbar N` should remain blocked because both `anti-p p` and `anti-n n` remain admissible.
+
+Implementation boundary:
+
+- put the new logic in one focused helper module rather than extending the top-level ingest coordinator;
+- run that helper while converting raw PDG decay products into repo-owned `CaseParticle` products;
+- return both resolved concrete products and explicit notes describing whether the generic-family resolver succeeded, remained ambiguous, or rejected the case;
+- and add regression coverage for both uniquely resolved channels and intentionally still-blocked ambiguous channels.
+
+Done when:
+
+- uniquely charge-forced `pi`, `N`, and `Nbar` products resolve into concrete mapped particles before proposal normalization;
+- ambiguous generic-family channels still remain blocked with explicit notes rather than guessed output;
+- ready-count growth is visible in the live manifest and supported-CSV outputs without destabilizing existing known reactions;
+- and the new resolver stays limited to deterministic charge-closure cases rather than becoming a general hadron-guessing layer.
+
 
 
 ## Grammar Map
