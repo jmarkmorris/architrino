@@ -175,11 +175,6 @@ For solve-core progress reporting after each solve-rate change:
 - compare `exactClosureCount`, `exactClosurePercent`, and case-level movements from `no-solution` to `partial` or `exact`;
 - and do not count unsupported-particle discoveries as solver failures.
 
-The first local PDG test reaction corpus is:
-
-- `muon_decay`
-- `charged_pion_to_muon_neutrino`
-
 The first PDG test reactions are:
 
 - `muon_decay`
@@ -250,10 +245,7 @@ The integration options are:
 
 ### Database Policy
 
-The local database may be either:
-
-- the SQLite file bundled with the installed `pdg` package;
-- or an explicitly pinned downloaded SQLite file selected by the developer.
+The local database is the SQLite file bundled with the installed `pdg` package;
 
 The ingest program should assume that the required package and database are already installed locally. Package/database updates are a developer-maintained concern, not a runtime ingest concern.
 
@@ -524,7 +516,6 @@ Generation numbers should be interpreted as family indices for fermions:
 | `d` | down quark | strange quark | bottom quark |
 | `v` | neutrino | muon neutrino | tau neutrino |
 
-
 Examples:
 
 | Notation | Name                |
@@ -544,18 +535,12 @@ Examples:
 
 `Unbound Architrinos` are the exception to that anti-ness rule. They use explicit ledger tokens of the form `e:p@` with no anti form.
 
-
-
-
-
-`Unbound Architrinos` should be written with an explicit electrino:positrino ledger:
-
-| Notation | Meaning |
-| --- | --- |
-| `1:1@` | one electrino and one positrino |
+| Notation   | Meaning                               |
+| ---------- | ------------------------------------- |
+| `1:1@`     | one electrino and one positrino       |
 | `227:120@` | `227` electrinos and `120` positrinos |
-| `227:0@` | `227` electrinos and zero positrinos |
-| `0:120@` | zero electrinos and `120` positrinos |
+| `227:0@`   | `227` electrinos and zero positrinos  |
+| `0:120@`   | zero electrinos and `120` positrinos  |
 
 Both sides of the ledger should always be present. If one side is zero, the zero should still be written explicitly. The one excluded case is `0:0@`, which should be forbidden as a meaningless null ledger. That keeps the grammar single-reading and avoids special omission rules such as trying to infer whether `227@` means `227:0@`, `0:227@`, or something else.
 
