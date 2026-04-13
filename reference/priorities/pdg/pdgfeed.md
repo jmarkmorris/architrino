@@ -182,7 +182,44 @@ Before proposal normalization, `pdgfeed` also applies one deterministic generic-
 
 ## Priorities
 
-No open `pdgfeed` priority items are currently listed here.
+### 1. Expand V1 Coverage For The Top Backlog Particles
+
+Status: `next`
+
+Current:
+
+- the current `pdgfeed` summary report separates blocked reactions into `incomplete` and `backlog`;
+- the `backlog` class is the set of blocked reactions whose PDG records are concrete enough to read but whose particles still lack v1 AAA transform coverage;
+- and the current top backlog particles are:
+  - `eta` — `479`
+  - `K0S` — `384`
+  - `phi` — `255`
+  - `Dbar0` — `253`
+  - `D0` — `213`
+  - `D+` — `212`
+  - `D-` — `200`
+  - `Sigma+` — `75`
+  - `Xi-` — `72`
+  - `Xi0` — `60`
+
+Objective:
+
+- use the backlog ranking from the generated report to drive the next wave of explicit v1 particle-to-AAA mapping work;
+- start with the highest-count concrete particles rather than adding more generic or inclusive heuristics;
+- and reduce the `backlog` count without reclassifying partial PDG records as complete.
+
+Rules:
+
+- add new coverage only through explicit canonical-name rows in the locked registry table;
+- keep generic/inclusive PDG records in the `incomplete` class unless their structure truly becomes explicit at the PDG boundary;
+- add regression coverage for every new particle mapping before treating its channels as ready;
+- and prefer the highest-count backlog particles first unless there is a strong architectural reason to take a lower-count particle earlier.
+
+Done when:
+
+- the top backlog particle list has materially changed because at least one of the leading concrete particles now transforms into AAA;
+- newly covered particles emit stable proposal/request artifacts with regression coverage;
+- and the `backlog` count decreases without inflating the `incomplete` class through category drift.
 
 
 

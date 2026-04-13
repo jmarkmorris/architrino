@@ -113,17 +113,22 @@ class PdgfeedCliTests(unittest.TestCase):
 
             lines = (tmp_dir / "pdgfeed.list.pdg_reactions.md").read_text(encoding="utf-8").strip().splitlines()
             headers, rows = self.parse_markdown_table(lines)
-            self.assertEqual(headers, ["K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Status"])
+            self.assertEqual(headers, ["K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Category", "Status"])
             self.assertEqual(len(rows), 5)
             self.assertEqual(rows[0]["Reaction ID"], "mu_minus_test_mu_1")
+            self.assertEqual(rows[0]["Category"], "supported")
             self.assertEqual(rows[0]["Status"], "ready")
             self.assertEqual(rows[1]["Reaction ID"], "mu_minus_test_mu_gamma")
+            self.assertEqual(rows[1]["Category"], "supported")
             self.assertEqual(rows[1]["Status"], "ready")
             self.assertEqual(rows[2]["Reaction ID"], "pi_plus_test_pi_plus")
+            self.assertEqual(rows[2]["Category"], "supported")
             self.assertEqual(rows[2]["Status"], "ready")
             self.assertEqual(rows[3]["Reaction ID"], "pi0_test_pi_zero_one_gamma")
+            self.assertEqual(rows[3]["Category"], "supported")
             self.assertEqual(rows[3]["Status"], "ready")
             self.assertEqual(rows[4]["Reaction ID"], "pi0_fake")
+            self.assertEqual(rows[4]["Category"], "supported")
             self.assertEqual(rows[4]["Status"], "ready")
 
     def test_proposal_output_does_not_include_exportable_field(self):
@@ -196,6 +201,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     "Reaction ID",
                     "PDG ID",
                     "Title",
+                    "Category",
                     "Reactant AAA",
                     "Product AAA",
                     "Transformed Reactant AAA",
@@ -216,6 +222,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 ],
             )
             row_by_id = {row["Reaction ID"]: row for row in rows}
+            self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Category"], "supported")
             self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Transformed Reactant AAA"], "e2.h.ah.h.ah")
             self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Transformed Product AAA"], "e.av.v2")
             self.assertEqual(row_by_id["mu_minus_test_mu_1"]["Reactant Ledger"], "20.14@")
@@ -255,6 +262,9 @@ class PdgfeedCliTests(unittest.TestCase):
                 rows,
                 [
                     {"Metric": "Number of total PDG reactions", "Count": "5"},
+                    {"Metric": "Number of incomplete PDG reactions", "Count": "0"},
+                    {"Metric": "Number of AAAcomplete reactions", "Count": "0"},
+                    {"Metric": "Number of backlog reactions", "Count": "0"},
                     {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "5"},
                     {"Metric": "Number of reactions leaving 0/0 architrinos", "Count": "4"},
                     {"Metric": "Number of reactions leaving 1/1 architrinos", "Count": "0"},
@@ -266,6 +276,41 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of reactions blocked", "Count": "0"},
                 ],
             )
+
+    def test_summary_report_lists_top_backlog_particles(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B+",
+                    [
+                        FakeDecay(
+                            "TEST.B.ETA",
+                            "B+ -> eta",
+                            [FakeDecayProduct("eta")],
+                        )
+                    ],
+                    mcid=521,
+                )
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            with (
+                patch.object(pdgfeed_runtime, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_live, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_runtime, "DEFAULT_TMP_DIR", tmp_dir),
+            ):
+                output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
+
+            content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
+            self.assertEqual(len(content), 2)
+            metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
+            backlog_headers, backlog_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(metric_headers, ["Metric", "Count"])
+            self.assertEqual(backlog_headers, ["Backlog Particle", "Count"])
+            self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
+            self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "1"})
+            self.assertEqual(backlog_rows, [{"Backlog Particle": "eta", "Count": "1"}])
 
 
 if __name__ == "__main__":

@@ -43,6 +43,12 @@ REQUEST_ASSEMBLY_AAA_BY_ID = {
     mapping.canonical_id: mapping.aaa_notation
     for mapping in REQUEST_ASSEMBLY_MAPPINGS
 }
+INCOMPLETE_NOTE_MARKERS = (
+    "generic-or-textual-item",
+    "generic-family-charge-",
+    ":generic-family-unresolved",
+    ":missing-name",
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -168,6 +174,39 @@ def build_pdgsolve_request_source(proposal: Proposal) -> dict[str, str]:
 
 def has_unsupported_transform_notes(notes: tuple[str, ...] | list[str]) -> bool:
     return any(str(note).startswith("unsupported:") for note in notes)
+
+
+def notes_indicate_incomplete_pdg_record(notes: tuple[str, ...] | list[str]) -> bool:
+    for note in notes:
+        text = str(note)
+        if any(marker in text for marker in INCOMPLETE_NOTE_MARKERS):
+            return True
+    return False
+
+
+def classify_notes_with_ready_state(notes: tuple[str, ...] | list[str], ready: bool) -> str:
+    incomplete = notes_indicate_incomplete_pdg_record(notes)
+    if ready and incomplete:
+        return "AAAcomplete"
+    if ready:
+        return "supported"
+    if incomplete:
+        return "incomplete"
+    return "backlog"
+
+
+def classify_proposal_status(proposal: Proposal) -> str:
+    return classify_notes_with_ready_state(proposal.notes, proposal_is_ready_for_pdgsolve(proposal))
+
+
+def classify_proposal_payload(proposal_payload: dict[str, Any]) -> str:
+    nested_proposal = proposal_payload.get("proposal", {})
+    note_container = nested_proposal if isinstance(nested_proposal, dict) else proposal_payload
+    notes = note_container.get("notes", [])
+    return classify_notes_with_ready_state(
+        notes if isinstance(notes, list) else [],
+        isinstance(proposal_payload.get("pdgsolveRequest"), dict),
+    )
 
 
 def transform_participants_for_pdgsolve(
@@ -487,6 +526,10 @@ def build_supported_reaction_csv_row(
         "mcid": int(case.source.get("mcid", 0) or 0),
         "pdg_identifier": str(case.source.get("pdgIdentifier", "")),
         "title": case.title,
+        "category": classify_notes_with_ready_state(
+            tuple(str(note) for note in proposal_payload.get("notes", []) if isinstance(note, str)),
+            True,
+        ),
         "reactant_names_aaa": reactant_names,
         "product_names_aaa": product_names,
         "transformed_reactant_names_aaa": transformed_reactant_names,
@@ -620,7 +663,7 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> list[tuple[str, int]]:
+) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
@@ -635,9 +678,34 @@ def build_live_reaction_summary_rows(
         positrino_delta = -1 if positrino_value is None else int(positrino_value)
         if electrino_delta == positrino_delta and 0 <= electrino_delta <= 5:
             delta_counts[electrino_delta] += 1
+    incomplete_count = 0
+    aaa_complete_count = 0
+    backlog_count = 0
+    backlog_particle_counts: Counter[str] = Counter()
+    for entry in manifest.get("readyEntries", []):
+        if not isinstance(entry, dict):
+            continue
+        category = classify_proposal_payload(entry)
+        if category == "AAAcomplete":
+            aaa_complete_count += 1
+    for entry in manifest.get("blockedEntries", []):
+        if not isinstance(entry, dict):
+            continue
+        category = classify_proposal_payload(entry)
+        if category == "incomplete":
+            incomplete_count += 1
+            continue
+        if category == "backlog":
+            backlog_count += 1
+            for particle_name in entry.get("blockedParticles", []):
+                if isinstance(particle_name, str) and particle_name:
+                    backlog_particle_counts[particle_name] += 1
 
     rows: list[tuple[str, int]] = [
         ("Number of total PDG reactions", total_reaction_count),
+        ("Number of incomplete PDG reactions", incomplete_count),
+        ("Number of AAAcomplete reactions", aaa_complete_count),
+        ("Number of backlog reactions", backlog_count),
         ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
     ]
     rows.extend(
@@ -650,7 +718,14 @@ def build_live_reaction_summary_rows(
             ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
         ]
     )
-    return rows
+    backlog_particles = [
+        (particle_name, count)
+        for particle_name, count in sorted(
+            backlog_particle_counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )[:10]
+    ]
+    return rows, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -764,9 +839,10 @@ def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequ
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, str]:
+def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, str, str]:
     proposal = build_proposal(case)
     status = "ready" if proposal_is_ready_for_pdgsolve(proposal) else "blocked"
+    category = classify_proposal_status(proposal)
     return (
         known_reaction_status(case),
         sanitize_tsv_field(int(case.source.get("mcid", 0) or 0)),
@@ -774,6 +850,7 @@ def build_list_row_cells(case: PdgCase) -> tuple[str, str, str, str, str, str, s
         sanitize_tsv_field(case.case_id),
         sanitize_tsv_field(case.title),
         sanitize_tsv_field(format_list_channel_description(case)),
+        category,
         status,
     )
 
@@ -786,6 +863,7 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
             "Reaction ID",
             "PDG ID",
             "Title",
+            "Category",
             "Reactant AAA",
             "Product AAA",
             "Transformed Reactant AAA",
@@ -800,6 +878,7 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
                 row.get("reaction_id", ""),
                 row.get("pdg_identifier", ""),
                 row.get("title", ""),
+                row.get("category", ""),
                 row.get("reactant_names_aaa", ""),
                 row.get("product_names_aaa", ""),
                 row.get("transformed_reactant_names_aaa", ""),
@@ -824,12 +903,35 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
     )
 
 
-def write_live_reaction_summary_markdown(path: Path, rows: Sequence[tuple[str, int]]) -> None:
-    write_markdown_table(
-        path,
-        ("Metric", "Count"),
-        rows,
-    )
+def write_live_reaction_summary_markdown(
+    path: Path,
+    rows: Sequence[tuple[str, int]],
+    *,
+    backlog_particles: Sequence[tuple[str, int]] = (),
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    metrics = list(rows)
+    body = [
+        "| Metric | Count |",
+        "| --- | --- |",
+        *[
+            "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+            for row in metrics
+        ],
+    ]
+    if backlog_particles:
+        body.extend(
+            [
+                "",
+                "| Backlog Particle | Count |",
+                "| --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in backlog_particles
+                ],
+            ]
+        )
+    path.write_text("\n".join(body) + "\n", encoding="utf-8")
 
 
 def write_live_reaction_summary_report(
@@ -838,9 +940,9 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    rows = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    metrics, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
     path = summary_markdown_output_path(source)
-    write_live_reaction_summary_markdown(path, rows)
+    write_live_reaction_summary_markdown(path, metrics, backlog_particles=backlog_particles)
     return path
 
 
@@ -949,7 +1051,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         output_path = list_markdown_output_path(args.source)
         write_markdown_table(
             output_path,
-            ("K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Status"),
+            ("K/U", "MCID", "PDG ID", "Reaction ID", "Title", "Channel", "Category", "Status"),
             [build_list_row_cells(case) for case in cases],
         )
         print(format_output_path(output_path))
