@@ -1,0 +1,25 @@
+<svg viewBox="0 0 80 80" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title>Pro Noether Core Glyph</title>
+  <desc>Pro Noether Core Glyph. Pdgedit reference tile generated from pdgedit-tiles.json.</desc>
+  <rect width="80" height="80" fill="#000000"/>
+  <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4"/>
+  <svg x="4.00" y="4.00" width="72" height="72" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="7" fill="rgba(162, 89, 255, 0.28)" opacity="0.9" style="filter:drop-shadow(0 0 5px rgba(162, 89, 255, 0.24))"/>
+    <ellipse cx="60" cy="60" rx="34" ry="12" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="4.5" opacity="0.88" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"/>
+    <line x1="60" y1="34" x2="60" y2="86" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="3.2" stroke-linecap="round" opacity="0.36"/>
+    <circle cx="26" cy="60" r="6.6" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+    <circle cx="94" cy="60" r="6.6" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
+    <g transform="rotate(60 60 60)">
+      <ellipse cx="60" cy="60" rx="24" ry="8.5" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="4" opacity="0.8" style="filter:drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"/>
+      <line x1="60" y1="42" x2="60" y2="78" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="2.8" stroke-linecap="round" opacity="0.34"/>
+      <circle cx="36" cy="60" r="5.6" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+      <circle cx="84" cy="60" r="5.6" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
+    </g>
+    <g transform="rotate(-60 60 60)">
+      <ellipse cx="60" cy="60" rx="14" ry="5.2" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="3.5" opacity="0.72" style="filter:drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"/>
+      <line x1="60" y1="49" x2="60" y2="71" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="2.4" stroke-linecap="round" opacity="0.3"/>
+      <circle cx="46" cy="60" r="4.6" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"/>
+      <circle cx="74" cy="60" r="4.6" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"/>
+    </g>
+  </svg>
+</svg>

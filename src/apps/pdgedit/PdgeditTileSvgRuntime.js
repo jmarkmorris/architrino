@@ -142,23 +142,18 @@ function applyOptionalFilter(element, filterValue) {
   element.style.filter = filterValue;
 }
 
-function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
-  const binaryGlyph = tile?.binaryGlyph ?? {};
-  const nestedSvg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
-  const frame = getPdgeditFrameGeometry(catalog);
-  const glyphInset = frame.outerInset;
-  nestedSvg.setAttribute("x", glyphInset.toFixed(2));
-  nestedSvg.setAttribute("y", glyphInset.toFixed(2));
-  nestedSvg.setAttribute("width", String(frame.outerSize));
-  nestedSvg.setAttribute("height", String(frame.outerSize));
-  nestedSvg.setAttribute(
-    "viewBox",
-    `0 0 ${binaryGlyph.viewBoxWidth || 120} ${binaryGlyph.viewBoxHeight || 120}`
-  );
-  nestedSvg.setAttribute("aria-hidden", "true");
+function appendBinaryGlyphBandSvg(documentLike, parent, catalog, band) {
+  const orbit = band?.orbit ?? {};
+  const rotationDeg = Number(band?.rotationDeg ?? 0);
+  const bandGroup = rotationDeg !== 0 ? documentLike.createElementNS(SVG_NAMESPACE, "g") : parent;
+  if (rotationDeg !== 0) {
+    bandGroup.setAttribute(
+      "transform",
+      `rotate(${rotationDeg} ${String(orbit.cx ?? 60)} ${String(orbit.cy ?? 60)})`
+    );
+  }
 
-  const orbit = binaryGlyph.orbit ?? {};
-  if (binaryGlyph.showOrbit !== false) {
+  if (band?.showOrbit !== false) {
     const orbitElement = documentLike.createElementNS(SVG_NAMESPACE, "ellipse");
     orbitElement.setAttribute("cx", String(orbit.cx ?? 60));
     orbitElement.setAttribute("cy", String(orbit.cy ?? 60));
@@ -167,12 +162,15 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     orbitElement.setAttribute("fill", "none");
     orbitElement.setAttribute("stroke", resolvePdgeditCatalogColor(catalog, orbit.strokeColor));
     orbitElement.setAttribute("stroke-width", String(orbit.strokeWidth ?? 5));
+    if (Number.isFinite(Number(orbit.opacity)) && Number(orbit.opacity) !== 1) {
+      orbitElement.setAttribute("opacity", String(orbit.opacity));
+    }
     applyOptionalFilter(orbitElement, orbit.filter);
-    nestedSvg.append(orbitElement);
+    bandGroup.append(orbitElement);
   }
 
-  const axis = binaryGlyph.axis ?? {};
-  if (binaryGlyph.showAxis !== false) {
+  const axis = band?.axis ?? {};
+  if (band?.showAxis !== false) {
     const axisElement = documentLike.createElementNS(SVG_NAMESPACE, "line");
     axisElement.setAttribute("x1", String(axis.x1 ?? 60));
     axisElement.setAttribute("y1", String(axis.y1 ?? 18));
@@ -189,10 +187,10 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     if (Number.isFinite(Number(axis.strokeDashoffset)) && Number(axis.strokeDashoffset) !== 0) {
       axisElement.setAttribute("stroke-dashoffset", String(axis.strokeDashoffset));
     }
-    nestedSvg.append(axisElement);
+    bandGroup.append(axisElement);
   }
 
-  (Array.isArray(binaryGlyph.circles) ? binaryGlyph.circles : []).forEach((circle) => {
+  (Array.isArray(band?.circles) ? band.circles : []).forEach((circle) => {
     const circleElement = documentLike.createElementNS(SVG_NAMESPACE, "circle");
     circleElement.setAttribute("cx", String(circle.cx ?? 0));
     circleElement.setAttribute("cy", String(circle.cy ?? 0));
@@ -200,7 +198,54 @@ function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
     circleElement.setAttribute("fill", resolvePdgeditCatalogColor(catalog, circle.fillColor));
     circleElement.setAttribute("vector-effect", "non-scaling-stroke");
     applyOptionalFilter(circleElement, circle.filter);
-    nestedSvg.append(circleElement);
+    bandGroup.append(circleElement);
+  });
+
+  if (rotationDeg !== 0) {
+    parent.append(bandGroup);
+  }
+}
+
+function appendBinaryGlyphSvg(documentLike, svg, catalog, tile) {
+  const binaryGlyph = tile?.binaryGlyph ?? {};
+  const nestedSvg = documentLike.createElementNS(SVG_NAMESPACE, "svg");
+  const frame = getPdgeditFrameGeometry(catalog);
+  const glyphInset = frame.outerInset;
+  nestedSvg.setAttribute("x", glyphInset.toFixed(2));
+  nestedSvg.setAttribute("y", glyphInset.toFixed(2));
+  nestedSvg.setAttribute("width", String(frame.outerSize));
+  nestedSvg.setAttribute("height", String(frame.outerSize));
+  nestedSvg.setAttribute(
+    "viewBox",
+    `0 0 ${binaryGlyph.viewBoxWidth || 120} ${binaryGlyph.viewBoxHeight || 120}`
+  );
+  nestedSvg.setAttribute("aria-hidden", "true");
+
+  const centerGlow = binaryGlyph.centerGlow ?? {};
+  if ((centerGlow.r ?? 0) > 0) {
+    const glowElement = documentLike.createElementNS(SVG_NAMESPACE, "circle");
+    glowElement.setAttribute("cx", String(centerGlow.cx ?? 60));
+    glowElement.setAttribute("cy", String(centerGlow.cy ?? 60));
+    glowElement.setAttribute("r", String(centerGlow.r ?? 0));
+    glowElement.setAttribute("fill", resolvePdgeditCatalogColor(catalog, centerGlow.fillColor));
+    glowElement.setAttribute("opacity", String(centerGlow.opacity ?? 1));
+    applyOptionalFilter(glowElement, centerGlow.filter);
+    nestedSvg.append(glowElement);
+  }
+
+  const bands = Array.isArray(binaryGlyph.bands) && binaryGlyph.bands.length
+    ? binaryGlyph.bands
+    : [
+        {
+          showOrbit: binaryGlyph.showOrbit !== false,
+          showAxis: binaryGlyph.showAxis !== false,
+          orbit: binaryGlyph.orbit,
+          axis: binaryGlyph.axis,
+          circles: binaryGlyph.circles,
+        },
+      ];
+  bands.forEach((band) => {
+    appendBinaryGlyphBandSvg(documentLike, nestedSvg, catalog, band);
   });
 
   svg.append(nestedSvg);

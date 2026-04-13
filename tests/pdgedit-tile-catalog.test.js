@@ -23,3 +23,18 @@ test("pdgedit tile review lines tolerate missing sample counts for ordinary asse
     true
   );
 });
+
+test("nested Noether-core glyph tiles normalize as binary glyph bands", () => {
+  const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
+  const proNoetherCoreGlyphTile = catalog.tiles.find((tile) => tile.key === "pro-noether-core-glyph");
+
+  assert.ok(proNoetherCoreGlyphTile, "missing pro-noether-core-glyph tile");
+  assert.equal(proNoetherCoreGlyphTile.type, "binary-glyph");
+  assert.equal(Array.isArray(proNoetherCoreGlyphTile.binaryGlyph.bands), true);
+  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.bands.length, 3);
+  assert.ok((proNoetherCoreGlyphTile.binaryGlyph.centerGlow?.r || 0) > 0);
+  assert.equal(
+    proNoetherCoreGlyphTile.binaryGlyph.bands.every((band) => Array.isArray(band.circles) && band.circles.length === 2),
+    true
+  );
+});
