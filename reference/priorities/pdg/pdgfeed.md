@@ -188,6 +188,30 @@ In v1, if a PDG particle identity denotes a superposition of fermion constituent
 
 Before proposal normalization, `pdgfeed` also applies one deterministic generic-family charge-closure pass for product tokens `pi`, `N`, and `Nbar`. That pass may emit concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, or `anti-n` only when the parent charge plus the already-concrete sibling products force exactly one unordered assignment. If zero or multiple valid assignments remain, the channel stays blocked upstream with explicit notes rather than guessing a `pdgsolve-request/v1` payload.
 
+### Reporting And Audit Surfaces
+
+The current `pdgfeed` implementation now exposes three generated Markdown reports under `stats/`:
+
+- `pdgfeed.list.<source>.md` for the full live reaction list;
+- `pdgfeed.supported.<source>.md` for ready reactions with AAA deltas;
+- and `pdgfeed.summary.<source>.md` for total counts, category counts, and the top backlog particles.
+
+Those reports are not just convenience output. They are the current operational audit surface for the upstream boundary. The summary split should be read as:
+
+- `supported`: a concrete PDG row that transforms fully into explicit AAA rows;
+- `AAAcomplete`: a PDG row that is incomplete at the PDG boundary but still reaches an explicit request under current deterministic AAA translation rules;
+- `incomplete`: a blocked row where the PDG record remains partial, generic, inclusive, or otherwise omits medium/provenance detail needed for a fully explicit solver request;
+- `backlog`: a blocked row that is concrete enough to read, but still lacks explicit v1 AAA particle coverage;
+- `ready`: request-emitting rows;
+- and `blocked`: all non-ready rows regardless of whether the cause is PDG incompleteness or missing AAA support.
+
+This classification matters because it separates two different kinds of upstream limitation:
+
+- the PDG record may be incomplete as an AAA boundary object even when the observed decay channel is physically real;
+- or the PDG record may already be concrete enough, but the repository still lacks the corresponding explicit particle-to-AAA mapping.
+
+The base registry and transform rules now also have dedicated audit coverage in the test suite. Those audits check constituent-sum consistency, declared charge consistency, conjugate-pair symmetry, request-transform references, and alias/canonical-name discipline. That audit layer is intended to keep low-level registry growth from silently drifting away from the solver boundary contract.
+
 ## Priorities
 
 ### 1. Expand V1 Coverage For The Top Backlog Particles
@@ -264,6 +288,40 @@ Done when:
 - each current heuristic transform family has a short written design note with examples and limits;
 - the repo can distinguish between pragmatic v1 translation rules and theory-facing derivations still under investigation;
 - and future mapping work can reference an explicit investigation queue rather than re-discovering these heuristic boundaries ad hoc.
+
+### 3. Model Equilibrium Noether-Sea Boundary Participation
+
+Status: `later`
+
+Current:
+
+- the current v1 boundary already assumes that many PDG rows are effective observed channels rather than full AAA ontological histories;
+- omitted ambient participation is presently handled only through bounded Noether-pair augmentation and blocked/incomplete proposal notes;
+- AAA theory suggests a surrounding equilibrium-like Noether Sea of coupled pro/anti Noether cores whose local state may be loaded, polarized, or disturbed by passing Standard Model assemblies and possibly by gravitational-wave-like medium disturbances;
+- the current ingest layer does not yet distinguish clearly between equilibrium medium participation, local disequilibrium, localized Noether-Sea dissociation, catalytic defect-like behavior, or explicit upstream production history;
+- and the current reports do not yet expose a formal vocabulary for these medium-side explanations beyond `incomplete`, `AAAcomplete`, and bounded Noether balancing.
+
+Objective:
+
+- define how `pdgfeed` should describe omitted ambient Noether-Sea participation at the PDG-to-AAA boundary without pretending to know the full microhistory;
+- clarify when a channel should remain a generic equilibrium-medium case, when bounded explicit Noether-pair/core augmentation is enough, and when a richer future medium model would be required;
+- record how passing Standard Model assemblies and medium disturbances such as gravitational-wave-like excitations are expected to interact with that equilibrium sea at the explanatory level;
+- and keep the solver boundary physically honest while preserving the current strict explicit-assembly request surface.
+
+Rules:
+
+- do not introduce generic solver-native `defect`, `spacetime`, or other medium-label particles into `pdgsolve-request/v1`;
+- keep `Noether Sea` as the canonical ontological label for ambient contents and keep `spacetime` as an emergent/effective term only;
+- treat boundary balancing as a translation policy for omitted medium provenance, not as a claim that the event occurred in empty space;
+- distinguish explicitly between observed PDG channel, current boundary augmentation policy, and any deeper speculative microhistory;
+- and require explicit conserved ledgers, deterministic transforms, and regression coverage before admitting any new medium-side object or typed anomaly into the upstream boundary.
+
+Done when:
+
+- `pdgfeed` and adjacent boundary docs explain the current equilibrium-medium interpretation in one consistent vocabulary;
+- the repository can discuss omitted Noether-Sea participation, local dissociation hypotheses, and medium disturbances without collapsing them into solver-native particles prematurely;
+- report and review surfaces can distinguish unsupported concrete particles from unresolved medium/provenance questions;
+- and any future medium-side construct admitted upstream has a clear ledger-stable AAA definition rather than a placeholder label.
 
 
 
