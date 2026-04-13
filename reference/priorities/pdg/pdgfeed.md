@@ -77,11 +77,11 @@ The canonical CLI surface should be only five subcommands. All calls below use t
 
 | Call                                  | Options                                                            | Output content                                                                                                                                                                                                                        | Output format           | Output location                                                                                                                                                                                             |
 | ------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and `pdgsolve` readiness status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
+| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and `pdgsolve` readiness status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `stats/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                           |
 | `pdgfeed.py proposal REACTION_ID`     | `--source pdg-reactions`, `--write`                                | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory.                   | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
 | `pdgfeed.py request REACTION_ID`      | `--source pdg-reactions`, `--write`                                | Emits one `pdgsolve-request/v1` payload when the selected reaction transforms fully into admitted assembly rows. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
 | `pdgfeed.py manifest`                 | none beyond top-level options                                      | Prints one `pdg-live-manifest/v1` payload with ready live-PDG entries, blocked-discovery counts, top blocked particles, and embedded proposal/request sidecars for ready entries.                                                  | JSON                    | `stdout`                                                                                                                                                                                                    |
-| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for reactions that are ready for `pdgsolve` after transform, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `.tmp`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for reactions that are ready for `pdgsolve` after transform, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `stats/`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `stats/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
 
 The `pdgsolve` handoff surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new handoff vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -178,62 +178,11 @@ Each emitted `pdgsolve-request/v1` candidate should:
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
 
+Before proposal normalization, `pdgfeed` also applies one deterministic generic-family charge-closure pass for product tokens `pi`, `N`, and `Nbar`. That pass may emit concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, or `anti-n` only when the parent charge plus the already-concrete sibling products force exactly one unordered assignment. If zero or multiple valid assignments remain, the channel stays blocked upstream with explicit notes rather than guessing a `pdgsolve-request/v1` payload.
+
 ## Priorities
 
-### 1. Add A Charge-Closure Expansion Layer For Generic `pi`, `N`, And `Nbar` Products
-
-Status: `next`
-
-Current:
-
-- many blocked live-PDG channels include generic product tokens such as `pi`, `N`, and `Nbar`;
-- the PDG Python API exposes those entries as generic items rather than as one unique concrete particle object;
-- the current ingest therefore records them as unsupported generic/textual products and blocks downstream request emission;
-- the mapping table already supports concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, and `anti-n`;
-- and the missing capability is not assembly mapping but upstream charge-state resolution when the PDG channel omits the exact member of the family.
-
-Objective:
-
-- add one PDG-side rule layer that runs before proposal normalization and turns generic family tokens into explicit charge-resolved products only when the resolution is uniquely forced;
-- support v1 generic-family expansion only for `pi`, `N`, and `Nbar`;
-- use only explicit upstream information already present in the reaction record, especially parent charge, concrete sibling-product charges, multiplicity, and total final-state charge closure;
-- emit concrete resolved products such as `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, and `anti-n` only when there is exactly one allowed assignment;
-- keep the reaction blocked when two or more valid assignments remain;
-- and keep this layer as a focused PDG translator rather than leaking generic family tokens into `pdgsolve-request/v1`.
-
-Rules:
-
-- treat the generic-family expansion as a finite charge-balance solver over a small candidate set:
-- `pi` may resolve to `pi+`, `pi0`, or `pi-`;
-- `N` may resolve to `p` or `n`;
-- `Nbar` may resolve to `anti-p` or `anti-n`;
-- subtract the charges of all already-concrete reactants and products from the channel total, then solve only the remaining generic slots;
-- accept the expansion only when exactly one unordered assignment satisfies charge closure;
-- do not use hidden resonance lore, branching-ratio preference, or isospin heuristics in v1;
-- do not branch one PDG channel into multiple proposal alternatives in v1;
-- and preserve the current blocked behavior whenever the generic slots are still underdetermined after charge closure.
-
-Examples:
-
-- `Delta(1232)++ -> N pi` should resolve to `p pi+` because that is the only charge-balanced assignment;
-- `Delta(1232)- -> N pi` should resolve to `n pi-` for the same reason;
-- `rho(770)+ -> pi pi` should resolve to `pi+ pi0` because one neutral and one positive pion is the only two-pion assignment with total charge `+1`;
-- `Delta(1232)+ -> N pi` should remain blocked because both `p pi0` and `n pi+` satisfy charge closure;
-- and `rho(1900)0 -> Nbar N` should remain blocked because both `anti-p p` and `anti-n n` remain admissible.
-
-Implementation boundary:
-
-- put the new logic in one focused helper module rather than extending the top-level ingest coordinator;
-- run that helper while converting raw PDG decay products into repo-owned `CaseParticle` products;
-- return both resolved concrete products and explicit notes describing whether the generic-family resolver succeeded, remained ambiguous, or rejected the case;
-- and add regression coverage for both uniquely resolved channels and intentionally still-blocked ambiguous channels.
-
-Done when:
-
-- uniquely charge-forced `pi`, `N`, and `Nbar` products resolve into concrete mapped particles before proposal normalization;
-- ambiguous generic-family channels still remain blocked with explicit notes rather than guessed output;
-- ready-count growth is visible in the live manifest and supported-CSV outputs without destabilizing existing known reactions;
-- and the new resolver stays limited to deterministic charge-closure cases rather than becoming a general hadron-guessing layer.
+No open `pdgfeed` priority items are currently listed here.
 
 
 

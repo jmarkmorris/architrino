@@ -340,6 +340,53 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(manifest["readyEntries"][0]["pdgIdentifier"], "S004.1/2025")
         self.assertEqual(manifest["readyEntries"][0]["mcid"], 13)
 
+    def test_live_manifest_and_supported_rows_include_charge_resolved_generic_family_cases(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "K+",
+                    [
+                        FakeDecay(
+                            "TEST.K.PLUS.GENERIC.PI",
+                            "K+ -> pi pi",
+                            [
+                                FakeDecayProduct("pi", particle=None),
+                                FakeDecayProduct("pi", particle=None),
+                            ],
+                        )
+                    ],
+                    mcid=321,
+                ),
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.ZERO.AMBIGUOUS.NBAR.N",
+                            "B0 -> Nbar N",
+                            [
+                                FakeDecayProduct("Nbar", particle=None),
+                                FakeDecayProduct("N", particle=None),
+                            ],
+                        )
+                    ],
+                    mcid=511,
+                ),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 1)
+        self.assertEqual(manifest["blockedCount"], 1)
+        self.assertEqual(manifest["readyEntries"][0]["caseId"], "k_plus_test_k_plus_generic_pi")
+        self.assertEqual(manifest["blockedEntries"][0]["caseId"], "b0_test_b_zero_ambiguous_nbar_n")
+        self.assertEqual(manifest["blockedEntries"][0]["blockedParticles"], ["Nbar", "N"])
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["reaction_id"], "k_plus_test_k_plus_generic_pi")
+        self.assertEqual(rows[0]["product_names_aaa"], "u.ad.u.au")
+        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.ad.u.au")
+
 
 if __name__ == "__main__":
     unittest.main()

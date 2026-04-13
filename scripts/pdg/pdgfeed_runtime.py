@@ -11,6 +11,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Sequence
 
+from scripts.pdg.pdgfeed_generic_family import canonicalize_generic_family_name, is_supported_generic_family
 from scripts.pdg.pdgfeed_live import connect_pdg, known_reaction_status, load_live_case_by_id, load_live_cases
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
@@ -36,7 +37,8 @@ from scripts.pdg.pdgfeed_registry import (
 
 
 PARTICLE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_+\-]+$")
-DEFAULT_TMP_DIR = Path(__file__).resolve().parents[2] / ".tmp"
+DEFAULT_STATS_DIR = Path(__file__).resolve().parents[2] / "stats"
+DEFAULT_TMP_DIR = DEFAULT_STATS_DIR
 REQUEST_ASSEMBLY_AAA_BY_ID = {
     mapping.canonical_id: mapping.aaa_notation
     for mapping in REQUEST_ASSEMBLY_MAPPINGS
@@ -83,6 +85,9 @@ def build_proposal_source(case: PdgCase) -> dict[str, Any]:
 
 
 def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple[NormalizedParticipant | None, str | None]:
+    if is_supported_generic_family(particle.name):
+        generic_name = canonicalize_generic_family_name(particle.name)
+        return None, f"unsupported:{side}:{generic_name}:generic-family-unresolved"
     canonical_name = canonicalize_pdg_name(particle.name)
     mapping = lookup_particle_mapping(canonical_name)
     if mapping is None:
@@ -584,8 +589,9 @@ def build_live_supported_reaction_csv_rows(
     database_url: str | None = None,
     *,
     api: Any | None = None,
+    manifest: dict[str, Any] | None = None,
 ) -> list[dict[str, str | int]]:
-    manifest = build_live_manifest_payload(database_url, api=api)
+    manifest = manifest or build_live_manifest_payload(database_url, api=api)
     rows: list[dict[str, str | int]] = []
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
@@ -607,6 +613,44 @@ def build_live_supported_reaction_csv_rows(
         if row is not None:
             rows.append(row)
     return sorted(rows, key=supported_reaction_sort_key)
+
+
+def build_live_reaction_summary_rows(
+    database_url: str | None = None,
+    *,
+    source: str = "pdg-reactions",
+    api: Any | None = None,
+) -> list[tuple[str, int]]:
+    if source != "pdg-reactions":
+        raise ValueError(f"Unsupported source: {source}")
+    api = api or connect_pdg(database_url, pedantic=False)
+    manifest = build_live_manifest_payload(database_url, api=api)
+    supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
+    total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
+    delta_counts: Counter[int] = Counter()
+    for row in supported_rows:
+        electrino_value = row.get("electrino_delta", -1)
+        positrino_value = row.get("positrino_delta", -1)
+        electrino_delta = -1 if electrino_value is None else int(electrino_value)
+        positrino_delta = -1 if positrino_value is None else int(positrino_value)
+        if electrino_delta == positrino_delta and 0 <= electrino_delta <= 5:
+            delta_counts[electrino_delta] += 1
+
+    rows: list[tuple[str, int]] = [
+        ("Number of total PDG reactions", total_reaction_count),
+        ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
+    ]
+    rows.extend(
+        (f"Number of reactions leaving {count}/{count} architrinos", delta_counts[count])
+        for count in range(0, 6)
+    )
+    rows.extend(
+        [
+            ("Number of reactions ready", int(manifest.get("readyCount", 0) or 0)),
+            ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
+        ]
+    )
+    return rows
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -692,8 +736,20 @@ def supported_markdown_output_path(source: str) -> Path:
     return DEFAULT_TMP_DIR / f"pdgfeed.supported.{slugify(source)}.md"
 
 
+def summary_markdown_output_path(source: str) -> Path:
+    return DEFAULT_TMP_DIR / f"pdgfeed.summary.{slugify(source)}.md"
+
+
 def escape_markdown_table_cell(value: Any) -> str:
-    return str(value).replace("|", r"\|").replace("\n", " ").strip()
+    return (
+        str(value)
+        .replace("\\", r"\\")
+        .replace("|", r"\|")
+        .replace("[", "&#91;")
+        .replace("]", "&#93;")
+        .replace("\n", " ")
+        .strip()
+    )
 
 
 def write_markdown_table(path: Path, headers: Sequence[str], rows: Sequence[Sequence[Any]]) -> None:
@@ -766,6 +822,26 @@ def write_supported_reaction_markdown(path: Path, rows: Sequence[dict[str, str |
             for row in rows
         ],
     )
+
+
+def write_live_reaction_summary_markdown(path: Path, rows: Sequence[tuple[str, int]]) -> None:
+    write_markdown_table(
+        path,
+        ("Metric", "Count"),
+        rows,
+    )
+
+
+def write_live_reaction_summary_report(
+    source: str,
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+) -> Path:
+    rows = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    path = summary_markdown_output_path(source)
+    write_live_reaction_summary_markdown(path, rows)
+    return path
 
 
 def resolve_case_by_source(

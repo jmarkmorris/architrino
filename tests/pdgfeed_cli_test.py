@@ -236,6 +236,37 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(row_by_id["pi0_fake"]["Transformed Product AAA"], "h.ah.h.ah")
             self.assertEqual(row_by_id["pi0_fake"]["Delta Ledger"], "0.0@")
 
+    def test_summary_report_writes_counts_markdown(self):
+        api = self.build_api()
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            with (
+                patch.object(pdgfeed_runtime, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_live, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_runtime, "DEFAULT_TMP_DIR", tmp_dir),
+            ):
+                output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
+
+            self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
+            markdown_lines = output_path.read_text(encoding="utf-8").strip().splitlines()
+            headers, rows = self.parse_markdown_table(markdown_lines)
+            self.assertEqual(headers, ["Metric", "Count"])
+            self.assertEqual(
+                rows,
+                [
+                    {"Metric": "Number of total PDG reactions", "Count": "5"},
+                    {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "5"},
+                    {"Metric": "Number of reactions leaving 0/0 architrinos", "Count": "4"},
+                    {"Metric": "Number of reactions leaving 1/1 architrinos", "Count": "0"},
+                    {"Metric": "Number of reactions leaving 2/2 architrinos", "Count": "1"},
+                    {"Metric": "Number of reactions leaving 3/3 architrinos", "Count": "0"},
+                    {"Metric": "Number of reactions leaving 4/4 architrinos", "Count": "0"},
+                    {"Metric": "Number of reactions leaving 5/5 architrinos", "Count": "0"},
+                    {"Metric": "Number of reactions ready", "Count": "5"},
+                    {"Metric": "Number of reactions blocked", "Count": "0"},
+                ],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
