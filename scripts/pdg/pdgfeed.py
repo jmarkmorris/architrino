@@ -4,6 +4,10 @@
 The implementation is split into focused helper modules under ``scripts/pdg``.
 This file keeps the direct script surface thin and re-exports the public
 library entrypoints used by tests and the root delegating ``pdgfeed.py``.
+
+PDG rows are treated here as effective channel records rather than full AAA
+medium histories. Any omitted Noether-Sea participation stays a boundary-side
+translation concern, not a solver-core ontology object.
 """
 
 from __future__ import annotations

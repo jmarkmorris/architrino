@@ -176,6 +176,8 @@ def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
             decays.append(decay)
 
     try:
+        # PDG subdecay rows are decay-table hierarchy under one parent record,
+        # not a general cross-record production network.
         extend(particle.exclusive_branching_fractions(include_subdecays=True, require_summary_data=False))
     except TypeError:
         try:

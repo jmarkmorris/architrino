@@ -99,6 +99,8 @@ The proposal and request boundary should use two repo-owned layers:
 - a normalized PDG proposal record used inside ingest;
 - and one emitted `pdgsolve-request/v1` candidate per reaction that is ready for `pdgsolve` after transform.
 
+PDG decay rows should be treated as effective local channel records, not as complete ontological histories. In AAA terms, a PDG row is usually the named parent assembly plus the reported observed channel after production, while the surrounding Noether Sea, local medium loading, and any upstream production chain are not encoded explicitly in the PDG boundary object.
+
 Proposal records should carry stable identity, source provenance, normalized participants, ranking metadata, and notes about ambiguity or unsupported structure. Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
 
 The normalized output should include:
@@ -109,6 +111,8 @@ The normalized output should include:
 - ranking metadata;
 - and provenance metadata needed for later review.
 
+When the PDG API marks a row as a `subdecay`, `pdgfeed` should treat that as decay-table hierarchy inside the same parent particle record, not as proof of a separate upstream reaction network. The current PDG boundary does not generally encode the full causal production history of the parent particle.
+
 Requests should be emitted only from normalized proposal records, never directly from raw PDG objects. Each emitted request must:
 
 - use schema `pdgsolve-request/v1`;
@@ -118,6 +122,8 @@ Requests should be emitted only from normalized proposal records, never directly
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
 For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit Noether-pair reactants, each pair being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`.
+
+This boundary balancing rule should be read as an explicit AAA translation policy for incomplete medium provenance, not as a claim that the underlying reaction took place in an empty vacuum. The working interpretation is that PDG gives an effective observed channel, while `pdgfeed` may need to account for omitted ambient Noether-Sea participation at the solver boundary. `pdgfeed` should still avoid inventing detailed medium microhistories or generic defect species unless and until the repository carries an explicit, ledger-stable upstream rule for them.
 
 The practical flow is:
 
@@ -216,6 +222,7 @@ Rules:
 - add new coverage only through explicit canonical-name rows in the locked registry table;
 - keep generic/inclusive PDG records in the `incomplete` class unless their structure truly becomes explicit at the PDG boundary;
 - add regression coverage for every new particle mapping before treating its channels as ready;
+- keep the distinction clear between a PDG row that is incomplete because the PDG record omits medium/provenance detail and a row that is blocked because a concrete particle still lacks AAA coverage;
 - and prefer the highest-count backlog particles first unless there is a strong architectural reason to take a lower-count particle earlier.
 
 Done when:
@@ -236,7 +243,8 @@ Current:
   - reactions that involve quantum superpositions or mixed-flavor composites, even when v1 now emits all enumerated constituent fermions;
   - charge-conjugate reactions where product-side conjugation is inferred to restore charge closure;
   - generic-family charge-closure reactions for `pi`, `N`, and `Nbar`;
-  - and composite constituent expansions that suppress amplitude metadata, such as the current `eta -> u, anti-u, d, anti-d, s, anti-s` v1 transform.
+  - composite constituent expansions that suppress amplitude metadata, such as the current `eta -> u, anti-u, d, anti-d, s, anti-s` v1 transform;
+  - and PDG channels that are treated as effective local decay records even though the surrounding Noether-Sea participation and production history are not encoded in the PDG boundary object.
 
 Objective:
 
