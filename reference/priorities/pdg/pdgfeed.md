@@ -178,7 +178,7 @@ Each emitted `pdgsolve-request/v1` candidate should:
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
 
-In v1, `eta` is treated as a composite meson with an explicit constituent expansion into the already-supported quark assemblies `u`, `anti-u`, `d`, `anti-d`, `s`, and `anti-s`. That expansion is emitted as repeated constituent rows only; v1 does not carry superposition factors or amplitudes in the request surface.
+In v1, if a PDG particle identity denotes a superposition of fermion constituent states, `pdgfeed` emits the union of those already-supported constituent fermion rows in the translated reaction. Current examples include `pi0`, `eta`, `K0S`, and `K0L`. Future tooling may attach richer metadata, but the v1 request surface records explicit constituent rows only and does not carry superposition factors or amplitudes.
 
 Before proposal normalization, `pdgfeed` also applies one deterministic generic-family charge-closure pass for product tokens `pi`, `N`, and `Nbar`. That pass may emit concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, or `anti-n` only when the parent charge plus the already-concrete sibling products force exactly one unordered assignment. If zero or multiple valid assignments remain, the channel stays blocked upstream with explicit notes rather than guessing a `pdgsolve-request/v1` payload.
 
@@ -192,9 +192,8 @@ Current:
 
 - the current `pdgfeed` summary report separates blocked reactions into `incomplete` and `backlog`;
 - the `backlog` class is the set of blocked reactions whose PDG records are concrete enough to read but whose particles still lack v1 AAA transform coverage;
-- `eta` now transforms as a composite meson through the explicit constituent quark rows `u`, `anti-u`, `d`, `anti-d`, `s`, and `anti-s`, and has dropped out of the backlog leaderboard;
+- supported fermion-superposition particles now expand by emitting all enumerated constituent fermions rather than picking a representative branch, and `K0S`/`K0L` have dropped out of the top backlog set;
 - and the current top backlog particles are:
-  - `K0S` — `384`
   - `phi` — `255`
   - `Dbar0` — `253`
   - `D0` — `213`
@@ -203,7 +202,8 @@ Current:
   - `Sigma+` — `75`
   - `Xi-` — `72`
   - `Xi0` — `60`
-  - `K0L` — `59`
+  - `Sigma0` — `41`
+  - `Sigma-` — `31`
 
 Objective:
 
@@ -233,10 +233,9 @@ Current:
 - `pdgfeed` now contains a small set of deterministic upstream heuristics so more PDG channels can be normalized into explicit AAA rows;
 - those heuristics are acceptable for v1 ingestion work, but they compress structure that should eventually receive a more detailed assembly-level analysis;
 - and the current heuristic-analysis backlog includes:
-  - reactions that involve quantum superpositions or mixed-flavor composites;
+  - reactions that involve quantum superpositions or mixed-flavor composites, even when v1 now emits all enumerated constituent fermions;
   - charge-conjugate reactions where product-side conjugation is inferred to restore charge closure;
   - generic-family charge-closure reactions for `pi`, `N`, and `Nbar`;
-  - canonical self-conjugate neutral-meson choices such as the current `pi0 -> u.au` request transform;
   - and composite constituent expansions that suppress amplitude metadata, such as the current `eta -> u, anti-u, d, anti-d, s, anti-s` v1 transform.
 
 Objective:
@@ -509,8 +508,10 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 | `w_minus_corridor`     | W- Boson             | `W-`         | `W-`          | composite | `ah + 6:0@`                                                               | `9:3@`            | weak boson | `n/a`      | anti           | no                     |
 | `z_corridor`           | Z Boson              | `Z`          | `Z`           | composite | `h.ah`                                                                    | `6:6@`            | weak boson | `n/a`      | self-conjugate | no                     |
 | `eta_meson`            | Eta Meson            | `eta`        | `u.au.d.ad.d2.ad2` | composite | `u.au.d.ad.d2.ad2`                                                   | `34:34@`          | meson      | `I+II`     | self-conjugate | yes                    |
+| `short_neutral_kaon`   | Short Neutral Kaon   | `K0S`        | `d.ad2.ad.d2` | composite | `d.ad2.ad.d2`                                                             | `22:22@`          | meson      | `I+II`     | self-conjugate | yes                    |
+| `long_neutral_kaon`    | Long Neutral Kaon    | `K0L`        | `d.ad2.ad.d2` | composite | `d.ad2.ad.d2`                                                             | `22:22@`          | meson      | `I+II`     | self-conjugate | yes                    |
 | `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | yes                    |
-| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`; v1 request transform canonicalizes to `u.au`             | `12:12@`          | meson      | I          | self-conjugate | yes                    |
+| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au.d.ad`   | composite | `u.au.d.ad`                                                               | `24:24@`          | meson      | I          | self-conjugate | yes                    |
 | `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | yes                    |
 | `positive_kaon`        | Positive Kaon        | `K+`         | `u.ad2`       | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)`                                         | `8:14@`           | meson      | `I+II`     | mixed          | yes                    |
 | `neutral_kaon`         | Neutral Kaon         | `K0`         | `d.ad2`       | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | yes                    |

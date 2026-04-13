@@ -120,8 +120,6 @@ def normalize_particle(particle: CaseParticle, side: str, ordinal: int) -> tuple
     )
     if not mapping.has_request_transform:
         return participant, f"unsupported:{side}:{canonical_name}:no-pdgsolve-request-v1-mapping"
-    if canonical_name == "pi0":
-        return participant, "transform:canonical-choice:pi0:u.au:alternate:d.ad"
     return participant, None
 
 
@@ -455,8 +453,6 @@ def format_proposal_side_aaa(participants: Any) -> str:
         aaa_notation = str(participant.get("aaaNotation", "")).strip()
         if not aaa_notation:
             continue
-        if str(participant.get("canonicalId", "")) == "neutral_pion":
-            aaa_notation = "u.au"
         tokens.append(aaa_notation)
     return ".".join(tokens)
 
