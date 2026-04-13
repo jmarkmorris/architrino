@@ -249,6 +249,14 @@ class PdgfeedContractTests(unittest.TestCase):
 
     def test_kaons_and_b_mesons_expand_into_assembly_rows(self):
         expected = {
+            "eta": [
+                "pro_up_quark_I",
+                "anti_up_quark_I",
+                "pro_down_quark_I",
+                "anti_down_quark_I",
+                "pro_strange_quark_II",
+                "anti_strange_quark_II",
+            ],
             "K+": ["pro_up_quark_I", "anti_strange_quark_II"],
             "K0": ["pro_down_quark_I", "anti_strange_quark_II"],
             "K-": ["anti_up_quark_I", "pro_strange_quark_II"],
@@ -278,6 +286,34 @@ class PdgfeedContractTests(unittest.TestCase):
                     [entry["assemblyId"] for entry in transformed["reactants"]],
                     assembly_ids,
                 )
+
+    def test_eta_decay_moves_from_backlog_to_supported_with_six_quark_expansion(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.ETA",
+                            "B0 -> eta",
+                            [FakeDecayProduct("eta")],
+                        )
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 1)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(manifest["readyEntries"][0]["caseId"], "b0_test_b_eta")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["category"], "supported")
+        self.assertEqual(rows[0]["product_names_aaa"], "u.au.d.ad.d2.ad2")
+        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.au.d.ad.d2.ad2")
 
     def test_live_manifest_marks_known_reactions_and_orders_them_first(self):
         api = FakeApi(

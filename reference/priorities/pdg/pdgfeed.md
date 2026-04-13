@@ -178,6 +178,8 @@ Each emitted `pdgsolve-request/v1` candidate should:
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
 
+In v1, `eta` is treated as a composite meson with an explicit constituent expansion into the already-supported quark assemblies `u`, `anti-u`, `d`, `anti-d`, `s`, and `anti-s`. That expansion is emitted as repeated constituent rows only; v1 does not carry superposition factors or amplitudes in the request surface.
+
 Before proposal normalization, `pdgfeed` also applies one deterministic generic-family charge-closure pass for product tokens `pi`, `N`, and `Nbar`. That pass may emit concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, or `anti-n` only when the parent charge plus the already-concrete sibling products force exactly one unordered assignment. If zero or multiple valid assignments remain, the channel stays blocked upstream with explicit notes rather than guessing a `pdgsolve-request/v1` payload.
 
 ## Priorities
@@ -190,8 +192,8 @@ Current:
 
 - the current `pdgfeed` summary report separates blocked reactions into `incomplete` and `backlog`;
 - the `backlog` class is the set of blocked reactions whose PDG records are concrete enough to read but whose particles still lack v1 AAA transform coverage;
+- `eta` now transforms as a composite meson through the explicit constituent quark rows `u`, `anti-u`, `d`, `anti-d`, `s`, and `anti-s`, and has dropped out of the backlog leaderboard;
 - and the current top backlog particles are:
-  - `eta` — `479`
   - `K0S` — `384`
   - `phi` — `255`
   - `Dbar0` — `253`
@@ -201,6 +203,7 @@ Current:
   - `Sigma+` — `75`
   - `Xi-` — `72`
   - `Xi0` — `60`
+  - `K0L` — `59`
 
 Objective:
 
@@ -220,6 +223,40 @@ Done when:
 - the top backlog particle list has materially changed because at least one of the leading concrete particles now transforms into AAA;
 - newly covered particles emit stable proposal/request artifacts with regression coverage;
 - and the `backlog` count decreases without inflating the `incomplete` class through category drift.
+
+### 2. Investigate Heuristic Transform Areas More Deeply
+
+Status: `later`
+
+Current:
+
+- `pdgfeed` now contains a small set of deterministic upstream heuristics so more PDG channels can be normalized into explicit AAA rows;
+- those heuristics are acceptable for v1 ingestion work, but they compress structure that should eventually receive a more detailed assembly-level analysis;
+- and the current heuristic-analysis backlog includes:
+  - reactions that involve quantum superpositions or mixed-flavor composites;
+  - charge-conjugate reactions where product-side conjugation is inferred to restore charge closure;
+  - generic-family charge-closure reactions for `pi`, `N`, and `Nbar`;
+  - canonical self-conjugate neutral-meson choices such as the current `pi0 -> u.au` request transform;
+  - and composite constituent expansions that suppress amplitude metadata, such as the current `eta -> u, anti-u, d, anti-d, s, anti-s` v1 transform.
+
+Objective:
+
+- identify which current heuristics are merely practical v1 normalizations and which should later be replaced by a deeper assembly-native derivation;
+- document the exact assumptions each heuristic currently makes at the PDG-to-AAA boundary;
+- and create a clearer path from today’s deterministic transforms to future theory-facing treatments.
+
+Rules:
+
+- do not remove working v1 transforms until a replacement rule is explicit and regression-covered;
+- keep the current request surface explicit and deterministic even when the underlying theory-facing explanation is postponed;
+- record the scope and limits of each heuristic in repository documentation rather than leaving them implicit in code alone;
+- and separate “PDG record is incomplete” from “our current transform is approximate” because those are different upstream conditions.
+
+Done when:
+
+- each current heuristic transform family has a short written design note with examples and limits;
+- the repo can distinguish between pragmatic v1 translation rules and theory-facing derivations still under investigation;
+- and future mapping work can reference an explicit investigation queue rather than re-discovering these heuristic boundaries ad hoc.
 
 
 
@@ -471,6 +508,7 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 | `w_plus_corridor`      | W+ Boson             | `W+`         | `W+`          | composite | `h + 0:6@`                                                                | `3:9@`            | weak boson | `n/a`      | pro            | no                     |
 | `w_minus_corridor`     | W- Boson             | `W-`         | `W-`          | composite | `ah + 6:0@`                                                               | `9:3@`            | weak boson | `n/a`      | anti           | no                     |
 | `z_corridor`           | Z Boson              | `Z`          | `Z`           | composite | `h.ah`                                                                    | `6:6@`            | weak boson | `n/a`      | self-conjugate | no                     |
+| `eta_meson`            | Eta Meson            | `eta`        | `u.au.d.ad.d2.ad2` | composite | `u.au.d.ad.d2.ad2`                                                   | `34:34@`          | meson      | `I+II`     | self-conjugate | yes                    |
 | `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | yes                    |
 | `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`; v1 request transform canonicalizes to `u.au`             | `12:12@`          | meson      | I          | self-conjugate | yes                    |
 | `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | yes                    |

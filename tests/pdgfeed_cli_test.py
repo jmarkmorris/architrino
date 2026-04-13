@@ -284,9 +284,9 @@ class PdgfeedCliTests(unittest.TestCase):
                     "B+",
                     [
                         FakeDecay(
-                            "TEST.B.ETA",
-                            "B+ -> eta",
-                            [FakeDecayProduct("eta")],
+                            "TEST.B.K0S",
+                            "B+ -> K0S",
+                            [FakeDecayProduct("K0S")],
                         )
                     ],
                     mcid=521,
@@ -310,7 +310,7 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(backlog_headers, ["Backlog Particle", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
             self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "1"})
-            self.assertEqual(backlog_rows, [{"Backlog Particle": "eta", "Count": "1"}])
+            self.assertEqual(backlog_rows, [{"Backlog Particle": "K0S", "Count": "1"}])
 
 
 if __name__ == "__main__":
