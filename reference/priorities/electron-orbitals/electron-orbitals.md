@@ -51,12 +51,12 @@ So shell 3 contains the subshells $3s$, $3p$, and $3d$, and each of those subshe
 
 The letters used for the orbitals, **$s, p, d,$ and $f$**, are historical abbreviations inherited from early spectroscopy:
 
-| Letter | Old name | Typical shape description | Number of orbitals | Maximum electrons |
-| --- | --- | --- | --- | --- |
-| **$s$** | sharp | sphere | 1 | 2 |
-| **$p$** | principal | dumbbell or figure-8 family | 3 | 6 |
-| **$d$** | diffuse | cloverleaf family with one mixed donut-dumbbell form | 5 | 10 |
-| **$f$** | fundamental | complex multi-lobed family | 7 | 14 |
+| Letter  | Old name    | Typical shape description                            | Number of orbitals | Maximum electrons |
+| ------- | ----------- | ---------------------------------------------------- | ------------------ | ----------------- |
+| **$s$** | sharp       | sphere                                               | 1                  | 2                 |
+| **$p$** | principal   | dumbbell or figure-8 family                          | 3                  | 6                 |
+| **$d$** | diffuse     | cloverleaf family with one mixed donut-dumbbell form | 5                  | 10                |
+| **$f$** | fundamental | complex multi-lobed family                           | 7                  | 14                |
 
 What matters physically now is not the historical names themselves, but the structure they identify.
 
@@ -188,15 +188,7 @@ Among the mnemonic methods, this one is the closest to the actual organizing pri
 
 #### The periodic table itself as a mnemonic
 
-In practice, the periodic table is often the most reliable mnemonic of all. Reading across its blocks from left to right reproduces the filling order:
-
-- periods 1 to 3 give the straightforward sequence $1s$, $2s$, $2p$, $3s$, $3p$,
-- period 4 continues with $4s$, then $3d$, then $4p$,
-- period 5 continues with $5s$, then $4d$, then $5p$,
-- period 6 continues with $6s$, then $4f$, then $5d$, then $6p$,
-- period 7 continues with $7s$, then $5f$, then $6d$, then $7p$.
-
-This works because the table is already laid out in $s$-, $d$-, $p$-, and $f$-blocks according to the usual occupation order.
+In practice, the periodic table is often the most reliable mnemonic of all. The table is already laid out in $s$-, $d$-, $p$-, and $f$-blocks according to the usual occupation order, so reading across it reproduces the filling pattern. The detailed block and period mapping is collected in the `Periodic-Table Meaning` section below.
 
 #### Chunked block mnemonic
 
@@ -216,12 +208,7 @@ This chunked version is often easier to hold in working memory than:
 
 **$1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p$**
 
-It also makes the periodic structure more visible:
-
-- period 4 contributes $4s$, then backfills $3d$, then returns to $4p$,
-- period 5 contributes $5s$, then $4d$, then $5p$,
-- period 6 contributes $6s$, then $4f$, then $5d$, then $6p$,
-- period 7 contributes $7s$, then $5f$, then $6d$, then $7p$.
+It also makes the periodic structure more visible, especially the repeating pattern $4s, 3d, 4p$ then $5s, 4d, 5p$ then $6s, 4f, 5d, 6p$.
 
 #### Repeating-pattern mnemonic
 
@@ -270,6 +257,23 @@ The periodic table is, in a very real sense, a map of orbital filling.
 This block structure exists because the subshell capacities are 2, 6, 10, and 14 respectively. That is why the table has those widths.
 
 Each new period corresponds broadly to the opening of a new principal energy level, even though the detailed filling order interleaves subshells from neighboring levels.
+
+Reading across the periodic table also reproduces the usual filling sequence:
+
+- periods 1 to 3 give the straightforward sequence $1s$, $2s$, $2p$, $3s$, $3p$,
+- period 4 continues with $4s$, then $3d$, then $4p$,
+- period 5 continues with $5s$, then $4d$, then $5p$,
+- period 6 continues with $6s$, then $4f$, then $5d$, then $6p$,
+- period 7 continues with $7s$, then $5f$, then $6d$, then $7p$.
+
+This same structure explains the major group patterns:
+
+- Group 1 elements typically end in $ns^1$,
+- Group 2 elements typically end in $ns^2$,
+- Group 17 elements typically end in $ns^2 np^5$,
+- Group 18 elements typically end in a filled valence shell, with Helium as the special case $1s^2$.
+
+That is why an element's position on the table already encodes much of its outer electron configuration.
 
 ### 8. Valence Electrons, Bonding, And Geometry
 
@@ -350,12 +354,7 @@ Short configurations often already tell you the main chemistry:
 - **Neon:** **[He] $2s^2 2p^6$**. Filled valence shell, which is why Neon is unusually unreactive.
 - **Iron:** **[Ar] $4s^2 3d^6$**. Partially filled $d$ structure, multiple oxidation states, and frequent magnetic behavior.
 
-Group patterns can also be read directly from outer-shell notation:
-
-- alkali metals commonly end in $ns^1$,
-- alkaline-earth metals commonly end in $ns^2$,
-- halogens commonly end in $ns^2 np^5$,
-- noble gases commonly end in a filled valence shell, with Helium as the special case $1s^2$.
+These examples line up with the group patterns summarized in the `Periodic-Table Meaning` section above.
 
 ### 13. Why This Matters
 
