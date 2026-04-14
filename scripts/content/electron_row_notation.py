@@ -48,6 +48,21 @@ def parse_configuration(config: str) -> dict[int, dict[str, int]]:
     return occupancy
 
 
+def abbreviate_standard_configuration(config: str, atomic_number: int) -> str:
+    candidates = [z for z in NOBLE_GASES if z < atomic_number]
+    if not candidates:
+        return config
+    noble_z = max(candidates)
+    noble = NOBLE_GASES[noble_z]
+    prefix = noble["config"]
+    if not config.startswith(prefix):
+        return config
+    remainder = config[len(prefix) :].strip()
+    if not remainder:
+        return noble["label"]
+    return f"{noble['label']} {remainder}"
+
+
 def compact_number(value: int) -> str:
     if value < 10:
         return str(value)
@@ -108,8 +123,8 @@ def compress_noble_core(
 
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Full row notation | Abbreviated row notation |",
-        "|---|---|---|---|---|",
+        "| Z | Element | Standard configuration | Abbreviated standard | Full row notation | Abbreviated row notation |",
+        "|---|---|---|---|---|---|",
     ]
     for element in load_elements():
         atomic_number = element["number"]
@@ -120,13 +135,20 @@ def format_table(limit: int, compress: bool) -> str:
         abbreviated_rows = (
             compress_noble_core(occupancy, atomic_number) if compress else full_rows
         )
+        standard_configuration_raw = element["electron_configuration"]
+        abbreviated_standard_raw = abbreviate_standard_configuration(
+            standard_configuration_raw, atomic_number
+        )
         standard_configuration = "<br>".join(
             f"`{part}`" for part in element["electron_configuration"].split()
+        )
+        abbreviated_standard = "<br>".join(
+            f"`{part}`" for part in abbreviated_standard_raw.split()
         )
         full_text = "<br>".join(f"`{row}`" for row in full_rows)
         abbreviated_text = "<br>".join(f"`{row}`" for row in abbreviated_rows)
         lines.append(
-            f"| {atomic_number} | {element['name']} | {standard_configuration} | {full_text} | {abbreviated_text} |"
+            f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {full_text} | {abbreviated_text} |"
         )
     return "\n".join(lines)
 
