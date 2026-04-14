@@ -437,6 +437,36 @@ The standard quantum-mechanical language can then be re-read as an effective sum
 
 This mapping does not by itself derive the quantum rules. It only identifies where the interpretive bridge would need to be built.
 
+#### `EOC` as a hypothesis-level geometric occupancy ledger
+
+The `EOC` code can be read at three distinct levels, and those levels should not be conflated:
+
+| Layer | Reading of an `EOC` row such as `35a` |
+| --- | --- |
+| Standard QM effective description | shell 3, occupancy 5, capacity 10; within the present $s/p/d/f$ range the capacity digit identifies the $d$ subshell family |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ ontological interpretation | shell-indexed ledger entry saying that a $d$-type stable mode family is available at level 3 and presently supports five localized assemblies in admissible bound occupancy patterns |
+| Speculative geometric/dynamical extension | reduced symbolic shadow of a deeper mode geometry in which the admissible multiplicity, exclusion structure, and occupancy ordering are derived from nucleus plus Noether-sea dynamics |
+
+On that interpretive reading, `EOC` is not merely bookkeeping. It is a **geometric occupancy ledger**: `E` marks the shell-scale family, `C` marks the geometry-linked multiplicity of the admissible mode set, and `O` records how much of that set is realized in the current atom. The code string is therefore a compressed ledger of dynamical orbital geometry and, on the stronger version of the hypothesis, a **dynamical state code** for the bound multi-assembly system. At present, however, the map from geometry to code is imported from standard quantum mechanics rather than derived internally from $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+This also sharpens several standard notions:
+
+- shell and subshell structure become a hierarchy of stable bound mode families at different radial scales and angular multiplicities,
+- exclusion behavior becomes the rule that identical localized assemblies cannot stably co-occupy the same admissible mode state and therefore must separate into distinct occupancy states before pair-locking,
+- fill order becomes the sequence in which those mode families become energetically admissible as nuclear charge and existing occupancy reshape the sea-mediated environment,
+- and valence behavior becomes the dynamical openness of the outer, incompletely closed rows, which are the easiest occupancy structures to reorganize during bonding, ionization, and polarization.
+
+On this view, an `EOC` row can be interpreted as a **signature of an admissible stable occupancy mode family** for localized assemblies. A full configuration is then a stack of such signatures. The standard configuration string says which subshell labels are occupied, the row notation makes the shell-resolved ledger explicit, and `EOC` compresses that ledger into a minimal state code. The unresolved question is whether this is only a useful reinterpretation or the visible shadow of a deeper derivable geometry.
+
+#### Compact mapping from orbital notation to `EOC`
+
+| Standard orbital notation | Row notation | `EOC` | Hypothesis-level $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
+| --- | --- | --- | --- |
+| $1s^2$ | `E1 2/2` | `122` | first shell, lowest closed mode family, two localized assemblies saturating the simplest admissible bound pattern |
+| $2p^4$ | `E2 4/6` | `246` | second-shell directional mode family, partially filled, with four assemblies distributed across a six-state effective occupancy set |
+| $3d^5$ | `E3 5/a` | `35a` | third-shell $d$ family at half filling, suggesting maximal phase-separated spreading across the five effective orbital channels before pair-locking |
+| $4f^{14}$ | `E4 e/e` | `4ee` | fourth-shell $f$ family fully closed, a saturated high-multiplicity occupancy ledger whose geometry is effective in QM and hypothesized dynamical in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+
 #### Strong hypothesis to preserve
 
 A strong version of the $\mathbb{A}\mathbb{A}\mathbb{A}$ orbital hypothesis is:
@@ -445,19 +475,18 @@ A strong version of the $\mathbb{A}\mathbb{A}\mathbb{A}$ orbital hypothesis is:
 - the atom is a dynamical multi-assembly system in the Noether sea,
 - and the familiar orbital geometries arise as regular stable mode families or equipotential-pattern families for those assemblies.
 
-If that stronger claim is right, then textbook orbital notation is not wrong, but incomplete. It would be a highly successful coarse-grained code for a deeper dynamical ledger.
+If that stronger claim is right, then textbook orbital notation, and the more compact `EOC` notation built from it, are not wrong, but incomplete. They would be highly successful coarse-grained codes for a deeper dynamical ledger.
 
 #### Closure questions
 
 For this idea to move from suggestive interpretation to closure, the following questions have to be answered constructively:
 
-1. What dynamical law determines the admissible bound patterns for a single electron assembly around a nucleus?
-2. What law sets the minimum approach distance, phase separation, or exclusion structure for two electron assemblies bound to the same nucleus?
-3. Can the $s/p/d/f$ mode hierarchy be derived as a dynamical consequence of the Noether-sea response rather than inserted by analogy?
-4. Can Pauli-style exclusion and Hund-style spreading be recovered as theorems of the assembly dynamics?
-5. Can the resulting framework reproduce the known ordering patterns, spectroscopic splittings, magnetic moments, and chemical regularities encoded by standard orbital notation?
+1. What in the $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics determines the shell and subshell geometry itself, and why should the admissible multiplicities appear as `2`, `6`, `a`, and `e`?
+2. What sets the minimum approach distance, exclusion structure, or phase-separation law that limits how localized assemblies can occupy a given mode family?
+3. What determines fill order as the atom grows, including the known rearrangements of near-degenerate $s$, $d$, and $f$ families and the emergence of valence behavior?
+4. Can `EOC` be derived as a reduced symbolic shadow of the deeper mode geometry, rather than assigned after the fact from standard QM labels and capacities?
 
-Those are the hard gates for turning the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals into a predictive closure rather than a suggestive re-description.
+Those are the hard gates for turning the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals, and the `EOC` compression built on top of it, into predictive closure rather than a suggestive re-description.
 
 ### 15. Full Electron-Configuration Table In Standard And Row Notation
 
