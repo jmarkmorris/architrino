@@ -57,7 +57,7 @@ Large coordinator files may assemble those pieces temporarily, but they should n
 
 ### Composite And Higher-Scale Terms Are Out Of Scope
 
-Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects.
+Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects, except for the one explicit counted `Unbound Architrinos` product occurrence admitted by `pdgsolve-request/v1`.
 
 They do not enter `pdgsolve` as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must translate them into explicit admitted Standard Model assemblies before `pdgsolve` sees the request. If that translation cannot be completed, the source request is un-mappable and should remain upstream in `pdgfeed` rather than being emitted to `pdgsolve`. If downstream tools want higher-scale summaries, they may derive them only after `pdgsolve` has finished.
 
@@ -88,7 +88,9 @@ The strip uses a deliberately limited grammar:
 - reactant-side operators and product-side operators contain operators only;
 - all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
 - every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content;
-- and the solver may, when policy permits it, augment one boundary side by zero or more explicit Noether pairs, where one Noether pair is exactly one pro Noether core plus one anti Noether core; that augmentation is a bounded boundary choice rather than a new operator family, and after it is chosen each core continues as an ordinary assembly occurrence.
+- `pdgfeed` may already have completed the boundary by adding explicit `pro_noether_core_I` and `anti_noether_core_I` rows on the reactant or product side;
+- `pdgfeed` may also emit one explicit counted `Unbound Architrinos` product occurrence for the sub-pair primitive residue that remains after full Noether-pair completion;
+- and for `pdgfeed`-emitted v1 requests the solver should treat `allowedBoundaryAugmentations: ["none"]` as the normal handoff because adding boundary material is not a solver job.
 
 In `pdgsolve` terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
 
@@ -963,7 +965,8 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 - `requestId`;
 - `source.kind`, for example `pdgfeed`, `developer`, or `pdgsolve-reopen`;
 - explicit reactant-side and product-side occurrence lists;
-- and optional policy overrides, including `allowedBoundaryAugmentations`, `allowedNoetherPairSides`, and `maxNoetherPairsPerSide`.
+- optional `electrinoCount` and `positrinoCount` on the one admitted `Unbound Architrinos` product occurrence;
+- and policy fields, with `pdgfeed` v1 requests normally carrying `allowedBoundaryAugmentations: ["none"]`.
 
 #### Example `pdgfeed` Requests
 

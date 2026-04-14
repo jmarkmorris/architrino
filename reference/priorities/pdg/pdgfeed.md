@@ -179,7 +179,10 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - `source.kind` set to `pdgfeed`;
 - `source.sourceDocumentId` pointing back to the originating `pdg-proposal:<proposalId>` record;
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
+- when boundary completion requires omitted medium-side material, add explicit `pro_noether_core_I` and `anti_noether_core_I` rows on the reactant or product side before handoff;
+- when a completed boundary still leaves an explicit primitive residue below one full Noether pair, emit one product-side `Unbound Architrinos` occurrence carrying exact `electrinoCount` and `positrinoCount`;
 - set `policy` explicitly;
+- keep `allowedBoundaryAugmentations` at `["none"]` for `pdgfeed`-emitted v1 requests because boundary completion is upstream, not a solver choice;
 - and keep PDG provenance in `source` fields or sidecar proposal metadata.
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
@@ -296,10 +299,10 @@ Status: `later`
 Current:
 
 - the current v1 boundary already assumes that many PDG rows are effective observed channels rather than full AAA ontological histories;
-- omitted ambient participation is presently handled only through bounded Noether-pair augmentation and blocked/incomplete proposal notes;
+- omitted ambient participation is presently handled through explicit upstream `pro_noether_core_I` and `anti_noether_core_I` completion rows, optional product-side `Unbound Architrinos` residue rows with exact counts, and blocked/incomplete proposal notes;
 - AAA theory suggests a surrounding equilibrium-like Noether Sea of coupled pro/anti Noether cores whose local state may be loaded, polarized, or disturbed by passing Standard Model assemblies and possibly by gravitational-wave-like medium disturbances;
 - the current ingest layer does not yet distinguish clearly between equilibrium medium participation, local disequilibrium, localized Noether-Sea dissociation, catalytic defect-like behavior, or explicit upstream production history;
-- and the current reports do not yet expose a formal vocabulary for these medium-side explanations beyond `incomplete`, `AAAcomplete`, and bounded Noether balancing.
+- and the current reports do not yet expose a formal vocabulary for these medium-side explanations beyond `incomplete`, `AAAcomplete`, and explicit v1 boundary completion.
 
 Objective:
 
@@ -313,7 +316,7 @@ Rules:
 - do not introduce generic solver-native `defect`, `spacetime`, or other medium-label particles into `pdgsolve-request/v1`;
 - keep `Noether Sea` as the canonical ontological label for ambient contents and keep `spacetime` as an emergent/effective term only;
 - treat boundary balancing as a translation policy for omitted medium provenance, not as a claim that the event occurred in empty space;
-- distinguish explicitly between observed PDG channel, current boundary augmentation policy, and any deeper speculative microhistory;
+- distinguish explicitly between observed PDG channel, current upstream boundary-completion policy, and any deeper speculative microhistory;
 - and require explicit conserved ledgers, deterministic transforms, and regression coverage before admitting any new medium-side object or typed anomaly into the upstream boundary.
 
 Done when:
