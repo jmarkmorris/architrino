@@ -84,6 +84,13 @@ def render_term_rows(terms: list[tuple[int, str, int]], include_labels: bool = F
 
 def render_eoc_rows(terms: list[tuple[int, str, int]]) -> list[str]:
     return [
+        f"{level}{compact_number(count)}{compact_number(SUBSHELL_CAPACITY[subshell])}"
+        for level, subshell, count in terms
+    ]
+
+
+def render_eco_rows(terms: list[tuple[int, str, int]]) -> list[str]:
+    return [
         f"{level}{compact_number(SUBSHELL_CAPACITY[subshell])}{compact_number(count)}"
         for level, subshell, count in terms
     ]
@@ -175,8 +182,8 @@ def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[st
 
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Abbreviated standard | ECO | Abbreviated row notation |",
-        "|---|---|---|---|---|---|",
+        "| Z | Element | Standard configuration | Abbreviated standard | ECO | EOC | Abbreviated row notation |",
+        "|---|---|---|---|---|---|---|",
     ]
     for element in load_elements():
         atomic_number = element["number"]
@@ -185,8 +192,10 @@ def format_table(limit: int, compress: bool) -> str:
         standard_configuration_raw = element["electron_configuration"]
         terms = parse_configuration_terms(standard_configuration_raw)
         standard_lines = [f"`{part}`" for part in standard_configuration_raw.split()]
+        eco_rows = render_eco_rows(terms)
         eoc_rows = render_eoc_rows(terms)
-        full_row_lines = [f"`{row}`" for row in eoc_rows]
+        eco_lines = [f"`{row}`" for row in eco_rows]
+        eoc_lines = [f"`{row}`" for row in eoc_rows]
         if compress and atomic_number in NOBLE_GASES:
             abbreviated_standard_lines = make_abbreviated_standard_lines_exact(
                 standard_configuration_raw, atomic_number
@@ -208,7 +217,8 @@ def format_table(limit: int, compress: bool) -> str:
         max_lines = max(
             len(standard_lines),
             len(abbreviated_standard_lines),
-            len(full_row_lines),
+            len(eco_lines),
+            len(eoc_lines),
             len(abbreviated_row_lines),
         )
 
@@ -217,10 +227,11 @@ def format_table(limit: int, compress: bool) -> str:
 
         standard_configuration = "<br>".join(pad(standard_lines))
         abbreviated_standard = "<br>".join(pad(abbreviated_standard_lines))
-        full_text = "<br>".join(pad(full_row_lines))
+        eco_text = "<br>".join(pad(eco_lines))
+        eoc_text = "<br>".join(pad(eoc_lines))
         abbreviated_text = "<br>".join(pad(abbreviated_row_lines))
         lines.append(
-            f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {full_text} | {abbreviated_text} |"
+            f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {eco_text} | {eoc_text} | {abbreviated_text} |"
         )
     return "\n".join(lines)
 
