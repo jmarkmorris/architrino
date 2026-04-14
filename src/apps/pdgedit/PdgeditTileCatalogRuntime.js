@@ -31,6 +31,20 @@ function normalizeBinaryGlyphCircle(circle) {
   };
 }
 
+function normalizeBinaryGlyphPath(path) {
+  return {
+    key: normalizeText(path?.key),
+    d: normalizeText(path?.d),
+    fillColor: normalizeText(path?.fillColor),
+    strokeColor: normalizeText(path?.strokeColor),
+    strokeWidth: normalizeNumber(path?.strokeWidth),
+    filter: normalizeText(path?.filter),
+    opacity: normalizeNumber(path?.opacity, 1),
+    lineCap: normalizeText(path?.lineCap) || "round",
+    lineJoin: normalizeText(path?.lineJoin) || "round",
+  };
+}
+
 function normalizeBinaryGlyphOrbit(orbit) {
   return {
     cx: normalizeNumber(orbit?.cx, 60),
@@ -83,6 +97,11 @@ function normalizeBinaryGlyphBand(band, fallbackBand) {
       : Array.isArray(fallbackBand?.circles)
         ? fallbackBand.circles.map(normalizeBinaryGlyphCircle)
         : [],
+    paths: Array.isArray(band?.paths)
+      ? band.paths.map(normalizeBinaryGlyphPath)
+      : Array.isArray(fallbackBand?.paths)
+        ? fallbackBand.paths.map(normalizeBinaryGlyphPath)
+        : [],
   };
 }
 
@@ -92,6 +111,9 @@ function normalizeBinaryGlyph(binaryGlyph) {
   const circles = Array.isArray(binaryGlyph?.circles)
     ? binaryGlyph.circles.map(normalizeBinaryGlyphCircle)
     : [];
+  const paths = Array.isArray(binaryGlyph?.paths)
+    ? binaryGlyph.paths.map(normalizeBinaryGlyphPath)
+    : [];
   const defaultBand = {
     key: "",
     rotationDeg: 0,
@@ -100,6 +122,7 @@ function normalizeBinaryGlyph(binaryGlyph) {
     orbit,
     axis,
     circles,
+    paths,
   };
   const bands = Array.isArray(binaryGlyph?.bands) && binaryGlyph.bands.length
     ? binaryGlyph.bands.map((band) => normalizeBinaryGlyphBand(band, defaultBand))
@@ -112,6 +135,7 @@ function normalizeBinaryGlyph(binaryGlyph) {
     orbit,
     axis,
     circles,
+    paths,
     bands,
     centerGlow: normalizeBinaryGlyphCenterGlow(binaryGlyph?.centerGlow ?? {}),
   };

@@ -907,23 +907,23 @@
         "centerGlow": {
           "cx": 60,
           "cy": 60,
-          "r": 7,
-          "fillColor": "rgba(162, 89, 255, 0.28)",
-          "opacity": 0.9,
-          "filter": "drop-shadow(0 0 5px rgba(162, 89, 255, 0.24))"
+          "r": 5.5,
+          "fillColor": "rgba(194, 132, 255, 0.42)",
+          "opacity": 1,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.34))"
         },
         "bands": [
           {
             "key": "outer",
-            "rotationDeg": 0,
+            "rotationDeg": 45,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 34,
-              "ry": 12,
+              "rx": 52,
+              "ry": 7.8,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 4.5,
-              "opacity": 0.88,
+              "strokeWidth": 1.125,
+              "opacity": 0.92,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
             },
             "axis": {
@@ -932,62 +932,62 @@
               "x2": 60,
               "y2": 86,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 3.2,
-              "opacity": 0.36,
-              "lineCap": "round"
+              "strokeWidth": 1,
+              "opacity": 0.28,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 26,
+                "cx": 8,
                 "cy": 60,
-                "r": 6.6,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
-              },
-              {
-                "cx": 94,
-                "cy": 60,
-                "r": 6.6,
+                "r": 4.2,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 112,
+                "cy": 60,
+                "r": 4.2,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
             ]
           },
           {
             "key": "middle",
-            "rotationDeg": 60,
+            "rotationDeg": 105,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 24,
-              "ry": 8.5,
+              "rx": 28,
+              "ry": 10.5,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 4,
-              "opacity": 0.8,
+              "strokeWidth": 1,
+              "opacity": 0.82,
               "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"
             },
             "axis": {
               "x1": 60,
-              "y1": 42,
+              "y1": 47,
               "x2": 60,
-              "y2": 78,
+              "y2": 73,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 2.8,
-              "opacity": 0.34,
-              "lineCap": "round"
+              "strokeWidth": 0.9,
+              "opacity": 0.26,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 36,
+                "cx": 32,
                 "cy": 60,
-                "r": 5.6,
+                "r": 3.9,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               },
               {
-                "cx": 84,
+                "cx": 88,
                 "cy": 60,
-                "r": 5.6,
+                "r": 3.9,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
@@ -995,41 +995,92 @@
           },
           {
             "key": "inner",
-            "rotationDeg": -60,
+            "rotationDeg": -15,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 14,
-              "ry": 5.2,
+              "rx": 16,
+              "ry": 6.8,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 3.5,
-              "opacity": 0.72,
+              "strokeWidth": 0.95,
+              "opacity": 0.78,
               "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"
             },
             "axis": {
               "x1": 60,
-              "y1": 49,
+              "y1": 52,
               "x2": 60,
-              "y2": 71,
+              "y2": 68,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 2.4,
-              "opacity": 0.3,
-              "lineCap": "round"
+              "strokeWidth": 0.85,
+              "opacity": 0.24,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 46,
+                "cx": 44,
                 "cy": 60,
-                "r": 4.6,
+                "r": 3.8,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"
               },
               {
-                "cx": 74,
+                "cx": 76,
                 "cy": 60,
-                "r": 4.6,
+                "r": 3.8,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-a",
+            "rotationDeg": 0,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-b",
+            "rotationDeg": 120,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-c",
+            "rotationDeg": 240,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
               }
             ]
           }
@@ -1047,23 +1098,23 @@
         "centerGlow": {
           "cx": 60,
           "cy": 60,
-          "r": 7,
-          "fillColor": "rgba(162, 89, 255, 0.28)",
-          "opacity": 0.9,
-          "filter": "drop-shadow(0 0 5px rgba(162, 89, 255, 0.24))"
+          "r": 5.5,
+          "fillColor": "rgba(194, 132, 255, 0.42)",
+          "opacity": 1,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.34))"
         },
         "bands": [
           {
             "key": "outer",
-            "rotationDeg": 0,
+            "rotationDeg": 45,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 34,
-              "ry": 12,
+              "rx": 52,
+              "ry": 7.8,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 4.5,
-              "opacity": 0.88,
+              "strokeWidth": 1.125,
+              "opacity": 0.92,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
             },
             "axis": {
@@ -1072,62 +1123,62 @@
               "x2": 60,
               "y2": 86,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 3.2,
-              "opacity": 0.36,
-              "lineCap": "round"
+              "strokeWidth": 1,
+              "opacity": 0.28,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 26,
+                "cx": 8,
                 "cy": 60,
-                "r": 6.6,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
-              },
-              {
-                "cx": 94,
-                "cy": 60,
-                "r": 6.6,
+                "r": 4.2,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 112,
+                "cy": 60,
+                "r": 4.2,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
             ]
           },
           {
             "key": "middle",
-            "rotationDeg": 60,
+            "rotationDeg": 105,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 24,
-              "ry": 8.5,
+              "rx": 28,
+              "ry": 10.5,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 4,
-              "opacity": 0.8,
+              "strokeWidth": 1,
+              "opacity": 0.82,
               "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"
             },
             "axis": {
               "x1": 60,
-              "y1": 42,
+              "y1": 47,
               "x2": 60,
-              "y2": 78,
+              "y2": 73,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 2.8,
-              "opacity": 0.34,
-              "lineCap": "round"
+              "strokeWidth": 0.9,
+              "opacity": 0.26,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 36,
+                "cx": 32,
                 "cy": 60,
-                "r": 5.6,
+                "r": 3.9,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               },
               {
-                "cx": 84,
+                "cx": 88,
                 "cy": 60,
-                "r": 5.6,
+                "r": 3.9,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
@@ -1135,41 +1186,92 @@
           },
           {
             "key": "inner",
-            "rotationDeg": -60,
+            "rotationDeg": -15,
             "orbit": {
               "cx": 60,
               "cy": 60,
-              "rx": 14,
-              "ry": 5.2,
+              "rx": 16,
+              "ry": 6.8,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 3.5,
-              "opacity": 0.72,
+              "strokeWidth": 0.95,
+              "opacity": 0.78,
               "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"
             },
             "axis": {
               "x1": 60,
-              "y1": 49,
+              "y1": 52,
               "x2": 60,
-              "y2": 71,
+              "y2": 68,
               "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 2.4,
-              "opacity": 0.3,
-              "lineCap": "round"
+              "strokeWidth": 0.85,
+              "opacity": 0.24,
+              "lineCap": "butt"
             },
             "circles": [
               {
-                "cx": 46,
+                "cx": 44,
                 "cy": 60,
-                "r": 4.6,
+                "r": 3.8,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"
               },
               {
-                "cx": 74,
+                "cx": 76,
                 "cy": 60,
-                "r": 4.6,
+                "r": 3.8,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-a",
+            "rotationDeg": 0,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-b",
+            "rotationDeg": 120,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+              }
+            ]
+          },
+          {
+            "key": "knot-arm-c",
+            "rotationDeg": 240,
+            "showOrbit": false,
+            "showAxis": false,
+            "paths": [
+              {
+                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
+                "strokeColor": "rgba(232, 210, 255, 0.88)",
+                "strokeWidth": 1.55,
+                "opacity": 0.94,
+                "lineCap": "round",
+                "lineJoin": "round",
+                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
               }
             ]
           }

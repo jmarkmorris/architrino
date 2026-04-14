@@ -190,6 +190,30 @@ function appendBinaryGlyphBandSvg(documentLike, parent, catalog, band) {
     bandGroup.append(axisElement);
   }
 
+  (Array.isArray(band?.paths) ? band.paths : []).forEach((pathSpec) => {
+    if (!pathSpec?.d) {
+      return;
+    }
+    const pathElement = documentLike.createElementNS(SVG_NAMESPACE, "path");
+    pathElement.setAttribute("d", pathSpec.d);
+    pathElement.setAttribute("fill", pathSpec.fillColor ? resolvePdgeditCatalogColor(catalog, pathSpec.fillColor) : "none");
+    if (pathSpec.strokeColor) {
+      pathElement.setAttribute("stroke", resolvePdgeditCatalogColor(catalog, pathSpec.strokeColor));
+    } else {
+      pathElement.setAttribute("stroke", "none");
+    }
+    if (Number(pathSpec.strokeWidth) > 0) {
+      pathElement.setAttribute("stroke-width", String(pathSpec.strokeWidth));
+    }
+    if (Number.isFinite(Number(pathSpec.opacity)) && Number(pathSpec.opacity) !== 1) {
+      pathElement.setAttribute("opacity", String(pathSpec.opacity));
+    }
+    pathElement.setAttribute("stroke-linecap", pathSpec.lineCap || "round");
+    pathElement.setAttribute("stroke-linejoin", pathSpec.lineJoin || "round");
+    applyOptionalFilter(pathElement, pathSpec.filter);
+    bandGroup.append(pathElement);
+  });
+
   (Array.isArray(band?.circles) ? band.circles : []).forEach((circle) => {
     const circleElement = documentLike.createElementNS(SVG_NAMESPACE, "circle");
     circleElement.setAttribute("cx", String(circle.cx ?? 0));
