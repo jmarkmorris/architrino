@@ -531,6 +531,42 @@
       ]
     },
     {
+      "key": "noether",
+      "title": "Noether tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "sea",
+      "title": "Sea tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Sea",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
       "key": "noether-pair",
       "title": "Noether Pair tile",
       "type": "composite-label",
@@ -895,6 +931,232 @@
           "color": "white"
         }
       ]
+    },
+    {
+      "key": "pro-noether-core-glyph",
+      "title": "Pro Noether Core Glyph",
+      "type": "binary-glyph",
+      "borderColor": "purple",
+      "binaryGlyph": {
+        "viewBoxWidth": 120,
+        "viewBoxHeight": 120,
+        "centerGlow": {
+          "cx": 60,
+          "cy": 60,
+          "r": 0,
+          "fillColor": "rgba(162, 89, 255, 0.20)",
+          "opacity": 0.92,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.24))"
+        },
+        "bands": [
+          {
+            "key": "horizontal",
+            "rotationDeg": 0,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.15,
+              "opacity": 0.9,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              }
+            ]
+          },
+          {
+            "key": "diag-up",
+            "rotationDeg": 60,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              }
+            ]
+          },
+          {
+            "key": "diag-down",
+            "rotationDeg": -60,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "anti-noether-core-glyph",
+      "title": "Anti Noether Core Glyph",
+      "type": "binary-glyph",
+      "borderColor": "purple",
+      "binaryGlyph": {
+        "viewBoxWidth": 120,
+        "viewBoxHeight": 120,
+        "centerGlow": {
+          "cx": 60,
+          "cy": 60,
+          "r": 0,
+          "fillColor": "rgba(162, 89, 255, 0.20)",
+          "opacity": 0.92,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.24))"
+        },
+        "bands": [
+          {
+            "key": "horizontal",
+            "rotationDeg": 0,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.15,
+              "opacity": 0.9,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              }
+            ]
+          },
+          {
+            "key": "diag-up",
+            "rotationDeg": 60,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              }
+            ]
+          },
+          {
+            "key": "diag-down",
+            "rotationDeg": -60,
+            "showAxis": false,
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
+              {
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "key": "pro-uni-binary",

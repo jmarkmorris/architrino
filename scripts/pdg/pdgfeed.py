@@ -4,6 +4,10 @@
 The implementation is split into focused helper modules under ``scripts/pdg``.
 This file keeps the direct script surface thin and re-exports the public
 library entrypoints used by tests and the root delegating ``pdgfeed.py``.
+
+PDG rows are treated here as effective channel records rather than full AAA
+medium histories. Any omitted Noether-Sea participation stays a boundary-side
+translation concern, not a solver-core ontology object.
 """
 
 from __future__ import annotations
@@ -61,6 +65,7 @@ from scripts.pdg.pdgfeed_runtime import (  # noqa: E402
     DEFAULT_TMP_DIR,
     build_cases_by_source,
     build_live_manifest_payload,
+    build_live_reaction_summary_rows,
     build_live_supported_reaction_csv_rows,
     build_pdgsolve_request,
     build_pdgsolve_request_source,
@@ -85,11 +90,14 @@ from scripts.pdg.pdgfeed_runtime import (  # noqa: E402
     request_output_path,
     resolve_case_by_source,
     slugify,
+    summary_markdown_output_path,
     transform_participants_for_pdgsolve,
     transform_proposal_for_pdgsolve,
     validate_against_schema,
     validate_pdgsolve_request_shape,
     write_json,
+    write_live_reaction_summary_markdown,
+    write_live_reaction_summary_report,
     write_proposal_artifact,
     write_request_artifacts,
     write_supported_reaction_csv,
@@ -122,6 +130,7 @@ __all__ = [
     "build_cases_by_source",
     "build_live_manifest_payload",
     "build_live_case_id",
+    "build_live_reaction_summary_rows",
     "build_live_supported_reaction_csv_rows",
     "build_pdgsolve_request",
     "build_pdgsolve_request_source",
@@ -159,11 +168,14 @@ __all__ = [
     "request_output_path",
     "resolve_case_by_source",
     "slugify",
+    "summary_markdown_output_path",
     "transform_participants_for_pdgsolve",
     "transform_proposal_for_pdgsolve",
     "validate_against_schema",
     "validate_pdgsolve_request_shape",
     "write_json",
+    "write_live_reaction_summary_markdown",
+    "write_live_reaction_summary_report",
     "write_proposal_artifact",
     "write_request_artifacts",
     "write_supported_reaction_csv",

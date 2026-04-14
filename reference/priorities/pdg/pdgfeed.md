@@ -77,11 +77,11 @@ The canonical CLI surface should be only five subcommands. All calls below use t
 
 | Call                                  | Options                                                            | Output content                                                                                                                                                                                                                        | Output format           | Output location                                                                                                                                                                                             |
 | ------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and `pdgsolve` readiness status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `.tmp/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                            |
+| `pdgfeed.py list`                     | `--source pdg-reactions`                                           | Writes a Markdown table containing a `k/u` marker, exact `(mcid, pdgIdentifier)` provenance, reaction ids, titles, channel descriptions, and `pdgsolve` readiness status from the full live PDG decay database. Known reactions are printed first. | Markdown table          | `stats/pdgfeed.list.<source>.md` and prints that path to `stdout`                                                                                                                                           |
 | `pdgfeed.py proposal REACTION_ID`     | `--source pdg-reactions`, `--write`                                | Emits one normalized `pdg-proposal/v1` record for the selected reaction. Without `--write`, print the proposal payload to stdout. With `--write`, write the proposal artifact under the generated output directory.                   | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
 | `pdgfeed.py request REACTION_ID`      | `--source pdg-reactions`, `--write`                                | Emits one `pdgsolve-request/v1` payload when the selected reaction transforms fully into admitted assembly rows. Without `--write`, print the request payload to stdout. With `--write`, write request-capable artifacts under the generated output directory. | JSON                    | `stdout` or `--output-dir` (default `content/contracts/examples/pdg/v1/generated/`)                                                                                                                         |
 | `pdgfeed.py manifest`                 | none beyond top-level options                                      | Prints one `pdg-live-manifest/v1` payload with ready live-PDG entries, blocked-discovery counts, top blocked particles, and embedded proposal/request sidecars for ready entries.                                                  | JSON                    | `stdout`                                                                                                                                                                                                    |
-| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for reactions that are ready for `pdgsolve` after transform, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `.tmp`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `.tmp/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
+| `pdgfeed.py supported-csv [CSV_PATH]` | `--source pdg-reactions`, optional `CSV_PATH`                      | Writes primitive-count summary rows for reactions that are ready for `pdgsolve` after transform, including a `k/u` marker plus exact `(mcid, pdgIdentifier)` provenance, and also writes a Markdown table sidecar under `stats/`. Known reactions are printed first. | CSV plus Markdown table | CSV at `CSV_PATH` or default `content/contracts/examples/pdg/v1/generated/supported_reaction_primitive_deltas.v1.csv`, Markdown at `stats/pdgfeed.supported.<source>.md`; both paths are printed to `stdout` |
 
 The `pdgsolve` handoff surface is intentionally narrow. `pdgfeed` uses a locked v1 mapping registry from canonical PDG ASCII particle names to explicit admitted `pdgsolve-request/v1` assemblies. Local aliases may canonicalize into those names, but they do not create new handoff vocabulary. If a particle or channel cannot be translated all the way into explicit admitted Standard Model assemblies, it stays upstream as proposal metadata and does not emit a solver request.
 
@@ -99,6 +99,8 @@ The proposal and request boundary should use two repo-owned layers:
 - a normalized PDG proposal record used inside ingest;
 - and one emitted `pdgsolve-request/v1` candidate per reaction that is ready for `pdgsolve` after transform.
 
+PDG decay rows should be treated as effective local channel records, not as complete ontological histories. In AAA terms, a PDG row is usually the named parent assembly plus the reported observed channel after production, while the surrounding Noether Sea, local medium loading, and any upstream production chain are not encoded explicitly in the PDG boundary object.
+
 Proposal records should carry stable identity, source provenance, normalized participants, ranking metadata, and notes about ambiguity or unsupported structure. Normalization should target the explicit upstream solve-request boundary, not a UI-shaped structure.
 
 The normalized output should include:
@@ -109,6 +111,8 @@ The normalized output should include:
 - ranking metadata;
 - and provenance metadata needed for later review.
 
+When the PDG API marks a row as a `subdecay`, `pdgfeed` should treat that as decay-table hierarchy inside the same parent particle record, not as proof of a separate upstream reaction network. The current PDG boundary does not generally encode the full causal production history of the parent particle.
+
 Requests should be emitted only from normalized proposal records, never directly from raw PDG objects. Each emitted request must:
 
 - use schema `pdgsolve-request/v1`;
@@ -118,6 +122,8 @@ Requests should be emitted only from normalized proposal records, never directly
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
 For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit Noether-pair reactants, each pair being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`.
+
+This boundary balancing rule should be read as an explicit AAA translation policy for incomplete medium provenance, not as a claim that the underlying reaction took place in an empty vacuum. The working interpretation is that PDG gives an effective observed channel, while `pdgfeed` may need to account for omitted ambient Noether-Sea participation at the solver boundary. `pdgfeed` should still avoid inventing detailed medium microhistories or generic defect species unless and until the repository carries an explicit, ledger-stable upstream rule for them.
 
 The practical flow is:
 
@@ -177,6 +183,145 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - and keep PDG provenance in `source` fields or sidecar proposal metadata.
 
 A single PDG participant may expand into multiple emitted request occurrences. That expansion is a `pdgfeed` responsibility and must happen before `pdgsolve-request/v1` crosses into `pdgsolve`.
+
+In v1, if a PDG particle identity denotes a superposition of fermion constituent states, `pdgfeed` emits the union of those already-supported constituent fermion rows in the translated reaction. Current examples include `pi0`, `eta`, `K0S`, and `K0L`. Future tooling may attach richer metadata, but the v1 request surface records explicit constituent rows only and does not carry superposition factors or amplitudes.
+
+Before proposal normalization, `pdgfeed` also applies one deterministic generic-family charge-closure pass for product tokens `pi`, `N`, and `Nbar`. That pass may emit concrete `pi+`, `pi0`, `pi-`, `p`, `n`, `anti-p`, or `anti-n` only when the parent charge plus the already-concrete sibling products force exactly one unordered assignment. If zero or multiple valid assignments remain, the channel stays blocked upstream with explicit notes rather than guessing a `pdgsolve-request/v1` payload.
+
+### Reporting And Audit Surfaces
+
+The current `pdgfeed` implementation now exposes three generated Markdown reports under `stats/`:
+
+- `pdgfeed.list.<source>.md` for the full live reaction list;
+- `pdgfeed.supported.<source>.md` for ready reactions with AAA deltas;
+- and `pdgfeed.summary.<source>.md` for total counts, category counts, and the top backlog particles.
+
+Those reports are not just convenience output. They are the current operational audit surface for the upstream boundary. The summary split should be read as:
+
+- `supported`: a concrete PDG row that transforms fully into explicit AAA rows;
+- `AAAcomplete`: a PDG row that is incomplete at the PDG boundary but still reaches an explicit request under current deterministic AAA translation rules;
+- `incomplete`: a blocked row where the PDG record remains partial, generic, inclusive, or otherwise omits medium/provenance detail needed for a fully explicit solver request;
+- `backlog`: a blocked row that is concrete enough to read, but still lacks explicit v1 AAA particle coverage;
+- `ready`: request-emitting rows;
+- and `blocked`: all non-ready rows regardless of whether the cause is PDG incompleteness or missing AAA support.
+
+This classification matters because it separates two different kinds of upstream limitation:
+
+- the PDG record may be incomplete as an AAA boundary object even when the observed decay channel is physically real;
+- or the PDG record may already be concrete enough, but the repository still lacks the corresponding explicit particle-to-AAA mapping.
+
+The base registry and transform rules now also have dedicated audit coverage in the test suite. Those audits check constituent-sum consistency, declared charge consistency, conjugate-pair symmetry, request-transform references, and alias/canonical-name discipline. That audit layer is intended to keep low-level registry growth from silently drifting away from the solver boundary contract.
+
+## Priorities
+
+### 1. Expand V1 Coverage For The Top Backlog Particles
+
+Status: `next`
+
+Current:
+
+- the current `pdgfeed` summary report separates blocked reactions into `incomplete` and `backlog`;
+- the `backlog` class is the set of blocked reactions whose PDG records are concrete enough to read but whose particles still lack v1 AAA transform coverage;
+- supported fermion-superposition particles now expand by emitting all enumerated constituent fermions rather than picking a representative branch, and `K0S`/`K0L` have dropped out of the top backlog set;
+- and the current top backlog particles are:
+  - `phi` — `255`
+  - `Dbar0` — `253`
+  - `D0` — `213`
+  - `D+` — `212`
+  - `D-` — `200`
+  - `Sigma+` — `75`
+  - `Xi-` — `72`
+  - `Xi0` — `60`
+  - `Sigma0` — `41`
+  - `Sigma-` — `31`
+
+Objective:
+
+- use the backlog ranking from the generated report to drive the next wave of explicit v1 particle-to-AAA mapping work;
+- start with the highest-count concrete particles rather than adding more generic or inclusive heuristics;
+- and reduce the `backlog` count without reclassifying partial PDG records as complete.
+
+Rules:
+
+- add new coverage only through explicit canonical-name rows in the locked registry table;
+- keep generic/inclusive PDG records in the `incomplete` class unless their structure truly becomes explicit at the PDG boundary;
+- add regression coverage for every new particle mapping before treating its channels as ready;
+- keep the distinction clear between a PDG row that is incomplete because the PDG record omits medium/provenance detail and a row that is blocked because a concrete particle still lacks AAA coverage;
+- and prefer the highest-count backlog particles first unless there is a strong architectural reason to take a lower-count particle earlier.
+
+Done when:
+
+- the top backlog particle list has materially changed because at least one of the leading concrete particles now transforms into AAA;
+- newly covered particles emit stable proposal/request artifacts with regression coverage;
+- and the `backlog` count decreases without inflating the `incomplete` class through category drift.
+
+### 2. Investigate Heuristic Transform Areas More Deeply
+
+Status: `later`
+
+Current:
+
+- `pdgfeed` now contains a small set of deterministic upstream heuristics so more PDG channels can be normalized into explicit AAA rows;
+- those heuristics are acceptable for v1 ingestion work, but they compress structure that should eventually receive a more detailed assembly-level analysis;
+- and the current heuristic-analysis backlog includes:
+  - reactions that involve quantum superpositions or mixed-flavor composites, even when v1 now emits all enumerated constituent fermions;
+  - charge-conjugate reactions where product-side conjugation is inferred to restore charge closure;
+  - generic-family charge-closure reactions for `pi`, `N`, and `Nbar`;
+  - composite constituent expansions that suppress amplitude metadata, such as the current `eta -> u, anti-u, d, anti-d, s, anti-s` v1 transform;
+  - and PDG channels that are treated as effective local decay records even though the surrounding Noether-Sea participation and production history are not encoded in the PDG boundary object.
+
+Objective:
+
+- identify which current heuristics are merely practical v1 normalizations and which should later be replaced by a deeper assembly-native derivation;
+- document the exact assumptions each heuristic currently makes at the PDG-to-AAA boundary;
+- and create a clearer path from today’s deterministic transforms to future theory-facing treatments.
+
+Rules:
+
+- do not remove working v1 transforms until a replacement rule is explicit and regression-covered;
+- keep the current request surface explicit and deterministic even when the underlying theory-facing explanation is postponed;
+- record the scope and limits of each heuristic in repository documentation rather than leaving them implicit in code alone;
+- and separate “PDG record is incomplete” from “our current transform is approximate” because those are different upstream conditions.
+
+Done when:
+
+- each current heuristic transform family has a short written design note with examples and limits;
+- the repo can distinguish between pragmatic v1 translation rules and theory-facing derivations still under investigation;
+- and future mapping work can reference an explicit investigation queue rather than re-discovering these heuristic boundaries ad hoc.
+
+### 3. Model Equilibrium Noether-Sea Boundary Participation
+
+Status: `later`
+
+Current:
+
+- the current v1 boundary already assumes that many PDG rows are effective observed channels rather than full AAA ontological histories;
+- omitted ambient participation is presently handled only through bounded Noether-pair augmentation and blocked/incomplete proposal notes;
+- AAA theory suggests a surrounding equilibrium-like Noether Sea of coupled pro/anti Noether cores whose local state may be loaded, polarized, or disturbed by passing Standard Model assemblies and possibly by gravitational-wave-like medium disturbances;
+- the current ingest layer does not yet distinguish clearly between equilibrium medium participation, local disequilibrium, localized Noether-Sea dissociation, catalytic defect-like behavior, or explicit upstream production history;
+- and the current reports do not yet expose a formal vocabulary for these medium-side explanations beyond `incomplete`, `AAAcomplete`, and bounded Noether balancing.
+
+Objective:
+
+- define how `pdgfeed` should describe omitted ambient Noether-Sea participation at the PDG-to-AAA boundary without pretending to know the full microhistory;
+- clarify when a channel should remain a generic equilibrium-medium case, when bounded explicit Noether-pair/core augmentation is enough, and when a richer future medium model would be required;
+- record how passing Standard Model assemblies and medium disturbances such as gravitational-wave-like excitations are expected to interact with that equilibrium sea at the explanatory level;
+- and keep the solver boundary physically honest while preserving the current strict explicit-assembly request surface.
+
+Rules:
+
+- do not introduce generic solver-native `defect`, `spacetime`, or other medium-label particles into `pdgsolve-request/v1`;
+- keep `Noether Sea` as the canonical ontological label for ambient contents and keep `spacetime` as an emergent/effective term only;
+- treat boundary balancing as a translation policy for omitted medium provenance, not as a claim that the event occurred in empty space;
+- distinguish explicitly between observed PDG channel, current boundary augmentation policy, and any deeper speculative microhistory;
+- and require explicit conserved ledgers, deterministic transforms, and regression coverage before admitting any new medium-side object or typed anomaly into the upstream boundary.
+
+Done when:
+
+- `pdgfeed` and adjacent boundary docs explain the current equilibrium-medium interpretation in one consistent vocabulary;
+- the repository can discuss omitted Noether-Sea participation, local dissociation hypotheses, and medium disturbances without collapsing them into solver-native particles prematurely;
+- report and review surfaces can distinguish unsupported concrete particles from unresolved medium/provenance questions;
+- and any future medium-side construct admitted upstream has a clear ledger-stable AAA definition rather than a placeholder label.
 
 
 
@@ -428,8 +573,11 @@ For composites, the `AAA Notation` column uses the current atomic shorthand when
 | `w_plus_corridor`      | W+ Boson             | `W+`         | `W+`          | composite | `h + 0:6@`                                                                | `3:9@`            | weak boson | `n/a`      | pro            | no                     |
 | `w_minus_corridor`     | W- Boson             | `W-`         | `W-`          | composite | `ah + 6:0@`                                                               | `9:3@`            | weak boson | `n/a`      | anti           | no                     |
 | `z_corridor`           | Z Boson              | `Z`          | `Z`           | composite | `h.ah`                                                                    | `6:6@`            | weak boson | `n/a`      | self-conjugate | no                     |
+| `eta_meson`            | Eta Meson            | `eta`        | `u.au.d.ad.d2.ad2` | composite | `u.au.d.ad.d2.ad2`                                                   | `34:34@`          | meson      | `I+II`     | self-conjugate | yes                    |
+| `short_neutral_kaon`   | Short Neutral Kaon   | `K0S`        | `d.ad2.ad.d2` | composite | `d.ad2.ad.d2`                                                             | `22:22@`          | meson      | `I+II`     | self-conjugate | yes                    |
+| `long_neutral_kaon`    | Long Neutral Kaon    | `K0L`        | `d.ad2.ad.d2` | composite | `d.ad2.ad.d2`                                                             | `22:22@`          | meson      | `I+II`     | self-conjugate | yes                    |
 | `positive_pion`        | Positive Pion        | `pi+`        | `u.ad`        | composite | `u.ad = (h + 1:5@).(ah + 2:4@)`                                           | `9:15@`           | meson      | I          | mixed          | yes                    |
-| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au / d.ad` | composite | `u.au or d.ad`; v1 request transform canonicalizes to `u.au`             | `12:12@`          | meson      | I          | self-conjugate | yes                    |
+| `neutral_pion`         | Neutral Pion         | `pi0`        | `u.au.d.ad`   | composite | `u.au.d.ad`                                                               | `24:24@`          | meson      | I          | self-conjugate | yes                    |
 | `negative_pion`        | Negative Pion        | `pi-`        | `d.au`        | composite | `d.au = (h + 4:2@).(ah + 5:1@)`                                           | `15:9@`           | meson      | I          | mixed          | yes                    |
 | `positive_kaon`        | Positive Kaon        | `K+`         | `u.ad2`       | composite | `u.ad2 = (h + 1:5@).(ah2 + 2:4@)`                                         | `8:14@`           | meson      | `I+II`     | mixed          | yes                    |
 | `neutral_kaon`         | Neutral Kaon         | `K0`         | `d.ad2`       | composite | `d.ad2 = (h + 4:2@).(ah2 + 2:4@)`                                         | `11:11@`          | meson      | `I+II`     | mixed          | yes                    |

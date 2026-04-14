@@ -69,7 +69,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_electron_I", "anti_electron_neutrino_I", "pro_muon_neutrino_II"],
         )
 
-    def test_neutral_pion_uses_canonical_u_anti_u_transform_for_pdgsolve(self):
+    def test_neutral_pion_expands_all_superposition_constituents_for_pdgsolve(self):
         case = pdgfeed.PdgCase(
             case_id="pi_zero_case",
             proposal_id="pi_zero_case",
@@ -84,15 +84,18 @@ class PdgfeedContractTests(unittest.TestCase):
         request = pdgfeed.build_pdgsolve_request(proposal)
 
         self.assertTrue(pdgfeed.proposal_is_ready_for_pdgsolve(proposal))
-        self.assertIn("transform:canonical-choice:pi0:u.au:alternate:d.ad", proposal.notes)
         self.assertIsNotNone(request)
         self.assertEqual(
             [entry["assemblyId"] for entry in request["reactants"]],
-            ["pro_up_quark_I", "anti_up_quark_I"],
+            ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             [
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
                 "pro_noether_core_I",
                 "anti_noether_core_I",
                 "pro_noether_core_I",
@@ -228,7 +231,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_up_quark_I", "anti_down_quark_I"],
         )
 
-    def test_neutral_pion_transform_uses_u_anti_u_rows(self):
+    def test_neutral_pion_transform_uses_all_superposition_rows(self):
         case = pdgfeed.PdgCase(
             case_id="pi_zero_case",
             proposal_id="pi_zero_case",
@@ -244,11 +247,31 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertIsNotNone(transformed)
         self.assertEqual(
             [entry["assemblyId"] for entry in transformed["reactants"]],
-            ["pro_up_quark_I", "anti_up_quark_I"],
+            ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
         )
 
     def test_kaons_and_b_mesons_expand_into_assembly_rows(self):
         expected = {
+            "eta": [
+                "pro_up_quark_I",
+                "anti_up_quark_I",
+                "pro_down_quark_I",
+                "anti_down_quark_I",
+                "pro_strange_quark_II",
+                "anti_strange_quark_II",
+            ],
+            "K0S": [
+                "pro_down_quark_I",
+                "anti_strange_quark_II",
+                "anti_down_quark_I",
+                "pro_strange_quark_II",
+            ],
+            "K0L": [
+                "pro_down_quark_I",
+                "anti_strange_quark_II",
+                "anti_down_quark_I",
+                "pro_strange_quark_II",
+            ],
             "K+": ["pro_up_quark_I", "anti_strange_quark_II"],
             "K0": ["pro_down_quark_I", "anti_strange_quark_II"],
             "K-": ["anti_up_quark_I", "pro_strange_quark_II"],
@@ -278,6 +301,73 @@ class PdgfeedContractTests(unittest.TestCase):
                     [entry["assemblyId"] for entry in transformed["reactants"]],
                     assembly_ids,
                 )
+
+    def test_eta_decay_moves_from_backlog_to_supported_with_six_quark_expansion(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.ETA",
+                            "B0 -> eta",
+                            [FakeDecayProduct("eta")],
+                        )
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 1)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(manifest["readyEntries"][0]["caseId"], "b0_test_b_eta")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["category"], "supported")
+        self.assertEqual(rows[0]["product_names_aaa"], "u.au.d.ad.d2.ad2")
+        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.au.d.ad.d2.ad2")
+
+    def test_k_short_and_k_long_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.K0S",
+                            "B0 -> K0S",
+                            [FakeDecayProduct("K0S")],
+                        ),
+                        FakeDecay(
+                            "TEST.B.K0L",
+                            "B0 -> K0L",
+                            [FakeDecayProduct("K0L")],
+                            mode_number=2,
+                        ),
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 2)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(
+            [entry["caseId"] for entry in manifest["readyEntries"]],
+            ["b0_test_b_k0s", "b0_test_b_k0l"],
+        )
+        self.assertEqual(len(rows), 2)
+        self.assertEqual({row["reaction_id"] for row in rows}, {"b0_test_b_k0s", "b0_test_b_k0l"})
+        for row in rows:
+            self.assertEqual(row["category"], "supported")
+            self.assertEqual(row["product_names_aaa"], "d.ad2.ad.d2")
+            self.assertEqual(row["transformed_product_names_aaa"], "d.ad2.ad.d2")
 
     def test_live_manifest_marks_known_reactions_and_orders_them_first(self):
         api = FakeApi(
@@ -339,6 +429,53 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(manifest["blockedEntries"], [])
         self.assertEqual(manifest["readyEntries"][0]["pdgIdentifier"], "S004.1/2025")
         self.assertEqual(manifest["readyEntries"][0]["mcid"], 13)
+
+    def test_live_manifest_and_supported_rows_include_charge_resolved_generic_family_cases(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "K+",
+                    [
+                        FakeDecay(
+                            "TEST.K.PLUS.GENERIC.PI",
+                            "K+ -> pi pi",
+                            [
+                                FakeDecayProduct("pi", particle=None),
+                                FakeDecayProduct("pi", particle=None),
+                            ],
+                        )
+                    ],
+                    mcid=321,
+                ),
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.ZERO.AMBIGUOUS.NBAR.N",
+                            "B0 -> Nbar N",
+                            [
+                                FakeDecayProduct("Nbar", particle=None),
+                                FakeDecayProduct("N", particle=None),
+                            ],
+                        )
+                    ],
+                    mcid=511,
+                ),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 1)
+        self.assertEqual(manifest["blockedCount"], 1)
+        self.assertEqual(manifest["readyEntries"][0]["caseId"], "k_plus_test_k_plus_generic_pi")
+        self.assertEqual(manifest["blockedEntries"][0]["caseId"], "b0_test_b_zero_ambiguous_nbar_n")
+        self.assertEqual(manifest["blockedEntries"][0]["blockedParticles"], ["Nbar", "N"])
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["reaction_id"], "k_plus_test_k_plus_generic_pi")
+        self.assertEqual(rows[0]["product_names_aaa"], "u.ad.u.au.d.ad")
+        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.ad.u.au.d.ad")
 
 
 if __name__ == "__main__":

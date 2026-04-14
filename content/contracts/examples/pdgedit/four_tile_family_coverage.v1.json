@@ -1134,6 +1134,20 @@
         "residue-positrinos-3",
         "architrino-residue"
       ]
+    },
+    {
+      "id": "noether_sea_row_1",
+      "type": "noether-sea-assembly",
+      "x": 2,
+      "y": 27,
+      "title": "Noether Sea",
+      "role": "reactant",
+      "tiles": [
+        "noether",
+        "pro-noether-core-glyph",
+        "anti-noether-core-glyph",
+        "sea"
+      ]
     }
   ],
   "operators": [],

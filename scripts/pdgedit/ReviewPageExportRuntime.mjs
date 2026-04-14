@@ -61,8 +61,8 @@ export function formatPdgeditReviewExportUsage() {
     "Usage: node scripts/export-pdgedit-review.mjs [options]",
     "",
     "Options:",
-    "  --png [path]        Write a PNG screenshot. Defaults to /tmp output when omitted or pathless.",
-    "  --pdf [path]        Write a PDF print export. Defaults to /tmp output when omitted or pathless.",
+    "  --png [path]        Write a PNG screenshot. Defaults to stats/proof-sheet.png when omitted or pathless.",
+    "  --pdf [path]        Write a PDF print export. Defaults to stats/proof-sheet.pdf when omitted or pathless.",
     "  --output-dir path   Base directory for default export filenames.",
     "  --page path         Review page path to render. Default: pdgedit-review.html",
     "  --query text        Raw query string appended to the review page URL.",
@@ -80,9 +80,7 @@ export function formatPdgeditReviewExportUsage() {
 
 export function parsePdgeditReviewExportArgs(argv, options = {}) {
   const cwd = path.resolve(options.cwd ?? process.cwd());
-  const defaultOutputDirPath = path.resolve(
-    options.outputDirPath ?? path.join(os.tmpdir(), "pdgedit-review-export")
-  );
+  const defaultOutputDirPath = path.resolve(options.outputDirPath ?? path.join(cwd, "stats"));
 
   const parsed = {
     browserPath: options.browserPath ?? DEFAULT_PDGEDIT_REVIEW_BROWSER_PATH,
@@ -197,14 +195,14 @@ export function parsePdgeditReviewExportArgs(argv, options = {}) {
     parsed.pngOutputPath = resolveOutputPath(parsed.pngOutputPath, {
       cwd,
       outputDirPath: parsed.outputDirPath,
-      defaultFilename: "pdgedit-review.png",
+      defaultFilename: "proof-sheet.png",
     });
   }
   if (parsed.pdfOutputPath != null) {
     parsed.pdfOutputPath = resolveOutputPath(parsed.pdfOutputPath, {
       cwd,
       outputDirPath: parsed.outputDirPath,
-      defaultFilename: "pdgedit-review.pdf",
+      defaultFilename: "proof-sheet.pdf",
     });
   }
 
@@ -453,6 +451,7 @@ export async function exportPdgeditReviewPageWithEdge({
   try {
     if (pngOutputPath) {
       fs.mkdirSync(path.dirname(pngOutputPath), { recursive: true });
+      fs.rmSync(pngOutputPath, { force: true });
       console.log(`Starting browser PNG export for ${pageUrl}`);
       await runEdgeCommand(browserPath, [
         ...commonArgs,
@@ -467,6 +466,7 @@ export async function exportPdgeditReviewPageWithEdge({
 
     if (pdfOutputPath) {
       fs.mkdirSync(path.dirname(pdfOutputPath), { recursive: true });
+      fs.rmSync(pdfOutputPath, { force: true });
       console.log(`Starting browser PDF export for ${pageUrl}`);
       await runEdgeCommand(browserPath, [
         ...commonArgs,

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from scripts.pdg.pdgfeed_generic_family import is_supported_generic_family, resolve_generic_family_products
 from scripts.pdg.pdgfeed_model import CaseParticle, PdgCase
 from scripts.pdg.pdgfeed_registry import canonicalize_pdg_name, conjugate_canonical_name, particle_charge_thirds
 
@@ -77,7 +78,11 @@ def safe_decay_item_particle(item: Any) -> Any | None:
         return None
 
 
-def extract_live_decay_products(decay: Any) -> tuple[list[CaseParticle], list[str]]:
+def extract_live_decay_products(
+    decay: Any,
+    *,
+    reactant_name: str | None = None,
+) -> tuple[list[CaseParticle], list[str]]:
     particles: list[CaseParticle] = []
     notes: list[str] = []
     for decay_product in getattr(decay, "decay_products", ()) or ():
@@ -89,15 +94,24 @@ def extract_live_decay_products(decay: Any) -> tuple[list[CaseParticle], list[st
         if not item_name:
             notes.append("unsupported:product:unknown:missing-name")
             continue
-        if item_particle is None:
-            suffix = f"generic-or-textual-item:{item_type}" if item_type else "generic-or-textual-item"
-            notes.append(f"unsupported:product:{item_name}:{suffix}")
-            continue
         if multiplier <= 0:
             notes.append(f"unsupported:product:{item_name}:multiplier-{multiplier}")
             continue
+        if item_particle in (None, False):
+            if is_supported_generic_family(str(item_name)):
+                generic_name = str(item_name).strip()
+                for _ in range(multiplier):
+                    particles.append(CaseParticle(name=generic_name, pdg_id=generic_name))
+                continue
+            suffix = f"generic-or-textual-item:{item_type}" if item_type else "generic-or-textual-item"
+            notes.append(f"unsupported:product:{item_name}:{suffix}")
+            continue
         for _ in range(multiplier):
             particles.append(CaseParticle(name=str(item_name), pdg_id=str(item_name)))
+    if reactant_name:
+        resolution = resolve_generic_family_products(reactant_name, particles)
+        particles = list(resolution.products)
+        notes.extend(resolution.notes)
     return particles, notes
 
 
@@ -162,6 +176,8 @@ def iter_candidate_branching_fractions(particle: Any) -> list[Any]:
             decays.append(decay)
 
     try:
+        # PDG subdecay rows are decay-table hierarchy under one parent record,
+        # not a general cross-record production network.
         extend(particle.exclusive_branching_fractions(include_subdecays=True, require_summary_data=False))
     except TypeError:
         try:
@@ -257,7 +273,8 @@ def load_live_case_from_decay(
     *,
     api: Any,
 ) -> PdgCase:
-    products, notes = extract_live_decay_products(decay)
+    reactant_name = canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
+    products, notes = extract_live_decay_products(decay, reactant_name=reactant_name)
     subdecay_count = sum(
         1 for product in getattr(decay, "decay_products", ()) or () if getattr(product, "subdecay", None)
     )
@@ -265,7 +282,6 @@ def load_live_case_from_decay(
         notes.append(f"unsupported:channel-subdecays:{subdecay_count}")
 
     fallback_description = str(getattr(decay, "description", "") or "")
-    reactant_name = canonicalize_api_particle_name(api, str(getattr(particle, "name", "") or ""))
     products, notes = maybe_charge_conjugate_products(reactant_name, products, notes, api=api)
     channel_description = build_live_channel_description(reactant_name, products, fallback_description)
     source: dict[str, Any] = {

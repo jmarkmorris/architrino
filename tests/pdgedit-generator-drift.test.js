@@ -178,6 +178,7 @@ test("glyph.py regenerates the committed pdgedit reference svg set and canonical
     "pdgedit-tile-pro-up-quark.svg",
     "pdgedit-tile-unbound-electrinos.svg",
     "pdgedit-tile-binary-full-br-rr.svg",
+    "pdgedit-tile-pro-noether-core-glyph.svg",
     "pdgedit-group-pro-up-quark.svg",
     "pdgedit-group-pro-proton.svg",
     "pdgedit-group-photon.svg",

@@ -14,13 +14,14 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
   );
   const deprecatedPhotonAssemblyType = ["photon", "assembly"].join("-");
 
-  assert.equal(templateCatalog.assemblyTemplates.length, 33);
+  assert.equal(templateCatalog.assemblyTemplates.length, 34);
   assert.equal(templateCatalog.operatorTemplates.length, 3);
   assert.equal(templateCatalog.assemblyTemplateByType.has(deprecatedPhotonAssemblyType), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("photon-composite"), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("pro-proton-composite"), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("pro-noether-core-assembly"), true);
   assert.equal(templateCatalog.assemblyTemplateByType.has("anti-noether-core-assembly"), true);
+  assert.equal(templateCatalog.assemblyTemplateByType.has("noether-sea-assembly"), true);
   assert.deepEqual(
     templateCatalog.assemblyTemplateByType.get("unbound-architrinos-assembly"),
     {
@@ -49,4 +50,11 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
     templateCatalog.assemblyTemplateByType.get("anti-bottom-quark-assembly")?.displayTitle,
     "Anti Bottom Quark"
   );
+  assert.deepEqual(templateCatalog.assemblyTemplateByType.get("noether-sea-assembly"), {
+    id: "noether-sea-assembly",
+    type: "noether-sea-assembly",
+    title: "Noether Sea",
+    displayTitle: "Noether Sea",
+    tiles: ["noether", "pro-noether-core-glyph", "anti-noether-core-glyph", "sea"],
+  });
 });
