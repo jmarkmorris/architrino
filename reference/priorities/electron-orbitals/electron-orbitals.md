@@ -1,4 +1,4 @@
-# Electron Orbitals
+ # Electron Orbitals
 
 ## Scope
 
@@ -28,12 +28,12 @@ The principal quantum number tells you the broad energy level and typical radial
 
 At a finer level, electron states are organized by four quantum numbers:
 
-| Symbol | Role | Intuition |
-| --- | --- | --- |
-| $n$ | Principal quantum number | which floor of the building |
-| $l$ | Orbital angular-momentum quantum number | which wing or subshell family on that floor |
-| $m_l$ | Magnetic quantum number | which room or orientation within that subshell |
-| $m_s$ | Spin quantum number | which bed in that room |
+| Symbol | Role                                    | Intuition                                      |
+| ------ | --------------------------------------- | ---------------------------------------------- |
+| $n$    | Principal quantum number                | main energy level                              |
+| $l$    | Orbital angular-momentum quantum number | subshell family and angular character          |
+| $m_l$  | Magnetic quantum number                 | orbital orientation within a subshell          |
+| $m_s$  | Spin quantum number                     | spin state of the electron                     |
 
 This address system is what lets chemists and physicists talk about electrons as occupying well-defined quantum states rather than classical little planets moving on tracks.
 
@@ -144,21 +144,9 @@ Counting upward as each letter reappears reconstructs the full sequence:
 
 This method is useful for rote memorization, although it is less conceptually transparent than the visual and mathematical methods below.
 
-Variant classroom forms of the same idea also appear. Some versions use **Delhi Public School** in the repeated sequence, and others use nonsense-name strings such as **Shyam Shyam Pandit Shyam Pandit ...** to encode the same recurring letter structure. The exact phrase is less important than the repeating subshell pattern it helps you retain.
-
 #### Diagonal-rule visual mnemonic
 
-The best-known visual method is the **diagonal rule**, also called **Madelung's rule** in classroom use. Start from the triangular layout:
-
-```text
-1s
-2s  2p
-3s  3p  3d
-4s  4p  4d  4f
-5s  5p  5d  5f
-6s  6p  6d
-7s  7p
-```
+The best-known visual method is the **diagonal rule**, also called **Madelung's rule** in classroom use. Use the triangular layout already shown in the Aufbau section above.
 
 Then read diagonally downward to the left. That procedure generates:
 
@@ -252,18 +240,6 @@ That is why the middle of the sequence falls into the memorable pattern:
 
 This is one of the best compact mental models for remembering the usual order quickly.
 
-#### Mnemonics for the orbital labels themselves
-
-Separate from remembering the full filling order, some students use short phrases just to remember the sequence of subshell letters:
-
-- **Silly People Dance Fabulously**
-
-For the extended mathematical sequence beyond ordinary chemistry, one can also see mnemonics such as:
-
-- **Sober Physicists Don't Find Giraffes Hiding In Kitchens**
-
-Those are mainly label mnemonics, not filling-order mnemonics.
-
 #### Limits of mnemonics
 
 No mnemonic completely replaces the need to remember known exceptions. Transition-metal and related anomalies such as Cr, Mo, Cu, Ag, Au, and sometimes Pd must still be learned as a small separate list of special cases. In most teaching practice, the diagonal diagram and the periodic table itself are the most reliable memory tools.
@@ -281,15 +257,6 @@ Because full configurations get long very quickly, chemists usually compress the
 | Au (79) | long form omitted here | **[Xe] $4f^{14} 5d^{10} 6s^1$** |
 
 This shorthand is not just a convenience. It also foregrounds the chemically active outer electrons. For example, instead of writing Iron as the full long sequence, we write **[Ar] $4s^2 3d^6$**, which immediately says that Iron contains an Argon-like core plus 8 outer electrons relevant to its chemistry and magnetism.
-
-Common noble-gas cores used in shorthand are:
-
-- [He]
-- [Ne]
-- [Ar]
-- [Kr]
-- [Xe]
-- [Rn]
 
 ### 7. Periodic-Table Meaning
 
