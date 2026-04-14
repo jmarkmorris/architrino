@@ -2,10 +2,11 @@
 """Generate row-style electron occupancy tables by principal energy level.
 
 This script reads element metadata from vendor/periodic-table-json and emits
-the occupancy-ledger notation:
+an additive occupancy-ledger notation:
 
-    E1 s:2/2
-    E2 s:2/2 p:4/6
+    E1 1/2 + 1/2
+    E2 1/2 + 1/2
+    E2 1/6 + 1/6 + 1/6 + 1/6
 
 Optionally, once a noble-gas core is fully locked in, the script compresses
 those closed-shell rows into a bracket label such as [Ne].
@@ -72,13 +73,11 @@ def compact_number(value: int) -> str:
     return format(value, "x")
 
 
-def render_term_rows(terms: list[tuple[int, str, int]], include_labels: bool = False) -> list[str]:
+def render_additive_term_rows(terms: list[tuple[int, str, int]]) -> list[str]:
     rows: list[str] = []
     for level, subshell, count in terms:
-        if include_labels:
-            rows.append(f"E{level} {subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
-        else:
-            rows.append(f"E{level} {compact_number(count)}/{compact_number(SUBSHELL_CAPACITY[subshell])}")
+        unit = f"1/{compact_number(SUBSHELL_CAPACITY[subshell])}"
+        rows.append(f"E{level} {' + '.join([unit] * count)}")
     return rows
 
 
@@ -138,7 +137,7 @@ def make_abbreviated_standard_lines_exact(config: str, atomic_number: int) -> li
 
 def make_abbreviated_row_lines(config: str, atomic_number: int) -> list[str]:
     terms = parse_configuration_terms(config)
-    term_rows = render_term_rows(terms, include_labels=False)
+    term_rows = render_additive_term_rows(terms)
     candidates = [z for z in NOBLE_GASES if z < atomic_number]
     if not candidates:
         return [f"`{row}`" for row in term_rows]
@@ -152,7 +151,7 @@ def make_abbreviated_row_lines(config: str, atomic_number: int) -> list[str]:
 
 def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[str]:
     terms = parse_configuration_terms(config)
-    term_rows = render_term_rows(terms, include_labels=False)
+    term_rows = render_additive_term_rows(terms)
     previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
     if not previous_candidates:
         lines = [f"`{row}`" for row in term_rows]
@@ -175,7 +174,7 @@ def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[st
 
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Abbreviated row notation |",
+        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Abbreviated additive row notation |",
         "|---|---|---|---|---|---|",
     ]
     for element in load_elements():
