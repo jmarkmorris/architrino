@@ -40,11 +40,14 @@ def load_elements() -> list[dict]:
     return data["elements"]
 
 
+def parse_configuration_terms(config: str) -> list[tuple[int, str, int]]:
+    return [(int(level), subshell, int(count)) for level, subshell, count in re.findall(r"(\d)([spdf])(\d+)", config)]
+
+
 def parse_configuration(config: str) -> dict[int, dict[str, int]]:
     occupancy: dict[int, dict[str, int]] = {}
-    for level, subshell, count in re.findall(r"(\d)([spdf])(\d+)", config):
-        level_num = int(level)
-        occupancy.setdefault(level_num, {})[subshell] = int(count)
+    for level_num, subshell, count in parse_configuration_terms(config):
+        occupancy.setdefault(level_num, {})[subshell] = count
     return occupancy
 
 
@@ -69,21 +72,13 @@ def compact_number(value: int) -> str:
     return format(value, "x")
 
 
-def render_rows(occupancy: dict[int, dict[str, int]], include_labels: bool = True) -> list[str]:
+def render_term_rows(terms: list[tuple[int, str, int]], include_labels: bool = False) -> list[str]:
     rows: list[str] = []
-    for level in sorted(occupancy):
-        parts = []
-        for subshell in ("s", "p", "d", "f"):
-            count = occupancy[level].get(subshell, 0)
-            if count:
-                if include_labels:
-                    parts.append(f"{subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
-                else:
-                    parts.append(
-                        f"{compact_number(count)}/{compact_number(SUBSHELL_CAPACITY[subshell])}"
-                    )
-        if parts:
-            rows.append(f"E{level} " + " ".join(parts))
+    for level, subshell, count in terms:
+        if include_labels:
+            rows.append(f"E{level} {subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
+        else:
+            rows.append(f"E{level} {compact_number(count)}/{compact_number(SUBSHELL_CAPACITY[subshell])}")
     return rows
 
 
@@ -99,26 +94,76 @@ def subtract_occupancy(
     return remainder
 
 
-def compress_noble_core(
-    occupancy: dict[int, dict[str, int]], atomic_number: int
-) -> list[str]:
-    candidates = [z for z in NOBLE_GASES if z <= atomic_number]
+def make_abbreviated_standard_lines(config: str, atomic_number: int) -> list[str]:
+    terms = config.split()
+    candidates = [z for z in NOBLE_GASES if z < atomic_number]
     if not candidates:
-        return render_rows(occupancy, include_labels=False)
+        return [f"`{term}`" for term in terms]
     noble_z = max(candidates)
     noble = NOBLE_GASES[noble_z]
-    if atomic_number == noble_z:
-        previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
-        if not previous_candidates:
-            return render_rows(occupancy, include_labels=False) + [f"= {noble['label']}"]
-        previous_z = max(previous_candidates)
-        previous = NOBLE_GASES[previous_z]
-        previous_core = parse_configuration(previous["config"])
-        remainder = subtract_occupancy(occupancy, previous_core)
-        return [previous["label"]] + render_rows(remainder, include_labels=False) + [f"= {noble['label']}"]
-    core_occupancy = parse_configuration(noble["config"])
-    remainder = subtract_occupancy(occupancy, core_occupancy)
-    return [noble["label"]] + render_rows(remainder, include_labels=False)
+    core_terms = noble["config"].split()
+    blank_count = max(0, len(core_terms) - 1)
+    remainder = terms[len(core_terms) :]
+    return ["&nbsp;"] * blank_count + [f"`{noble['label']}`"] + [f"`{term}`" for term in remainder]
+
+
+def make_abbreviated_standard_lines_exact(config: str, atomic_number: int) -> list[str]:
+    terms = config.split()
+    previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
+    if not previous_candidates:
+        lines = [f"`{term}`" for term in terms]
+        lines[-1] = f"`{terms[-1]} = {NOBLE_GASES[atomic_number]['label']}`"
+        return lines
+    previous_z = max(previous_candidates)
+    previous = NOBLE_GASES[previous_z]
+    core_terms = previous["config"].split()
+    blank_count = max(0, len(core_terms) - 1)
+    remainder = terms[len(core_terms) :]
+    lines = (
+        ["&nbsp;"] * blank_count
+        + [f"`{previous['label']}`"]
+        + [f"`{term}`" for term in remainder]
+    )
+    last_term = remainder[-1]
+    lines[-1] = f"`{last_term} = {NOBLE_GASES[atomic_number]['label']}`"
+    return lines
+
+
+def make_abbreviated_row_lines(config: str, atomic_number: int) -> list[str]:
+    terms = parse_configuration_terms(config)
+    term_rows = render_term_rows(terms, include_labels=False)
+    candidates = [z for z in NOBLE_GASES if z < atomic_number]
+    if not candidates:
+        return [f"`{row}`" for row in term_rows]
+    noble_z = max(candidates)
+    noble = NOBLE_GASES[noble_z]
+    core_term_count = len(parse_configuration_terms(noble["config"]))
+    blank_count = max(0, core_term_count - 1)
+    remainder_rows = term_rows[core_term_count:]
+    return ["&nbsp;"] * blank_count + [f"`{noble['label']}`"] + [f"`{row}`" for row in remainder_rows]
+
+
+def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[str]:
+    terms = parse_configuration_terms(config)
+    term_rows = render_term_rows(terms, include_labels=False)
+    previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
+    if not previous_candidates:
+        lines = [f"`{row}`" for row in term_rows]
+        lines[-1] = f"`{term_rows[-1]} = {NOBLE_GASES[atomic_number]['label']}`"
+        return lines
+    previous_z = max(previous_candidates)
+    previous = NOBLE_GASES[previous_z]
+    core_term_count = len(parse_configuration_terms(previous["config"]))
+    blank_count = max(0, core_term_count - 1)
+    remainder_rows = term_rows[core_term_count:]
+    lines = (
+        ["&nbsp;"] * blank_count
+        + [f"`{previous['label']}`"]
+        + [f"`{row}`" for row in remainder_rows]
+    )
+    last_row = remainder_rows[-1]
+    lines[-1] = f"`{last_row} = {NOBLE_GASES[atomic_number]['label']}`"
+    return lines
 
 
 def format_table(limit: int, compress: bool) -> str:
@@ -130,23 +175,42 @@ def format_table(limit: int, compress: bool) -> str:
         atomic_number = element["number"]
         if atomic_number > limit:
             break
-        occupancy = parse_configuration(element["electron_configuration"])
-        full_rows = render_rows(occupancy, include_labels=False)
-        abbreviated_rows = (
-            compress_noble_core(occupancy, atomic_number) if compress else full_rows
-        )
         standard_configuration_raw = element["electron_configuration"]
-        abbreviated_standard_raw = abbreviate_standard_configuration(
-            standard_configuration_raw, atomic_number
+        standard_lines = [f"`{part}`" for part in standard_configuration_raw.split()]
+        term_rows = render_term_rows(parse_configuration_terms(standard_configuration_raw), include_labels=False)
+        full_row_lines = [f"`{row}`" for row in term_rows]
+        if compress and atomic_number in NOBLE_GASES:
+            abbreviated_standard_lines = make_abbreviated_standard_lines_exact(
+                standard_configuration_raw, atomic_number
+            )
+            abbreviated_row_lines = make_abbreviated_row_lines_exact(
+                standard_configuration_raw, atomic_number
+            )
+        elif compress:
+            abbreviated_standard_lines = make_abbreviated_standard_lines(
+                standard_configuration_raw, atomic_number
+            )
+            abbreviated_row_lines = make_abbreviated_row_lines(
+                standard_configuration_raw, atomic_number
+            )
+        else:
+            abbreviated_standard_lines = standard_lines
+            abbreviated_row_lines = full_row_lines
+
+        max_lines = max(
+            len(standard_lines),
+            len(abbreviated_standard_lines),
+            len(full_row_lines),
+            len(abbreviated_row_lines),
         )
-        standard_configuration = "<br>".join(
-            f"`{part}`" for part in element["electron_configuration"].split()
-        )
-        abbreviated_standard = "<br>".join(
-            f"`{part}`" for part in abbreviated_standard_raw.split()
-        )
-        full_text = "<br>".join(f"`{row}`" for row in full_rows)
-        abbreviated_text = "<br>".join(f"`{row}`" for row in abbreviated_rows)
+
+        def pad(lines: list[str]) -> list[str]:
+            return lines + ["&nbsp;"] * (max_lines - len(lines))
+
+        standard_configuration = "<br>".join(pad(standard_lines))
+        abbreviated_standard = "<br>".join(pad(abbreviated_standard_lines))
+        full_text = "<br>".join(pad(full_row_lines))
+        abbreviated_text = "<br>".join(pad(abbreviated_row_lines))
         lines.append(
             f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {full_text} | {abbreviated_text} |"
         )
