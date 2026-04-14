@@ -2,14 +2,14 @@
 """Generate row-style electron occupancy tables by principal energy level.
 
 This script reads element metadata from vendor/periodic-table-json and emits
-an additive occupancy-ledger notation:
+a fully enumerated additive occupancy-ledger notation:
 
     E1 1/2 + 1/2
     E2 1/2 + 1/2
     E2 1/6 + 1/6 + 1/6 + 1/6
 
-Optionally, once a noble-gas core is fully locked in, the script compresses
-those closed-shell rows into a bracket label such as [Ne].
+Every occupied row remains explicit. Noble-gas shorthand is retained only for
+the separate standard-configuration reference column.
 """
 
 from __future__ import annotations
@@ -135,46 +135,9 @@ def make_abbreviated_standard_lines_exact(config: str, atomic_number: int) -> li
     return lines
 
 
-def make_abbreviated_row_lines(config: str, atomic_number: int) -> list[str]:
-    terms = parse_configuration_terms(config)
-    term_rows = render_additive_term_rows(terms)
-    candidates = [z for z in NOBLE_GASES if z < atomic_number]
-    if not candidates:
-        return [f"`{row}`" for row in term_rows]
-    noble_z = max(candidates)
-    noble = NOBLE_GASES[noble_z]
-    core_term_count = len(parse_configuration_terms(noble["config"]))
-    blank_count = max(0, core_term_count - 1)
-    remainder_rows = term_rows[core_term_count:]
-    return ["&nbsp;"] * blank_count + [f"`{noble['label']}`"] + [f"`{row}`" for row in remainder_rows]
-
-
-def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[str]:
-    terms = parse_configuration_terms(config)
-    term_rows = render_additive_term_rows(terms)
-    previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
-    if not previous_candidates:
-        lines = [f"`{row}`" for row in term_rows]
-        lines[-1] = f"`{term_rows[-1]} = {NOBLE_GASES[atomic_number]['label']}`"
-        return lines
-    previous_z = max(previous_candidates)
-    previous = NOBLE_GASES[previous_z]
-    core_term_count = len(parse_configuration_terms(previous["config"]))
-    blank_count = max(0, core_term_count - 1)
-    remainder_rows = term_rows[core_term_count:]
-    lines = (
-        ["&nbsp;"] * blank_count
-        + [f"`{previous['label']}`"]
-        + [f"`{row}`" for row in remainder_rows]
-    )
-    last_row = remainder_rows[-1]
-    lines[-1] = f"`{last_row} = {NOBLE_GASES[atomic_number]['label']}`"
-    return lines
-
-
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Abbreviated additive row notation |",
+        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Additive row notation |",
         "|---|---|---|---|---|---|",
     ]
     for element in load_elements():
@@ -184,31 +147,26 @@ def format_table(limit: int, compress: bool) -> str:
         standard_configuration_raw = element["electron_configuration"]
         terms = parse_configuration_terms(standard_configuration_raw)
         standard_lines = [f"`{part}`" for part in standard_configuration_raw.split()]
+        full_row_lines = [f"`{row}`" for row in render_additive_term_rows(terms)]
         eoc_rows = render_eoc_rows(terms)
         eoc_lines = [f"`{row}`" for row in eoc_rows]
         if compress and atomic_number in NOBLE_GASES:
             abbreviated_standard_lines = make_abbreviated_standard_lines_exact(
                 standard_configuration_raw, atomic_number
             )
-            abbreviated_row_lines = make_abbreviated_row_lines_exact(
-                standard_configuration_raw, atomic_number
-            )
         elif compress:
             abbreviated_standard_lines = make_abbreviated_standard_lines(
                 standard_configuration_raw, atomic_number
             )
-            abbreviated_row_lines = make_abbreviated_row_lines(
-                standard_configuration_raw, atomic_number
-            )
         else:
             abbreviated_standard_lines = standard_lines
-            abbreviated_row_lines = full_row_lines
+        row_lines = full_row_lines
 
         max_lines = max(
             len(standard_lines),
             len(abbreviated_standard_lines),
             len(eoc_lines),
-            len(abbreviated_row_lines),
+            len(row_lines),
         )
 
         def pad(lines: list[str]) -> list[str]:
@@ -217,9 +175,9 @@ def format_table(limit: int, compress: bool) -> str:
         standard_configuration = "<br>".join(pad(standard_lines))
         abbreviated_standard = "<br>".join(pad(abbreviated_standard_lines))
         eoc_text = "<br>".join(pad(eoc_lines))
-        abbreviated_text = "<br>".join(pad(abbreviated_row_lines))
+        additive_text = "<br>".join(pad(row_lines))
         lines.append(
-            f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {eoc_text} | {abbreviated_text} |"
+            f"| {atomic_number} | {element['name']} | {standard_configuration} | {abbreviated_standard} | {eoc_text} | {additive_text} |"
         )
     return "\n".join(lines)
 
