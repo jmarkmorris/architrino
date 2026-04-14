@@ -48,6 +48,12 @@ def parse_configuration(config: str) -> dict[int, dict[str, int]]:
     return occupancy
 
 
+def compact_number(value: int) -> str:
+    if value < 10:
+        return str(value)
+    return format(value, "x")
+
+
 def render_rows(occupancy: dict[int, dict[str, int]], include_labels: bool = True) -> list[str]:
     rows: list[str] = []
     for level in sorted(occupancy):
@@ -58,7 +64,9 @@ def render_rows(occupancy: dict[int, dict[str, int]], include_labels: bool = Tru
                 if include_labels:
                     parts.append(f"{subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
                 else:
-                    parts.append(f"{count}/{SUBSHELL_CAPACITY[subshell]}")
+                    parts.append(
+                        f"{compact_number(count)}/{compact_number(SUBSHELL_CAPACITY[subshell])}"
+                    )
         if parts:
             rows.append(f"E{level} " + " ".join(parts))
     return rows
@@ -81,21 +89,21 @@ def compress_noble_core(
 ) -> list[str]:
     candidates = [z for z in NOBLE_GASES if z <= atomic_number]
     if not candidates:
-        return render_rows(occupancy, include_labels=True)
+        return render_rows(occupancy, include_labels=False)
     noble_z = max(candidates)
     noble = NOBLE_GASES[noble_z]
     if atomic_number == noble_z:
         previous_candidates = [z for z in NOBLE_GASES if z < atomic_number]
         if not previous_candidates:
-            return render_rows(occupancy) + [f"= {noble['label']}"]
+            return render_rows(occupancy, include_labels=False) + [f"= {noble['label']}"]
         previous_z = max(previous_candidates)
         previous = NOBLE_GASES[previous_z]
         previous_core = parse_configuration(previous["config"])
         remainder = subtract_occupancy(occupancy, previous_core)
-        return [previous["label"]] + render_rows(remainder, include_labels=True) + [f"= {noble['label']}"]
+        return [previous["label"]] + render_rows(remainder, include_labels=False) + [f"= {noble['label']}"]
     core_occupancy = parse_configuration(noble["config"])
     remainder = subtract_occupancy(occupancy, core_occupancy)
-    return [noble["label"]] + render_rows(remainder, include_labels=True)
+    return [noble["label"]] + render_rows(remainder, include_labels=False)
 
 
 def format_table(limit: int, compress: bool) -> str:
