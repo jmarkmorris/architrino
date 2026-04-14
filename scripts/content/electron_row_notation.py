@@ -84,7 +84,7 @@ def render_term_rows(terms: list[tuple[int, str, int]], include_labels: bool = F
 
 def render_eoc_rows(terms: list[tuple[int, str, int]]) -> list[str]:
     return [
-        f"{level}{compact_number(count)}{compact_number(SUBSHELL_CAPACITY[subshell])}"
+        f"{level}{compact_number(SUBSHELL_CAPACITY[subshell])}{compact_number(count)}"
         for level, subshell, count in terms
     ]
 
@@ -175,7 +175,7 @@ def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[st
 
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Abbreviated row notation |",
+        "| Z | Element | Standard configuration | Abbreviated standard | ECO | Abbreviated row notation |",
         "|---|---|---|---|---|---|",
     ]
     for element in load_elements():
