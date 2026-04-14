@@ -53,6 +53,19 @@ class PdgfeedRegistryAuditTests(unittest.TestCase):
             msg="Only the exact-case-disambiguated h/H pair should collide case-insensitively.",
         )
 
+    def test_phi_energy_levels_canonicalize_to_phi(self):
+        for alias in (
+            "phi(1020)",
+            "phi(1020)0",
+            "phi(1680)",
+            "phi(1680)0",
+            "phi(2170)+",
+            "phi(2170)-",
+            "phi(2170)0",
+        ):
+            with self.subTest(alias=alias):
+                self.assertEqual(canonicalize_pdg_name(alias), "phi")
+
     def test_every_mapping_has_charge_and_conjugate_metadata(self):
         for mapping in PDG_PARTICLE_MAPPINGS:
             with self.subTest(canonical_name=mapping.canonical_name):

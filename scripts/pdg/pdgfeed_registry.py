@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 from scripts.pdg.pdgfeed_model import ParticleMapping, RequestOccurrenceTemplate
 
 
@@ -655,6 +657,24 @@ PDG_PARTICLE_MAPPINGS: tuple[ParticleMapping, ...] = (
         ),
     ),
     _mapping(
+        canonical_name="phi",
+        canonical_id="phi_meson",
+        full_name="Phi Meson",
+        aaa_notation="d2.ad2",
+        particle_type="composite",
+        family="meson",
+        generation="II",
+        polarity="self-conjugate",
+        electrino_count=10,
+        positrino_count=10,
+        aliases=("phi-meson",),
+        request_translation="expanded",
+        request_occurrences=(
+            _occurrence("pro_strange_quark_II", "Strange Quark"),
+            _occurrence("anti_strange_quark_II", "Anti Strange Quark"),
+        ),
+    ),
+    _mapping(
         canonical_name="pi+",
         canonical_id="positive_pion",
         full_name="Positive Pion",
@@ -938,6 +958,7 @@ PARTICLE_CHARGE_THIRDS: dict[str, int] = {
     "W-": -3,
     "Z": 0,
     "eta": 0,
+    "phi": 0,
     "pi+": 3,
     "pi0": 0,
     "pi-": -3,
@@ -995,6 +1016,7 @@ PARTICLE_CHARGE_CONJUGATES: dict[str, str] = {
     "W-": "W+",
     "Z": "Z",
     "eta": "eta",
+    "phi": "phi",
     "pi+": "pi-",
     "pi0": "pi0",
     "pi-": "pi+",
@@ -1029,6 +1051,8 @@ PDG_CANONICAL_NAME_BY_ALIAS = {
     for alias in mapping.aliases
 }
 
+PHI_ENERGY_LEVEL_PATTERN = re.compile(r"^phi\(\d+(?:\.\d+)?\)(?:0|\+|-)?$")
+
 REQUEST_ASSEMBLY_MAPPINGS: tuple[ParticleMapping, ...] = tuple(
     mapping
     for mapping in PDG_PARTICLE_MAPPINGS
@@ -1052,7 +1076,10 @@ def canonicalize_pdg_name(name: str) -> str:
         return stripped
     if stripped in PDG_CANONICAL_NAME_BY_ALIAS:
         return PDG_CANONICAL_NAME_BY_ALIAS[stripped]
-    return PDG_CANONICAL_NAME_BY_ALIAS.get(stripped.lower(), stripped)
+    lowered = stripped.lower()
+    if PHI_ENERGY_LEVEL_PATTERN.fullmatch(lowered):
+        return "phi"
+    return PDG_CANONICAL_NAME_BY_ALIAS.get(lowered, stripped)
 
 
 def lookup_particle_mapping(name: str) -> ParticleMapping | None:

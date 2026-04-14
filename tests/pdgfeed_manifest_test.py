@@ -250,7 +250,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
         )
 
-    def test_kaons_and_b_mesons_expand_into_assembly_rows(self):
+    def test_kaons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
         expected = {
             "eta": [
                 "pro_up_quark_I",
@@ -260,6 +260,12 @@ class PdgfeedContractTests(unittest.TestCase):
                 "pro_strange_quark_II",
                 "anti_strange_quark_II",
             ],
+            "phi": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(1020)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(1680)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)+": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)-": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
             "K0S": [
                 "pro_down_quark_I",
                 "anti_strange_quark_II",
@@ -301,6 +307,61 @@ class PdgfeedContractTests(unittest.TestCase):
                     [entry["assemblyId"] for entry in transformed["reactants"]],
                     assembly_ids,
                 )
+
+    def test_phi_energy_levels_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.PHI",
+                            "B0 -> phi",
+                            [FakeDecayProduct("phi")],
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.1020",
+                            "B0 -> phi(1020)0",
+                            [FakeDecayProduct("phi(1020)0")],
+                            mode_number=2,
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.1680",
+                            "B0 -> phi(1680)0",
+                            [FakeDecayProduct("phi(1680)0")],
+                            mode_number=3,
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.2170",
+                            "B0 -> phi(2170)0",
+                            [FakeDecayProduct("phi(2170)0")],
+                            mode_number=4,
+                        ),
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 4)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(
+            [entry["caseId"] for entry in manifest["readyEntries"]],
+            [
+                "b0_test_b_phi",
+                "b0_test_b_phi_1020",
+                "b0_test_b_phi_1680",
+                "b0_test_b_phi_2170",
+            ],
+        )
+        self.assertEqual(len(rows), 4)
+        for row in rows:
+            self.assertEqual(row["category"], "supported")
+            self.assertEqual(row["product_names_aaa"], "d2.ad2")
+            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2")
 
     def test_eta_decay_moves_from_backlog_to_supported_with_six_quark_expansion(self):
         api = FakeApi(

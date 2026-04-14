@@ -224,7 +224,6 @@ Current:
 - the `backlog` class is the set of blocked reactions whose PDG records are concrete enough to read but whose particles still lack v1 AAA transform coverage;
 - supported fermion-superposition particles now expand by emitting all enumerated constituent fermions rather than picking a representative branch, and `K0S`/`K0L` have dropped out of the top backlog set;
 - and the current top backlog particles are:
-  - `phi` — `255`
   - `Dbar0` — `253`
   - `D0` — `213`
   - `D+` — `212`
@@ -234,6 +233,7 @@ Current:
   - `Xi0` — `60`
   - `Sigma0` — `41`
   - `Sigma-` — `31`
+  - `g` — `28`
 
 Objective:
 

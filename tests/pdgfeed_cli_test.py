@@ -286,7 +286,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 ],
             )
 
-    def test_summary_report_lists_top_backlog_particles(self):
+    def test_summary_report_omits_backlog_table_when_phi_is_supported(self):
         api = FakeApi(
             [
                 FakeParticle(
@@ -294,8 +294,8 @@ class PdgfeedCliTests(unittest.TestCase):
                     [
                         FakeDecay(
                             "TEST.B.PHI",
-                            "B+ -> phi",
-                            [FakeDecayProduct("phi")],
+                            "B+ -> K+ phi",
+                            [FakeDecayProduct("K+"), FakeDecayProduct("phi")],
                         )
                     ],
                     mcid=521,
@@ -312,14 +312,14 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 2)
+            self.assertEqual(len(content), 1)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
-            backlog_headers, backlog_rows = self.parse_markdown_table(content[1].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
-            self.assertEqual(backlog_headers, ["Backlog Particle", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
-            self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "1"})
-            self.assertEqual(backlog_rows, [{"Backlog Particle": "phi", "Count": "1"}])
+            self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "0"})
+            self.assertEqual(metric_rows[4], {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "1"})
+            self.assertEqual(metric_rows[11], {"Metric": "Number of reactions ready", "Count": "1"})
+            self.assertEqual(metric_rows[12], {"Metric": "Number of reactions blocked", "Count": "0"})
 
 
 if __name__ == "__main__":
