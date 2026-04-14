@@ -82,6 +82,13 @@ def render_term_rows(terms: list[tuple[int, str, int]], include_labels: bool = F
     return rows
 
 
+def render_eoc_rows(terms: list[tuple[int, str, int]]) -> list[str]:
+    return [
+        f"{level}{compact_number(count)}{compact_number(SUBSHELL_CAPACITY[subshell])}"
+        for level, subshell, count in terms
+    ]
+
+
 def subtract_occupancy(
     occupancy: dict[int, dict[str, int]], core: dict[int, dict[str, int]]
 ) -> dict[int, dict[str, int]]:
@@ -168,7 +175,7 @@ def make_abbreviated_row_lines_exact(config: str, atomic_number: int) -> list[st
 
 def format_table(limit: int, compress: bool) -> str:
     lines = [
-        "| Z | Element | Standard configuration | Abbreviated standard | Full row notation | Abbreviated row notation |",
+        "| Z | Element | Standard configuration | Abbreviated standard | EOC | Abbreviated row notation |",
         "|---|---|---|---|---|---|",
     ]
     for element in load_elements():
@@ -178,8 +185,8 @@ def format_table(limit: int, compress: bool) -> str:
         standard_configuration_raw = element["electron_configuration"]
         terms = parse_configuration_terms(standard_configuration_raw)
         standard_lines = [f"`{part}`" for part in standard_configuration_raw.split()]
-        term_rows = render_term_rows(terms, include_labels=False)
-        full_row_lines = [f"`{row}`" for row in term_rows]
+        eoc_rows = render_eoc_rows(terms)
+        full_row_lines = [f"`{row}`" for row in eoc_rows]
         if compress and atomic_number in NOBLE_GASES:
             abbreviated_standard_lines = make_abbreviated_standard_lines_exact(
                 standard_configuration_raw, atomic_number
