@@ -176,8 +176,9 @@ def format_table(limit: int, compress: bool) -> str:
         if atomic_number > limit:
             break
         standard_configuration_raw = element["electron_configuration"]
+        terms = parse_configuration_terms(standard_configuration_raw)
         standard_lines = [f"`{part}`" for part in standard_configuration_raw.split()]
-        term_rows = render_term_rows(parse_configuration_terms(standard_configuration_raw), include_labels=False)
+        term_rows = render_term_rows(terms, include_labels=False)
         full_row_lines = [f"`{row}`" for row in term_rows]
         if compress and atomic_number in NOBLE_GASES:
             abbreviated_standard_lines = make_abbreviated_standard_lines_exact(
