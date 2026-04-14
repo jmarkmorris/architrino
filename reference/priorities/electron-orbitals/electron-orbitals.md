@@ -488,7 +488,57 @@ For this idea to move from suggestive interpretation to closure, the following q
 
 Those are the hard gates for turning the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals, and the `EOC` compression built on top of it, into predictive closure rather than a suggestive re-description.
 
-### 15. Full Electron-Configuration Table In Standard And Row Notation
+### 15. Number-Theoretic And Combinatorial Inquiry In `EOC` Space
+
+The `EOC` rows can also be studied as a constrained arithmetic language. If one regards strings such as `216`, `35a`, or `4ee` as compact hexadecimal-style numerals, the question is not whether arbitrary numerology can be imposed on them, but whether the admissible rows and their evolution across the elements exhibit stable arithmetic or combinatorial laws.
+
+The first discipline here is to separate three layers:
+
+- **encoding-trivial structure**, forced directly by the definition of `EOC`,
+- **effective physical structure**, forced by the known orbital filling pattern and its exceptions,
+- and **deeper hidden structure**, which would remain after the first two layers are factored out.
+
+That distinction matters because some patterns are immediate and not deep. For example, every `EOC` row ends in `2`, `6`, `a`, or `e` simply because the final digit is the subshell capacity. Residue classes mod 16 therefore recover the subshell family almost by definition. That is useful, but it is not yet hidden structure.
+
+More interestingly, the presently tabulated neutral elements up to atomic number 118 realize only a sparse subset of the ambient three-character code space. The visible regularities already suggest a real arithmetic and combinatorial inquiry:
+
+| Pattern class | Example | Why it matters |
+| --- | --- | --- |
+| sparse admissible code space | only 107 distinct `EOC` rows appear in the current table up to 118 | the code set is highly constrained and should be treated as a structured language, not as generic integers |
+| occupancy ladders | `216, 226, 236, 246, 256, 266`; `61a, 62a, ..., 6aa` | for fixed shell and capacity, occupancy usually moves through an ordered ladder in the middle digit |
+| complement symmetry | `216 <-> 256`, `226 <-> 246`, `32a <-> 38a`, `41e <-> 4de` | the map \(O \mapsto C - O\) creates a particle-hole-style symmetry around closure |
+| self-dual half-fill rows | `236`, `35a`, `47e` | half-filled rows sit at arithmetic fixed points of the complement symmetry and align with known stability landmarks |
+| closure rows | `122`, `266`, `3aa`, `4ee`, `5aa`, `6aa`, `766` | fully saturated rows act as closure markers in both the notation and the chemistry |
+| structured missing rows | `34a`, `39a`, `43a`, `46a`, `49a`, `42e`, `48e`, `58a`, `51e`, `55e`, `58e` do not appear for neutral ground states up to 118 | the absences are not random and encode the known anomaly structure as much as the present rows do |
+| near-local successor rule | from one element to the next, 105 of the 117 steps change exactly one row, while only 12 steps require a two-row rearrangement | the full periodic sequence traces an almost monotone path through `EOC` space, with a small exceptional set |
+
+This suggests that the strongest hidden-pattern search is probably not about prime factorizations of isolated row codes. It is more likely to live in:
+
+- the symmetry and sparsity of the admissible row set,
+- the missing-row pattern,
+- the path geometry traced by the element sequence through `EOC` space,
+- and whole-atom invariants formed from the row stack rather than from single rows in isolation.
+
+Useful whole-atom invariants include:
+
+- the electron count \(Z = \sum_i O_i\),
+- the vacancy count \(V = \sum_i (C_i - O_i)\),
+- the number of closed rows with \(O_i = C_i\),
+- and a complement-symmetry profile comparing each partially filled row to its partner under \(O \mapsto C - O\).
+
+Those quantities may provide a cleaner bridge between arithmetic structure and periodic behavior than raw inspection of single `EOC` strings.
+
+#### Questions for this inquiry
+
+1. After factoring out the obvious last-digit capacity classes, do nontrivial residue classes, digital sums, or other arithmetic invariants distinguish closures, half-filled rows, and anomaly rows?
+2. Can the neutral-atom sequence be modeled as a minimal or near-minimal path on a constrained occupancy lattice, with the two-row jumps marking the true exception set?
+3. Are the missing `EOC` rows explained entirely by known energetic anomalies, or do they obey a more compressed combinatorial exclusion law?
+4. Can whole-atom invariants built from the `EOC` stack predict block boundaries, noble-gas closures, or valence behavior?
+5. In the stronger $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, is the arithmetic of `EOC` merely a code artifact, or a reduced symbolic shadow of deeper mode geometry?
+
+This is therefore a legitimate area of inquiry, but it should be pursued with discipline. The goal is not to force mystical significance onto compact symbols. The goal is to determine whether the `EOC` language defines a sparse arithmetic geometry whose regularities track real structure in orbital filling and, possibly, deeper dynamical organization.
+
+### 16. Full Electron-Configuration Table In Standard And Row Notation
 
 The table below runs through the current known elements up to atomic number 118. It places four views side by side:
 
