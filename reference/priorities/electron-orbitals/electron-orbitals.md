@@ -149,6 +149,8 @@ Counting upward as each letter reappears reconstructs the full sequence:
 
 This method is useful for rote memorization, although it is less conceptually transparent than the visual and mathematical methods below.
 
+Variant classroom forms of the same idea also appear. Some versions use **Delhi Public School** in the repeated sequence, and others use nonsense-name strings such as **Shyam Shyam Pandit Shyam Pandit ...** to encode the same recurring letter structure. The exact phrase is less important than the repeating subshell pattern it helps you retain.
+
 #### Diagonal-rule visual mnemonic
 
 The best-known visual method is the **diagonal rule**, also called **Madelung's rule** in classroom use. Start from the triangular layout:
@@ -200,6 +202,34 @@ If two orbitals have the same $n + l$ value, the one with lower $n$ fills first.
 So $3d$ comes before $4p$ because 3 is less than 4.
 
 Among the mnemonic methods, this one is the closest to the actual organizing principle behind the usual Aufbau ordering.
+
+#### The periodic table itself as a mnemonic
+
+In practice, the periodic table is often the most reliable mnemonic of all. Reading across its blocks from left to right reproduces the filling order:
+
+- periods 1 to 3 give the straightforward sequence $1s$, $2s$, $2p$, $3s$, $3p$,
+- period 4 continues with $4s$, then $3d$, then $4p$,
+- period 5 continues with $5s$, then $4d$, then $5p$,
+- period 6 continues with $6s$, then $4f$, then $5d$, then $6p$,
+- period 7 continues with $7s$, then $5f$, then $6d$, then $7p$.
+
+This works because the table is already laid out in $s$-, $d$-, $p$-, and $f$-blocks according to the usual occupation order.
+
+#### Mnemonics for the orbital labels themselves
+
+Separate from remembering the full filling order, some students use short phrases just to remember the sequence of subshell letters:
+
+- **Silly People Dance Fabulously**
+
+For the extended mathematical sequence beyond ordinary chemistry, one can also see mnemonics such as:
+
+- **Sober Physicists Don't Find Giraffes Hiding In Kitchens**
+
+Those are mainly label mnemonics, not filling-order mnemonics.
+
+#### Limits of mnemonics
+
+No mnemonic completely replaces the need to remember known exceptions. Transition-metal and related anomalies such as Cr, Mo, Cu, Ag, Au, and sometimes Pd must still be learned as a small separate list of special cases. In most teaching practice, the diagonal diagram and the periodic table itself are the most reliable memory tools.
 
 ### 6. The Noble-Gas Shorthand
 
