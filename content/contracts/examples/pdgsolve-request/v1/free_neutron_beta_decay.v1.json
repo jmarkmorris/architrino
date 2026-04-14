@@ -1,0 +1,59 @@
+{
+  "schema": "pdgsolve-request/v1",
+  "requestId": "free_neutron_beta_decay",
+  "source": {
+    "kind": "pdgfeed",
+    "title": "Free neutron beta decay",
+    "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay"
+  },
+  "reactants": [
+    {
+      "id": "reactant_neutron_1.row.1",
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.2",
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
+    },
+    {
+      "id": "reactant_neutron_1.row.3",
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
+    }
+  ],
+  "products": [
+    {
+      "id": "product_proton_1.row.1",
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
+    },
+    {
+      "id": "product_proton_1.row.2",
+      "assemblyId": "pro_down_quark_I",
+      "title": "Down Quark"
+    },
+    {
+      "id": "product_proton_1.row.3",
+      "assemblyId": "pro_up_quark_I",
+      "title": "Up Quark"
+    },
+    {
+      "id": "product_pro_electron_2",
+      "assemblyId": "pro_electron_I",
+      "title": "Electron"
+    },
+    {
+      "id": "product_anti_electron_neutrino_3",
+      "assemblyId": "anti_electron_neutrino_I",
+      "title": "Anti Electron Neutrino"
+    }
+  ],
+  "policy": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  }
+}

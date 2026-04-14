@@ -26,6 +26,12 @@
       "title": "Four tile family coverage",
       "displayTitle": "Four tile family coverage",
       "documentPath": "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json"
+    },
+    {
+      "id": "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
+      "title": "Free neutron beta exact",
+      "displayTitle": "Free neutron beta exact",
+      "documentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json"
     }
   ]
 }

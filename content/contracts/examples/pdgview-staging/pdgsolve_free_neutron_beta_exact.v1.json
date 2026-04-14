@@ -1,0 +1,3887 @@
+{
+  "schema": "pdgview-staging/v1",
+  "stagingId": "pdgview_pdgsolve_free_neutron_beta_exact",
+  "source": {
+    "schema": "pdgedit/v1",
+    "documentId": "pdgsolve_free_neutron_beta_exact",
+    "title": "Free neutron beta exact",
+    "sourcePath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    "assemblyCount": 13,
+    "operatorCount": 8,
+    "linkCount": 18
+  },
+  "observerFraming": {
+    "preset": "wide",
+    "autoscale": "keep_required",
+    "defaultAssemblyPolicy": "optional",
+    "requiredAssemblyIds": [
+      "unit_lane1_pro_down_quark_1row1",
+      "unit_lane1_pro_up_quark_1row2",
+      "unit_lane1_pro_down_quark_2row3",
+      "unit_lane5_pro_up_quark_1row1",
+      "unit_lane5_pro_down_quark_1row2",
+      "unit_lane5_pro_up_quark_2row3",
+      "unit_lane5_pro_electron_1row4",
+      "unit_lane5_anti_electron_neutrino_1row5"
+    ],
+    "optionalAssemblyIds": [
+      "unit_lane3_pro_up_quark_1row1",
+      "unit_lane3_pro_up_quark_2row2",
+      "unit_lane3_pro_down_quark_1row3",
+      "unit_lane3_pro_electron_1row4",
+      "unit_lane3_anti_electron_neutrino_1row5",
+      "unit_lane2_dissociate_1",
+      "unit_lane2_pass_thru_1",
+      "unit_lane2_pass_thru_2",
+      "unit_lane4_pass_thru_1",
+      "unit_lane4_pass_thru_2",
+      "unit_lane4_pass_thru_3",
+      "unit_lane4_pass_thru_4",
+      "unit_lane4_pass_thru_5"
+    ]
+  },
+  "draftState": {
+    "id": "pdgview_pdgsolve_free_neutron_beta_exact",
+    "name": "Free neutron beta exact",
+    "assembliesDraft": [
+      {
+        "id": "unit_lane1_pro_down_quark_1row1",
+        "name": "Pro Down Quark",
+        "role": "reactant",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          -5.04,
+          1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-down-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Down Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane1_pro_down_quark_1.row.1",
+            "type": "pro-down-quark-assembly",
+            "role": "reactant",
+            "grid": {
+              "x": 2,
+              "y": 0
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane1_pro_up_quark_1row2",
+        "name": "Pro Up Quark",
+        "role": "reactant",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          -5.04,
+          0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-up-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Up Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane1_pro_up_quark_1.row.2",
+            "type": "pro-up-quark-assembly",
+            "role": "reactant",
+            "grid": {
+              "x": 2,
+              "y": 1
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane1_pro_down_quark_2row3",
+        "name": "Pro Down Quark",
+        "role": "reactant",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          -5.04,
+          0,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-down-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Down Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane1_pro_down_quark_2.row.3",
+            "type": "pro-down-quark-assembly",
+            "role": "reactant",
+            "grid": {
+              "x": 2,
+              "y": 2
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane3_pro_up_quark_1row1",
+        "name": "Pro Up Quark",
+        "role": "intermediate",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          0,
+          1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-up-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Up Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane3_pro_up_quark_1.row.1",
+            "type": "pro-up-quark-assembly",
+            "role": "intermediate",
+            "grid": {
+              "x": 9,
+              "y": 0
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane3_pro_up_quark_2row2",
+        "name": "Pro Up Quark",
+        "role": "intermediate",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          0,
+          0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-up-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Up Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane3_pro_up_quark_2.row.2",
+            "type": "pro-up-quark-assembly",
+            "role": "intermediate",
+            "grid": {
+              "x": 9,
+              "y": 1
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane3_pro_down_quark_1row3",
+        "name": "Pro Down Quark",
+        "role": "intermediate",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-down-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Down Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane3_pro_down_quark_1.row.3",
+            "type": "pro-down-quark-assembly",
+            "role": "intermediate",
+            "grid": {
+              "x": 9,
+              "y": 2
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane3_pro_electron_1row4",
+        "name": "Pro Electron",
+        "role": "intermediate",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          0,
+          -0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-electron",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Electron",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane3_pro_electron_1.row.4",
+            "type": "pro-electron-assembly",
+            "role": "intermediate",
+            "grid": {
+              "x": 9,
+              "y": 3
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane3_anti_electron_neutrino_1row5",
+        "name": "Anti Electron Neutrino",
+        "role": "intermediate",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          0,
+          -1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "anti-electron-neutrino",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Anti Electron Neutrino",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane3_anti_electron_neutrino_1.row.5",
+            "type": "anti-electron-neutrino-assembly",
+            "role": "intermediate",
+            "grid": {
+              "x": 9,
+              "y": 4
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane5_pro_up_quark_1row1",
+        "name": "Pro Up Quark",
+        "role": "product",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          5.04,
+          1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-up-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Up Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane5_pro_up_quark_1.row.1",
+            "type": "pro-up-quark-assembly",
+            "role": "product",
+            "grid": {
+              "x": 16,
+              "y": 0
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane5_pro_down_quark_1row2",
+        "name": "Pro Down Quark",
+        "role": "product",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          5.04,
+          0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-down-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Down Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane5_pro_down_quark_1.row.2",
+            "type": "pro-down-quark-assembly",
+            "role": "product",
+            "grid": {
+              "x": 16,
+              "y": 1
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane5_pro_up_quark_2row3",
+        "name": "Pro Up Quark",
+        "role": "product",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          5.04,
+          0,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-up-quark",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-br",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-rr",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Up Quark",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane5_pro_up_quark_2.row.3",
+            "type": "pro-up-quark-assembly",
+            "role": "product",
+            "grid": {
+              "x": 16,
+              "y": 2
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane5_pro_electron_1row4",
+        "name": "Pro Electron",
+        "role": "product",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          5.04,
+          -0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "pro-electron",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-br-bb",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Pro Electron",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane5_pro_electron_1.row.4",
+            "type": "pro-electron-assembly",
+            "role": "product",
+            "grid": {
+              "x": 16,
+              "y": 3
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane5_anti_electron_neutrino_1row5",
+        "name": "Anti Electron Neutrino",
+        "role": "product",
+        "sceneRole": "pdgedit_assembly",
+        "position": [
+          5.04,
+          -1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "tile_1",
+            "state": "unset",
+            "slotKind": "anti-electron-neutrino",
+            "slotIndex": 0
+          },
+          {
+            "id": "tile_2",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 1
+          },
+          {
+            "id": "tile_3",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 2
+          },
+          {
+            "id": "tile_4",
+            "state": "unset",
+            "slotKind": "binary-full-rb-rb",
+            "slotIndex": 3
+          }
+        ],
+        "metadata": {
+          "label": "Anti Electron Neutrino",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "assembly",
+            "objectId": "unit_lane5_anti_electron_neutrino_1.row.5",
+            "type": "anti-electron-neutrino-assembly",
+            "role": "product",
+            "grid": {
+              "x": 16,
+              "y": 4
+            }
+          },
+          "viewport": {
+            "policy": "required",
+            "keepInView": true
+          }
+        }
+      },
+      {
+        "id": "unit_lane2_dissociate_1",
+        "name": "Dissociate",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          -1.44,
+          1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "dissociate",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "dissociate",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Dissociate",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane2_dissociate_1",
+            "type": "dissociate",
+            "role": "operator",
+            "grid": {
+              "x": 7,
+              "y": 0
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane2_pass_thru_1",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          -1.44,
+          0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane2_pass_thru_1",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 7,
+              "y": 1
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane2_pass_thru_2",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          -1.44,
+          0,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane2_pass_thru_2",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 7,
+              "y": 2
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane4_pass_thru_1",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          3.6,
+          1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane4_pass_thru_1",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 14,
+              "y": 0
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane4_pass_thru_2",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          3.6,
+          0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane4_pass_thru_2",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 14,
+              "y": 1
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane4_pass_thru_3",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          3.6,
+          0,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane4_pass_thru_3",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 14,
+              "y": 2
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane4_pass_thru_4",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          3.6,
+          -0.58,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane4_pass_thru_4",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 14,
+              "y": 3
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      },
+      {
+        "id": "unit_lane4_pass_thru_5",
+        "name": "Pass Thru",
+        "role": "operator",
+        "sceneRole": "pdgedit_operator",
+        "position": [
+          3.6,
+          -1.16,
+          0
+        ],
+        "members": [
+          {
+            "id": "positrino_port",
+            "state": "positrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 0
+          },
+          {
+            "id": "electrino_port",
+            "state": "electrino",
+            "slotKind": "pass-thru",
+            "slotIndex": 1
+          }
+        ],
+        "metadata": {
+          "label": "Pass Thru",
+          "source": {
+            "schema": "pdgedit/v1",
+            "objectKind": "operator",
+            "objectId": "unit_lane4_pass_thru_5",
+            "type": "pass-thru",
+            "role": "operator",
+            "grid": {
+              "x": 14,
+              "y": 4
+            }
+          },
+          "viewport": {
+            "policy": "optional",
+            "keepInView": false
+          }
+        }
+      }
+    ],
+    "transfers": [
+      {
+        "id": "edge_reactant_1_to_operator_1",
+        "source": {
+          "assemblyId": "unit_lane1_pro_down_quark_1row1",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane2_dissociate_1",
+          "memberId": "positrino_port"
+        },
+        "t": 1.263
+      },
+      {
+        "id": "edge_reactant_2_to_operator_2",
+        "source": {
+          "assemblyId": "unit_lane1_pro_up_quark_1row2",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane2_pass_thru_1",
+          "memberId": "positrino_port"
+        },
+        "t": 2.526
+      },
+      {
+        "id": "edge_reactant_3_to_operator_3",
+        "source": {
+          "assemblyId": "unit_lane1_pro_down_quark_2row3",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane2_pass_thru_2",
+          "memberId": "positrino_port"
+        },
+        "t": 3.789
+      },
+      {
+        "id": "edge_operator_1_to_intermediate_1",
+        "source": {
+          "assemblyId": "unit_lane2_dissociate_1",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane3_pro_up_quark_1row1",
+          "memberId": "tile_1"
+        },
+        "t": 5.053
+      },
+      {
+        "id": "edge_operator_1_to_intermediate_4",
+        "source": {
+          "assemblyId": "unit_lane2_dissociate_1",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane3_pro_electron_1row4",
+          "memberId": "tile_1"
+        },
+        "t": 6.316
+      },
+      {
+        "id": "edge_operator_1_to_intermediate_5",
+        "source": {
+          "assemblyId": "unit_lane2_dissociate_1",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+          "memberId": "tile_1"
+        },
+        "t": 7.579
+      },
+      {
+        "id": "edge_operator_2_to_intermediate_2",
+        "source": {
+          "assemblyId": "unit_lane2_pass_thru_1",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane3_pro_up_quark_2row2",
+          "memberId": "tile_1"
+        },
+        "t": 8.842
+      },
+      {
+        "id": "edge_operator_3_to_intermediate_3",
+        "source": {
+          "assemblyId": "unit_lane2_pass_thru_2",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane3_pro_down_quark_1row3",
+          "memberId": "tile_1"
+        },
+        "t": 10.105
+      },
+      {
+        "id": "edge_intermediate_1_to_product_operator_1",
+        "source": {
+          "assemblyId": "unit_lane3_pro_up_quark_1row1",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane4_pass_thru_1",
+          "memberId": "positrino_port"
+        },
+        "t": 11.368
+      },
+      {
+        "id": "edge_intermediate_2_to_product_operator_2",
+        "source": {
+          "assemblyId": "unit_lane3_pro_up_quark_2row2",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane4_pass_thru_2",
+          "memberId": "positrino_port"
+        },
+        "t": 12.632
+      },
+      {
+        "id": "edge_intermediate_3_to_product_operator_3",
+        "source": {
+          "assemblyId": "unit_lane3_pro_down_quark_1row3",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane4_pass_thru_3",
+          "memberId": "positrino_port"
+        },
+        "t": 13.895
+      },
+      {
+        "id": "edge_intermediate_4_to_product_operator_4",
+        "source": {
+          "assemblyId": "unit_lane3_pro_electron_1row4",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane4_pass_thru_4",
+          "memberId": "positrino_port"
+        },
+        "t": 15.158
+      },
+      {
+        "id": "edge_intermediate_5_to_product_operator_5",
+        "source": {
+          "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+          "memberId": "tile_1"
+        },
+        "target": {
+          "assemblyId": "unit_lane4_pass_thru_5",
+          "memberId": "positrino_port"
+        },
+        "t": 16.421
+      },
+      {
+        "id": "edge_product_operator_1_to_product_1",
+        "source": {
+          "assemblyId": "unit_lane4_pass_thru_1",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane5_pro_up_quark_1row1",
+          "memberId": "tile_1"
+        },
+        "t": 17.684
+      },
+      {
+        "id": "edge_product_operator_2_to_product_2",
+        "source": {
+          "assemblyId": "unit_lane4_pass_thru_2",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane5_pro_down_quark_1row2",
+          "memberId": "tile_1"
+        },
+        "t": 18.947
+      },
+      {
+        "id": "edge_product_operator_3_to_product_3",
+        "source": {
+          "assemblyId": "unit_lane4_pass_thru_3",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane5_pro_up_quark_2row3",
+          "memberId": "tile_1"
+        },
+        "t": 20.211
+      },
+      {
+        "id": "edge_product_operator_4_to_product_4",
+        "source": {
+          "assemblyId": "unit_lane4_pass_thru_4",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane5_pro_electron_1row4",
+          "memberId": "tile_1"
+        },
+        "t": 21.474
+      },
+      {
+        "id": "edge_product_operator_5_to_product_5",
+        "source": {
+          "assemblyId": "unit_lane4_pass_thru_5",
+          "memberId": "positrino_port"
+        },
+        "target": {
+          "assemblyId": "unit_lane5_anti_electron_neutrino_1row5",
+          "memberId": "tile_1"
+        },
+        "t": 22.737
+      }
+    ],
+    "reactions": [
+      {
+        "id": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit",
+        "label": "Free neutron beta exact",
+        "start": 0,
+        "end": 24,
+        "transferIds": [
+          "edge_reactant_1_to_operator_1",
+          "edge_reactant_2_to_operator_2",
+          "edge_reactant_3_to_operator_3",
+          "edge_operator_1_to_intermediate_1",
+          "edge_operator_1_to_intermediate_4",
+          "edge_operator_1_to_intermediate_5",
+          "edge_operator_2_to_intermediate_2",
+          "edge_operator_3_to_intermediate_3",
+          "edge_intermediate_1_to_product_operator_1",
+          "edge_intermediate_2_to_product_operator_2",
+          "edge_intermediate_3_to_product_operator_3",
+          "edge_intermediate_4_to_product_operator_4",
+          "edge_intermediate_5_to_product_operator_5",
+          "edge_product_operator_1_to_product_1",
+          "edge_product_operator_2_to_product_2",
+          "edge_product_operator_3_to_product_3",
+          "edge_product_operator_4_to_product_4",
+          "edge_product_operator_5_to_product_5"
+        ],
+        "stages": [
+          {
+            "id": "stage_dissociate",
+            "action": "dissociate",
+            "start": 0,
+            "end": 8,
+            "transferIds": [
+              "edge_reactant_1_to_operator_1",
+              "edge_reactant_2_to_operator_2",
+              "edge_reactant_3_to_operator_3",
+              "edge_operator_1_to_intermediate_1",
+              "edge_operator_1_to_intermediate_4",
+              "edge_operator_1_to_intermediate_5",
+              "edge_operator_2_to_intermediate_2",
+              "edge_operator_3_to_intermediate_3",
+              "edge_intermediate_1_to_product_operator_1",
+              "edge_intermediate_2_to_product_operator_2",
+              "edge_intermediate_3_to_product_operator_3",
+              "edge_intermediate_4_to_product_operator_4",
+              "edge_intermediate_5_to_product_operator_5",
+              "edge_product_operator_1_to_product_1",
+              "edge_product_operator_2_to_product_2",
+              "edge_product_operator_3_to_product_3",
+              "edge_product_operator_4_to_product_4",
+              "edge_product_operator_5_to_product_5"
+            ]
+          },
+          {
+            "id": "stage_transit",
+            "action": "mapping",
+            "start": 8,
+            "end": 16,
+            "transferIds": [
+              "edge_reactant_1_to_operator_1",
+              "edge_reactant_2_to_operator_2",
+              "edge_reactant_3_to_operator_3",
+              "edge_operator_1_to_intermediate_1",
+              "edge_operator_1_to_intermediate_4",
+              "edge_operator_1_to_intermediate_5",
+              "edge_operator_2_to_intermediate_2",
+              "edge_operator_3_to_intermediate_3",
+              "edge_intermediate_1_to_product_operator_1",
+              "edge_intermediate_2_to_product_operator_2",
+              "edge_intermediate_3_to_product_operator_3",
+              "edge_intermediate_4_to_product_operator_4",
+              "edge_intermediate_5_to_product_operator_5",
+              "edge_product_operator_1_to_product_1",
+              "edge_product_operator_2_to_product_2",
+              "edge_product_operator_3_to_product_3",
+              "edge_product_operator_4_to_product_4",
+              "edge_product_operator_5_to_product_5"
+            ]
+          },
+          {
+            "id": "stage_reassemble",
+            "action": "associate",
+            "start": 16,
+            "end": 24,
+            "transferIds": [
+              "edge_reactant_1_to_operator_1",
+              "edge_reactant_2_to_operator_2",
+              "edge_reactant_3_to_operator_3",
+              "edge_operator_1_to_intermediate_1",
+              "edge_operator_1_to_intermediate_4",
+              "edge_operator_1_to_intermediate_5",
+              "edge_operator_2_to_intermediate_2",
+              "edge_operator_3_to_intermediate_3",
+              "edge_intermediate_1_to_product_operator_1",
+              "edge_intermediate_2_to_product_operator_2",
+              "edge_intermediate_3_to_product_operator_3",
+              "edge_intermediate_4_to_product_operator_4",
+              "edge_intermediate_5_to_product_operator_5",
+              "edge_product_operator_1_to_product_1",
+              "edge_product_operator_2_to_product_2",
+              "edge_product_operator_3_to_product_3",
+              "edge_product_operator_4_to_product_4",
+              "edge_product_operator_5_to_product_5"
+            ]
+          }
+        ],
+        "participants": [
+          {
+            "assembly": "unit_lane1_pro_down_quark_1row1",
+            "role": "reactant"
+          },
+          {
+            "assembly": "unit_lane1_pro_up_quark_1row2",
+            "role": "reactant"
+          },
+          {
+            "assembly": "unit_lane1_pro_down_quark_2row3",
+            "role": "reactant"
+          },
+          {
+            "assembly": "unit_lane3_pro_up_quark_1row1",
+            "role": "intermediate"
+          },
+          {
+            "assembly": "unit_lane3_pro_up_quark_2row2",
+            "role": "intermediate"
+          },
+          {
+            "assembly": "unit_lane3_pro_down_quark_1row3",
+            "role": "intermediate"
+          },
+          {
+            "assembly": "unit_lane3_pro_electron_1row4",
+            "role": "intermediate"
+          },
+          {
+            "assembly": "unit_lane3_anti_electron_neutrino_1row5",
+            "role": "intermediate"
+          },
+          {
+            "assembly": "unit_lane5_pro_up_quark_1row1",
+            "role": "product"
+          },
+          {
+            "assembly": "unit_lane5_pro_down_quark_1row2",
+            "role": "product"
+          },
+          {
+            "assembly": "unit_lane5_pro_up_quark_2row3",
+            "role": "product"
+          },
+          {
+            "assembly": "unit_lane5_pro_electron_1row4",
+            "role": "product"
+          },
+          {
+            "assembly": "unit_lane5_anti_electron_neutrino_1row5",
+            "role": "product"
+          },
+          {
+            "assembly": "unit_lane2_dissociate_1",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane2_pass_thru_1",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane2_pass_thru_2",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane4_pass_thru_1",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane4_pass_thru_2",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane4_pass_thru_3",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane4_pass_thru_4",
+            "role": "operator"
+          },
+          {
+            "assembly": "unit_lane4_pass_thru_5",
+            "role": "operator"
+          }
+        ]
+      }
+    ],
+    "overlays": [
+      {
+        "id": "pdgview_pdgsolve_free_neutron_beta_exact_source_label",
+        "kind": "graphic",
+        "label": "Free neutron beta exact",
+        "text": "Free neutron beta exact",
+        "start": 0,
+        "end": 6,
+        "target": {
+          "type": "assembly",
+          "assemblyId": "unit_lane1_pro_down_quark_1row1"
+        },
+        "offset": [
+          0.6,
+          0.84,
+          0
+        ],
+        "size": 0.36
+      }
+    ],
+    "cameraWaypoints": [
+      {
+        "position": [
+          0,
+          0.6,
+          19.84
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "position": [
+          2.52,
+          1,
+          18.253
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "cameraPoiMode": "origin",
+    "cameraShots": [
+      {
+        "id": "pdgview_pdgsolve_free_neutron_beta_exact_observer_overview",
+        "kind": "overview",
+        "cameraPath": "camera_main",
+        "timing": {
+          "start": 0,
+          "fadeIn": 0,
+          "hold": 24,
+          "fadeOut": 0
+        },
+        "framing": {
+          "preset": "wide",
+          "autoscale": "keep_required",
+          "defaultAssemblyPolicy": "optional",
+          "requiredAssemblyIds": [
+            "unit_lane1_pro_down_quark_1row1",
+            "unit_lane1_pro_up_quark_1row2",
+            "unit_lane1_pro_down_quark_2row3",
+            "unit_lane5_pro_up_quark_1row1",
+            "unit_lane5_pro_down_quark_1row2",
+            "unit_lane5_pro_up_quark_2row3",
+            "unit_lane5_pro_electron_1row4",
+            "unit_lane5_anti_electron_neutrino_1row5"
+          ],
+          "optionalAssemblyIds": [
+            "unit_lane3_pro_up_quark_1row1",
+            "unit_lane3_pro_up_quark_2row2",
+            "unit_lane3_pro_down_quark_1row3",
+            "unit_lane3_pro_electron_1row4",
+            "unit_lane3_anti_electron_neutrino_1row5",
+            "unit_lane2_dissociate_1",
+            "unit_lane2_pass_thru_1",
+            "unit_lane2_pass_thru_2",
+            "unit_lane4_pass_thru_1",
+            "unit_lane4_pass_thru_2",
+            "unit_lane4_pass_thru_3",
+            "unit_lane4_pass_thru_4",
+            "unit_lane4_pass_thru_5"
+          ]
+        }
+      }
+    ],
+    "time": {
+      "timeBase": "seconds",
+      "start": 0,
+      "end": 24,
+      "playbackRate": 1,
+      "loop": false
+    },
+    "markers": [
+      {
+        "id": "marker_import_start",
+        "t": 0,
+        "end": 3,
+        "kind": "observer",
+        "label": "Accepted pdgedit import"
+      },
+      {
+        "id": "marker_observer_framing",
+        "t": 12,
+        "end": 15,
+        "kind": "observer",
+        "label": "Observer framing"
+      }
+    ],
+    "pauses": [],
+    "timeWarps": [],
+    "transferListRaw": "",
+    "pauseListRaw": "",
+    "warpListRaw": "",
+    "markerListRaw": "",
+    "metadata": {
+      "sourceContract": {
+        "upstreamSchema": "pdgedit/v1",
+        "downstreamSchema": "pdgview-staging/v1",
+        "handoffMode": "accepted-pdgedit-import"
+      },
+      "pdgedit": {
+        "schema": "pdgedit/v1",
+        "documentId": "pdgsolve_free_neutron_beta_exact",
+        "title": "Free neutron beta exact",
+        "sourcePath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+        "assemblyCount": 13,
+        "operatorCount": 8,
+        "linkCount": 18
+      }
+    }
+  },
+  "preview": {
+    "schema": "pdgview-preview/v1",
+    "sceneId": "pdgview_pdgsolve_free_neutron_beta_exact",
+    "title": "Free neutron beta exact",
+    "objectCount": 21,
+    "linkCount": 18,
+    "objectIds": [
+      "unit_lane1_pro_down_quark_1row1",
+      "unit_lane1_pro_up_quark_1row2",
+      "unit_lane1_pro_down_quark_2row3",
+      "unit_lane3_pro_up_quark_1row1",
+      "unit_lane3_pro_up_quark_2row2",
+      "unit_lane3_pro_down_quark_1row3",
+      "unit_lane3_pro_electron_1row4",
+      "unit_lane3_anti_electron_neutrino_1row5",
+      "unit_lane5_pro_up_quark_1row1",
+      "unit_lane5_pro_down_quark_1row2",
+      "unit_lane5_pro_up_quark_2row3",
+      "unit_lane5_pro_electron_1row4",
+      "unit_lane5_anti_electron_neutrino_1row5",
+      "unit_lane2_dissociate_1",
+      "unit_lane2_pass_thru_1",
+      "unit_lane2_pass_thru_2",
+      "unit_lane4_pass_thru_1",
+      "unit_lane4_pass_thru_2",
+      "unit_lane4_pass_thru_3",
+      "unit_lane4_pass_thru_4",
+      "unit_lane4_pass_thru_5"
+    ],
+    "linkIds": [
+      "edge_reactant_1_to_operator_1",
+      "edge_reactant_2_to_operator_2",
+      "edge_reactant_3_to_operator_3",
+      "edge_operator_1_to_intermediate_1",
+      "edge_operator_1_to_intermediate_4",
+      "edge_operator_1_to_intermediate_5",
+      "edge_operator_2_to_intermediate_2",
+      "edge_operator_3_to_intermediate_3",
+      "edge_intermediate_1_to_product_operator_1",
+      "edge_intermediate_2_to_product_operator_2",
+      "edge_intermediate_3_to_product_operator_3",
+      "edge_intermediate_4_to_product_operator_4",
+      "edge_intermediate_5_to_product_operator_5",
+      "edge_product_operator_1_to_product_1",
+      "edge_product_operator_2_to_product_2",
+      "edge_product_operator_3_to_product_3",
+      "edge_product_operator_4_to_product_4",
+      "edge_product_operator_5_to_product_5"
+    ]
+  },
+  "export": {
+    "schema": "pdgview-export/v1",
+    "defaultFileName": "pdgview_pdgsolve_free_neutron_beta_exact.pdgview-scene.v1.json",
+    "sceneDocument": {
+      "schemaVersion": "0.1.0",
+      "scene": {
+        "id": "pdgview_pdgsolve_free_neutron_beta_exact",
+        "type": "Scene-Composed-Animation",
+        "kind": "composed_animation",
+        "name": "Free neutron beta exact",
+        "mode": "3d",
+        "time": {
+          "timeBase": "seconds",
+          "start": 0,
+          "end": 24,
+          "playbackRate": 1,
+          "loop": false
+        },
+        "view": {
+          "activeCameraPath": "camera_main"
+        },
+        "controls": {
+          "playback": {
+            "allowPlayPause": true,
+            "allowScrub": true,
+            "allowLoop": true,
+            "showTimeline": true
+          }
+        },
+        "pauses": [],
+        "timeWarps": [],
+        "markers": [
+          {
+            "id": "marker_import_start",
+            "t": 0,
+            "end": 3,
+            "kind": "observer",
+            "label": "Accepted pdgedit import"
+          },
+          {
+            "id": "marker_observer_framing",
+            "t": 12,
+            "end": 15,
+            "kind": "observer",
+            "label": "Observer framing"
+          }
+        ],
+        "publication": {
+          "status": "draft"
+        }
+      },
+      "assets": [],
+      "assemblies": [
+        {
+          "id": "unit_lane1_pro_down_quark_1row1",
+          "role": "reactant",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              -5.04,
+              1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Down Quark",
+            "order": 0,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane1_pro_down_quark_1.row.1",
+              "type": "pro-down-quark-assembly",
+              "role": "reactant",
+              "grid": {
+                "x": 2,
+                "y": 0
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-down-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 3
+            }
+          ],
+          "core": {
+            "coreType": "noether",
+            "shells": [
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_shell_1",
+                "radius": 0.45,
+                "role": "inner",
+                "color": "#a9d8ff",
+                "opacity": 0.12
+              },
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_shell_2",
+                "radius": 0.9,
+                "role": "middle",
+                "color": "#7fb9ff",
+                "opacity": 0.1
+              },
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_shell_3",
+                "radius": 1.35,
+                "role": "outer",
+                "color": "#5b99ea",
+                "opacity": 0.08
+              },
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_shell_4",
+                "radius": 1.8,
+                "role": "decorator",
+                "color": "#365f9f",
+                "opacity": 0.05
+              }
+            ],
+            "binaries": [
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_binary_1",
+                "motion": {
+                  "type": "orbit.circular",
+                  "center": "unit_lane1_pro_down_quark_1row1",
+                  "radius": 0.45,
+                  "frequencyHz": 0.42,
+                  "planeNormal": [
+                    0,
+                    1,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_binary_2",
+                "motion": {
+                  "type": "orbit.circular",
+                  "center": "unit_lane1_pro_down_quark_1row1",
+                  "radius": 0.9,
+                  "frequencyHz": 0.26,
+                  "planeNormal": [
+                    1,
+                    0,
+                    0
+                  ]
+                }
+              },
+              {
+                "id": "unit_lane1_pro_down_quark_1row1_binary_3",
+                "motion": {
+                  "type": "orbit.circular",
+                  "center": "unit_lane1_pro_down_quark_1row1",
+                  "radius": 1.35,
+                  "frequencyHz": 0.16,
+                  "planeNormal": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              }
+            ],
+            "alignment": {
+              "regime": "3d",
+              "planeNormals": [
+                [
+                  0,
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        {
+          "id": "unit_lane1_pro_up_quark_1row2",
+          "role": "reactant",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              -5.04,
+              0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Up Quark",
+            "order": 1,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane1_pro_up_quark_1.row.2",
+              "type": "pro-up-quark-assembly",
+              "role": "reactant",
+              "grid": {
+                "x": 2,
+                "y": 1
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-up-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane1_pro_down_quark_2row3",
+          "role": "reactant",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              -5.04,
+              0,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Down Quark",
+            "order": 2,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane1_pro_down_quark_2.row.3",
+              "type": "pro-down-quark-assembly",
+              "role": "reactant",
+              "grid": {
+                "x": 2,
+                "y": 2
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-down-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane3_pro_up_quark_1row1",
+          "role": "intermediate",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              0,
+              1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Up Quark",
+            "order": 3,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane3_pro_up_quark_1.row.1",
+              "type": "pro-up-quark-assembly",
+              "role": "intermediate",
+              "grid": {
+                "x": 9,
+                "y": 0
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-up-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane3_pro_up_quark_2row2",
+          "role": "intermediate",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              0,
+              0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Up Quark",
+            "order": 4,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane3_pro_up_quark_2.row.2",
+              "type": "pro-up-quark-assembly",
+              "role": "intermediate",
+              "grid": {
+                "x": 9,
+                "y": 1
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-up-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane3_pro_down_quark_1row3",
+          "role": "intermediate",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Down Quark",
+            "order": 5,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane3_pro_down_quark_1.row.3",
+              "type": "pro-down-quark-assembly",
+              "role": "intermediate",
+              "grid": {
+                "x": 9,
+                "y": 2
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-down-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane3_pro_electron_1row4",
+          "role": "intermediate",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              0,
+              -0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Electron",
+            "order": 6,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane3_pro_electron_1.row.4",
+              "type": "pro-electron-assembly",
+              "role": "intermediate",
+              "grid": {
+                "x": 9,
+                "y": 3
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-electron",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane3_anti_electron_neutrino_1row5",
+          "role": "intermediate",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              0,
+              -1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Anti Electron Neutrino",
+            "order": 7,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane3_anti_electron_neutrino_1.row.5",
+              "type": "anti-electron-neutrino-assembly",
+              "role": "intermediate",
+              "grid": {
+                "x": 9,
+                "y": 4
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "anti-electron-neutrino",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane5_pro_up_quark_1row1",
+          "role": "product",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              5.04,
+              1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Up Quark",
+            "order": 8,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane5_pro_up_quark_1.row.1",
+              "type": "pro-up-quark-assembly",
+              "role": "product",
+              "grid": {
+                "x": 16,
+                "y": 0
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-up-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane5_pro_down_quark_1row2",
+          "role": "product",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              5.04,
+              0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Down Quark",
+            "order": 9,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane5_pro_down_quark_1.row.2",
+              "type": "pro-down-quark-assembly",
+              "role": "product",
+              "grid": {
+                "x": 16,
+                "y": 1
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-down-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane5_pro_up_quark_2row3",
+          "role": "product",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              5.04,
+              0,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Up Quark",
+            "order": 10,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane5_pro_up_quark_2.row.3",
+              "type": "pro-up-quark-assembly",
+              "role": "product",
+              "grid": {
+                "x": 16,
+                "y": 2
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-up-quark",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-br",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-rr",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane5_pro_electron_1row4",
+          "role": "product",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              5.04,
+              -0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pro Electron",
+            "order": 11,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane5_pro_electron_1.row.4",
+              "type": "pro-electron-assembly",
+              "role": "product",
+              "grid": {
+                "x": 16,
+                "y": 3
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "pro-electron",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-br-bb",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane5_anti_electron_neutrino_1row5",
+          "role": "product",
+          "sceneRole": "pdgedit_assembly",
+          "transform": {
+            "position": [
+              5.04,
+              -1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Anti Electron Neutrino",
+            "order": 12,
+            "sceneRole": "pdgedit_assembly",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "assembly",
+              "objectId": "unit_lane5_anti_electron_neutrino_1.row.5",
+              "type": "anti-electron-neutrino-assembly",
+              "role": "product",
+              "grid": {
+                "x": 16,
+                "y": 4
+              }
+            },
+            "viewport": {
+              "policy": "required",
+              "keepInView": true
+            }
+          },
+          "members": [
+            {
+              "id": "tile_1",
+              "state": "unset",
+              "slotKind": "anti-electron-neutrino",
+              "slotIndex": 0
+            },
+            {
+              "id": "tile_2",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 1
+            },
+            {
+              "id": "tile_3",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 2
+            },
+            {
+              "id": "tile_4",
+              "state": "unset",
+              "slotKind": "binary-full-rb-rb",
+              "slotIndex": 3
+            }
+          ]
+        },
+        {
+          "id": "unit_lane2_dissociate_1",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              -1.44,
+              1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Dissociate",
+            "order": 13,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane2_dissociate_1",
+              "type": "dissociate",
+              "role": "operator",
+              "grid": {
+                "x": 7,
+                "y": 0
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "dissociate",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "dissociate",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane2_pass_thru_1",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              -1.44,
+              0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 14,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane2_pass_thru_1",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 7,
+                "y": 1
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane2_pass_thru_2",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              -1.44,
+              0,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 15,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane2_pass_thru_2",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 7,
+                "y": 2
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane4_pass_thru_1",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              3.6,
+              1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 16,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane4_pass_thru_1",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 14,
+                "y": 0
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane4_pass_thru_2",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              3.6,
+              0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 17,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane4_pass_thru_2",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 14,
+                "y": 1
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane4_pass_thru_3",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              3.6,
+              0,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 18,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane4_pass_thru_3",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 14,
+                "y": 2
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane4_pass_thru_4",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              3.6,
+              -0.58,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 19,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane4_pass_thru_4",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 14,
+                "y": 3
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        },
+        {
+          "id": "unit_lane4_pass_thru_5",
+          "role": "operator",
+          "sceneRole": "pdgedit_operator",
+          "transform": {
+            "position": [
+              3.6,
+              -1.16,
+              0
+            ]
+          },
+          "metadata": {
+            "label": "Pass Thru",
+            "order": 20,
+            "sceneRole": "pdgedit_operator",
+            "source": {
+              "schema": "pdgedit/v1",
+              "objectKind": "operator",
+              "objectId": "unit_lane4_pass_thru_5",
+              "type": "pass-thru",
+              "role": "operator",
+              "grid": {
+                "x": 14,
+                "y": 4
+              }
+            },
+            "viewport": {
+              "policy": "optional",
+              "keepInView": false
+            }
+          },
+          "members": [
+            {
+              "id": "positrino_port",
+              "state": "positrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 0
+            },
+            {
+              "id": "electrino_port",
+              "state": "electrino",
+              "slotKind": "pass-thru",
+              "slotIndex": 1
+            }
+          ]
+        }
+      ],
+      "assemblyInstances": [],
+      "paths": [],
+      "historyTraces": [],
+      "envelopes": [],
+      "cameraPaths": [
+        {
+          "id": "camera_main",
+          "mode": "waypoints",
+          "frame": {
+            "space": "relative"
+          },
+          "waypoints": [
+            {
+              "t": 0,
+              "position": [
+                0,
+                0.6,
+                19.84
+              ],
+              "lookAt": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 1,
+              "position": [
+                2.52,
+                1,
+                18.253
+              ],
+              "lookAt": [
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "cameraShots": [
+        {
+          "id": "pdgview_pdgsolve_free_neutron_beta_exact_observer_overview",
+          "kind": "overview",
+          "cameraPath": "camera_main",
+          "timing": {
+            "start": 0,
+            "fadeIn": 0,
+            "hold": 24,
+            "fadeOut": 0
+          },
+          "framing": {
+            "preset": "wide",
+            "autoscale": "keep_required",
+            "defaultAssemblyPolicy": "optional",
+            "requiredAssemblyIds": [
+              "unit_lane1_pro_down_quark_1row1",
+              "unit_lane1_pro_up_quark_1row2",
+              "unit_lane1_pro_down_quark_2row3",
+              "unit_lane5_pro_up_quark_1row1",
+              "unit_lane5_pro_down_quark_1row2",
+              "unit_lane5_pro_up_quark_2row3",
+              "unit_lane5_pro_electron_1row4",
+              "unit_lane5_anti_electron_neutrino_1row5"
+            ],
+            "optionalAssemblyIds": [
+              "unit_lane3_pro_up_quark_1row1",
+              "unit_lane3_pro_up_quark_2row2",
+              "unit_lane3_pro_down_quark_1row3",
+              "unit_lane3_pro_electron_1row4",
+              "unit_lane3_anti_electron_neutrino_1row5",
+              "unit_lane2_dissociate_1",
+              "unit_lane2_pass_thru_1",
+              "unit_lane2_pass_thru_2",
+              "unit_lane4_pass_thru_1",
+              "unit_lane4_pass_thru_2",
+              "unit_lane4_pass_thru_3",
+              "unit_lane4_pass_thru_4",
+              "unit_lane4_pass_thru_5"
+            ]
+          }
+        }
+      ],
+      "cameraTransitions": [],
+      "tracks": [],
+      "channels": [],
+      "overlays": [
+        {
+          "id": "pdgview_pdgsolve_free_neutron_beta_exact_source_label",
+          "kind": "graphic",
+          "type": "text_sphere_callout",
+          "label": "Free neutron beta exact",
+          "text": "Free neutron beta exact",
+          "start": 0,
+          "end": 6,
+          "size": 0.36,
+          "source": "",
+          "rect": {
+            "x": 0.6,
+            "y": 0.16,
+            "width": 0.24,
+            "height": 0.24
+          },
+          "fit": "contain",
+          "muted": true,
+          "offset": [
+            0.6,
+            0.84,
+            0
+          ],
+          "target": {
+            "type": "assembly",
+            "assemblyId": "unit_lane1_pro_down_quark_1row1"
+          },
+          "style": {}
+        }
+      ],
+      "teachingPatterns": [],
+      "reactions": [
+        {
+          "id": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit",
+          "label": "Free neutron beta exact",
+          "start": 0,
+          "end": 24,
+          "transferIds": [
+            "edge_reactant_1_to_operator_1",
+            "edge_reactant_2_to_operator_2",
+            "edge_reactant_3_to_operator_3",
+            "edge_operator_1_to_intermediate_1",
+            "edge_operator_1_to_intermediate_4",
+            "edge_operator_1_to_intermediate_5",
+            "edge_operator_2_to_intermediate_2",
+            "edge_operator_3_to_intermediate_3",
+            "edge_intermediate_1_to_product_operator_1",
+            "edge_intermediate_2_to_product_operator_2",
+            "edge_intermediate_3_to_product_operator_3",
+            "edge_intermediate_4_to_product_operator_4",
+            "edge_intermediate_5_to_product_operator_5",
+            "edge_product_operator_1_to_product_1",
+            "edge_product_operator_2_to_product_2",
+            "edge_product_operator_3_to_product_3",
+            "edge_product_operator_4_to_product_4",
+            "edge_product_operator_5_to_product_5"
+          ],
+          "stages": [
+            {
+              "id": "stage_dissociate",
+              "action": "dissociate",
+              "start": 0,
+              "end": 8,
+              "transferIds": [
+                "edge_reactant_1_to_operator_1",
+                "edge_reactant_2_to_operator_2",
+                "edge_reactant_3_to_operator_3",
+                "edge_operator_1_to_intermediate_1",
+                "edge_operator_1_to_intermediate_4",
+                "edge_operator_1_to_intermediate_5",
+                "edge_operator_2_to_intermediate_2",
+                "edge_operator_3_to_intermediate_3",
+                "edge_intermediate_1_to_product_operator_1",
+                "edge_intermediate_2_to_product_operator_2",
+                "edge_intermediate_3_to_product_operator_3",
+                "edge_intermediate_4_to_product_operator_4",
+                "edge_intermediate_5_to_product_operator_5",
+                "edge_product_operator_1_to_product_1",
+                "edge_product_operator_2_to_product_2",
+                "edge_product_operator_3_to_product_3",
+                "edge_product_operator_4_to_product_4",
+                "edge_product_operator_5_to_product_5"
+              ]
+            },
+            {
+              "id": "stage_transit",
+              "action": "mapping",
+              "start": 8,
+              "end": 16,
+              "transferIds": [
+                "edge_reactant_1_to_operator_1",
+                "edge_reactant_2_to_operator_2",
+                "edge_reactant_3_to_operator_3",
+                "edge_operator_1_to_intermediate_1",
+                "edge_operator_1_to_intermediate_4",
+                "edge_operator_1_to_intermediate_5",
+                "edge_operator_2_to_intermediate_2",
+                "edge_operator_3_to_intermediate_3",
+                "edge_intermediate_1_to_product_operator_1",
+                "edge_intermediate_2_to_product_operator_2",
+                "edge_intermediate_3_to_product_operator_3",
+                "edge_intermediate_4_to_product_operator_4",
+                "edge_intermediate_5_to_product_operator_5",
+                "edge_product_operator_1_to_product_1",
+                "edge_product_operator_2_to_product_2",
+                "edge_product_operator_3_to_product_3",
+                "edge_product_operator_4_to_product_4",
+                "edge_product_operator_5_to_product_5"
+              ]
+            },
+            {
+              "id": "stage_reassemble",
+              "action": "associate",
+              "start": 16,
+              "end": 24,
+              "transferIds": [
+                "edge_reactant_1_to_operator_1",
+                "edge_reactant_2_to_operator_2",
+                "edge_reactant_3_to_operator_3",
+                "edge_operator_1_to_intermediate_1",
+                "edge_operator_1_to_intermediate_4",
+                "edge_operator_1_to_intermediate_5",
+                "edge_operator_2_to_intermediate_2",
+                "edge_operator_3_to_intermediate_3",
+                "edge_intermediate_1_to_product_operator_1",
+                "edge_intermediate_2_to_product_operator_2",
+                "edge_intermediate_3_to_product_operator_3",
+                "edge_intermediate_4_to_product_operator_4",
+                "edge_intermediate_5_to_product_operator_5",
+                "edge_product_operator_1_to_product_1",
+                "edge_product_operator_2_to_product_2",
+                "edge_product_operator_3_to_product_3",
+                "edge_product_operator_4_to_product_4",
+                "edge_product_operator_5_to_product_5"
+              ]
+            }
+          ],
+          "timeline": [
+            {
+              "t": 0,
+              "action": "dissociate",
+              "target": "transfer-set",
+              "params": {
+                "end": 8,
+                "transferIds": [
+                  "edge_reactant_1_to_operator_1",
+                  "edge_reactant_2_to_operator_2",
+                  "edge_reactant_3_to_operator_3",
+                  "edge_operator_1_to_intermediate_1",
+                  "edge_operator_1_to_intermediate_4",
+                  "edge_operator_1_to_intermediate_5",
+                  "edge_operator_2_to_intermediate_2",
+                  "edge_operator_3_to_intermediate_3",
+                  "edge_intermediate_1_to_product_operator_1",
+                  "edge_intermediate_2_to_product_operator_2",
+                  "edge_intermediate_3_to_product_operator_3",
+                  "edge_intermediate_4_to_product_operator_4",
+                  "edge_intermediate_5_to_product_operator_5",
+                  "edge_product_operator_1_to_product_1",
+                  "edge_product_operator_2_to_product_2",
+                  "edge_product_operator_3_to_product_3",
+                  "edge_product_operator_4_to_product_4",
+                  "edge_product_operator_5_to_product_5"
+                ]
+              }
+            },
+            {
+              "t": 8,
+              "action": "mapping",
+              "target": "transfer-set",
+              "params": {
+                "end": 16,
+                "transferIds": [
+                  "edge_reactant_1_to_operator_1",
+                  "edge_reactant_2_to_operator_2",
+                  "edge_reactant_3_to_operator_3",
+                  "edge_operator_1_to_intermediate_1",
+                  "edge_operator_1_to_intermediate_4",
+                  "edge_operator_1_to_intermediate_5",
+                  "edge_operator_2_to_intermediate_2",
+                  "edge_operator_3_to_intermediate_3",
+                  "edge_intermediate_1_to_product_operator_1",
+                  "edge_intermediate_2_to_product_operator_2",
+                  "edge_intermediate_3_to_product_operator_3",
+                  "edge_intermediate_4_to_product_operator_4",
+                  "edge_intermediate_5_to_product_operator_5",
+                  "edge_product_operator_1_to_product_1",
+                  "edge_product_operator_2_to_product_2",
+                  "edge_product_operator_3_to_product_3",
+                  "edge_product_operator_4_to_product_4",
+                  "edge_product_operator_5_to_product_5"
+                ]
+              }
+            },
+            {
+              "t": 16,
+              "action": "associate",
+              "target": "transfer-set",
+              "params": {
+                "end": 24,
+                "transferIds": [
+                  "edge_reactant_1_to_operator_1",
+                  "edge_reactant_2_to_operator_2",
+                  "edge_reactant_3_to_operator_3",
+                  "edge_operator_1_to_intermediate_1",
+                  "edge_operator_1_to_intermediate_4",
+                  "edge_operator_1_to_intermediate_5",
+                  "edge_operator_2_to_intermediate_2",
+                  "edge_operator_3_to_intermediate_3",
+                  "edge_intermediate_1_to_product_operator_1",
+                  "edge_intermediate_2_to_product_operator_2",
+                  "edge_intermediate_3_to_product_operator_3",
+                  "edge_intermediate_4_to_product_operator_4",
+                  "edge_intermediate_5_to_product_operator_5",
+                  "edge_product_operator_1_to_product_1",
+                  "edge_product_operator_2_to_product_2",
+                  "edge_product_operator_3_to_product_3",
+                  "edge_product_operator_4_to_product_4",
+                  "edge_product_operator_5_to_product_5"
+                ]
+              }
+            }
+          ],
+          "participants": [
+            {
+              "assembly": "unit_lane1_pro_down_quark_1row1",
+              "role": "reactant"
+            },
+            {
+              "assembly": "unit_lane2_dissociate_1",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane1_pro_up_quark_1row2",
+              "role": "reactant"
+            },
+            {
+              "assembly": "unit_lane2_pass_thru_1",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane1_pro_down_quark_2row3",
+              "role": "reactant"
+            },
+            {
+              "assembly": "unit_lane2_pass_thru_2",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane3_pro_up_quark_1row1",
+              "role": "intermediate"
+            },
+            {
+              "assembly": "unit_lane3_pro_electron_1row4",
+              "role": "intermediate"
+            },
+            {
+              "assembly": "unit_lane3_anti_electron_neutrino_1row5",
+              "role": "intermediate"
+            },
+            {
+              "assembly": "unit_lane3_pro_up_quark_2row2",
+              "role": "intermediate"
+            },
+            {
+              "assembly": "unit_lane3_pro_down_quark_1row3",
+              "role": "intermediate"
+            },
+            {
+              "assembly": "unit_lane4_pass_thru_1",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane4_pass_thru_2",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane4_pass_thru_3",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane4_pass_thru_4",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane4_pass_thru_5",
+              "role": "operator"
+            },
+            {
+              "assembly": "unit_lane5_pro_up_quark_1row1",
+              "role": "product"
+            },
+            {
+              "assembly": "unit_lane5_pro_down_quark_1row2",
+              "role": "product"
+            },
+            {
+              "assembly": "unit_lane5_pro_up_quark_2row3",
+              "role": "product"
+            },
+            {
+              "assembly": "unit_lane5_pro_electron_1row4",
+              "role": "product"
+            },
+            {
+              "assembly": "unit_lane5_anti_electron_neutrino_1row5",
+              "role": "product"
+            }
+          ]
+        }
+      ],
+      "transfers": [
+        {
+          "id": "edge_reactant_1_to_operator_1",
+          "source": {
+            "assemblyId": "unit_lane1_pro_down_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "t": 1.263
+        },
+        {
+          "id": "edge_reactant_2_to_operator_2",
+          "source": {
+            "assemblyId": "unit_lane1_pro_up_quark_1row2",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "t": 2.526
+        },
+        {
+          "id": "edge_reactant_3_to_operator_3",
+          "source": {
+            "assemblyId": "unit_lane1_pro_down_quark_2row3",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "t": 3.789
+        },
+        {
+          "id": "edge_operator_1_to_intermediate_1",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "t": 5.053
+        },
+        {
+          "id": "edge_operator_1_to_intermediate_4",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "t": 6.316
+        },
+        {
+          "id": "edge_operator_1_to_intermediate_5",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "t": 7.579
+        },
+        {
+          "id": "edge_operator_2_to_intermediate_2",
+          "source": {
+            "assemblyId": "unit_lane2_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_up_quark_2row2",
+            "memberId": "tile_1"
+          },
+          "t": 8.842
+        },
+        {
+          "id": "edge_operator_3_to_intermediate_3",
+          "source": {
+            "assemblyId": "unit_lane2_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_down_quark_1row3",
+            "memberId": "tile_1"
+          },
+          "t": 10.105
+        },
+        {
+          "id": "edge_intermediate_1_to_product_operator_1",
+          "source": {
+            "assemblyId": "unit_lane3_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "t": 11.368
+        },
+        {
+          "id": "edge_intermediate_2_to_product_operator_2",
+          "source": {
+            "assemblyId": "unit_lane3_pro_up_quark_2row2",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "t": 12.632
+        },
+        {
+          "id": "edge_intermediate_3_to_product_operator_3",
+          "source": {
+            "assemblyId": "unit_lane3_pro_down_quark_1row3",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_3",
+            "memberId": "positrino_port"
+          },
+          "t": 13.895
+        },
+        {
+          "id": "edge_intermediate_4_to_product_operator_4",
+          "source": {
+            "assemblyId": "unit_lane3_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_4",
+            "memberId": "positrino_port"
+          },
+          "t": 15.158
+        },
+        {
+          "id": "edge_intermediate_5_to_product_operator_5",
+          "source": {
+            "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_5",
+            "memberId": "positrino_port"
+          },
+          "t": 16.421
+        },
+        {
+          "id": "edge_product_operator_1_to_product_1",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "t": 17.684
+        },
+        {
+          "id": "edge_product_operator_2_to_product_2",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_down_quark_1row2",
+            "memberId": "tile_1"
+          },
+          "t": 18.947
+        },
+        {
+          "id": "edge_product_operator_3_to_product_3",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_3",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_up_quark_2row3",
+            "memberId": "tile_1"
+          },
+          "t": 20.211
+        },
+        {
+          "id": "edge_product_operator_4_to_product_4",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_4",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "t": 21.474
+        },
+        {
+          "id": "edge_product_operator_5_to_product_5",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_5",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "t": 22.737
+        }
+      ],
+      "provenance": [
+        {
+          "id": "provenance_edge_reactant_1_to_operator_1",
+          "transferId": "edge_reactant_1_to_operator_1",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane1_pro_down_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "t": 1.263,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_reactant_2_to_operator_2",
+          "transferId": "edge_reactant_2_to_operator_2",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane1_pro_up_quark_1row2",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "t": 2.526,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_reactant_3_to_operator_3",
+          "transferId": "edge_reactant_3_to_operator_3",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane1_pro_down_quark_2row3",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane2_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "t": 3.789,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_operator_1_to_intermediate_1",
+          "transferId": "edge_operator_1_to_intermediate_1",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "t": 5.053,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_operator_1_to_intermediate_4",
+          "transferId": "edge_operator_1_to_intermediate_4",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "t": 6.316,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_operator_1_to_intermediate_5",
+          "transferId": "edge_operator_1_to_intermediate_5",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane2_dissociate_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "t": 7.579,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_operator_2_to_intermediate_2",
+          "transferId": "edge_operator_2_to_intermediate_2",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane2_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_up_quark_2row2",
+            "memberId": "tile_1"
+          },
+          "t": 8.842,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_operator_3_to_intermediate_3",
+          "transferId": "edge_operator_3_to_intermediate_3",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane2_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane3_pro_down_quark_1row3",
+            "memberId": "tile_1"
+          },
+          "t": 10.105,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_intermediate_1_to_product_operator_1",
+          "transferId": "edge_intermediate_1_to_product_operator_1",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane3_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "t": 11.368,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_intermediate_2_to_product_operator_2",
+          "transferId": "edge_intermediate_2_to_product_operator_2",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane3_pro_up_quark_2row2",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "t": 12.632,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_intermediate_3_to_product_operator_3",
+          "transferId": "edge_intermediate_3_to_product_operator_3",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane3_pro_down_quark_1row3",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_3",
+            "memberId": "positrino_port"
+          },
+          "t": 13.895,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_intermediate_4_to_product_operator_4",
+          "transferId": "edge_intermediate_4_to_product_operator_4",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane3_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_4",
+            "memberId": "positrino_port"
+          },
+          "t": 15.158,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_intermediate_5_to_product_operator_5",
+          "transferId": "edge_intermediate_5_to_product_operator_5",
+          "memberId": "tile_1",
+          "source": {
+            "assemblyId": "unit_lane3_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "target": {
+            "assemblyId": "unit_lane4_pass_thru_5",
+            "memberId": "positrino_port"
+          },
+          "t": 16.421,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_product_operator_1_to_product_1",
+          "transferId": "edge_product_operator_1_to_product_1",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_1",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_up_quark_1row1",
+            "memberId": "tile_1"
+          },
+          "t": 17.684,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_product_operator_2_to_product_2",
+          "transferId": "edge_product_operator_2_to_product_2",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_2",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_down_quark_1row2",
+            "memberId": "tile_1"
+          },
+          "t": 18.947,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_product_operator_3_to_product_3",
+          "transferId": "edge_product_operator_3_to_product_3",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_3",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_up_quark_2row3",
+            "memberId": "tile_1"
+          },
+          "t": 20.211,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_product_operator_4_to_product_4",
+          "transferId": "edge_product_operator_4_to_product_4",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_4",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_pro_electron_1row4",
+            "memberId": "tile_1"
+          },
+          "t": 21.474,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        },
+        {
+          "id": "provenance_edge_product_operator_5_to_product_5",
+          "transferId": "edge_product_operator_5_to_product_5",
+          "memberId": "positrino_port",
+          "source": {
+            "assemblyId": "unit_lane4_pass_thru_5",
+            "memberId": "positrino_port"
+          },
+          "target": {
+            "assemblyId": "unit_lane5_anti_electron_neutrino_1row5",
+            "memberId": "tile_1"
+          },
+          "t": 22.737,
+          "reactionId": "pdgview_pdgsolve_free_neutron_beta_exact_accepted_pdgedit"
+        }
+      ],
+      "checkpoints": [],
+      "metadata": {
+        "source": "pdgview",
+        "sourceContract": {
+          "upstreamSchema": "pdgedit/v1",
+          "downstreamSchema": "pdgview-staging/v1",
+          "handoffMode": "accepted-pdgedit-import"
+        },
+        "pdgedit": {
+          "schema": "pdgedit/v1",
+          "documentId": "pdgsolve_free_neutron_beta_exact",
+          "title": "Free neutron beta exact",
+          "sourcePath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+          "assemblyCount": 13,
+          "operatorCount": 8,
+          "linkCount": 18
+        }
+      }
+    }
+  }
+}

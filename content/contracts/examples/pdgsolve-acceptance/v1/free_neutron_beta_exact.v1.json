@@ -1,0 +1,525 @@
+{
+  "schema": "pdgsolve-acceptance/v1",
+  "problemId": "pdgsolve_problem_free_neutron_beta_exact",
+  "familyId": "family.beta.exact.v1",
+  "resultDigest": "sha256:56d914744b8217e8cf4cffc25756ab55493d5f42fe0950d15745f44c2dbf18ec",
+  "acceptedScore": {
+    "exactness": 0,
+    "primitiveMismatch": 0,
+    "middleMismatch": 0,
+    "auxiliaryBurden": 0,
+    "nonIdentityOperatorCount": 1,
+    "dissociationCount": 1,
+    "ambiguityPenalty": 0,
+    "tieBreakKey": "beta_exact_primary"
+  },
+  "acceptedDiagnostics": [],
+  "acceptedState": "accepted",
+  "lockedNormalizationSummary": {
+    "addedSupportOccurrences": [],
+    "diagnostics": []
+  },
+  "lockedPolicySummary": {
+    "exactClosureRequired": true,
+    "allowedBoundaryAugmentations": [
+      "none"
+    ]
+  },
+  "lockedReactantAssemblies": [
+    {
+      "assemblyId": "pro_down_quark_I",
+      "count": 2
+    },
+    {
+      "assemblyId": "pro_up_quark_I",
+      "count": 1
+    }
+  ],
+  "lockedReactantSideOperators": [
+    {
+      "id": "reactant_operator.beta.dissociate.1",
+      "type": "dissociate",
+      "lawId": "law.down_quark.beta_decay.v1",
+      "inputOccurrenceKeys": [
+        "reactant_neutron_1.row.1"
+      ],
+      "outputOccurrenceKeys": [
+        "intermediate_beta_exact.row.1",
+        "intermediate_beta_exact.row.4",
+        "intermediate_beta_exact.row.5"
+      ]
+    },
+    {
+      "id": "reactant_operator.beta.pass_thru.1",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "reactant_neutron_1.row.2"
+      ],
+      "outputOccurrenceKeys": [
+        "intermediate_beta_exact.row.2"
+      ]
+    },
+    {
+      "id": "reactant_operator.beta.pass_thru.2",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "reactant_neutron_1.row.3"
+      ],
+      "outputOccurrenceKeys": [
+        "intermediate_beta_exact.row.3"
+      ]
+    }
+  ],
+  "lockedIntermediateAssemblies": [
+    {
+      "assemblyId": "pro_up_quark_I",
+      "count": 2
+    },
+    {
+      "assemblyId": "pro_down_quark_I",
+      "count": 1
+    },
+    {
+      "assemblyId": "pro_electron_I",
+      "count": 1
+    },
+    {
+      "assemblyId": "anti_electron_neutrino_I",
+      "count": 1
+    }
+  ],
+  "lockedProductSideOperators": [
+    {
+      "id": "product_operator.beta.pass_thru.1",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "intermediate_beta_exact.row.1"
+      ],
+      "outputOccurrenceKeys": [
+        "product_proton_1.row.1"
+      ]
+    },
+    {
+      "id": "product_operator.beta.pass_thru.2",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "intermediate_beta_exact.row.2"
+      ],
+      "outputOccurrenceKeys": [
+        "product_proton_1.row.2"
+      ]
+    },
+    {
+      "id": "product_operator.beta.pass_thru.3",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "intermediate_beta_exact.row.3"
+      ],
+      "outputOccurrenceKeys": [
+        "product_proton_1.row.3"
+      ]
+    },
+    {
+      "id": "product_operator.beta.pass_thru.4",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "intermediate_beta_exact.row.4"
+      ],
+      "outputOccurrenceKeys": [
+        "product_pro_electron_2"
+      ]
+    },
+    {
+      "id": "product_operator.beta.pass_thru.5",
+      "type": "pass-thru",
+      "lawId": null,
+      "inputOccurrenceKeys": [
+        "intermediate_beta_exact.row.5"
+      ],
+      "outputOccurrenceKeys": [
+        "product_anti_electron_neutrino_3"
+      ]
+    }
+  ],
+  "lockedProductAssemblies": [
+    {
+      "assemblyId": "pro_up_quark_I",
+      "count": 2
+    },
+    {
+      "assemblyId": "pro_down_quark_I",
+      "count": 1
+    },
+    {
+      "assemblyId": "pro_electron_I",
+      "count": 1
+    },
+    {
+      "assemblyId": "anti_electron_neutrino_I",
+      "count": 1
+    }
+  ],
+  "lockedProvenanceSummary": {
+    "summaryText": "One down-quark occurrence rewrites into an up quark, electron, and anti electron neutrino while the remaining quark rows pass through.",
+    "outputs": [
+      {
+        "occurrenceKey": "product_proton_1.row.1",
+        "provenanceClass": "active_rewrite",
+        "supportSourceRows": [],
+        "ambiguous": false
+      },
+      {
+        "occurrenceKey": "product_proton_1.row.2",
+        "provenanceClass": "pass_thru",
+        "supportSourceRows": [],
+        "ambiguous": false
+      },
+      {
+        "occurrenceKey": "product_proton_1.row.3",
+        "provenanceClass": "pass_thru",
+        "supportSourceRows": [],
+        "ambiguous": false
+      },
+      {
+        "occurrenceKey": "product_pro_electron_2",
+        "provenanceClass": "active_rewrite",
+        "supportSourceRows": [],
+        "ambiguous": false
+      },
+      {
+        "occurrenceKey": "product_anti_electron_neutrino_3",
+        "provenanceClass": "active_rewrite",
+        "supportSourceRows": [],
+        "ambiguous": false
+      }
+    ]
+  },
+  "lockedSolveGraph": {
+    "schema": "pdgsolve-publication-graph/v1",
+    "units": [
+      {
+        "id": "unit_lane1_pro_down_quark_1.row.1",
+        "kind": "assembly",
+        "stage": "reactantAssemblies",
+        "recipeId": "pro_down_quark_I",
+        "occurrenceKey": "reactant_neutron_1.row.1",
+        "title": "Pro Down Quark",
+        "anchorRow": 0
+      },
+      {
+        "id": "unit_lane1_pro_up_quark_1.row.2",
+        "kind": "assembly",
+        "stage": "reactantAssemblies",
+        "recipeId": "pro_up_quark_I",
+        "occurrenceKey": "reactant_neutron_1.row.2",
+        "title": "Pro Up Quark",
+        "anchorRow": 1
+      },
+      {
+        "id": "unit_lane1_pro_down_quark_2.row.3",
+        "kind": "assembly",
+        "stage": "reactantAssemblies",
+        "recipeId": "pro_down_quark_I",
+        "occurrenceKey": "reactant_neutron_1.row.3",
+        "title": "Pro Down Quark",
+        "anchorRow": 2
+      },
+      {
+        "id": "unit_lane2_dissociate_1",
+        "kind": "operator",
+        "stage": "reactantSideOperators",
+        "recipeId": "dissociate",
+        "occurrenceKey": "reactant_operator.beta.dissociate.1",
+        "title": "Dissociate",
+        "anchorRow": 0
+      },
+      {
+        "id": "unit_lane2_pass_thru_1",
+        "kind": "operator",
+        "stage": "reactantSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "reactant_operator.beta.pass_thru.1",
+        "title": "Pass Thru",
+        "anchorRow": 1
+      },
+      {
+        "id": "unit_lane2_pass_thru_2",
+        "kind": "operator",
+        "stage": "reactantSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "reactant_operator.beta.pass_thru.2",
+        "title": "Pass Thru",
+        "anchorRow": 2
+      },
+      {
+        "id": "unit_lane3_pro_up_quark_1.row.1",
+        "kind": "assembly",
+        "stage": "intermediateAssemblies",
+        "recipeId": "pro_up_quark_I",
+        "occurrenceKey": "intermediate_beta_exact.row.1",
+        "title": "Pro Up Quark",
+        "anchorRow": 0
+      },
+      {
+        "id": "unit_lane3_pro_up_quark_2.row.2",
+        "kind": "assembly",
+        "stage": "intermediateAssemblies",
+        "recipeId": "pro_up_quark_I",
+        "occurrenceKey": "intermediate_beta_exact.row.2",
+        "title": "Pro Up Quark",
+        "anchorRow": 1
+      },
+      {
+        "id": "unit_lane3_pro_down_quark_1.row.3",
+        "kind": "assembly",
+        "stage": "intermediateAssemblies",
+        "recipeId": "pro_down_quark_I",
+        "occurrenceKey": "intermediate_beta_exact.row.3",
+        "title": "Pro Down Quark",
+        "anchorRow": 2
+      },
+      {
+        "id": "unit_lane3_pro_electron_1.row.4",
+        "kind": "assembly",
+        "stage": "intermediateAssemblies",
+        "recipeId": "pro_electron_I",
+        "occurrenceKey": "intermediate_beta_exact.row.4",
+        "title": "Pro Electron",
+        "anchorRow": 3
+      },
+      {
+        "id": "unit_lane3_anti_electron_neutrino_1.row.5",
+        "kind": "assembly",
+        "stage": "intermediateAssemblies",
+        "recipeId": "anti_electron_neutrino_I",
+        "occurrenceKey": "intermediate_beta_exact.row.5",
+        "title": "Anti Electron Neutrino",
+        "anchorRow": 4
+      },
+      {
+        "id": "unit_lane4_pass_thru_1",
+        "kind": "operator",
+        "stage": "productSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "product_operator.beta.pass_thru.1",
+        "title": "Pass Thru",
+        "anchorRow": 0
+      },
+      {
+        "id": "unit_lane4_pass_thru_2",
+        "kind": "operator",
+        "stage": "productSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "product_operator.beta.pass_thru.2",
+        "title": "Pass Thru",
+        "anchorRow": 1
+      },
+      {
+        "id": "unit_lane4_pass_thru_3",
+        "kind": "operator",
+        "stage": "productSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "product_operator.beta.pass_thru.3",
+        "title": "Pass Thru",
+        "anchorRow": 2
+      },
+      {
+        "id": "unit_lane4_pass_thru_4",
+        "kind": "operator",
+        "stage": "productSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "product_operator.beta.pass_thru.4",
+        "title": "Pass Thru",
+        "anchorRow": 3
+      },
+      {
+        "id": "unit_lane4_pass_thru_5",
+        "kind": "operator",
+        "stage": "productSideOperators",
+        "recipeId": "pass-thru",
+        "occurrenceKey": "product_operator.beta.pass_thru.5",
+        "title": "Pass Thru",
+        "anchorRow": 4
+      },
+      {
+        "id": "unit_lane5_pro_up_quark_1.row.1",
+        "kind": "assembly",
+        "stage": "productAssemblies",
+        "recipeId": "pro_up_quark_I",
+        "occurrenceKey": "product_proton_1.row.1",
+        "title": "Pro Up Quark",
+        "anchorRow": 0
+      },
+      {
+        "id": "unit_lane5_pro_down_quark_1.row.2",
+        "kind": "assembly",
+        "stage": "productAssemblies",
+        "recipeId": "pro_down_quark_I",
+        "occurrenceKey": "product_proton_1.row.2",
+        "title": "Pro Down Quark",
+        "anchorRow": 1
+      },
+      {
+        "id": "unit_lane5_pro_up_quark_2.row.3",
+        "kind": "assembly",
+        "stage": "productAssemblies",
+        "recipeId": "pro_up_quark_I",
+        "occurrenceKey": "product_proton_1.row.3",
+        "title": "Pro Up Quark",
+        "anchorRow": 2
+      },
+      {
+        "id": "unit_lane5_pro_electron_1.row.4",
+        "kind": "assembly",
+        "stage": "productAssemblies",
+        "recipeId": "pro_electron_I",
+        "occurrenceKey": "product_pro_electron_2",
+        "title": "Pro Electron",
+        "anchorRow": 3
+      },
+      {
+        "id": "unit_lane5_anti_electron_neutrino_1.row.5",
+        "kind": "assembly",
+        "stage": "productAssemblies",
+        "recipeId": "anti_electron_neutrino_I",
+        "occurrenceKey": "product_anti_electron_neutrino_3",
+        "title": "Anti Electron Neutrino",
+        "anchorRow": 4
+      }
+    ],
+    "edges": [
+      {
+        "id": "reactant_1_to_operator_1",
+        "fromUnitId": "unit_lane1_pro_down_quark_1.row.1",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane2_dissociate_1",
+        "toPortId": "input"
+      },
+      {
+        "id": "reactant_2_to_operator_2",
+        "fromUnitId": "unit_lane1_pro_up_quark_1.row.2",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane2_pass_thru_1",
+        "toPortId": "input"
+      },
+      {
+        "id": "reactant_3_to_operator_3",
+        "fromUnitId": "unit_lane1_pro_down_quark_2.row.3",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane2_pass_thru_2",
+        "toPortId": "input"
+      },
+      {
+        "id": "operator_1_to_intermediate_1",
+        "fromUnitId": "unit_lane2_dissociate_1",
+        "fromPortId": "output_a",
+        "toUnitId": "unit_lane3_pro_up_quark_1.row.1",
+        "toPortId": "input"
+      },
+      {
+        "id": "operator_1_to_intermediate_4",
+        "fromUnitId": "unit_lane2_dissociate_1",
+        "fromPortId": "output_b",
+        "toUnitId": "unit_lane3_pro_electron_1.row.4",
+        "toPortId": "input"
+      },
+      {
+        "id": "operator_1_to_intermediate_5",
+        "fromUnitId": "unit_lane2_dissociate_1",
+        "fromPortId": "output_c",
+        "toUnitId": "unit_lane3_anti_electron_neutrino_1.row.5",
+        "toPortId": "input"
+      },
+      {
+        "id": "operator_2_to_intermediate_2",
+        "fromUnitId": "unit_lane2_pass_thru_1",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane3_pro_up_quark_2.row.2",
+        "toPortId": "input"
+      },
+      {
+        "id": "operator_3_to_intermediate_3",
+        "fromUnitId": "unit_lane2_pass_thru_2",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane3_pro_down_quark_1.row.3",
+        "toPortId": "input"
+      },
+      {
+        "id": "intermediate_1_to_product_operator_1",
+        "fromUnitId": "unit_lane3_pro_up_quark_1.row.1",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane4_pass_thru_1",
+        "toPortId": "input"
+      },
+      {
+        "id": "intermediate_2_to_product_operator_2",
+        "fromUnitId": "unit_lane3_pro_up_quark_2.row.2",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane4_pass_thru_2",
+        "toPortId": "input"
+      },
+      {
+        "id": "intermediate_3_to_product_operator_3",
+        "fromUnitId": "unit_lane3_pro_down_quark_1.row.3",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane4_pass_thru_3",
+        "toPortId": "input"
+      },
+      {
+        "id": "intermediate_4_to_product_operator_4",
+        "fromUnitId": "unit_lane3_pro_electron_1.row.4",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane4_pass_thru_4",
+        "toPortId": "input"
+      },
+      {
+        "id": "intermediate_5_to_product_operator_5",
+        "fromUnitId": "unit_lane3_anti_electron_neutrino_1.row.5",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane4_pass_thru_5",
+        "toPortId": "input"
+      },
+      {
+        "id": "product_operator_1_to_product_1",
+        "fromUnitId": "unit_lane4_pass_thru_1",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane5_pro_up_quark_1.row.1",
+        "toPortId": "input"
+      },
+      {
+        "id": "product_operator_2_to_product_2",
+        "fromUnitId": "unit_lane4_pass_thru_2",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane5_pro_down_quark_1.row.2",
+        "toPortId": "input"
+      },
+      {
+        "id": "product_operator_3_to_product_3",
+        "fromUnitId": "unit_lane4_pass_thru_3",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane5_pro_up_quark_2.row.3",
+        "toPortId": "input"
+      },
+      {
+        "id": "product_operator_4_to_product_4",
+        "fromUnitId": "unit_lane4_pass_thru_4",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane5_pro_electron_1.row.4",
+        "toPortId": "input"
+      },
+      {
+        "id": "product_operator_5_to_product_5",
+        "fromUnitId": "unit_lane4_pass_thru_5",
+        "fromPortId": "output",
+        "toUnitId": "unit_lane5_anti_electron_neutrino_1.row.5",
+        "toPortId": "input"
+      }
+    ]
+  }
+}
