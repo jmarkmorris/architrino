@@ -451,6 +451,7 @@ export async function exportPdgeditReviewPageWithEdge({
   try {
     if (pngOutputPath) {
       fs.mkdirSync(path.dirname(pngOutputPath), { recursive: true });
+      fs.rmSync(pngOutputPath, { force: true });
       console.log(`Starting browser PNG export for ${pageUrl}`);
       await runEdgeCommand(browserPath, [
         ...commonArgs,
@@ -465,6 +466,7 @@ export async function exportPdgeditReviewPageWithEdge({
 
     if (pdfOutputPath) {
       fs.mkdirSync(path.dirname(pdfOutputPath), { recursive: true });
+      fs.rmSync(pdfOutputPath, { force: true });
       console.log(`Starting browser PDF export for ${pageUrl}`);
       await runEdgeCommand(browserPath, [
         ...commonArgs,

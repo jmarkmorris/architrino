@@ -52,6 +52,18 @@
       ]
     },
     {
+      "key": "noether-sea",
+      "title": "Noether Sea",
+      "rows": [
+        [
+          "noether",
+          "pro-noether-core-glyph",
+          "anti-noether-core-glyph",
+          "sea"
+        ]
+      ]
+    },
+    {
       "key": "pro-tau",
       "title": "Pro Tau",
       "rows": [
