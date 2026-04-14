@@ -120,11 +120,13 @@ def format_table(limit: int, compress: bool) -> str:
         abbreviated_rows = (
             compress_noble_core(occupancy, atomic_number) if compress else full_rows
         )
-        standard_configuration = element["electron_configuration"]
+        standard_configuration = "<br>".join(
+            f"`{part}`" for part in element["electron_configuration"].split()
+        )
         full_text = "<br>".join(f"`{row}`" for row in full_rows)
         abbreviated_text = "<br>".join(f"`{row}`" for row in abbreviated_rows)
         lines.append(
-            f"| {atomic_number} | {element['name']} | `{standard_configuration}` | {full_text} | {abbreviated_text} |"
+            f"| {atomic_number} | {element['name']} | {standard_configuration} | {full_text} | {abbreviated_text} |"
         )
     return "\n".join(lines)
 
