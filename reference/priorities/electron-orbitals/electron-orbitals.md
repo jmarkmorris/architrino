@@ -85,11 +85,6 @@ To build the right intuition, you have to abandon the old solar-system picture o
 - **$d$ orbitals:** A five-orbital family with more elaborate angular structure. Four are often drawn as cloverleafs; one is commonly represented as a dumbbell with a torus around the center.
 - **$f$ orbitals:** A seven-orbital family with still more intricate multi-lobed shapes. These become important in heavier atoms and in the chemistry and magnetism of lanthanides and actinides.
 
-Two analogies are useful and complementary:
-
-- **Hotel analogy:** The atom is a structured hotel. The energy level $n$ is the floor, the subshell letter is the suite type on that floor, and the superscript tells you how many guests are staying in those suites.
-- **Address analogy:** The full set of quantum numbers gives a complete address. $n$ picks the floor, $l$ the wing, $m_l$ the room orientation, and $m_s$ the bed. No two electrons in the same atom can share the same full address.
-
 ### 4. Filling Order: The Aufbau Pattern
 
 Electrons fill orbitals from lower energy to higher energy, but that order is not a simple march of $n = 1, 2, 3, 4, \dots$. The ordering depends on both the principal level and the subshell type.
