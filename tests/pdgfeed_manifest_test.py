@@ -250,7 +250,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
         )
 
-    def test_kaons_d_mesons_sigma_xi_baryons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
+    def test_kaons_d_mesons_sigma_xi_lambda_omega_baryons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
         expected = {
             "eta": [
                 "pro_up_quark_I",
@@ -282,6 +282,8 @@ class PdgfeedContractTests(unittest.TestCase):
             "K0": ["pro_down_quark_I", "anti_strange_quark_II"],
             "K-": ["anti_up_quark_I", "pro_strange_quark_II"],
             "anti-K0": ["anti_down_quark_I", "pro_strange_quark_II"],
+            "ubar": ["anti_up_quark_I"],
+            "cbar": ["anti_charm_quark_II"],
             "Dbar0": ["anti_charm_quark_II", "pro_up_quark_I"],
             "D0": ["pro_charm_quark_II", "anti_up_quark_I"],
             "D+": ["pro_charm_quark_II", "anti_down_quark_I"],
@@ -296,6 +298,11 @@ class PdgfeedContractTests(unittest.TestCase):
             "Xi0": ["pro_up_quark_I", "pro_strange_quark_II", "pro_strange_quark_II"],
             "Xibar+": ["anti_down_quark_I", "anti_strange_quark_II", "anti_strange_quark_II"],
             "Xibar0": ["anti_up_quark_I", "anti_strange_quark_II", "anti_strange_quark_II"],
+            "Lambda0": ["pro_up_quark_I", "pro_down_quark_I", "pro_strange_quark_II"],
+            "Lambdabar0": ["anti_up_quark_I", "anti_down_quark_I", "anti_strange_quark_II"],
+            "Omega-": ["pro_strange_quark_II", "pro_strange_quark_II", "pro_strange_quark_II"],
+            "Omegabar+": ["anti_strange_quark_II", "anti_strange_quark_II", "anti_strange_quark_II"],
+            "tbar": ["anti_top_quark_III"],
             "B+": ["pro_up_quark_I", "anti_bottom_quark_III"],
             "B0": ["pro_down_quark_I", "anti_bottom_quark_III"],
             "B-": ["anti_up_quark_I", "pro_bottom_quark_III"],
@@ -506,6 +513,112 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(row_by_id["b0_test_b0_sigmam"]["product_names_aaa"], "d.d.d2.ad.ad.ad2")
         self.assertEqual(row_by_id["b0_test_b0_xi0"]["product_names_aaa"], "u.d2.d2.au.ad2.ad2")
         self.assertEqual(row_by_id["b0_test_b0_xim"]["product_names_aaa"], "d.d2.d2.ad.ad2.ad2")
+
+    def test_lambda_omega_and_quark_bar_aliases_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B0.LAMBDA",
+                            "B0 -> Lambda0 Lambdabar0",
+                            [FakeDecayProduct("Lambda0"), FakeDecayProduct("Lambdabar0")],
+                        ),
+                        FakeDecay(
+                            "TEST.B0.OMEGA",
+                            "B0 -> Omega- Omegabar+",
+                            [FakeDecayProduct("Omega-"), FakeDecayProduct("Omegabar+")],
+                            mode_number=2,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.CBAR",
+                            "B0 -> cbar c",
+                            [FakeDecayProduct("cbar"), FakeDecayProduct("c")],
+                            mode_number=3,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.UBAR",
+                            "B0 -> ubar u",
+                            [FakeDecayProduct("ubar"), FakeDecayProduct("u")],
+                            mode_number=4,
+                        ),
+                    ],
+                    mcid=511,
+                ),
+                FakeParticle(
+                    "t",
+                    [
+                        FakeDecay(
+                            "TEST.T.TBAR",
+                            "t -> tbar H u",
+                            [FakeDecayProduct("tbar"), FakeDecayProduct("H"), FakeDecayProduct("u")],
+                        )
+                    ],
+                    mcid=6,
+                ),
+            ]
+        )
+
+        lambda_case = pdgfeed.load_live_case_by_id("b0_test_b0_lambda", api=api)
+        omega_case = pdgfeed.load_live_case_by_id("b0_test_b0_omega", api=api)
+        cbar_case = pdgfeed.load_live_case_by_id("b0_test_b0_cbar", api=api)
+        ubar_case = pdgfeed.load_live_case_by_id("b0_test_b0_ubar", api=api)
+        tbar_transform = pdgfeed.transform_proposal_for_pdgsolve(
+            pdgfeed.build_proposal(
+                pdgfeed.PdgCase(
+                    case_id="tbar-case",
+                    proposal_id="tbar-case",
+                    title="tbar",
+                    source_kind="pdg-live",
+                    source={"mcid": -6, "pdgIdentifier": "fake"},
+                    reactants=(pdgfeed.CaseParticle(name="tbar", pdg_id="tbar"),),
+                    products=(),
+                )
+            )
+        )
+
+        lambda_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(lambda_case))
+        omega_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(omega_case))
+        cbar_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(cbar_case))
+        ubar_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(ubar_case))
+
+        self.assertIsNotNone(lambda_request)
+        self.assertIsNotNone(omega_request)
+        self.assertIsNotNone(cbar_request)
+        self.assertIsNotNone(ubar_request)
+        self.assertIsNotNone(tbar_transform)
+
+        lambda_products = [entry["assemblyId"] for entry in lambda_request["products"]]
+        omega_products = [entry["assemblyId"] for entry in omega_request["products"]]
+        cbar_products = [entry["assemblyId"] for entry in cbar_request["products"]]
+        ubar_products = [entry["assemblyId"] for entry in ubar_request["products"]]
+
+        self.assertEqual(
+            lambda_products,
+            [
+                "pro_up_quark_I",
+                "pro_down_quark_I",
+                "pro_strange_quark_II",
+                "anti_up_quark_I",
+                "anti_down_quark_I",
+                "anti_strange_quark_II",
+            ],
+        )
+        self.assertEqual(
+            omega_products,
+            [
+                "pro_strange_quark_II",
+                "pro_strange_quark_II",
+                "pro_strange_quark_II",
+                "anti_strange_quark_II",
+                "anti_strange_quark_II",
+                "anti_strange_quark_II",
+            ],
+        )
+        self.assertEqual(cbar_products, ["anti_charm_quark_II", "pro_charm_quark_II"])
+        self.assertEqual(ubar_products, ["anti_up_quark_I", "pro_up_quark_I"])
+        self.assertEqual([entry["assemblyId"] for entry in tbar_transform["reactants"]], ["anti_top_quark_III"])
 
     def test_eta_decay_moves_from_backlog_to_supported_with_six_quark_expansion(self):
         api = FakeApi(

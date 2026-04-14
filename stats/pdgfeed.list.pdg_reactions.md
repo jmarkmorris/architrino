@@ -605,7 +605,7 @@
 | u | 521 | S041.608/2025 | b_plus_s041_608 | B+ decay mode 598 | B+ -> p pbar pi+ | incomplete | blocked |
 | u | 521 | S041.609/2025 | b_plus_s041_609 | B+ decay mode 599 | B+ -> D+ anti-p p pi- pi+ | supported | ready |
 | u | 521 | S041.610/2025 | b_plus_s041_610 | B+ decay mode 600 | B+ -> p pbar pi+ pi- | incomplete | blocked |
-| u | 521 | S041.577/2025 | b_plus_s041_577 | B+ decay mode 601 | B+ -> p Lambdabar0 Dbar0 | backlog | blocked |
+| u | 521 | S041.577/2025 | b_plus_s041_577 | B+ decay mode 601 | B+ -> p Lambdabar0 Dbar0 | supported | ready |
 | u | 521 | S041.578/2025 | b_plus_s041_578 | B+ decay mode 602 | B+ -> p Lambdabar0 Dbar^*(2007)0 | backlog | blocked |
 | u | 521 | S041.239/2025 | b_plus_s041_239 | B+ decay mode 603 | B+ -> Lambdabar_c()- p pi+ | backlog | blocked |
 | u | 521 | S041.817/2025 | b_plus_s041_817 | B+ decay mode 604 | B+ -> Lambdabar_c()- p K+ | backlog | blocked |
@@ -695,10 +695,10 @@
 | u | 521 | S041.604/2025 | b_plus_s041_604 | B+ decay mode 688 | B+ -> mu+ mu+ | incomplete | blocked |
 | u | 521 | S041.605/2025 | b_plus_s041_605 | B+ decay mode 689 | B+ -> D_s()- mu+ mu+ | backlog | blocked |
 | u | 521 | S041.606/2025 | b_plus_s041_606 | B+ decay mode 690 | B+ -> Dbar0 pi- mu+ mu+ | supported | ready |
-| u | 521 | S041.567/2025 | b_plus_s041_567 | B+ decay mode 691 | B+ -> Lambda0 mu+ | backlog | blocked |
-| u | 521 | S041.568/2025 | b_plus_s041_568 | B+ decay mode 692 | B+ -> Lambda0 e+ | backlog | blocked |
-| u | 521 | S041.569/2025 | b_plus_s041_569 | B+ decay mode 693 | B+ -> Lambdabar0 mu+ | backlog | blocked |
-| u | 521 | S041.570/2025 | b_plus_s041_570 | B+ decay mode 694 | B+ -> Lambdabar0 e+ | backlog | blocked |
+| u | 521 | S041.567/2025 | b_plus_s041_567 | B+ decay mode 691 | B+ -> Lambda0 mu+ | supported | ready |
+| u | 521 | S041.568/2025 | b_plus_s041_568 | B+ decay mode 692 | B+ -> Lambda0 e+ | supported | ready |
+| u | 521 | S041.569/2025 | b_plus_s041_569 | B+ decay mode 693 | B+ -> Lambdabar0 mu+ | supported | ready |
+| u | 521 | S041.570/2025 | b_plus_s041_570 | B+ decay mode 694 | B+ -> Lambdabar0 e+ | supported | ready |
 | u | -521 | S041.220/2025 | b_minus_s041_220 | B- decay mode 1 | B- -> lepton+ nu_lepton X | incomplete | blocked |
 | u | -521 | S041.473/2025 | b_minus_s041_473 | B- decay mode 2 | B- -> e- anti-nu_e | incomplete | blocked |
 | u | -521 | S041.814/2025 | b_minus_s041_814 | B- decay mode 3 | B- -> e- anti-nu_e | incomplete | blocked |
@@ -1299,7 +1299,7 @@
 | u | -521 | S041.608/2025 | b_minus_s041_608 | B- decay mode 598 | B- -> anti-p p pi- | incomplete | blocked |
 | u | -521 | S041.609/2025 | b_minus_s041_609 | B- decay mode 599 | B- -> D- p pbar pi+ pi- | supported | ready |
 | u | -521 | S041.610/2025 | b_minus_s041_610 | B- decay mode 600 | B- -> p pbar pi+ pi- | incomplete | blocked |
-| u | -521 | S041.577/2025 | b_minus_s041_577 | B- decay mode 601 | B- -> p Lambdabar0 Dbar0 | backlog | blocked |
+| u | -521 | S041.577/2025 | b_minus_s041_577 | B- decay mode 601 | B- -> anti-p Lambda0 D0 | supported | ready |
 | u | -521 | S041.578/2025 | b_minus_s041_578 | B- decay mode 602 | B- -> p Lambdabar0 Dbar^*(2007)0 | backlog | blocked |
 | u | -521 | S041.239/2025 | b_minus_s041_239 | B- decay mode 603 | B- -> Lambdabar_c()- p pi+ | backlog | blocked |
 | u | -521 | S041.817/2025 | b_minus_s041_817 | B- decay mode 604 | B- -> Lambdabar_c()- p K+ | backlog | blocked |
@@ -1389,10 +1389,10 @@
 | u | -521 | S041.604/2025 | b_minus_s041_604 | B- decay mode 688 | B- -> mu+ mu+ | incomplete | blocked |
 | u | -521 | S041.605/2025 | b_minus_s041_605 | B- decay mode 689 | B- -> D_s()- mu+ mu+ | backlog | blocked |
 | u | -521 | S041.606/2025 | b_minus_s041_606 | B- decay mode 690 | B- -> D0 pi+ mu- mu- | supported | ready |
-| u | -521 | S041.567/2025 | b_minus_s041_567 | B- decay mode 691 | B- -> Lambda0 mu+ | backlog | blocked |
-| u | -521 | S041.568/2025 | b_minus_s041_568 | B- decay mode 692 | B- -> Lambda0 e+ | backlog | blocked |
-| u | -521 | S041.569/2025 | b_minus_s041_569 | B- decay mode 693 | B- -> Lambdabar0 mu+ | backlog | blocked |
-| u | -521 | S041.570/2025 | b_minus_s041_570 | B- decay mode 694 | B- -> Lambdabar0 e+ | backlog | blocked |
+| u | -521 | S041.567/2025 | b_minus_s041_567 | B- decay mode 691 | B- -> Lambdabar0 mu- | supported | ready |
+| u | -521 | S041.568/2025 | b_minus_s041_568 | B- decay mode 692 | B- -> Lambdabar0 e- | supported | ready |
+| u | -521 | S041.569/2025 | b_minus_s041_569 | B- decay mode 693 | B- -> Lambda0 mu- | supported | ready |
+| u | -521 | S041.570/2025 | b_minus_s041_570 | B- decay mode 694 | B- -> Lambda0 e- | supported | ready |
 | u | 511 | S042.94/2025 | b0_s042_94 | B0 decay mode 1 | B0 -> lepton+ nu_lepton X | incomplete | blocked |
 | u | 511 | S042.375/2025 | b0_s042_375 | B0 decay mode 2 | B0 -> e+ nu_e | incomplete | blocked |
 | u | 511 | S042.612/2025 | b0_s042_612 | B0 decay mode 3 | B0 -> lepton+ nu_lepton X_u | incomplete | blocked |
@@ -6585,22 +6585,22 @@
 | u | 0 | B042.2/2025 | lambda_2350_0_b042_2 | Lambda(2350)0 decay mode 2 | Lambda(2350)0 -> pi | incomplete | blocked |
 | u | 0 | B042.3/2025 | lambda_2350_0_b042_3 | Lambda(2350)0 decay mode 3 | Lambda(2350)0 -> Lambda omega | incomplete | blocked |
 | u | 0 | B007.1/2025 | lambda_2585_0_b007_1 | Lambda(2585)0 decay mode 1 | Lambda(2585)0 -> N | incomplete | blocked |
-| u | 3122 | S018.1/2025 | lambda0_s018_1 | Lambda0 decay mode 1 | Lambda0 -> p pi- | backlog | blocked |
-| u | 3122 | S018.2/2025 | lambda0_s018_2 | Lambda0 decay mode 2 | Lambda0 -> n pi0 | backlog | blocked |
-| u | 3122 | S018.6/2025 | lambda0_s018_6 | Lambda0 decay mode 3 | Lambda0 -> n gamma | backlog | blocked |
-| u | 3122 | S018.5/2025 | lambda0_s018_5 | Lambda0 decay mode 4 | Lambda0 -> p pi- gamma | backlog | blocked |
-| u | 3122 | S018.4/2025 | lambda0_s018_4 | Lambda0 decay mode 5 | Lambda0 -> p e- nubar_e | backlog | blocked |
-| u | 3122 | S018.3/2025 | lambda0_s018_3 | Lambda0 decay mode 6 | Lambda0 -> p mu- nubar_mu | backlog | blocked |
-| u | 3122 | S018.7/2025 | lambda0_s018_7 | Lambda0 decay mode 7 | Lambda0 -> pi+ e- | backlog | blocked |
-| u | 3122 | S018.8/2025 | lambda0_s018_8 | Lambda0 decay mode 8 | Lambda0 -> pi+ mu- | backlog | blocked |
-| u | 3122 | S018.9/2025 | lambda0_s018_9 | Lambda0 decay mode 9 | Lambda0 -> pi- e+ | backlog | blocked |
-| u | 3122 | S018.10/2025 | lambda0_s018_10 | Lambda0 decay mode 10 | Lambda0 -> pi- mu+ | backlog | blocked |
-| u | 3122 | S018.11/2025 | lambda0_s018_11 | Lambda0 decay mode 11 | Lambda0 -> K+ e- | backlog | blocked |
-| u | 3122 | S018.12/2025 | lambda0_s018_12 | Lambda0 decay mode 12 | Lambda0 -> K+ mu- | backlog | blocked |
-| u | 3122 | S018.13/2025 | lambda0_s018_13 | Lambda0 decay mode 13 | Lambda0 -> K- e+ | backlog | blocked |
-| u | 3122 | S018.14/2025 | lambda0_s018_14 | Lambda0 decay mode 14 | Lambda0 -> K- mu+ | backlog | blocked |
+| u | 3122 | S018.1/2025 | lambda0_s018_1 | Lambda0 decay mode 1 | Lambda0 -> p pi- | supported | ready |
+| u | 3122 | S018.2/2025 | lambda0_s018_2 | Lambda0 decay mode 2 | Lambda0 -> n pi0 | supported | ready |
+| u | 3122 | S018.6/2025 | lambda0_s018_6 | Lambda0 decay mode 3 | Lambda0 -> n gamma | supported | ready |
+| u | 3122 | S018.5/2025 | lambda0_s018_5 | Lambda0 decay mode 4 | Lambda0 -> p pi- gamma | supported | ready |
+| u | 3122 | S018.4/2025 | lambda0_s018_4 | Lambda0 decay mode 5 | Lambda0 -> p e- nubar_e | supported | ready |
+| u | 3122 | S018.3/2025 | lambda0_s018_3 | Lambda0 decay mode 6 | Lambda0 -> p mu- nubar_mu | supported | ready |
+| u | 3122 | S018.7/2025 | lambda0_s018_7 | Lambda0 decay mode 7 | Lambda0 -> pi+ e- | supported | ready |
+| u | 3122 | S018.8/2025 | lambda0_s018_8 | Lambda0 decay mode 8 | Lambda0 -> pi+ mu- | supported | ready |
+| u | 3122 | S018.9/2025 | lambda0_s018_9 | Lambda0 decay mode 9 | Lambda0 -> pi- e+ | supported | ready |
+| u | 3122 | S018.10/2025 | lambda0_s018_10 | Lambda0 decay mode 10 | Lambda0 -> pi- mu+ | supported | ready |
+| u | 3122 | S018.11/2025 | lambda0_s018_11 | Lambda0 decay mode 11 | Lambda0 -> K+ e- | supported | ready |
+| u | 3122 | S018.12/2025 | lambda0_s018_12 | Lambda0 decay mode 12 | Lambda0 -> K+ mu- | supported | ready |
+| u | 3122 | S018.13/2025 | lambda0_s018_13 | Lambda0 decay mode 13 | Lambda0 -> K- e+ | supported | ready |
+| u | 3122 | S018.14/2025 | lambda0_s018_14 | Lambda0 decay mode 14 | Lambda0 -> K- mu+ | supported | ready |
 | u | 3122 | S018.15/2025 | lambda0_s018_15 | Lambda0 decay mode 15 | Lambda0 -> K0S | incomplete | blocked |
-| u | 3122 | S018.16/2025 | lambda0_s018_16 | Lambda0 decay mode 16 | Lambda0 -> pbar pi+ | backlog | blocked |
+| u | 3122 | S018.16/2025 | lambda0_s018_16 | Lambda0 decay mode 16 | Lambda0 -> pbar pi+ | supported | ready |
 | u | 3122 | S018.103/2025 | lambda0_s018_103 | Lambda0 decay mode 17 | Lambda0 -> invisible | incomplete | blocked |
 | u | 5122 | S040.3/2025 | lambda_b_0_s040_3 | Lambda_b()0 decay mode 1 | Lambda_b()0 -> J/psi(1S) Lambda x B(b -> Lambda_b()0) | incomplete | blocked |
 | u | 5122 | S040.39/2025 | lambda_b_0_s040_39 | Lambda_b()0 decay mode 2 | Lambda_b()0 -> J/psi(1S) | incomplete | blocked |
@@ -7017,22 +7017,22 @@
 | u | 0 | B042.2/2025 | lambdabar_2350_0_b042_2 | Lambdabar(2350)0 decay mode 2 | Lambdabar(2350)0 -> pi | incomplete | blocked |
 | u | 0 | B042.3/2025 | lambdabar_2350_0_b042_3 | Lambdabar(2350)0 decay mode 3 | Lambdabar(2350)0 -> Lambda omega | incomplete | blocked |
 | u | 0 | B007.1/2025 | lambdabar_2585_0_b007_1 | Lambdabar(2585)0 decay mode 1 | Lambdabar(2585)0 -> N | incomplete | blocked |
-| u | -3122 | S018.1/2025 | lambdabar0_s018_1 | Lambdabar0 decay mode 1 | Lambdabar0 -> p pi- | backlog | blocked |
-| u | -3122 | S018.2/2025 | lambdabar0_s018_2 | Lambdabar0 decay mode 2 | Lambdabar0 -> n pi0 | backlog | blocked |
-| u | -3122 | S018.6/2025 | lambdabar0_s018_6 | Lambdabar0 decay mode 3 | Lambdabar0 -> n gamma | backlog | blocked |
-| u | -3122 | S018.5/2025 | lambdabar0_s018_5 | Lambdabar0 decay mode 4 | Lambdabar0 -> p pi- gamma | backlog | blocked |
-| u | -3122 | S018.4/2025 | lambdabar0_s018_4 | Lambdabar0 decay mode 5 | Lambdabar0 -> p e- nubar_e | backlog | blocked |
-| u | -3122 | S018.3/2025 | lambdabar0_s018_3 | Lambdabar0 decay mode 6 | Lambdabar0 -> p mu- nubar_mu | backlog | blocked |
-| u | -3122 | S018.7/2025 | lambdabar0_s018_7 | Lambdabar0 decay mode 7 | Lambdabar0 -> pi+ e- | backlog | blocked |
-| u | -3122 | S018.8/2025 | lambdabar0_s018_8 | Lambdabar0 decay mode 8 | Lambdabar0 -> pi+ mu- | backlog | blocked |
-| u | -3122 | S018.9/2025 | lambdabar0_s018_9 | Lambdabar0 decay mode 9 | Lambdabar0 -> pi- e+ | backlog | blocked |
-| u | -3122 | S018.10/2025 | lambdabar0_s018_10 | Lambdabar0 decay mode 10 | Lambdabar0 -> pi- mu+ | backlog | blocked |
-| u | -3122 | S018.11/2025 | lambdabar0_s018_11 | Lambdabar0 decay mode 11 | Lambdabar0 -> K+ e- | backlog | blocked |
-| u | -3122 | S018.12/2025 | lambdabar0_s018_12 | Lambdabar0 decay mode 12 | Lambdabar0 -> K+ mu- | backlog | blocked |
-| u | -3122 | S018.13/2025 | lambdabar0_s018_13 | Lambdabar0 decay mode 13 | Lambdabar0 -> K- e+ | backlog | blocked |
-| u | -3122 | S018.14/2025 | lambdabar0_s018_14 | Lambdabar0 decay mode 14 | Lambdabar0 -> K- mu+ | backlog | blocked |
+| u | -3122 | S018.1/2025 | lambdabar0_s018_1 | Lambdabar0 decay mode 1 | Lambdabar0 -> p pi- | supported | ready |
+| u | -3122 | S018.2/2025 | lambdabar0_s018_2 | Lambdabar0 decay mode 2 | Lambdabar0 -> n pi0 | supported | ready |
+| u | -3122 | S018.6/2025 | lambdabar0_s018_6 | Lambdabar0 decay mode 3 | Lambdabar0 -> n gamma | supported | ready |
+| u | -3122 | S018.5/2025 | lambdabar0_s018_5 | Lambdabar0 decay mode 4 | Lambdabar0 -> p pi- gamma | supported | ready |
+| u | -3122 | S018.4/2025 | lambdabar0_s018_4 | Lambdabar0 decay mode 5 | Lambdabar0 -> p e- nubar_e | supported | ready |
+| u | -3122 | S018.3/2025 | lambdabar0_s018_3 | Lambdabar0 decay mode 6 | Lambdabar0 -> p mu- nubar_mu | supported | ready |
+| u | -3122 | S018.7/2025 | lambdabar0_s018_7 | Lambdabar0 decay mode 7 | Lambdabar0 -> pi+ e- | supported | ready |
+| u | -3122 | S018.8/2025 | lambdabar0_s018_8 | Lambdabar0 decay mode 8 | Lambdabar0 -> pi+ mu- | supported | ready |
+| u | -3122 | S018.9/2025 | lambdabar0_s018_9 | Lambdabar0 decay mode 9 | Lambdabar0 -> pi- e+ | supported | ready |
+| u | -3122 | S018.10/2025 | lambdabar0_s018_10 | Lambdabar0 decay mode 10 | Lambdabar0 -> pi- mu+ | supported | ready |
+| u | -3122 | S018.11/2025 | lambdabar0_s018_11 | Lambdabar0 decay mode 11 | Lambdabar0 -> K+ e- | supported | ready |
+| u | -3122 | S018.12/2025 | lambdabar0_s018_12 | Lambdabar0 decay mode 12 | Lambdabar0 -> K+ mu- | supported | ready |
+| u | -3122 | S018.13/2025 | lambdabar0_s018_13 | Lambdabar0 decay mode 13 | Lambdabar0 -> K- e+ | supported | ready |
+| u | -3122 | S018.14/2025 | lambdabar0_s018_14 | Lambdabar0 decay mode 14 | Lambdabar0 -> K- mu+ | supported | ready |
 | u | -3122 | S018.15/2025 | lambdabar0_s018_15 | Lambdabar0 decay mode 15 | Lambdabar0 -> K0S | incomplete | blocked |
-| u | -3122 | S018.16/2025 | lambdabar0_s018_16 | Lambdabar0 decay mode 16 | Lambdabar0 -> pbar pi+ | backlog | blocked |
+| u | -3122 | S018.16/2025 | lambdabar0_s018_16 | Lambdabar0 decay mode 16 | Lambdabar0 -> pbar pi+ | supported | ready |
 | u | -3122 | S018.103/2025 | lambdabar0_s018_103 | Lambdabar0 decay mode 17 | Lambdabar0 -> invisible | incomplete | blocked |
 | u | -5122 | S040.3/2025 | lambdabar_b_0_s040_3 | Lambdabar_b()0 decay mode 1 | Lambdabar_b()0 -> J/psi(1S) Lambda x B(b -> Lambda_b()0) | incomplete | blocked |
 | u | -5122 | S040.39/2025 | lambdabar_b_0_s040_39 | Lambdabar_b()0 decay mode 2 | Lambdabar_b()0 -> J/psi(1S) | incomplete | blocked |
@@ -8559,15 +8559,15 @@
 | u | 0 | B142.3/2025 | omega_2380_minus_b142_3 | Omega(2380)- decay mode 3 | Omega(2380)- -> Xi- Kbar^*(892)0 | backlog | blocked |
 | u | 0 | B143.1/2025 | omega_2470_minus_b143_1 | Omega(2470)- decay mode 1 | Omega(2470)- -> Omega- pi+ pi- | backlog | blocked |
 | u | 3334 | S024.1/2025 | omega_minus_s024_1 | Omega- decay mode 1 | Omega- -> K- | incomplete | blocked |
-| u | 3334 | S024.2/2025 | omega_minus_s024_2 | Omega- decay mode 2 | Omega- -> Xi0 pi- | backlog | blocked |
-| u | 3334 | S024.3/2025 | omega_minus_s024_3 | Omega- decay mode 3 | Omega- -> Xi- pi0 | backlog | blocked |
-| u | 3334 | S024.8/2025 | omega_minus_s024_8 | Omega- decay mode 4 | Omega- -> Xi- pi+ pi- | backlog | blocked |
+| u | 3334 | S024.2/2025 | omega_minus_s024_2 | Omega- decay mode 2 | Omega- -> Xi0 pi- | supported | ready |
+| u | 3334 | S024.3/2025 | omega_minus_s024_3 | Omega- decay mode 3 | Omega- -> Xi- pi0 | supported | ready |
+| u | 3334 | S024.8/2025 | omega_minus_s024_8 | Omega- decay mode 4 | Omega- -> Xi- pi+ pi- | supported | ready |
 | u | 3334 | S024.6/2025 | omega_minus_s024_6 | Omega- decay mode 5 | Omega- -> Xi(1530)0 pi- | backlog | blocked |
-| u | 3334 | S024.7/2025 | omega_minus_s024_7 | Omega- decay mode 6 | Omega- -> Xi0 e- nubar_e | backlog | blocked |
-| u | 3334 | S024.5/2025 | omega_minus_s024_5 | Omega- decay mode 7 | Omega- -> Xi- gamma | backlog | blocked |
+| u | 3334 | S024.7/2025 | omega_minus_s024_7 | Omega- decay mode 6 | Omega- -> Xi0 e- nubar_e | supported | ready |
+| u | 3334 | S024.5/2025 | omega_minus_s024_5 | Omega- decay mode 7 | Omega- -> Xi- gamma | supported | ready |
 | u | 3334 | S024.4/2025 | omega_minus_s024_4 | Omega- decay mode 8 | Omega- -> pi- | incomplete | blocked |
-| u | 3334 | S024.9/2025 | omega_minus_s024_9 | Omega- decay mode 9 | Omega- -> Sigma0 pi- | backlog | blocked |
-| u | 3334 | S024.10/2025 | omega_minus_s024_10 | Omega- decay mode 10 | Omega- -> n K- | backlog | blocked |
+| u | 3334 | S024.9/2025 | omega_minus_s024_9 | Omega- decay mode 9 | Omega- -> Sigma0 pi- | supported | ready |
+| u | 3334 | S024.10/2025 | omega_minus_s024_10 | Omega- decay mode 10 | Omega- -> n K- | supported | ready |
 | u | 5332 | S063.1/2025 | omega_b_minus_s063_1 | Omega_b()- decay mode 1 | Omega_b()- -> J/psi Omega- xB(b -> Omega_b()) | incomplete | blocked |
 | u | 5332 | S063.2/2025 | omega_b_minus_s063_2 | Omega_b()- decay mode 2 | Omega_b()- -> p K- K- xB(bbar -> Omega_b()) | incomplete | blocked |
 | u | 5332 | S063.4/2025 | omega_b_minus_s063_4 | Omega_b()- decay mode 3 | Omega_b()- -> p pi- pi- xB(bbar -> Omega_b()) | incomplete | blocked |
@@ -8622,16 +8622,16 @@
 | u | 0 | B142.2/2025 | omegabar_2380_plus_b142_2 | Omegabar(2380)+ decay mode 2 | Omegabar(2380)+ -> Xi(1530)0 K- | backlog | blocked |
 | u | 0 | B142.3/2025 | omegabar_2380_plus_b142_3 | Omegabar(2380)+ decay mode 3 | Omegabar(2380)+ -> Xi- Kbar^*(892)0 | backlog | blocked |
 | u | 0 | B143.1/2025 | omegabar_2470_plus_b143_1 | Omegabar(2470)+ decay mode 1 | Omegabar(2470)+ -> Omega- pi+ pi- | backlog | blocked |
-| u | -3334 | S024.1/2025 | omegabar_plus_s024_1 | Omegabar+ decay mode 1 | Omegabar+ -> K- | incomplete | blocked |
-| u | -3334 | S024.2/2025 | omegabar_plus_s024_2 | Omegabar+ decay mode 2 | Omegabar+ -> Xi0 pi- | backlog | blocked |
-| u | -3334 | S024.3/2025 | omegabar_plus_s024_3 | Omegabar+ decay mode 3 | Omegabar+ -> Xi- pi0 | backlog | blocked |
-| u | -3334 | S024.8/2025 | omegabar_plus_s024_8 | Omegabar+ decay mode 4 | Omegabar+ -> Xi- pi+ pi- | backlog | blocked |
+| u | -3334 | S024.1/2025 | omegabar_plus_s024_1 | Omegabar+ decay mode 1 | Omegabar+ -> K+ | incomplete | blocked |
+| u | -3334 | S024.2/2025 | omegabar_plus_s024_2 | Omegabar+ decay mode 2 | Omegabar+ -> Xibar0 pi+ | supported | ready |
+| u | -3334 | S024.3/2025 | omegabar_plus_s024_3 | Omegabar+ decay mode 3 | Omegabar+ -> Xibar+ pi0 | supported | ready |
+| u | -3334 | S024.8/2025 | omegabar_plus_s024_8 | Omegabar+ decay mode 4 | Omegabar+ -> Xibar+ pi- pi+ | supported | ready |
 | u | -3334 | S024.6/2025 | omegabar_plus_s024_6 | Omegabar+ decay mode 5 | Omegabar+ -> Xi(1530)0 pi- | backlog | blocked |
-| u | -3334 | S024.7/2025 | omegabar_plus_s024_7 | Omegabar+ decay mode 6 | Omegabar+ -> Xi0 e- nubar_e | backlog | blocked |
-| u | -3334 | S024.5/2025 | omegabar_plus_s024_5 | Omegabar+ decay mode 7 | Omegabar+ -> Xi- gamma | backlog | blocked |
-| u | -3334 | S024.4/2025 | omegabar_plus_s024_4 | Omegabar+ decay mode 8 | Omegabar+ -> pi- | incomplete | blocked |
-| u | -3334 | S024.9/2025 | omegabar_plus_s024_9 | Omegabar+ decay mode 9 | Omegabar+ -> Sigma0 pi- | backlog | blocked |
-| u | -3334 | S024.10/2025 | omegabar_plus_s024_10 | Omegabar+ decay mode 10 | Omegabar+ -> n K- | backlog | blocked |
+| u | -3334 | S024.7/2025 | omegabar_plus_s024_7 | Omegabar+ decay mode 6 | Omegabar+ -> Xibar0 e+ nu_e | supported | ready |
+| u | -3334 | S024.5/2025 | omegabar_plus_s024_5 | Omegabar+ decay mode 7 | Omegabar+ -> Xibar+ gamma | supported | ready |
+| u | -3334 | S024.4/2025 | omegabar_plus_s024_4 | Omegabar+ decay mode 8 | Omegabar+ -> pi+ | incomplete | blocked |
+| u | -3334 | S024.9/2025 | omegabar_plus_s024_9 | Omegabar+ decay mode 9 | Omegabar+ -> Sigmabar0 pi+ | supported | ready |
+| u | -3334 | S024.10/2025 | omegabar_plus_s024_10 | Omegabar+ decay mode 10 | Omegabar+ -> anti-n K+ | supported | ready |
 | u | -5332 | S063.1/2025 | omegabar_b_plus_s063_1 | Omegabar_b()+ decay mode 1 | Omegabar_b()+ -> J/psi Omega- xB(b -> Omega_b()) | incomplete | blocked |
 | u | -5332 | S063.2/2025 | omegabar_b_plus_s063_2 | Omegabar_b()+ decay mode 2 | Omegabar_b()+ -> p K- K- xB(bbar -> Omega_b()) | incomplete | blocked |
 | u | -5332 | S063.4/2025 | omegabar_b_plus_s063_4 | Omegabar_b()+ decay mode 3 | Omegabar_b()+ -> p pi- pi- xB(bbar -> Omega_b()) | incomplete | blocked |
@@ -11840,6 +11840,34 @@
 | u | -2212 | S016.94/2025 | pbar_s016_94 | pbar decay mode 93 | anti-p -> e- gamma gamma | supported | ready |
 | u | -2212 | S016.92/2025 | pbar_s016_92 | pbar decay mode 94 | anti-p -> mu- gamma gamma | supported | ready |
 | u | -2212 | S016.96/2025 | pbar_s016_96 | pbar decay mode 95 | anti-p -> e- | incomplete | blocked |
+| u | -6 | Q007.6/2025 | tbar_q007_6 | tbar decay mode 1 | anti-t -> W q (q = b, s, d) | incomplete | blocked |
+| u | -6 | Q007.1/2025 | tbar_q007_1 | tbar decay mode 2 | anti-t -> b | incomplete | blocked |
+| u | -6 | Q007.9/2025 | tbar_q007_9 | tbar decay mode 3 | anti-t -> nu_e b | incomplete | blocked |
+| u | -6 | Q007.10/2025 | tbar_q007_10 | tbar decay mode 4 | anti-t -> nu_mu b | incomplete | blocked |
+| u | -6 | Q007.4/2025 | tbar_q007_4 | tbar decay mode 5 | anti-t -> nu_tau b | incomplete | blocked |
+| u | -6 | Q007.11/2025 | tbar_q007_11 | tbar decay mode 6 | anti-t -> b | incomplete | blocked |
+| u | -6 | Q007.3/2025 | tbar_q007_3 | tbar decay mode 7 | anti-t -> gamma q (q=u,c) | incomplete | blocked |
+| u | -6 | Q007.14/2025 | tbar_q007_14 | tbar decay mode 8 | anti-t -> nu_tau b | incomplete | blocked |
+| u | -6 | Q007.30/2025 | tbar_q007_30 | tbar decay mode 9 | anti-t -> a q (q=u , c) | incomplete | blocked |
+| u | -6 | Q007.2/2025 | tbar_q007_2 | tbar decay mode 10 | anti-t -> Z q (q=u,c) | incomplete | blocked |
+| u | -6 | Q007.12/2025 | tbar_q007_12 | tbar decay mode 11 | anti-t -> H anti-u | backlog | blocked |
+| u | -6 | Q007.13/2025 | tbar_q007_13 | tbar decay mode 12 | anti-t -> H anti-c | backlog | blocked |
+| u | -6 | Q007.8/2025 | tbar_q007_8 | tbar decay mode 13 | anti-t -> lepton+ qbar qbar^' (q=d,s,b; q^'=u,c) | incomplete | blocked |
+| u | -6 | Q007.15/2025 | tbar_q007_15 | tbar decay mode 14 | anti-t -> anti-c | incomplete | blocked |
+| u | -6 | Q007.16/2025 | tbar_q007_16 | tbar decay mode 15 | anti-t -> anti-u | incomplete | blocked |
+| u | -6 | Q007.17/2025 | tbar_q007_17 | tbar decay mode 16 | anti-t -> mu+- tau-+ q | incomplete | blocked |
+| u | -6 | Q007.18/2025 | tbar_q007_18 | tbar decay mode 17 | anti-t -> e+ ubar dbar | backlog | blocked |
+| u | -6 | Q007.19/2025 | tbar_q007_19 | tbar decay mode 18 | anti-t -> mu+ ubar dbar | backlog | blocked |
+| u | -6 | Q007.20/2025 | tbar_q007_20 | tbar decay mode 19 | anti-t -> e+ cbar dbar | backlog | blocked |
+| u | -6 | Q007.21/2025 | tbar_q007_21 | tbar decay mode 20 | anti-t -> mu+ cbar dbar | backlog | blocked |
+| u | -6 | Q007.22/2025 | tbar_q007_22 | tbar decay mode 21 | anti-t -> e+ ubar sbar | backlog | blocked |
+| u | -6 | Q007.23/2025 | tbar_q007_23 | tbar decay mode 22 | anti-t -> mu+ ubar sbar | backlog | blocked |
+| u | -6 | Q007.24/2025 | tbar_q007_24 | tbar decay mode 23 | anti-t -> e+ cbar sbar | backlog | blocked |
+| u | -6 | Q007.25/2025 | tbar_q007_25 | tbar decay mode 24 | anti-t -> mu+ cbar sbar | backlog | blocked |
+| u | -6 | Q007.26/2025 | tbar_q007_26 | tbar decay mode 25 | anti-t -> e+ ubar bbar | backlog | blocked |
+| u | -6 | Q007.27/2025 | tbar_q007_27 | tbar decay mode 26 | anti-t -> mu+ ubar bbar | backlog | blocked |
+| u | -6 | Q007.28/2025 | tbar_q007_28 | tbar decay mode 27 | anti-t -> e+ cbar bbar | backlog | blocked |
+| u | -6 | Q007.29/2025 | tbar_q007_29 | tbar decay mode 28 | anti-t -> mu+ cbar bbar | backlog | blocked |
 | u | 10213 | M011.1/2025 | b_1_1235_plus_m011_1 | b_1(1235)+ decay mode 1 | b_1(1235)+ -> pi | incomplete | blocked |
 | u | 10213 | M011.9/2025 | b_1_1235_plus_m011_9 | b_1(1235)+ decay mode 2 | b_1(1235)+ -> gamma | incomplete | blocked |
 | u | 10213 | M011.8/2025 | b_1_1235_plus_m011_8 | b_1(1235)+ decay mode 3 | b_1(1235)+ -> eta | incomplete | blocked |
@@ -14650,31 +14678,3 @@
 | u | 15 | S035.298/2025 | tau_minus_s035_298 | tau- decay mode 250 | tau- -> pi- | incomplete | blocked |
 | u | 15 | S035.102/2025 | tau_minus_s035_102 | tau- decay mode 251 | tau- -> e- light boson | incomplete | blocked |
 | u | 15 | S035.103/2025 | tau_minus_s035_103 | tau- decay mode 252 | tau- -> mu- light boson | incomplete | blocked |
-| u | -6 | Q007.6/2025 | tbar_q007_6 | tbar decay mode 1 | tbar -> W q (q = b, s, d) | incomplete | blocked |
-| u | -6 | Q007.1/2025 | tbar_q007_1 | tbar decay mode 2 | tbar -> b | incomplete | blocked |
-| u | -6 | Q007.9/2025 | tbar_q007_9 | tbar decay mode 3 | tbar -> nu_e b | incomplete | blocked |
-| u | -6 | Q007.10/2025 | tbar_q007_10 | tbar decay mode 4 | tbar -> nu_mu b | incomplete | blocked |
-| u | -6 | Q007.4/2025 | tbar_q007_4 | tbar decay mode 5 | tbar -> nu_tau b | incomplete | blocked |
-| u | -6 | Q007.11/2025 | tbar_q007_11 | tbar decay mode 6 | tbar -> b | incomplete | blocked |
-| u | -6 | Q007.3/2025 | tbar_q007_3 | tbar decay mode 7 | tbar -> gamma q (q=u,c) | incomplete | blocked |
-| u | -6 | Q007.14/2025 | tbar_q007_14 | tbar decay mode 8 | tbar -> nu_tau b | incomplete | blocked |
-| u | -6 | Q007.30/2025 | tbar_q007_30 | tbar decay mode 9 | tbar -> a q (q=u , c) | incomplete | blocked |
-| u | -6 | Q007.2/2025 | tbar_q007_2 | tbar decay mode 10 | tbar -> Z q (q=u,c) | incomplete | blocked |
-| u | -6 | Q007.12/2025 | tbar_q007_12 | tbar decay mode 11 | tbar -> H u | backlog | blocked |
-| u | -6 | Q007.13/2025 | tbar_q007_13 | tbar decay mode 12 | tbar -> H c | backlog | blocked |
-| u | -6 | Q007.8/2025 | tbar_q007_8 | tbar decay mode 13 | tbar -> lepton+ qbar qbar^' (q=d,s,b; q^'=u,c) | incomplete | blocked |
-| u | -6 | Q007.15/2025 | tbar_q007_15 | tbar decay mode 14 | tbar -> c | incomplete | blocked |
-| u | -6 | Q007.16/2025 | tbar_q007_16 | tbar decay mode 15 | tbar -> u | incomplete | blocked |
-| u | -6 | Q007.17/2025 | tbar_q007_17 | tbar decay mode 16 | tbar -> mu+- tau-+ q | incomplete | blocked |
-| u | -6 | Q007.18/2025 | tbar_q007_18 | tbar decay mode 17 | tbar -> e+ ubar dbar | backlog | blocked |
-| u | -6 | Q007.19/2025 | tbar_q007_19 | tbar decay mode 18 | tbar -> mu+ ubar dbar | backlog | blocked |
-| u | -6 | Q007.20/2025 | tbar_q007_20 | tbar decay mode 19 | tbar -> e+ cbar dbar | backlog | blocked |
-| u | -6 | Q007.21/2025 | tbar_q007_21 | tbar decay mode 20 | tbar -> mu+ cbar dbar | backlog | blocked |
-| u | -6 | Q007.22/2025 | tbar_q007_22 | tbar decay mode 21 | tbar -> e+ ubar sbar | backlog | blocked |
-| u | -6 | Q007.23/2025 | tbar_q007_23 | tbar decay mode 22 | tbar -> mu+ ubar sbar | backlog | blocked |
-| u | -6 | Q007.24/2025 | tbar_q007_24 | tbar decay mode 23 | tbar -> e+ cbar sbar | backlog | blocked |
-| u | -6 | Q007.25/2025 | tbar_q007_25 | tbar decay mode 24 | tbar -> mu+ cbar sbar | backlog | blocked |
-| u | -6 | Q007.26/2025 | tbar_q007_26 | tbar decay mode 25 | tbar -> e+ ubar bbar | backlog | blocked |
-| u | -6 | Q007.27/2025 | tbar_q007_27 | tbar decay mode 26 | tbar -> mu+ ubar bbar | backlog | blocked |
-| u | -6 | Q007.28/2025 | tbar_q007_28 | tbar decay mode 27 | tbar -> e+ cbar bbar | backlog | blocked |
-| u | -6 | Q007.29/2025 | tbar_q007_29 | tbar decay mode 28 | tbar -> mu+ cbar bbar | backlog | blocked |

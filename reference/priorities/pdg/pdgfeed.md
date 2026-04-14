@@ -225,15 +225,15 @@ Current:
 - supported fermion-superposition particles now expand by emitting all enumerated constituent fermions rather than picking a representative branch, and `K0S`/`K0L` have dropped out of the top backlog set;
 - and the current top backlog particles are:
   - `g` — `28`
-  - `Omega-` — `26`
   - `H` — `24`
   - `Z0` — `24`
-  - `Lambdabar0` — `23`
-  - `Lambda0` — `19`
-  - `tbar` — `14`
-  - `Omegabar+` — `12`
-  - `cbar` — `12`
-  - `ubar` — `12`
+  - `bbar` — `11`
+  - `sbar` — `10`
+  - `dbar` — `8`
+  - `W+` — `5`
+  - `W-` — `5`
+  - `sigma` — `5`
+  - `Z` — `4`
 
 Objective:
 
