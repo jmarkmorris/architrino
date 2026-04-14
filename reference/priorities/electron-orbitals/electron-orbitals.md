@@ -215,6 +215,48 @@ In practice, the periodic table is often the most reliable mnemonic of all. Read
 
 This works because the table is already laid out in $s$-, $d$-, $p$-, and $f$-blocks according to the usual occupation order.
 
+#### Chunked block mnemonic
+
+For many students, the easiest way to memorize the filling order is not as one uninterrupted string, but as a sequence of short blocks:
+
+```text
+1s
+2s 2p
+3s 3p
+4s 3d 4p
+5s 4d 5p
+6s 4f 5d 6p
+7s 5f 6d 7p
+```
+
+This chunked version is often easier to hold in working memory than:
+
+**$1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p$**
+
+It also makes the periodic structure more visible:
+
+- period 4 contributes $4s$, then backfills $3d$, then returns to $4p$,
+- period 5 contributes $5s$, then $4d$, then $5p$,
+- period 6 contributes $6s$, then $4f$, then $5d$, then $6p$,
+- period 7 contributes $7s$, then $5f$, then $6d$, then $7p$.
+
+#### Repeating-pattern mnemonic
+
+A useful pattern behind the chunked form is:
+
+- each new principal level begins with an $s$ subshell,
+- then the sequence often backfills the previous level's $d$ subshell,
+- and for higher periods it can also backfill the $f$ subshell from two levels earlier.
+
+That is why the middle of the sequence falls into the memorable pattern:
+
+- $4s, 3d, 4p$
+- $5s, 4d, 5p$
+- $6s, 4f, 5d, 6p$
+- $7s, 5f, 6d, 7p$
+
+This is one of the best compact mental models for remembering the usual order quickly.
+
 #### Mnemonics for the orbital labels themselves
 
 Separate from remembering the full filling order, some students use short phrases just to remember the sequence of subshell letters:
@@ -230,6 +272,8 @@ Those are mainly label mnemonics, not filling-order mnemonics.
 #### Limits of mnemonics
 
 No mnemonic completely replaces the need to remember known exceptions. Transition-metal and related anomalies such as Cr, Mo, Cu, Ag, Au, and sometimes Pd must still be learned as a small separate list of special cases. In most teaching practice, the diagonal diagram and the periodic table itself are the most reliable memory tools.
+
+If the goal is speed, the chunked block form plus the repeating $s/d/f/p$ backfill pattern is often the fastest practical memory aid. If the goal is understanding, the $n + l$ rule is the strongest guide.
 
 ### 6. The Noble-Gas Shorthand
 
