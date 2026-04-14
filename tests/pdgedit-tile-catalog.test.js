@@ -31,22 +31,12 @@ test("nested Noether-core glyph tiles normalize as binary glyph bands", () => {
   assert.ok(proNoetherCoreGlyphTile, "missing pro-noether-core-glyph tile");
   assert.equal(proNoetherCoreGlyphTile.type, "binary-glyph");
   assert.equal(Array.isArray(proNoetherCoreGlyphTile.binaryGlyph.bands), true);
-  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.bands.length, 6);
-  assert.ok((proNoetherCoreGlyphTile.binaryGlyph.centerGlow?.r || 0) > 0);
-  const binaryBands = proNoetherCoreGlyphTile.binaryGlyph.bands.filter((band) =>
-    ["outer", "middle", "inner"].includes(band.key)
-  );
-  const knotBands = proNoetherCoreGlyphTile.binaryGlyph.bands.filter((band) =>
-    ["knot-arm-a", "knot-arm-b", "knot-arm-c"].includes(band.key)
-  );
-  assert.equal(binaryBands.length, 3);
-  assert.equal(knotBands.length, 3);
+  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.bands.length, 3);
+  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.centerGlow?.r || 0, 0);
   assert.equal(
-    binaryBands.every((band) => Array.isArray(band.circles) && band.circles.length === 2),
-    true
-  );
-  assert.equal(
-    knotBands.every((band) => Array.isArray(band.paths) && band.paths.length === 1 && band.circles.length === 0),
+    proNoetherCoreGlyphTile.binaryGlyph.bands.every(
+      (band) => Array.isArray(band.circles) && band.circles.length === 2 && band.showAxis === false
+    ),
     true
   );
 });

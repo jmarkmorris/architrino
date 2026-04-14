@@ -4,31 +4,18 @@
   <rect width="80" height="80" fill="#000000"/>
   <rect x="6.00" y="6.00" width="68.00" height="68.00" rx="10.00" fill="none" stroke="#a259ff" stroke-width="4"/>
   <svg x="4.00" y="4.00" width="72" height="72" viewBox="0 0 120 120" aria-hidden="true">
-    <circle cx="60" cy="60" r="5.5" fill="rgba(194, 132, 255, 0.42)" opacity="1" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.34))"/>
-    <g transform="rotate(45 60 60)">
-      <ellipse cx="60" cy="60" rx="52" ry="7.8" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="1.125" opacity="0.92" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"/>
-      <line x1="60" y1="34" x2="60" y2="86" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="1" stroke-linecap="butt" opacity="0.28"/>
-      <circle cx="8" cy="60" r="4.2" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
-      <circle cx="112" cy="60" r="4.2" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+    <ellipse cx="60" cy="60" rx="45.5" ry="11.04" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="1.15" opacity="0.9" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"/>
+    <circle cx="14.5" cy="60" r="4.1" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
+    <circle cx="105.5" cy="60" r="4.1" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+    <g transform="rotate(60 60 60)">
+      <ellipse cx="60" cy="60" rx="45.5" ry="11.04" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="1.1" opacity="0.87" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"/>
+      <circle cx="14.5" cy="60" r="4.1" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+      <circle cx="105.5" cy="60" r="4.1" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
     </g>
-    <g transform="rotate(105 60 60)">
-      <ellipse cx="60" cy="60" rx="28" ry="10.5" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="1" opacity="0.82" style="filter:drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"/>
-      <line x1="60" y1="47" x2="60" y2="73" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="0.9" stroke-linecap="butt" opacity="0.26"/>
-      <circle cx="32" cy="60" r="3.9" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
-      <circle cx="88" cy="60" r="3.9" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
-    </g>
-    <g transform="rotate(-15 60 60)">
-      <ellipse cx="60" cy="60" rx="16" ry="6.8" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="0.95" opacity="0.78" style="filter:drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"/>
-      <line x1="60" y1="52" x2="60" y2="68" fill="none" stroke="rgba(162, 89, 255, 0.82)" stroke-width="0.85" stroke-linecap="butt" opacity="0.24"/>
-      <circle cx="44" cy="60" r="3.8" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"/>
-      <circle cx="76" cy="60" r="3.8" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"/>
-    </g>
-    <path d="M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5" fill="none" stroke="rgba(232, 210, 255, 0.88)" stroke-width="1.55" opacity="0.94" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"/>
-    <g transform="rotate(120 60 60)">
-      <path d="M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5" fill="none" stroke="rgba(232, 210, 255, 0.88)" stroke-width="1.55" opacity="0.94" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"/>
-    </g>
-    <g transform="rotate(240 60 60)">
-      <path d="M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5" fill="none" stroke="rgba(232, 210, 255, 0.88)" stroke-width="1.55" opacity="0.94" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"/>
+    <g transform="rotate(-60 60 60)">
+      <ellipse cx="60" cy="60" rx="45.5" ry="11.04" fill="none" stroke="rgba(162, 89, 255, 0.96)" stroke-width="1.1" opacity="0.87" style="filter:drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"/>
+      <circle cx="14.5" cy="60" r="4.1" fill="#1879ff" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"/>
+      <circle cx="105.5" cy="60" r="4.1" fill="#ff3d3d" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"/>
     </g>
   </svg>
 </svg>

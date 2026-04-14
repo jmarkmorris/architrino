@@ -531,6 +531,42 @@
       ]
     },
     {
+      "key": "noether",
+      "title": "Noether tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Noether",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
+      "key": "sea",
+      "title": "Sea tile",
+      "borderColor": "purple",
+      "lines": [
+        {
+          "type": "blank"
+        },
+        {
+          "type": "literal",
+          "text": "Sea",
+          "color": "white"
+        },
+        {
+          "type": "blank"
+        }
+      ]
+    },
+    {
       "key": "noether-pair",
       "title": "Noether Pair tile",
       "type": "composite-label",
@@ -907,180 +943,102 @@
         "centerGlow": {
           "cx": 60,
           "cy": 60,
-          "r": 5.5,
-          "fillColor": "rgba(194, 132, 255, 0.42)",
-          "opacity": 1,
-          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.34))"
+          "r": 0,
+          "fillColor": "rgba(162, 89, 255, 0.20)",
+          "opacity": 0.92,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.24))"
         },
         "bands": [
           {
-            "key": "outer",
-            "rotationDeg": 45,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 52,
-              "ry": 7.8,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.125,
-              "opacity": 0.92,
-              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 34,
-              "x2": 60,
-              "y2": 86,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 1,
-              "opacity": 0.28,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 8,
-                "cy": 60,
-                "r": 4.2,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
-              },
-              {
-                "cx": 112,
-                "cy": 60,
-                "r": 4.2,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
-              }
-            ]
-          },
-          {
-            "key": "middle",
-            "rotationDeg": 105,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 28,
-              "ry": 10.5,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1,
-              "opacity": 0.82,
-              "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 47,
-              "x2": 60,
-              "y2": 73,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 0.9,
-              "opacity": 0.26,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 32,
-                "cy": 60,
-                "r": 3.9,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
-              },
-              {
-                "cx": 88,
-                "cy": 60,
-                "r": 3.9,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
-              }
-            ]
-          },
-          {
-            "key": "inner",
-            "rotationDeg": -15,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 16,
-              "ry": 6.8,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 0.95,
-              "opacity": 0.78,
-              "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 52,
-              "x2": 60,
-              "y2": 68,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 0.85,
-              "opacity": 0.24,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 44,
-                "cy": 60,
-                "r": 3.8,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"
-              },
-              {
-                "cx": 76,
-                "cy": 60,
-                "r": 3.8,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"
-              }
-            ]
-          },
-          {
-            "key": "knot-arm-a",
+            "key": "horizontal",
             "rotationDeg": 0,
-            "showOrbit": false,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.15,
+              "opacity": 0.9,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
             ]
           },
           {
-            "key": "knot-arm-b",
-            "rotationDeg": 120,
-            "showOrbit": false,
+            "key": "diag-up",
+            "rotationDeg": 60,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
             ]
           },
           {
-            "key": "knot-arm-c",
-            "rotationDeg": 240,
-            "showOrbit": false,
+            "key": "diag-down",
+            "rotationDeg": -60,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
             ]
           }
@@ -1098,180 +1056,102 @@
         "centerGlow": {
           "cx": 60,
           "cy": 60,
-          "r": 5.5,
-          "fillColor": "rgba(194, 132, 255, 0.42)",
-          "opacity": 1,
-          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.34))"
+          "r": 0,
+          "fillColor": "rgba(162, 89, 255, 0.20)",
+          "opacity": 0.92,
+          "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.24))"
         },
         "bands": [
           {
-            "key": "outer",
-            "rotationDeg": 45,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 52,
-              "ry": 7.8,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.125,
-              "opacity": 0.92,
-              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.22))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 34,
-              "x2": 60,
-              "y2": 86,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 1,
-              "opacity": 0.28,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 8,
-                "cy": 60,
-                "r": 4.2,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
-              },
-              {
-                "cx": 112,
-                "cy": 60,
-                "r": 4.2,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
-              }
-            ]
-          },
-          {
-            "key": "middle",
-            "rotationDeg": 105,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 28,
-              "ry": 10.5,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1,
-              "opacity": 0.82,
-              "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.18))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 47,
-              "x2": 60,
-              "y2": 73,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 0.9,
-              "opacity": 0.26,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 32,
-                "cy": 60,
-                "r": 3.9,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
-              },
-              {
-                "cx": 88,
-                "cy": 60,
-                "r": 3.9,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
-              }
-            ]
-          },
-          {
-            "key": "inner",
-            "rotationDeg": -15,
-            "orbit": {
-              "cx": 60,
-              "cy": 60,
-              "rx": 16,
-              "ry": 6.8,
-              "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 0.95,
-              "opacity": 0.78,
-              "filter": "drop-shadow(0 0 3px rgba(162, 89, 255, 0.16))"
-            },
-            "axis": {
-              "x1": 60,
-              "y1": 52,
-              "x2": 60,
-              "y2": 68,
-              "strokeColor": "binary_axis_stroke",
-              "strokeWidth": 0.85,
-              "opacity": 0.24,
-              "lineCap": "butt"
-            },
-            "circles": [
-              {
-                "cx": 44,
-                "cy": 60,
-                "r": 3.8,
-                "fillColor": "count_positive",
-                "filter": "drop-shadow(0 0 3px rgba(255, 61, 61, 0.28))"
-              },
-              {
-                "cx": 76,
-                "cy": 60,
-                "r": 3.8,
-                "fillColor": "count_negative",
-                "filter": "drop-shadow(0 0 3px rgba(24, 121, 255, 0.30))"
-              }
-            ]
-          },
-          {
-            "key": "knot-arm-a",
+            "key": "horizontal",
             "rotationDeg": 0,
-            "showOrbit": false,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.15,
+              "opacity": 0.9,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
             ]
           },
           {
-            "key": "knot-arm-b",
-            "rotationDeg": 120,
-            "showOrbit": false,
+            "key": "diag-up",
+            "rotationDeg": 60,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
             ]
           },
           {
-            "key": "knot-arm-c",
-            "rotationDeg": 240,
-            "showOrbit": false,
+            "key": "diag-down",
+            "rotationDeg": -60,
             "showAxis": false,
-            "paths": [
+            "orbit": {
+              "cx": 60,
+              "cy": 60,
+              "rx": 45.5,
+              "ry": 11.04,
+              "strokeColor": "binary_orbit_stroke",
+              "strokeWidth": 1.1,
+              "opacity": 0.87,
+              "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
+            },
+            "circles": [
               {
-                "d": "M60 50 C65.5 50 69.5 54 70 59.5 C70.4 63.5 68.4 66.7 64.7 68.5",
-                "strokeColor": "rgba(232, 210, 255, 0.88)",
-                "strokeWidth": 1.55,
-                "opacity": 0.94,
-                "lineCap": "round",
-                "lineJoin": "round",
-                "filter": "drop-shadow(0 0 2px rgba(194, 132, 255, 0.44))"
+                "cx": 14.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_positive",
+                "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
+              },
+              {
+                "cx": 105.5,
+                "cy": 60,
+                "r": 4.1,
+                "fillColor": "count_negative",
+                "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
             ]
           }

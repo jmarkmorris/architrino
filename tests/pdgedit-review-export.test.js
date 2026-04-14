@@ -11,12 +11,11 @@ import {
 test("parsePdgeditReviewExportArgs defaults to both PNG and PDF outputs", () => {
   const parsed = parsePdgeditReviewExportArgs([], {
     cwd: "/repo",
-    outputDirPath: "/tmp/pdgedit-review-export-test",
   });
 
   assert.equal(parsed.pagePath, "pdgedit-review.html");
-  assert.equal(parsed.pngOutputPath, "/tmp/pdgedit-review-export-test/pdgedit-review.png");
-  assert.equal(parsed.pdfOutputPath, "/tmp/pdgedit-review-export-test/pdgedit-review.pdf");
+  assert.equal(parsed.pngOutputPath, "/repo/stats/proof-sheet.png");
+  assert.equal(parsed.pdfOutputPath, "/repo/stats/proof-sheet.pdf");
 });
 
 test("parsePdgeditReviewExportArgs resolves explicit output selection and relative paths", () => {
@@ -24,12 +23,12 @@ test("parsePdgeditReviewExportArgs resolves explicit output selection and relati
     ["--png", "artifacts/page.png", "--pdf", "--width", "2000", "--height", "12000"],
     {
       cwd: "/repo",
-      outputDirPath: "/tmp/pdgedit-review-export-test",
+      outputDirPath: "/repo/stats",
     }
   );
 
   assert.equal(parsed.pngOutputPath, path.resolve("/repo", "artifacts/page.png"));
-  assert.equal(parsed.pdfOutputPath, "/tmp/pdgedit-review-export-test/pdgedit-review.pdf");
+  assert.equal(parsed.pdfOutputPath, "/repo/stats/proof-sheet.pdf");
   assert.equal(parsed.width, 2000);
   assert.equal(parsed.height, 12000);
 });
