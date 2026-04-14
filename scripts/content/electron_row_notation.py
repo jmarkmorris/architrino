@@ -48,14 +48,17 @@ def parse_configuration(config: str) -> dict[int, dict[str, int]]:
     return occupancy
 
 
-def render_rows(occupancy: dict[int, dict[str, int]]) -> list[str]:
+def render_rows(occupancy: dict[int, dict[str, int]], include_labels: bool = True) -> list[str]:
     rows: list[str] = []
     for level in sorted(occupancy):
         parts = []
         for subshell in ("s", "p", "d", "f"):
             count = occupancy[level].get(subshell, 0)
             if count:
-                parts.append(f"{subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
+                if include_labels:
+                    parts.append(f"{subshell}:{count}/{SUBSHELL_CAPACITY[subshell]}")
+                else:
+                    parts.append(f"{count}/{SUBSHELL_CAPACITY[subshell]}")
         if parts:
             rows.append(f"E{level} " + " ".join(parts))
     return rows
@@ -78,7 +81,7 @@ def compress_noble_core(
 ) -> list[str]:
     candidates = [z for z in NOBLE_GASES if z <= atomic_number]
     if not candidates:
-        return render_rows(occupancy)
+        return render_rows(occupancy, include_labels=True)
     noble_z = max(candidates)
     noble = NOBLE_GASES[noble_z]
     if atomic_number == noble_z:
@@ -89,10 +92,10 @@ def compress_noble_core(
         previous = NOBLE_GASES[previous_z]
         previous_core = parse_configuration(previous["config"])
         remainder = subtract_occupancy(occupancy, previous_core)
-        return [previous["label"]] + render_rows(remainder) + [f"= {noble['label']}"]
+        return [previous["label"]] + render_rows(remainder, include_labels=True) + [f"= {noble['label']}"]
     core_occupancy = parse_configuration(noble["config"])
     remainder = subtract_occupancy(occupancy, core_occupancy)
-    return [noble["label"]] + render_rows(remainder)
+    return [noble["label"]] + render_rows(remainder, include_labels=True)
 
 
 def format_table(limit: int, compress: bool) -> str:
@@ -105,7 +108,7 @@ def format_table(limit: int, compress: bool) -> str:
         if atomic_number > limit:
             break
         occupancy = parse_configuration(element["electron_configuration"])
-        full_rows = render_rows(occupancy)
+        full_rows = render_rows(occupancy, include_labels=False)
         abbreviated_rows = (
             compress_noble_core(occupancy, atomic_number) if compress else full_rows
         )
