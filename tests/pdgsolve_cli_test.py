@@ -19,19 +19,6 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         return stdout.getvalue().strip()
 
-    def assert_product_side_consumes_partitioned_intermediate_ledger(self, family):
-        intermediate_ids = {
-            unit["occurrenceKey"]
-            for unit in family["canonicalCandidate"]["solveGraph"]["units"]
-            if unit["stage"] == "intermediateAssemblies"
-        }
-        consumed_ids = []
-        for choice in family["productSideOperators"]:
-            for occurrence_key in choice["inputOccurrenceKeys"]:
-                self.assertIn(occurrence_key, intermediate_ids)
-                consumed_ids.append(occurrence_key)
-        self.assertEqual(sorted(consumed_ids), sorted(intermediate_ids))
-
     def test_solve_known_request_matches_checked_in_example(self):
         request = pdgsolve.get_vertical_slice_request()
         result = pdgsolve.solve_request(request)
@@ -65,7 +52,7 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(len(pdgedit_document["assemblies"]), 13)
         self.assertEqual(len(pdgedit_document["operators"]), 8)
 
-    def test_solve_request_matches_exact_mu_minus_decay_family_with_core_and_residue_intermediates(self):
+    def test_solve_request_keeps_mu_minus_decay_unsolved_until_noether_core_dissociation_exists(self):
         request = {
             "schema": "pdgsolve-request/v1",
             "requestId": "mu_minus_s004_1",
@@ -94,34 +81,10 @@ class PdgsolveCliTests(unittest.TestCase):
 
         result = pdgsolve.solve_request(request)
 
-        self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(result["bestFamilyId"], "family.mu_minus.decay.exact.v2")
-        family = result["optionFamilies"][0]
-        self.assertEqual(
-            family["intermediateAssemblies"],
-            [
-                {"assemblyId": "pro_noether_core_II", "count": 1},
-                {"assemblyId": "unbound_architrinos_residue", "count": 1},
-                {"assemblyId": "pro_noether_core_I", "count": 2},
-                {"assemblyId": "anti_noether_core_I", "count": 2},
-            ],
-        )
-        self.assertEqual(family["productSideOperators"][0]["type"], "associate")
-        self.assertEqual(
-            [choice["type"] for choice in family["reactantSideOperators"]],
-            ["dissociate", "pass-thru", "pass-thru", "pass-thru", "pass-thru"],
-        )
-        self.assert_product_side_consumes_partitioned_intermediate_ledger(family)
-        self.assertTrue(
-            any(
-                unit["recipeId"] == "unbound_architrinos_residue"
-                and unit["electrinoCount"] == 6
-                and unit["positrinoCount"] == 0
-                for unit in family["canonicalCandidate"]["solveGraph"]["units"]
-            )
-        )
+        self.assertEqual(result["searchStatus"], "no_exact_closure")
+        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
 
-    def test_solve_request_matches_exact_mu_plus_radiative_family_with_core_and_residue_intermediates(self):
+    def test_solve_request_keeps_mu_plus_radiative_unsolved_until_noether_core_dissociation_exists(self):
         request = {
             "schema": "pdgsolve-request/v1",
             "requestId": "mu_plus_s004_2",
@@ -154,28 +117,8 @@ class PdgsolveCliTests(unittest.TestCase):
 
         result = pdgsolve.solve_request(request)
 
-        self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(result["bestFamilyId"], "family.mu_plus.radiative.exact.v2")
-        family = result["optionFamilies"][0]
-        self.assertEqual(
-            family["intermediateAssemblies"],
-            [
-                {"assemblyId": "anti_noether_core_II", "count": 1},
-                {"assemblyId": "unbound_architrinos_residue", "count": 1},
-                {"assemblyId": "pro_noether_core_I", "count": 3},
-                {"assemblyId": "anti_noether_core_I", "count": 3},
-            ],
-        )
-        self.assertEqual(
-            [choice["type"] for choice in family["reactantSideOperators"]],
-            ["dissociate", "pass-thru", "pass-thru", "pass-thru", "pass-thru", "pass-thru", "pass-thru"],
-        )
-        self.assertEqual(
-            [choice["type"] for choice in family["productSideOperators"]],
-            ["associate", "associate", "associate", "pass-thru", "pass-thru"],
-        )
-        self.assert_product_side_consumes_partitioned_intermediate_ledger(family)
-        self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
+        self.assertEqual(result["searchStatus"], "no_exact_closure")
+        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
 
     def test_solve_request_keeps_mu_minus_pair_family_unsolved(self):
         request = {

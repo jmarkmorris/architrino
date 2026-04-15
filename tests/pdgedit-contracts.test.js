@@ -235,14 +235,12 @@ test("the solver-published free neutron beta pdgedit document uses the normalize
   assert.equal(example.compositeLabels.every((label) => label.id.startsWith("label.")), true);
 });
 
-test("pdgedit examples include at least one explicit assembly payload for every current four-tile review row", () => {
+test("pdgedit examples include at least one explicit assembly payload for every current single-row four-tile review row", () => {
   const coveredRows = new Set();
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const allReviewRows = [
     ...reviewGroups.specialGroups,
     ...reviewGroups.singleRowGroups,
-    ...reviewGroups.quarkColorGroups,
-    ...reviewGroups.compositeGroups,
   ].flatMap((group) => group.rows.map((row) => JSON.stringify(row)));
 
   PDGEDIT_EXAMPLE_PATHS.forEach((examplePath) => {

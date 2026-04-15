@@ -131,7 +131,7 @@ ASSEMBLY_DISPLAY = {
             "pro-bi-binary",
             "binary-bare-br-none",
             "binary-bare-br-none",
-            "binary-bare-br-none",
+            "binary-empty-none-none",
         ],
         "electrinoCount": 2,
         "positrinoCount": 2,
@@ -143,10 +143,34 @@ ASSEMBLY_DISPLAY = {
             "anti-bi-binary",
             "binary-bare-rb-none",
             "binary-bare-rb-none",
-            "binary-bare-rb-none",
+            "binary-empty-none-none",
         ],
         "electrinoCount": 2,
         "positrinoCount": 2,
+    },
+    "pro_noether_core_III": {
+        "title": "Pro Uni-Binary",
+        "pdgeditType": "pro-uni-binary-assembly",
+        "tiles": [
+            "pro-uni-binary",
+            "binary-bare-br-none",
+            "binary-empty-none-none",
+            "binary-empty-none-none",
+        ],
+        "electrinoCount": 1,
+        "positrinoCount": 1,
+    },
+    "anti_noether_core_III": {
+        "title": "Anti Uni-Binary",
+        "pdgeditType": "anti-uni-binary-assembly",
+        "tiles": [
+            "anti-uni-binary",
+            "binary-bare-rb-none",
+            "binary-empty-none-none",
+            "binary-empty-none-none",
+        ],
+        "electrinoCount": 1,
+        "positrinoCount": 1,
     },
     "pro_down_quark_I": {
         "title": "Pro Down Quark",
@@ -269,13 +293,13 @@ ASSEMBLY_DISPLAY = {
         "positrinoCount": 5,
     },
     UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID: {
-        "title": "Unbound Architrino Residue",
+        "title": "Unbound Architrinos",
         "pdgeditType": "unbound-architrinos-assembly",
         "tiles": [
             "unbound",
             "unbound-electrinos",
             "unbound-positrinos",
-            "architrino-residue",
+            "architrinos",
         ],
         "electrinoCount": 0,
         "positrinoCount": 0,
@@ -761,7 +785,7 @@ def build_residue_occurrence(
     return {
         "id": occurrence_key,
         "assemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
-        "title": f"Unbound Architrino Residue {electrino_count}E/{positrino_count}P",
+        "title": f"Unbound Architrinos {electrino_count}E/{positrino_count}P",
         "electrinoCount": electrino_count,
         "positrinoCount": positrino_count,
     }
@@ -1155,6 +1179,12 @@ def build_exact_muon_decay_family(
     charge: str,
     radiative: bool,
 ) -> dict[str, Any] | None:
+    # The current solver does not yet have a lawful reactant-side Noether-core
+    # dissociation model that can mint additional bounded unbound-architrinos
+    # occurrences. Until that exists, muon exact families would incorrectly let
+    # intact Noether cores stand in for polar-charge supply on the product side.
+    return None
+
     reactants = list(request["reactants"])
     products = list(request["products"])
     if not reactants or len(products) < 3:
@@ -1291,71 +1321,20 @@ def build_exact_muon_decay_family(
                     "id": f"product_operator.{prefix}.associate.1",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.electron.v1",
-                    "inputOccurrenceKeys": [residue_occurrence_key, anti_support_intermediate_ids[0]],
-                    "outputOccurrenceKeys": [core_product_ids[0]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.2",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.anti_electron_neutrino.v1",
-                    "inputOccurrenceKeys": [pro_support_intermediate_ids[0], anti_support_intermediate_ids[1]],
-                    "outputOccurrenceKeys": [core_product_ids[1]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.3",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.muon_neutrino.v1",
-                    "inputOccurrenceKeys": [core_occurrence_key, pro_support_intermediate_ids[1]],
-                    "outputOccurrenceKeys": [core_product_ids[2]],
-                },
-            ]
-        )
-        provenance_outputs.extend(
-            [
-                {
-                    "occurrenceKey": core_product_ids[0],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[1],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [
-                        {"rowAssemblyId": "pro_noether_core_I", "count": 1},
-                        {"rowAssemblyId": "anti_noether_core_I", "count": 1},
-                    ],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[2],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "pro_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-            ]
-        )
-    else:
-        product_operator_choices.extend(
-            [
-                {
-                    "id": f"product_operator.{prefix}.associate.1",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.positron.v1",
                     "inputOccurrenceKeys": [residue_occurrence_key, pro_support_intermediate_ids[0]],
                     "outputOccurrenceKeys": [core_product_ids[0]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.2",
                     "type": "associate",
-                    "lawId": f"law.{prefix}.associate.electron_neutrino.v1",
-                    "inputOccurrenceKeys": [anti_support_intermediate_ids[0], pro_support_intermediate_ids[1]],
+                    "lawId": f"law.{prefix}.associate.anti_electron_neutrino.v1",
+                    "inputOccurrenceKeys": [pro_support_intermediate_ids[1], anti_support_intermediate_ids[0]],
                     "outputOccurrenceKeys": [core_product_ids[1]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.3",
                     "type": "associate",
-                    "lawId": f"law.{prefix}.associate.anti_muon_neutrino.v1",
+                    "lawId": f"law.{prefix}.associate.muon_neutrino.v1",
                     "inputOccurrenceKeys": [core_occurrence_key, anti_support_intermediate_ids[1]],
                     "outputOccurrenceKeys": [core_product_ids[2]],
                 },
@@ -1373,6 +1352,57 @@ def build_exact_muon_decay_family(
                     "occurrenceKey": core_product_ids[1],
                     "provenanceClass": "active_rewrite",
                     "supportSourceRows": [
+                        {"rowAssemblyId": "pro_noether_core_I", "count": 1},
+                        {"rowAssemblyId": "anti_noether_core_I", "count": 1},
+                    ],
+                    "ambiguous": False,
+                },
+                {
+                    "occurrenceKey": core_product_ids[2],
+                    "provenanceClass": "active_rewrite",
+                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
+                    "ambiguous": False,
+                },
+            ]
+        )
+    else:
+        product_operator_choices.extend(
+            [
+                {
+                    "id": f"product_operator.{prefix}.associate.1",
+                    "type": "associate",
+                    "lawId": f"law.{prefix}.associate.positron.v1",
+                    "inputOccurrenceKeys": [residue_occurrence_key, anti_support_intermediate_ids[0]],
+                    "outputOccurrenceKeys": [core_product_ids[0]],
+                },
+                {
+                    "id": f"product_operator.{prefix}.associate.2",
+                    "type": "associate",
+                    "lawId": f"law.{prefix}.associate.electron_neutrino.v1",
+                    "inputOccurrenceKeys": [anti_support_intermediate_ids[1], pro_support_intermediate_ids[0]],
+                    "outputOccurrenceKeys": [core_product_ids[1]],
+                },
+                {
+                    "id": f"product_operator.{prefix}.associate.3",
+                    "type": "associate",
+                    "lawId": f"law.{prefix}.associate.anti_muon_neutrino.v1",
+                    "inputOccurrenceKeys": [core_occurrence_key, pro_support_intermediate_ids[1]],
+                    "outputOccurrenceKeys": [core_product_ids[2]],
+                },
+            ]
+        )
+        provenance_outputs.extend(
+            [
+                {
+                    "occurrenceKey": core_product_ids[0],
+                    "provenanceClass": "active_rewrite",
+                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
+                    "ambiguous": False,
+                },
+                {
+                    "occurrenceKey": core_product_ids[1],
+                    "provenanceClass": "active_rewrite",
+                    "supportSourceRows": [
                         {"rowAssemblyId": "anti_noether_core_I", "count": 1},
                         {"rowAssemblyId": "pro_noether_core_I", "count": 1},
                     ],
@@ -1381,7 +1411,7 @@ def build_exact_muon_decay_family(
                 {
                     "occurrenceKey": core_product_ids[2],
                     "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
+                    "supportSourceRows": [{"rowAssemblyId": "pro_noether_core_I", "count": 1}],
                     "ambiguous": False,
                 },
             ]
@@ -2344,8 +2374,8 @@ def build_pdgedit_document_from_acceptance(
                     **(
                         {
                             "sampleCounts": {
-                                "topCount": str(int(unit.get("positrinoCount", 0))),
-                                "bottomCount": str(int(unit.get("electrinoCount", 0))),
+                                "topCount": str(int(unit.get("electrinoCount", 0))),
+                                "bottomCount": str(int(unit.get("positrinoCount", 0))),
                             }
                         }
                         if normalize_text(unit.get("recipeId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID

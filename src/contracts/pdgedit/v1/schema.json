@@ -72,7 +72,9 @@
               "pro-noether-core-assembly",
               "anti-noether-core-assembly",
               "pro-bi-binary-assembly",
-              "anti-bi-binary-assembly"
+              "anti-bi-binary-assembly",
+              "pro-uni-binary-assembly",
+              "anti-uni-binary-assembly"
             ]
           },
           "x": {

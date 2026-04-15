@@ -17,37 +17,37 @@
   "singleRowGroups": [
     {
       "key": "unbound-architrino-residue-e4-p8",
-      "title": "Unbound Architrino Residue 4E/8P",
+      "title": "Unbound Architrinos 4E/8P",
       "rows": [
         [
           "unbound",
           "residue-electrinos-4",
           "residue-positrinos-8",
-          "architrino-residue"
+          "architrinos"
         ]
       ]
     },
     {
       "key": "unbound-architrino-residue-e6-p6",
-      "title": "Unbound Architrino Residue 6E/6P",
+      "title": "Unbound Architrinos 6E/6P",
       "rows": [
         [
           "unbound",
           "residue-electrinos-6",
           "residue-positrinos-6",
-          "architrino-residue"
+          "architrinos"
         ]
       ]
     },
     {
       "key": "unbound-architrino-residue-e9-p3",
-      "title": "Unbound Architrino Residue 9E/3P",
+      "title": "Unbound Architrinos 9E/3P",
       "rows": [
         [
           "unbound",
           "residue-electrinos-9",
           "residue-positrinos-3",
-          "architrino-residue"
+          "architrinos"
         ]
       ]
     },
@@ -60,6 +60,78 @@
           "pro-noether-core-glyph",
           "anti-noether-core-glyph",
           "sea"
+        ]
+      ]
+    },
+    {
+      "key": "pro-noether-core",
+      "title": "Pro Noether Core",
+      "rows": [
+        [
+          "pro-noether-core",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-bare-br-none"
+        ]
+      ]
+    },
+    {
+      "key": "anti-noether-core",
+      "title": "Anti Noether Core",
+      "rows": [
+        [
+          "anti-noether-core",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none"
+        ]
+      ]
+    },
+    {
+      "key": "pro-bi-binary",
+      "title": "Pro Bi-Binary",
+      "rows": [
+        [
+          "pro-bi-binary",
+          "binary-bare-br-none",
+          "binary-bare-br-none",
+          "binary-empty-none-none"
+        ]
+      ]
+    },
+    {
+      "key": "anti-bi-binary",
+      "title": "Anti Bi-Binary",
+      "rows": [
+        [
+          "anti-bi-binary",
+          "binary-bare-rb-none",
+          "binary-bare-rb-none",
+          "binary-empty-none-none"
+        ]
+      ]
+    },
+    {
+      "key": "pro-uni-binary",
+      "title": "Pro Uni-Binary",
+      "rows": [
+        [
+          "pro-uni-binary",
+          "binary-bare-br-none",
+          "binary-empty-none-none",
+          "binary-empty-none-none"
+        ]
+      ]
+    },
+    {
+      "key": "anti-uni-binary",
+      "title": "Anti Uni-Binary",
+      "rows": [
+        [
+          "anti-uni-binary",
+          "binary-bare-rb-none",
+          "binary-empty-none-none",
+          "binary-empty-none-none"
         ]
       ]
     },
