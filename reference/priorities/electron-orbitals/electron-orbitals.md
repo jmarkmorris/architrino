@@ -51,12 +51,12 @@ So shell 3 contains the subshells $3s$, $3p$, and $3d$, and each of those subshe
 
 The letters used for the orbitals, **$s, p, d,$ and $f$**, are historical abbreviations inherited from early spectroscopy:
 
-| Letter  | Old name    | Typical shape description                            | Number of orbitals | Maximum electrons |
-| ------- | ----------- | ---------------------------------------------------- | ------------------ | ----------------- |
-| **$s$** | sharp       | sphere                                               | 1                  | 2                 |
-| **$p$** | principal   | dumbbell or figure-8 family                          | 3                  | 6                 |
-| **$d$** | diffuse     | cloverleaf family with one mixed donut-dumbbell form | 5                  | 10                |
-| **$f$** | fundamental | complex multi-lobed family                           | 7                  | 14                |
+| Letter  | Old name    | Typical shape family | Number of orbitals | Maximum electrons |
+| ------- | ----------- | -------------------- | ------------------ | ----------------- |
+| **$s$** | sharp       | spherical            | 1                  | 2                 |
+| **$p$** | principal   | directional lobes    | 3                  | 6                 |
+| **$d$** | diffuse     | cloverleaf family    | 5                  | 10                |
+| **$f$** | fundamental | multi-lobed family   | 7                  | 14                |
 
 What matters physically now is not the historical names themselves, but the structure they identify.
 
@@ -123,7 +123,7 @@ Period number alone therefore does not tell the whole story. Period 4, for examp
 
 
 
-### 6. The Noble-Gas Shorthand
+### 5. The Noble-Gas Shorthand
 
 Because full configurations get long very quickly, chemists usually compress the inner closed-shell core using the nearest preceding noble gas in brackets.
 
@@ -135,7 +135,7 @@ Because full configurations get long very quickly, chemists usually compress the
 
 This shorthand is not just a convenience. It also foregrounds the chemically active outer electrons. For example, instead of writing Iron as the full long sequence, we write **[Ar] $4s^2 3d^6$**, which immediately says that Iron contains an Argon-like core plus 8 outer electrons relevant to its chemistry and magnetism.
 
-### 7. Periodic-Table Meaning
+### 6. Periodic-Table Meaning
 
 The periodic table is, in a very real sense, a map of orbital filling.
 
@@ -146,15 +146,7 @@ The periodic table is, in a very real sense, a map of orbital filling.
 
 This block structure exists because the subshell capacities are 2, 6, 10, and 14 respectively. That is why the table has those widths.
 
-Each new period corresponds broadly to the opening of a new principal energy level, even though the detailed filling order interleaves subshells from neighboring levels.
-
-Reading across the periodic table also reproduces the usual filling sequence:
-
-- periods 1 to 3 give the straightforward sequence $1s$, $2s$, $2p$, $3s$, $3p$,
-- period 4 continues with $4s$, then $3d$, then $4p$,
-- period 5 continues with $5s$, then $4d$, then $5p$,
-- period 6 continues with $6s$, then $4f$, then $5d$, then $6p$,
-- period 7 continues with $7s$, then $5f$, then $6d$, then $7p$.
+Each new period corresponds broadly to the opening of a new principal energy level, even though the detailed filling order interleaves subshells from neighboring levels. So the table is not just a shell counter. It is a visible record of the same energy-order pattern described above: $s$-block first, then the relevant $d$- or $f$-block where applicable, and then the $p$-block.
 
 This same structure explains the major group patterns:
 
@@ -165,7 +157,7 @@ This same structure explains the major group patterns:
 
 That is why an element's position on the table already encodes much of its outer electron configuration.
 
-### 8. Valence Electrons, Bonding, And Geometry
+### 7. Valence Electrons, Bonding, And Geometry
 
 The outermost electrons, especially those in the highest occupied principal level, are the **valence electrons**. These dominate ordinary chemistry.
 
@@ -178,10 +170,10 @@ Valence structure helps determine:
 
 For example, Group 1 elements end in **$ns^1$**, so each has one relatively weakly bound outer $s$ electron. That common valence pattern is why lithium, sodium, potassium, and related elements all behave as highly reactive metals.
 
-Orbital shape also matters. The directional nature of the three $p$ orbitals helps explain why bonding is anisotropic and why molecules such as water and ammonia adopt specific bond angles and spatial arrangements rather than collapsing into purely spherical layouts.
+Orbital shape also matters. In particular, the directional character of the $p$ orbitals helps explain why bonding has preferred angles and orientations rather than remaining spherically uniform.
 
 
-### 9. $\mathbb{A}\mathbb{A}\mathbb{A}$ Hypothesis, Interpretation, And Mapping To Quantum-Mechanical Language
+### 8. $\mathbb{A}\mathbb{A}\mathbb{A}$ Hypothesis, Interpretation, And Mapping To Quantum-Mechanical Language
 
 This section records a theory-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals and electron configurations. It should be read as a hypothesis and interpretive program rather than as a settled replacement for standard quantum mechanics.
 
@@ -290,7 +282,7 @@ For this idea to move from suggestive interpretation to closure, the following q
 
 Those are the hard gates for turning the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals, and the `EOC` compression built on top of it, into predictive closure rather than a suggestive re-description.
 
-### 10. Number-Theoretic And Combinatorial Inquiry In `EOC` Space
+### 9. Number-Theoretic And Combinatorial Inquiry In `EOC` Space
 
 The `EOC` rows can also be studied as a constrained arithmetic language. If one regards strings such as `216`, `35a`, or `4ee` as compact hexadecimal-style numerals, the question is not whether arbitrary numerology can be imposed on them, but whether the admissible rows and their evolution across the elements exhibit stable arithmetic or combinatorial laws.
 
@@ -306,15 +298,15 @@ That distinction matters because some patterns are immediate and not deep. For e
 
 More interestingly, the presently tabulated neutral elements up to atomic number 118 realize only a sparse subset of the ambient three-character code space. The visible regularities already suggest a real arithmetic and combinatorial inquiry:
 
-| Pattern class | Example | Why it matters |
-| --- | --- | --- |
-| sparse admissible code space | only 107 distinct `EOC` rows appear in the current table up to 118 | the code set is highly constrained and should be treated as a structured language, not as generic integers |
-| occupancy ladders | `216, 226, 236, 246, 256, 266`; `61a, 62a, ..., 6aa` | for fixed shell and capacity, occupancy usually moves through an ordered ladder in the middle digit |
-| complement symmetry | `216 <-> 256`, `226 <-> 246`, `32a <-> 38a`, `41e <-> 4de` | the map \(O \mapsto C - O\) creates a particle-hole-style symmetry around closure |
-| self-dual half-fill rows | `236`, `35a`, `47e` | half-filled rows sit at arithmetic fixed points of the complement symmetry and align with known stability landmarks |
-| closure rows | `122`, `266`, `3aa`, `4ee`, `5aa`, `6aa`, `766` | fully saturated rows act as closure markers in both the notation and the chemistry |
-| structured missing rows | `34a`, `39a`, `43a`, `46a`, `49a`, `42e`, `48e`, `58a`, `51e`, `55e`, `58e` do not appear for neutral ground states up to 118 | the absences are not random and encode the known anomaly structure as much as the present rows do |
-| near-local successor rule | from one element to the next, 105 of the 117 steps change exactly one row, while only 12 steps require a two-row rearrangement | the full periodic sequence traces an almost monotone path through `EOC` space, with a small exceptional set |
+| Pattern class                | Example                                                                                                                        | Why it matters                                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| sparse admissible code space | only 107 distinct `EOC` rows appear in the current table up to 118                                                             | the code set is highly constrained and should be treated as a structured language, not as generic integers          |
+| occupancy ladders            | `216, 226, 236, 246, 256, 266`; `61a, 62a, ..., 6aa`                                                                           | for fixed shell and capacity, occupancy usually moves through an ordered ladder in the middle digit                 |
+| complement symmetry          | `216 <-> 256`, `226 <-> 246`, `32a <-> 38a`, `41e <-> 4de`                                                                     | the map $O \mapsto C - O$ creates a particle-hole-style symmetry around closure                                     |
+| self-dual half-fill rows     | `236`, `35a`, `47e`                                                                                                            | half-filled rows sit at arithmetic fixed points of the complement symmetry and align with known stability landmarks |
+| closure rows                 | `122`, `266`, `3aa`, `4ee`, `5aa`, `6aa`, `766`                                                                                | fully saturated rows act as closure markers in both the notation and the chemistry                                  |
+| structured missing rows      | `34a`, `39a`, `43a`, `46a`, `49a`, `42e`, `48e`, `58a`, `51e`, `55e`, `58e` do not appear for neutral ground states up to 118  | the absences are not random and encode the known anomaly structure as much as the present rows do                   |
+| near-local successor rule    | from one element to the next, 105 of the 117 steps change exactly one row, while only 12 steps require a two-row rearrangement | the full periodic sequence traces an almost monotone path through `EOC` space, with a small exceptional set         |
 
 This suggests that the strongest hidden-pattern search is probably not about prime factorizations of isolated row codes. It is more likely to live in:
 
@@ -325,10 +317,10 @@ This suggests that the strongest hidden-pattern search is probably not about pri
 
 Useful whole-atom invariants include:
 
-- the electron count \(Z = \sum_i O_i\),
-- the vacancy count \(V = \sum_i (C_i - O_i)\),
-- the number of closed rows with \(O_i = C_i\),
-- and a complement-symmetry profile comparing each partially filled row to its partner under \(O \mapsto C - O\).
+- the electron count $Z = \sum_{i} O_{i}$,
+- the vacancy count $V = \sum_{i} (C_{i} - O_{i})$,
+- the number of closed rows with $O_{i} = C_{i}$,
+- and a complement-symmetry profile comparing each partially filled row to its partner under $O \mapsto C - O$.
 
 Those quantities may provide a cleaner bridge between arithmetic structure and periodic behavior than raw inspection of single `EOC` strings.
 
@@ -342,7 +334,7 @@ Those quantities may provide a cleaner bridge between arithmetic structure and p
 
 This is therefore a legitimate area of inquiry, but it should be pursued with discipline. The goal is not to force mystical significance onto compact symbols. The goal is to determine whether the `EOC` language defines a sparse arithmetic geometry whose regularities track real structure in orbital filling and, possibly, deeper dynamical organization.
 
-### 11. Full Electron-Configuration Table In Standard, `EOC`, And Additive Row Notation
+### 10. Full Electron-Configuration Table In Standard, `EOC`, And Additive Row Notation
 
 The table below runs through the current known elements up to atomic number 118. It places four views side by side:
 
