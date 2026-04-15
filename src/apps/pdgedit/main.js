@@ -29,6 +29,7 @@ export function bootstrapPdgeditApp({
     documentTriggerElement: documentLike.getElementById("pdgedit-document-trigger"),
     documentPanelElement: documentLike.getElementById("pdgedit-document-panel"),
     documentSearchInputElement: documentLike.getElementById("pdgedit-document-search"),
+    documentSourceFilterElement: documentLike.getElementById("pdgedit-document-source-filter"),
     homeButtonElement: documentLike.getElementById("pdgedit-home-button"),
     createPickerElement: documentLike.getElementById("pdgedit-create-picker"),
     manifestUrl,

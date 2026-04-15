@@ -275,12 +275,13 @@ test("pdgedit manifest defaults to its declared starter document", () => {
     assert.deepEqual(
       Object.keys(entry).sort(),
       entry.isDefault
-        ? ["displayTitle", "documentPath", "id", "isDefault", "title"]
-        : ["displayTitle", "documentPath", "id", "title"]
+        ? ["displayTitle", "documentPath", "id", "isDefault", "sourceKind", "title"]
+        : ["displayTitle", "documentPath", "id", "sourceKind", "title"]
     );
     assert.equal(typeof entry.id, "string");
     assert.equal(typeof entry.title, "string");
     assert.equal(typeof entry.displayTitle, "string");
+    assert.equal(["example", "exact"].includes(entry.sourceKind), true);
     assert.equal(typeof entry.documentPath, "string");
     assert.equal(entry.documentPath.endsWith(".v1.json"), true);
     assert.equal(fs.existsSync(new URL(`../${entry.documentPath}`, import.meta.url)), true, entry.documentPath);
@@ -298,12 +299,14 @@ test("pdgedit manifest selection prefers the declared default, then the first en
         id: "primary_document",
         title: "Primary document",
         displayTitle: "Primary document",
+        sourceKind: "example",
         documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
       },
       {
         id: "secondary_document",
         title: "Secondary document",
         displayTitle: "Secondary document",
+        sourceKind: "example",
         documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
         isDefault: true,
       },
@@ -317,12 +320,14 @@ test("pdgedit manifest selection prefers the declared default, then the first en
         id: "first_document",
         title: "First document",
         displayTitle: "First document",
+        sourceKind: "example",
         documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
       },
       {
         id: "second_document",
         title: "Second document",
         displayTitle: "Second document",
+        sourceKind: "example",
         documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
       },
     ],
@@ -445,6 +450,7 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
         id: "mu_minus_s004_1",
         title: "mu- decay mode 1",
         displayTitle: "mu- decay mode 1",
+        sourceKind: "exact",
         documentPath: ".tmp/pdgsolve/pdgedit/documents/0001_mu_minus_s004_1.pdgedit.v1.json",
         isDefault: true,
       },
@@ -484,4 +490,8 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
 
   assert.equal(bootstrap.manifest.entries.some((entry) => entry.id === "mu_minus_s004_1"), true);
   assert.equal(bootstrap.manifest.defaultEntryId, "pass_thru_up_quark");
+  assert.equal(
+    bootstrap.manifest.entries.find((entry) => entry.id === "mu_minus_s004_1")?.sourceKind,
+    "exact"
+  );
 });

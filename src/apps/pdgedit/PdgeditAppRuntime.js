@@ -98,6 +98,7 @@ function setPickerVisibility(element, isOpen) {
   }
   element.classList.toggle("is-open", isOpen);
   element.setAttribute("aria-hidden", isOpen ? "false" : "true");
+  element.inert = !isOpen;
   element.hidden = !isOpen;
 }
 
@@ -129,6 +130,7 @@ export function createPdgeditAppRuntime({
   documentTriggerElement,
   documentPanelElement,
   documentSearchInputElement,
+  documentSourceFilterElement,
   homeButtonElement,
   createPickerElement,
   manifestUrl,
@@ -153,6 +155,7 @@ export function createPdgeditAppRuntime({
     pendingLinkObjectId: "",
     documentPanelOpen: false,
     documentQuery: "",
+    documentSourceFilter: "all",
     createPicker: null,
     dragState: null,
     suppressObjectClickId: "",
@@ -163,6 +166,9 @@ export function createPdgeditAppRuntime({
   }
 
   function closeDocumentPanel() {
+    if (documentPanelElement?.contains(documentLike.activeElement)) {
+      documentTriggerElement?.focus?.();
+    }
     state.documentPanelOpen = false;
     setPickerVisibility(documentPanelElement, false);
   }
@@ -208,7 +214,13 @@ export function createPdgeditAppRuntime({
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
     setPickerVisibility(documentPanelElement, state.documentPanelOpen && Boolean(state.manifest?.entries?.length));
     const normalizedQuery = String(state.documentQuery || "").trim().toLowerCase();
+    const normalizedSourceFilter = state.documentSourceFilter === "exact" || state.documentSourceFilter === "example"
+      ? state.documentSourceFilter
+      : "all";
     const filteredEntries = (Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).filter((entry) => {
+      if (normalizedSourceFilter !== "all" && entry.sourceKind !== normalizedSourceFilter) {
+        return false;
+      }
       if (!normalizedQuery) {
         return true;
       }
@@ -221,8 +233,16 @@ export function createPdgeditAppRuntime({
     if (documentSearchInputElement) {
       documentSearchInputElement.value = state.documentQuery;
     }
+    if (documentSourceFilterElement) {
+      const buttons = documentSourceFilterElement.querySelectorAll("[data-source-filter]");
+      buttons.forEach((button) => {
+        const isSelected = button.dataset.sourceFilter === normalizedSourceFilter;
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+      });
+    }
     documentPanelElement.replaceChildren(
-      ...(documentSearchInputElement ? [documentSearchInputElement] : []),
+      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
       ...(filteredEntries.length
         ? []
         : [createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")]),
@@ -528,6 +548,15 @@ export function createPdgeditAppRuntime({
 
     documentSearchInputElement?.addEventListener("input", (event) => {
       state.documentQuery = event.target.value;
+      renderDocumentPicker();
+    });
+
+    documentSourceFilterElement?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-source-filter]");
+      if (!button) {
+        return;
+      }
+      state.documentSourceFilter = button.dataset.sourceFilter || "all";
       renderDocumentPicker();
     });
 

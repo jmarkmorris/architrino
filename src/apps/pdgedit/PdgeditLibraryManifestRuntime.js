@@ -6,19 +6,37 @@ function normalizeBoolean(value) {
   return value === true;
 }
 
+function normalizeSourceKind(value, documentPath = "") {
+  const normalizedValue = normalizeText(value);
+  if (normalizedValue === "example" || normalizedValue === "exact") {
+    return normalizedValue;
+  }
+  const normalizedPath = normalizeText(documentPath);
+  if (
+    normalizedPath.startsWith(".tmp/pdgsolve/pdgedit/documents/") ||
+    normalizedPath.includes("/.tmp/pdgsolve/pdgedit/documents/")
+  ) {
+    return "exact";
+  }
+  return "example";
+}
+
 export function createPdgeditLibraryManifestEntry({
   id = "",
   title = "",
   displayTitle = "",
   documentPath = "",
+  sourceKind = "",
   isDefault = false,
 } = {}) {
   const normalizedTitle = normalizeText(title);
+  const normalizedDocumentPath = normalizeText(documentPath);
   const entry = {
     id: normalizeText(id),
     title: normalizedTitle,
     displayTitle: normalizeText(displayTitle) || normalizedTitle,
-    documentPath: normalizeText(documentPath),
+    documentPath: normalizedDocumentPath,
+    sourceKind: normalizeSourceKind(sourceKind, normalizedDocumentPath),
   };
   if (normalizeBoolean(isDefault)) {
     entry.isDefault = true;
@@ -32,6 +50,7 @@ export function normalizePdgeditLibraryManifestEntry(entry = {}) {
     title: entry?.title,
     displayTitle: entry?.displayTitle,
     documentPath: entry?.documentPath,
+    sourceKind: entry?.sourceKind,
     isDefault: entry?.isDefault,
   });
 }

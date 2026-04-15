@@ -6,6 +6,7 @@
       "id": "pass_thru_up_quark",
       "title": "Pass thru up quark",
       "displayTitle": "Pass thru up quark",
+      "sourceKind": "example",
       "documentPath": "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
       "isDefault": true
     },
@@ -13,24 +14,28 @@
       "id": "proton_to_photon_stack",
       "title": "Proton to photon stack",
       "displayTitle": "Proton to photon stack",
+      "sourceKind": "example",
       "documentPath": "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json"
     },
     {
       "id": "unbound_architrinos",
       "title": "Unbound architrinos",
       "displayTitle": "Unbound architrinos",
+      "sourceKind": "example",
       "documentPath": "content/contracts/examples/pdgedit/unbound_architrinos.v1.json"
     },
     {
       "id": "four_tile_family_coverage",
       "title": "Four tile family coverage",
       "displayTitle": "Four tile family coverage",
+      "sourceKind": "example",
       "documentPath": "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json"
     },
     {
       "id": "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
       "title": "Free neutron beta exact",
       "displayTitle": "Free neutron beta exact",
+      "sourceKind": "example",
       "documentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json"
     }
   ]

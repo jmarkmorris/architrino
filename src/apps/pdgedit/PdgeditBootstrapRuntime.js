@@ -69,6 +69,7 @@ export async function loadPdgeditContractBootstrapSeed({
         title: normalizedLaunchPayload.documentTitle,
         displayTitle: normalizedLaunchPayload.documentTitle,
         documentPath: "",
+        sourceKind: "exact",
       }
     : selectDefaultPdgeditLibraryManifestEntry(mergedManifest);
   const document = normalizedLaunchPayload

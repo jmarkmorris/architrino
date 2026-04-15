@@ -379,6 +379,7 @@
     "id": "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
     "title": "Free neutron beta exact",
     "displayTitle": "Free neutron beta exact",
+    "sourceKind": "exact",
     "documentPath": "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json"
   }
 }

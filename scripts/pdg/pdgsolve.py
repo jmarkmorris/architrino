@@ -2259,6 +2259,7 @@ def build_pdgedit_package(
             "id": document_id,
             "title": document_title,
             "displayTitle": document_title,
+            "sourceKind": "exact",
             "documentPath": document_path,
         },
     }
@@ -2269,12 +2270,14 @@ def build_pdgedit_manifest_entry(
     document_id: str,
     document_title: str,
     document_path: str,
+    source_kind: str = "exact",
     is_default: bool = False,
 ) -> dict[str, Any]:
     entry = {
         "id": document_id,
         "title": document_title,
         "displayTitle": document_title,
+        "sourceKind": source_kind,
         "documentPath": document_path,
     }
     if is_default:
@@ -2389,6 +2392,7 @@ def solve_manifest_payload(
                     document_id=document_id,
                     document_title=document_title,
                     document_path=serialized_pdgedit_document_path,
+                    source_kind="exact",
                     is_default=not pdgedit_manifest_entries,
                 )
             )
