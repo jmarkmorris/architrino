@@ -105,6 +105,13 @@ Reading along the standard diagonal pattern gives the usual filling sequence:
 
 **$1s \rightarrow 2s \rightarrow 2p \rightarrow 3s \rightarrow 3p \rightarrow 4s \rightarrow 3d \rightarrow 4p \rightarrow 5s \rightarrow 4d \rightarrow 5p \rightarrow 6s \rightarrow 4f \rightarrow 5d \rightarrow 6p \rightarrow 7s \rightarrow 5f \rightarrow 6d \rightarrow 7p$**
 
+Note the starting levels:
+
+- $s$ starts at 1
+- $p$ starts at 2
+- $d$ starts at 3
+- $f$ starts at 4
+
 Two especially important consequences are:
 
 - **$4s$ fills before $3d$** in the neutral-atom buildup pattern.
@@ -114,124 +121,7 @@ This pattern reflects the fact that orbital energies depend on more than just $n
 
 Period number alone therefore does not tell the whole story. Period 4, for example, includes the filling of $4s$, then $3d$, then $4p$. The table reflects energy ordering, not a perfectly clean shell-by-shell filling rule.
 
-### 5. Mnemonics For The Full Aufbau Sequence
 
-If the goal is to reconstruct the full filling order without relying on noble-gas shorthand or directly reading from the periodic table, there are several useful mnemonic strategies. These are memory aids rather than deeper physical explanations, but they are often effective in classroom or exam settings.
-
-#### Phrase-pattern mnemonic
-
-One rote-memory approach uses a repeated first-letter pattern:
-
-- **School, School**
-- **Public School, Public School**
-- **District Public School, District Public School**
-- **Federal District Public School, Federal District Public School**
-
-Taking the first letters gives the subshell sequence:
-
-**$s, s, p, s, p, s, d, p, s, d, p, s, f, d, p, s, f, d, p, s$**
-
-You then combine that letter sequence with the starting levels:
-
-- $s$ starts at 1
-- $p$ starts at 2
-- $d$ starts at 3
-- $f$ starts at 4
-
-Counting upward as each letter reappears reconstructs the full sequence:
-
-**$1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p$**
-
-This method is useful for rote memorization, although it is less conceptually transparent than the visual and mathematical methods below.
-
-#### Diagonal-rule visual mnemonic
-
-The best-known visual method is the **diagonal rule**, also called **Madelung's rule** in classroom use. Use the triangular layout already shown in the Aufbau section above.
-
-Then read diagonally downward to the left. That procedure generates:
-
-- $1s$
-- $2s$
-- $2p \rightarrow 3s$
-- $3p \rightarrow 4s$
-- $3d \rightarrow 4p \rightarrow 5s$
-- $4d \rightarrow 5p \rightarrow 6s$
-- $4f \rightarrow 5d \rightarrow 6p \rightarrow 7s$
-- $5f \rightarrow 6d \rightarrow 7p$
-
-This is often the easiest reconstruction method to perform quickly on scratch paper.
-
-#### The $n + l$ rule
-
-The most logical mnemonic is the **$n + l$ rule**. In this method, orbitals fill in order of increasing $n + l$, where:
-
-- for $s$, $l = 0$
-- for $p$, $l = 1$
-- for $d$, $l = 2$
-- for $f$, $l = 3$
-
-Examples:
-
-- $4s$: $4 + 0 = 4$
-- $3d$: $3 + 2 = 5$
-
-So $4s$ fills before $3d$ because 4 is less than 5.
-
-If two orbitals have the same $n + l$ value, the one with lower $n$ fills first. For example:
-
-- $3d$: $3 + 2 = 5$
-- $4p$: $4 + 1 = 5$
-
-So $3d$ comes before $4p$ because 3 is less than 4.
-
-Among the mnemonic methods, this one is the closest to the actual organizing principle behind the usual Aufbau ordering.
-
-#### The periodic table itself as a mnemonic
-
-In practice, the periodic table is often the most reliable mnemonic of all. The table is already laid out in $s$-, $d$-, $p$-, and $f$-blocks according to the usual occupation order, so reading across it reproduces the filling pattern. The detailed block and period mapping is collected in the `Periodic-Table Meaning` section below.
-
-#### Chunked block mnemonic
-
-For many students, the easiest way to memorize the filling order is not as one uninterrupted string, but as a sequence of short blocks:
-
-```text
-1s
-2s 2p
-3s 3p
-4s 3d 4p
-5s 4d 5p
-6s 4f 5d 6p
-7s 5f 6d 7p
-```
-
-This chunked version is often easier to hold in working memory than:
-
-**$1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p$**
-
-It also makes the periodic structure more visible, especially the repeating pattern $4s, 3d, 4p$ then $5s, 4d, 5p$ then $6s, 4f, 5d, 6p$.
-
-#### Repeating-pattern mnemonic
-
-A useful pattern behind the chunked form is:
-
-- each new principal level begins with an $s$ subshell,
-- then the sequence often backfills the previous level's $d$ subshell,
-- and for higher periods it can also backfill the $f$ subshell from two levels earlier.
-
-That is why the middle of the sequence falls into the memorable pattern:
-
-- $4s, 3d, 4p$
-- $5s, 4d, 5p$
-- $6s, 4f, 5d, 6p$
-- $7s, 5f, 6d, 7p$
-
-This is one of the best compact mental models for remembering the usual order quickly.
-
-#### Limits of mnemonics
-
-No mnemonic completely replaces the need to remember known exceptions. Transition-metal and related anomalies such as Cr, Mo, Cu, Ag, Au, and sometimes Pd must still be learned as a small separate list of special cases. In most teaching practice, the diagonal diagram and the periodic table itself are the most reliable memory tools.
-
-If the goal is speed, the chunked block form plus the repeating $s/d/f/p$ backfill pattern is often the fastest practical memory aid. If the goal is understanding, the $n + l$ rule is the strongest guide.
 
 ### 6. The Noble-Gas Shorthand
 
@@ -290,96 +180,8 @@ For example, Group 1 elements end in **$ns^1$**, so each has one relatively weak
 
 Orbital shape also matters. The directional nature of the three $p$ orbitals helps explain why bonding is anisotropic and why molecules such as water and ammonia adopt specific bond angles and spatial arrangements rather than collapsing into purely spherical layouts.
 
-### 9. Orbital Box Notation And Spin Rules
 
-Electron configurations are also often written in orbital-box form. In that representation:
-
-- an $s$ subshell is shown as one box,
-- a $p$ subshell as three boxes,
-- a $d$ subshell as five boxes,
-- and an $f$ subshell as seven boxes.
-
-Electrons are drawn as arrows, usually **$\uparrow$** and **$\downarrow$**, to track occupancy and spin.
-
-For example, Oxygen has configuration **$1s^2 2s^2 2p^4$**. Its $2p^4$ part is commonly sketched as:
-
-```text
-[↑↓] [↑] [↑]
-```
-
-This means one $p$ orbital contains a pair and the other two $p$ orbitals each contain one electron.
-
-Two rules govern this notation:
-
-- **Pauli exclusion principle:** an orbital can hold at most two electrons, and if two are present they must have opposite spins.
-- **Hund's rule:** within a set of equal-energy orbitals, electrons occupy separate orbitals one at a time before pairing.
-
-That is why $p^4$ is not drawn as two paired boxes and one empty box.
-
-### 10. Magnetism, Color, And Transition-Metal Behavior
-
-Orbital notation is not merely bookkeeping. It helps explain major physical consequences.
-
-- **Magnetism:** When two electrons occupy the same orbital, their opposite spins cancel their magnetic contributions. But in partially filled $d$ and $f$ subshells, electrons tend to spread out across available orbitals before pairing. This is Hund's rule, and it leaves unpaired electrons that generate strong magnetic behavior in elements such as Iron, Cobalt, and Neodymium.
-- **Color:** Many vivid colors in transition-metal ions, gemstones, and coordination compounds arise because electrons can jump between nearby $d$-level patterns, absorbing some wavelengths and leaving others to be transmitted or reflected.
-- **Variable oxidation states:** Transition metals often have several chemically accessible electron arrangements because their $d$ and outer $s$ levels are close in energy. This is why they commonly exhibit multiple oxidation states and serve as catalysts.
-
-Lanthanides and actinides behave differently because the $f$ electrons are more buried and shielded. That is why many lanthanides show closely similar chemistry: their inner $f$ electrons often influence magnetism and spectra more strongly than ordinary bonding.
-
-### 11. Important Stability Patterns And Exceptions
-
-The usual filling order is a very good rule, but it is not perfect in every case. Half-filled and fully filled subshells can be especially stable, which leads to famous exceptions.
-
-- **Chromium (Cr):** naive expectation **[Ar] $4s^2 3d^4$**, observed ground-state pattern **[Ar] $4s^1 3d^5$**
-- **Copper (Cu):** naive expectation **[Ar] $4s^2 3d^9$**, observed ground-state pattern **[Ar] $4s^1 3d^{10}$**
-
-These exceptions are important because they show that the final electron arrangement is determined by the detailed energetic balance of the whole atom, not by a rigid mnemonic alone.
-
-Another important subtlety is that although $4s$ fills before $3d$ in the neutral-atom buildup pattern, the $4s$ electrons are often removed first when transition metals form cations.
-
-For example:
-
-- neutral Iron: **[Ar] $4s^2 3d^6$**
-- Iron(II): **[Ar] $3d^6$**
-
-That point is a common source of confusion and matters directly for oxidation-state bookkeeping.
-
-### 12. Representative Chemical Examples
-
-Short configurations often already tell you the main chemistry:
-
-- **Carbon:** **$1s^2 2s^2 2p^2$**. Four valence electrons, strongly associated with covalent bonding and structural versatility.
-- **Sodium:** **[Ne] $3s^1$**. One valence electron, easily lost, so Sodium commonly forms **Na$^+$**.
-- **Chlorine:** **[Ne] $3s^2 3p^5$**. One electron short of a filled valence shell, so Chlorine commonly forms **Cl$^-$**.
-- **Neon:** **[He] $2s^2 2p^6$**. Filled valence shell, which is why Neon is unusually unreactive.
-- **Iron:** **[Ar] $4s^2 3d^6$**. Partially filled $d$ structure, multiple oxidation states, and frequent magnetic behavior.
-
-These examples line up with the group patterns summarized in the `Periodic-Table Meaning` section above.
-
-### 13. Why This Matters
-
-The symbology of electron orbitals is not just an accounting trick. It is a compact encoding of the quantum structure that underlies atomic behavior.
-
-It explains:
-
-- why the periodic table has the shape it has,
-- why chemically similar elements cluster into the same groups,
-- why noble gases are unusually inert,
-- why partially filled shells tend to drive bonding and reactivity,
-- why transition metals are colorful and catalytically versatile,
-- and why some materials are strongly magnetic.
-
-In that sense, electron-orbital notation is both a language and a compressed theory. It lets you read atomic structure from a short string of symbols and infer a surprising amount about chemistry and physics at a glance.
-
-The most useful compact intuition is this:
-
-- the periodic table is a map of electron filling,
-- electron-configuration notation tells you which orbital families are occupied,
-- and the outermost occupied orbitals tell you most of the chemistry.
-
-So the notation is a compressed way to ask how full an atom's electron neighborhoods are, and what that implies for reactivity, bonding, charge, spectra, and magnetism.
-
-### 14. $\mathbb{A}\mathbb{A}\mathbb{A}$ Hypothesis, Interpretation, And Mapping To Quantum-Mechanical Language
+### 9. $\mathbb{A}\mathbb{A}\mathbb{A}$ Hypothesis, Interpretation, And Mapping To Quantum-Mechanical Language
 
 This section records a theory-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals and electron configurations. It should be read as a hypothesis and interpretive program rather than as a settled replacement for standard quantum mechanics.
 
@@ -488,7 +290,7 @@ For this idea to move from suggestive interpretation to closure, the following q
 
 Those are the hard gates for turning the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of orbitals, and the `EOC` compression built on top of it, into predictive closure rather than a suggestive re-description.
 
-### 15. Number-Theoretic And Combinatorial Inquiry In `EOC` Space
+### 10. Number-Theoretic And Combinatorial Inquiry In `EOC` Space
 
 The `EOC` rows can also be studied as a constrained arithmetic language. If one regards strings such as `216`, `35a`, or `4ee` as compact hexadecimal-style numerals, the question is not whether arbitrary numerology can be imposed on them, but whether the admissible rows and their evolution across the elements exhibit stable arithmetic or combinatorial laws.
 
@@ -540,7 +342,7 @@ Those quantities may provide a cleaner bridge between arithmetic structure and p
 
 This is therefore a legitimate area of inquiry, but it should be pursued with discipline. The goal is not to force mystical significance onto compact symbols. The goal is to determine whether the `EOC` language defines a sparse arithmetic geometry whose regularities track real structure in orbital filling and, possibly, deeper dynamical organization.
 
-### 16. Full Electron-Configuration Table In Standard, `EOC`, And Additive Row Notation
+### 11. Full Electron-Configuration Table In Standard, `EOC`, And Additive Row Notation
 
 The table below runs through the current known elements up to atomic number 118. It places four views side by side:
 
