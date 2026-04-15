@@ -52,6 +52,76 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(len(pdgedit_document["assemblies"]), 13)
         self.assertEqual(len(pdgedit_document["operators"]), 8)
 
+    def test_solve_request_matches_exact_mu_minus_decay_family(self):
+        request = {
+            "schema": "pdgsolve-request/v1",
+            "requestId": "mu_minus_s004_1",
+            "source": {
+                "kind": "pdgfeed",
+                "title": "mu- decay mode 1",
+                "sourceDocumentId": "pdg-proposal:mu_minus_s004_1",
+            },
+            "reactants": [
+                {"id": "reactant_muon_1", "assemblyId": "pro_muon_II", "title": "Muon"},
+                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            ],
+            "products": [
+                {"id": "product_electron_1", "assemblyId": "pro_electron_I", "title": "Electron"},
+                {"id": "product_anti_electron_neutrino_2", "assemblyId": "anti_electron_neutrino_I", "title": "Anti Electron Neutrino"},
+                {"id": "product_muon_neutrino_3", "assemblyId": "pro_muon_neutrino_II", "title": "Muon Neutrino"},
+            ],
+            "policy": {
+                "exactClosureRequired": True,
+                "allowedBoundaryAugmentations": ["none"],
+            },
+        }
+
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(result["bestFamilyId"], "family.mu_minus.decay.exact.v1")
+        self.assertEqual(result["optionFamilies"][0]["publicationReady"], True)
+
+    def test_solve_request_matches_exact_mu_plus_radiative_family(self):
+        request = {
+            "schema": "pdgsolve-request/v1",
+            "requestId": "mu_plus_s004_2",
+            "source": {
+                "kind": "pdgfeed",
+                "title": "mu+ decay mode 2",
+                "sourceDocumentId": "pdg-proposal:mu_plus_s004_2",
+            },
+            "reactants": [
+                {"id": "reactant_anti_muon_1", "assemblyId": "anti_muon_II", "title": "Anti Muon"},
+                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_3.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_3.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            ],
+            "products": [
+                {"id": "product_positron_1", "assemblyId": "anti_electron_I", "title": "Positron"},
+                {"id": "product_electron_neutrino_2", "assemblyId": "pro_electron_neutrino_I", "title": "Electron Neutrino"},
+                {"id": "product_anti_muon_neutrino_3", "assemblyId": "anti_muon_neutrino_II", "title": "Anti Muon Neutrino"},
+                {"id": "product_photon_4.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "product_photon_4.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            ],
+            "policy": {
+                "exactClosureRequired": True,
+                "allowedBoundaryAugmentations": ["none"],
+            },
+        }
+
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(result["bestFamilyId"], "family.mu_plus.radiative.exact.v1")
+        self.assertEqual(result["optionFamilies"][0]["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
+
     def test_solve_manifest_writes_per_case_results_and_a_batch_index(self):
         unsupported_request = pdgsolve.get_vertical_slice_request()
         unsupported_request["requestId"] = "unsupported_beta_variant"
@@ -110,6 +180,12 @@ class PdgsolveCliTests(unittest.TestCase):
             self.assertTrue(second_result_path.exists())
             self.assertEqual(self.read_json(first_result_path)["searchStatus"], "exact_available")
             self.assertEqual(self.read_json(second_result_path)["searchStatus"], "no_exact_closure")
+
+    def test_parse_args_uses_repo_local_tmp_defaults_for_manifest_solves(self):
+        args = pdgsolve.parse_args(["solve-manifest", "manifest.json"])
+
+        self.assertEqual(args.output_dir, pdgsolve.DEFAULT_RESULT_CORPUS_OUTPUT_DIR)
+        self.assertEqual(args.write_index, pdgsolve.DEFAULT_RESULT_CORPUS_INDEX_PATH)
 
     def test_write_vertical_slice_command_writes_all_upstream_artifacts(self):
         with tempfile.TemporaryDirectory() as tmp_dir_name:
