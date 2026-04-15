@@ -16,42 +16,6 @@
   ],
   "singleRowGroups": [
     {
-      "key": "unbound-architrino-residue-e4-p8",
-      "title": "Unbound Architrinos 4E/8P",
-      "rows": [
-        [
-          "unbound",
-          "residue-electrinos-4",
-          "residue-positrinos-8",
-          "architrinos"
-        ]
-      ]
-    },
-    {
-      "key": "unbound-architrino-residue-e6-p6",
-      "title": "Unbound Architrinos 6E/6P",
-      "rows": [
-        [
-          "unbound",
-          "residue-electrinos-6",
-          "residue-positrinos-6",
-          "architrinos"
-        ]
-      ]
-    },
-    {
-      "key": "unbound-architrino-residue-e9-p3",
-      "title": "Unbound Architrinos 9E/3P",
-      "rows": [
-        [
-          "unbound",
-          "residue-electrinos-9",
-          "residue-positrinos-3",
-          "architrinos"
-        ]
-      ]
-    },
-    {
       "key": "noether-sea",
       "title": "Noether Sea",
       "rows": [

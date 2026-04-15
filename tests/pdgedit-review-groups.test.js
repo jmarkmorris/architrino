@@ -88,7 +88,7 @@ test("pdgedit review group catalog covers the requested single-row and composite
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
 
   assert.equal(reviewGroups.specialGroups.length, 1);
-  assert.equal(reviewGroups.singleRowGroups.length, 34);
+  assert.equal(reviewGroups.singleRowGroups.length, 31);
   assert.equal(reviewGroups.quarkColorGroups.length, 3);
   assert.equal(reviewGroups.compositeGroups.length, 19);
 });
@@ -99,7 +99,6 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
   reviewGroups.singleRowGroups
     .filter(
       (group) =>
-        !group.key.startsWith("unbound-architrino-residue-") &&
         group.key !== "noether-sea" &&
         !group.key.includes("noether-core") &&
         !group.key.includes("bi-binary") &&

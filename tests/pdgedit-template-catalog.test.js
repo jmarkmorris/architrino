@@ -14,7 +14,7 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
   );
   const deprecatedPhotonAssemblyType = ["photon", "assembly"].join("-");
 
-  assert.equal(templateCatalog.assemblyTemplates.length, 35);
+  assert.equal(templateCatalog.assemblyTemplates.length, 32);
   assert.equal(templateCatalog.operatorTemplates.length, 3);
   assert.equal(templateCatalog.assemblyTemplateByType.has(deprecatedPhotonAssemblyType), false);
   assert.equal(templateCatalog.assemblyTemplateByType.has("photon-composite"), false);
@@ -36,16 +36,7 @@ test("pdgedit template catalog derives one explicit assembly template per v1 ass
       tiles: ["unbound", "unbound-electrinos", "unbound-positrinos", "architrinos"],
     }
   );
-  assert.deepEqual(
-    templateCatalog.assemblyTemplateByType.get("unbound-architrino-residue-e4-p8-assembly"),
-    {
-      id: "unbound-architrino-residue-e4-p8-assembly",
-      type: "unbound-architrino-residue-e4-p8-assembly",
-      title: "Unbound Architrinos 4E/8P",
-      displayTitle: "Unbound Architrinos 4E/8P",
-      tiles: ["unbound", "residue-electrinos-4", "residue-positrinos-8", "architrinos"],
-    }
-  );
+  assert.equal(templateCatalog.assemblyTemplateByType.has("unbound-architrino-residue-e4-p8-assembly"), false);
   assert.deepEqual(
     templateCatalog.assemblyTemplateByType.get("pro-up-quark-assembly")?.tiles,
     ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"]
