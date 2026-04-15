@@ -19,6 +19,19 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         return stdout.getvalue().strip()
 
+    def assert_product_side_consumes_partitioned_intermediate_ledger(self, family):
+        intermediate_ids = {
+            unit["occurrenceKey"]
+            for unit in family["canonicalCandidate"]["solveGraph"]["units"]
+            if unit["stage"] == "intermediateAssemblies"
+        }
+        consumed_ids = []
+        for choice in family["productSideOperators"]:
+            for occurrence_key in choice["inputOccurrenceKeys"]:
+                self.assertIn(occurrence_key, intermediate_ids)
+                consumed_ids.append(occurrence_key)
+        self.assertEqual(sorted(consumed_ids), sorted(intermediate_ids))
+
     def test_solve_known_request_matches_checked_in_example(self):
         request = pdgsolve.get_vertical_slice_request()
         result = pdgsolve.solve_request(request)
@@ -89,9 +102,16 @@ class PdgsolveCliTests(unittest.TestCase):
             [
                 {"assemblyId": "pro_noether_core_II", "count": 1},
                 {"assemblyId": "unbound_architrinos_residue", "count": 1},
+                {"assemblyId": "pro_noether_core_I", "count": 2},
+                {"assemblyId": "anti_noether_core_I", "count": 2},
             ],
         )
         self.assertEqual(family["productSideOperators"][0]["type"], "associate")
+        self.assertEqual(
+            [choice["type"] for choice in family["reactantSideOperators"]],
+            ["dissociate", "pass-thru", "pass-thru", "pass-thru", "pass-thru"],
+        )
+        self.assert_product_side_consumes_partitioned_intermediate_ledger(family)
         self.assertTrue(
             any(
                 unit["recipeId"] == "unbound_architrinos_residue"
@@ -142,12 +162,19 @@ class PdgsolveCliTests(unittest.TestCase):
             [
                 {"assemblyId": "anti_noether_core_II", "count": 1},
                 {"assemblyId": "unbound_architrinos_residue", "count": 1},
+                {"assemblyId": "pro_noether_core_I", "count": 3},
+                {"assemblyId": "anti_noether_core_I", "count": 3},
             ],
+        )
+        self.assertEqual(
+            [choice["type"] for choice in family["reactantSideOperators"]],
+            ["dissociate", "pass-thru", "pass-thru", "pass-thru", "pass-thru", "pass-thru", "pass-thru"],
         )
         self.assertEqual(
             [choice["type"] for choice in family["productSideOperators"]],
             ["associate", "associate", "associate", "pass-thru", "pass-thru"],
         )
+        self.assert_product_side_consumes_partitioned_intermediate_ledger(family)
         self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
 
     def test_solve_request_keeps_mu_minus_pair_family_unsolved(self):

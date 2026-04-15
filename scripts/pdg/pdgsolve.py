@@ -821,6 +821,25 @@ def build_balance_diagnostic(
     )
 
 
+def build_intermediate_ledger_diagnostic(
+    request_id: str,
+    *,
+    code: str,
+    message: str,
+    payload: dict[str, Any],
+) -> dict[str, Any]:
+    return make_diagnostic(
+        code,
+        "search",
+        message,
+        blocking=True,
+        payload={
+            "requestId": request_id,
+            **clone_json(payload),
+        },
+    )
+
+
 def validate_operator_balances(
     request: dict[str, Any],
     intermediate_occurrences: list[dict[str, Any]],
@@ -860,6 +879,109 @@ def validate_operator_balances(
                     message="Operator input and output primitive ledgers do not balance.",
                 )
             )
+    return diagnostics
+
+
+def validate_intermediate_ledger(
+    request: dict[str, Any],
+    intermediate_occurrences: list[dict[str, Any]],
+    product_operator_choices: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    request_id = normalize_text(request.get("requestId"))
+    intermediate_ids = {
+        normalize_text(occurrence.get("id"))
+        for occurrence in intermediate_occurrences
+        if normalize_text(occurrence.get("id"))
+    }
+    diagnostics: list[dict[str, Any]] = []
+
+    for choice in product_operator_choices:
+        operator_id = normalize_text(choice.get("id"))
+        non_intermediate_inputs = [
+            normalize_text(occurrence_key)
+            for occurrence_key in choice.get("inputOccurrenceKeys", [])
+            if normalize_text(occurrence_key) not in intermediate_ids
+        ]
+        if non_intermediate_inputs:
+            diagnostics.append(
+                build_intermediate_ledger_diagnostic(
+                    request_id,
+                    code="pdgsolve.search.product_operator_non_intermediate_input",
+                    message="Product-side operators must consume only intermediate occurrences.",
+                    payload={
+                        "operatorId": operator_id,
+                        "inputOccurrenceKeys": non_intermediate_inputs,
+                    },
+                )
+            )
+
+    consumption_counts = {
+        occurrence_id: 0 for occurrence_id in intermediate_ids
+    }
+    for choice in product_operator_choices:
+        for occurrence_key in choice.get("inputOccurrenceKeys", []):
+            normalized_occurrence_key = normalize_text(occurrence_key)
+            if normalized_occurrence_key in consumption_counts:
+                consumption_counts[normalized_occurrence_key] += 1
+
+    bad_consumption = {
+        occurrence_id: count
+        for occurrence_id, count in consumption_counts.items()
+        if count != 1
+    }
+    if bad_consumption:
+        diagnostics.append(
+            build_intermediate_ledger_diagnostic(
+                request_id,
+                code="pdgsolve.search.intermediate_ledger_partition_mismatch",
+                message="Each intermediate occurrence must be consumed exactly once by product-side operators.",
+                payload={
+                    "consumptionCounts": bad_consumption,
+                },
+            )
+        )
+
+    occurrence_counts = build_occurrence_counts_map(
+        [
+            *intermediate_occurrences,
+            *list(request.get("products", [])),
+        ]
+    )
+    intermediate_totals = sum_counts_for_occurrence_keys(list(intermediate_ids), occurrence_counts)
+    product_input_keys = [
+        normalize_text(occurrence_key)
+        for choice in product_operator_choices
+        for occurrence_key in choice.get("inputOccurrenceKeys", [])
+        if normalize_text(occurrence_key)
+    ]
+    input_totals = sum_counts_for_occurrence_keys(product_input_keys, occurrence_counts)
+    product_output_keys = [
+        normalize_text(occurrence_key)
+        for choice in product_operator_choices
+        for occurrence_key in choice.get("outputOccurrenceKeys", [])
+        if normalize_text(occurrence_key)
+    ]
+    output_totals = sum_counts_for_occurrence_keys(product_output_keys, occurrence_counts)
+    if (
+        intermediate_totals is None
+        or input_totals is None
+        or output_totals is None
+        or not primitive_counts_equal(intermediate_totals, input_totals)
+        or not primitive_counts_equal(input_totals, output_totals)
+    ):
+        diagnostics.append(
+            build_intermediate_ledger_diagnostic(
+                request_id,
+                code="pdgsolve.search.intermediate_ledger_balance_mismatch",
+                message="The product-side ledger does not conserve the intermediate occurrences exactly.",
+                payload={
+                    "intermediateTotals": intermediate_totals,
+                    "inputTotals": input_totals,
+                    "outputTotals": output_totals,
+                },
+            )
+        )
+
     return diagnostics
 
 
@@ -1057,22 +1179,30 @@ def build_exact_muon_decay_family(
     if residue_counts["electrinoCount"] < 0 or residue_counts["positrinoCount"] < 0:
         return None
 
-    pro_support_ids = [
-        normalize_text(occurrence["id"])
+    pro_support_occurrences = [
+        occurrence
         for occurrence in reactants[1:]
         if normalize_text(occurrence.get("assemblyId")) == "pro_noether_core_I"
     ]
-    anti_support_ids = [
-        normalize_text(occurrence["id"])
+    anti_support_occurrences = [
+        occurrence
         for occurrence in reactants[1:]
         if normalize_text(occurrence.get("assemblyId")) == "anti_noether_core_I"
     ]
     required_support_count = 3 if radiative else 2
-    if len(pro_support_ids) < required_support_count or len(anti_support_ids) < required_support_count:
+    if len(pro_support_occurrences) < required_support_count or len(anti_support_occurrences) < required_support_count:
         return None
 
     core_occurrence_key = f"intermediate_{prefix}.core.1"
     residue_occurrence_key = f"intermediate_{prefix}.residue.1"
+    pro_support_intermediate_ids = [
+        f"intermediate_{prefix}.pro_support.{index}"
+        for index in range(1, required_support_count + 1)
+    ]
+    anti_support_intermediate_ids = [
+        f"intermediate_{prefix}.anti_support.{index}"
+        for index in range(1, required_support_count + 1)
+    ]
     intermediate_occurrences = [
         {
             "id": core_occurrence_key,
@@ -1084,6 +1214,29 @@ def build_exact_muon_decay_family(
             electrino_count=residue_counts["electrinoCount"],
             positrino_count=residue_counts["positrinoCount"],
         ),
+        *[
+            {
+                "id": intermediate_id,
+                "assemblyId": "pro_noether_core_I",
+                "title": normalize_text(source_occurrence.get("title")) or ASSEMBLY_DISPLAY["pro_noether_core_I"]["title"],
+            }
+            for intermediate_id, source_occurrence in zip(
+                pro_support_intermediate_ids,
+                pro_support_occurrences[:required_support_count],
+            )
+        ],
+        *[
+            {
+                "id": intermediate_id,
+                "assemblyId": "anti_noether_core_I",
+                "title": normalize_text(source_occurrence.get("title"))
+                or ASSEMBLY_DISPLAY["anti_noether_core_I"]["title"],
+            }
+            for intermediate_id, source_occurrence in zip(
+                anti_support_intermediate_ids,
+                anti_support_occurrences[:required_support_count],
+            )
+        ],
     ]
 
     reactant_operator_choices = [
@@ -1097,7 +1250,33 @@ def build_exact_muon_decay_family(
             ],
             "inputOccurrenceKeys": [primary_reactant_id],
             "outputOccurrenceKeys": [core_occurrence_key, residue_occurrence_key],
-        }
+        },
+        *[
+            {
+                "id": f"reactant_operator.{prefix}.pass_thru.pro_{index}",
+                "type": "pass-thru",
+                "lawId": None,
+                "inputOccurrenceKeys": [normalize_text(source_occurrence.get("id"))],
+                "outputOccurrenceKeys": [intermediate_id],
+            }
+            for index, (source_occurrence, intermediate_id) in enumerate(
+                zip(pro_support_occurrences[:required_support_count], pro_support_intermediate_ids),
+                start=1,
+            )
+        ],
+        *[
+            {
+                "id": f"reactant_operator.{prefix}.pass_thru.anti_{index}",
+                "type": "pass-thru",
+                "lawId": None,
+                "inputOccurrenceKeys": [normalize_text(source_occurrence.get("id"))],
+                "outputOccurrenceKeys": [intermediate_id],
+            }
+            for index, (source_occurrence, intermediate_id) in enumerate(
+                zip(anti_support_occurrences[:required_support_count], anti_support_intermediate_ids),
+                start=1,
+            )
+        ],
     ]
 
     core_product_ids = [normalize_text(product["id"]) for product in products[:3]]
@@ -1112,21 +1291,21 @@ def build_exact_muon_decay_family(
                     "id": f"product_operator.{prefix}.associate.1",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.electron.v1",
-                    "inputOccurrenceKeys": [residue_occurrence_key, anti_support_ids[0]],
+                    "inputOccurrenceKeys": [residue_occurrence_key, anti_support_intermediate_ids[0]],
                     "outputOccurrenceKeys": [core_product_ids[0]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.2",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.anti_electron_neutrino.v1",
-                    "inputOccurrenceKeys": [pro_support_ids[0], anti_support_ids[1]],
+                    "inputOccurrenceKeys": [pro_support_intermediate_ids[0], anti_support_intermediate_ids[1]],
                     "outputOccurrenceKeys": [core_product_ids[1]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.3",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.muon_neutrino.v1",
-                    "inputOccurrenceKeys": [core_occurrence_key, pro_support_ids[1]],
+                    "inputOccurrenceKeys": [core_occurrence_key, pro_support_intermediate_ids[1]],
                     "outputOccurrenceKeys": [core_product_ids[2]],
                 },
             ]
@@ -1163,21 +1342,21 @@ def build_exact_muon_decay_family(
                     "id": f"product_operator.{prefix}.associate.1",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.positron.v1",
-                    "inputOccurrenceKeys": [residue_occurrence_key, pro_support_ids[0]],
+                    "inputOccurrenceKeys": [residue_occurrence_key, pro_support_intermediate_ids[0]],
                     "outputOccurrenceKeys": [core_product_ids[0]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.2",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.electron_neutrino.v1",
-                    "inputOccurrenceKeys": [anti_support_ids[0], pro_support_ids[1]],
+                    "inputOccurrenceKeys": [anti_support_intermediate_ids[0], pro_support_intermediate_ids[1]],
                     "outputOccurrenceKeys": [core_product_ids[1]],
                 },
                 {
                     "id": f"product_operator.{prefix}.associate.3",
                     "type": "associate",
                     "lawId": f"law.{prefix}.associate.anti_muon_neutrino.v1",
-                    "inputOccurrenceKeys": [core_occurrence_key, anti_support_ids[1]],
+                    "inputOccurrenceKeys": [core_occurrence_key, anti_support_intermediate_ids[1]],
                     "outputOccurrenceKeys": [core_product_ids[2]],
                 },
             ]
@@ -1217,14 +1396,14 @@ def build_exact_muon_decay_family(
                     "id": f"product_operator.{prefix}.pass_thru.4",
                     "type": "pass-thru",
                     "lawId": None,
-                    "inputOccurrenceKeys": [pro_support_ids[2]],
+                    "inputOccurrenceKeys": [pro_support_intermediate_ids[2]],
                     "outputOccurrenceKeys": [visible_product_ids[0]],
                 },
                 {
                     "id": f"product_operator.{prefix}.pass_thru.5",
                     "type": "pass-thru",
                     "lawId": None,
-                    "inputOccurrenceKeys": [anti_support_ids[2]],
+                    "inputOccurrenceKeys": [anti_support_intermediate_ids[2]],
                     "outputOccurrenceKeys": [visible_product_ids[1]],
                 },
             ]
@@ -1253,7 +1432,12 @@ def build_exact_muon_decay_family(
         intermediate_occurrences,
         [*reactant_operator_choices, *product_operator_choices],
     )
-    if operator_diagnostics:
+    intermediate_ledger_diagnostics = validate_intermediate_ledger(
+        request,
+        intermediate_occurrences,
+        product_operator_choices,
+    )
+    if operator_diagnostics or intermediate_ledger_diagnostics:
         return None
 
     publication_recipe_ids = [
