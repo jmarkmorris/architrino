@@ -161,7 +161,9 @@
         "recipeId": { "type": "string", "minLength": 1 },
         "occurrenceKey": { "type": "string", "minLength": 1 },
         "title": { "type": "string", "minLength": 1 },
-        "anchorRow": { "type": "integer", "minimum": 0 }
+        "anchorRow": { "type": "integer", "minimum": 0 },
+        "positrinoCount": { "type": "integer", "minimum": 0 },
+        "electrinoCount": { "type": "integer", "minimum": 0 }
       }
     },
     "publicationEdge": {

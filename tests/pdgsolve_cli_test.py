@@ -52,7 +52,7 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(len(pdgedit_document["assemblies"]), 13)
         self.assertEqual(len(pdgedit_document["operators"]), 8)
 
-    def test_solve_request_matches_exact_mu_minus_decay_family(self):
+    def test_solve_request_matches_exact_mu_minus_decay_family_with_core_and_residue_intermediates(self):
         request = {
             "schema": "pdgsolve-request/v1",
             "requestId": "mu_minus_s004_1",
@@ -82,10 +82,26 @@ class PdgsolveCliTests(unittest.TestCase):
         result = pdgsolve.solve_request(request)
 
         self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(result["bestFamilyId"], "family.mu_minus.decay.exact.v1")
-        self.assertEqual(result["optionFamilies"][0]["publicationReady"], True)
+        self.assertEqual(result["bestFamilyId"], "family.mu_minus.decay.exact.v2")
+        family = result["optionFamilies"][0]
+        self.assertEqual(
+            family["intermediateAssemblies"],
+            [
+                {"assemblyId": "pro_noether_core_II", "count": 1},
+                {"assemblyId": "unbound_architrinos_residue", "count": 1},
+            ],
+        )
+        self.assertEqual(family["productSideOperators"][0]["type"], "associate")
+        self.assertTrue(
+            any(
+                unit["recipeId"] == "unbound_architrinos_residue"
+                and unit["electrinoCount"] == 6
+                and unit["positrinoCount"] == 0
+                for unit in family["canonicalCandidate"]["solveGraph"]["units"]
+            )
+        )
 
-    def test_solve_request_matches_exact_mu_plus_radiative_family(self):
+    def test_solve_request_matches_exact_mu_plus_radiative_family_with_core_and_residue_intermediates(self):
         request = {
             "schema": "pdgsolve-request/v1",
             "requestId": "mu_plus_s004_2",
@@ -119,8 +135,58 @@ class PdgsolveCliTests(unittest.TestCase):
         result = pdgsolve.solve_request(request)
 
         self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(result["bestFamilyId"], "family.mu_plus.radiative.exact.v1")
-        self.assertEqual(result["optionFamilies"][0]["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
+        self.assertEqual(result["bestFamilyId"], "family.mu_plus.radiative.exact.v2")
+        family = result["optionFamilies"][0]
+        self.assertEqual(
+            family["intermediateAssemblies"],
+            [
+                {"assemblyId": "anti_noether_core_II", "count": 1},
+                {"assemblyId": "unbound_architrinos_residue", "count": 1},
+            ],
+        )
+        self.assertEqual(
+            [choice["type"] for choice in family["productSideOperators"]],
+            ["associate", "associate", "associate", "pass-thru", "pass-thru"],
+        )
+        self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
+
+    def test_solve_request_keeps_mu_minus_pair_family_unsolved(self):
+        request = {
+            "schema": "pdgsolve-request/v1",
+            "requestId": "mu_minus_s004_7",
+            "source": {
+                "kind": "pdgfeed",
+                "title": "mu- decay mode 7",
+                "sourceDocumentId": "pdg-proposal:mu_minus_s004_7",
+            },
+            "reactants": [
+                {"id": "reactant_muon_1", "assemblyId": "pro_muon_II", "title": "Muon"},
+                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_3.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_3.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_4.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_4.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            ],
+            "products": [
+                {"id": "product_electron_1", "assemblyId": "pro_electron_I", "title": "Electron"},
+                {"id": "product_anti_electron_neutrino_2", "assemblyId": "anti_electron_neutrino_I", "title": "Anti Electron Neutrino"},
+                {"id": "product_muon_neutrino_3", "assemblyId": "pro_muon_neutrino_II", "title": "Muon Neutrino"},
+                {"id": "product_positron_4", "assemblyId": "anti_electron_I", "title": "Positron"},
+                {"id": "product_electron_5", "assemblyId": "pro_electron_I", "title": "Electron"},
+            ],
+            "policy": {
+                "exactClosureRequired": True,
+                "allowedBoundaryAugmentations": ["none"],
+            },
+        }
+
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "no_exact_closure")
+        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
 
     def test_solve_manifest_writes_per_case_results_and_a_batch_index(self):
         unsupported_request = pdgsolve.get_vertical_slice_request()

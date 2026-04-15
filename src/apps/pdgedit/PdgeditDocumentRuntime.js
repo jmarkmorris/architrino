@@ -15,6 +15,13 @@ function normalizeTileKeys(tiles) {
 }
 
 function normalizeAssembly(record) {
+  const sampleCounts =
+    record?.sampleCounts && typeof record.sampleCounts === "object"
+      ? {
+          topCount: normalizeText(record.sampleCounts.topCount),
+          bottomCount: normalizeText(record.sampleCounts.bottomCount),
+        }
+      : null;
   return {
     id: normalizeText(record?.id),
     type: normalizeText(record?.type),
@@ -23,6 +30,7 @@ function normalizeAssembly(record) {
     title: normalizeText(record?.title),
     role: normalizeText(record?.role),
     tiles: normalizeTileKeys(record?.tiles),
+    ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
   };
 }
 

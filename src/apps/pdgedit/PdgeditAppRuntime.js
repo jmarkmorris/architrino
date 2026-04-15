@@ -254,7 +254,7 @@ export function createPdgeditAppRuntime({
 
     if (object.kind === "assembly") {
       object.tiles.forEach((tileKey) => {
-        element.append(createTileElement(tileKey));
+        element.append(createTileElement(tileKey, object.sampleCounts));
       });
       return element;
     }

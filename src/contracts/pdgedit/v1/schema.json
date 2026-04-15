@@ -70,7 +70,9 @@
               "down-quark-color-variations-family-ii-assembly",
               "noether-sea-assembly",
               "pro-noether-core-assembly",
-              "anti-noether-core-assembly"
+              "anti-noether-core-assembly",
+              "pro-bi-binary-assembly",
+              "anti-bi-binary-assembly"
             ]
           },
           "x": {
@@ -100,6 +102,21 @@
             "items": {
               "type": "string",
               "minLength": 1
+            }
+          },
+          "sampleCounts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["topCount", "bottomCount"],
+            "properties": {
+              "topCount": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bottomCount": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           }
         }
