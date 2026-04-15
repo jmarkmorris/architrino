@@ -13,7 +13,7 @@
 | u | 521 | S041.485/2025 | b_plus_s041_485 | B+ decay mode 6 | B+ -> D lepton+ nu_lepton X | incomplete | blocked |
 | u | 521 | S041.145/2025 | b_plus_s041_145 | B+ decay mode 7 | B+ -> Dbar0 | incomplete | blocked |
 | u | 521 | S041.812/2025 | b_plus_s041_812 | B+ decay mode 8 | B+ -> tau+ nu_tau | incomplete | blocked |
-| u | 521 | S041.498/2025 | b_plus_s041_498 | B+ decay mode 9 | B+ -> Dbar0 tau+ nu_tau | backlog | blocked |
+| u | 521 | S041.498/2025 | b_plus_s041_498 | B+ decay mode 9 | B+ -> Dbar0 tau+ nu_tau | supported | ready |
 | u | 521 | S041.146/2025 | b_plus_s041_146 | B+ decay mode 10 | B+ -> Dbar^*(2007)0 | incomplete | blocked |
 | u | 521 | S041.787/2025 | b_plus_s041_787 | B+ decay mode 11 | B+ -> Dbar^*(2007)0 e+ nu_e | backlog | blocked |
 | u | 521 | S041.788/2025 | b_plus_s041_788 | B+ decay mode 12 | B+ -> Dbar^*(2007)0 mu+ nu_mu | backlog | blocked |
@@ -53,7 +53,7 @@
 | u | 521 | S041.380/2025 | b_plus_s041_380 | B+ decay mode 46 | B+ -> D0 | incomplete | blocked |
 | u | 521 | S041.381/2025 | b_plus_s041_381 | B+ decay mode 47 | B+ -> Dbar0 | incomplete | blocked |
 | u | 521 | S041.382/2025 | b_plus_s041_382 | B+ decay mode 48 | B+ -> D+ | incomplete | blocked |
-| u | 521 | S041.383/2025 | b_plus_s041_383 | B+ decay mode 49 | B+ -> D- | incomplete | blocked |
+| u | 521 | S041.383/2025 | b_plus_s041_383 | B+ decay mode 49 | B+ -> D+ | incomplete | blocked |
 | u | 521 | S041.384/2025 | b_plus_s041_384 | B+ decay mode 50 | B+ -> D_s()+ | incomplete | blocked |
 | u | 521 | S041.385/2025 | b_plus_s041_385 | B+ decay mode 51 | B+ -> D_s()- | incomplete | blocked |
 | u | 521 | S041.386/2025 | b_plus_s041_386 | B+ decay mode 52 | B+ -> Lambda_c()+ | incomplete | blocked |
@@ -61,14 +61,14 @@
 | u | 521 | S041.388/2025 | b_plus_s041_388 | B+ decay mode 54 | B+ -> cbar | incomplete | blocked |
 | u | 521 | S041.389/2025 | b_plus_s041_389 | B+ decay mode 55 | B+ -> c | incomplete | blocked |
 | u | 521 | S041.390/2025 | b_plus_s041_390 | B+ decay mode 56 | B+ -> c cbar | incomplete | blocked |
-| u | 521 | S041.1/2025 | b_plus_s041_1 | B+ decay mode 57 | B+ -> Dbar0 pi+ | backlog | blocked |
+| u | 521 | S041.1/2025 | b_plus_s041_1 | B+ decay mode 57 | B+ -> Dbar0 pi+ | supported | ready |
 | u | 521 | S041.314/2025 | b_plus_s041_314 | B+ decay mode 58 | B+ -> D(CP(+1)) pi+ | incomplete | blocked |
 | u | 521 | S041.315/2025 | b_plus_s041_315 | B+ decay mode 59 | B+ -> D(CP(-1)) pi+ | incomplete | blocked |
 | u | 521 | S041.25/2025 | b_plus_s041_25 | B+ decay mode 60 | B+ -> Dbar0 | incomplete | blocked |
-| u | 521 | S041.256/2025 | b_plus_s041_256 | B+ decay mode 61 | B+ -> Dbar0 K+ | backlog | blocked |
+| u | 521 | S041.256/2025 | b_plus_s041_256 | B+ decay mode 61 | B+ -> Dbar0 K+ | supported | ready |
 | u | 521 | S041.316/2025 | b_plus_s041_316 | B+ decay mode 62 | B+ -> D(CP(+1)) K+ | incomplete | blocked |
 | u | 521 | S041.317/2025 | b_plus_s041_317 | B+ decay mode 63 | B+ -> D(CP(-1)) K+ | incomplete | blocked |
-| u | 521 | S041.724/2025 | b_plus_s041_724 | B+ decay mode 64 | B+ -> D0 K+ | backlog | blocked |
+| u | 521 | S041.724/2025 | b_plus_s041_724 | B+ decay mode 64 | B+ -> D0 K+ | supported | ready |
 | u | 521 | S041.358/2025 | b_plus_s041_358 | B+ decay mode 65 | B+ -> &#91; K- pi+ &#93;(D) K+ | incomplete | blocked |
 | u | 521 | S041.359/2025 | b_plus_s041_359 | B+ decay mode 66 | B+ -> &#91; K+ pi- &#93;(D) K+ | incomplete | blocked |
 | u | 521 | S041.480/2025 | b_plus_s041_480 | B+ decay mode 67 | B+ -> &#91; K- pi+ pi0 &#93;(D) K+ | incomplete | blocked |
@@ -112,13 +112,13 @@
 | u | 521 | S041.423/2025 | b_plus_s041_423 | B+ decay mode 105 | B+ -> K^*(892)+ | incomplete | blocked |
 | u | 521 | S041.424/2025 | b_plus_s041_424 | B+ decay mode 106 | B+ -> K^*(892)+ | incomplete | blocked |
 | u | 521 | S041.725/2025 | b_plus_s041_725 | B+ decay mode 107 | B+ -> D0 K^*(892)+ | backlog | blocked |
-| u | 521 | S041.601/2025 | b_plus_s041_601 | B+ decay mode 108 | B+ -> Dbar0 K+ pi+ pi- | backlog | blocked |
+| u | 521 | S041.601/2025 | b_plus_s041_601 | B+ decay mode 108 | B+ -> Dbar0 K+ pi+ pi- | supported | ready |
 | u | 521 | S041.673/2025 | b_plus_s041_673 | B+ decay mode 109 | B+ -> &#91; K+ pi- &#93;(D) K+ pi- pi+ | incomplete | blocked |
 | u | 521 | S041.674/2025 | b_plus_s041_674 | B+ decay mode 110 | B+ -> &#91; K- pi+ &#93;(D) K+ pi- pi+ | incomplete | blocked |
 | u | 521 | S041.675/2025 | b_plus_s041_675 | B+ decay mode 111 | B+ -> K+ pi- pi+ | incomplete | blocked |
-| u | 521 | S041.286/2025 | b_plus_s041_286 | B+ decay mode 112 | B+ -> Dbar0 K+ Kbar0 | backlog | blocked |
+| u | 521 | S041.286/2025 | b_plus_s041_286 | B+ decay mode 112 | B+ -> Dbar0 K+ Kbar0 | supported | ready |
 | u | 521 | S041.288/2025 | b_plus_s041_288 | B+ decay mode 113 | B+ -> Dbar0 K+ Kbar^*(892)0 | backlog | blocked |
-| u | 521 | S041.165/2025 | b_plus_s041_165 | B+ decay mode 114 | B+ -> Dbar0 pi+ pi+ pi- | backlog | blocked |
+| u | 521 | S041.165/2025 | b_plus_s041_165 | B+ decay mode 114 | B+ -> Dbar0 pi+ pi+ pi- | supported | ready |
 | u | 521 | S041.676/2025 | b_plus_s041_676 | B+ decay mode 115 | B+ -> &#91; K- pi+ &#93;(D) pi+ pi- pi+ | incomplete | blocked |
 | u | 521 | S041.166/2025 | b_plus_s041_166 | B+ decay mode 116 | B+ -> Dbar0 pi+ pi+ pi- nonresonant | incomplete | blocked |
 | u | 521 | S041.167/2025 | b_plus_s041_167 | B+ decay mode 117 | B+ -> Dbar0 pi+ | incomplete | blocked |
@@ -127,14 +127,14 @@
 | u | 521 | S041.2/2025 | b_plus_s041_2 | B+ decay mode 120 | B+ -> D^*(2010)- pi+ pi+ | backlog | blocked |
 | u | 521 | S041.705/2025 | b_plus_s041_705 | B+ decay mode 121 | B+ -> D^*(2010)- K+ pi+ | backlog | blocked |
 | u | 521 | S041.580/2025 | b_plus_s041_580 | B+ decay mode 122 | B+ -> D^*(2010)- pi+ Dbar_1(2420)0 pi+ | incomplete | blocked |
-| u | 521 | S041.14/2025 | b_plus_s041_14 | B+ decay mode 123 | B+ -> D- pi+ pi+ | backlog | blocked |
-| u | 521 | S041.665/2025 | b_plus_s041_665 | B+ decay mode 124 | B+ -> D- K+ pi+ | backlog | blocked |
+| u | 521 | S041.14/2025 | b_plus_s041_14 | B+ decay mode 123 | B+ -> D- pi+ pi+ | supported | ready |
+| u | 521 | S041.665/2025 | b_plus_s041_665 | B+ decay mode 124 | B+ -> D- K+ pi+ | supported | ready |
 | u | 521 | S041.666/2025 | b_plus_s041_666 | B+ decay mode 125 | B+ -> D- pi+ D_0^*(2300)0 K+ | incomplete | blocked |
 | u | 521 | S041.668/2025 | b_plus_s041_668 | B+ decay mode 126 | B+ -> D- pi+ D_2^*(2460)0 K+ | incomplete | blocked |
 | u | 521 | S041.667/2025 | b_plus_s041_667 | B+ decay mode 127 | B+ -> D- pi+ D_1^*(2760)0 K+ | incomplete | blocked |
-| u | 521 | S041.398/2025 | b_plus_s041_398 | B+ decay mode 128 | B+ -> D+ K0 | backlog | blocked |
-| u | 521 | S041.687/2025 | b_plus_s041_687 | B+ decay mode 129 | B+ -> D+ K+ pi- | backlog | blocked |
-| u | 521 | S041.778/2025 | b_plus_s041_778 | B+ decay mode 130 | B+ -> D+ eta | backlog | blocked |
+| u | 521 | S041.398/2025 | b_plus_s041_398 | B+ decay mode 128 | B+ -> D+ K0 | supported | ready |
+| u | 521 | S041.687/2025 | b_plus_s041_687 | B+ decay mode 129 | B+ -> D+ K+ pi- | supported | ready |
+| u | 521 | S041.778/2025 | b_plus_s041_778 | B+ decay mode 130 | B+ -> D+ eta | supported | ready |
 | u | 521 | S041.688/2025 | b_plus_s041_688 | B+ decay mode 131 | B+ -> D+ pi- D_2^*(2460)0 K+ | incomplete | blocked |
 | u | 521 | S041.565/2025 | b_plus_s041_565 | B+ decay mode 132 | B+ -> D+ | incomplete | blocked |
 | u | 521 | S041.614/2025 | b_plus_s041_614 | B+ decay mode 133 | B+ -> D+ | incomplete | blocked |
@@ -218,17 +218,17 @@
 | u | 521 | S041.259/2025 | b_plus_s041_259 | B+ decay mode 211 | B+ -> Dbar^*(2007)0 D^*(2010)+ | backlog | blocked |
 | u | 521 | S041.260/2025 | b_plus_s041_260 | B+ decay mode 212 | B+ -> Dbar0 D^*(2010)+ Dbar^*(2007)0 D+ | incomplete | blocked |
 | u | 521 | S041.438/2025 | b_plus_s041_438 | B+ decay mode 213 | B+ -> Dbar0 D^*(2010)+ | backlog | blocked |
-| u | 521 | S041.261/2025 | b_plus_s041_261 | B+ decay mode 214 | B+ -> Dbar0 D+ | backlog | blocked |
-| u | 521 | S041.328/2025 | b_plus_s041_328 | B+ decay mode 215 | B+ -> Dbar0 D+ K0 | backlog | blocked |
+| u | 521 | S041.261/2025 | b_plus_s041_261 | B+ decay mode 214 | B+ -> Dbar0 D+ | supported | ready |
+| u | 521 | S041.328/2025 | b_plus_s041_328 | B+ decay mode 215 | B+ -> Dbar0 D+ K0 | supported | ready |
 | u | 521 | S041.459/2025 | b_plus_s041_459 | B+ decay mode 216 | B+ -> D+ Dbar^*(2007)0 | backlog | blocked |
 | u | 521 | S041.329/2025 | b_plus_s041_329 | B+ decay mode 217 | B+ -> Dbar^*(2007)0 D+ K0 | backlog | blocked |
 | u | 521 | S041.330/2025 | b_plus_s041_330 | B+ decay mode 218 | B+ -> Dbar0 D^*(2010)+ K0 | backlog | blocked |
 | u | 521 | S041.331/2025 | b_plus_s041_331 | B+ decay mode 219 | B+ -> Dbar^*(2007)0 D^*(2010)+ K0 | backlog | blocked |
-| u | 521 | S041.332/2025 | b_plus_s041_332 | B+ decay mode 220 | B+ -> Dbar0 D0 K+ | backlog | blocked |
+| u | 521 | S041.332/2025 | b_plus_s041_332 | B+ decay mode 220 | B+ -> Dbar0 D0 K+ | supported | ready |
 | u | 521 | S041.333/2025 | b_plus_s041_333 | B+ decay mode 221 | B+ -> Dbar^*(2007)0 D0 K+ | backlog | blocked |
 | u | 521 | S041.334/2025 | b_plus_s041_334 | B+ decay mode 222 | B+ -> Dbar0 D^*(2007)0 K+ | backlog | blocked |
 | u | 521 | S041.335/2025 | b_plus_s041_335 | B+ decay mode 223 | B+ -> Dbar^*(2007)0 D^*(2007)0 K+ | backlog | blocked |
-| u | 521 | S041.336/2025 | b_plus_s041_336 | B+ decay mode 224 | B+ -> D- D+ K+ | backlog | blocked |
+| u | 521 | S041.336/2025 | b_plus_s041_336 | B+ decay mode 224 | B+ -> D- D+ K+ | supported | ready |
 | u | 521 | S041.763/2025 | b_plus_s041_763 | B+ decay mode 225 | B+ -> D- K+ D+ | incomplete | blocked |
 | u | 521 | S041.764/2025 | b_plus_s041_764 | B+ decay mode 226 | B+ -> D- K+ D+ | incomplete | blocked |
 | u | 521 | S041.765/2025 | b_plus_s041_765 | B+ decay mode 227 | B+ -> D- D+ K+ nonresonant | incomplete | blocked |
@@ -473,7 +473,7 @@
 | u | 521 | S041.277/2025 | b_plus_s041_277 | B+ decay mode 466 | B+ -> K^*(892)+ K^*(892)0 | backlog | blocked |
 | u | 521 | S041.454/2025 | b_plus_s041_454 | B+ decay mode 467 | B+ -> K+ pi- | incomplete | blocked |
 | u | 521 | S041.160/2025 | b_plus_s041_160 | B+ decay mode 468 | B+ -> K+ K- K+ | supported | ready |
-| u | 521 | S041.8/2025 | b_plus_s041_8 | B+ decay mode 469 | B+ -> K+ phi | backlog | blocked |
+| u | 521 | S041.8/2025 | b_plus_s041_8 | B+ decay mode 469 | B+ -> K+ phi | supported | ready |
 | u | 521 | S041.428/2025 | b_plus_s041_428 | B+ decay mode 470 | B+ -> f_0(980) K+ x B(f_0(980) -> K+ K-) | incomplete | blocked |
 | u | 521 | S041.429/2025 | b_plus_s041_429 | B+ decay mode 471 | B+ -> a_2(1320) K+ x B(a_2(1320) -> K+ K-) | incomplete | blocked |
 | u | 521 | S041.450/2025 | b_plus_s041_450 | B+ decay mode 472 | B+ -> X_0(1550) K+ x B(X_0(1550) -> K+ K-) | incomplete | blocked |
@@ -501,7 +501,7 @@
 | u | 521 | S041.522/2025 | b_plus_s041_522 | B+ decay mode 494 | B+ -> phi | incomplete | blocked |
 | u | 521 | S041.523/2025 | b_plus_s041_523 | B+ decay mode 495 | B+ -> phi | incomplete | blocked |
 | u | 521 | S041.554/2025 | b_plus_s041_554 | B+ decay mode 496 | B+ -> a_1()+ K^*()0 | incomplete | blocked |
-| u | 521 | S041.325/2025 | b_plus_s041_325 | B+ decay mode 497 | B+ -> K+ phi phi | backlog | blocked |
+| u | 521 | S041.325/2025 | b_plus_s041_325 | B+ decay mode 497 | B+ -> K+ phi phi | supported | ready |
 | u | 521 | S041.452/2025 | b_plus_s041_452 | B+ decay mode 498 | B+ -> K+ | incomplete | blocked |
 | u | 521 | S041.540/2025 | b_plus_s041_540 | B+ decay mode 499 | B+ -> phi K+ | incomplete | blocked |
 | u | 521 | S041.541/2025 | b_plus_s041_541 | B+ decay mode 500 | B+ -> X(1812) K+ x B(X -> omega phi) | incomplete | blocked |
@@ -509,7 +509,7 @@
 | u | 521 | S041.53/2025 | b_plus_s041_53 | B+ decay mode 502 | B+ -> K_1(1270)+ gamma | backlog | blocked |
 | u | 521 | S041.403/2025 | b_plus_s041_403 | B+ decay mode 503 | B+ -> eta K+ gamma | supported | ready |
 | u | 521 | S041.451/2025 | b_plus_s041_451 | B+ decay mode 504 | B+ -> K+ gamma | incomplete | blocked |
-| u | 521 | S041.347/2025 | b_plus_s041_347 | B+ decay mode 505 | B+ -> phi K+ gamma | backlog | blocked |
+| u | 521 | S041.347/2025 | b_plus_s041_347 | B+ decay mode 505 | B+ -> phi K+ gamma | supported | ready |
 | u | 521 | S041.307/2025 | b_plus_s041_307 | B+ decay mode 506 | B+ -> K+ pi- pi+ gamma | supported | ready |
 | u | 521 | S041.308/2025 | b_plus_s041_308 | B+ decay mode 507 | B+ -> K^*(892)0 pi+ gamma | backlog | blocked |
 | u | 521 | S041.309/2025 | b_plus_s041_309 | B+ decay mode 508 | B+ -> K+ gamma | incomplete | blocked |
@@ -550,7 +550,7 @@
 | u | 521 | S041.247/2025 | b_plus_s041_247 | B+ decay mode 543 | B+ -> eta | incomplete | blocked |
 | u | 521 | S041.242/2025 | b_plus_s041_242 | B+ decay mode 544 | B+ -> pi+ | incomplete | blocked |
 | u | 521 | S041.243/2025 | b_plus_s041_243 | B+ decay mode 545 | B+ -> eta^' rho+ | incomplete | blocked |
-| u | 521 | S041.254/2025 | b_plus_s041_254 | B+ decay mode 546 | B+ -> phi pi+ | backlog | blocked |
+| u | 521 | S041.254/2025 | b_plus_s041_254 | B+ decay mode 546 | B+ -> phi pi+ | supported | ready |
 | u | 521 | S041.255/2025 | b_plus_s041_255 | B+ decay mode 547 | B+ -> phi | incomplete | blocked |
 | u | 521 | S041.376/2025 | b_plus_s041_376 | B+ decay mode 548 | B+ -> eta pi0 a_0(980)0 pi+ | incomplete | blocked |
 | u | 521 | S041.488/2025 | b_plus_s041_488 | B+ decay mode 549 | B+ -> eta pi+ a_0(980)+ pi0 | incomplete | blocked |
@@ -599,13 +599,13 @@
 | u | 521 | S041.720/2025 | b_plus_s041_720 | B+ decay mode 592 | B+ -> K+ | incomplete | blocked |
 | u | 521 | S041.64/2025 | b_plus_s041_64 | B+ decay mode 593 | B+ -> p | incomplete | blocked |
 | u | 521 | S041.65/2025 | b_plus_s041_65 | B+ decay mode 594 | B+ -> p | incomplete | blocked |
-| u | 521 | S041.303/2025 | b_plus_s041_303 | B+ decay mode 595 | B+ -> D+ p pbar | backlog | blocked |
+| u | 521 | S041.303/2025 | b_plus_s041_303 | B+ decay mode 595 | B+ -> D+ p pbar | supported | ready |
 | u | 521 | S041.304/2025 | b_plus_s041_304 | B+ decay mode 596 | B+ -> D^*(2010)+ p pbar | backlog | blocked |
-| u | 521 | S041.607/2025 | b_plus_s041_607 | B+ decay mode 597 | B+ -> Dbar0 p pbar pi+ | backlog | blocked |
+| u | 521 | S041.607/2025 | b_plus_s041_607 | B+ decay mode 597 | B+ -> Dbar0 p pbar pi+ | supported | ready |
 | u | 521 | S041.608/2025 | b_plus_s041_608 | B+ decay mode 598 | B+ -> p pbar pi+ | incomplete | blocked |
-| u | 521 | S041.609/2025 | b_plus_s041_609 | B+ decay mode 599 | B+ -> D- p pbar pi+ pi- | backlog | blocked |
+| u | 521 | S041.609/2025 | b_plus_s041_609 | B+ decay mode 599 | B+ -> D+ anti-p p pi- pi+ | supported | ready |
 | u | 521 | S041.610/2025 | b_plus_s041_610 | B+ decay mode 600 | B+ -> p pbar pi+ pi- | incomplete | blocked |
-| u | 521 | S041.577/2025 | b_plus_s041_577 | B+ decay mode 601 | B+ -> p Lambdabar0 Dbar0 | backlog | blocked |
+| u | 521 | S041.577/2025 | b_plus_s041_577 | B+ decay mode 601 | B+ -> p Lambdabar0 Dbar0 | supported | ready |
 | u | 521 | S041.578/2025 | b_plus_s041_578 | B+ decay mode 602 | B+ -> p Lambdabar0 Dbar^*(2007)0 | backlog | blocked |
 | u | 521 | S041.239/2025 | b_plus_s041_239 | B+ decay mode 603 | B+ -> Lambdabar_c()- p pi+ | backlog | blocked |
 | u | 521 | S041.817/2025 | b_plus_s041_817 | B+ decay mode 604 | B+ -> Lambdabar_c()- p K+ | backlog | blocked |
@@ -654,7 +654,7 @@
 | u | 521 | S041.490/2025 | b_plus_s041_490 | B+ decay mode 647 | B+ -> K^*(892)+ | incomplete | blocked |
 | u | 521 | S041.632/2025 | b_plus_s041_632 | B+ decay mode 648 | B+ -> K+ pi+ pi- mu+ mu- | supported | ready |
 | u | 521 | S041.816/2025 | b_plus_s041_816 | B+ decay mode 649 | B+ -> D_s()+ mu+ mu- | backlog | blocked |
-| u | 521 | S041.633/2025 | b_plus_s041_633 | B+ decay mode 650 | B+ -> phi K+ mu+ mu- | backlog | blocked |
+| u | 521 | S041.633/2025 | b_plus_s041_633 | B+ decay mode 650 | B+ -> phi K+ mu+ mu- | supported | ready |
 | u | 521 | S041.736/2025 | b_plus_s041_736 | B+ decay mode 651 | B+ -> p | incomplete | blocked |
 | u | 521 | S041.86/2025 | b_plus_s041_86 | B+ decay mode 652 | B+ -> pi+ e+ mu- | supported | ready |
 | u | 521 | S041.87/2025 | b_plus_s041_87 | B+ decay mode 653 | B+ -> pi+ e- mu+ | supported | ready |
@@ -689,16 +689,16 @@
 | u | 521 | S041.290/2025 | b_plus_s041_290 | B+ decay mode 682 | B+ -> K^*(892)- e+ e+ | backlog | blocked |
 | u | 521 | S041.292/2025 | b_plus_s041_292 | B+ decay mode 683 | B+ -> K^*(892)- mu+ mu+ | backlog | blocked |
 | u | 521 | S041.293/2025 | b_plus_s041_293 | B+ decay mode 684 | B+ -> K^*(892)- e+ mu+ | backlog | blocked |
-| u | 521 | S041.572/2025 | b_plus_s041_572 | B+ decay mode 685 | B+ -> D- e+ e+ | backlog | blocked |
-| u | 521 | S041.573/2025 | b_plus_s041_573 | B+ decay mode 686 | B+ -> D- e+ mu+ | backlog | blocked |
-| u | 521 | S041.574/2025 | b_plus_s041_574 | B+ decay mode 687 | B+ -> D- mu+ mu+ | backlog | blocked |
+| u | 521 | S041.572/2025 | b_plus_s041_572 | B+ decay mode 685 | B+ -> D- e+ e+ | supported | ready |
+| u | 521 | S041.573/2025 | b_plus_s041_573 | B+ decay mode 686 | B+ -> D- e+ mu+ | supported | ready |
+| u | 521 | S041.574/2025 | b_plus_s041_574 | B+ decay mode 687 | B+ -> D- mu+ mu+ | supported | ready |
 | u | 521 | S041.604/2025 | b_plus_s041_604 | B+ decay mode 688 | B+ -> mu+ mu+ | incomplete | blocked |
 | u | 521 | S041.605/2025 | b_plus_s041_605 | B+ decay mode 689 | B+ -> D_s()- mu+ mu+ | backlog | blocked |
-| u | 521 | S041.606/2025 | b_plus_s041_606 | B+ decay mode 690 | B+ -> Dbar0 pi- mu+ mu+ | backlog | blocked |
-| u | 521 | S041.567/2025 | b_plus_s041_567 | B+ decay mode 691 | B+ -> Lambda0 mu+ | backlog | blocked |
-| u | 521 | S041.568/2025 | b_plus_s041_568 | B+ decay mode 692 | B+ -> Lambda0 e+ | backlog | blocked |
-| u | 521 | S041.569/2025 | b_plus_s041_569 | B+ decay mode 693 | B+ -> Lambdabar0 mu+ | backlog | blocked |
-| u | 521 | S041.570/2025 | b_plus_s041_570 | B+ decay mode 694 | B+ -> Lambdabar0 e+ | backlog | blocked |
+| u | 521 | S041.606/2025 | b_plus_s041_606 | B+ decay mode 690 | B+ -> Dbar0 pi- mu+ mu+ | supported | ready |
+| u | 521 | S041.567/2025 | b_plus_s041_567 | B+ decay mode 691 | B+ -> Lambda0 mu+ | supported | ready |
+| u | 521 | S041.568/2025 | b_plus_s041_568 | B+ decay mode 692 | B+ -> Lambda0 e+ | supported | ready |
+| u | 521 | S041.569/2025 | b_plus_s041_569 | B+ decay mode 693 | B+ -> Lambdabar0 mu+ | supported | ready |
+| u | 521 | S041.570/2025 | b_plus_s041_570 | B+ decay mode 694 | B+ -> Lambdabar0 e+ | supported | ready |
 | u | -521 | S041.220/2025 | b_minus_s041_220 | B- decay mode 1 | B- -> lepton+ nu_lepton X | incomplete | blocked |
 | u | -521 | S041.473/2025 | b_minus_s041_473 | B- decay mode 2 | B- -> e- anti-nu_e | incomplete | blocked |
 | u | -521 | S041.814/2025 | b_minus_s041_814 | B- decay mode 3 | B- -> e- anti-nu_e | incomplete | blocked |
@@ -707,7 +707,7 @@
 | u | -521 | S041.485/2025 | b_minus_s041_485 | B- decay mode 6 | B- -> D lepton+ nu_lepton X | incomplete | blocked |
 | u | -521 | S041.145/2025 | b_minus_s041_145 | B- decay mode 7 | B- -> Dbar0 | incomplete | blocked |
 | u | -521 | S041.812/2025 | b_minus_s041_812 | B- decay mode 8 | B- -> tau- anti-nu_tau | incomplete | blocked |
-| u | -521 | S041.498/2025 | b_minus_s041_498 | B- decay mode 9 | B- -> Dbar0 tau+ nu_tau | backlog | blocked |
+| u | -521 | S041.498/2025 | b_minus_s041_498 | B- decay mode 9 | B- -> D0 tau- anti-nu_tau | supported | ready |
 | u | -521 | S041.146/2025 | b_minus_s041_146 | B- decay mode 10 | B- -> Dbar^*(2007)0 | incomplete | blocked |
 | u | -521 | S041.787/2025 | b_minus_s041_787 | B- decay mode 11 | B- -> Dbar^*(2007)0 e+ nu_e | backlog | blocked |
 | u | -521 | S041.788/2025 | b_minus_s041_788 | B- decay mode 12 | B- -> Dbar^*(2007)0 mu+ nu_mu | backlog | blocked |
@@ -746,7 +746,7 @@
 | u | -521 | S041.729/2025 | b_minus_s041_729 | B- decay mode 45 | B- -> mu- mu+ mu- anti-nu_mu | supported | ready |
 | u | -521 | S041.380/2025 | b_minus_s041_380 | B- decay mode 46 | B- -> D0 | incomplete | blocked |
 | u | -521 | S041.381/2025 | b_minus_s041_381 | B- decay mode 47 | B- -> Dbar0 | incomplete | blocked |
-| u | -521 | S041.382/2025 | b_minus_s041_382 | B- decay mode 48 | B- -> D+ | incomplete | blocked |
+| u | -521 | S041.382/2025 | b_minus_s041_382 | B- decay mode 48 | B- -> D- | incomplete | blocked |
 | u | -521 | S041.383/2025 | b_minus_s041_383 | B- decay mode 49 | B- -> D- | incomplete | blocked |
 | u | -521 | S041.384/2025 | b_minus_s041_384 | B- decay mode 50 | B- -> D_s()+ | incomplete | blocked |
 | u | -521 | S041.385/2025 | b_minus_s041_385 | B- decay mode 51 | B- -> D_s()- | incomplete | blocked |
@@ -755,14 +755,14 @@
 | u | -521 | S041.388/2025 | b_minus_s041_388 | B- decay mode 54 | B- -> cbar | incomplete | blocked |
 | u | -521 | S041.389/2025 | b_minus_s041_389 | B- decay mode 55 | B- -> c | incomplete | blocked |
 | u | -521 | S041.390/2025 | b_minus_s041_390 | B- decay mode 56 | B- -> c cbar | incomplete | blocked |
-| u | -521 | S041.1/2025 | b_minus_s041_1 | B- decay mode 57 | B- -> Dbar0 pi+ | backlog | blocked |
+| u | -521 | S041.1/2025 | b_minus_s041_1 | B- decay mode 57 | B- -> D0 pi- | supported | ready |
 | u | -521 | S041.314/2025 | b_minus_s041_314 | B- decay mode 58 | B- -> D(CP(+1)) pi+ | incomplete | blocked |
 | u | -521 | S041.315/2025 | b_minus_s041_315 | B- decay mode 59 | B- -> D(CP(-1)) pi+ | incomplete | blocked |
 | u | -521 | S041.25/2025 | b_minus_s041_25 | B- decay mode 60 | B- -> Dbar0 | incomplete | blocked |
-| u | -521 | S041.256/2025 | b_minus_s041_256 | B- decay mode 61 | B- -> Dbar0 K+ | backlog | blocked |
+| u | -521 | S041.256/2025 | b_minus_s041_256 | B- decay mode 61 | B- -> D0 K- | supported | ready |
 | u | -521 | S041.316/2025 | b_minus_s041_316 | B- decay mode 62 | B- -> D(CP(+1)) K+ | incomplete | blocked |
 | u | -521 | S041.317/2025 | b_minus_s041_317 | B- decay mode 63 | B- -> D(CP(-1)) K+ | incomplete | blocked |
-| u | -521 | S041.724/2025 | b_minus_s041_724 | B- decay mode 64 | B- -> D0 K+ | backlog | blocked |
+| u | -521 | S041.724/2025 | b_minus_s041_724 | B- decay mode 64 | B- -> Dbar0 K- | supported | ready |
 | u | -521 | S041.358/2025 | b_minus_s041_358 | B- decay mode 65 | B- -> &#91; K- pi+ &#93;(D) K+ | incomplete | blocked |
 | u | -521 | S041.359/2025 | b_minus_s041_359 | B- decay mode 66 | B- -> &#91; K+ pi- &#93;(D) K+ | incomplete | blocked |
 | u | -521 | S041.480/2025 | b_minus_s041_480 | B- decay mode 67 | B- -> &#91; K- pi+ pi0 &#93;(D) K+ | incomplete | blocked |
@@ -806,32 +806,32 @@
 | u | -521 | S041.423/2025 | b_minus_s041_423 | B- decay mode 105 | B- -> K^*(892)+ | incomplete | blocked |
 | u | -521 | S041.424/2025 | b_minus_s041_424 | B- decay mode 106 | B- -> K^*(892)+ | incomplete | blocked |
 | u | -521 | S041.725/2025 | b_minus_s041_725 | B- decay mode 107 | B- -> D0 K^*(892)+ | backlog | blocked |
-| u | -521 | S041.601/2025 | b_minus_s041_601 | B- decay mode 108 | B- -> Dbar0 K+ pi+ pi- | backlog | blocked |
+| u | -521 | S041.601/2025 | b_minus_s041_601 | B- decay mode 108 | B- -> D0 K- pi- pi+ | supported | ready |
 | u | -521 | S041.673/2025 | b_minus_s041_673 | B- decay mode 109 | B- -> &#91; K+ pi- &#93;(D) K+ pi- pi+ | incomplete | blocked |
 | u | -521 | S041.674/2025 | b_minus_s041_674 | B- decay mode 110 | B- -> &#91; K- pi+ &#93;(D) K+ pi- pi+ | incomplete | blocked |
 | u | -521 | S041.675/2025 | b_minus_s041_675 | B- decay mode 111 | B- -> K- pi+ pi- | incomplete | blocked |
-| u | -521 | S041.286/2025 | b_minus_s041_286 | B- decay mode 112 | B- -> Dbar0 K+ Kbar0 | backlog | blocked |
+| u | -521 | S041.286/2025 | b_minus_s041_286 | B- decay mode 112 | B- -> D0 K- K0 | supported | ready |
 | u | -521 | S041.288/2025 | b_minus_s041_288 | B- decay mode 113 | B- -> Dbar0 K+ Kbar^*(892)0 | backlog | blocked |
-| u | -521 | S041.165/2025 | b_minus_s041_165 | B- decay mode 114 | B- -> Dbar0 pi+ pi+ pi- | backlog | blocked |
+| u | -521 | S041.165/2025 | b_minus_s041_165 | B- decay mode 114 | B- -> D0 pi- pi- pi+ | supported | ready |
 | u | -521 | S041.676/2025 | b_minus_s041_676 | B- decay mode 115 | B- -> &#91; K- pi+ &#93;(D) pi+ pi- pi+ | incomplete | blocked |
 | u | -521 | S041.166/2025 | b_minus_s041_166 | B- decay mode 116 | B- -> Dbar0 pi+ pi+ pi- nonresonant | incomplete | blocked |
-| u | -521 | S041.167/2025 | b_minus_s041_167 | B- decay mode 117 | B- -> Dbar0 pi+ | incomplete | blocked |
+| u | -521 | S041.167/2025 | b_minus_s041_167 | B- decay mode 117 | B- -> D0 pi- | incomplete | blocked |
 | u | -521 | S041.168/2025 | b_minus_s041_168 | B- decay mode 118 | B- -> Dbar0 a_1(1260)+ | backlog | blocked |
-| u | -521 | S041.276/2025 | b_minus_s041_276 | B- decay mode 119 | B- -> Dbar0 pi+ | incomplete | blocked |
+| u | -521 | S041.276/2025 | b_minus_s041_276 | B- decay mode 119 | B- -> D0 pi- | incomplete | blocked |
 | u | -521 | S041.2/2025 | b_minus_s041_2 | B- decay mode 120 | B- -> D^*(2010)- pi+ pi+ | backlog | blocked |
 | u | -521 | S041.705/2025 | b_minus_s041_705 | B- decay mode 121 | B- -> D^*(2010)- K+ pi+ | backlog | blocked |
 | u | -521 | S041.580/2025 | b_minus_s041_580 | B- decay mode 122 | B- -> D^*(2010)- pi+ Dbar_1(2420)0 pi+ | incomplete | blocked |
-| u | -521 | S041.14/2025 | b_minus_s041_14 | B- decay mode 123 | B- -> D- pi+ pi+ | backlog | blocked |
-| u | -521 | S041.665/2025 | b_minus_s041_665 | B- decay mode 124 | B- -> D- K+ pi+ | backlog | blocked |
+| u | -521 | S041.14/2025 | b_minus_s041_14 | B- decay mode 123 | B- -> D+ pi- pi- | supported | ready |
+| u | -521 | S041.665/2025 | b_minus_s041_665 | B- decay mode 124 | B- -> D+ K- pi- | supported | ready |
 | u | -521 | S041.666/2025 | b_minus_s041_666 | B- decay mode 125 | B- -> D- pi+ D_0^*(2300)0 K+ | incomplete | blocked |
 | u | -521 | S041.668/2025 | b_minus_s041_668 | B- decay mode 126 | B- -> D- pi+ D_2^*(2460)0 K+ | incomplete | blocked |
 | u | -521 | S041.667/2025 | b_minus_s041_667 | B- decay mode 127 | B- -> D- pi+ D_1^*(2760)0 K+ | incomplete | blocked |
-| u | -521 | S041.398/2025 | b_minus_s041_398 | B- decay mode 128 | B- -> D+ K0 | backlog | blocked |
-| u | -521 | S041.687/2025 | b_minus_s041_687 | B- decay mode 129 | B- -> D+ K+ pi- | backlog | blocked |
-| u | -521 | S041.778/2025 | b_minus_s041_778 | B- decay mode 130 | B- -> D+ eta | backlog | blocked |
+| u | -521 | S041.398/2025 | b_minus_s041_398 | B- decay mode 128 | B- -> D- anti-K0 | supported | ready |
+| u | -521 | S041.687/2025 | b_minus_s041_687 | B- decay mode 129 | B- -> D- K- pi+ | supported | ready |
+| u | -521 | S041.778/2025 | b_minus_s041_778 | B- decay mode 130 | B- -> D- eta | supported | ready |
 | u | -521 | S041.688/2025 | b_minus_s041_688 | B- decay mode 131 | B- -> D+ pi- D_2^*(2460)0 K+ | incomplete | blocked |
-| u | -521 | S041.565/2025 | b_minus_s041_565 | B- decay mode 132 | B- -> D+ | incomplete | blocked |
-| u | -521 | S041.614/2025 | b_minus_s041_614 | B- decay mode 133 | B- -> D+ | incomplete | blocked |
+| u | -521 | S041.565/2025 | b_minus_s041_565 | B- decay mode 132 | B- -> D- | incomplete | blocked |
+| u | -521 | S041.614/2025 | b_minus_s041_614 | B- decay mode 133 | B- -> D- | incomplete | blocked |
 | u | -521 | S041.15/2025 | b_minus_s041_15 | B- decay mode 134 | B- -> Dbar^*(2007)0 pi+ | backlog | blocked |
 | u | -521 | S041.432/2025 | b_minus_s041_432 | B- decay mode 135 | B- -> pi- | incomplete | blocked |
 | u | -521 | S041.441/2025 | b_minus_s041_441 | B- decay mode 136 | B- -> pi- | incomplete | blocked |
@@ -859,8 +859,8 @@
 | u | -521 | S041.739/2025 | b_minus_s041_739 | B- decay mode 158 | B- -> D^*(2010)- pi+ Dbar_1(2430)0 pi+ | incomplete | blocked |
 | u | -521 | S041.740/2025 | b_minus_s041_740 | B- decay mode 159 | B- -> D^*(2010)- pi+ pi+ Dbar0 | incomplete | blocked |
 | u | -521 | S041.741/2025 | b_minus_s041_741 | B- decay mode 160 | B- -> D^*(2010)- pi+ pi+ | incomplete | blocked |
-| u | -521 | S041.348/2025 | b_minus_s041_348 | B- decay mode 161 | B- -> D- pi+ pi+ | incomplete | blocked |
-| u | -521 | S041.581/2025 | b_minus_s041_581 | B- decay mode 162 | B- -> Dbar0 pi- pi+ pi+ | incomplete | blocked |
+| u | -521 | S041.348/2025 | b_minus_s041_348 | B- decay mode 161 | B- -> D+ pi- pi- | incomplete | blocked |
+| u | -521 | S041.581/2025 | b_minus_s041_581 | B- decay mode 162 | B- -> D0 pi+ pi- pi- | incomplete | blocked |
 | u | -521 | S041.583/2025 | b_minus_s041_583 | B- decay mode 163 | B- -> Dbar_2^*(2462)0 pi+ , Dbar_2^*()0 -> Dbar0 pi- pi+ (nonresonant) | incomplete | blocked |
 | u | -521 | S041.582/2025 | b_minus_s041_582 | B- decay mode 164 | B- -> D^*(2010)- pi+ pi+ | incomplete | blocked |
 | u | -521 | S041.349/2025 | b_minus_s041_349 | B- decay mode 165 | B- -> Dbar_0^*(2400)0 pi+ x B(Dbar_0^*(2400)0 -> D- pi+) | incomplete | blocked |
@@ -871,7 +871,7 @@
 | u | -521 | S041.215/2025 | b_minus_s041_215 | B- decay mode 170 | B- -> Dbar_1^*(2420)0 rho+ | incomplete | blocked |
 | u | -521 | S041.212/2025 | b_minus_s041_212 | B- decay mode 171 | B- -> Dbar_2^*(2460)0 pi+ | backlog | blocked |
 | u | -521 | S041.445/2025 | b_minus_s041_445 | B- decay mode 172 | B- -> Dbar_2^*(2460)0 pi+xB(Dbar_2^*()0 -> Dbar^*()0 pi+ pi-) | incomplete | blocked |
-| u | -521 | S041.701/2025 | b_minus_s041_701 | B- decay mode 173 | B- -> D- pi+ pi+ | incomplete | blocked |
+| u | -521 | S041.701/2025 | b_minus_s041_701 | B- decay mode 173 | B- -> D+ pi- pi- | incomplete | blocked |
 | u | -521 | S041.742/2025 | b_minus_s041_742 | B- decay mode 174 | B- -> D^*(2010)- pi+ pi+ Dbar0 | incomplete | blocked |
 | u | -521 | S041.743/2025 | b_minus_s041_743 | B- decay mode 175 | B- -> D^*(2010)- pi+ Dbar_3^*(2750)0 pi+ | incomplete | blocked |
 | u | -521 | S041.702/2025 | b_minus_s041_702 | B- decay mode 176 | B- -> pi+ D- pi+ pi+ | incomplete | blocked |
@@ -894,8 +894,8 @@
 | u | -521 | S041.482/2025 | b_minus_s041_482 | B- decay mode 193 | B- -> Dbar0 D_s1(2536)+ x B(D_s1(2536)+ -> D^*()+ K0) | incomplete | blocked |
 | u | -521 | S041.500/2025 | b_minus_s041_500 | B- decay mode 194 | B- -> Dbar()0 D_sJ(2700)+ x B(D_sJ(2700)+ -> D()0 K+) | incomplete | blocked |
 | u | -521 | S041.483/2025 | b_minus_s041_483 | B- decay mode 195 | B- -> K0 D_s1(2536)+ | incomplete | blocked |
-| u | -521 | S041.644/2025 | b_minus_s041_644 | B- decay mode 196 | B- -> D0 K+ Dbar0 | incomplete | blocked |
-| u | -521 | S041.343/2025 | b_minus_s041_343 | B- decay mode 197 | B- -> D0 K+ | incomplete | blocked |
+| u | -521 | S041.644/2025 | b_minus_s041_644 | B- decay mode 196 | B- -> Dbar0 K- D0 | incomplete | blocked |
+| u | -521 | S041.343/2025 | b_minus_s041_343 | B- decay mode 197 | B- -> Dbar0 K- | incomplete | blocked |
 | u | -521 | S041.344/2025 | b_minus_s041_344 | B- decay mode 198 | B- -> D0 K+ Dbar^*(2007)0 | incomplete | blocked |
 | u | -521 | S041.175/2025 | b_minus_s041_175 | B- decay mode 199 | B- -> Dbar0 D_s^*()+ | backlog | blocked |
 | u | -521 | S041.795/2025 | b_minus_s041_795 | B- decay mode 200 | B- -> D- D_s()+ pi+ | backlog | blocked |
@@ -912,19 +912,19 @@
 | u | -521 | S041.259/2025 | b_minus_s041_259 | B- decay mode 211 | B- -> Dbar^*(2007)0 D^*(2010)+ | backlog | blocked |
 | u | -521 | S041.260/2025 | b_minus_s041_260 | B- decay mode 212 | B- -> Dbar0 D^*(2010)+ Dbar^*(2007)0 D+ | incomplete | blocked |
 | u | -521 | S041.438/2025 | b_minus_s041_438 | B- decay mode 213 | B- -> Dbar0 D^*(2010)+ | backlog | blocked |
-| u | -521 | S041.261/2025 | b_minus_s041_261 | B- decay mode 214 | B- -> Dbar0 D+ | backlog | blocked |
-| u | -521 | S041.328/2025 | b_minus_s041_328 | B- decay mode 215 | B- -> Dbar0 D+ K0 | backlog | blocked |
+| u | -521 | S041.261/2025 | b_minus_s041_261 | B- decay mode 214 | B- -> D0 D- | supported | ready |
+| u | -521 | S041.328/2025 | b_minus_s041_328 | B- decay mode 215 | B- -> D0 D- anti-K0 | supported | ready |
 | u | -521 | S041.459/2025 | b_minus_s041_459 | B- decay mode 216 | B- -> D+ Dbar^*(2007)0 | backlog | blocked |
 | u | -521 | S041.329/2025 | b_minus_s041_329 | B- decay mode 217 | B- -> Dbar^*(2007)0 D+ K0 | backlog | blocked |
 | u | -521 | S041.330/2025 | b_minus_s041_330 | B- decay mode 218 | B- -> Dbar0 D^*(2010)+ K0 | backlog | blocked |
 | u | -521 | S041.331/2025 | b_minus_s041_331 | B- decay mode 219 | B- -> Dbar^*(2007)0 D^*(2010)+ K0 | backlog | blocked |
-| u | -521 | S041.332/2025 | b_minus_s041_332 | B- decay mode 220 | B- -> Dbar0 D0 K+ | backlog | blocked |
+| u | -521 | S041.332/2025 | b_minus_s041_332 | B- decay mode 220 | B- -> D0 Dbar0 K- | supported | ready |
 | u | -521 | S041.333/2025 | b_minus_s041_333 | B- decay mode 221 | B- -> Dbar^*(2007)0 D0 K+ | backlog | blocked |
 | u | -521 | S041.334/2025 | b_minus_s041_334 | B- decay mode 222 | B- -> Dbar0 D^*(2007)0 K+ | backlog | blocked |
 | u | -521 | S041.335/2025 | b_minus_s041_335 | B- decay mode 223 | B- -> Dbar^*(2007)0 D^*(2007)0 K+ | backlog | blocked |
-| u | -521 | S041.336/2025 | b_minus_s041_336 | B- decay mode 224 | B- -> D- D+ K+ | backlog | blocked |
-| u | -521 | S041.763/2025 | b_minus_s041_763 | B- decay mode 225 | B- -> D- K+ D+ | incomplete | blocked |
-| u | -521 | S041.764/2025 | b_minus_s041_764 | B- decay mode 226 | B- -> D- K+ D+ | incomplete | blocked |
+| u | -521 | S041.336/2025 | b_minus_s041_336 | B- decay mode 224 | B- -> D+ D- K- | supported | ready |
+| u | -521 | S041.763/2025 | b_minus_s041_763 | B- decay mode 225 | B- -> D+ K- D- | incomplete | blocked |
+| u | -521 | S041.764/2025 | b_minus_s041_764 | B- decay mode 226 | B- -> D+ K- D- | incomplete | blocked |
 | u | -521 | S041.765/2025 | b_minus_s041_765 | B- decay mode 227 | B- -> D- D+ K+ nonresonant | incomplete | blocked |
 | u | -521 | S041.337/2025 | b_minus_s041_337 | B- decay mode 228 | B- -> D- D^*(2010)+ K+ | backlog | blocked |
 | u | -521 | S041.338/2025 | b_minus_s041_338 | B- decay mode 229 | B- -> D^*(2010)- D+ K+ | backlog | blocked |
@@ -1148,11 +1148,11 @@
 | u | -521 | S041.544/2025 | b_minus_s041_544 | B- decay mode 447 | B- -> b_1()0 K^*()+ x B(b_1()0 -> omega pi0) | incomplete | blocked |
 | u | -521 | S041.241/2025 | b_minus_s041_241 | B- decay mode 448 | B- -> K- K0 | supported | ready |
 | u | -521 | S041.306/2025 | b_minus_s041_306 | B- decay mode 449 | B- -> K0 K- pi0 | supported | ready |
-| u | -521 | S041.323/2025 | b_minus_s041_323 | B- decay mode 450 | B- -> K+ K0S K0S | supported | ready |
+| u | -521 | S041.323/2025 | b_minus_s041_323 | B- decay mode 450 | B- -> K+ K0S K0S | backlog | blocked |
 | u | -521 | S041.597/2025 | b_minus_s041_597 | B- decay mode 451 | B- -> K0S K0S f_0(980) K+ | incomplete | blocked |
 | u | -521 | S041.598/2025 | b_minus_s041_598 | B- decay mode 452 | B- -> K0S K0S f_0(1710) K+ | incomplete | blocked |
 | u | -521 | S041.599/2025 | b_minus_s041_599 | B- decay mode 453 | B- -> K+ K0S K0S nonresonant | incomplete | blocked |
-| u | -521 | S041.324/2025 | b_minus_s041_324 | B- decay mode 454 | B- -> K0S K0S pi+ | supported | ready |
+| u | -521 | S041.324/2025 | b_minus_s041_324 | B- decay mode 454 | B- -> K0S K0S pi+ | backlog | blocked |
 | u | -521 | S041.284/2025 | b_minus_s041_284 | B- decay mode 455 | B- -> K- K+ pi- | supported | ready |
 | u | -521 | S041.230/2025 | b_minus_s041_230 | B- decay mode 456 | B- -> K+ K- pi+ nonresonant | incomplete | blocked |
 | u | -521 | S041.263/2025 | b_minus_s041_263 | B- decay mode 457 | B- -> K+ Kbar^*(892)0 | backlog | blocked |
@@ -1167,7 +1167,7 @@
 | u | -521 | S041.277/2025 | b_minus_s041_277 | B- decay mode 466 | B- -> K^*(892)+ K^*(892)0 | backlog | blocked |
 | u | -521 | S041.454/2025 | b_minus_s041_454 | B- decay mode 467 | B- -> K+ pi- | incomplete | blocked |
 | u | -521 | S041.160/2025 | b_minus_s041_160 | B- decay mode 468 | B- -> K- K+ K- | supported | ready |
-| u | -521 | S041.8/2025 | b_minus_s041_8 | B- decay mode 469 | B- -> K+ phi | backlog | blocked |
+| u | -521 | S041.8/2025 | b_minus_s041_8 | B- decay mode 469 | B- -> K- phi | supported | ready |
 | u | -521 | S041.428/2025 | b_minus_s041_428 | B- decay mode 470 | B- -> f_0(980) K+ x B(f_0(980) -> K+ K-) | incomplete | blocked |
 | u | -521 | S041.429/2025 | b_minus_s041_429 | B- decay mode 471 | B- -> a_2(1320) K+ x B(a_2(1320) -> K+ K-) | incomplete | blocked |
 | u | -521 | S041.450/2025 | b_minus_s041_450 | B- decay mode 472 | B- -> X_0(1550) K+ x B(X_0(1550) -> K+ K-) | incomplete | blocked |
@@ -1195,15 +1195,15 @@
 | u | -521 | S041.522/2025 | b_minus_s041_522 | B- decay mode 494 | B- -> phi | incomplete | blocked |
 | u | -521 | S041.523/2025 | b_minus_s041_523 | B- decay mode 495 | B- -> phi | incomplete | blocked |
 | u | -521 | S041.554/2025 | b_minus_s041_554 | B- decay mode 496 | B- -> a_1()+ K^*()0 | incomplete | blocked |
-| u | -521 | S041.325/2025 | b_minus_s041_325 | B- decay mode 497 | B- -> K+ phi phi | backlog | blocked |
+| u | -521 | S041.325/2025 | b_minus_s041_325 | B- decay mode 497 | B- -> K- phi phi | supported | ready |
 | u | -521 | S041.452/2025 | b_minus_s041_452 | B- decay mode 498 | B- -> K- | incomplete | blocked |
-| u | -521 | S041.540/2025 | b_minus_s041_540 | B- decay mode 499 | B- -> phi K+ | incomplete | blocked |
+| u | -521 | S041.540/2025 | b_minus_s041_540 | B- decay mode 499 | B- -> phi K- | incomplete | blocked |
 | u | -521 | S041.541/2025 | b_minus_s041_541 | B- decay mode 500 | B- -> X(1812) K+ x B(X -> omega phi) | incomplete | blocked |
 | u | -521 | S041.9/2025 | b_minus_s041_9 | B- decay mode 501 | B- -> K^*(892)+ gamma | backlog | blocked |
 | u | -521 | S041.53/2025 | b_minus_s041_53 | B- decay mode 502 | B- -> K_1(1270)+ gamma | backlog | blocked |
 | u | -521 | S041.403/2025 | b_minus_s041_403 | B- decay mode 503 | B- -> eta K- gamma | supported | ready |
 | u | -521 | S041.451/2025 | b_minus_s041_451 | B- decay mode 504 | B- -> K- gamma | incomplete | blocked |
-| u | -521 | S041.347/2025 | b_minus_s041_347 | B- decay mode 505 | B- -> phi K+ gamma | backlog | blocked |
+| u | -521 | S041.347/2025 | b_minus_s041_347 | B- decay mode 505 | B- -> phi K- gamma | supported | ready |
 | u | -521 | S041.307/2025 | b_minus_s041_307 | B- decay mode 506 | B- -> K- pi+ pi- gamma | supported | ready |
 | u | -521 | S041.308/2025 | b_minus_s041_308 | B- decay mode 507 | B- -> K^*(892)0 pi+ gamma | backlog | blocked |
 | u | -521 | S041.309/2025 | b_minus_s041_309 | B- decay mode 508 | B- -> K- gamma | incomplete | blocked |
@@ -1244,7 +1244,7 @@
 | u | -521 | S041.247/2025 | b_minus_s041_247 | B- decay mode 543 | B- -> eta | incomplete | blocked |
 | u | -521 | S041.242/2025 | b_minus_s041_242 | B- decay mode 544 | B- -> pi- | incomplete | blocked |
 | u | -521 | S041.243/2025 | b_minus_s041_243 | B- decay mode 545 | B- -> eta^' rho+ | incomplete | blocked |
-| u | -521 | S041.254/2025 | b_minus_s041_254 | B- decay mode 546 | B- -> phi pi+ | backlog | blocked |
+| u | -521 | S041.254/2025 | b_minus_s041_254 | B- decay mode 546 | B- -> phi pi- | supported | ready |
 | u | -521 | S041.255/2025 | b_minus_s041_255 | B- decay mode 547 | B- -> phi | incomplete | blocked |
 | u | -521 | S041.376/2025 | b_minus_s041_376 | B- decay mode 548 | B- -> eta pi0 a_0(980)0 pi+ | incomplete | blocked |
 | u | -521 | S041.488/2025 | b_minus_s041_488 | B- decay mode 549 | B- -> eta pi+ a_0(980)+ pi0 | incomplete | blocked |
@@ -1284,7 +1284,7 @@
 | u | -521 | S041.548/2025 | b_minus_s041_548 | B- decay mode 583 | B- -> pi- anti-p pi+ | incomplete | blocked |
 | u | -521 | S041.549/2025 | b_minus_s041_549 | B- decay mode 584 | B- -> pi+ p pi- f_2(1270) | incomplete | blocked |
 | u | -521 | S041.716/2025 | b_minus_s041_716 | B- decay mode 585 | B- -> anti-p K- K+ | incomplete | blocked |
-| u | -521 | S041.718/2025 | b_minus_s041_718 | B- decay mode 586 | B- -> p phi | incomplete | blocked |
+| u | -521 | S041.718/2025 | b_minus_s041_718 | B- decay mode 586 | B- -> anti-p phi | incomplete | blocked |
 | u | -521 | S041.717/2025 | b_minus_s041_717 | B- decay mode 587 | B- -> pbar K+ K- | incomplete | blocked |
 | u | -521 | S041.356/2025 | b_minus_s041_356 | B- decay mode 588 | B- -> pi- | incomplete | blocked |
 | u | -521 | S041.357/2025 | b_minus_s041_357 | B- decay mode 589 | B- -> K- | incomplete | blocked |
@@ -1293,13 +1293,13 @@
 | u | -521 | S041.720/2025 | b_minus_s041_720 | B- decay mode 592 | B- -> K- | incomplete | blocked |
 | u | -521 | S041.64/2025 | b_minus_s041_64 | B- decay mode 593 | B- -> anti-p | incomplete | blocked |
 | u | -521 | S041.65/2025 | b_minus_s041_65 | B- decay mode 594 | B- -> pbar | incomplete | blocked |
-| u | -521 | S041.303/2025 | b_minus_s041_303 | B- decay mode 595 | B- -> D+ p pbar | backlog | blocked |
+| u | -521 | S041.303/2025 | b_minus_s041_303 | B- decay mode 595 | B- -> D- anti-p p | supported | ready |
 | u | -521 | S041.304/2025 | b_minus_s041_304 | B- decay mode 596 | B- -> D^*(2010)+ p pbar | backlog | blocked |
-| u | -521 | S041.607/2025 | b_minus_s041_607 | B- decay mode 597 | B- -> Dbar0 p pbar pi+ | backlog | blocked |
+| u | -521 | S041.607/2025 | b_minus_s041_607 | B- decay mode 597 | B- -> D0 anti-p p pi- | supported | ready |
 | u | -521 | S041.608/2025 | b_minus_s041_608 | B- decay mode 598 | B- -> anti-p p pi- | incomplete | blocked |
-| u | -521 | S041.609/2025 | b_minus_s041_609 | B- decay mode 599 | B- -> D- p pbar pi+ pi- | backlog | blocked |
+| u | -521 | S041.609/2025 | b_minus_s041_609 | B- decay mode 599 | B- -> D- p pbar pi+ pi- | supported | ready |
 | u | -521 | S041.610/2025 | b_minus_s041_610 | B- decay mode 600 | B- -> p pbar pi+ pi- | incomplete | blocked |
-| u | -521 | S041.577/2025 | b_minus_s041_577 | B- decay mode 601 | B- -> p Lambdabar0 Dbar0 | backlog | blocked |
+| u | -521 | S041.577/2025 | b_minus_s041_577 | B- decay mode 601 | B- -> anti-p Lambda0 D0 | supported | ready |
 | u | -521 | S041.578/2025 | b_minus_s041_578 | B- decay mode 602 | B- -> p Lambdabar0 Dbar^*(2007)0 | backlog | blocked |
 | u | -521 | S041.239/2025 | b_minus_s041_239 | B- decay mode 603 | B- -> Lambdabar_c()- p pi+ | backlog | blocked |
 | u | -521 | S041.817/2025 | b_minus_s041_817 | B- decay mode 604 | B- -> Lambdabar_c()- p K+ | backlog | blocked |
@@ -1348,7 +1348,7 @@
 | u | -521 | S041.490/2025 | b_minus_s041_490 | B- decay mode 647 | B- -> K^*(892)+ | incomplete | blocked |
 | u | -521 | S041.632/2025 | b_minus_s041_632 | B- decay mode 648 | B- -> K- pi- pi+ mu- mu+ | supported | ready |
 | u | -521 | S041.816/2025 | b_minus_s041_816 | B- decay mode 649 | B- -> D_s()+ mu+ mu- | backlog | blocked |
-| u | -521 | S041.633/2025 | b_minus_s041_633 | B- decay mode 650 | B- -> phi K+ mu+ mu- | backlog | blocked |
+| u | -521 | S041.633/2025 | b_minus_s041_633 | B- decay mode 650 | B- -> phi K- mu- mu+ | supported | ready |
 | u | -521 | S041.736/2025 | b_minus_s041_736 | B- decay mode 651 | B- -> anti-p | incomplete | blocked |
 | u | -521 | S041.86/2025 | b_minus_s041_86 | B- decay mode 652 | B- -> pi- e- mu+ | supported | ready |
 | u | -521 | S041.87/2025 | b_minus_s041_87 | B- decay mode 653 | B- -> pi- e+ mu- | supported | ready |
@@ -1383,22 +1383,22 @@
 | u | -521 | S041.290/2025 | b_minus_s041_290 | B- decay mode 682 | B- -> K^*(892)- e+ e+ | backlog | blocked |
 | u | -521 | S041.292/2025 | b_minus_s041_292 | B- decay mode 683 | B- -> K^*(892)- mu+ mu+ | backlog | blocked |
 | u | -521 | S041.293/2025 | b_minus_s041_293 | B- decay mode 684 | B- -> K^*(892)- e+ mu+ | backlog | blocked |
-| u | -521 | S041.572/2025 | b_minus_s041_572 | B- decay mode 685 | B- -> D- e+ e+ | backlog | blocked |
-| u | -521 | S041.573/2025 | b_minus_s041_573 | B- decay mode 686 | B- -> D- e+ mu+ | backlog | blocked |
-| u | -521 | S041.574/2025 | b_minus_s041_574 | B- decay mode 687 | B- -> D- mu+ mu+ | backlog | blocked |
+| u | -521 | S041.572/2025 | b_minus_s041_572 | B- decay mode 685 | B- -> D+ e- e- | supported | ready |
+| u | -521 | S041.573/2025 | b_minus_s041_573 | B- decay mode 686 | B- -> D+ e- mu- | supported | ready |
+| u | -521 | S041.574/2025 | b_minus_s041_574 | B- decay mode 687 | B- -> D+ mu- mu- | supported | ready |
 | u | -521 | S041.604/2025 | b_minus_s041_604 | B- decay mode 688 | B- -> mu+ mu+ | incomplete | blocked |
 | u | -521 | S041.605/2025 | b_minus_s041_605 | B- decay mode 689 | B- -> D_s()- mu+ mu+ | backlog | blocked |
-| u | -521 | S041.606/2025 | b_minus_s041_606 | B- decay mode 690 | B- -> Dbar0 pi- mu+ mu+ | backlog | blocked |
-| u | -521 | S041.567/2025 | b_minus_s041_567 | B- decay mode 691 | B- -> Lambda0 mu+ | backlog | blocked |
-| u | -521 | S041.568/2025 | b_minus_s041_568 | B- decay mode 692 | B- -> Lambda0 e+ | backlog | blocked |
-| u | -521 | S041.569/2025 | b_minus_s041_569 | B- decay mode 693 | B- -> Lambdabar0 mu+ | backlog | blocked |
-| u | -521 | S041.570/2025 | b_minus_s041_570 | B- decay mode 694 | B- -> Lambdabar0 e+ | backlog | blocked |
+| u | -521 | S041.606/2025 | b_minus_s041_606 | B- decay mode 690 | B- -> D0 pi+ mu- mu- | supported | ready |
+| u | -521 | S041.567/2025 | b_minus_s041_567 | B- decay mode 691 | B- -> Lambdabar0 mu- | supported | ready |
+| u | -521 | S041.568/2025 | b_minus_s041_568 | B- decay mode 692 | B- -> Lambdabar0 e- | supported | ready |
+| u | -521 | S041.569/2025 | b_minus_s041_569 | B- decay mode 693 | B- -> Lambda0 mu- | supported | ready |
+| u | -521 | S041.570/2025 | b_minus_s041_570 | B- decay mode 694 | B- -> Lambda0 e- | supported | ready |
 | u | 511 | S042.94/2025 | b0_s042_94 | B0 decay mode 1 | B0 -> lepton+ nu_lepton X | incomplete | blocked |
 | u | 511 | S042.375/2025 | b0_s042_375 | B0 decay mode 2 | B0 -> e+ nu_e | incomplete | blocked |
 | u | 511 | S042.612/2025 | b0_s042_612 | B0 decay mode 3 | B0 -> lepton+ nu_lepton X_u | incomplete | blocked |
 | u | 511 | S042.396/2025 | b0_s042_396 | B0 decay mode 4 | B0 -> D lepton+ nu_lepton X | incomplete | blocked |
 | u | 511 | S042.37/2025 | b0_s042_37 | B0 decay mode 5 | B0 -> D- | incomplete | blocked |
-| u | 511 | S042.416/2025 | b0_s042_416 | B0 decay mode 6 | B0 -> D- tau+ nu_tau | backlog | blocked |
+| u | 511 | S042.416/2025 | b0_s042_416 | B0 decay mode 6 | B0 -> D- tau+ nu_tau | supported | ready |
 | u | 511 | S042.181/2025 | b0_s042_181 | B0 decay mode 7 | B0 -> D^*(2010)- | incomplete | blocked |
 | u | 511 | S042.625/2025 | b0_s042_625 | B0 decay mode 8 | B0 -> D^*(2010)- e+ nu_e | backlog | blocked |
 | u | 511 | S042.626/2025 | b0_s042_626 | B0 decay mode 9 | B0 -> D^*(2010)- mu+ nu_mu | backlog | blocked |
@@ -1430,19 +1430,19 @@
 | u | 511 | S042.298/2025 | b0_s042_298 | B0 decay mode 35 | B0 -> cbar | incomplete | blocked |
 | u | 511 | S042.299/2025 | b0_s042_299 | B0 decay mode 36 | B0 -> c | incomplete | blocked |
 | u | 511 | S042.300/2025 | b0_s042_300 | B0 decay mode 37 | B0 -> cbar c | incomplete | blocked |
-| u | 511 | S042.30/2025 | b0_s042_30 | B0 decay mode 38 | B0 -> D- pi+ | backlog | blocked |
+| u | 511 | S042.30/2025 | b0_s042_30 | B0 decay mode 38 | B0 -> D- pi+ | supported | ready |
 | u | 511 | S042.34/2025 | b0_s042_34 | B0 decay mode 39 | B0 -> D- | incomplete | blocked |
-| u | 511 | S042.313/2025 | b0_s042_313 | B0 decay mode 40 | B0 -> D- K0 pi+ | backlog | blocked |
+| u | 511 | S042.313/2025 | b0_s042_313 | B0 decay mode 40 | B0 -> D- K0 pi+ | supported | ready |
 | u | 511 | S042.209/2025 | b0_s042_209 | B0 decay mode 41 | B0 -> D- K^*(892)+ | backlog | blocked |
 | u | 511 | S042.205/2025 | b0_s042_205 | B0 decay mode 42 | B0 -> D- pi+ | incomplete | blocked |
-| u | 511 | S042.201/2025 | b0_s042_201 | B0 decay mode 43 | B0 -> D- K+ | backlog | blocked |
-| u | 511 | S042.508/2025 | b0_s042_508 | B0 decay mode 44 | B0 -> D- K+ pi+ pi- | backlog | blocked |
-| u | 511 | S042.216/2025 | b0_s042_216 | B0 decay mode 45 | B0 -> D- K+ Kbar0 | backlog | blocked |
+| u | 511 | S042.201/2025 | b0_s042_201 | B0 decay mode 43 | B0 -> D- K+ | supported | ready |
+| u | 511 | S042.508/2025 | b0_s042_508 | B0 decay mode 44 | B0 -> D- K+ pi+ pi- | supported | ready |
+| u | 511 | S042.216/2025 | b0_s042_216 | B0 decay mode 45 | B0 -> D- K+ Kbar0 | supported | ready |
 | u | 511 | S042.218/2025 | b0_s042_218 | B0 decay mode 46 | B0 -> D- K+ Kbar^*(892)0 | backlog | blocked |
-| u | 511 | S042.1/2025 | b0_s042_1 | B0 decay mode 47 | B0 -> Dbar0 pi+ pi- | backlog | blocked |
+| u | 511 | S042.1/2025 | b0_s042_1 | B0 decay mode 47 | B0 -> Dbar0 pi+ pi- | supported | ready |
 | u | 511 | S042.2/2025 | b0_s042_2 | B0 decay mode 48 | B0 -> D^*(2010)- pi+ | backlog | blocked |
-| u | 511 | S042.507/2025 | b0_s042_507 | B0 decay mode 49 | B0 -> Dbar0 K+ K- | backlog | blocked |
-| u | 511 | S042.88/2025 | b0_s042_88 | B0 decay mode 50 | B0 -> D- pi+ pi+ pi- | backlog | blocked |
+| u | 511 | S042.507/2025 | b0_s042_507 | B0 decay mode 49 | B0 -> Dbar0 K+ K- | supported | ready |
+| u | 511 | S042.88/2025 | b0_s042_88 | B0 decay mode 50 | B0 -> D- pi+ pi+ pi- | supported | ready |
 | u | 511 | S042.89/2025 | b0_s042_89 | B0 decay mode 51 | B0 -> (D- pi+ pi+ pi-) nonresonant | incomplete | blocked |
 | u | 511 | S042.91/2025 | b0_s042_91 | B0 decay mode 52 | B0 -> D- pi+ | incomplete | blocked |
 | u | 511 | S042.93/2025 | b0_s042_93 | B0 decay mode 53 | B0 -> D- a_1(1260)+ | backlog | blocked |
@@ -1474,9 +1474,9 @@
 | u | 511 | S042.385/2025 | b0_s042_385 | B0 decay mode 79 | B0 -> D0 pi- pi+ | incomplete | blocked |
 | u | 511 | S042.333/2025 | b0_s042_333 | B0 decay mode 80 | B0 -> pi+ pi- pi+ | incomplete | blocked |
 | u | 511 | S042.125/2025 | b0_s042_125 | B0 decay mode 81 | B0 -> Dbar_2^*(2460)- rho+ | incomplete | blocked |
-| u | 511 | S042.350/2025 | b0_s042_350 | B0 decay mode 82 | B0 -> D0 Dbar0 | backlog | blocked |
+| u | 511 | S042.350/2025 | b0_s042_350 | B0 decay mode 82 | B0 -> D0 Dbar0 | supported | ready |
 | u | 511 | S042.351/2025 | b0_s042_351 | B0 decay mode 83 | B0 -> Dbar0 | incomplete | blocked |
-| u | 511 | S042.184/2025 | b0_s042_184 | B0 decay mode 84 | B0 -> D- D+ | backlog | blocked |
+| u | 511 | S042.184/2025 | b0_s042_184 | B0 decay mode 84 | B0 -> D- D+ | supported | ready |
 | u | 511 | S042.511/2025 | b0_s042_511 | B0 decay mode 85 | B0 -> D+- D^*()-+ (CP-averaged) | incomplete | blocked |
 | u | 511 | S042.50/2025 | b0_s042_50 | B0 decay mode 86 | B0 -> D- D_s()+ | backlog | blocked |
 | u | 511 | S042.630/2025 | b0_s042_630 | B0 decay mode 87 | B0 -> Dbar0 D_s()+ pi-, m(Dbar0 pi-)>2.05 GeV | incomplete | blocked |
@@ -1516,7 +1516,7 @@
 | u | 511 | S042.273/2025 | b0_s042_273 | B0 decay mode 121 | B0 -> D0 K+ D- | incomplete | blocked |
 | u | 511 | S042.274/2025 | b0_s042_274 | B0 decay mode 122 | B0 -> D0 K+ D^*(2010)- | incomplete | blocked |
 | u | 511 | S042.545/2025 | b0_s042_545 | B0 decay mode 123 | B0 -> D0 K+ D- | incomplete | blocked |
-| u | 511 | S042.488/2025 | b0_s042_488 | B0 decay mode 124 | B0 -> D+ pi- | backlog | blocked |
+| u | 511 | S042.488/2025 | b0_s042_488 | B0 decay mode 124 | B0 -> D+ pi- | supported | ready |
 | u | 511 | S042.51/2025 | b0_s042_51 | B0 decay mode 125 | B0 -> D_s()+ pi- | backlog | blocked |
 | u | 511 | S042.108/2025 | b0_s042_108 | B0 decay mode 126 | B0 -> D_s^*()+ pi- | backlog | blocked |
 | u | 511 | S042.110/2025 | b0_s042_110 | B0 decay mode 127 | B0 -> D_s()+ | incomplete | blocked |
@@ -1537,8 +1537,8 @@
 | u | 511 | S042.512/2025 | b0_s042_512 | B0 decay mode 142 | B0 -> D_s()- K+ pi+ pi- | backlog | blocked |
 | u | 511 | S042.118/2025 | b0_s042_118 | B0 decay mode 143 | B0 -> D_s()- pi+ K^*(892)0 | backlog | blocked |
 | u | 511 | S042.119/2025 | b0_s042_119 | B0 decay mode 144 | B0 -> D_s^*()- pi+ K^*(892)0 | backlog | blocked |
-| u | 511 | S042.242/2025 | b0_s042_242 | B0 decay mode 145 | B0 -> Dbar0 K0 | backlog | blocked |
-| u | 511 | S042.319/2025 | b0_s042_319 | B0 decay mode 146 | B0 -> Dbar0 K+ pi- | backlog | blocked |
+| u | 511 | S042.242/2025 | b0_s042_242 | B0 decay mode 145 | B0 -> Dbar0 K0 | supported | ready |
+| u | 511 | S042.319/2025 | b0_s042_319 | B0 decay mode 146 | B0 -> Dbar0 K+ pi- | supported | ready |
 | u | 511 | S042.243/2025 | b0_s042_243 | B0 decay mode 147 | B0 -> Dbar0 K^*(892)0 | backlog | blocked |
 | u | 511 | S042.551/2025 | b0_s042_551 | B0 decay mode 148 | B0 -> Dbar0 K^*(1410)0 | backlog | blocked |
 | u | 511 | S042.552/2025 | b0_s042_552 | B0 decay mode 149 | B0 -> Dbar0 K_0^*(1430)0 | backlog | blocked |
@@ -1554,14 +1554,14 @@
 | u | 511 | S042.596/2025 | b0_s042_596 | B0 decay mode 159 | B0 -> &#91; pi+ pi- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
 | u | 511 | S042.599/2025 | b0_s042_599 | B0 decay mode 160 | B0 -> &#91; pi+ K- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
 | u | 511 | S042.600/2025 | b0_s042_600 | B0 decay mode 161 | B0 -> &#91; K+ pi- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
-| u | 511 | S042.128/2025 | b0_s042_128 | B0 decay mode 162 | B0 -> Dbar0 pi0 | backlog | blocked |
+| u | 511 | S042.128/2025 | b0_s042_128 | B0 decay mode 162 | B0 -> Dbar0 pi0 | supported | ready |
 | u | 511 | S042.35/2025 | b0_s042_35 | B0 decay mode 163 | B0 -> Dbar0 | incomplete | blocked |
 | u | 511 | S042.386/2025 | b0_s042_386 | B0 decay mode 164 | B0 -> Dbar0 | incomplete | blocked |
-| u | 511 | S042.129/2025 | b0_s042_129 | B0 decay mode 165 | B0 -> Dbar0 eta | backlog | blocked |
+| u | 511 | S042.129/2025 | b0_s042_129 | B0 decay mode 165 | B0 -> Dbar0 eta | supported | ready |
 | u | 511 | S042.130/2025 | b0_s042_130 | B0 decay mode 166 | B0 -> Dbar0 | incomplete | blocked |
 | u | 511 | S042.131/2025 | b0_s042_131 | B0 decay mode 167 | B0 -> Dbar0 | incomplete | blocked |
-| u | 511 | S042.638/2025 | b0_s042_638 | B0 decay mode 168 | B0 -> Dbar0 phi | backlog | blocked |
-| u | 511 | S042.322/2025 | b0_s042_322 | B0 decay mode 169 | B0 -> D0 K+ pi- | backlog | blocked |
+| u | 511 | S042.638/2025 | b0_s042_638 | B0 decay mode 168 | B0 -> Dbar0 phi | supported | ready |
+| u | 511 | S042.322/2025 | b0_s042_322 | B0 decay mode 169 | B0 -> D0 K+ pi- | supported | ready |
 | u | 511 | S042.246/2025 | b0_s042_246 | B0 decay mode 170 | B0 -> D0 K^*(892)0 | backlog | blocked |
 | u | 511 | S042.187/2025 | b0_s042_187 | B0 decay mode 171 | B0 -> gamma | incomplete | blocked |
 | u | 511 | S042.132/2025 | b0_s042_132 | B0 decay mode 172 | B0 -> Dbar^*(2007)0 pi0 | backlog | blocked |
@@ -1579,15 +1579,15 @@
 | u | 511 | S042.136/2025 | b0_s042_136 | B0 decay mode 184 | B0 -> Dbar^*(2007)0 | incomplete | blocked |
 | u | 511 | S042.155/2025 | b0_s042_155 | B0 decay mode 185 | B0 -> D^*(2010)+ D- | backlog | blocked |
 | u | 511 | S042.185/2025 | b0_s042_185 | B0 decay mode 186 | B0 -> D^*(2007)0 Dbar^*(2007)0 | backlog | blocked |
-| u | 511 | S042.260/2025 | b0_s042_260 | B0 decay mode 187 | B0 -> D- D0 K+ | backlog | blocked |
+| u | 511 | S042.260/2025 | b0_s042_260 | B0 decay mode 187 | B0 -> D- D0 K+ | supported | ready |
 | u | 511 | S042.261/2025 | b0_s042_261 | B0 decay mode 188 | B0 -> D- D^*(2007)0 K+ | backlog | blocked |
 | u | 511 | S042.262/2025 | b0_s042_262 | B0 decay mode 189 | B0 -> D^*(2010)- D0 K+ | backlog | blocked |
 | u | 511 | S042.263/2025 | b0_s042_263 | B0 decay mode 190 | B0 -> D^*(2010)- D^*(2007)0 K+ | backlog | blocked |
-| u | 511 | S042.264/2025 | b0_s042_264 | B0 decay mode 191 | B0 -> D- D+ K0 | backlog | blocked |
+| u | 511 | S042.264/2025 | b0_s042_264 | B0 decay mode 191 | B0 -> D- D+ K0 | supported | ready |
 | u | 511 | S042.265/2025 | b0_s042_265 | B0 decay mode 192 | B0 -> D^*(2010)+ K0 D^*(2010)- D+ K0 D- | incomplete | blocked |
 | u | 511 | S042.266/2025 | b0_s042_266 | B0 decay mode 193 | B0 -> D^*(2010)- D^*(2010)+ K0 | backlog | blocked |
 | u | 511 | S042.366/2025 | b0_s042_366 | B0 decay mode 194 | B0 -> K0 D_s1(2536)+ | incomplete | blocked |
-| u | 511 | S042.267/2025 | b0_s042_267 | B0 decay mode 195 | B0 -> Dbar0 D0 K0 | backlog | blocked |
+| u | 511 | S042.267/2025 | b0_s042_267 | B0 decay mode 195 | B0 -> Dbar0 D0 K0 | supported | ready |
 | u | 511 | S042.609/2025 | b0_s042_609 | B0 decay mode 196 | B0 -> D0 K+ pi- | incomplete | blocked |
 | u | 511 | S042.268/2025 | b0_s042_268 | B0 decay mode 197 | B0 -> D0 K0 Dbar0 D^*(2007)0 K0 Dbar^*(2007)0 | incomplete | blocked |
 | u | 511 | S042.269/2025 | b0_s042_269 | B0 decay mode 198 | B0 -> Dbar^*(2007)0 D^*(2007)0 K0 | backlog | blocked |
@@ -1756,7 +1756,7 @@
 | u | 511 | S042.459/2025 | b0_s042_459 | B0 decay mode 361 | B0 -> K0S K0S eta | supported | ready |
 | u | 511 | S042.460/2025 | b0_s042_460 | B0 decay mode 362 | B0 -> K0S K0S | incomplete | blocked |
 | u | 511 | S042.81/2025 | b0_s042_81 | B0 decay mode 363 | B0 -> K0 K+ K- | supported | ready |
-| u | 511 | S042.13/2025 | b0_s042_13 | B0 decay mode 364 | B0 -> K0 phi | backlog | blocked |
+| u | 511 | S042.13/2025 | b0_s042_13 | B0 decay mode 364 | B0 -> K0 phi | supported | ready |
 | u | 511 | S042.502/2025 | b0_s042_502 | B0 decay mode 365 | B0 -> K+ K- f_0(980) K0 | incomplete | blocked |
 | u | 511 | S042.503/2025 | b0_s042_503 | B0 decay mode 366 | B0 -> f_0(1500) K0 | backlog | blocked |
 | u | 511 | S042.504/2025 | b0_s042_504 | B0 decay mode 367 | B0 -> f_2^'(1525)0 K0 | backlog | blocked |
@@ -1791,11 +1791,11 @@
 | u | 511 | S042.400/2025 | b0_s042_400 | B0 decay mode 396 | B0 -> phi | incomplete | blocked |
 | u | 511 | S042.74/2025 | b0_s042_74 | B0 decay mode 397 | B0 -> K_2^*(1430)0 | incomplete | blocked |
 | u | 511 | S042.76/2025 | b0_s042_76 | B0 decay mode 398 | B0 -> K_2^*(1430)0 phi | backlog | blocked |
-| u | 511 | S042.345/2025 | b0_s042_345 | B0 decay mode 399 | B0 -> K0 phi phi | backlog | blocked |
+| u | 511 | S042.345/2025 | b0_s042_345 | B0 decay mode 399 | B0 -> K0 phi phi | supported | ready |
 | u | 511 | S042.338/2025 | b0_s042_338 | B0 decay mode 400 | B0 -> K0 | incomplete | blocked |
 | u | 511 | S042.309/2025 | b0_s042_309 | B0 decay mode 401 | B0 -> eta K0 gamma | supported | ready |
 | u | 511 | S042.337/2025 | b0_s042_337 | B0 decay mode 402 | B0 -> K0 gamma | incomplete | blocked |
-| u | 511 | S042.283/2025 | b0_s042_283 | B0 decay mode 403 | B0 -> K0 phi gamma | backlog | blocked |
+| u | 511 | S042.283/2025 | b0_s042_283 | B0 decay mode 403 | B0 -> K0 phi gamma | supported | ready |
 | u | 511 | S042.231/2025 | b0_s042_231 | B0 decay mode 404 | B0 -> K+ pi- gamma | supported | ready |
 | u | 511 | S042.16/2025 | b0_s042_16 | B0 decay mode 405 | B0 -> K^*(892)0 gamma | backlog | blocked |
 | u | 511 | S042.233/2025 | b0_s042_233 | B0 decay mode 406 | B0 -> gamma | incomplete | blocked |
@@ -1812,7 +1812,7 @@
 | u | 511 | S042.191/2025 | b0_s042_191 | B0 decay mode 417 | B0 -> gamma | incomplete | blocked |
 | u | 511 | S042.484/2025 | b0_s042_484 | B0 decay mode 418 | B0 -> mu+ mu- | incomplete | blocked |
 | u | 511 | S042.192/2025 | b0_s042_192 | B0 decay mode 419 | B0 -> gamma | incomplete | blocked |
-| u | 511 | S042.193/2025 | b0_s042_193 | B0 decay mode 420 | B0 -> phi gamma | backlog | blocked |
+| u | 511 | S042.193/2025 | b0_s042_193 | B0 decay mode 420 | B0 -> phi gamma | supported | ready |
 | u | 511 | S042.616/2025 | b0_s042_616 | B0 decay mode 421 | B0 -> KS0 KS0 f_2(1270) gamma | incomplete | blocked |
 | u | 511 | S042.617/2025 | b0_s042_617 | B0 decay mode 422 | B0 -> KS0 KS0 f_2^'(1525) gamma | incomplete | blocked |
 | u | 511 | S042.5/2025 | b0_s042_5 | B0 decay mode 423 | B0 -> pi+ pi- | supported | ready |
@@ -1831,14 +1831,14 @@
 | u | 511 | S042.176/2025 | b0_s042_176 | B0 decay mode 436 | B0 -> omega rho0 | incomplete | blocked |
 | u | 511 | S042.340/2025 | b0_s042_340 | B0 decay mode 437 | B0 -> pi+ pi- f_0(980) | incomplete | blocked |
 | u | 511 | S042.177/2025 | b0_s042_177 | B0 decay mode 438 | B0 -> omega omega | incomplete | blocked |
-| u | 511 | S042.178/2025 | b0_s042_178 | B0 decay mode 439 | B0 -> phi pi0 | backlog | blocked |
-| u | 511 | S042.179/2025 | b0_s042_179 | B0 decay mode 440 | B0 -> phi eta | backlog | blocked |
+| u | 511 | S042.178/2025 | b0_s042_178 | B0 decay mode 439 | B0 -> phi pi0 | supported | ready |
+| u | 511 | S042.179/2025 | b0_s042_179 | B0 decay mode 440 | B0 -> phi eta | supported | ready |
 | u | 511 | S042.180/2025 | b0_s042_180 | B0 decay mode 441 | B0 -> phi | incomplete | blocked |
-| u | 511 | S042.570/2025 | b0_s042_570 | B0 decay mode 442 | B0 -> phi pi+ pi- | backlog | blocked |
+| u | 511 | S042.570/2025 | b0_s042_570 | B0 decay mode 442 | B0 -> phi pi+ pi- | supported | ready |
 | u | 511 | S042.182/2025 | b0_s042_182 | B0 decay mode 443 | B0 -> phi | incomplete | blocked |
 | u | 511 | S042.434/2025 | b0_s042_434 | B0 decay mode 444 | B0 -> pi+ pi- phi f_0(980) | incomplete | blocked |
 | u | 511 | S042.183/2025 | b0_s042_183 | B0 decay mode 445 | B0 -> phi | incomplete | blocked |
-| u | 511 | S042.147/2025 | b0_s042_147 | B0 decay mode 446 | B0 -> phi phi | backlog | blocked |
+| u | 511 | S042.147/2025 | b0_s042_147 | B0 decay mode 446 | B0 -> phi phi | supported | ready |
 | u | 511 | S042.286/2025 | b0_s042_286 | B0 decay mode 447 | B0 -> eta | incomplete | blocked |
 | u | 511 | S042.377/2025 | b0_s042_377 | B0 decay mode 448 | B0 -> eta | incomplete | blocked |
 | u | 511 | S042.53/2025 | b0_s042_53 | B0 decay mode 449 | B0 -> pi+ pi- pi0 | supported | ready |
@@ -1886,7 +1886,7 @@
 | u | 511 | S042.251/2025 | b0_s042_251 | B0 decay mode 491 | B0 -> p K- | incomplete | blocked |
 | u | 511 | S042.546/2025 | b0_s042_546 | B0 decay mode 492 | B0 -> p D- | incomplete | blocked |
 | u | 511 | S042.547/2025 | b0_s042_547 | B0 decay mode 493 | B0 -> p | incomplete | blocked |
-| u | 511 | S042.252/2025 | b0_s042_252 | B0 decay mode 494 | B0 -> p Sigmabar0 pi- | backlog | blocked |
+| u | 511 | S042.252/2025 | b0_s042_252 | B0 decay mode 494 | B0 -> p Sigmabar0 pi- | supported | ready |
 | u | 511 | S042.186/2025 | b0_s042_186 | B0 decay mode 495 | B0 -> Lambdabar Lambda | incomplete | blocked |
 | u | 511 | S042.455/2025 | b0_s042_455 | B0 decay mode 496 | B0 -> K0 | incomplete | blocked |
 | u | 511 | S042.456/2025 | b0_s042_456 | B0 decay mode 497 | B0 -> Lambdabar Lambda K^*()0 | incomplete | blocked |
@@ -1894,13 +1894,13 @@
 | u | 511 | S042.534/2025 | b0_s042_534 | B0 decay mode 499 | B0 -> D0 Sigma0 Lambdabar + c.c. | incomplete | blocked |
 | u | 511 | S042.47/2025 | b0_s042_47 | B0 decay mode 500 | B0 -> Delta0 Deltabar0 | incomplete | blocked |
 | u | 511 | S042.48/2025 | b0_s042_48 | B0 decay mode 501 | B0 -> Delta++ Deltabar-- | incomplete | blocked |
-| u | 511 | S042.226/2025 | b0_s042_226 | B0 decay mode 502 | B0 -> Dbar0 p pbar | backlog | blocked |
+| u | 511 | S042.226/2025 | b0_s042_226 | B0 decay mode 502 | B0 -> Dbar0 p pbar | supported | ready |
 | u | 511 | S042.389/2025 | b0_s042_389 | B0 decay mode 503 | B0 -> D_s()- p | incomplete | blocked |
 | u | 511 | S042.227/2025 | b0_s042_227 | B0 decay mode 504 | B0 -> Dbar^*(2007)0 p pbar | backlog | blocked |
 | u | 511 | S042.198/2025 | b0_s042_198 | B0 decay mode 505 | B0 -> D^*(2010)- p nbar | incomplete | blocked |
-| u | 511 | S042.362/2025 | b0_s042_362 | B0 decay mode 506 | B0 -> D- p pbar pi+ | backlog | blocked |
+| u | 511 | S042.362/2025 | b0_s042_362 | B0 decay mode 506 | B0 -> D- p pbar pi+ | supported | ready |
 | u | 511 | S042.197/2025 | b0_s042_197 | B0 decay mode 507 | B0 -> D^*(2010)- p pbar pi+ | backlog | blocked |
-| u | 511 | S042.509/2025 | b0_s042_509 | B0 decay mode 508 | B0 -> Dbar0 p pbar pi+ pi- | backlog | blocked |
+| u | 511 | S042.509/2025 | b0_s042_509 | B0 decay mode 508 | B0 -> Dbar0 p pbar pi+ pi- | supported | ready |
 | u | 511 | S042.510/2025 | b0_s042_510 | B0 decay mode 509 | B0 -> p pbar pi+ pi- | incomplete | blocked |
 | u | 511 | S042.364/2025 | b0_s042_364 | B0 decay mode 510 | B0 -> D- p pbar pi+ | incomplete | blocked |
 | u | 511 | S042.365/2025 | b0_s042_365 | B0 decay mode 511 | B0 -> p pbar pi+ | incomplete | blocked |
@@ -1968,12 +1968,12 @@
 | u | 511 | S042.71/2025 | b0_s042_71 | B0 decay mode 573 | B0 -> K^*(892)0 mu+ mu- | backlog | blocked |
 | u | 511 | S042.562/2025 | b0_s042_562 | B0 decay mode 574 | B0 -> mu+ mu- K^*(892)0 | incomplete | blocked |
 | u | 511 | S042.629/2025 | b0_s042_629 | B0 decay mode 575 | B0 -> K^*(892)0 tau+ tau- | backlog | blocked |
-| u | 511 | S042.647/2025 | b0_s042_647 | B0 decay mode 576 | B0 -> Dbar0 mu+ mu- | backlog | blocked |
+| u | 511 | S042.647/2025 | b0_s042_647 | B0 decay mode 576 | B0 -> Dbar0 mu+ mu- | supported | ready |
 | u | 511 | S042.550/2025 | b0_s042_550 | B0 decay mode 577 | B0 -> pi+ pi- mu+ mu- | supported | ready |
 | u | 511 | S042.152/2025 | b0_s042_152 | B0 decay mode 578 | B0 -> K^*(892)0 | incomplete | blocked |
 | u | 511 | S042.284/2025 | b0_s042_284 | B0 decay mode 579 | B0 -> invisible | incomplete | blocked |
 | u | 511 | S042.285/2025 | b0_s042_285 | B0 decay mode 580 | B0 -> gamma | incomplete | blocked |
-| u | 511 | S042.614/2025 | b0_s042_614 | B0 decay mode 581 | B0 -> phi mu+ mu- | backlog | blocked |
+| u | 511 | S042.614/2025 | b0_s042_614 | B0 decay mode 581 | B0 -> phi mu+ mu- | supported | ready |
 | u | 511 | S042.409/2025 | b0_s042_409 | B0 decay mode 582 | B0 -> phi | incomplete | blocked |
 | u | 511 | S042.8/2025 | b0_s042_8 | B0 decay mode 583 | B0 -> e+- mu-+ | incomplete | blocked |
 | u | 511 | S042.383/2025 | b0_s042_383 | B0 decay mode 584 | B0 -> pi0 | incomplete | blocked |
@@ -2537,7 +2537,7 @@
 | u | 0 | M229.1/2025 | d_3000_0_m229_1 | D(3000)0 decay mode 1 | D(3000)0 -> pi- | incomplete | blocked |
 | u | 411 | S031.7/2025 | d_plus_s031_7 | D+ decay mode 1 | D+ -> e+ semileptonic | incomplete | blocked |
 | u | 411 | S031.22/2025 | d_plus_s031_22 | D+ decay mode 2 | D+ -> mu+ | incomplete | blocked |
-| u | 411 | S031.8/2025 | d_plus_s031_8 | D+ decay mode 3 | D+ -> K- | incomplete | blocked |
+| u | 411 | S031.8/2025 | d_plus_s031_8 | D+ decay mode 3 | D+ -> K+ | incomplete | blocked |
 | u | 411 | S031.9/2025 | d_plus_s031_9 | D+ decay mode 4 | D+ -> K0S | incomplete | blocked |
 | u | 411 | S031.10/2025 | d_plus_s031_10 | D+ decay mode 5 | D+ -> K+ | incomplete | blocked |
 | u | 411 | S031.248/2025 | d_plus_s031_248 | D+ decay mode 6 | D+ -> K^*(892)- | incomplete | blocked |
@@ -2547,16 +2547,16 @@
 | u | 411 | S031.250/2025 | d_plus_s031_250 | D+ decay mode 10 | D+ -> eta^'() anything | incomplete | blocked |
 | u | 411 | S031.219/2025 | d_plus_s031_219 | D+ decay mode 11 | D+ -> phi | incomplete | blocked |
 | u | 411 | S031.363/2025 | d_plus_s031_363 | D+ decay mode 12 | D+ -> pi+ pi+ pi- anything | incomplete | blocked |
-| u | 411 | S031.6/2025 | d_plus_s031_6 | D+ decay mode 13 | D+ -> e+ nu_e | backlog | blocked |
-| u | 411 | S031.281/2025 | d_plus_s031_281 | D+ decay mode 14 | D+ -> gamma e+ nu_e | backlog | blocked |
-| u | 411 | S031.20/2025 | d_plus_s031_20 | D+ decay mode 15 | D+ -> mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.247/2025 | d_plus_s031_247 | D+ decay mode 16 | D+ -> tau+ nu_tau | backlog | blocked |
-| u | 411 | S031.71/2025 | d_plus_s031_71 | D+ decay mode 17 | D+ -> Kbar0 e+ nu_e | backlog | blocked |
-| u | 411 | S031.49/2025 | d_plus_s031_49 | D+ decay mode 18 | D+ -> Kbar0 mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.377/2025 | d_plus_s031_377 | D+ decay mode 19 | D+ -> K0S pi0 e+ nu_e | backlog | blocked |
+| u | 411 | S031.6/2025 | d_plus_s031_6 | D+ decay mode 13 | D+ -> e+ nu_e | supported | ready |
+| u | 411 | S031.281/2025 | d_plus_s031_281 | D+ decay mode 14 | D+ -> gamma e+ nu_e | supported | ready |
+| u | 411 | S031.20/2025 | d_plus_s031_20 | D+ decay mode 15 | D+ -> mu+ nu_mu | supported | ready |
+| u | 411 | S031.247/2025 | d_plus_s031_247 | D+ decay mode 16 | D+ -> tau+ nu_tau | supported | ready |
+| u | 411 | S031.71/2025 | d_plus_s031_71 | D+ decay mode 17 | D+ -> Kbar0 e+ nu_e | supported | ready |
+| u | 411 | S031.49/2025 | d_plus_s031_49 | D+ decay mode 18 | D+ -> Kbar0 mu+ nu_mu | supported | ready |
+| u | 411 | S031.377/2025 | d_plus_s031_377 | D+ decay mode 19 | D+ -> K0S pi0 e+ nu_e | supported | ready |
 | u | 411 | S031.385/2025 | d_plus_s031_385 | D+ decay mode 20 | D+ -> (K0S pi0)(S-wave) e+ nu_e | incomplete | blocked |
 | u | 411 | S031.386/2025 | d_plus_s031_386 | D+ decay mode 21 | D+ -> K0S Kbar^*(892)0 pi0 e+ nu_e | incomplete | blocked |
-| u | 411 | S031.34/2025 | d_plus_s031_34 | D+ decay mode 22 | D+ -> K- pi+ e+ nu_e | backlog | blocked |
+| u | 411 | S031.34/2025 | d_plus_s031_34 | D+ decay mode 22 | D+ -> K- pi+ e+ nu_e | supported | ready |
 | u | 411 | S031.81/2025 | d_plus_s031_81 | D+ decay mode 23 | D+ -> Kbar^*(892)0 e+ nu_e , Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.279/2025 | d_plus_s031_279 | D+ decay mode 24 | D+ -> (K- pi+ ) (&#91;0.8 -- 1.0&#93;GeV) e+ nu_e | incomplete | blocked |
 | u | 411 | S031.270/2025 | d_plus_s031_270 | D+ decay mode 25 | D+ -> (K- pi+)(S-wave) e+ nu_e | incomplete | blocked |
@@ -2564,39 +2564,39 @@
 | u | 411 | S031.272/2025 | d_plus_s031_272 | D+ decay mode 27 | D+ -> Kbar_2^*(1430)0 e+ nu_e, Kbar_2^*(1430)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.45/2025 | d_plus_s031_45 | D+ decay mode 28 | D+ -> K- pi+ e+ nu_e nonresonant | incomplete | blocked |
 | u | 411 | S031.44/2025 | d_plus_s031_44 | D+ decay mode 29 | D+ -> Kbar^*(892)0 e+ nu_e | backlog | blocked |
-| u | 411 | S031.184/2025 | d_plus_s031_184 | D+ decay mode 30 | D+ -> K- pi+ mu+ nu_mu | backlog | blocked |
+| u | 411 | S031.184/2025 | d_plus_s031_184 | D+ decay mode 30 | D+ -> K- pi+ mu+ nu_mu | supported | ready |
 | u | 411 | S031.185/2025 | d_plus_s031_185 | D+ decay mode 31 | D+ -> Kbar^*(892)0 mu+ nu_mu , Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.186/2025 | d_plus_s031_186 | D+ decay mode 32 | D+ -> K- pi+ mu+ nu_mu nonresonant | incomplete | blocked |
 | u | 411 | S031.179/2025 | d_plus_s031_179 | D+ decay mode 33 | D+ -> Kbar^*(892)0 mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.187/2025 | d_plus_s031_187 | D+ decay mode 34 | D+ -> K- pi+ pi0 mu+ nu_mu | backlog | blocked |
+| u | 411 | S031.187/2025 | d_plus_s031_187 | D+ decay mode 34 | D+ -> K- pi+ pi0 mu+ nu_mu | supported | ready |
 | u | 411 | S031.314/2025 | d_plus_s031_314 | D+ decay mode 35 | D+ -> K- Kbar_1(1270)0 pi+ e+ pi0 nu_e | incomplete | blocked |
 | u | 411 | S031.387/2025 | d_plus_s031_387 | D+ decay mode 36 | D+ -> K0S Kbar_1(1270)0 pi+ e+ pi- nu_e | incomplete | blocked |
 | u | 411 | S031.242/2025 | d_plus_s031_242 | D+ decay mode 37 | D+ -> Kbar_0^*(1430)0 mu+ nu_mu | backlog | blocked |
 | u | 411 | S031.243/2025 | d_plus_s031_243 | D+ decay mode 38 | D+ -> Kbar^*(1680)0 mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.239/2025 | d_plus_s031_239 | D+ decay mode 39 | D+ -> pi0 e+ nu_e | backlog | blocked |
-| u | 411 | S031.289/2025 | d_plus_s031_289 | D+ decay mode 40 | D+ -> pi0 mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.265/2025 | d_plus_s031_265 | D+ decay mode 41 | D+ -> eta e+ nu_e | backlog | blocked |
-| u | 411 | S031.317/2025 | d_plus_s031_317 | D+ decay mode 42 | D+ -> eta mu+ nu_mu | backlog | blocked |
-| u | 411 | S031.295/2025 | d_plus_s031_295 | D+ decay mode 43 | D+ -> pi- pi+ e+ nu_e | backlog | blocked |
+| u | 411 | S031.239/2025 | d_plus_s031_239 | D+ decay mode 39 | D+ -> pi0 e+ nu_e | supported | ready |
+| u | 411 | S031.289/2025 | d_plus_s031_289 | D+ decay mode 40 | D+ -> pi0 mu+ nu_mu | supported | ready |
+| u | 411 | S031.265/2025 | d_plus_s031_265 | D+ decay mode 41 | D+ -> eta e+ nu_e | supported | ready |
+| u | 411 | S031.317/2025 | d_plus_s031_317 | D+ decay mode 42 | D+ -> eta mu+ nu_mu | supported | ready |
+| u | 411 | S031.295/2025 | d_plus_s031_295 | D+ decay mode 43 | D+ -> pi- pi+ e+ nu_e | supported | ready |
 | u | 411 | S031.296/2025 | d_plus_s031_296 | D+ decay mode 44 | D+ -> f_0(500)0 pi+ f_0(500)0 pi- e+ nu_e | incomplete | blocked |
 | u | 411 | S031.154/2025 | d_plus_s031_154 | D+ decay mode 45 | D+ -> e+ nu_e | incomplete | blocked |
-| u | 411 | S031.378/2025 | d_plus_s031_378 | D+ decay mode 46 | D+ -> pi- pi+ mu+ nu_mu | backlog | blocked |
+| u | 411 | S031.378/2025 | d_plus_s031_378 | D+ decay mode 46 | D+ -> pi- pi+ mu+ nu_mu | supported | ready |
 | u | 411 | S031.379/2025 | d_plus_s031_379 | D+ decay mode 47 | D+ -> pi+ f_0(500)0 pi- mu+ nu_mu | incomplete | blocked |
 | u | 411 | S031.188/2025 | d_plus_s031_188 | D+ decay mode 48 | D+ -> mu+ nu_mu | incomplete | blocked |
 | u | 411 | S031.240/2025 | d_plus_s031_240 | D+ decay mode 49 | D+ -> e+ nu_e | incomplete | blocked |
 | u | 411 | S031.322/2025 | d_plus_s031_322 | D+ decay mode 50 | D+ -> mu+ nu_mu | incomplete | blocked |
 | u | 411 | S031.266/2025 | d_plus_s031_266 | D+ decay mode 51 | D+ -> eta^'(958) e+ nu_e | backlog | blocked |
 | u | 411 | S031.283/2025 | d_plus_s031_283 | D+ decay mode 52 | D+ -> eta pi0 e+ nu_e | incomplete | blocked |
-| u | 411 | S031.373/2025 | d_plus_s031_373 | D+ decay mode 53 | D+ -> K0S K0S e+ nu_e | backlog | blocked |
-| u | 411 | S031.388/2025 | d_plus_s031_388 | D+ decay mode 54 | D+ -> K0S eta e+ nu_e | backlog | blocked |
-| u | 411 | S031.389/2025 | d_plus_s031_389 | D+ decay mode 55 | D+ -> eta eta e+ nu_e | backlog | blocked |
-| u | 411 | S031.372/2025 | d_plus_s031_372 | D+ decay mode 56 | D+ -> K+ K- e+ nu_e | backlog | blocked |
+| u | 411 | S031.373/2025 | d_plus_s031_373 | D+ decay mode 53 | D+ -> K0S K0S e+ nu_e | supported | ready |
+| u | 411 | S031.388/2025 | d_plus_s031_388 | D+ decay mode 54 | D+ -> K0S eta e+ nu_e | supported | ready |
+| u | 411 | S031.389/2025 | d_plus_s031_389 | D+ decay mode 55 | D+ -> eta eta e+ nu_e | supported | ready |
+| u | 411 | S031.372/2025 | d_plus_s031_372 | D+ decay mode 56 | D+ -> K+ K- e+ nu_e | supported | ready |
 | u | 411 | S031.330/2025 | d_plus_s031_330 | D+ decay mode 57 | D+ -> b_1(1235)0 pi0 e+ nu_e | incomplete | blocked |
-| u | 411 | S031.124/2025 | d_plus_s031_124 | D+ decay mode 58 | D+ -> phi e+ nu_e | backlog | blocked |
-| u | 411 | S031.282/2025 | d_plus_s031_282 | D+ decay mode 59 | D+ -> D0 e+ nu_e | backlog | blocked |
-| u | 411 | S031.2/2025 | d_plus_s031_2 | D+ decay mode 60 | D+ -> K0S pi+ | backlog | blocked |
-| u | 411 | S031.256/2025 | d_plus_s031_256 | D+ decay mode 61 | D+ -> K0L pi+ | backlog | blocked |
-| u | 411 | S031.1/2025 | d_plus_s031_1 | D+ decay mode 62 | D+ -> K- pi+ pi+ | backlog | blocked |
+| u | 411 | S031.124/2025 | d_plus_s031_124 | D+ decay mode 58 | D+ -> phi e+ nu_e | supported | ready |
+| u | 411 | S031.282/2025 | d_plus_s031_282 | D+ decay mode 59 | D+ -> D0 e+ nu_e | supported | ready |
+| u | 411 | S031.2/2025 | d_plus_s031_2 | D+ decay mode 60 | D+ -> K0S pi+ | supported | ready |
+| u | 411 | S031.256/2025 | d_plus_s031_256 | D+ decay mode 61 | D+ -> K0L pi+ | supported | ready |
+| u | 411 | S031.1/2025 | d_plus_s031_1 | D+ decay mode 62 | D+ -> K- pi+ pi+ | supported | ready |
 | u | 411 | S031.251/2025 | d_plus_s031_251 | D+ decay mode 63 | D+ -> ( K- pi+ )(S-wave) pi+ | incomplete | blocked |
 | u | 411 | S031.230/2025 | d_plus_s031_230 | D+ decay mode 64 | D+ -> K- pi+ Kbar_0^*(700)0 pi+ | incomplete | blocked |
 | u | 411 | S031.191/2025 | d_plus_s031_191 | D+ decay mode 65 | D+ -> Kbar_0^*(1430)0 pi+, Kbar_0^*(1430)0 -> K- pi+ | incomplete | blocked |
@@ -2606,7 +2606,7 @@
 | u | 411 | S031.192/2025 | d_plus_s031_192 | D+ decay mode 69 | D+ -> Kbar^*(1680)0 pi+, Kbar^*(1680)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.263/2025 | d_plus_s031_263 | D+ decay mode 70 | D+ -> K- (2pi+)(I=2) | incomplete | blocked |
 | u | 411 | S031.28/2025 | d_plus_s031_28 | D+ decay mode 71 | D+ -> K- 2pi+ nonresonant | incomplete | blocked |
-| u | 411 | S031.12/2025 | d_plus_s031_12 | D+ decay mode 72 | D+ -> K0S pi+ pi0 | backlog | blocked |
+| u | 411 | S031.12/2025 | d_plus_s031_12 | D+ decay mode 72 | D+ -> K0S pi+ pi0 | supported | ready |
 | u | 411 | S031.18/2025 | d_plus_s031_18 | D+ decay mode 73 | D+ -> K0S | incomplete | blocked |
 | u | 411 | S031.273/2025 | d_plus_s031_273 | D+ decay mode 74 | D+ -> pi+ pi0 K0S rho(1450)+ | incomplete | blocked |
 | u | 411 | S031.82/2025 | d_plus_s031_82 | D+ decay mode 75 | D+ -> Kbar^*(892)0 pi+, Kbar^*(892)0 -> K0S pi0 | incomplete | blocked |
@@ -2617,35 +2617,35 @@
 | u | 411 | S031.277/2025 | d_plus_s031_277 | D+ decay mode 80 | D+ -> K0S pi+ pi0 nonresonant and kappabar()0 pi+ | incomplete | blocked |
 | u | 411 | S031.278/2025 | d_plus_s031_278 | D+ decay mode 81 | D+ -> ( K0S pi0 )(S-wave) pi+ | incomplete | blocked |
 | u | 411 | S031.341/2025 | d_plus_s031_341 | D+ decay mode 82 | D+ -> K0S pi+ | incomplete | blocked |
-| u | 411 | S031.323/2025 | d_plus_s031_323 | D+ decay mode 83 | D+ -> K0S pi+ eta | backlog | blocked |
+| u | 411 | S031.323/2025 | d_plus_s031_323 | D+ decay mode 83 | D+ -> K0S pi+ eta | supported | ready |
 | u | 411 | S031.390/2025 | d_plus_s031_390 | D+ decay mode 84 | D+ -> pi+ eta K0S a_0(980)+ | incomplete | blocked |
 | u | 411 | S031.391/2025 | d_plus_s031_391 | D+ decay mode 85 | D+ -> K0S eta pi+ | incomplete | blocked |
 | u | 411 | S031.288/2025 | d_plus_s031_288 | D+ decay mode 86 | D+ -> K0S pi+ eta^'(958) | backlog | blocked |
-| u | 411 | S031.17/2025 | d_plus_s031_17 | D+ decay mode 87 | D+ -> K- pi+ pi+ pi0 | backlog | blocked |
-| u | 411 | S031.13/2025 | d_plus_s031_13 | D+ decay mode 88 | D+ -> K0S pi+ pi+ pi- | backlog | blocked |
-| u | 411 | S031.342/2025 | d_plus_s031_342 | D+ decay mode 89 | D+ -> K0S pi+ pi0 pi0 | backlog | blocked |
+| u | 411 | S031.17/2025 | d_plus_s031_17 | D+ decay mode 87 | D+ -> K- pi+ pi+ pi0 | supported | ready |
+| u | 411 | S031.13/2025 | d_plus_s031_13 | D+ decay mode 88 | D+ -> K0S pi+ pi+ pi- | supported | ready |
+| u | 411 | S031.342/2025 | d_plus_s031_342 | D+ decay mode 89 | D+ -> K0S pi+ pi0 pi0 | supported | ready |
 | u | 411 | S031.366/2025 | d_plus_s031_366 | D+ decay mode 90 | D+ -> rho(770)+ pi0 K0S a_1(1260)+ | incomplete | blocked |
 | u | 411 | S031.367/2025 | d_plus_s031_367 | D+ decay mode 91 | D+ -> pi0 pi0 f_0(500) pi+ K0S a_1(1260)+ | incomplete | blocked |
 | u | 411 | S031.368/2025 | d_plus_s031_368 | D+ decay mode 92 | D+ -> K0S pi0 Kbar^*(892)0 pi0 Kbar_1(1400)0 pi+ | incomplete | blocked |
 | u | 411 | S031.369/2025 | d_plus_s031_369 | D+ decay mode 93 | D+ -> K0S pi0 Kbar^*(892)0 | incomplete | blocked |
 | u | 411 | S031.370/2025 | d_plus_s031_370 | D+ decay mode 94 | D+ -> Kbar^*(892)0 pi+ pi0 non-resonant , Kbar^*()0 -> K0S pi0 | incomplete | blocked |
 | u | 411 | S031.371/2025 | d_plus_s031_371 | D+ decay mode 95 | D+ -> K0S rho+ pi0 non-resonant | incomplete | blocked |
-| u | 411 | S031.325/2025 | d_plus_s031_325 | D+ decay mode 96 | D+ -> K- pi+ pi+ eta | backlog | blocked |
-| u | 411 | S031.326/2025 | d_plus_s031_326 | D+ decay mode 97 | D+ -> K0S pi+ pi0 eta | backlog | blocked |
-| u | 411 | S031.14/2025 | d_plus_s031_14 | D+ decay mode 98 | D+ -> K- pi+ pi+ pi+ pi- | backlog | blocked |
+| u | 411 | S031.325/2025 | d_plus_s031_325 | D+ decay mode 96 | D+ -> K- pi+ pi+ eta | supported | ready |
+| u | 411 | S031.326/2025 | d_plus_s031_326 | D+ decay mode 97 | D+ -> K0S pi+ pi0 eta | supported | ready |
+| u | 411 | S031.14/2025 | d_plus_s031_14 | D+ decay mode 98 | D+ -> K- pi+ pi+ pi+ pi- | supported | ready |
 | u | 411 | S031.57/2025 | d_plus_s031_57 | D+ decay mode 99 | D+ -> Kbar^*(892)0 2pi+ pi-, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.58/2025 | d_plus_s031_58 | D+ decay mode 100 | D+ -> Kbar^*(892)0 rho0 pi+, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.233/2025 | d_plus_s031_233 | D+ decay mode 101 | D+ -> Kbar^*(892)0 a_1(1260)+ | backlog | blocked |
 | u | 411 | S031.209/2025 | d_plus_s031_209 | D+ decay mode 102 | D+ -> Kbar^*(892)0 2pi+ pi- no-rho, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.206/2025 | d_plus_s031_206 | D+ decay mode 103 | D+ -> K- pi+ pi+ | incomplete | blocked |
 | u | 411 | S031.207/2025 | d_plus_s031_207 | D+ decay mode 104 | D+ -> K- 3pi+ pi- nonresonant | incomplete | blocked |
-| u | 411 | S031.343/2025 | d_plus_s031_343 | D+ decay mode 105 | D+ -> K0S pi+ pi+ pi- pi0 | backlog | blocked |
-| u | 411 | S031.344/2025 | d_plus_s031_344 | D+ decay mode 106 | D+ -> K0S pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | 411 | S031.345/2025 | d_plus_s031_345 | D+ decay mode 107 | D+ -> K- pi+ pi+ pi0 pi0 | backlog | blocked |
-| u | 411 | S031.59/2025 | d_plus_s031_59 | D+ decay mode 108 | D+ -> K+ K0S K0S | backlog | blocked |
-| u | 411 | S031.227/2025 | d_plus_s031_227 | D+ decay mode 109 | D+ -> K+ K- K0S pi+ | backlog | blocked |
-| u | 411 | S031.15/2025 | d_plus_s031_15 | D+ decay mode 110 | D+ -> pi+ pi0 | backlog | blocked |
-| u | 411 | S031.3/2025 | d_plus_s031_3 | D+ decay mode 111 | D+ -> pi+ pi+ pi- | backlog | blocked |
+| u | 411 | S031.343/2025 | d_plus_s031_343 | D+ decay mode 105 | D+ -> K0S pi+ pi+ pi- pi0 | supported | ready |
+| u | 411 | S031.344/2025 | d_plus_s031_344 | D+ decay mode 106 | D+ -> K0S pi+ pi0 pi0 pi0 | supported | ready |
+| u | 411 | S031.345/2025 | d_plus_s031_345 | D+ decay mode 107 | D+ -> K- pi+ pi+ pi0 pi0 | supported | ready |
+| u | 411 | S031.59/2025 | d_plus_s031_59 | D+ decay mode 108 | D+ -> K+ K0S K0S | supported | ready |
+| u | 411 | S031.227/2025 | d_plus_s031_227 | D+ decay mode 109 | D+ -> K+ K- K0S pi+ | supported | ready |
+| u | 411 | S031.15/2025 | d_plus_s031_15 | D+ decay mode 110 | D+ -> pi+ pi0 | supported | ready |
+| u | 411 | S031.3/2025 | d_plus_s031_3 | D+ decay mode 111 | D+ -> pi+ pi+ pi- | supported | ready |
 | u | 411 | S031.47/2025 | d_plus_s031_47 | D+ decay mode 112 | D+ -> pi+ | incomplete | blocked |
 | u | 411 | S031.237/2025 | d_plus_s031_237 | D+ decay mode 113 | D+ -> pi+ ( pi+ pi- )(S-wave) | incomplete | blocked |
 | u | 411 | S031.221/2025 | d_plus_s031_221 | D+ decay mode 114 | D+ -> sigma pi+, sigma -> pi+ pi- | incomplete | blocked |
@@ -2660,38 +2660,38 @@
 | u | 411 | S031.254/2025 | d_plus_s031_254 | D+ decay mode 123 | D+ -> pi+ pi- pi+ | incomplete | blocked |
 | u | 411 | S031.255/2025 | d_plus_s031_255 | D+ decay mode 124 | D+ -> ( pi+ pi+ )(S-wave) pi- | incomplete | blocked |
 | u | 411 | S031.46/2025 | d_plus_s031_46 | D+ decay mode 125 | D+ -> 2pi+ pi- nonresonant | incomplete | blocked |
-| u | 411 | S031.246/2025 | d_plus_s031_246 | D+ decay mode 126 | D+ -> pi+ pi0 pi0 | backlog | blocked |
-| u | 411 | S031.50/2025 | d_plus_s031_50 | D+ decay mode 127 | D+ -> pi+ pi+ pi- pi0 | backlog | blocked |
-| u | 411 | S031.349/2025 | d_plus_s031_349 | D+ decay mode 128 | D+ -> pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | 411 | S031.352/2025 | d_plus_s031_352 | D+ decay mode 129 | D+ -> pi+ pi0 pi0 pi0 pi0 | backlog | blocked |
-| u | 411 | S031.350/2025 | d_plus_s031_350 | D+ decay mode 130 | D+ -> pi+ pi+ pi- pi0 pi0 | backlog | blocked |
-| u | 411 | S031.48/2025 | d_plus_s031_48 | D+ decay mode 131 | D+ -> pi+ pi+ pi+ pi- pi- | backlog | blocked |
-| u | 411 | S031.355/2025 | d_plus_s031_355 | D+ decay mode 132 | D+ -> pi+ pi+ pi- pi0 pi0 pi0 | backlog | blocked |
-| u | 411 | S031.354/2025 | d_plus_s031_354 | D+ decay mode 133 | D+ -> pi+ pi+ pi+ pi- pi- pi0 | backlog | blocked |
-| u | 411 | S031.51/2025 | d_plus_s031_51 | D+ decay mode 134 | D+ -> eta pi+ | backlog | blocked |
-| u | 411 | S031.257/2025 | d_plus_s031_257 | D+ decay mode 135 | D+ -> eta pi+ pi0 | backlog | blocked |
+| u | 411 | S031.246/2025 | d_plus_s031_246 | D+ decay mode 126 | D+ -> pi+ pi0 pi0 | supported | ready |
+| u | 411 | S031.50/2025 | d_plus_s031_50 | D+ decay mode 127 | D+ -> pi+ pi+ pi- pi0 | supported | ready |
+| u | 411 | S031.349/2025 | d_plus_s031_349 | D+ decay mode 128 | D+ -> pi+ pi0 pi0 pi0 | supported | ready |
+| u | 411 | S031.352/2025 | d_plus_s031_352 | D+ decay mode 129 | D+ -> pi+ pi0 pi0 pi0 pi0 | supported | ready |
+| u | 411 | S031.350/2025 | d_plus_s031_350 | D+ decay mode 130 | D+ -> pi+ pi+ pi- pi0 pi0 | supported | ready |
+| u | 411 | S031.48/2025 | d_plus_s031_48 | D+ decay mode 131 | D+ -> pi+ pi+ pi+ pi- pi- | supported | ready |
+| u | 411 | S031.355/2025 | d_plus_s031_355 | D+ decay mode 132 | D+ -> pi+ pi+ pi- pi0 pi0 pi0 | supported | ready |
+| u | 411 | S031.354/2025 | d_plus_s031_354 | D+ decay mode 133 | D+ -> pi+ pi+ pi+ pi- pi- pi0 | supported | ready |
+| u | 411 | S031.51/2025 | d_plus_s031_51 | D+ decay mode 134 | D+ -> eta pi+ | supported | ready |
+| u | 411 | S031.257/2025 | d_plus_s031_257 | D+ decay mode 135 | D+ -> eta pi+ pi0 | supported | ready |
 | u | 411 | S031.380/2025 | d_plus_s031_380 | D+ decay mode 136 | D+ -> pi+ pi0 rho(770)+ eta | incomplete | blocked |
 | u | 411 | S031.381/2025 | d_plus_s031_381 | D+ decay mode 137 | D+ -> pi+ eta a_0(980)+ pi0 | incomplete | blocked |
 | u | 411 | S031.382/2025 | d_plus_s031_382 | D+ decay mode 138 | D+ -> pi0 eta a_0(980)0 pi+ | incomplete | blocked |
 | u | 411 | S031.383/2025 | d_plus_s031_383 | D+ decay mode 139 | D+ -> pi+ eta a_2(1700)+ pi0 | incomplete | blocked |
 | u | 411 | S031.384/2025 | d_plus_s031_384 | D+ decay mode 140 | D+ -> pi+ eta a_0(1450)+ pi0 | incomplete | blocked |
-| u | 411 | S031.327/2025 | d_plus_s031_327 | D+ decay mode 141 | D+ -> eta pi+ pi+ pi- | backlog | blocked |
-| u | 411 | S031.328/2025 | d_plus_s031_328 | D+ decay mode 142 | D+ -> eta pi+ pi0 pi0 | backlog | blocked |
-| u | 411 | S031.353/2025 | d_plus_s031_353 | D+ decay mode 143 | D+ -> eta pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | 411 | S031.351/2025 | d_plus_s031_351 | D+ decay mode 144 | D+ -> eta pi+ pi+ pi- pi0 | backlog | blocked |
-| u | 411 | S031.329/2025 | d_plus_s031_329 | D+ decay mode 145 | D+ -> eta eta pi+ | backlog | blocked |
+| u | 411 | S031.327/2025 | d_plus_s031_327 | D+ decay mode 141 | D+ -> eta pi+ pi+ pi- | supported | ready |
+| u | 411 | S031.328/2025 | d_plus_s031_328 | D+ decay mode 142 | D+ -> eta pi+ pi0 pi0 | supported | ready |
+| u | 411 | S031.353/2025 | d_plus_s031_353 | D+ decay mode 143 | D+ -> eta pi+ pi0 pi0 pi0 | supported | ready |
+| u | 411 | S031.351/2025 | d_plus_s031_351 | D+ decay mode 144 | D+ -> eta pi+ pi+ pi- pi0 | supported | ready |
+| u | 411 | S031.329/2025 | d_plus_s031_329 | D+ decay mode 145 | D+ -> eta eta pi+ | supported | ready |
 | u | 411 | S031.52/2025 | d_plus_s031_52 | D+ decay mode 146 | D+ -> pi+ | incomplete | blocked |
 | u | 411 | S031.331/2025 | d_plus_s031_331 | D+ decay mode 147 | D+ -> pi+ pi0 | incomplete | blocked |
 | u | 411 | S031.90/2025 | d_plus_s031_90 | D+ decay mode 148 | D+ -> eta^'(958) pi+ | backlog | blocked |
 | u | 411 | S031.258/2025 | d_plus_s031_258 | D+ decay mode 149 | D+ -> eta^'(958) pi+ pi0 | backlog | blocked |
-| u | 411 | S031.16/2025 | d_plus_s031_16 | D+ decay mode 150 | D+ -> K0S K+ | backlog | blocked |
-| u | 411 | S031.299/2025 | d_plus_s031_299 | D+ decay mode 151 | D+ -> K0L K+ | backlog | blocked |
-| u | 411 | S031.298/2025 | d_plus_s031_298 | D+ decay mode 152 | D+ -> K0S K+ pi0 | backlog | blocked |
+| u | 411 | S031.16/2025 | d_plus_s031_16 | D+ decay mode 150 | D+ -> K0S K+ | supported | ready |
+| u | 411 | S031.299/2025 | d_plus_s031_299 | D+ decay mode 151 | D+ -> K0L K+ | supported | ready |
+| u | 411 | S031.298/2025 | d_plus_s031_298 | D+ decay mode 152 | D+ -> K0S K+ pi0 | supported | ready |
 | u | 411 | S031.338/2025 | d_plus_s031_338 | D+ decay mode 153 | D+ -> K+ pi0 K^*(892)+ K0S | incomplete | blocked |
 | u | 411 | S031.339/2025 | d_plus_s031_339 | D+ decay mode 154 | D+ -> K0S pi0 Kbar^*(892)0 K+ | incomplete | blocked |
 | u | 411 | S031.197/2025 | d_plus_s031_197 | D+ decay mode 155 | D+ -> K^*(892)+ K0S | backlog | blocked |
-| u | 411 | S031.300/2025 | d_plus_s031_300 | D+ decay mode 156 | D+ -> K0L K+ pi0 | backlog | blocked |
-| u | 411 | S031.4/2025 | d_plus_s031_4 | D+ decay mode 157 | D+ -> K+ K- pi+ | backlog | blocked |
+| u | 411 | S031.300/2025 | d_plus_s031_300 | D+ decay mode 156 | D+ -> K0L K+ pi0 | supported | ready |
+| u | 411 | S031.4/2025 | d_plus_s031_4 | D+ decay mode 157 | D+ -> K+ K- pi+ | supported | ready |
 | u | 411 | S031.86/2025 | d_plus_s031_86 | D+ decay mode 158 | D+ -> K+ Kbar^*(892)0, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.238/2025 | d_plus_s031_238 | D+ decay mode 159 | D+ -> K+ Kbar_0^*(1430)0, Kbar_0^*(1430)0 -> K- pi+ | incomplete | blocked |
 | u | 411 | S031.259/2025 | d_plus_s031_259 | D+ decay mode 160 | D+ -> K- pi+ K+ Kbar_2^*(1430)0 | incomplete | blocked |
@@ -2699,78 +2699,78 @@
 | u | 411 | S031.261/2025 | d_plus_s031_261 | D+ decay mode 162 | D+ -> K+ K- a_0(1450)0 pi+ | incomplete | blocked |
 | u | 411 | S031.262/2025 | d_plus_s031_262 | D+ decay mode 163 | D+ -> K+ K- phi(1680) pi+ phi | incomplete | blocked |
 | u | 411 | S031.89/2025 | d_plus_s031_89 | D+ decay mode 164 | D+ -> phi pi+, phi -> K+ K- | incomplete | blocked |
-| u | 411 | S031.315/2025 | d_plus_s031_315 | D+ decay mode 165 | D+ -> phi pi+ | backlog | blocked |
-| u | 411 | S031.335/2025 | d_plus_s031_335 | D+ decay mode 166 | D+ -> K+ K- pi+ pi0 | backlog | blocked |
-| u | 411 | S031.280/2025 | d_plus_s031_280 | D+ decay mode 167 | D+ -> K0S K0S pi+ | backlog | blocked |
+| u | 411 | S031.315/2025 | d_plus_s031_315 | D+ decay mode 165 | D+ -> phi pi+ | supported | ready |
+| u | 411 | S031.335/2025 | d_plus_s031_335 | D+ decay mode 166 | D+ -> K+ K- pi+ pi0 | supported | ready |
+| u | 411 | S031.280/2025 | d_plus_s031_280 | D+ decay mode 167 | D+ -> K0S K0S pi+ | supported | ready |
 | u | 411 | S031.376/2025 | d_plus_s031_376 | D+ decay mode 168 | D+ -> K0S pi+ K0S K^*(892)+ | incomplete | blocked |
 | u | 411 | S031.392/2025 | d_plus_s031_392 | D+ decay mode 169 | D+ -> K0S (K0S pi+)(S-wave) -> K0S K0S pi+ | incomplete | blocked |
-| u | 411 | S031.337/2025 | d_plus_s031_337 | D+ decay mode 170 | D+ -> K0S K0S pi+ pi0 | backlog | blocked |
-| u | 411 | S031.324/2025 | d_plus_s031_324 | D+ decay mode 171 | D+ -> K0S K+ eta | backlog | blocked |
-| u | 411 | S031.134/2025 | d_plus_s031_134 | D+ decay mode 172 | D+ -> K+ K0S pi+ pi- | backlog | blocked |
-| u | 411 | S031.336/2025 | d_plus_s031_336 | D+ decay mode 173 | D+ -> K0S K+ pi0 pi0 | backlog | blocked |
-| u | 411 | S031.130/2025 | d_plus_s031_130 | D+ decay mode 174 | D+ -> K0S K- pi+ pi+ | backlog | blocked |
-| u | 411 | S031.88/2025 | d_plus_s031_88 | D+ decay mode 175 | D+ -> K+ K- pi+ pi+ pi- | backlog | blocked |
-| u | 411 | S031.53/2025 | d_plus_s031_53 | D+ decay mode 176 | D+ -> phi pi+ pi0 | backlog | blocked |
+| u | 411 | S031.337/2025 | d_plus_s031_337 | D+ decay mode 170 | D+ -> K0S K0S pi+ pi0 | supported | ready |
+| u | 411 | S031.324/2025 | d_plus_s031_324 | D+ decay mode 171 | D+ -> K0S K+ eta | supported | ready |
+| u | 411 | S031.134/2025 | d_plus_s031_134 | D+ decay mode 172 | D+ -> K+ K0S pi+ pi- | supported | ready |
+| u | 411 | S031.336/2025 | d_plus_s031_336 | D+ decay mode 173 | D+ -> K0S K+ pi0 pi0 | supported | ready |
+| u | 411 | S031.130/2025 | d_plus_s031_130 | D+ decay mode 174 | D+ -> K0S K- pi+ pi+ | supported | ready |
+| u | 411 | S031.88/2025 | d_plus_s031_88 | D+ decay mode 175 | D+ -> K+ K- pi+ pi+ pi- | supported | ready |
+| u | 411 | S031.53/2025 | d_plus_s031_53 | D+ decay mode 176 | D+ -> phi pi+ pi0 | supported | ready |
 | u | 411 | S031.93/2025 | d_plus_s031_93 | D+ decay mode 177 | D+ -> phi | incomplete | blocked |
 | u | 411 | S031.54/2025 | d_plus_s031_54 | D+ decay mode 178 | D+ -> K+ K- pi+ pi0 non-phi | incomplete | blocked |
 | u | 411 | S031.374/2025 | d_plus_s031_374 | D+ decay mode 179 | D+ -> rho(770)+ gamma | backlog | blocked |
 | u | 411 | S031.375/2025 | d_plus_s031_375 | D+ decay mode 180 | D+ -> K^*(892)+ gamma | backlog | blocked |
-| u | 411 | S031.234/2025 | d_plus_s031_234 | D+ decay mode 181 | D+ -> K+ pi0 | backlog | blocked |
-| u | 411 | S031.268/2025 | d_plus_s031_268 | D+ decay mode 182 | D+ -> K+ eta | backlog | blocked |
+| u | 411 | S031.234/2025 | d_plus_s031_234 | D+ decay mode 181 | D+ -> K+ pi0 | supported | ready |
+| u | 411 | S031.268/2025 | d_plus_s031_268 | D+ decay mode 182 | D+ -> K+ eta | supported | ready |
 | u | 411 | S031.269/2025 | d_plus_s031_269 | D+ decay mode 183 | D+ -> K+ eta^'(958) | backlog | blocked |
-| u | 411 | S031.357/2025 | d_plus_s031_357 | D+ decay mode 184 | D+ -> K+ pi0 pi0 | backlog | blocked |
+| u | 411 | S031.357/2025 | d_plus_s031_357 | D+ decay mode 184 | D+ -> K+ pi0 pi0 | supported | ready |
 | u | 411 | S031.359/2025 | d_plus_s031_359 | D+ decay mode 185 | D+ -> K^*(892)+ pi0 | backlog | blocked |
-| u | 411 | S031.5/2025 | d_plus_s031_5 | D+ decay mode 186 | D+ -> K+ pi+ pi- | backlog | blocked |
+| u | 411 | S031.5/2025 | d_plus_s031_5 | D+ decay mode 186 | D+ -> K+ pi+ pi- | supported | ready |
 | u | 411 | S031.204/2025 | d_plus_s031_204 | D+ decay mode 187 | D+ -> K+ | incomplete | blocked |
-| u | 411 | S031.358/2025 | d_plus_s031_358 | D+ decay mode 188 | D+ -> K+ eta pi0 | backlog | blocked |
+| u | 411 | S031.358/2025 | d_plus_s031_358 | D+ decay mode 188 | D+ -> K+ eta pi0 | supported | ready |
 | u | 411 | S031.360/2025 | d_plus_s031_360 | D+ decay mode 189 | D+ -> K^*(892)+ eta | backlog | blocked |
 | u | 411 | S031.205/2025 | d_plus_s031_205 | D+ decay mode 190 | D+ -> K^*(892)0 pi+ , K^*(892)0 -> K+ pi- | incomplete | blocked |
 | u | 411 | S031.235/2025 | d_plus_s031_235 | D+ decay mode 191 | D+ -> K+ f_0(980) , f_0(980) -> pi+ pi- | incomplete | blocked |
 | u | 411 | S031.236/2025 | d_plus_s031_236 | D+ decay mode 192 | D+ -> K_2^*(1430)0 pi+ , K_2^*(1430)0 -> K+ pi- | incomplete | blocked |
 | u | 411 | S031.211/2025 | d_plus_s031_211 | D+ decay mode 193 | D+ -> K+ pi+ pi- nonresonant | incomplete | blocked |
-| u | 411 | S031.332/2025 | d_plus_s031_332 | D+ decay mode 194 | D+ -> K+ pi+ pi- pi0 | backlog | blocked |
+| u | 411 | S031.332/2025 | d_plus_s031_332 | D+ decay mode 194 | D+ -> K+ pi+ pi- pi0 | supported | ready |
 | u | 411 | S031.340/2025 | d_plus_s031_340 | D+ decay mode 195 | D+ -> K+ pi+ pi- pi0 nonresonant | incomplete | blocked |
 | u | 411 | S031.334/2025 | d_plus_s031_334 | D+ decay mode 196 | D+ -> K+ | incomplete | blocked |
-| u | 411 | S031.181/2025 | d_plus_s031_181 | D+ decay mode 197 | D+ -> K+ K+ K- | backlog | blocked |
-| u | 411 | S031.316/2025 | d_plus_s031_316 | D+ decay mode 198 | D+ -> phi(1020)0 K+ | backlog | blocked |
+| u | 411 | S031.181/2025 | d_plus_s031_181 | D+ decay mode 197 | D+ -> K+ K+ K- | supported | ready |
+| u | 411 | S031.316/2025 | d_plus_s031_316 | D+ decay mode 198 | D+ -> phi(1020)0 K+ | supported | ready |
 | u | 411 | S031.290/2025 | d_plus_s031_290 | D+ decay mode 199 | D+ -> K+ K- K+ phi(1020) phi | incomplete | blocked |
 | u | 411 | S031.291/2025 | d_plus_s031_291 | D+ decay mode 200 | D+ -> K+ ( K+ K- ) (S-wave) | incomplete | blocked |
-| u | 411 | S031.41/2025 | d_plus_s031_41 | D+ decay mode 201 | D+ -> pi+ e+ e- | backlog | blocked |
-| u | 411 | S031.284/2025 | d_plus_s031_284 | D+ decay mode 202 | D+ -> pi+ pi0 e+ e- | backlog | blocked |
+| u | 411 | S031.41/2025 | d_plus_s031_41 | D+ decay mode 201 | D+ -> pi+ e+ e- | supported | ready |
+| u | 411 | S031.284/2025 | d_plus_s031_284 | D+ decay mode 202 | D+ -> pi+ pi0 e+ e- | supported | ready |
 | u | 411 | S031.241/2025 | d_plus_s031_241 | D+ decay mode 203 | D+ -> pi+ phi , phi -> e+ e- | incomplete | blocked |
-| u | 411 | S031.42/2025 | d_plus_s031_42 | D+ decay mode 204 | D+ -> pi+ mu+ mu- | backlog | blocked |
+| u | 411 | S031.42/2025 | d_plus_s031_42 | D+ decay mode 204 | D+ -> pi+ mu+ mu- | supported | ready |
 | u | 411 | S031.264/2025 | d_plus_s031_264 | D+ decay mode 205 | D+ -> mu+ mu- pi+ phi phi | incomplete | blocked |
 | u | 411 | S031.198/2025 | d_plus_s031_198 | D+ decay mode 206 | D+ -> mu+ mu- | incomplete | blocked |
-| u | 411 | S031.113/2025 | d_plus_s031_113 | D+ decay mode 207 | D+ -> K+ e+ e- | backlog | blocked |
-| u | 411 | S031.285/2025 | d_plus_s031_285 | D+ decay mode 208 | D+ -> K+ pi0 e+ e- | backlog | blocked |
+| u | 411 | S031.113/2025 | d_plus_s031_113 | D+ decay mode 207 | D+ -> K+ e+ e- | supported | ready |
+| u | 411 | S031.285/2025 | d_plus_s031_285 | D+ decay mode 208 | D+ -> K+ pi0 e+ e- | supported | ready |
 | u | 411 | S031.286/2025 | d_plus_s031_286 | D+ decay mode 209 | D+ -> KS pi+ e+ e- | backlog | blocked |
-| u | 411 | S031.287/2025 | d_plus_s031_287 | D+ decay mode 210 | D+ -> K0S K+ e+ e- | backlog | blocked |
-| u | 411 | S031.114/2025 | d_plus_s031_114 | D+ decay mode 211 | D+ -> K+ mu+ mu- | backlog | blocked |
-| u | 411 | S031.110/2025 | d_plus_s031_110 | D+ decay mode 212 | D+ -> pi+ e+ mu- | backlog | blocked |
-| u | 411 | S031.111/2025 | d_plus_s031_111 | D+ decay mode 213 | D+ -> pi+ e- mu+ | backlog | blocked |
-| u | 411 | S031.115/2025 | d_plus_s031_115 | D+ decay mode 214 | D+ -> K+ e+ mu- | backlog | blocked |
-| u | 411 | S031.116/2025 | d_plus_s031_116 | D+ decay mode 215 | D+ -> K+ e- mu+ | backlog | blocked |
-| u | 411 | S031.117/2025 | d_plus_s031_117 | D+ decay mode 216 | D+ -> pi- e+ e+ | backlog | blocked |
-| u | 411 | S031.118/2025 | d_plus_s031_118 | D+ decay mode 217 | D+ -> pi- mu+ mu+ | backlog | blocked |
-| u | 411 | S031.119/2025 | d_plus_s031_119 | D+ decay mode 218 | D+ -> pi- e+ mu+ | backlog | blocked |
+| u | 411 | S031.287/2025 | d_plus_s031_287 | D+ decay mode 210 | D+ -> K0S K+ e+ e- | supported | ready |
+| u | 411 | S031.114/2025 | d_plus_s031_114 | D+ decay mode 211 | D+ -> K+ mu+ mu- | supported | ready |
+| u | 411 | S031.110/2025 | d_plus_s031_110 | D+ decay mode 212 | D+ -> pi+ e+ mu- | supported | ready |
+| u | 411 | S031.111/2025 | d_plus_s031_111 | D+ decay mode 213 | D+ -> pi+ e- mu+ | supported | ready |
+| u | 411 | S031.115/2025 | d_plus_s031_115 | D+ decay mode 214 | D+ -> K+ e+ mu- | supported | ready |
+| u | 411 | S031.116/2025 | d_plus_s031_116 | D+ decay mode 215 | D+ -> K+ e- mu+ | supported | ready |
+| u | 411 | S031.117/2025 | d_plus_s031_117 | D+ decay mode 216 | D+ -> pi- e+ e+ | supported | ready |
+| u | 411 | S031.118/2025 | d_plus_s031_118 | D+ decay mode 217 | D+ -> pi- mu+ mu+ | supported | ready |
+| u | 411 | S031.119/2025 | d_plus_s031_119 | D+ decay mode 218 | D+ -> pi- e+ mu+ | supported | ready |
 | u | 411 | S031.199/2025 | d_plus_s031_199 | D+ decay mode 219 | D+ -> mu+ mu+ | incomplete | blocked |
-| u | 411 | S031.120/2025 | d_plus_s031_120 | D+ decay mode 220 | D+ -> K- e+ e+ | backlog | blocked |
-| u | 411 | S031.293/2025 | d_plus_s031_293 | D+ decay mode 221 | D+ -> K0S pi- e+ e+ | backlog | blocked |
-| u | 411 | S031.294/2025 | d_plus_s031_294 | D+ decay mode 222 | D+ -> K- pi0 e+ e+ | backlog | blocked |
-| u | 411 | S031.121/2025 | d_plus_s031_121 | D+ decay mode 223 | D+ -> K- mu+ mu+ | backlog | blocked |
-| u | 411 | S031.122/2025 | d_plus_s031_122 | D+ decay mode 224 | D+ -> K- e+ mu+ | backlog | blocked |
+| u | 411 | S031.120/2025 | d_plus_s031_120 | D+ decay mode 220 | D+ -> K- e+ e+ | supported | ready |
+| u | 411 | S031.293/2025 | d_plus_s031_293 | D+ decay mode 221 | D+ -> K0S pi- e+ e+ | supported | ready |
+| u | 411 | S031.294/2025 | d_plus_s031_294 | D+ decay mode 222 | D+ -> K- pi0 e+ e+ | supported | ready |
+| u | 411 | S031.121/2025 | d_plus_s031_121 | D+ decay mode 223 | D+ -> K- mu+ mu+ | supported | ready |
+| u | 411 | S031.122/2025 | d_plus_s031_122 | D+ decay mode 224 | D+ -> K- e+ mu+ | supported | ready |
 | u | 411 | S031.200/2025 | d_plus_s031_200 | D+ decay mode 225 | D+ -> K^*(892)- mu+ mu+ | backlog | blocked |
 | u | 411 | S031.318/2025 | d_plus_s031_318 | D+ decay mode 226 | D+ -> e+ | incomplete | blocked |
 | u | 411 | S031.319/2025 | d_plus_s031_319 | D+ decay mode 227 | D+ -> e+ | incomplete | blocked |
-| u | 411 | S031.320/2025 | d_plus_s031_320 | D+ decay mode 228 | D+ -> Sigma0 e+ | backlog | blocked |
-| u | 411 | S031.321/2025 | d_plus_s031_321 | D+ decay mode 229 | D+ -> Sigmabar0 e+ | backlog | blocked |
-| u | 411 | S031.362/2025 | d_plus_s031_362 | D+ decay mode 230 | D+ -> nbar e+ | incomplete | blocked |
-| u | 411 | S031.361/2025 | d_plus_s031_361 | D+ decay mode 231 | D+ -> n e+ | backlog | blocked |
+| u | 411 | S031.320/2025 | d_plus_s031_320 | D+ decay mode 228 | D+ -> Sigma0 e+ | supported | ready |
+| u | 411 | S031.321/2025 | d_plus_s031_321 | D+ decay mode 229 | D+ -> Sigmabar0 e+ | supported | ready |
+| u | 411 | S031.362/2025 | d_plus_s031_362 | D+ decay mode 230 | D+ -> anti-n e+ | AAAcomplete | ready |
+| u | 411 | S031.361/2025 | d_plus_s031_361 | D+ decay mode 231 | D+ -> n e+ | supported | ready |
 | u | -411 | S031.7/2025 | d_minus_s031_7 | D- decay mode 1 | D- -> e+ semileptonic | incomplete | blocked |
-| u | -411 | S031.22/2025 | d_minus_s031_22 | D- decay mode 2 | D- -> mu+ | incomplete | blocked |
+| u | -411 | S031.22/2025 | d_minus_s031_22 | D- decay mode 2 | D- -> mu- | incomplete | blocked |
 | u | -411 | S031.8/2025 | d_minus_s031_8 | D- decay mode 3 | D- -> K- | incomplete | blocked |
 | u | -411 | S031.9/2025 | d_minus_s031_9 | D- decay mode 4 | D- -> K0S | incomplete | blocked |
-| u | -411 | S031.10/2025 | d_minus_s031_10 | D- decay mode 5 | D- -> K+ | incomplete | blocked |
+| u | -411 | S031.10/2025 | d_minus_s031_10 | D- decay mode 5 | D- -> K- | incomplete | blocked |
 | u | -411 | S031.248/2025 | d_minus_s031_248 | D- decay mode 6 | D- -> K^*(892)- | incomplete | blocked |
 | u | -411 | S031.244/2025 | d_minus_s031_244 | D- decay mode 7 | D- -> Kbar^*(892)0 | incomplete | blocked |
 | u | -411 | S031.245/2025 | d_minus_s031_245 | D- decay mode 8 | D- -> K^*(892)0 | incomplete | blocked |
@@ -2778,16 +2778,16 @@
 | u | -411 | S031.250/2025 | d_minus_s031_250 | D- decay mode 10 | D- -> eta^'() anything | incomplete | blocked |
 | u | -411 | S031.219/2025 | d_minus_s031_219 | D- decay mode 11 | D- -> phi | incomplete | blocked |
 | u | -411 | S031.363/2025 | d_minus_s031_363 | D- decay mode 12 | D- -> pi+ pi+ pi- anything | incomplete | blocked |
-| u | -411 | S031.6/2025 | d_minus_s031_6 | D- decay mode 13 | D- -> e+ nu_e | backlog | blocked |
-| u | -411 | S031.281/2025 | d_minus_s031_281 | D- decay mode 14 | D- -> gamma e+ nu_e | backlog | blocked |
-| u | -411 | S031.20/2025 | d_minus_s031_20 | D- decay mode 15 | D- -> mu+ nu_mu | backlog | blocked |
-| u | -411 | S031.247/2025 | d_minus_s031_247 | D- decay mode 16 | D- -> tau+ nu_tau | backlog | blocked |
-| u | -411 | S031.71/2025 | d_minus_s031_71 | D- decay mode 17 | D- -> Kbar0 e+ nu_e | backlog | blocked |
-| u | -411 | S031.49/2025 | d_minus_s031_49 | D- decay mode 18 | D- -> Kbar0 mu+ nu_mu | backlog | blocked |
+| u | -411 | S031.6/2025 | d_minus_s031_6 | D- decay mode 13 | D- -> e- anti-nu_e | supported | ready |
+| u | -411 | S031.281/2025 | d_minus_s031_281 | D- decay mode 14 | D- -> gamma e- anti-nu_e | supported | ready |
+| u | -411 | S031.20/2025 | d_minus_s031_20 | D- decay mode 15 | D- -> mu- anti-nu_mu | supported | ready |
+| u | -411 | S031.247/2025 | d_minus_s031_247 | D- decay mode 16 | D- -> tau- anti-nu_tau | supported | ready |
+| u | -411 | S031.71/2025 | d_minus_s031_71 | D- decay mode 17 | D- -> K0 e- anti-nu_e | supported | ready |
+| u | -411 | S031.49/2025 | d_minus_s031_49 | D- decay mode 18 | D- -> K0 mu- anti-nu_mu | supported | ready |
 | u | -411 | S031.377/2025 | d_minus_s031_377 | D- decay mode 19 | D- -> K0S pi0 e+ nu_e | backlog | blocked |
 | u | -411 | S031.385/2025 | d_minus_s031_385 | D- decay mode 20 | D- -> (K0S pi0)(S-wave) e+ nu_e | incomplete | blocked |
 | u | -411 | S031.386/2025 | d_minus_s031_386 | D- decay mode 21 | D- -> K0S Kbar^*(892)0 pi0 e+ nu_e | incomplete | blocked |
-| u | -411 | S031.34/2025 | d_minus_s031_34 | D- decay mode 22 | D- -> K- pi+ e+ nu_e | backlog | blocked |
+| u | -411 | S031.34/2025 | d_minus_s031_34 | D- decay mode 22 | D- -> K+ pi- e- anti-nu_e | supported | ready |
 | u | -411 | S031.81/2025 | d_minus_s031_81 | D- decay mode 23 | D- -> Kbar^*(892)0 e+ nu_e , Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.279/2025 | d_minus_s031_279 | D- decay mode 24 | D- -> (K- pi+ ) (&#91;0.8 -- 1.0&#93;GeV) e+ nu_e | incomplete | blocked |
 | u | -411 | S031.270/2025 | d_minus_s031_270 | D- decay mode 25 | D- -> (K- pi+)(S-wave) e+ nu_e | incomplete | blocked |
@@ -2795,39 +2795,39 @@
 | u | -411 | S031.272/2025 | d_minus_s031_272 | D- decay mode 27 | D- -> Kbar_2^*(1430)0 e+ nu_e, Kbar_2^*(1430)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.45/2025 | d_minus_s031_45 | D- decay mode 28 | D- -> K- pi+ e+ nu_e nonresonant | incomplete | blocked |
 | u | -411 | S031.44/2025 | d_minus_s031_44 | D- decay mode 29 | D- -> Kbar^*(892)0 e+ nu_e | backlog | blocked |
-| u | -411 | S031.184/2025 | d_minus_s031_184 | D- decay mode 30 | D- -> K- pi+ mu+ nu_mu | backlog | blocked |
+| u | -411 | S031.184/2025 | d_minus_s031_184 | D- decay mode 30 | D- -> K+ pi- mu- anti-nu_mu | supported | ready |
 | u | -411 | S031.185/2025 | d_minus_s031_185 | D- decay mode 31 | D- -> Kbar^*(892)0 mu+ nu_mu , Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.186/2025 | d_minus_s031_186 | D- decay mode 32 | D- -> K- pi+ mu+ nu_mu nonresonant | incomplete | blocked |
 | u | -411 | S031.179/2025 | d_minus_s031_179 | D- decay mode 33 | D- -> Kbar^*(892)0 mu+ nu_mu | backlog | blocked |
-| u | -411 | S031.187/2025 | d_minus_s031_187 | D- decay mode 34 | D- -> K- pi+ pi0 mu+ nu_mu | backlog | blocked |
+| u | -411 | S031.187/2025 | d_minus_s031_187 | D- decay mode 34 | D- -> K+ pi- pi0 mu- anti-nu_mu | supported | ready |
 | u | -411 | S031.314/2025 | d_minus_s031_314 | D- decay mode 35 | D- -> K- Kbar_1(1270)0 pi+ e+ pi0 nu_e | incomplete | blocked |
 | u | -411 | S031.387/2025 | d_minus_s031_387 | D- decay mode 36 | D- -> K0S Kbar_1(1270)0 pi+ e+ pi- nu_e | incomplete | blocked |
 | u | -411 | S031.242/2025 | d_minus_s031_242 | D- decay mode 37 | D- -> Kbar_0^*(1430)0 mu+ nu_mu | backlog | blocked |
 | u | -411 | S031.243/2025 | d_minus_s031_243 | D- decay mode 38 | D- -> Kbar^*(1680)0 mu+ nu_mu | backlog | blocked |
-| u | -411 | S031.239/2025 | d_minus_s031_239 | D- decay mode 39 | D- -> pi0 e+ nu_e | backlog | blocked |
-| u | -411 | S031.289/2025 | d_minus_s031_289 | D- decay mode 40 | D- -> pi0 mu+ nu_mu | backlog | blocked |
-| u | -411 | S031.265/2025 | d_minus_s031_265 | D- decay mode 41 | D- -> eta e+ nu_e | backlog | blocked |
-| u | -411 | S031.317/2025 | d_minus_s031_317 | D- decay mode 42 | D- -> eta mu+ nu_mu | backlog | blocked |
-| u | -411 | S031.295/2025 | d_minus_s031_295 | D- decay mode 43 | D- -> pi- pi+ e+ nu_e | backlog | blocked |
+| u | -411 | S031.239/2025 | d_minus_s031_239 | D- decay mode 39 | D- -> pi0 e- anti-nu_e | supported | ready |
+| u | -411 | S031.289/2025 | d_minus_s031_289 | D- decay mode 40 | D- -> pi0 mu- anti-nu_mu | supported | ready |
+| u | -411 | S031.265/2025 | d_minus_s031_265 | D- decay mode 41 | D- -> eta e- anti-nu_e | supported | ready |
+| u | -411 | S031.317/2025 | d_minus_s031_317 | D- decay mode 42 | D- -> eta mu- anti-nu_mu | supported | ready |
+| u | -411 | S031.295/2025 | d_minus_s031_295 | D- decay mode 43 | D- -> pi+ pi- e- anti-nu_e | supported | ready |
 | u | -411 | S031.296/2025 | d_minus_s031_296 | D- decay mode 44 | D- -> f_0(500)0 pi+ f_0(500)0 pi- e+ nu_e | incomplete | blocked |
-| u | -411 | S031.154/2025 | d_minus_s031_154 | D- decay mode 45 | D- -> e+ nu_e | incomplete | blocked |
-| u | -411 | S031.378/2025 | d_minus_s031_378 | D- decay mode 46 | D- -> pi- pi+ mu+ nu_mu | backlog | blocked |
+| u | -411 | S031.154/2025 | d_minus_s031_154 | D- decay mode 45 | D- -> e- anti-nu_e | incomplete | blocked |
+| u | -411 | S031.378/2025 | d_minus_s031_378 | D- decay mode 46 | D- -> pi+ pi- mu- anti-nu_mu | supported | ready |
 | u | -411 | S031.379/2025 | d_minus_s031_379 | D- decay mode 47 | D- -> pi+ f_0(500)0 pi- mu+ nu_mu | incomplete | blocked |
-| u | -411 | S031.188/2025 | d_minus_s031_188 | D- decay mode 48 | D- -> mu+ nu_mu | incomplete | blocked |
-| u | -411 | S031.240/2025 | d_minus_s031_240 | D- decay mode 49 | D- -> e+ nu_e | incomplete | blocked |
-| u | -411 | S031.322/2025 | d_minus_s031_322 | D- decay mode 50 | D- -> mu+ nu_mu | incomplete | blocked |
+| u | -411 | S031.188/2025 | d_minus_s031_188 | D- decay mode 48 | D- -> mu- anti-nu_mu | incomplete | blocked |
+| u | -411 | S031.240/2025 | d_minus_s031_240 | D- decay mode 49 | D- -> e- anti-nu_e | incomplete | blocked |
+| u | -411 | S031.322/2025 | d_minus_s031_322 | D- decay mode 50 | D- -> mu- anti-nu_mu | incomplete | blocked |
 | u | -411 | S031.266/2025 | d_minus_s031_266 | D- decay mode 51 | D- -> eta^'(958) e+ nu_e | backlog | blocked |
-| u | -411 | S031.283/2025 | d_minus_s031_283 | D- decay mode 52 | D- -> eta pi0 e+ nu_e | incomplete | blocked |
+| u | -411 | S031.283/2025 | d_minus_s031_283 | D- decay mode 52 | D- -> eta pi0 e- anti-nu_e | incomplete | blocked |
 | u | -411 | S031.373/2025 | d_minus_s031_373 | D- decay mode 53 | D- -> K0S K0S e+ nu_e | backlog | blocked |
 | u | -411 | S031.388/2025 | d_minus_s031_388 | D- decay mode 54 | D- -> K0S eta e+ nu_e | backlog | blocked |
-| u | -411 | S031.389/2025 | d_minus_s031_389 | D- decay mode 55 | D- -> eta eta e+ nu_e | backlog | blocked |
-| u | -411 | S031.372/2025 | d_minus_s031_372 | D- decay mode 56 | D- -> K+ K- e+ nu_e | backlog | blocked |
+| u | -411 | S031.389/2025 | d_minus_s031_389 | D- decay mode 55 | D- -> eta eta e- anti-nu_e | supported | ready |
+| u | -411 | S031.372/2025 | d_minus_s031_372 | D- decay mode 56 | D- -> K- K+ e- anti-nu_e | supported | ready |
 | u | -411 | S031.330/2025 | d_minus_s031_330 | D- decay mode 57 | D- -> b_1(1235)0 pi0 e+ nu_e | incomplete | blocked |
-| u | -411 | S031.124/2025 | d_minus_s031_124 | D- decay mode 58 | D- -> phi e+ nu_e | backlog | blocked |
-| u | -411 | S031.282/2025 | d_minus_s031_282 | D- decay mode 59 | D- -> D0 e+ nu_e | backlog | blocked |
+| u | -411 | S031.124/2025 | d_minus_s031_124 | D- decay mode 58 | D- -> phi e- anti-nu_e | supported | ready |
+| u | -411 | S031.282/2025 | d_minus_s031_282 | D- decay mode 59 | D- -> Dbar0 e- anti-nu_e | supported | ready |
 | u | -411 | S031.2/2025 | d_minus_s031_2 | D- decay mode 60 | D- -> K0S pi+ | backlog | blocked |
 | u | -411 | S031.256/2025 | d_minus_s031_256 | D- decay mode 61 | D- -> K0L pi+ | backlog | blocked |
-| u | -411 | S031.1/2025 | d_minus_s031_1 | D- decay mode 62 | D- -> K- pi+ pi+ | backlog | blocked |
+| u | -411 | S031.1/2025 | d_minus_s031_1 | D- decay mode 62 | D- -> K+ pi- pi- | supported | ready |
 | u | -411 | S031.251/2025 | d_minus_s031_251 | D- decay mode 63 | D- -> ( K- pi+ )(S-wave) pi+ | incomplete | blocked |
 | u | -411 | S031.230/2025 | d_minus_s031_230 | D- decay mode 64 | D- -> K- pi+ Kbar_0^*(700)0 pi+ | incomplete | blocked |
 | u | -411 | S031.191/2025 | d_minus_s031_191 | D- decay mode 65 | D- -> Kbar_0^*(1430)0 pi+, Kbar_0^*(1430)0 -> K- pi+ | incomplete | blocked |
@@ -2852,7 +2852,7 @@
 | u | -411 | S031.390/2025 | d_minus_s031_390 | D- decay mode 84 | D- -> pi+ eta K0S a_0(980)+ | incomplete | blocked |
 | u | -411 | S031.391/2025 | d_minus_s031_391 | D- decay mode 85 | D- -> K0S eta pi+ | incomplete | blocked |
 | u | -411 | S031.288/2025 | d_minus_s031_288 | D- decay mode 86 | D- -> K0S pi+ eta^'(958) | backlog | blocked |
-| u | -411 | S031.17/2025 | d_minus_s031_17 | D- decay mode 87 | D- -> K- pi+ pi+ pi0 | backlog | blocked |
+| u | -411 | S031.17/2025 | d_minus_s031_17 | D- decay mode 87 | D- -> K+ pi- pi- pi0 | supported | ready |
 | u | -411 | S031.13/2025 | d_minus_s031_13 | D- decay mode 88 | D- -> K0S pi+ pi+ pi- | backlog | blocked |
 | u | -411 | S031.342/2025 | d_minus_s031_342 | D- decay mode 89 | D- -> K0S pi+ pi0 pi0 | backlog | blocked |
 | u | -411 | S031.366/2025 | d_minus_s031_366 | D- decay mode 90 | D- -> rho(770)+ pi0 K0S a_1(1260)+ | incomplete | blocked |
@@ -2861,58 +2861,58 @@
 | u | -411 | S031.369/2025 | d_minus_s031_369 | D- decay mode 93 | D- -> K0S pi0 Kbar^*(892)0 | incomplete | blocked |
 | u | -411 | S031.370/2025 | d_minus_s031_370 | D- decay mode 94 | D- -> Kbar^*(892)0 pi+ pi0 non-resonant , Kbar^*()0 -> K0S pi0 | incomplete | blocked |
 | u | -411 | S031.371/2025 | d_minus_s031_371 | D- decay mode 95 | D- -> K0S rho+ pi0 non-resonant | incomplete | blocked |
-| u | -411 | S031.325/2025 | d_minus_s031_325 | D- decay mode 96 | D- -> K- pi+ pi+ eta | backlog | blocked |
+| u | -411 | S031.325/2025 | d_minus_s031_325 | D- decay mode 96 | D- -> K+ pi- pi- eta | supported | ready |
 | u | -411 | S031.326/2025 | d_minus_s031_326 | D- decay mode 97 | D- -> K0S pi+ pi0 eta | backlog | blocked |
-| u | -411 | S031.14/2025 | d_minus_s031_14 | D- decay mode 98 | D- -> K- pi+ pi+ pi+ pi- | backlog | blocked |
+| u | -411 | S031.14/2025 | d_minus_s031_14 | D- decay mode 98 | D- -> K+ pi- pi- pi- pi+ | supported | ready |
 | u | -411 | S031.57/2025 | d_minus_s031_57 | D- decay mode 99 | D- -> Kbar^*(892)0 2pi+ pi-, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.58/2025 | d_minus_s031_58 | D- decay mode 100 | D- -> Kbar^*(892)0 rho0 pi+, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.233/2025 | d_minus_s031_233 | D- decay mode 101 | D- -> Kbar^*(892)0 a_1(1260)+ | backlog | blocked |
 | u | -411 | S031.209/2025 | d_minus_s031_209 | D- decay mode 102 | D- -> Kbar^*(892)0 2pi+ pi- no-rho, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
-| u | -411 | S031.206/2025 | d_minus_s031_206 | D- decay mode 103 | D- -> K- pi+ pi+ | incomplete | blocked |
+| u | -411 | S031.206/2025 | d_minus_s031_206 | D- decay mode 103 | D- -> K+ pi- pi- | incomplete | blocked |
 | u | -411 | S031.207/2025 | d_minus_s031_207 | D- decay mode 104 | D- -> K- 3pi+ pi- nonresonant | incomplete | blocked |
 | u | -411 | S031.343/2025 | d_minus_s031_343 | D- decay mode 105 | D- -> K0S pi+ pi+ pi- pi0 | backlog | blocked |
 | u | -411 | S031.344/2025 | d_minus_s031_344 | D- decay mode 106 | D- -> K0S pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | -411 | S031.345/2025 | d_minus_s031_345 | D- decay mode 107 | D- -> K- pi+ pi+ pi0 pi0 | backlog | blocked |
+| u | -411 | S031.345/2025 | d_minus_s031_345 | D- decay mode 107 | D- -> K+ pi- pi- pi0 pi0 | supported | ready |
 | u | -411 | S031.59/2025 | d_minus_s031_59 | D- decay mode 108 | D- -> K+ K0S K0S | backlog | blocked |
 | u | -411 | S031.227/2025 | d_minus_s031_227 | D- decay mode 109 | D- -> K+ K- K0S pi+ | backlog | blocked |
-| u | -411 | S031.15/2025 | d_minus_s031_15 | D- decay mode 110 | D- -> pi+ pi0 | backlog | blocked |
-| u | -411 | S031.3/2025 | d_minus_s031_3 | D- decay mode 111 | D- -> pi+ pi+ pi- | backlog | blocked |
-| u | -411 | S031.47/2025 | d_minus_s031_47 | D- decay mode 112 | D- -> pi+ | incomplete | blocked |
+| u | -411 | S031.15/2025 | d_minus_s031_15 | D- decay mode 110 | D- -> pi- pi0 | supported | ready |
+| u | -411 | S031.3/2025 | d_minus_s031_3 | D- decay mode 111 | D- -> pi- pi- pi+ | supported | ready |
+| u | -411 | S031.47/2025 | d_minus_s031_47 | D- decay mode 112 | D- -> pi- | incomplete | blocked |
 | u | -411 | S031.237/2025 | d_minus_s031_237 | D- decay mode 113 | D- -> pi+ ( pi+ pi- )(S-wave) | incomplete | blocked |
 | u | -411 | S031.221/2025 | d_minus_s031_221 | D- decay mode 114 | D- -> sigma pi+, sigma -> pi+ pi- | incomplete | blocked |
 | u | -411 | S031.222/2025 | d_minus_s031_222 | D- decay mode 115 | D- -> pi+ pi- f_0(980) pi+ | incomplete | blocked |
 | u | -411 | S031.224/2025 | d_minus_s031_224 | D- decay mode 116 | D- -> pi+ pi- f_0(1370) pi+ | incomplete | blocked |
-| u | -411 | S031.364/2025 | d_minus_s031_364 | D- decay mode 117 | D- -> pi+ pi- pi+ | incomplete | blocked |
+| u | -411 | S031.364/2025 | d_minus_s031_364 | D- decay mode 117 | D- -> pi- pi+ pi- | incomplete | blocked |
 | u | -411 | S031.228/2025 | d_minus_s031_228 | D- decay mode 118 | D- -> pi+ pi- f_2(1270) pi+ | incomplete | blocked |
 | u | -411 | S031.225/2025 | d_minus_s031_225 | D- decay mode 119 | D- -> pi+ pi- rho(1450)0 pi+ | incomplete | blocked |
 | u | -411 | S031.365/2025 | d_minus_s031_365 | D- decay mode 120 | D- -> pi+ pi- rho(1700)0 pi+ | incomplete | blocked |
 | u | -411 | S031.252/2025 | d_minus_s031_252 | D- decay mode 121 | D- -> pi+ pi- f_0(1500) pi+ | incomplete | blocked |
 | u | -411 | S031.253/2025 | d_minus_s031_253 | D- decay mode 122 | D- -> pi+ pi- f_0(1710) pi+ | incomplete | blocked |
-| u | -411 | S031.254/2025 | d_minus_s031_254 | D- decay mode 123 | D- -> pi+ pi- pi+ | incomplete | blocked |
+| u | -411 | S031.254/2025 | d_minus_s031_254 | D- decay mode 123 | D- -> pi- pi+ pi- | incomplete | blocked |
 | u | -411 | S031.255/2025 | d_minus_s031_255 | D- decay mode 124 | D- -> ( pi+ pi+ )(S-wave) pi- | incomplete | blocked |
 | u | -411 | S031.46/2025 | d_minus_s031_46 | D- decay mode 125 | D- -> 2pi+ pi- nonresonant | incomplete | blocked |
-| u | -411 | S031.246/2025 | d_minus_s031_246 | D- decay mode 126 | D- -> pi+ pi0 pi0 | backlog | blocked |
-| u | -411 | S031.50/2025 | d_minus_s031_50 | D- decay mode 127 | D- -> pi+ pi+ pi- pi0 | backlog | blocked |
-| u | -411 | S031.349/2025 | d_minus_s031_349 | D- decay mode 128 | D- -> pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | -411 | S031.352/2025 | d_minus_s031_352 | D- decay mode 129 | D- -> pi+ pi0 pi0 pi0 pi0 | backlog | blocked |
-| u | -411 | S031.350/2025 | d_minus_s031_350 | D- decay mode 130 | D- -> pi+ pi+ pi- pi0 pi0 | backlog | blocked |
-| u | -411 | S031.48/2025 | d_minus_s031_48 | D- decay mode 131 | D- -> pi+ pi+ pi+ pi- pi- | backlog | blocked |
-| u | -411 | S031.355/2025 | d_minus_s031_355 | D- decay mode 132 | D- -> pi+ pi+ pi- pi0 pi0 pi0 | backlog | blocked |
-| u | -411 | S031.354/2025 | d_minus_s031_354 | D- decay mode 133 | D- -> pi+ pi+ pi+ pi- pi- pi0 | backlog | blocked |
-| u | -411 | S031.51/2025 | d_minus_s031_51 | D- decay mode 134 | D- -> eta pi+ | backlog | blocked |
-| u | -411 | S031.257/2025 | d_minus_s031_257 | D- decay mode 135 | D- -> eta pi+ pi0 | backlog | blocked |
+| u | -411 | S031.246/2025 | d_minus_s031_246 | D- decay mode 126 | D- -> pi- pi0 pi0 | supported | ready |
+| u | -411 | S031.50/2025 | d_minus_s031_50 | D- decay mode 127 | D- -> pi- pi- pi+ pi0 | supported | ready |
+| u | -411 | S031.349/2025 | d_minus_s031_349 | D- decay mode 128 | D- -> pi- pi0 pi0 pi0 | supported | ready |
+| u | -411 | S031.352/2025 | d_minus_s031_352 | D- decay mode 129 | D- -> pi- pi0 pi0 pi0 pi0 | supported | ready |
+| u | -411 | S031.350/2025 | d_minus_s031_350 | D- decay mode 130 | D- -> pi- pi- pi+ pi0 pi0 | supported | ready |
+| u | -411 | S031.48/2025 | d_minus_s031_48 | D- decay mode 131 | D- -> pi- pi- pi- pi+ pi+ | supported | ready |
+| u | -411 | S031.355/2025 | d_minus_s031_355 | D- decay mode 132 | D- -> pi- pi- pi+ pi0 pi0 pi0 | supported | ready |
+| u | -411 | S031.354/2025 | d_minus_s031_354 | D- decay mode 133 | D- -> pi- pi- pi- pi+ pi+ pi0 | supported | ready |
+| u | -411 | S031.51/2025 | d_minus_s031_51 | D- decay mode 134 | D- -> eta pi- | supported | ready |
+| u | -411 | S031.257/2025 | d_minus_s031_257 | D- decay mode 135 | D- -> eta pi- pi0 | supported | ready |
 | u | -411 | S031.380/2025 | d_minus_s031_380 | D- decay mode 136 | D- -> pi+ pi0 rho(770)+ eta | incomplete | blocked |
 | u | -411 | S031.381/2025 | d_minus_s031_381 | D- decay mode 137 | D- -> pi+ eta a_0(980)+ pi0 | incomplete | blocked |
 | u | -411 | S031.382/2025 | d_minus_s031_382 | D- decay mode 138 | D- -> pi0 eta a_0(980)0 pi+ | incomplete | blocked |
 | u | -411 | S031.383/2025 | d_minus_s031_383 | D- decay mode 139 | D- -> pi+ eta a_2(1700)+ pi0 | incomplete | blocked |
 | u | -411 | S031.384/2025 | d_minus_s031_384 | D- decay mode 140 | D- -> pi+ eta a_0(1450)+ pi0 | incomplete | blocked |
-| u | -411 | S031.327/2025 | d_minus_s031_327 | D- decay mode 141 | D- -> eta pi+ pi+ pi- | backlog | blocked |
-| u | -411 | S031.328/2025 | d_minus_s031_328 | D- decay mode 142 | D- -> eta pi+ pi0 pi0 | backlog | blocked |
-| u | -411 | S031.353/2025 | d_minus_s031_353 | D- decay mode 143 | D- -> eta pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | -411 | S031.351/2025 | d_minus_s031_351 | D- decay mode 144 | D- -> eta pi+ pi+ pi- pi0 | backlog | blocked |
-| u | -411 | S031.329/2025 | d_minus_s031_329 | D- decay mode 145 | D- -> eta eta pi+ | backlog | blocked |
-| u | -411 | S031.52/2025 | d_minus_s031_52 | D- decay mode 146 | D- -> pi+ | incomplete | blocked |
-| u | -411 | S031.331/2025 | d_minus_s031_331 | D- decay mode 147 | D- -> pi+ pi0 | incomplete | blocked |
+| u | -411 | S031.327/2025 | d_minus_s031_327 | D- decay mode 141 | D- -> eta pi- pi- pi+ | supported | ready |
+| u | -411 | S031.328/2025 | d_minus_s031_328 | D- decay mode 142 | D- -> eta pi- pi0 pi0 | supported | ready |
+| u | -411 | S031.353/2025 | d_minus_s031_353 | D- decay mode 143 | D- -> eta pi- pi0 pi0 pi0 | supported | ready |
+| u | -411 | S031.351/2025 | d_minus_s031_351 | D- decay mode 144 | D- -> eta pi- pi- pi+ pi0 | supported | ready |
+| u | -411 | S031.329/2025 | d_minus_s031_329 | D- decay mode 145 | D- -> eta eta pi- | supported | ready |
+| u | -411 | S031.52/2025 | d_minus_s031_52 | D- decay mode 146 | D- -> pi- | incomplete | blocked |
+| u | -411 | S031.331/2025 | d_minus_s031_331 | D- decay mode 147 | D- -> pi- pi0 | incomplete | blocked |
 | u | -411 | S031.90/2025 | d_minus_s031_90 | D- decay mode 148 | D- -> eta^'(958) pi+ | backlog | blocked |
 | u | -411 | S031.258/2025 | d_minus_s031_258 | D- decay mode 149 | D- -> eta^'(958) pi+ pi0 | backlog | blocked |
 | u | -411 | S031.16/2025 | d_minus_s031_16 | D- decay mode 150 | D- -> K0S K+ | backlog | blocked |
@@ -2922,16 +2922,16 @@
 | u | -411 | S031.339/2025 | d_minus_s031_339 | D- decay mode 154 | D- -> K0S pi0 Kbar^*(892)0 K+ | incomplete | blocked |
 | u | -411 | S031.197/2025 | d_minus_s031_197 | D- decay mode 155 | D- -> K^*(892)+ K0S | backlog | blocked |
 | u | -411 | S031.300/2025 | d_minus_s031_300 | D- decay mode 156 | D- -> K0L K+ pi0 | backlog | blocked |
-| u | -411 | S031.4/2025 | d_minus_s031_4 | D- decay mode 157 | D- -> K+ K- pi+ | backlog | blocked |
+| u | -411 | S031.4/2025 | d_minus_s031_4 | D- decay mode 157 | D- -> K- K+ pi- | supported | ready |
 | u | -411 | S031.86/2025 | d_minus_s031_86 | D- decay mode 158 | D- -> K+ Kbar^*(892)0, Kbar^*(892)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.238/2025 | d_minus_s031_238 | D- decay mode 159 | D- -> K+ Kbar_0^*(1430)0, Kbar_0^*(1430)0 -> K- pi+ | incomplete | blocked |
 | u | -411 | S031.259/2025 | d_minus_s031_259 | D- decay mode 160 | D- -> K- pi+ K+ Kbar_2^*(1430)0 | incomplete | blocked |
-| u | -411 | S031.260/2025 | d_minus_s031_260 | D- decay mode 161 | D- -> K- pi+ K+ | incomplete | blocked |
+| u | -411 | S031.260/2025 | d_minus_s031_260 | D- decay mode 161 | D- -> K+ pi- K- | incomplete | blocked |
 | u | -411 | S031.261/2025 | d_minus_s031_261 | D- decay mode 162 | D- -> K+ K- a_0(1450)0 pi+ | incomplete | blocked |
-| u | -411 | S031.262/2025 | d_minus_s031_262 | D- decay mode 163 | D- -> K+ K- phi(1680) pi+ phi | incomplete | blocked |
+| u | -411 | S031.262/2025 | d_minus_s031_262 | D- decay mode 163 | D- -> K- K+ phi pi- phi | incomplete | blocked |
 | u | -411 | S031.89/2025 | d_minus_s031_89 | D- decay mode 164 | D- -> phi pi+, phi -> K+ K- | incomplete | blocked |
-| u | -411 | S031.315/2025 | d_minus_s031_315 | D- decay mode 165 | D- -> phi pi+ | backlog | blocked |
-| u | -411 | S031.335/2025 | d_minus_s031_335 | D- decay mode 166 | D- -> K+ K- pi+ pi0 | backlog | blocked |
+| u | -411 | S031.315/2025 | d_minus_s031_315 | D- decay mode 165 | D- -> phi pi- | supported | ready |
+| u | -411 | S031.335/2025 | d_minus_s031_335 | D- decay mode 166 | D- -> K- K+ pi- pi0 | supported | ready |
 | u | -411 | S031.280/2025 | d_minus_s031_280 | D- decay mode 167 | D- -> K0S K0S pi+ | backlog | blocked |
 | u | -411 | S031.376/2025 | d_minus_s031_376 | D- decay mode 168 | D- -> K0S pi+ K0S K^*(892)+ | incomplete | blocked |
 | u | -411 | S031.392/2025 | d_minus_s031_392 | D- decay mode 169 | D- -> K0S (K0S pi+)(S-wave) -> K0S K0S pi+ | incomplete | blocked |
@@ -2940,67 +2940,67 @@
 | u | -411 | S031.134/2025 | d_minus_s031_134 | D- decay mode 172 | D- -> K+ K0S pi+ pi- | backlog | blocked |
 | u | -411 | S031.336/2025 | d_minus_s031_336 | D- decay mode 173 | D- -> K0S K+ pi0 pi0 | backlog | blocked |
 | u | -411 | S031.130/2025 | d_minus_s031_130 | D- decay mode 174 | D- -> K0S K- pi+ pi+ | backlog | blocked |
-| u | -411 | S031.88/2025 | d_minus_s031_88 | D- decay mode 175 | D- -> K+ K- pi+ pi+ pi- | backlog | blocked |
-| u | -411 | S031.53/2025 | d_minus_s031_53 | D- decay mode 176 | D- -> phi pi+ pi0 | backlog | blocked |
+| u | -411 | S031.88/2025 | d_minus_s031_88 | D- decay mode 175 | D- -> K- K+ pi- pi- pi+ | supported | ready |
+| u | -411 | S031.53/2025 | d_minus_s031_53 | D- decay mode 176 | D- -> phi pi- pi0 | supported | ready |
 | u | -411 | S031.93/2025 | d_minus_s031_93 | D- decay mode 177 | D- -> phi | incomplete | blocked |
 | u | -411 | S031.54/2025 | d_minus_s031_54 | D- decay mode 178 | D- -> K+ K- pi+ pi0 non-phi | incomplete | blocked |
 | u | -411 | S031.374/2025 | d_minus_s031_374 | D- decay mode 179 | D- -> rho(770)+ gamma | backlog | blocked |
 | u | -411 | S031.375/2025 | d_minus_s031_375 | D- decay mode 180 | D- -> K^*(892)+ gamma | backlog | blocked |
-| u | -411 | S031.234/2025 | d_minus_s031_234 | D- decay mode 181 | D- -> K+ pi0 | backlog | blocked |
-| u | -411 | S031.268/2025 | d_minus_s031_268 | D- decay mode 182 | D- -> K+ eta | backlog | blocked |
+| u | -411 | S031.234/2025 | d_minus_s031_234 | D- decay mode 181 | D- -> K- pi0 | supported | ready |
+| u | -411 | S031.268/2025 | d_minus_s031_268 | D- decay mode 182 | D- -> K- eta | supported | ready |
 | u | -411 | S031.269/2025 | d_minus_s031_269 | D- decay mode 183 | D- -> K+ eta^'(958) | backlog | blocked |
-| u | -411 | S031.357/2025 | d_minus_s031_357 | D- decay mode 184 | D- -> K+ pi0 pi0 | backlog | blocked |
+| u | -411 | S031.357/2025 | d_minus_s031_357 | D- decay mode 184 | D- -> K- pi0 pi0 | supported | ready |
 | u | -411 | S031.359/2025 | d_minus_s031_359 | D- decay mode 185 | D- -> K^*(892)+ pi0 | backlog | blocked |
-| u | -411 | S031.5/2025 | d_minus_s031_5 | D- decay mode 186 | D- -> K+ pi+ pi- | backlog | blocked |
-| u | -411 | S031.204/2025 | d_minus_s031_204 | D- decay mode 187 | D- -> K+ | incomplete | blocked |
-| u | -411 | S031.358/2025 | d_minus_s031_358 | D- decay mode 188 | D- -> K+ eta pi0 | backlog | blocked |
+| u | -411 | S031.5/2025 | d_minus_s031_5 | D- decay mode 186 | D- -> K- pi- pi+ | supported | ready |
+| u | -411 | S031.204/2025 | d_minus_s031_204 | D- decay mode 187 | D- -> K- | incomplete | blocked |
+| u | -411 | S031.358/2025 | d_minus_s031_358 | D- decay mode 188 | D- -> K- eta pi0 | supported | ready |
 | u | -411 | S031.360/2025 | d_minus_s031_360 | D- decay mode 189 | D- -> K^*(892)+ eta | backlog | blocked |
 | u | -411 | S031.205/2025 | d_minus_s031_205 | D- decay mode 190 | D- -> K^*(892)0 pi+ , K^*(892)0 -> K+ pi- | incomplete | blocked |
 | u | -411 | S031.235/2025 | d_minus_s031_235 | D- decay mode 191 | D- -> K+ f_0(980) , f_0(980) -> pi+ pi- | incomplete | blocked |
 | u | -411 | S031.236/2025 | d_minus_s031_236 | D- decay mode 192 | D- -> K_2^*(1430)0 pi+ , K_2^*(1430)0 -> K+ pi- | incomplete | blocked |
 | u | -411 | S031.211/2025 | d_minus_s031_211 | D- decay mode 193 | D- -> K+ pi+ pi- nonresonant | incomplete | blocked |
-| u | -411 | S031.332/2025 | d_minus_s031_332 | D- decay mode 194 | D- -> K+ pi+ pi- pi0 | backlog | blocked |
+| u | -411 | S031.332/2025 | d_minus_s031_332 | D- decay mode 194 | D- -> K- pi- pi+ pi0 | supported | ready |
 | u | -411 | S031.340/2025 | d_minus_s031_340 | D- decay mode 195 | D- -> K+ pi+ pi- pi0 nonresonant | incomplete | blocked |
-| u | -411 | S031.334/2025 | d_minus_s031_334 | D- decay mode 196 | D- -> K+ | incomplete | blocked |
-| u | -411 | S031.181/2025 | d_minus_s031_181 | D- decay mode 197 | D- -> K+ K+ K- | backlog | blocked |
-| u | -411 | S031.316/2025 | d_minus_s031_316 | D- decay mode 198 | D- -> phi(1020)0 K+ | backlog | blocked |
-| u | -411 | S031.290/2025 | d_minus_s031_290 | D- decay mode 199 | D- -> K+ K- K+ phi(1020) phi | incomplete | blocked |
+| u | -411 | S031.334/2025 | d_minus_s031_334 | D- decay mode 196 | D- -> K- | incomplete | blocked |
+| u | -411 | S031.181/2025 | d_minus_s031_181 | D- decay mode 197 | D- -> K- K- K+ | supported | ready |
+| u | -411 | S031.316/2025 | d_minus_s031_316 | D- decay mode 198 | D- -> phi K- | supported | ready |
+| u | -411 | S031.290/2025 | d_minus_s031_290 | D- decay mode 199 | D- -> K- K+ K- phi phi | incomplete | blocked |
 | u | -411 | S031.291/2025 | d_minus_s031_291 | D- decay mode 200 | D- -> K+ ( K+ K- ) (S-wave) | incomplete | blocked |
-| u | -411 | S031.41/2025 | d_minus_s031_41 | D- decay mode 201 | D- -> pi+ e+ e- | backlog | blocked |
-| u | -411 | S031.284/2025 | d_minus_s031_284 | D- decay mode 202 | D- -> pi+ pi0 e+ e- | backlog | blocked |
+| u | -411 | S031.41/2025 | d_minus_s031_41 | D- decay mode 201 | D- -> pi- e- e+ | supported | ready |
+| u | -411 | S031.284/2025 | d_minus_s031_284 | D- decay mode 202 | D- -> pi- pi0 e- e+ | supported | ready |
 | u | -411 | S031.241/2025 | d_minus_s031_241 | D- decay mode 203 | D- -> pi+ phi , phi -> e+ e- | incomplete | blocked |
-| u | -411 | S031.42/2025 | d_minus_s031_42 | D- decay mode 204 | D- -> pi+ mu+ mu- | backlog | blocked |
-| u | -411 | S031.264/2025 | d_minus_s031_264 | D- decay mode 205 | D- -> mu+ mu- pi+ phi phi | incomplete | blocked |
+| u | -411 | S031.42/2025 | d_minus_s031_42 | D- decay mode 204 | D- -> pi- mu- mu+ | supported | ready |
+| u | -411 | S031.264/2025 | d_minus_s031_264 | D- decay mode 205 | D- -> mu- mu+ pi- phi phi | incomplete | blocked |
 | u | -411 | S031.198/2025 | d_minus_s031_198 | D- decay mode 206 | D- -> mu+ mu- | incomplete | blocked |
-| u | -411 | S031.113/2025 | d_minus_s031_113 | D- decay mode 207 | D- -> K+ e+ e- | backlog | blocked |
-| u | -411 | S031.285/2025 | d_minus_s031_285 | D- decay mode 208 | D- -> K+ pi0 e+ e- | backlog | blocked |
+| u | -411 | S031.113/2025 | d_minus_s031_113 | D- decay mode 207 | D- -> K- e- e+ | supported | ready |
+| u | -411 | S031.285/2025 | d_minus_s031_285 | D- decay mode 208 | D- -> K- pi0 e- e+ | supported | ready |
 | u | -411 | S031.286/2025 | d_minus_s031_286 | D- decay mode 209 | D- -> KS pi+ e+ e- | backlog | blocked |
 | u | -411 | S031.287/2025 | d_minus_s031_287 | D- decay mode 210 | D- -> K0S K+ e+ e- | backlog | blocked |
-| u | -411 | S031.114/2025 | d_minus_s031_114 | D- decay mode 211 | D- -> K+ mu+ mu- | backlog | blocked |
-| u | -411 | S031.110/2025 | d_minus_s031_110 | D- decay mode 212 | D- -> pi+ e+ mu- | backlog | blocked |
-| u | -411 | S031.111/2025 | d_minus_s031_111 | D- decay mode 213 | D- -> pi+ e- mu+ | backlog | blocked |
-| u | -411 | S031.115/2025 | d_minus_s031_115 | D- decay mode 214 | D- -> K+ e+ mu- | backlog | blocked |
-| u | -411 | S031.116/2025 | d_minus_s031_116 | D- decay mode 215 | D- -> K+ e- mu+ | backlog | blocked |
-| u | -411 | S031.117/2025 | d_minus_s031_117 | D- decay mode 216 | D- -> pi- e+ e+ | backlog | blocked |
-| u | -411 | S031.118/2025 | d_minus_s031_118 | D- decay mode 217 | D- -> pi- mu+ mu+ | backlog | blocked |
-| u | -411 | S031.119/2025 | d_minus_s031_119 | D- decay mode 218 | D- -> pi- e+ mu+ | backlog | blocked |
+| u | -411 | S031.114/2025 | d_minus_s031_114 | D- decay mode 211 | D- -> K- mu- mu+ | supported | ready |
+| u | -411 | S031.110/2025 | d_minus_s031_110 | D- decay mode 212 | D- -> pi- e- mu+ | supported | ready |
+| u | -411 | S031.111/2025 | d_minus_s031_111 | D- decay mode 213 | D- -> pi- e+ mu- | supported | ready |
+| u | -411 | S031.115/2025 | d_minus_s031_115 | D- decay mode 214 | D- -> K- e- mu+ | supported | ready |
+| u | -411 | S031.116/2025 | d_minus_s031_116 | D- decay mode 215 | D- -> K- e+ mu- | supported | ready |
+| u | -411 | S031.117/2025 | d_minus_s031_117 | D- decay mode 216 | D- -> pi+ e- e- | supported | ready |
+| u | -411 | S031.118/2025 | d_minus_s031_118 | D- decay mode 217 | D- -> pi+ mu- mu- | supported | ready |
+| u | -411 | S031.119/2025 | d_minus_s031_119 | D- decay mode 218 | D- -> pi+ e- mu- | supported | ready |
 | u | -411 | S031.199/2025 | d_minus_s031_199 | D- decay mode 219 | D- -> mu+ mu+ | incomplete | blocked |
-| u | -411 | S031.120/2025 | d_minus_s031_120 | D- decay mode 220 | D- -> K- e+ e+ | backlog | blocked |
+| u | -411 | S031.120/2025 | d_minus_s031_120 | D- decay mode 220 | D- -> K+ e- e- | supported | ready |
 | u | -411 | S031.293/2025 | d_minus_s031_293 | D- decay mode 221 | D- -> K0S pi- e+ e+ | backlog | blocked |
-| u | -411 | S031.294/2025 | d_minus_s031_294 | D- decay mode 222 | D- -> K- pi0 e+ e+ | backlog | blocked |
-| u | -411 | S031.121/2025 | d_minus_s031_121 | D- decay mode 223 | D- -> K- mu+ mu+ | backlog | blocked |
-| u | -411 | S031.122/2025 | d_minus_s031_122 | D- decay mode 224 | D- -> K- e+ mu+ | backlog | blocked |
+| u | -411 | S031.294/2025 | d_minus_s031_294 | D- decay mode 222 | D- -> K+ pi0 e- e- | supported | ready |
+| u | -411 | S031.121/2025 | d_minus_s031_121 | D- decay mode 223 | D- -> K+ mu- mu- | supported | ready |
+| u | -411 | S031.122/2025 | d_minus_s031_122 | D- decay mode 224 | D- -> K+ e- mu- | supported | ready |
 | u | -411 | S031.200/2025 | d_minus_s031_200 | D- decay mode 225 | D- -> K^*(892)- mu+ mu+ | backlog | blocked |
-| u | -411 | S031.318/2025 | d_minus_s031_318 | D- decay mode 226 | D- -> e+ | incomplete | blocked |
-| u | -411 | S031.319/2025 | d_minus_s031_319 | D- decay mode 227 | D- -> e+ | incomplete | blocked |
-| u | -411 | S031.320/2025 | d_minus_s031_320 | D- decay mode 228 | D- -> Sigma0 e+ | backlog | blocked |
-| u | -411 | S031.321/2025 | d_minus_s031_321 | D- decay mode 229 | D- -> Sigmabar0 e+ | backlog | blocked |
-| u | -411 | S031.362/2025 | d_minus_s031_362 | D- decay mode 230 | D- -> nbar e+ | incomplete | blocked |
-| u | -411 | S031.361/2025 | d_minus_s031_361 | D- decay mode 231 | D- -> n e+ | backlog | blocked |
-| u | 421 | S032.332/2025 | d0_s032_332 | D0 decay mode 1 | D0 -> 0-prongs | backlog | blocked |
-| u | 421 | S032.333/2025 | d0_s032_333 | D0 decay mode 2 | D0 -> 2-prongs | backlog | blocked |
-| u | 421 | S032.334/2025 | d0_s032_334 | D0 decay mode 3 | D0 -> 4-prongs | backlog | blocked |
-| u | 421 | S032.335/2025 | d0_s032_335 | D0 decay mode 4 | D0 -> 6-prongs | backlog | blocked |
+| u | -411 | S031.318/2025 | d_minus_s031_318 | D- decay mode 226 | D- -> e- | incomplete | blocked |
+| u | -411 | S031.319/2025 | d_minus_s031_319 | D- decay mode 227 | D- -> e- | incomplete | blocked |
+| u | -411 | S031.320/2025 | d_minus_s031_320 | D- decay mode 228 | D- -> Sigmabar0 e- | supported | ready |
+| u | -411 | S031.321/2025 | d_minus_s031_321 | D- decay mode 229 | D- -> Sigma0 e- | supported | ready |
+| u | -411 | S031.362/2025 | d_minus_s031_362 | D- decay mode 230 | D- -> n e- | AAAcomplete | ready |
+| u | -411 | S031.361/2025 | d_minus_s031_361 | D- decay mode 231 | D- -> anti-n e- | supported | ready |
+| u | 421 | S032.332/2025 | d0_s032_332 | D0 decay mode 1 | D0 -> 0-prongs | supported | ready |
+| u | 421 | S032.333/2025 | d0_s032_333 | D0 decay mode 2 | D0 -> 2-prongs | supported | ready |
+| u | 421 | S032.334/2025 | d0_s032_334 | D0 decay mode 3 | D0 -> 4-prongs | supported | ready |
+| u | 421 | S032.335/2025 | d0_s032_335 | D0 decay mode 4 | D0 -> 6-prongs | supported | ready |
 | u | 421 | S032.10/2025 | d0_s032_10 | D0 decay mode 5 | D0 -> e+ | incomplete | blocked |
 | u | 421 | S032.27/2025 | d0_s032_27 | D0 decay mode 6 | D0 -> mu+ | incomplete | blocked |
 | u | 421 | S032.11/2025 | d0_s032_11 | D0 decay mode 7 | D0 -> K- | incomplete | blocked |
@@ -3016,36 +3016,36 @@
 | u | 421 | S032.589/2025 | d0_s032_589 | D0 decay mode 17 | D0 -> pi+ pi+ pi- anything | incomplete | blocked |
 | u | 421 | S032.433/2025 | d0_s032_433 | D0 decay mode 18 | D0 -> invisibles | incomplete | blocked |
 | u | 421 | S032.196/2025 | d0_s032_196 | D0 decay mode 19 | D0 -> K- | incomplete | blocked |
-| u | 421 | S032.46/2025 | d0_s032_46 | D0 decay mode 20 | D0 -> K- e+ nu_e | backlog | blocked |
-| u | 421 | S032.77/2025 | d0_s032_77 | D0 decay mode 21 | D0 -> K- mu+ nu_mu | backlog | blocked |
+| u | 421 | S032.46/2025 | d0_s032_46 | D0 decay mode 20 | D0 -> K- e+ nu_e | supported | ready |
+| u | 421 | S032.77/2025 | d0_s032_77 | D0 decay mode 21 | D0 -> K- mu+ nu_mu | supported | ready |
 | u | 421 | S032.129/2025 | d0_s032_129 | D0 decay mode 22 | D0 -> K^*(892)- e+ nu_e | backlog | blocked |
 | u | 421 | S032.307/2025 | d0_s032_307 | D0 decay mode 23 | D0 -> K^*(892)- mu+ nu_mu | backlog | blocked |
-| u | 421 | S032.127/2025 | d0_s032_127 | D0 decay mode 24 | D0 -> K- pi0 e+ nu_e | backlog | blocked |
-| u | 421 | S032.128/2025 | d0_s032_128 | D0 decay mode 25 | D0 -> Kbar0 pi- e+ nu_e | backlog | blocked |
+| u | 421 | S032.127/2025 | d0_s032_127 | D0 decay mode 24 | D0 -> K- pi0 e+ nu_e | supported | ready |
+| u | 421 | S032.128/2025 | d0_s032_128 | D0 decay mode 25 | D0 -> Kbar0 pi- e+ nu_e | supported | ready |
 | u | 421 | S032.550/2025 | d0_s032_550 | D0 decay mode 26 | D0 -> (Kbar0 pi- ) (S-wave) e+ nu_e | incomplete | blocked |
-| u | 421 | S032.602/2025 | d0_s032_602 | D0 decay mode 27 | D0 -> K- pi0 mu+ nu_mu | backlog | blocked |
+| u | 421 | S032.602/2025 | d0_s032_602 | D0 decay mode 27 | D0 -> K- pi0 mu+ nu_mu | supported | ready |
 | u | 421 | S032.600/2025 | d0_s032_600 | D0 decay mode 28 | D0 -> (K- pi0 ) (S-wave) mu+ nu_mu | incomplete | blocked |
-| u | 421 | S032.601/2025 | d0_s032_601 | D0 decay mode 29 | D0 -> K- eta e+ nu_e | backlog | blocked |
-| u | 421 | S032.360/2025 | d0_s032_360 | D0 decay mode 30 | D0 -> K- pi+ pi- e+ nu_e | backlog | blocked |
+| u | 421 | S032.601/2025 | d0_s032_601 | D0 decay mode 29 | D0 -> K- eta e+ nu_e | supported | ready |
+| u | 421 | S032.360/2025 | d0_s032_360 | D0 decay mode 30 | D0 -> K- pi+ pi- e+ nu_e | supported | ready |
 | u | 421 | S032.361/2025 | d0_s032_361 | D0 decay mode 31 | D0 -> K_1(1270)- e+ nu_e | backlog | blocked |
 | u | 421 | S032.599/2025 | d0_s032_599 | D0 decay mode 32 | D0 -> K0S pi- e+ pi0 nu_e | incomplete | blocked |
-| u | 421 | S032.183/2025 | d0_s032_183 | D0 decay mode 33 | D0 -> K- pi+ pi- mu+ nu_mu | backlog | blocked |
+| u | 421 | S032.183/2025 | d0_s032_183 | D0 decay mode 33 | D0 -> K- pi+ pi- mu+ nu_mu | supported | ready |
 | u | 421 | S032.184/2025 | d0_s032_184 | D0 decay mode 34 | D0 -> (Kbar^*(892) pi)- mu+ nu_mu | incomplete | blocked |
-| u | 421 | S032.49/2025 | d0_s032_49 | D0 decay mode 35 | D0 -> pi- e+ nu_e | backlog | blocked |
-| u | 421 | S032.308/2025 | d0_s032_308 | D0 decay mode 36 | D0 -> pi- mu+ nu_mu | backlog | blocked |
-| u | 421 | S032.549/2025 | d0_s032_549 | D0 decay mode 37 | D0 -> pi- pi0 e+ nu_e | backlog | blocked |
+| u | 421 | S032.49/2025 | d0_s032_49 | D0 decay mode 35 | D0 -> pi- e+ nu_e | supported | ready |
+| u | 421 | S032.308/2025 | d0_s032_308 | D0 decay mode 36 | D0 -> pi- mu+ nu_mu | supported | ready |
+| u | 421 | S032.549/2025 | d0_s032_549 | D0 decay mode 37 | D0 -> pi- pi0 e+ nu_e | supported | ready |
 | u | 421 | S032.320/2025 | d0_s032_320 | D0 decay mode 38 | D0 -> e+ nu_e | incomplete | blocked |
 | u | 421 | S032.570/2025 | d0_s032_570 | D0 decay mode 39 | D0 -> mu+ nu_mu | incomplete | blocked |
 | u | 421 | S032.495/2025 | d0_s032_495 | D0 decay mode 40 | D0 -> eta pi- e+ nu_e | incomplete | blocked |
-| u | 421 | S032.590/2025 | d0_s032_590 | D0 decay mode 41 | D0 -> K0S K- e+ nu_e | backlog | blocked |
+| u | 421 | S032.590/2025 | d0_s032_590 | D0 decay mode 41 | D0 -> K0S K- e+ nu_e | supported | ready |
 | u | 421 | S032.561/2025 | d0_s032_561 | D0 decay mode 42 | D0 -> b_1(1235)- pi- e+ nu_e | incomplete | blocked |
-| u | 421 | S032.1/2025 | d0_s032_1 | D0 decay mode 43 | D0 -> K- pi+ | backlog | blocked |
-| u | 421 | S032.9/2025 | d0_s032_9 | D0 decay mode 44 | D0 -> K0S pi0 | backlog | blocked |
-| u | 421 | S032.363/2025 | d0_s032_363 | D0 decay mode 45 | D0 -> K0L pi0 | backlog | blocked |
-| u | 421 | S032.579/2025 | d0_s032_579 | D0 decay mode 46 | D0 -> K0L eta | backlog | blocked |
+| u | 421 | S032.1/2025 | d0_s032_1 | D0 decay mode 43 | D0 -> K- pi+ | supported | ready |
+| u | 421 | S032.9/2025 | d0_s032_9 | D0 decay mode 44 | D0 -> K0S pi0 | supported | ready |
+| u | 421 | S032.363/2025 | d0_s032_363 | D0 decay mode 45 | D0 -> K0L pi0 | supported | ready |
+| u | 421 | S032.579/2025 | d0_s032_579 | D0 decay mode 46 | D0 -> K0L eta | supported | ready |
 | u | 421 | S032.581/2025 | d0_s032_581 | D0 decay mode 47 | D0 -> K0L | incomplete | blocked |
 | u | 421 | S032.580/2025 | d0_s032_580 | D0 decay mode 48 | D0 -> K0L | incomplete | blocked |
-| u | 421 | S032.3/2025 | d0_s032_3 | D0 decay mode 49 | D0 -> K0S pi+ pi- | backlog | blocked |
+| u | 421 | S032.3/2025 | d0_s032_3 | D0 decay mode 49 | D0 -> K0S pi+ pi- | supported | ready |
 | u | 421 | S032.17/2025 | d0_s032_17 | D0 decay mode 50 | D0 -> K0S | incomplete | blocked |
 | u | 421 | S032.285/2025 | d0_s032_285 | D0 decay mode 51 | D0 -> pi+ pi- K0S | incomplete | blocked |
 | u | 421 | S032.384/2025 | d0_s032_384 | D0 decay mode 52 | D0 -> K0S (pi+ pi-)(S-wave) | incomplete | blocked |
@@ -3060,7 +3060,7 @@
 | u | 421 | S032.382/2025 | d0_s032_382 | D0 decay mode 61 | D0 -> K0S pi+ K_0^*(1430)+ pi- | incomplete | blocked |
 | u | 421 | S032.383/2025 | d0_s032_383 | D0 decay mode 62 | D0 -> K0S pi+ K_2^*(1430)+ pi- | incomplete | blocked |
 | u | 421 | S032.33/2025 | d0_s032_33 | D0 decay mode 63 | D0 -> K0S pi+ pi- nonresonant | incomplete | blocked |
-| u | 421 | S032.8/2025 | d0_s032_8 | D0 decay mode 64 | D0 -> K- pi+ pi0 | backlog | blocked |
+| u | 421 | S032.8/2025 | d0_s032_8 | D0 decay mode 64 | D0 -> K- pi+ pi0 | supported | ready |
 | u | 421 | S032.16/2025 | d0_s032_16 | D0 decay mode 65 | D0 -> K- | incomplete | blocked |
 | u | 421 | S032.271/2025 | d0_s032_271 | D0 decay mode 66 | D0 -> pi+ pi0 K- rho(1700)+ | incomplete | blocked |
 | u | 421 | S032.83/2025 | d0_s032_83 | D0 decay mode 67 | D0 -> K- pi0 K^*(892)- pi+ K^*(892)- | incomplete | blocked |
@@ -3069,8 +3069,8 @@
 | u | 421 | S032.273/2025 | d0_s032_273 | D0 decay mode 70 | D0 -> K- pi+ Kbar_0^*(1430)0 pi0 | incomplete | blocked |
 | u | 421 | S032.274/2025 | d0_s032_274 | D0 decay mode 71 | D0 -> K- pi0 K^*(1680)- pi+ | incomplete | blocked |
 | u | 421 | S032.32/2025 | d0_s032_32 | D0 decay mode 72 | D0 -> K- pi+ pi0 nonresonant | incomplete | blocked |
-| u | 421 | S032.185/2025 | d0_s032_185 | D0 decay mode 73 | D0 -> K0S pi0 pi0 | backlog | blocked |
-| u | 421 | S032.588/2025 | d0_s032_588 | D0 decay mode 74 | D0 -> K0L pi0 pi0 | backlog | blocked |
+| u | 421 | S032.185/2025 | d0_s032_185 | D0 decay mode 73 | D0 -> K0S pi0 pi0 | supported | ready |
+| u | 421 | S032.588/2025 | d0_s032_588 | D0 decay mode 74 | D0 -> K0L pi0 pi0 | supported | ready |
 | u | 421 | S032.390/2025 | d0_s032_390 | D0 decay mode 75 | D0 -> K0S (2 pi0)(S-wave) | incomplete | blocked |
 | u | 421 | S032.202/2025 | d0_s032_202 | D0 decay mode 76 | D0 -> K0S pi0 Kbar^*(892)0 pi0 | incomplete | blocked |
 | u | 421 | S032.391/2025 | d0_s032_391 | D0 decay mode 77 | D0 -> K0S pi0 pi0 | incomplete | blocked |
@@ -3078,8 +3078,8 @@
 | u | 421 | S032.393/2025 | d0_s032_393 | D0 decay mode 79 | D0 -> pi0 pi0 K0S f_2(1270) | incomplete | blocked |
 | u | 421 | S032.394/2025 | d0_s032_394 | D0 decay mode 80 | D0 -> 2K0S , one K0S -> 2pi0 | incomplete | blocked |
 | u | 421 | S032.186/2025 | d0_s032_186 | D0 decay mode 81 | D0 -> K0S 2pi0 nonresonant | incomplete | blocked |
-| u | 421 | S032.574/2025 | d0_s032_574 | D0 decay mode 82 | D0 -> K0S pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.2/2025 | d0_s032_2 | D0 decay mode 83 | D0 -> K- pi+ pi+ pi- | backlog | blocked |
+| u | 421 | S032.574/2025 | d0_s032_574 | D0 decay mode 82 | D0 -> K0S pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.2/2025 | d0_s032_2 | D0 decay mode 83 | D0 -> K- pi+ pi+ pi- | supported | ready |
 | u | 421 | S032.116/2025 | d0_s032_116 | D0 decay mode 84 | D0 -> K- pi+ rho0 total | incomplete | blocked |
 | u | 421 | S032.23/2025 | d0_s032_23 | D0 decay mode 85 | D0 -> K- pi+ rho0 3-body | incomplete | blocked |
 | u | 421 | S032.86/2025 | d0_s032_86 | D0 decay mode 86 | D0 -> K- pi+ Kbar^*(892)0 | incomplete | blocked |
@@ -3090,36 +3090,36 @@
 | u | 421 | S032.85/2025 | d0_s032_85 | D0 decay mode 91 | D0 -> Kbar^*(892)0 pi+ pi- 3-body , Kbar^*()0 -> K- pi+ | incomplete | blocked |
 | u | 421 | S032.182/2025 | d0_s032_182 | D0 decay mode 92 | D0 -> K- pi+ Kbar^*(892)0 pi- K_1(1270)- pi+ | incomplete | blocked |
 | u | 421 | S032.68/2025 | d0_s032_68 | D0 decay mode 93 | D0 -> K- 2pi+ pi- nonresonant | incomplete | blocked |
-| u | 421 | S032.143/2025 | d0_s032_143 | D0 decay mode 94 | D0 -> K0S pi+ pi- pi0 | backlog | blocked |
+| u | 421 | S032.143/2025 | d0_s032_143 | D0 decay mode 94 | D0 -> K0S pi+ pi- pi0 | supported | ready |
 | u | 421 | S032.135/2025 | d0_s032_135 | D0 decay mode 95 | D0 -> pi+ pi- K0S pi0 eta eta | incomplete | blocked |
 | u | 421 | S032.110/2025 | d0_s032_110 | D0 decay mode 96 | D0 -> pi+ pi- K0S pi0 | incomplete | blocked |
-| u | 421 | S032.20/2025 | d0_s032_20 | D0 decay mode 97 | D0 -> K- pi+ pi0 pi0 | backlog | blocked |
-| u | 421 | S032.575/2025 | d0_s032_575 | D0 decay mode 98 | D0 -> K- pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.576/2025 | d0_s032_576 | D0 decay mode 99 | D0 -> K0S pi+ pi- pi0 pi0 | backlog | blocked |
-| u | 421 | S032.41/2025 | d0_s032_41 | D0 decay mode 100 | D0 -> K- pi+ pi+ pi- pi0 | backlog | blocked |
+| u | 421 | S032.20/2025 | d0_s032_20 | D0 decay mode 97 | D0 -> K- pi+ pi0 pi0 | supported | ready |
+| u | 421 | S032.575/2025 | d0_s032_575 | D0 decay mode 98 | D0 -> K- pi+ pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.576/2025 | d0_s032_576 | D0 decay mode 99 | D0 -> K0S pi+ pi- pi0 pi0 | supported | ready |
+| u | 421 | S032.41/2025 | d0_s032_41 | D0 decay mode 100 | D0 -> K- pi+ pi+ pi- pi0 | supported | ready |
 | u | 421 | S032.55/2025 | d0_s032_55 | D0 decay mode 101 | D0 -> Kbar^*(892)0 K- pi+ pi+ pi- pi0 | incomplete | blocked |
 | u | 421 | S032.207/2025 | d0_s032_207 | D0 decay mode 102 | D0 -> pi+ pi- K- pi0 pi+ Kbar^*(892)0 | incomplete | blocked |
 | u | 421 | S032.197/2025 | d0_s032_197 | D0 decay mode 103 | D0 -> K- pi+ | incomplete | blocked |
 | u | 421 | S032.57/2025 | d0_s032_57 | D0 decay mode 104 | D0 -> Kbar^*(892)0 | incomplete | blocked |
 | u | 421 | S032.572/2025 | d0_s032_572 | D0 decay mode 105 | D0 -> K0S pi0 | incomplete | blocked |
-| u | 421 | S032.292/2025 | d0_s032_292 | D0 decay mode 106 | D0 -> K0S eta pi0 | backlog | blocked |
+| u | 421 | S032.292/2025 | d0_s032_292 | D0 decay mode 106 | D0 -> K0S eta pi0 | supported | ready |
 | u | 421 | S032.293/2025 | d0_s032_293 | D0 decay mode 107 | D0 -> eta pi0 K0S | incomplete | blocked |
 | u | 421 | S032.294/2025 | d0_s032_294 | D0 decay mode 108 | D0 -> K0S pi0 Kbar^*(892)0 eta | incomplete | blocked |
-| u | 421 | S032.553/2025 | d0_s032_553 | D0 decay mode 109 | D0 -> K- pi+ eta | backlog | blocked |
+| u | 421 | S032.553/2025 | d0_s032_553 | D0 decay mode 109 | D0 -> K- pi+ eta | supported | ready |
 | u | 421 | S032.566/2025 | d0_s032_566 | D0 decay mode 110 | D0 -> K- pi+ K^*(892)0 eta | incomplete | blocked |
 | u | 421 | S032.567/2025 | d0_s032_567 | D0 decay mode 111 | D0 -> eta pi+ a_0(980)+ K- | incomplete | blocked |
 | u | 421 | S032.560/2025 | d0_s032_560 | D0 decay mode 112 | D0 -> K- eta K_2^*(1980)- pi+ | incomplete | blocked |
-| u | 421 | S032.556/2025 | d0_s032_556 | D0 decay mode 113 | D0 -> K- pi+ pi0 eta | backlog | blocked |
-| u | 421 | S032.557/2025 | d0_s032_557 | D0 decay mode 114 | D0 -> K0S pi+ pi- eta | backlog | blocked |
-| u | 421 | S032.558/2025 | d0_s032_558 | D0 decay mode 115 | D0 -> K0S pi0 pi0 eta | backlog | blocked |
-| u | 421 | S032.97/2025 | d0_s032_97 | D0 decay mode 116 | D0 -> K0S pi+ pi+ pi- pi- | backlog | blocked |
+| u | 421 | S032.556/2025 | d0_s032_556 | D0 decay mode 113 | D0 -> K- pi+ pi0 eta | supported | ready |
+| u | 421 | S032.557/2025 | d0_s032_557 | D0 decay mode 114 | D0 -> K0S pi+ pi- eta | supported | ready |
+| u | 421 | S032.558/2025 | d0_s032_558 | D0 decay mode 115 | D0 -> K0S pi0 pi0 eta | supported | ready |
+| u | 421 | S032.97/2025 | d0_s032_97 | D0 decay mode 116 | D0 -> K0S pi+ pi+ pi- pi- | supported | ready |
 | u | 421 | S032.174/2025 | d0_s032_174 | D0 decay mode 117 | D0 -> K0S rho0 pi+ pi-, no K^*(892)- | incomplete | blocked |
 | u | 421 | S032.175/2025 | d0_s032_175 | D0 decay mode 118 | D0 -> K^*(892)- 2pi+ pi- , K^*(892)- -> K0S pi- , no rho0 | incomplete | blocked |
 | u | 421 | S032.176/2025 | d0_s032_176 | D0 decay mode 119 | D0 -> K^*(892)- K0S K^*(892)- pi- pi+ | incomplete | blocked |
 | u | 421 | S032.177/2025 | d0_s032_177 | D0 decay mode 120 | D0 -> K0S 2pi+ 2pi- nonresonant | incomplete | blocked |
 | u | 421 | S032.43/2025 | d0_s032_43 | D0 decay mode 121 | D0 -> Kbar0 pi+ pi- pi0 pi0 pi0 | incomplete | blocked |
-| u | 421 | S032.288/2025 | d0_s032_288 | D0 decay mode 122 | D0 -> K- pi+ pi+ pi+ pi- pi- | backlog | blocked |
-| u | 421 | S032.65/2025 | d0_s032_65 | D0 decay mode 123 | D0 -> K0S eta | backlog | blocked |
+| u | 421 | S032.288/2025 | d0_s032_288 | D0 decay mode 122 | D0 -> K- pi+ pi+ pi+ pi- pi- | supported | ready |
+| u | 421 | S032.65/2025 | d0_s032_65 | D0 decay mode 123 | D0 -> K0S eta | supported | ready |
 | u | 421 | S032.64/2025 | d0_s032_64 | D0 decay mode 124 | D0 -> K0S | incomplete | blocked |
 | u | 421 | S032.187/2025 | d0_s032_187 | D0 decay mode 125 | D0 -> K0S eta^'(958) | backlog | blocked |
 | u | 421 | S032.56/2025 | d0_s032_56 | D0 decay mode 126 | D0 -> Kbar^*(892)0 pi+ pi- pi0 | backlog | blocked |
@@ -3127,24 +3127,24 @@
 | u | 421 | S032.189/2025 | d0_s032_189 | D0 decay mode 128 | D0 -> K- pi+ eta^'(958) | backlog | blocked |
 | u | 421 | S032.501/2025 | d0_s032_501 | D0 decay mode 129 | D0 -> K0S eta^'(958) pi0 | backlog | blocked |
 | u | 421 | S032.190/2025 | d0_s032_190 | D0 decay mode 130 | D0 -> Kbar^*(892)0 eta^'(958) | backlog | blocked |
-| u | 421 | S032.31/2025 | d0_s032_31 | D0 decay mode 131 | D0 -> K0S K+ K- | backlog | blocked |
+| u | 421 | S032.31/2025 | d0_s032_31 | D0 decay mode 131 | D0 -> K0S K+ K- | supported | ready |
 | u | 421 | S032.321/2025 | d0_s032_321 | D0 decay mode 132 | D0 -> K+ K- K0S a_0(980)0 | incomplete | blocked |
 | u | 421 | S032.322/2025 | d0_s032_322 | D0 decay mode 133 | D0 -> K+ K0S K- a_0(980)+ | incomplete | blocked |
 | u | 421 | S032.323/2025 | d0_s032_323 | D0 decay mode 134 | D0 -> K- K0S K+ a_0(980)- | incomplete | blocked |
 | u | 421 | S032.324/2025 | d0_s032_324 | D0 decay mode 135 | D0 -> K+ K- K0S f_0(980) | incomplete | blocked |
 | u | 421 | S032.114/2025 | d0_s032_114 | D0 decay mode 136 | D0 -> K+ K- K0S phi phi | incomplete | blocked |
-| u | 421 | S032.578/2025 | d0_s032_578 | D0 decay mode 137 | D0 -> K0L phi | backlog | blocked |
+| u | 421 | S032.578/2025 | d0_s032_578 | D0 decay mode 137 | D0 -> K0L phi | supported | ready |
 | u | 421 | S032.325/2025 | d0_s032_325 | D0 decay mode 138 | D0 -> K+ K- K0S f_0(1370) | incomplete | blocked |
-| u | 421 | S032.58/2025 | d0_s032_58 | D0 decay mode 139 | D0 -> K0S K0S K0S | backlog | blocked |
-| u | 421 | S032.219/2025 | d0_s032_219 | D0 decay mode 140 | D0 -> K+ K- K- pi+ | backlog | blocked |
+| u | 421 | S032.58/2025 | d0_s032_58 | D0 decay mode 139 | D0 -> K0S K0S K0S | supported | ready |
+| u | 421 | S032.219/2025 | d0_s032_219 | D0 decay mode 140 | D0 -> K+ K- K- pi+ | supported | ready |
 | u | 421 | S032.283/2025 | d0_s032_283 | D0 decay mode 141 | D0 -> K- K+ pi+ K- Kbar^*(892)0 | incomplete | blocked |
 | u | 421 | S032.275/2025 | d0_s032_275 | D0 decay mode 142 | D0 -> phi K+ K- K- pi+ phi | incomplete | blocked |
 | u | 421 | S032.284/2025 | d0_s032_284 | D0 decay mode 143 | D0 -> K- pi+ K+ K- phi Kbar^*(892)0 phi | incomplete | blocked |
 | u | 421 | S032.282/2025 | d0_s032_282 | D0 decay mode 144 | D0 -> K+ 2K- pi+ nonresonant | incomplete | blocked |
 | u | 421 | S032.309/2025 | d0_s032_309 | D0 decay mode 145 | D0 -> K0S K0S | incomplete | blocked |
-| u | 421 | S032.5/2025 | d0_s032_5 | D0 decay mode 146 | D0 -> pi+ pi- | backlog | blocked |
-| u | 421 | S032.173/2025 | d0_s032_173 | D0 decay mode 147 | D0 -> pi0 pi0 | backlog | blocked |
-| u | 421 | S032.29/2025 | d0_s032_29 | D0 decay mode 148 | D0 -> pi+ pi- pi0 | backlog | blocked |
+| u | 421 | S032.5/2025 | d0_s032_5 | D0 decay mode 146 | D0 -> pi+ pi- | supported | ready |
+| u | 421 | S032.173/2025 | d0_s032_173 | D0 decay mode 147 | D0 -> pi0 pi0 | supported | ready |
+| u | 421 | S032.29/2025 | d0_s032_29 | D0 decay mode 148 | D0 -> pi+ pi- pi0 | supported | ready |
 | u | 421 | S032.326/2025 | d0_s032_326 | D0 decay mode 149 | D0 -> pi- | incomplete | blocked |
 | u | 421 | S032.327/2025 | d0_s032_327 | D0 decay mode 150 | D0 -> pi0 | incomplete | blocked |
 | u | 421 | S032.328/2025 | d0_s032_328 | D0 decay mode 151 | D0 -> pi+ | incomplete | blocked |
@@ -3161,8 +3161,8 @@
 | u | 421 | S032.375/2025 | d0_s032_375 | D0 decay mode 162 | D0 -> pi+ pi- f_0(1710) pi0 | incomplete | blocked |
 | u | 421 | S032.376/2025 | d0_s032_376 | D0 decay mode 163 | D0 -> pi+ pi- f_2(1270) pi0 | incomplete | blocked |
 | u | 421 | S032.377/2025 | d0_s032_377 | D0 decay mode 164 | D0 -> pi+ pi- pi0 nonresonant | incomplete | blocked |
-| u | 421 | S032.314/2025 | d0_s032_314 | D0 decay mode 165 | D0 -> pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.18/2025 | d0_s032_18 | D0 decay mode 166 | D0 -> pi+ pi+ pi- pi- | backlog | blocked |
+| u | 421 | S032.314/2025 | d0_s032_314 | D0 decay mode 165 | D0 -> pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.18/2025 | d0_s032_18 | D0 decay mode 166 | D0 -> pi+ pi+ pi- pi- | supported | ready |
 | u | 421 | S032.348/2025 | d0_s032_348 | D0 decay mode 167 | D0 -> a_1(1260)+ pi- , a_1()+ -> 2pi+ pi- total | incomplete | blocked |
 | u | 421 | S032.349/2025 | d0_s032_349 | D0 decay mode 168 | D0 -> a_1(1260)+ pi- , a_1()+ -> rho0 pi+ S-wave | incomplete | blocked |
 | u | 421 | S032.350/2025 | d0_s032_350 | D0 decay mode 169 | D0 -> a_1(1260)+ pi- , a_1()+ -> rho0 pi+ D-wave | incomplete | blocked |
@@ -3189,15 +3189,15 @@
 | u | 421 | S032.359/2025 | d0_s032_359 | D0 decay mode 190 | D0 -> pi+ f_2(1270) pi- pi+ pi- | incomplete | blocked |
 | u | 421 | S032.459/2025 | d0_s032_459 | D0 decay mode 191 | D0 -> pi+ pi- | incomplete | blocked |
 | u | 421 | S032.454/2025 | d0_s032_454 | D0 decay mode 192 | D0 -> pi+ pi- f_0(1370) sigma | incomplete | blocked |
-| u | 421 | S032.315/2025 | d0_s032_315 | D0 decay mode 193 | D0 -> pi+ pi- pi0 pi0 | backlog | blocked |
-| u | 421 | S032.583/2025 | d0_s032_583 | D0 decay mode 194 | D0 -> pi0 pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.316/2025 | d0_s032_316 | D0 decay mode 195 | D0 -> eta pi0 | backlog | blocked |
+| u | 421 | S032.315/2025 | d0_s032_315 | D0 decay mode 193 | D0 -> pi+ pi- pi0 pi0 | supported | ready |
+| u | 421 | S032.583/2025 | d0_s032_583 | D0 decay mode 194 | D0 -> pi0 pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.316/2025 | d0_s032_316 | D0 decay mode 195 | D0 -> eta pi0 | supported | ready |
 | u | 421 | S032.317/2025 | d0_s032_317 | D0 decay mode 196 | D0 -> pi0 | incomplete | blocked |
 | u | 421 | S032.496/2025 | d0_s032_496 | D0 decay mode 197 | D0 -> eta | incomplete | blocked |
-| u | 421 | S032.95/2025 | d0_s032_95 | D0 decay mode 198 | D0 -> pi+ pi+ pi- pi- pi0 | backlog | blocked |
-| u | 421 | S032.586/2025 | d0_s032_586 | D0 decay mode 199 | D0 -> pi+ pi- pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.587/2025 | d0_s032_587 | D0 decay mode 200 | D0 -> pi+ pi+ pi- pi- pi0 pi0 | backlog | blocked |
-| u | 421 | S032.318/2025 | d0_s032_318 | D0 decay mode 201 | D0 -> eta pi+ pi- | backlog | blocked |
+| u | 421 | S032.95/2025 | d0_s032_95 | D0 decay mode 198 | D0 -> pi+ pi+ pi- pi- pi0 | supported | ready |
+| u | 421 | S032.586/2025 | d0_s032_586 | D0 decay mode 199 | D0 -> pi+ pi- pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.587/2025 | d0_s032_587 | D0 decay mode 200 | D0 -> pi+ pi+ pi- pi- pi0 pi0 | supported | ready |
+| u | 421 | S032.318/2025 | d0_s032_318 | D0 decay mode 201 | D0 -> eta pi+ pi- | supported | ready |
 | u | 421 | S032.593/2025 | d0_s032_593 | D0 decay mode 202 | D0 -> pi+ pi- rho(770)0 eta | incomplete | blocked |
 | u | 421 | S032.594/2025 | d0_s032_594 | D0 decay mode 203 | D0 -> pi- eta a_0(980)- pi+ | incomplete | blocked |
 | u | 421 | S032.595/2025 | d0_s032_595 | D0 decay mode 204 | D0 -> pi+ eta a_0(980)+ pi- | incomplete | blocked |
@@ -3206,21 +3206,21 @@
 | u | 421 | S032.598/2025 | d0_s032_598 | D0 decay mode 207 | D0 -> (pi+ pi-)(S-wave) eta | incomplete | blocked |
 | u | 421 | S032.319/2025 | d0_s032_319 | D0 decay mode 208 | D0 -> pi+ pi- | incomplete | blocked |
 | u | 421 | S032.562/2025 | d0_s032_562 | D0 decay mode 209 | D0 -> pi0 pi0 | incomplete | blocked |
-| u | 421 | S032.498/2025 | d0_s032_498 | D0 decay mode 210 | D0 -> eta pi0 pi0 | backlog | blocked |
-| u | 421 | S032.559/2025 | d0_s032_559 | D0 decay mode 211 | D0 -> pi+ pi- pi0 eta | backlog | blocked |
-| u | 421 | S032.584/2025 | d0_s032_584 | D0 decay mode 212 | D0 -> eta pi0 pi0 pi0 | backlog | blocked |
-| u | 421 | S032.585/2025 | d0_s032_585 | D0 decay mode 213 | D0 -> eta pi+ pi+ pi- pi- | backlog | blocked |
-| u | 421 | S032.96/2025 | d0_s032_96 | D0 decay mode 214 | D0 -> pi+ pi+ pi+ pi- pi- pi- | backlog | blocked |
+| u | 421 | S032.498/2025 | d0_s032_498 | D0 decay mode 210 | D0 -> eta pi0 pi0 | supported | ready |
+| u | 421 | S032.559/2025 | d0_s032_559 | D0 decay mode 211 | D0 -> pi+ pi- pi0 eta | supported | ready |
+| u | 421 | S032.584/2025 | d0_s032_584 | D0 decay mode 212 | D0 -> eta pi0 pi0 pi0 | supported | ready |
+| u | 421 | S032.585/2025 | d0_s032_585 | D0 decay mode 213 | D0 -> eta pi+ pi+ pi- pi- | supported | ready |
+| u | 421 | S032.96/2025 | d0_s032_96 | D0 decay mode 214 | D0 -> pi+ pi+ pi+ pi- pi- pi- | supported | ready |
 | u | 421 | S032.378/2025 | d0_s032_378 | D0 decay mode 215 | D0 -> eta^'(958) pi0 | backlog | blocked |
 | u | 421 | S032.379/2025 | d0_s032_379 | D0 decay mode 216 | D0 -> eta^'(958) pi+ pi- | backlog | blocked |
-| u | 421 | S032.380/2025 | d0_s032_380 | D0 decay mode 217 | D0 -> eta eta | backlog | blocked |
-| u | 421 | S032.499/2025 | d0_s032_499 | D0 decay mode 218 | D0 -> eta eta pi0 | backlog | blocked |
-| u | 421 | S032.582/2025 | d0_s032_582 | D0 decay mode 219 | D0 -> eta eta pi+ pi- | backlog | blocked |
-| u | 421 | S032.500/2025 | d0_s032_500 | D0 decay mode 220 | D0 -> eta eta eta | backlog | blocked |
+| u | 421 | S032.380/2025 | d0_s032_380 | D0 decay mode 217 | D0 -> eta eta | supported | ready |
+| u | 421 | S032.499/2025 | d0_s032_499 | D0 decay mode 218 | D0 -> eta eta pi0 | supported | ready |
+| u | 421 | S032.582/2025 | d0_s032_582 | D0 decay mode 219 | D0 -> eta eta pi+ pi- | supported | ready |
+| u | 421 | S032.500/2025 | d0_s032_500 | D0 decay mode 220 | D0 -> eta eta eta | supported | ready |
 | u | 421 | S032.381/2025 | d0_s032_381 | D0 decay mode 221 | D0 -> eta eta^'(958) | backlog | blocked |
-| u | 421 | S032.7/2025 | d0_s032_7 | D0 decay mode 222 | D0 -> K+ K- | backlog | blocked |
-| u | 421 | S032.35/2025 | d0_s032_35 | D0 decay mode 223 | D0 -> K0S K0S | backlog | blocked |
-| u | 421 | S032.93/2025 | d0_s032_93 | D0 decay mode 224 | D0 -> K0S K- pi+ | backlog | blocked |
+| u | 421 | S032.7/2025 | d0_s032_7 | D0 decay mode 222 | D0 -> K+ K- | supported | ready |
+| u | 421 | S032.35/2025 | d0_s032_35 | D0 decay mode 223 | D0 -> K0S K0S | supported | ready |
+| u | 421 | S032.93/2025 | d0_s032_93 | D0 decay mode 224 | D0 -> K0S K- pi+ | supported | ready |
 | u | 421 | S032.91/2025 | d0_s032_91 | D0 decay mode 225 | D0 -> K- pi+ Kbar^*(892)0 K0S | incomplete | blocked |
 | u | 421 | S032.412/2025 | d0_s032_412 | D0 decay mode 226 | D0 -> K0S pi+ K^*(892)+ K- | incomplete | blocked |
 | u | 421 | S032.417/2025 | d0_s032_417 | D0 decay mode 227 | D0 -> K- pi+ Kbar^*(1410)0 K0S | incomplete | blocked |
@@ -3231,7 +3231,7 @@
 | u | 421 | S032.424/2025 | d0_s032_424 | D0 decay mode 232 | D0 -> K0S K- a_0(1450)- pi+ | incomplete | blocked |
 | u | 421 | S032.429/2025 | d0_s032_429 | D0 decay mode 233 | D0 -> K0S K- a_2(1320)- pi+ | incomplete | blocked |
 | u | 421 | S032.425/2025 | d0_s032_425 | D0 decay mode 234 | D0 -> K0S K- rho(1450)- pi+ | incomplete | blocked |
-| u | 421 | S032.123/2025 | d0_s032_123 | D0 decay mode 235 | D0 -> K0S K+ pi- | backlog | blocked |
+| u | 421 | S032.123/2025 | d0_s032_123 | D0 decay mode 235 | D0 -> K0S K+ pi- | supported | ready |
 | u | 421 | S032.124/2025 | d0_s032_124 | D0 decay mode 236 | D0 -> K+ pi- K^*(892)0 K0S | incomplete | blocked |
 | u | 421 | S032.413/2025 | d0_s032_413 | D0 decay mode 237 | D0 -> K0S pi- K^*(892)- K+ | incomplete | blocked |
 | u | 421 | S032.418/2025 | d0_s032_418 | D0 decay mode 238 | D0 -> K+ pi+ K^*(1410)0 K0S | incomplete | blocked |
@@ -3241,7 +3241,7 @@
 | u | 421 | S032.426/2025 | d0_s032_426 | D0 decay mode 242 | D0 -> K0S K+ a_0(980)+ pi- | incomplete | blocked |
 | u | 421 | S032.427/2025 | d0_s032_427 | D0 decay mode 243 | D0 -> K0S K+ a_0(1450)+ pi- | incomplete | blocked |
 | u | 421 | S032.428/2025 | d0_s032_428 | D0 decay mode 244 | D0 -> K0S K+ rho(1700)+ pi- | incomplete | blocked |
-| u | 421 | S032.243/2025 | d0_s032_243 | D0 decay mode 245 | D0 -> K+ K- pi0 | backlog | blocked |
+| u | 421 | S032.243/2025 | d0_s032_243 | D0 decay mode 245 | D0 -> K+ K- pi0 | supported | ready |
 | u | 421 | S032.344/2025 | d0_s032_344 | D0 decay mode 246 | D0 -> K+ pi0 K^*(892)+ K- K^*(892)+ | incomplete | blocked |
 | u | 421 | S032.345/2025 | d0_s032_345 | D0 decay mode 247 | D0 -> K- pi0 K^*(892)- K+ K^*(892)- | incomplete | blocked |
 | u | 421 | S032.364/2025 | d0_s032_364 | D0 decay mode 248 | D0 -> (K+ pi0)(S-wave) K- | incomplete | blocked |
@@ -3249,13 +3249,13 @@
 | u | 421 | S032.366/2025 | d0_s032_366 | D0 decay mode 250 | D0 -> K+ K- f_0(980) pi0 | incomplete | blocked |
 | u | 421 | S032.346/2025 | d0_s032_346 | D0 decay mode 251 | D0 -> K+ K- phi pi0 phi | incomplete | blocked |
 | u | 421 | S032.347/2025 | d0_s032_347 | D0 decay mode 252 | D0 -> K+ K- pi0 nonresonant | incomplete | blocked |
-| u | 421 | S032.242/2025 | d0_s032_242 | D0 decay mode 253 | D0 -> K0S K0S pi0 | backlog | blocked |
-| u | 421 | S032.554/2025 | d0_s032_554 | D0 decay mode 254 | D0 -> K+ K- eta | backlog | blocked |
-| u | 421 | S032.569/2025 | d0_s032_569 | D0 decay mode 255 | D0 -> phi(1020) eta | backlog | blocked |
+| u | 421 | S032.242/2025 | d0_s032_242 | D0 decay mode 253 | D0 -> K0S K0S pi0 | supported | ready |
+| u | 421 | S032.554/2025 | d0_s032_554 | D0 decay mode 254 | D0 -> K+ K- eta | supported | ready |
+| u | 421 | S032.569/2025 | d0_s032_569 | D0 decay mode 255 | D0 -> phi(1020) eta | supported | ready |
 | u | 421 | S032.568/2025 | d0_s032_568 | D0 decay mode 256 | D0 -> K+ K- eta nonresonant | incomplete | blocked |
-| u | 421 | S032.555/2025 | d0_s032_555 | D0 decay mode 257 | D0 -> K0S K0S eta | backlog | blocked |
-| u | 421 | S032.563/2025 | d0_s032_563 | D0 decay mode 258 | D0 -> K+ K- pi0 pi0 | backlog | blocked |
-| u | 421 | S032.63/2025 | d0_s032_63 | D0 decay mode 259 | D0 -> K+ K- pi+ pi- | backlog | blocked |
+| u | 421 | S032.555/2025 | d0_s032_555 | D0 decay mode 257 | D0 -> K0S K0S eta | supported | ready |
+| u | 421 | S032.563/2025 | d0_s032_563 | D0 decay mode 258 | D0 -> K+ K- pi0 pi0 | supported | ready |
+| u | 421 | S032.63/2025 | d0_s032_63 | D0 decay mode 259 | D0 -> K+ K- pi+ pi- | supported | ready |
 | u | 421 | S032.115/2025 | d0_s032_115 | D0 decay mode 260 | D0 -> phi (pi+ pi-)(S-wave) , phi -> K+ K- | incomplete | blocked |
 | u | 421 | S032.134/2025 | d0_s032_134 | D0 decay mode 261 | D0 -> (phi rho0)(S-wave) , phi -> K+ K- | incomplete | blocked |
 | u | 421 | S032.461/2025 | d0_s032_461 | D0 decay mode 262 | D0 -> (phi rho0 )(P-wave) , phi -> K+ K- | incomplete | blocked |
@@ -3282,65 +3282,65 @@
 | u | 421 | S032.403/2025 | d0_s032_403 | D0 decay mode 283 | D0 -> pi- K^*(1410)- K+ | incomplete | blocked |
 | u | 421 | S032.468/2025 | d0_s032_468 | D0 decay mode 284 | D0 -> K+ pi- pi+ K- | incomplete | blocked |
 | u | 421 | S032.469/2025 | d0_s032_469 | D0 decay mode 285 | D0 -> K+ K- pi+ pi- non-resonant | incomplete | blocked |
-| u | 421 | S032.215/2025 | d0_s032_215 | D0 decay mode 286 | D0 -> K0S K0S pi+ pi- | backlog | blocked |
-| u | 421 | S032.564/2025 | d0_s032_564 | D0 decay mode 287 | D0 -> K0S K- pi+ pi0 | backlog | blocked |
-| u | 421 | S032.565/2025 | d0_s032_565 | D0 decay mode 288 | D0 -> K0S K+ pi- pi0 | backlog | blocked |
-| u | 421 | S032.178/2025 | d0_s032_178 | D0 decay mode 289 | D0 -> K0S K- pi+ pi+ pi- | backlog | blocked |
-| u | 421 | S032.131/2025 | d0_s032_131 | D0 decay mode 290 | D0 -> K+ K- pi+ pi- pi0 | backlog | blocked |
-| u | 421 | S032.212/2025 | d0_s032_212 | D0 decay mode 291 | D0 -> phi pi0 | backlog | blocked |
-| u | 421 | S032.213/2025 | d0_s032_213 | D0 decay mode 292 | D0 -> phi eta | backlog | blocked |
+| u | 421 | S032.215/2025 | d0_s032_215 | D0 decay mode 286 | D0 -> K0S K0S pi+ pi- | supported | ready |
+| u | 421 | S032.564/2025 | d0_s032_564 | D0 decay mode 287 | D0 -> K0S K- pi+ pi0 | supported | ready |
+| u | 421 | S032.565/2025 | d0_s032_565 | D0 decay mode 288 | D0 -> K0S K+ pi- pi0 | supported | ready |
+| u | 421 | S032.178/2025 | d0_s032_178 | D0 decay mode 289 | D0 -> K0S K- pi+ pi+ pi- | supported | ready |
+| u | 421 | S032.131/2025 | d0_s032_131 | D0 decay mode 290 | D0 -> K+ K- pi+ pi- pi0 | supported | ready |
+| u | 421 | S032.212/2025 | d0_s032_212 | D0 decay mode 291 | D0 -> phi pi0 | supported | ready |
+| u | 421 | S032.213/2025 | d0_s032_213 | D0 decay mode 292 | D0 -> phi eta | supported | ready |
 | u | 421 | S032.214/2025 | d0_s032_214 | D0 decay mode 293 | D0 -> phi | incomplete | blocked |
 | u | 421 | S032.245/2025 | d0_s032_245 | D0 decay mode 294 | D0 -> gamma | incomplete | blocked |
 | u | 421 | S032.246/2025 | d0_s032_246 | D0 decay mode 295 | D0 -> gamma | incomplete | blocked |
-| u | 421 | S032.247/2025 | d0_s032_247 | D0 decay mode 296 | D0 -> phi gamma | backlog | blocked |
+| u | 421 | S032.247/2025 | d0_s032_247 | D0 decay mode 296 | D0 -> phi gamma | supported | ready |
 | u | 421 | S032.248/2025 | d0_s032_248 | D0 decay mode 297 | D0 -> Kbar^*(892)0 gamma | backlog | blocked |
 | u | 421 | S032.241/2025 | d0_s032_241 | D0 decay mode 298 | D0 -> K+ lepton- nubar_lepton via Dbar0 | incomplete | blocked |
 | u | 421 | S032.311/2025 | d0_s032_311 | D0 decay mode 299 | D0 -> K+ or K^*(892)+ e- nubar_e via Dbar0 | incomplete | blocked |
-| u | 421 | S032.50/2025 | d0_s032_50 | D0 decay mode 300 | D0 -> K+ pi- | backlog | blocked |
+| u | 421 | S032.50/2025 | d0_s032_50 | D0 decay mode 300 | D0 -> K+ pi- | supported | ready |
 | u | 421 | S032.362/2025 | d0_s032_362 | D0 decay mode 301 | D0 -> K+ pi- via DCS | incomplete | blocked |
 | u | 421 | S032.6/2025 | d0_s032_6 | D0 decay mode 302 | D0 -> K+ pi- via Dbar0 | incomplete | blocked |
 | u | 421 | S032.339/2025 | d0_s032_339 | D0 decay mode 303 | D0 -> K0S pi+ pi- in D0 -> Dbar0 | incomplete | blocked |
 | u | 421 | S032.287/2025 | d0_s032_287 | D0 decay mode 304 | D0 -> K0S pi+ K^*(892)+ pi- | incomplete | blocked |
 | u | 421 | S032.385/2025 | d0_s032_385 | D0 decay mode 305 | D0 -> K0S pi+ K_0^*(1430)+ pi- | incomplete | blocked |
 | u | 421 | S032.386/2025 | d0_s032_386 | D0 decay mode 306 | D0 -> K0S pi+ K_2^*(1430)+ pi- | incomplete | blocked |
-| u | 421 | S032.277/2025 | d0_s032_277 | D0 decay mode 307 | D0 -> K+ pi- pi0 | backlog | blocked |
+| u | 421 | S032.277/2025 | d0_s032_277 | D0 decay mode 307 | D0 -> K+ pi- pi0 | supported | ready |
 | u | 421 | S032.343/2025 | d0_s032_343 | D0 decay mode 308 | D0 -> K+ pi- pi0 via Dbar0 | incomplete | blocked |
-| u | 421 | S032.577/2025 | d0_s032_577 | D0 decay mode 309 | D0 -> K+ pi- pi0 pi0 | backlog | blocked |
+| u | 421 | S032.577/2025 | d0_s032_577 | D0 decay mode 309 | D0 -> K+ pi- pi0 pi0 | supported | ready |
 | u | 421 | S032.432/2025 | d0_s032_432 | D0 decay mode 310 | D0 -> K+ pi+ 2pi- via DCS | incomplete | blocked |
-| u | 421 | S032.51/2025 | d0_s032_51 | D0 decay mode 311 | D0 -> K+ pi+ pi- pi- | backlog | blocked |
+| u | 421 | S032.51/2025 | d0_s032_51 | D0 decay mode 311 | D0 -> K+ pi+ pi- pi- | supported | ready |
 | u | 421 | S032.222/2025 | d0_s032_222 | D0 decay mode 312 | D0 -> K+ pi+ 2pi- via Dbar0 | incomplete | blocked |
 | u | 421 | S032.244/2025 | d0_s032_244 | D0 decay mode 313 | D0 -> K+ pi- or K+ pi+ 2pi- via Dbar0 | incomplete | blocked |
 | u | 421 | S032.26/2025 | d0_s032_26 | D0 decay mode 314 | D0 -> mu- anything via Dbar0 | incomplete | blocked |
-| u | 421 | S032.45/2025 | d0_s032_45 | D0 decay mode 315 | D0 -> gamma gamma | backlog | blocked |
-| u | 421 | S032.39/2025 | d0_s032_39 | D0 decay mode 316 | D0 -> e+ e- | backlog | blocked |
-| u | 421 | S032.28/2025 | d0_s032_28 | D0 decay mode 317 | D0 -> mu+ mu- | backlog | blocked |
-| u | 421 | S032.225/2025 | d0_s032_225 | D0 decay mode 318 | D0 -> pi0 e+ e- | backlog | blocked |
-| u | 421 | S032.216/2025 | d0_s032_216 | D0 decay mode 319 | D0 -> pi0 mu+ mu- | backlog | blocked |
+| u | 421 | S032.45/2025 | d0_s032_45 | D0 decay mode 315 | D0 -> gamma gamma | supported | ready |
+| u | 421 | S032.39/2025 | d0_s032_39 | D0 decay mode 316 | D0 -> e+ e- | supported | ready |
+| u | 421 | S032.28/2025 | d0_s032_28 | D0 decay mode 317 | D0 -> mu+ mu- | supported | ready |
+| u | 421 | S032.225/2025 | d0_s032_225 | D0 decay mode 318 | D0 -> pi0 e+ e- | supported | ready |
+| u | 421 | S032.216/2025 | d0_s032_216 | D0 decay mode 319 | D0 -> pi0 mu+ mu- | supported | ready |
 | u | 421 | S032.571/2025 | d0_s032_571 | D0 decay mode 320 | D0 -> pi0 | incomplete | blocked |
-| u | 421 | S032.226/2025 | d0_s032_226 | D0 decay mode 321 | D0 -> eta e+ e- | backlog | blocked |
-| u | 421 | S032.227/2025 | d0_s032_227 | D0 decay mode 322 | D0 -> eta mu+ mu- | backlog | blocked |
-| u | 421 | S032.262/2025 | d0_s032_262 | D0 decay mode 323 | D0 -> pi+ pi- e+ e- | backlog | blocked |
+| u | 421 | S032.226/2025 | d0_s032_226 | D0 decay mode 321 | D0 -> eta e+ e- | supported | ready |
+| u | 421 | S032.227/2025 | d0_s032_227 | D0 decay mode 322 | D0 -> eta mu+ mu- | supported | ready |
+| u | 421 | S032.262/2025 | d0_s032_262 | D0 decay mode 323 | D0 -> pi+ pi- e+ e- | supported | ready |
 | u | 421 | S032.52/2025 | d0_s032_52 | D0 decay mode 324 | D0 -> e+ e- | incomplete | blocked |
-| u | 421 | S032.263/2025 | d0_s032_263 | D0 decay mode 325 | D0 -> pi+ pi- mu+ mu- | backlog | blocked |
+| u | 421 | S032.263/2025 | d0_s032_263 | D0 decay mode 325 | D0 -> pi+ pi- mu+ mu- | supported | ready |
 | u | 421 | S032.471/2025 | d0_s032_471 | D0 decay mode 326 | D0 -> pi+ pi- mu+ mu- (non-res) | incomplete | blocked |
 | u | 421 | S032.53/2025 | d0_s032_53 | D0 decay mode 327 | D0 -> mu+ mu- | incomplete | blocked |
 | u | 421 | S032.228/2025 | d0_s032_228 | D0 decay mode 328 | D0 -> e+ e- | incomplete | blocked |
 | u | 421 | S032.229/2025 | d0_s032_229 | D0 decay mode 329 | D0 -> mu+ mu- | incomplete | blocked |
-| u | 421 | S032.266/2025 | d0_s032_266 | D0 decay mode 330 | D0 -> K- K+ e+ e- | backlog | blocked |
-| u | 421 | S032.230/2025 | d0_s032_230 | D0 decay mode 331 | D0 -> phi e+ e- | backlog | blocked |
-| u | 421 | S032.267/2025 | d0_s032_267 | D0 decay mode 332 | D0 -> K- K+ mu+ mu- | backlog | blocked |
+| u | 421 | S032.266/2025 | d0_s032_266 | D0 decay mode 330 | D0 -> K- K+ e+ e- | supported | ready |
+| u | 421 | S032.230/2025 | d0_s032_230 | D0 decay mode 331 | D0 -> phi e+ e- | supported | ready |
+| u | 421 | S032.267/2025 | d0_s032_267 | D0 decay mode 332 | D0 -> K- K+ mu+ mu- | supported | ready |
 | u | 421 | S032.473/2025 | d0_s032_473 | D0 decay mode 333 | D0 -> K- K+ mu+ mu- (non-res) | incomplete | blocked |
-| u | 421 | S032.231/2025 | d0_s032_231 | D0 decay mode 334 | D0 -> phi mu+ mu- | backlog | blocked |
-| u | 421 | S032.67/2025 | d0_s032_67 | D0 decay mode 335 | D0 -> Kbar0 e+ e- | backlog | blocked |
-| u | 421 | S032.217/2025 | d0_s032_217 | D0 decay mode 336 | D0 -> Kbar0 mu+ mu- | backlog | blocked |
-| u | 421 | S032.264/2025 | d0_s032_264 | D0 decay mode 337 | D0 -> K- pi+ e+ e- | backlog | blocked |
+| u | 421 | S032.231/2025 | d0_s032_231 | D0 decay mode 334 | D0 -> phi mu+ mu- | supported | ready |
+| u | 421 | S032.67/2025 | d0_s032_67 | D0 decay mode 335 | D0 -> Kbar0 e+ e- | supported | ready |
+| u | 421 | S032.217/2025 | d0_s032_217 | D0 decay mode 336 | D0 -> Kbar0 mu+ mu- | supported | ready |
+| u | 421 | S032.264/2025 | d0_s032_264 | D0 decay mode 337 | D0 -> K- pi+ e+ e- | supported | ready |
 | u | 421 | S032.551/2025 | d0_s032_551 | D0 decay mode 338 | D0 -> K- pi+ e+ e- , 675 < mass(e e) < 875 MeV | incomplete | blocked |
 | u | 421 | S032.552/2025 | d0_s032_552 | D0 decay mode 339 | D0 -> K- pi+ e+ e- , 1.005 < mass(e e) < 1.035 GeV | incomplete | blocked |
 | u | 421 | S032.232/2025 | d0_s032_232 | D0 decay mode 340 | D0 -> Kbar^*(892)0 e+ e- | backlog | blocked |
-| u | 421 | S032.265/2025 | d0_s032_265 | D0 decay mode 341 | D0 -> K- pi+ mu+ mu- | backlog | blocked |
+| u | 421 | S032.265/2025 | d0_s032_265 | D0 decay mode 341 | D0 -> K- pi+ mu+ mu- | supported | ready |
 | u | 421 | S032.434/2025 | d0_s032_434 | D0 decay mode 342 | D0 -> K- pi+ mu+ mu- , 675 < mass(mu mu) < 875 MeV | incomplete | blocked |
 | u | 421 | S032.233/2025 | d0_s032_233 | D0 decay mode 343 | D0 -> Kbar^*(892)0 mu+ mu- | backlog | blocked |
-| u | 421 | S032.218/2025 | d0_s032_218 | D0 decay mode 344 | D0 -> pi+ pi- pi0 mu+ mu- | backlog | blocked |
+| u | 421 | S032.218/2025 | d0_s032_218 | D0 decay mode 344 | D0 -> pi+ pi- pi0 mu+ mu- | supported | ready |
 | u | 421 | S032.40/2025 | d0_s032_40 | D0 decay mode 345 | D0 -> mu+- e-+ | incomplete | blocked |
 | u | 421 | S032.234/2025 | d0_s032_234 | D0 decay mode 346 | D0 -> pi0 | incomplete | blocked |
 | u | 421 | S032.235/2025 | d0_s032_235 | D0 decay mode 347 | D0 -> eta | incomplete | blocked |
@@ -3352,19 +3352,19 @@
 | u | 421 | S032.239/2025 | d0_s032_239 | D0 decay mode 353 | D0 -> Kbar0 | incomplete | blocked |
 | u | 421 | S032.269/2025 | d0_s032_269 | D0 decay mode 354 | D0 -> K- pi+ | incomplete | blocked |
 | u | 421 | S032.240/2025 | d0_s032_240 | D0 decay mode 355 | D0 -> Kbar^*(892)0 | incomplete | blocked |
-| u | 421 | S032.253/2025 | d0_s032_253 | D0 decay mode 356 | D0 -> pi- pi- e+ e+ | backlog | blocked |
-| u | 421 | S032.254/2025 | d0_s032_254 | D0 decay mode 357 | D0 -> pi- pi- mu+ mu+ | backlog | blocked |
-| u | 421 | S032.255/2025 | d0_s032_255 | D0 decay mode 358 | D0 -> K- pi- e+ e+ | backlog | blocked |
-| u | 421 | S032.256/2025 | d0_s032_256 | D0 decay mode 359 | D0 -> K- pi- mu+ mu+ | backlog | blocked |
-| u | 421 | S032.257/2025 | d0_s032_257 | D0 decay mode 360 | D0 -> K- K- e+ e+ | backlog | blocked |
-| u | 421 | S032.258/2025 | d0_s032_258 | D0 decay mode 361 | D0 -> K- K- mu+ mu+ | backlog | blocked |
-| u | 421 | S032.259/2025 | d0_s032_259 | D0 decay mode 362 | D0 -> pi- pi- e+ mu+ | backlog | blocked |
-| u | 421 | S032.260/2025 | d0_s032_260 | D0 decay mode 363 | D0 -> K- pi- e+ mu+ | backlog | blocked |
-| u | 421 | S032.261/2025 | d0_s032_261 | D0 decay mode 364 | D0 -> K- K- e+ mu+ | backlog | blocked |
-| u | 421 | S032.387/2025 | d0_s032_387 | D0 decay mode 365 | D0 -> p e- | backlog | blocked |
-| u | 421 | S032.388/2025 | d0_s032_388 | D0 decay mode 366 | D0 -> pbar e+ | backlog | blocked |
-| u | 421 | S032.591/2025 | d0_s032_591 | D0 decay mode 367 | D0 -> p mu- | backlog | blocked |
-| u | 421 | S032.592/2025 | d0_s032_592 | D0 decay mode 368 | D0 -> pbar mu+ | backlog | blocked |
+| u | 421 | S032.253/2025 | d0_s032_253 | D0 decay mode 356 | D0 -> pi- pi- e+ e+ | supported | ready |
+| u | 421 | S032.254/2025 | d0_s032_254 | D0 decay mode 357 | D0 -> pi- pi- mu+ mu+ | supported | ready |
+| u | 421 | S032.255/2025 | d0_s032_255 | D0 decay mode 358 | D0 -> K- pi- e+ e+ | supported | ready |
+| u | 421 | S032.256/2025 | d0_s032_256 | D0 decay mode 359 | D0 -> K- pi- mu+ mu+ | supported | ready |
+| u | 421 | S032.257/2025 | d0_s032_257 | D0 decay mode 360 | D0 -> K- K- e+ e+ | supported | ready |
+| u | 421 | S032.258/2025 | d0_s032_258 | D0 decay mode 361 | D0 -> K- K- mu+ mu+ | supported | ready |
+| u | 421 | S032.259/2025 | d0_s032_259 | D0 decay mode 362 | D0 -> pi- pi- e+ mu+ | supported | ready |
+| u | 421 | S032.260/2025 | d0_s032_260 | D0 decay mode 363 | D0 -> K- pi- e+ mu+ | supported | ready |
+| u | 421 | S032.261/2025 | d0_s032_261 | D0 decay mode 364 | D0 -> K- K- e+ mu+ | supported | ready |
+| u | 421 | S032.387/2025 | d0_s032_387 | D0 decay mode 365 | D0 -> p e- | supported | ready |
+| u | 421 | S032.388/2025 | d0_s032_388 | D0 decay mode 366 | D0 -> pbar e+ | supported | ready |
+| u | 421 | S032.591/2025 | d0_s032_591 | D0 decay mode 367 | D0 -> p mu- | supported | ready |
+| u | 421 | S032.592/2025 | d0_s032_592 | D0 decay mode 368 | D0 -> pbar mu+ | supported | ready |
 | u | 421 | S032.19/2025 | d0_s032_19 | D0 decay mode 369 | D0 -> Unaccounted decay modes | incomplete | blocked |
 | u | 423 | M061.1/2025 | d_2007_0_m061_1 | D^*(2007)0 decay mode 1 | D^*(2007)0 -> D0 pi0 | backlog | blocked |
 | u | 423 | M061.2/2025 | d_2007_0_m061_2 | D^*(2007)0 decay mode 2 | D^*(2007)0 -> D0 gamma | backlog | blocked |
@@ -3993,10 +3993,10 @@
 | u | -433 | S074.3/2025 | d_s_minus_s074_3 | D_s^*()- decay mode 3 | D_s^*()- -> D_s()+ e+ e- | backlog | blocked |
 | u | -433 | S074.4/2025 | d_s_minus_s074_4 | D_s^*()- decay mode 4 | D_s^*()- -> e+ nu_e | backlog | blocked |
 | u | 0 | M229.1/2025 | dbar_3000_0_m229_1 | Dbar(3000)0 decay mode 1 | Dbar(3000)0 -> pi- | incomplete | blocked |
-| u | -421 | S032.332/2025 | dbar0_s032_332 | Dbar0 decay mode 1 | Dbar0 -> 0-prongs | backlog | blocked |
-| u | -421 | S032.333/2025 | dbar0_s032_333 | Dbar0 decay mode 2 | Dbar0 -> 2-prongs | backlog | blocked |
-| u | -421 | S032.334/2025 | dbar0_s032_334 | Dbar0 decay mode 3 | Dbar0 -> 4-prongs | backlog | blocked |
-| u | -421 | S032.335/2025 | dbar0_s032_335 | Dbar0 decay mode 4 | Dbar0 -> 6-prongs | backlog | blocked |
+| u | -421 | S032.332/2025 | dbar0_s032_332 | Dbar0 decay mode 1 | Dbar0 -> 0-prongs | supported | ready |
+| u | -421 | S032.333/2025 | dbar0_s032_333 | Dbar0 decay mode 2 | Dbar0 -> 2-prongs | supported | ready |
+| u | -421 | S032.334/2025 | dbar0_s032_334 | Dbar0 decay mode 3 | Dbar0 -> 4-prongs | supported | ready |
+| u | -421 | S032.335/2025 | dbar0_s032_335 | Dbar0 decay mode 4 | Dbar0 -> 6-prongs | supported | ready |
 | u | -421 | S032.10/2025 | dbar0_s032_10 | Dbar0 decay mode 5 | Dbar0 -> e+ | incomplete | blocked |
 | u | -421 | S032.27/2025 | dbar0_s032_27 | Dbar0 decay mode 6 | Dbar0 -> mu+ | incomplete | blocked |
 | u | -421 | S032.11/2025 | dbar0_s032_11 | Dbar0 decay mode 7 | Dbar0 -> K- | incomplete | blocked |
@@ -4012,36 +4012,36 @@
 | u | -421 | S032.589/2025 | dbar0_s032_589 | Dbar0 decay mode 17 | Dbar0 -> pi+ pi+ pi- anything | incomplete | blocked |
 | u | -421 | S032.433/2025 | dbar0_s032_433 | Dbar0 decay mode 18 | Dbar0 -> invisibles | incomplete | blocked |
 | u | -421 | S032.196/2025 | dbar0_s032_196 | Dbar0 decay mode 19 | Dbar0 -> K- | incomplete | blocked |
-| u | -421 | S032.46/2025 | dbar0_s032_46 | Dbar0 decay mode 20 | Dbar0 -> K- e+ nu_e | backlog | blocked |
-| u | -421 | S032.77/2025 | dbar0_s032_77 | Dbar0 decay mode 21 | Dbar0 -> K- mu+ nu_mu | backlog | blocked |
+| u | -421 | S032.46/2025 | dbar0_s032_46 | Dbar0 decay mode 20 | Dbar0 -> K- e+ nu_e | supported | ready |
+| u | -421 | S032.77/2025 | dbar0_s032_77 | Dbar0 decay mode 21 | Dbar0 -> K- mu+ nu_mu | supported | ready |
 | u | -421 | S032.129/2025 | dbar0_s032_129 | Dbar0 decay mode 22 | Dbar0 -> K^*(892)- e+ nu_e | backlog | blocked |
 | u | -421 | S032.307/2025 | dbar0_s032_307 | Dbar0 decay mode 23 | Dbar0 -> K^*(892)- mu+ nu_mu | backlog | blocked |
-| u | -421 | S032.127/2025 | dbar0_s032_127 | Dbar0 decay mode 24 | Dbar0 -> K- pi0 e+ nu_e | backlog | blocked |
-| u | -421 | S032.128/2025 | dbar0_s032_128 | Dbar0 decay mode 25 | Dbar0 -> Kbar0 pi- e+ nu_e | backlog | blocked |
+| u | -421 | S032.127/2025 | dbar0_s032_127 | Dbar0 decay mode 24 | Dbar0 -> K- pi0 e+ nu_e | supported | ready |
+| u | -421 | S032.128/2025 | dbar0_s032_128 | Dbar0 decay mode 25 | Dbar0 -> Kbar0 pi- e+ nu_e | supported | ready |
 | u | -421 | S032.550/2025 | dbar0_s032_550 | Dbar0 decay mode 26 | Dbar0 -> (Kbar0 pi- ) (S-wave) e+ nu_e | incomplete | blocked |
-| u | -421 | S032.602/2025 | dbar0_s032_602 | Dbar0 decay mode 27 | Dbar0 -> K- pi0 mu+ nu_mu | backlog | blocked |
+| u | -421 | S032.602/2025 | dbar0_s032_602 | Dbar0 decay mode 27 | Dbar0 -> K- pi0 mu+ nu_mu | supported | ready |
 | u | -421 | S032.600/2025 | dbar0_s032_600 | Dbar0 decay mode 28 | Dbar0 -> (K- pi0 ) (S-wave) mu+ nu_mu | incomplete | blocked |
-| u | -421 | S032.601/2025 | dbar0_s032_601 | Dbar0 decay mode 29 | Dbar0 -> K- eta e+ nu_e | backlog | blocked |
-| u | -421 | S032.360/2025 | dbar0_s032_360 | Dbar0 decay mode 30 | Dbar0 -> K- pi+ pi- e+ nu_e | backlog | blocked |
+| u | -421 | S032.601/2025 | dbar0_s032_601 | Dbar0 decay mode 29 | Dbar0 -> K- eta e+ nu_e | supported | ready |
+| u | -421 | S032.360/2025 | dbar0_s032_360 | Dbar0 decay mode 30 | Dbar0 -> K- pi+ pi- e+ nu_e | supported | ready |
 | u | -421 | S032.361/2025 | dbar0_s032_361 | Dbar0 decay mode 31 | Dbar0 -> K_1(1270)- e+ nu_e | backlog | blocked |
 | u | -421 | S032.599/2025 | dbar0_s032_599 | Dbar0 decay mode 32 | Dbar0 -> K0S pi- e+ pi0 nu_e | incomplete | blocked |
-| u | -421 | S032.183/2025 | dbar0_s032_183 | Dbar0 decay mode 33 | Dbar0 -> K- pi+ pi- mu+ nu_mu | backlog | blocked |
+| u | -421 | S032.183/2025 | dbar0_s032_183 | Dbar0 decay mode 33 | Dbar0 -> K- pi+ pi- mu+ nu_mu | supported | ready |
 | u | -421 | S032.184/2025 | dbar0_s032_184 | Dbar0 decay mode 34 | Dbar0 -> (Kbar^*(892) pi)- mu+ nu_mu | incomplete | blocked |
-| u | -421 | S032.49/2025 | dbar0_s032_49 | Dbar0 decay mode 35 | Dbar0 -> pi- e+ nu_e | backlog | blocked |
-| u | -421 | S032.308/2025 | dbar0_s032_308 | Dbar0 decay mode 36 | Dbar0 -> pi- mu+ nu_mu | backlog | blocked |
-| u | -421 | S032.549/2025 | dbar0_s032_549 | Dbar0 decay mode 37 | Dbar0 -> pi- pi0 e+ nu_e | backlog | blocked |
+| u | -421 | S032.49/2025 | dbar0_s032_49 | Dbar0 decay mode 35 | Dbar0 -> pi- e+ nu_e | supported | ready |
+| u | -421 | S032.308/2025 | dbar0_s032_308 | Dbar0 decay mode 36 | Dbar0 -> pi- mu+ nu_mu | supported | ready |
+| u | -421 | S032.549/2025 | dbar0_s032_549 | Dbar0 decay mode 37 | Dbar0 -> pi- pi0 e+ nu_e | supported | ready |
 | u | -421 | S032.320/2025 | dbar0_s032_320 | Dbar0 decay mode 38 | Dbar0 -> e+ nu_e | incomplete | blocked |
 | u | -421 | S032.570/2025 | dbar0_s032_570 | Dbar0 decay mode 39 | Dbar0 -> mu+ nu_mu | incomplete | blocked |
 | u | -421 | S032.495/2025 | dbar0_s032_495 | Dbar0 decay mode 40 | Dbar0 -> eta pi- e+ nu_e | incomplete | blocked |
-| u | -421 | S032.590/2025 | dbar0_s032_590 | Dbar0 decay mode 41 | Dbar0 -> K0S K- e+ nu_e | backlog | blocked |
+| u | -421 | S032.590/2025 | dbar0_s032_590 | Dbar0 decay mode 41 | Dbar0 -> K0S K- e+ nu_e | supported | ready |
 | u | -421 | S032.561/2025 | dbar0_s032_561 | Dbar0 decay mode 42 | Dbar0 -> b_1(1235)- pi- e+ nu_e | incomplete | blocked |
-| u | -421 | S032.1/2025 | dbar0_s032_1 | Dbar0 decay mode 43 | Dbar0 -> K- pi+ | backlog | blocked |
-| u | -421 | S032.9/2025 | dbar0_s032_9 | Dbar0 decay mode 44 | Dbar0 -> K0S pi0 | backlog | blocked |
-| u | -421 | S032.363/2025 | dbar0_s032_363 | Dbar0 decay mode 45 | Dbar0 -> K0L pi0 | backlog | blocked |
-| u | -421 | S032.579/2025 | dbar0_s032_579 | Dbar0 decay mode 46 | Dbar0 -> K0L eta | backlog | blocked |
+| u | -421 | S032.1/2025 | dbar0_s032_1 | Dbar0 decay mode 43 | Dbar0 -> K- pi+ | supported | ready |
+| u | -421 | S032.9/2025 | dbar0_s032_9 | Dbar0 decay mode 44 | Dbar0 -> K0S pi0 | supported | ready |
+| u | -421 | S032.363/2025 | dbar0_s032_363 | Dbar0 decay mode 45 | Dbar0 -> K0L pi0 | supported | ready |
+| u | -421 | S032.579/2025 | dbar0_s032_579 | Dbar0 decay mode 46 | Dbar0 -> K0L eta | supported | ready |
 | u | -421 | S032.581/2025 | dbar0_s032_581 | Dbar0 decay mode 47 | Dbar0 -> K0L | incomplete | blocked |
 | u | -421 | S032.580/2025 | dbar0_s032_580 | Dbar0 decay mode 48 | Dbar0 -> K0L | incomplete | blocked |
-| u | -421 | S032.3/2025 | dbar0_s032_3 | Dbar0 decay mode 49 | Dbar0 -> K0S pi+ pi- | backlog | blocked |
+| u | -421 | S032.3/2025 | dbar0_s032_3 | Dbar0 decay mode 49 | Dbar0 -> K0S pi+ pi- | supported | ready |
 | u | -421 | S032.17/2025 | dbar0_s032_17 | Dbar0 decay mode 50 | Dbar0 -> K0S | incomplete | blocked |
 | u | -421 | S032.285/2025 | dbar0_s032_285 | Dbar0 decay mode 51 | Dbar0 -> pi+ pi- K0S | incomplete | blocked |
 | u | -421 | S032.384/2025 | dbar0_s032_384 | Dbar0 decay mode 52 | Dbar0 -> K0S (pi+ pi-)(S-wave) | incomplete | blocked |
@@ -4056,7 +4056,7 @@
 | u | -421 | S032.382/2025 | dbar0_s032_382 | Dbar0 decay mode 61 | Dbar0 -> K0S pi+ K_0^*(1430)+ pi- | incomplete | blocked |
 | u | -421 | S032.383/2025 | dbar0_s032_383 | Dbar0 decay mode 62 | Dbar0 -> K0S pi+ K_2^*(1430)+ pi- | incomplete | blocked |
 | u | -421 | S032.33/2025 | dbar0_s032_33 | Dbar0 decay mode 63 | Dbar0 -> K0S pi+ pi- nonresonant | incomplete | blocked |
-| u | -421 | S032.8/2025 | dbar0_s032_8 | Dbar0 decay mode 64 | Dbar0 -> K- pi+ pi0 | backlog | blocked |
+| u | -421 | S032.8/2025 | dbar0_s032_8 | Dbar0 decay mode 64 | Dbar0 -> K- pi+ pi0 | supported | ready |
 | u | -421 | S032.16/2025 | dbar0_s032_16 | Dbar0 decay mode 65 | Dbar0 -> K- | incomplete | blocked |
 | u | -421 | S032.271/2025 | dbar0_s032_271 | Dbar0 decay mode 66 | Dbar0 -> pi+ pi0 K- rho(1700)+ | incomplete | blocked |
 | u | -421 | S032.83/2025 | dbar0_s032_83 | Dbar0 decay mode 67 | Dbar0 -> K- pi0 K^*(892)- pi+ K^*(892)- | incomplete | blocked |
@@ -4065,8 +4065,8 @@
 | u | -421 | S032.273/2025 | dbar0_s032_273 | Dbar0 decay mode 70 | Dbar0 -> K- pi+ Kbar_0^*(1430)0 pi0 | incomplete | blocked |
 | u | -421 | S032.274/2025 | dbar0_s032_274 | Dbar0 decay mode 71 | Dbar0 -> K- pi0 K^*(1680)- pi+ | incomplete | blocked |
 | u | -421 | S032.32/2025 | dbar0_s032_32 | Dbar0 decay mode 72 | Dbar0 -> K- pi+ pi0 nonresonant | incomplete | blocked |
-| u | -421 | S032.185/2025 | dbar0_s032_185 | Dbar0 decay mode 73 | Dbar0 -> K0S pi0 pi0 | backlog | blocked |
-| u | -421 | S032.588/2025 | dbar0_s032_588 | Dbar0 decay mode 74 | Dbar0 -> K0L pi0 pi0 | backlog | blocked |
+| u | -421 | S032.185/2025 | dbar0_s032_185 | Dbar0 decay mode 73 | Dbar0 -> K0S pi0 pi0 | supported | ready |
+| u | -421 | S032.588/2025 | dbar0_s032_588 | Dbar0 decay mode 74 | Dbar0 -> K0L pi0 pi0 | supported | ready |
 | u | -421 | S032.390/2025 | dbar0_s032_390 | Dbar0 decay mode 75 | Dbar0 -> K0S (2 pi0)(S-wave) | incomplete | blocked |
 | u | -421 | S032.202/2025 | dbar0_s032_202 | Dbar0 decay mode 76 | Dbar0 -> K0S pi0 Kbar^*(892)0 pi0 | incomplete | blocked |
 | u | -421 | S032.391/2025 | dbar0_s032_391 | Dbar0 decay mode 77 | Dbar0 -> K0S pi0 pi0 | incomplete | blocked |
@@ -4074,8 +4074,8 @@
 | u | -421 | S032.393/2025 | dbar0_s032_393 | Dbar0 decay mode 79 | Dbar0 -> pi0 pi0 K0S f_2(1270) | incomplete | blocked |
 | u | -421 | S032.394/2025 | dbar0_s032_394 | Dbar0 decay mode 80 | Dbar0 -> 2K0S , one K0S -> 2pi0 | incomplete | blocked |
 | u | -421 | S032.186/2025 | dbar0_s032_186 | Dbar0 decay mode 81 | Dbar0 -> K0S 2pi0 nonresonant | incomplete | blocked |
-| u | -421 | S032.574/2025 | dbar0_s032_574 | Dbar0 decay mode 82 | Dbar0 -> K0S pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.2/2025 | dbar0_s032_2 | Dbar0 decay mode 83 | Dbar0 -> K- pi+ pi+ pi- | backlog | blocked |
+| u | -421 | S032.574/2025 | dbar0_s032_574 | Dbar0 decay mode 82 | Dbar0 -> K0S pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.2/2025 | dbar0_s032_2 | Dbar0 decay mode 83 | Dbar0 -> K- pi+ pi+ pi- | supported | ready |
 | u | -421 | S032.116/2025 | dbar0_s032_116 | Dbar0 decay mode 84 | Dbar0 -> K- pi+ rho0 total | incomplete | blocked |
 | u | -421 | S032.23/2025 | dbar0_s032_23 | Dbar0 decay mode 85 | Dbar0 -> K- pi+ rho0 3-body | incomplete | blocked |
 | u | -421 | S032.86/2025 | dbar0_s032_86 | Dbar0 decay mode 86 | Dbar0 -> K- pi+ Kbar^*(892)0 | incomplete | blocked |
@@ -4086,36 +4086,36 @@
 | u | -421 | S032.85/2025 | dbar0_s032_85 | Dbar0 decay mode 91 | Dbar0 -> Kbar^*(892)0 pi+ pi- 3-body , Kbar^*()0 -> K- pi+ | incomplete | blocked |
 | u | -421 | S032.182/2025 | dbar0_s032_182 | Dbar0 decay mode 92 | Dbar0 -> K- pi+ Kbar^*(892)0 pi- K_1(1270)- pi+ | incomplete | blocked |
 | u | -421 | S032.68/2025 | dbar0_s032_68 | Dbar0 decay mode 93 | Dbar0 -> K- 2pi+ pi- nonresonant | incomplete | blocked |
-| u | -421 | S032.143/2025 | dbar0_s032_143 | Dbar0 decay mode 94 | Dbar0 -> K0S pi+ pi- pi0 | backlog | blocked |
+| u | -421 | S032.143/2025 | dbar0_s032_143 | Dbar0 decay mode 94 | Dbar0 -> K0S pi+ pi- pi0 | supported | ready |
 | u | -421 | S032.135/2025 | dbar0_s032_135 | Dbar0 decay mode 95 | Dbar0 -> pi+ pi- K0S pi0 eta eta | incomplete | blocked |
 | u | -421 | S032.110/2025 | dbar0_s032_110 | Dbar0 decay mode 96 | Dbar0 -> pi+ pi- K0S pi0 | incomplete | blocked |
-| u | -421 | S032.20/2025 | dbar0_s032_20 | Dbar0 decay mode 97 | Dbar0 -> K- pi+ pi0 pi0 | backlog | blocked |
-| u | -421 | S032.575/2025 | dbar0_s032_575 | Dbar0 decay mode 98 | Dbar0 -> K- pi+ pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.576/2025 | dbar0_s032_576 | Dbar0 decay mode 99 | Dbar0 -> K0S pi+ pi- pi0 pi0 | backlog | blocked |
-| u | -421 | S032.41/2025 | dbar0_s032_41 | Dbar0 decay mode 100 | Dbar0 -> K- pi+ pi+ pi- pi0 | backlog | blocked |
+| u | -421 | S032.20/2025 | dbar0_s032_20 | Dbar0 decay mode 97 | Dbar0 -> K- pi+ pi0 pi0 | supported | ready |
+| u | -421 | S032.575/2025 | dbar0_s032_575 | Dbar0 decay mode 98 | Dbar0 -> K- pi+ pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.576/2025 | dbar0_s032_576 | Dbar0 decay mode 99 | Dbar0 -> K0S pi+ pi- pi0 pi0 | supported | ready |
+| u | -421 | S032.41/2025 | dbar0_s032_41 | Dbar0 decay mode 100 | Dbar0 -> K- pi+ pi+ pi- pi0 | supported | ready |
 | u | -421 | S032.55/2025 | dbar0_s032_55 | Dbar0 decay mode 101 | Dbar0 -> Kbar^*(892)0 K- pi+ pi+ pi- pi0 | incomplete | blocked |
 | u | -421 | S032.207/2025 | dbar0_s032_207 | Dbar0 decay mode 102 | Dbar0 -> pi+ pi- K- pi0 pi+ Kbar^*(892)0 | incomplete | blocked |
 | u | -421 | S032.197/2025 | dbar0_s032_197 | Dbar0 decay mode 103 | Dbar0 -> K- pi+ | incomplete | blocked |
 | u | -421 | S032.57/2025 | dbar0_s032_57 | Dbar0 decay mode 104 | Dbar0 -> Kbar^*(892)0 | incomplete | blocked |
 | u | -421 | S032.572/2025 | dbar0_s032_572 | Dbar0 decay mode 105 | Dbar0 -> K0S pi0 | incomplete | blocked |
-| u | -421 | S032.292/2025 | dbar0_s032_292 | Dbar0 decay mode 106 | Dbar0 -> K0S eta pi0 | backlog | blocked |
+| u | -421 | S032.292/2025 | dbar0_s032_292 | Dbar0 decay mode 106 | Dbar0 -> K0S eta pi0 | supported | ready |
 | u | -421 | S032.293/2025 | dbar0_s032_293 | Dbar0 decay mode 107 | Dbar0 -> eta pi0 K0S | incomplete | blocked |
 | u | -421 | S032.294/2025 | dbar0_s032_294 | Dbar0 decay mode 108 | Dbar0 -> K0S pi0 Kbar^*(892)0 eta | incomplete | blocked |
-| u | -421 | S032.553/2025 | dbar0_s032_553 | Dbar0 decay mode 109 | Dbar0 -> K- pi+ eta | backlog | blocked |
+| u | -421 | S032.553/2025 | dbar0_s032_553 | Dbar0 decay mode 109 | Dbar0 -> K- pi+ eta | supported | ready |
 | u | -421 | S032.566/2025 | dbar0_s032_566 | Dbar0 decay mode 110 | Dbar0 -> K- pi+ K^*(892)0 eta | incomplete | blocked |
 | u | -421 | S032.567/2025 | dbar0_s032_567 | Dbar0 decay mode 111 | Dbar0 -> eta pi+ a_0(980)+ K- | incomplete | blocked |
 | u | -421 | S032.560/2025 | dbar0_s032_560 | Dbar0 decay mode 112 | Dbar0 -> K- eta K_2^*(1980)- pi+ | incomplete | blocked |
-| u | -421 | S032.556/2025 | dbar0_s032_556 | Dbar0 decay mode 113 | Dbar0 -> K- pi+ pi0 eta | backlog | blocked |
-| u | -421 | S032.557/2025 | dbar0_s032_557 | Dbar0 decay mode 114 | Dbar0 -> K0S pi+ pi- eta | backlog | blocked |
-| u | -421 | S032.558/2025 | dbar0_s032_558 | Dbar0 decay mode 115 | Dbar0 -> K0S pi0 pi0 eta | backlog | blocked |
-| u | -421 | S032.97/2025 | dbar0_s032_97 | Dbar0 decay mode 116 | Dbar0 -> K0S pi+ pi+ pi- pi- | backlog | blocked |
+| u | -421 | S032.556/2025 | dbar0_s032_556 | Dbar0 decay mode 113 | Dbar0 -> K- pi+ pi0 eta | supported | ready |
+| u | -421 | S032.557/2025 | dbar0_s032_557 | Dbar0 decay mode 114 | Dbar0 -> K0S pi+ pi- eta | supported | ready |
+| u | -421 | S032.558/2025 | dbar0_s032_558 | Dbar0 decay mode 115 | Dbar0 -> K0S pi0 pi0 eta | supported | ready |
+| u | -421 | S032.97/2025 | dbar0_s032_97 | Dbar0 decay mode 116 | Dbar0 -> K0S pi+ pi+ pi- pi- | supported | ready |
 | u | -421 | S032.174/2025 | dbar0_s032_174 | Dbar0 decay mode 117 | Dbar0 -> K0S rho0 pi+ pi-, no K^*(892)- | incomplete | blocked |
 | u | -421 | S032.175/2025 | dbar0_s032_175 | Dbar0 decay mode 118 | Dbar0 -> K^*(892)- 2pi+ pi- , K^*(892)- -> K0S pi- , no rho0 | incomplete | blocked |
 | u | -421 | S032.176/2025 | dbar0_s032_176 | Dbar0 decay mode 119 | Dbar0 -> K^*(892)- K0S K^*(892)- pi- pi+ | incomplete | blocked |
 | u | -421 | S032.177/2025 | dbar0_s032_177 | Dbar0 decay mode 120 | Dbar0 -> K0S 2pi+ 2pi- nonresonant | incomplete | blocked |
 | u | -421 | S032.43/2025 | dbar0_s032_43 | Dbar0 decay mode 121 | Dbar0 -> Kbar0 pi+ pi- pi0 pi0 pi0 | incomplete | blocked |
-| u | -421 | S032.288/2025 | dbar0_s032_288 | Dbar0 decay mode 122 | Dbar0 -> K- pi+ pi+ pi+ pi- pi- | backlog | blocked |
-| u | -421 | S032.65/2025 | dbar0_s032_65 | Dbar0 decay mode 123 | Dbar0 -> K0S eta | backlog | blocked |
+| u | -421 | S032.288/2025 | dbar0_s032_288 | Dbar0 decay mode 122 | Dbar0 -> K- pi+ pi+ pi+ pi- pi- | supported | ready |
+| u | -421 | S032.65/2025 | dbar0_s032_65 | Dbar0 decay mode 123 | Dbar0 -> K0S eta | supported | ready |
 | u | -421 | S032.64/2025 | dbar0_s032_64 | Dbar0 decay mode 124 | Dbar0 -> K0S | incomplete | blocked |
 | u | -421 | S032.187/2025 | dbar0_s032_187 | Dbar0 decay mode 125 | Dbar0 -> K0S eta^'(958) | backlog | blocked |
 | u | -421 | S032.56/2025 | dbar0_s032_56 | Dbar0 decay mode 126 | Dbar0 -> Kbar^*(892)0 pi+ pi- pi0 | backlog | blocked |
@@ -4123,24 +4123,24 @@
 | u | -421 | S032.189/2025 | dbar0_s032_189 | Dbar0 decay mode 128 | Dbar0 -> K- pi+ eta^'(958) | backlog | blocked |
 | u | -421 | S032.501/2025 | dbar0_s032_501 | Dbar0 decay mode 129 | Dbar0 -> K0S eta^'(958) pi0 | backlog | blocked |
 | u | -421 | S032.190/2025 | dbar0_s032_190 | Dbar0 decay mode 130 | Dbar0 -> Kbar^*(892)0 eta^'(958) | backlog | blocked |
-| u | -421 | S032.31/2025 | dbar0_s032_31 | Dbar0 decay mode 131 | Dbar0 -> K0S K+ K- | backlog | blocked |
+| u | -421 | S032.31/2025 | dbar0_s032_31 | Dbar0 decay mode 131 | Dbar0 -> K0S K+ K- | supported | ready |
 | u | -421 | S032.321/2025 | dbar0_s032_321 | Dbar0 decay mode 132 | Dbar0 -> K+ K- K0S a_0(980)0 | incomplete | blocked |
 | u | -421 | S032.322/2025 | dbar0_s032_322 | Dbar0 decay mode 133 | Dbar0 -> K+ K0S K- a_0(980)+ | incomplete | blocked |
 | u | -421 | S032.323/2025 | dbar0_s032_323 | Dbar0 decay mode 134 | Dbar0 -> K- K0S K+ a_0(980)- | incomplete | blocked |
 | u | -421 | S032.324/2025 | dbar0_s032_324 | Dbar0 decay mode 135 | Dbar0 -> K+ K- K0S f_0(980) | incomplete | blocked |
 | u | -421 | S032.114/2025 | dbar0_s032_114 | Dbar0 decay mode 136 | Dbar0 -> K+ K- K0S phi phi | incomplete | blocked |
-| u | -421 | S032.578/2025 | dbar0_s032_578 | Dbar0 decay mode 137 | Dbar0 -> K0L phi | backlog | blocked |
+| u | -421 | S032.578/2025 | dbar0_s032_578 | Dbar0 decay mode 137 | Dbar0 -> K0L phi | supported | ready |
 | u | -421 | S032.325/2025 | dbar0_s032_325 | Dbar0 decay mode 138 | Dbar0 -> K+ K- K0S f_0(1370) | incomplete | blocked |
-| u | -421 | S032.58/2025 | dbar0_s032_58 | Dbar0 decay mode 139 | Dbar0 -> K0S K0S K0S | backlog | blocked |
-| u | -421 | S032.219/2025 | dbar0_s032_219 | Dbar0 decay mode 140 | Dbar0 -> K+ K- K- pi+ | backlog | blocked |
+| u | -421 | S032.58/2025 | dbar0_s032_58 | Dbar0 decay mode 139 | Dbar0 -> K0S K0S K0S | supported | ready |
+| u | -421 | S032.219/2025 | dbar0_s032_219 | Dbar0 decay mode 140 | Dbar0 -> K+ K- K- pi+ | supported | ready |
 | u | -421 | S032.283/2025 | dbar0_s032_283 | Dbar0 decay mode 141 | Dbar0 -> K- K+ pi+ K- Kbar^*(892)0 | incomplete | blocked |
 | u | -421 | S032.275/2025 | dbar0_s032_275 | Dbar0 decay mode 142 | Dbar0 -> phi K+ K- K- pi+ phi | incomplete | blocked |
 | u | -421 | S032.284/2025 | dbar0_s032_284 | Dbar0 decay mode 143 | Dbar0 -> K- pi+ K+ K- phi Kbar^*(892)0 phi | incomplete | blocked |
 | u | -421 | S032.282/2025 | dbar0_s032_282 | Dbar0 decay mode 144 | Dbar0 -> K+ 2K- pi+ nonresonant | incomplete | blocked |
 | u | -421 | S032.309/2025 | dbar0_s032_309 | Dbar0 decay mode 145 | Dbar0 -> K0S K0S | incomplete | blocked |
-| u | -421 | S032.5/2025 | dbar0_s032_5 | Dbar0 decay mode 146 | Dbar0 -> pi+ pi- | backlog | blocked |
-| u | -421 | S032.173/2025 | dbar0_s032_173 | Dbar0 decay mode 147 | Dbar0 -> pi0 pi0 | backlog | blocked |
-| u | -421 | S032.29/2025 | dbar0_s032_29 | Dbar0 decay mode 148 | Dbar0 -> pi+ pi- pi0 | backlog | blocked |
+| u | -421 | S032.5/2025 | dbar0_s032_5 | Dbar0 decay mode 146 | Dbar0 -> pi+ pi- | supported | ready |
+| u | -421 | S032.173/2025 | dbar0_s032_173 | Dbar0 decay mode 147 | Dbar0 -> pi0 pi0 | supported | ready |
+| u | -421 | S032.29/2025 | dbar0_s032_29 | Dbar0 decay mode 148 | Dbar0 -> pi+ pi- pi0 | supported | ready |
 | u | -421 | S032.326/2025 | dbar0_s032_326 | Dbar0 decay mode 149 | Dbar0 -> pi- | incomplete | blocked |
 | u | -421 | S032.327/2025 | dbar0_s032_327 | Dbar0 decay mode 150 | Dbar0 -> pi0 | incomplete | blocked |
 | u | -421 | S032.328/2025 | dbar0_s032_328 | Dbar0 decay mode 151 | Dbar0 -> pi+ | incomplete | blocked |
@@ -4157,8 +4157,8 @@
 | u | -421 | S032.375/2025 | dbar0_s032_375 | Dbar0 decay mode 162 | Dbar0 -> pi+ pi- f_0(1710) pi0 | incomplete | blocked |
 | u | -421 | S032.376/2025 | dbar0_s032_376 | Dbar0 decay mode 163 | Dbar0 -> pi+ pi- f_2(1270) pi0 | incomplete | blocked |
 | u | -421 | S032.377/2025 | dbar0_s032_377 | Dbar0 decay mode 164 | Dbar0 -> pi+ pi- pi0 nonresonant | incomplete | blocked |
-| u | -421 | S032.314/2025 | dbar0_s032_314 | Dbar0 decay mode 165 | Dbar0 -> pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.18/2025 | dbar0_s032_18 | Dbar0 decay mode 166 | Dbar0 -> pi+ pi+ pi- pi- | backlog | blocked |
+| u | -421 | S032.314/2025 | dbar0_s032_314 | Dbar0 decay mode 165 | Dbar0 -> pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.18/2025 | dbar0_s032_18 | Dbar0 decay mode 166 | Dbar0 -> pi+ pi+ pi- pi- | supported | ready |
 | u | -421 | S032.348/2025 | dbar0_s032_348 | Dbar0 decay mode 167 | Dbar0 -> a_1(1260)+ pi- , a_1()+ -> 2pi+ pi- total | incomplete | blocked |
 | u | -421 | S032.349/2025 | dbar0_s032_349 | Dbar0 decay mode 168 | Dbar0 -> a_1(1260)+ pi- , a_1()+ -> rho0 pi+ S-wave | incomplete | blocked |
 | u | -421 | S032.350/2025 | dbar0_s032_350 | Dbar0 decay mode 169 | Dbar0 -> a_1(1260)+ pi- , a_1()+ -> rho0 pi+ D-wave | incomplete | blocked |
@@ -4185,15 +4185,15 @@
 | u | -421 | S032.359/2025 | dbar0_s032_359 | Dbar0 decay mode 190 | Dbar0 -> pi+ f_2(1270) pi- pi+ pi- | incomplete | blocked |
 | u | -421 | S032.459/2025 | dbar0_s032_459 | Dbar0 decay mode 191 | Dbar0 -> pi+ pi- | incomplete | blocked |
 | u | -421 | S032.454/2025 | dbar0_s032_454 | Dbar0 decay mode 192 | Dbar0 -> pi+ pi- f_0(1370) sigma | incomplete | blocked |
-| u | -421 | S032.315/2025 | dbar0_s032_315 | Dbar0 decay mode 193 | Dbar0 -> pi+ pi- pi0 pi0 | backlog | blocked |
-| u | -421 | S032.583/2025 | dbar0_s032_583 | Dbar0 decay mode 194 | Dbar0 -> pi0 pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.316/2025 | dbar0_s032_316 | Dbar0 decay mode 195 | Dbar0 -> eta pi0 | backlog | blocked |
+| u | -421 | S032.315/2025 | dbar0_s032_315 | Dbar0 decay mode 193 | Dbar0 -> pi+ pi- pi0 pi0 | supported | ready |
+| u | -421 | S032.583/2025 | dbar0_s032_583 | Dbar0 decay mode 194 | Dbar0 -> pi0 pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.316/2025 | dbar0_s032_316 | Dbar0 decay mode 195 | Dbar0 -> eta pi0 | supported | ready |
 | u | -421 | S032.317/2025 | dbar0_s032_317 | Dbar0 decay mode 196 | Dbar0 -> pi0 | incomplete | blocked |
 | u | -421 | S032.496/2025 | dbar0_s032_496 | Dbar0 decay mode 197 | Dbar0 -> eta | incomplete | blocked |
-| u | -421 | S032.95/2025 | dbar0_s032_95 | Dbar0 decay mode 198 | Dbar0 -> pi+ pi+ pi- pi- pi0 | backlog | blocked |
-| u | -421 | S032.586/2025 | dbar0_s032_586 | Dbar0 decay mode 199 | Dbar0 -> pi+ pi- pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.587/2025 | dbar0_s032_587 | Dbar0 decay mode 200 | Dbar0 -> pi+ pi+ pi- pi- pi0 pi0 | backlog | blocked |
-| u | -421 | S032.318/2025 | dbar0_s032_318 | Dbar0 decay mode 201 | Dbar0 -> eta pi+ pi- | backlog | blocked |
+| u | -421 | S032.95/2025 | dbar0_s032_95 | Dbar0 decay mode 198 | Dbar0 -> pi+ pi+ pi- pi- pi0 | supported | ready |
+| u | -421 | S032.586/2025 | dbar0_s032_586 | Dbar0 decay mode 199 | Dbar0 -> pi+ pi- pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.587/2025 | dbar0_s032_587 | Dbar0 decay mode 200 | Dbar0 -> pi+ pi+ pi- pi- pi0 pi0 | supported | ready |
+| u | -421 | S032.318/2025 | dbar0_s032_318 | Dbar0 decay mode 201 | Dbar0 -> eta pi+ pi- | supported | ready |
 | u | -421 | S032.593/2025 | dbar0_s032_593 | Dbar0 decay mode 202 | Dbar0 -> pi+ pi- rho(770)0 eta | incomplete | blocked |
 | u | -421 | S032.594/2025 | dbar0_s032_594 | Dbar0 decay mode 203 | Dbar0 -> pi- eta a_0(980)- pi+ | incomplete | blocked |
 | u | -421 | S032.595/2025 | dbar0_s032_595 | Dbar0 decay mode 204 | Dbar0 -> pi+ eta a_0(980)+ pi- | incomplete | blocked |
@@ -4202,21 +4202,21 @@
 | u | -421 | S032.598/2025 | dbar0_s032_598 | Dbar0 decay mode 207 | Dbar0 -> (pi+ pi-)(S-wave) eta | incomplete | blocked |
 | u | -421 | S032.319/2025 | dbar0_s032_319 | Dbar0 decay mode 208 | Dbar0 -> pi+ pi- | incomplete | blocked |
 | u | -421 | S032.562/2025 | dbar0_s032_562 | Dbar0 decay mode 209 | Dbar0 -> pi0 pi0 | incomplete | blocked |
-| u | -421 | S032.498/2025 | dbar0_s032_498 | Dbar0 decay mode 210 | Dbar0 -> eta pi0 pi0 | backlog | blocked |
-| u | -421 | S032.559/2025 | dbar0_s032_559 | Dbar0 decay mode 211 | Dbar0 -> pi+ pi- pi0 eta | backlog | blocked |
-| u | -421 | S032.584/2025 | dbar0_s032_584 | Dbar0 decay mode 212 | Dbar0 -> eta pi0 pi0 pi0 | backlog | blocked |
-| u | -421 | S032.585/2025 | dbar0_s032_585 | Dbar0 decay mode 213 | Dbar0 -> eta pi+ pi+ pi- pi- | backlog | blocked |
-| u | -421 | S032.96/2025 | dbar0_s032_96 | Dbar0 decay mode 214 | Dbar0 -> pi+ pi+ pi+ pi- pi- pi- | backlog | blocked |
+| u | -421 | S032.498/2025 | dbar0_s032_498 | Dbar0 decay mode 210 | Dbar0 -> eta pi0 pi0 | supported | ready |
+| u | -421 | S032.559/2025 | dbar0_s032_559 | Dbar0 decay mode 211 | Dbar0 -> pi+ pi- pi0 eta | supported | ready |
+| u | -421 | S032.584/2025 | dbar0_s032_584 | Dbar0 decay mode 212 | Dbar0 -> eta pi0 pi0 pi0 | supported | ready |
+| u | -421 | S032.585/2025 | dbar0_s032_585 | Dbar0 decay mode 213 | Dbar0 -> eta pi+ pi+ pi- pi- | supported | ready |
+| u | -421 | S032.96/2025 | dbar0_s032_96 | Dbar0 decay mode 214 | Dbar0 -> pi+ pi+ pi+ pi- pi- pi- | supported | ready |
 | u | -421 | S032.378/2025 | dbar0_s032_378 | Dbar0 decay mode 215 | Dbar0 -> eta^'(958) pi0 | backlog | blocked |
 | u | -421 | S032.379/2025 | dbar0_s032_379 | Dbar0 decay mode 216 | Dbar0 -> eta^'(958) pi+ pi- | backlog | blocked |
-| u | -421 | S032.380/2025 | dbar0_s032_380 | Dbar0 decay mode 217 | Dbar0 -> eta eta | backlog | blocked |
-| u | -421 | S032.499/2025 | dbar0_s032_499 | Dbar0 decay mode 218 | Dbar0 -> eta eta pi0 | backlog | blocked |
-| u | -421 | S032.582/2025 | dbar0_s032_582 | Dbar0 decay mode 219 | Dbar0 -> eta eta pi+ pi- | backlog | blocked |
-| u | -421 | S032.500/2025 | dbar0_s032_500 | Dbar0 decay mode 220 | Dbar0 -> eta eta eta | backlog | blocked |
+| u | -421 | S032.380/2025 | dbar0_s032_380 | Dbar0 decay mode 217 | Dbar0 -> eta eta | supported | ready |
+| u | -421 | S032.499/2025 | dbar0_s032_499 | Dbar0 decay mode 218 | Dbar0 -> eta eta pi0 | supported | ready |
+| u | -421 | S032.582/2025 | dbar0_s032_582 | Dbar0 decay mode 219 | Dbar0 -> eta eta pi+ pi- | supported | ready |
+| u | -421 | S032.500/2025 | dbar0_s032_500 | Dbar0 decay mode 220 | Dbar0 -> eta eta eta | supported | ready |
 | u | -421 | S032.381/2025 | dbar0_s032_381 | Dbar0 decay mode 221 | Dbar0 -> eta eta^'(958) | backlog | blocked |
-| u | -421 | S032.7/2025 | dbar0_s032_7 | Dbar0 decay mode 222 | Dbar0 -> K+ K- | backlog | blocked |
-| u | -421 | S032.35/2025 | dbar0_s032_35 | Dbar0 decay mode 223 | Dbar0 -> K0S K0S | backlog | blocked |
-| u | -421 | S032.93/2025 | dbar0_s032_93 | Dbar0 decay mode 224 | Dbar0 -> K0S K- pi+ | backlog | blocked |
+| u | -421 | S032.7/2025 | dbar0_s032_7 | Dbar0 decay mode 222 | Dbar0 -> K+ K- | supported | ready |
+| u | -421 | S032.35/2025 | dbar0_s032_35 | Dbar0 decay mode 223 | Dbar0 -> K0S K0S | supported | ready |
+| u | -421 | S032.93/2025 | dbar0_s032_93 | Dbar0 decay mode 224 | Dbar0 -> K0S K- pi+ | supported | ready |
 | u | -421 | S032.91/2025 | dbar0_s032_91 | Dbar0 decay mode 225 | Dbar0 -> K- pi+ Kbar^*(892)0 K0S | incomplete | blocked |
 | u | -421 | S032.412/2025 | dbar0_s032_412 | Dbar0 decay mode 226 | Dbar0 -> K0S pi+ K^*(892)+ K- | incomplete | blocked |
 | u | -421 | S032.417/2025 | dbar0_s032_417 | Dbar0 decay mode 227 | Dbar0 -> K- pi+ Kbar^*(1410)0 K0S | incomplete | blocked |
@@ -4227,7 +4227,7 @@
 | u | -421 | S032.424/2025 | dbar0_s032_424 | Dbar0 decay mode 232 | Dbar0 -> K0S K- a_0(1450)- pi+ | incomplete | blocked |
 | u | -421 | S032.429/2025 | dbar0_s032_429 | Dbar0 decay mode 233 | Dbar0 -> K0S K- a_2(1320)- pi+ | incomplete | blocked |
 | u | -421 | S032.425/2025 | dbar0_s032_425 | Dbar0 decay mode 234 | Dbar0 -> K0S K- rho(1450)- pi+ | incomplete | blocked |
-| u | -421 | S032.123/2025 | dbar0_s032_123 | Dbar0 decay mode 235 | Dbar0 -> K0S K+ pi- | backlog | blocked |
+| u | -421 | S032.123/2025 | dbar0_s032_123 | Dbar0 decay mode 235 | Dbar0 -> K0S K+ pi- | supported | ready |
 | u | -421 | S032.124/2025 | dbar0_s032_124 | Dbar0 decay mode 236 | Dbar0 -> K+ pi- K^*(892)0 K0S | incomplete | blocked |
 | u | -421 | S032.413/2025 | dbar0_s032_413 | Dbar0 decay mode 237 | Dbar0 -> K0S pi- K^*(892)- K+ | incomplete | blocked |
 | u | -421 | S032.418/2025 | dbar0_s032_418 | Dbar0 decay mode 238 | Dbar0 -> K+ pi+ K^*(1410)0 K0S | incomplete | blocked |
@@ -4237,7 +4237,7 @@
 | u | -421 | S032.426/2025 | dbar0_s032_426 | Dbar0 decay mode 242 | Dbar0 -> K0S K+ a_0(980)+ pi- | incomplete | blocked |
 | u | -421 | S032.427/2025 | dbar0_s032_427 | Dbar0 decay mode 243 | Dbar0 -> K0S K+ a_0(1450)+ pi- | incomplete | blocked |
 | u | -421 | S032.428/2025 | dbar0_s032_428 | Dbar0 decay mode 244 | Dbar0 -> K0S K+ rho(1700)+ pi- | incomplete | blocked |
-| u | -421 | S032.243/2025 | dbar0_s032_243 | Dbar0 decay mode 245 | Dbar0 -> K+ K- pi0 | backlog | blocked |
+| u | -421 | S032.243/2025 | dbar0_s032_243 | Dbar0 decay mode 245 | Dbar0 -> K+ K- pi0 | supported | ready |
 | u | -421 | S032.344/2025 | dbar0_s032_344 | Dbar0 decay mode 246 | Dbar0 -> K+ pi0 K^*(892)+ K- K^*(892)+ | incomplete | blocked |
 | u | -421 | S032.345/2025 | dbar0_s032_345 | Dbar0 decay mode 247 | Dbar0 -> K- pi0 K^*(892)- K+ K^*(892)- | incomplete | blocked |
 | u | -421 | S032.364/2025 | dbar0_s032_364 | Dbar0 decay mode 248 | Dbar0 -> (K+ pi0)(S-wave) K- | incomplete | blocked |
@@ -4245,13 +4245,13 @@
 | u | -421 | S032.366/2025 | dbar0_s032_366 | Dbar0 decay mode 250 | Dbar0 -> K+ K- f_0(980) pi0 | incomplete | blocked |
 | u | -421 | S032.346/2025 | dbar0_s032_346 | Dbar0 decay mode 251 | Dbar0 -> K+ K- phi pi0 phi | incomplete | blocked |
 | u | -421 | S032.347/2025 | dbar0_s032_347 | Dbar0 decay mode 252 | Dbar0 -> K+ K- pi0 nonresonant | incomplete | blocked |
-| u | -421 | S032.242/2025 | dbar0_s032_242 | Dbar0 decay mode 253 | Dbar0 -> K0S K0S pi0 | backlog | blocked |
-| u | -421 | S032.554/2025 | dbar0_s032_554 | Dbar0 decay mode 254 | Dbar0 -> K+ K- eta | backlog | blocked |
-| u | -421 | S032.569/2025 | dbar0_s032_569 | Dbar0 decay mode 255 | Dbar0 -> phi(1020) eta | backlog | blocked |
+| u | -421 | S032.242/2025 | dbar0_s032_242 | Dbar0 decay mode 253 | Dbar0 -> K0S K0S pi0 | supported | ready |
+| u | -421 | S032.554/2025 | dbar0_s032_554 | Dbar0 decay mode 254 | Dbar0 -> K+ K- eta | supported | ready |
+| u | -421 | S032.569/2025 | dbar0_s032_569 | Dbar0 decay mode 255 | Dbar0 -> phi(1020) eta | supported | ready |
 | u | -421 | S032.568/2025 | dbar0_s032_568 | Dbar0 decay mode 256 | Dbar0 -> K+ K- eta nonresonant | incomplete | blocked |
-| u | -421 | S032.555/2025 | dbar0_s032_555 | Dbar0 decay mode 257 | Dbar0 -> K0S K0S eta | backlog | blocked |
-| u | -421 | S032.563/2025 | dbar0_s032_563 | Dbar0 decay mode 258 | Dbar0 -> K+ K- pi0 pi0 | backlog | blocked |
-| u | -421 | S032.63/2025 | dbar0_s032_63 | Dbar0 decay mode 259 | Dbar0 -> K+ K- pi+ pi- | backlog | blocked |
+| u | -421 | S032.555/2025 | dbar0_s032_555 | Dbar0 decay mode 257 | Dbar0 -> K0S K0S eta | supported | ready |
+| u | -421 | S032.563/2025 | dbar0_s032_563 | Dbar0 decay mode 258 | Dbar0 -> K+ K- pi0 pi0 | supported | ready |
+| u | -421 | S032.63/2025 | dbar0_s032_63 | Dbar0 decay mode 259 | Dbar0 -> K+ K- pi+ pi- | supported | ready |
 | u | -421 | S032.115/2025 | dbar0_s032_115 | Dbar0 decay mode 260 | Dbar0 -> phi (pi+ pi-)(S-wave) , phi -> K+ K- | incomplete | blocked |
 | u | -421 | S032.134/2025 | dbar0_s032_134 | Dbar0 decay mode 261 | Dbar0 -> (phi rho0)(S-wave) , phi -> K+ K- | incomplete | blocked |
 | u | -421 | S032.461/2025 | dbar0_s032_461 | Dbar0 decay mode 262 | Dbar0 -> (phi rho0 )(P-wave) , phi -> K+ K- | incomplete | blocked |
@@ -4278,65 +4278,65 @@
 | u | -421 | S032.403/2025 | dbar0_s032_403 | Dbar0 decay mode 283 | Dbar0 -> pi- K^*(1410)- K+ | incomplete | blocked |
 | u | -421 | S032.468/2025 | dbar0_s032_468 | Dbar0 decay mode 284 | Dbar0 -> K+ pi- pi+ K- | incomplete | blocked |
 | u | -421 | S032.469/2025 | dbar0_s032_469 | Dbar0 decay mode 285 | Dbar0 -> K+ K- pi+ pi- non-resonant | incomplete | blocked |
-| u | -421 | S032.215/2025 | dbar0_s032_215 | Dbar0 decay mode 286 | Dbar0 -> K0S K0S pi+ pi- | backlog | blocked |
-| u | -421 | S032.564/2025 | dbar0_s032_564 | Dbar0 decay mode 287 | Dbar0 -> K0S K- pi+ pi0 | backlog | blocked |
-| u | -421 | S032.565/2025 | dbar0_s032_565 | Dbar0 decay mode 288 | Dbar0 -> K0S K+ pi- pi0 | backlog | blocked |
-| u | -421 | S032.178/2025 | dbar0_s032_178 | Dbar0 decay mode 289 | Dbar0 -> K0S K- pi+ pi+ pi- | backlog | blocked |
-| u | -421 | S032.131/2025 | dbar0_s032_131 | Dbar0 decay mode 290 | Dbar0 -> K+ K- pi+ pi- pi0 | backlog | blocked |
-| u | -421 | S032.212/2025 | dbar0_s032_212 | Dbar0 decay mode 291 | Dbar0 -> phi pi0 | backlog | blocked |
-| u | -421 | S032.213/2025 | dbar0_s032_213 | Dbar0 decay mode 292 | Dbar0 -> phi eta | backlog | blocked |
+| u | -421 | S032.215/2025 | dbar0_s032_215 | Dbar0 decay mode 286 | Dbar0 -> K0S K0S pi+ pi- | supported | ready |
+| u | -421 | S032.564/2025 | dbar0_s032_564 | Dbar0 decay mode 287 | Dbar0 -> K0S K- pi+ pi0 | supported | ready |
+| u | -421 | S032.565/2025 | dbar0_s032_565 | Dbar0 decay mode 288 | Dbar0 -> K0S K+ pi- pi0 | supported | ready |
+| u | -421 | S032.178/2025 | dbar0_s032_178 | Dbar0 decay mode 289 | Dbar0 -> K0S K- pi+ pi+ pi- | supported | ready |
+| u | -421 | S032.131/2025 | dbar0_s032_131 | Dbar0 decay mode 290 | Dbar0 -> K+ K- pi+ pi- pi0 | supported | ready |
+| u | -421 | S032.212/2025 | dbar0_s032_212 | Dbar0 decay mode 291 | Dbar0 -> phi pi0 | supported | ready |
+| u | -421 | S032.213/2025 | dbar0_s032_213 | Dbar0 decay mode 292 | Dbar0 -> phi eta | supported | ready |
 | u | -421 | S032.214/2025 | dbar0_s032_214 | Dbar0 decay mode 293 | Dbar0 -> phi | incomplete | blocked |
 | u | -421 | S032.245/2025 | dbar0_s032_245 | Dbar0 decay mode 294 | Dbar0 -> gamma | incomplete | blocked |
 | u | -421 | S032.246/2025 | dbar0_s032_246 | Dbar0 decay mode 295 | Dbar0 -> gamma | incomplete | blocked |
-| u | -421 | S032.247/2025 | dbar0_s032_247 | Dbar0 decay mode 296 | Dbar0 -> phi gamma | backlog | blocked |
+| u | -421 | S032.247/2025 | dbar0_s032_247 | Dbar0 decay mode 296 | Dbar0 -> phi gamma | supported | ready |
 | u | -421 | S032.248/2025 | dbar0_s032_248 | Dbar0 decay mode 297 | Dbar0 -> Kbar^*(892)0 gamma | backlog | blocked |
 | u | -421 | S032.241/2025 | dbar0_s032_241 | Dbar0 decay mode 298 | Dbar0 -> K+ lepton- nubar_lepton via Dbar0 | incomplete | blocked |
 | u | -421 | S032.311/2025 | dbar0_s032_311 | Dbar0 decay mode 299 | Dbar0 -> K+ or K^*(892)+ e- nubar_e via Dbar0 | incomplete | blocked |
-| u | -421 | S032.50/2025 | dbar0_s032_50 | Dbar0 decay mode 300 | Dbar0 -> K+ pi- | backlog | blocked |
+| u | -421 | S032.50/2025 | dbar0_s032_50 | Dbar0 decay mode 300 | Dbar0 -> K+ pi- | supported | ready |
 | u | -421 | S032.362/2025 | dbar0_s032_362 | Dbar0 decay mode 301 | Dbar0 -> K+ pi- via DCS | incomplete | blocked |
 | u | -421 | S032.6/2025 | dbar0_s032_6 | Dbar0 decay mode 302 | Dbar0 -> K+ pi- via Dbar0 | incomplete | blocked |
 | u | -421 | S032.339/2025 | dbar0_s032_339 | Dbar0 decay mode 303 | Dbar0 -> K0S pi+ pi- in D0 -> Dbar0 | incomplete | blocked |
 | u | -421 | S032.287/2025 | dbar0_s032_287 | Dbar0 decay mode 304 | Dbar0 -> K0S pi+ K^*(892)+ pi- | incomplete | blocked |
 | u | -421 | S032.385/2025 | dbar0_s032_385 | Dbar0 decay mode 305 | Dbar0 -> K0S pi+ K_0^*(1430)+ pi- | incomplete | blocked |
 | u | -421 | S032.386/2025 | dbar0_s032_386 | Dbar0 decay mode 306 | Dbar0 -> K0S pi+ K_2^*(1430)+ pi- | incomplete | blocked |
-| u | -421 | S032.277/2025 | dbar0_s032_277 | Dbar0 decay mode 307 | Dbar0 -> K+ pi- pi0 | backlog | blocked |
+| u | -421 | S032.277/2025 | dbar0_s032_277 | Dbar0 decay mode 307 | Dbar0 -> K+ pi- pi0 | supported | ready |
 | u | -421 | S032.343/2025 | dbar0_s032_343 | Dbar0 decay mode 308 | Dbar0 -> K+ pi- pi0 via Dbar0 | incomplete | blocked |
-| u | -421 | S032.577/2025 | dbar0_s032_577 | Dbar0 decay mode 309 | Dbar0 -> K+ pi- pi0 pi0 | backlog | blocked |
+| u | -421 | S032.577/2025 | dbar0_s032_577 | Dbar0 decay mode 309 | Dbar0 -> K+ pi- pi0 pi0 | supported | ready |
 | u | -421 | S032.432/2025 | dbar0_s032_432 | Dbar0 decay mode 310 | Dbar0 -> K+ pi+ 2pi- via DCS | incomplete | blocked |
-| u | -421 | S032.51/2025 | dbar0_s032_51 | Dbar0 decay mode 311 | Dbar0 -> K+ pi+ pi- pi- | backlog | blocked |
+| u | -421 | S032.51/2025 | dbar0_s032_51 | Dbar0 decay mode 311 | Dbar0 -> K+ pi+ pi- pi- | supported | ready |
 | u | -421 | S032.222/2025 | dbar0_s032_222 | Dbar0 decay mode 312 | Dbar0 -> K+ pi+ 2pi- via Dbar0 | incomplete | blocked |
 | u | -421 | S032.244/2025 | dbar0_s032_244 | Dbar0 decay mode 313 | Dbar0 -> K+ pi- or K+ pi+ 2pi- via Dbar0 | incomplete | blocked |
 | u | -421 | S032.26/2025 | dbar0_s032_26 | Dbar0 decay mode 314 | Dbar0 -> mu- anything via Dbar0 | incomplete | blocked |
-| u | -421 | S032.45/2025 | dbar0_s032_45 | Dbar0 decay mode 315 | Dbar0 -> gamma gamma | backlog | blocked |
-| u | -421 | S032.39/2025 | dbar0_s032_39 | Dbar0 decay mode 316 | Dbar0 -> e+ e- | backlog | blocked |
-| u | -421 | S032.28/2025 | dbar0_s032_28 | Dbar0 decay mode 317 | Dbar0 -> mu+ mu- | backlog | blocked |
-| u | -421 | S032.225/2025 | dbar0_s032_225 | Dbar0 decay mode 318 | Dbar0 -> pi0 e+ e- | backlog | blocked |
-| u | -421 | S032.216/2025 | dbar0_s032_216 | Dbar0 decay mode 319 | Dbar0 -> pi0 mu+ mu- | backlog | blocked |
+| u | -421 | S032.45/2025 | dbar0_s032_45 | Dbar0 decay mode 315 | Dbar0 -> gamma gamma | supported | ready |
+| u | -421 | S032.39/2025 | dbar0_s032_39 | Dbar0 decay mode 316 | Dbar0 -> e+ e- | supported | ready |
+| u | -421 | S032.28/2025 | dbar0_s032_28 | Dbar0 decay mode 317 | Dbar0 -> mu+ mu- | supported | ready |
+| u | -421 | S032.225/2025 | dbar0_s032_225 | Dbar0 decay mode 318 | Dbar0 -> pi0 e+ e- | supported | ready |
+| u | -421 | S032.216/2025 | dbar0_s032_216 | Dbar0 decay mode 319 | Dbar0 -> pi0 mu+ mu- | supported | ready |
 | u | -421 | S032.571/2025 | dbar0_s032_571 | Dbar0 decay mode 320 | Dbar0 -> pi0 | incomplete | blocked |
-| u | -421 | S032.226/2025 | dbar0_s032_226 | Dbar0 decay mode 321 | Dbar0 -> eta e+ e- | backlog | blocked |
-| u | -421 | S032.227/2025 | dbar0_s032_227 | Dbar0 decay mode 322 | Dbar0 -> eta mu+ mu- | backlog | blocked |
-| u | -421 | S032.262/2025 | dbar0_s032_262 | Dbar0 decay mode 323 | Dbar0 -> pi+ pi- e+ e- | backlog | blocked |
+| u | -421 | S032.226/2025 | dbar0_s032_226 | Dbar0 decay mode 321 | Dbar0 -> eta e+ e- | supported | ready |
+| u | -421 | S032.227/2025 | dbar0_s032_227 | Dbar0 decay mode 322 | Dbar0 -> eta mu+ mu- | supported | ready |
+| u | -421 | S032.262/2025 | dbar0_s032_262 | Dbar0 decay mode 323 | Dbar0 -> pi+ pi- e+ e- | supported | ready |
 | u | -421 | S032.52/2025 | dbar0_s032_52 | Dbar0 decay mode 324 | Dbar0 -> e+ e- | incomplete | blocked |
-| u | -421 | S032.263/2025 | dbar0_s032_263 | Dbar0 decay mode 325 | Dbar0 -> pi+ pi- mu+ mu- | backlog | blocked |
+| u | -421 | S032.263/2025 | dbar0_s032_263 | Dbar0 decay mode 325 | Dbar0 -> pi+ pi- mu+ mu- | supported | ready |
 | u | -421 | S032.471/2025 | dbar0_s032_471 | Dbar0 decay mode 326 | Dbar0 -> pi+ pi- mu+ mu- (non-res) | incomplete | blocked |
 | u | -421 | S032.53/2025 | dbar0_s032_53 | Dbar0 decay mode 327 | Dbar0 -> mu+ mu- | incomplete | blocked |
 | u | -421 | S032.228/2025 | dbar0_s032_228 | Dbar0 decay mode 328 | Dbar0 -> e+ e- | incomplete | blocked |
 | u | -421 | S032.229/2025 | dbar0_s032_229 | Dbar0 decay mode 329 | Dbar0 -> mu+ mu- | incomplete | blocked |
-| u | -421 | S032.266/2025 | dbar0_s032_266 | Dbar0 decay mode 330 | Dbar0 -> K- K+ e+ e- | backlog | blocked |
-| u | -421 | S032.230/2025 | dbar0_s032_230 | Dbar0 decay mode 331 | Dbar0 -> phi e+ e- | backlog | blocked |
-| u | -421 | S032.267/2025 | dbar0_s032_267 | Dbar0 decay mode 332 | Dbar0 -> K- K+ mu+ mu- | backlog | blocked |
+| u | -421 | S032.266/2025 | dbar0_s032_266 | Dbar0 decay mode 330 | Dbar0 -> K- K+ e+ e- | supported | ready |
+| u | -421 | S032.230/2025 | dbar0_s032_230 | Dbar0 decay mode 331 | Dbar0 -> phi e+ e- | supported | ready |
+| u | -421 | S032.267/2025 | dbar0_s032_267 | Dbar0 decay mode 332 | Dbar0 -> K- K+ mu+ mu- | supported | ready |
 | u | -421 | S032.473/2025 | dbar0_s032_473 | Dbar0 decay mode 333 | Dbar0 -> K- K+ mu+ mu- (non-res) | incomplete | blocked |
-| u | -421 | S032.231/2025 | dbar0_s032_231 | Dbar0 decay mode 334 | Dbar0 -> phi mu+ mu- | backlog | blocked |
-| u | -421 | S032.67/2025 | dbar0_s032_67 | Dbar0 decay mode 335 | Dbar0 -> Kbar0 e+ e- | backlog | blocked |
-| u | -421 | S032.217/2025 | dbar0_s032_217 | Dbar0 decay mode 336 | Dbar0 -> Kbar0 mu+ mu- | backlog | blocked |
-| u | -421 | S032.264/2025 | dbar0_s032_264 | Dbar0 decay mode 337 | Dbar0 -> K- pi+ e+ e- | backlog | blocked |
+| u | -421 | S032.231/2025 | dbar0_s032_231 | Dbar0 decay mode 334 | Dbar0 -> phi mu+ mu- | supported | ready |
+| u | -421 | S032.67/2025 | dbar0_s032_67 | Dbar0 decay mode 335 | Dbar0 -> Kbar0 e+ e- | supported | ready |
+| u | -421 | S032.217/2025 | dbar0_s032_217 | Dbar0 decay mode 336 | Dbar0 -> Kbar0 mu+ mu- | supported | ready |
+| u | -421 | S032.264/2025 | dbar0_s032_264 | Dbar0 decay mode 337 | Dbar0 -> K- pi+ e+ e- | supported | ready |
 | u | -421 | S032.551/2025 | dbar0_s032_551 | Dbar0 decay mode 338 | Dbar0 -> K- pi+ e+ e- , 675 < mass(e e) < 875 MeV | incomplete | blocked |
 | u | -421 | S032.552/2025 | dbar0_s032_552 | Dbar0 decay mode 339 | Dbar0 -> K- pi+ e+ e- , 1.005 < mass(e e) < 1.035 GeV | incomplete | blocked |
 | u | -421 | S032.232/2025 | dbar0_s032_232 | Dbar0 decay mode 340 | Dbar0 -> Kbar^*(892)0 e+ e- | backlog | blocked |
-| u | -421 | S032.265/2025 | dbar0_s032_265 | Dbar0 decay mode 341 | Dbar0 -> K- pi+ mu+ mu- | backlog | blocked |
+| u | -421 | S032.265/2025 | dbar0_s032_265 | Dbar0 decay mode 341 | Dbar0 -> K- pi+ mu+ mu- | supported | ready |
 | u | -421 | S032.434/2025 | dbar0_s032_434 | Dbar0 decay mode 342 | Dbar0 -> K- pi+ mu+ mu- , 675 < mass(mu mu) < 875 MeV | incomplete | blocked |
 | u | -421 | S032.233/2025 | dbar0_s032_233 | Dbar0 decay mode 343 | Dbar0 -> Kbar^*(892)0 mu+ mu- | backlog | blocked |
-| u | -421 | S032.218/2025 | dbar0_s032_218 | Dbar0 decay mode 344 | Dbar0 -> pi+ pi- pi0 mu+ mu- | backlog | blocked |
+| u | -421 | S032.218/2025 | dbar0_s032_218 | Dbar0 decay mode 344 | Dbar0 -> pi+ pi- pi0 mu+ mu- | supported | ready |
 | u | -421 | S032.40/2025 | dbar0_s032_40 | Dbar0 decay mode 345 | Dbar0 -> mu+- e-+ | incomplete | blocked |
 | u | -421 | S032.234/2025 | dbar0_s032_234 | Dbar0 decay mode 346 | Dbar0 -> pi0 | incomplete | blocked |
 | u | -421 | S032.235/2025 | dbar0_s032_235 | Dbar0 decay mode 347 | Dbar0 -> eta | incomplete | blocked |
@@ -4348,19 +4348,19 @@
 | u | -421 | S032.239/2025 | dbar0_s032_239 | Dbar0 decay mode 353 | Dbar0 -> Kbar0 | incomplete | blocked |
 | u | -421 | S032.269/2025 | dbar0_s032_269 | Dbar0 decay mode 354 | Dbar0 -> K- pi+ | incomplete | blocked |
 | u | -421 | S032.240/2025 | dbar0_s032_240 | Dbar0 decay mode 355 | Dbar0 -> Kbar^*(892)0 | incomplete | blocked |
-| u | -421 | S032.253/2025 | dbar0_s032_253 | Dbar0 decay mode 356 | Dbar0 -> pi- pi- e+ e+ | backlog | blocked |
-| u | -421 | S032.254/2025 | dbar0_s032_254 | Dbar0 decay mode 357 | Dbar0 -> pi- pi- mu+ mu+ | backlog | blocked |
-| u | -421 | S032.255/2025 | dbar0_s032_255 | Dbar0 decay mode 358 | Dbar0 -> K- pi- e+ e+ | backlog | blocked |
-| u | -421 | S032.256/2025 | dbar0_s032_256 | Dbar0 decay mode 359 | Dbar0 -> K- pi- mu+ mu+ | backlog | blocked |
-| u | -421 | S032.257/2025 | dbar0_s032_257 | Dbar0 decay mode 360 | Dbar0 -> K- K- e+ e+ | backlog | blocked |
-| u | -421 | S032.258/2025 | dbar0_s032_258 | Dbar0 decay mode 361 | Dbar0 -> K- K- mu+ mu+ | backlog | blocked |
-| u | -421 | S032.259/2025 | dbar0_s032_259 | Dbar0 decay mode 362 | Dbar0 -> pi- pi- e+ mu+ | backlog | blocked |
-| u | -421 | S032.260/2025 | dbar0_s032_260 | Dbar0 decay mode 363 | Dbar0 -> K- pi- e+ mu+ | backlog | blocked |
-| u | -421 | S032.261/2025 | dbar0_s032_261 | Dbar0 decay mode 364 | Dbar0 -> K- K- e+ mu+ | backlog | blocked |
-| u | -421 | S032.387/2025 | dbar0_s032_387 | Dbar0 decay mode 365 | Dbar0 -> p e- | backlog | blocked |
-| u | -421 | S032.388/2025 | dbar0_s032_388 | Dbar0 decay mode 366 | Dbar0 -> pbar e+ | backlog | blocked |
-| u | -421 | S032.591/2025 | dbar0_s032_591 | Dbar0 decay mode 367 | Dbar0 -> p mu- | backlog | blocked |
-| u | -421 | S032.592/2025 | dbar0_s032_592 | Dbar0 decay mode 368 | Dbar0 -> pbar mu+ | backlog | blocked |
+| u | -421 | S032.253/2025 | dbar0_s032_253 | Dbar0 decay mode 356 | Dbar0 -> pi- pi- e+ e+ | supported | ready |
+| u | -421 | S032.254/2025 | dbar0_s032_254 | Dbar0 decay mode 357 | Dbar0 -> pi- pi- mu+ mu+ | supported | ready |
+| u | -421 | S032.255/2025 | dbar0_s032_255 | Dbar0 decay mode 358 | Dbar0 -> K- pi- e+ e+ | supported | ready |
+| u | -421 | S032.256/2025 | dbar0_s032_256 | Dbar0 decay mode 359 | Dbar0 -> K- pi- mu+ mu+ | supported | ready |
+| u | -421 | S032.257/2025 | dbar0_s032_257 | Dbar0 decay mode 360 | Dbar0 -> K- K- e+ e+ | supported | ready |
+| u | -421 | S032.258/2025 | dbar0_s032_258 | Dbar0 decay mode 361 | Dbar0 -> K- K- mu+ mu+ | supported | ready |
+| u | -421 | S032.259/2025 | dbar0_s032_259 | Dbar0 decay mode 362 | Dbar0 -> pi- pi- e+ mu+ | supported | ready |
+| u | -421 | S032.260/2025 | dbar0_s032_260 | Dbar0 decay mode 363 | Dbar0 -> K- pi- e+ mu+ | supported | ready |
+| u | -421 | S032.261/2025 | dbar0_s032_261 | Dbar0 decay mode 364 | Dbar0 -> K- K- e+ mu+ | supported | ready |
+| u | -421 | S032.387/2025 | dbar0_s032_387 | Dbar0 decay mode 365 | Dbar0 -> p e- | supported | ready |
+| u | -421 | S032.388/2025 | dbar0_s032_388 | Dbar0 decay mode 366 | Dbar0 -> pbar e+ | supported | ready |
+| u | -421 | S032.591/2025 | dbar0_s032_591 | Dbar0 decay mode 367 | Dbar0 -> p mu- | supported | ready |
+| u | -421 | S032.592/2025 | dbar0_s032_592 | Dbar0 decay mode 368 | Dbar0 -> pbar mu+ | supported | ready |
 | u | -421 | S032.19/2025 | dbar0_s032_19 | Dbar0 decay mode 369 | Dbar0 -> Unaccounted decay modes | incomplete | blocked |
 | u | -423 | M061.1/2025 | dbar_2007_0_m061_1 | Dbar^*(2007)0 decay mode 1 | Dbar^*(2007)0 -> D0 pi0 | backlog | blocked |
 | u | -423 | M061.2/2025 | dbar_2007_0_m061_2 | Dbar^*(2007)0 decay mode 2 | Dbar^*(2007)0 -> D0 gamma | backlog | blocked |
@@ -6585,22 +6585,22 @@
 | u | 0 | B042.2/2025 | lambda_2350_0_b042_2 | Lambda(2350)0 decay mode 2 | Lambda(2350)0 -> pi | incomplete | blocked |
 | u | 0 | B042.3/2025 | lambda_2350_0_b042_3 | Lambda(2350)0 decay mode 3 | Lambda(2350)0 -> Lambda omega | incomplete | blocked |
 | u | 0 | B007.1/2025 | lambda_2585_0_b007_1 | Lambda(2585)0 decay mode 1 | Lambda(2585)0 -> N | incomplete | blocked |
-| u | 3122 | S018.1/2025 | lambda0_s018_1 | Lambda0 decay mode 1 | Lambda0 -> p pi- | backlog | blocked |
-| u | 3122 | S018.2/2025 | lambda0_s018_2 | Lambda0 decay mode 2 | Lambda0 -> n pi0 | backlog | blocked |
-| u | 3122 | S018.6/2025 | lambda0_s018_6 | Lambda0 decay mode 3 | Lambda0 -> n gamma | backlog | blocked |
-| u | 3122 | S018.5/2025 | lambda0_s018_5 | Lambda0 decay mode 4 | Lambda0 -> p pi- gamma | backlog | blocked |
-| u | 3122 | S018.4/2025 | lambda0_s018_4 | Lambda0 decay mode 5 | Lambda0 -> p e- nubar_e | backlog | blocked |
-| u | 3122 | S018.3/2025 | lambda0_s018_3 | Lambda0 decay mode 6 | Lambda0 -> p mu- nubar_mu | backlog | blocked |
-| u | 3122 | S018.7/2025 | lambda0_s018_7 | Lambda0 decay mode 7 | Lambda0 -> pi+ e- | backlog | blocked |
-| u | 3122 | S018.8/2025 | lambda0_s018_8 | Lambda0 decay mode 8 | Lambda0 -> pi+ mu- | backlog | blocked |
-| u | 3122 | S018.9/2025 | lambda0_s018_9 | Lambda0 decay mode 9 | Lambda0 -> pi- e+ | backlog | blocked |
-| u | 3122 | S018.10/2025 | lambda0_s018_10 | Lambda0 decay mode 10 | Lambda0 -> pi- mu+ | backlog | blocked |
-| u | 3122 | S018.11/2025 | lambda0_s018_11 | Lambda0 decay mode 11 | Lambda0 -> K+ e- | backlog | blocked |
-| u | 3122 | S018.12/2025 | lambda0_s018_12 | Lambda0 decay mode 12 | Lambda0 -> K+ mu- | backlog | blocked |
-| u | 3122 | S018.13/2025 | lambda0_s018_13 | Lambda0 decay mode 13 | Lambda0 -> K- e+ | backlog | blocked |
-| u | 3122 | S018.14/2025 | lambda0_s018_14 | Lambda0 decay mode 14 | Lambda0 -> K- mu+ | backlog | blocked |
+| u | 3122 | S018.1/2025 | lambda0_s018_1 | Lambda0 decay mode 1 | Lambda0 -> p pi- | supported | ready |
+| u | 3122 | S018.2/2025 | lambda0_s018_2 | Lambda0 decay mode 2 | Lambda0 -> n pi0 | supported | ready |
+| u | 3122 | S018.6/2025 | lambda0_s018_6 | Lambda0 decay mode 3 | Lambda0 -> n gamma | supported | ready |
+| u | 3122 | S018.5/2025 | lambda0_s018_5 | Lambda0 decay mode 4 | Lambda0 -> p pi- gamma | supported | ready |
+| u | 3122 | S018.4/2025 | lambda0_s018_4 | Lambda0 decay mode 5 | Lambda0 -> p e- nubar_e | supported | ready |
+| u | 3122 | S018.3/2025 | lambda0_s018_3 | Lambda0 decay mode 6 | Lambda0 -> p mu- nubar_mu | supported | ready |
+| u | 3122 | S018.7/2025 | lambda0_s018_7 | Lambda0 decay mode 7 | Lambda0 -> pi+ e- | supported | ready |
+| u | 3122 | S018.8/2025 | lambda0_s018_8 | Lambda0 decay mode 8 | Lambda0 -> pi+ mu- | supported | ready |
+| u | 3122 | S018.9/2025 | lambda0_s018_9 | Lambda0 decay mode 9 | Lambda0 -> pi- e+ | supported | ready |
+| u | 3122 | S018.10/2025 | lambda0_s018_10 | Lambda0 decay mode 10 | Lambda0 -> pi- mu+ | supported | ready |
+| u | 3122 | S018.11/2025 | lambda0_s018_11 | Lambda0 decay mode 11 | Lambda0 -> K+ e- | supported | ready |
+| u | 3122 | S018.12/2025 | lambda0_s018_12 | Lambda0 decay mode 12 | Lambda0 -> K+ mu- | supported | ready |
+| u | 3122 | S018.13/2025 | lambda0_s018_13 | Lambda0 decay mode 13 | Lambda0 -> K- e+ | supported | ready |
+| u | 3122 | S018.14/2025 | lambda0_s018_14 | Lambda0 decay mode 14 | Lambda0 -> K- mu+ | supported | ready |
 | u | 3122 | S018.15/2025 | lambda0_s018_15 | Lambda0 decay mode 15 | Lambda0 -> K0S | incomplete | blocked |
-| u | 3122 | S018.16/2025 | lambda0_s018_16 | Lambda0 decay mode 16 | Lambda0 -> pbar pi+ | backlog | blocked |
+| u | 3122 | S018.16/2025 | lambda0_s018_16 | Lambda0 decay mode 16 | Lambda0 -> pbar pi+ | supported | ready |
 | u | 3122 | S018.103/2025 | lambda0_s018_103 | Lambda0 decay mode 17 | Lambda0 -> invisible | incomplete | blocked |
 | u | 5122 | S040.3/2025 | lambda_b_0_s040_3 | Lambda_b()0 decay mode 1 | Lambda_b()0 -> J/psi(1S) Lambda x B(b -> Lambda_b()0) | incomplete | blocked |
 | u | 5122 | S040.39/2025 | lambda_b_0_s040_39 | Lambda_b()0 decay mode 2 | Lambda_b()0 -> J/psi(1S) | incomplete | blocked |
@@ -7017,22 +7017,22 @@
 | u | 0 | B042.2/2025 | lambdabar_2350_0_b042_2 | Lambdabar(2350)0 decay mode 2 | Lambdabar(2350)0 -> pi | incomplete | blocked |
 | u | 0 | B042.3/2025 | lambdabar_2350_0_b042_3 | Lambdabar(2350)0 decay mode 3 | Lambdabar(2350)0 -> Lambda omega | incomplete | blocked |
 | u | 0 | B007.1/2025 | lambdabar_2585_0_b007_1 | Lambdabar(2585)0 decay mode 1 | Lambdabar(2585)0 -> N | incomplete | blocked |
-| u | -3122 | S018.1/2025 | lambdabar0_s018_1 | Lambdabar0 decay mode 1 | Lambdabar0 -> p pi- | backlog | blocked |
-| u | -3122 | S018.2/2025 | lambdabar0_s018_2 | Lambdabar0 decay mode 2 | Lambdabar0 -> n pi0 | backlog | blocked |
-| u | -3122 | S018.6/2025 | lambdabar0_s018_6 | Lambdabar0 decay mode 3 | Lambdabar0 -> n gamma | backlog | blocked |
-| u | -3122 | S018.5/2025 | lambdabar0_s018_5 | Lambdabar0 decay mode 4 | Lambdabar0 -> p pi- gamma | backlog | blocked |
-| u | -3122 | S018.4/2025 | lambdabar0_s018_4 | Lambdabar0 decay mode 5 | Lambdabar0 -> p e- nubar_e | backlog | blocked |
-| u | -3122 | S018.3/2025 | lambdabar0_s018_3 | Lambdabar0 decay mode 6 | Lambdabar0 -> p mu- nubar_mu | backlog | blocked |
-| u | -3122 | S018.7/2025 | lambdabar0_s018_7 | Lambdabar0 decay mode 7 | Lambdabar0 -> pi+ e- | backlog | blocked |
-| u | -3122 | S018.8/2025 | lambdabar0_s018_8 | Lambdabar0 decay mode 8 | Lambdabar0 -> pi+ mu- | backlog | blocked |
-| u | -3122 | S018.9/2025 | lambdabar0_s018_9 | Lambdabar0 decay mode 9 | Lambdabar0 -> pi- e+ | backlog | blocked |
-| u | -3122 | S018.10/2025 | lambdabar0_s018_10 | Lambdabar0 decay mode 10 | Lambdabar0 -> pi- mu+ | backlog | blocked |
-| u | -3122 | S018.11/2025 | lambdabar0_s018_11 | Lambdabar0 decay mode 11 | Lambdabar0 -> K+ e- | backlog | blocked |
-| u | -3122 | S018.12/2025 | lambdabar0_s018_12 | Lambdabar0 decay mode 12 | Lambdabar0 -> K+ mu- | backlog | blocked |
-| u | -3122 | S018.13/2025 | lambdabar0_s018_13 | Lambdabar0 decay mode 13 | Lambdabar0 -> K- e+ | backlog | blocked |
-| u | -3122 | S018.14/2025 | lambdabar0_s018_14 | Lambdabar0 decay mode 14 | Lambdabar0 -> K- mu+ | backlog | blocked |
+| u | -3122 | S018.1/2025 | lambdabar0_s018_1 | Lambdabar0 decay mode 1 | Lambdabar0 -> p pi- | supported | ready |
+| u | -3122 | S018.2/2025 | lambdabar0_s018_2 | Lambdabar0 decay mode 2 | Lambdabar0 -> n pi0 | supported | ready |
+| u | -3122 | S018.6/2025 | lambdabar0_s018_6 | Lambdabar0 decay mode 3 | Lambdabar0 -> n gamma | supported | ready |
+| u | -3122 | S018.5/2025 | lambdabar0_s018_5 | Lambdabar0 decay mode 4 | Lambdabar0 -> p pi- gamma | supported | ready |
+| u | -3122 | S018.4/2025 | lambdabar0_s018_4 | Lambdabar0 decay mode 5 | Lambdabar0 -> p e- nubar_e | supported | ready |
+| u | -3122 | S018.3/2025 | lambdabar0_s018_3 | Lambdabar0 decay mode 6 | Lambdabar0 -> p mu- nubar_mu | supported | ready |
+| u | -3122 | S018.7/2025 | lambdabar0_s018_7 | Lambdabar0 decay mode 7 | Lambdabar0 -> pi+ e- | supported | ready |
+| u | -3122 | S018.8/2025 | lambdabar0_s018_8 | Lambdabar0 decay mode 8 | Lambdabar0 -> pi+ mu- | supported | ready |
+| u | -3122 | S018.9/2025 | lambdabar0_s018_9 | Lambdabar0 decay mode 9 | Lambdabar0 -> pi- e+ | supported | ready |
+| u | -3122 | S018.10/2025 | lambdabar0_s018_10 | Lambdabar0 decay mode 10 | Lambdabar0 -> pi- mu+ | supported | ready |
+| u | -3122 | S018.11/2025 | lambdabar0_s018_11 | Lambdabar0 decay mode 11 | Lambdabar0 -> K+ e- | supported | ready |
+| u | -3122 | S018.12/2025 | lambdabar0_s018_12 | Lambdabar0 decay mode 12 | Lambdabar0 -> K+ mu- | supported | ready |
+| u | -3122 | S018.13/2025 | lambdabar0_s018_13 | Lambdabar0 decay mode 13 | Lambdabar0 -> K- e+ | supported | ready |
+| u | -3122 | S018.14/2025 | lambdabar0_s018_14 | Lambdabar0 decay mode 14 | Lambdabar0 -> K- mu+ | supported | ready |
 | u | -3122 | S018.15/2025 | lambdabar0_s018_15 | Lambdabar0 decay mode 15 | Lambdabar0 -> K0S | incomplete | blocked |
-| u | -3122 | S018.16/2025 | lambdabar0_s018_16 | Lambdabar0 decay mode 16 | Lambdabar0 -> pbar pi+ | backlog | blocked |
+| u | -3122 | S018.16/2025 | lambdabar0_s018_16 | Lambdabar0 decay mode 16 | Lambdabar0 -> pbar pi+ | supported | ready |
 | u | -3122 | S018.103/2025 | lambdabar0_s018_103 | Lambdabar0 decay mode 17 | Lambdabar0 -> invisible | incomplete | blocked |
 | u | -5122 | S040.3/2025 | lambdabar_b_0_s040_3 | Lambdabar_b()0 decay mode 1 | Lambdabar_b()0 -> J/psi(1S) Lambda x B(b -> Lambda_b()0) | incomplete | blocked |
 | u | -5122 | S040.39/2025 | lambdabar_b_0_s040_39 | Lambdabar_b()0 decay mode 2 | Lambdabar_b()0 -> J/psi(1S) | incomplete | blocked |
@@ -8559,15 +8559,15 @@
 | u | 0 | B142.3/2025 | omega_2380_minus_b142_3 | Omega(2380)- decay mode 3 | Omega(2380)- -> Xi- Kbar^*(892)0 | backlog | blocked |
 | u | 0 | B143.1/2025 | omega_2470_minus_b143_1 | Omega(2470)- decay mode 1 | Omega(2470)- -> Omega- pi+ pi- | backlog | blocked |
 | u | 3334 | S024.1/2025 | omega_minus_s024_1 | Omega- decay mode 1 | Omega- -> K- | incomplete | blocked |
-| u | 3334 | S024.2/2025 | omega_minus_s024_2 | Omega- decay mode 2 | Omega- -> Xi0 pi- | backlog | blocked |
-| u | 3334 | S024.3/2025 | omega_minus_s024_3 | Omega- decay mode 3 | Omega- -> Xi- pi0 | backlog | blocked |
-| u | 3334 | S024.8/2025 | omega_minus_s024_8 | Omega- decay mode 4 | Omega- -> Xi- pi+ pi- | backlog | blocked |
+| u | 3334 | S024.2/2025 | omega_minus_s024_2 | Omega- decay mode 2 | Omega- -> Xi0 pi- | supported | ready |
+| u | 3334 | S024.3/2025 | omega_minus_s024_3 | Omega- decay mode 3 | Omega- -> Xi- pi0 | supported | ready |
+| u | 3334 | S024.8/2025 | omega_minus_s024_8 | Omega- decay mode 4 | Omega- -> Xi- pi+ pi- | supported | ready |
 | u | 3334 | S024.6/2025 | omega_minus_s024_6 | Omega- decay mode 5 | Omega- -> Xi(1530)0 pi- | backlog | blocked |
-| u | 3334 | S024.7/2025 | omega_minus_s024_7 | Omega- decay mode 6 | Omega- -> Xi0 e- nubar_e | backlog | blocked |
-| u | 3334 | S024.5/2025 | omega_minus_s024_5 | Omega- decay mode 7 | Omega- -> Xi- gamma | backlog | blocked |
+| u | 3334 | S024.7/2025 | omega_minus_s024_7 | Omega- decay mode 6 | Omega- -> Xi0 e- nubar_e | supported | ready |
+| u | 3334 | S024.5/2025 | omega_minus_s024_5 | Omega- decay mode 7 | Omega- -> Xi- gamma | supported | ready |
 | u | 3334 | S024.4/2025 | omega_minus_s024_4 | Omega- decay mode 8 | Omega- -> pi- | incomplete | blocked |
-| u | 3334 | S024.9/2025 | omega_minus_s024_9 | Omega- decay mode 9 | Omega- -> Sigma0 pi- | backlog | blocked |
-| u | 3334 | S024.10/2025 | omega_minus_s024_10 | Omega- decay mode 10 | Omega- -> n K- | backlog | blocked |
+| u | 3334 | S024.9/2025 | omega_minus_s024_9 | Omega- decay mode 9 | Omega- -> Sigma0 pi- | supported | ready |
+| u | 3334 | S024.10/2025 | omega_minus_s024_10 | Omega- decay mode 10 | Omega- -> n K- | supported | ready |
 | u | 5332 | S063.1/2025 | omega_b_minus_s063_1 | Omega_b()- decay mode 1 | Omega_b()- -> J/psi Omega- xB(b -> Omega_b()) | incomplete | blocked |
 | u | 5332 | S063.2/2025 | omega_b_minus_s063_2 | Omega_b()- decay mode 2 | Omega_b()- -> p K- K- xB(bbar -> Omega_b()) | incomplete | blocked |
 | u | 5332 | S063.4/2025 | omega_b_minus_s063_4 | Omega_b()- decay mode 3 | Omega_b()- -> p pi- pi- xB(bbar -> Omega_b()) | incomplete | blocked |
@@ -8622,16 +8622,16 @@
 | u | 0 | B142.2/2025 | omegabar_2380_plus_b142_2 | Omegabar(2380)+ decay mode 2 | Omegabar(2380)+ -> Xi(1530)0 K- | backlog | blocked |
 | u | 0 | B142.3/2025 | omegabar_2380_plus_b142_3 | Omegabar(2380)+ decay mode 3 | Omegabar(2380)+ -> Xi- Kbar^*(892)0 | backlog | blocked |
 | u | 0 | B143.1/2025 | omegabar_2470_plus_b143_1 | Omegabar(2470)+ decay mode 1 | Omegabar(2470)+ -> Omega- pi+ pi- | backlog | blocked |
-| u | -3334 | S024.1/2025 | omegabar_plus_s024_1 | Omegabar+ decay mode 1 | Omegabar+ -> K- | incomplete | blocked |
-| u | -3334 | S024.2/2025 | omegabar_plus_s024_2 | Omegabar+ decay mode 2 | Omegabar+ -> Xi0 pi- | backlog | blocked |
-| u | -3334 | S024.3/2025 | omegabar_plus_s024_3 | Omegabar+ decay mode 3 | Omegabar+ -> Xi- pi0 | backlog | blocked |
-| u | -3334 | S024.8/2025 | omegabar_plus_s024_8 | Omegabar+ decay mode 4 | Omegabar+ -> Xi- pi+ pi- | backlog | blocked |
+| u | -3334 | S024.1/2025 | omegabar_plus_s024_1 | Omegabar+ decay mode 1 | Omegabar+ -> K+ | incomplete | blocked |
+| u | -3334 | S024.2/2025 | omegabar_plus_s024_2 | Omegabar+ decay mode 2 | Omegabar+ -> Xibar0 pi+ | supported | ready |
+| u | -3334 | S024.3/2025 | omegabar_plus_s024_3 | Omegabar+ decay mode 3 | Omegabar+ -> Xibar+ pi0 | supported | ready |
+| u | -3334 | S024.8/2025 | omegabar_plus_s024_8 | Omegabar+ decay mode 4 | Omegabar+ -> Xibar+ pi- pi+ | supported | ready |
 | u | -3334 | S024.6/2025 | omegabar_plus_s024_6 | Omegabar+ decay mode 5 | Omegabar+ -> Xi(1530)0 pi- | backlog | blocked |
-| u | -3334 | S024.7/2025 | omegabar_plus_s024_7 | Omegabar+ decay mode 6 | Omegabar+ -> Xi0 e- nubar_e | backlog | blocked |
-| u | -3334 | S024.5/2025 | omegabar_plus_s024_5 | Omegabar+ decay mode 7 | Omegabar+ -> Xi- gamma | backlog | blocked |
-| u | -3334 | S024.4/2025 | omegabar_plus_s024_4 | Omegabar+ decay mode 8 | Omegabar+ -> pi- | incomplete | blocked |
-| u | -3334 | S024.9/2025 | omegabar_plus_s024_9 | Omegabar+ decay mode 9 | Omegabar+ -> Sigma0 pi- | backlog | blocked |
-| u | -3334 | S024.10/2025 | omegabar_plus_s024_10 | Omegabar+ decay mode 10 | Omegabar+ -> n K- | backlog | blocked |
+| u | -3334 | S024.7/2025 | omegabar_plus_s024_7 | Omegabar+ decay mode 6 | Omegabar+ -> Xibar0 e+ nu_e | supported | ready |
+| u | -3334 | S024.5/2025 | omegabar_plus_s024_5 | Omegabar+ decay mode 7 | Omegabar+ -> Xibar+ gamma | supported | ready |
+| u | -3334 | S024.4/2025 | omegabar_plus_s024_4 | Omegabar+ decay mode 8 | Omegabar+ -> pi+ | incomplete | blocked |
+| u | -3334 | S024.9/2025 | omegabar_plus_s024_9 | Omegabar+ decay mode 9 | Omegabar+ -> Sigmabar0 pi+ | supported | ready |
+| u | -3334 | S024.10/2025 | omegabar_plus_s024_10 | Omegabar+ decay mode 10 | Omegabar+ -> anti-n K+ | supported | ready |
 | u | -5332 | S063.1/2025 | omegabar_b_plus_s063_1 | Omegabar_b()+ decay mode 1 | Omegabar_b()+ -> J/psi Omega- xB(b -> Omega_b()) | incomplete | blocked |
 | u | -5332 | S063.2/2025 | omegabar_b_plus_s063_2 | Omegabar_b()+ decay mode 2 | Omegabar_b()+ -> p K- K- xB(bbar -> Omega_b()) | incomplete | blocked |
 | u | -5332 | S063.4/2025 | omegabar_b_plus_s063_4 | Omegabar_b()+ decay mode 3 | Omegabar_b()+ -> p pi- pi- xB(bbar -> Omega_b()) | incomplete | blocked |
@@ -9269,23 +9269,23 @@
 | u | 0 | B118.1/2025 | sigma_3170_0_b118_1 | Sigma(3170)0 decay mode 1 | Sigma(3170)0 -> Lambda K Kbar pi's | incomplete | blocked |
 | u | 0 | B118.2/2025 | sigma_3170_0_b118_2 | Sigma(3170)0 decay mode 2 | Sigma(3170)0 -> Sigma K Kbar pi's | incomplete | blocked |
 | u | 0 | B118.3/2025 | sigma_3170_0_b118_3 | Sigma(3170)0 decay mode 3 | Sigma(3170)0 -> Xi K pi's | incomplete | blocked |
-| u | 3222 | S019.1/2025 | sigma_plus_s019_1 | Sigma+ decay mode 1 | Sigma+ -> p pi0 | backlog | blocked |
-| u | 3222 | S019.2/2025 | sigma_plus_s019_2 | Sigma+ decay mode 2 | Sigma+ -> n pi+ | backlog | blocked |
-| u | 3222 | S019.5/2025 | sigma_plus_s019_5 | Sigma+ decay mode 3 | Sigma+ -> p gamma | backlog | blocked |
-| u | 3222 | S019.3/2025 | sigma_plus_s019_3 | Sigma+ decay mode 4 | Sigma+ -> n pi+ gamma | backlog | blocked |
+| u | 3222 | S019.1/2025 | sigma_plus_s019_1 | Sigma+ decay mode 1 | Sigma+ -> p pi0 | supported | ready |
+| u | 3222 | S019.2/2025 | sigma_plus_s019_2 | Sigma+ decay mode 2 | Sigma+ -> n pi+ | supported | ready |
+| u | 3222 | S019.5/2025 | sigma_plus_s019_5 | Sigma+ decay mode 3 | Sigma+ -> p gamma | supported | ready |
+| u | 3222 | S019.3/2025 | sigma_plus_s019_3 | Sigma+ decay mode 4 | Sigma+ -> n pi+ gamma | supported | ready |
 | u | 3222 | S019.4/2025 | sigma_plus_s019_4 | Sigma+ decay mode 5 | Sigma+ -> e+ nu_e | incomplete | blocked |
-| u | 3222 | S019.7/2025 | sigma_plus_s019_7 | Sigma+ decay mode 6 | Sigma+ -> n e+ nu_e | backlog | blocked |
-| u | 3222 | S019.6/2025 | sigma_plus_s019_6 | Sigma+ decay mode 7 | Sigma+ -> n mu+ nu_mu | backlog | blocked |
-| u | 3222 | S019.8/2025 | sigma_plus_s019_8 | Sigma+ decay mode 8 | Sigma+ -> p e+ e- | backlog | blocked |
-| u | 3222 | S019.9/2025 | sigma_plus_s019_9 | Sigma+ decay mode 9 | Sigma+ -> p mu+ mu- | backlog | blocked |
+| u | 3222 | S019.7/2025 | sigma_plus_s019_7 | Sigma+ decay mode 6 | Sigma+ -> n e+ nu_e | supported | ready |
+| u | 3222 | S019.6/2025 | sigma_plus_s019_6 | Sigma+ decay mode 7 | Sigma+ -> n mu+ nu_mu | supported | ready |
+| u | 3222 | S019.8/2025 | sigma_plus_s019_8 | Sigma+ decay mode 8 | Sigma+ -> p e+ e- | supported | ready |
+| u | 3222 | S019.9/2025 | sigma_plus_s019_9 | Sigma+ decay mode 9 | Sigma+ -> p mu+ mu- | supported | ready |
 | u | 3222 | S019.195/2025 | sigma_plus_s019_195 | Sigma+ decay mode 10 | Sigma+ -> p | incomplete | blocked |
-| u | 3112 | S020.1/2025 | sigma_minus_s020_1 | Sigma- decay mode 1 | Sigma- -> n pi- | backlog | blocked |
-| u | 3112 | S020.2/2025 | sigma_minus_s020_2 | Sigma- decay mode 2 | Sigma- -> n pi- gamma | backlog | blocked |
-| u | 3112 | S020.4/2025 | sigma_minus_s020_4 | Sigma- decay mode 3 | Sigma- -> n e- nubar_e | backlog | blocked |
-| u | 3112 | S020.3/2025 | sigma_minus_s020_3 | Sigma- decay mode 4 | Sigma- -> n mu- nubar_mu | backlog | blocked |
+| u | 3112 | S020.1/2025 | sigma_minus_s020_1 | Sigma- decay mode 1 | Sigma- -> n pi- | supported | ready |
+| u | 3112 | S020.2/2025 | sigma_minus_s020_2 | Sigma- decay mode 2 | Sigma- -> n pi- gamma | supported | ready |
+| u | 3112 | S020.4/2025 | sigma_minus_s020_4 | Sigma- decay mode 3 | Sigma- -> n e- nubar_e | supported | ready |
+| u | 3112 | S020.3/2025 | sigma_minus_s020_3 | Sigma- decay mode 4 | Sigma- -> n mu- nubar_mu | supported | ready |
 | u | 3112 | S020.5/2025 | sigma_minus_s020_5 | Sigma- decay mode 5 | Sigma- -> e- nubar_e | incomplete | blocked |
-| u | 3112 | S020.193/2025 | sigma_minus_s020_193 | Sigma- decay mode 6 | Sigma- -> Sigma+ | incomplete | blocked |
-| u | 3112 | S020.192/2025 | sigma_minus_s020_192 | Sigma- decay mode 7 | Sigma- -> p e- e- | backlog | blocked |
+| u | 3112 | S020.193/2025 | sigma_minus_s020_193 | Sigma- decay mode 6 | Sigma- -> Sigmabar- | incomplete | blocked |
+| u | 3112 | S020.192/2025 | sigma_minus_s020_192 | Sigma- decay mode 7 | Sigma- -> p e- e- | supported | ready |
 | u | 3212 | S021.1/2025 | sigma0_s021_1 | Sigma0 decay mode 1 | Sigma0 -> gamma | incomplete | blocked |
 | u | 3212 | S021.3/2025 | sigma0_s021_3 | Sigma0 decay mode 2 | Sigma0 -> gamma gamma | incomplete | blocked |
 | u | 3212 | S021.2/2025 | sigma0_s021_2 | Sigma0 decay mode 3 | Sigma0 -> e+ e- | incomplete | blocked |
@@ -9871,23 +9871,23 @@
 | u | 0 | B118.1/2025 | sigmabar_3170_0_b118_1 | Sigmabar(3170)0 decay mode 1 | Sigmabar(3170)0 -> Lambda K Kbar pi's | incomplete | blocked |
 | u | 0 | B118.2/2025 | sigmabar_3170_0_b118_2 | Sigmabar(3170)0 decay mode 2 | Sigmabar(3170)0 -> Sigma K Kbar pi's | incomplete | blocked |
 | u | 0 | B118.3/2025 | sigmabar_3170_0_b118_3 | Sigmabar(3170)0 decay mode 3 | Sigmabar(3170)0 -> Xi K pi's | incomplete | blocked |
-| u | -3112 | S020.1/2025 | sigmabar_plus_s020_1 | Sigmabar+ decay mode 1 | Sigmabar+ -> n pi- | backlog | blocked |
-| u | -3112 | S020.2/2025 | sigmabar_plus_s020_2 | Sigmabar+ decay mode 2 | Sigmabar+ -> n pi- gamma | backlog | blocked |
-| u | -3112 | S020.4/2025 | sigmabar_plus_s020_4 | Sigmabar+ decay mode 3 | Sigmabar+ -> n e- nubar_e | backlog | blocked |
-| u | -3112 | S020.3/2025 | sigmabar_plus_s020_3 | Sigmabar+ decay mode 4 | Sigmabar+ -> n mu- nubar_mu | backlog | blocked |
-| u | -3112 | S020.5/2025 | sigmabar_plus_s020_5 | Sigmabar+ decay mode 5 | Sigmabar+ -> e- nubar_e | incomplete | blocked |
+| u | -3112 | S020.1/2025 | sigmabar_plus_s020_1 | Sigmabar+ decay mode 1 | Sigmabar+ -> anti-n pi+ | supported | ready |
+| u | -3112 | S020.2/2025 | sigmabar_plus_s020_2 | Sigmabar+ decay mode 2 | Sigmabar+ -> anti-n pi+ gamma | supported | ready |
+| u | -3112 | S020.4/2025 | sigmabar_plus_s020_4 | Sigmabar+ decay mode 3 | Sigmabar+ -> anti-n e+ nu_e | supported | ready |
+| u | -3112 | S020.3/2025 | sigmabar_plus_s020_3 | Sigmabar+ decay mode 4 | Sigmabar+ -> anti-n mu+ nu_mu | supported | ready |
+| u | -3112 | S020.5/2025 | sigmabar_plus_s020_5 | Sigmabar+ decay mode 5 | Sigmabar+ -> e+ nu_e | incomplete | blocked |
 | u | -3112 | S020.193/2025 | sigmabar_plus_s020_193 | Sigmabar+ decay mode 6 | Sigmabar+ -> Sigma+ | incomplete | blocked |
-| u | -3112 | S020.192/2025 | sigmabar_plus_s020_192 | Sigmabar+ decay mode 7 | Sigmabar+ -> p e- e- | backlog | blocked |
-| u | -3222 | S019.1/2025 | sigmabar_minus_s019_1 | Sigmabar- decay mode 1 | Sigmabar- -> p pi0 | backlog | blocked |
-| u | -3222 | S019.2/2025 | sigmabar_minus_s019_2 | Sigmabar- decay mode 2 | Sigmabar- -> n pi+ | backlog | blocked |
-| u | -3222 | S019.5/2025 | sigmabar_minus_s019_5 | Sigmabar- decay mode 3 | Sigmabar- -> p gamma | backlog | blocked |
-| u | -3222 | S019.3/2025 | sigmabar_minus_s019_3 | Sigmabar- decay mode 4 | Sigmabar- -> n pi+ gamma | backlog | blocked |
-| u | -3222 | S019.4/2025 | sigmabar_minus_s019_4 | Sigmabar- decay mode 5 | Sigmabar- -> e+ nu_e | incomplete | blocked |
-| u | -3222 | S019.7/2025 | sigmabar_minus_s019_7 | Sigmabar- decay mode 6 | Sigmabar- -> n e+ nu_e | backlog | blocked |
-| u | -3222 | S019.6/2025 | sigmabar_minus_s019_6 | Sigmabar- decay mode 7 | Sigmabar- -> n mu+ nu_mu | backlog | blocked |
-| u | -3222 | S019.8/2025 | sigmabar_minus_s019_8 | Sigmabar- decay mode 8 | Sigmabar- -> p e+ e- | backlog | blocked |
-| u | -3222 | S019.9/2025 | sigmabar_minus_s019_9 | Sigmabar- decay mode 9 | Sigmabar- -> p mu+ mu- | backlog | blocked |
-| u | -3222 | S019.195/2025 | sigmabar_minus_s019_195 | Sigmabar- decay mode 10 | Sigmabar- -> p | incomplete | blocked |
+| u | -3112 | S020.192/2025 | sigmabar_plus_s020_192 | Sigmabar+ decay mode 7 | Sigmabar+ -> anti-p e+ e+ | supported | ready |
+| u | -3222 | S019.1/2025 | sigmabar_minus_s019_1 | Sigmabar- decay mode 1 | Sigmabar- -> anti-p pi0 | supported | ready |
+| u | -3222 | S019.2/2025 | sigmabar_minus_s019_2 | Sigmabar- decay mode 2 | Sigmabar- -> anti-n pi- | supported | ready |
+| u | -3222 | S019.5/2025 | sigmabar_minus_s019_5 | Sigmabar- decay mode 3 | Sigmabar- -> anti-p gamma | supported | ready |
+| u | -3222 | S019.3/2025 | sigmabar_minus_s019_3 | Sigmabar- decay mode 4 | Sigmabar- -> anti-n pi- gamma | supported | ready |
+| u | -3222 | S019.4/2025 | sigmabar_minus_s019_4 | Sigmabar- decay mode 5 | Sigmabar- -> e- anti-nu_e | incomplete | blocked |
+| u | -3222 | S019.7/2025 | sigmabar_minus_s019_7 | Sigmabar- decay mode 6 | Sigmabar- -> anti-n e- anti-nu_e | supported | ready |
+| u | -3222 | S019.6/2025 | sigmabar_minus_s019_6 | Sigmabar- decay mode 7 | Sigmabar- -> anti-n mu- anti-nu_mu | supported | ready |
+| u | -3222 | S019.8/2025 | sigmabar_minus_s019_8 | Sigmabar- decay mode 8 | Sigmabar- -> anti-p e- e+ | supported | ready |
+| u | -3222 | S019.9/2025 | sigmabar_minus_s019_9 | Sigmabar- decay mode 9 | Sigmabar- -> anti-p mu- mu+ | supported | ready |
+| u | -3222 | S019.195/2025 | sigmabar_minus_s019_195 | Sigmabar- decay mode 10 | Sigmabar- -> anti-p | incomplete | blocked |
 | u | -3212 | S021.1/2025 | sigmabar0_s021_1 | Sigmabar0 decay mode 1 | Sigmabar0 -> gamma | incomplete | blocked |
 | u | -3212 | S021.3/2025 | sigmabar0_s021_3 | Sigmabar0 decay mode 2 | Sigmabar0 -> gamma gamma | incomplete | blocked |
 | u | -3212 | S021.2/2025 | sigmabar0_s021_2 | Sigmabar0 decay mode 3 | Sigmabar0 -> e+ e- | incomplete | blocked |
@@ -10447,32 +10447,32 @@
 | u | 0 | B099.4/2025 | xi_2500_0_b099_4 | Xi(2500)0 decay mode 5 | Xi(2500)0 -> pi | incomplete | blocked |
 | u | 0 | B099.5/2025 | xi_2500_0_b099_5 | Xi(2500)0 decay mode 6 | Xi(2500)0 -> pi pi | incomplete | blocked |
 | u | 3312 | S022.1/2025 | xi_minus_s022_1 | Xi- decay mode 1 | Xi- -> pi- | incomplete | blocked |
-| u | 3312 | S022.9/2025 | xi_minus_s022_9 | Xi- decay mode 2 | Xi- -> Sigma- gamma | backlog | blocked |
+| u | 3312 | S022.9/2025 | xi_minus_s022_9 | Xi- decay mode 2 | Xi- -> Sigma- gamma | supported | ready |
 | u | 3312 | S022.2/2025 | xi_minus_s022_2 | Xi- decay mode 3 | Xi- -> e- nubar_e | incomplete | blocked |
 | u | 3312 | S022.4/2025 | xi_minus_s022_4 | Xi- decay mode 4 | Xi- -> mu- nubar_mu | incomplete | blocked |
-| u | 3312 | S022.5/2025 | xi_minus_s022_5 | Xi- decay mode 5 | Xi- -> Sigma0 e- nubar_e | backlog | blocked |
-| u | 3312 | S022.6/2025 | xi_minus_s022_6 | Xi- decay mode 6 | Xi- -> Sigma0 mu- nubar_mu | backlog | blocked |
-| u | 3312 | S022.13/2025 | xi_minus_s022_13 | Xi- decay mode 7 | Xi- -> Xi0 e- nubar_e | backlog | blocked |
-| u | 3312 | S022.3/2025 | xi_minus_s022_3 | Xi- decay mode 8 | Xi- -> n pi- | backlog | blocked |
-| u | 3312 | S022.7/2025 | xi_minus_s022_7 | Xi- decay mode 9 | Xi- -> n e- nubar_e | backlog | blocked |
-| u | 3312 | S022.8/2025 | xi_minus_s022_8 | Xi- decay mode 10 | Xi- -> n mu- nubar_mu | backlog | blocked |
-| u | 3312 | S022.10/2025 | xi_minus_s022_10 | Xi- decay mode 11 | Xi- -> p pi- pi- | backlog | blocked |
-| u | 3312 | S022.11/2025 | xi_minus_s022_11 | Xi- decay mode 12 | Xi- -> p pi- e- nubar_e | backlog | blocked |
-| u | 3312 | S022.12/2025 | xi_minus_s022_12 | Xi- decay mode 13 | Xi- -> p pi- mu- nubar_mu | backlog | blocked |
-| u | 3312 | S022.14/2025 | xi_minus_s022_14 | Xi- decay mode 14 | Xi- -> p mu- mu- | backlog | blocked |
+| u | 3312 | S022.5/2025 | xi_minus_s022_5 | Xi- decay mode 5 | Xi- -> Sigma0 e- nubar_e | supported | ready |
+| u | 3312 | S022.6/2025 | xi_minus_s022_6 | Xi- decay mode 6 | Xi- -> Sigma0 mu- nubar_mu | supported | ready |
+| u | 3312 | S022.13/2025 | xi_minus_s022_13 | Xi- decay mode 7 | Xi- -> Xi0 e- nubar_e | supported | ready |
+| u | 3312 | S022.3/2025 | xi_minus_s022_3 | Xi- decay mode 8 | Xi- -> n pi- | supported | ready |
+| u | 3312 | S022.7/2025 | xi_minus_s022_7 | Xi- decay mode 9 | Xi- -> n e- nubar_e | supported | ready |
+| u | 3312 | S022.8/2025 | xi_minus_s022_8 | Xi- decay mode 10 | Xi- -> n mu- nubar_mu | supported | ready |
+| u | 3312 | S022.10/2025 | xi_minus_s022_10 | Xi- decay mode 11 | Xi- -> p pi- pi- | supported | ready |
+| u | 3312 | S022.11/2025 | xi_minus_s022_11 | Xi- decay mode 12 | Xi- -> p pi- e- nubar_e | supported | ready |
+| u | 3312 | S022.12/2025 | xi_minus_s022_12 | Xi- decay mode 13 | Xi- -> p pi- mu- nubar_mu | supported | ready |
+| u | 3312 | S022.14/2025 | xi_minus_s022_14 | Xi- decay mode 14 | Xi- -> p mu- mu- | supported | ready |
 | u | 3322 | S023.1/2025 | xi0_s023_1 | Xi0 decay mode 1 | Xi0 -> pi0 | incomplete | blocked |
 | u | 3322 | S023.9/2025 | xi0_s023_9 | Xi0 decay mode 2 | Xi0 -> gamma | incomplete | blocked |
 | u | 3322 | S023.12/2025 | xi0_s023_12 | Xi0 decay mode 3 | Xi0 -> e+ e- | incomplete | blocked |
-| u | 3322 | S023.10/2025 | xi0_s023_10 | Xi0 decay mode 4 | Xi0 -> Sigma0 gamma | backlog | blocked |
-| u | 3322 | S023.4/2025 | xi0_s023_4 | Xi0 decay mode 5 | Xi0 -> Sigma+ e- nubar_e | backlog | blocked |
-| u | 3322 | S023.6/2025 | xi0_s023_6 | Xi0 decay mode 6 | Xi0 -> Sigma+ mu- nubar_mu | backlog | blocked |
-| u | 3322 | S023.5/2025 | xi0_s023_5 | Xi0 decay mode 7 | Xi0 -> Sigma- e+ nu_e | backlog | blocked |
-| u | 3322 | S023.7/2025 | xi0_s023_7 | Xi0 decay mode 8 | Xi0 -> Sigma- mu+ nu_mu | backlog | blocked |
-| u | 3322 | S023.2/2025 | xi0_s023_2 | Xi0 decay mode 9 | Xi0 -> p pi- | backlog | blocked |
-| u | 3322 | S023.3/2025 | xi0_s023_3 | Xi0 decay mode 10 | Xi0 -> p e- nubar_e | backlog | blocked |
-| u | 3322 | S023.8/2025 | xi0_s023_8 | Xi0 decay mode 11 | Xi0 -> p mu- nubar_mu | backlog | blocked |
-| u | 3322 | S023.15/2025 | xi0_s023_15 | Xi0 decay mode 12 | Xi0 -> K- e+ | backlog | blocked |
-| u | 3322 | S023.16/2025 | xi0_s023_16 | Xi0 decay mode 13 | Xi0 -> K+ e- | backlog | blocked |
+| u | 3322 | S023.10/2025 | xi0_s023_10 | Xi0 decay mode 4 | Xi0 -> Sigma0 gamma | supported | ready |
+| u | 3322 | S023.4/2025 | xi0_s023_4 | Xi0 decay mode 5 | Xi0 -> Sigma+ e- nubar_e | supported | ready |
+| u | 3322 | S023.6/2025 | xi0_s023_6 | Xi0 decay mode 6 | Xi0 -> Sigma+ mu- nubar_mu | supported | ready |
+| u | 3322 | S023.5/2025 | xi0_s023_5 | Xi0 decay mode 7 | Xi0 -> Sigma- e+ nu_e | supported | ready |
+| u | 3322 | S023.7/2025 | xi0_s023_7 | Xi0 decay mode 8 | Xi0 -> Sigma- mu+ nu_mu | supported | ready |
+| u | 3322 | S023.2/2025 | xi0_s023_2 | Xi0 decay mode 9 | Xi0 -> p pi- | supported | ready |
+| u | 3322 | S023.3/2025 | xi0_s023_3 | Xi0 decay mode 10 | Xi0 -> p e- nubar_e | supported | ready |
+| u | 3322 | S023.8/2025 | xi0_s023_8 | Xi0 decay mode 11 | Xi0 -> p mu- nubar_mu | supported | ready |
+| u | 3322 | S023.15/2025 | xi0_s023_15 | Xi0 decay mode 12 | Xi0 -> K- e+ | supported | ready |
+| u | 3322 | S023.16/2025 | xi0_s023_16 | Xi0 decay mode 13 | Xi0 -> K+ e- | supported | ready |
 | u | 5132 | S069.2/2025 | xi_b_minus_s069_2 | Xi_b()- decay mode 1 | Xi_b()- -> J/psi Xi- x B(b -> Xi_b()-) | incomplete | blocked |
 | u | 5132 | S069.17/2025 | xi_b_minus_s069_17 | Xi_b()- decay mode 2 | Xi_b()- -> J/psi Lambda K- x B(b -> Xi_b()-) | incomplete | blocked |
 | u | 5132 | S069.15/2025 | xi_b_minus_s069_15 | Xi_b()- decay mode 3 | Xi_b()- -> p K- K- x B(b -> Xi_b()-) | incomplete | blocked |
@@ -10715,33 +10715,33 @@
 | u | 0 | B099.6/2025 | xibar_2500_0_b099_6 | Xibar(2500)0 decay mode 4 | Xibar(2500)0 -> pi pi | incomplete | blocked |
 | u | 0 | B099.4/2025 | xibar_2500_0_b099_4 | Xibar(2500)0 decay mode 5 | Xibar(2500)0 -> pi | incomplete | blocked |
 | u | 0 | B099.5/2025 | xibar_2500_0_b099_5 | Xibar(2500)0 decay mode 6 | Xibar(2500)0 -> pi pi | incomplete | blocked |
-| u | -3312 | S022.1/2025 | xibar_plus_s022_1 | Xibar+ decay mode 1 | Xibar+ -> pi- | incomplete | blocked |
-| u | -3312 | S022.9/2025 | xibar_plus_s022_9 | Xibar+ decay mode 2 | Xibar+ -> Sigma- gamma | backlog | blocked |
-| u | -3312 | S022.2/2025 | xibar_plus_s022_2 | Xibar+ decay mode 3 | Xibar+ -> e- nubar_e | incomplete | blocked |
-| u | -3312 | S022.4/2025 | xibar_plus_s022_4 | Xibar+ decay mode 4 | Xibar+ -> mu- nubar_mu | incomplete | blocked |
-| u | -3312 | S022.5/2025 | xibar_plus_s022_5 | Xibar+ decay mode 5 | Xibar+ -> Sigma0 e- nubar_e | backlog | blocked |
-| u | -3312 | S022.6/2025 | xibar_plus_s022_6 | Xibar+ decay mode 6 | Xibar+ -> Sigma0 mu- nubar_mu | backlog | blocked |
-| u | -3312 | S022.13/2025 | xibar_plus_s022_13 | Xibar+ decay mode 7 | Xibar+ -> Xi0 e- nubar_e | backlog | blocked |
-| u | -3312 | S022.3/2025 | xibar_plus_s022_3 | Xibar+ decay mode 8 | Xibar+ -> n pi- | backlog | blocked |
-| u | -3312 | S022.7/2025 | xibar_plus_s022_7 | Xibar+ decay mode 9 | Xibar+ -> n e- nubar_e | backlog | blocked |
-| u | -3312 | S022.8/2025 | xibar_plus_s022_8 | Xibar+ decay mode 10 | Xibar+ -> n mu- nubar_mu | backlog | blocked |
-| u | -3312 | S022.10/2025 | xibar_plus_s022_10 | Xibar+ decay mode 11 | Xibar+ -> p pi- pi- | backlog | blocked |
-| u | -3312 | S022.11/2025 | xibar_plus_s022_11 | Xibar+ decay mode 12 | Xibar+ -> p pi- e- nubar_e | backlog | blocked |
-| u | -3312 | S022.12/2025 | xibar_plus_s022_12 | Xibar+ decay mode 13 | Xibar+ -> p pi- mu- nubar_mu | backlog | blocked |
-| u | -3312 | S022.14/2025 | xibar_plus_s022_14 | Xibar+ decay mode 14 | Xibar+ -> p mu- mu- | backlog | blocked |
+| u | -3312 | S022.1/2025 | xibar_plus_s022_1 | Xibar+ decay mode 1 | Xibar+ -> pi+ | incomplete | blocked |
+| u | -3312 | S022.9/2025 | xibar_plus_s022_9 | Xibar+ decay mode 2 | Xibar+ -> Sigmabar+ gamma | supported | ready |
+| u | -3312 | S022.2/2025 | xibar_plus_s022_2 | Xibar+ decay mode 3 | Xibar+ -> e+ nu_e | incomplete | blocked |
+| u | -3312 | S022.4/2025 | xibar_plus_s022_4 | Xibar+ decay mode 4 | Xibar+ -> mu+ nu_mu | incomplete | blocked |
+| u | -3312 | S022.5/2025 | xibar_plus_s022_5 | Xibar+ decay mode 5 | Xibar+ -> Sigmabar0 e+ nu_e | supported | ready |
+| u | -3312 | S022.6/2025 | xibar_plus_s022_6 | Xibar+ decay mode 6 | Xibar+ -> Sigmabar0 mu+ nu_mu | supported | ready |
+| u | -3312 | S022.13/2025 | xibar_plus_s022_13 | Xibar+ decay mode 7 | Xibar+ -> Xibar0 e+ nu_e | supported | ready |
+| u | -3312 | S022.3/2025 | xibar_plus_s022_3 | Xibar+ decay mode 8 | Xibar+ -> anti-n pi+ | supported | ready |
+| u | -3312 | S022.7/2025 | xibar_plus_s022_7 | Xibar+ decay mode 9 | Xibar+ -> anti-n e+ nu_e | supported | ready |
+| u | -3312 | S022.8/2025 | xibar_plus_s022_8 | Xibar+ decay mode 10 | Xibar+ -> anti-n mu+ nu_mu | supported | ready |
+| u | -3312 | S022.10/2025 | xibar_plus_s022_10 | Xibar+ decay mode 11 | Xibar+ -> anti-p pi+ pi+ | supported | ready |
+| u | -3312 | S022.11/2025 | xibar_plus_s022_11 | Xibar+ decay mode 12 | Xibar+ -> anti-p pi+ e+ nu_e | supported | ready |
+| u | -3312 | S022.12/2025 | xibar_plus_s022_12 | Xibar+ decay mode 13 | Xibar+ -> anti-p pi+ mu+ nu_mu | supported | ready |
+| u | -3312 | S022.14/2025 | xibar_plus_s022_14 | Xibar+ decay mode 14 | Xibar+ -> anti-p mu+ mu+ | supported | ready |
 | u | -3322 | S023.1/2025 | xibar0_s023_1 | Xibar0 decay mode 1 | Xibar0 -> pi0 | incomplete | blocked |
 | u | -3322 | S023.9/2025 | xibar0_s023_9 | Xibar0 decay mode 2 | Xibar0 -> gamma | incomplete | blocked |
 | u | -3322 | S023.12/2025 | xibar0_s023_12 | Xibar0 decay mode 3 | Xibar0 -> e+ e- | incomplete | blocked |
-| u | -3322 | S023.10/2025 | xibar0_s023_10 | Xibar0 decay mode 4 | Xibar0 -> Sigma0 gamma | backlog | blocked |
-| u | -3322 | S023.4/2025 | xibar0_s023_4 | Xibar0 decay mode 5 | Xibar0 -> Sigma+ e- nubar_e | backlog | blocked |
-| u | -3322 | S023.6/2025 | xibar0_s023_6 | Xibar0 decay mode 6 | Xibar0 -> Sigma+ mu- nubar_mu | backlog | blocked |
-| u | -3322 | S023.5/2025 | xibar0_s023_5 | Xibar0 decay mode 7 | Xibar0 -> Sigma- e+ nu_e | backlog | blocked |
-| u | -3322 | S023.7/2025 | xibar0_s023_7 | Xibar0 decay mode 8 | Xibar0 -> Sigma- mu+ nu_mu | backlog | blocked |
-| u | -3322 | S023.2/2025 | xibar0_s023_2 | Xibar0 decay mode 9 | Xibar0 -> p pi- | backlog | blocked |
-| u | -3322 | S023.3/2025 | xibar0_s023_3 | Xibar0 decay mode 10 | Xibar0 -> p e- nubar_e | backlog | blocked |
-| u | -3322 | S023.8/2025 | xibar0_s023_8 | Xibar0 decay mode 11 | Xibar0 -> p mu- nubar_mu | backlog | blocked |
-| u | -3322 | S023.15/2025 | xibar0_s023_15 | Xibar0 decay mode 12 | Xibar0 -> K- e+ | backlog | blocked |
-| u | -3322 | S023.16/2025 | xibar0_s023_16 | Xibar0 decay mode 13 | Xibar0 -> K+ e- | backlog | blocked |
+| u | -3322 | S023.10/2025 | xibar0_s023_10 | Xibar0 decay mode 4 | Xibar0 -> Sigma0 gamma | supported | ready |
+| u | -3322 | S023.4/2025 | xibar0_s023_4 | Xibar0 decay mode 5 | Xibar0 -> Sigma+ e- nubar_e | supported | ready |
+| u | -3322 | S023.6/2025 | xibar0_s023_6 | Xibar0 decay mode 6 | Xibar0 -> Sigma+ mu- nubar_mu | supported | ready |
+| u | -3322 | S023.5/2025 | xibar0_s023_5 | Xibar0 decay mode 7 | Xibar0 -> Sigma- e+ nu_e | supported | ready |
+| u | -3322 | S023.7/2025 | xibar0_s023_7 | Xibar0 decay mode 8 | Xibar0 -> Sigma- mu+ nu_mu | supported | ready |
+| u | -3322 | S023.2/2025 | xibar0_s023_2 | Xibar0 decay mode 9 | Xibar0 -> p pi- | supported | ready |
+| u | -3322 | S023.3/2025 | xibar0_s023_3 | Xibar0 decay mode 10 | Xibar0 -> p e- nubar_e | supported | ready |
+| u | -3322 | S023.8/2025 | xibar0_s023_8 | Xibar0 decay mode 11 | Xibar0 -> p mu- nubar_mu | supported | ready |
+| u | -3322 | S023.15/2025 | xibar0_s023_15 | Xibar0 decay mode 12 | Xibar0 -> K- e+ | supported | ready |
+| u | -3322 | S023.16/2025 | xibar0_s023_16 | Xibar0 decay mode 13 | Xibar0 -> K+ e- | supported | ready |
 | u | -5132 | S069.2/2025 | xibar_b_plus_s069_2 | Xibar_b()+ decay mode 1 | Xibar_b()+ -> J/psi Xi- x B(b -> Xi_b()-) | incomplete | blocked |
 | u | -5132 | S069.17/2025 | xibar_b_plus_s069_17 | Xibar_b()+ decay mode 2 | Xibar_b()+ -> J/psi Lambda K- x B(b -> Xi_b()-) | incomplete | blocked |
 | u | -5132 | S069.15/2025 | xibar_b_plus_s069_15 | Xibar_b()+ decay mode 3 | Xibar_b()+ -> p K- K- x B(b -> Xi_b()-) | incomplete | blocked |
@@ -11149,7 +11149,7 @@
 | u | -511 | S042.612/2025 | bbar0_s042_612 | Bbar0 decay mode 3 | anti-B0 -> lepton+ nu_lepton X_u | incomplete | blocked |
 | u | -511 | S042.396/2025 | bbar0_s042_396 | Bbar0 decay mode 4 | anti-B0 -> D lepton+ nu_lepton X | incomplete | blocked |
 | u | -511 | S042.37/2025 | bbar0_s042_37 | Bbar0 decay mode 5 | anti-B0 -> D- | incomplete | blocked |
-| u | -511 | S042.416/2025 | bbar0_s042_416 | Bbar0 decay mode 6 | anti-B0 -> D- tau+ nu_tau | backlog | blocked |
+| u | -511 | S042.416/2025 | bbar0_s042_416 | Bbar0 decay mode 6 | anti-B0 -> D- tau+ nu_tau | supported | ready |
 | u | -511 | S042.181/2025 | bbar0_s042_181 | Bbar0 decay mode 7 | anti-B0 -> D^*(2010)- | incomplete | blocked |
 | u | -511 | S042.625/2025 | bbar0_s042_625 | Bbar0 decay mode 8 | anti-B0 -> D^*(2010)- e+ nu_e | backlog | blocked |
 | u | -511 | S042.626/2025 | bbar0_s042_626 | Bbar0 decay mode 9 | anti-B0 -> D^*(2010)- mu+ nu_mu | backlog | blocked |
@@ -11181,19 +11181,19 @@
 | u | -511 | S042.298/2025 | bbar0_s042_298 | Bbar0 decay mode 35 | anti-B0 -> cbar | incomplete | blocked |
 | u | -511 | S042.299/2025 | bbar0_s042_299 | Bbar0 decay mode 36 | anti-B0 -> c | incomplete | blocked |
 | u | -511 | S042.300/2025 | bbar0_s042_300 | Bbar0 decay mode 37 | anti-B0 -> cbar c | incomplete | blocked |
-| u | -511 | S042.30/2025 | bbar0_s042_30 | Bbar0 decay mode 38 | anti-B0 -> D- pi+ | backlog | blocked |
+| u | -511 | S042.30/2025 | bbar0_s042_30 | Bbar0 decay mode 38 | anti-B0 -> D- pi+ | supported | ready |
 | u | -511 | S042.34/2025 | bbar0_s042_34 | Bbar0 decay mode 39 | anti-B0 -> D- | incomplete | blocked |
-| u | -511 | S042.313/2025 | bbar0_s042_313 | Bbar0 decay mode 40 | anti-B0 -> D- K0 pi+ | backlog | blocked |
+| u | -511 | S042.313/2025 | bbar0_s042_313 | Bbar0 decay mode 40 | anti-B0 -> D- K0 pi+ | supported | ready |
 | u | -511 | S042.209/2025 | bbar0_s042_209 | Bbar0 decay mode 41 | anti-B0 -> D- K^*(892)+ | backlog | blocked |
 | u | -511 | S042.205/2025 | bbar0_s042_205 | Bbar0 decay mode 42 | anti-B0 -> D- pi+ | incomplete | blocked |
-| u | -511 | S042.201/2025 | bbar0_s042_201 | Bbar0 decay mode 43 | anti-B0 -> D- K+ | backlog | blocked |
-| u | -511 | S042.508/2025 | bbar0_s042_508 | Bbar0 decay mode 44 | anti-B0 -> D- K+ pi+ pi- | backlog | blocked |
-| u | -511 | S042.216/2025 | bbar0_s042_216 | Bbar0 decay mode 45 | anti-B0 -> D- K+ Kbar0 | backlog | blocked |
+| u | -511 | S042.201/2025 | bbar0_s042_201 | Bbar0 decay mode 43 | anti-B0 -> D- K+ | supported | ready |
+| u | -511 | S042.508/2025 | bbar0_s042_508 | Bbar0 decay mode 44 | anti-B0 -> D- K+ pi+ pi- | supported | ready |
+| u | -511 | S042.216/2025 | bbar0_s042_216 | Bbar0 decay mode 45 | anti-B0 -> D- K+ Kbar0 | supported | ready |
 | u | -511 | S042.218/2025 | bbar0_s042_218 | Bbar0 decay mode 46 | anti-B0 -> D- K+ Kbar^*(892)0 | backlog | blocked |
-| u | -511 | S042.1/2025 | bbar0_s042_1 | Bbar0 decay mode 47 | anti-B0 -> Dbar0 pi+ pi- | backlog | blocked |
+| u | -511 | S042.1/2025 | bbar0_s042_1 | Bbar0 decay mode 47 | anti-B0 -> Dbar0 pi+ pi- | supported | ready |
 | u | -511 | S042.2/2025 | bbar0_s042_2 | Bbar0 decay mode 48 | anti-B0 -> D^*(2010)- pi+ | backlog | blocked |
-| u | -511 | S042.507/2025 | bbar0_s042_507 | Bbar0 decay mode 49 | anti-B0 -> Dbar0 K+ K- | backlog | blocked |
-| u | -511 | S042.88/2025 | bbar0_s042_88 | Bbar0 decay mode 50 | anti-B0 -> D- pi+ pi+ pi- | backlog | blocked |
+| u | -511 | S042.507/2025 | bbar0_s042_507 | Bbar0 decay mode 49 | anti-B0 -> Dbar0 K+ K- | supported | ready |
+| u | -511 | S042.88/2025 | bbar0_s042_88 | Bbar0 decay mode 50 | anti-B0 -> D- pi+ pi+ pi- | supported | ready |
 | u | -511 | S042.89/2025 | bbar0_s042_89 | Bbar0 decay mode 51 | anti-B0 -> (D- pi+ pi+ pi-) nonresonant | incomplete | blocked |
 | u | -511 | S042.91/2025 | bbar0_s042_91 | Bbar0 decay mode 52 | anti-B0 -> D- pi+ | incomplete | blocked |
 | u | -511 | S042.93/2025 | bbar0_s042_93 | Bbar0 decay mode 53 | anti-B0 -> D- a_1(1260)+ | backlog | blocked |
@@ -11225,9 +11225,9 @@
 | u | -511 | S042.385/2025 | bbar0_s042_385 | Bbar0 decay mode 79 | anti-B0 -> D0 pi- pi+ | incomplete | blocked |
 | u | -511 | S042.333/2025 | bbar0_s042_333 | Bbar0 decay mode 80 | anti-B0 -> pi+ pi- pi+ | incomplete | blocked |
 | u | -511 | S042.125/2025 | bbar0_s042_125 | Bbar0 decay mode 81 | anti-B0 -> Dbar_2^*(2460)- rho+ | incomplete | blocked |
-| u | -511 | S042.350/2025 | bbar0_s042_350 | Bbar0 decay mode 82 | anti-B0 -> D0 Dbar0 | backlog | blocked |
+| u | -511 | S042.350/2025 | bbar0_s042_350 | Bbar0 decay mode 82 | anti-B0 -> D0 Dbar0 | supported | ready |
 | u | -511 | S042.351/2025 | bbar0_s042_351 | Bbar0 decay mode 83 | anti-B0 -> Dbar0 | incomplete | blocked |
-| u | -511 | S042.184/2025 | bbar0_s042_184 | Bbar0 decay mode 84 | anti-B0 -> D- D+ | backlog | blocked |
+| u | -511 | S042.184/2025 | bbar0_s042_184 | Bbar0 decay mode 84 | anti-B0 -> D- D+ | supported | ready |
 | u | -511 | S042.511/2025 | bbar0_s042_511 | Bbar0 decay mode 85 | anti-B0 -> D+- D^*()-+ (CP-averaged) | incomplete | blocked |
 | u | -511 | S042.50/2025 | bbar0_s042_50 | Bbar0 decay mode 86 | anti-B0 -> D- D_s()+ | backlog | blocked |
 | u | -511 | S042.630/2025 | bbar0_s042_630 | Bbar0 decay mode 87 | anti-B0 -> Dbar0 D_s()+ pi-, m(Dbar0 pi-)>2.05 GeV | incomplete | blocked |
@@ -11267,7 +11267,7 @@
 | u | -511 | S042.273/2025 | bbar0_s042_273 | Bbar0 decay mode 121 | anti-B0 -> D0 K+ D- | incomplete | blocked |
 | u | -511 | S042.274/2025 | bbar0_s042_274 | Bbar0 decay mode 122 | anti-B0 -> D0 K+ D^*(2010)- | incomplete | blocked |
 | u | -511 | S042.545/2025 | bbar0_s042_545 | Bbar0 decay mode 123 | anti-B0 -> D0 K+ D- | incomplete | blocked |
-| u | -511 | S042.488/2025 | bbar0_s042_488 | Bbar0 decay mode 124 | anti-B0 -> D+ pi- | backlog | blocked |
+| u | -511 | S042.488/2025 | bbar0_s042_488 | Bbar0 decay mode 124 | anti-B0 -> D+ pi- | supported | ready |
 | u | -511 | S042.51/2025 | bbar0_s042_51 | Bbar0 decay mode 125 | anti-B0 -> D_s()+ pi- | backlog | blocked |
 | u | -511 | S042.108/2025 | bbar0_s042_108 | Bbar0 decay mode 126 | anti-B0 -> D_s^*()+ pi- | backlog | blocked |
 | u | -511 | S042.110/2025 | bbar0_s042_110 | Bbar0 decay mode 127 | anti-B0 -> D_s()+ | incomplete | blocked |
@@ -11288,8 +11288,8 @@
 | u | -511 | S042.512/2025 | bbar0_s042_512 | Bbar0 decay mode 142 | anti-B0 -> D_s()- K+ pi+ pi- | backlog | blocked |
 | u | -511 | S042.118/2025 | bbar0_s042_118 | Bbar0 decay mode 143 | anti-B0 -> D_s()- pi+ K^*(892)0 | backlog | blocked |
 | u | -511 | S042.119/2025 | bbar0_s042_119 | Bbar0 decay mode 144 | anti-B0 -> D_s^*()- pi+ K^*(892)0 | backlog | blocked |
-| u | -511 | S042.242/2025 | bbar0_s042_242 | Bbar0 decay mode 145 | anti-B0 -> Dbar0 K0 | backlog | blocked |
-| u | -511 | S042.319/2025 | bbar0_s042_319 | Bbar0 decay mode 146 | anti-B0 -> Dbar0 K+ pi- | backlog | blocked |
+| u | -511 | S042.242/2025 | bbar0_s042_242 | Bbar0 decay mode 145 | anti-B0 -> Dbar0 K0 | supported | ready |
+| u | -511 | S042.319/2025 | bbar0_s042_319 | Bbar0 decay mode 146 | anti-B0 -> Dbar0 K+ pi- | supported | ready |
 | u | -511 | S042.243/2025 | bbar0_s042_243 | Bbar0 decay mode 147 | anti-B0 -> Dbar0 K^*(892)0 | backlog | blocked |
 | u | -511 | S042.551/2025 | bbar0_s042_551 | Bbar0 decay mode 148 | anti-B0 -> Dbar0 K^*(1410)0 | backlog | blocked |
 | u | -511 | S042.552/2025 | bbar0_s042_552 | Bbar0 decay mode 149 | anti-B0 -> Dbar0 K_0^*(1430)0 | backlog | blocked |
@@ -11305,14 +11305,14 @@
 | u | -511 | S042.596/2025 | bbar0_s042_596 | Bbar0 decay mode 159 | anti-B0 -> &#91; pi+ pi- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
 | u | -511 | S042.599/2025 | bbar0_s042_599 | Bbar0 decay mode 160 | anti-B0 -> &#91; pi+ K- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
 | u | -511 | S042.600/2025 | bbar0_s042_600 | Bbar0 decay mode 161 | anti-B0 -> &#91; K+ pi- pi+ pi- &#93;(D) K^*()0 | incomplete | blocked |
-| u | -511 | S042.128/2025 | bbar0_s042_128 | Bbar0 decay mode 162 | anti-B0 -> Dbar0 pi0 | backlog | blocked |
+| u | -511 | S042.128/2025 | bbar0_s042_128 | Bbar0 decay mode 162 | anti-B0 -> Dbar0 pi0 | supported | ready |
 | u | -511 | S042.35/2025 | bbar0_s042_35 | Bbar0 decay mode 163 | anti-B0 -> Dbar0 | incomplete | blocked |
 | u | -511 | S042.386/2025 | bbar0_s042_386 | Bbar0 decay mode 164 | anti-B0 -> Dbar0 | incomplete | blocked |
-| u | -511 | S042.129/2025 | bbar0_s042_129 | Bbar0 decay mode 165 | anti-B0 -> Dbar0 eta | backlog | blocked |
+| u | -511 | S042.129/2025 | bbar0_s042_129 | Bbar0 decay mode 165 | anti-B0 -> Dbar0 eta | supported | ready |
 | u | -511 | S042.130/2025 | bbar0_s042_130 | Bbar0 decay mode 166 | anti-B0 -> Dbar0 | incomplete | blocked |
 | u | -511 | S042.131/2025 | bbar0_s042_131 | Bbar0 decay mode 167 | anti-B0 -> Dbar0 | incomplete | blocked |
-| u | -511 | S042.638/2025 | bbar0_s042_638 | Bbar0 decay mode 168 | anti-B0 -> Dbar0 phi | backlog | blocked |
-| u | -511 | S042.322/2025 | bbar0_s042_322 | Bbar0 decay mode 169 | anti-B0 -> D0 K+ pi- | backlog | blocked |
+| u | -511 | S042.638/2025 | bbar0_s042_638 | Bbar0 decay mode 168 | anti-B0 -> Dbar0 phi | supported | ready |
+| u | -511 | S042.322/2025 | bbar0_s042_322 | Bbar0 decay mode 169 | anti-B0 -> D0 K+ pi- | supported | ready |
 | u | -511 | S042.246/2025 | bbar0_s042_246 | Bbar0 decay mode 170 | anti-B0 -> D0 K^*(892)0 | backlog | blocked |
 | u | -511 | S042.187/2025 | bbar0_s042_187 | Bbar0 decay mode 171 | anti-B0 -> gamma | incomplete | blocked |
 | u | -511 | S042.132/2025 | bbar0_s042_132 | Bbar0 decay mode 172 | anti-B0 -> Dbar^*(2007)0 pi0 | backlog | blocked |
@@ -11330,15 +11330,15 @@
 | u | -511 | S042.136/2025 | bbar0_s042_136 | Bbar0 decay mode 184 | anti-B0 -> Dbar^*(2007)0 | incomplete | blocked |
 | u | -511 | S042.155/2025 | bbar0_s042_155 | Bbar0 decay mode 185 | anti-B0 -> D^*(2010)+ D- | backlog | blocked |
 | u | -511 | S042.185/2025 | bbar0_s042_185 | Bbar0 decay mode 186 | anti-B0 -> D^*(2007)0 Dbar^*(2007)0 | backlog | blocked |
-| u | -511 | S042.260/2025 | bbar0_s042_260 | Bbar0 decay mode 187 | anti-B0 -> D- D0 K+ | backlog | blocked |
+| u | -511 | S042.260/2025 | bbar0_s042_260 | Bbar0 decay mode 187 | anti-B0 -> D- D0 K+ | supported | ready |
 | u | -511 | S042.261/2025 | bbar0_s042_261 | Bbar0 decay mode 188 | anti-B0 -> D- D^*(2007)0 K+ | backlog | blocked |
 | u | -511 | S042.262/2025 | bbar0_s042_262 | Bbar0 decay mode 189 | anti-B0 -> D^*(2010)- D0 K+ | backlog | blocked |
 | u | -511 | S042.263/2025 | bbar0_s042_263 | Bbar0 decay mode 190 | anti-B0 -> D^*(2010)- D^*(2007)0 K+ | backlog | blocked |
-| u | -511 | S042.264/2025 | bbar0_s042_264 | Bbar0 decay mode 191 | anti-B0 -> D- D+ K0 | backlog | blocked |
+| u | -511 | S042.264/2025 | bbar0_s042_264 | Bbar0 decay mode 191 | anti-B0 -> D- D+ K0 | supported | ready |
 | u | -511 | S042.265/2025 | bbar0_s042_265 | Bbar0 decay mode 192 | anti-B0 -> D^*(2010)+ K0 D^*(2010)- D+ K0 D- | incomplete | blocked |
 | u | -511 | S042.266/2025 | bbar0_s042_266 | Bbar0 decay mode 193 | anti-B0 -> D^*(2010)- D^*(2010)+ K0 | backlog | blocked |
 | u | -511 | S042.366/2025 | bbar0_s042_366 | Bbar0 decay mode 194 | anti-B0 -> K0 D_s1(2536)+ | incomplete | blocked |
-| u | -511 | S042.267/2025 | bbar0_s042_267 | Bbar0 decay mode 195 | anti-B0 -> Dbar0 D0 K0 | backlog | blocked |
+| u | -511 | S042.267/2025 | bbar0_s042_267 | Bbar0 decay mode 195 | anti-B0 -> Dbar0 D0 K0 | supported | ready |
 | u | -511 | S042.609/2025 | bbar0_s042_609 | Bbar0 decay mode 196 | anti-B0 -> D0 K+ pi- | incomplete | blocked |
 | u | -511 | S042.268/2025 | bbar0_s042_268 | Bbar0 decay mode 197 | anti-B0 -> D0 K0 Dbar0 D^*(2007)0 K0 Dbar^*(2007)0 | incomplete | blocked |
 | u | -511 | S042.269/2025 | bbar0_s042_269 | Bbar0 decay mode 198 | anti-B0 -> Dbar^*(2007)0 D^*(2007)0 K0 | backlog | blocked |
@@ -11507,7 +11507,7 @@
 | u | -511 | S042.459/2025 | bbar0_s042_459 | Bbar0 decay mode 361 | anti-B0 -> K0S K0S eta | supported | ready |
 | u | -511 | S042.460/2025 | bbar0_s042_460 | Bbar0 decay mode 362 | anti-B0 -> K0S K0S | incomplete | blocked |
 | u | -511 | S042.81/2025 | bbar0_s042_81 | Bbar0 decay mode 363 | anti-B0 -> K0 K+ K- | supported | ready |
-| u | -511 | S042.13/2025 | bbar0_s042_13 | Bbar0 decay mode 364 | anti-B0 -> K0 phi | backlog | blocked |
+| u | -511 | S042.13/2025 | bbar0_s042_13 | Bbar0 decay mode 364 | anti-B0 -> K0 phi | supported | ready |
 | u | -511 | S042.502/2025 | bbar0_s042_502 | Bbar0 decay mode 365 | anti-B0 -> K+ K- f_0(980) K0 | incomplete | blocked |
 | u | -511 | S042.503/2025 | bbar0_s042_503 | Bbar0 decay mode 366 | anti-B0 -> f_0(1500) K0 | backlog | blocked |
 | u | -511 | S042.504/2025 | bbar0_s042_504 | Bbar0 decay mode 367 | anti-B0 -> f_2^'(1525)0 K0 | backlog | blocked |
@@ -11542,11 +11542,11 @@
 | u | -511 | S042.400/2025 | bbar0_s042_400 | Bbar0 decay mode 396 | anti-B0 -> phi | incomplete | blocked |
 | u | -511 | S042.74/2025 | bbar0_s042_74 | Bbar0 decay mode 397 | anti-B0 -> K_2^*(1430)0 | incomplete | blocked |
 | u | -511 | S042.76/2025 | bbar0_s042_76 | Bbar0 decay mode 398 | anti-B0 -> K_2^*(1430)0 phi | backlog | blocked |
-| u | -511 | S042.345/2025 | bbar0_s042_345 | Bbar0 decay mode 399 | anti-B0 -> K0 phi phi | backlog | blocked |
+| u | -511 | S042.345/2025 | bbar0_s042_345 | Bbar0 decay mode 399 | anti-B0 -> K0 phi phi | supported | ready |
 | u | -511 | S042.338/2025 | bbar0_s042_338 | Bbar0 decay mode 400 | anti-B0 -> K0 | incomplete | blocked |
 | u | -511 | S042.309/2025 | bbar0_s042_309 | Bbar0 decay mode 401 | anti-B0 -> eta K0 gamma | supported | ready |
 | u | -511 | S042.337/2025 | bbar0_s042_337 | Bbar0 decay mode 402 | anti-B0 -> K0 gamma | incomplete | blocked |
-| u | -511 | S042.283/2025 | bbar0_s042_283 | Bbar0 decay mode 403 | anti-B0 -> K0 phi gamma | backlog | blocked |
+| u | -511 | S042.283/2025 | bbar0_s042_283 | Bbar0 decay mode 403 | anti-B0 -> K0 phi gamma | supported | ready |
 | u | -511 | S042.231/2025 | bbar0_s042_231 | Bbar0 decay mode 404 | anti-B0 -> K+ pi- gamma | supported | ready |
 | u | -511 | S042.16/2025 | bbar0_s042_16 | Bbar0 decay mode 405 | anti-B0 -> K^*(892)0 gamma | backlog | blocked |
 | u | -511 | S042.233/2025 | bbar0_s042_233 | Bbar0 decay mode 406 | anti-B0 -> gamma | incomplete | blocked |
@@ -11563,7 +11563,7 @@
 | u | -511 | S042.191/2025 | bbar0_s042_191 | Bbar0 decay mode 417 | anti-B0 -> gamma | incomplete | blocked |
 | u | -511 | S042.484/2025 | bbar0_s042_484 | Bbar0 decay mode 418 | anti-B0 -> mu+ mu- | incomplete | blocked |
 | u | -511 | S042.192/2025 | bbar0_s042_192 | Bbar0 decay mode 419 | anti-B0 -> gamma | incomplete | blocked |
-| u | -511 | S042.193/2025 | bbar0_s042_193 | Bbar0 decay mode 420 | anti-B0 -> phi gamma | backlog | blocked |
+| u | -511 | S042.193/2025 | bbar0_s042_193 | Bbar0 decay mode 420 | anti-B0 -> phi gamma | supported | ready |
 | u | -511 | S042.616/2025 | bbar0_s042_616 | Bbar0 decay mode 421 | anti-B0 -> KS0 KS0 f_2(1270) gamma | incomplete | blocked |
 | u | -511 | S042.617/2025 | bbar0_s042_617 | Bbar0 decay mode 422 | anti-B0 -> KS0 KS0 f_2^'(1525) gamma | incomplete | blocked |
 | u | -511 | S042.5/2025 | bbar0_s042_5 | Bbar0 decay mode 423 | anti-B0 -> pi+ pi- | supported | ready |
@@ -11582,14 +11582,14 @@
 | u | -511 | S042.176/2025 | bbar0_s042_176 | Bbar0 decay mode 436 | anti-B0 -> omega rho0 | incomplete | blocked |
 | u | -511 | S042.340/2025 | bbar0_s042_340 | Bbar0 decay mode 437 | anti-B0 -> pi+ pi- f_0(980) | incomplete | blocked |
 | u | -511 | S042.177/2025 | bbar0_s042_177 | Bbar0 decay mode 438 | anti-B0 -> omega omega | incomplete | blocked |
-| u | -511 | S042.178/2025 | bbar0_s042_178 | Bbar0 decay mode 439 | anti-B0 -> phi pi0 | backlog | blocked |
-| u | -511 | S042.179/2025 | bbar0_s042_179 | Bbar0 decay mode 440 | anti-B0 -> phi eta | backlog | blocked |
+| u | -511 | S042.178/2025 | bbar0_s042_178 | Bbar0 decay mode 439 | anti-B0 -> phi pi0 | supported | ready |
+| u | -511 | S042.179/2025 | bbar0_s042_179 | Bbar0 decay mode 440 | anti-B0 -> phi eta | supported | ready |
 | u | -511 | S042.180/2025 | bbar0_s042_180 | Bbar0 decay mode 441 | anti-B0 -> phi | incomplete | blocked |
-| u | -511 | S042.570/2025 | bbar0_s042_570 | Bbar0 decay mode 442 | anti-B0 -> phi pi+ pi- | backlog | blocked |
+| u | -511 | S042.570/2025 | bbar0_s042_570 | Bbar0 decay mode 442 | anti-B0 -> phi pi+ pi- | supported | ready |
 | u | -511 | S042.182/2025 | bbar0_s042_182 | Bbar0 decay mode 443 | anti-B0 -> phi | incomplete | blocked |
 | u | -511 | S042.434/2025 | bbar0_s042_434 | Bbar0 decay mode 444 | anti-B0 -> pi+ pi- phi f_0(980) | incomplete | blocked |
 | u | -511 | S042.183/2025 | bbar0_s042_183 | Bbar0 decay mode 445 | anti-B0 -> phi | incomplete | blocked |
-| u | -511 | S042.147/2025 | bbar0_s042_147 | Bbar0 decay mode 446 | anti-B0 -> phi phi | backlog | blocked |
+| u | -511 | S042.147/2025 | bbar0_s042_147 | Bbar0 decay mode 446 | anti-B0 -> phi phi | supported | ready |
 | u | -511 | S042.286/2025 | bbar0_s042_286 | Bbar0 decay mode 447 | anti-B0 -> eta | incomplete | blocked |
 | u | -511 | S042.377/2025 | bbar0_s042_377 | Bbar0 decay mode 448 | anti-B0 -> eta | incomplete | blocked |
 | u | -511 | S042.53/2025 | bbar0_s042_53 | Bbar0 decay mode 449 | anti-B0 -> pi+ pi- pi0 | supported | ready |
@@ -11637,7 +11637,7 @@
 | u | -511 | S042.251/2025 | bbar0_s042_251 | Bbar0 decay mode 491 | anti-B0 -> p K- | incomplete | blocked |
 | u | -511 | S042.546/2025 | bbar0_s042_546 | Bbar0 decay mode 492 | anti-B0 -> p D- | incomplete | blocked |
 | u | -511 | S042.547/2025 | bbar0_s042_547 | Bbar0 decay mode 493 | anti-B0 -> p | incomplete | blocked |
-| u | -511 | S042.252/2025 | bbar0_s042_252 | Bbar0 decay mode 494 | anti-B0 -> p Sigmabar0 pi- | backlog | blocked |
+| u | -511 | S042.252/2025 | bbar0_s042_252 | Bbar0 decay mode 494 | anti-B0 -> p Sigmabar0 pi- | supported | ready |
 | u | -511 | S042.186/2025 | bbar0_s042_186 | Bbar0 decay mode 495 | anti-B0 -> Lambdabar Lambda | incomplete | blocked |
 | u | -511 | S042.455/2025 | bbar0_s042_455 | Bbar0 decay mode 496 | anti-B0 -> K0 | incomplete | blocked |
 | u | -511 | S042.456/2025 | bbar0_s042_456 | Bbar0 decay mode 497 | anti-B0 -> Lambdabar Lambda K^*()0 | incomplete | blocked |
@@ -11645,13 +11645,13 @@
 | u | -511 | S042.534/2025 | bbar0_s042_534 | Bbar0 decay mode 499 | anti-B0 -> D0 Sigma0 Lambdabar + c.c. | incomplete | blocked |
 | u | -511 | S042.47/2025 | bbar0_s042_47 | Bbar0 decay mode 500 | anti-B0 -> Delta0 Deltabar0 | incomplete | blocked |
 | u | -511 | S042.48/2025 | bbar0_s042_48 | Bbar0 decay mode 501 | anti-B0 -> Delta++ Deltabar-- | incomplete | blocked |
-| u | -511 | S042.226/2025 | bbar0_s042_226 | Bbar0 decay mode 502 | anti-B0 -> Dbar0 p pbar | backlog | blocked |
+| u | -511 | S042.226/2025 | bbar0_s042_226 | Bbar0 decay mode 502 | anti-B0 -> Dbar0 p pbar | supported | ready |
 | u | -511 | S042.389/2025 | bbar0_s042_389 | Bbar0 decay mode 503 | anti-B0 -> D_s()- p | incomplete | blocked |
 | u | -511 | S042.227/2025 | bbar0_s042_227 | Bbar0 decay mode 504 | anti-B0 -> Dbar^*(2007)0 p pbar | backlog | blocked |
 | u | -511 | S042.198/2025 | bbar0_s042_198 | Bbar0 decay mode 505 | anti-B0 -> D^*(2010)- p nbar | incomplete | blocked |
-| u | -511 | S042.362/2025 | bbar0_s042_362 | Bbar0 decay mode 506 | anti-B0 -> D- p pbar pi+ | backlog | blocked |
+| u | -511 | S042.362/2025 | bbar0_s042_362 | Bbar0 decay mode 506 | anti-B0 -> D- p pbar pi+ | supported | ready |
 | u | -511 | S042.197/2025 | bbar0_s042_197 | Bbar0 decay mode 507 | anti-B0 -> D^*(2010)- p pbar pi+ | backlog | blocked |
-| u | -511 | S042.509/2025 | bbar0_s042_509 | Bbar0 decay mode 508 | anti-B0 -> Dbar0 p pbar pi+ pi- | backlog | blocked |
+| u | -511 | S042.509/2025 | bbar0_s042_509 | Bbar0 decay mode 508 | anti-B0 -> Dbar0 p pbar pi+ pi- | supported | ready |
 | u | -511 | S042.510/2025 | bbar0_s042_510 | Bbar0 decay mode 509 | anti-B0 -> p pbar pi+ pi- | incomplete | blocked |
 | u | -511 | S042.364/2025 | bbar0_s042_364 | Bbar0 decay mode 510 | anti-B0 -> D- p pbar pi+ | incomplete | blocked |
 | u | -511 | S042.365/2025 | bbar0_s042_365 | Bbar0 decay mode 511 | anti-B0 -> p pbar pi+ | incomplete | blocked |
@@ -11719,12 +11719,12 @@
 | u | -511 | S042.71/2025 | bbar0_s042_71 | Bbar0 decay mode 573 | anti-B0 -> K^*(892)0 mu+ mu- | backlog | blocked |
 | u | -511 | S042.562/2025 | bbar0_s042_562 | Bbar0 decay mode 574 | anti-B0 -> mu+ mu- K^*(892)0 | incomplete | blocked |
 | u | -511 | S042.629/2025 | bbar0_s042_629 | Bbar0 decay mode 575 | anti-B0 -> K^*(892)0 tau+ tau- | backlog | blocked |
-| u | -511 | S042.647/2025 | bbar0_s042_647 | Bbar0 decay mode 576 | anti-B0 -> Dbar0 mu+ mu- | backlog | blocked |
+| u | -511 | S042.647/2025 | bbar0_s042_647 | Bbar0 decay mode 576 | anti-B0 -> Dbar0 mu+ mu- | supported | ready |
 | u | -511 | S042.550/2025 | bbar0_s042_550 | Bbar0 decay mode 577 | anti-B0 -> pi+ pi- mu+ mu- | supported | ready |
 | u | -511 | S042.152/2025 | bbar0_s042_152 | Bbar0 decay mode 578 | anti-B0 -> K^*(892)0 | incomplete | blocked |
 | u | -511 | S042.284/2025 | bbar0_s042_284 | Bbar0 decay mode 579 | anti-B0 -> invisible | incomplete | blocked |
 | u | -511 | S042.285/2025 | bbar0_s042_285 | Bbar0 decay mode 580 | anti-B0 -> gamma | incomplete | blocked |
-| u | -511 | S042.614/2025 | bbar0_s042_614 | Bbar0 decay mode 581 | anti-B0 -> phi mu+ mu- | backlog | blocked |
+| u | -511 | S042.614/2025 | bbar0_s042_614 | Bbar0 decay mode 581 | anti-B0 -> phi mu+ mu- | supported | ready |
 | u | -511 | S042.409/2025 | bbar0_s042_409 | Bbar0 decay mode 582 | anti-B0 -> phi | incomplete | blocked |
 | u | -511 | S042.8/2025 | bbar0_s042_8 | Bbar0 decay mode 583 | anti-B0 -> e+- mu-+ | incomplete | blocked |
 | u | -511 | S042.383/2025 | bbar0_s042_383 | Bbar0 decay mode 584 | anti-B0 -> pi0 | incomplete | blocked |
@@ -11758,11 +11758,11 @@
 | u | -2212 | S016.13/2025 | pbar_s016_13 | pbar decay mode 11 | anti-p -> mu- | incomplete | blocked |
 | u | -2212 | S016.26/2025 | pbar_s016_26 | pbar decay mode 12 | anti-p -> nu omega | incomplete | blocked |
 | u | -2212 | S016.8/2025 | pbar_s016_8 | pbar decay mode 13 | anti-p -> e- | incomplete | blocked |
-| u | -2212 | S016.50/2025 | pbar_s016_50 | pbar decay mode 14 | anti-p -> e+ K0S | supported | ready |
-| u | -2212 | S016.51/2025 | pbar_s016_51 | pbar decay mode 15 | anti-p -> e+ K0L | supported | ready |
+| u | -2212 | S016.50/2025 | pbar_s016_50 | pbar decay mode 14 | anti-p -> e+ K0S | backlog | blocked |
+| u | -2212 | S016.51/2025 | pbar_s016_51 | pbar decay mode 15 | anti-p -> e+ K0L | backlog | blocked |
 | u | -2212 | S016.9/2025 | pbar_s016_9 | pbar decay mode 16 | anti-p -> mu- | incomplete | blocked |
-| u | -2212 | S016.52/2025 | pbar_s016_52 | pbar decay mode 17 | anti-p -> mu+ K0S | supported | ready |
-| u | -2212 | S016.53/2025 | pbar_s016_53 | pbar decay mode 18 | anti-p -> mu+ K0L | supported | ready |
+| u | -2212 | S016.52/2025 | pbar_s016_52 | pbar decay mode 17 | anti-p -> mu+ K0S | backlog | blocked |
+| u | -2212 | S016.53/2025 | pbar_s016_53 | pbar decay mode 18 | anti-p -> mu+ K0L | backlog | blocked |
 | u | -2212 | S016.11/2025 | pbar_s016_11 | pbar decay mode 19 | anti-p -> nu K | incomplete | blocked |
 | u | -2212 | S016.99/2025 | pbar_s016_99 | pbar decay mode 20 | anti-p -> K0S | incomplete | blocked |
 | u | -2212 | S016.34/2025 | pbar_s016_34 | pbar decay mode 21 | anti-p -> e+ K^*(892)0 | backlog | blocked |
@@ -11840,6 +11840,34 @@
 | u | -2212 | S016.94/2025 | pbar_s016_94 | pbar decay mode 93 | anti-p -> e- gamma gamma | supported | ready |
 | u | -2212 | S016.92/2025 | pbar_s016_92 | pbar decay mode 94 | anti-p -> mu- gamma gamma | supported | ready |
 | u | -2212 | S016.96/2025 | pbar_s016_96 | pbar decay mode 95 | anti-p -> e- | incomplete | blocked |
+| u | -6 | Q007.6/2025 | tbar_q007_6 | tbar decay mode 1 | anti-t -> W q (q = b, s, d) | incomplete | blocked |
+| u | -6 | Q007.1/2025 | tbar_q007_1 | tbar decay mode 2 | anti-t -> b | incomplete | blocked |
+| u | -6 | Q007.9/2025 | tbar_q007_9 | tbar decay mode 3 | anti-t -> nu_e b | incomplete | blocked |
+| u | -6 | Q007.10/2025 | tbar_q007_10 | tbar decay mode 4 | anti-t -> nu_mu b | incomplete | blocked |
+| u | -6 | Q007.4/2025 | tbar_q007_4 | tbar decay mode 5 | anti-t -> nu_tau b | incomplete | blocked |
+| u | -6 | Q007.11/2025 | tbar_q007_11 | tbar decay mode 6 | anti-t -> b | incomplete | blocked |
+| u | -6 | Q007.3/2025 | tbar_q007_3 | tbar decay mode 7 | anti-t -> gamma q (q=u,c) | incomplete | blocked |
+| u | -6 | Q007.14/2025 | tbar_q007_14 | tbar decay mode 8 | anti-t -> nu_tau b | incomplete | blocked |
+| u | -6 | Q007.30/2025 | tbar_q007_30 | tbar decay mode 9 | anti-t -> a q (q=u , c) | incomplete | blocked |
+| u | -6 | Q007.2/2025 | tbar_q007_2 | tbar decay mode 10 | anti-t -> Z q (q=u,c) | incomplete | blocked |
+| u | -6 | Q007.12/2025 | tbar_q007_12 | tbar decay mode 11 | anti-t -> H anti-u | backlog | blocked |
+| u | -6 | Q007.13/2025 | tbar_q007_13 | tbar decay mode 12 | anti-t -> H anti-c | backlog | blocked |
+| u | -6 | Q007.8/2025 | tbar_q007_8 | tbar decay mode 13 | anti-t -> lepton+ qbar qbar^' (q=d,s,b; q^'=u,c) | incomplete | blocked |
+| u | -6 | Q007.15/2025 | tbar_q007_15 | tbar decay mode 14 | anti-t -> anti-c | incomplete | blocked |
+| u | -6 | Q007.16/2025 | tbar_q007_16 | tbar decay mode 15 | anti-t -> anti-u | incomplete | blocked |
+| u | -6 | Q007.17/2025 | tbar_q007_17 | tbar decay mode 16 | anti-t -> mu+- tau-+ q | incomplete | blocked |
+| u | -6 | Q007.18/2025 | tbar_q007_18 | tbar decay mode 17 | anti-t -> e+ ubar dbar | backlog | blocked |
+| u | -6 | Q007.19/2025 | tbar_q007_19 | tbar decay mode 18 | anti-t -> mu+ ubar dbar | backlog | blocked |
+| u | -6 | Q007.20/2025 | tbar_q007_20 | tbar decay mode 19 | anti-t -> e+ cbar dbar | backlog | blocked |
+| u | -6 | Q007.21/2025 | tbar_q007_21 | tbar decay mode 20 | anti-t -> mu+ cbar dbar | backlog | blocked |
+| u | -6 | Q007.22/2025 | tbar_q007_22 | tbar decay mode 21 | anti-t -> e+ ubar sbar | backlog | blocked |
+| u | -6 | Q007.23/2025 | tbar_q007_23 | tbar decay mode 22 | anti-t -> mu+ ubar sbar | backlog | blocked |
+| u | -6 | Q007.24/2025 | tbar_q007_24 | tbar decay mode 23 | anti-t -> e+ cbar sbar | backlog | blocked |
+| u | -6 | Q007.25/2025 | tbar_q007_25 | tbar decay mode 24 | anti-t -> mu+ cbar sbar | backlog | blocked |
+| u | -6 | Q007.26/2025 | tbar_q007_26 | tbar decay mode 25 | anti-t -> e+ ubar bbar | backlog | blocked |
+| u | -6 | Q007.27/2025 | tbar_q007_27 | tbar decay mode 26 | anti-t -> mu+ ubar bbar | backlog | blocked |
+| u | -6 | Q007.28/2025 | tbar_q007_28 | tbar decay mode 27 | anti-t -> e+ cbar bbar | backlog | blocked |
+| u | -6 | Q007.29/2025 | tbar_q007_29 | tbar decay mode 28 | anti-t -> mu+ cbar bbar | backlog | blocked |
 | u | 10213 | M011.1/2025 | b_1_1235_plus_m011_1 | b_1(1235)+ decay mode 1 | b_1(1235)+ -> pi | incomplete | blocked |
 | u | 10213 | M011.9/2025 | b_1_1235_plus_m011_9 | b_1(1235)+ decay mode 2 | b_1(1235)+ -> gamma | incomplete | blocked |
 | u | 10213 | M011.8/2025 | b_1_1235_plus_m011_8 | b_1(1235)+ decay mode 3 | b_1(1235)+ -> eta | incomplete | blocked |
@@ -12953,114 +12981,114 @@
 | u | 2212 | S016.88/2025 | p_s016_88 | p decay mode 86 | p -> mu+ pi0 | supported | ready |
 | u | 2212 | S016.83/2025 | p_s016_83 | p decay mode 87 | p -> e+ eta | supported | ready |
 | u | 2212 | S016.89/2025 | p_s016_89 | p decay mode 88 | p -> mu+ eta | supported | ready |
-| u | 2212 | S016.84/2025 | p_s016_84 | p decay mode 89 | p -> e- K0S | supported | ready |
-| u | 2212 | S016.90/2025 | p_s016_90 | p decay mode 90 | p -> mu- K0S | supported | ready |
-| u | 2212 | S016.85/2025 | p_s016_85 | p decay mode 91 | p -> e- K0L | supported | ready |
-| u | 2212 | S016.91/2025 | p_s016_91 | p decay mode 92 | p -> mu- K0L | supported | ready |
+| u | 2212 | S016.84/2025 | p_s016_84 | p decay mode 89 | p -> e- K0S | backlog | blocked |
+| u | 2212 | S016.90/2025 | p_s016_90 | p decay mode 90 | p -> mu- K0S | backlog | blocked |
+| u | 2212 | S016.85/2025 | p_s016_85 | p decay mode 91 | p -> e- K0L | backlog | blocked |
+| u | 2212 | S016.91/2025 | p_s016_91 | p decay mode 92 | p -> mu- K0L | backlog | blocked |
 | u | 2212 | S016.94/2025 | p_s016_94 | p decay mode 93 | p -> e+ gamma gamma | supported | ready |
 | u | 2212 | S016.92/2025 | p_s016_92 | p decay mode 94 | p -> mu+ gamma gamma | supported | ready |
 | u | 2212 | S016.96/2025 | p_s016_96 | p decay mode 95 | p -> e+ | incomplete | blocked |
-| u | 333 | M004.1/2025 | phi_1020_0_m004_1 | phi(1020)0 decay mode 1 | phi(1020)0 -> K+ K- | backlog | blocked |
-| u | 333 | M004.2/2025 | phi_1020_0_m004_2 | phi(1020)0 decay mode 2 | phi(1020)0 -> K0L K0S | backlog | blocked |
-| u | 333 | M004.24/2025 | phi_1020_0_m004_24 | phi(1020)0 decay mode 3 | phi(1020)0 -> pi0 pi pi+ pi- | incomplete | blocked |
-| u | 333 | M004.3/2025 | phi_1020_0_m004_3 | phi(1020)0 decay mode 4 | phi(1020)0 -> pi+ pi- pi0 | backlog | blocked |
-| u | 333 | M004.4/2025 | phi_1020_0_m004_4 | phi(1020)0 decay mode 5 | phi(1020)0 -> eta gamma | backlog | blocked |
-| u | 333 | M004.7/2025 | phi_1020_0_m004_7 | phi(1020)0 decay mode 6 | phi(1020)0 -> pi0 gamma | backlog | blocked |
-| u | 333 | M004.256/2025 | phi_1020_0_m004_256 | phi(1020)0 decay mode 7 | phi(1020)0 -> lepton+ lepton- | incomplete | blocked |
-| u | 333 | M004.5/2025 | phi_1020_0_m004_5 | phi(1020)0 decay mode 8 | phi(1020)0 -> e+ e- | backlog | blocked |
-| u | 333 | M004.6/2025 | phi_1020_0_m004_6 | phi(1020)0 decay mode 9 | phi(1020)0 -> mu+ mu- | backlog | blocked |
-| u | 333 | M004.17/2025 | phi_1020_0_m004_17 | phi(1020)0 decay mode 10 | phi(1020)0 -> eta e+ e- | backlog | blocked |
-| u | 333 | M004.8/2025 | phi_1020_0_m004_8 | phi(1020)0 decay mode 11 | phi(1020)0 -> pi+ pi- | backlog | blocked |
-| u | 333 | M004.25/2025 | phi_1020_0_m004_25 | phi(1020)0 decay mode 12 | phi(1020)0 -> pi0 | incomplete | blocked |
-| u | 333 | M004.10/2025 | phi_1020_0_m004_10 | phi(1020)0 decay mode 13 | phi(1020)0 -> gamma | incomplete | blocked |
-| u | 333 | M004.12/2025 | phi_1020_0_m004_12 | phi(1020)0 decay mode 14 | phi(1020)0 -> gamma | incomplete | blocked |
-| u | 333 | M004.9/2025 | phi_1020_0_m004_9 | phi(1020)0 decay mode 15 | phi(1020)0 -> pi+ pi- gamma | backlog | blocked |
-| u | 333 | M004.20/2025 | phi_1020_0_m004_20 | phi(1020)0 decay mode 16 | phi(1020)0 -> f_0(980) gamma | backlog | blocked |
-| u | 333 | M004.19/2025 | phi_1020_0_m004_19 | phi(1020)0 decay mode 17 | phi(1020)0 -> pi0 pi0 gamma | backlog | blocked |
-| u | 333 | M004.15/2025 | phi_1020_0_m004_15 | phi(1020)0 decay mode 18 | phi(1020)0 -> pi+ pi- pi+ pi- | backlog | blocked |
-| u | 333 | M004.14/2025 | phi_1020_0_m004_14 | phi(1020)0 decay mode 19 | phi(1020)0 -> pi+ pi+ pi- pi- pi0 | backlog | blocked |
-| u | 333 | M004.21/2025 | phi_1020_0_m004_21 | phi(1020)0 decay mode 20 | phi(1020)0 -> pi0 e+ e- | backlog | blocked |
-| u | 333 | M004.22/2025 | phi_1020_0_m004_22 | phi(1020)0 decay mode 21 | phi(1020)0 -> pi0 eta gamma | backlog | blocked |
-| u | 333 | M004.23/2025 | phi_1020_0_m004_23 | phi(1020)0 decay mode 22 | phi(1020)0 -> gamma | incomplete | blocked |
-| u | 333 | M004.257/2025 | phi_1020_0_m004_257 | phi(1020)0 decay mode 23 | phi(1020)0 -> K0 Kbar0 gamma | backlog | blocked |
-| u | 333 | M004.194/2025 | phi_1020_0_m004_194 | phi(1020)0 decay mode 24 | phi(1020)0 -> eta^'(958) gamma | backlog | blocked |
-| u | 333 | M004.195/2025 | phi_1020_0_m004_195 | phi(1020)0 decay mode 25 | phi(1020)0 -> eta pi0 pi0 gamma | backlog | blocked |
-| u | 333 | M004.196/2025 | phi_1020_0_m004_196 | phi(1020)0 decay mode 26 | phi(1020)0 -> mu+ mu- gamma | backlog | blocked |
-| u | 333 | M004.250/2025 | phi_1020_0_m004_250 | phi(1020)0 decay mode 27 | phi(1020)0 -> gamma gamma | incomplete | blocked |
-| u | 333 | M004.255/2025 | phi_1020_0_m004_255 | phi(1020)0 decay mode 28 | phi(1020)0 -> eta pi+ pi- | backlog | blocked |
-| u | 333 | M004.26/2025 | phi_1020_0_m004_26 | phi(1020)0 decay mode 29 | phi(1020)0 -> eta mu+ mu- | backlog | blocked |
-| u | 333 | M004.259/2025 | phi_1020_0_m004_259 | phi(1020)0 decay mode 30 | phi(1020)0 -> e+ e- eta eta | incomplete | blocked |
-| u | 333 | M004.260/2025 | phi_1020_0_m004_260 | phi(1020)0 decay mode 31 | phi(1020)0 -> invisible | incomplete | blocked |
-| u | 333 | M004.258/2025 | phi_1020_0_m004_258 | phi(1020)0 decay mode 32 | phi(1020)0 -> e+- mu-+ | incomplete | blocked |
-| u | 100333 | M067.4/2025 | phi_1680_0_m067_4 | phi(1680)0 decay mode 1 | phi(1680)0 -> K Kbar^*(892) + c.c. | incomplete | blocked |
-| u | 100333 | M067.5/2025 | phi_1680_0_m067_5 | phi(1680)0 decay mode 2 | phi(1680)0 -> K0S pi | incomplete | blocked |
-| u | 100333 | M067.3/2025 | phi_1680_0_m067_3 | phi(1680)0 decay mode 3 | phi(1680)0 -> K Kbar | incomplete | blocked |
-| u | 100333 | M067.9/2025 | phi_1680_0_m067_9 | phi(1680)0 decay mode 4 | phi(1680)0 -> K0L K0S | backlog | blocked |
-| u | 100333 | M067.6/2025 | phi_1680_0_m067_6 | phi(1680)0 decay mode 5 | phi(1680)0 -> e+ e- | backlog | blocked |
-| u | 100333 | M067.1/2025 | phi_1680_0_m067_1 | phi(1680)0 decay mode 6 | phi(1680)0 -> pi pi | incomplete | blocked |
-| u | 100333 | M067.11/2025 | phi_1680_0_m067_11 | phi(1680)0 decay mode 7 | phi(1680)0 -> phi pi pi | incomplete | blocked |
-| u | 100333 | M067.12/2025 | phi_1680_0_m067_12 | phi(1680)0 decay mode 8 | phi(1680)0 -> K+ K- pi+ pi- | backlog | blocked |
-| u | 100333 | M067.10/2025 | phi_1680_0_m067_10 | phi(1680)0 decay mode 9 | phi(1680)0 -> eta phi | backlog | blocked |
-| u | 100333 | M067.13/2025 | phi_1680_0_m067_13 | phi(1680)0 decay mode 10 | phi(1680)0 -> eta gamma | backlog | blocked |
-| u | 100333 | M067.2/2025 | phi_1680_0_m067_2 | phi(1680)0 decay mode 11 | phi(1680)0 -> K+ K- pi0 | backlog | blocked |
-| u | 100333 | M067.15/2025 | phi_1680_0_m067_15 | phi(1680)0 decay mode 12 | phi(1680)0 -> f_2^'(1525) gamma | backlog | blocked |
-| u | 0 | M103.1/2025 | phi_2170_plus_m103_1 | phi(2170)+ decay mode 1 | phi(2170)+ -> e+ e- | backlog | blocked |
-| u | 0 | M103.5/2025 | phi_2170_plus_m103_5 | phi(2170)+ decay mode 2 | phi(2170)+ -> phi eta | backlog | blocked |
-| u | 0 | M103.11/2025 | phi_2170_plus_m103_11 | phi(2170)+ decay mode 3 | phi(2170)+ -> phi | incomplete | blocked |
-| u | 0 | M103.9/2025 | phi_2170_plus_m103_9 | phi(2170)+ decay mode 4 | phi(2170)+ -> phi pi pi | incomplete | blocked |
-| u | 0 | M103.2/2025 | phi_2170_plus_m103_2 | phi(2170)+ decay mode 5 | phi(2170)+ -> phi f_0(980) | backlog | blocked |
-| u | 0 | M103.17/2025 | phi_2170_plus_m103_17 | phi(2170)+ decay mode 6 | phi(2170)+ -> K0S K0L | backlog | blocked |
-| u | 0 | M103.3/2025 | phi_2170_plus_m103_3 | phi(2170)+ decay mode 7 | phi(2170)+ -> K+ K- pi+ pi- | backlog | blocked |
-| u | 0 | M103.6/2025 | phi_2170_plus_m103_6 | phi(2170)+ decay mode 8 | phi(2170)+ -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.4/2025 | phi_2170_plus_m103_4 | phi(2170)+ decay mode 9 | phi(2170)+ -> K+ K- pi0 pi0 | backlog | blocked |
-| u | 0 | M103.7/2025 | phi_2170_plus_m103_7 | phi(2170)+ decay mode 10 | phi(2170)+ -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.8/2025 | phi_2170_plus_m103_8 | phi(2170)+ decay mode 11 | phi(2170)+ -> K^*()0 K+- pi-+ | incomplete | blocked |
-| u | 0 | M103.10/2025 | phi_2170_plus_m103_10 | phi(2170)+ decay mode 12 | phi(2170)+ -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
-| u | 0 | M103.15/2025 | phi_2170_plus_m103_15 | phi(2170)+ decay mode 13 | phi(2170)+ -> K^*(892)+ K^*(892)- | backlog | blocked |
-| u | 0 | M103.19/2025 | phi_2170_plus_m103_19 | phi(2170)+ decay mode 14 | phi(2170)+ -> K^*(892)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.21/2025 | phi_2170_plus_m103_21 | phi(2170)+ decay mode 15 | phi(2170)+ -> K^*(892)0 Kbar0 | backlog | blocked |
-| u | 0 | M103.12/2025 | phi_2170_plus_m103_12 | phi(2170)+ decay mode 16 | phi(2170)+ -> K(1460)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.14/2025 | phi_2170_plus_m103_14 | phi(2170)+ decay mode 17 | phi(2170)+ -> K_1(1270)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.13/2025 | phi_2170_plus_m103_13 | phi(2170)+ decay mode 18 | phi(2170)+ -> K_1(1400)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.18/2025 | phi_2170_plus_m103_18 | phi(2170)+ decay mode 19 | phi(2170)+ -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.1/2025 | phi_2170_minus_m103_1 | phi(2170)- decay mode 1 | phi(2170)- -> e+ e- | backlog | blocked |
-| u | 0 | M103.5/2025 | phi_2170_minus_m103_5 | phi(2170)- decay mode 2 | phi(2170)- -> phi eta | backlog | blocked |
-| u | 0 | M103.11/2025 | phi_2170_minus_m103_11 | phi(2170)- decay mode 3 | phi(2170)- -> phi | incomplete | blocked |
-| u | 0 | M103.9/2025 | phi_2170_minus_m103_9 | phi(2170)- decay mode 4 | phi(2170)- -> phi pi pi | incomplete | blocked |
-| u | 0 | M103.2/2025 | phi_2170_minus_m103_2 | phi(2170)- decay mode 5 | phi(2170)- -> phi f_0(980) | backlog | blocked |
-| u | 0 | M103.17/2025 | phi_2170_minus_m103_17 | phi(2170)- decay mode 6 | phi(2170)- -> K0S K0L | backlog | blocked |
-| u | 0 | M103.3/2025 | phi_2170_minus_m103_3 | phi(2170)- decay mode 7 | phi(2170)- -> K+ K- pi+ pi- | backlog | blocked |
-| u | 0 | M103.6/2025 | phi_2170_minus_m103_6 | phi(2170)- decay mode 8 | phi(2170)- -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.4/2025 | phi_2170_minus_m103_4 | phi(2170)- decay mode 9 | phi(2170)- -> K+ K- pi0 pi0 | backlog | blocked |
-| u | 0 | M103.7/2025 | phi_2170_minus_m103_7 | phi(2170)- decay mode 10 | phi(2170)- -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.8/2025 | phi_2170_minus_m103_8 | phi(2170)- decay mode 11 | phi(2170)- -> K^*()0 K+- pi-+ | incomplete | blocked |
-| u | 0 | M103.10/2025 | phi_2170_minus_m103_10 | phi(2170)- decay mode 12 | phi(2170)- -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
-| u | 0 | M103.15/2025 | phi_2170_minus_m103_15 | phi(2170)- decay mode 13 | phi(2170)- -> K^*(892)+ K^*(892)- | backlog | blocked |
-| u | 0 | M103.19/2025 | phi_2170_minus_m103_19 | phi(2170)- decay mode 14 | phi(2170)- -> K^*(892)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.21/2025 | phi_2170_minus_m103_21 | phi(2170)- decay mode 15 | phi(2170)- -> K^*(892)0 Kbar0 | backlog | blocked |
-| u | 0 | M103.12/2025 | phi_2170_minus_m103_12 | phi(2170)- decay mode 16 | phi(2170)- -> K(1460)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.14/2025 | phi_2170_minus_m103_14 | phi(2170)- decay mode 17 | phi(2170)- -> K_1(1270)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.13/2025 | phi_2170_minus_m103_13 | phi(2170)- decay mode 18 | phi(2170)- -> K_1(1400)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.18/2025 | phi_2170_minus_m103_18 | phi(2170)- decay mode 19 | phi(2170)- -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.1/2025 | phi_2170_0_m103_1 | phi(2170)0 decay mode 1 | phi(2170)0 -> e+ e- | backlog | blocked |
-| u | 0 | M103.5/2025 | phi_2170_0_m103_5 | phi(2170)0 decay mode 2 | phi(2170)0 -> phi eta | backlog | blocked |
-| u | 0 | M103.11/2025 | phi_2170_0_m103_11 | phi(2170)0 decay mode 3 | phi(2170)0 -> phi | incomplete | blocked |
-| u | 0 | M103.9/2025 | phi_2170_0_m103_9 | phi(2170)0 decay mode 4 | phi(2170)0 -> phi pi pi | incomplete | blocked |
-| u | 0 | M103.2/2025 | phi_2170_0_m103_2 | phi(2170)0 decay mode 5 | phi(2170)0 -> phi f_0(980) | backlog | blocked |
-| u | 0 | M103.17/2025 | phi_2170_0_m103_17 | phi(2170)0 decay mode 6 | phi(2170)0 -> K0S K0L | backlog | blocked |
-| u | 0 | M103.3/2025 | phi_2170_0_m103_3 | phi(2170)0 decay mode 7 | phi(2170)0 -> K+ K- pi+ pi- | backlog | blocked |
-| u | 0 | M103.6/2025 | phi_2170_0_m103_6 | phi(2170)0 decay mode 8 | phi(2170)0 -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.4/2025 | phi_2170_0_m103_4 | phi(2170)0 decay mode 9 | phi(2170)0 -> K+ K- pi0 pi0 | backlog | blocked |
-| u | 0 | M103.7/2025 | phi_2170_0_m103_7 | phi(2170)0 decay mode 10 | phi(2170)0 -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
-| u | 0 | M103.8/2025 | phi_2170_0_m103_8 | phi(2170)0 decay mode 11 | phi(2170)0 -> K^*()0 K+- pi-+ | incomplete | blocked |
-| u | 0 | M103.10/2025 | phi_2170_0_m103_10 | phi(2170)0 decay mode 12 | phi(2170)0 -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
-| u | 0 | M103.15/2025 | phi_2170_0_m103_15 | phi(2170)0 decay mode 13 | phi(2170)0 -> K^*(892)+ K^*(892)- | backlog | blocked |
-| u | 0 | M103.19/2025 | phi_2170_0_m103_19 | phi(2170)0 decay mode 14 | phi(2170)0 -> K^*(892)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.21/2025 | phi_2170_0_m103_21 | phi(2170)0 decay mode 15 | phi(2170)0 -> K^*(892)0 Kbar0 | backlog | blocked |
-| u | 0 | M103.12/2025 | phi_2170_0_m103_12 | phi(2170)0 decay mode 16 | phi(2170)0 -> K(1460)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.14/2025 | phi_2170_0_m103_14 | phi(2170)0 decay mode 17 | phi(2170)0 -> K_1(1270)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.13/2025 | phi_2170_0_m103_13 | phi(2170)0 decay mode 18 | phi(2170)0 -> K_1(1400)+ K- + c.c. | incomplete | blocked |
-| u | 0 | M103.18/2025 | phi_2170_0_m103_18 | phi(2170)0 decay mode 19 | phi(2170)0 -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.1/2025 | phi_1020_0_m004_1 | phi(1020)0 decay mode 1 | phi -> K+ K- | supported | ready |
+| u | 100333 | M067.4/2025 | phi_1680_0_m067_4 | phi(1680)0 decay mode 1 | phi -> K Kbar^*(892) + c.c. | incomplete | blocked |
+| u | 0 | M103.1/2025 | phi_2170_0_m103_1 | phi(2170)0 decay mode 1 | phi -> e+ e- | supported | ready |
+| u | 0 | M103.1/2025 | phi_2170_minus_m103_1 | phi(2170)- decay mode 1 | phi -> e+ e- | supported | ready |
+| u | 0 | M103.1/2025 | phi_2170_plus_m103_1 | phi(2170)+ decay mode 1 | phi -> e+ e- | supported | ready |
+| u | 333 | M004.2/2025 | phi_1020_0_m004_2 | phi(1020)0 decay mode 2 | phi -> K0L K0S | supported | ready |
+| u | 100333 | M067.5/2025 | phi_1680_0_m067_5 | phi(1680)0 decay mode 2 | phi -> K0S pi0 | incomplete | blocked |
+| u | 0 | M103.5/2025 | phi_2170_0_m103_5 | phi(2170)0 decay mode 2 | phi -> phi eta | supported | ready |
+| u | 0 | M103.5/2025 | phi_2170_minus_m103_5 | phi(2170)- decay mode 2 | phi -> phi eta | supported | ready |
+| u | 0 | M103.5/2025 | phi_2170_plus_m103_5 | phi(2170)+ decay mode 2 | phi -> phi eta | supported | ready |
+| u | 333 | M004.24/2025 | phi_1020_0_m004_24 | phi(1020)0 decay mode 3 | phi -> pi0 pi0 pi+ pi- | incomplete | blocked |
+| u | 100333 | M067.3/2025 | phi_1680_0_m067_3 | phi(1680)0 decay mode 3 | phi -> K Kbar | incomplete | blocked |
+| u | 0 | M103.11/2025 | phi_2170_0_m103_11 | phi(2170)0 decay mode 3 | phi -> phi | incomplete | blocked |
+| u | 0 | M103.11/2025 | phi_2170_minus_m103_11 | phi(2170)- decay mode 3 | phi -> phi | incomplete | blocked |
+| u | 0 | M103.11/2025 | phi_2170_plus_m103_11 | phi(2170)+ decay mode 3 | phi -> phi | incomplete | blocked |
+| u | 333 | M004.3/2025 | phi_1020_0_m004_3 | phi(1020)0 decay mode 4 | phi -> pi+ pi- pi0 | supported | ready |
+| u | 100333 | M067.9/2025 | phi_1680_0_m067_9 | phi(1680)0 decay mode 4 | phi -> K0L K0S | supported | ready |
+| u | 0 | M103.9/2025 | phi_2170_0_m103_9 | phi(2170)0 decay mode 4 | phi -> phi pi pi | incomplete | blocked |
+| u | 0 | M103.9/2025 | phi_2170_minus_m103_9 | phi(2170)- decay mode 4 | phi -> phi pi pi | incomplete | blocked |
+| u | 0 | M103.9/2025 | phi_2170_plus_m103_9 | phi(2170)+ decay mode 4 | phi -> phi pi pi | incomplete | blocked |
+| u | 333 | M004.4/2025 | phi_1020_0_m004_4 | phi(1020)0 decay mode 5 | phi -> eta gamma | supported | ready |
+| u | 100333 | M067.6/2025 | phi_1680_0_m067_6 | phi(1680)0 decay mode 5 | phi -> e+ e- | supported | ready |
+| u | 0 | M103.2/2025 | phi_2170_0_m103_2 | phi(2170)0 decay mode 5 | phi -> phi f_0(980) | backlog | blocked |
+| u | 0 | M103.2/2025 | phi_2170_minus_m103_2 | phi(2170)- decay mode 5 | phi -> phi f_0(980) | backlog | blocked |
+| u | 0 | M103.2/2025 | phi_2170_plus_m103_2 | phi(2170)+ decay mode 5 | phi -> phi f_0(980) | backlog | blocked |
+| u | 333 | M004.7/2025 | phi_1020_0_m004_7 | phi(1020)0 decay mode 6 | phi -> pi0 gamma | supported | ready |
+| u | 100333 | M067.1/2025 | phi_1680_0_m067_1 | phi(1680)0 decay mode 6 | phi -> pi pi | incomplete | blocked |
+| u | 0 | M103.17/2025 | phi_2170_0_m103_17 | phi(2170)0 decay mode 6 | phi -> K0S K0L | supported | ready |
+| u | 0 | M103.17/2025 | phi_2170_minus_m103_17 | phi(2170)- decay mode 6 | phi -> K0S K0L | supported | ready |
+| u | 0 | M103.17/2025 | phi_2170_plus_m103_17 | phi(2170)+ decay mode 6 | phi -> K0S K0L | supported | ready |
+| u | 333 | M004.256/2025 | phi_1020_0_m004_256 | phi(1020)0 decay mode 7 | phi -> lepton+ lepton- | incomplete | blocked |
+| u | 100333 | M067.11/2025 | phi_1680_0_m067_11 | phi(1680)0 decay mode 7 | phi -> phi pi pi | incomplete | blocked |
+| u | 0 | M103.3/2025 | phi_2170_0_m103_3 | phi(2170)0 decay mode 7 | phi -> K+ K- pi+ pi- | supported | ready |
+| u | 0 | M103.3/2025 | phi_2170_minus_m103_3 | phi(2170)- decay mode 7 | phi -> K+ K- pi+ pi- | supported | ready |
+| u | 0 | M103.3/2025 | phi_2170_plus_m103_3 | phi(2170)+ decay mode 7 | phi -> K+ K- pi+ pi- | supported | ready |
+| u | 333 | M004.5/2025 | phi_1020_0_m004_5 | phi(1020)0 decay mode 8 | phi -> e+ e- | supported | ready |
+| u | 100333 | M067.12/2025 | phi_1680_0_m067_12 | phi(1680)0 decay mode 8 | phi -> K+ K- pi+ pi- | supported | ready |
+| u | 0 | M103.6/2025 | phi_2170_0_m103_6 | phi(2170)0 decay mode 8 | phi -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
+| u | 0 | M103.6/2025 | phi_2170_minus_m103_6 | phi(2170)- decay mode 8 | phi -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
+| u | 0 | M103.6/2025 | phi_2170_plus_m103_6 | phi(2170)+ decay mode 8 | phi -> K+ K- pi+ pi- K+ K- f_0(980) | incomplete | blocked |
+| u | 333 | M004.6/2025 | phi_1020_0_m004_6 | phi(1020)0 decay mode 9 | phi -> mu+ mu- | supported | ready |
+| u | 100333 | M067.10/2025 | phi_1680_0_m067_10 | phi(1680)0 decay mode 9 | phi -> eta phi | supported | ready |
+| u | 0 | M103.4/2025 | phi_2170_0_m103_4 | phi(2170)0 decay mode 9 | phi -> K+ K- pi0 pi0 | supported | ready |
+| u | 0 | M103.4/2025 | phi_2170_minus_m103_4 | phi(2170)- decay mode 9 | phi -> K+ K- pi0 pi0 | supported | ready |
+| u | 0 | M103.4/2025 | phi_2170_plus_m103_4 | phi(2170)+ decay mode 9 | phi -> K+ K- pi0 pi0 | supported | ready |
+| u | 333 | M004.17/2025 | phi_1020_0_m004_17 | phi(1020)0 decay mode 10 | phi -> eta e+ e- | supported | ready |
+| u | 100333 | M067.13/2025 | phi_1680_0_m067_13 | phi(1680)0 decay mode 10 | phi -> eta gamma | supported | ready |
+| u | 0 | M103.7/2025 | phi_2170_0_m103_7 | phi(2170)0 decay mode 10 | phi -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
+| u | 0 | M103.7/2025 | phi_2170_minus_m103_7 | phi(2170)- decay mode 10 | phi -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
+| u | 0 | M103.7/2025 | phi_2170_plus_m103_7 | phi(2170)+ decay mode 10 | phi -> K+ K- pi0 pi0 K+ K- f_0(980) | incomplete | blocked |
+| u | 333 | M004.8/2025 | phi_1020_0_m004_8 | phi(1020)0 decay mode 11 | phi -> pi+ pi- | supported | ready |
+| u | 100333 | M067.2/2025 | phi_1680_0_m067_2 | phi(1680)0 decay mode 11 | phi -> K+ K- pi0 | supported | ready |
+| u | 0 | M103.8/2025 | phi_2170_0_m103_8 | phi(2170)0 decay mode 11 | phi -> K^*()0 K+- pi-+ | incomplete | blocked |
+| u | 0 | M103.8/2025 | phi_2170_minus_m103_8 | phi(2170)- decay mode 11 | phi -> K^*()0 K+- pi-+ | incomplete | blocked |
+| u | 0 | M103.8/2025 | phi_2170_plus_m103_8 | phi(2170)+ decay mode 11 | phi -> K^*()0 K+- pi-+ | incomplete | blocked |
+| u | 333 | M004.25/2025 | phi_1020_0_m004_25 | phi(1020)0 decay mode 12 | phi -> pi0 | incomplete | blocked |
+| u | 100333 | M067.15/2025 | phi_1680_0_m067_15 | phi(1680)0 decay mode 12 | phi -> f_2^'(1525) gamma | backlog | blocked |
+| u | 0 | M103.10/2025 | phi_2170_0_m103_10 | phi(2170)0 decay mode 12 | phi -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
+| u | 0 | M103.10/2025 | phi_2170_minus_m103_10 | phi(2170)- decay mode 12 | phi -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
+| u | 0 | M103.10/2025 | phi_2170_plus_m103_10 | phi(2170)+ decay mode 12 | phi -> K^*(892)0 Kbar^*(892)0 | backlog | blocked |
+| u | 333 | M004.10/2025 | phi_1020_0_m004_10 | phi(1020)0 decay mode 13 | phi -> gamma | incomplete | blocked |
+| u | 0 | M103.15/2025 | phi_2170_0_m103_15 | phi(2170)0 decay mode 13 | phi -> K^*(892)+ K^*(892)- | backlog | blocked |
+| u | 0 | M103.15/2025 | phi_2170_minus_m103_15 | phi(2170)- decay mode 13 | phi -> K^*(892)+ K^*(892)- | backlog | blocked |
+| u | 0 | M103.15/2025 | phi_2170_plus_m103_15 | phi(2170)+ decay mode 13 | phi -> K^*(892)+ K^*(892)- | backlog | blocked |
+| u | 333 | M004.12/2025 | phi_1020_0_m004_12 | phi(1020)0 decay mode 14 | phi -> gamma | incomplete | blocked |
+| u | 0 | M103.19/2025 | phi_2170_0_m103_19 | phi(2170)0 decay mode 14 | phi -> K^*(892)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.19/2025 | phi_2170_minus_m103_19 | phi(2170)- decay mode 14 | phi -> K^*(892)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.19/2025 | phi_2170_plus_m103_19 | phi(2170)+ decay mode 14 | phi -> K^*(892)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.9/2025 | phi_1020_0_m004_9 | phi(1020)0 decay mode 15 | phi -> pi+ pi- gamma | supported | ready |
+| u | 0 | M103.21/2025 | phi_2170_0_m103_21 | phi(2170)0 decay mode 15 | phi -> K^*(892)0 Kbar0 | backlog | blocked |
+| u | 0 | M103.21/2025 | phi_2170_minus_m103_21 | phi(2170)- decay mode 15 | phi -> K^*(892)0 Kbar0 | backlog | blocked |
+| u | 0 | M103.21/2025 | phi_2170_plus_m103_21 | phi(2170)+ decay mode 15 | phi -> K^*(892)0 Kbar0 | backlog | blocked |
+| u | 333 | M004.20/2025 | phi_1020_0_m004_20 | phi(1020)0 decay mode 16 | phi -> f_0(980) gamma | backlog | blocked |
+| u | 0 | M103.12/2025 | phi_2170_0_m103_12 | phi(2170)0 decay mode 16 | phi -> K(1460)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.12/2025 | phi_2170_minus_m103_12 | phi(2170)- decay mode 16 | phi -> K(1460)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.12/2025 | phi_2170_plus_m103_12 | phi(2170)+ decay mode 16 | phi -> K(1460)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.19/2025 | phi_1020_0_m004_19 | phi(1020)0 decay mode 17 | phi -> pi0 pi0 gamma | supported | ready |
+| u | 0 | M103.14/2025 | phi_2170_0_m103_14 | phi(2170)0 decay mode 17 | phi -> K_1(1270)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.14/2025 | phi_2170_minus_m103_14 | phi(2170)- decay mode 17 | phi -> K_1(1270)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.14/2025 | phi_2170_plus_m103_14 | phi(2170)+ decay mode 17 | phi -> K_1(1270)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.15/2025 | phi_1020_0_m004_15 | phi(1020)0 decay mode 18 | phi -> pi+ pi- pi+ pi- | supported | ready |
+| u | 0 | M103.13/2025 | phi_2170_0_m103_13 | phi(2170)0 decay mode 18 | phi -> K_1(1400)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.13/2025 | phi_2170_minus_m103_13 | phi(2170)- decay mode 18 | phi -> K_1(1400)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.13/2025 | phi_2170_plus_m103_13 | phi(2170)+ decay mode 18 | phi -> K_1(1400)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.14/2025 | phi_1020_0_m004_14 | phi(1020)0 decay mode 19 | phi -> pi+ pi+ pi- pi- pi0 | supported | ready |
+| u | 0 | M103.18/2025 | phi_2170_0_m103_18 | phi(2170)0 decay mode 19 | phi -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.18/2025 | phi_2170_minus_m103_18 | phi(2170)- decay mode 19 | phi -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
+| u | 0 | M103.18/2025 | phi_2170_plus_m103_18 | phi(2170)+ decay mode 19 | phi -> K_2^*(1430)+ K- + c.c. | incomplete | blocked |
+| u | 333 | M004.21/2025 | phi_1020_0_m004_21 | phi(1020)0 decay mode 20 | phi -> pi0 e+ e- | supported | ready |
+| u | 333 | M004.22/2025 | phi_1020_0_m004_22 | phi(1020)0 decay mode 21 | phi -> pi0 eta gamma | supported | ready |
+| u | 333 | M004.23/2025 | phi_1020_0_m004_23 | phi(1020)0 decay mode 22 | phi -> gamma | incomplete | blocked |
+| u | 333 | M004.257/2025 | phi_1020_0_m004_257 | phi(1020)0 decay mode 23 | phi -> K0 Kbar0 gamma | supported | ready |
+| u | 333 | M004.194/2025 | phi_1020_0_m004_194 | phi(1020)0 decay mode 24 | phi -> eta^'(958) gamma | backlog | blocked |
+| u | 333 | M004.195/2025 | phi_1020_0_m004_195 | phi(1020)0 decay mode 25 | phi -> eta pi0 pi0 gamma | supported | ready |
+| u | 333 | M004.196/2025 | phi_1020_0_m004_196 | phi(1020)0 decay mode 26 | phi -> mu+ mu- gamma | supported | ready |
+| u | 333 | M004.250/2025 | phi_1020_0_m004_250 | phi(1020)0 decay mode 27 | phi -> gamma gamma | incomplete | blocked |
+| u | 333 | M004.255/2025 | phi_1020_0_m004_255 | phi(1020)0 decay mode 28 | phi -> eta pi+ pi- | supported | ready |
+| u | 333 | M004.26/2025 | phi_1020_0_m004_26 | phi(1020)0 decay mode 29 | phi -> eta mu+ mu- | supported | ready |
+| u | 333 | M004.259/2025 | phi_1020_0_m004_259 | phi(1020)0 decay mode 30 | phi -> e+ e- eta eta | incomplete | blocked |
+| u | 333 | M004.260/2025 | phi_1020_0_m004_260 | phi(1020)0 decay mode 31 | phi -> invisible | incomplete | blocked |
+| u | 333 | M004.258/2025 | phi_1020_0_m004_258 | phi(1020)0 decay mode 32 | phi -> e+- mu-+ | incomplete | blocked |
 | u | 337 | M054.1/2025 | phi_3_1850_0_m054_1 | phi_3(1850)0 decay mode 1 | phi_3(1850)0 -> K Kbar | incomplete | blocked |
 | u | 337 | M054.2/2025 | phi_3_1850_0_m054_2 | phi_3(1850)0 decay mode 2 | phi_3(1850)0 -> K Kbar^*(892) + c.c. | incomplete | blocked |
 | u | 100211 | M058.1/2025 | pi_1300_plus_m058_1 | pi(1300)+ decay mode 1 | pi(1300)+ -> pi | incomplete | blocked |
@@ -14193,18 +14221,18 @@
 | u | -15 | S035.238/2025 | tau_plus_s035_238 | tau+ decay mode 45 | tau+ -> pi- Kbar0 pi0 pi0 nu_tau (ex.K0) | incomplete | blocked |
 | u | -15 | S035.239/2025 | tau_plus_s035_239 | tau+ decay mode 46 | tau+ -> K+ anti-K0 pi0 pi0 anti-nu_tau | supported | ready |
 | u | -15 | S035.141/2025 | tau_plus_s035_141 | tau+ decay mode 47 | tau+ -> pi+ anti-K0 K0 anti-nu_tau | supported | ready |
-| u | -15 | S035.214/2025 | tau_plus_s035_214 | tau+ decay mode 48 | tau+ -> pi- K0S K0S nu_tau | supported | ready |
-| u | -15 | S035.240/2025 | tau_plus_s035_240 | tau+ decay mode 49 | tau+ -> pi- K0S K0L nu_tau | supported | ready |
-| u | -15 | S035.342/2025 | tau_plus_s035_342 | tau+ decay mode 50 | tau+ -> pi- K0L K0L nu_tau | supported | ready |
+| u | -15 | S035.214/2025 | tau_plus_s035_214 | tau+ decay mode 48 | tau+ -> pi- K0S K0S nu_tau | backlog | blocked |
+| u | -15 | S035.240/2025 | tau_plus_s035_240 | tau+ decay mode 49 | tau+ -> pi- K0S K0L nu_tau | backlog | blocked |
+| u | -15 | S035.342/2025 | tau_plus_s035_342 | tau+ decay mode 50 | tau+ -> pi- K0L K0L nu_tau | backlog | blocked |
 | u | -15 | S035.278/2025 | tau_plus_s035_278 | tau+ decay mode 51 | tau+ -> pi+ anti-K0 K0 pi0 anti-nu_tau | supported | ready |
-| u | -15 | S035.241/2025 | tau_plus_s035_241 | tau+ decay mode 52 | tau+ -> pi- K0S K0S pi0 nu_tau | supported | ready |
+| u | -15 | S035.241/2025 | tau_plus_s035_241 | tau+ decay mode 52 | tau+ -> pi- K0S K0S pi0 nu_tau | backlog | blocked |
 | u | -15 | S035.336/2025 | tau_plus_s035_336 | tau+ decay mode 53 | tau+ -> pi- K0S K0S pi0 nu_tau K0 pi0 nu_tau | incomplete | blocked |
 | u | -15 | S035.337/2025 | tau_plus_s035_337 | tau+ decay mode 54 | tau+ -> pi- K0S K0S pi0 nu_tau f_1(1285) pi- nu_tau | incomplete | blocked |
 | u | -15 | S035.338/2025 | tau_plus_s035_338 | tau+ decay mode 55 | tau+ -> pi- K0S K0S pi0 nu_tau f_1(1420) pi- nu_tau | incomplete | blocked |
-| u | -15 | S035.242/2025 | tau_plus_s035_242 | tau+ decay mode 56 | tau+ -> pi- K0S K0L pi0 nu_tau | supported | ready |
-| u | -15 | S035.343/2025 | tau_plus_s035_343 | tau+ decay mode 57 | tau+ -> pi- K0L K0L pi0 nu_tau | supported | ready |
-| u | -15 | S035.332/2025 | tau_plus_s035_332 | tau+ decay mode 58 | tau+ -> K- K0S K0S nu_tau | supported | ready |
-| u | -15 | S035.333/2025 | tau_plus_s035_333 | tau+ decay mode 59 | tau+ -> K- K0S K0S pi0 nu_tau | supported | ready |
+| u | -15 | S035.242/2025 | tau_plus_s035_242 | tau+ decay mode 56 | tau+ -> pi- K0S K0L pi0 nu_tau | backlog | blocked |
+| u | -15 | S035.343/2025 | tau_plus_s035_343 | tau+ decay mode 57 | tau+ -> pi- K0L K0L pi0 nu_tau | backlog | blocked |
+| u | -15 | S035.332/2025 | tau_plus_s035_332 | tau+ decay mode 58 | tau+ -> K- K0S K0S nu_tau | backlog | blocked |
+| u | -15 | S035.333/2025 | tau_plus_s035_333 | tau+ decay mode 59 | tau+ -> K- K0S K0S pi0 nu_tau | backlog | blocked |
 | u | -15 | S035.29/2025 | tau_plus_s035_29 | tau+ decay mode 60 | tau+ -> K0 h+ h- h- >=0 neutrals nu_tau | incomplete | blocked |
 | u | -15 | S035.244/2025 | tau_plus_s035_244 | tau+ decay mode 61 | tau+ -> K0 nu_tau | incomplete | blocked |
 | u | -15 | S035.194/2025 | tau_plus_s035_194 | tau+ decay mode 62 | tau+ -> h- h- h+ >=0 neutrals >=0K(L)0 nu_tau | incomplete | blocked |
@@ -14314,8 +14342,8 @@
 | u | -15 | S035.232/2025 | tau_plus_s035_232 | tau+ decay mode 166 | tau+ -> eta^'(958) pi- nu_tau | backlog | blocked |
 | u | -15 | S035.233/2025 | tau_plus_s035_233 | tau+ decay mode 167 | tau+ -> eta^'(958) pi- pi0 nu_tau | backlog | blocked |
 | u | -15 | S035.326/2025 | tau_plus_s035_326 | tau+ decay mode 168 | tau+ -> eta^'(958) K- nu_tau | backlog | blocked |
-| u | -15 | S035.207/2025 | tau_plus_s035_207 | tau+ decay mode 169 | tau+ -> phi pi- nu_tau | backlog | blocked |
-| u | -15 | S035.223/2025 | tau_plus_s035_223 | tau+ decay mode 170 | tau+ -> phi K- nu_tau | backlog | blocked |
+| u | -15 | S035.207/2025 | tau_plus_s035_207 | tau+ decay mode 169 | tau+ -> phi pi+ anti-nu_tau | supported | ready |
+| u | -15 | S035.223/2025 | tau_plus_s035_223 | tau+ decay mode 170 | tau+ -> phi K+ anti-nu_tau | supported | ready |
 | u | -15 | S035.234/2025 | tau_plus_s035_234 | tau+ decay mode 171 | tau+ -> f_1(1285) pi- nu_tau | backlog | blocked |
 | u | -15 | S035.235/2025 | tau_plus_s035_235 | tau+ decay mode 172 | tau+ -> eta pi- pi+ pi- nu_tau f_1(1285) pi- nu_tau | incomplete | blocked |
 | u | -15 | S035.315/2025 | tau_plus_s035_315 | tau+ decay mode 173 | tau+ -> pi- pi- pi- pi+ pi+ nu_tau f_1(1285) pi- nu_tau | incomplete | blocked |
@@ -14337,8 +14365,8 @@
 | u | -15 | S035.356/2025 | tau_plus_s035_356 | tau+ decay mode 189 | tau+ -> mu+ gamma gamma | supported | ready |
 | u | -15 | S035.40/2025 | tau_plus_s035_40 | tau+ decay mode 190 | tau+ -> e+ pi0 | supported | ready |
 | u | -15 | S035.39/2025 | tau_plus_s035_39 | tau+ decay mode 191 | tau+ -> mu+ pi0 | supported | ready |
-| u | -15 | S035.42/2025 | tau_plus_s035_42 | tau+ decay mode 192 | tau+ -> e- K0S | supported | ready |
-| u | -15 | S035.41/2025 | tau_plus_s035_41 | tau+ decay mode 193 | tau+ -> mu- K0S | supported | ready |
+| u | -15 | S035.42/2025 | tau_plus_s035_42 | tau+ decay mode 192 | tau+ -> e- K0S | backlog | blocked |
+| u | -15 | S035.41/2025 | tau_plus_s035_41 | tau+ decay mode 193 | tau+ -> mu- K0S | backlog | blocked |
 | u | -15 | S035.67/2025 | tau_plus_s035_67 | tau+ decay mode 194 | tau+ -> e+ eta | supported | ready |
 | u | -15 | S035.114/2025 | tau_plus_s035_114 | tau+ decay mode 195 | tau+ -> mu+ eta | supported | ready |
 | u | -15 | S035.44/2025 | tau_plus_s035_44 | tau+ decay mode 196 | tau+ -> e+ | incomplete | blocked |
@@ -14353,8 +14381,8 @@
 | u | -15 | S035.293/2025 | tau_plus_s035_293 | tau+ decay mode 205 | tau+ -> mu- eta^'(958) | backlog | blocked |
 | u | -15 | S035.307/2025 | tau_plus_s035_307 | tau+ decay mode 206 | tau+ -> pi+ pi- e- f_0(980) e- | incomplete | blocked |
 | u | -15 | S035.308/2025 | tau_plus_s035_308 | tau+ decay mode 207 | tau+ -> pi+ pi- mu- f_0(980) mu- | incomplete | blocked |
-| u | -15 | S035.255/2025 | tau_plus_s035_255 | tau+ decay mode 208 | tau+ -> e- phi | backlog | blocked |
-| u | -15 | S035.256/2025 | tau_plus_s035_256 | tau+ decay mode 209 | tau+ -> mu- phi | backlog | blocked |
+| u | -15 | S035.255/2025 | tau_plus_s035_255 | tau+ decay mode 208 | tau+ -> e+ phi | supported | ready |
+| u | -15 | S035.256/2025 | tau_plus_s035_256 | tau+ decay mode 209 | tau+ -> mu+ phi | supported | ready |
 | u | -15 | S035.38/2025 | tau_plus_s035_38 | tau+ decay mode 210 | tau+ -> e+ e- e+ | supported | ready |
 | u | -15 | S035.36/2025 | tau_plus_s035_36 | tau+ decay mode 211 | tau+ -> e+ mu- mu+ | supported | ready |
 | u | -15 | S035.55/2025 | tau_plus_s035_55 | tau+ decay mode 212 | tau+ -> e- mu+ mu+ | supported | ready |
@@ -14368,13 +14396,13 @@
 | u | -15 | S035.49/2025 | tau_plus_s035_49 | tau+ decay mode 220 | tau+ -> e+ pi- K+ | supported | ready |
 | u | -15 | S035.77/2025 | tau_plus_s035_77 | tau+ decay mode 221 | tau+ -> e+ pi+ K- | supported | ready |
 | u | -15 | S035.50/2025 | tau_plus_s035_50 | tau+ decay mode 222 | tau+ -> e- pi+ K+ | supported | ready |
-| u | -15 | S035.288/2025 | tau_plus_s035_288 | tau+ decay mode 223 | tau+ -> e- K0S K0S | supported | ready |
+| u | -15 | S035.288/2025 | tau_plus_s035_288 | tau+ decay mode 223 | tau+ -> e- K0S K0S | backlog | blocked |
 | u | -15 | S035.251/2025 | tau_plus_s035_251 | tau+ decay mode 224 | tau+ -> e+ K- K+ | supported | ready |
 | u | -15 | S035.252/2025 | tau_plus_s035_252 | tau+ decay mode 225 | tau+ -> e- K+ K+ | supported | ready |
 | u | -15 | S035.51/2025 | tau_plus_s035_51 | tau+ decay mode 226 | tau+ -> mu+ pi- K+ | supported | ready |
 | u | -15 | S035.78/2025 | tau_plus_s035_78 | tau+ decay mode 227 | tau+ -> mu+ pi+ K- | supported | ready |
 | u | -15 | S035.52/2025 | tau_plus_s035_52 | tau+ decay mode 228 | tau+ -> mu- pi+ K+ | supported | ready |
-| u | -15 | S035.289/2025 | tau_plus_s035_289 | tau+ decay mode 229 | tau+ -> mu- K0S K0S | supported | ready |
+| u | -15 | S035.289/2025 | tau_plus_s035_289 | tau+ decay mode 229 | tau+ -> mu- K0S K0S | backlog | blocked |
 | u | -15 | S035.253/2025 | tau_plus_s035_253 | tau+ decay mode 230 | tau+ -> mu+ K- K+ | supported | ready |
 | u | -15 | S035.254/2025 | tau_plus_s035_254 | tau+ decay mode 231 | tau+ -> mu- K+ K+ | supported | ready |
 | u | -15 | S035.224/2025 | tau_plus_s035_224 | tau+ decay mode 232 | tau+ -> e+ pi0 pi0 | supported | ready |
@@ -14566,8 +14594,8 @@
 | u | 15 | S035.232/2025 | tau_minus_s035_232 | tau- decay mode 166 | tau- -> eta^'(958) pi- nu_tau | backlog | blocked |
 | u | 15 | S035.233/2025 | tau_minus_s035_233 | tau- decay mode 167 | tau- -> eta^'(958) pi- pi0 nu_tau | backlog | blocked |
 | u | 15 | S035.326/2025 | tau_minus_s035_326 | tau- decay mode 168 | tau- -> eta^'(958) K- nu_tau | backlog | blocked |
-| u | 15 | S035.207/2025 | tau_minus_s035_207 | tau- decay mode 169 | tau- -> phi pi- nu_tau | backlog | blocked |
-| u | 15 | S035.223/2025 | tau_minus_s035_223 | tau- decay mode 170 | tau- -> phi K- nu_tau | backlog | blocked |
+| u | 15 | S035.207/2025 | tau_minus_s035_207 | tau- decay mode 169 | tau- -> phi pi- nu_tau | supported | ready |
+| u | 15 | S035.223/2025 | tau_minus_s035_223 | tau- decay mode 170 | tau- -> phi K- nu_tau | supported | ready |
 | u | 15 | S035.234/2025 | tau_minus_s035_234 | tau- decay mode 171 | tau- -> f_1(1285) pi- nu_tau | backlog | blocked |
 | u | 15 | S035.235/2025 | tau_minus_s035_235 | tau- decay mode 172 | tau- -> eta pi- pi+ pi- nu_tau f_1(1285) pi- nu_tau | incomplete | blocked |
 | u | 15 | S035.315/2025 | tau_minus_s035_315 | tau- decay mode 173 | tau- -> pi- pi- pi- pi+ pi+ nu_tau f_1(1285) pi- nu_tau | incomplete | blocked |
@@ -14605,8 +14633,8 @@
 | u | 15 | S035.293/2025 | tau_minus_s035_293 | tau- decay mode 205 | tau- -> mu- eta^'(958) | backlog | blocked |
 | u | 15 | S035.307/2025 | tau_minus_s035_307 | tau- decay mode 206 | tau- -> pi+ pi- e- f_0(980) e- | incomplete | blocked |
 | u | 15 | S035.308/2025 | tau_minus_s035_308 | tau- decay mode 207 | tau- -> pi+ pi- mu- f_0(980) mu- | incomplete | blocked |
-| u | 15 | S035.255/2025 | tau_minus_s035_255 | tau- decay mode 208 | tau- -> e- phi | backlog | blocked |
-| u | 15 | S035.256/2025 | tau_minus_s035_256 | tau- decay mode 209 | tau- -> mu- phi | backlog | blocked |
+| u | 15 | S035.255/2025 | tau_minus_s035_255 | tau- decay mode 208 | tau- -> e- phi | supported | ready |
+| u | 15 | S035.256/2025 | tau_minus_s035_256 | tau- decay mode 209 | tau- -> mu- phi | supported | ready |
 | u | 15 | S035.38/2025 | tau_minus_s035_38 | tau- decay mode 210 | tau- -> e- e+ e- | supported | ready |
 | u | 15 | S035.36/2025 | tau_minus_s035_36 | tau- decay mode 211 | tau- -> e- mu+ mu- | supported | ready |
 | u | 15 | S035.55/2025 | tau_minus_s035_55 | tau- decay mode 212 | tau- -> e+ mu- mu- | supported | ready |
@@ -14650,31 +14678,3 @@
 | u | 15 | S035.298/2025 | tau_minus_s035_298 | tau- decay mode 250 | tau- -> pi- | incomplete | blocked |
 | u | 15 | S035.102/2025 | tau_minus_s035_102 | tau- decay mode 251 | tau- -> e- light boson | incomplete | blocked |
 | u | 15 | S035.103/2025 | tau_minus_s035_103 | tau- decay mode 252 | tau- -> mu- light boson | incomplete | blocked |
-| u | -6 | Q007.6/2025 | tbar_q007_6 | tbar decay mode 1 | tbar -> W q (q = b, s, d) | incomplete | blocked |
-| u | -6 | Q007.1/2025 | tbar_q007_1 | tbar decay mode 2 | tbar -> b | incomplete | blocked |
-| u | -6 | Q007.9/2025 | tbar_q007_9 | tbar decay mode 3 | tbar -> nu_e b | incomplete | blocked |
-| u | -6 | Q007.10/2025 | tbar_q007_10 | tbar decay mode 4 | tbar -> nu_mu b | incomplete | blocked |
-| u | -6 | Q007.4/2025 | tbar_q007_4 | tbar decay mode 5 | tbar -> nu_tau b | incomplete | blocked |
-| u | -6 | Q007.11/2025 | tbar_q007_11 | tbar decay mode 6 | tbar -> b | incomplete | blocked |
-| u | -6 | Q007.3/2025 | tbar_q007_3 | tbar decay mode 7 | tbar -> gamma q (q=u,c) | incomplete | blocked |
-| u | -6 | Q007.14/2025 | tbar_q007_14 | tbar decay mode 8 | tbar -> nu_tau b | incomplete | blocked |
-| u | -6 | Q007.30/2025 | tbar_q007_30 | tbar decay mode 9 | tbar -> a q (q=u , c) | incomplete | blocked |
-| u | -6 | Q007.2/2025 | tbar_q007_2 | tbar decay mode 10 | tbar -> Z q (q=u,c) | incomplete | blocked |
-| u | -6 | Q007.12/2025 | tbar_q007_12 | tbar decay mode 11 | tbar -> H u | backlog | blocked |
-| u | -6 | Q007.13/2025 | tbar_q007_13 | tbar decay mode 12 | tbar -> H c | backlog | blocked |
-| u | -6 | Q007.8/2025 | tbar_q007_8 | tbar decay mode 13 | tbar -> lepton+ qbar qbar^' (q=d,s,b; q^'=u,c) | incomplete | blocked |
-| u | -6 | Q007.15/2025 | tbar_q007_15 | tbar decay mode 14 | tbar -> c | incomplete | blocked |
-| u | -6 | Q007.16/2025 | tbar_q007_16 | tbar decay mode 15 | tbar -> u | incomplete | blocked |
-| u | -6 | Q007.17/2025 | tbar_q007_17 | tbar decay mode 16 | tbar -> mu+- tau-+ q | incomplete | blocked |
-| u | -6 | Q007.18/2025 | tbar_q007_18 | tbar decay mode 17 | tbar -> e+ ubar dbar | backlog | blocked |
-| u | -6 | Q007.19/2025 | tbar_q007_19 | tbar decay mode 18 | tbar -> mu+ ubar dbar | backlog | blocked |
-| u | -6 | Q007.20/2025 | tbar_q007_20 | tbar decay mode 19 | tbar -> e+ cbar dbar | backlog | blocked |
-| u | -6 | Q007.21/2025 | tbar_q007_21 | tbar decay mode 20 | tbar -> mu+ cbar dbar | backlog | blocked |
-| u | -6 | Q007.22/2025 | tbar_q007_22 | tbar decay mode 21 | tbar -> e+ ubar sbar | backlog | blocked |
-| u | -6 | Q007.23/2025 | tbar_q007_23 | tbar decay mode 22 | tbar -> mu+ ubar sbar | backlog | blocked |
-| u | -6 | Q007.24/2025 | tbar_q007_24 | tbar decay mode 23 | tbar -> e+ cbar sbar | backlog | blocked |
-| u | -6 | Q007.25/2025 | tbar_q007_25 | tbar decay mode 24 | tbar -> mu+ cbar sbar | backlog | blocked |
-| u | -6 | Q007.26/2025 | tbar_q007_26 | tbar decay mode 25 | tbar -> e+ ubar bbar | backlog | blocked |
-| u | -6 | Q007.27/2025 | tbar_q007_27 | tbar decay mode 26 | tbar -> mu+ ubar bbar | backlog | blocked |
-| u | -6 | Q007.28/2025 | tbar_q007_28 | tbar decay mode 27 | tbar -> e+ cbar bbar | backlog | blocked |
-| u | -6 | Q007.29/2025 | tbar_q007_29 | tbar decay mode 28 | tbar -> mu+ cbar bbar | backlog | blocked |

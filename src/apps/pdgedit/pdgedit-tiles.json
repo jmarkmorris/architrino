@@ -957,24 +957,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.15,
-              "opacity": 0.9,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
@@ -988,24 +988,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.1,
-              "opacity": 0.87,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
@@ -1019,24 +1019,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.1,
-              "opacity": 0.87,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
@@ -1070,24 +1070,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.15,
-              "opacity": 0.9,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               }
@@ -1101,24 +1101,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.1,
-              "opacity": 0.87,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }
@@ -1132,24 +1132,24 @@
               "cx": 60,
               "cy": 60,
               "rx": 45.5,
-              "ry": 11.04,
+              "ry": 9.384,
               "strokeColor": "binary_orbit_stroke",
-              "strokeWidth": 1.1,
-              "opacity": 0.87,
+              "strokeWidth": 4,
+              "opacity": 1,
               "filter": "drop-shadow(0 0 4px rgba(162, 89, 255, 0.20))"
             },
             "circles": [
               {
-                "cx": 14.5,
+                "cx": 17.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_positive",
                 "filter": "drop-shadow(0 0 4px rgba(255, 61, 61, 0.32))"
               },
               {
-                "cx": 105.5,
+                "cx": 102.5,
                 "cy": 60,
-                "r": 4.1,
+                "r": 8.3333333333,
                 "fillColor": "count_negative",
                 "filter": "drop-shadow(0 0 4px rgba(24, 121, 255, 0.34))"
               }

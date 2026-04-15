@@ -230,6 +230,22 @@ class PdgfeedContractTests(unittest.TestCase):
             [entry["assemblyId"] for entry in pion_request["reactants"]],
             ["pro_up_quark_I", "anti_down_quark_I"],
         )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in pion_request["products"]],
+            [
+                "anti_muon_II",
+                "pro_muon_neutrino_II",
+                "unbound_architrinos_residue",
+            ],
+        )
+        self.assertEqual(
+            pion_request["products"][-1]["electrinoCount"],
+            2,
+        )
+        self.assertEqual(
+            pion_request["products"][-1]["positrinoCount"],
+            2,
+        )
 
     def test_neutral_pion_transform_uses_all_superposition_rows(self):
         case = pdgfeed.PdgCase(
@@ -250,7 +266,7 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
         )
 
-    def test_kaons_and_b_mesons_expand_into_assembly_rows(self):
+    def test_kaons_d_mesons_sigma_xi_lambda_omega_baryons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
         expected = {
             "eta": [
                 "pro_up_quark_I",
@@ -260,6 +276,12 @@ class PdgfeedContractTests(unittest.TestCase):
                 "pro_strange_quark_II",
                 "anti_strange_quark_II",
             ],
+            "phi": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(1020)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(1680)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)+": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)-": ["pro_strange_quark_II", "anti_strange_quark_II"],
+            "phi(2170)0": ["pro_strange_quark_II", "anti_strange_quark_II"],
             "K0S": [
                 "pro_down_quark_I",
                 "anti_strange_quark_II",
@@ -276,6 +298,27 @@ class PdgfeedContractTests(unittest.TestCase):
             "K0": ["pro_down_quark_I", "anti_strange_quark_II"],
             "K-": ["anti_up_quark_I", "pro_strange_quark_II"],
             "anti-K0": ["anti_down_quark_I", "pro_strange_quark_II"],
+            "ubar": ["anti_up_quark_I"],
+            "cbar": ["anti_charm_quark_II"],
+            "Dbar0": ["anti_charm_quark_II", "pro_up_quark_I"],
+            "D0": ["pro_charm_quark_II", "anti_up_quark_I"],
+            "D+": ["pro_charm_quark_II", "anti_down_quark_I"],
+            "D-": ["anti_charm_quark_II", "pro_down_quark_I"],
+            "Sigma+": ["pro_up_quark_I", "pro_up_quark_I", "pro_strange_quark_II"],
+            "Sigma0": ["pro_up_quark_I", "pro_down_quark_I", "pro_strange_quark_II"],
+            "Sigma-": ["pro_down_quark_I", "pro_down_quark_I", "pro_strange_quark_II"],
+            "Sigmabar-": ["anti_up_quark_I", "anti_up_quark_I", "anti_strange_quark_II"],
+            "Sigmabar0": ["anti_up_quark_I", "anti_down_quark_I", "anti_strange_quark_II"],
+            "Sigmabar+": ["anti_down_quark_I", "anti_down_quark_I", "anti_strange_quark_II"],
+            "Xi-": ["pro_down_quark_I", "pro_strange_quark_II", "pro_strange_quark_II"],
+            "Xi0": ["pro_up_quark_I", "pro_strange_quark_II", "pro_strange_quark_II"],
+            "Xibar+": ["anti_down_quark_I", "anti_strange_quark_II", "anti_strange_quark_II"],
+            "Xibar0": ["anti_up_quark_I", "anti_strange_quark_II", "anti_strange_quark_II"],
+            "Lambda0": ["pro_up_quark_I", "pro_down_quark_I", "pro_strange_quark_II"],
+            "Lambdabar0": ["anti_up_quark_I", "anti_down_quark_I", "anti_strange_quark_II"],
+            "Omega-": ["pro_strange_quark_II", "pro_strange_quark_II", "pro_strange_quark_II"],
+            "Omegabar+": ["anti_strange_quark_II", "anti_strange_quark_II", "anti_strange_quark_II"],
+            "tbar": ["anti_top_quark_III"],
             "B+": ["pro_up_quark_I", "anti_bottom_quark_III"],
             "B0": ["pro_down_quark_I", "anti_bottom_quark_III"],
             "B-": ["anti_up_quark_I", "pro_bottom_quark_III"],
@@ -294,13 +337,315 @@ class PdgfeedContractTests(unittest.TestCase):
                     products=(),
                 )
                 proposal = pdgfeed.build_proposal(case)
-                transformed = pdgfeed.transform_proposal_for_pdgsolve(proposal)
+                occurrences = [
+                    occurrence
+                    for participant in proposal.reactants
+                    for occurrence in participant.to_request_occurrences()
+                ]
 
-                self.assertIsNotNone(transformed)
                 self.assertEqual(
-                    [entry["assemblyId"] for entry in transformed["reactants"]],
+                    [entry["assemblyId"] for entry in occurrences],
                     assembly_ids,
                 )
+
+    def test_phi_energy_levels_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.PHI",
+                            "B0 -> phi",
+                            [FakeDecayProduct("phi")],
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.1020",
+                            "B0 -> phi(1020)0",
+                            [FakeDecayProduct("phi(1020)0")],
+                            mode_number=2,
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.1680",
+                            "B0 -> phi(1680)0",
+                            [FakeDecayProduct("phi(1680)0")],
+                            mode_number=3,
+                        ),
+                        FakeDecay(
+                            "TEST.B.PHI.2170",
+                            "B0 -> phi(2170)0",
+                            [FakeDecayProduct("phi(2170)0")],
+                            mode_number=4,
+                        ),
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 4)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(
+            [entry["caseId"] for entry in manifest["readyEntries"]],
+            [
+                "b0_test_b_phi",
+                "b0_test_b_phi_1020",
+                "b0_test_b_phi_1680",
+                "b0_test_b_phi_2170",
+            ],
+        )
+        self.assertEqual(len(rows), 4)
+        for row in rows:
+            self.assertEqual(row["category"], "supported")
+            self.assertEqual(row["product_names_aaa"], "d2.ad2")
+            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2")
+
+    def test_d_mesons_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B.DBAR0",
+                            "B0 -> Dbar0",
+                            [FakeDecayProduct("Dbar0")],
+                        ),
+                        FakeDecay(
+                            "TEST.B.D0",
+                            "B0 -> D0",
+                            [FakeDecayProduct("D0")],
+                            mode_number=2,
+                        ),
+                    ],
+                    mcid=511,
+                ),
+                FakeParticle(
+                    "B+",
+                    [
+                        FakeDecay(
+                            "TEST.B.DPLUS",
+                            "B+ -> D+",
+                            [FakeDecayProduct("D+")],
+                        )
+                    ],
+                    mcid=521,
+                ),
+                FakeParticle(
+                    "B-",
+                    [
+                        FakeDecay(
+                            "TEST.B.DMINUS",
+                            "B- -> D-",
+                            [FakeDecayProduct("D-")],
+                        )
+                    ],
+                    mcid=-521,
+                ),
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 4)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(
+            {entry["caseId"] for entry in manifest["readyEntries"]},
+            {
+                "b0_test_b_dbar0",
+                "b0_test_b_d0",
+                "b_plus_test_b_dplus",
+                "b_minus_test_b_dminus",
+            },
+        )
+        self.assertEqual(len(rows), 4)
+        row_by_id = {row["reaction_id"]: row for row in rows}
+        self.assertEqual(row_by_id["b0_test_b_dbar0"]["product_names_aaa"], "au2.u")
+        self.assertEqual(row_by_id["b0_test_b_d0"]["product_names_aaa"], "u2.au")
+        self.assertEqual(row_by_id["b_plus_test_b_dplus"]["product_names_aaa"], "u2.ad")
+        self.assertEqual(row_by_id["b_minus_test_b_dminus"]["product_names_aaa"], "au2.d")
+
+    def test_sigma_and_xi_baryons_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B0.SIGMAP",
+                            "B0 -> Sigma+ Sigmabar-",
+                            [FakeDecayProduct("Sigma+"), FakeDecayProduct("Sigmabar-")],
+                        ),
+                        FakeDecay(
+                            "TEST.B0.SIGMA0",
+                            "B0 -> Sigma0 Sigmabar0",
+                            [FakeDecayProduct("Sigma0"), FakeDecayProduct("Sigmabar0")],
+                            mode_number=2,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.SIGMAM",
+                            "B0 -> Sigma- Sigmabar+",
+                            [FakeDecayProduct("Sigma-"), FakeDecayProduct("Sigmabar+")],
+                            mode_number=3,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.XI0",
+                            "B0 -> Xi0 Xibar0",
+                            [FakeDecayProduct("Xi0"), FakeDecayProduct("Xibar0")],
+                            mode_number=4,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.XIM",
+                            "B0 -> Xi- Xibar+",
+                            [FakeDecayProduct("Xi-"), FakeDecayProduct("Xibar+")],
+                            mode_number=5,
+                        ),
+                    ],
+                    mcid=511,
+                )
+            ]
+        )
+
+        manifest = pdgfeed.build_live_manifest_payload(api=api)
+        rows = pdgfeed.build_live_supported_reaction_csv_rows(api=api)
+
+        self.assertEqual(manifest["readyCount"], 5)
+        self.assertEqual(manifest["blockedCount"], 0)
+        self.assertEqual(
+            {entry["caseId"] for entry in manifest["readyEntries"]},
+            {
+                "b0_test_b0_sigmap",
+                "b0_test_b0_sigma0",
+                "b0_test_b0_sigmam",
+                "b0_test_b0_xi0",
+                "b0_test_b0_xim",
+            },
+        )
+        self.assertEqual(len(rows), 5)
+        row_by_id = {row["reaction_id"]: row for row in rows}
+        self.assertEqual(row_by_id["b0_test_b0_sigmap"]["product_names_aaa"], "u.u.d2.au.au.ad2")
+        self.assertEqual(row_by_id["b0_test_b0_sigma0"]["product_names_aaa"], "u.d.d2.au.ad.ad2")
+        self.assertEqual(row_by_id["b0_test_b0_sigmam"]["product_names_aaa"], "d.d.d2.ad.ad.ad2")
+        self.assertEqual(row_by_id["b0_test_b0_xi0"]["product_names_aaa"], "u.d2.d2.au.ad2.ad2")
+        self.assertEqual(row_by_id["b0_test_b0_xim"]["product_names_aaa"], "d.d2.d2.ad.ad2.ad2")
+
+    def test_lambda_omega_and_quark_bar_aliases_move_from_backlog_to_supported(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "B0",
+                    [
+                        FakeDecay(
+                            "TEST.B0.LAMBDA",
+                            "B0 -> Lambda0 Lambdabar0",
+                            [FakeDecayProduct("Lambda0"), FakeDecayProduct("Lambdabar0")],
+                        ),
+                        FakeDecay(
+                            "TEST.B0.OMEGA",
+                            "B0 -> Omega- Omegabar+",
+                            [FakeDecayProduct("Omega-"), FakeDecayProduct("Omegabar+")],
+                            mode_number=2,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.CBAR",
+                            "B0 -> cbar c",
+                            [FakeDecayProduct("cbar"), FakeDecayProduct("c")],
+                            mode_number=3,
+                        ),
+                        FakeDecay(
+                            "TEST.B0.UBAR",
+                            "B0 -> ubar u",
+                            [FakeDecayProduct("ubar"), FakeDecayProduct("u")],
+                            mode_number=4,
+                        ),
+                    ],
+                    mcid=511,
+                ),
+                FakeParticle(
+                    "t",
+                    [
+                        FakeDecay(
+                            "TEST.T.TBAR",
+                            "t -> tbar H u",
+                            [FakeDecayProduct("tbar"), FakeDecayProduct("H"), FakeDecayProduct("u")],
+                        )
+                    ],
+                    mcid=6,
+                ),
+            ]
+        )
+
+        lambda_case = pdgfeed.load_live_case_by_id("b0_test_b0_lambda", api=api)
+        omega_case = pdgfeed.load_live_case_by_id("b0_test_b0_omega", api=api)
+        cbar_case = pdgfeed.load_live_case_by_id("b0_test_b0_cbar", api=api)
+        ubar_case = pdgfeed.load_live_case_by_id("b0_test_b0_ubar", api=api)
+        tbar_proposal = pdgfeed.build_proposal(
+            pdgfeed.PdgCase(
+                case_id="tbar-case",
+                proposal_id="tbar-case",
+                title="tbar",
+                source_kind="pdg-live",
+                source={"mcid": -6, "pdgIdentifier": "fake"},
+                reactants=(pdgfeed.CaseParticle(name="tbar", pdg_id="tbar"),),
+                products=(),
+            )
+        )
+
+        lambda_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(lambda_case))
+        omega_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(omega_case))
+        cbar_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(cbar_case))
+        ubar_request = pdgfeed.build_pdgsolve_request(pdgfeed.build_proposal(ubar_case))
+
+        self.assertIsNotNone(lambda_request)
+        self.assertIsNotNone(omega_request)
+        self.assertIsNotNone(cbar_request)
+        self.assertIsNotNone(ubar_request)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in tbar_proposal.reactants[0].to_request_occurrences()],
+            ["anti_top_quark_III"],
+        )
+
+        lambda_products = [entry["assemblyId"] for entry in lambda_request["products"]]
+        omega_products = [entry["assemblyId"] for entry in omega_request["products"]]
+        cbar_products = [entry["assemblyId"] for entry in cbar_request["products"]]
+        ubar_products = [entry["assemblyId"] for entry in ubar_request["products"]]
+
+        self.assertEqual(
+            lambda_products,
+            [
+                "pro_up_quark_I",
+                "pro_down_quark_I",
+                "pro_strange_quark_II",
+                "anti_up_quark_I",
+                "anti_down_quark_I",
+                "anti_strange_quark_II",
+            ],
+        )
+        self.assertEqual(
+            omega_products,
+            [
+                "pro_strange_quark_II",
+                "pro_strange_quark_II",
+                "pro_strange_quark_II",
+                "anti_strange_quark_II",
+                "anti_strange_quark_II",
+                "anti_strange_quark_II",
+                "unbound_architrinos_residue",
+            ],
+        )
+        self.assertEqual(omega_request["products"][-1]["electrinoCount"], 4)
+        self.assertEqual(omega_request["products"][-1]["positrinoCount"], 4)
+        self.assertEqual(cbar_products, ["anti_charm_quark_II", "pro_charm_quark_II"])
+        self.assertEqual(
+            ubar_products,
+            ["anti_up_quark_I", "pro_up_quark_I", "unbound_architrinos_residue"],
+        )
+        self.assertEqual(ubar_request["products"][-1]["electrinoCount"], 4)
+        self.assertEqual(ubar_request["products"][-1]["positrinoCount"], 4)
 
     def test_eta_decay_moves_from_backlog_to_supported_with_six_quark_expansion(self):
         api = FakeApi(
@@ -475,7 +820,7 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["reaction_id"], "k_plus_test_k_plus_generic_pi")
         self.assertEqual(rows[0]["product_names_aaa"], "u.ad.u.au.d.ad")
-        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.ad.u.au.d.ad")
+        self.assertEqual(rows[0]["transformed_product_names_aaa"], "u.ad.u.au.d.ad.5:5@")
 
 
 if __name__ == "__main__":

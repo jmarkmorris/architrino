@@ -43,6 +43,14 @@ REQUEST_ASSEMBLY_AAA_BY_ID = {
     mapping.canonical_id: mapping.aaa_notation
     for mapping in REQUEST_ASSEMBLY_MAPPINGS
 }
+UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
+UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
+NOETHER_PAIR_PRIMITIVE_TOTALS = {
+    "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
+    + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
+    "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
+    + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+}
 INCOMPLETE_NOTE_MARKERS = (
     "generic-or-textual-item",
     "generic-family-charge-",
@@ -209,8 +217,8 @@ def classify_proposal_payload(proposal_payload: dict[str, Any]) -> str:
 
 def transform_participants_for_pdgsolve(
     participants: Sequence[NormalizedParticipant],
-) -> list[dict[str, str]] | None:
-    transformed_rows: list[dict[str, str]] = []
+) -> list[dict[str, Any]] | None:
+    transformed_rows: list[dict[str, Any]] = []
     for participant in participants:
         if not participant.request_occurrences:
             return None
@@ -221,93 +229,110 @@ def transform_participants_for_pdgsolve(
     return transformed_rows
 
 
+def build_noether_pair_occurrences(side: str, pair_count: int) -> list[dict[str, Any]]:
+    occurrences: list[dict[str, Any]] = []
+    for index in range(1, pair_count + 1):
+        occurrences.append(
+            {
+                "id": f"{side}_noether_pair_{index}.row.1",
+                "assemblyId": "pro_noether_core_I",
+                "title": "Pro Noether Core",
+            }
+        )
+        occurrences.append(
+            {
+                "id": f"{side}_noether_pair_{index}.row.2",
+                "assemblyId": "anti_noether_core_I",
+                "title": "Anti Noether Core",
+            }
+        )
+    return occurrences
+
+
+def build_unbound_architrinos_residue_product(
+    electrino_count: int,
+    positrino_count: int,
+) -> dict[str, Any]:
+    return {
+        "id": "product_unbound_architrinos_residue_1",
+        "assemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+        "title": UNBOUND_ARCHITRINOS_RESIDUE_TITLE,
+        "electrinoCount": electrino_count,
+        "positrinoCount": positrino_count,
+    }
+
+
 def add_minimum_noether_pair_reactants_for_balance(
-    reactants: list[dict[str, str]],
-    products: list[dict[str, str]],
-) -> list[dict[str, str]] | None:
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
     reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
     product_totals = get_pdgsolve_occurrence_primitive_totals(products)
-    noether_pair_totals = {
-        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
-        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
-    }
     if reactant_totals is None or product_totals is None:
         return None
 
     electrino_deficit = max(0, product_totals["electrinoCount"] - reactant_totals["electrinoCount"])
     positrino_deficit = max(0, product_totals["positrinoCount"] - reactant_totals["positrinoCount"])
     pair_count = max(
-        math.ceil(electrino_deficit / noether_pair_totals["electrinoCount"]) if electrino_deficit else 0,
-        math.ceil(positrino_deficit / noether_pair_totals["positrinoCount"]) if positrino_deficit else 0,
+        math.ceil(electrino_deficit / NOETHER_PAIR_PRIMITIVE_TOTALS["electrinoCount"])
+        if electrino_deficit
+        else 0,
+        math.ceil(positrino_deficit / NOETHER_PAIR_PRIMITIVE_TOTALS["positrinoCount"])
+        if positrino_deficit
+        else 0,
     )
     if pair_count == 0:
         return reactants
 
-    augmented_reactants = list(reactants)
-    for index in range(1, pair_count + 1):
-        augmented_reactants.append(
-            {
-                "id": f"reactant_noether_pair_{index}.row.1",
-                "assemblyId": "pro_noether_core_I",
-                "title": "Pro Noether Core",
-            }
-        )
-        augmented_reactants.append(
-            {
-                "id": f"reactant_noether_pair_{index}.row.2",
-                "assemblyId": "anti_noether_core_I",
-                "title": "Anti Noether Core",
-            }
-        )
-    return augmented_reactants
+    return [*reactants, *build_noether_pair_occurrences("reactant", pair_count)]
 
 
 def add_maximum_noether_pair_products_from_surplus(
-    reactants: list[dict[str, str]],
-    products: list[dict[str, str]],
-) -> list[dict[str, str]] | None:
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
     reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
     product_totals = get_pdgsolve_occurrence_primitive_totals(products)
-    noether_pair_totals = {
-        "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
-        "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
-        + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
-    }
     if reactant_totals is None or product_totals is None:
         return None
 
     electrino_surplus = max(0, reactant_totals["electrinoCount"] - product_totals["electrinoCount"])
     positrino_surplus = max(0, reactant_totals["positrinoCount"] - product_totals["positrinoCount"])
     pair_count = min(
-        electrino_surplus // noether_pair_totals["electrinoCount"],
-        positrino_surplus // noether_pair_totals["positrinoCount"],
+        electrino_surplus // NOETHER_PAIR_PRIMITIVE_TOTALS["electrinoCount"],
+        positrino_surplus // NOETHER_PAIR_PRIMITIVE_TOTALS["positrinoCount"],
     )
     if pair_count == 0:
         return products
 
-    augmented_products = list(products)
-    for index in range(1, pair_count + 1):
-        augmented_products.append(
-            {
-                "id": f"product_noether_pair_{index}.row.1",
-                "assemblyId": "pro_noether_core_I",
-                "title": "Pro Noether Core",
-            }
-        )
-        augmented_products.append(
-            {
-                "id": f"product_noether_pair_{index}.row.2",
-                "assemblyId": "anti_noether_core_I",
-                "title": "Anti Noether Core",
-            }
-        )
-    return augmented_products
+    return [*products, *build_noether_pair_occurrences("product", pair_count)]
 
 
-def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, str]]] | None:
+def add_unbound_architrino_residue_product_from_surplus(
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
+    product_totals = get_pdgsolve_occurrence_primitive_totals(products)
+    if reactant_totals is None or product_totals is None:
+        return None
+
+    electrino_surplus = reactant_totals["electrinoCount"] - product_totals["electrinoCount"]
+    positrino_surplus = reactant_totals["positrinoCount"] - product_totals["positrinoCount"]
+    if electrino_surplus < 0 or positrino_surplus < 0:
+        return None
+    if electrino_surplus == 0 and positrino_surplus == 0:
+        return products
+    if electrino_surplus > 5 or positrino_surplus > 5:
+        return None
+
+    return [
+        *products,
+        build_unbound_architrinos_residue_product(electrino_surplus, positrino_surplus),
+    ]
+
+
+def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, Any]]] | None:
     if has_unsupported_transform_notes(proposal.notes):
         return None
     reactants = transform_participants_for_pdgsolve(proposal.reactants)
@@ -318,6 +343,9 @@ def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[s
     if reactants is None:
         return None
     products = add_maximum_noether_pair_products_from_surplus(reactants, products)
+    if products is None:
+        return None
+    products = add_unbound_architrino_residue_product_from_surplus(reactants, products)
     if products is None:
         return None
     return {
@@ -425,6 +453,8 @@ def load_pdgsolve_request_schema() -> dict[str, Any]:
 
 def validate_pdgsolve_request_shape(request: dict[str, Any]) -> None:
     errors = validate_against_schema(request, load_pdgsolve_request_schema())
+    if not errors:
+        errors.extend(validate_pdgsolve_request_occurrence_semantics(request))
     if errors:
         raise ValueError("pdgsolve-request/v1 validation failed:\n" + "\n".join(errors))
 
@@ -457,14 +487,59 @@ def format_proposal_side_aaa(participants: Any) -> str:
     return ".".join(tokens)
 
 
+def get_pdgsolve_occurrence_primitive_counts(occurrence: Any) -> dict[str, int] | None:
+    if not isinstance(occurrence, dict):
+        return None
+    assembly_id = str(occurrence.get("assemblyId", ""))
+    if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+        electrino_count = occurrence.get("electrinoCount")
+        positrino_count = occurrence.get("positrinoCount")
+        if not isinstance(electrino_count, int) or isinstance(electrino_count, bool):
+            return None
+        if not isinstance(positrino_count, int) or isinstance(positrino_count, bool):
+            return None
+        if electrino_count < 0 or positrino_count < 0:
+            return None
+        return {
+            "electrinoCount": electrino_count,
+            "positrinoCount": positrino_count,
+        }
+    return REQUEST_ASSEMBLY_COUNTS.get(assembly_id)
+
+
+def validate_pdgsolve_request_occurrence_semantics(request: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    for side in ("reactants", "products"):
+        occurrences = request.get(side, [])
+        if not isinstance(occurrences, list):
+            continue
+        for index, occurrence in enumerate(occurrences):
+            path = f"$.{side}[{index}]"
+            if not isinstance(occurrence, dict):
+                continue
+            assembly_id = str(occurrence.get("assemblyId", ""))
+            has_explicit_counts = "electrinoCount" in occurrence or "positrinoCount" in occurrence
+            if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+                if side != "products":
+                    errors.append(f"{path}: unbound architrino residue is only admitted on the product side")
+                counts = get_pdgsolve_occurrence_primitive_counts(occurrence)
+                if counts is None:
+                    errors.append(f"{path}: residue occurrence must carry non-negative integer electrinoCount and positrinoCount")
+                    continue
+                if counts["electrinoCount"] == 0 and counts["positrinoCount"] == 0:
+                    errors.append(f"{path}: residue occurrence must carry a non-zero primitive count")
+                continue
+            if has_explicit_counts:
+                errors.append(f"{path}: explicit primitive counts are only admitted on Unbound Architrinos residue products")
+    return errors
+
+
 def get_pdgsolve_occurrence_primitive_totals(occurrences: Any) -> dict[str, int] | None:
     if not isinstance(occurrences, list):
         return None
     totals = {"electrinoCount": 0, "positrinoCount": 0}
     for occurrence in occurrences:
-        if not isinstance(occurrence, dict):
-            return None
-        counts = REQUEST_ASSEMBLY_COUNTS.get(str(occurrence.get("assemblyId", "")))
+        counts = get_pdgsolve_occurrence_primitive_counts(occurrence)
         if counts is None:
             return None
         totals["electrinoCount"] += counts["electrinoCount"]
@@ -492,11 +567,40 @@ def format_request_side_aaa(occurrences: Any) -> str:
     for occurrence in occurrences:
         if not isinstance(occurrence, dict):
             return ""
-        aaa_notation = REQUEST_ASSEMBLY_AAA_BY_ID.get(str(occurrence.get("assemblyId", "")), "")
+        assembly_id = str(occurrence.get("assemblyId", ""))
+        if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+            counts = get_pdgsolve_occurrence_primitive_counts(occurrence)
+            if counts is None:
+                return ""
+            aaa_notation = f"{counts['electrinoCount']}:{counts['positrinoCount']}@"
+        else:
+            aaa_notation = REQUEST_ASSEMBLY_AAA_BY_ID.get(assembly_id, "")
         if not aaa_notation:
             return ""
         tokens.append(aaa_notation)
     return ".".join(tokens)
+
+
+def get_request_residue_counts(pdgsolve_request: Any) -> tuple[int, int] | None:
+    if not isinstance(pdgsolve_request, dict):
+        return None
+    products = pdgsolve_request.get("products", [])
+    if not isinstance(products, list):
+        return None
+    residue_occurrences = [
+        occurrence
+        for occurrence in products
+        if isinstance(occurrence, dict)
+        and str(occurrence.get("assemblyId", "")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+    ]
+    if not residue_occurrences:
+        return (0, 0)
+    if len(residue_occurrences) != 1:
+        return None
+    counts = get_pdgsolve_occurrence_primitive_counts(residue_occurrences[0])
+    if counts is None:
+        return None
+    return counts["electrinoCount"], counts["positrinoCount"]
 
 
 def build_supported_reaction_csv_row(
@@ -667,11 +771,13 @@ def build_live_reaction_summary_rows(
     supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
     total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
     delta_counts: Counter[int] = Counter()
-    for row in supported_rows:
-        electrino_value = row.get("electrino_delta", -1)
-        positrino_value = row.get("positrino_delta", -1)
-        electrino_delta = -1 if electrino_value is None else int(electrino_value)
-        positrino_delta = -1 if positrino_value is None else int(positrino_value)
+    for entry in manifest.get("readyEntries", []):
+        if not isinstance(entry, dict):
+            continue
+        residue_counts = get_request_residue_counts(entry.get("pdgsolveRequest", {}))
+        if residue_counts is None:
+            continue
+        electrino_delta, positrino_delta = residue_counts
         if electrino_delta == positrino_delta and 0 <= electrino_delta <= 5:
             delta_counts[electrino_delta] += 1
     incomplete_count = 0

@@ -135,12 +135,23 @@
               "pro_top_quark_III",
               "anti_top_quark_III",
               "pro_bottom_quark_III",
-              "anti_bottom_quark_III"
+              "anti_bottom_quark_III",
+              "unbound_architrinos_residue"
             ]
           },
           "title": {
             "type": "string",
             "minLength": 1
+          },
+          "electrinoCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "positrinoCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
           }
         }
       }

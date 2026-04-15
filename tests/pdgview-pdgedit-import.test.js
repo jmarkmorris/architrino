@@ -132,12 +132,14 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
 
   assert.deepEqual(requiredAssemblyIds, expectedRequiredAssemblyIds);
   assert.equal(framingState.framing.preset, "wide");
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane1_pro_noether_core_1row1"), true);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane1_pro_down_quark_1row1"), true);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane5_pro_electron_1row4"), true);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane3_pro_electron_1row4"), false);
   assert.equal(
     expectedStaging.draftState.assembliesDraft.some(
       (draft) =>
-        draft.name === "Pro Noether Core" &&
-        draft.metadata?.source?.objectId === "unit_lane1_pro_noether_core_1.row.1"
+        draft.name === "Pro Electron" &&
+        draft.metadata?.source?.objectId === "unit_lane5_pro_electron_1.row.4"
     ),
     true
   );
