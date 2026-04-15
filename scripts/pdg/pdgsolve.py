@@ -92,6 +92,15 @@ DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH = (
     / "v1"
     / "free_neutron_beta_exact.v1.json"
 )
+DEFAULT_RESULT_CORPUS_OUTPUT_DIR = (
+    REPO_ROOT
+    / "content"
+    / "contracts"
+    / "examples"
+    / "pdgsolve-corpus"
+    / "v1"
+    / "generated"
+)
 
 ASSEMBLY_DISPLAY = {
     "pro_down_quark_I": {
@@ -1119,6 +1128,77 @@ def build_pdgedit_package(
     }
 
 
+def build_result_corpus_index(
+    manifest: dict[str, Any],
+    result_records: list[dict[str, Any]],
+) -> dict[str, Any]:
+    exact_available_count = sum(
+        1 for record in result_records if normalize_text(record.get("searchStatus")) == "exact_available"
+    )
+    partial_only_count = sum(
+        1 for record in result_records if normalize_text(record.get("searchStatus")) == "partial_only"
+    )
+    no_exact_closure_count = sum(
+        1 for record in result_records if normalize_text(record.get("searchStatus")) == "no_exact_closure"
+    )
+    return {
+        "schema": "pdgsolve-result-corpus/v1",
+        "sourceSchema": normalize_text(manifest.get("schema")),
+        "readyCount": int(manifest.get("readyCount", 0) or 0),
+        "solvedCount": len(result_records),
+        "exactAvailableCount": exact_available_count,
+        "partialOnlyCount": partial_only_count,
+        "noExactClosureCount": no_exact_closure_count,
+        "results": result_records,
+    }
+
+
+def solve_manifest_payload(
+    manifest: dict[str, Any],
+    *,
+    output_dir: Path | None = None,
+) -> dict[str, Any]:
+    result_records: list[dict[str, Any]] = []
+    normalized_output_dir = output_dir.resolve() if output_dir is not None else None
+    if normalized_output_dir is not None:
+        normalized_output_dir.mkdir(parents=True, exist_ok=True)
+
+    for entry in manifest.get("readyEntries", []):
+        if not isinstance(entry, dict):
+            continue
+        request = entry.get("pdgsolveRequest")
+        if not isinstance(request, dict):
+            continue
+        result = solve_request(request)
+        case_id = normalize_text(entry.get("caseId")) or slugify(request.get("requestId")) or "case"
+        batch_id = int(entry.get("batchId", 0) or 0)
+        request_id = normalize_text(request.get("requestId"))
+        filename = f"{batch_id:04d}_{slugify(case_id)}.result.v1.json"
+        result_path = normalized_output_dir / filename if normalized_output_dir is not None else None
+        if result_path is not None:
+            write_json(result_path, result)
+            try:
+                serialized_result_path = str(result_path.relative_to(REPO_ROOT))
+            except ValueError:
+                serialized_result_path = str(result_path)
+        else:
+            serialized_result_path = ""
+        result_records.append(
+            {
+                "batchId": batch_id,
+                "caseId": case_id,
+                "proposalId": normalize_text(entry.get("proposalId")),
+                "requestId": request_id,
+                "problemId": normalize_text(result.get("problemId")),
+                "searchStatus": normalize_text(result.get("searchStatus")),
+                "bestFamilyId": normalize_text(result.get("bestFamilyId")),
+                "resultPath": serialized_result_path,
+            }
+        )
+
+    return build_result_corpus_index(manifest, result_records)
+
+
 def get_vertical_slice_artifacts() -> dict[str, Any]:
     request = get_vertical_slice_request()
     result = solve_request(request)
@@ -1149,6 +1229,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     accept_parser.add_argument("result_path", type=Path)
     accept_parser.add_argument("family_id")
     accept_parser.add_argument("--write", type=Path, default=None)
+
+    manifest_parser = subparsers.add_parser(
+        "solve-manifest",
+        help="Solve every ready pdgsolve request inside one pdg-live-manifest payload.",
+    )
+    manifest_parser.add_argument("manifest_path", type=Path)
+    manifest_parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=DEFAULT_RESULT_CORPUS_OUTPUT_DIR,
+    )
+    manifest_parser.add_argument("--write-index", type=Path, default=None)
 
     publish_parser = subparsers.add_parser(
         "publish", help="Publish one pdgedit document from one acceptance record."
@@ -1204,6 +1296,17 @@ def main(argv: list[str] | None = None) -> int:
         print_json(acceptance)
         return 0
 
+    if args.command == "solve-manifest":
+        manifest = load_json(args.manifest_path)
+        index_payload = solve_manifest_payload(manifest, output_dir=args.output_dir)
+        if args.write_index is not None:
+            write_json(args.write_index, index_payload)
+            print(args.output_dir)
+            print(args.write_index)
+            return 0
+        print_json(index_payload)
+        return 0
+
     if args.command == "publish":
         acceptance = load_json(args.acceptance_path)
         pdgedit_document = build_pdgedit_document_from_acceptance(acceptance)
@@ -1243,6 +1346,7 @@ __all__ = [
     "build_acceptance",
     "build_pdgedit_document_from_acceptance",
     "build_pdgedit_package",
+    "build_result_corpus_index",
     "count_assemblies",
     "digest_json",
     "dump_json",
@@ -1253,6 +1357,7 @@ __all__ = [
     "parse_args",
     "print_json",
     "request_is_vertical_slice_beta",
+    "solve_manifest_payload",
     "solve_request",
     "write_json",
 ]

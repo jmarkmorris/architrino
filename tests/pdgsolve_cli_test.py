@@ -52,6 +52,65 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(len(pdgedit_document["assemblies"]), 13)
         self.assertEqual(len(pdgedit_document["operators"]), 8)
 
+    def test_solve_manifest_writes_per_case_results_and_a_batch_index(self):
+        unsupported_request = pdgsolve.get_vertical_slice_request()
+        unsupported_request["requestId"] = "unsupported_beta_variant"
+        unsupported_request["products"] = unsupported_request["products"][:-1]
+
+        manifest = {
+            "schema": "pdg-live-manifest/v1",
+            "readyCount": 2,
+            "blockedCount": 0,
+            "topBlockedParticles": [],
+            "readyEntries": [
+                {
+                    "batchId": 1,
+                    "caseId": "free_neutron_beta_exact",
+                    "proposalId": "free_neutron_beta_decay",
+                    "pdgsolveRequest": pdgsolve.get_vertical_slice_request(),
+                },
+                {
+                    "batchId": 2,
+                    "caseId": "unsupported_beta_variant",
+                    "proposalId": "unsupported_beta_variant",
+                    "pdgsolveRequest": unsupported_request,
+                },
+            ],
+            "blockedEntries": [],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            manifest_path = tmp_dir / "manifest.json"
+            index_path = tmp_dir / "index.json"
+            output_dir = tmp_dir / "results"
+            manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+            output = self.run_main(
+                [
+                    "solve-manifest",
+                    str(manifest_path),
+                    "--output-dir",
+                    str(output_dir),
+                    "--write-index",
+                    str(index_path),
+                ]
+            )
+
+            self.assertEqual(output.splitlines(), [str(output_dir), str(index_path)])
+            index_payload = self.read_json(index_path)
+            self.assertEqual(index_payload["schema"], "pdgsolve-result-corpus/v1")
+            self.assertEqual(index_payload["solvedCount"], 2)
+            self.assertEqual(index_payload["exactAvailableCount"], 1)
+            self.assertEqual(index_payload["noExactClosureCount"], 1)
+            self.assertEqual(len(index_payload["results"]), 2)
+            first_result_path = tmp_dir / index_payload["results"][0]["resultPath"]
+            second_result_path = tmp_dir / index_payload["results"][1]["resultPath"]
+            self.assertTrue(first_result_path.exists())
+            self.assertTrue(second_result_path.exists())
+            self.assertEqual(self.read_json(first_result_path)["searchStatus"], "exact_available")
+            self.assertEqual(self.read_json(second_result_path)["searchStatus"], "no_exact_closure")
+
     def test_write_vertical_slice_command_writes_all_upstream_artifacts(self):
         with tempfile.TemporaryDirectory() as tmp_dir_name:
             tmp_dir = Path(tmp_dir_name)
