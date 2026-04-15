@@ -48,6 +48,25 @@ export function normalizePdgeditLibraryManifest(rawManifest = {}) {
   };
 }
 
+export function mergePdgeditLibraryManifests(...manifests) {
+  const normalizedManifests = manifests.map((manifest) => normalizePdgeditLibraryManifest(manifest));
+  const entryById = new Map();
+  let defaultEntryId = "";
+  normalizedManifests.forEach((manifest) => {
+    if (!defaultEntryId && manifest.defaultEntryId && manifest.entries.some((entry) => entry.id === manifest.defaultEntryId)) {
+      defaultEntryId = manifest.defaultEntryId;
+    }
+    manifest.entries.forEach((entry) => {
+      entryById.set(entry.id, entry);
+    });
+  });
+  return {
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId,
+    entries: [...entryById.values()],
+  };
+}
+
 export function getPdgeditLibraryManifestEntryById(manifest = {}, entryId = "") {
   const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
   const normalizedEntryId = normalizeText(entryId);
@@ -69,11 +88,19 @@ export function selectDefaultPdgeditLibraryManifestEntry(manifest = {}) {
 export async function loadPdgeditLibraryManifest({
   fetchImpl = globalThis.fetch?.bind(globalThis),
   specUrl,
+  allowMissing = false,
 } = {}) {
   if (typeof fetchImpl !== "function") {
     throw new Error("pdgedit library manifest loading requires fetch().");
   }
   const response = await fetchImpl(specUrl, { cache: "no-store" });
+  if (allowMissing && response.status === 404) {
+    return normalizePdgeditLibraryManifest({
+      schema: "pdgedit-library-manifest/v1",
+      defaultEntryId: "",
+      entries: [],
+    });
+  }
   if (!response.ok) {
     throw new Error(`Failed to load pdgedit library manifest: ${response.status} ${response.statusText}`);
   }

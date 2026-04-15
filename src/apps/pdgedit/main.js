@@ -28,6 +28,7 @@ export function bootstrapPdgeditApp({
     compositeLayerElement: documentLike.getElementById("pdgedit-composite-layer"),
     documentTriggerElement: documentLike.getElementById("pdgedit-document-trigger"),
     documentPanelElement: documentLike.getElementById("pdgedit-document-panel"),
+    documentSearchInputElement: documentLike.getElementById("pdgedit-document-search"),
     homeButtonElement: documentLike.getElementById("pdgedit-home-button"),
     createPickerElement: documentLike.getElementById("pdgedit-create-picker"),
     manifestUrl,

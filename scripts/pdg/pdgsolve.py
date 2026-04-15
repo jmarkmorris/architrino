@@ -95,6 +95,8 @@ DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH = (
 DEFAULT_TMP_DIR = REPO_ROOT / ".tmp" / "pdgsolve"
 DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
 DEFAULT_RESULT_CORPUS_INDEX_PATH = DEFAULT_TMP_DIR / "result-corpus.v1.json"
+DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR = DEFAULT_TMP_DIR / "pdgedit" / "documents"
+DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH = DEFAULT_TMP_DIR / "pdgedit" / "manifest.v1.json"
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 
 ASSEMBLY_DISPLAY = {
@@ -2262,6 +2264,36 @@ def build_pdgedit_package(
     }
 
 
+def build_pdgedit_manifest_entry(
+    *,
+    document_id: str,
+    document_title: str,
+    document_path: str,
+    is_default: bool = False,
+) -> dict[str, Any]:
+    entry = {
+        "id": document_id,
+        "title": document_title,
+        "displayTitle": document_title,
+        "documentPath": document_path,
+    }
+    if is_default:
+        entry["isDefault"] = True
+    return entry
+
+
+def build_pdgedit_library_manifest(
+    entries: list[dict[str, Any]],
+    *,
+    default_entry_id: str = "",
+) -> dict[str, Any]:
+    return {
+        "schema": "pdgedit-library-manifest/v1",
+        "defaultEntryId": default_entry_id,
+        "entries": entries,
+    }
+
+
 def build_result_corpus_index(
     manifest: dict[str, Any],
     result_records: list[dict[str, Any]],
@@ -2291,11 +2323,20 @@ def solve_manifest_payload(
     manifest: dict[str, Any],
     *,
     output_dir: Path | None = None,
+    pdgedit_output_dir: Path | None = None,
+    pdgedit_manifest_path: Path | None = None,
 ) -> dict[str, Any]:
     result_records: list[dict[str, Any]] = []
     normalized_output_dir = output_dir.resolve() if output_dir is not None else None
+    normalized_pdgedit_output_dir = pdgedit_output_dir.resolve() if pdgedit_output_dir is not None else None
+    normalized_pdgedit_manifest_path = (
+        pdgedit_manifest_path.resolve() if pdgedit_manifest_path is not None else None
+    )
     if normalized_output_dir is not None:
         normalized_output_dir.mkdir(parents=True, exist_ok=True)
+    if normalized_pdgedit_output_dir is not None:
+        normalized_pdgedit_output_dir.mkdir(parents=True, exist_ok=True)
+    pdgedit_manifest_entries: list[dict[str, Any]] = []
 
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
@@ -2317,6 +2358,40 @@ def solve_manifest_payload(
                 serialized_result_path = str(result_path)
         else:
             serialized_result_path = ""
+        serialized_pdgedit_document_path = ""
+        if (
+            normalized_pdgedit_output_dir is not None
+            and normalize_text(result.get("searchStatus")) == "exact_available"
+            and normalize_text(result.get("bestFamilyId"))
+        ):
+            acceptance = build_acceptance(
+                request,
+                result,
+                family_id=normalize_text(result.get("bestFamilyId")),
+            )
+            document_id = f"{normalize_text(result.get('problemId'))}--{normalize_text(result.get('bestFamilyId'))}"
+            source_title = normalize_text(request.get("source", {}).get("title"))
+            document_title = source_title or normalize_text(request.get("requestId")) or document_id
+            pdgedit_document = build_pdgedit_document_from_acceptance(
+                acceptance,
+                document_id=document_id,
+                document_title=document_title,
+            )
+            pdgedit_filename = f"{batch_id:04d}_{slugify(case_id)}.pdgedit.v1.json"
+            pdgedit_document_path = normalized_pdgedit_output_dir / pdgedit_filename
+            write_json(pdgedit_document_path, pdgedit_document)
+            try:
+                serialized_pdgedit_document_path = str(pdgedit_document_path.relative_to(REPO_ROOT))
+            except ValueError:
+                serialized_pdgedit_document_path = str(pdgedit_document_path)
+            pdgedit_manifest_entries.append(
+                build_pdgedit_manifest_entry(
+                    document_id=document_id,
+                    document_title=document_title,
+                    document_path=serialized_pdgedit_document_path,
+                    is_default=not pdgedit_manifest_entries,
+                )
+            )
         result_records.append(
             {
                 "batchId": batch_id,
@@ -2327,7 +2402,21 @@ def solve_manifest_payload(
                 "searchStatus": normalize_text(result.get("searchStatus")),
                 "bestFamilyId": normalize_text(result.get("bestFamilyId")),
                 "resultPath": serialized_result_path,
+                **(
+                    {"pdgeditDocumentPath": serialized_pdgedit_document_path}
+                    if serialized_pdgedit_document_path
+                    else {}
+                ),
             }
+        )
+
+    if normalized_pdgedit_manifest_path is not None:
+        write_json(
+            normalized_pdgedit_manifest_path,
+            build_pdgedit_library_manifest(
+                pdgedit_manifest_entries,
+                default_entry_id=pdgedit_manifest_entries[0]["id"] if pdgedit_manifest_entries else "",
+            ),
         )
 
     return build_result_corpus_index(manifest, result_records)
@@ -2378,6 +2467,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--write-index",
         type=Path,
         default=DEFAULT_RESULT_CORPUS_INDEX_PATH,
+    )
+    manifest_parser.add_argument(
+        "--pdgedit-output-dir",
+        type=Path,
+        default=DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR,
+    )
+    manifest_parser.add_argument(
+        "--write-pdgedit-manifest",
+        type=Path,
+        default=DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH,
     )
 
     publish_parser = subparsers.add_parser(
@@ -2436,11 +2535,17 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "solve-manifest":
         manifest = load_json(args.manifest_path)
-        index_payload = solve_manifest_payload(manifest, output_dir=args.output_dir)
+        index_payload = solve_manifest_payload(
+            manifest,
+            output_dir=args.output_dir,
+            pdgedit_output_dir=args.pdgedit_output_dir,
+            pdgedit_manifest_path=args.write_pdgedit_manifest,
+        )
         if args.write_index is not None:
             write_json(args.write_index, index_payload)
             print(args.output_dir)
             print(args.write_index)
+            print(args.write_pdgedit_manifest)
             return 0
         print_json(index_payload)
         return 0

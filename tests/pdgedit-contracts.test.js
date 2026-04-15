@@ -335,6 +335,7 @@ test("pdgedit manifest selection prefers the declared default, then the first en
 
 test("pdgedit main bootstrap seed stays contract-first and separate from the review harness", async () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const liveManifest = { schema: "pdgedit-library-manifest/v1", defaultEntryId: "", entries: [] };
   const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
   const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
   const fetchCalls = [];
@@ -351,7 +352,7 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
         ok: true,
         json: async () => {
           if (url.endsWith("manifest.v1.json")) {
-            return manifest;
+            return url.includes("/.tmp/pdgsolve/pdgedit/") ? liveManifest : manifest;
           }
           if (url.endsWith("pdgedit-tiles.json")) {
             return tileCatalog;
@@ -369,6 +370,7 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
   assert.deepEqual(fetchCalls, [
     "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
     "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    new URL("../.tmp/pdgsolve/pdgedit/manifest.v1.json", import.meta.url).href,
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
     "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
   ]);
@@ -382,6 +384,7 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
 
 test("pdgedit bootstrap opens an explicit launch payload without reconstructing solver data", async () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const liveManifest = { schema: "pdgedit-library-manifest/v1", defaultEntryId: "", entries: [] };
   const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
   const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
   const launchedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
@@ -405,7 +408,7 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
         ok: true,
         json: async () => {
           if (url.endsWith("manifest.v1.json")) {
-            return manifest;
+            return url.includes("/.tmp/pdgsolve/pdgedit/") ? liveManifest : manifest;
           }
           if (url.endsWith("pdgedit-tiles.json")) {
             return tileCatalog;
@@ -422,6 +425,7 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   assert.deepEqual(fetchCalls, [
     "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
     "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    new URL("../.tmp/pdgsolve/pdgedit/manifest.v1.json", import.meta.url).href,
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   ]);
   assert.equal(bootstrap.selectedEntry.id, "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1");
@@ -429,4 +433,55 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   assert.equal(bootstrap.selectedEntry.documentPath, "");
   assert.deepEqual(bootstrap.document, normalizePdgeditDocument(launchedDocument));
   assert.deepEqual(bootstrap.launchPayload, launchPayload);
+});
+
+test("pdgedit bootstrap merges the live exact-reaction manifest into the picker manifest", async () => {
+  const manifest = readJson(PDGEDIT_MANIFEST_PATH);
+  const liveManifest = {
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "mu_minus_s004_1",
+    entries: [
+      {
+        id: "mu_minus_s004_1",
+        title: "mu- decay mode 1",
+        displayTitle: "mu- decay mode 1",
+        documentPath: ".tmp/pdgsolve/pdgedit/documents/0001_mu_minus_s004_1.pdgedit.v1.json",
+        isDefault: true,
+      },
+    ],
+  };
+  const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
+  const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
+  const bootstrap = await loadPdgeditContractBootstrapSeed({
+    manifestUrl: "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
+    liveManifestUrl: "https://architrino.local/.tmp/pdgsolve/pdgedit/manifest.v1.json",
+    tileCatalogUrl: "https://architrino.local/src/apps/pdgedit/pdgedit-tiles.json",
+    templateCatalogUrl:
+      "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
+    fetchImpl: async (url) => ({
+      ok: true,
+      status: 200,
+      json: async () => {
+        if (url.endsWith("pdgedit-tiles.json")) {
+          return tileCatalog;
+        }
+        if (url.endsWith("four_tile_family_coverage.v1.json")) {
+          return templateSource;
+        }
+        if (url.includes("/.tmp/pdgsolve/pdgedit/manifest.v1.json")) {
+          return liveManifest;
+        }
+        if (url.endsWith("content/contracts/examples/pdgedit/manifest.v1.json")) {
+          return manifest;
+        }
+        if (url.endsWith("pass_thru_up_quark.v1.json")) {
+          return readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
+        }
+        throw new Error(`unexpected fetch ${url}`);
+      },
+    }),
+  });
+
+  assert.equal(bootstrap.manifest.entries.some((entry) => entry.id === "mu_minus_s004_1"), true);
+  assert.equal(bootstrap.manifest.defaultEntryId, "pass_thru_up_quark");
 });

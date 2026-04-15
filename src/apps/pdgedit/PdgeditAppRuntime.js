@@ -128,6 +128,7 @@ export function createPdgeditAppRuntime({
   compositeLayerElement,
   documentTriggerElement,
   documentPanelElement,
+  documentSearchInputElement,
   homeButtonElement,
   createPickerElement,
   manifestUrl,
@@ -151,6 +152,7 @@ export function createPdgeditAppRuntime({
     selectedObjectId: "",
     pendingLinkObjectId: "",
     documentPanelOpen: false,
+    documentQuery: "",
     createPicker: null,
     dragState: null,
     suppressObjectClickId: "",
@@ -205,8 +207,26 @@ export function createPdgeditAppRuntime({
     documentTriggerElement.textContent = state.selectedEntry?.displayTitle || "No documents";
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
     setPickerVisibility(documentPanelElement, state.documentPanelOpen && Boolean(state.manifest?.entries?.length));
+    const normalizedQuery = String(state.documentQuery || "").trim().toLowerCase();
+    const filteredEntries = (Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).filter((entry) => {
+      if (!normalizedQuery) {
+        return true;
+      }
+      return [entry.displayTitle, entry.title, entry.id].some((value) =>
+        String(value || "")
+          .toLowerCase()
+          .includes(normalizedQuery)
+      );
+    });
+    if (documentSearchInputElement) {
+      documentSearchInputElement.value = state.documentQuery;
+    }
     documentPanelElement.replaceChildren(
-      ...(Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).map((entry) => {
+      ...(documentSearchInputElement ? [documentSearchInputElement] : []),
+      ...(filteredEntries.length
+        ? []
+        : [createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")]),
+      ...filteredEntries.map((entry) => {
         const option = documentLike.createElement("button");
         option.type = "button";
         option.className = "pdgedit-document-option";
@@ -504,6 +524,11 @@ export function createPdgeditAppRuntime({
       closeDocumentPanel();
       const entry = state.manifest.entries.find((record) => record.id === button.dataset.entryId) ?? null;
       await loadSelectedEntry(entry);
+    });
+
+    documentSearchInputElement?.addEventListener("input", (event) => {
+      state.documentQuery = event.target.value;
+      renderDocumentPicker();
     });
 
     createPickerElement.addEventListener("click", (event) => {

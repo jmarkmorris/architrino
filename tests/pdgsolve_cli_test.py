@@ -220,6 +220,8 @@ class PdgsolveCliTests(unittest.TestCase):
             manifest_path = tmp_dir / "manifest.json"
             index_path = tmp_dir / "index.json"
             output_dir = tmp_dir / "results"
+            pdgedit_output_dir = tmp_dir / "pdgedit-documents"
+            pdgedit_manifest_path = tmp_dir / "pdgedit-manifest.json"
             manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
             output = self.run_main(
@@ -230,10 +232,17 @@ class PdgsolveCliTests(unittest.TestCase):
                     str(output_dir),
                     "--write-index",
                     str(index_path),
+                    "--pdgedit-output-dir",
+                    str(pdgedit_output_dir),
+                    "--write-pdgedit-manifest",
+                    str(pdgedit_manifest_path),
                 ]
             )
 
-            self.assertEqual(output.splitlines(), [str(output_dir), str(index_path)])
+            self.assertEqual(
+                output.splitlines(),
+                [str(output_dir), str(index_path), str(pdgedit_manifest_path)],
+            )
             index_payload = self.read_json(index_path)
             self.assertEqual(index_payload["schema"], "pdgsolve-result-corpus/v1")
             self.assertEqual(index_payload["solvedCount"], 2)
@@ -246,12 +255,19 @@ class PdgsolveCliTests(unittest.TestCase):
             self.assertTrue(second_result_path.exists())
             self.assertEqual(self.read_json(first_result_path)["searchStatus"], "exact_available")
             self.assertEqual(self.read_json(second_result_path)["searchStatus"], "no_exact_closure")
+            pdgedit_manifest = self.read_json(pdgedit_manifest_path)
+            self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
+            self.assertEqual(len(pdgedit_manifest["entries"]), 1)
+            published_path = tmp_dir / pdgedit_manifest["entries"][0]["documentPath"]
+            self.assertTrue(published_path.exists())
 
     def test_parse_args_uses_repo_local_tmp_defaults_for_manifest_solves(self):
         args = pdgsolve.parse_args(["solve-manifest", "manifest.json"])
 
         self.assertEqual(args.output_dir, pdgsolve.DEFAULT_RESULT_CORPUS_OUTPUT_DIR)
         self.assertEqual(args.write_index, pdgsolve.DEFAULT_RESULT_CORPUS_INDEX_PATH)
+        self.assertEqual(args.pdgedit_output_dir, pdgsolve.DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR)
+        self.assertEqual(args.write_pdgedit_manifest, pdgsolve.DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH)
 
     def test_write_vertical_slice_command_writes_all_upstream_artifacts(self):
         with tempfile.TemporaryDirectory() as tmp_dir_name:

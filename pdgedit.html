@@ -155,6 +155,28 @@
         margin-top: 6px;
       }
 
+      #pdgedit-document-search {
+        width: 100%;
+        min-height: 34px;
+        margin: 0 0 8px;
+        border: 1px solid rgba(160, 170, 220, 0.2);
+        border-radius: 10px;
+        background: rgba(12, 16, 28, 0.92);
+        color: #f5f7ff;
+        padding: 0 10px;
+        font: inherit;
+      }
+
+      #pdgedit-document-search::placeholder {
+        color: rgba(245, 247, 255, 0.48);
+      }
+
+      .pdgedit-document-empty {
+        padding: 10px;
+        color: rgba(245, 247, 255, 0.68);
+        font-size: 13px;
+      }
+
       .pdgedit-document-option.is-selected,
       .pdgedit-operator-type-button.is-selected {
         border-color: rgba(213, 220, 255, 0.55);
@@ -343,7 +365,16 @@
           <button id="pdgedit-document-trigger" type="button" aria-label="Choose pdgedit document">
             Choose pdgedit document
           </button>
-          <div id="pdgedit-document-panel" role="listbox" aria-hidden="true" hidden></div>
+          <div id="pdgedit-document-panel" role="listbox" aria-hidden="true" hidden>
+            <input
+              id="pdgedit-document-search"
+              type="search"
+              placeholder="Search reactions"
+              aria-label="Search available reactions"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
           <button id="pdgedit-home-button" type="button" aria-label="Go to home"></button>
         </div>
       </div>
