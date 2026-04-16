@@ -1552,29 +1552,26 @@ Objective:
 
 Active work queue:
 
-1. Implement real search rather than pre-authored reaction templates.
-   The solver must enumerate lawful `pass-thru`, `dissociate`, and `associate` branches, retain exact and partial families, and score them deterministically.
-
-2. Build the operator law inventory.
+1. Build the operator law inventory.
    At minimum this includes lawful `pass-thru`, lawful generation-specific `dissociate`, lawful `associate`, and lawful Noether-core dissociation rules.
 
-3. Enforce bounded primitive spending.
+2. Enforce bounded primitive spending.
    The shared intermediate `Unbound Architrinos` ledger must be finite, not a well. No branch may spend Electrinos or Positrinos below zero, and no product-side operator may draw from hidden reactant material.
 
-4. Add reactant-side support generation.
+3. Add reactant-side support generation.
    If a branch needs more polar charge, the solver must first dissociate lawful reactant-side Noether cores and add the resulting counts into the one shared intermediate `Unbound Architrinos` ledger.
 
-5. Add branch pruning, canonicalization, and deterministic tie-breaking.
+4. Add branch pruning, canonicalization, and deterministic tie-breaking.
    Real search will otherwise blow up combinatorially. The solver needs equivalence collapsing, mismatch pruning, depth control, and stable ordering.
 
-6. Build family construction from searched branches.
+5. Build family construction from searched branches.
    Raw branches must be grouped into exact families, retained partial families, and no-closure output with deterministic representatives and explicit provenance summaries.
 
-7. Build acceptance-ready publication graphs from searched solutions.
+6. Build acceptance-ready publication graphs from searched solutions.
    Once exact families exist, the solver still needs stable row assignment, stable ids, and readable operator placement for downstream publication.
 
-8. Expand regression coverage by reaction class.
+7. Expand regression coverage by reaction class.
    Coverage must include lepton decays, neutrino channels, quark transitions, radiative channels, pair-production channels, and cases with explicit boundary residues emitted by `pdgfeed`.
 
-9. Run corpus-level evaluation on the ready set.
+8. Run corpus-level evaluation on the ready set.
    Track exact count, partial count, unsolved count, and the dominant blocking diagnostics so law-table work can be prioritized against the real `pdgfeed` corpus.
