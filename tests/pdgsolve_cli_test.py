@@ -225,6 +225,8 @@ def make_exact_result(request):
                                 "occurrenceKey": reactant_id,
                                 "title": "Up Quark",
                                 "anchorRow": 0,
+                                "column": 0,
+                                "x": 2,
                             },
                             {
                                 "id": "unit_lane2_pass_thru_1",
@@ -234,6 +236,8 @@ def make_exact_result(request):
                                 "occurrenceKey": "reactant_operator.pass_thru.1",
                                 "title": "Pass Thru",
                                 "anchorRow": 0,
+                                "column": 1,
+                                "x": 9,
                             },
                             {
                                 "id": "unit_lane3_up.row.1",
@@ -243,6 +247,8 @@ def make_exact_result(request):
                                 "occurrenceKey": "intermediate_up_quark_1",
                                 "title": "Up Quark",
                                 "anchorRow": 0,
+                                "column": 2,
+                                "x": 16,
                             },
                             {
                                 "id": "unit_lane4_pass_thru_1",
@@ -252,6 +258,8 @@ def make_exact_result(request):
                                 "occurrenceKey": "product_operator.pass_thru.1",
                                 "title": "Pass Thru",
                                 "anchorRow": 0,
+                                "column": 3,
+                                "x": 23,
                             },
                             {
                                 "id": "unit_lane5_up.row.1",
@@ -261,6 +269,8 @@ def make_exact_result(request):
                                 "occurrenceKey": product_id,
                                 "title": "Up Quark",
                                 "anchorRow": 0,
+                                "column": 4,
+                                "x": 30,
                             },
                         ],
                         "edges": [
@@ -363,52 +373,48 @@ class PdgsolveCliTests(unittest.TestCase):
         )
         self.assertTrue(family["publicationReady"])
 
-    def test_publication_graph_routes_reactant_pass_thru_through_reactant_and_intermediate_lanes(self):
+    def test_publication_graph_uses_adjacent_timeline_columns_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
         result = pdgsolve.solve_request(request)
         acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
         solve_graph = acceptance["lockedSolveGraph"]
         units = {unit["id"]: unit for unit in solve_graph["units"]}
-        operator_unit = next(
-            unit
-            for unit in solve_graph["units"]
-            if unit.get("occurrenceKey") == "reactant_operator.reactant_1.pass_thru"
+        for edge in solve_graph["edges"]:
+            self.assertEqual(
+                units[edge["toUnitId"]]["column"] - units[edge["fromUnitId"]]["column"],
+                1,
+            )
+        self.assertEqual(
+            [unit["column"] for unit in solve_graph["units"] if unit["kind"] == "operator"],
+            [1, 3],
         )
-        reactant_unit = next(
-            unit
-            for unit in solve_graph["units"]
-            if unit.get("stage") == "reactantAssemblies" and unit.get("occurrenceKey") == "reactant_1"
+        self.assertEqual(
+            [unit["stage"] for unit in solve_graph["units"] if unit["kind"] == "assembly"],
+            ["reactantAssemblies", "intermediateAssemblies", "productAssemblies"],
         )
-        intermediate_unit = next(
-            unit
-            for unit in solve_graph["units"]
-            if unit.get("stage") == "intermediateAssemblies"
-            and "reactant_1" in unit.get("sourceOccurrenceKeys", [])
-        )
-        edge_pairs = {(edge["fromUnitId"], edge["toUnitId"]) for edge in solve_graph["edges"]}
 
-        self.assertIn((reactant_unit["id"], operator_unit["id"]), edge_pairs)
-        self.assertIn((operator_unit["id"], intermediate_unit["id"]), edge_pairs)
-        self.assertNotEqual(reactant_unit["id"], intermediate_unit["id"])
-        self.assertEqual(units[intermediate_unit["id"]]["recipeId"], "pro_up_quark_I")
-
-    def test_publication_graph_collapses_intermediate_residue_to_one_accumulator(self):
+    def test_publication_graph_uses_one_residue_accumulator_per_state(self):
         request = make_muon_decay_mode_1_request()
         result = pdgsolve.solve_request(request)
         acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
         solve_graph = acceptance["lockedSolveGraph"]
+        units = {unit["id"]: unit for unit in solve_graph["units"]}
         residue_units = [
-            unit
-            for unit in solve_graph["units"]
-            if unit.get("stage") == "intermediateAssemblies"
-            and unit.get("recipeId") == pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+            unit for unit in solve_graph["units"] if unit.get("recipeId") == pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
         ]
 
         self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(len(residue_units), 1)
-        self.assertGreater(len(residue_units[0].get("sourceOccurrenceKeys", [])), 1)
-        self.assertEqual(residue_units[0]["electrinoCount"], 12)
-        self.assertEqual(residue_units[0]["positrinoCount"], 6)
+        self.assertEqual(len(residue_units), 11)
+        self.assertEqual(len({unit["column"] for unit in residue_units}), 11)
+        self.assertEqual(residue_units[0]["electrinoCount"], 6)
+        self.assertEqual(residue_units[0]["positrinoCount"], 0)
+        self.assertEqual(residue_units[-1]["electrinoCount"], 3)
+        self.assertEqual(residue_units[-1]["positrinoCount"], 3)
+        for edge in solve_graph["edges"]:
+            self.assertEqual(
+                units[edge["toUnitId"]]["column"] - units[edge["fromUnitId"]]["column"],
+                1,
+            )
 
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")

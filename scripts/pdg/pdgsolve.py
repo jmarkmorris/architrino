@@ -263,13 +263,8 @@ NOETHER_PAIR_BY_AUGMENTATION = {
     "hq": ["pro_noether_core_II", "anti_noether_core_II"],
 }
 
-PDGEDIT_X_BY_STAGE = {
-    "reactantAssemblies": 2,
-    "reactantSideOperators": 7,
-    "intermediateAssemblies": 9,
-    "productSideOperators": 14,
-    "productAssemblies": 16,
-}
+TIMELINE_X_START = 2
+TIMELINE_X_STEP = 7
 
 FERMION_RESIDUE_COUNTS = {
     "pro_electron_I": {"electrinoCount": 6, "positrinoCount": 0},
@@ -676,7 +671,7 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
         {
             "operatorChoices": [],
             "intermediateOccurrences": [clone_json(occurrence)],
-            "graphOccurrences": [clone_json(occurrence)],
+            "producedOccurrences": [clone_json(occurrence)],
         }
     ]
     dissociation_law = get_dissociation_law(assembly_id)
@@ -701,7 +696,7 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
             for intermediate_occurrence in intermediate_occurrences
         ]
         if not child_variant_sets:
-            child_variant_sets = [[{"operatorChoices": [], "intermediateOccurrences": [], "graphOccurrences": []}]]
+            child_variant_sets = [[{"operatorChoices": [], "intermediateOccurrences": [], "producedOccurrences": []}]]
         for child_variants in itertools.product(*child_variant_sets):
             output_occurrence_keys = [
                 normalize_text(intermediate_occurrence["id"])
@@ -720,17 +715,17 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
                 }
             ]
             final_intermediate_occurrences = [clone_json(residue_occurrence)]
-            graph_occurrences = [clone_json(output) for output in intermediate_occurrences]
-            graph_occurrences.append(clone_json(residue_occurrence))
+            produced_occurrences = [clone_json(output) for output in intermediate_occurrences]
+            produced_occurrences.append(clone_json(residue_occurrence))
             for child_variant in child_variants:
                 operator_choices.extend(clone_json(child_variant["operatorChoices"]))
                 final_intermediate_occurrences.extend(clone_json(child_variant["intermediateOccurrences"]))
-                graph_occurrences.extend(clone_json(child_variant["graphOccurrences"]))
+                produced_occurrences.extend(clone_json(child_variant["producedOccurrences"]))
             variants.append(
                 {
                     "operatorChoices": operator_choices,
                     "intermediateOccurrences": final_intermediate_occurrences,
-                    "graphOccurrences": graph_occurrences,
+                    "producedOccurrences": produced_occurrences,
                 }
             )
     return variants
@@ -755,7 +750,7 @@ def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, A
                 }
             ],
             "intermediateOccurrences": [clone_json(occurrence)],
-            "graphOccurrences": [clone_json(occurrence)],
+            "producedOccurrences": [clone_json(occurrence)],
         }
     ]
     for support_variant in build_reactant_support_variants(occurrence):
@@ -1090,53 +1085,274 @@ def materialize_product_operator_choices(
     return materialized
 
 
-def build_graph_intermediate_occurrences(
-    reactant_occurrences: list[dict[str, Any]],
-    intermediate_occurrences: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    reactant_ids = {
-        normalize_text(occurrence.get("id"))
-        for occurrence in reactant_occurrences
+def build_occurrence_record_map(
+    *occurrence_groups: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    occurrence_record_map: dict[str, dict[str, Any]] = {}
+    for occurrence_group in occurrence_groups:
+        for occurrence in occurrence_group:
+            occurrence_key = normalize_text(occurrence.get("id"))
+            if not occurrence_key:
+                continue
+            occurrence_record_map[occurrence_key] = clone_json(occurrence)
+    return occurrence_record_map
+
+
+def build_timeline_x(column_index: int) -> int:
+    return TIMELINE_X_START + column_index * TIMELINE_X_STEP
+
+
+def apply_operator_to_inventory(
+    inventory: list[dict[str, Any]],
+    choice: dict[str, Any],
+    occurrence_record_map: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    inventory_map: OrderedDict[str, dict[str, Any]] = OrderedDict(
+        (
+            normalize_text(occurrence.get("id")),
+            clone_json(occurrence),
+        )
+        for occurrence in inventory
         if normalize_text(occurrence.get("id"))
-    }
-    graph_occurrences: list[dict[str, Any]] = []
-    used_graph_ids: set[str] = set()
-    residue_counts = build_primitive_counts(0, 0)
-    residue_source_keys: list[str] = []
+    )
+    for input_occurrence_key in choice.get("inputOccurrenceKeys", []):
+        normalized_input_occurrence_key = normalize_text(input_occurrence_key)
+        if normalized_input_occurrence_key not in inventory_map:
+            return None
+        inventory_map.pop(normalized_input_occurrence_key)
+    for output_occurrence_key in choice.get("outputOccurrenceKeys", []):
+        normalized_output_occurrence_key = normalize_text(output_occurrence_key)
+        output_occurrence = occurrence_record_map.get(normalized_output_occurrence_key)
+        if output_occurrence is None:
+            return None
+        inventory_map[normalized_output_occurrence_key] = clone_json(output_occurrence)
+    return list(inventory_map.values())
 
-    for occurrence in intermediate_occurrences:
-        source_occurrence_key = normalize_text(occurrence.get("id"))
-        assembly_id = normalize_text(occurrence.get("assemblyId"))
-        if not source_occurrence_key or not assembly_id:
+
+def build_timeline_state_units(
+    inventory: list[dict[str, Any]],
+    *,
+    state_index: int,
+    final_state_index: int,
+    product_occurrence_ids: set[str],
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    column_index = state_index * 2
+    x = build_timeline_x(column_index)
+    stage = (
+        "reactantAssemblies"
+        if state_index == 0
+        else "productAssemblies"
+        if state_index == final_state_index
+        else "intermediateAssemblies"
+    )
+    units: list[dict[str, Any]] = []
+    visible_unit_by_occurrence: dict[str, str] = {}
+    residue_occurrences = [
+        occurrence
+        for occurrence in inventory
+        if normalize_text(occurrence.get("assemblyId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+    ]
+    non_residue_occurrences = [
+        occurrence
+        for occurrence in inventory
+        if normalize_text(occurrence.get("assemblyId")) != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+    ]
+
+    for row_index, occurrence in enumerate(non_residue_occurrences):
+        occurrence_key = normalize_text(occurrence.get("id"))
+        recipe_id = normalize_text(occurrence.get("assemblyId"))
+        if not occurrence_key or not recipe_id:
             continue
-        if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
-            residue_counts["electrinoCount"] += int(occurrence.get("electrinoCount", 0) or 0)
-            residue_counts["positrinoCount"] += int(occurrence.get("positrinoCount", 0) or 0)
-            residue_source_keys.append(source_occurrence_key)
-            continue
-
-        graph_occurrence = clone_json(occurrence)
-        graph_occurrence_key = source_occurrence_key
-        if graph_occurrence_key in reactant_ids or graph_occurrence_key in used_graph_ids:
-            graph_occurrence_key = f"graph_intermediate.{slugify(source_occurrence_key)}"
-        graph_occurrence["id"] = graph_occurrence_key
-        graph_occurrence["sourceOccurrenceKeys"] = [source_occurrence_key]
-        graph_occurrences.append(graph_occurrence)
-        used_graph_ids.add(graph_occurrence_key)
-
-    if residue_source_keys:
-        graph_occurrences.append(
+        unit_id = f"unit_state_{state_index}_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
+        unit_stage = stage
+        if state_index == final_state_index and occurrence_key not in product_occurrence_ids:
+            unit_stage = "intermediateAssemblies"
+        units.append(
             {
-                "id": "graph_intermediate.unbound_architrinos_accumulator",
-                "assemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
-                "title": ASSEMBLY_DISPLAY[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID]["title"],
-                "electrinoCount": residue_counts["electrinoCount"],
-                "positrinoCount": residue_counts["positrinoCount"],
-                "sourceOccurrenceKeys": residue_source_keys,
+                "id": unit_id,
+                "kind": "assembly",
+                "stage": unit_stage,
+                "recipeId": recipe_id,
+                "occurrenceKey": occurrence_key,
+                "title": normalize_text(occurrence.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
+                "anchorRow": row_index,
+                "column": column_index,
+                "x": x,
             }
         )
+        visible_unit_by_occurrence[occurrence_key] = unit_id
 
-    return graph_occurrences
+    if residue_occurrences:
+        residue_counts = build_residue_totals(residue_occurrences)
+        row_index = len(non_residue_occurrences)
+        unit_id = f"unit_state_{state_index}_unbound_architrinos.row.{row_index + 1}"
+        source_occurrence_keys = [
+            normalize_text(occurrence.get("id"))
+            for occurrence in residue_occurrences
+            if normalize_text(occurrence.get("id"))
+        ]
+        unit_stage = stage if state_index != final_state_index else "productAssemblies"
+        units.append(
+            {
+                "id": unit_id,
+                "kind": "assembly",
+                "stage": unit_stage,
+                "recipeId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+                "occurrenceKey": f"state.{state_index}.unbound_architrinos_accumulator",
+                "sourceOccurrenceKeys": source_occurrence_keys,
+                "title": ASSEMBLY_DISPLAY[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID]["title"],
+                "anchorRow": row_index,
+                "column": column_index,
+                "x": x,
+                "electrinoCount": residue_counts["electrinoCount"],
+                "positrinoCount": residue_counts["positrinoCount"],
+            }
+        )
+        for source_occurrence_key in source_occurrence_keys:
+            visible_unit_by_occurrence[source_occurrence_key] = unit_id
+
+    return units, visible_unit_by_occurrence
+
+
+def build_timeline_publication_graph(
+    *,
+    reactant_occurrences: list[dict[str, Any]],
+    intermediate_occurrences: list[dict[str, Any]],
+    product_occurrences: list[dict[str, Any]],
+    reactant_operator_choices: list[dict[str, Any]],
+    product_operator_choices: list[dict[str, Any]],
+    occurrence_counts: dict[str, dict[str, int]],
+    prefix: str,
+) -> tuple[dict[str, Any] | None, list[dict[str, Any]]]:
+    occurrence_record_map = build_occurrence_record_map(
+        reactant_occurrences,
+        intermediate_occurrences,
+        product_occurrences,
+    )
+    operator_steps = [
+        *[("reactantSideOperators", choice) for choice in reactant_operator_choices],
+        *[("productSideOperators", choice) for choice in product_operator_choices],
+    ]
+    state_inventories: list[list[dict[str, Any]]] = [clone_json(reactant_occurrences)]
+    current_inventory = clone_json(reactant_occurrences)
+    diagnostics: list[dict[str, Any]] = []
+
+    for step_index, (_stage, choice) in enumerate(operator_steps, start=1):
+        next_inventory = apply_operator_to_inventory(
+            current_inventory,
+            choice,
+            occurrence_record_map,
+        )
+        if next_inventory is None:
+            diagnostics.append(
+                make_diagnostic(
+                    "pdgsolve.search.publication_step_input_missing",
+                    "search",
+                    "The timeline compiler could not find one or more operator inputs in the current state inventory.",
+                    blocking=True,
+                    payload={
+                        "prefix": prefix,
+                        "stepIndex": step_index,
+                        "operatorId": normalize_text(choice.get("id")),
+                    },
+                )
+            )
+            return None, diagnostics
+        state_inventories.append(next_inventory)
+        current_inventory = next_inventory
+
+    expected_final_occurrence_ids = {
+        normalize_text(occurrence.get("id"))
+        for occurrence in product_occurrences
+        if normalize_text(occurrence.get("id"))
+    }
+    actual_final_occurrence_ids = {
+        normalize_text(occurrence.get("id"))
+        for occurrence in state_inventories[-1]
+        if normalize_text(occurrence.get("id"))
+    }
+    if actual_final_occurrence_ids != expected_final_occurrence_ids:
+        diagnostics.append(
+            make_diagnostic(
+                "pdgsolve.search.publication_final_state_mismatch",
+                "search",
+                "The timeline compiler final state does not match the accepted product occurrences exactly.",
+                blocking=True,
+                payload={
+                    "prefix": prefix,
+                    "expectedFinalOccurrenceIds": sorted(expected_final_occurrence_ids),
+                    "actualFinalOccurrenceIds": sorted(actual_final_occurrence_ids),
+                },
+            )
+        )
+        return None, diagnostics
+
+    units: list[dict[str, Any]] = []
+    edges: list[dict[str, Any]] = []
+    state_unit_maps: list[dict[str, str]] = []
+    product_occurrence_ids = expected_final_occurrence_ids
+    final_state_index = len(state_inventories) - 1
+
+    for state_index, inventory in enumerate(state_inventories):
+        state_units, visible_unit_by_occurrence = build_timeline_state_units(
+            inventory,
+            state_index=state_index,
+            final_state_index=final_state_index,
+            product_occurrence_ids=product_occurrence_ids,
+        )
+        units.extend(state_units)
+        state_unit_maps.append(visible_unit_by_occurrence)
+
+    for step_index, (stage, choice) in enumerate(operator_steps):
+        column_index = step_index * 2 + 1
+        unit_id = f"unit_step_{step_index + 1}_{slugify(normalize_text(choice.get('type')))}"
+        units.append(
+            {
+                "id": unit_id,
+                "kind": "operator",
+                "stage": stage,
+                "recipeId": normalize_text(choice.get("type")),
+                "occurrenceKey": normalize_text(choice.get("id")),
+                "title": normalize_text(choice.get("type")).replace("-", " ").title(),
+                "anchorRow": step_index,
+                "column": column_index,
+                "x": build_timeline_x(column_index),
+            }
+        )
+        current_state_units = state_unit_maps[step_index]
+        next_state_units = state_unit_maps[step_index + 1]
+        for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
+            normalized_occurrence_key = normalize_text(occurrence_key)
+            edges.append(
+                {
+                    "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_input_{input_index}",
+                    "fromUnitId": current_state_units[normalized_occurrence_key],
+                    "fromPortId": "output",
+                    "toUnitId": unit_id,
+                    "toPortId": f"input_{input_index}",
+                }
+            )
+        for output_index, occurrence_key in enumerate(choice.get("outputOccurrenceKeys", []), start=1):
+            normalized_occurrence_key = normalize_text(occurrence_key)
+            edges.append(
+                {
+                    "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_output_{output_index}",
+                    "fromUnitId": unit_id,
+                    "fromPortId": f"output_{output_index}",
+                    "toUnitId": next_state_units[normalized_occurrence_key],
+                    "toPortId": "input",
+                }
+            )
+
+    return (
+        {
+            "schema": PDGSOLVE_PUBLICATION_GRAPH_SCHEMA,
+            "occurrenceCounts": clone_json(occurrence_counts),
+            "units": units,
+            "edges": edges,
+        },
+        diagnostics,
+    )
 
 
 def build_candidate_score(
@@ -1212,7 +1428,7 @@ def build_exact_solve_graph(
     product_occurrences: list[dict[str, Any]],
     reactant_operator_choices: list[dict[str, Any]],
     intermediate_occurrences: list[dict[str, Any]],
-    graph_intermediate_occurrences: list[dict[str, Any]],
+    occurrence_registry: list[dict[str, Any]],
     product_operator_choices: list[dict[str, Any]],
     prefix: str,
 ) -> tuple[list[dict[str, Any]] | None, dict[str, Any] | None, list[dict[str, Any]]]:
@@ -1238,7 +1454,7 @@ def build_exact_solve_graph(
     diagnostics = [
         *validate_operator_balances(
             request_like,
-            graph_intermediate_occurrences,
+            occurrence_registry,
             [*reactant_operator_choices, *materialized_product_choices],
         ),
         *validate_intermediate_ledger(
@@ -1253,23 +1469,21 @@ def build_exact_solve_graph(
     occurrence_counts = build_occurrence_counts_map(
         [
             *clone_json(reactant_occurrences),
-            *clone_json(graph_intermediate_occurrences),
-            *clone_json(intermediate_occurrences),
+            *clone_json(occurrence_registry),
             *clone_json(product_occurrences),
         ]
     )
-    published_intermediate_occurrences = build_graph_intermediate_occurrences(
-        reactant_occurrences,
-        graph_intermediate_occurrences,
-    )
-    solve_graph = build_muon_publication_graph(
-        request_like,
-        prefix=prefix,
+    solve_graph, publication_diagnostics = build_timeline_publication_graph(
+        reactant_occurrences=reactant_occurrences,
+        intermediate_occurrences=occurrence_registry,
+        product_occurrences=product_occurrences,
         reactant_operator_choices=reactant_operator_choices,
-        intermediate_occurrences=published_intermediate_occurrences,
         product_operator_choices=materialized_product_choices,
+        occurrence_counts=occurrence_counts,
+        prefix=prefix,
     )
-    solve_graph["occurrenceCounts"] = clone_json(occurrence_counts)
+    if publication_diagnostics:
+        return materialized_product_choices, None, publication_diagnostics
 
     return (
         materialized_product_choices,
@@ -1289,7 +1503,7 @@ def build_candidate_family(
     reactant_operator_choices: list[dict[str, Any]],
     product_operator_choices: list[dict[str, Any]],
     intermediate_occurrences: list[dict[str, Any]],
-    graph_intermediate_occurrences: list[dict[str, Any]] | None = None,
+    occurrence_registry: list[dict[str, Any]],
     score: dict[str, Any],
     diagnostics: list[dict[str, Any]],
     publication_ready: bool = False,
@@ -1308,7 +1522,7 @@ def build_candidate_family(
             product_occurrences=product_occurrences,
             reactant_operator_choices=reactant_operator_choices,
             intermediate_occurrences=intermediate_occurrences,
-            graph_intermediate_occurrences=graph_intermediate_occurrences or intermediate_occurrences,
+            occurrence_registry=occurrence_registry,
             product_operator_choices=product_operator_choices,
             prefix=slugify(family_id),
         )
@@ -1393,14 +1607,13 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                 for reactant_plan in reactant_plan_list
                 for output in reactant_plan.get("intermediateOccurrences", [])
             ]
-            reactant_graph_occurrences = unique_occurrences_by_id(
+            reactant_occurrence_registry = unique_occurrences_by_id(
                 [
                     clone_json(output)
                     for reactant_plan in reactant_plan_list
-                    for output in reactant_plan.get("graphOccurrences", [])
+                    for output in reactant_plan.get("producedOccurrences", [])
                 ]
             )
-
             reactant_count_map = build_count_map(reactant_intermediate)
             product_count_map: dict[str, int] = {}
             required_product_residue = build_primitive_counts(0, 0)
@@ -1469,7 +1682,7 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                     reactant_operator_choices=reactant_operator_choices,
                     product_operator_choices=product_choice_list,
                     intermediate_occurrences=reactant_intermediate,
-                    graph_intermediate_occurrences=reactant_graph_occurrences,
+                    occurrence_registry=reactant_occurrence_registry,
                     score=score,
                     diagnostics=diagnostics,
                 )
@@ -1479,264 +1692,6 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
     exact_families = [family for family in families if family["kind"] == "exact"]
     partial_families = [family for family in families if family["kind"] == "partial"][:3]
     return [*exact_families, *partial_families]
-
-
-def get_request_assembly_ids(request: dict[str, Any], side: str) -> list[str]:
-    return [normalize_text(record.get("assemblyId")) for record in request.get(side, [])]
-
-
-def get_request_occurrence_map(request: dict[str, Any], side: str) -> dict[str, dict[str, Any]]:
-    return {
-        normalize_text(record.get("id")): record
-        for record in request.get(side, [])
-        if normalize_text(record.get("id"))
-    }
-
-
-def all_recipe_ids_are_publishable(recipe_ids: list[str]) -> bool:
-    return all(recipe_id in ASSEMBLY_DISPLAY for recipe_id in recipe_ids)
-
-
-def build_publication_graph_from_linear_plan(
-    request: dict[str, Any],
-    *,
-    prefix: str,
-    primary_reactant_id: str,
-    core_product_ids: list[str],
-    passthru_pairs: list[tuple[str, str]],
-) -> dict[str, Any]:
-    reactant_by_id = get_request_occurrence_map(request, "reactants")
-    product_by_id = get_request_occurrence_map(request, "products")
-    units: list[dict[str, Any]] = []
-    edges: list[dict[str, Any]] = []
-
-    reactant_rows: list[tuple[str, str, str]] = []
-    primary_reactant = reactant_by_id[primary_reactant_id]
-    reactant_rows.append(
-        (
-            f"unit_lane1_{slugify(primary_reactant['assemblyId'])}_1.row.1",
-            primary_reactant_id,
-            normalize_text(primary_reactant["assemblyId"]),
-        )
-    )
-    for index, (reactant_occurrence_id, _product_occurrence_id) in enumerate(passthru_pairs, start=2):
-        reactant = reactant_by_id[reactant_occurrence_id]
-        reactant_rows.append(
-            (
-                f"unit_lane1_{slugify(reactant['assemblyId'])}_{index - 1}.row.{index}",
-                reactant_occurrence_id,
-                normalize_text(reactant["assemblyId"]),
-            )
-        )
-
-    for row_index, (unit_id, occurrence_key, recipe_id) in enumerate(reactant_rows):
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "reactantAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    core_intermediate_ids = [f"intermediate_{prefix}.row.{index}" for index, _ in enumerate(core_product_ids, start=1)]
-    core_intermediate_rows = []
-    for row_index, (occurrence_key, product_occurrence_id) in enumerate(zip(core_intermediate_ids, core_product_ids)):
-        product = product_by_id[product_occurrence_id]
-        recipe_id = normalize_text(product["assemblyId"])
-        unit_id = f"unit_lane3_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
-        core_intermediate_rows.append((unit_id, occurrence_key, recipe_id, product_occurrence_id))
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "intermediateAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    passthru_row_start = len(core_intermediate_rows)
-    passthru_intermediate_rows = []
-    for offset, (reactant_occurrence_id, product_occurrence_id) in enumerate(passthru_pairs):
-        product = product_by_id[product_occurrence_id]
-        recipe_id = normalize_text(product["assemblyId"])
-        row_index = passthru_row_start + offset
-        occurrence_key = f"intermediate_{prefix}.support.{offset + 1}"
-        unit_id = f"unit_lane3_{slugify(recipe_id)}_support_{offset + 1}.row.{row_index + 1}"
-        passthru_intermediate_rows.append((unit_id, occurrence_key, recipe_id, reactant_occurrence_id, product_occurrence_id))
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "intermediateAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    reactant_operator_rows = [
-        (
-            f"unit_lane2_{prefix}_dissociate_1",
-            f"reactant_operator.{prefix}.dissociate.1",
-            "dissociate",
-            0,
-        )
-    ]
-    for offset, (_reactant_occurrence_id, _product_occurrence_id) in enumerate(passthru_pairs, start=1):
-        reactant_operator_rows.append(
-            (
-                f"unit_lane2_{prefix}_pass_thru_{offset}",
-                f"reactant_operator.{prefix}.pass_thru.{offset}",
-                "pass-thru",
-                offset,
-            )
-        )
-    for unit_id, occurrence_key, recipe_id, row_index in reactant_operator_rows:
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "reactantSideOperators",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": "Dissociate" if recipe_id == "dissociate" else "Pass Thru",
-                "anchorRow": row_index,
-            }
-        )
-
-    product_operator_rows = []
-    combined_intermediate_rows = core_intermediate_rows + [
-        (unit_id, occurrence_key, recipe_id, product_occurrence_id)
-        for unit_id, occurrence_key, recipe_id, _reactant_occurrence_id, product_occurrence_id in passthru_intermediate_rows
-    ]
-    for row_index, (_intermediate_unit_id, _occurrence_key, _recipe_id, product_occurrence_id) in enumerate(combined_intermediate_rows):
-        product_operator_rows.append(
-            (
-                f"unit_lane4_{prefix}_pass_thru_{row_index + 1}",
-                f"product_operator.{prefix}.pass_thru.{row_index + 1}",
-                "pass-thru",
-                row_index,
-                product_occurrence_id,
-            )
-        )
-    for unit_id, occurrence_key, recipe_id, row_index, _product_occurrence_id in product_operator_rows:
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "productSideOperators",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": "Pass Thru",
-                "anchorRow": row_index,
-            }
-        )
-
-    product_rows = []
-    for row_index, product_occurrence_id in enumerate(core_product_ids + [pair[1] for pair in passthru_pairs]):
-        product = product_by_id[product_occurrence_id]
-        recipe_id = normalize_text(product["assemblyId"])
-        product_rows.append(
-            (
-                f"unit_lane5_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}",
-                product_occurrence_id,
-                recipe_id,
-            )
-        )
-    for row_index, (unit_id, occurrence_key, recipe_id) in enumerate(product_rows):
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "productAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    edges.append(
-        {
-            "id": f"{prefix}_reactant_to_dissociate",
-            "fromUnitId": reactant_rows[0][0],
-            "fromPortId": "output",
-            "toUnitId": reactant_operator_rows[0][0],
-            "toPortId": "input",
-        }
-    )
-    for index, (intermediate_unit_id, _occurrence_key, _recipe_id, _product_occurrence_id) in enumerate(core_intermediate_rows, start=1):
-        edges.append(
-            {
-                "id": f"{prefix}_dissociate_to_intermediate_{index}",
-                "fromUnitId": reactant_operator_rows[0][0],
-                "fromPortId": f"output_{index}",
-                "toUnitId": intermediate_unit_id,
-                "toPortId": "input",
-            }
-        )
-
-    for offset, ((reactant_unit_id, _reactant_occurrence_key, _recipe_id), operator_row, intermediate_row) in enumerate(
-        zip(reactant_rows[1:], reactant_operator_rows[1:], passthru_intermediate_rows),
-        start=1,
-    ):
-        intermediate_unit_id = intermediate_row[0]
-        edges.append(
-            {
-                "id": f"{prefix}_support_reactant_{offset}",
-                "fromUnitId": reactant_unit_id,
-                "fromPortId": "output",
-                "toUnitId": operator_row[0],
-                "toPortId": "input",
-            }
-        )
-        edges.append(
-            {
-                "id": f"{prefix}_support_intermediate_{offset}",
-                "fromUnitId": operator_row[0],
-                "fromPortId": "output",
-                "toUnitId": intermediate_unit_id,
-                "toPortId": "input",
-            }
-        )
-
-    for row_index, ((intermediate_unit_id, _occurrence_key, _recipe_id, _product_occurrence_id), product_operator_row, product_row) in enumerate(
-        zip(combined_intermediate_rows, product_operator_rows, product_rows),
-        start=1,
-    ):
-        edges.append(
-            {
-                "id": f"{prefix}_intermediate_to_product_operator_{row_index}",
-                "fromUnitId": intermediate_unit_id,
-                "fromPortId": "output",
-                "toUnitId": product_operator_row[0],
-                "toPortId": "input",
-            }
-        )
-        edges.append(
-            {
-                "id": f"{prefix}_product_operator_to_product_{row_index}",
-                "fromUnitId": product_operator_row[0],
-                "fromPortId": "output",
-                "toUnitId": product_row[0],
-                "toPortId": "input",
-            }
-        )
-
-    return {
-        "schema": PDGSOLVE_PUBLICATION_GRAPH_SCHEMA,
-        "units": units,
-        "edges": edges,
-    }
-
 
 def build_residue_occurrence(
     occurrence_key: str,
@@ -1971,172 +1926,6 @@ def validate_intermediate_ledger(
     return diagnostics
 
 
-def build_muon_publication_graph(
-    request: dict[str, Any],
-    *,
-    prefix: str,
-    reactant_operator_choices: list[dict[str, Any]],
-    intermediate_occurrences: list[dict[str, Any]],
-    product_operator_choices: list[dict[str, Any]],
-) -> dict[str, Any]:
-    reactants = list(request["reactants"])
-    products = list(request["products"])
-    units: list[dict[str, Any]] = []
-    edges: list[dict[str, Any]] = []
-
-    reactant_units_by_occurrence: dict[str, str] = {}
-    for row_index, reactant in enumerate(reactants):
-        occurrence_key = normalize_text(reactant["id"])
-        recipe_id = normalize_text(reactant["assemblyId"])
-        unit_id = f"unit_lane1_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
-        reactant_units_by_occurrence[occurrence_key] = unit_id
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "reactantAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": normalize_text(reactant.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    reactant_operator_units_by_occurrence: dict[str, str] = {}
-    for row_index, choice in enumerate(reactant_operator_choices):
-        occurrence_key = normalize_text(choice["id"])
-        unit_id = f"unit_lane2_{prefix}_{slugify(choice['type'])}_{row_index + 1}"
-        reactant_operator_units_by_occurrence[occurrence_key] = unit_id
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "reactantSideOperators",
-                "recipeId": normalize_text(choice["type"]),
-                "occurrenceKey": occurrence_key,
-                "title": normalize_text(choice["type"]).replace("-", " ").title(),
-                "anchorRow": row_index,
-            }
-        )
-
-    intermediate_units_by_source_occurrence: dict[str, str] = {}
-    for row_index, occurrence in enumerate(intermediate_occurrences):
-        occurrence_key = normalize_text(occurrence["id"])
-        recipe_id = normalize_text(occurrence["assemblyId"])
-        unit_id = f"unit_lane3_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
-        source_occurrence_keys = [
-            normalize_text(source_occurrence_key)
-            for source_occurrence_key in occurrence.get("sourceOccurrenceKeys", [])
-            if normalize_text(source_occurrence_key)
-        ] or [occurrence_key]
-        for source_occurrence_key in source_occurrence_keys:
-            intermediate_units_by_source_occurrence[source_occurrence_key] = unit_id
-        unit = {
-            "id": unit_id,
-            "kind": "assembly",
-            "stage": "intermediateAssemblies",
-            "recipeId": recipe_id,
-            "occurrenceKey": occurrence_key,
-            "title": normalize_text(occurrence.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-            "anchorRow": row_index,
-        }
-        if source_occurrence_keys != [occurrence_key]:
-            unit["sourceOccurrenceKeys"] = source_occurrence_keys
-        if recipe_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
-            unit["positrinoCount"] = int(occurrence["positrinoCount"])
-            unit["electrinoCount"] = int(occurrence["electrinoCount"])
-        units.append(unit)
-
-    product_operator_units_by_occurrence: dict[str, str] = {}
-    for row_index, choice in enumerate(product_operator_choices):
-        output_occurrence_key = normalize_text(choice["outputOccurrenceKeys"][0])
-        unit_id = f"unit_lane4_{prefix}_{slugify(choice['type'])}_{row_index + 1}"
-        product_operator_units_by_occurrence[output_occurrence_key] = unit_id
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "productSideOperators",
-                "recipeId": normalize_text(choice["type"]),
-                "occurrenceKey": normalize_text(choice["id"]),
-                "title": normalize_text(choice["type"]).replace("-", " ").title(),
-                "anchorRow": row_index,
-            }
-        )
-
-    product_units_by_occurrence: dict[str, str] = {}
-    for row_index, product in enumerate(products):
-        occurrence_key = normalize_text(product["id"])
-        recipe_id = normalize_text(product["assemblyId"])
-        unit_id = f"unit_lane5_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
-        product_units_by_occurrence[occurrence_key] = unit_id
-        units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "productAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": normalize_text(product.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-            }
-        )
-
-    for choice in reactant_operator_choices:
-        operator_unit_id = reactant_operator_units_by_occurrence[normalize_text(choice["id"])]
-        for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
-            normalized_occurrence_key = normalize_text(occurrence_key)
-            edges.append(
-                {
-                    "id": f"{prefix}_{slugify(choice['id'])}_input_{input_index}",
-                    "fromUnitId": reactant_units_by_occurrence.get(normalized_occurrence_key)
-                    or intermediate_units_by_source_occurrence[normalized_occurrence_key],
-                    "fromPortId": "output",
-                    "toUnitId": operator_unit_id,
-                    "toPortId": f"input_{input_index}",
-                }
-            )
-        for output_index, occurrence_key in enumerate(choice.get("outputOccurrenceKeys", []), start=1):
-            normalized_occurrence_key = normalize_text(occurrence_key)
-            edges.append(
-                {
-                    "id": f"{prefix}_{slugify(choice['id'])}_output_{output_index}",
-                    "fromUnitId": operator_unit_id,
-                    "fromPortId": f"output_{output_index}",
-                    "toUnitId": intermediate_units_by_source_occurrence[normalized_occurrence_key],
-                    "toPortId": "input",
-                }
-            )
-
-    for choice in product_operator_choices:
-        output_occurrence_key = normalize_text(choice["outputOccurrenceKeys"][0])
-        operator_unit_id = product_operator_units_by_occurrence[output_occurrence_key]
-        for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
-            normalized_occurrence_key = normalize_text(occurrence_key)
-            edges.append(
-                {
-                    "id": f"{prefix}_{slugify(choice['id'])}_input_{input_index}",
-                    "fromUnitId": intermediate_units_by_source_occurrence[normalized_occurrence_key],
-                    "fromPortId": "output",
-                    "toUnitId": operator_unit_id,
-                    "toPortId": f"input_{input_index}",
-                }
-            )
-        edges.append(
-            {
-                "id": f"{prefix}_{slugify(choice['id'])}_output",
-                "fromUnitId": operator_unit_id,
-                "fromPortId": "output",
-                "toUnitId": product_units_by_occurrence[output_occurrence_key],
-                "toPortId": "input",
-            }
-        )
-
-    return {
-        "schema": PDGSOLVE_PUBLICATION_GRAPH_SCHEMA,
-        "units": units,
-        "edges": edges,
-    }
 
 
 def build_exact_family_for_problem(problem: dict[str, Any]) -> dict[str, Any] | None:
@@ -2504,7 +2293,7 @@ def build_pdgedit_document_from_acceptance(
     operators = []
     for unit in solve_graph.get("units", []):
         stage = normalize_text(unit.get("stage"))
-        x = PDGEDIT_X_BY_STAGE[stage]
+        x = int(unit["x"])
         y = int(unit.get("anchorRow", 0))
         if normalize_text(unit.get("kind")) == "assembly":
             assembly_id = normalize_text(unit.get("recipeId"))
