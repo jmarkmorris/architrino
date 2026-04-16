@@ -669,21 +669,13 @@ def get_association_law(assembly_id: str) -> dict[str, Any] | None:
     return STANDARD_MODEL_LAW_INVENTORY["association"].get(assembly_id)
 
 
-def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
+def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
     occurrence_id = normalize_text(occurrence.get("id"))
     assembly_id = normalize_text(occurrence.get("assemblyId"))
-    pass_thru_law = get_pass_thru_law(assembly_id)
-    choices = [
+    variants = [
         {
-            "id": f"reactant_operator.{slugify(occurrence_id)}.pass_thru",
-            "type": "pass-thru",
-            "lawId": pass_thru_law["lawId"] if pass_thru_law is not None else None,
-            "inputOccurrenceKeys": [occurrence_id],
-            "outputOccurrenceKeys": [occurrence_id],
-            "requiredSupportRows": [],
+            "operatorChoices": [],
             "intermediateOccurrences": [clone_json(occurrence)],
-            "nonIdentity": False,
-            "dissociation": False,
         }
     ]
     dissociation_law = get_dissociation_law(assembly_id)
@@ -703,24 +695,67 @@ def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, A
             electrino_count=residue_counts["electrinoCount"],
             positrino_count=residue_counts["positrinoCount"],
         )
-        intermediate_occurrences.append(residue_occurrence)
-        choices.append(
-            {
-                "id": f"reactant_operator.{slugify(occurrence_id)}.dissociate",
-                "type": "dissociate",
-                "lawId": dissociation_law["lawId"],
-                "inputOccurrenceKeys": [occurrence_id],
-                "outputOccurrenceKeys": [
-                    normalize_text(intermediate_occurrence["id"])
-                    for intermediate_occurrence in intermediate_occurrences
-                ],
-                "requiredSupportRows": [],
-                "intermediateOccurrences": intermediate_occurrences,
-                "nonIdentity": True,
-                "dissociation": True,
-            }
-        )
-    return choices
+        child_variant_sets = [
+            build_reactant_support_variants(intermediate_occurrence)
+            for intermediate_occurrence in intermediate_occurrences
+        ]
+        if not child_variant_sets:
+            child_variant_sets = [[{"operatorChoices": [], "intermediateOccurrences": []}]]
+        for child_variants in itertools.product(*child_variant_sets):
+            output_occurrence_keys = [
+                normalize_text(intermediate_occurrence["id"])
+                for intermediate_occurrence in [*intermediate_occurrences, residue_occurrence]
+            ]
+            operator_choices = [
+                {
+                    "id": f"reactant_operator.{slugify(occurrence_id)}.dissociate",
+                    "type": "dissociate",
+                    "lawId": dissociation_law["lawId"],
+                    "inputOccurrenceKeys": [occurrence_id],
+                    "outputOccurrenceKeys": output_occurrence_keys,
+                    "requiredSupportRows": [],
+                    "nonIdentity": True,
+                    "dissociation": True,
+                }
+            ]
+            final_intermediate_occurrences = [clone_json(residue_occurrence)]
+            for child_variant in child_variants:
+                operator_choices.extend(clone_json(child_variant["operatorChoices"]))
+                final_intermediate_occurrences.extend(clone_json(child_variant["intermediateOccurrences"]))
+            variants.append(
+                {
+                    "operatorChoices": operator_choices,
+                    "intermediateOccurrences": final_intermediate_occurrences,
+                }
+            )
+    return variants
+
+
+def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
+    occurrence_id = normalize_text(occurrence.get("id"))
+    assembly_id = normalize_text(occurrence.get("assemblyId"))
+    pass_thru_law = get_pass_thru_law(assembly_id)
+    variants = [
+        {
+            "operatorChoices": [
+                {
+                    "id": f"reactant_operator.{slugify(occurrence_id)}.pass_thru",
+                    "type": "pass-thru",
+                    "lawId": pass_thru_law["lawId"] if pass_thru_law is not None else None,
+                    "inputOccurrenceKeys": [occurrence_id],
+                    "outputOccurrenceKeys": [occurrence_id],
+                    "requiredSupportRows": [],
+                    "nonIdentity": False,
+                    "dissociation": False,
+                }
+            ],
+            "intermediateOccurrences": [clone_json(occurrence)],
+        }
+    ]
+    for support_variant in build_reactant_support_variants(occurrence):
+        if support_variant["operatorChoices"]:
+            variants.append(support_variant)
+    return variants
 
 
 def build_product_local_choices(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
@@ -824,6 +859,89 @@ def count_map_l1(counts: dict[str, int]) -> int:
 def canonical_counted_assemblies_from_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     counted = count_assemblies(records)
     return sorted(counted, key=lambda item: (item["assemblyId"], item["count"]))
+
+
+def emitted_operator_choice(choice: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "id": normalize_text(choice.get("id")),
+        "type": normalize_text(choice.get("type")),
+        "lawId": choice.get("lawId"),
+        "inputOccurrenceKeys": [normalize_text(value) for value in choice.get("inputOccurrenceKeys", [])],
+        "outputOccurrenceKeys": [normalize_text(value) for value in choice.get("outputOccurrenceKeys", [])],
+        "requiredSupportRows": clone_json(choice.get("requiredSupportRows", [])),
+    }
+
+
+def branch_spends_within_supply(
+    reactant_count_map: dict[str, int],
+    product_count_map: dict[str, int],
+    reactant_residue: dict[str, int],
+    required_product_residue: dict[str, int],
+) -> bool:
+    for assembly_id, required_count in product_count_map.items():
+        if int(required_count) > int(reactant_count_map.get(assembly_id, 0)):
+            return False
+    return (
+        int(required_product_residue.get("electrinoCount", 0))
+        <= int(reactant_residue.get("electrinoCount", 0))
+        and int(required_product_residue.get("positrinoCount", 0))
+        <= int(reactant_residue.get("positrinoCount", 0))
+    )
+
+
+def family_signature(family: dict[str, Any]) -> str:
+    payload = {
+        "kind": normalize_text(family.get("kind")),
+        "score": clone_json(family.get("score", {})),
+        "augmentation": clone_json(family.get("augmentation", {})),
+        "reactantAssemblies": clone_json(family.get("reactantAssemblies", [])),
+        "reactantSideOperators": clone_json(family.get("reactantSideOperators", [])),
+        "intermediateAssemblies": clone_json(family.get("intermediateAssemblies", [])),
+        "productSideOperators": clone_json(family.get("productSideOperators", [])),
+        "productAssemblies": clone_json(family.get("productAssemblies", [])),
+        "provenanceSummary": clone_json(family.get("provenanceSummary", {})),
+        "diagnostics": clone_json(family.get("diagnostics", [])),
+        "publicationReady": bool(family.get("publicationReady")),
+    }
+    return json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
+
+def canonicalize_families(families: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: OrderedDict[str, dict[str, Any]] = OrderedDict()
+    for family in families:
+        signature = family_signature(family)
+        if signature not in grouped:
+            grouped[signature] = clone_json(family)
+            continue
+        grouped[signature]["rawBranchCount"] = int(grouped[signature].get("rawBranchCount", 0)) + int(
+            family.get("rawBranchCount", 0)
+        )
+
+    canonical = list(grouped.values())
+    canonical.sort(key=lambda family: score_tuple(family["score"]))
+    renumbered: list[dict[str, Any]] = []
+    exact_index = 0
+    partial_index = 0
+    no_exact_index = 0
+    for family in canonical:
+        normalized = clone_json(family)
+        kind = normalize_text(normalized.get("kind"))
+        if kind == "exact":
+            exact_index += 1
+            family_id = f"family.exact.{exact_index}"
+            candidate_id = f"candidate.exact.{exact_index}"
+        elif kind == "partial":
+            partial_index += 1
+            family_id = f"family.partial.{partial_index}"
+            candidate_id = f"candidate.partial.{partial_index}"
+        else:
+            no_exact_index += 1
+            family_id = f"family.no_exact_closure.{no_exact_index}"
+            candidate_id = f"candidate.no_exact_closure.{no_exact_index}"
+        normalized["familyId"] = family_id
+        normalized["canonicalCandidate"]["candidateId"] = candidate_id
+        renumbered.append(normalized)
+    return renumbered
 
 
 def build_provenance_summary(
@@ -949,18 +1067,8 @@ def build_candidate_family(
     diagnostics: list[dict[str, Any]],
     publication_ready: bool = False,
 ) -> dict[str, Any]:
-    def serialize_operator_choice(choice: dict[str, Any]) -> dict[str, Any]:
-        return {
-            "id": normalize_text(choice.get("id")),
-            "type": normalize_text(choice.get("type")),
-            "lawId": choice.get("lawId"),
-            "inputOccurrenceKeys": [normalize_text(value) for value in choice.get("inputOccurrenceKeys", [])],
-            "outputOccurrenceKeys": [normalize_text(value) for value in choice.get("outputOccurrenceKeys", [])],
-            "requiredSupportRows": clone_json(choice.get("requiredSupportRows", [])),
-        }
-
-    serialized_reactant_operators = [serialize_operator_choice(choice) for choice in reactant_operator_choices]
-    serialized_product_operators = [serialize_operator_choice(choice) for choice in product_operator_choices]
+    serialized_reactant_operators = [emitted_operator_choice(choice) for choice in reactant_operator_choices]
+    serialized_product_operators = [emitted_operator_choice(choice) for choice in product_operator_choices]
     provenance_summary = build_provenance_summary(product_occurrences, product_operator_choices)
     canonical_candidate = {
         "candidateId": family_id.replace("family.", "candidate."),
@@ -1000,7 +1108,7 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
     reactant_choice_sets = [build_reactant_local_choices(occurrence) for occurrence in base_reactants]
     product_choice_sets = [build_product_local_choices(occurrence) for occurrence in products]
     primitive_mismatch = primitive_counts_magnitude(problem.get("normalization", {}).get("primitiveImbalance", {}))
-    families: list[dict[str, Any]] = []
+    raw_families: list[dict[str, Any]] = []
 
     for mode_index, augmentation_mode in enumerate(problem.get("boundaryAugmentationModes", []), start=1):
         augmented_reactants = [clone_json(record) for record in base_reactants]
@@ -1024,12 +1132,17 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
             ),
             start=1,
         ):
-            reactant_choice_list = [clone_json(choice) for choice in reactant_choices]
+            reactant_plan_list = [clone_json(choice) for choice in reactant_choices]
             product_choice_list = [clone_json(choice) for choice in product_choices]
+            reactant_operator_choices = [
+                clone_json(operator_choice)
+                for reactant_plan in reactant_plan_list
+                for operator_choice in reactant_plan.get("operatorChoices", [])
+            ]
             reactant_intermediate = [
                 clone_json(output)
-                for choice in reactant_choice_list
-                for output in choice.get("intermediateOccurrences", [])
+                for reactant_plan in reactant_plan_list
+                for output in reactant_plan.get("intermediateOccurrences", [])
             ]
 
             reactant_count_map = build_count_map(reactant_intermediate)
@@ -1043,6 +1156,13 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                 required_product_residue["positrinoCount"] += int(residue_counts.get("positrinoCount", 0))
 
             reactant_residue = build_residue_totals(reactant_intermediate)
+            if not branch_spends_within_supply(
+                reactant_count_map,
+                product_count_map,
+                reactant_residue,
+                required_product_residue,
+            ):
+                continue
             middle_mismatch = count_map_l1(subtract_count_maps(reactant_count_map, product_count_map))
             middle_mismatch += abs(
                 reactant_residue["electrinoCount"] - required_product_residue["electrinoCount"]
@@ -1078,11 +1198,11 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                 primitive_mismatch=primitive_mismatch,
                 middle_mismatch=middle_mismatch,
                 augmentation_mode=augmentation_mode,
-                reactant_operator_choices=reactant_choice_list,
+                reactant_operator_choices=reactant_operator_choices,
                 product_operator_choices=product_choice_list,
                 ambiguity_penalty=ambiguity_penalty,
             )
-            families.append(
+            raw_families.append(
                 build_candidate_family(
                     problem,
                     family_id=f"family.mode_{mode_index}.branch_{branch_index}",
@@ -1090,7 +1210,7 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                     augmentation_mode=augmentation_mode,
                     reactant_occurrences=augmented_reactants,
                     product_occurrences=products,
-                    reactant_operator_choices=reactant_choice_list,
+                    reactant_operator_choices=reactant_operator_choices,
                     product_operator_choices=product_choice_list,
                     intermediate_occurrences=reactant_intermediate,
                     score=score,
@@ -1098,7 +1218,7 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                 )
             )
 
-    families.sort(key=lambda family: score_tuple(family["score"]))
+    families = canonicalize_families(raw_families)
     exact_families = [family for family in families if family["kind"] == "exact"]
     partial_families = [family for family in families if family["kind"] == "partial"][:3]
     return [*exact_families, *partial_families]
