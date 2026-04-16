@@ -368,7 +368,7 @@ Every branch must satisfy:
 - Electrino count \(\ge 0\);
 - Positrino count \(\ge 0\);
 - routed counts may never drive either count below zero;
-- all product-side polar charge must come from this explicit intermediate `Unbound Architrinos` ledger rather than from intact Noether cores;
+- an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether core;
 - and there may never be a second intermediate `Unbound Architrinos` assembly.
 
 #### Universal Identity Law
@@ -515,7 +515,7 @@ So, for example:
 - `Associate(pro_strange_quark_II)` requires `pro_noether_core_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
 - `Associate(anti_top_quark_III)` requires `anti_noether_core_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
 
-No association law may draw polar charge directly from an intact Noether core row.
+An `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion. It does not read those polar charges directly from an intact Noether core row.
 
 If a branch needs additional Electrinos or Positrinos in the ledger, it must first create them by lawful dissociation before the associated product is attempted.
 
@@ -524,6 +524,10 @@ The `Associate` tile should display the Electrino and Positrino counts it routes
 #### Noether-Core Ladder Laws
 
 The generation ladder should be executable through explicit Noether-core dissociation rather than by invisible subtraction.
+
+Specifically, this means a `Dissociate` operator may open a `pro Noether core` or `anti Noether core` into the next lower Noether-core form while routing `1` Electrino and `1` Positrino into the one shared intermediate `Unbound Architrinos` ledger. At the bottom of the ladder, a generation III Noether core may dissociate into routed `1` Electrino and `1` Positrino with no lower Noether-core output.
+
+Open point: this one-binary-at-a-time Noether-core dissociation rule may not be sufficient to cover the full ready corpus. We still need to resolve whether lawful `Dissociate` behavior must also admit larger Noether-core openings in a single operator step rather than only this stepwise ladder.
 
 For v1, the first-pass ladder laws are:
 
