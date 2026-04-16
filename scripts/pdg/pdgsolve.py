@@ -25,11 +25,15 @@ if str(REPO_ROOT) not in sys.path:
 
 
 PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
+PDGSOLVE_PROBLEM_SCHEMA = "pdgsolve-problem/v1"
 PDGSOLVE_RESULT_SCHEMA = "pdgsolve-result/v1"
 PDGSOLVE_ACCEPTANCE_SCHEMA = "pdgsolve-acceptance/v1"
 PDGSOLVE_PUBLICATION_GRAPH_SCHEMA = "pdgsolve-publication-graph/v1"
 PDGSOLVE_PDGEDIT_PACKAGE_SCHEMA = "pdgsolve-pdgedit-package/v1"
 PDGEDIT_SCHEMA = "pdgedit/v1"
+ASSEMBLY_ALPHABET_ID = "pdgsolve-assemblies/v1-standard-model"
+PRIMITIVE_BASIS_ID = "pdgsolve-primitives/electrino-positrino/v1"
+LAW_TABLE_ID = "pdgsolve-laws/v1-standard-model"
 
 DEFAULT_TMP_DIR = REPO_ROOT / ".tmp" / "pdgsolve"
 DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
@@ -245,6 +249,14 @@ ASSEMBLY_DISPLAY = {
     },
 }
 
+REQUEST_REACTANT_ASSEMBLY_IDS = tuple(
+    assembly_id
+    for assembly_id in ASSEMBLY_DISPLAY
+    if assembly_id != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+)
+REQUEST_PRODUCT_ASSEMBLY_IDS = tuple(ASSEMBLY_DISPLAY)
+SUPPORTED_BOUNDARY_AUGMENTATIONS = ("none", "hp", "hq")
+
 PDGEDIT_X_BY_STAGE = {
     "reactantAssemblies": 2,
     "reactantSideOperators": 7,
@@ -357,6 +369,20 @@ def primitive_counts_equal(left: dict[str, int], right: dict[str, int]) -> bool:
     )
 
 
+def primitive_counts_difference(
+    left: dict[str, int],
+    right: dict[str, int],
+) -> dict[str, int]:
+    return {
+        "electrinoCount": int(left.get("electrinoCount", 0)) - int(right.get("electrinoCount", 0)),
+        "positrinoCount": int(left.get("positrinoCount", 0)) - int(right.get("positrinoCount", 0)),
+    }
+
+
+def primitive_counts_magnitude(counts: dict[str, int]) -> int:
+    return abs(int(counts.get("electrinoCount", 0))) + abs(int(counts.get("positrinoCount", 0)))
+
+
 def make_diagnostic(
     diagnostic_id: str,
     phase: str,
@@ -372,6 +398,158 @@ def make_diagnostic(
         "blocking": blocking,
         "payload": payload or {},
     }
+
+
+def normalize_boundary_augmentation_modes(policy: dict[str, Any]) -> tuple[list[str], list[dict[str, Any]]]:
+    requested_modes = policy.get("allowedBoundaryAugmentations")
+    diagnostics: list[dict[str, Any]] = []
+    if not isinstance(requested_modes, list) or not requested_modes:
+        return ["none"], diagnostics
+
+    normalized_modes: list[str] = []
+    for mode in requested_modes:
+        normalized_mode = normalize_text(mode)
+        if normalized_mode not in SUPPORTED_BOUNDARY_AUGMENTATIONS:
+            diagnostics.append(
+                make_diagnostic(
+                    "pdgsolve.request.unsupported_boundary_augmentation",
+                    "request",
+                    "The request policy contains an unsupported boundary augmentation mode.",
+                    blocking=True,
+                    payload={
+                        "requestedMode": normalized_mode,
+                        "allowedModes": list(SUPPORTED_BOUNDARY_AUGMENTATIONS),
+                    },
+                )
+            )
+            continue
+        if normalized_mode not in normalized_modes:
+            normalized_modes.append(normalized_mode)
+
+    return normalized_modes or ["none"], diagnostics
+
+
+def normalize_request_occurrences(
+    request: dict[str, Any],
+    side: str,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    side_records = request.get(side)
+    diagnostics: list[dict[str, Any]] = []
+    if not isinstance(side_records, list):
+        return [], diagnostics
+
+    supported_assembly_ids = (
+        REQUEST_REACTANT_ASSEMBLY_IDS if side == "reactants" else REQUEST_PRODUCT_ASSEMBLY_IDS
+    )
+    normalized_occurrences: list[dict[str, Any]] = []
+    seen_occurrence_ids: set[str] = set()
+    for index, record in enumerate(side_records, start=1):
+        if not isinstance(record, dict):
+            continue
+        occurrence_id = normalize_text(record.get("id")) or f"{side}_{index}"
+        assembly_id = normalize_text(record.get("assemblyId"))
+        title = normalize_text(record.get("title")) or assembly_id
+        if occurrence_id in seen_occurrence_ids:
+            diagnostics.append(
+                make_diagnostic(
+                    "pdgsolve.request.duplicate_occurrence_id",
+                    "request",
+                    "The request contains a duplicate occurrence id.",
+                    blocking=True,
+                    payload={
+                        "side": side,
+                        "occurrenceId": occurrence_id,
+                    },
+                )
+            )
+        else:
+            seen_occurrence_ids.add(occurrence_id)
+        if assembly_id not in supported_assembly_ids:
+            diagnostics.append(
+                make_diagnostic(
+                    "pdgsolve.request.unsupported_assembly",
+                    "request",
+                    "The request contains an assembly id outside the admitted v1 assembly alphabet.",
+                    blocking=True,
+                    payload={
+                        "side": side,
+                        "occurrenceId": occurrence_id,
+                        "assemblyId": assembly_id,
+                    },
+                )
+            )
+        occurrence = {
+            "id": occurrence_id,
+            "assemblyId": assembly_id,
+            "title": title,
+        }
+        if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+            occurrence["electrinoCount"] = int(record.get("electrinoCount", 0) or 0)
+            occurrence["positrinoCount"] = int(record.get("positrinoCount", 0) or 0)
+        normalized_occurrences.append(occurrence)
+
+    return normalized_occurrences, diagnostics
+
+
+def build_augmentation_mode_records(modes: list[str]) -> list[dict[str, Any]]:
+    return [
+        {
+            "reactantSide": mode,
+            "productSide": "none",
+        }
+        for mode in modes
+    ]
+
+
+def normalize_request_to_problem(request: dict[str, Any]) -> dict[str, Any]:
+    diagnostics: list[dict[str, Any]] = []
+    reactants, reactant_diagnostics = normalize_request_occurrences(request, "reactants")
+    products, product_diagnostics = normalize_request_occurrences(request, "products")
+    diagnostics.extend(reactant_diagnostics)
+    diagnostics.extend(product_diagnostics)
+
+    policy = clone_json(request.get("policy", {})) if isinstance(request.get("policy"), dict) else {}
+    boundary_augmentation_modes, augmentation_diagnostics = normalize_boundary_augmentation_modes(policy)
+    diagnostics.extend(augmentation_diagnostics)
+
+    reactant_totals = sum_primitive_counts(reactants) or build_primitive_counts(0, 0)
+    product_totals = sum_primitive_counts(products) or build_primitive_counts(0, 0)
+    primitive_imbalance = primitive_counts_difference(reactant_totals, product_totals)
+
+    return {
+        "schema": PDGSOLVE_PROBLEM_SCHEMA,
+        "problemId": build_problem_id(request),
+        "requestId": normalize_text(request.get("requestId")),
+        "source": clone_json(request.get("source", {})),
+        "assemblyAlphabetId": ASSEMBLY_ALPHABET_ID,
+        "primitiveBasisId": PRIMITIVE_BASIS_ID,
+        "lawTableId": LAW_TABLE_ID,
+        "reactants": {
+            "orderedOccurrences": reactants,
+            "multiset": count_assemblies(reactants),
+            "primitiveTotals": reactant_totals,
+        },
+        "products": {
+            "orderedOccurrences": products,
+            "multiset": count_assemblies(products),
+            "primitiveTotals": product_totals,
+        },
+        "boundaryAugmentationModes": build_augmentation_mode_records(boundary_augmentation_modes),
+        "policy": policy,
+        "normalization": {
+            "diagnostics": diagnostics,
+            "primitiveImbalance": primitive_imbalance,
+            "notes": [
+                "Requests are normalized into explicit admitted assembly occurrences only.",
+                "Occurrence order is preserved for deterministic branch indexing.",
+                "Primitive ledger totals are frozen before search begins.",
+            ],
+        },
+    }
+
+
+def get_problem_occurrences(problem: dict[str, Any], side: str) -> list[dict[str, Any]]:
+    return list(problem.get(side, {}).get("orderedOccurrences", []))
 
 
 def get_request_assembly_ids(request: dict[str, Any], side: str) -> list[str]:
@@ -1026,12 +1204,18 @@ def build_muon_publication_graph(
     }
 
 
-def build_exact_family_for_request(request: dict[str, Any]) -> dict[str, Any] | None:
+def build_exact_family_for_problem(problem: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
-def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
-    product_occurrences = list(request.get("products", []))
+def build_unsupported_family(
+    problem: dict[str, Any],
+    *,
+    diagnostics: list[dict[str, Any]] | None = None,
+    tie_break_key: str = "unsupported_request",
+    summary_text: str | None = None,
+) -> dict[str, Any]:
+    product_occurrences = get_problem_occurrences(problem, "products")
     provenance_outputs = [
         {
             "occurrenceKey": normalize_text(product.get("id")) or f"product_{index + 1}",
@@ -1041,61 +1225,51 @@ def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
         }
         for index, product in enumerate(product_occurrences)
     ]
+    resolved_diagnostics = clone_json(diagnostics or [])
+    resolved_summary_text = summary_text or (
+        "No exact solver law is available for this request, so "
+        "pdgsolve emitted a deterministic no-exact-closure family."
+    )
+    primitive_imbalance = clone_json(problem.get("normalization", {}).get("primitiveImbalance", {}))
     return {
         "familyId": "family.unsolved.v1",
         "kind": "no_exact_closure",
         "score": {
             "exactness": 1,
-            "primitiveMismatch": 1,
+            "primitiveMismatch": max(1, primitive_counts_magnitude(primitive_imbalance)),
             "middleMismatch": max(1, len(product_occurrences)),
             "auxiliaryBurden": 0,
             "nonIdentityOperatorCount": 0,
             "dissociationCount": 0,
             "ambiguityPenalty": max(1, len(product_occurrences)),
-            "tieBreakKey": "unsupported_request",
+            "tieBreakKey": tie_break_key,
         },
         "augmentation": {
             "reactantSide": "none",
             "productSide": "none",
         },
-        "reactantAssemblies": count_assemblies(list(request.get("reactants", []))),
+        "reactantAssemblies": clone_json(problem.get("reactants", {}).get("multiset", [])),
         "reactantSideOperators": [],
         "intermediateAssemblies": [],
         "productSideOperators": [],
-        "productAssemblies": count_assemblies(product_occurrences),
+        "productAssemblies": clone_json(problem.get("products", {}).get("multiset", [])),
         "provenanceSummary": {
-            "summaryText": (
-                "No exact solver law is available for this request, so "
-                "pdgsolve emitted a deterministic no-exact-closure family."
-            ),
+            "summaryText": resolved_summary_text,
             "outputs": provenance_outputs,
         },
-        "diagnostics": [
-            make_diagnostic(
-                "pdgsolve.search.unsupported_request",
-                "search",
-                "No exact solve rule is available for this request.",
-                blocking=True,
-                payload={
-                    "requestId": normalize_text(request.get("requestId")),
-                },
-            )
-        ],
+        "diagnostics": resolved_diagnostics,
         "rawBranchCount": 0,
         "publicationReady": False,
         "canonicalCandidate": {
             "candidateId": "candidate.unsupported.v1",
             "exact": False,
-            "reactantAssemblies": count_assemblies(list(request.get("reactants", []))),
+            "reactantAssemblies": clone_json(problem.get("reactants", {}).get("multiset", [])),
             "reactantSideOperators": [],
             "intermediateAssemblies": [],
             "productSideOperators": [],
-            "productAssemblies": count_assemblies(product_occurrences),
+            "productAssemblies": clone_json(problem.get("products", {}).get("multiset", [])),
             "provenanceSummary": {
-                "summaryText": (
-                    "No exact solver law is available for this request, so "
-                    "pdgsolve emitted a deterministic no-exact-closure family."
-                ),
+                "summaryText": resolved_summary_text,
                 "outputs": provenance_outputs,
             },
             "solveGraph": None,
@@ -1109,11 +1283,88 @@ def build_problem_id(request: dict[str, Any]) -> str:
 
 
 def solve_request(request: dict[str, Any]) -> dict[str, Any]:
-    family = build_exact_family_for_request(request)
+    problem = normalize_request_to_problem(request)
+    normalization_diagnostics = clone_json(problem.get("normalization", {}).get("diagnostics", []))
+    blocking_normalization = [diagnostic for diagnostic in normalization_diagnostics if diagnostic.get("blocking")]
+    if blocking_normalization:
+        family = build_unsupported_family(
+            problem,
+            diagnostics=blocking_normalization,
+            tie_break_key="request_normalization_blocked",
+            summary_text=(
+                "The request could not enter solver search because normalization found blocking "
+                "request diagnostics."
+            ),
+        )
+        return {
+            "schema": PDGSOLVE_RESULT_SCHEMA,
+            "problemId": normalize_text(problem.get("problemId")),
+            "searchStatus": "no_exact_closure",
+            "bestFamilyId": family["familyId"],
+            "acceptedFamilyId": None,
+            "diagnostics": clone_json(family["diagnostics"]),
+            "optionFamilies": [family],
+            "review": {
+                "schema": "pdgsolve-review-state/v1",
+                "state": "stale",
+                "selectedFamilyId": family["familyId"],
+                "acceptedFamilyId": None,
+                "acceptedRecord": None,
+                "blockingDiagnostics": clone_json(family["diagnostics"]),
+            },
+            "publication": None,
+        }
+
+    primitive_imbalance = clone_json(problem.get("normalization", {}).get("primitiveImbalance", {}))
+    exact_closure_required = bool(problem.get("policy", {}).get("exactClosureRequired"))
+    if exact_closure_required and primitive_counts_magnitude(primitive_imbalance) != 0:
+        diagnostics = [
+            make_diagnostic(
+                "pdgsolve.search.primitive_imbalance",
+                "search",
+                "Exact closure is impossible because the request boundary primitive ledgers do not balance.",
+                blocking=True,
+                payload={
+                    "requestId": normalize_text(problem.get("requestId")),
+                    "reactantTotals": clone_json(problem.get("reactants", {}).get("primitiveTotals", {})),
+                    "productTotals": clone_json(problem.get("products", {}).get("primitiveTotals", {})),
+                    "primitiveImbalance": primitive_imbalance,
+                },
+            )
+        ]
+        family = build_unsupported_family(
+            problem,
+            diagnostics=diagnostics,
+            tie_break_key="primitive_imbalance",
+            summary_text=(
+                "The boundary primitive ledgers do not balance, so no exact family can exist under "
+                "the current law table."
+            ),
+        )
+        return {
+            "schema": PDGSOLVE_RESULT_SCHEMA,
+            "problemId": normalize_text(problem.get("problemId")),
+            "searchStatus": "no_exact_closure",
+            "bestFamilyId": family["familyId"],
+            "acceptedFamilyId": None,
+            "diagnostics": clone_json(family["diagnostics"]),
+            "optionFamilies": [family],
+            "review": {
+                "schema": "pdgsolve-review-state/v1",
+                "state": "stale",
+                "selectedFamilyId": family["familyId"],
+                "acceptedFamilyId": None,
+                "acceptedRecord": None,
+                "blockingDiagnostics": clone_json(family["diagnostics"]),
+            },
+            "publication": None,
+        }
+
+    family = build_exact_family_for_problem(problem)
     if family is not None:
         return {
             "schema": PDGSOLVE_RESULT_SCHEMA,
-            "problemId": build_problem_id(request),
+            "problemId": normalize_text(problem.get("problemId")),
             "searchStatus": "exact_available",
             "bestFamilyId": family["familyId"],
             "acceptedFamilyId": None,
@@ -1130,10 +1381,24 @@ def solve_request(request: dict[str, Any]) -> dict[str, Any]:
             "publication": None,
         }
 
-    family = build_unsupported_family(request)
+    family = build_unsupported_family(
+        problem,
+        diagnostics=[
+            make_diagnostic(
+                "pdgsolve.search.unsupported_request",
+                "search",
+                "No exact solve rule is available for this normalized solver problem.",
+                blocking=True,
+                payload={
+                    "requestId": normalize_text(problem.get("requestId")),
+                    "lawTableId": normalize_text(problem.get("lawTableId")),
+                },
+            )
+        ],
+    )
     return {
         "schema": PDGSOLVE_RESULT_SCHEMA,
-        "problemId": build_problem_id(request),
+        "problemId": normalize_text(problem.get("problemId")),
         "searchStatus": "no_exact_closure",
         "bestFamilyId": family["familyId"],
         "acceptedFamilyId": None,
