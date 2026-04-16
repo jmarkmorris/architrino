@@ -1,20 +1,10 @@
 #!/usr/bin/env python3
-"""Minimal pdgsolve vertical-slice implementation.
+"""Minimal pdgsolve contract implementation.
 
-This file keeps the first implementation intentionally small:
-
-- consume explicit ``pdgsolve-request/v1`` JSON;
-- emit deterministic ``pdgsolve-result/v1`` JSON;
-- lock one accepted exact family into ``pdgsolve-acceptance/v1``;
-- and publish one final ``pdgedit/v1`` document from that acceptance.
-
-The only exact solve law implemented in this vertical slice is the canonical
-free-neutron beta channel:
-
-    d + u + d -> u + d + u + e + anti-nu_e
-
-All other requests still receive a deterministic ``no_exact_closure`` result so
-the JSON boundary remains explicit.
+This file currently provides only the request/result/accept/publish boundaries.
+The solver itself does not ship any pre-known exact reactions. Requests that are
+not solved by future search logic receive a deterministic ``no_exact_closure``
+result so the JSON boundary remains explicit.
 """
 
 from __future__ import annotations
@@ -41,57 +31,6 @@ PDGSOLVE_PUBLICATION_GRAPH_SCHEMA = "pdgsolve-publication-graph/v1"
 PDGSOLVE_PDGEDIT_PACKAGE_SCHEMA = "pdgsolve-pdgedit-package/v1"
 PDGEDIT_SCHEMA = "pdgedit/v1"
 
-DEFAULT_VERTICAL_SLICE_TITLE = "Free neutron beta exact"
-DEFAULT_VERTICAL_SLICE_REQUEST_ID = "free_neutron_beta_decay"
-DEFAULT_VERTICAL_SLICE_PROBLEM_ID = "pdgsolve_problem_free_neutron_beta_exact"
-DEFAULT_VERTICAL_SLICE_FAMILY_ID = "family.beta.exact.v1"
-DEFAULT_VERTICAL_SLICE_DOCUMENT_ID = (
-    f"{DEFAULT_VERTICAL_SLICE_PROBLEM_ID}--{DEFAULT_VERTICAL_SLICE_FAMILY_ID}"
-)
-DEFAULT_VERTICAL_SLICE_REQUEST_PATH = (
-    REPO_ROOT
-    / "content"
-    / "contracts"
-    / "examples"
-    / "pdgsolve-request"
-    / "v1"
-    / "free_neutron_beta_decay.v1.json"
-)
-DEFAULT_VERTICAL_SLICE_RESULT_PATH = (
-    REPO_ROOT
-    / "content"
-    / "contracts"
-    / "examples"
-    / "pdgsolve-result"
-    / "v1"
-    / "free_neutron_beta_exact.v1.json"
-)
-DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH = (
-    REPO_ROOT
-    / "content"
-    / "contracts"
-    / "examples"
-    / "pdgsolve-acceptance"
-    / "v1"
-    / "free_neutron_beta_exact.v1.json"
-)
-DEFAULT_VERTICAL_SLICE_PDGEDIT_PATH = (
-    REPO_ROOT
-    / "content"
-    / "contracts"
-    / "examples"
-    / "pdgedit"
-    / "pdgsolve_free_neutron_beta_exact.v1.json"
-)
-DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH = (
-    REPO_ROOT
-    / "content"
-    / "contracts"
-    / "examples"
-    / "pdgsolve-pdgedit-package"
-    / "v1"
-    / "free_neutron_beta_exact.v1.json"
-)
 DEFAULT_TMP_DIR = REPO_ROOT / ".tmp" / "pdgsolve"
 DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
 DEFAULT_RESULT_CORPUS_INDEX_PATH = DEFAULT_TMP_DIR / "result-corpus.v1.json"
@@ -433,90 +372,6 @@ def make_diagnostic(
         "blocking": blocking,
         "payload": payload or {},
     }
-
-
-def get_vertical_slice_request() -> dict[str, Any]:
-    return {
-        "schema": PDGSOLVE_REQUEST_SCHEMA,
-        "requestId": DEFAULT_VERTICAL_SLICE_REQUEST_ID,
-        "source": {
-            "kind": "pdgfeed",
-            "title": "Free neutron beta decay",
-            "sourceDocumentId": "pdg-proposal:free_neutron_beta_decay",
-        },
-        "reactants": [
-            {
-                "id": "reactant_neutron_1.row.1",
-                "assemblyId": "pro_down_quark_I",
-                "title": "Down Quark",
-            },
-            {
-                "id": "reactant_neutron_1.row.2",
-                "assemblyId": "pro_up_quark_I",
-                "title": "Up Quark",
-            },
-            {
-                "id": "reactant_neutron_1.row.3",
-                "assemblyId": "pro_down_quark_I",
-                "title": "Down Quark",
-            },
-        ],
-        "products": [
-            {
-                "id": "product_proton_1.row.1",
-                "assemblyId": "pro_up_quark_I",
-                "title": "Up Quark",
-            },
-            {
-                "id": "product_proton_1.row.2",
-                "assemblyId": "pro_down_quark_I",
-                "title": "Down Quark",
-            },
-            {
-                "id": "product_proton_1.row.3",
-                "assemblyId": "pro_up_quark_I",
-                "title": "Up Quark",
-            },
-            {
-                "id": "product_pro_electron_2",
-                "assemblyId": "pro_electron_I",
-                "title": "Electron",
-            },
-            {
-                "id": "product_anti_electron_neutrino_3",
-                "assemblyId": "anti_electron_neutrino_I",
-                "title": "Anti Electron Neutrino",
-            },
-        ],
-        "policy": {
-            "exactClosureRequired": True,
-            "allowedBoundaryAugmentations": ["none"],
-        },
-    }
-
-
-def request_is_vertical_slice_beta(request: dict[str, Any]) -> bool:
-    reactant_ids = [normalize_text(record.get("assemblyId")) for record in request.get("reactants", [])]
-    product_ids = [normalize_text(record.get("assemblyId")) for record in request.get("products", [])]
-    policy = request.get("policy", {})
-    return (
-        normalize_text(request.get("schema")) == PDGSOLVE_REQUEST_SCHEMA
-        and reactant_ids == [
-            "pro_down_quark_I",
-            "pro_up_quark_I",
-            "pro_down_quark_I",
-        ]
-        and product_ids
-        == [
-            "pro_up_quark_I",
-            "pro_down_quark_I",
-            "pro_up_quark_I",
-            "pro_electron_I",
-            "anti_electron_neutrino_I",
-        ]
-        and policy.get("exactClosureRequired") is True
-        and list(policy.get("allowedBoundaryAugmentations", [])) == ["none"]
-    )
 
 
 def get_request_assembly_ids(request: dict[str, Any], side: str) -> list[str]:
@@ -1171,960 +1026,8 @@ def build_muon_publication_graph(
     }
 
 
-def build_exact_muon_decay_family(
-    request: dict[str, Any],
-    *,
-    prefix: str,
-    family_id: str,
-    charge: str,
-    radiative: bool,
-) -> dict[str, Any] | None:
-    # The current solver does not yet have a lawful reactant-side Noether-core
-    # dissociation model that can mint additional bounded unbound-architrinos
-    # occurrences. Until that exists, muon exact families would incorrectly let
-    # intact Noether cores stand in for polar-charge supply on the product side.
-    return None
-
-    reactants = list(request["reactants"])
-    products = list(request["products"])
-    if not reactants or len(products) < 3:
-        return None
-
-    primary_reactant = reactants[0]
-    primary_reactant_id = normalize_text(primary_reactant["id"])
-    primary_reactant_assembly_id = normalize_text(primary_reactant["assemblyId"])
-    primary_counts = get_occurrence_primitive_counts(primary_reactant)
-    if primary_counts is None:
-        return None
-
-    core_assembly_id = "pro_noether_core_II" if charge == "minus" else "anti_noether_core_II"
-    core_counts = build_primitive_counts(
-        ASSEMBLY_DISPLAY[core_assembly_id]["electrinoCount"],
-        ASSEMBLY_DISPLAY[core_assembly_id]["positrinoCount"],
-    )
-    residue_counts = build_primitive_counts(
-        primary_counts["electrinoCount"] - core_counts["electrinoCount"],
-        primary_counts["positrinoCount"] - core_counts["positrinoCount"],
-    )
-    if residue_counts["electrinoCount"] < 0 or residue_counts["positrinoCount"] < 0:
-        return None
-
-    pro_support_occurrences = [
-        occurrence
-        for occurrence in reactants[1:]
-        if normalize_text(occurrence.get("assemblyId")) == "pro_noether_core_I"
-    ]
-    anti_support_occurrences = [
-        occurrence
-        for occurrence in reactants[1:]
-        if normalize_text(occurrence.get("assemblyId")) == "anti_noether_core_I"
-    ]
-    required_support_count = 3 if radiative else 2
-    if len(pro_support_occurrences) < required_support_count or len(anti_support_occurrences) < required_support_count:
-        return None
-
-    core_occurrence_key = f"intermediate_{prefix}.core.1"
-    residue_occurrence_key = f"intermediate_{prefix}.residue.1"
-    pro_support_intermediate_ids = [
-        f"intermediate_{prefix}.pro_support.{index}"
-        for index in range(1, required_support_count + 1)
-    ]
-    anti_support_intermediate_ids = [
-        f"intermediate_{prefix}.anti_support.{index}"
-        for index in range(1, required_support_count + 1)
-    ]
-    intermediate_occurrences = [
-        {
-            "id": core_occurrence_key,
-            "assemblyId": core_assembly_id,
-            "title": ASSEMBLY_DISPLAY[core_assembly_id]["title"],
-        },
-        build_residue_occurrence(
-            residue_occurrence_key,
-            electrino_count=residue_counts["electrinoCount"],
-            positrino_count=residue_counts["positrinoCount"],
-        ),
-        *[
-            {
-                "id": intermediate_id,
-                "assemblyId": "pro_noether_core_I",
-                "title": normalize_text(source_occurrence.get("title")) or ASSEMBLY_DISPLAY["pro_noether_core_I"]["title"],
-            }
-            for intermediate_id, source_occurrence in zip(
-                pro_support_intermediate_ids,
-                pro_support_occurrences[:required_support_count],
-            )
-        ],
-        *[
-            {
-                "id": intermediate_id,
-                "assemblyId": "anti_noether_core_I",
-                "title": normalize_text(source_occurrence.get("title"))
-                or ASSEMBLY_DISPLAY["anti_noether_core_I"]["title"],
-            }
-            for intermediate_id, source_occurrence in zip(
-                anti_support_intermediate_ids,
-                anti_support_occurrences[:required_support_count],
-            )
-        ],
-    ]
-
-    reactant_operator_choices = [
-        {
-            "id": f"reactant_operator.{prefix}.dissociate.1",
-            "type": "dissociate",
-            "lawId": f"law.{prefix}.dissociate.v1",
-            "requiredSupportRows": [
-                {"rowAssemblyId": "pro_noether_core_I", "count": required_support_count},
-                {"rowAssemblyId": "anti_noether_core_I", "count": required_support_count},
-            ],
-            "inputOccurrenceKeys": [primary_reactant_id],
-            "outputOccurrenceKeys": [core_occurrence_key, residue_occurrence_key],
-        },
-        *[
-            {
-                "id": f"reactant_operator.{prefix}.pass_thru.pro_{index}",
-                "type": "pass-thru",
-                "lawId": None,
-                "inputOccurrenceKeys": [normalize_text(source_occurrence.get("id"))],
-                "outputOccurrenceKeys": [intermediate_id],
-            }
-            for index, (source_occurrence, intermediate_id) in enumerate(
-                zip(pro_support_occurrences[:required_support_count], pro_support_intermediate_ids),
-                start=1,
-            )
-        ],
-        *[
-            {
-                "id": f"reactant_operator.{prefix}.pass_thru.anti_{index}",
-                "type": "pass-thru",
-                "lawId": None,
-                "inputOccurrenceKeys": [normalize_text(source_occurrence.get("id"))],
-                "outputOccurrenceKeys": [intermediate_id],
-            }
-            for index, (source_occurrence, intermediate_id) in enumerate(
-                zip(anti_support_occurrences[:required_support_count], anti_support_intermediate_ids),
-                start=1,
-            )
-        ],
-    ]
-
-    core_product_ids = [normalize_text(product["id"]) for product in products[:3]]
-    visible_product_ids = [normalize_text(product["id"]) for product in products[3:]]
-    product_operator_choices: list[dict[str, Any]] = []
-    provenance_outputs: list[dict[str, Any]] = []
-
-    if charge == "minus":
-        product_operator_choices.extend(
-            [
-                {
-                    "id": f"product_operator.{prefix}.associate.1",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.electron.v1",
-                    "inputOccurrenceKeys": [residue_occurrence_key, pro_support_intermediate_ids[0]],
-                    "outputOccurrenceKeys": [core_product_ids[0]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.2",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.anti_electron_neutrino.v1",
-                    "inputOccurrenceKeys": [pro_support_intermediate_ids[1], anti_support_intermediate_ids[0]],
-                    "outputOccurrenceKeys": [core_product_ids[1]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.3",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.muon_neutrino.v1",
-                    "inputOccurrenceKeys": [core_occurrence_key, anti_support_intermediate_ids[1]],
-                    "outputOccurrenceKeys": [core_product_ids[2]],
-                },
-            ]
-        )
-        provenance_outputs.extend(
-            [
-                {
-                    "occurrenceKey": core_product_ids[0],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "pro_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[1],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [
-                        {"rowAssemblyId": "pro_noether_core_I", "count": 1},
-                        {"rowAssemblyId": "anti_noether_core_I", "count": 1},
-                    ],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[2],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-            ]
-        )
-    else:
-        product_operator_choices.extend(
-            [
-                {
-                    "id": f"product_operator.{prefix}.associate.1",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.positron.v1",
-                    "inputOccurrenceKeys": [residue_occurrence_key, anti_support_intermediate_ids[0]],
-                    "outputOccurrenceKeys": [core_product_ids[0]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.2",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.electron_neutrino.v1",
-                    "inputOccurrenceKeys": [anti_support_intermediate_ids[1], pro_support_intermediate_ids[0]],
-                    "outputOccurrenceKeys": [core_product_ids[1]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.associate.3",
-                    "type": "associate",
-                    "lawId": f"law.{prefix}.associate.anti_muon_neutrino.v1",
-                    "inputOccurrenceKeys": [core_occurrence_key, pro_support_intermediate_ids[1]],
-                    "outputOccurrenceKeys": [core_product_ids[2]],
-                },
-            ]
-        )
-        provenance_outputs.extend(
-            [
-                {
-                    "occurrenceKey": core_product_ids[0],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "anti_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[1],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [
-                        {"rowAssemblyId": "anti_noether_core_I", "count": 1},
-                        {"rowAssemblyId": "pro_noether_core_I", "count": 1},
-                    ],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": core_product_ids[2],
-                    "provenanceClass": "active_rewrite",
-                    "supportSourceRows": [{"rowAssemblyId": "pro_noether_core_I", "count": 1}],
-                    "ambiguous": False,
-                },
-            ]
-        )
-
-    if radiative:
-        if len(visible_product_ids) != 2:
-            return None
-        product_operator_choices.extend(
-            [
-                {
-                    "id": f"product_operator.{prefix}.pass_thru.4",
-                    "type": "pass-thru",
-                    "lawId": None,
-                    "inputOccurrenceKeys": [pro_support_intermediate_ids[2]],
-                    "outputOccurrenceKeys": [visible_product_ids[0]],
-                },
-                {
-                    "id": f"product_operator.{prefix}.pass_thru.5",
-                    "type": "pass-thru",
-                    "lawId": None,
-                    "inputOccurrenceKeys": [anti_support_intermediate_ids[2]],
-                    "outputOccurrenceKeys": [visible_product_ids[1]],
-                },
-            ]
-        )
-        provenance_outputs.extend(
-            [
-                {
-                    "occurrenceKey": visible_product_ids[0],
-                    "provenanceClass": "pass_thru",
-                    "supportSourceRows": [],
-                    "ambiguous": False,
-                },
-                {
-                    "occurrenceKey": visible_product_ids[1],
-                    "provenanceClass": "pass_thru",
-                    "supportSourceRows": [],
-                    "ambiguous": False,
-                },
-            ]
-        )
-    elif visible_product_ids:
-        return None
-
-    operator_diagnostics = validate_operator_balances(
-        request,
-        intermediate_occurrences,
-        [*reactant_operator_choices, *product_operator_choices],
-    )
-    intermediate_ledger_diagnostics = validate_intermediate_ledger(
-        request,
-        intermediate_occurrences,
-        product_operator_choices,
-    )
-    if operator_diagnostics or intermediate_ledger_diagnostics:
-        return None
-
-    publication_recipe_ids = [
-        primary_reactant_assembly_id,
-        *[normalize_text(occurrence["assemblyId"]) for occurrence in intermediate_occurrences],
-        *[normalize_text(product["assemblyId"]) for product in products],
-    ]
-    publication_ready = all_recipe_ids_are_publishable(publication_recipe_ids)
-    solve_graph = build_muon_publication_graph(
-        request,
-        prefix=prefix,
-        reactant_operator_choices=reactant_operator_choices,
-        intermediate_occurrences=intermediate_occurrences,
-        product_operator_choices=product_operator_choices,
-    )
-
-    non_identity_operator_count = 1 + sum(
-        1 for choice in product_operator_choices if normalize_text(choice.get("type")) == "associate"
-    )
-    intermediate_counts = count_assemblies(intermediate_occurrences)
-    support_pair_count = required_support_count
-    residue_label = f"{residue_counts['electrinoCount']}E/{residue_counts['positrinoCount']}P"
-
-    return {
-        "familyId": family_id,
-        "kind": "exact",
-        "score": {
-            "exactness": 0,
-            "primitiveMismatch": 0,
-            "middleMismatch": 0,
-            "auxiliaryBurden": support_pair_count,
-            "nonIdentityOperatorCount": non_identity_operator_count,
-            "dissociationCount": 1,
-            "ambiguityPenalty": 0,
-            "tieBreakKey": prefix,
-        },
-        "augmentation": {
-            "reactantSide": "none",
-            "productSide": "none",
-        },
-        "reactantAssemblies": count_assemblies(reactants),
-        "reactantSideOperators": reactant_operator_choices,
-        "intermediateAssemblies": intermediate_counts,
-        "productSideOperators": product_operator_choices,
-        "productAssemblies": count_assemblies(products),
-        "provenanceSummary": {
-            "summaryText": (
-                f"{ASSEMBLY_DISPLAY[primary_reactant_assembly_id]['title']} dissociates into "
-                f"{ASSEMBLY_DISPLAY[core_assembly_id]['title']} plus an unbound architrino residue "
-                f"({residue_label}), and downstream associate operators balance the visible products."
-            ),
-            "outputs": provenance_outputs,
-        },
-        "diagnostics": [],
-        "rawBranchCount": 1,
-        "publicationReady": publication_ready,
-        "canonicalCandidate": {
-            "candidateId": f"candidate.{prefix}.primary",
-            "exact": True,
-            "reactantAssemblies": count_assemblies(reactants),
-            "reactantSideOperators": reactant_operator_choices,
-            "intermediateAssemblies": intermediate_counts,
-            "productSideOperators": product_operator_choices,
-            "productAssemblies": count_assemblies(products),
-            "provenanceSummary": {
-                "summaryText": (
-                    f"{ASSEMBLY_DISPLAY[primary_reactant_assembly_id]['title']} dissociates into "
-                    f"{ASSEMBLY_DISPLAY[core_assembly_id]['title']} plus an unbound architrino residue "
-                    f"({residue_label}), and downstream associate operators balance the visible products."
-                ),
-                "outputs": provenance_outputs,
-            },
-            "solveGraph": solve_graph if publication_ready else None,
-        },
-    }
-
-
 def build_exact_family_for_request(request: dict[str, Any]) -> dict[str, Any] | None:
-    if request_is_vertical_slice_beta(request):
-        return build_exact_beta_family(request)
-    reactant_ids = get_request_assembly_ids(request, "reactants")
-    product_ids = get_request_assembly_ids(request, "products")
-
-    if reactant_ids == [
-        "pro_muon_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ] and product_ids == [
-        "pro_electron_I",
-        "anti_electron_neutrino_I",
-        "pro_muon_neutrino_II",
-    ]:
-        return build_exact_muon_decay_family(
-            request,
-            prefix="mu_minus_decay",
-            family_id="family.mu_minus.decay.exact.v2",
-            charge="minus",
-            radiative=False,
-        )
-
-    if reactant_ids == [
-        "pro_muon_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ] and product_ids == [
-        "pro_electron_I",
-        "anti_electron_neutrino_I",
-        "pro_muon_neutrino_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ]:
-        return build_exact_muon_decay_family(
-            request,
-            prefix="mu_minus_radiative",
-            family_id="family.mu_minus.radiative.exact.v2",
-            charge="minus",
-            radiative=True,
-        )
-
-    if reactant_ids == [
-        "anti_muon_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ] and product_ids == [
-        "anti_electron_I",
-        "pro_electron_neutrino_I",
-        "anti_muon_neutrino_II",
-    ]:
-        return build_exact_muon_decay_family(
-            request,
-            prefix="mu_plus_decay",
-            family_id="family.mu_plus.decay.exact.v2",
-            charge="plus",
-            radiative=False,
-        )
-
-    if reactant_ids == [
-        "anti_muon_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ] and product_ids == [
-        "anti_electron_I",
-        "pro_electron_neutrino_I",
-        "anti_muon_neutrino_II",
-        "pro_noether_core_I",
-        "anti_noether_core_I",
-    ]:
-        return build_exact_muon_decay_family(
-            request,
-            prefix="mu_plus_radiative",
-            family_id="family.mu_plus.radiative.exact.v2",
-            charge="plus",
-            radiative=True,
-        )
-
     return None
-
-
-def build_exact_beta_publication_graph(request: dict[str, Any]) -> dict[str, Any]:
-    reactants = request["reactants"]
-    products = request["products"]
-    intermediate_occurrences = [
-        {
-            "occurrenceKey": "intermediate_beta_exact.row.1",
-            "assemblyId": "pro_up_quark_I",
-            "title": "Pro Up Quark",
-            "anchorRow": 0,
-            "unitId": "unit_lane3_pro_up_quark_1.row.1",
-        },
-        {
-            "occurrenceKey": "intermediate_beta_exact.row.2",
-            "assemblyId": "pro_up_quark_I",
-            "title": "Pro Up Quark",
-            "anchorRow": 1,
-            "unitId": "unit_lane3_pro_up_quark_2.row.2",
-        },
-        {
-            "occurrenceKey": "intermediate_beta_exact.row.3",
-            "assemblyId": "pro_down_quark_I",
-            "title": "Pro Down Quark",
-            "anchorRow": 2,
-            "unitId": "unit_lane3_pro_down_quark_1.row.3",
-        },
-        {
-            "occurrenceKey": "intermediate_beta_exact.row.4",
-            "assemblyId": "pro_electron_I",
-            "title": "Pro Electron",
-            "anchorRow": 3,
-            "unitId": "unit_lane3_pro_electron_1.row.4",
-        },
-        {
-            "occurrenceKey": "intermediate_beta_exact.row.5",
-            "assemblyId": "anti_electron_neutrino_I",
-            "title": "Anti Electron Neutrino",
-            "anchorRow": 4,
-            "unitId": "unit_lane3_anti_electron_neutrino_1.row.5",
-        },
-    ]
-    units = [
-        {
-            "id": "unit_lane1_pro_down_quark_1.row.1",
-            "kind": "assembly",
-            "stage": "reactantAssemblies",
-            "recipeId": "pro_down_quark_I",
-            "occurrenceKey": reactants[0]["id"],
-            "title": "Pro Down Quark",
-            "anchorRow": 0,
-        },
-        {
-            "id": "unit_lane1_pro_up_quark_1.row.2",
-            "kind": "assembly",
-            "stage": "reactantAssemblies",
-            "recipeId": "pro_up_quark_I",
-            "occurrenceKey": reactants[1]["id"],
-            "title": "Pro Up Quark",
-            "anchorRow": 1,
-        },
-        {
-            "id": "unit_lane1_pro_down_quark_2.row.3",
-            "kind": "assembly",
-            "stage": "reactantAssemblies",
-            "recipeId": "pro_down_quark_I",
-            "occurrenceKey": reactants[2]["id"],
-            "title": "Pro Down Quark",
-            "anchorRow": 2,
-        },
-        {
-            "id": "unit_lane2_dissociate_1",
-            "kind": "operator",
-            "stage": "reactantSideOperators",
-            "recipeId": "dissociate",
-            "occurrenceKey": "reactant_operator.beta.dissociate.1",
-            "title": "Dissociate",
-            "anchorRow": 0,
-        },
-        {
-            "id": "unit_lane2_pass_thru_1",
-            "kind": "operator",
-            "stage": "reactantSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "reactant_operator.beta.pass_thru.1",
-            "title": "Pass Thru",
-            "anchorRow": 1,
-        },
-        {
-            "id": "unit_lane2_pass_thru_2",
-            "kind": "operator",
-            "stage": "reactantSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "reactant_operator.beta.pass_thru.2",
-            "title": "Pass Thru",
-            "anchorRow": 2,
-        },
-        *[
-            {
-                "id": record["unitId"],
-                "kind": "assembly",
-                "stage": "intermediateAssemblies",
-                "recipeId": record["assemblyId"],
-                "occurrenceKey": record["occurrenceKey"],
-                "title": record["title"],
-                "anchorRow": record["anchorRow"],
-            }
-            for record in intermediate_occurrences
-        ],
-        {
-            "id": "unit_lane4_pass_thru_1",
-            "kind": "operator",
-            "stage": "productSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "product_operator.beta.pass_thru.1",
-            "title": "Pass Thru",
-            "anchorRow": 0,
-        },
-        {
-            "id": "unit_lane4_pass_thru_2",
-            "kind": "operator",
-            "stage": "productSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "product_operator.beta.pass_thru.2",
-            "title": "Pass Thru",
-            "anchorRow": 1,
-        },
-        {
-            "id": "unit_lane4_pass_thru_3",
-            "kind": "operator",
-            "stage": "productSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "product_operator.beta.pass_thru.3",
-            "title": "Pass Thru",
-            "anchorRow": 2,
-        },
-        {
-            "id": "unit_lane4_pass_thru_4",
-            "kind": "operator",
-            "stage": "productSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "product_operator.beta.pass_thru.4",
-            "title": "Pass Thru",
-            "anchorRow": 3,
-        },
-        {
-            "id": "unit_lane4_pass_thru_5",
-            "kind": "operator",
-            "stage": "productSideOperators",
-            "recipeId": "pass-thru",
-            "occurrenceKey": "product_operator.beta.pass_thru.5",
-            "title": "Pass Thru",
-            "anchorRow": 4,
-        },
-        {
-            "id": "unit_lane5_pro_up_quark_1.row.1",
-            "kind": "assembly",
-            "stage": "productAssemblies",
-            "recipeId": products[0]["assemblyId"],
-            "occurrenceKey": products[0]["id"],
-            "title": "Pro Up Quark",
-            "anchorRow": 0,
-        },
-        {
-            "id": "unit_lane5_pro_down_quark_1.row.2",
-            "kind": "assembly",
-            "stage": "productAssemblies",
-            "recipeId": products[1]["assemblyId"],
-            "occurrenceKey": products[1]["id"],
-            "title": "Pro Down Quark",
-            "anchorRow": 1,
-        },
-        {
-            "id": "unit_lane5_pro_up_quark_2.row.3",
-            "kind": "assembly",
-            "stage": "productAssemblies",
-            "recipeId": products[2]["assemblyId"],
-            "occurrenceKey": products[2]["id"],
-            "title": "Pro Up Quark",
-            "anchorRow": 2,
-        },
-        {
-            "id": "unit_lane5_pro_electron_1.row.4",
-            "kind": "assembly",
-            "stage": "productAssemblies",
-            "recipeId": products[3]["assemblyId"],
-            "occurrenceKey": products[3]["id"],
-            "title": "Pro Electron",
-            "anchorRow": 3,
-        },
-        {
-            "id": "unit_lane5_anti_electron_neutrino_1.row.5",
-            "kind": "assembly",
-            "stage": "productAssemblies",
-            "recipeId": products[4]["assemblyId"],
-            "occurrenceKey": products[4]["id"],
-            "title": "Anti Electron Neutrino",
-            "anchorRow": 4,
-        },
-    ]
-    edges = [
-        {
-            "id": "reactant_1_to_operator_1",
-            "fromUnitId": "unit_lane1_pro_down_quark_1.row.1",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane2_dissociate_1",
-            "toPortId": "input",
-        },
-        {
-            "id": "reactant_2_to_operator_2",
-            "fromUnitId": "unit_lane1_pro_up_quark_1.row.2",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane2_pass_thru_1",
-            "toPortId": "input",
-        },
-        {
-            "id": "reactant_3_to_operator_3",
-            "fromUnitId": "unit_lane1_pro_down_quark_2.row.3",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane2_pass_thru_2",
-            "toPortId": "input",
-        },
-        {
-            "id": "operator_1_to_intermediate_1",
-            "fromUnitId": "unit_lane2_dissociate_1",
-            "fromPortId": "output_a",
-            "toUnitId": "unit_lane3_pro_up_quark_1.row.1",
-            "toPortId": "input",
-        },
-        {
-            "id": "operator_1_to_intermediate_4",
-            "fromUnitId": "unit_lane2_dissociate_1",
-            "fromPortId": "output_b",
-            "toUnitId": "unit_lane3_pro_electron_1.row.4",
-            "toPortId": "input",
-        },
-        {
-            "id": "operator_1_to_intermediate_5",
-            "fromUnitId": "unit_lane2_dissociate_1",
-            "fromPortId": "output_c",
-            "toUnitId": "unit_lane3_anti_electron_neutrino_1.row.5",
-            "toPortId": "input",
-        },
-        {
-            "id": "operator_2_to_intermediate_2",
-            "fromUnitId": "unit_lane2_pass_thru_1",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane3_pro_up_quark_2.row.2",
-            "toPortId": "input",
-        },
-        {
-            "id": "operator_3_to_intermediate_3",
-            "fromUnitId": "unit_lane2_pass_thru_2",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane3_pro_down_quark_1.row.3",
-            "toPortId": "input",
-        },
-        {
-            "id": "intermediate_1_to_product_operator_1",
-            "fromUnitId": "unit_lane3_pro_up_quark_1.row.1",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane4_pass_thru_1",
-            "toPortId": "input",
-        },
-        {
-            "id": "intermediate_2_to_product_operator_2",
-            "fromUnitId": "unit_lane3_pro_up_quark_2.row.2",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane4_pass_thru_2",
-            "toPortId": "input",
-        },
-        {
-            "id": "intermediate_3_to_product_operator_3",
-            "fromUnitId": "unit_lane3_pro_down_quark_1.row.3",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane4_pass_thru_3",
-            "toPortId": "input",
-        },
-        {
-            "id": "intermediate_4_to_product_operator_4",
-            "fromUnitId": "unit_lane3_pro_electron_1.row.4",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane4_pass_thru_4",
-            "toPortId": "input",
-        },
-        {
-            "id": "intermediate_5_to_product_operator_5",
-            "fromUnitId": "unit_lane3_anti_electron_neutrino_1.row.5",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane4_pass_thru_5",
-            "toPortId": "input",
-        },
-        {
-            "id": "product_operator_1_to_product_1",
-            "fromUnitId": "unit_lane4_pass_thru_1",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane5_pro_up_quark_1.row.1",
-            "toPortId": "input",
-        },
-        {
-            "id": "product_operator_2_to_product_2",
-            "fromUnitId": "unit_lane4_pass_thru_2",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane5_pro_down_quark_1.row.2",
-            "toPortId": "input",
-        },
-        {
-            "id": "product_operator_3_to_product_3",
-            "fromUnitId": "unit_lane4_pass_thru_3",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane5_pro_up_quark_2.row.3",
-            "toPortId": "input",
-        },
-        {
-            "id": "product_operator_4_to_product_4",
-            "fromUnitId": "unit_lane4_pass_thru_4",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane5_pro_electron_1.row.4",
-            "toPortId": "input",
-        },
-        {
-            "id": "product_operator_5_to_product_5",
-            "fromUnitId": "unit_lane4_pass_thru_5",
-            "fromPortId": "output",
-            "toUnitId": "unit_lane5_anti_electron_neutrino_1.row.5",
-            "toPortId": "input",
-        },
-    ]
-    return {
-        "schema": PDGSOLVE_PUBLICATION_GRAPH_SCHEMA,
-        "units": units,
-        "edges": edges,
-    }
-
-
-def build_exact_beta_family(request: dict[str, Any]) -> dict[str, Any]:
-    reactants = request["reactants"]
-    products = request["products"]
-    reactant_operator_choices = [
-        {
-            "id": "reactant_operator.beta.dissociate.1",
-            "type": "dissociate",
-            "lawId": "law.down_quark.beta_decay.v1",
-            "inputOccurrenceKeys": [reactants[0]["id"]],
-            "outputOccurrenceKeys": [
-                "intermediate_beta_exact.row.1",
-                "intermediate_beta_exact.row.4",
-                "intermediate_beta_exact.row.5",
-            ],
-        },
-        {
-            "id": "reactant_operator.beta.pass_thru.1",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": [reactants[1]["id"]],
-            "outputOccurrenceKeys": ["intermediate_beta_exact.row.2"],
-        },
-        {
-            "id": "reactant_operator.beta.pass_thru.2",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": [reactants[2]["id"]],
-            "outputOccurrenceKeys": ["intermediate_beta_exact.row.3"],
-        },
-    ]
-    product_operator_choices = [
-        {
-            "id": "product_operator.beta.pass_thru.1",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": ["intermediate_beta_exact.row.1"],
-            "outputOccurrenceKeys": [products[0]["id"]],
-        },
-        {
-            "id": "product_operator.beta.pass_thru.2",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": ["intermediate_beta_exact.row.2"],
-            "outputOccurrenceKeys": [products[1]["id"]],
-        },
-        {
-            "id": "product_operator.beta.pass_thru.3",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": ["intermediate_beta_exact.row.3"],
-            "outputOccurrenceKeys": [products[2]["id"]],
-        },
-        {
-            "id": "product_operator.beta.pass_thru.4",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": ["intermediate_beta_exact.row.4"],
-            "outputOccurrenceKeys": [products[3]["id"]],
-        },
-        {
-            "id": "product_operator.beta.pass_thru.5",
-            "type": "pass-thru",
-            "lawId": None,
-            "inputOccurrenceKeys": ["intermediate_beta_exact.row.5"],
-            "outputOccurrenceKeys": [products[4]["id"]],
-        },
-    ]
-    provenance_summary = {
-        "summaryText": (
-            "One down-quark occurrence rewrites into an up quark, electron, and "
-            "anti electron neutrino while the remaining quark rows pass through."
-        ),
-        "outputs": [
-            {
-                "occurrenceKey": products[0]["id"],
-                "provenanceClass": "active_rewrite",
-                "supportSourceRows": [],
-                "ambiguous": False,
-            },
-            {
-                "occurrenceKey": products[1]["id"],
-                "provenanceClass": "pass_thru",
-                "supportSourceRows": [],
-                "ambiguous": False,
-            },
-            {
-                "occurrenceKey": products[2]["id"],
-                "provenanceClass": "pass_thru",
-                "supportSourceRows": [],
-                "ambiguous": False,
-            },
-            {
-                "occurrenceKey": products[3]["id"],
-                "provenanceClass": "active_rewrite",
-                "supportSourceRows": [],
-                "ambiguous": False,
-            },
-            {
-                "occurrenceKey": products[4]["id"],
-                "provenanceClass": "active_rewrite",
-                "supportSourceRows": [],
-                "ambiguous": False,
-            },
-        ],
-    }
-    solve_graph = build_exact_beta_publication_graph(request)
-    return {
-        "familyId": DEFAULT_VERTICAL_SLICE_FAMILY_ID,
-        "kind": "exact",
-        "score": {
-            "exactness": 0,
-            "primitiveMismatch": 0,
-            "middleMismatch": 0,
-            "auxiliaryBurden": 0,
-            "nonIdentityOperatorCount": 1,
-            "dissociationCount": 1,
-            "ambiguityPenalty": 0,
-            "tieBreakKey": "beta_exact_primary",
-        },
-        "augmentation": {
-            "reactantSide": "none",
-            "productSide": "none",
-        },
-        "reactantAssemblies": count_assemblies(reactants),
-        "reactantSideOperators": reactant_operator_choices,
-        "intermediateAssemblies": [
-            {"assemblyId": "pro_up_quark_I", "count": 2},
-            {"assemblyId": "pro_down_quark_I", "count": 1},
-            {"assemblyId": "pro_electron_I", "count": 1},
-            {"assemblyId": "anti_electron_neutrino_I", "count": 1},
-        ],
-        "productSideOperators": product_operator_choices,
-        "productAssemblies": count_assemblies(products),
-        "provenanceSummary": provenance_summary,
-        "diagnostics": [],
-        "rawBranchCount": 2,
-        "publicationReady": True,
-        "canonicalCandidate": {
-            "candidateId": "candidate.beta.exact.primary",
-            "exact": True,
-            "reactantAssemblies": count_assemblies(reactants),
-            "reactantSideOperators": reactant_operator_choices,
-            "intermediateAssemblies": [
-                {"assemblyId": "pro_up_quark_I", "count": 2},
-                {"assemblyId": "pro_down_quark_I", "count": 1},
-                {"assemblyId": "pro_electron_I", "count": 1},
-                {"assemblyId": "anti_electron_neutrino_I", "count": 1},
-            ],
-            "productSideOperators": product_operator_choices,
-            "productAssemblies": count_assemblies(products),
-            "provenanceSummary": provenance_summary,
-            "solveGraph": solve_graph,
-        },
-    }
 
 
 def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
@@ -2162,7 +1065,7 @@ def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
         "productAssemblies": count_assemblies(product_occurrences),
         "provenanceSummary": {
             "summaryText": (
-                "No vertical-slice solver law is available for this request, so "
+                "No exact solver law is available for this request, so "
                 "pdgsolve emitted a deterministic no-exact-closure family."
             ),
             "outputs": provenance_outputs,
@@ -2171,7 +1074,7 @@ def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
             make_diagnostic(
                 "pdgsolve.search.unsupported_request",
                 "search",
-                "No exact vertical-slice solve rule is available for this request.",
+                "No exact solve rule is available for this request.",
                 blocking=True,
                 payload={
                     "requestId": normalize_text(request.get("requestId")),
@@ -2190,7 +1093,7 @@ def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
             "productAssemblies": count_assemblies(product_occurrences),
             "provenanceSummary": {
                 "summaryText": (
-                    "No vertical-slice solver law is available for this request, so "
+                    "No exact solver law is available for this request, so "
                     "pdgsolve emitted a deterministic no-exact-closure family."
                 ),
                 "outputs": provenance_outputs,
@@ -2201,8 +1104,6 @@ def build_unsupported_family(request: dict[str, Any]) -> dict[str, Any]:
 
 
 def build_problem_id(request: dict[str, Any]) -> str:
-    if request_is_vertical_slice_beta(request):
-        return DEFAULT_VERTICAL_SLICE_PROBLEM_ID
     request_id = normalize_text(request.get("requestId")) or "request"
     return f"pdgsolve_problem_{slugify(request_id)}"
 
@@ -2343,8 +1244,8 @@ def operator_counts_from_choice(
 def build_pdgedit_document_from_acceptance(
     acceptance: dict[str, Any],
     *,
-    document_id: str = DEFAULT_VERTICAL_SLICE_DOCUMENT_ID,
-    document_title: str = DEFAULT_VERTICAL_SLICE_TITLE,
+    document_id: str | None = None,
+    document_title: str | None = None,
 ) -> dict[str, Any]:
     solve_graph = acceptance["lockedSolveGraph"]
     occurrence_counts = build_occurrence_count_map_from_acceptance(acceptance)
@@ -2457,24 +1358,31 @@ def build_pdgedit_package(
     acceptance: dict[str, Any],
     pdgedit_document: dict[str, Any],
     *,
-    document_id: str = DEFAULT_VERTICAL_SLICE_DOCUMENT_ID,
-    document_title: str = DEFAULT_VERTICAL_SLICE_TITLE,
+    document_id: str | None = None,
+    document_title: str | None = None,
     publication_mode: str = "durable",
-    document_path: str = "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
+    document_path: str = "",
 ) -> dict[str, Any]:
+    resolved_document_id = normalize_text(document_id) or (
+        f"{normalize_text(acceptance.get('problemId'))}--{normalize_text(acceptance.get('familyId'))}"
+    )
+    resolved_document_title = normalize_text(document_title) or resolved_document_id
+    resolved_document_path = normalize_text(document_path) or (
+        f"content/contracts/generated/pdgedit/{resolved_document_id}.v1.json"
+    )
     return {
         "schema": PDGSOLVE_PDGEDIT_PACKAGE_SCHEMA,
         "sourceAcceptanceDigest": digest_json(acceptance),
         "publicationMode": publication_mode,
-        "documentId": document_id,
-        "documentTitle": document_title,
+        "documentId": resolved_document_id,
+        "documentTitle": resolved_document_title,
         "pdgeditDocument": clone_json(pdgedit_document),
         "manifestEntry": {
-            "id": document_id,
-            "title": document_title,
-            "displayTitle": document_title,
+            "id": resolved_document_id,
+            "title": resolved_document_title,
+            "displayTitle": resolved_document_title,
             "sourceKind": "exact",
-            "documentPath": document_path,
+            "documentPath": resolved_document_path,
         },
     }
 
@@ -2640,23 +1548,8 @@ def solve_manifest_payload(
     return build_result_corpus_index(manifest, result_records)
 
 
-def get_vertical_slice_artifacts() -> dict[str, Any]:
-    request = get_vertical_slice_request()
-    result = solve_request(request)
-    acceptance = build_acceptance(request, result, family_id=DEFAULT_VERTICAL_SLICE_FAMILY_ID)
-    pdgedit_document = build_pdgedit_document_from_acceptance(acceptance)
-    pdgedit_package = build_pdgedit_package(acceptance, pdgedit_document)
-    return {
-        "request": request,
-        "result": result,
-        "acceptance": acceptance,
-        "pdgeditDocument": pdgedit_document,
-        "pdgeditPackage": pdgedit_package,
-    }
-
-
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Minimal pdgsolve vertical-slice tool.")
+    parser = argparse.ArgumentParser(description="Minimal pdgsolve contract tool.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     solve_parser = subparsers.add_parser("solve", help="Solve one explicit pdgsolve request.")
@@ -2702,27 +1595,6 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     publish_parser.add_argument("acceptance_path", type=Path)
     publish_parser.add_argument("--write", type=Path, default=None)
-
-    examples_parser = subparsers.add_parser(
-        "write-vertical-slice", help="Write the checked-in vertical-slice example artifacts."
-    )
-    examples_parser.add_argument("--request-path", type=Path, default=DEFAULT_VERTICAL_SLICE_REQUEST_PATH)
-    examples_parser.add_argument("--result-path", type=Path, default=DEFAULT_VERTICAL_SLICE_RESULT_PATH)
-    examples_parser.add_argument(
-        "--acceptance-path",
-        type=Path,
-        default=DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH,
-    )
-    examples_parser.add_argument(
-        "--pdgedit-path",
-        type=Path,
-        default=DEFAULT_VERTICAL_SLICE_PDGEDIT_PATH,
-    )
-    examples_parser.add_argument(
-        "--pdgedit-package-path",
-        type=Path,
-        default=DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH,
-    )
 
     return parser.parse_args(argv)
 
@@ -2778,32 +1650,10 @@ def main(argv: list[str] | None = None) -> int:
         print_json(pdgedit_document)
         return 0
 
-    if args.command == "write-vertical-slice":
-        artifacts = get_vertical_slice_artifacts()
-        write_json(args.request_path, artifacts["request"])
-        write_json(args.result_path, artifacts["result"])
-        write_json(args.acceptance_path, artifacts["acceptance"])
-        write_json(args.pdgedit_path, artifacts["pdgeditDocument"])
-        write_json(args.pdgedit_package_path, artifacts["pdgeditPackage"])
-        print(args.request_path)
-        print(args.result_path)
-        print(args.acceptance_path)
-        print(args.pdgedit_path)
-        print(args.pdgedit_package_path)
-        return 0
-
     raise AssertionError(f"Unsupported command: {args.command}")
 
 
 __all__ = [
-    "DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH",
-    "DEFAULT_VERTICAL_SLICE_DOCUMENT_ID",
-    "DEFAULT_VERTICAL_SLICE_FAMILY_ID",
-    "DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH",
-    "DEFAULT_VERTICAL_SLICE_PDGEDIT_PATH",
-    "DEFAULT_VERTICAL_SLICE_PROBLEM_ID",
-    "DEFAULT_VERTICAL_SLICE_REQUEST_PATH",
-    "DEFAULT_VERTICAL_SLICE_RESULT_PATH",
     "build_acceptance",
     "build_pdgedit_document_from_acceptance",
     "build_pdgedit_package",
@@ -2811,13 +1661,10 @@ __all__ = [
     "count_assemblies",
     "digest_json",
     "dump_json",
-    "get_vertical_slice_artifacts",
-    "get_vertical_slice_request",
     "load_json",
     "main",
     "parse_args",
     "print_json",
-    "request_is_vertical_slice_beta",
     "solve_manifest_payload",
     "solve_request",
     "write_json",

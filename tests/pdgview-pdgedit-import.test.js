@@ -103,15 +103,15 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const stagingOptions = Object.freeze({
-  sourceDocumentId: "pdgsolve_free_neutron_beta_exact",
-  sourcePath: "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
-  title: "Free neutron beta exact",
+  sourceDocumentId: "pass_thru_up_quark",
+  sourcePath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+  title: "Pass thru up quark",
 });
 
 test("pdgview builds the downstream staging contract from accepted pdgedit output", () => {
-  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
   const stagingSchema = readJson("src/contracts/pdgview-staging/v1/schema.json");
-  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json");
+  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pass_thru_up_quark.v1.json");
   const builtStaging = buildPdgviewStagingContractFromPdgeditDocument(pdgeditDocument, stagingOptions);
 
   assert.deepEqual(validateAgainstSchema(builtStaging, stagingSchema), [], "pdgview staging schema drifted");
@@ -122,7 +122,7 @@ test("pdgview builds the downstream staging contract from accepted pdgedit outpu
 });
 
 test("pdgview staging preserves observer framing from the accepted pdgedit assembly roles", () => {
-  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pdgsolve_free_neutron_beta_exact.v1.json");
+  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pass_thru_up_quark.v1.json");
   const framingState = resolvePdgviewViewportFramingState(expectedStaging.export.sceneDocument, 4, {
     start: 0,
     end: 24,
@@ -132,14 +132,14 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
 
   assert.deepEqual(requiredAssemblyIds, expectedRequiredAssemblyIds);
   assert.equal(framingState.framing.preset, "wide");
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane1_pro_down_quark_1row1"), true);
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane5_pro_electron_1row4"), true);
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("unit_lane3_pro_electron_1row4"), false);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("reactant_up_quark"), true);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("product_up_quark"), true);
+  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("intermediate_up_quark"), false);
   assert.equal(
     expectedStaging.draftState.assembliesDraft.some(
       (draft) =>
-        draft.name === "Pro Electron" &&
-        draft.metadata?.source?.objectId === "unit_lane5_pro_electron_1.row.4"
+        draft.name === "Output Up Quark" &&
+        draft.metadata?.source?.objectId === "product_up_quark"
     ),
     true
   );

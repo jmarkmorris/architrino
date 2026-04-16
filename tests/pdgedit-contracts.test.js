@@ -113,7 +113,6 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const PDGEDIT_EXAMPLE_PATHS = [
-  "content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json",
   "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   "content/contracts/examples/pdgedit/unbound_architrinos.v1.json",
   "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
@@ -221,18 +220,6 @@ test("pdgedit example links and composite labels stay within the explicit bounda
       );
     });
   });
-});
-
-test("the solver-published free neutron beta pdgedit document uses the normalized unit, edge, and label id vocabulary", () => {
-  const example = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
-
-  assert.equal(
-    example.assemblies.every((assembly) => assembly.id.startsWith("unit_") && assembly.id.includes(".row.")),
-    true
-  );
-  assert.equal(example.operators.every((operator) => operator.id.startsWith("unit_")), true);
-  assert.equal(example.links.every((link) => link.id.startsWith("edge_")), true);
-  assert.equal(example.compositeLabels.every((label) => label.id.startsWith("label.")), true);
 });
 
 test("pdgedit examples include at least one explicit assembly payload for every current single-row four-tile review row", () => {
@@ -390,12 +377,12 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   const liveManifest = { schema: "pdgedit-library-manifest/v1", defaultEntryId: "", entries: [] };
   const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
   const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
-  const launchedDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
+  const launchedDocument = readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
   const launchPayload = createPdgeditLaunchPayload({
-    sourceKind: "pdgsolve",
-    sourceReference: "pdgsolve_problem_free_neutron_beta_exact::family.beta.exact.v1::v1",
-    documentId: "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1",
-    documentTitle: "Free neutron beta exact",
+    sourceKind: "developer",
+    sourceReference: "reference:pass_thru_up_quark",
+    documentId: "pass_thru_up_quark_launch",
+    documentTitle: "Pass thru up quark launch",
     pdgeditDocument: launchedDocument,
   });
   const fetchCalls = [];
@@ -431,8 +418,8 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
     new URL("../.tmp/pdgsolve/pdgedit/manifest.v1.json", import.meta.url).href,
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   ]);
-  assert.equal(bootstrap.selectedEntry.id, "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1");
-  assert.equal(bootstrap.selectedEntry.displayTitle, "Free neutron beta exact");
+  assert.equal(bootstrap.selectedEntry.id, "pass_thru_up_quark_launch");
+  assert.equal(bootstrap.selectedEntry.displayTitle, "Pass thru up quark launch");
   assert.equal(bootstrap.selectedEntry.documentPath, "");
   assert.deepEqual(bootstrap.document, normalizePdgeditDocument(launchedDocument));
   assert.deepEqual(bootstrap.launchPayload, launchPayload);

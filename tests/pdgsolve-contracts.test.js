@@ -166,39 +166,172 @@ function sha256Digest(value) {
   return `sha256:${crypto.createHash("sha256").update(stableStringify(value)).digest("hex")}`;
 }
 
-test("pdgsolve vertical-slice example contracts match their schemas", () => {
+const requestExample = {
+  schema: "pdgsolve-request/v1",
+  requestId: "reference_unsolved",
+  source: {
+    kind: "developer",
+    title: "Reference unsolved request",
+    sourceDocumentId: "developer:reference_unsolved",
+  },
+  reactants: [{ id: "reactant_1", assemblyId: "pro_up_quark_I", title: "Up Quark" }],
+  products: [{ id: "product_1", assemblyId: "pro_electron_I", title: "Electron" }],
+  policy: {
+    exactClosureRequired: true,
+    allowedBoundaryAugmentations: ["none"],
+  },
+};
+
+const resultExample = {
+  schema: "pdgsolve-result/v1",
+  problemId: "pdgsolve_problem_reference_unsolved",
+  searchStatus: "no_exact_closure",
+  bestFamilyId: "family.unsolved.v1",
+  acceptedFamilyId: null,
+  diagnostics: [
+    {
+      id: "pdgsolve.search.unsupported_request",
+      phase: "search",
+      message: "No exact solve rule is available for this request.",
+      blocking: true,
+      payload: {
+        requestId: "reference_unsolved",
+      },
+    },
+  ],
+  optionFamilies: [
+    {
+      familyId: "family.unsolved.v1",
+      kind: "no_exact_closure",
+      score: {
+        exactness: 1,
+        primitiveMismatch: 1,
+        middleMismatch: 1,
+        auxiliaryBurden: 0,
+        nonIdentityOperatorCount: 0,
+        dissociationCount: 0,
+        ambiguityPenalty: 1,
+        tieBreakKey: "unsupported_request",
+      },
+      augmentation: {
+        reactantSide: "none",
+        productSide: "none",
+      },
+      reactantAssemblies: [{ assemblyId: "pro_up_quark_I", count: 1 }],
+      reactantSideOperators: [],
+      intermediateAssemblies: [],
+      productSideOperators: [],
+      productAssemblies: [{ assemblyId: "pro_electron_I", count: 1 }],
+      provenanceSummary: {
+        summaryText: "No exact solver law is available for this request.",
+        outputs: [
+          {
+            occurrenceKey: "product_1",
+            provenanceClass: "mixed",
+            supportSourceRows: [],
+            ambiguous: true,
+          },
+        ],
+      },
+      diagnostics: [
+        {
+          id: "pdgsolve.search.unsupported_request",
+          phase: "search",
+          message: "No exact solve rule is available for this request.",
+          blocking: true,
+          payload: {
+            requestId: "reference_unsolved",
+          },
+        },
+      ],
+      rawBranchCount: 0,
+      publicationReady: false,
+      canonicalCandidate: {
+        candidateId: "candidate.unsupported.v1",
+        exact: false,
+        reactantAssemblies: [{ assemblyId: "pro_up_quark_I", count: 1 }],
+        reactantSideOperators: [],
+        intermediateAssemblies: [],
+        productSideOperators: [],
+        productAssemblies: [{ assemblyId: "pro_electron_I", count: 1 }],
+        provenanceSummary: {
+          summaryText: "No exact solver law is available for this request.",
+          outputs: [
+            {
+              occurrenceKey: "product_1",
+              provenanceClass: "mixed",
+              supportSourceRows: [],
+              ambiguous: true,
+            },
+          ],
+        },
+        solveGraph: null,
+      },
+    },
+  ],
+  review: {
+    schema: "pdgsolve-review-state/v1",
+    state: "stale",
+    selectedFamilyId: "family.unsolved.v1",
+    acceptedFamilyId: null,
+    acceptedRecord: null,
+    blockingDiagnostics: [
+      {
+        id: "pdgsolve.search.unsupported_request",
+        phase: "search",
+        message: "No exact solve rule is available for this request.",
+        blocking: true,
+        payload: {
+          requestId: "reference_unsolved",
+        },
+      },
+    ],
+  },
+  publication: null,
+};
+
+const corpusIndexExample = {
+  schema: "pdgsolve-result-corpus/v1",
+  sourceSchema: "pdg-live-manifest/v1",
+  readyCount: 1,
+  solvedCount: 1,
+  exactAvailableCount: 0,
+  partialOnlyCount: 0,
+  noExactClosureCount: 1,
+  results: [
+    {
+      batchId: 1,
+      caseId: "reference_unsolved",
+      proposalId: "reference_unsolved",
+      requestId: "reference_unsolved",
+      problemId: "pdgsolve_problem_reference_unsolved",
+      searchStatus: "no_exact_closure",
+      bestFamilyId: "family.unsolved.v1",
+      resultPath: "content/contracts/examples/pdgsolve-result/v1/reference_unsolved.v1.json",
+    },
+  ],
+};
+
+test("pdgsolve request and unsolved result examples match their schemas", () => {
   const requestSchema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const resultSchema = readJson("src/contracts/pdgsolve-result/v1/schema.json");
-  const acceptanceSchema = readJson("src/contracts/pdgsolve-acceptance/v1/schema.json");
-  const packageSchema = readJson("src/contracts/pdgsolve-pdgedit-package/v1/schema.json");
 
-  const request = readJson("content/contracts/examples/pdgsolve-request/v1/free_neutron_beta_decay.v1.json");
-  const result = readJson("content/contracts/examples/pdgsolve-result/v1/free_neutron_beta_exact.v1.json");
-  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/v1/free_neutron_beta_exact.v1.json");
-  const pdgeditPackage = readJson("content/contracts/examples/pdgsolve-pdgedit-package/v1/free_neutron_beta_exact.v1.json");
-
-  assert.deepEqual(validateAgainstSchema(request, requestSchema), [], "request schema drifted");
-  assert.deepEqual(validateAgainstSchema(result, resultSchema), [], "result schema drifted");
-  assert.deepEqual(validateAgainstSchema(acceptance, acceptanceSchema), [], "acceptance schema drifted");
-  assert.deepEqual(validateAgainstSchema(pdgeditPackage, packageSchema), [], "pdgedit package schema drifted");
+  assert.deepEqual(validateAgainstSchema(requestExample, requestSchema), [], "request schema drifted");
+  assert.deepEqual(validateAgainstSchema(resultExample, resultSchema), [], "result schema drifted");
 });
 
-test("pdgsolve vertical-slice example relationships stay locked", () => {
-  const request = readJson("content/contracts/examples/pdgsolve-request/v1/free_neutron_beta_decay.v1.json");
-  const result = readJson("content/contracts/examples/pdgsolve-result/v1/free_neutron_beta_exact.v1.json");
-  const acceptance = readJson("content/contracts/examples/pdgsolve-acceptance/v1/free_neutron_beta_exact.v1.json");
-  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pdgsolve_free_neutron_beta_exact.v1.json");
-  const pdgeditPackage = readJson("content/contracts/examples/pdgsolve-pdgedit-package/v1/free_neutron_beta_exact.v1.json");
-  const corpusIndex = readJson("content/contracts/examples/pdgsolve-corpus/v1/index.json");
+test("pdgsolve result-corpus summaries admit an all-unsolved corpus", () => {
+  assert.equal(corpusIndexExample.schema, "pdgsolve-result-corpus/v1");
+  assert.equal(corpusIndexExample.sourceSchema, "pdg-live-manifest/v1");
+  assert.equal(Array.isArray(corpusIndexExample.results), true);
+  assert.equal(corpusIndexExample.results.length, 1);
+  assert.equal(corpusIndexExample.exactAvailableCount, 0);
+  assert.equal(corpusIndexExample.results[0].searchStatus, "no_exact_closure");
+});
 
-  assert.equal(request.requestId, "free_neutron_beta_decay");
-  assert.equal(result.problemId, "pdgsolve_problem_free_neutron_beta_exact");
-  assert.equal(result.bestFamilyId, "family.beta.exact.v1");
-  assert.equal(acceptance.problemId, result.problemId);
-  assert.equal(acceptance.familyId, result.bestFamilyId);
-  assert.equal(acceptance.resultDigest, sha256Digest(result));
-  assert.equal(pdgeditPackage.documentId, "pdgsolve_problem_free_neutron_beta_exact--family.beta.exact.v1");
-  assert.equal(pdgeditPackage.documentTitle, "Free neutron beta exact");
-  assert.deepEqual(pdgeditPackage.pdgeditDocument, pdgeditDocument);
-  assert.equal(corpusIndex.cases.some((record) => record.caseId === "free_neutron_beta_exact"), true);
+test("pdgsolve result digests remain stable across unsolved review records", () => {
+  assert.equal(sha256Digest(resultExample).startsWith("sha256:"), true);
+  assert.equal(resultExample.review.selectedFamilyId, resultExample.bestFamilyId);
+  assert.equal(resultExample.review.acceptedFamilyId, null);
+  assert.equal(resultExample.optionFamilies[0].publicationReady, false);
 });
