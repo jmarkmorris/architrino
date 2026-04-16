@@ -271,6 +271,42 @@ PDGEDIT_X_BY_STAGE = {
     "productAssemblies": 16,
 }
 
+FERMION_RESIDUE_COUNTS = {
+    "pro_electron_I": {"electrinoCount": 6, "positrinoCount": 0},
+    "anti_electron_I": {"electrinoCount": 0, "positrinoCount": 6},
+    "pro_muon_II": {"electrinoCount": 6, "positrinoCount": 0},
+    "anti_muon_II": {"electrinoCount": 0, "positrinoCount": 6},
+    "pro_tau_III": {"electrinoCount": 6, "positrinoCount": 0},
+    "anti_tau_III": {"electrinoCount": 0, "positrinoCount": 6},
+    "pro_electron_neutrino_I": {"electrinoCount": 3, "positrinoCount": 3},
+    "anti_electron_neutrino_I": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_muon_neutrino_II": {"electrinoCount": 3, "positrinoCount": 3},
+    "anti_muon_neutrino_II": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_tau_neutrino_III": {"electrinoCount": 3, "positrinoCount": 3},
+    "anti_tau_neutrino_III": {"electrinoCount": 3, "positrinoCount": 3},
+    "pro_down_quark_I": {"electrinoCount": 4, "positrinoCount": 2},
+    "anti_down_quark_I": {"electrinoCount": 2, "positrinoCount": 4},
+    "pro_strange_quark_II": {"electrinoCount": 4, "positrinoCount": 2},
+    "anti_strange_quark_II": {"electrinoCount": 2, "positrinoCount": 4},
+    "pro_bottom_quark_III": {"electrinoCount": 4, "positrinoCount": 2},
+    "anti_bottom_quark_III": {"electrinoCount": 2, "positrinoCount": 4},
+    "pro_up_quark_I": {"electrinoCount": 1, "positrinoCount": 5},
+    "anti_up_quark_I": {"electrinoCount": 5, "positrinoCount": 1},
+    "pro_charm_quark_II": {"electrinoCount": 1, "positrinoCount": 5},
+    "anti_charm_quark_II": {"electrinoCount": 5, "positrinoCount": 1},
+    "pro_top_quark_III": {"electrinoCount": 1, "positrinoCount": 5},
+    "anti_top_quark_III": {"electrinoCount": 5, "positrinoCount": 1},
+}
+
+NOETHER_CORE_SUCCESSOR = {
+    "pro_noether_core_I": "pro_noether_core_II",
+    "anti_noether_core_I": "anti_noether_core_II",
+    "pro_noether_core_II": "pro_noether_core_III",
+    "anti_noether_core_II": "anti_noether_core_III",
+    "pro_noether_core_III": None,
+    "anti_noether_core_III": None,
+}
+
 
 def normalize_text(value: Any) -> str:
     return str(value or "").strip()
@@ -571,48 +607,77 @@ def get_noether_core_for_assembly(assembly_id: str) -> str | None:
     return None
 
 
-def get_unbound_counts_for_assembly(assembly_id: str) -> dict[str, int] | None:
-    if assembly_id.startswith("pro_noether_core_") or assembly_id.startswith("anti_noether_core_"):
-        return build_primitive_counts(0, 0)
-    charged_matter = {"pro_electron_I", "pro_muon_II", "pro_tau_III"}
-    charged_antimatter = {"anti_electron_I", "anti_muon_II", "anti_tau_III"}
-    neutrinos = {
-        "pro_electron_neutrino_I",
-        "anti_electron_neutrino_I",
-        "pro_muon_neutrino_II",
-        "anti_muon_neutrino_II",
-        "pro_tau_neutrino_III",
-        "anti_tau_neutrino_III",
+def build_standard_model_law_inventory() -> dict[str, Any]:
+    pass_thru = {
+        assembly_id: {
+            "lawId": f"pass_thru.{assembly_id}",
+        }
+        for assembly_id in REQUEST_PRODUCT_ASSEMBLY_IDS
     }
-    down_matter = {"pro_down_quark_I", "pro_strange_quark_II", "pro_bottom_quark_III"}
-    down_antimatter = {"anti_down_quark_I", "anti_strange_quark_II", "anti_bottom_quark_III"}
-    up_matter = {"pro_up_quark_I", "pro_charm_quark_II", "pro_top_quark_III"}
-    up_antimatter = {"anti_up_quark_I", "anti_charm_quark_II", "anti_top_quark_III"}
-    if assembly_id in charged_matter:
-        return build_primitive_counts(6, 0)
-    if assembly_id in charged_antimatter:
-        return build_primitive_counts(0, 6)
-    if assembly_id in neutrinos:
-        return build_primitive_counts(3, 3)
-    if assembly_id in down_matter:
-        return build_primitive_counts(4, 2)
-    if assembly_id in down_antimatter:
-        return build_primitive_counts(2, 4)
-    if assembly_id in up_matter:
-        return build_primitive_counts(1, 5)
-    if assembly_id in up_antimatter:
-        return build_primitive_counts(5, 1)
-    return None
+    dissociation: dict[str, dict[str, Any]] = {}
+    association: dict[str, dict[str, Any]] = {}
+
+    for assembly_id, residue_counts in FERMION_RESIDUE_COUNTS.items():
+        core_assembly_id = get_noether_core_for_assembly(assembly_id)
+        if core_assembly_id is None:
+            continue
+        dissociation[assembly_id] = {
+            "lawId": f"dissociate.{assembly_id}",
+            "outputAssemblyIds": [core_assembly_id],
+            "residueCounts": build_primitive_counts(
+                residue_counts["electrinoCount"],
+                residue_counts["positrinoCount"],
+            ),
+        }
+        association[assembly_id] = {
+            "lawId": f"associate.{assembly_id}",
+            "requiredAssemblyIds": [core_assembly_id],
+            "requiredResidueCounts": build_primitive_counts(
+                residue_counts["electrinoCount"],
+                residue_counts["positrinoCount"],
+            ),
+        }
+
+    for assembly_id, successor_assembly_id in NOETHER_CORE_SUCCESSOR.items():
+        output_assembly_ids = [successor_assembly_id] if successor_assembly_id is not None else []
+        dissociation[assembly_id] = {
+            "lawId": f"dissociate.{assembly_id}",
+            "outputAssemblyIds": output_assembly_ids,
+            "residueCounts": build_primitive_counts(1, 1),
+        }
+
+    return {
+        "lawTableId": LAW_TABLE_ID,
+        "passThru": pass_thru,
+        "dissociation": dissociation,
+        "association": association,
+    }
+
+
+STANDARD_MODEL_LAW_INVENTORY = build_standard_model_law_inventory()
+
+
+def get_pass_thru_law(assembly_id: str) -> dict[str, Any] | None:
+    return STANDARD_MODEL_LAW_INVENTORY["passThru"].get(assembly_id)
+
+
+def get_dissociation_law(assembly_id: str) -> dict[str, Any] | None:
+    return STANDARD_MODEL_LAW_INVENTORY["dissociation"].get(assembly_id)
+
+
+def get_association_law(assembly_id: str) -> dict[str, Any] | None:
+    return STANDARD_MODEL_LAW_INVENTORY["association"].get(assembly_id)
 
 
 def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
     occurrence_id = normalize_text(occurrence.get("id"))
     assembly_id = normalize_text(occurrence.get("assemblyId"))
+    pass_thru_law = get_pass_thru_law(assembly_id)
     choices = [
         {
             "id": f"reactant_operator.{slugify(occurrence_id)}.pass_thru",
             "type": "pass-thru",
-            "lawId": None,
+            "lawId": pass_thru_law["lawId"] if pass_thru_law is not None else None,
             "inputOccurrenceKeys": [occurrence_id],
             "outputOccurrenceKeys": [occurrence_id],
             "requiredSupportRows": [],
@@ -621,33 +686,36 @@ def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, A
             "dissociation": False,
         }
     ]
-    residue_counts = get_unbound_counts_for_assembly(assembly_id)
-    noether_core_id = get_noether_core_for_assembly(assembly_id)
-    if (
-        residue_counts is not None
-        and noether_core_id is not None
-        and not assembly_id.startswith("pro_noether_core_")
-        and not assembly_id.startswith("anti_noether_core_")
-    ):
-        core_occurrence = {
-            "id": f"intermediate.{slugify(occurrence_id)}.core",
-            "assemblyId": noether_core_id,
-            "title": ASSEMBLY_DISPLAY[noether_core_id]["title"],
-        }
+    dissociation_law = get_dissociation_law(assembly_id)
+    if dissociation_law is not None:
+        intermediate_occurrences = []
+        for output_index, output_assembly_id in enumerate(dissociation_law.get("outputAssemblyIds", []), start=1):
+            intermediate_occurrences.append(
+                {
+                    "id": f"intermediate.{slugify(occurrence_id)}.output.{output_index}",
+                    "assemblyId": output_assembly_id,
+                    "title": ASSEMBLY_DISPLAY[output_assembly_id]["title"],
+                }
+            )
+        residue_counts = dissociation_law["residueCounts"]
         residue_occurrence = build_residue_occurrence(
             f"intermediate.{slugify(occurrence_id)}.residue",
             electrino_count=residue_counts["electrinoCount"],
             positrino_count=residue_counts["positrinoCount"],
         )
+        intermediate_occurrences.append(residue_occurrence)
         choices.append(
             {
                 "id": f"reactant_operator.{slugify(occurrence_id)}.dissociate",
                 "type": "dissociate",
-                "lawId": f"dissociate.{assembly_id}",
+                "lawId": dissociation_law["lawId"],
                 "inputOccurrenceKeys": [occurrence_id],
-                "outputOccurrenceKeys": [core_occurrence["id"], residue_occurrence["id"]],
+                "outputOccurrenceKeys": [
+                    normalize_text(intermediate_occurrence["id"])
+                    for intermediate_occurrence in intermediate_occurrences
+                ],
                 "requiredSupportRows": [],
-                "intermediateOccurrences": [core_occurrence, residue_occurrence],
+                "intermediateOccurrences": intermediate_occurrences,
                 "nonIdentity": True,
                 "dissociation": True,
             }
@@ -658,15 +726,20 @@ def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, A
 def build_product_local_choices(occurrence: dict[str, Any]) -> list[dict[str, Any]]:
     occurrence_id = normalize_text(occurrence.get("id"))
     assembly_id = normalize_text(occurrence.get("assemblyId"))
+    pass_thru_law = get_pass_thru_law(assembly_id)
     choices = [
         {
             "id": f"product_operator.{slugify(occurrence_id)}.pass_thru",
             "type": "pass-thru",
-            "lawId": None,
+            "lawId": pass_thru_law["lawId"] if pass_thru_law is not None else None,
             "inputOccurrenceKeys": [occurrence_id],
             "outputOccurrenceKeys": [occurrence_id],
             "requiredSupportRows": [],
-            "requiredIntermediateRows": {assembly_id: 1},
+            "requiredIntermediateRows": (
+                {}
+                if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+                else {assembly_id: 1}
+            ),
             "requiredResidueCounts": build_primitive_counts(
                 int(occurrence.get("electrinoCount", 0) or 0),
                 int(occurrence.get("positrinoCount", 0) or 0),
@@ -676,25 +749,41 @@ def build_product_local_choices(occurrence: dict[str, Any]) -> list[dict[str, An
             "nonIdentity": False,
         }
     ]
-    residue_counts = get_unbound_counts_for_assembly(assembly_id)
-    noether_core_id = get_noether_core_for_assembly(assembly_id)
-    if residue_counts is not None and noether_core_id is not None and assembly_id != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+    association_law = get_association_law(assembly_id)
+    if association_law is not None and assembly_id != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+        required_assembly_ids = list(association_law.get("requiredAssemblyIds", []))
+        required_support_rows = [
+            {
+                "rowAssemblyId": required_assembly_id,
+                "count": 1,
+            }
+            for required_assembly_id in required_assembly_ids
+        ]
+        required_support_rows.append(
+            {
+                "rowAssemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+                "count": 1,
+            }
+        )
         choices.append(
             {
                 "id": f"product_operator.{slugify(occurrence_id)}.associate",
                 "type": "associate",
-                "lawId": f"associate.{assembly_id}",
-                "inputOccurrenceKeys": [f"intermediate_for.{occurrence_id}.core", f"intermediate_for.{occurrence_id}.residue"],
-                "outputOccurrenceKeys": [occurrence_id],
-                "requiredSupportRows": [
-                    {"rowAssemblyId": noether_core_id, "count": 1},
-                    {
-                        "rowAssemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
-                        "count": 1,
-                    },
+                "lawId": association_law["lawId"],
+                "inputOccurrenceKeys": [
+                    *[
+                        f"intermediate_for.{occurrence_id}.input.{index}"
+                        for index, _required_assembly_id in enumerate(required_assembly_ids, start=1)
+                    ],
+                    f"intermediate_for.{occurrence_id}.residue",
                 ],
-                "requiredIntermediateRows": {noether_core_id: 1},
-                "requiredResidueCounts": residue_counts,
+                "outputOccurrenceKeys": [occurrence_id],
+                "requiredSupportRows": required_support_rows,
+                "requiredIntermediateRows": {
+                    required_assembly_id: required_assembly_ids.count(required_assembly_id)
+                    for required_assembly_id in sorted(set(required_assembly_ids))
+                },
+                "requiredResidueCounts": clone_json(association_law["requiredResidueCounts"]),
                 "nonIdentity": True,
             }
         )
