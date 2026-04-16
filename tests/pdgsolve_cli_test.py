@@ -80,6 +80,42 @@ def make_core_to_residue_request(request_id="core_to_residue"):
     }
 
 
+def make_muon_decay_mode_1_request(request_id="mu_minus_s004_1"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "mu- decay mode 1",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_muon_1", "assemblyId": "pro_muon_II", "title": "Muon"},
+            {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_electron_1", "assemblyId": "pro_electron_I", "title": "Electron"},
+            {
+                "id": "product_anti_electron_neutrino_2",
+                "assemblyId": "anti_electron_neutrino_I",
+                "title": "Anti Electron Neutrino",
+            },
+            {
+                "id": "product_muon_neutrino_3",
+                "assemblyId": "pro_muon_neutrino_II",
+                "title": "Pro Muon Neutrino",
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
 def make_exact_result(request):
     reactant_id = request["reactants"][0]["id"]
     product_id = request["products"][0]["id"]
@@ -326,6 +362,53 @@ class PdgsolveCliTests(unittest.TestCase):
             ],
         )
         self.assertTrue(family["publicationReady"])
+
+    def test_publication_graph_routes_reactant_pass_thru_through_reactant_and_intermediate_lanes(self):
+        request = make_pass_thru_request("pass_thru_graph")
+        result = pdgsolve.solve_request(request)
+        acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
+        solve_graph = acceptance["lockedSolveGraph"]
+        units = {unit["id"]: unit for unit in solve_graph["units"]}
+        operator_unit = next(
+            unit
+            for unit in solve_graph["units"]
+            if unit.get("occurrenceKey") == "reactant_operator.reactant_1.pass_thru"
+        )
+        reactant_unit = next(
+            unit
+            for unit in solve_graph["units"]
+            if unit.get("stage") == "reactantAssemblies" and unit.get("occurrenceKey") == "reactant_1"
+        )
+        intermediate_unit = next(
+            unit
+            for unit in solve_graph["units"]
+            if unit.get("stage") == "intermediateAssemblies"
+            and "reactant_1" in unit.get("sourceOccurrenceKeys", [])
+        )
+        edge_pairs = {(edge["fromUnitId"], edge["toUnitId"]) for edge in solve_graph["edges"]}
+
+        self.assertIn((reactant_unit["id"], operator_unit["id"]), edge_pairs)
+        self.assertIn((operator_unit["id"], intermediate_unit["id"]), edge_pairs)
+        self.assertNotEqual(reactant_unit["id"], intermediate_unit["id"])
+        self.assertEqual(units[intermediate_unit["id"]]["recipeId"], "pro_up_quark_I")
+
+    def test_publication_graph_collapses_intermediate_residue_to_one_accumulator(self):
+        request = make_muon_decay_mode_1_request()
+        result = pdgsolve.solve_request(request)
+        acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
+        solve_graph = acceptance["lockedSolveGraph"]
+        residue_units = [
+            unit
+            for unit in solve_graph["units"]
+            if unit.get("stage") == "intermediateAssemblies"
+            and unit.get("recipeId") == pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+        ]
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(len(residue_units), 1)
+        self.assertGreater(len(residue_units[0].get("sourceOccurrenceKeys", [])), 1)
+        self.assertEqual(residue_units[0]["electrinoCount"], 12)
+        self.assertEqual(residue_units[0]["positrinoCount"], 6)
 
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")

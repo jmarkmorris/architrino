@@ -1090,6 +1090,55 @@ def materialize_product_operator_choices(
     return materialized
 
 
+def build_graph_intermediate_occurrences(
+    reactant_occurrences: list[dict[str, Any]],
+    intermediate_occurrences: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    reactant_ids = {
+        normalize_text(occurrence.get("id"))
+        for occurrence in reactant_occurrences
+        if normalize_text(occurrence.get("id"))
+    }
+    graph_occurrences: list[dict[str, Any]] = []
+    used_graph_ids: set[str] = set()
+    residue_counts = build_primitive_counts(0, 0)
+    residue_source_keys: list[str] = []
+
+    for occurrence in intermediate_occurrences:
+        source_occurrence_key = normalize_text(occurrence.get("id"))
+        assembly_id = normalize_text(occurrence.get("assemblyId"))
+        if not source_occurrence_key or not assembly_id:
+            continue
+        if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+            residue_counts["electrinoCount"] += int(occurrence.get("electrinoCount", 0) or 0)
+            residue_counts["positrinoCount"] += int(occurrence.get("positrinoCount", 0) or 0)
+            residue_source_keys.append(source_occurrence_key)
+            continue
+
+        graph_occurrence = clone_json(occurrence)
+        graph_occurrence_key = source_occurrence_key
+        if graph_occurrence_key in reactant_ids or graph_occurrence_key in used_graph_ids:
+            graph_occurrence_key = f"graph_intermediate.{slugify(source_occurrence_key)}"
+        graph_occurrence["id"] = graph_occurrence_key
+        graph_occurrence["sourceOccurrenceKeys"] = [source_occurrence_key]
+        graph_occurrences.append(graph_occurrence)
+        used_graph_ids.add(graph_occurrence_key)
+
+    if residue_source_keys:
+        graph_occurrences.append(
+            {
+                "id": "graph_intermediate.unbound_architrinos_accumulator",
+                "assemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+                "title": ASSEMBLY_DISPLAY[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID]["title"],
+                "electrinoCount": residue_counts["electrinoCount"],
+                "positrinoCount": residue_counts["positrinoCount"],
+                "sourceOccurrenceKeys": residue_source_keys,
+            }
+        )
+
+    return graph_occurrences
+
+
 def build_candidate_score(
     *,
     exact: bool,
@@ -1201,15 +1250,30 @@ def build_exact_solve_graph(
     if diagnostics:
         return materialized_product_choices, None, diagnostics
 
+    occurrence_counts = build_occurrence_counts_map(
+        [
+            *clone_json(reactant_occurrences),
+            *clone_json(graph_intermediate_occurrences),
+            *clone_json(intermediate_occurrences),
+            *clone_json(product_occurrences),
+        ]
+    )
+    published_intermediate_occurrences = build_graph_intermediate_occurrences(
+        reactant_occurrences,
+        graph_intermediate_occurrences,
+    )
+    solve_graph = build_muon_publication_graph(
+        request_like,
+        prefix=prefix,
+        reactant_operator_choices=reactant_operator_choices,
+        intermediate_occurrences=published_intermediate_occurrences,
+        product_operator_choices=materialized_product_choices,
+    )
+    solve_graph["occurrenceCounts"] = clone_json(occurrence_counts)
+
     return (
         materialized_product_choices,
-        build_muon_publication_graph(
-            request_like,
-            prefix=prefix,
-            reactant_operator_choices=reactant_operator_choices,
-            intermediate_occurrences=graph_intermediate_occurrences,
-            product_operator_choices=materialized_product_choices,
-        ),
+        solve_graph,
         [],
     )
 
@@ -1955,12 +2019,18 @@ def build_muon_publication_graph(
             }
         )
 
-    intermediate_units_by_occurrence: dict[str, str] = {}
+    intermediate_units_by_source_occurrence: dict[str, str] = {}
     for row_index, occurrence in enumerate(intermediate_occurrences):
         occurrence_key = normalize_text(occurrence["id"])
         recipe_id = normalize_text(occurrence["assemblyId"])
         unit_id = f"unit_lane3_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
-        intermediate_units_by_occurrence[occurrence_key] = unit_id
+        source_occurrence_keys = [
+            normalize_text(source_occurrence_key)
+            for source_occurrence_key in occurrence.get("sourceOccurrenceKeys", [])
+            if normalize_text(source_occurrence_key)
+        ] or [occurrence_key]
+        for source_occurrence_key in source_occurrence_keys:
+            intermediate_units_by_source_occurrence[source_occurrence_key] = unit_id
         unit = {
             "id": unit_id,
             "kind": "assembly",
@@ -1970,6 +2040,8 @@ def build_muon_publication_graph(
             "title": normalize_text(occurrence.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
             "anchorRow": row_index,
         }
+        if source_occurrence_keys != [occurrence_key]:
+            unit["sourceOccurrenceKeys"] = source_occurrence_keys
         if recipe_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
             unit["positrinoCount"] = int(occurrence["positrinoCount"])
             unit["electrinoCount"] = int(occurrence["electrinoCount"])
@@ -2010,31 +2082,28 @@ def build_muon_publication_graph(
             }
         )
 
-    unit_id_by_occurrence = {
-        **reactant_units_by_occurrence,
-        **intermediate_units_by_occurrence,
-        **product_units_by_occurrence,
-    }
-
     for choice in reactant_operator_choices:
         operator_unit_id = reactant_operator_units_by_occurrence[normalize_text(choice["id"])]
         for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
+            normalized_occurrence_key = normalize_text(occurrence_key)
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(choice['id'])}_input_{input_index}",
-                    "fromUnitId": unit_id_by_occurrence[normalize_text(occurrence_key)],
+                    "fromUnitId": reactant_units_by_occurrence.get(normalized_occurrence_key)
+                    or intermediate_units_by_source_occurrence[normalized_occurrence_key],
                     "fromPortId": "output",
                     "toUnitId": operator_unit_id,
                     "toPortId": f"input_{input_index}",
                 }
             )
         for output_index, occurrence_key in enumerate(choice.get("outputOccurrenceKeys", []), start=1):
+            normalized_occurrence_key = normalize_text(occurrence_key)
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(choice['id'])}_output_{output_index}",
                     "fromUnitId": operator_unit_id,
                     "fromPortId": f"output_{output_index}",
-                    "toUnitId": unit_id_by_occurrence[normalize_text(occurrence_key)],
+                    "toUnitId": intermediate_units_by_source_occurrence[normalized_occurrence_key],
                     "toPortId": "input",
                 }
             )
@@ -2043,10 +2112,11 @@ def build_muon_publication_graph(
         output_occurrence_key = normalize_text(choice["outputOccurrenceKeys"][0])
         operator_unit_id = product_operator_units_by_occurrence[output_occurrence_key]
         for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
+            normalized_occurrence_key = normalize_text(occurrence_key)
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(choice['id'])}_input_{input_index}",
-                    "fromUnitId": unit_id_by_occurrence[normalize_text(occurrence_key)],
+                    "fromUnitId": intermediate_units_by_source_occurrence[normalized_occurrence_key],
                     "fromPortId": "output",
                     "toUnitId": operator_unit_id,
                     "toPortId": f"input_{input_index}",
@@ -2364,6 +2434,20 @@ def build_acceptance(
 def build_occurrence_count_map_from_acceptance(
     acceptance: dict[str, Any],
 ) -> dict[str, dict[str, int]]:
+    serialized_occurrence_counts = acceptance.get("lockedSolveGraph", {}).get("occurrenceCounts")
+    if isinstance(serialized_occurrence_counts, dict):
+        occurrence_counts: dict[str, dict[str, int]] = {}
+        for occurrence_key, counts in serialized_occurrence_counts.items():
+            normalized_occurrence_key = normalize_text(occurrence_key)
+            if not normalized_occurrence_key or not isinstance(counts, dict):
+                continue
+            occurrence_counts[normalized_occurrence_key] = build_primitive_counts(
+                counts.get("electrinoCount"),
+                counts.get("positrinoCount"),
+            )
+        if occurrence_counts:
+            return occurrence_counts
+
     occurrence_counts: dict[str, dict[str, int]] = {}
     for unit in acceptance.get("lockedSolveGraph", {}).get("units", []):
         if normalize_text(unit.get("kind")) != "assembly":
