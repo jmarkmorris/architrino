@@ -353,68 +353,49 @@ class PdgsolveCliTests(unittest.TestCase):
         family = result["optionFamilies"][0]
         self.assertTrue(family["publicationReady"])
         self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
-        self.assertEqual(family["productSideOperators"][0]["inputOccurrenceKeys"], ["reactant_1"])
+        self.assertEqual(family["productSideOperators"][0]["type"], "pass-thru")
+        self.assertEqual(family["productSideOperators"][0]["inputOccurrenceKeys"], ["intermediate.reactant_1.catalyst.1"])
 
-    def test_solve_request_generates_recursive_support_for_core_to_residue(self):
+    def test_solve_request_maps_extra_core_directly_to_residue(self):
         request = make_core_to_residue_request()
         result = pdgsolve.solve_request(request)
 
         self.assertEqual(result["searchStatus"], "exact_available")
         family = result["optionFamilies"][0]
         self.assertEqual(family["familyId"], "family.exact.1")
-        self.assertEqual(len(family["reactantSideOperators"]), 3)
+        self.assertEqual(len(family["reactantSideOperators"]), 1)
         self.assertEqual(
             [choice["lawId"] for choice in family["reactantSideOperators"]],
-            [
-                "dissociate.pro_noether_core_I",
-                "dissociate.pro_noether_core_II",
-                "dissociate.pro_noether_core_III",
-            ],
+            ["dissociate.pro_noether_core_I.to_residue"],
         )
         self.assertTrue(family["publicationReady"])
 
-    def test_publication_graph_uses_adjacent_timeline_columns_for_pass_thru(self):
+    def test_publication_graph_uses_fixed_width_columns_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
         result = pdgsolve.solve_request(request)
         acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
         solve_graph = acceptance["lockedSolveGraph"]
-        units = {unit["id"]: unit for unit in solve_graph["units"]}
-        for edge in solve_graph["edges"]:
-            self.assertEqual(
-                units[edge["toUnitId"]]["column"] - units[edge["fromUnitId"]]["column"],
-                1,
-            )
+        x_by_stage = {
+            unit["stage"]: unit["x"]
+            for unit in solve_graph["units"]
+            if unit["kind"] == "assembly" or unit["kind"] == "operator"
+        }
         self.assertEqual(
-            [unit["column"] for unit in solve_graph["units"] if unit["kind"] == "operator"],
-            [1, 3],
-        )
-        self.assertEqual(
-            [unit["stage"] for unit in solve_graph["units"] if unit["kind"] == "assembly"],
-            ["reactantAssemblies", "intermediateAssemblies", "productAssemblies"],
+            x_by_stage,
+            {
+                "reactantAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["reactantAssemblies"],
+                "reactantSideOperators": pdgsolve.FIXED_WIDTH_X_BY_STAGE["reactantSideOperators"],
+                "intermediateAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["intermediateAssemblies"],
+                "productSideOperators": pdgsolve.FIXED_WIDTH_X_BY_STAGE["productSideOperators"],
+                "productAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["productAssemblies"],
+            },
         )
 
-    def test_publication_graph_uses_one_residue_accumulator_per_state(self):
+    def test_muon_decay_falls_back_to_no_exact_closure_under_simple_core_rules(self):
         request = make_muon_decay_mode_1_request()
         result = pdgsolve.solve_request(request)
-        acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
-        solve_graph = acceptance["lockedSolveGraph"]
-        units = {unit["id"]: unit for unit in solve_graph["units"]}
-        residue_units = [
-            unit for unit in solve_graph["units"] if unit.get("recipeId") == pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
-        ]
-
-        self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(len(residue_units), 11)
-        self.assertEqual(len({unit["column"] for unit in residue_units}), 11)
-        self.assertEqual(residue_units[0]["electrinoCount"], 6)
-        self.assertEqual(residue_units[0]["positrinoCount"], 0)
-        self.assertEqual(residue_units[-1]["electrinoCount"], 3)
-        self.assertEqual(residue_units[-1]["positrinoCount"], 3)
-        for edge in solve_graph["edges"]:
-            self.assertEqual(
-                units[edge["toUnitId"]]["column"] - units[edge["fromUnitId"]]["column"],
-                1,
-            )
+        self.assertEqual(result["searchStatus"], "no_exact_closure")
+        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
 
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")
