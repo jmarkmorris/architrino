@@ -391,11 +391,12 @@ class PdgsolveCliTests(unittest.TestCase):
             },
         )
 
-    def test_muon_decay_falls_back_to_no_exact_closure_under_simple_core_rules(self):
+    def test_muon_decay_mode_1_returns_exact_available_under_core_first_rules(self):
         request = make_muon_decay_mode_1_request()
         result = pdgsolve.solve_request(request)
-        self.assertEqual(result["searchStatus"], "no_exact_closure")
-        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(result["bestFamilyId"], "family.exact.1")
+        self.assertTrue(result["optionFamilies"][0]["publicationReady"])
 
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")
@@ -421,7 +422,7 @@ class PdgsolveCliTests(unittest.TestCase):
             self.assertEqual(len(published["operators"]), 2)
             self.assertEqual(published["assemblies"][0]["type"], "pro-up-quark-assembly")
 
-    def test_solve_manifest_writes_only_unsolved_results_and_empty_pdgedit_manifest(self):
+    def test_solve_manifest_writes_review_pdgedit_documents_for_unsolved_results(self):
         manifest = {
             "schema": "pdg-live-manifest/v1",
             "readyCount": 2,
@@ -479,11 +480,16 @@ class PdgsolveCliTests(unittest.TestCase):
                 result_path = tmp_dir / record["resultPath"]
                 self.assertTrue(result_path.exists())
                 self.assertEqual(self.read_json(result_path)["searchStatus"], "no_exact_closure")
-                self.assertNotIn("pdgeditDocumentPath", record)
+                self.assertIn("pdgeditDocumentPath", record)
+                pdgedit_document = self.read_json(tmp_dir / record["pdgeditDocumentPath"])
+                self.assertEqual(pdgedit_document["schema"], "pdgedit/v1")
+                self.assertEqual(pdgedit_document["operators"], [])
+                self.assertEqual(pdgedit_document["links"], [])
             pdgedit_manifest = self.read_json(pdgedit_manifest_path)
             self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
-            self.assertEqual(pdgedit_manifest["entries"], [])
-            self.assertEqual(pdgedit_manifest["defaultEntryId"], "")
+            self.assertEqual(len(pdgedit_manifest["entries"]), 2)
+            self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "example")
+            self.assertEqual(pdgedit_manifest["defaultEntryId"], pdgedit_manifest["entries"][0]["id"])
 
     def test_solve_manifest_writes_pdgedit_documents_for_exact_results(self):
         manifest = {

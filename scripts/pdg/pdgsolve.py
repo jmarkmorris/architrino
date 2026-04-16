@@ -40,6 +40,8 @@ DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
 DEFAULT_RESULT_CORPUS_INDEX_PATH = DEFAULT_TMP_DIR / "result-corpus.v1.json"
 DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR = DEFAULT_TMP_DIR / "pdgedit" / "documents"
 DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH = DEFAULT_TMP_DIR / "pdgedit" / "manifest.v1.json"
+LIVE_PDGEDIT_EXACT_ENTRY_LIMIT = 16
+LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT = 16
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 
 ASSEMBLY_DISPLAY = {
@@ -717,6 +719,19 @@ def build_provenance_summary(
     }
 
 
+def family_score_sort_key(score: dict[str, Any]) -> tuple[Any, ...]:
+    return (
+        int(score.get("exactness", 999) or 999),
+        int(score.get("primitiveMismatch", 999999) or 999999),
+        int(score.get("middleMismatch", 999999) or 999999),
+        int(score.get("auxiliaryBurden", 999999) or 999999),
+        int(score.get("nonIdentityOperatorCount", 999999) or 999999),
+        int(score.get("dissociationCount", 999999) or 999999),
+        int(score.get("ambiguityPenalty", 999999) or 999999),
+        normalize_text(score.get("tieBreakKey")),
+    )
+
+
 def is_noether_core_assembly(assembly_id: str) -> bool:
     return normalize_text(assembly_id) in NOETHER_CORE_SUCCESSOR
 
@@ -741,6 +756,19 @@ def build_intermediate_clone(occurrence: dict[str, Any], suffix: str) -> dict[st
         cloned["electrinoCount"] = int(occurrence.get("electrinoCount", 0) or 0)
         cloned["positrinoCount"] = int(occurrence.get("positrinoCount", 0) or 0)
     return cloned
+
+
+def ensure_residue_accumulator(intermediate_occurrences: list[dict[str, Any]]) -> dict[str, Any]:
+    for occurrence in intermediate_occurrences:
+        if normalize_text(occurrence.get("assemblyId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+            return occurrence
+    accumulator = build_residue_occurrence(
+        "intermediate.unbound_architrinos.accumulator",
+        electrino_count=0,
+        positrino_count=0,
+    )
+    intermediate_occurrences.append(accumulator)
+    return accumulator
 
 
 def build_operator_choice(
@@ -869,12 +897,9 @@ def add_full_core_dissociation(
     suffix: str,
 ) -> None:
     counts = get_occurrence_primitive_counts(source_occurrence) or build_primitive_counts(0, 0)
-    residue = build_residue_occurrence(
-        f"intermediate.{slugify(normalize_text(source_occurrence.get('id')))}.{suffix}.residue",
-        electrino_count=counts["electrinoCount"],
-        positrino_count=counts["positrinoCount"],
-    )
-    intermediate_occurrences.append(clone_json(residue))
+    residue = ensure_residue_accumulator(intermediate_occurrences)
+    residue["electrinoCount"] += counts["electrinoCount"]
+    residue["positrinoCount"] += counts["positrinoCount"]
     reactant_operator_choices.append(
         build_operator_choice(
             f"reactant_operator.{suffix}.dissociate",
@@ -903,12 +928,10 @@ def add_single_dissociation(
         "assemblyId": core_assembly_id,
         "title": ASSEMBLY_DISPLAY[core_assembly_id]["title"],
     }
-    residue = build_residue_occurrence(
-        f"intermediate.{slugify(normalize_text(source_occurrence.get('id')))}.{suffix}.residue",
-        electrino_count=residue_counts["electrinoCount"],
-        positrino_count=residue_counts["positrinoCount"],
-    )
-    intermediate_occurrences.extend([clone_json(core_occurrence), clone_json(residue)])
+    residue = ensure_residue_accumulator(intermediate_occurrences)
+    residue["electrinoCount"] += residue_counts["electrinoCount"]
+    residue["positrinoCount"] += residue_counts["positrinoCount"]
+    intermediate_occurrences.append(clone_json(core_occurrence))
     reactant_operator_choices.append(
         build_operator_choice(
             f"reactant_operator.{suffix}.dissociate",
@@ -984,16 +1007,10 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         for occurrence in remaining_reactants
         if not is_noether_core_assembly(normalize_text(occurrence.get("assemblyId")))
     ]
-    bare_product_tasks = [
+    core_product_tasks = [
         clone_json(task)
         for task in product_tasks
-        if is_noether_core_assembly(normalize_text(task["product"].get("assemblyId")))
-    ]
-    other_product_tasks = [
-        clone_json(task)
-        for task in product_tasks
-        if normalize_text(task["product"].get("assemblyId")) != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
-        and not is_noether_core_assembly(normalize_text(task["product"].get("assemblyId")))
+        if normalize_text(task.get("coreAssemblyId"))
     ]
     residue_product_tasks = [
         clone_json(task)
@@ -1002,34 +1019,114 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     ]
 
     reactant_core_counts = count_core_occurrences(remaining_reactant_cores)
-    bare_product_core_counts = {
+    middle_supply_counts = {
         assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
     }
-    for task in bare_product_tasks:
-        bare_product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
+    for reactant in remaining_non_core_reactants:
+        core_assembly_id = get_noether_core_for_assembly(normalize_text(reactant.get("assemblyId")))
+        if core_assembly_id is not None:
+            middle_supply_counts[core_assembly_id] += 1
+    product_core_counts = {
+        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    for task in core_product_tasks:
+        product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
+
+    ladder_conversion_counts = {
+        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    for charge in ("pro", "anti"):
+        source_id = f"{charge}_noether_core_I"
+        target_id = f"{charge}_noether_core_II"
+        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
+        unmet_target = max(
+            0,
+            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
+        )
+        convert_count = min(source_surplus, unmet_target)
+        if convert_count > 0:
+            ladder_conversion_counts[source_id] = convert_count
+            reactant_core_counts[source_id] -= convert_count
+            middle_supply_counts[target_id] += convert_count
+    for charge in ("pro", "anti"):
+        source_id = f"{charge}_noether_core_II"
+        target_id = f"{charge}_noether_core_III"
+        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
+        unmet_target = max(
+            0,
+            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
+        )
+        convert_count = min(source_surplus, unmet_target)
+        if convert_count > 0:
+            ladder_conversion_counts[source_id] = convert_count
+            reactant_core_counts[source_id] -= convert_count
+            middle_supply_counts[target_id] += convert_count
 
     for generation in ("I", "II", "III"):
         pro_id = f"pro_noether_core_{generation}"
         anti_id = f"anti_noether_core_{generation}"
-        pair_count = max(
+        pro_deficit = max(
             0,
-            bare_product_core_counts[pro_id] - reactant_core_counts[pro_id],
-            bare_product_core_counts[anti_id] - reactant_core_counts[anti_id],
+            product_core_counts[pro_id] - reactant_core_counts[pro_id] - middle_supply_counts[pro_id],
         )
+        anti_deficit = max(
+            0,
+            product_core_counts[anti_id] - reactant_core_counts[anti_id] - middle_supply_counts[anti_id],
+        )
+        pair_count = max(pro_deficit, anti_deficit)
         for index in range(1, pair_count + 1):
             pro_support = build_core_support_occurrence("pro", generation, index)
             anti_support = build_core_support_occurrence("anti", generation, index)
             reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
             added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
             remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
+            reactant_core_counts[pro_id] += 1
+            reactant_core_counts[anti_id] += 1
 
     cores_by_type: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
     for core_occurrence in remaining_reactant_cores:
         cores_by_type[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
 
+    ladder_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
+    for source_id, convert_count in ladder_conversion_counts.items():
+        if convert_count <= 0:
+            continue
+        successor_id = normalize_text(NOETHER_CORE_SUCCESSOR.get(source_id))
+        if not successor_id:
+            continue
+        converted_occurrences = cores_by_type[source_id][:convert_count]
+        cores_by_type[source_id] = cores_by_type[source_id][convert_count:]
+        for index, occurrence in enumerate(converted_occurrences, start=1):
+            accumulator = ensure_residue_accumulator(intermediate_occurrences)
+            accumulator["electrinoCount"] += 1
+            accumulator["positrinoCount"] += 1
+            intermediate = {
+                "id": f"intermediate.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}",
+                "assemblyId": successor_id,
+                "title": ASSEMBLY_DISPLAY[successor_id]["title"],
+            }
+            intermediate_occurrences.append(clone_json(intermediate))
+            reactant_operator_choices.append(
+                build_operator_choice(
+                    f"reactant_operator.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}.dissociate",
+                    "dissociate",
+                    law_id=get_dissociation_law(source_id)["lawId"],
+                    input_occurrence_keys=[normalize_text(occurrence.get("id"))],
+                    output_occurrence_keys=[
+                        normalize_text(intermediate.get("id")),
+                        normalize_text(accumulator.get("id")),
+                    ],
+                )
+            )
+            ladder_core_pool[successor_id].append(clone_json(intermediate))
+
     direct_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
+    direct_task_quota = {
+        assembly_id: min(len(core_occurrences), product_core_counts[assembly_id])
+        for assembly_id, core_occurrences in cores_by_type.items()
+    }
     for assembly_id, core_occurrences in cores_by_type.items():
-        needed_count = bare_product_core_counts[assembly_id]
+        needed_count = direct_task_quota[assembly_id]
         necessary = core_occurrences[:needed_count]
         extras = core_occurrences[needed_count:]
         for index, occurrence in enumerate(necessary, start=1):
@@ -1053,54 +1150,67 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
                 suffix=f"extra_core.{slugify(normalize_text(occurrence.get('id')))}.{index}",
             )
 
-    middle_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
+    middle_core_pool: dict[str, list[dict[str, Any]]] = {
+        assembly_id: [clone_json(occurrence) for occurrence in ladder_core_pool[assembly_id]]
+        for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    remaining_middle_demand = {
+        assembly_id: max(
+            0,
+            product_core_counts[assembly_id]
+            - direct_task_quota[assembly_id]
+            - len(middle_core_pool[assembly_id]),
+        )
+        for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
     for reactant_index, reactant in enumerate(remaining_non_core_reactants, start=1):
-        core_occurrence = add_single_dissociation(
+        core_assembly_id = get_noether_core_for_assembly(normalize_text(reactant.get("assemblyId")))
+        if core_assembly_id is not None and remaining_middle_demand[core_assembly_id] > 0:
+            core_occurrence = add_single_dissociation(
+                reactant,
+                reactant_operator_choices=reactant_operator_choices,
+                intermediate_occurrences=intermediate_occurrences,
+                suffix=f"reactant.{reactant_index}",
+            )
+            if core_occurrence is not None:
+                remaining_middle_demand[core_assembly_id] -= 1
+                middle_core_pool[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
+                continue
+        add_full_core_dissociation(
             reactant,
             reactant_operator_choices=reactant_operator_choices,
             intermediate_occurrences=intermediate_occurrences,
-            suffix=f"reactant.{reactant_index}",
-        )
-        if core_occurrence is not None:
-            middle_core_pool[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
-
-    for task_index, task in enumerate(bare_product_tasks, start=1):
-        core_assembly_id = normalize_text(task["coreAssemblyId"])
-        if not direct_core_pool[core_assembly_id]:
-            return None
-        core_input = direct_core_pool[core_assembly_id].pop(0)
-        product_operator_choices.append(
-            build_operator_choice(
-                f"product_operator.bare_core.{task_index}.associate",
-                "associate",
-                law_id=normalize_text(task["lawId"]),
-                input_occurrence_keys=[normalize_text(core_input.get("id"))],
-                output_occurrence_keys=[normalize_text(task["product"].get("id"))],
-                required_support_rows=[{"rowAssemblyId": core_assembly_id, "count": 1}],
-            )
+            suffix=f"reactant.{reactant_index}.to_residue",
         )
 
-    residue_occurrences = [
-        clone_json(occurrence)
-        for occurrence in intermediate_occurrences
-        if normalize_text(occurrence.get("assemblyId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
-    ]
+    residue_accumulator = ensure_residue_accumulator(intermediate_occurrences)
+    available_residue_counts = build_primitive_counts(
+        residue_accumulator.get("electrinoCount"),
+        residue_accumulator.get("positrinoCount"),
+    )
 
-    for task_index, task in enumerate(other_product_tasks, start=1):
+    for task_index, task in enumerate(core_product_tasks, start=1):
         core_assembly_id = normalize_text(task["coreAssemblyId"])
-        if not middle_core_pool[core_assembly_id]:
-            return None
-        core_input = middle_core_pool[core_assembly_id].pop(0)
+        if direct_task_quota[core_assembly_id] > 0:
+            if not direct_core_pool[core_assembly_id]:
+                return None
+            direct_task_quota[core_assembly_id] -= 1
+            core_input = direct_core_pool[core_assembly_id].pop(0)
+        else:
+            if not middle_core_pool[core_assembly_id]:
+                return None
+            core_input = middle_core_pool[core_assembly_id].pop(0)
         residue_counts = clone_json(task["residueCounts"])
         residue_input_ids: list[str] = []
         if residue_counts["electrinoCount"] or residue_counts["positrinoCount"]:
-            residue_input_ids = select_residue_occurrence_ids(
-                residue_occurrences,
-                electrino_target=residue_counts["electrinoCount"],
-                positrino_target=residue_counts["positrinoCount"],
-            ) or []
-            if not residue_input_ids:
+            if (
+                available_residue_counts["electrinoCount"] < residue_counts["electrinoCount"]
+                or available_residue_counts["positrinoCount"] < residue_counts["positrinoCount"]
+            ):
                 return None
+            available_residue_counts["electrinoCount"] -= residue_counts["electrinoCount"]
+            available_residue_counts["positrinoCount"] -= residue_counts["positrinoCount"]
+            residue_input_ids = [normalize_text(residue_accumulator.get("id"))]
         product_operator_choices.append(
             build_operator_choice(
                 f"product_operator.product.{task_index}.associate",
@@ -1121,23 +1231,26 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
 
     for task_index, task in enumerate(residue_product_tasks, start=1):
         residue_counts = clone_json(task["residueCounts"])
-        residue_input_ids = select_residue_occurrence_ids(
-            residue_occurrences,
-            electrino_target=residue_counts["electrinoCount"],
-            positrino_target=residue_counts["positrinoCount"],
-        ) or []
-        if not residue_input_ids:
+        if (
+            available_residue_counts["electrinoCount"] < residue_counts["electrinoCount"]
+            or available_residue_counts["positrinoCount"] < residue_counts["positrinoCount"]
+        ):
             return None
+        available_residue_counts["electrinoCount"] -= residue_counts["electrinoCount"]
+        available_residue_counts["positrinoCount"] -= residue_counts["positrinoCount"]
         product_operator_choices.append(
             build_operator_choice(
                 f"product_operator.residue.{task_index}.pass_thru",
                 "pass-thru",
                 law_id=normalize_text(task["lawId"]),
-                input_occurrence_keys=residue_input_ids,
+                input_occurrence_keys=[normalize_text(residue_accumulator.get("id"))],
                 output_occurrence_keys=[normalize_text(task["product"].get("id"))],
                 required_support_rows=[{"rowAssemblyId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID, "count": 1}],
             )
         )
+
+    if primitive_counts_magnitude(available_residue_counts) != 0:
+        return None
 
     occurrence_counts = build_occurrence_counts_map(
         [
@@ -1191,45 +1304,6 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         },
     }
     return family
-
-
-def select_residue_occurrence_ids(
-    residue_occurrences: list[dict[str, Any]],
-    *,
-    electrino_target: int,
-    positrino_target: int,
-) -> list[str] | None:
-    indexed_occurrences = [
-        (
-            index,
-            int(occurrence.get("electrinoCount", 0) or 0),
-            int(occurrence.get("positrinoCount", 0) or 0),
-            normalize_text(occurrence.get("id")),
-        )
-        for index, occurrence in enumerate(residue_occurrences)
-    ]
-    memo: dict[tuple[int, int, int], list[str] | None] = {}
-
-    def search(start_index: int, remaining_e: int, remaining_p: int) -> list[str] | None:
-        key = (start_index, remaining_e, remaining_p)
-        if key in memo:
-            return memo[key]
-        if remaining_e == 0 and remaining_p == 0:
-            memo[key] = []
-            return []
-        if remaining_e < 0 or remaining_p < 0:
-            memo[key] = None
-            return None
-        for next_index in range(start_index, len(indexed_occurrences)):
-            _original_index, electrino_count, positrino_count, occurrence_id = indexed_occurrences[next_index]
-            suffix = search(next_index + 1, remaining_e - electrino_count, remaining_p - positrino_count)
-            if suffix is not None:
-                memo[key] = [occurrence_id, *suffix]
-                return memo[key]
-        memo[key] = None
-        return None
-
-    return search(0, electrino_target, positrino_target)
 
 
 def build_fixed_width_intermediate_units(
@@ -1897,6 +1971,14 @@ def get_result_family(result: dict[str, Any], family_id: str) -> dict[str, Any]:
     raise ValueError(f"Unknown family id: {family_id}")
 
 
+def get_primary_family(result: dict[str, Any]) -> dict[str, Any] | None:
+    option_families = result.get("optionFamilies", [])
+    if not isinstance(option_families, list) or not option_families:
+        return None
+    first_family = option_families[0]
+    return first_family if isinstance(first_family, dict) else None
+
+
 def get_first_publication_ready_exact_family(result: dict[str, Any]) -> dict[str, Any] | None:
     for family in result.get("optionFamilies", []):
         if normalize_text(family.get("kind")) != "exact":
@@ -2003,6 +2085,76 @@ def operator_counts_from_choice(
     return totals["positrinoCount"], totals["electrinoCount"]
 
 
+def operator_counts_from_choice_for_stage(
+    choice: dict[str, Any],
+    occurrence_counts: dict[str, dict[str, int]],
+    *,
+    stage: str,
+) -> tuple[int, int]:
+    if stage == "productSideOperators":
+        totals = sum_counts_for_occurrence_keys(choice.get("outputOccurrenceKeys", []), occurrence_counts)
+        if totals is not None:
+            return totals["positrinoCount"], totals["electrinoCount"]
+    return operator_counts_from_choice(choice, occurrence_counts)
+
+
+def build_pdgedit_composite_labels(
+    reactant_recipe_ids: list[str],
+    product_recipe_ids: list[str],
+) -> list[dict[str, Any]]:
+    composite_labels = []
+    if reactant_recipe_ids == ["pro_down_quark_I", "pro_up_quark_I", "pro_down_quark_I"]:
+        composite_labels.append(
+            {
+                "id": "label.left.neutron",
+                "type": "pro-neutron-composite",
+                "side": "left",
+                "text": "Neutron",
+                "rowStart": 0,
+                "rowEnd": 2,
+            }
+        )
+    if product_recipe_ids[:3] == ["pro_up_quark_I", "pro_down_quark_I", "pro_up_quark_I"]:
+        composite_labels.append(
+            {
+                "id": "label.right.proton",
+                "type": "pro-proton-composite",
+                "side": "right",
+                "text": "Proton",
+                "rowStart": 0,
+                "rowEnd": 2,
+            }
+        )
+    return composite_labels
+
+
+def build_pdgedit_assembly_entry(
+    occurrence: dict[str, Any],
+    *,
+    object_id: str,
+    role: str,
+    x: int,
+    y: int,
+) -> dict[str, Any]:
+    assembly_id = normalize_text(occurrence.get("assemblyId"))
+    metadata = ASSEMBLY_DISPLAY[assembly_id]
+    entry = {
+        "id": object_id,
+        "type": metadata["pdgeditType"],
+        "x": x,
+        "y": y,
+        "title": metadata["title"],
+        "role": role,
+        "tiles": clone_json(metadata["tiles"]),
+    }
+    if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+        entry["sampleCounts"] = {
+            "topCount": str(int(occurrence.get("electrinoCount", 0) or 0)),
+            "bottomCount": str(int(occurrence.get("positrinoCount", 0) or 0)),
+        }
+    return entry
+
+
 def build_pdgedit_document_from_acceptance(
     acceptance: dict[str, Any],
     *,
@@ -2049,9 +2201,10 @@ def build_pdgedit_document_from_acceptance(
             continue
         if normalize_text(unit.get("kind")) == "operator":
             choice = operator_choice_map[normalize_text(unit.get("occurrenceKey"))]
-            positrino_count, electrino_count = operator_counts_from_choice(
+            positrino_count, electrino_count = operator_counts_from_choice_for_stage(
                 choice,
                 occurrence_counts,
+                stage=stage,
             )
             operators.append(
                 {
@@ -2083,37 +2236,67 @@ def build_pdgedit_document_from_acceptance(
         for unit in solve_graph.get("units", [])
         if normalize_text(unit.get("stage")) == "productAssemblies"
     ]
-    composite_labels = []
-    if reactant_recipe_ids == ["pro_down_quark_I", "pro_up_quark_I", "pro_down_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.left.neutron",
-                "type": "pro-neutron-composite",
-                "side": "left",
-                "text": "Neutron",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
-    if product_recipe_ids[:3] == ["pro_up_quark_I", "pro_down_quark_I", "pro_up_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.right.proton",
-                "type": "pro-proton-composite",
-                "side": "right",
-                "text": "Proton",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
     _ = document_id, document_title
     return {
         "schema": PDGEDIT_SCHEMA,
         "assemblies": assemblies,
         "operators": operators,
         "links": links,
-        "compositeLabels": composite_labels,
+        "compositeLabels": build_pdgedit_composite_labels(reactant_recipe_ids, product_recipe_ids),
     }
+    
+
+def build_pdgedit_document_from_request_review(
+    request: dict[str, Any],
+    *,
+    document_id: str | None = None,
+    document_title: str | None = None,
+) -> dict[str, Any]:
+    reactants = list(request.get("reactants", []))
+    products = list(request.get("products", []))
+    assemblies = []
+    for row_index, reactant in enumerate(reactants):
+        assemblies.append(
+            build_pdgedit_assembly_entry(
+                reactant,
+                object_id=f"review_reactant_{row_index + 1}",
+                role="reactant",
+                x=FIXED_WIDTH_X_BY_STAGE["reactantAssemblies"],
+                y=row_index,
+            )
+        )
+    for row_index, product in enumerate(products):
+        assemblies.append(
+            build_pdgedit_assembly_entry(
+                product,
+                object_id=f"review_product_{row_index + 1}",
+                role="product",
+                x=FIXED_WIDTH_X_BY_STAGE["productAssemblies"],
+                y=row_index,
+            )
+        )
+    _ = document_id, document_title
+    return {
+        "schema": PDGEDIT_SCHEMA,
+        "assemblies": assemblies,
+        "operators": [],
+        "links": [],
+        "compositeLabels": build_pdgedit_composite_labels(
+            [normalize_text(record.get("assemblyId")) for record in reactants],
+            [normalize_text(record.get("assemblyId")) for record in products],
+        ),
+    }
+
+
+def request_is_pdgedit_review_renderable(request: dict[str, Any]) -> bool:
+    for side in ("reactants", "products"):
+        records = request.get(side, [])
+        if not isinstance(records, list):
+            return False
+        for record in records:
+            if normalize_text(record.get("assemblyId")) not in ASSEMBLY_DISPLAY:
+                return False
+    return True
 
 
 def build_pdgedit_package(
@@ -2181,6 +2364,28 @@ def build_pdgedit_library_manifest(
     }
 
 
+def build_review_publication_sort_key(
+    result: dict[str, Any],
+    *,
+    batch_id: int,
+    case_id: str,
+) -> tuple[Any, ...]:
+    family = get_primary_family(result) or {}
+    diagnostics = family.get("diagnostics", [])
+    request_blocked = 1 if any(
+        isinstance(diagnostic, dict)
+        and normalize_text(diagnostic.get("phase")) == "request"
+        and diagnostic.get("blocking") is True
+        for diagnostic in diagnostics
+    ) else 0
+    return (
+        request_blocked,
+        *family_score_sort_key(family.get("score", {})),
+        batch_id,
+        case_id,
+    )
+
+
 def build_result_corpus_index(
     manifest: dict[str, Any],
     result_records: list[dict[str, Any]],
@@ -2214,6 +2419,7 @@ def solve_manifest_payload(
     pdgedit_manifest_path: Path | None = None,
 ) -> dict[str, Any]:
     result_records: list[dict[str, Any]] = []
+    publication_candidates: list[dict[str, Any]] = []
     normalized_output_dir = output_dir.resolve() if output_dir is not None else None
     normalized_pdgedit_output_dir = pdgedit_output_dir.resolve() if pdgedit_output_dir is not None else None
     normalized_pdgedit_manifest_path = (
@@ -2223,8 +2429,6 @@ def solve_manifest_payload(
         normalized_output_dir.mkdir(parents=True, exist_ok=True)
     if normalized_pdgedit_output_dir is not None:
         normalized_pdgedit_output_dir.mkdir(parents=True, exist_ok=True)
-    pdgedit_manifest_entries: list[dict[str, Any]] = []
-
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -2245,62 +2449,117 @@ def solve_manifest_payload(
                 serialized_result_path = str(result_path)
         else:
             serialized_result_path = ""
-        serialized_pdgedit_document_path = ""
-        if (
-            normalized_pdgedit_output_dir is not None
-            and normalize_text(result.get("searchStatus")) == "exact_available"
-        ):
-            publication_family = get_first_publication_ready_exact_family(result)
-            if publication_family is not None:
-                acceptance = build_acceptance(
-                    request,
-                    result,
-                    family_id=normalize_text(publication_family.get("familyId")),
-                )
-                document_id = (
-                    f"{normalize_text(result.get('problemId'))}--"
-                    f"{normalize_text(publication_family.get('familyId'))}"
-                )
-                source_title = normalize_text(request.get("source", {}).get("title"))
-                document_title = source_title or normalize_text(request.get("requestId")) or document_id
-                pdgedit_document = build_pdgedit_document_from_acceptance(
-                    acceptance,
-                    document_id=document_id,
-                    document_title=document_title,
-                )
-                pdgedit_filename = f"{batch_id:04d}_{slugify(case_id)}.pdgedit.v1.json"
-                pdgedit_document_path = normalized_pdgedit_output_dir / pdgedit_filename
-                write_json(pdgedit_document_path, pdgedit_document)
-                try:
-                    serialized_pdgedit_document_path = str(pdgedit_document_path.relative_to(REPO_ROOT))
-                except ValueError:
-                    serialized_pdgedit_document_path = str(pdgedit_document_path)
-                pdgedit_manifest_entries.append(
-                    build_pdgedit_manifest_entry(
-                        document_id=document_id,
-                        document_title=document_title,
-                        document_path=serialized_pdgedit_document_path,
-                        source_kind="exact",
-                        is_default=not pdgedit_manifest_entries,
-                    )
-                )
-        result_records.append(
+        record = {
+            "batchId": batch_id,
+            "caseId": case_id,
+            "proposalId": normalize_text(entry.get("proposalId")),
+            "requestId": request_id,
+            "problemId": normalize_text(result.get("problemId")),
+            "searchStatus": normalize_text(result.get("searchStatus")),
+            "bestFamilyId": normalize_text(result.get("bestFamilyId")),
+            "resultPath": serialized_result_path,
+        }
+        result_records.append(record)
+        publication_candidates.append(
             {
                 "batchId": batch_id,
                 "caseId": case_id,
-                "proposalId": normalize_text(entry.get("proposalId")),
-                "requestId": request_id,
-                "problemId": normalize_text(result.get("problemId")),
-                "searchStatus": normalize_text(result.get("searchStatus")),
-                "bestFamilyId": normalize_text(result.get("bestFamilyId")),
-                "resultPath": serialized_result_path,
-                **(
-                    {"pdgeditDocumentPath": serialized_pdgedit_document_path}
-                    if serialized_pdgedit_document_path
-                    else {}
-                ),
+                "request": clone_json(request),
+                "result": clone_json(result),
+                "record": record,
             }
         )
+
+    pdgedit_manifest_entries: list[dict[str, Any]] = []
+    exact_candidates = []
+    review_candidates = []
+    for candidate in publication_candidates:
+        result = candidate["result"]
+        publication_family = (
+            get_first_publication_ready_exact_family(result)
+            if normalize_text(result.get("searchStatus")) == "exact_available"
+            else None
+        )
+        if publication_family is not None:
+            exact_candidates.append(candidate)
+            continue
+        if request_is_pdgedit_review_renderable(candidate["request"]):
+            review_candidates.append(candidate)
+
+    exact_candidates.sort(key=lambda candidate: (candidate["batchId"], candidate["caseId"]))
+    review_candidates.sort(
+        key=lambda candidate: build_review_publication_sort_key(
+            candidate["result"],
+            batch_id=candidate["batchId"],
+            case_id=candidate["caseId"],
+        )
+    )
+
+    selected_candidates = [
+        *[
+            ("exact", candidate)
+            for candidate in exact_candidates[:LIVE_PDGEDIT_EXACT_ENTRY_LIMIT]
+        ],
+        *[
+            ("review", candidate)
+            for candidate in review_candidates[:LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT]
+        ],
+    ]
+
+    for publication_kind, candidate in selected_candidates:
+        if normalized_pdgedit_output_dir is None:
+            break
+        batch_id = candidate["batchId"]
+        case_id = candidate["caseId"]
+        request = candidate["request"]
+        result = candidate["result"]
+        record = candidate["record"]
+        source_title = normalize_text(request.get("source", {}).get("title"))
+        base_title = source_title or normalize_text(request.get("requestId")) or case_id
+        pdgedit_filename = f"{batch_id:04d}_{slugify(case_id)}.pdgedit.v1.json"
+        pdgedit_document_path = normalized_pdgedit_output_dir / pdgedit_filename
+        if publication_kind == "exact":
+            publication_family = get_first_publication_ready_exact_family(result)
+            if publication_family is None:
+                continue
+            acceptance = build_acceptance(
+                request,
+                result,
+                family_id=normalize_text(publication_family.get("familyId")),
+            )
+            pdgedit_document = build_pdgedit_document_from_acceptance(
+                acceptance,
+                document_id=case_id,
+                document_title=base_title,
+            )
+            manifest_entry = build_pdgedit_manifest_entry(
+                document_id=case_id,
+                document_title=base_title,
+                document_path="",
+                source_kind="exact",
+                is_default=not pdgedit_manifest_entries,
+            )
+        else:
+            pdgedit_document = build_pdgedit_document_from_request_review(
+                request,
+                document_id=f"review_{case_id}",
+                document_title=f"Review: {base_title}",
+            )
+            manifest_entry = build_pdgedit_manifest_entry(
+                document_id=f"review_{case_id}",
+                document_title=f"Review: {base_title}",
+                document_path="",
+                source_kind="example",
+                is_default=not pdgedit_manifest_entries,
+            )
+        write_json(pdgedit_document_path, pdgedit_document)
+        try:
+            serialized_pdgedit_document_path = str(pdgedit_document_path.relative_to(REPO_ROOT))
+        except ValueError:
+            serialized_pdgedit_document_path = str(pdgedit_document_path)
+        manifest_entry["documentPath"] = serialized_pdgedit_document_path
+        pdgedit_manifest_entries.append(manifest_entry)
+        record["pdgeditDocumentPath"] = serialized_pdgedit_document_path
 
     if normalized_pdgedit_manifest_path is not None:
         write_json(
