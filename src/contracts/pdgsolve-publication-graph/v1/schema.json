@@ -57,6 +57,14 @@
           "anchorRow": {
             "type": "integer",
             "minimum": 0
+          },
+          "positrinoCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "electrinoCount": {
+            "type": "integer",
+            "minimum": 0
           }
         }
       }

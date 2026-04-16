@@ -35,6 +35,10 @@
             "type": "string",
             "minLength": 1
           },
+          "sourceKind": {
+            "type": "string",
+            "enum": ["example", "exact"]
+          },
           "isDefault": {
             "type": "boolean"
           }

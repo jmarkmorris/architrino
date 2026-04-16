@@ -8,6 +8,221 @@ from pathlib import Path
 import pdgsolve
 
 
+def make_unsolved_request(request_id="reference_unsolved"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Reference unsolved request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+        ],
+        "products": [
+            {"id": "product_1", "assemblyId": "pro_electron_I", "title": "Electron"},
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_exact_result(request):
+    reactant_id = request["reactants"][0]["id"]
+    product_id = request["products"][0]["id"]
+    return {
+        "schema": "pdgsolve-result/v1",
+        "problemId": f"pdgsolve_problem_{request['requestId']}",
+        "searchStatus": "exact_available",
+        "bestFamilyId": "family.synthetic.pass_thru.v1",
+        "acceptedFamilyId": None,
+        "diagnostics": [],
+        "optionFamilies": [
+            {
+                "familyId": "family.synthetic.pass_thru.v1",
+                "kind": "exact",
+                "score": {
+                    "exactness": 0,
+                    "primitiveMismatch": 0,
+                    "middleMismatch": 0,
+                    "auxiliaryBurden": 0,
+                    "nonIdentityOperatorCount": 0,
+                    "dissociationCount": 0,
+                    "ambiguityPenalty": 0,
+                    "tieBreakKey": "synthetic_pass_thru",
+                },
+                "augmentation": {
+                    "reactantSide": "none",
+                    "productSide": "none",
+                },
+                "reactantAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                "reactantSideOperators": [
+                    {
+                        "id": "reactant_operator.pass_thru.1",
+                        "type": "pass-thru",
+                        "lawId": None,
+                        "inputOccurrenceKeys": [reactant_id],
+                        "outputOccurrenceKeys": ["intermediate_up_quark_1"],
+                    }
+                ],
+                "intermediateAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                "productSideOperators": [
+                    {
+                        "id": "product_operator.pass_thru.1",
+                        "type": "pass-thru",
+                        "lawId": None,
+                        "inputOccurrenceKeys": ["intermediate_up_quark_1"],
+                        "outputOccurrenceKeys": [product_id],
+                    }
+                ],
+                "productAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                "provenanceSummary": {
+                    "summaryText": "Synthetic pass-thru exact family used for CLI contract tests.",
+                    "outputs": [
+                        {
+                            "occurrenceKey": product_id,
+                            "provenanceClass": "pass_thru",
+                            "supportSourceRows": [],
+                            "ambiguous": False,
+                        }
+                    ],
+                },
+                "diagnostics": [],
+                "rawBranchCount": 1,
+                "publicationReady": True,
+                "canonicalCandidate": {
+                    "candidateId": "candidate.synthetic.pass_thru.v1",
+                    "exact": True,
+                    "reactantAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                    "reactantSideOperators": [
+                        {
+                            "id": "reactant_operator.pass_thru.1",
+                            "type": "pass-thru",
+                            "lawId": None,
+                            "inputOccurrenceKeys": [reactant_id],
+                            "outputOccurrenceKeys": ["intermediate_up_quark_1"],
+                        }
+                    ],
+                    "intermediateAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                    "productSideOperators": [
+                        {
+                            "id": "product_operator.pass_thru.1",
+                            "type": "pass-thru",
+                            "lawId": None,
+                            "inputOccurrenceKeys": ["intermediate_up_quark_1"],
+                            "outputOccurrenceKeys": [product_id],
+                        }
+                    ],
+                    "productAssemblies": [{"assemblyId": "pro_up_quark_I", "count": 1}],
+                    "provenanceSummary": {
+                        "summaryText": "Synthetic pass-thru exact family used for CLI contract tests.",
+                        "outputs": [
+                            {
+                                "occurrenceKey": product_id,
+                                "provenanceClass": "pass_thru",
+                                "supportSourceRows": [],
+                                "ambiguous": False,
+                            }
+                        ],
+                    },
+                    "solveGraph": {
+                        "schema": "pdgsolve-publication-graph/v1",
+                        "units": [
+                            {
+                                "id": "unit_lane1_up.row.1",
+                                "kind": "assembly",
+                                "stage": "reactantAssemblies",
+                                "recipeId": "pro_up_quark_I",
+                                "occurrenceKey": reactant_id,
+                                "title": "Up Quark",
+                                "anchorRow": 0,
+                            },
+                            {
+                                "id": "unit_lane2_pass_thru_1",
+                                "kind": "operator",
+                                "stage": "reactantSideOperators",
+                                "recipeId": "pass-thru",
+                                "occurrenceKey": "reactant_operator.pass_thru.1",
+                                "title": "Pass Thru",
+                                "anchorRow": 0,
+                            },
+                            {
+                                "id": "unit_lane3_up.row.1",
+                                "kind": "assembly",
+                                "stage": "intermediateAssemblies",
+                                "recipeId": "pro_up_quark_I",
+                                "occurrenceKey": "intermediate_up_quark_1",
+                                "title": "Up Quark",
+                                "anchorRow": 0,
+                            },
+                            {
+                                "id": "unit_lane4_pass_thru_1",
+                                "kind": "operator",
+                                "stage": "productSideOperators",
+                                "recipeId": "pass-thru",
+                                "occurrenceKey": "product_operator.pass_thru.1",
+                                "title": "Pass Thru",
+                                "anchorRow": 0,
+                            },
+                            {
+                                "id": "unit_lane5_up.row.1",
+                                "kind": "assembly",
+                                "stage": "productAssemblies",
+                                "recipeId": "pro_up_quark_I",
+                                "occurrenceKey": product_id,
+                                "title": "Up Quark",
+                                "anchorRow": 0,
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "id": "edge_reactant_to_operator",
+                                "fromUnitId": "unit_lane1_up.row.1",
+                                "fromPortId": "output",
+                                "toUnitId": "unit_lane2_pass_thru_1",
+                                "toPortId": "input",
+                            },
+                            {
+                                "id": "edge_operator_to_intermediate",
+                                "fromUnitId": "unit_lane2_pass_thru_1",
+                                "fromPortId": "output",
+                                "toUnitId": "unit_lane3_up.row.1",
+                                "toPortId": "input",
+                            },
+                            {
+                                "id": "edge_intermediate_to_operator",
+                                "fromUnitId": "unit_lane3_up.row.1",
+                                "fromPortId": "output",
+                                "toUnitId": "unit_lane4_pass_thru_1",
+                                "toPortId": "input",
+                            },
+                            {
+                                "id": "edge_operator_to_product",
+                                "fromUnitId": "unit_lane4_pass_thru_1",
+                                "fromPortId": "output",
+                                "toUnitId": "unit_lane5_up.row.1",
+                                "toPortId": "input",
+                            },
+                        ],
+                    },
+                },
+            }
+        ],
+        "review": {
+            "schema": "pdgsolve-review-state/v1",
+            "state": "review_ready",
+            "selectedFamilyId": "family.synthetic.pass_thru.v1",
+            "acceptedFamilyId": None,
+            "acceptedRecord": None,
+            "blockingDiagnostics": [],
+        },
+        "publication": None,
+    }
+
+
 class PdgsolveCliTests(unittest.TestCase):
     def read_json(self, path):
         return json.loads(Path(path).read_text(encoding="utf-8"))
@@ -19,84 +234,115 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         return stdout.getvalue().strip()
 
-    def test_solve_known_request_matches_checked_in_example(self):
-        request = pdgsolve.get_vertical_slice_request()
+    def test_solve_request_returns_deterministic_no_exact_closure(self):
+        result = pdgsolve.solve_request(make_unsolved_request())
+
+        self.assertEqual(result["searchStatus"], "no_exact_closure")
+        self.assertEqual(result["bestFamilyId"], "family.unsolved.v1")
+        self.assertEqual(result["problemId"], "pdgsolve_problem_reference_unsolved")
+
+    def test_build_acceptance_rejects_non_exact_families(self):
+        request = make_unsolved_request()
         result = pdgsolve.solve_request(request)
-        expected = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_RESULT_PATH)
 
-        self.assertEqual(result, expected)
-        self.assertEqual(result["searchStatus"], "exact_available")
-        self.assertEqual(result["bestFamilyId"], pdgsolve.DEFAULT_VERTICAL_SLICE_FAMILY_ID)
+        with self.assertRaisesRegex(ValueError, "Only exact families can be accepted"):
+            pdgsolve.build_acceptance(request, result, family_id="family.unsolved.v1")
 
-    def test_accept_known_result_matches_checked_in_example(self):
-        request = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_REQUEST_PATH)
-        result = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_RESULT_PATH)
+    def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
+        request = make_unsolved_request("synthetic_pass_thru")
+        result = make_exact_result(request)
         acceptance = pdgsolve.build_acceptance(
             request,
             result,
-            family_id=pdgsolve.DEFAULT_VERTICAL_SLICE_FAMILY_ID,
+            family_id="family.synthetic.pass_thru.v1",
         )
-        expected = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH)
 
-        self.assertEqual(acceptance, expected)
-        self.assertEqual(acceptance["acceptedState"], "accepted")
-        self.assertEqual(acceptance["familyId"], pdgsolve.DEFAULT_VERTICAL_SLICE_FAMILY_ID)
-
-    def test_publish_known_acceptance_matches_checked_in_pdgedit_document(self):
-        acceptance = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH)
-        pdgedit_document = pdgsolve.build_pdgedit_document_from_acceptance(acceptance)
-        expected = self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_PDGEDIT_PATH)
-
-        self.assertEqual(pdgedit_document, expected)
-        self.assertEqual(pdgedit_document["schema"], "pdgedit/v1")
-        self.assertEqual(len(pdgedit_document["assemblies"]), 13)
-        self.assertEqual(len(pdgedit_document["operators"]), 8)
-
-    def test_write_vertical_slice_command_writes_all_upstream_artifacts(self):
         with tempfile.TemporaryDirectory() as tmp_dir_name:
             tmp_dir = Path(tmp_dir_name)
-            request_path = tmp_dir / "request.json"
-            result_path = tmp_dir / "result.json"
             acceptance_path = tmp_dir / "acceptance.json"
-            pdgedit_path = tmp_dir / "published.json"
-            pdgedit_package_path = tmp_dir / "package.json"
+            output_path = tmp_dir / "published.json"
+            acceptance_path.write_text(json.dumps(acceptance, indent=2), encoding="utf-8")
+
+            output = self.run_main(["publish", str(acceptance_path), "--write", str(output_path)])
+
+            self.assertEqual(output, str(output_path))
+            published = self.read_json(output_path)
+            self.assertEqual(published["schema"], "pdgedit/v1")
+            self.assertEqual(len(published["assemblies"]), 3)
+            self.assertEqual(len(published["operators"]), 2)
+            self.assertEqual(published["assemblies"][0]["type"], "pro-up-quark-assembly")
+
+    def test_solve_manifest_writes_only_unsolved_results_and_empty_pdgedit_manifest(self):
+        manifest = {
+            "schema": "pdg-live-manifest/v1",
+            "readyCount": 2,
+            "blockedCount": 0,
+            "topBlockedParticles": [],
+            "readyEntries": [
+                {
+                    "batchId": 1,
+                    "caseId": "reference_unsolved_a",
+                    "proposalId": "reference_unsolved_a",
+                    "pdgsolveRequest": make_unsolved_request("reference_unsolved_a"),
+                },
+                {
+                    "batchId": 2,
+                    "caseId": "reference_unsolved_b",
+                    "proposalId": "reference_unsolved_b",
+                    "pdgsolveRequest": make_unsolved_request("reference_unsolved_b"),
+                },
+            ],
+            "blockedEntries": [],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            manifest_path = tmp_dir / "manifest.json"
+            index_path = tmp_dir / "index.json"
+            output_dir = tmp_dir / "results"
+            pdgedit_output_dir = tmp_dir / "pdgedit-documents"
+            pdgedit_manifest_path = tmp_dir / "pdgedit-manifest.json"
+            manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
             output = self.run_main(
                 [
-                    "write-vertical-slice",
-                    "--request-path",
-                    str(request_path),
-                    "--result-path",
-                    str(result_path),
-                    "--acceptance-path",
-                    str(acceptance_path),
-                    "--pdgedit-path",
-                    str(pdgedit_path),
-                    "--pdgedit-package-path",
-                    str(pdgedit_package_path),
+                    "solve-manifest",
+                    str(manifest_path),
+                    "--output-dir",
+                    str(output_dir),
+                    "--write-index",
+                    str(index_path),
+                    "--pdgedit-output-dir",
+                    str(pdgedit_output_dir),
+                    "--write-pdgedit-manifest",
+                    str(pdgedit_manifest_path),
                 ]
             )
 
-            self.assertEqual(
-                output.splitlines(),
-                [
-                    str(request_path),
-                    str(result_path),
-                    str(acceptance_path),
-                    str(pdgedit_path),
-                    str(pdgedit_package_path),
-                ],
-            )
-            self.assertEqual(self.read_json(request_path), self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_REQUEST_PATH))
-            self.assertEqual(self.read_json(result_path), self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_RESULT_PATH))
-            self.assertEqual(
-                self.read_json(acceptance_path),
-                self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_ACCEPTANCE_PATH),
-            )
-            self.assertEqual(self.read_json(pdgedit_path), self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_PDGEDIT_PATH))
-            self.assertEqual(
-                self.read_json(pdgedit_package_path),
-                self.read_json(pdgsolve.DEFAULT_VERTICAL_SLICE_PDGEDIT_PACKAGE_PATH),
-            )
+            self.assertEqual(output.splitlines(), [str(output_dir), str(index_path), str(pdgedit_manifest_path)])
+            index_payload = self.read_json(index_path)
+            self.assertEqual(index_payload["schema"], "pdgsolve-result-corpus/v1")
+            self.assertEqual(index_payload["solvedCount"], 2)
+            self.assertEqual(index_payload["exactAvailableCount"], 0)
+            self.assertEqual(index_payload["noExactClosureCount"], 2)
+            self.assertEqual(len(index_payload["results"]), 2)
+            for record in index_payload["results"]:
+                result_path = tmp_dir / record["resultPath"]
+                self.assertTrue(result_path.exists())
+                self.assertEqual(self.read_json(result_path)["searchStatus"], "no_exact_closure")
+                self.assertNotIn("pdgeditDocumentPath", record)
+            pdgedit_manifest = self.read_json(pdgedit_manifest_path)
+            self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
+            self.assertEqual(pdgedit_manifest["entries"], [])
+            self.assertEqual(pdgedit_manifest["defaultEntryId"], "")
+
+    def test_parse_args_uses_repo_local_tmp_defaults_for_manifest_solves(self):
+        args = pdgsolve.parse_args(["solve-manifest", "manifest.json"])
+
+        self.assertEqual(args.output_dir, pdgsolve.DEFAULT_RESULT_CORPUS_OUTPUT_DIR)
+        self.assertEqual(args.write_index, pdgsolve.DEFAULT_RESULT_CORPUS_INDEX_PATH)
+        self.assertEqual(args.pdgedit_output_dir, pdgsolve.DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR)
+        self.assertEqual(args.write_pdgedit_manifest, pdgsolve.DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH)
 
 
 if __name__ == "__main__":

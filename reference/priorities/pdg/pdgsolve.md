@@ -57,9 +57,16 @@ Large coordinator files may assemble those pieces temporarily, but they should n
 
 ### Composite And Higher-Scale Terms Are Out Of Scope
 
-Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects, except for the one explicit counted `Unbound Architrinos` product occurrence admitted by `pdgsolve-request/v1`.
+Composite labels, higher-scale particle names, grouping interpretations, support tokens, residue labels, and similar terms are boundary-side language, not solver-native objects.
 
-They do not enter `pdgsolve` as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must translate them into explicit admitted Standard Model assemblies before `pdgsolve` sees the request. If that translation cannot be completed, the source request is un-mappable and should remain upstream in `pdgfeed` rather than being emitted to `pdgsolve`. If downstream tools want higher-scale summaries, they may derive them only after `pdgsolve` has finished.
+`Unbound Architrinos` is the one important exception. It is solver-native in exactly these roles:
+
+- one and only one explicit counted `Unbound Architrinos` assembly in the intermediate stage;
+- and one explicit counted `Unbound Architrinos` occurrence on the product side when either upstream already emitted it at the boundary or an intermediate-side `Pass Thru` routes to it.
+
+The intermediate `Unbound Architrinos` assembly is a ledger object. It may appear only as the shared output target of reactant-side `Dissociate` operators. Multiple reactant-side `Dissociate` operators may route Electrinos and Positrinos into it within the same branch. It is not a wildcard well, and it is not replaced by multiple separate intermediate `Unbound Architrinos` objects. Its Electrino and Positrino counts are part of the solver state and are routed explicitly through `Associate` and `Pass Thru` operators.
+
+Aside from that explicit `Unbound Architrinos` handling, higher-scale language does not enter `pdgsolve` as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must translate them into explicit admitted Standard Model assemblies before `pdgsolve` sees the request. If that translation cannot be completed, the source request is un-mappable and should remain upstream in `pdgfeed` rather than being emitted to `pdgsolve`. If downstream tools want higher-scale summaries, they may derive them only after `pdgsolve` has finished.
 
 Post-solver grouping display may describe solved assemblies, but grouping metadata is not itself opened, gathered, dissociated, associated, or searched.
 
@@ -90,6 +97,10 @@ The strip uses a deliberately limited grammar:
 - every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content;
 - `pdgfeed` may already have completed the boundary by adding explicit `pro_noether_core_I` and `anti_noether_core_I` rows on the reactant or product side;
 - `pdgfeed` may also emit one explicit counted `Unbound Architrinos` product occurrence for the sub-pair primitive residue that remains after full Noether-pair completion;
+- the intermediate stage may contain one and only one explicit counted `Unbound Architrinos` assembly, and multiple reactant-side `Dissociate` operators may route counts into that one ledger;
+- that intermediate `Unbound Architrinos` assembly acts as the common Electrino/Positrino ledger for all intermediate-to-product routing;
+- product-side `Associate` and product-side `Pass Thru` may each draw routed counts from that one intermediate ledger;
+- and if product-side `Pass Thru` routes from the intermediate `Unbound Architrinos` assembly, its output must be a product-side `Unbound Architrinos` assembly;
 - and for `pdgfeed`-emitted v1 requests the solver should treat `allowedBoundaryAugmentations: ["none"]` as the normal handoff because adding boundary material is not a solver job.
 
 In `pdgsolve` terminology, an **assembly** is one solver-native AAA assembly object that can participate in operator routing.
@@ -317,6 +328,255 @@ The concrete conserved-content rows for every admitted assembly in that table sh
 A specific assembly may still have an empty dissociation or association set when no legal dissociation or association exists for that assembly. Empty tables are not the intended global default.
 
 `Pass Thru` remains the identity case inside those law tables, but it is not the only solver behavior the document is targeting.
+
+For implementation, the abstract law-table placeholder should now be frozen as one concrete first-pass executable family:
+
+### `pdgsolve-laws/v1-standard-model`
+
+This first-pass law family is the machine-oriented rule set that `pdgsolve` should actually implement before wider refinement.
+
+It should be expressed as:
+
+- one universal `Pass Thru` identity law for every admitted assembly;
+- one family of generation-aware `Dissociate` laws;
+- one family of generation-aware `Associate` laws;
+- one family of Noether-core ladder dissociation laws;
+- and one shared counted `Unbound Architrinos` assembly in the intermediate stage.
+
+This section is the executable interpretation of \(\Delta\) and \(\Gamma\) for v1.
+
+#### One Shared Intermediate `Unbound Architrinos` Ledger
+
+For the executable v1 law table, the intermediate stage should admit one and only one explicit counted `Unbound Architrinos` assembly.
+
+That assembly carries exactly:
+
+- an Electrino count;
+- a Positrino count;
+- and the corresponding \( \epsilon^- \) and \( \epsilon^+ \) display characters shown with those counts in the tile glyph.
+
+This intermediate `Unbound Architrinos` assembly is not a wildcard well and not a composite label.
+
+It is a shared ledger used only as:
+
+- output of one or more reactant-side `Dissociate` operators;
+- input to one or more product-side `Associate` operators;
+- or input to a product-side `Pass Thru` whose output is a product-side `Unbound Architrinos` assembly.
+
+Every branch must satisfy:
+
+- Electrino count \(\ge 0\);
+- Positrino count \(\ge 0\);
+- routed counts may never drive either count below zero;
+- an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether core;
+- and there may never be a second intermediate `Unbound Architrinos` assembly.
+
+#### Universal Identity Law
+
+For every admitted assembly \(a \in \mathcal{A}_{\mathrm{v1}}\),
+
+$$
+e_{a}: a \mapsto a
+$$
+
+is always legal.
+
+So `Pass Thru` is globally available and must be included in every local action set.
+
+#### Generation-Matched Noether-Core Decomposition
+
+The first-pass executable law family should treat every visible Standard Model fermion assembly as:
+
+- one generation-matched `pro Noether core` or `anti Noether core`;
+- plus the required Electrino and Positrino counts carried by the one shared intermediate `Unbound Architrinos` ledger.
+
+For v1, the generation-matched Noether cores are:
+
+- generation I matter: `pro_noether_core_I`;
+- generation I antimatter: `anti_noether_core_I`;
+- generation II matter: `pro_noether_core_II`;
+- generation II antimatter: `anti_noether_core_II`;
+- generation III matter: `pro_noether_core_III`;
+- generation III antimatter: `anti_noether_core_III`.
+
+The first-pass `Unbound Architrinos` count classes are:
+
+| Assembly family | Required `Unbound Architrinos` counts |
+| --- | --- |
+| charged matter lepton | `6` Electrinos, `0` Positrinos |
+| charged antimatter lepton | `0` Electrinos, `6` Positrinos |
+| neutrino or antineutrino | `3` Electrinos, `3` Positrinos |
+| down-type matter quark | `4` Electrinos, `2` Positrinos |
+| down-type antimatter quark | `2` Electrinos, `4` Positrinos |
+| up-type matter quark | `1` Electrino, `5` Positrinos |
+| up-type antimatter quark | `5` Electrinos, `1` Positrino |
+
+These count classes match the current primitive counts already present in the admitted assembly table:
+
+- `pro_electron_I = pro_noether_core_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_electron_I = anti_noether_core_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_electron_neutrino_I = pro_noether_core_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_electron_neutrino_I = anti_noether_core_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_down_quark_I = pro_noether_core_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_down_quark_I = anti_noether_core_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_up_quark_I = pro_noether_core_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_up_quark_I = anti_noether_core_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+
+The same count classes should be reused across generations, with only the Noether-core generation changing.
+
+So, for example:
+
+- `pro_muon_II = pro_noether_core_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_muon_II = anti_noether_core_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_muon_neutrino_II = pro_noether_core_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_muon_neutrino_II = anti_noether_core_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_strange_quark_II = pro_noether_core_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_strange_quark_II = anti_noether_core_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_charm_quark_II = pro_noether_core_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_charm_quark_II = anti_noether_core_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`;
+- `pro_tau_III = pro_noether_core_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `anti_tau_III = anti_noether_core_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`;
+- `pro_tau_neutrino_III = pro_noether_core_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `anti_tau_neutrino_III = anti_noether_core_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `pro_bottom_quark_III = pro_noether_core_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `anti_bottom_quark_III = anti_noether_core_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`;
+- `pro_top_quark_III = pro_noether_core_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`;
+- `anti_top_quark_III = anti_noether_core_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+
+This Noether-core-plus-`Unbound Architrinos` form is the first concrete v1 law-table basis.
+
+#### Fermion Dissociation Laws
+
+For every admitted visible fermion assembly \(f\), the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
+
+In symbols:
+
+$$
+\Delta(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
+$$
+
+Concretely, the first-pass dissociation rules are:
+
+- charged leptons:
+  - `pro_electron_I -> pro_noether_core_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_electron_I -> anti_noether_core_I + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+  - `pro_muon_II -> pro_noether_core_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_muon_II -> anti_noether_core_II + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+  - `pro_tau_III -> pro_noether_core_III + Unbound Architrinos (6 Electrinos, 0 Positrinos)`
+  - `anti_tau_III -> anti_noether_core_III + Unbound Architrinos (0 Electrinos, 6 Positrinos)`
+- neutrinos:
+  - `pro_electron_neutrino_I -> pro_noether_core_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_electron_neutrino_I -> anti_noether_core_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `pro_muon_neutrino_II -> pro_noether_core_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_muon_neutrino_II -> anti_noether_core_II + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `pro_tau_neutrino_III -> pro_noether_core_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+  - `anti_tau_neutrino_III -> anti_noether_core_III + Unbound Architrinos (3 Electrinos, 3 Positrinos)`
+- down-type quarks:
+  - `pro_down_quark_I -> pro_noether_core_I + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_down_quark_I -> anti_noether_core_I + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+  - `pro_strange_quark_II -> pro_noether_core_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_strange_quark_II -> anti_noether_core_II + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+  - `pro_bottom_quark_III -> pro_noether_core_III + Unbound Architrinos (4 Electrinos, 2 Positrinos)`
+  - `anti_bottom_quark_III -> anti_noether_core_III + Unbound Architrinos (2 Electrinos, 4 Positrinos)`
+- up-type quarks:
+  - `pro_up_quark_I -> pro_noether_core_I + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_up_quark_I -> anti_noether_core_I + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+  - `pro_charm_quark_II -> pro_noether_core_II + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_charm_quark_II -> anti_noether_core_II + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+  - `pro_top_quark_III -> pro_noether_core_III + Unbound Architrinos (1 Electrino, 5 Positrinos)`
+  - `anti_top_quark_III -> anti_noether_core_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`
+
+Each such rule emits:
+
+- exactly one Noether-core row;
+- routed counts into the one shared intermediate `Unbound Architrinos` ledger;
+- and no hidden extra material.
+
+#### Fermion Association Laws
+
+For every admitted visible fermion assembly \(f\), the executable association table should contain exactly the inverse gather law.
+
+In symbols:
+
+$$
+\Gamma(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
+$$
+
+Concretely, `Associate` may create \(f\) if and only if the gathered inputs are exactly:
+
+- the generation-matched Noether-core row of \(f\);
+- plus the required routed counts from the one shared intermediate `Unbound Architrinos` ledger.
+
+So, for example:
+
+- `Associate(pro_electron_I)` requires `pro_noether_core_I + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `Associate(anti_electron_neutrino_I)` requires `anti_noether_core_I + Unbound Architrinos (3 Electrinos, 3 Positrinos)`;
+- `Associate(pro_muon_II)` requires `pro_noether_core_II + Unbound Architrinos (6 Electrinos, 0 Positrinos)`;
+- `Associate(pro_strange_quark_II)` requires `pro_noether_core_II + Unbound Architrinos (4 Electrinos, 2 Positrinos)`;
+- `Associate(anti_top_quark_III)` requires `anti_noether_core_III + Unbound Architrinos (5 Electrinos, 1 Positrino)`.
+
+An `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion. It does not read those polar charges directly from an intact Noether core row.
+
+If a branch needs additional Electrinos or Positrinos in the ledger, it must first create them by lawful dissociation before the associated product is attempted.
+
+The `Associate` tile should display the Electrino and Positrino counts it routes from the intermediate `Unbound Architrinos` ledger into the product assembly.
+
+#### Noether-Core Ladder Laws
+
+The generation ladder should be executable through explicit Noether-core dissociation rather than by invisible subtraction.
+
+Specifically, this means a `Dissociate` operator may open a `pro Noether core` or `anti Noether core` into the next lower Noether-core form while routing `1` Electrino and `1` Positrino into the one shared intermediate `Unbound Architrinos` ledger. At the bottom of the ladder, a generation III Noether core may dissociate into routed `1` Electrino and `1` Positrino with no lower Noether-core output.
+
+Open point: this one-binary-at-a-time Noether-core dissociation rule may not be sufficient to cover the full ready corpus. We still need to resolve whether lawful `Dissociate` behavior must also admit larger Noether-core openings in a single operator step rather than only this stepwise ladder.
+
+For v1, the first-pass ladder laws are:
+
+- `pro_noether_core_I -> pro_noether_core_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_core_I -> anti_noether_core_II + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `pro_noether_core_II -> pro_noether_core_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_core_II -> anti_noether_core_III + Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `pro_noether_core_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
+- `anti_noether_core_III -> Unbound Architrinos (1 Electrino, 1 Positrino)`
+
+These rules make the Noether-core ladder explicit:
+
+- tri-binary to bi-binary releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger;
+- bi-binary to uni-binary releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger;
+- uni-binary to fully unbound releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger.
+
+This is the first lawful mechanism by which a branch can add neutral charge into the intermediate ledger for later associations.
+
+#### No Hidden Direct-Use Rule
+
+The executable law table should impose the following explicit constraint:
+
+- product-side `Associate` may consume only intermediate ledger occurrences;
+- every polar contribution must come from the one explicit intermediate `Unbound Architrinos` ledger;
+- and product-side `Pass Thru` may route counts from that ledger only to a product-side `Unbound Architrinos` assembly.
+
+So the following are illegal:
+
+- treating an intact Noether core as a free polar source;
+- reading Electrino or Positrino counts directly from reactant-side support rows on the product side;
+- creating a second intermediate `Unbound Architrinos` assembly;
+- or routing counts from the intermediate ledger so that either Electrinos or Positrinos would go negative.
+
+The `Pass Thru` tile should display the Electrino and Positrino counts it routes when it carries `Unbound Architrinos` from the intermediate stage to the product stage.
+
+#### First Coding Target
+
+The first real `pdgsolve` implementation should code exactly this `pdgsolve-laws/v1-standard-model` law family before adding refinements.
+
+That means the first executable solver should assume:
+
+- one shared admitted assembly alphabet \(\mathcal{A}_{\mathrm{v1}}\);
+- universal pass-thru;
+- the Noether-core-plus-`Unbound Architrinos` dissociate/associate family above;
+- the Noether-core ladder laws above;
+- one shared intermediate `Unbound Architrinos` ledger with nonnegative counts;
+- and no hidden reaction-specific shortcuts.
+
+If this first-pass law family proves insufficient for specific corpus channels, the next step should be to revise this table explicitly here rather than to reintroduce hand-authored solved reactions in code.
 
 ### Normalization Rules
 
@@ -1289,3 +1549,35 @@ Objective:
 - keep correctness work focused on assembly legality, primitive conservation, provenance closure, and exact-versus-partial family ranking;
 - expand regression coverage whenever the admitted assembly table or law table grows;
 - and make it harder to land solver drift than to keep the boundary clean.
+
+Active work queue:
+
+1. Build the real solver state and ledger model.
+   This means explicit reactant assemblies, one shared intermediate `Unbound Architrinos` ledger, explicit product assemblies, operator inputs and outputs, and nonnegative primitive counts throughout the branch.
+
+2. Implement real search rather than pre-authored reaction templates.
+   The solver must enumerate lawful `pass-thru`, `dissociate`, and `associate` branches, retain exact and partial families, and score them deterministically.
+
+3. Build the operator law inventory.
+   At minimum this includes lawful `pass-thru`, lawful generation-specific `dissociate`, lawful `associate`, and lawful Noether-core dissociation rules.
+
+4. Enforce bounded primitive spending.
+   The shared intermediate `Unbound Architrinos` ledger must be finite, not a well. No branch may spend Electrinos or Positrinos below zero, and no product-side operator may draw from hidden reactant material.
+
+5. Add reactant-side support generation.
+   If a branch needs more polar charge, the solver must first dissociate lawful reactant-side Noether cores and add the resulting counts into the one shared intermediate `Unbound Architrinos` ledger.
+
+6. Add branch pruning, canonicalization, and deterministic tie-breaking.
+   Real search will otherwise blow up combinatorially. The solver needs equivalence collapsing, mismatch pruning, depth control, and stable ordering.
+
+7. Build family construction from searched branches.
+   Raw branches must be grouped into exact families, retained partial families, and no-closure output with deterministic representatives and explicit provenance summaries.
+
+8. Build acceptance-ready publication graphs from searched solutions.
+   Once exact families exist, the solver still needs stable row assignment, stable ids, and readable operator placement for downstream publication.
+
+9. Expand regression coverage by reaction class.
+   Coverage must include lepton decays, neutrino channels, quark transitions, radiative channels, pair-production channels, and cases with explicit boundary residues emitted by `pdgfeed`.
+
+10. Run corpus-level evaluation on the ready set.
+    Track exact count, partial count, unsolved count, and the dominant blocking diagnostics so law-table work can be prioritized against the real `pdgfeed` corpus.

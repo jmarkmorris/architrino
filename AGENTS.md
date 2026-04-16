@@ -30,7 +30,10 @@ This document distinguishes three audience scopes:
 - For fixed-choice prompts, always list options in your, the agent, ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator/developer choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
 - In operator/developer communication, do not assume shared understanding of technical or project-specific terminology before proceeding. When such terms are needed, define them immediately in plain language and explain how they relate to the surrounding concepts.
-- In operator/developer communication and authored markdown, avoid obscuring jargon or vague placeholder terms such as `shape`, `fixture`, `surface`, `anchor`, and similar stand-ins when a proper project term exists. Use the correct product or project terminology. If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
+- In operator/developer communication and authored markdown, use established project terminology whenever it exists. Do not replace a defined project term with an improvised synonym, softened paraphrase, convenience label, or vague placeholder such as `shape`, `fixture`, `surface`, `anchor`, or similar stand-ins.
+- When a project term has already been established in the local canon, codebase, UI, or accepted documentation, reuse that exact term consistently. Do not create alternate names just because they feel more intuitive, more general, or less repetitive.
+- If multiple nearby terms appear to overlap, resolve which one is the canonical project term before proceeding, and then use that term consistently.
+- If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
 
 ### Workspace Workflow
@@ -53,6 +56,7 @@ This document distinguishes three audience scopes:
 - Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md) and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
 - Treat the Archie canon of guides and glossaries as controlled references, not casual edit targets.
 - For ordinary content work, conform documents to the canon; do not silently rewrite the canon to match a draft.
+- Treat terminology drift as an error to correct, not as a stylistic variation to preserve. When a draft uses a non-canonical substitute for an established project term, normalize it back to the canonical term unless the task explicitly changes terminology policy.
 - Update canon files only when the task explicitly changes terminology or style policy, or when leaving the canon unchanged would create a clear conflict with already-accepted content.
 - Before changing canon files as part of broader work, discuss the proposed canon change, rationale, and downstream effects with the operator/developer unless the operator/developer explicitly requested the canon update.
 

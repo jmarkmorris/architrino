@@ -88,7 +88,7 @@ test("pdgedit review group catalog covers the requested single-row and composite
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
 
   assert.equal(reviewGroups.specialGroups.length, 1);
-  assert.equal(reviewGroups.singleRowGroups.length, 28);
+  assert.equal(reviewGroups.singleRowGroups.length, 31);
   assert.equal(reviewGroups.quarkColorGroups.length, 3);
   assert.equal(reviewGroups.compositeGroups.length, 19);
 });
@@ -98,11 +98,57 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
 
   reviewGroups.singleRowGroups
     .filter(
-      (group) => !group.key.startsWith("unbound-architrino-residue-") && group.key !== "noether-sea"
+      (group) =>
+        group.key !== "noether-sea" &&
+        !group.key.includes("noether-core") &&
+        !group.key.includes("bi-binary") &&
+        !group.key.includes("uni-binary")
     )
     .forEach((group) => {
     assert.deepEqual(group.rows[0].slice(1), getExpectedGenerationTiles(group.key), group.key);
   });
+});
+
+test("Noether core review rows show the tri/bi/uni-binary ladder explicitly", () => {
+  const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
+  const groupByKey = new Map(reviewGroups.singleRowGroups.map((group) => [group.key, group]));
+
+  assert.deepEqual(groupByKey.get("pro-noether-core")?.rows[0], [
+    "pro-noether-core",
+    "binary-bare-br-none",
+    "binary-bare-br-none",
+    "binary-bare-br-none",
+  ]);
+  assert.deepEqual(groupByKey.get("anti-noether-core")?.rows[0], [
+    "anti-noether-core",
+    "binary-bare-rb-none",
+    "binary-bare-rb-none",
+    "binary-bare-rb-none",
+  ]);
+  assert.deepEqual(groupByKey.get("pro-bi-binary")?.rows[0], [
+    "pro-bi-binary",
+    "binary-bare-br-none",
+    "binary-bare-br-none",
+    "binary-empty-none-none",
+  ]);
+  assert.deepEqual(groupByKey.get("anti-bi-binary")?.rows[0], [
+    "anti-bi-binary",
+    "binary-bare-rb-none",
+    "binary-bare-rb-none",
+    "binary-empty-none-none",
+  ]);
+  assert.deepEqual(groupByKey.get("pro-uni-binary")?.rows[0], [
+    "pro-uni-binary",
+    "binary-bare-br-none",
+    "binary-empty-none-none",
+    "binary-empty-none-none",
+  ]);
+  assert.deepEqual(groupByKey.get("anti-uni-binary")?.rows[0], [
+    "anti-uni-binary",
+    "binary-bare-rb-none",
+    "binary-empty-none-none",
+    "binary-empty-none-none",
+  ]);
 });
 
 test("quark color example groups use the standard quark title tiles and expected axis permutations", () => {

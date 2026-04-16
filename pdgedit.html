@@ -155,6 +155,55 @@
         margin-top: 6px;
       }
 
+      #pdgedit-document-search {
+        display: block;
+        width: 100%;
+        min-height: 34px;
+        margin: 0 0 8px;
+        border: 1px solid rgba(160, 170, 220, 0.2);
+        border-radius: 10px;
+        background: rgba(12, 16, 28, 0.92);
+        color: #f5f7ff;
+        padding: 0 10px;
+        font: inherit;
+      }
+
+      #pdgedit-document-search::placeholder {
+        color: rgba(245, 247, 255, 0.48);
+      }
+
+      #pdgedit-document-source-filter {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        margin: 0 0 8px;
+      }
+
+      .pdgedit-document-source-filter-button {
+        min-height: 34px;
+        border: 1px solid rgba(160, 170, 220, 0.2);
+        border-radius: 10px;
+        background: rgba(12, 16, 28, 0.92);
+        color: rgba(245, 247, 255, 0.78);
+        padding: 0 10px;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .pdgedit-document-source-filter-button.is-selected {
+        border-color: rgba(213, 220, 255, 0.55);
+        background: rgba(255, 255, 255, 0.08);
+        color: #f5f7ff;
+      }
+
+      .pdgedit-document-empty {
+        padding: 10px;
+        color: rgba(245, 247, 255, 0.68);
+        font-size: 13px;
+      }
+
       .pdgedit-document-option.is-selected,
       .pdgedit-operator-type-button.is-selected {
         border-color: rgba(213, 220, 255, 0.55);
@@ -343,7 +392,42 @@
           <button id="pdgedit-document-trigger" type="button" aria-label="Choose pdgedit document">
             Choose pdgedit document
           </button>
-          <div id="pdgedit-document-panel" role="listbox" aria-hidden="true" hidden></div>
+          <div id="pdgedit-document-panel" role="listbox" aria-hidden="true" hidden>
+            <input
+              id="pdgedit-document-search"
+              type="search"
+              placeholder="Search reactions"
+              aria-label="Search available reactions"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <div id="pdgedit-document-source-filter" role="group" aria-label="Filter reaction source">
+              <button
+                type="button"
+                class="pdgedit-document-source-filter-button is-selected"
+                data-source-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                class="pdgedit-document-source-filter-button"
+                data-source-filter="exact"
+                aria-pressed="false"
+              >
+                Exact only
+              </button>
+              <button
+                type="button"
+                class="pdgedit-document-source-filter-button"
+                data-source-filter="example"
+                aria-pressed="false"
+              >
+                Examples
+              </button>
+            </div>
+          </div>
           <button id="pdgedit-home-button" type="button" aria-label="Go to home"></button>
         </div>
       </div>
