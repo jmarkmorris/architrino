@@ -1552,11 +1552,5 @@ Objective:
 
 Active work queue:
 
-1. Build acceptance-ready publication graphs from searched solutions.
-   Once exact families exist, the solver still needs stable row assignment, stable ids, and readable operator placement for downstream publication.
-
-2. Expand regression coverage by reaction class.
-   Coverage must include lepton decays, neutrino channels, quark transitions, radiative channels, pair-production channels, and cases with explicit boundary residues emitted by `pdgfeed`.
-
-3. Run corpus-level evaluation on the ready set.
+1. Run corpus-level evaluation on the ready set.
    Track exact count, partial count, unsolved count, and the dominant blocking diagnostics so law-table work can be prioritized against the real `pdgfeed` corpus.

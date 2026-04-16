@@ -676,6 +676,7 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
         {
             "operatorChoices": [],
             "intermediateOccurrences": [clone_json(occurrence)],
+            "graphOccurrences": [clone_json(occurrence)],
         }
     ]
     dissociation_law = get_dissociation_law(assembly_id)
@@ -700,7 +701,7 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
             for intermediate_occurrence in intermediate_occurrences
         ]
         if not child_variant_sets:
-            child_variant_sets = [[{"operatorChoices": [], "intermediateOccurrences": []}]]
+            child_variant_sets = [[{"operatorChoices": [], "intermediateOccurrences": [], "graphOccurrences": []}]]
         for child_variants in itertools.product(*child_variant_sets):
             output_occurrence_keys = [
                 normalize_text(intermediate_occurrence["id"])
@@ -719,13 +720,17 @@ def build_reactant_support_variants(occurrence: dict[str, Any]) -> list[dict[str
                 }
             ]
             final_intermediate_occurrences = [clone_json(residue_occurrence)]
+            graph_occurrences = [clone_json(output) for output in intermediate_occurrences]
+            graph_occurrences.append(clone_json(residue_occurrence))
             for child_variant in child_variants:
                 operator_choices.extend(clone_json(child_variant["operatorChoices"]))
                 final_intermediate_occurrences.extend(clone_json(child_variant["intermediateOccurrences"]))
+                graph_occurrences.extend(clone_json(child_variant["graphOccurrences"]))
             variants.append(
                 {
                     "operatorChoices": operator_choices,
                     "intermediateOccurrences": final_intermediate_occurrences,
+                    "graphOccurrences": graph_occurrences,
                 }
             )
     return variants
@@ -750,6 +755,7 @@ def build_reactant_local_choices(occurrence: dict[str, Any]) -> list[dict[str, A
                 }
             ],
             "intermediateOccurrences": [clone_json(occurrence)],
+            "graphOccurrences": [clone_json(occurrence)],
         }
     ]
     for support_variant in build_reactant_support_variants(occurrence):
@@ -859,6 +865,18 @@ def count_map_l1(counts: dict[str, int]) -> int:
 def canonical_counted_assemblies_from_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     counted = count_assemblies(records)
     return sorted(counted, key=lambda item: (item["assemblyId"], item["count"]))
+
+
+def unique_occurrences_by_id(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen: set[str] = set()
+    unique: list[dict[str, Any]] = []
+    for record in records:
+        occurrence_id = normalize_text(record.get("id"))
+        if not occurrence_id or occurrence_id in seen:
+            continue
+        seen.add(occurrence_id)
+        unique.append(clone_json(record))
+    return unique
 
 
 def emitted_operator_choice(choice: dict[str, Any]) -> dict[str, Any]:
@@ -985,6 +1003,93 @@ def build_provenance_summary(
     }
 
 
+def select_residue_occurrence_ids(
+    residue_occurrences: list[dict[str, Any]],
+    *,
+    electrino_target: int,
+    positrino_target: int,
+) -> list[str] | None:
+    indexed_occurrences = [
+        (
+            index,
+            int(occurrence.get("electrinoCount", 0) or 0),
+            int(occurrence.get("positrinoCount", 0) or 0),
+            normalize_text(occurrence.get("id")),
+        )
+        for index, occurrence in enumerate(residue_occurrences)
+    ]
+    memo: dict[tuple[int, int, int], list[str] | None] = {}
+
+    def search(start_index: int, remaining_e: int, remaining_p: int) -> list[str] | None:
+        key = (start_index, remaining_e, remaining_p)
+        if key in memo:
+            return memo[key]
+        if remaining_e == 0 and remaining_p == 0:
+            memo[key] = []
+            return []
+        if remaining_e < 0 or remaining_p < 0:
+            memo[key] = None
+            return None
+        for next_index in range(start_index, len(indexed_occurrences)):
+            _original_index, electrino_count, positrino_count, occurrence_id = indexed_occurrences[next_index]
+            suffix = search(next_index + 1, remaining_e - electrino_count, remaining_p - positrino_count)
+            if suffix is not None:
+                memo[key] = [occurrence_id, *suffix]
+                return memo[key]
+        memo[key] = None
+        return None
+
+    return search(0, electrino_target, positrino_target)
+
+
+def materialize_product_operator_choices(
+    intermediate_occurrences: list[dict[str, Any]],
+    product_operator_choices: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    available_by_assembly: dict[str, list[dict[str, Any]]] = {}
+    for occurrence in intermediate_occurrences:
+        assembly_id = normalize_text(occurrence.get("assemblyId"))
+        available_by_assembly.setdefault(assembly_id, []).append(clone_json(occurrence))
+
+    materialized: list[dict[str, Any]] = []
+    for choice in product_operator_choices:
+        choice_copy = clone_json(choice)
+        resolved_input_keys: list[str] = []
+        required_intermediate_rows = choice.get("requiredIntermediateRows", {})
+        for assembly_id, required_count in sorted(required_intermediate_rows.items()):
+            pool = available_by_assembly.get(assembly_id, [])
+            if len(pool) < int(required_count):
+                return None
+            selected = pool[: int(required_count)]
+            del pool[: int(required_count)]
+            resolved_input_keys.extend(normalize_text(record.get("id")) for record in selected)
+
+        residue_counts = choice.get("requiredResidueCounts", {})
+        electrino_target = int(residue_counts.get("electrinoCount", 0) or 0)
+        positrino_target = int(residue_counts.get("positrinoCount", 0) or 0)
+        if electrino_target or positrino_target:
+            residue_pool = available_by_assembly.get(UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID, [])
+            selected_ids = select_residue_occurrence_ids(
+                residue_pool,
+                electrino_target=electrino_target,
+                positrino_target=positrino_target,
+            )
+            if selected_ids is None:
+                return None
+            selected_id_set = set(selected_ids)
+            available_by_assembly[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID] = [
+                record
+                for record in residue_pool
+                if normalize_text(record.get("id")) not in selected_id_set
+            ]
+            resolved_input_keys.extend(selected_ids)
+
+        choice_copy["inputOccurrenceKeys"] = resolved_input_keys
+        materialized.append(choice_copy)
+
+    return materialized
+
+
 def build_candidate_score(
     *,
     exact: bool,
@@ -1052,6 +1157,63 @@ def score_tuple(score: dict[str, Any]) -> tuple[Any, ...]:
     )
 
 
+def build_exact_solve_graph(
+    *,
+    reactant_occurrences: list[dict[str, Any]],
+    product_occurrences: list[dict[str, Any]],
+    reactant_operator_choices: list[dict[str, Any]],
+    intermediate_occurrences: list[dict[str, Any]],
+    graph_intermediate_occurrences: list[dict[str, Any]],
+    product_operator_choices: list[dict[str, Any]],
+    prefix: str,
+) -> tuple[list[dict[str, Any]] | None, dict[str, Any] | None, list[dict[str, Any]]]:
+    materialized_product_choices = materialize_product_operator_choices(
+        intermediate_occurrences,
+        product_operator_choices,
+    )
+    if materialized_product_choices is None:
+        return None, None, [
+            make_diagnostic(
+                "pdgsolve.search.unmaterializable_product_inputs",
+                "search",
+                "Exact branch could not be materialized into explicit product-side intermediate inputs.",
+                blocking=True,
+                payload={"prefix": prefix},
+            )
+        ]
+
+    request_like = {
+        "reactants": clone_json(reactant_occurrences),
+        "products": clone_json(product_occurrences),
+    }
+    diagnostics = [
+        *validate_operator_balances(
+            request_like,
+            graph_intermediate_occurrences,
+            [*reactant_operator_choices, *materialized_product_choices],
+        ),
+        *validate_intermediate_ledger(
+            request_like,
+            intermediate_occurrences,
+            materialized_product_choices,
+        ),
+    ]
+    if diagnostics:
+        return materialized_product_choices, None, diagnostics
+
+    return (
+        materialized_product_choices,
+        build_muon_publication_graph(
+            request_like,
+            prefix=prefix,
+            reactant_operator_choices=reactant_operator_choices,
+            intermediate_occurrences=graph_intermediate_occurrences,
+            product_operator_choices=materialized_product_choices,
+        ),
+        [],
+    )
+
+
 def build_candidate_family(
     problem: dict[str, Any],
     *,
@@ -1063,13 +1225,36 @@ def build_candidate_family(
     reactant_operator_choices: list[dict[str, Any]],
     product_operator_choices: list[dict[str, Any]],
     intermediate_occurrences: list[dict[str, Any]],
+    graph_intermediate_occurrences: list[dict[str, Any]] | None = None,
     score: dict[str, Any],
     diagnostics: list[dict[str, Any]],
     publication_ready: bool = False,
 ) -> dict[str, Any]:
+    materialized_product_choices = clone_json(product_operator_choices)
+    solve_graph = None
+    publication_diagnostics: list[dict[str, Any]] = []
+    resolved_publication_ready = publication_ready
+    if kind == "exact":
+        (
+            maybe_materialized_product_choices,
+            solve_graph,
+            publication_diagnostics,
+        ) = build_exact_solve_graph(
+            reactant_occurrences=reactant_occurrences,
+            product_occurrences=product_occurrences,
+            reactant_operator_choices=reactant_operator_choices,
+            intermediate_occurrences=intermediate_occurrences,
+            graph_intermediate_occurrences=graph_intermediate_occurrences or intermediate_occurrences,
+            product_operator_choices=product_operator_choices,
+            prefix=slugify(family_id),
+        )
+        if maybe_materialized_product_choices is not None:
+            materialized_product_choices = maybe_materialized_product_choices
+        resolved_publication_ready = solve_graph is not None and not publication_diagnostics
+
     serialized_reactant_operators = [emitted_operator_choice(choice) for choice in reactant_operator_choices]
-    serialized_product_operators = [emitted_operator_choice(choice) for choice in product_operator_choices]
-    provenance_summary = build_provenance_summary(product_occurrences, product_operator_choices)
+    serialized_product_operators = [emitted_operator_choice(choice) for choice in materialized_product_choices]
+    provenance_summary = build_provenance_summary(product_occurrences, materialized_product_choices)
     canonical_candidate = {
         "candidateId": family_id.replace("family.", "candidate."),
         "exact": kind == "exact",
@@ -1079,7 +1264,7 @@ def build_candidate_family(
         "productSideOperators": serialized_product_operators,
         "productAssemblies": canonical_counted_assemblies_from_records(product_occurrences),
         "provenanceSummary": clone_json(provenance_summary),
-        "solveGraph": None,
+        "solveGraph": clone_json(solve_graph),
     }
     return {
         "familyId": family_id,
@@ -1095,9 +1280,9 @@ def build_candidate_family(
         "productSideOperators": serialized_product_operators,
         "productAssemblies": canonical_counted_assemblies_from_records(product_occurrences),
         "provenanceSummary": provenance_summary,
-        "diagnostics": diagnostics,
+        "diagnostics": [*diagnostics, *publication_diagnostics],
         "rawBranchCount": 1,
-        "publicationReady": publication_ready,
+        "publicationReady": resolved_publication_ready,
         "canonicalCandidate": canonical_candidate,
     }
 
@@ -1144,6 +1329,13 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                 for reactant_plan in reactant_plan_list
                 for output in reactant_plan.get("intermediateOccurrences", [])
             ]
+            reactant_graph_occurrences = unique_occurrences_by_id(
+                [
+                    clone_json(output)
+                    for reactant_plan in reactant_plan_list
+                    for output in reactant_plan.get("graphOccurrences", [])
+                ]
+            )
 
             reactant_count_map = build_count_map(reactant_intermediate)
             product_count_map: dict[str, int] = {}
@@ -1213,6 +1405,7 @@ def enumerate_search_families(problem: dict[str, Any]) -> list[dict[str, Any]]:
                     reactant_operator_choices=reactant_operator_choices,
                     product_operator_choices=product_choice_list,
                     intermediate_occurrences=reactant_intermediate,
+                    graph_intermediate_occurrences=reactant_graph_occurrences,
                     score=score,
                     diagnostics=diagnostics,
                 )
