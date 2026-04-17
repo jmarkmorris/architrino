@@ -11,6 +11,7 @@ import {
   getPdgeditEmptyDocument,
   movePdgeditObjectToRow,
 } from "../src/apps/pdgedit/PdgeditDocumentEditRuntime.js";
+import { preparePdgeditDocumentForDisplay } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemplateCatalogRuntime.js";
 
 function readJson(relativePath) {
@@ -198,4 +199,88 @@ test("create slots admit only legal unoccupied object stages on authored rows", 
     y: 2,
     column: 14,
   });
+});
+
+test("assembly movement still works after load-time catalyst top-sorting", () => {
+  const prepared = preparePdgeditDocumentForDisplay({
+    schema: "pdgedit/v1",
+    assemblies: [
+      {
+        id: "reactant_noncat",
+        type: "delta",
+        x: 2,
+        y: 0,
+        title: "reactant_noncat",
+        role: "reactant",
+        tiles: ["tile_a", "tile_b", "tile_c", "tile_d"],
+      },
+      {
+        id: "reactant_catalyst",
+        type: "alpha",
+        x: 2,
+        y: 3,
+        title: "reactant_catalyst",
+        role: "reactant",
+        tiles: ["tile_a", "tile_b", "tile_c", "tile_d"],
+      },
+      {
+        id: "intermediate_catalyst",
+        type: "alpha",
+        x: 9,
+        y: 2,
+        title: "intermediate_catalyst",
+        role: "intermediate",
+        tiles: ["tile_a", "tile_b", "tile_c", "tile_d"],
+      },
+      {
+        id: "product_catalyst",
+        type: "alpha",
+        x: 16,
+        y: 4,
+        title: "product_catalyst",
+        role: "product",
+        tiles: ["tile_a", "tile_b", "tile_c", "tile_d"],
+      },
+    ],
+    operators: [
+      {
+        id: "left_catalyst",
+        type: "pass-thru",
+        x: 7,
+        y: 3,
+        title: "Pass Thru",
+        positrinoCount: 1,
+        electrinoCount: 1,
+      },
+      {
+        id: "right_catalyst",
+        type: "pass-thru",
+        x: 14,
+        y: 4,
+        title: "Pass Thru",
+        positrinoCount: 1,
+        electrinoCount: 1,
+      },
+    ],
+    links: [
+      { id: "edge_1", endpointA: "reactant_catalyst", endpointB: "left_catalyst" },
+      { id: "edge_2", endpointA: "left_catalyst", endpointB: "intermediate_catalyst" },
+      { id: "edge_3", endpointA: "intermediate_catalyst", endpointB: "right_catalyst" },
+      { id: "edge_4", endpointA: "right_catalyst", endpointB: "product_catalyst" },
+    ],
+    compositeLabels: [],
+  });
+  const moved = movePdgeditObjectToRow(prepared, "reactant_noncat", 0);
+
+  assert.equal(moved.ok, true);
+  assert.deepEqual(
+    moved.document.assemblies
+      .filter((assembly) => assembly.role === "reactant")
+      .sort((left, right) => left.y - right.y)
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["reactant_noncat", 0],
+      ["reactant_catalyst", 1],
+    ]
+  );
 });

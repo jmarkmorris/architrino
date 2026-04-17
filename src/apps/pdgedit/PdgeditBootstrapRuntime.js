@@ -1,7 +1,7 @@
 import {
   createEmptyPdgeditDocument,
   loadPdgeditDocument,
-  normalizePdgeditDocument,
+  preparePdgeditDocumentForDisplay,
 } from "./PdgeditDocumentRuntime.js";
 import {
   normalizePdgeditLaunchPayload,
@@ -73,7 +73,7 @@ export async function loadPdgeditContractBootstrapSeed({
       }
     : selectDefaultPdgeditLibraryManifestEntry(mergedManifest);
   const document = normalizedLaunchPayload
-    ? normalizePdgeditDocument(normalizedLaunchPayload.pdgeditDocument)
+    ? preparePdgeditDocumentForDisplay(normalizedLaunchPayload.pdgeditDocument)
     : selectedEntry
     ? await loadPdgeditDocument({
         fetchImpl,

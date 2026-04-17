@@ -13,6 +13,7 @@ import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCata
 import {
   getPdgeditDocumentAssemblyRows,
   normalizePdgeditDocument,
+  preparePdgeditDocumentForDisplay,
   validatePdgeditDocumentTilePayload,
 } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { createPdgeditLaunchPayload } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
@@ -421,7 +422,7 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   assert.equal(bootstrap.selectedEntry.id, "pass_thru_up_quark_launch");
   assert.equal(bootstrap.selectedEntry.displayTitle, "Pass thru up quark launch");
   assert.equal(bootstrap.selectedEntry.documentPath, "");
-  assert.deepEqual(bootstrap.document, normalizePdgeditDocument(launchedDocument));
+  assert.deepEqual(bootstrap.document, preparePdgeditDocumentForDisplay(launchedDocument));
   assert.deepEqual(bootstrap.launchPayload, launchPayload);
 });
 
