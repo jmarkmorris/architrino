@@ -2,33 +2,39 @@
 
 ## LLM Instructions
 
-- Keep this document focused on `pdgsolve` as a solve-only Python tool.
-- Keep `Design` about durable solver boundaries, assemblies, operators, search, scoring, and JSON contracts.
+- Keep this document focused on `pdgsolve` as the Python solve, acceptance, and publication boundary upstream of `pdgedit`.
+- Keep `Design` about durable request normalization, solver boundaries, assemblies, operators, acceptance locking, publication-graph construction, and JSON contracts.
 - Keep `Priorities` ordered as the active work queue.
 - Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](./pdgfeed.md) matters.
 
 ## Purpose
 
-`pdgsolve` is the dedicated solving tool between upstream request sources and downstream solve-result artifacts.
+`pdgsolve` is the dedicated Python boundary between upstream request sources and downstream accepted-publication artifacts for `pdgedit`.
 
 It owns:
 
 - intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a `pdgsolve`-owned solve problem expressed only in explicit admitted assemblies;
-- combinatorial search over conservative solve candidates;
-- deterministic scoring and ranking of exact and partial solution families;
-- and emission of JSON solve outputs.
+- deterministic exact-family construction and no-exact fallback emission for the current vertical slice;
+- deterministic scoring, diagnostics, and review-state emission;
+- locking one accepted exact family into an acceptance artifact;
+- building a layout-neutral publication graph from the accepted solve graph;
+- and publishing `pdgedit` documents plus manifest entries from accepted or review-ready inputs.
 
 It does not own:
 
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
-- or downstream document-generation steps that belong outside the solve boundary.
+- free-form pdgedit authoring behavior that belongs in [pdgedit](./pdgedit.md);
+- or downstream viewer staging behavior that belongs in `pdgview`.
 
 ## Current State
 
-- The active target is a solve-only Python implementation.
-- The implementation boundary should be one Python file, `scripts/pdg/pdgsolve.py`.
-- The tool should consume explicit `pdgsolve-request/v1` JSON and emit JSON solve outputs containing all exact solution families, the top three partial solution families, and the scores for all emitted families.
+- The active implementation boundary is still one Python file, `scripts/pdg/pdgsolve.py`.
+- The current CLI owns four concrete flows: `solve`, `accept`, `publish`, and `solve-manifest`.
+- `solve` normalizes `pdgsolve-request/v1` into `pdgsolve-problem/v1`, emits `pdgsolve-result/v1`, and currently returns either one publication-ready exact family or one deterministic no-exact-closure family.
+- `accept` locks one exact publication-ready family into `pdgsolve-acceptance/v1`.
+- `publish` turns one acceptance record into a final `pdgedit/v1` document through the layout-neutral `pdgsolve-publication-graph/v2` seam carried inside the acceptance.
+- `solve-manifest` solves every ready request in a live manifest, writes a `pdgsolve-result-corpus/v1` index, and optionally publishes exact and review `pdgedit` documents plus a `pdgedit-library-manifest/v1`.
 
 ## Design
 
@@ -49,9 +55,11 @@ The durable `pdgsolve` structure should separate:
 
 - request intake;
 - request normalization;
-- solve-core search;
-- scoring and family canonicalization;
-- and solve-output emission.
+- solve-core law application;
+- family scoring and diagnostics;
+- acceptance locking;
+- layout-neutral publication-graph construction;
+- and pdgedit publication emission.
 
 Large coordinator files may assemble those pieces temporarily, but they should not become the long-term home of solver semantics.
 
@@ -967,13 +975,13 @@ That internal model should be solver-shaped rather than workflow-shaped.
 
 It should be rich enough to carry:
 
-- all exact solution families;
-- the retained top three partial solution families;
+- the current exact-family or deterministic no-exact family output for the shipped vertical slice;
 - diagnostics and no-exact-closure notes;
+- explicit review-state and acceptance-readiness information;
 - explicit provenance/accounting summaries;
-- and the information needed to emit downstream JSON artifacts without making other tools reconstruct omitted semantics.
+- and the information needed to emit downstream acceptance and publication artifacts without making other tools reconstruct omitted semantics.
 
-At the batch boundary, this model should serialize into one `pdgsolve-result/v1` summary JSON and may also serialize into additional per-family JSON artifacts if that helps inspection or regression tests.
+At the batch boundary, this model should serialize into one `pdgsolve-result/v1` file per solved request plus the companion corpus and publication artifacts used by the manifest workflow.
 
 ### Solution Family Identity
 
@@ -1410,7 +1418,10 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 
 #### Supporting Runtime Inputs
 
-- `pdgsolve`-owned solve policy.
+- `pdgsolve`-owned solve policy;
+- accepted result records used by the `accept` command;
+- acceptance records used by the `publish` command;
+- and live-manifest payloads whose `readyEntries[*].pdgsolveRequest` records drive the `solve-manifest` batch path.
 
 #### Input Boundary Conditions
 
@@ -1423,32 +1434,35 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 
 ### Outputs
 
-#### Search-Core And Solve Outputs
+#### Solve, Acceptance, And Publication Outputs
 
-- `pdgsolve`-owned internal search results;
-- ranked exact solution families;
-- ranked retained partial solution families, capped at the top three;
-- and developer-facing diagnostics about solve completeness, ambiguity, and non-closing families.
+- `pdgsolve-problem/v1` normalized solve problems inside the runtime;
+- `pdgsolve-result/v1` solve and review outputs;
+- `pdgsolve-acceptance/v1` locked accepted records;
+- `pdgsolve-publication-graph/v2` solve-graph publication payloads embedded in acceptances;
+- `pdgedit/v1` documents emitted from accepted or review publication paths;
+- `pdgedit-library-manifest/v1` manifests for batch publication;
+- and `pdgsolve-result-corpus/v1` indexes summarizing manifest solves.
 
 #### Solve Result Contract: `pdgsolve-result/v1`
 
 - `schema: "pdgsolve-result/v1"`;
 - `problemId`;
+- `searchStatus`, currently `exact_available` or `no_exact_closure` in the shipped vertical slice;
 - `requestId`;
-- `searchStatus`, with values `exact_available`, `partial_only`, or `no_exact_closure`;
-- `bestFamilyId`, nullable only when no family is emitted;
+- `bestFamilyId`;
+- `acceptedFamilyId`, currently `null` until an explicit acceptance is created;
 - top-level `diagnostics`;
-- `scoreOrder`, carrying the concrete comparison order for \(\kappa\);
-- `exactFamilies`, containing every emitted exact solution family;
-- and `partialFamilies`, containing only the top three emitted partial solution families.
+- `optionFamilies`, currently one exact family or one deterministic no-exact family;
+- `review`, carrying review state, the selected family id, and blocking diagnostics;
+- and `publication`, currently `null` until downstream publication packaging is requested.
 
-Each member of `exactFamilies` and `partialFamilies` should contain:
+Each member of `optionFamilies` currently contains:
 
 - `familyId`;
-- `kind`, with values `exact` or `partial`;
-- `rank`;
+- `kind`, currently `exact` or `no_exact_closure`;
 - `score`, carrying the concrete components of \(\kappa\);
-- `boundaryAugmentation`, carrying the chosen augmentation kind, side, pair count, and the added occurrence ids;
+- `augmentation`, carrying the chosen boundary augmentation mode;
 - `reactantAssemblies`, carrying the canonical reactant assemblies;
 - `reactantSideOperators`, carrying the canonical reactant-side operator choices;
 - `intermediateAssemblies`, carrying the canonical intermediate assemblies;
@@ -1457,22 +1471,54 @@ Each member of `exactFamilies` and `partialFamilies` should contain:
 - `provenanceSummary`, carrying the family-level witness summary;
 - `diagnostics`, carrying family-local diagnostics;
 - `rawBranchCount`, the number of raw branches folded into the family;
+- `publicationReady`, indicating whether the family is eligible for acceptance and publication;
+- `addedSupportOccurrences`, when extra support rows were introduced during normalization;
 - and `canonicalCandidate`, the fully specified representative candidate.
 
-When `pdgsolve` emits more than one JSON artifact for a run, the preferred layout is:
+For the current implementation, the exact family path also carries `canonicalCandidate.solveGraph`, which is the layout-neutral publication graph source used by acceptance and pdgedit publication.
 
-- one `pdgsolve-result/v1` summary JSON carrying all exact families and the retained top three partial families;
-- and optionally one per-family detailed JSON file for each emitted family.
+#### Acceptance Contract: `pdgsolve-acceptance/v1`
+
+- `schema: "pdgsolve-acceptance/v1"`;
+- `problemId`;
+- `familyId`;
+- `resultDigest`;
+- `acceptedScore`;
+- `acceptedDiagnostics`;
+- `acceptedState: "accepted"`;
+- `lockedNormalizationSummary`;
+- `lockedPolicySummary`;
+- `lockedReactantAssemblies`;
+- `lockedReactantSideOperators`;
+- `lockedIntermediateAssemblies`;
+- `lockedProductSideOperators`;
+- `lockedProductAssemblies`;
+- `lockedProvenanceSummary`;
+- and `lockedSolveGraph`, which currently uses `pdgsolve-publication-graph/v2`.
+
+#### Publication Contracts
+
+- `pdgsolve-publication-graph/v2` is the layout-neutral seam between accepted solve structure and downstream pdgedit layout. It freezes five semantic stages as graph units and edges rather than asking pdgedit to reconstruct solver meaning from ad hoc rows.
+- `pdgedit/v1` is the final emitted document shape produced either from an acceptance record or from a request-review fallback in the manifest batch path.
+- `pdgsolve-pdgedit-package/v1` exists as a package helper for carrying a pdgedit document together with its manifest entry and source acceptance digest.
+- `pdgsolve-result-corpus/v1` summarizes batch solve outcomes and records the written result and pdgedit document paths.
+
+When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred layout is:
+
+- one `pdgsolve-result/v1` file per solved ready request;
+- one `pdgsolve-result-corpus/v1` index summarizing the run;
+- zero or more published `pdgedit/v1` documents for exact and review entries;
+- and one `pdgedit-library-manifest/v1` describing the emitted pdgedit documents.
 
 #### Output Boundary Conditions
 
 - own solve normalization, search, scoring, and output emission inside the explicit assembly-native ontology;
-- emit exact and partial solution families in explicit admitted assemblies only;
+- emit exact and no-exact families in explicit admitted assemblies only;
 - when Noether-pair augmentation is used, emit the added Noether cores as explicit assemblies plus an explicit boundary augmentation summary;
-- include the scores for all emitted families;
-- do not ask downstream tools to infer missing solve semantics;
+- include the scores and diagnostics for every emitted family;
+- freeze accepted solve structure before publication rather than asking downstream tools to infer it;
 - do not duplicate PDG normalization logic locally;
-- and do not let launcher or presentation concerns become the source of solve semantics.
+- and keep pdgedit layout derivation downstream of the layout-neutral publication graph rather than inside solve laws.
 
 ### Neighboring Components, Each with Related Priorities
 
@@ -1499,7 +1545,7 @@ Objective:
 - make downstream grouping or naming clearly adapter-owned rather than solver-owned;
 - and keep the regression set centered on proving that composites are expanded or collapsed only outside the solve core.
 
-### 2. Freeze The Solve-Only Python Boundary
+### 2. Freeze The Python Solve-Accept-Publish Boundary
 
 Status: `active`
 
@@ -1507,32 +1553,31 @@ Current:
 
 - the target tool boundary is now one Python process;
 - the intended implementation file is `scripts/pdg/pdgsolve.py`;
-- and the document still needs the surrounding workstream to treat `pdgsolve` primarily as JSON-in, JSON-out solving machinery.
+- and that one process now owns request normalization, solve/result emission, acceptance locking, manifest solving, and pdgedit publication.
 
 Objective:
 
-- keep `pdgsolve` as a solve-only Python tool;
-- keep intake, normalization, search, scoring, and output emission in that boundary;
+- keep `pdgsolve` as the Python JSON boundary for solve, accept, and publish work upstream of pdgedit;
+- keep intake, normalization, search, scoring, acceptance, and publication-graph emission in that boundary;
 - prefer explicit CLI and pipe-safe JSON workflows over hidden process state;
-- and avoid reintroducing presentation-driven requirements into the solver definition.
+- and avoid reintroducing pdgedit-specific layout concerns into solver law or acceptance semantics.
 
-### 3. Freeze The Solve Output Contract
+### 3. Freeze The Result-And-Publication Contracts
 
 Status: `active`
 
 Current:
 
 - the output boundary now needs to center on exact solution families, retained partial solution families, and explicit scores;
-- the previous solve-state and downstream-oriented contracts carried more workflow detail than the solving boundary now needs;
-- and the summary-versus-per-family emission layout should stay deterministic and simple.
+- the current shipped runtime instead exposes one exact-or-fallback family path, explicit review state, locked acceptance records, and a layout-neutral publication graph;
+- and the batch manifest path now writes both result-corpus indexes and pdgedit publication manifests.
 
 Objective:
 
 - keep `pdgsolve-result/v1` centered on solving output;
-- emit all exact solution families;
-- emit only the top three partial solution families;
-- include stable scores and diagnostics for all emitted families;
-- and keep canonical family identity and tie-break behavior frozen enough for regression tests.
+- keep `pdgsolve-acceptance/v1` and `pdgsolve-publication-graph/v2` as the frozen downstream seam;
+- keep exact-family identity, diagnostics, and tie-break behavior stable enough for regression tests;
+- and keep batch result-corpus and pdgedit manifest outputs deterministic enough for live-manifest publishing.
 
 ### 4. Keep Solver Correctness On The Active Priority Queue
 
