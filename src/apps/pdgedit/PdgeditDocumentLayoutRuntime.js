@@ -104,22 +104,30 @@ function getNeighborObjects(objectsById, neighborsById, objectId) {
     .sort(compareByYThenXThenId);
 }
 
-function buildLaneState(records = [], prioritizedIds = []) {
+function buildLaneState(records = [], { pinnedTopIds = [], pinnedBottomIds = [] } = {}) {
   const stableRecords = [...records].sort(compareByYThenXThenId);
   const recordById = new Map(stableRecords.map((record) => [record.id, record]));
   const stableIdSet = new Set(stableRecords.map((record) => record.id));
-  const pinnedIds = prioritizedIds.filter((id) => stableIdSet.has(id));
-  const pinnedIdSet = new Set(pinnedIds);
+  const normalizedPinnedTopIds = pinnedTopIds.filter((id) => stableIdSet.has(id));
+  const pinnedTopIdSet = new Set(normalizedPinnedTopIds);
+  const normalizedPinnedBottomIds = pinnedBottomIds.filter(
+    (id) => stableIdSet.has(id) && !pinnedTopIdSet.has(id)
+  );
+  const pinnedBottomIdSet = new Set(normalizedPinnedBottomIds);
   const orderIds = [
-    ...pinnedIds,
-    ...stableRecords.map((record) => record.id).filter((id) => !pinnedIdSet.has(id)),
+    ...normalizedPinnedTopIds,
+    ...stableRecords
+      .map((record) => record.id)
+      .filter((id) => !pinnedTopIdSet.has(id) && !pinnedBottomIdSet.has(id)),
+    ...normalizedPinnedBottomIds,
   ];
   return {
     recordById,
     stableIndexById: createIndexById(stableRecords.map((record) => record.id)),
     orderIds,
     orderIndexById: createIndexById(orderIds),
-    pinnedCount: pinnedIds.length,
+    pinnedTopCount: normalizedPinnedTopIds.length,
+    pinnedBottomCount: normalizedPinnedBottomIds.length,
   };
 }
 
@@ -189,6 +197,12 @@ function getNeighborPositionsForLane(
     .sort((left, right) => left - right);
 }
 
+function getMovableBounds(laneState = {}) {
+  const startIndex = normalizeInteger(laneState?.pinnedTopCount);
+  const endIndex = laneState.orderIds.length - normalizeInteger(laneState?.pinnedBottomCount);
+  return { startIndex, endIndex };
+}
+
 function reorderLaneByMedian(
   laneState = {},
   referenceLaneIndex = -1,
@@ -196,11 +210,16 @@ function reorderLaneByMedian(
   laneIndexByObjectId = new Map(),
   laneStates = []
 ) {
-  if (!laneState || laneState.orderIds.length - laneState.pinnedCount <= 1) {
+  if (!laneState) {
     return false;
   }
-  const pinnedIds = laneState.orderIds.slice(0, laneState.pinnedCount);
-  const movableIds = laneState.orderIds.slice(laneState.pinnedCount);
+  const { startIndex, endIndex } = getMovableBounds(laneState);
+  if (endIndex - startIndex <= 1) {
+    return false;
+  }
+  const pinnedTopIds = laneState.orderIds.slice(0, startIndex);
+  const movableIds = laneState.orderIds.slice(startIndex, endIndex);
+  const pinnedBottomIds = laneState.orderIds.slice(endIndex);
   const nextMovableIds = [...movableIds].sort((leftId, rightId) => {
     const leftMedian = computeMedian(
       getNeighborPositionsForLane(leftId, referenceLaneIndex, neighborsById, laneIndexByObjectId, laneStates)
@@ -220,7 +239,7 @@ function reorderLaneByMedian(
       normalizeText(leftId).localeCompare(normalizeText(rightId))
     );
   });
-  const nextOrderIds = [...pinnedIds, ...nextMovableIds];
+  const nextOrderIds = [...pinnedTopIds, ...nextMovableIds, ...pinnedBottomIds];
   const changed = nextOrderIds.some((id, index) => id !== laneState.orderIds[index]);
   if (changed) {
     updateLaneOrder(laneState, nextOrderIds);
@@ -274,18 +293,18 @@ function countCrossingsTouchingLane(laneStates = [], laneIndex = -1, edgesByLane
 
 function applyAdjacentSwapPass(laneStates = [], laneIndex = -1, edgesByLanePair = new Map()) {
   const laneState = laneStates[laneIndex];
-  if (!laneState || laneState.orderIds.length - laneState.pinnedCount <= 1) {
+  if (!laneState) {
+    return false;
+  }
+  const { startIndex, endIndex } = getMovableBounds(laneState);
+  if (endIndex - startIndex <= 1) {
     return false;
   }
   let changedAny = false;
   let changedThisPass = true;
   while (changedThisPass) {
     changedThisPass = false;
-    for (
-      let position = laneState.pinnedCount;
-      position < laneState.orderIds.length - 1;
-      position += 1
-    ) {
+    for (let position = startIndex; position < endIndex - 1; position += 1) {
       const beforeCrossings = countCrossingsTouchingLane(laneStates, laneIndex, edgesByLanePair);
       const swappedIds = [...laneState.orderIds];
       [swappedIds[position], swappedIds[position + 1]] = [swappedIds[position + 1], swappedIds[position]];
@@ -361,6 +380,13 @@ function isPassThruOperatorForSide(operator = {}, side = "") {
   return (
     normalizeText(operator?.type) === "pass-thru" &&
     normalizeInteger(operator?.x) === getPdgeditOperatorStageXForSide(normalizedSide)
+  );
+}
+
+function isUnboundArchitrinosAssembly(assembly = {}) {
+  return (
+    normalizeText(assembly?.type) === "unbound-architrinos-assembly" ||
+    normalizeText(assembly?.title) === "Unbound Architrinos"
   );
 }
 
@@ -530,6 +556,18 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     reactant: catalystChains.map((chain) => chain.reactantOperatorId),
     product: catalystChains.map((chain) => chain.productOperatorId),
   };
+  const trailingAssemblyIdsByRole = {
+    intermediate: assemblies
+      .filter((assembly) => normalizeText(assembly.role) === "intermediate")
+      .filter(isUnboundArchitrinosAssembly)
+      .sort(compareByYThenXThenId)
+      .map((assembly) => assembly.id),
+    product: assemblies
+      .filter((assembly) => normalizeText(assembly.role) === "product")
+      .filter(isUnboundArchitrinosAssembly)
+      .sort(compareByYThenXThenId)
+      .map((assembly) => assembly.id),
+  };
 
   const reactantAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "reactant");
   const intermediateAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "intermediate");
@@ -541,11 +579,23 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     (operator) => normalizeInteger(operator.x) === getPdgeditOperatorStageXForSide("product")
   );
 
-  const reactantAssemblyLane = buildLaneState(reactantAssemblies, catalystAssemblyIdsByRole.reactant);
-  const reactantOperatorLane = buildLaneState(reactantOperators, catalystOperatorIdsBySide.reactant);
-  const intermediateAssemblyLane = buildLaneState(intermediateAssemblies, catalystAssemblyIdsByRole.intermediate);
-  const productOperatorLane = buildLaneState(productOperators, catalystOperatorIdsBySide.product);
-  const productAssemblyLane = buildLaneState(productAssemblies, catalystAssemblyIdsByRole.product);
+  const reactantAssemblyLane = buildLaneState(reactantAssemblies, {
+    pinnedTopIds: catalystAssemblyIdsByRole.reactant,
+  });
+  const reactantOperatorLane = buildLaneState(reactantOperators, {
+    pinnedTopIds: catalystOperatorIdsBySide.reactant,
+  });
+  const intermediateAssemblyLane = buildLaneState(intermediateAssemblies, {
+    pinnedTopIds: catalystAssemblyIdsByRole.intermediate,
+    pinnedBottomIds: trailingAssemblyIdsByRole.intermediate,
+  });
+  const productOperatorLane = buildLaneState(productOperators, {
+    pinnedTopIds: catalystOperatorIdsBySide.product,
+  });
+  const productAssemblyLane = buildLaneState(productAssemblies, {
+    pinnedTopIds: catalystAssemblyIdsByRole.product,
+    pinnedBottomIds: trailingAssemblyIdsByRole.product,
+  });
 
   reduceLaneCrossings(
     [

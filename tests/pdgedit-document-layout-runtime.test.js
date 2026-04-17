@@ -290,6 +290,109 @@ test("lane ordering reduces crossings for non-catalyst rows while keeping cataly
   );
 });
 
+test("lane ordering keeps unbound architrinos last while reordering free rows between pinned blocks", () => {
+  const document = {
+    schema: "pdgedit/v1",
+    assemblies: [
+      createAssembly({ id: "reactant_gamma", type: "gamma", role: "reactant", x: 2, y: 0 }),
+      createAssembly({ id: "reactant_delta", type: "delta", role: "reactant", x: 2, y: 1 }),
+      createAssembly({ id: "reactant_alpha", type: "alpha", role: "reactant", x: 2, y: 5 }),
+      createAssembly({
+        id: "intermediate_residue",
+        type: "unbound-architrinos-assembly",
+        role: "intermediate",
+        x: 9,
+        y: 0,
+      }),
+      createAssembly({ id: "intermediate_delta", type: "delta", role: "intermediate", x: 9, y: 1 }),
+      createAssembly({ id: "intermediate_gamma", type: "gamma", role: "intermediate", x: 9, y: 2 }),
+      createAssembly({ id: "intermediate_alpha", type: "alpha", role: "intermediate", x: 9, y: 5 }),
+      createAssembly({ id: "product_residue", type: "unbound-architrinos-assembly", role: "product", x: 16, y: 0 }),
+      createAssembly({ id: "product_delta", type: "delta", role: "product", x: 16, y: 1 }),
+      createAssembly({ id: "product_gamma", type: "gamma", role: "product", x: 16, y: 2 }),
+      createAssembly({ id: "product_alpha", type: "alpha", role: "product", x: 16, y: 5 }),
+    ],
+    operators: [
+      createOperator({ id: "left_gamma", type: "associate", x: 7, y: 0 }),
+      createOperator({ id: "left_delta", type: "associate", x: 7, y: 1 }),
+      createOperator({ id: "left_alpha", type: "pass-thru", x: 7, y: 5 }),
+      createOperator({ id: "right_delta", type: "associate", x: 14, y: 0 }),
+      createOperator({ id: "right_gamma", type: "associate", x: 14, y: 1 }),
+      createOperator({ id: "right_alpha", type: "pass-thru", x: 14, y: 5 }),
+    ],
+    links: [
+      { id: "gamma_1", endpointA: "reactant_gamma", endpointB: "left_gamma" },
+      { id: "gamma_2", endpointA: "left_gamma", endpointB: "intermediate_gamma" },
+      { id: "gamma_3", endpointA: "intermediate_gamma", endpointB: "right_gamma" },
+      { id: "gamma_4", endpointA: "right_gamma", endpointB: "product_gamma" },
+      { id: "delta_1", endpointA: "reactant_delta", endpointB: "left_delta" },
+      { id: "delta_2", endpointA: "left_delta", endpointB: "intermediate_delta" },
+      { id: "delta_3", endpointA: "intermediate_delta", endpointB: "right_delta" },
+      { id: "delta_4", endpointA: "right_delta", endpointB: "product_delta" },
+      { id: "alpha_1", endpointA: "reactant_alpha", endpointB: "left_alpha" },
+      { id: "alpha_2", endpointA: "left_alpha", endpointB: "intermediate_alpha" },
+      { id: "alpha_3", endpointA: "intermediate_alpha", endpointB: "right_alpha" },
+      { id: "alpha_4", endpointA: "right_alpha", endpointB: "product_alpha" },
+    ],
+    compositeLabels: [],
+  };
+
+  const sorted = sortPdgeditCatalystPassThruChainsToTop(document);
+
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "reactant")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["reactant_alpha", 0],
+      ["reactant_gamma", 1],
+      ["reactant_delta", 2],
+    ]
+  );
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "intermediate")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["intermediate_alpha", 0],
+      ["intermediate_gamma", 1],
+      ["intermediate_delta", 2],
+      ["intermediate_residue", 3],
+    ]
+  );
+  assert.deepEqual(
+    sorted.assemblies
+      .filter((assembly) => assembly.role === "product")
+      .map((assembly) => [assembly.id, assembly.y]),
+    [
+      ["product_alpha", 0],
+      ["product_gamma", 1],
+      ["product_delta", 2],
+      ["product_residue", 3],
+    ]
+  );
+  assert.deepEqual(
+    sorted.operators
+      .filter((operator) => operator.x === 7)
+      .map((operator) => [operator.id, operator.y]),
+    [
+      ["left_alpha", 0],
+      ["left_gamma", 1],
+      ["left_delta", 2],
+    ]
+  );
+  assert.deepEqual(
+    sorted.operators
+      .filter((operator) => operator.x === 14)
+      .map((operator) => [operator.id, operator.y]),
+    [
+      ["right_alpha", 0],
+      ["right_gamma", 1],
+      ["right_delta", 2],
+    ]
+  );
+});
+
 test("document loading applies catalyst top-sorting before pdgedit renders the document", async () => {
   const loaded = await loadPdgeditDocument({
     specUrl: "https://architrino.local/content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
