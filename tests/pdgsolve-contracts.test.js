@@ -312,12 +312,106 @@ const corpusIndexExample = {
   ],
 };
 
+const exactPublicationGraphExample = {
+  schema: "pdgsolve-publication-graph/v2",
+  units: [
+    {
+      id: "graph_reactantassemblies_pro_up_quark_i_1",
+      kind: "assembly",
+      stage: "reactantAssemblies",
+      recipeId: "pro_up_quark_I",
+      occurrenceKey: "reactant_1",
+      title: "Up Quark",
+      electrinoCount: 4,
+      positrinoCount: 8,
+    },
+    {
+      id: "graph_reactantsideoperators_pass_thru_1",
+      kind: "operator",
+      stage: "reactantSideOperators",
+      recipeId: "pass-thru",
+      occurrenceKey: "reactant_operator.pass_thru.1",
+      title: "Pass Thru",
+      lawId: null,
+    },
+    {
+      id: "graph_intermediateassemblies_pro_up_quark_i_1",
+      kind: "assembly",
+      stage: "intermediateAssemblies",
+      recipeId: "pro_up_quark_I",
+      occurrenceKey: "intermediate_up_quark_1",
+      title: "Up Quark",
+      electrinoCount: 4,
+      positrinoCount: 8,
+    },
+    {
+      id: "graph_productsideoperators_pass_thru_1",
+      kind: "operator",
+      stage: "productSideOperators",
+      recipeId: "pass-thru",
+      occurrenceKey: "product_operator.pass_thru.1",
+      title: "Pass Thru",
+      lawId: null,
+    },
+    {
+      id: "graph_productassemblies_pro_up_quark_i_1",
+      kind: "assembly",
+      stage: "productAssemblies",
+      recipeId: "pro_up_quark_I",
+      occurrenceKey: "product_1",
+      title: "Up Quark",
+      electrinoCount: 4,
+      positrinoCount: 8,
+    },
+  ],
+  edges: [
+    {
+      id: "pass_thru_input_1",
+      fromUnitId: "graph_reactantassemblies_pro_up_quark_i_1",
+      fromPortId: "output",
+      toUnitId: "graph_reactantsideoperators_pass_thru_1",
+      toPortId: "input_1",
+    },
+    {
+      id: "pass_thru_output_1",
+      fromUnitId: "graph_reactantsideoperators_pass_thru_1",
+      fromPortId: "output_1",
+      toUnitId: "graph_intermediateassemblies_pro_up_quark_i_1",
+      toPortId: "input",
+    },
+    {
+      id: "pass_thru_input_2",
+      fromUnitId: "graph_intermediateassemblies_pro_up_quark_i_1",
+      fromPortId: "output",
+      toUnitId: "graph_productsideoperators_pass_thru_1",
+      toPortId: "input_1",
+    },
+    {
+      id: "pass_thru_output_2",
+      fromUnitId: "graph_productsideoperators_pass_thru_1",
+      fromPortId: "output_1",
+      toUnitId: "graph_productassemblies_pro_up_quark_i_1",
+      toPortId: "input",
+    },
+  ],
+};
+
 test("pdgsolve request and unsolved result examples match their schemas", () => {
   const requestSchema = readJson("src/contracts/pdgsolve-request/v1/schema.json");
   const resultSchema = readJson("src/contracts/pdgsolve-result/v1/schema.json");
 
   assert.deepEqual(validateAgainstSchema(requestExample, requestSchema), [], "request schema drifted");
   assert.deepEqual(validateAgainstSchema(resultExample, resultSchema), [], "result schema drifted");
+});
+
+test("pdgsolve publication graph v2 strips layout fields and validates as semantic graph data", () => {
+  const publicationGraphSchema = readJson("src/contracts/pdgsolve-publication-graph/v2/schema.json");
+
+  assert.deepEqual(validateAgainstSchema(exactPublicationGraphExample, publicationGraphSchema), []);
+  exactPublicationGraphExample.units.forEach((unit) => {
+    assert.equal(Object.prototype.hasOwnProperty.call(unit, "anchorRow"), false);
+    assert.equal(Object.prototype.hasOwnProperty.call(unit, "x"), false);
+  });
 });
 
 test("pdgsolve result-corpus summaries admit an all-unsolved corpus", () => {

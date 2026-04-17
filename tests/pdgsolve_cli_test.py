@@ -215,91 +215,84 @@ def make_exact_result(request):
                         ],
                     },
                     "solveGraph": {
-                        "schema": "pdgsolve-publication-graph/v1",
+                        "schema": "pdgsolve-publication-graph/v2",
                         "units": [
                             {
-                                "id": "unit_lane1_up.row.1",
+                                "id": "graph_reactantassemblies_pro_up_quark_i_1",
                                 "kind": "assembly",
                                 "stage": "reactantAssemblies",
                                 "recipeId": "pro_up_quark_I",
                                 "occurrenceKey": reactant_id,
                                 "title": "Up Quark",
-                                "anchorRow": 0,
-                                "column": 0,
-                                "x": 2,
+                                "electrinoCount": 4,
+                                "positrinoCount": 8,
                             },
                             {
-                                "id": "unit_lane2_pass_thru_1",
+                                "id": "graph_reactantsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "kind": "operator",
                                 "stage": "reactantSideOperators",
                                 "recipeId": "pass-thru",
                                 "occurrenceKey": "reactant_operator.pass_thru.1",
                                 "title": "Pass Thru",
-                                "anchorRow": 0,
-                                "column": 1,
-                                "x": 9,
+                                "lawId": None,
                             },
                             {
-                                "id": "unit_lane3_up.row.1",
+                                "id": "graph_intermediateassemblies_pro_up_quark_i_1",
                                 "kind": "assembly",
                                 "stage": "intermediateAssemblies",
                                 "recipeId": "pro_up_quark_I",
                                 "occurrenceKey": "intermediate_up_quark_1",
                                 "title": "Up Quark",
-                                "anchorRow": 0,
-                                "column": 2,
-                                "x": 16,
+                                "electrinoCount": 4,
+                                "positrinoCount": 8,
                             },
                             {
-                                "id": "unit_lane4_pass_thru_1",
+                                "id": "graph_productsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "kind": "operator",
                                 "stage": "productSideOperators",
                                 "recipeId": "pass-thru",
                                 "occurrenceKey": "product_operator.pass_thru.1",
                                 "title": "Pass Thru",
-                                "anchorRow": 0,
-                                "column": 3,
-                                "x": 23,
+                                "lawId": None,
                             },
                             {
-                                "id": "unit_lane5_up.row.1",
+                                "id": "graph_productassemblies_pro_up_quark_i_1",
                                 "kind": "assembly",
                                 "stage": "productAssemblies",
                                 "recipeId": "pro_up_quark_I",
                                 "occurrenceKey": product_id,
                                 "title": "Up Quark",
-                                "anchorRow": 0,
-                                "column": 4,
-                                "x": 30,
+                                "electrinoCount": 4,
+                                "positrinoCount": 8,
                             },
                         ],
                         "edges": [
                             {
                                 "id": "edge_reactant_to_operator",
-                                "fromUnitId": "unit_lane1_up.row.1",
+                                "fromUnitId": "graph_reactantassemblies_pro_up_quark_i_1",
                                 "fromPortId": "output",
-                                "toUnitId": "unit_lane2_pass_thru_1",
+                                "toUnitId": "graph_reactantsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "toPortId": "input",
                             },
                             {
                                 "id": "edge_operator_to_intermediate",
-                                "fromUnitId": "unit_lane2_pass_thru_1",
+                                "fromUnitId": "graph_reactantsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "fromPortId": "output",
-                                "toUnitId": "unit_lane3_up.row.1",
+                                "toUnitId": "graph_intermediateassemblies_pro_up_quark_i_1",
                                 "toPortId": "input",
                             },
                             {
                                 "id": "edge_intermediate_to_operator",
-                                "fromUnitId": "unit_lane3_up.row.1",
+                                "fromUnitId": "graph_intermediateassemblies_pro_up_quark_i_1",
                                 "fromPortId": "output",
-                                "toUnitId": "unit_lane4_pass_thru_1",
+                                "toUnitId": "graph_productsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "toPortId": "input",
                             },
                             {
                                 "id": "edge_operator_to_product",
-                                "fromUnitId": "unit_lane4_pass_thru_1",
+                                "fromUnitId": "graph_productsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
                                 "fromPortId": "output",
-                                "toUnitId": "unit_lane5_up.row.1",
+                                "toUnitId": "graph_productassemblies_pro_up_quark_i_1",
                                 "toPortId": "input",
                             },
                         ],
@@ -352,7 +345,7 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(result["bestFamilyId"], "family.exact.1")
         family = result["optionFamilies"][0]
         self.assertTrue(family["publicationReady"])
-        self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v1")
+        self.assertEqual(family["canonicalCandidate"]["solveGraph"]["schema"], "pdgsolve-publication-graph/v2")
         self.assertEqual(family["productSideOperators"][0]["type"], "pass-thru")
         self.assertEqual(family["productSideOperators"][0]["inputOccurrenceKeys"], ["intermediate.reactant_1.catalyst.1"])
 
@@ -370,25 +363,65 @@ class PdgsolveCliTests(unittest.TestCase):
         )
         self.assertTrue(family["publicationReady"])
 
-    def test_publication_graph_uses_fixed_width_columns_for_pass_thru(self):
+    def test_publication_graph_is_layout_neutral_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
         result = pdgsolve.solve_request(request)
         acceptance = pdgsolve.build_acceptance(request, result, family_id=result["bestFamilyId"])
         solve_graph = acceptance["lockedSolveGraph"]
-        x_by_stage = {
-            unit["stage"]: unit["x"]
-            for unit in solve_graph["units"]
-            if unit["kind"] == "assembly" or unit["kind"] == "operator"
-        }
+        self.assertEqual(solve_graph["schema"], "pdgsolve-publication-graph/v2")
+        for unit in solve_graph["units"]:
+            self.assertNotIn("anchorRow", unit)
+            self.assertNotIn("x", unit)
+            self.assertNotIn("column", unit)
+            if unit["kind"] == "assembly":
+                self.assertIn("electrinoCount", unit)
+                self.assertIn("positrinoCount", unit)
+
+    def test_pdgedit_document_derives_counts_and_coordinates_from_locked_solve_graph(self):
+        request = make_unsolved_request("synthetic_pass_thru")
+        result = make_exact_result(request)
+        acceptance = pdgsolve.build_acceptance(
+            request,
+            result,
+            family_id="family.synthetic.pass_thru.v1",
+        )
+        acceptance["lockedReactantSideOperators"] = []
+        acceptance["lockedProductSideOperators"] = []
+
+        published = pdgsolve.build_pdgedit_document_from_acceptance(acceptance)
+
         self.assertEqual(
-            x_by_stage,
-            {
-                "reactantAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["reactantAssemblies"],
-                "reactantSideOperators": pdgsolve.FIXED_WIDTH_X_BY_STAGE["reactantSideOperators"],
-                "intermediateAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["intermediateAssemblies"],
-                "productSideOperators": pdgsolve.FIXED_WIDTH_X_BY_STAGE["productSideOperators"],
-                "productAssemblies": pdgsolve.FIXED_WIDTH_X_BY_STAGE["productAssemblies"],
-            },
+            [
+                (assembly["id"], assembly["x"], assembly["y"])
+                for assembly in published["assemblies"]
+            ],
+            [
+                ("graph_reactantassemblies_pro_up_quark_i_1", pdgsolve.PDGEDIT_X_BY_STAGE["reactantAssemblies"], 0),
+                ("graph_intermediateassemblies_pro_up_quark_i_1", pdgsolve.PDGEDIT_X_BY_STAGE["intermediateAssemblies"], 0),
+                ("graph_productassemblies_pro_up_quark_i_1", pdgsolve.PDGEDIT_X_BY_STAGE["productAssemblies"], 0),
+            ],
+        )
+        self.assertEqual(
+            [
+                (operator["id"], operator["x"], operator["y"], operator["positrinoCount"], operator["electrinoCount"])
+                for operator in published["operators"]
+            ],
+            [
+                (
+                    "graph_reactantsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
+                    pdgsolve.PDGEDIT_X_BY_STAGE["reactantSideOperators"],
+                    0,
+                    8,
+                    4,
+                ),
+                (
+                    "graph_productsideoperators_family_synthetic_pass_thru_v1_pass_thru_1",
+                    pdgsolve.PDGEDIT_X_BY_STAGE["productSideOperators"],
+                    0,
+                    8,
+                    4,
+                ),
+            ],
         )
 
     def test_muon_decay_mode_1_returns_exact_available_under_core_first_rules(self):

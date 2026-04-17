@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/pdgsolve-publication-graph/v2/schema.json",
+  "title": "pdgsolve Publication Graph v2",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "assemblyUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "stage",
+        "recipeId",
+        "occurrenceKey",
+        "title",
+        "electrinoCount",
+        "positrinoCount"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "assembly"
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "reactantAssemblies",
+            "intermediateAssemblies",
+            "productAssemblies"
+          ]
+        },
+        "recipeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurrenceKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceOccurrenceKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "electrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "operatorUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "stage",
+        "recipeId",
+        "occurrenceKey",
+        "title",
+        "lawId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "operator"
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "reactantSideOperators",
+            "productSideOperators"
+          ]
+        },
+        "recipeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurrenceKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lawId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "fromUnitId",
+        "fromPortId",
+        "toUnitId",
+        "toPortId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fromUnitId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fromPortId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "toUnitId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "toPortId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "units",
+    "edges"
+  ],
+  "properties": {
+    "schema": {
+      "const": "pdgsolve-publication-graph/v2"
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/assemblyUnit"
+          },
+          {
+            "$ref": "#/$defs/operatorUnit"
+          }
+        ]
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    }
+  }
+}

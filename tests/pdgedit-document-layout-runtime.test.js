@@ -6,10 +6,36 @@ import {
   findPdgeditCatalystPassThruChains,
   sortPdgeditCatalystPassThruChainsToTop,
 } from "../src/apps/pdgedit/PdgeditDocumentLayoutRuntime.js";
+import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemplateCatalogRuntime.js";
 import { loadPdgeditDocument } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
+import { buildPdgeditDocumentFromPublicationGraph } from "../src/runtime/PdgeditPublicationGraphRuntime.js";
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8"));
+}
+
+function createAssemblyPresentationResolver() {
+  const templateCatalog = normalizePdgeditTemplateCatalog(
+    readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json")
+  );
+  const typeByRecipeId = new Map([
+    ["pro_up_quark_I", "pro-up-quark-assembly"],
+    ["pro_down_quark_I", "pro-down-quark-assembly"],
+    ["pro_electron_I", "pro-electron-assembly"],
+  ]);
+
+  return (recipeId) => {
+    const type = typeByRecipeId.get(recipeId);
+    const template = type ? templateCatalog.assemblyTemplateByType.get(type) : null;
+    if (!template) {
+      return null;
+    }
+    return {
+      type: template.type,
+      title: template.title,
+      tiles: template.tiles,
+    };
+  };
 }
 
 function createAssembly({ id, type, role, x, y }) {
@@ -216,6 +242,166 @@ test("document loading applies catalyst top-sorting before pdgedit renders the d
     [
       ["pass_thru_stage_1", 0],
       ["pass_thru_stage_2", 0],
+    ]
+  );
+});
+
+test("publication graph rendering derives pdgedit coordinates from stages and preserves catalyst top-sorting", () => {
+  const publicationGraph = {
+    schema: "pdgsolve-publication-graph/v2",
+    units: [
+      {
+        id: "reactant_noncat",
+        kind: "assembly",
+        stage: "reactantAssemblies",
+        recipeId: "pro_down_quark_I",
+        occurrenceKey: "reactant_noncat",
+        title: "Non Catalyst Reactant",
+        electrinoCount: 7,
+        positrinoCount: 5,
+      },
+      {
+        id: "reactant_catalyst",
+        kind: "assembly",
+        stage: "reactantAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "reactant_catalyst",
+        title: "Catalyst Reactant",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+      {
+        id: "left_noncat",
+        kind: "operator",
+        stage: "reactantSideOperators",
+        recipeId: "associate",
+        occurrenceKey: "left_noncat",
+        title: "Associate",
+        lawId: "law.synthetic.noncat",
+      },
+      {
+        id: "left_catalyst",
+        kind: "operator",
+        stage: "reactantSideOperators",
+        recipeId: "pass-thru",
+        occurrenceKey: "left_catalyst",
+        title: "Pass Thru",
+        lawId: null,
+      },
+      {
+        id: "intermediate_noncat",
+        kind: "assembly",
+        stage: "intermediateAssemblies",
+        recipeId: "pro_electron_I",
+        occurrenceKey: "intermediate_noncat",
+        title: "Non Catalyst Intermediate",
+        electrinoCount: 9,
+        positrinoCount: 3,
+      },
+      {
+        id: "intermediate_catalyst",
+        kind: "assembly",
+        stage: "intermediateAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "intermediate_catalyst",
+        title: "Catalyst Intermediate",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+      {
+        id: "right_noncat",
+        kind: "operator",
+        stage: "productSideOperators",
+        recipeId: "associate",
+        occurrenceKey: "right_noncat",
+        title: "Associate",
+        lawId: "law.synthetic.noncat",
+      },
+      {
+        id: "right_catalyst",
+        kind: "operator",
+        stage: "productSideOperators",
+        recipeId: "pass-thru",
+        occurrenceKey: "right_catalyst",
+        title: "Pass Thru",
+        lawId: null,
+      },
+      {
+        id: "product_noncat",
+        kind: "assembly",
+        stage: "productAssemblies",
+        recipeId: "pro_electron_I",
+        occurrenceKey: "product_noncat",
+        title: "Non Catalyst Product",
+        electrinoCount: 9,
+        positrinoCount: 3,
+      },
+      {
+        id: "product_catalyst",
+        kind: "assembly",
+        stage: "productAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "product_catalyst",
+        title: "Catalyst Product",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+    ],
+    edges: [
+      { id: "cat_1", fromUnitId: "reactant_catalyst", fromPortId: "output", toUnitId: "left_catalyst", toPortId: "input_1" },
+      { id: "cat_2", fromUnitId: "left_catalyst", fromPortId: "output_1", toUnitId: "intermediate_catalyst", toPortId: "input" },
+      { id: "cat_3", fromUnitId: "intermediate_catalyst", fromPortId: "output", toUnitId: "right_catalyst", toPortId: "input_1" },
+      { id: "cat_4", fromUnitId: "right_catalyst", fromPortId: "output_1", toUnitId: "product_catalyst", toPortId: "input" },
+    ],
+  };
+
+  const document = buildPdgeditDocumentFromPublicationGraph(publicationGraph, {
+    resolveAssemblyPresentation: createAssemblyPresentationResolver(),
+  });
+
+  assert.deepEqual(
+    document.assemblies
+      .filter((assembly) => assembly.role === "reactant")
+      .map((assembly) => [assembly.id, assembly.x, assembly.y]),
+    [
+      ["reactant_catalyst", 2, 0],
+      ["reactant_noncat", 2, 1],
+    ]
+  );
+  assert.deepEqual(
+    document.assemblies
+      .filter((assembly) => assembly.role === "intermediate")
+      .map((assembly) => [assembly.id, assembly.x, assembly.y]),
+    [
+      ["intermediate_catalyst", 9, 0],
+      ["intermediate_noncat", 9, 1],
+    ]
+  );
+  assert.deepEqual(
+    document.assemblies
+      .filter((assembly) => assembly.role === "product")
+      .map((assembly) => [assembly.id, assembly.x, assembly.y]),
+    [
+      ["product_catalyst", 16, 0],
+      ["product_noncat", 16, 1],
+    ]
+  );
+  assert.deepEqual(
+    document.operators
+      .filter((operator) => operator.x === 7)
+      .map((operator) => [operator.id, operator.y, operator.positrinoCount, operator.electrinoCount]),
+    [
+      ["left_catalyst", 0, 8, 4],
+      ["left_noncat", 1, 0, 0],
+    ]
+  );
+  assert.deepEqual(
+    document.operators
+      .filter((operator) => operator.x === 14)
+      .map((operator) => [operator.id, operator.y, operator.positrinoCount, operator.electrinoCount]),
+    [
+      ["right_catalyst", 0, 8, 4],
+      ["right_noncat", 1, 0, 0],
     ]
   );
 });

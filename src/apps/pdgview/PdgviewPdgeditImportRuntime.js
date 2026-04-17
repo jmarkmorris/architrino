@@ -2,6 +2,7 @@ import {
   buildPdgviewPreviewSceneData,
   createPdgviewSceneDocument,
 } from "../../runtime/Pdgview2SceneDocumentRuntime.js";
+import { prepareAcceptedPdgeditDocument } from "../../runtime/PdgeditAcceptedDocumentRuntime.js";
 import {
   sanitizePdgviewEntityId,
   sanitizePdgviewId,
@@ -324,7 +325,8 @@ function assertAcceptedPdgeditDocument(pdgeditDocument = {}) {
 
 export function buildPdgviewDraftStateFromPdgeditDocument(pdgeditDocument = {}, options = {}) {
   assertAcceptedPdgeditDocument(pdgeditDocument);
-  const source = buildSourceMetadata(pdgeditDocument, options);
+  const preparedPdgeditDocument = prepareAcceptedPdgeditDocument(pdgeditDocument);
+  const source = buildSourceMetadata(preparedPdgeditDocument, options);
   const duration = Math.max(1, Number(options.duration ?? DEFAULT_SCENE_DURATION_SECONDS) || DEFAULT_SCENE_DURATION_SECONDS);
   const stagingId = sanitizePdgviewId(options.stagingId || `pdgview_${source.documentId}`);
   const {
@@ -332,9 +334,9 @@ export function buildPdgviewDraftStateFromPdgeditDocument(pdgeditDocument = {}, 
     objectIdByPdgeditId,
     objectKindByPdgeditId,
     bounds,
-  } = buildPdgviewAssemblyDraftsFromPdgeditDocument(pdgeditDocument);
+  } = buildPdgviewAssemblyDraftsFromPdgeditDocument(preparedPdgeditDocument);
   const transfers = buildPdgviewTransfersFromPdgeditDocument({
-    pdgeditDocument,
+    pdgeditDocument: preparedPdgeditDocument,
     objectIdByPdgeditId,
     objectKindByPdgeditId,
     duration,
@@ -442,7 +444,7 @@ export function createPdgviewPdgeditImportRuntime(options = {}) {
 
   function buildPdgviewStagingContractFromPdgeditDocument(pdgeditDocument = {}, runtimeOptions = {}) {
     const draftState = buildPdgviewDraftStateFromPdgeditDocument(pdgeditDocument, runtimeOptions);
-    const source = buildSourceMetadata(pdgeditDocument, runtimeOptions);
+    const source = buildSourceMetadata(prepareAcceptedPdgeditDocument(pdgeditDocument), runtimeOptions);
     const sceneDocument = cloneJson(createSceneDocument(draftState, {
       sceneId: draftState.id,
       sceneName: draftState.name,

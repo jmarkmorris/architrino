@@ -1,13 +1,7 @@
-const ASSEMBLY_STAGE_X_BY_ROLE = Object.freeze({
-  reactant: 2,
-  intermediate: 9,
-  product: 16,
-});
-
-const PASS_THRU_OPERATOR_X_BY_SIDE = Object.freeze({
-  reactant: 7,
-  product: 14,
-});
+import {
+  getPdgeditAssemblyStageXForRole,
+  getPdgeditOperatorStageXForSide,
+} from "./PdgeditSurfaceGeometryRuntime.js";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -98,7 +92,7 @@ function isAssemblyForRoleAndType(assembly = {}, role = "", type = "") {
   const normalizedRole = normalizeText(role);
   return (
     normalizeText(assembly?.role) === normalizedRole &&
-    normalizeInteger(assembly?.x) === ASSEMBLY_STAGE_X_BY_ROLE[normalizedRole] &&
+    normalizeInteger(assembly?.x) === getPdgeditAssemblyStageXForRole(normalizedRole) &&
     normalizeText(assembly?.type) === normalizeText(type)
   );
 }
@@ -107,7 +101,7 @@ function isPassThruOperatorForSide(operator = {}, side = "") {
   const normalizedSide = normalizeText(side);
   return (
     normalizeText(operator?.type) === "pass-thru" &&
-    normalizeInteger(operator?.x) === PASS_THRU_OPERATOR_X_BY_SIDE[normalizedSide]
+    normalizeInteger(operator?.x) === getPdgeditOperatorStageXForSide(normalizedSide)
   );
 }
 
@@ -303,10 +297,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const intermediateAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "intermediate");
   const productAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "product");
   const reactantOperators = operators.filter(
-    (operator) => normalizeInteger(operator.x) === PASS_THRU_OPERATOR_X_BY_SIDE.reactant
+    (operator) => normalizeInteger(operator.x) === getPdgeditOperatorStageXForSide("reactant")
   );
   const productOperators = operators.filter(
-    (operator) => normalizeInteger(operator.x) === PASS_THRU_OPERATOR_X_BY_SIDE.product
+    (operator) => normalizeInteger(operator.x) === getPdgeditOperatorStageXForSide("product")
   );
 
   const reactantAssemblyOrder = orderLaneRecords(reactantAssemblies, catalystAssemblyIdsByRole.reactant);
