@@ -13,6 +13,7 @@ import { normalizePdgeditTileCatalog } from "../src/apps/pdgedit/PdgeditTileCata
 import {
   getPdgeditDocumentAssemblyRows,
   normalizePdgeditDocument,
+  preparePdgeditDocumentForDisplay,
   validatePdgeditDocumentTilePayload,
 } from "../src/apps/pdgedit/PdgeditDocumentRuntime.js";
 import { createPdgeditLaunchPayload } from "../src/apps/pdgedit/PdgeditLaunchPayloadRuntime.js";
@@ -421,7 +422,7 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   assert.equal(bootstrap.selectedEntry.id, "pass_thru_up_quark_launch");
   assert.equal(bootstrap.selectedEntry.displayTitle, "Pass thru up quark launch");
   assert.equal(bootstrap.selectedEntry.documentPath, "");
-  assert.deepEqual(bootstrap.document, normalizePdgeditDocument(launchedDocument));
+  assert.deepEqual(bootstrap.document, preparePdgeditDocumentForDisplay(launchedDocument));
   assert.deepEqual(bootstrap.launchPayload, launchPayload);
 });
 
@@ -479,4 +480,19 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
     bootstrap.manifest.entries.find((entry) => entry.id === "mu_minus_s004_1")?.sourceKind,
     "exact"
   );
+});
+
+test("pdgedit standalone surface keeps the link overlay transparent while preserving link hit targets", () => {
+  const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
+  const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");
+
+  assert.equal(htmlSource.includes("#pdgedit-link-overlay"), true);
+  assert.equal(htmlSource.includes("pointer-events: none;"), true);
+  assert.equal(htmlSource.includes(".pdgedit-link-hit-target"), true);
+  assert.equal(htmlSource.includes("pointer-events: stroke;"), true);
+  assert.match(
+    htmlSource,
+    /#pdgedit-object-layer\s*\{\s*z-index:\s*4;\s*\}[\s\S]*#pdgedit-link-overlay\s*\{\s*z-index:\s*3;/u
+  );
+  assert.equal(runtimeSource.includes('hitPath.setAttribute("pointer-events", "stroke")'), true);
 });

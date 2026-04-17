@@ -1,3 +1,5 @@
+import { sortPdgeditCatalystPassThruChainsToTop } from "./PdgeditDocumentLayoutRuntime.js";
+
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -83,6 +85,10 @@ export function normalizePdgeditDocument(rawDocument = {}) {
   };
 }
 
+export function preparePdgeditDocumentForDisplay(rawDocument = {}) {
+  return sortPdgeditCatalystPassThruChainsToTop(normalizePdgeditDocument(rawDocument));
+}
+
 export function createEmptyPdgeditDocument() {
   return {
     schema: "pdgedit/v1",
@@ -104,7 +110,7 @@ export async function loadPdgeditDocument({
   if (!response.ok) {
     throw new Error(`Failed to load pdgedit document: ${response.status} ${response.statusText}`);
   }
-  return normalizePdgeditDocument(await response.json());
+  return preparePdgeditDocumentForDisplay(await response.json());
 }
 
 export function getPdgeditAssemblyDisplayTileKeys(assembly = {}) {
