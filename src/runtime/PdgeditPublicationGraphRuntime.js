@@ -66,10 +66,22 @@ function getAssemblyUnitCounts(unit = {}) {
   if (normalizeText(unit?.kind) !== "assembly") {
     return null;
   }
+  const hasElectrinoCount = Object.prototype.hasOwnProperty.call(unit, "electrinoCount");
+  const hasPositrinoCount = Object.prototype.hasOwnProperty.call(unit, "positrinoCount");
+  if (!hasElectrinoCount && !hasPositrinoCount) {
+    return null;
+  }
   return {
     electrinoCount: normalizeInteger(unit?.electrinoCount, 0),
     positrinoCount: normalizeInteger(unit?.positrinoCount, 0),
   };
+}
+
+function hasNonZeroPrimitiveCounts(counts = null) {
+  return Boolean(
+    counts &&
+      (normalizeInteger(counts?.electrinoCount, 0) !== 0 || normalizeInteger(counts?.positrinoCount, 0) !== 0)
+  );
 }
 
 function sumAssemblyCounts(units = []) {
@@ -101,13 +113,41 @@ function getOperatorCountsFromPublicationGraph(operatorUnit = {}, unitsById = ne
   const incomingTotals = sumAssemblyCounts(incomingUnits);
   const outgoingTotals = sumAssemblyCounts(outgoingUnits);
   const preferredTotals =
-    normalizeText(operatorUnit?.stage) === "productSideOperators" && outgoingTotals
-      ? outgoingTotals
-      : incomingTotals ?? outgoingTotals;
+    normalizeText(operatorUnit?.stage) === "productSideOperators"
+      ? hasNonZeroPrimitiveCounts(outgoingTotals)
+        ? outgoingTotals
+        : incomingTotals ?? outgoingTotals
+      : hasNonZeroPrimitiveCounts(incomingTotals)
+      ? incomingTotals
+      : outgoingTotals ?? incomingTotals;
   return {
     positrinoCount: preferredTotals?.positrinoCount ?? 0,
     electrinoCount: preferredTotals?.electrinoCount ?? 0,
   };
+}
+
+function getResidueSampleCountsFromPublicationGraph(assemblyUnit = {}, unitsById = new Map(), adjacency = {}) {
+  const explicitCounts = getAssemblyUnitCounts(assemblyUnit);
+  if (hasNonZeroPrimitiveCounts(explicitCounts)) {
+    return explicitCounts;
+  }
+  const assemblyUnitId = normalizeText(assemblyUnit?.id);
+  const incomingOperatorUnits = (adjacency.incomingByUnitId?.get(assemblyUnitId) ?? [])
+    .map((unitId) => unitsById.get(unitId))
+    .filter((unit) => normalizeText(unit?.kind) === "operator");
+  const incomingOperatorTotals = incomingOperatorUnits.reduce(
+    (totals, operatorUnit) => {
+      const counts = getOperatorCountsFromPublicationGraph(operatorUnit, unitsById, adjacency);
+      totals.electrinoCount += counts.electrinoCount;
+      totals.positrinoCount += counts.positrinoCount;
+      return totals;
+    },
+    { electrinoCount: 0, positrinoCount: 0 }
+  );
+  if (hasNonZeroPrimitiveCounts(incomingOperatorTotals)) {
+    return incomingOperatorTotals;
+  }
+  return explicitCounts ?? { electrinoCount: 0, positrinoCount: 0 };
 }
 
 function buildCompositeLabels(reactantRecipeIds = [], productRecipeIds = []) {
@@ -183,6 +223,10 @@ export function buildPdgeditDocumentFromPublicationGraph(
     if (kind === "assembly" && ASSEMBLY_ROLE_BY_STAGE[stage]) {
       const presentation = resolveAssemblyPresentationPayload(unit, resolveAssemblyPresentation);
       const counts = getAssemblyUnitCounts(unit) ?? { electrinoCount: 0, positrinoCount: 0 };
+      const residueCounts =
+        normalizeText(unit?.recipeId) === "unbound_architrinos_residue"
+          ? getResidueSampleCountsFromPublicationGraph(unit, unitsById, adjacency)
+          : null;
       assemblies.push({
         id: normalizeText(unit?.id),
         type: presentation.type,
@@ -194,8 +238,8 @@ export function buildPdgeditDocumentFromPublicationGraph(
         ...(normalizeText(unit?.recipeId) === "unbound_architrinos_residue"
           ? {
               sampleCounts: {
-                topCount: String(counts.electrinoCount),
-                bottomCount: String(counts.positrinoCount),
+                topCount: String(residueCounts?.electrinoCount ?? counts.electrinoCount),
+                bottomCount: String(residueCounts?.positrinoCount ?? counts.positrinoCount),
               },
             }
           : {}),

@@ -22,6 +22,7 @@ function createAssemblyPresentationResolver() {
     ["pro_up_quark_I", "pro-up-quark-assembly"],
     ["pro_down_quark_I", "pro-down-quark-assembly"],
     ["pro_electron_I", "pro-electron-assembly"],
+    ["unbound_architrinos_residue", "unbound-architrinos-assembly"],
   ]);
 
   return (recipeId) => {
@@ -474,5 +475,72 @@ test("publication graph rendering derives pdgedit coordinates from stages and pr
       ["right_catalyst", 0, 8, 4],
       ["right_noncat", 1, 0, 0],
     ]
+  );
+});
+
+test("publication graph rendering recovers residue counts from the feeding product-side operator", () => {
+  const publicationGraph = {
+    schema: "pdgsolve-publication-graph/v2",
+    units: [
+      {
+        id: "intermediate_feed",
+        kind: "assembly",
+        stage: "intermediateAssemblies",
+        recipeId: "pro_electron_I",
+        occurrenceKey: "intermediate_feed",
+        title: "Feed",
+        electrinoCount: 5,
+        positrinoCount: 5,
+      },
+      {
+        id: "product_residue_operator",
+        kind: "operator",
+        stage: "productSideOperators",
+        recipeId: "pass-thru",
+        occurrenceKey: "product_residue_operator",
+        title: "Pass Thru",
+      },
+      {
+        id: "product_residue",
+        kind: "assembly",
+        stage: "productAssemblies",
+        recipeId: "unbound_architrinos_residue",
+        occurrenceKey: "product_residue",
+        title: "Unbound Architrinos",
+      },
+    ],
+    edges: [
+      {
+        id: "residue_in",
+        fromUnitId: "intermediate_feed",
+        fromPortId: "output",
+        toUnitId: "product_residue_operator",
+        toPortId: "input_1",
+      },
+      {
+        id: "residue_out",
+        fromUnitId: "product_residue_operator",
+        fromPortId: "output_1",
+        toUnitId: "product_residue",
+        toPortId: "input",
+      },
+    ],
+  };
+
+  const document = buildPdgeditDocumentFromPublicationGraph(publicationGraph, {
+    resolveAssemblyPresentation: createAssemblyPresentationResolver(),
+  });
+
+  assert.deepEqual(
+    document.assemblies
+      .filter((assembly) => assembly.id === "product_residue")
+      .map((assembly) => assembly.sampleCounts),
+    [{ topCount: "5", bottomCount: "5" }]
+  );
+  assert.deepEqual(
+    document.operators
+      .filter((operator) => operator.id === "product_residue_operator")
+      .map((operator) => [operator.positrinoCount, operator.electrinoCount]),
+    [[5, 5]]
   );
 });

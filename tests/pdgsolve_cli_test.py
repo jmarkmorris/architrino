@@ -424,6 +424,77 @@ class PdgsolveCliTests(unittest.TestCase):
             ],
         )
 
+    def test_pdgedit_document_recovers_residue_counts_from_feeding_product_operator(self):
+        publication_graph = {
+            "schema": "pdgsolve-publication-graph/v2",
+            "units": [
+                {
+                    "id": "graph_intermediate_feed",
+                    "kind": "assembly",
+                    "stage": "intermediateAssemblies",
+                    "recipeId": "pro_electron_I",
+                    "occurrenceKey": "intermediate_feed",
+                    "title": "Feed",
+                    "electrinoCount": 5,
+                    "positrinoCount": 5,
+                },
+                {
+                    "id": "graph_product_operator_residue",
+                    "kind": "operator",
+                    "stage": "productSideOperators",
+                    "recipeId": "pass-thru",
+                    "occurrenceKey": "graph_product_operator_residue",
+                    "title": "Pass Thru",
+                },
+                {
+                    "id": "graph_product_residue",
+                    "kind": "assembly",
+                    "stage": "productAssemblies",
+                    "recipeId": "unbound_architrinos_residue",
+                    "occurrenceKey": "product_residue",
+                    "title": "Unbound Architrinos",
+                },
+            ],
+            "edges": [
+                {
+                    "id": "residue_input",
+                    "fromUnitId": "graph_intermediate_feed",
+                    "fromPortId": "output",
+                    "toUnitId": "graph_product_operator_residue",
+                    "toPortId": "input_1",
+                },
+                {
+                    "id": "residue_output",
+                    "fromUnitId": "graph_product_operator_residue",
+                    "fromPortId": "output_1",
+                    "toUnitId": "graph_product_residue",
+                    "toPortId": "input",
+                },
+            ],
+        }
+
+        published = pdgsolve.build_pdgedit_document_from_publication_graph(publication_graph)
+
+        self.assertEqual(
+            next(
+                assembly["sampleCounts"]
+                for assembly in published["assemblies"]
+                if assembly["id"] == "graph_product_residue"
+            ),
+            {
+                "topCount": "5",
+                "bottomCount": "5",
+            },
+        )
+        self.assertEqual(
+            next(
+                (operator["positrinoCount"], operator["electrinoCount"])
+                for operator in published["operators"]
+                if operator["id"] == "graph_product_operator_residue"
+            ),
+            (5, 5),
+        )
+
     def test_muon_decay_mode_1_returns_exact_available_under_core_first_rules(self):
         request = make_muon_decay_mode_1_request()
         result = pdgsolve.solve_request(request)

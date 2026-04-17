@@ -2122,6 +2122,16 @@ def sum_assembly_counts_for_publication_units(units: list[dict[str, Any]]) -> di
     return totals if found_any else None
 
 
+def primitive_counts_have_signal(counts: dict[str, int] | None) -> bool:
+    return bool(
+        counts
+        and (
+            int(counts.get("electrinoCount", 0)) != 0
+            or int(counts.get("positrinoCount", 0)) != 0
+        )
+    )
+
+
 def operator_counts_from_publication_graph(
     operator_unit: dict[str, Any],
     *,
@@ -2145,14 +2155,51 @@ def operator_counts_from_publication_graph(
     stage = normalize_text(operator_unit.get("stage"))
     preferred_totals = (
         outgoing_totals
-        if stage == "productSideOperators" and outgoing_totals is not None
+        if stage == "productSideOperators" and primitive_counts_have_signal(outgoing_totals)
         else incoming_totals
+        if stage == "productSideOperators"
+        else incoming_totals
+        if primitive_counts_have_signal(incoming_totals)
+        else outgoing_totals
     )
     if preferred_totals is None:
         preferred_totals = outgoing_totals
     if preferred_totals is None:
         return 0, 0
     return preferred_totals["positrinoCount"], preferred_totals["electrinoCount"]
+
+
+def residue_counts_from_publication_graph_unit(
+    unit: dict[str, Any],
+    *,
+    units_by_id: dict[str, dict[str, Any]],
+    incoming_by_unit_id: dict[str, list[str]],
+    outgoing_by_unit_id: dict[str, list[str]],
+) -> dict[str, int]:
+    explicit_counts = build_assembly_counts_from_publication_unit(unit)
+    if primitive_counts_have_signal(explicit_counts):
+        return explicit_counts
+    unit_id = normalize_text(unit.get("id"))
+    incoming_operator_units = [
+        units_by_id[incoming_unit_id]
+        for incoming_unit_id in incoming_by_unit_id.get(unit_id, [])
+        if incoming_unit_id in units_by_id and normalize_text(units_by_id[incoming_unit_id].get("kind")) == "operator"
+    ]
+    incoming_totals = build_primitive_counts(0, 0)
+    found_any = False
+    for operator_unit in incoming_operator_units:
+        positrino_count, electrino_count = operator_counts_from_publication_graph(
+            operator_unit,
+            units_by_id=units_by_id,
+            incoming_by_unit_id=incoming_by_unit_id,
+            outgoing_by_unit_id=outgoing_by_unit_id,
+        )
+        incoming_totals["electrinoCount"] += electrino_count
+        incoming_totals["positrinoCount"] += positrino_count
+        found_any = True
+    if found_any and primitive_counts_have_signal(incoming_totals):
+        return incoming_totals
+    return explicit_counts or build_primitive_counts(0, 0)
 
 
 def build_pdgedit_composite_labels(
@@ -2233,6 +2280,16 @@ def build_pdgedit_document_from_publication_graph(
         if normalize_text(unit.get("kind")) == "assembly":
             assembly_id = normalize_text(unit.get("recipeId"))
             metadata = ASSEMBLY_DISPLAY[assembly_id]
+            residue_counts = (
+                residue_counts_from_publication_graph_unit(
+                    unit,
+                    units_by_id=units_by_id,
+                    incoming_by_unit_id=incoming_by_unit_id,
+                    outgoing_by_unit_id=outgoing_by_unit_id,
+                )
+                if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+                else None
+            )
             assemblies.append(
                 {
                     "id": normalize_text(unit.get("id")),
@@ -2245,8 +2302,8 @@ def build_pdgedit_document_from_publication_graph(
                     **(
                         {
                             "sampleCounts": {
-                                "topCount": str(int(unit.get("electrinoCount", 0))),
-                                "bottomCount": str(int(unit.get("positrinoCount", 0))),
+                                "topCount": str(int((residue_counts or {}).get("electrinoCount", 0))),
+                                "bottomCount": str(int((residue_counts or {}).get("positrinoCount", 0))),
                             }
                         }
                         if normalize_text(unit.get("recipeId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
