@@ -153,9 +153,27 @@ function replaceAssembliesForRole(document, role, nextRoleAssemblies) {
   return cloned;
 }
 
+function replaceOperatorsForX(document, x, nextLaneOperators) {
+  const cloned = cloneDocument(document);
+  cloned.operators = [
+    ...cloned.operators.filter((operator) => normalizeInteger(operator.x) !== normalizeInteger(x)),
+    ...nextLaneOperators,
+  ].sort(compareByYThenXThenId);
+  return cloned;
+}
+
 function getCompactAssembliesForRole(document, role, excludedId = "") {
   return normalizePdgeditDocument(document).assemblies
     .filter((assembly) => assembly.role === role && assembly.id !== excludedId)
+    .sort(compareByYThenXThenId);
+}
+
+function getCompactOperatorsForX(document, x, excludedId = "") {
+  return normalizePdgeditDocument(document).operators
+    .filter(
+      (operator) =>
+        normalizeInteger(operator.x) === normalizeInteger(x) && operator.id !== normalizeText(excludedId)
+    )
     .sort(compareByYThenXThenId);
 }
 
@@ -340,21 +358,19 @@ export function movePdgeditObjectToRow(document = {}, objectId = "", requestedRo
       document: replaceAssembliesForRole(normalizedDocument, object.role, nextLane),
     };
   }
-  const candidate = {
-    ...object,
-    y: normalizedRow,
-  };
-  if (hasOverlapWithObjects(candidate, getObjectsExcludingIds(normalizedDocument, [object.id]))) {
-    return { ok: false, document: normalizedDocument };
-  }
+  const compactLane = getCompactOperatorsForX(normalizedDocument, object.x, object.id);
+  const insertionRow = Math.max(0, Math.min(normalizedRow, compactLane.length));
+  const nextLane = [
+    ...compactLane.slice(0, insertionRow),
+    object,
+    ...compactLane.slice(insertionRow),
+  ].map((operator, index) => ({
+    ...operator,
+    y: index,
+  }));
   return {
     ok: true,
-    document: {
-      ...cloneDocument(normalizedDocument),
-      operators: normalizedDocument.operators
-        .map((operator) => (operator.id === object.id ? { ...operator, y: normalizedRow } : operator))
-        .sort(compareByYThenXThenId),
-    },
+    document: replaceOperatorsForX(normalizedDocument, object.x, nextLane),
   };
 }
 
