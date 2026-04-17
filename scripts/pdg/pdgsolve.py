@@ -28,7 +28,7 @@ PDGSOLVE_REQUEST_SCHEMA = "pdgsolve-request/v1"
 PDGSOLVE_PROBLEM_SCHEMA = "pdgsolve-problem/v1"
 PDGSOLVE_RESULT_SCHEMA = "pdgsolve-result/v1"
 PDGSOLVE_ACCEPTANCE_SCHEMA = "pdgsolve-acceptance/v1"
-PDGSOLVE_PUBLICATION_GRAPH_SCHEMA = "pdgsolve-publication-graph/v1"
+PDGSOLVE_PUBLICATION_GRAPH_SCHEMA = "pdgsolve-publication-graph/v2"
 PDGSOLVE_PDGEDIT_PACKAGE_SCHEMA = "pdgsolve-pdgedit-package/v1"
 PDGEDIT_SCHEMA = "pdgedit/v1"
 ASSEMBLY_ALPHABET_ID = "pdgsolve-assemblies/v1-standard-model"
@@ -258,12 +258,18 @@ REQUEST_REACTANT_ASSEMBLY_IDS = tuple(
 )
 REQUEST_PRODUCT_ASSEMBLY_IDS = tuple(ASSEMBLY_DISPLAY)
 SUPPORTED_BOUNDARY_AUGMENTATIONS = ("none", "hp", "hq")
-FIXED_WIDTH_X_BY_STAGE = {
+PDGEDIT_X_BY_STAGE = {
     "reactantAssemblies": 2,
     "reactantSideOperators": 7,
     "intermediateAssemblies": 9,
     "productSideOperators": 14,
     "productAssemblies": 16,
+}
+
+PDGEDIT_ROLE_BY_PUBLICATION_STAGE = {
+    "reactantAssemblies": "reactant",
+    "intermediateAssemblies": "intermediate",
+    "productAssemblies": "product",
 }
 
 FERMION_RESIDUE_COUNTS = {
@@ -1259,7 +1265,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
             *clone_json(products),
         ]
     )
-    solve_graph = build_fixed_width_publication_graph(
+    solve_graph = build_publication_graph(
         reactant_occurrences=reactant_occurrences,
         intermediate_occurrences=intermediate_occurrences,
         product_occurrences=products,
@@ -1306,18 +1312,63 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     return family
 
 
-def build_fixed_width_intermediate_units(
-    reactant_occurrences: list[dict[str, Any]],
-    intermediate_occurrences: list[dict[str, Any]],
-) -> tuple[list[dict[str, Any]], dict[str, str]]:
-    reactant_ids = {
-        normalize_text(occurrence.get("id"))
-        for occurrence in reactant_occurrences
-        if normalize_text(occurrence.get("id"))
+def build_publication_unit_id(stage: str, recipe_id: str, unit_index: int) -> str:
+    return f"graph_{slugify(stage)}_{slugify(recipe_id)}_{unit_index}"
+
+
+def build_publication_graph_assembly_unit(
+    *,
+    unit_id: str,
+    stage: str,
+    occurrence_key: str,
+    recipe_id: str,
+    title: str,
+    counts: dict[str, int] | None,
+    source_occurrence_keys: list[str] | None = None,
+) -> dict[str, Any]:
+    normalized_counts = counts or build_primitive_counts(
+        ASSEMBLY_DISPLAY[recipe_id]["electrinoCount"],
+        ASSEMBLY_DISPLAY[recipe_id]["positrinoCount"],
+    )
+    unit = {
+        "id": unit_id,
+        "kind": "assembly",
+        "stage": stage,
+        "recipeId": recipe_id,
+        "occurrenceKey": occurrence_key,
+        "title": title,
+        "electrinoCount": normalized_counts["electrinoCount"],
+        "positrinoCount": normalized_counts["positrinoCount"],
     }
+    if source_occurrence_keys:
+        unit["sourceOccurrenceKeys"] = source_occurrence_keys
+    return unit
+
+
+def build_publication_graph_operator_unit(
+    *,
+    unit_id: str,
+    stage: str,
+    choice: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "id": unit_id,
+        "kind": "operator",
+        "stage": stage,
+        "recipeId": normalize_text(choice.get("type")),
+        "occurrenceKey": normalize_text(choice.get("id")),
+        "title": normalize_text(choice.get("type")).replace("-", " ").title(),
+        "lawId": choice.get("lawId"),
+    }
+
+
+def build_publication_graph_intermediate_units(
+    intermediate_occurrences: list[dict[str, Any]],
+    occurrence_counts: dict[str, dict[str, int]],
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
     units: list[dict[str, Any]] = []
     unit_by_source_occurrence: dict[str, str] = {}
-    row_index = 0
+    unit_index = 0
     residue_occurrences = [
         occurrence
         for occurrence in intermediate_occurrences
@@ -1328,23 +1379,17 @@ def build_fixed_width_intermediate_units(
         recipe_id = normalize_text(occurrence.get("assemblyId"))
         if not occurrence_key or not recipe_id or recipe_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
             continue
-        row_index += 1
-        unit_id = f"unit_lane3_{slugify(recipe_id)}_{row_index}.row.{row_index}"
-        visible_occurrence_key = occurrence_key
-        if visible_occurrence_key in reactant_ids:
-            visible_occurrence_key = f"graph_intermediate.{slugify(occurrence_key)}"
+        unit_index += 1
+        unit_id = build_publication_unit_id("intermediateAssemblies", recipe_id, unit_index)
         units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "intermediateAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": visible_occurrence_key,
-                "sourceOccurrenceKeys": [occurrence_key],
-                "title": normalize_text(occurrence.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index - 1,
-                "x": FIXED_WIDTH_X_BY_STAGE["intermediateAssemblies"],
-            }
+            build_publication_graph_assembly_unit(
+                unit_id=unit_id,
+                stage="intermediateAssemblies",
+                occurrence_key=occurrence_key,
+                recipe_id=recipe_id,
+                title=normalize_text(occurrence.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
+                counts=occurrence_counts.get(occurrence_key),
+            )
         )
         unit_by_source_occurrence[occurrence_key] = unit_id
 
@@ -1355,22 +1400,22 @@ def build_fixed_width_intermediate_units(
             for occurrence in residue_occurrences
             if normalize_text(occurrence.get("id"))
         ]
-        row_index += 1
-        unit_id = f"unit_lane3_unbound_architrinos_{row_index}.row.{row_index}"
+        unit_index += 1
+        unit_id = build_publication_unit_id(
+            "intermediateAssemblies",
+            UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+            unit_index,
+        )
         units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "intermediateAssemblies",
-                "recipeId": UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
-                "occurrenceKey": "graph_intermediate.unbound_architrinos_accumulator",
-                "sourceOccurrenceKeys": residue_sources,
-                "title": ASSEMBLY_DISPLAY[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID]["title"],
-                "anchorRow": row_index - 1,
-                "x": FIXED_WIDTH_X_BY_STAGE["intermediateAssemblies"],
-                "electrinoCount": residue_counts["electrinoCount"],
-                "positrinoCount": residue_counts["positrinoCount"],
-            }
+            build_publication_graph_assembly_unit(
+                unit_id=unit_id,
+                stage="intermediateAssemblies",
+                occurrence_key="graph_intermediate.unbound_architrinos_accumulator",
+                recipe_id=UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID,
+                title=ASSEMBLY_DISPLAY[UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID]["title"],
+                counts=residue_counts,
+                source_occurrence_keys=residue_sources,
+            )
         )
         for residue_source in residue_sources:
             unit_by_source_occurrence[residue_source] = unit_id
@@ -1378,7 +1423,7 @@ def build_fixed_width_intermediate_units(
     return units, unit_by_source_occurrence
 
 
-def build_fixed_width_publication_graph(
+def build_publication_graph(
     *,
     reactant_occurrences: list[dict[str, Any]],
     intermediate_occurrences: list[dict[str, Any]],
@@ -1391,83 +1436,77 @@ def build_fixed_width_publication_graph(
     units: list[dict[str, Any]] = []
     edges: list[dict[str, Any]] = []
     reactant_units_by_occurrence: dict[str, str] = {}
-    for row_index, reactant in enumerate(reactant_occurrences):
+    for unit_index, reactant in enumerate(reactant_occurrences, start=1):
         occurrence_key = normalize_text(reactant.get("id"))
         recipe_id = normalize_text(reactant.get("assemblyId"))
-        unit_id = f"unit_lane1_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
+        unit_id = build_publication_unit_id("reactantAssemblies", recipe_id, unit_index)
         reactant_units_by_occurrence[occurrence_key] = unit_id
         units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "reactantAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": normalize_text(reactant.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-                "x": FIXED_WIDTH_X_BY_STAGE["reactantAssemblies"],
-            }
+            build_publication_graph_assembly_unit(
+                unit_id=unit_id,
+                stage="reactantAssemblies",
+                occurrence_key=occurrence_key,
+                recipe_id=recipe_id,
+                title=normalize_text(reactant.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
+                counts=occurrence_counts.get(occurrence_key),
+            )
         )
 
     reactant_operator_units_by_occurrence: dict[str, str] = {}
-    for row_index, choice in enumerate(reactant_operator_choices):
+    for unit_index, choice in enumerate(reactant_operator_choices, start=1):
         operator_id = normalize_text(choice.get("id"))
-        unit_id = f"unit_lane2_{prefix}_{slugify(normalize_text(choice.get('type')))}_{row_index + 1}"
+        unit_id = build_publication_unit_id(
+            "reactantSideOperators",
+            f"{prefix}_{normalize_text(choice.get('type'))}",
+            unit_index,
+        )
         reactant_operator_units_by_occurrence[operator_id] = unit_id
         units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "reactantSideOperators",
-                "recipeId": normalize_text(choice.get("type")),
-                "occurrenceKey": operator_id,
-                "title": normalize_text(choice.get("type")).replace("-", " ").title(),
-                "anchorRow": row_index,
-                "x": FIXED_WIDTH_X_BY_STAGE["reactantSideOperators"],
-            }
+            build_publication_graph_operator_unit(
+                unit_id=unit_id,
+                stage="reactantSideOperators",
+                choice=choice,
+            )
         )
 
-    intermediate_units, intermediate_unit_by_source_occurrence = build_fixed_width_intermediate_units(
-        reactant_occurrences,
+    intermediate_units, intermediate_unit_by_source_occurrence = build_publication_graph_intermediate_units(
         intermediate_occurrences,
+        occurrence_counts,
     )
     units.extend(intermediate_units)
 
     product_operator_units_by_occurrence: dict[str, str] = {}
-    for row_index, choice in enumerate(product_operator_choices):
+    for unit_index, choice in enumerate(product_operator_choices, start=1):
         output_occurrence_key = normalize_text(choice.get("outputOccurrenceKeys", [None])[0])
-        unit_id = f"unit_lane4_{prefix}_{slugify(normalize_text(choice.get('type')))}_{row_index + 1}"
+        unit_id = build_publication_unit_id(
+            "productSideOperators",
+            f"{prefix}_{normalize_text(choice.get('type'))}",
+            unit_index,
+        )
         product_operator_units_by_occurrence[output_occurrence_key] = unit_id
         units.append(
-            {
-                "id": unit_id,
-                "kind": "operator",
-                "stage": "productSideOperators",
-                "recipeId": normalize_text(choice.get("type")),
-                "occurrenceKey": normalize_text(choice.get("id")),
-                "title": normalize_text(choice.get("type")).replace("-", " ").title(),
-                "anchorRow": row_index,
-                "x": FIXED_WIDTH_X_BY_STAGE["productSideOperators"],
-            }
+            build_publication_graph_operator_unit(
+                unit_id=unit_id,
+                stage="productSideOperators",
+                choice=choice,
+            )
         )
 
     product_units_by_occurrence: dict[str, str] = {}
-    for row_index, product in enumerate(product_occurrences):
+    for unit_index, product in enumerate(product_occurrences, start=1):
         occurrence_key = normalize_text(product.get("id"))
         recipe_id = normalize_text(product.get("assemblyId"))
-        unit_id = f"unit_lane5_{slugify(recipe_id)}_{row_index + 1}.row.{row_index + 1}"
+        unit_id = build_publication_unit_id("productAssemblies", recipe_id, unit_index)
         product_units_by_occurrence[occurrence_key] = unit_id
         units.append(
-            {
-                "id": unit_id,
-                "kind": "assembly",
-                "stage": "productAssemblies",
-                "recipeId": recipe_id,
-                "occurrenceKey": occurrence_key,
-                "title": normalize_text(product.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
-                "anchorRow": row_index,
-                "x": FIXED_WIDTH_X_BY_STAGE["productAssemblies"],
-            }
+            build_publication_graph_assembly_unit(
+                unit_id=unit_id,
+                stage="productAssemblies",
+                occurrence_key=occurrence_key,
+                recipe_id=recipe_id,
+                title=normalize_text(product.get("title")) or ASSEMBLY_DISPLAY[recipe_id]["title"],
+                counts=occurrence_counts.get(occurrence_key),
+            )
         )
 
     for choice in reactant_operator_choices:
@@ -1518,7 +1557,6 @@ def build_fixed_width_publication_graph(
 
     return {
         "schema": PDGSOLVE_PUBLICATION_GRAPH_SCHEMA,
-        "occurrenceCounts": clone_json(occurrence_counts),
         "units": units,
         "edges": edges,
     }
@@ -2025,77 +2063,143 @@ def build_acceptance(
     }
 
 
-def build_occurrence_count_map_from_acceptance(
-    acceptance: dict[str, Any],
-) -> dict[str, dict[str, int]]:
-    serialized_occurrence_counts = acceptance.get("lockedSolveGraph", {}).get("occurrenceCounts")
-    if isinstance(serialized_occurrence_counts, dict):
-        occurrence_counts: dict[str, dict[str, int]] = {}
-        for occurrence_key, counts in serialized_occurrence_counts.items():
-            normalized_occurrence_key = normalize_text(occurrence_key)
-            if not normalized_occurrence_key or not isinstance(counts, dict):
-                continue
-            occurrence_counts[normalized_occurrence_key] = build_primitive_counts(
-                counts.get("electrinoCount"),
-                counts.get("positrinoCount"),
-            )
-        if occurrence_counts:
-            return occurrence_counts
+def build_publication_graph_unit_map(
+    publication_graph: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    return {
+        normalize_text(unit.get("id")): unit
+        for unit in publication_graph.get("units", [])
+        if normalize_text(unit.get("id"))
+    }
 
-    occurrence_counts: dict[str, dict[str, int]] = {}
-    for unit in acceptance.get("lockedSolveGraph", {}).get("units", []):
-        if normalize_text(unit.get("kind")) != "assembly":
+
+def build_publication_graph_adjacency_maps(
+    publication_graph: dict[str, Any],
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+    incoming_by_unit_id: dict[str, list[str]] = {}
+    outgoing_by_unit_id: dict[str, list[str]] = {}
+
+    def append_unit_id(mapping: dict[str, list[str]], key: str, value: str) -> None:
+        if key not in mapping:
+            mapping[key] = []
+        mapping[key].append(value)
+
+    for edge in publication_graph.get("edges", []):
+        from_unit_id = normalize_text(edge.get("fromUnitId"))
+        to_unit_id = normalize_text(edge.get("toUnitId"))
+        if not from_unit_id or not to_unit_id:
             continue
-        occurrence_key = normalize_text(unit.get("occurrenceKey"))
-        recipe_id = normalize_text(unit.get("recipeId"))
-        if not occurrence_key or not recipe_id:
+        append_unit_id(outgoing_by_unit_id, from_unit_id, to_unit_id)
+        append_unit_id(incoming_by_unit_id, to_unit_id, from_unit_id)
+
+    return incoming_by_unit_id, outgoing_by_unit_id
+
+
+def build_assembly_counts_from_publication_unit(unit: dict[str, Any]) -> dict[str, int] | None:
+    if normalize_text(unit.get("kind")) != "assembly":
+        return None
+    recipe_id = normalize_text(unit.get("recipeId"))
+    if not recipe_id:
+        return None
+    if "electrinoCount" in unit or "positrinoCount" in unit:
+        return build_primitive_counts(unit.get("electrinoCount"), unit.get("positrinoCount"))
+    metadata = ASSEMBLY_DISPLAY.get(recipe_id)
+    if metadata is None:
+        return None
+    return build_primitive_counts(metadata["electrinoCount"], metadata["positrinoCount"])
+
+
+def sum_assembly_counts_for_publication_units(units: list[dict[str, Any]]) -> dict[str, int] | None:
+    totals = build_primitive_counts(0, 0)
+    found_any = False
+    for unit in units:
+        counts = build_assembly_counts_from_publication_unit(unit)
+        if counts is None:
             continue
-        if recipe_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
-            occurrence_counts[occurrence_key] = build_primitive_counts(
-                unit.get("electrinoCount"),
-                unit.get("positrinoCount"),
-            )
-            continue
-        metadata = ASSEMBLY_DISPLAY.get(recipe_id)
-        if metadata is None:
-            continue
-        occurrence_counts[occurrence_key] = build_primitive_counts(
-            metadata["electrinoCount"],
-            metadata["positrinoCount"],
+        found_any = True
+        totals["electrinoCount"] += counts["electrinoCount"]
+        totals["positrinoCount"] += counts["positrinoCount"]
+    return totals if found_any else None
+
+
+def primitive_counts_have_signal(counts: dict[str, int] | None) -> bool:
+    return bool(
+        counts
+        and (
+            int(counts.get("electrinoCount", 0)) != 0
+            or int(counts.get("positrinoCount", 0)) != 0
         )
-    return occurrence_counts
+    )
 
 
-def build_operator_choice_map(acceptance: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    choice_map: dict[str, dict[str, Any]] = {}
-    for choice in acceptance.get("lockedReactantSideOperators", []):
-        choice_map[normalize_text(choice.get("id"))] = choice
-    for choice in acceptance.get("lockedProductSideOperators", []):
-        choice_map[normalize_text(choice.get("id"))] = choice
-    return choice_map
-
-
-def operator_counts_from_choice(
-    choice: dict[str, Any],
-    occurrence_counts: dict[str, dict[str, int]],
-) -> tuple[int, int]:
-    totals = sum_counts_for_occurrence_keys(choice.get("inputOccurrenceKeys", []), occurrence_counts)
-    if totals is None:
-        return 0, 0
-    return totals["positrinoCount"], totals["electrinoCount"]
-
-
-def operator_counts_from_choice_for_stage(
-    choice: dict[str, Any],
-    occurrence_counts: dict[str, dict[str, int]],
+def operator_counts_from_publication_graph(
+    operator_unit: dict[str, Any],
     *,
-    stage: str,
+    units_by_id: dict[str, dict[str, Any]],
+    incoming_by_unit_id: dict[str, list[str]],
+    outgoing_by_unit_id: dict[str, list[str]],
 ) -> tuple[int, int]:
-    if stage == "productSideOperators":
-        totals = sum_counts_for_occurrence_keys(choice.get("outputOccurrenceKeys", []), occurrence_counts)
-        if totals is not None:
-            return totals["positrinoCount"], totals["electrinoCount"]
-    return operator_counts_from_choice(choice, occurrence_counts)
+    operator_unit_id = normalize_text(operator_unit.get("id"))
+    incoming_units = [
+        units_by_id[unit_id]
+        for unit_id in incoming_by_unit_id.get(operator_unit_id, [])
+        if unit_id in units_by_id
+    ]
+    outgoing_units = [
+        units_by_id[unit_id]
+        for unit_id in outgoing_by_unit_id.get(operator_unit_id, [])
+        if unit_id in units_by_id
+    ]
+    incoming_totals = sum_assembly_counts_for_publication_units(incoming_units)
+    outgoing_totals = sum_assembly_counts_for_publication_units(outgoing_units)
+    stage = normalize_text(operator_unit.get("stage"))
+    preferred_totals = (
+        outgoing_totals
+        if stage == "productSideOperators" and primitive_counts_have_signal(outgoing_totals)
+        else incoming_totals
+        if stage == "productSideOperators"
+        else incoming_totals
+        if primitive_counts_have_signal(incoming_totals)
+        else outgoing_totals
+    )
+    if preferred_totals is None:
+        preferred_totals = outgoing_totals
+    if preferred_totals is None:
+        return 0, 0
+    return preferred_totals["positrinoCount"], preferred_totals["electrinoCount"]
+
+
+def residue_counts_from_publication_graph_unit(
+    unit: dict[str, Any],
+    *,
+    units_by_id: dict[str, dict[str, Any]],
+    incoming_by_unit_id: dict[str, list[str]],
+    outgoing_by_unit_id: dict[str, list[str]],
+) -> dict[str, int]:
+    explicit_counts = build_assembly_counts_from_publication_unit(unit)
+    if primitive_counts_have_signal(explicit_counts):
+        return explicit_counts
+    unit_id = normalize_text(unit.get("id"))
+    incoming_operator_units = [
+        units_by_id[incoming_unit_id]
+        for incoming_unit_id in incoming_by_unit_id.get(unit_id, [])
+        if incoming_unit_id in units_by_id and normalize_text(units_by_id[incoming_unit_id].get("kind")) == "operator"
+    ]
+    incoming_totals = build_primitive_counts(0, 0)
+    found_any = False
+    for operator_unit in incoming_operator_units:
+        positrino_count, electrino_count = operator_counts_from_publication_graph(
+            operator_unit,
+            units_by_id=units_by_id,
+            incoming_by_unit_id=incoming_by_unit_id,
+            outgoing_by_unit_id=outgoing_by_unit_id,
+        )
+        incoming_totals["electrinoCount"] += electrino_count
+        incoming_totals["positrinoCount"] += positrino_count
+        found_any = True
+    if found_any and primitive_counts_have_signal(incoming_totals):
+        return incoming_totals
+    return explicit_counts or build_primitive_counts(0, 0)
 
 
 def build_pdgedit_composite_labels(
@@ -2155,42 +2259,51 @@ def build_pdgedit_assembly_entry(
     return entry
 
 
-def build_pdgedit_document_from_acceptance(
-    acceptance: dict[str, Any],
+def build_pdgedit_document_from_publication_graph(
+    publication_graph: dict[str, Any],
     *,
     document_id: str | None = None,
     document_title: str | None = None,
 ) -> dict[str, Any]:
-    solve_graph = acceptance["lockedSolveGraph"]
-    occurrence_counts = build_occurrence_count_map_from_acceptance(acceptance)
-    operator_choice_map = build_operator_choice_map(acceptance)
+    units_by_id = build_publication_graph_unit_map(publication_graph)
+    incoming_by_unit_id, outgoing_by_unit_id = build_publication_graph_adjacency_maps(publication_graph)
     assemblies = []
     operators = []
-    for unit in solve_graph.get("units", []):
+    next_row_by_stage: dict[str, int] = {}
+    for unit in publication_graph.get("units", []):
         stage = normalize_text(unit.get("stage"))
-        x = int(unit["x"])
-        y = int(unit.get("anchorRow", 0))
+        if stage not in PDGEDIT_X_BY_STAGE:
+            continue
+        x = PDGEDIT_X_BY_STAGE[stage]
+        y = next_row_by_stage.get(stage, 0)
+        next_row_by_stage[stage] = y + 1
         if normalize_text(unit.get("kind")) == "assembly":
             assembly_id = normalize_text(unit.get("recipeId"))
             metadata = ASSEMBLY_DISPLAY[assembly_id]
+            residue_counts = (
+                residue_counts_from_publication_graph_unit(
+                    unit,
+                    units_by_id=units_by_id,
+                    incoming_by_unit_id=incoming_by_unit_id,
+                    outgoing_by_unit_id=outgoing_by_unit_id,
+                )
+                if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+                else None
+            )
             assemblies.append(
                 {
                     "id": normalize_text(unit.get("id")),
                     "type": metadata["pdgeditType"],
                     "x": x,
                     "y": y,
-                    "title": metadata["title"],
-                    "role": {
-                        "reactantAssemblies": "reactant",
-                        "intermediateAssemblies": "intermediate",
-                        "productAssemblies": "product",
-                    }[stage],
+                    "title": normalize_text(unit.get("title")) or metadata["title"],
+                    "role": PDGEDIT_ROLE_BY_PUBLICATION_STAGE[stage],
                     "tiles": clone_json(metadata["tiles"]),
                     **(
                         {
                             "sampleCounts": {
-                                "topCount": str(int(unit.get("electrinoCount", 0))),
-                                "bottomCount": str(int(unit.get("positrinoCount", 0))),
+                                "topCount": str(int((residue_counts or {}).get("electrinoCount", 0))),
+                                "bottomCount": str(int((residue_counts or {}).get("positrinoCount", 0))),
                             }
                         }
                         if normalize_text(unit.get("recipeId")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
@@ -2200,11 +2313,11 @@ def build_pdgedit_document_from_acceptance(
             )
             continue
         if normalize_text(unit.get("kind")) == "operator":
-            choice = operator_choice_map[normalize_text(unit.get("occurrenceKey"))]
-            positrino_count, electrino_count = operator_counts_from_choice_for_stage(
-                choice,
-                occurrence_counts,
-                stage=stage,
+            positrino_count, electrino_count = operator_counts_from_publication_graph(
+                unit,
+                units_by_id=units_by_id,
+                incoming_by_unit_id=incoming_by_unit_id,
+                outgoing_by_unit_id=outgoing_by_unit_id,
             )
             operators.append(
                 {
@@ -2224,16 +2337,16 @@ def build_pdgedit_document_from_acceptance(
             "endpointA": normalize_text(edge.get("fromUnitId")),
             "endpointB": normalize_text(edge.get("toUnitId")),
         }
-        for edge in solve_graph.get("edges", [])
+        for edge in publication_graph.get("edges", [])
     ]
     reactant_recipe_ids = [
         normalize_text(unit.get("recipeId"))
-        for unit in solve_graph.get("units", [])
+        for unit in publication_graph.get("units", [])
         if normalize_text(unit.get("stage")) == "reactantAssemblies"
     ]
     product_recipe_ids = [
         normalize_text(unit.get("recipeId"))
-        for unit in solve_graph.get("units", [])
+        for unit in publication_graph.get("units", [])
         if normalize_text(unit.get("stage")) == "productAssemblies"
     ]
     _ = document_id, document_title
@@ -2244,7 +2357,19 @@ def build_pdgedit_document_from_acceptance(
         "links": links,
         "compositeLabels": build_pdgedit_composite_labels(reactant_recipe_ids, product_recipe_ids),
     }
-    
+
+
+def build_pdgedit_document_from_acceptance(
+    acceptance: dict[str, Any],
+    *,
+    document_id: str | None = None,
+    document_title: str | None = None,
+) -> dict[str, Any]:
+    return build_pdgedit_document_from_publication_graph(
+        acceptance["lockedSolveGraph"],
+        document_id=document_id,
+        document_title=document_title,
+    )
 
 def build_pdgedit_document_from_request_review(
     request: dict[str, Any],
@@ -2261,7 +2386,7 @@ def build_pdgedit_document_from_request_review(
                 reactant,
                 object_id=f"review_reactant_{row_index + 1}",
                 role="reactant",
-                x=FIXED_WIDTH_X_BY_STAGE["reactantAssemblies"],
+                x=PDGEDIT_X_BY_STAGE["reactantAssemblies"],
                 y=row_index,
             )
         )
@@ -2271,7 +2396,7 @@ def build_pdgedit_document_from_request_review(
                 product,
                 object_id=f"review_product_{row_index + 1}",
                 role="product",
-                x=FIXED_WIDTH_X_BY_STAGE["productAssemblies"],
+                x=PDGEDIT_X_BY_STAGE["productAssemblies"],
                 y=row_index,
             )
         )
@@ -2681,6 +2806,7 @@ def main(argv: list[str] | None = None) -> int:
 __all__ = [
     "build_acceptance",
     "build_pdgedit_document_from_acceptance",
+    "build_pdgedit_document_from_publication_graph",
     "build_pdgedit_package",
     "build_result_corpus_index",
     "count_assemblies",

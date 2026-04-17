@@ -5,6 +5,8 @@ import fs from "node:fs";
 import {
   buildPdgviewStagingContractFromPdgeditDocument,
 } from "../src/apps/pdgview/PdgviewPdgeditImportRuntime.js";
+import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemplateCatalogRuntime.js";
+import { buildPdgeditDocumentFromPublicationGraph } from "../src/runtime/PdgeditPublicationGraphRuntime.js";
 import {
   resolvePdgviewViewportFramingState,
 } from "../src/runtime/PdgviewViewportFramingRuntime.js";
@@ -15,6 +17,26 @@ function readJson(relativePath) {
 
 function readText(relativePath) {
   return fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
+}
+
+function createAssemblyPresentationResolver() {
+  const templateCatalog = normalizePdgeditTemplateCatalog(
+    readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json")
+  );
+  const typeByRecipeId = new Map([["pro_up_quark_I", "pro-up-quark-assembly"]]);
+
+  return (recipeId) => {
+    const type = typeByRecipeId.get(recipeId);
+    const template = type ? templateCatalog.assemblyTemplateByType.get(type) : null;
+    if (!template) {
+      return null;
+    }
+    return {
+      type: template.type,
+      title: template.title,
+      tiles: template.tiles,
+    };
+  };
 }
 
 function isTypeMatch(value, expectedType) {
@@ -143,6 +165,78 @@ test("pdgview staging preserves observer framing from the accepted pdgedit assem
     ),
     true
   );
+});
+
+test("pdgview staging still accepts pdgedit documents derived from publication graphs", () => {
+  const publicationGraph = {
+    schema: "pdgsolve-publication-graph/v2",
+    units: [
+      {
+        id: "reactant_up_quark",
+        kind: "assembly",
+        stage: "reactantAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "reactant_up_quark",
+        title: "Input Up Quark",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+      {
+        id: "pass_thru_stage_1",
+        kind: "operator",
+        stage: "reactantSideOperators",
+        recipeId: "pass-thru",
+        occurrenceKey: "pass_thru_stage_1",
+        title: "Pass Thru",
+        lawId: null,
+      },
+      {
+        id: "intermediate_up_quark",
+        kind: "assembly",
+        stage: "intermediateAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "intermediate_up_quark",
+        title: "Intermediate Up Quark",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+      {
+        id: "pass_thru_stage_2",
+        kind: "operator",
+        stage: "productSideOperators",
+        recipeId: "pass-thru",
+        occurrenceKey: "pass_thru_stage_2",
+        title: "Pass Thru",
+        lawId: null,
+      },
+      {
+        id: "product_up_quark",
+        kind: "assembly",
+        stage: "productAssemblies",
+        recipeId: "pro_up_quark_I",
+        occurrenceKey: "product_up_quark",
+        title: "Output Up Quark",
+        electrinoCount: 4,
+        positrinoCount: 8,
+      },
+    ],
+    edges: [
+      { id: "edge_1", fromUnitId: "reactant_up_quark", fromPortId: "output", toUnitId: "pass_thru_stage_1", toPortId: "input_1" },
+      { id: "edge_2", fromUnitId: "pass_thru_stage_1", fromPortId: "output_1", toUnitId: "intermediate_up_quark", toPortId: "input" },
+      { id: "edge_3", fromUnitId: "intermediate_up_quark", fromPortId: "output", toUnitId: "pass_thru_stage_2", toPortId: "input_1" },
+      { id: "edge_4", fromUnitId: "pass_thru_stage_2", fromPortId: "output_1", toUnitId: "product_up_quark", toPortId: "input" },
+    ],
+  };
+  const stagingSchema = readJson("src/contracts/pdgview-staging/v1/schema.json");
+  const pdgeditDocument = buildPdgeditDocumentFromPublicationGraph(publicationGraph, {
+    resolveAssemblyPresentation: createAssemblyPresentationResolver(),
+  });
+  const builtStaging = buildPdgviewStagingContractFromPdgeditDocument(pdgeditDocument, stagingOptions);
+
+  assert.deepEqual(validateAgainstSchema(builtStaging, stagingSchema), []);
+  assert.equal(builtStaging.source.schema, "pdgedit/v1");
+  assert.equal(builtStaging.preview.objectCount, 5);
+  assert.equal(builtStaging.preview.linkCount, 4);
 });
 
 test("pdgview pdgedit import runtime stays on the data side of the app boundary", () => {

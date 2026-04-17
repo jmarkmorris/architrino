@@ -74,7 +74,7 @@
             "role": "reactant",
             "grid": {
               "x": 2,
-              "y": 1
+              "y": 0
             }
           },
           "viewport": {
@@ -129,7 +129,7 @@
             "role": "intermediate",
             "grid": {
               "x": 9,
-              "y": 1
+              "y": 0
             }
           },
           "viewport": {
@@ -184,7 +184,7 @@
             "role": "product",
             "grid": {
               "x": 16,
-              "y": 1
+              "y": 0
             }
           },
           "viewport": {
@@ -227,7 +227,7 @@
             "role": "operator",
             "grid": {
               "x": 7,
-              "y": 1
+              "y": 0
             }
           },
           "viewport": {
@@ -270,7 +270,7 @@
             "role": "operator",
             "grid": {
               "x": 14,
-              "y": 1
+              "y": 0
             }
           },
           "viewport": {
@@ -620,7 +620,7 @@
               "role": "reactant",
               "grid": {
                 "x": 2,
-                "y": 1
+                "y": 0
               }
             },
             "viewport": {
@@ -775,7 +775,7 @@
               "role": "intermediate",
               "grid": {
                 "x": 9,
-                "y": 1
+                "y": 0
               }
             },
             "viewport": {
@@ -833,7 +833,7 @@
               "role": "product",
               "grid": {
                 "x": 16,
-                "y": 1
+                "y": 0
               }
             },
             "viewport": {
@@ -891,7 +891,7 @@
               "role": "operator",
               "grid": {
                 "x": 7,
-                "y": 1
+                "y": 0
               }
             },
             "viewport": {
@@ -937,7 +937,7 @@
               "role": "operator",
               "grid": {
                 "x": 14,
-                "y": 1
+                "y": 0
               }
             },
             "viewport": {

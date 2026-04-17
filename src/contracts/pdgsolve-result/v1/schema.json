@@ -133,7 +133,7 @@
         "tieBreakKey": { "type": "string", "minLength": 1 }
       }
     },
-    "publicationUnit": {
+    "publicationAssemblyUnit": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -143,28 +143,65 @@
         "recipeId",
         "occurrenceKey",
         "title",
-        "anchorRow"
+        "electrinoCount",
+        "positrinoCount"
       ],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "kind": { "type": "string", "enum": ["assembly", "operator"] },
+        "kind": { "const": "assembly" },
         "stage": {
           "type": "string",
           "enum": [
             "reactantAssemblies",
-            "reactantSideOperators",
             "intermediateAssemblies",
-            "productSideOperators",
             "productAssemblies"
           ]
         },
         "recipeId": { "type": "string", "minLength": 1 },
         "occurrenceKey": { "type": "string", "minLength": 1 },
+        "sourceOccurrenceKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
         "title": { "type": "string", "minLength": 1 },
-        "anchorRow": { "type": "integer", "minimum": 0 },
         "positrinoCount": { "type": "integer", "minimum": 0 },
         "electrinoCount": { "type": "integer", "minimum": 0 }
       }
+    },
+    "publicationOperatorUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "stage",
+        "recipeId",
+        "occurrenceKey",
+        "title",
+        "lawId"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "const": "operator" },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "reactantSideOperators",
+            "productSideOperators"
+          ]
+        },
+        "recipeId": { "type": "string", "minLength": 1 },
+        "occurrenceKey": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "lawId": { "type": ["string", "null"], "minLength": 1 }
+      }
+    },
+    "publicationUnit": {
+      "anyOf": [
+        { "$ref": "#/$defs/publicationAssemblyUnit" },
+        { "$ref": "#/$defs/publicationOperatorUnit" }
+      ]
     },
     "publicationEdge": {
       "type": "object",
@@ -184,7 +221,7 @@
       "required": ["schema", "units", "edges"],
       "properties": {
         "schema": {
-          "const": "pdgsolve-publication-graph/v1"
+          "const": "pdgsolve-publication-graph/v2"
         },
         "units": {
           "type": "array",

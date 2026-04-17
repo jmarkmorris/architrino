@@ -17,6 +17,11 @@ const ROLE_BY_ASSEMBLY_X = Object.freeze({
   16: "product",
 });
 
+const OPERATOR_STAGE_X_BY_SIDE = Object.freeze({
+  reactant: 7,
+  product: 14,
+});
+
 const ROUTING_COLUMN_BY_ADJACENT_OBJECT_X = Object.freeze({
   "2:7": 6,
   "7:9": 8,
@@ -47,6 +52,10 @@ export function getPdgeditAssemblyStageXForRole(role = "") {
 
 export function getPdgeditRoleForAssemblyX(x = 0) {
   return ROLE_BY_ASSEMBLY_X[normalizeInteger(x)] ?? null;
+}
+
+export function getPdgeditOperatorStageXForSide(side = "") {
+  return OPERATOR_STAGE_X_BY_SIDE[normalizeText(side)] ?? null;
 }
 
 export function getPdgeditObjectWidthTiles(object = {}) {

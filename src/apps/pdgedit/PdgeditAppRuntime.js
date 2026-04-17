@@ -15,7 +15,6 @@ import {
 import {
   buildPdgeditSplinePath,
   getPdgeditGridCellFromLocalPoint,
-  getPdgeditLinkSlotOffset,
   getPdgeditRoutingColumnForObjectPair,
   PDGEDIT_GRID_STRIP_WIDTH_PX,
   PDGEDIT_RESERVED_TOP_ROW_COUNT,
@@ -42,7 +41,24 @@ function buildTileCacheKey(tileKey, sampleCounts) {
   return `${normalizedTileKey}::${topCount}/${bottomCount}`;
 }
 
-function buildLinkRenderModels(document, getObjectByIdFromDocument) {
+function compareLinkEntriesByVerticalPosition(left = {}, right = {}) {
+  const leftCenter = (Number(left.leftObject?.y) + Number(left.rightObject?.y)) / 2;
+  const rightCenter = (Number(right.leftObject?.y) + Number(right.rightObject?.y)) / 2;
+  return (
+    leftCenter - rightCenter ||
+    Number(left.leftObject?.y) - Number(right.leftObject?.y) ||
+    Number(left.rightObject?.y) - Number(right.rightObject?.y) ||
+    left.link.id.localeCompare(right.link.id)
+  );
+}
+
+function getLinkSlotOffsetForSortedGroupIndex(sortedIndex = 0, groupSize = 1) {
+  const normalizedGroupSize = Math.max(1, Number(groupSize) || 1);
+  const normalizedIndex = Math.max(0, Math.min(Number(sortedIndex) || 0, normalizedGroupSize - 1));
+  return (normalizedIndex - (normalizedGroupSize - 1) / 2) * 6;
+}
+
+export function buildPdgeditLinkRenderModels(document, getObjectByIdFromDocument) {
   const groups = new Map();
 
   document.links.forEach((link) => {
@@ -71,15 +87,15 @@ function buildLinkRenderModels(document, getObjectByIdFromDocument) {
 
   return [...groups.values()].flatMap((group) =>
     group
-      .sort((left, right) => left.link.id.localeCompare(right.link.id))
+      .sort(compareLinkEntriesByVerticalPosition)
       .map((entry, index) => ({
         ...entry,
-        slotOffsetPx: getPdgeditLinkSlotOffset(index),
+        slotOffsetPx: getLinkSlotOffsetForSortedGroupIndex(index, group.length),
         spline:
           buildPdgeditSplinePath({
             leftObject: entry.leftObject,
             rightObject: entry.rightObject,
-            slotOffsetPx: getPdgeditLinkSlotOffset(index),
+            slotOffsetPx: getLinkSlotOffsetForSortedGroupIndex(index, group.length),
           }) ?? null,
       }))
       .filter((entry) => entry.spline)
@@ -347,7 +363,7 @@ export function createPdgeditAppRuntime({
 
   function renderLinks(document) {
     const objectsById = new Map(getPdgeditDocumentObjects(document).map((record) => [record.id, record]));
-    const models = buildLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
+    const models = buildPdgeditLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
     const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
     const heightPx = totalRows * PDGEDIT_TILE_SIZE_PX;
     linkOverlayElement.setAttribute("viewBox", `0 0 ${PDGEDIT_GRID_STRIP_WIDTH_PX} ${heightPx}`);

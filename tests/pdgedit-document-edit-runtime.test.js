@@ -85,7 +85,7 @@ test("assembly movement reorders within one lane without leaving gaps", () => {
   );
 });
 
-test("operator creation and movement stay inside one fixed operator column and reject collisions", () => {
+test("operator dragging reorders within each fixed operator column without crossing lanes", () => {
   const first = createPdgeditOperator(getPdgeditEmptyDocument(), {
     type: "associate",
     x: 7,
@@ -100,20 +100,47 @@ test("operator creation and movement stay inside one fixed operator column and r
     positrinoCount: 1,
     electrinoCount: 1,
   });
-  const blockedMove = movePdgeditObjectToRow(second.document, first.createdId, 1);
-  const moved = movePdgeditObjectToRow(second.document, first.createdId, 2);
+  const third = createPdgeditOperator(second.document, {
+    type: "associate",
+    x: 14,
+    y: 0,
+    positrinoCount: 3,
+    electrinoCount: 3,
+  });
+  const fourth = createPdgeditOperator(third.document, {
+    type: "pass-thru",
+    x: 14,
+    y: 1,
+    positrinoCount: 1,
+    electrinoCount: 1,
+  });
+  const movedLeftLane = movePdgeditObjectToRow(fourth.document, first.createdId, 1);
+  const movedRightLane = movePdgeditObjectToRow(movedLeftLane.document, third.createdId, 1);
 
   assert.equal(first.ok, true);
   assert.equal(second.ok, true);
-  assert.equal(blockedMove.ok, false);
-  assert.equal(moved.ok, true);
+  assert.equal(third.ok, true);
+  assert.equal(fourth.ok, true);
+  assert.equal(movedLeftLane.ok, true);
+  assert.equal(movedRightLane.ok, true);
   assert.deepEqual(
-    moved.document.operators
+    movedRightLane.document.operators
+      .filter((operator) => operator.x === 7)
       .sort((left, right) => left.y - right.y)
       .map((operator) => [operator.type, operator.x, operator.y]),
     [
-      ["pass-thru", 7, 1],
-      ["associate", 7, 2],
+      ["pass-thru", 7, 0],
+      ["associate", 7, 1],
+    ]
+  );
+  assert.deepEqual(
+    movedRightLane.document.operators
+      .filter((operator) => operator.x === 14)
+      .sort((left, right) => left.y - right.y)
+      .map((operator) => [operator.type, operator.x, operator.y]),
+    [
+      ["pass-thru", 14, 0],
+      ["associate", 14, 1],
     ]
   );
 });
