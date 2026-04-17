@@ -502,20 +502,20 @@ So the following are illegal:
 
 The `Pass Thru` tile should display the Electrino and Positrino counts it routes when it carries `Unbound Architrinos` from the intermediate stage to the product stage.
 
-#### First Coding Target
+#### Current Executable Law Slice
 
-The first real `pdgsolve` implementation should code exactly this `pdgsolve-laws/v1-standard-model` law family before adding refinements.
+The shipped `pdgsolve` vertical slice currently freezes `pdgsolve-laws/v1-standard-model` as its executable law table.
 
-That means the first executable solver should assume:
+That means the current deterministic solver assumes:
 
 - one shared admitted assembly alphabet $\mathcal{A}_{\mathrm{v1}}$;
-- universal pass-thru;
+- universal pass-thru over the admitted assemblies;
 - the Noether-core-plus-`Unbound Architrinos` dissociate/associate family above;
-- the Noether-core ladder laws above;
-- one shared intermediate `Unbound Architrinos` ledger with nonnegative counts;
-- and no hidden reaction-specific shortcuts.
+- the Noether-core ladder dissociation laws above;
+- one shared intermediate `Unbound Architrinos` ledger, implemented as one residue accumulator with nonnegative counts;
+- and no hand-authored reaction-specific solves or hidden shortcuts.
 
-If this first-pass law family proves insufficient for specific corpus channels, the next step should be to revise this table explicitly here rather than to reintroduce hand-authored solved reactions in code.
+If specific corpus channels require broader coverage, the next step should be to revise or extend this explicit law inventory and the constructive mapper that uses it, rather than to reintroduce per-channel solved reactions in code.
 
 ### Normalization Rules
 
