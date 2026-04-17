@@ -1165,75 +1165,29 @@ When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred
 
 ## Priorities
 
-### 1. Enforce The Assembly-Native Composite Boundary
+The boundary, CLI, acceptance seam, and publication contracts above are now baseline assumptions rather than active queue items.
+
+### 1. Expand Solver Coverage Against The Ready Corpus
 
 Status: `active`
 
 Current:
 
-- higher-scale beta language still has enough historical weight in the surrounding workstream that it can leak into solver discussions as if it were native ontology;
-- that creates risk that request ids, search symbols, or emitted family units drift away from explicit admitted assemblies and toward composite placeholders;
-- and the document set still needs stronger regression and diagnostic framing around the rule that higher-scale reactant and product terms belong to boundary translation only.
+- the local ready-corpus baseline is `1354` solved requests, with `16` `exact_available`, `0` `partialOnly`, and `1338` `no_exact_closure`;
+- the dominant blocking diagnostic is `pdgsolve.request.unsupported_assembly`, which means most failures still occur at the admitted-assembly boundary rather than deep inside the constructive mapper;
+- the most common unsupported assemblies in the current corpus are `anti_up_quark_I`, `anti_down_quark_I`, `pro_strange_quark_II`, `anti_strange_quark_II`, `pro_charm_quark_II`, `anti_charm_quark_II`, `pro_bottom_quark_III`, `anti_bottom_quark_III`, `pro_tau_III`, `anti_tau_III`, `pro_tau_neutrino_III`, and `anti_tau_neutrino_III`;
+- and the current code already carries residue-count rules for many of those assemblies, so the main gap is alignment between the admitted assembly alphabet and the executable law inventory.
 
 Objective:
 
-- keep every solver-native input, intermediate, operator law, search symbol, and emitted output expressed only in explicit admitted Standard Model assemblies;
-- keep `pdgfeed` responsible for classifying source requests as un-mappable when translation into explicit Standard Model assemblies fails, while keeping malformed direct `pdgsolve` inputs explicit in diagnostics;
-- keep solve-output contracts free of composite ids;
-- make downstream grouping or naming clearly adapter-owned rather than solver-owned;
-- and keep the regression set centered on proving that composites are expanded or collapsed only outside the solve core.
-
-### 2. Freeze The Python Solve-Accept-Publish Boundary
-
-Status: `active`
-
-Current:
-
-- the target tool boundary is now one Python process;
-- the intended implementation file is `scripts/pdg/pdgsolve.py`;
-- and that one process now owns request normalization, solve/result emission, acceptance locking, manifest solving, and pdgedit publication.
-
-Objective:
-
-- keep `pdgsolve` as the Python JSON boundary for solve, accept, and publish work upstream of pdgedit;
-- keep intake, normalization, search, scoring, acceptance, and publication-graph emission in that boundary;
-- prefer explicit CLI and pipe-safe JSON workflows over hidden process state;
-- and avoid reintroducing pdgedit-specific layout concerns into solver law or acceptance semantics.
-
-### 3. Freeze The Result-And-Publication Contracts
-
-Status: `active`
-
-Current:
-
-- the output boundary now needs to center on exact or fallback solution families and explicit scores;
-- the current shipped runtime instead exposes one exact-or-fallback family path, explicit review state, locked acceptance records, and a layout-neutral publication graph;
-- and the batch manifest path now writes both result-corpus indexes and pdgedit publication manifests.
-
-Objective:
-
-- keep `pdgsolve-result/v1` centered on solving output;
-- keep `pdgsolve-acceptance/v1` and `pdgsolve-publication-graph/v2` as the frozen downstream seam;
-- keep exact-family identity, diagnostics, and tie-break behavior stable enough for regression tests;
-- and keep batch result-corpus and pdgedit manifest outputs deterministic enough for live-manifest publishing.
-
-### 4. Keep Solver Correctness On The Active Priority Queue
-
-Status: `active`
-
-Current:
-
-- computed assembly-level result construction is now the center of gravity;
-- the core boundary is intentionally stricter than some earlier beta-family drafts;
-- and correctness now depends on disciplined law tables, construction-order invariants, provenance constraints, and deterministic family ranking.
-
-Objective:
-
-- keep correctness work focused on assembly legality, primitive conservation, provenance closure, and exact-versus-partial family ranking;
-- expand regression coverage whenever the admitted assembly table or law table grows;
-- and make it harder to land solver drift than to keep the boundary clean.
+- align the admitted assembly alphabet, request acceptance surface, and executable law inventory so the ready corpus can actually enter the deterministic solver;
+- rerun corpus evaluation after each admitted-surface expansion and track exact count, no-exact count, and dominant blocking diagnostics;
+- extend law-table coverage only in explicit assembly-native form, without reintroducing composite terms or hand-authored per-channel solved reactions;
+- and, after alphabet alignment, determine whether the current Noether-core ladder needs broader lawful opening rules to improve exact closure.
 
 Active work queue:
 
-1. Run corpus-level evaluation on the ready set.
-   Track exact count, partial count, unsolved count, and the dominant blocking diagnostics so law-table work can be prioritized against the real `pdgfeed` corpus.
+1. Expand the admitted request/product alphabet to include the unsupported assemblies already implied by the current Standard Model law inventory.
+2. Keep `ASSEMBLY_DISPLAY`, request-side admission sets, and the dissociate/associate law inventory synchronized so admitted assemblies are also solver-legal.
+3. Rerun `solve-manifest` on the ready corpus after each admitted-surface expansion and record exact count, no-exact count, and dominant diagnostics.
+4. If exact coverage remains low after admitted-alphabet alignment, revise the explicit law table, starting with the Noether-core ladder and related opening rules, rather than adding channel-specific solves.
