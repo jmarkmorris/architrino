@@ -480,3 +480,14 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
     "exact"
   );
 });
+
+test("pdgedit standalone surface keeps the link overlay transparent while preserving link hit targets", () => {
+  const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
+  const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");
+
+  assert.equal(htmlSource.includes("#pdgedit-link-overlay"), true);
+  assert.equal(htmlSource.includes("pointer-events: none;"), true);
+  assert.equal(htmlSource.includes(".pdgedit-link-hit-target"), true);
+  assert.equal(htmlSource.includes("pointer-events: stroke;"), true);
+  assert.equal(runtimeSource.includes('hitPath.setAttribute("pointer-events", "stroke")'), true);
+});

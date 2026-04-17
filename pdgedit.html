@@ -245,6 +245,7 @@
       #pdgedit-link-overlay {
         z-index: 3;
         overflow: visible;
+        pointer-events: none;
       }
 
       #pdgedit-composite-layer {
@@ -283,6 +284,10 @@
 
       .pdgedit-object.is-link-pending::after {
         border: 1px dashed rgba(245, 247, 255, 0.82);
+      }
+
+      .pdgedit-link-hit-target {
+        pointer-events: stroke;
       }
 
       .pdgedit-surface-tile,

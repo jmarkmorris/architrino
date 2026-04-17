@@ -341,6 +341,7 @@ export function createPdgeditAppRuntime({
         hitPath.setAttribute("stroke-width", "12");
         hitPath.setAttribute("stroke-linecap", "round");
         hitPath.setAttribute("stroke-linejoin", "round");
+        hitPath.setAttribute("pointer-events", "stroke");
         hitPath.dataset.linkId = model.link.id;
         hitPath.classList.add("pdgedit-link-hit-target");
 
