@@ -150,25 +150,13 @@ That means:
 
 `pdgsolve` should model the nontrivial operators as finite law tables.
 
-For dissociation, each operator-admissible assembly \(a \in \mathcal{A}\) has a finite set
+For dissociation, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set $\Delta(a) \subset \mathbb{N}^{\mathcal{A}}$, where each $d \in \Delta(a)$ is one legal dissociation output multiset for $a$.
 
-$$
-\Delta(a) \subset \mathbb{N}^{\mathcal{A}},
-$$
-
-where each \(d \in \Delta(a)\) is one legal dissociation output multiset for \(a\).
-
-For association, each operator-admissible assembly \(a \in \mathcal{A}\) has a finite set
-
-$$
-\Gamma(a) \subset \mathbb{N}^{\mathcal{A}},
-$$
-
-where each \(g \in \Gamma(a)\) is one legal gathered input multiset that can assemble into \(a\).
+For association, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set $\Gamma(a) \subset \mathbb{N}^{\mathcal{A}}$, where each $g \in \Gamma(a)$ is one legal gathered input multiset that can assemble into $a$.
 
 `Pass Thru` is the identity law and therefore does not need a separate family table.
 
-The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixed solve family.
+The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed solve family.
 
 Every executable law should be local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly.
 
@@ -183,7 +171,7 @@ Applied to beta-decay, the same rule means the `pdgsolve` core expression must b
 
 From that point forward:
 
-- the core search may use only explicit assembly ids from \(\mathcal{A}\);
+- the core search may use only explicit assembly ids from $\mathcal{A}$;
 - and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
@@ -194,34 +182,15 @@ So the design rule is: the solver core reasons only over explicit admitted assem
 
 `pdgsolve` should model the wildcard-like Noether freedom as a bounded boundary augmentation, not as a solver-native composite, grouping label, dissociation target, or association target.
 
-Define one Noether-pair augmentation unit by the explicit two-assembly multiset
+Define one Noether-pair augmentation unit by the explicit two-assembly multiset $N_{\mathrm{Noether}} = \mathbf{1}_{\mathrm{pro\ Noether\ core}} + \mathbf{1}_{\mathrm{anti\ Noether\ core}}$.
 
-$$
-N_{\mathrm{Noether}}
-=
-\mathbf{1}_{\mathrm{pro\ Noether\ core}}
-+
-\mathbf{1}_{\mathrm{anti\ Noether\ core}}.
-$$
+A raw request still enters as requested boundary multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$.
 
-A raw request still enters as requested boundary multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\).
+If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set $B(\Pi) \subset \mathbb{N} \times \mathbb{N}$, where one choice $b = (\alpha, \beta)$ means $R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}$ and $T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}$.
 
-If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set
+For `pdgsolve` v1, one emitted family should augment at most one boundary side, so $\alpha \beta = 0$. That prevents redundant add-on-both-sides variants that do not add solve meaning.
 
-$$
-B(\Pi) \subset \mathbb{N} \times \mathbb{N},
-$$
-
-where one choice \(b = (\alpha, \beta)\) means:
-
-$$
-R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}, \qquad
-T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}.
-$$
-
-For `pdgsolve` v1, one emitted family should augment at most one boundary side, so \(\alpha \beta = 0\). That prevents redundant add-on-both-sides variants that do not add solve meaning.
-
-After one augmentation choice \(b\) is fixed:
+After one augmentation choice $b$ is fixed:
 
 - every added Noether core is just one ordinary assembly occurrence;
 - the pair is not carried through the interior search as a composite symbol;
@@ -246,55 +215,37 @@ That solve problem model should describe reactant assemblies, product assemblies
 
 That solve problem model must contain only explicit admitted assemblies.
 
-Mathematically, `pdgsolve` should describe one solve instance as
+Mathematically, `pdgsolve` should describe one solve instance as $Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \Delta, \Gamma, \Pi)$, where:
 
-$$
-Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \Delta, \Gamma, \Pi),
-$$
+- $\mathcal{A}$ is the finite assembly alphabet of explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies for the active solve family;
+- $\mathcal{P}$ is the basis of conserved primitive content;
+- $\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}$ is the conserved-content map;
+- $R, T \in \mathbb{N}^{\mathcal{A}}$ are the active reactant and product multisets for the solve instance after any admitted boundary augmentation has been fixed;
+- $\Delta$ and $\Gamma$ are the dissociation and association law tables;
+- and $\Pi$ is the active policy bundle.
 
-where:
+By the time $R$ and $T$ exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
 
-- \(\mathcal{A}\) is the finite assembly alphabet of explicit admitted \(\mathbb{A}\mathbb{A}\mathbb{A}\) assemblies for the active solve family;
-- \(\mathcal{P}\) is the basis of conserved primitive content;
-- \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
-- \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the active reactant and product multisets for the solve instance after any admitted boundary augmentation has been fixed;
-- \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
-- and \(\Pi\) is the active policy bundle.
+If boundary augmentation is enabled, $R$ and $T$ should be understood as one augmented solve instance derived from the requested boundary multisets under the active policy bundle $\Pi$.
 
-By the time \(R\) and \(T\) exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
+For `pdgsolve` v1, the explicit conserved basis should be $\mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}$.
 
-If boundary augmentation is enabled, \(R\) and \(T\) should be understood as one augmented solve instance derived from the requested boundary multisets under the active policy bundle \(\Pi\).
+That means the first concrete interpretation of $\mu$ is:
 
-For `pdgsolve` v1, the explicit conserved basis should be
+- $\mu(a)_{\mathrm{Electrino}}$ = the number of Electrinos carried by assembly $a$;
+- $\mu(a)_{\mathrm{Positrino}}$ = the number of Positrinos carried by assembly $a$.
 
-$$
-\mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}.
-$$
-
-That means the first concrete interpretation of \(\mu\) is:
-
-- \(\mu(a)_{\mathrm{Electrino}}\) = the number of Electrinos carried by assembly \(a\);
-- \(\mu(a)_{\mathrm{Positrino}}\) = the number of Positrinos carried by assembly \(a\).
-
-The conserved-content map should extend linearly from assemblies to multisets:
-
-$$
-\mu(x) = \sum_{a \in \mathcal{A}} x(a)\,\mu(a), \qquad x \in \mathbb{N}^{\mathcal{A}}.
-$$
+The conserved-content map should extend linearly from assemblies to multisets: $\mu(x) = \sum_{a \in \mathcal{A}} x(a)\,\mu(a)$, for $x \in \mathbb{N}^{\mathcal{A}}$.
 
 Every legal operator law should preserve this ledger.
 
 That means:
 
-- if \(d \in \Delta(a)\), then \(\mu(d) = \mu(a)\);
-- if \(g \in \Gamma(a)\), then \(\mu(g) = \mu(a)\);
-- and `Pass Thru` preserves \(\mu\) trivially.
+- if $d \in \Delta(a)$, then $\mu(d) = \mu(a)$;
+- if $g \in \Gamma(a)$, then $\mu(g) = \mu(a)$;
+- and `Pass Thru` preserves $\mu$ trivially.
 
-For shorthand, `pdgsolve` should define the primitive counts
-
-$$
-N_{E}(x) = \mu(x)_{\mathrm{Electrino}}, \qquad N_{P}(x) = \mu(x)_{\mathrm{Positrino}}.
-$$
+For shorthand, `pdgsolve` should define the primitive counts $N_{E}(x) = \mu(x)_{\mathrm{Electrino}}$ and $N_{P}(x) = \mu(x)_{\mathrm{Positrino}}$.
 
 These are the first conserved sums that must match across the solve.
 
@@ -302,13 +253,7 @@ These are the first conserved sums that must match across the solve.
 
 `pdgsolve` should use the full admitted Standard Model assembly alphabet for mapped PDG requests.
 
-For `pdgsolve`, denote that alphabet by
-
-$$
-\mathcal{A}_{\mathrm{v1}}
-$$
-
-where \(\mathcal{A}_{\mathrm{v1}}\) is the complete canonical assembly table shared by `pdgfeed` translation and `pdgsolve` normalization.
+For `pdgsolve`, denote that alphabet by $\mathcal{A}_{\mathrm{v1}}$, where $\mathcal{A}_{\mathrm{v1}}$ is the complete canonical assembly table shared by `pdgfeed` translation and `pdgsolve` normalization.
 
 The assembly table should list the full Standard Model inventory:
 
@@ -322,12 +267,12 @@ The assembly table should list the full Standard Model inventory:
 
 The concrete conserved-content rows for every admitted assembly in that table should be written here rather than deferred to a later phase. The running beta-boundary bookkeeping values already used elsewhere in this document include:
 
-- \(\mu(\mathrm{pro\_down\_quark\_I}) = (7, 5)\);
-- \(\mu(\mathrm{pro\_up\_quark\_I}) = (4, 8)\);
-- \(\mu(\mathrm{pro\_electron\_I}) = (9, 3)\);
-- and \(\mu(\mathrm{anti\_electron\_neutrino\_I}) = (6, 6)\).
+- $\mu(\mathrm{pro\_down\_quark\_I}) = (7, 5)$;
+- $\mu(\mathrm{pro\_up\_quark\_I}) = (4, 8)$;
+- $\mu(\mathrm{pro\_electron\_I}) = (9, 3)$;
+- and $\mu(\mathrm{anti\_electron\_neutrino\_I}) = (6, 6)$.
 
-`pdgsolve` should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
+`pdgsolve` should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
 
 ### Rule Table
 
@@ -351,7 +296,7 @@ It should be expressed as:
 - one family of Noether-core ladder dissociation laws;
 - and one shared counted `Unbound Architrinos` assembly in the intermediate stage.
 
-This section is the executable interpretation of \(\Delta\) and \(\Gamma\) for v1.
+This section is the executable interpretation of $\Delta$ and $\Gamma$ for v1.
 
 #### One Shared Intermediate `Unbound Architrinos` Ledger
 
@@ -361,7 +306,7 @@ That assembly carries exactly:
 
 - an Electrino count;
 - a Positrino count;
-- and the corresponding \( \epsilon^- \) and \( \epsilon^+ \) display characters shown with those counts in the tile glyph.
+- and the corresponding $ \epsilon^- $ and $ \epsilon^+ $ display characters shown with those counts in the tile glyph.
 
 This intermediate `Unbound Architrinos` assembly is not a wildcard well and not a composite label.
 
@@ -373,21 +318,15 @@ It is a shared ledger used only as:
 
 Every constructed candidate must satisfy:
 
-- Electrino count \(\ge 0\);
-- Positrino count \(\ge 0\);
+- Electrino count $\ge 0$;
+- Positrino count $\ge 0$;
 - routed counts may never drive either count below zero;
 - an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether core;
 - and there may never be a second intermediate `Unbound Architrinos` assembly.
 
 #### Universal Identity Law
 
-For every admitted assembly \(a \in \mathcal{A}_{\mathrm{v1}}\),
-
-$$
-e_{a}: a \mapsto a
-$$
-
-is always legal.
+For every admitted assembly $a \in \mathcal{A}_{\mathrm{v1}}$, $e_{a}: a \mapsto a$ is always legal.
 
 So `Pass Thru` is globally available and must be included in every local action set.
 
@@ -455,13 +394,9 @@ This Noether-core-plus-`Unbound Architrinos` form is the first concrete v1 law-t
 
 #### Fermion Dissociation Laws
 
-For every admitted visible fermion assembly \(f\), the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
+For every admitted visible fermion assembly $f$, the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
 
-In symbols:
-
-$$
-\Delta(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
-$$
+In symbols, $\Delta(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
 Concretely, the first-pass dissociation rules are:
 
@@ -502,17 +437,13 @@ Each such rule emits:
 
 #### Fermion Association Laws
 
-For every admitted visible fermion assembly \(f\), the executable association table should contain exactly the inverse gather law.
+For every admitted visible fermion assembly $f$, the executable association table should contain exactly the inverse gather law.
 
-In symbols:
+In symbols, $\Gamma(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
-$$
-\Gamma(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
-$$
+Concretely, `Associate` may create $f$ if and only if the gathered inputs are exactly:
 
-Concretely, `Associate` may create \(f\) if and only if the gathered inputs are exactly:
-
-- the generation-matched Noether-core row of \(f\);
+- the generation-matched Noether-core row of $f$;
 - plus the required routed counts from the one shared intermediate `Unbound Architrinos` ledger.
 
 So, for example:
@@ -577,7 +508,7 @@ The first real `pdgsolve` implementation should code exactly this `pdgsolve-laws
 
 That means the first executable solver should assume:
 
-- one shared admitted assembly alphabet \(\mathcal{A}_{\mathrm{v1}}\);
+- one shared admitted assembly alphabet $\mathcal{A}_{\mathrm{v1}}$;
 - universal pass-thru;
 - the Noether-core-plus-`Unbound Architrinos` dissociate/associate family above;
 - the Noether-core ladder laws above;
@@ -598,9 +529,9 @@ Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark_I`, `pro_up_quark_I`, `pro_electron_I`, and `anti_electron_neutrino_I`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
-3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-standard-model`;
-5. build the requested multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\);
+3. reject any assembly outside $\mathcal{A}_{\mathrm{v1}}$ with `pdgsolve.request.unsupported_assembly`;
+4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-standard-model`;
+5. build the requested multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$;
 6. normalize the finite Noether-pair boundary augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
 7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether core then anti Noether core, with pair indices ascending;
 8. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup, including the requested multisets and the finite augmentation modes to enumerate.
@@ -609,50 +540,34 @@ Normalization should then do the following, in order:
 
 `pdgsolve` should make the balance laws explicit across reactant assemblies, intermediate assemblies, and product assemblies.
 
-Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the correct solve picture is not a disappearing flow ledger.
+Because architrinos have provenance in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correct solve picture is not a disappearing flow ledger.
 
 It is one fixed primitive carrier set viewed through three different assembly partitions.
 
-Define the explicit reactant assemblies and explicit product assemblies
-
-$$
-x_{1} = R, \qquad x_{5} = T.
-$$
+Define the explicit reactant assemblies and explicit product assemblies by $x_{1} = R$ and $x_{5} = T$.
 
 An exact candidate must find:
 
-- intermediate assemblies \(x_{3} \in \mathbb{N}^{\mathcal{A}}\);
-- a finite primitive carrier set \(\Omega = \Omega_{E} \sqcup \Omega_{P}\);
-- and assembly partitions \(P_{1}, P_{3}, P_{5}\) of \(\Omega\);
+- intermediate assemblies $x_{3} \in \mathbb{N}^{\mathcal{A}}$;
+- a finite primitive carrier set $\Omega = \Omega_{E} \sqcup \Omega_{P}$;
+- and assembly partitions $P_{1}, P_{3}, P_{5}$ of $\Omega$;
 
 such that:
 
-- \(P_{1}\) realizes \(x_{1}\);
-- \(P_{3}\) realizes \(x_{3}\);
-- \(P_{5}\) realizes \(x_{5}\);
-- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from \(P_{1}\) to \(P_{3}\) and from \(P_{3}\) to \(P_{5}\).
+- $P_{1}$ realizes $x_{1}$;
+- $P_{3}$ realizes $x_{3}$;
+- $P_{5}$ realizes $x_{5}$;
+- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from $P_{1}$ to $P_{3}$ and from $P_{3}$ to $P_{5}$.
 
 Here, "realizes" means:
 
-- each block in \(P_{\ell}\) is labeled by some assembly \(a \in \mathcal{A}\);
-- the block contains exactly \(\mu(a)_{\mathrm{Electrino}}\) Electrinos and \(\mu(a)_{\mathrm{Positrino}}\) Positrinos;
-- and the multiplicity of each label \(a\) agrees with \(x_{\ell}(a)\).
+- each block in $P_{\ell}$ is labeled by some assembly $a \in \mathcal{A}$;
+- the block contains exactly $\mu(a)_{\mathrm{Electrino}}$ Electrinos and $\mu(a)_{\mathrm{Positrino}}$ Positrinos;
+- and the multiplicity of each label $a$ agrees with $x_{\ell}(a)$.
 
-The primitive invariants across these assembly partitions are therefore
+The primitive invariants across these assembly partitions are therefore $\mu(x_{1}) = \mu(x_{3}) = \mu(x_{5})$.
 
-$$
-\mu(x_{1}) = \mu(x_{3}) = \mu(x_{5}).
-$$
-
-In particular, `pdgsolve` must preserve the Electrino and Positrino counts separately:
-
-$$
-N_{E}(x_{1}) = N_{E}(x_{3}) = N_{E}(x_{5}),
-$$
-
-$$
-N_{P}(x_{1}) = N_{P}(x_{3}) = N_{P}(x_{5}).
-$$
+In particular, `pdgsolve` must preserve the Electrino and Positrino counts separately: $N_{E}(x_{1}) = N_{E}(x_{3}) = N_{E}(x_{5})$ and $N_{P}(x_{1}) = N_{P}(x_{3}) = N_{P}(x_{5})$.
 
 So the reaction does not merely conserve totals in the aggregate.
 
@@ -660,25 +575,14 @@ It preserves one underlying architrino population whose grouping changes across 
 
 If a request fails these equalities at the boundary, `pdgsolve` should not silently repair that mismatch.
 
-Instead, it should report the primitive imbalance vector
+Instead, it should report the primitive imbalance vector $\delta(Q) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}}$, with concrete components $\delta_{E} = N_{E}(x_{1}) - N_{E}(x_{5})$ and $\delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5})$.
 
-$$
-\delta(Q) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
-$$
-
-with the concrete components
-
-$$
-\delta_{E} = N_{E}(x_{1}) - N_{E}(x_{5}), \qquad
-\delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5}).
-$$
-
-If \(\delta(Q) \neq 0\), then exact closure is impossible for that request under the active assembly-native law table.
+If $\delta(Q) \neq 0$, then exact closure is impossible for that request under the active assembly-native law table.
 
 So at the first primitive level, `pdgsolve` should always be able to say:
 
-- Electrinos balanced or imbalanced by \(\delta_{E}\);
-- Positrinos balanced or imbalanced by \(\delta_{P}\);
+- Electrinos balanced or imbalanced by $\delta_{E}$;
+- Positrinos balanced or imbalanced by $\delta_{P}$;
 - and whether the explicit admitted assembly request can possibly close without leaving the assembly-native ontology.
 
 ### Deterministic Construction Model
@@ -814,13 +718,7 @@ The score model should prefer, in order:
 
 `pdgsolve` should formalize that ranking as a lexicographic minimization problem.
 
-For the emitted exact candidate
-
-$$
-C = (x_{1}, \phi_{2,C}, x_{3}, \phi_{4,C}, x_{5}),
-$$
-
-define
+For the emitted exact candidate $C = (x_{1}, \phi_{2,C}, x_{3}, \phi_{4,C}, x_{5})$, define
 
 $$
 \kappa(C) =
@@ -838,14 +736,14 @@ $$
 
 with smaller values preferred, where:
 
-- \(\epsilon(C) = 0\) when \(x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
-- \(m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}\);
-- \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
-- \(n_{\mathrm{aug}}(C)\) is the auxiliary support burden introduced by the constructive policy;
-- \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
-- \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
-- \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
-- and \(\tau(C)\) is a deterministic tie-break key.
+- $\epsilon(C) = 0$ when $x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}$ and $W_{C}$ is a complete provenance witness, and $1$ otherwise;
+- $m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}$;
+- $m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}$, viewing the difference in $\mathbb{Z}^{\mathcal{A}}$;
+- $n_{\mathrm{aug}}(C)$ is the auxiliary support burden introduced by the constructive policy;
+- $n_{\mathrm{op}}(C)$ is the total non-identity operator count in $\phi_{2,C}$ and $\phi_{4,C}$;
+- $n_{\mathrm{diss}}(C)$ is the dissociation count in $\phi_{2,C}$;
+- $n_{\mathrm{amb}}(C)$ is the explicit ambiguity/provenance penalty count;
+- and $\tau(C)$ is a deterministic tie-break key.
 
 Candidate comparison should be strictly lexicographic.
 
@@ -858,7 +756,7 @@ That means:
 5. then fewer non-identity operators wins;
 6. then fewer dissociations wins;
 7. then lower ambiguity/provenance penalty wins;
-8. and finally \(\tau(C)\) breaks any remaining tie deterministically.
+8. and finally $\tau(C)$ breaks any remaining tie deterministically.
 
 The current shipped runtime does not score partial branches because it does not maintain a live branch frontier.
 
@@ -887,7 +785,7 @@ That means the emitted results can show:
 
 ### Deterministic Tie-Break Rule
 
-`pdgsolve` should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
+`pdgsolve` should freeze the deterministic tie-break key $\tau(C)$ rather than leaving it implicit.
 
 For candidate comparison, define
 
@@ -904,19 +802,19 @@ $$
 
 with lexicographic comparison and the concrete orders:
 
-- canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
+- canonical assembly order: lexicographic order of the canonical ids in $\mathcal{A}_{\mathrm{v1}}$;
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - reactant-side operator order: the sequence of operator assignments in reactant-occurrence order;
 - product-side operator order: the sequence of operator assignments in product-occurrence order;
 - and intermediate-assemblies order: assembly counts listed in canonical assembly order.
 
-For `pdgsolve` v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
+For `pdgsolve` v1, the operator symbol order inside $\sigma_{2}$ and $\sigma_{4}$ should be:
 
 - `pass_thru`;
 - then the remaining admitted law-family symbols in the fixed canonical order of the active law table.
 
-The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
+The provenance signature $\rho(C)$ should summarize, in canonical product-occurrence order:
 
 - whether each product occurrence is pure pass-thru or active rewrite output;
 - and any explicit ambiguity marker bits.
@@ -935,7 +833,7 @@ The v1 set should be:
 | `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
 | `pdgsolve.request.invalid_boundary_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.request.unsupported_boundary_augmentation` | request | the request policy asks for a boundary augmentation mode outside the admitted v1 Noether-pair augmentation set | requested augmentation token and allowed augmentation set |
-| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q) \neq 0\) for the retained constructed candidate or retained request summary | request id and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained constructed candidate or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness exists for the retained constructed candidate | retained operator summary and failing witness clause |
 | `pdgsolve.search.no_exact_closure` | search | the request is assembly-native, but no exact closure was found inside the admitted explicit assembly ontology | request id and retained closure-failure summary |
@@ -948,7 +846,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
 | `explicit_beta_request_exact_closure` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I + pro_electron_I + anti_electron_neutrino_I` | default | at least one exact assembly-native family exists; no composite or non-native symbol is introduced |
-| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark_I + pro_up_quark_I -> 2 pro_down_quark_I + pro_up_quark_I` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
 | `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
@@ -1201,7 +1099,7 @@ Each member of `optionFamilies` currently contains:
 
 - `familyId`;
 - `kind`, currently `exact` or `no_exact_closure`;
-- `score`, carrying the concrete components of \(\kappa\);
+- `score`, carrying the concrete components of $\kappa$;
 - `augmentation`, carrying the chosen boundary augmentation mode;
 - `reactantAssemblies`, carrying the canonical reactant assemblies;
 - `reactantSideOperators`, carrying the canonical reactant-side operator choices;
