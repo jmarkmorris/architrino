@@ -489,5 +489,9 @@ test("pdgedit standalone surface keeps the link overlay transparent while preser
   assert.equal(htmlSource.includes("pointer-events: none;"), true);
   assert.equal(htmlSource.includes(".pdgedit-link-hit-target"), true);
   assert.equal(htmlSource.includes("pointer-events: stroke;"), true);
+  assert.match(
+    htmlSource,
+    /#pdgedit-object-layer\s*\{\s*z-index:\s*4;\s*\}[\s\S]*#pdgedit-link-overlay\s*\{\s*z-index:\s*3;/u
+  );
   assert.equal(runtimeSource.includes('hitPath.setAttribute("pointer-events", "stroke")'), true);
 });

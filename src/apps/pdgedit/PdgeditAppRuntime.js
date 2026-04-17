@@ -32,6 +32,16 @@ function buildTileLookup(tileCatalog = {}) {
   return new Map((Array.isArray(tileCatalog?.tiles) ? tileCatalog.tiles : []).map((tile) => [tile.key, tile]));
 }
 
+function buildTileCacheKey(tileKey, sampleCounts) {
+  const normalizedTileKey = String(tileKey || "").trim();
+  if (!sampleCounts || typeof sampleCounts !== "object") {
+    return normalizedTileKey;
+  }
+  const topCount = sampleCounts.topCount ?? "";
+  const bottomCount = sampleCounts.bottomCount ?? "";
+  return `${normalizedTileKey}::${topCount}/${bottomCount}`;
+}
+
 function buildLinkRenderModels(document, getObjectByIdFromDocument) {
   const groups = new Map();
 
@@ -143,6 +153,7 @@ export function createPdgeditAppRuntime({
   }
 
   const measurementContext = documentLike.createElement("canvas").getContext("2d");
+  const tileElementPrototypeCache = new Map();
   const state = {
     tileCatalog: null,
     tileByKey: new Map(),
@@ -209,6 +220,19 @@ export function createPdgeditAppRuntime({
     render();
   }
 
+  function renderSurface(document) {
+    const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
+    surfaceStripElement.style.height = `${totalRows * PDGEDIT_TILE_SIZE_PX}px`;
+    renderObjects(document);
+    renderLinks(document);
+    renderCompositeLabels(document);
+  }
+
+  function renderChrome() {
+    renderDocumentPicker();
+    renderCreatePicker();
+  }
+
   function renderDocumentPicker() {
     documentTriggerElement.textContent = state.selectedEntry?.displayTitle || "No documents";
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
@@ -261,6 +285,11 @@ export function createPdgeditAppRuntime({
   }
 
   function createTileElement(tileKey, sampleCounts = undefined) {
+    const cacheKey = buildTileCacheKey(tileKey, sampleCounts);
+    const cachedPrototype = tileElementPrototypeCache.get(cacheKey);
+    if (cachedPrototype) {
+      return cachedPrototype.cloneNode(true);
+    }
     const tile = state.tileByKey.get(tileKey);
     if (!tile) {
       return createTextElement(documentLike, "div", "pdgedit-missing-tile", tileKey);
@@ -275,7 +304,8 @@ export function createPdgeditAppRuntime({
     svg.classList.add("pdgedit-surface-tile");
     svg.style.width = `${PDGEDIT_TILE_SIZE_PX}px`;
     svg.style.height = `${PDGEDIT_TILE_SIZE_PX}px`;
-    return svg;
+    tileElementPrototypeCache.set(cacheKey, svg);
+    return svg.cloneNode(true);
   }
 
   function createObjectElement(object) {
@@ -455,14 +485,8 @@ export function createPdgeditAppRuntime({
     if (!state.document || !state.tileCatalog || !state.templateCatalog) {
       return;
     }
-    const renderDocument = getRenderedDocument();
-    const totalRows = Math.max(2, getPdgeditDocumentMaxRow(renderDocument) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
-    surfaceStripElement.style.height = `${totalRows * PDGEDIT_TILE_SIZE_PX}px`;
-    renderDocumentPicker();
-    renderObjects(renderDocument);
-    renderLinks(renderDocument);
-    renderCompositeLabels(renderDocument);
-    renderCreatePicker();
+    renderChrome();
+    renderSurface(getRenderedDocument());
   }
 
   function openCreatePicker(slot, event) {
@@ -512,6 +536,54 @@ export function createPdgeditAppRuntime({
     render();
   }
 
+  function cancelPendingDragPreviewFrame() {
+    if (!state.dragState?.animationFrameId) {
+      return;
+    }
+    windowLike?.cancelAnimationFrame?.(state.dragState.animationFrameId);
+    state.dragState.animationFrameId = 0;
+  }
+
+  function updateDragPreview() {
+    if (!state.dragState) {
+      return;
+    }
+    state.dragState.animationFrameId = 0;
+    const stripRect = surfaceStripElement.getBoundingClientRect();
+    const cell = getPdgeditGridCellFromLocalPoint(
+      state.dragState.lastClientX - stripRect.left,
+      state.dragState.lastClientY - stripRect.top
+    );
+    if (cell.row < 0) {
+      if (state.previewDocument !== null || state.dragState.previewRow !== null) {
+        state.dragState.previewRow = null;
+        state.previewDocument = null;
+        renderSurface(getRenderedDocument());
+      }
+      return;
+    }
+    if (cell.row === state.dragState.previewRow) {
+      return;
+    }
+    state.dragState.previewRow = cell.row;
+    const result = movePdgeditObjectToRow(state.document, state.dragState.objectId, cell.row);
+    state.previewDocument = result.ok ? result.document : null;
+    renderSurface(getRenderedDocument());
+  }
+
+  function queueDragPreviewUpdate() {
+    if (!state.dragState || state.dragState.animationFrameId) {
+      return;
+    }
+    if (typeof windowLike?.requestAnimationFrame === "function") {
+      state.dragState.animationFrameId = windowLike.requestAnimationFrame(() => {
+        updateDragPreview();
+      });
+      return;
+    }
+    updateDragPreview();
+  }
+
   async function init() {
     const bootstrap = await bootstrapLoader({
       fetchImpl,
@@ -521,6 +593,7 @@ export function createPdgeditAppRuntime({
     });
     state.tileCatalog = bootstrap.tileCatalog;
     state.tileByKey = buildTileLookup(bootstrap.tileCatalog);
+    tileElementPrototypeCache.clear();
     state.manifest = bootstrap.manifest;
     state.templateCatalog = bootstrap.templateCatalog;
     state.selectedEntry = bootstrap.selectedEntry;
@@ -621,6 +694,10 @@ export function createPdgeditAppRuntime({
         objectId: objectElement.dataset.objectId,
         pointerId: event.pointerId,
         startClientY: event.clientY,
+        lastClientX: event.clientX,
+        lastClientY: event.clientY,
+        previewRow: null,
+        animationFrameId: 0,
         moved: false,
       };
     });
@@ -643,28 +720,22 @@ export function createPdgeditAppRuntime({
       if (!state.dragState || event.pointerId !== state.dragState.pointerId) {
         return;
       }
+      state.dragState.lastClientX = event.clientX;
+      state.dragState.lastClientY = event.clientY;
       if (Math.abs(event.clientY - state.dragState.startClientY) > 3) {
         state.dragState.moved = true;
       }
       if (!state.dragState.moved) {
         return;
       }
-      const stripRect = surfaceStripElement.getBoundingClientRect();
-      const cell = getPdgeditGridCellFromLocalPoint(event.clientX - stripRect.left, event.clientY - stripRect.top);
-      if (cell.row < 0) {
-        state.previewDocument = null;
-        render();
-        return;
-      }
-      const result = movePdgeditObjectToRow(state.document, state.dragState.objectId, cell.row);
-      state.previewDocument = result.ok ? result.document : null;
-      render();
+      queueDragPreviewUpdate();
     });
 
     documentLike.addEventListener("pointerup", (event) => {
       if (!state.dragState || event.pointerId !== state.dragState.pointerId) {
         return;
       }
+      cancelPendingDragPreviewFrame();
       if (state.dragState.moved && state.previewDocument) {
         const objectId = state.dragState.objectId;
         const previewDocument = state.previewDocument;
@@ -679,6 +750,16 @@ export function createPdgeditAppRuntime({
       state.dragState = null;
       state.previewDocument = null;
       render();
+    });
+
+    documentLike.addEventListener("pointercancel", (event) => {
+      if (!state.dragState || event.pointerId !== state.dragState.pointerId) {
+        return;
+      }
+      cancelPendingDragPreviewFrame();
+      state.dragState = null;
+      state.previewDocument = null;
+      renderSurface(getRenderedDocument());
     });
 
     linkOverlayElement.addEventListener("click", (event) => {
