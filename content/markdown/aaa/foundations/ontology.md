@@ -1221,7 +1221,7 @@ In realistic many-architrino systems, distinguishing absolute rest from motion r
 
 **Lorentz suppression requirement:**
 
-While absolute rest is ontologically well-defined, $\mathbb{A}\mathbb{A}\mathbb{A}$ must ensure that **Physical Observers** (assemblies) **cannot operationally detect** the absolute frame to precision better than \(10^{-17}\) (see Tier-1 constraint ledger). 
+While absolute rest is ontologically well-defined, $\mathbb{A}\mathbb{A}\mathbb{A}$ must ensure that **Physical Observers** (assemblies) **cannot operationally detect** the absolute frame to precision better than $10^{-17}$ (see Tier-1 constraint ledger). 
 
 **Mechanism Warning:** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea. This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation, not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, $\mathbb{A}\mathbb{A}\mathbb{A}$ is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
 

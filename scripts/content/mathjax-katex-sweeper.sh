@@ -101,4 +101,19 @@ for f in $files; do
   ' "$f"
 done
 
+inline_compat_matches="$(
+  rg -n --glob "*.md" '\\\\\\(|\\\\\\)' "$ROOT" \
+    --glob '!AGENTS.md' \
+    --glob '!content/markdown/aaa/archie/academic-style-guide.md' \
+    --glob '!content/markdown/aaa/archie/mathematics-style-guide.md' \
+    || true
+)"
+
+if [[ -n "$inline_compat_matches" ]]; then
+  echo "warning: inline \\(...\\) delimiters remain in authored markdown." >&2
+  echo 'prefer $...$ for inline math unless a renderer-specific validated case requires otherwise.' >&2
+  echo "review these occurrences:" >&2
+  printf '%s\n' "$inline_compat_matches" >&2
+fi
+
 exit 0
