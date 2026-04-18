@@ -9,6 +9,18 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function normalizeTileKeys(tiles) {
   if (!Array.isArray(tiles)) {
     return [];
@@ -24,13 +36,7 @@ function normalizeAssembly(record) {
           bottomCount: normalizeText(record.sampleCounts.bottomCount),
         }
       : null;
-  const primitiveCounts =
-    record?.primitiveCounts && typeof record.primitiveCounts === "object"
-      ? {
-          electrinoCount: normalizeInteger(record.primitiveCounts.electrinoCount, -1),
-          positrinoCount: normalizeInteger(record.primitiveCounts.positrinoCount, -1),
-        }
-      : null;
+  const primitiveCounts = normalizePrimitiveCounts(record?.primitiveCounts);
   return {
     id: normalizeText(record?.id),
     type: normalizeText(record?.type),
@@ -63,10 +69,12 @@ function normalizeOperator(record) {
 }
 
 function normalizeLink(record) {
+  const primitiveCounts = normalizePrimitiveCounts(record?.primitiveCounts);
   return {
     id: normalizeText(record?.id),
     endpointA: normalizeText(record?.endpointA),
     endpointB: normalizeText(record?.endpointB),
+    ...(primitiveCounts ? { primitiveCounts } : {}),
   };
 }
 

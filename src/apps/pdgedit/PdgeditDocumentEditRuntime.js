@@ -33,6 +33,18 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function normalizeBalanceTotals(rawTotals) {
   if (!rawTotals || typeof rawTotals !== "object") {
     return null;
@@ -117,7 +129,12 @@ function cloneDocument(document = {}) {
       ...(assembly?.primitiveCounts ? { primitiveCounts: { ...assembly.primitiveCounts } } : {}),
     })),
     operators: normalizedDocument.operators.map((operator) => ({ ...operator })),
-    links: normalizedDocument.links.map((link) => ({ ...link })),
+    links: normalizedDocument.links.map((link) => ({
+      ...link,
+      ...(normalizePrimitiveCounts(link?.primitiveCounts)
+        ? { primitiveCounts: { ...normalizePrimitiveCounts(link?.primitiveCounts) } }
+        : {}),
+    })),
     compositeLabels: normalizedDocument.compositeLabels.map((label) => ({ ...label })),
   };
 }

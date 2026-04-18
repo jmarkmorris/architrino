@@ -1595,6 +1595,12 @@ def build_publication_graph(
     for choice in reactant_operator_choices:
         operator_unit_id = reactant_operator_units_by_occurrence[normalize_text(choice.get("id"))]
         for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
+            edge_counts = build_publication_graph_input_edge_counts(
+                choice,
+                occurrence_key=normalize_text(occurrence_key),
+                input_index=input_index,
+                occurrence_counts=occurrence_counts,
+            )
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_input_{input_index}",
@@ -1602,9 +1608,16 @@ def build_publication_graph(
                     "fromPortId": "output",
                     "toUnitId": operator_unit_id,
                     "toPortId": f"input_{input_index}",
+                    **({"primitiveCounts": clone_json(edge_counts)} if edge_counts is not None else {}),
                 }
             )
         for output_index, occurrence_key in enumerate(choice.get("outputOccurrenceKeys", []), start=1):
+            edge_counts = build_publication_graph_output_edge_counts(
+                choice,
+                occurrence_key=normalize_text(occurrence_key),
+                output_index=output_index,
+                occurrence_counts=occurrence_counts,
+            )
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_output_{output_index}",
@@ -1612,6 +1625,7 @@ def build_publication_graph(
                     "fromPortId": f"output_{output_index}",
                     "toUnitId": intermediate_unit_by_source_occurrence[normalize_text(occurrence_key)],
                     "toPortId": "input",
+                    **({"primitiveCounts": clone_json(edge_counts)} if edge_counts is not None else {}),
                 }
             )
 
@@ -1619,6 +1633,12 @@ def build_publication_graph(
         output_occurrence_key = normalize_text(choice.get("outputOccurrenceKeys", [None])[0])
         operator_unit_id = product_operator_units_by_occurrence[output_occurrence_key]
         for input_index, occurrence_key in enumerate(choice.get("inputOccurrenceKeys", []), start=1):
+            edge_counts = build_publication_graph_input_edge_counts(
+                choice,
+                occurrence_key=normalize_text(occurrence_key),
+                input_index=input_index,
+                occurrence_counts=occurrence_counts,
+            )
             edges.append(
                 {
                     "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_input_{input_index}",
@@ -1626,8 +1646,15 @@ def build_publication_graph(
                     "fromPortId": "output",
                     "toUnitId": operator_unit_id,
                     "toPortId": f"input_{input_index}",
+                    **({"primitiveCounts": clone_json(edge_counts)} if edge_counts is not None else {}),
                 }
             )
+        output_edge_counts = build_publication_graph_output_edge_counts(
+            choice,
+            occurrence_key=output_occurrence_key,
+            output_index=1,
+            occurrence_counts=occurrence_counts,
+        )
         edges.append(
             {
                 "id": f"{prefix}_{slugify(normalize_text(choice.get('id')))}_output_1",
@@ -1635,6 +1662,11 @@ def build_publication_graph(
                 "fromPortId": "output_1",
                 "toUnitId": product_units_by_occurrence[output_occurrence_key],
                 "toPortId": "input",
+                **(
+                    {"primitiveCounts": clone_json(output_edge_counts)}
+                    if output_edge_counts is not None
+                    else {}
+                ),
             }
         )
 
@@ -1687,6 +1719,90 @@ def sum_counts_for_occurrence_keys(
         totals["electrinoCount"] += counts["electrinoCount"]
         totals["positrinoCount"] += counts["positrinoCount"]
     return totals
+
+
+def clone_primitive_counts(counts: dict[str, int] | None) -> dict[str, int] | None:
+    if counts is None:
+        return None
+    return build_primitive_counts(
+        counts.get("electrinoCount"),
+        counts.get("positrinoCount"),
+    )
+
+
+def primitive_counts_are_nonnegative(counts: dict[str, int] | None) -> bool:
+    return bool(
+        counts is not None
+        and int(counts.get("electrinoCount", 0)) >= 0
+        and int(counts.get("positrinoCount", 0)) >= 0
+    )
+
+
+def subtract_primitive_counts_nonnegative(
+    left: dict[str, int] | None,
+    right: dict[str, int] | None,
+) -> dict[str, int] | None:
+    if left is None:
+        return None
+    difference = primitive_counts_difference(
+        left,
+        right or build_primitive_counts(0, 0),
+    )
+    return difference if primitive_counts_are_nonnegative(difference) else None
+
+
+def is_residue_accumulator_occurrence_key(occurrence_key: str) -> bool:
+    return normalize_text(occurrence_key) == "intermediate.unbound_architrinos.accumulator"
+
+
+def build_publication_graph_input_edge_counts(
+    choice: dict[str, Any],
+    *,
+    occurrence_key: str,
+    input_index: int,
+    occurrence_counts: dict[str, dict[str, int]],
+) -> dict[str, int] | None:
+    normalized_occurrence_key = normalize_text(occurrence_key)
+    direct_counts = clone_primitive_counts(occurrence_counts.get(normalized_occurrence_key))
+    if not is_residue_accumulator_occurrence_key(normalized_occurrence_key):
+        return direct_counts
+    output_totals = sum_counts_for_occurrence_keys(choice.get("outputOccurrenceKeys", []), occurrence_counts)
+    if output_totals is None:
+        return direct_counts
+    other_input_keys = [
+        normalize_text(value)
+        for index, value in enumerate(choice.get("inputOccurrenceKeys", []), start=1)
+        if index != input_index and normalize_text(value)
+    ]
+    other_input_totals = sum_counts_for_occurrence_keys(other_input_keys, occurrence_counts)
+    if other_input_keys and other_input_totals is None:
+        return direct_counts
+    return subtract_primitive_counts_nonnegative(output_totals, other_input_totals) or direct_counts
+
+
+def build_publication_graph_output_edge_counts(
+    choice: dict[str, Any],
+    *,
+    occurrence_key: str,
+    output_index: int,
+    occurrence_counts: dict[str, dict[str, int]],
+) -> dict[str, int] | None:
+    normalized_occurrence_key = normalize_text(occurrence_key)
+    direct_counts = clone_primitive_counts(occurrence_counts.get(normalized_occurrence_key))
+    if not is_residue_accumulator_occurrence_key(normalized_occurrence_key):
+        return direct_counts
+    input_totals = sum_counts_for_occurrence_keys(choice.get("inputOccurrenceKeys", []), occurrence_counts)
+    if input_totals is None:
+        return direct_counts
+    other_output_keys = [
+        normalize_text(value)
+        for index, value in enumerate(choice.get("outputOccurrenceKeys", []), start=1)
+        if index != output_index and normalize_text(value)
+    ]
+    other_output_totals = sum_counts_for_occurrence_keys(other_output_keys, occurrence_counts)
+    if other_output_keys and other_output_totals is None:
+        return direct_counts
+    return subtract_primitive_counts_nonnegative(input_totals, other_output_totals) or direct_counts
 
 
 def build_balance_diagnostic(
@@ -2470,6 +2586,16 @@ def build_pdgedit_document_from_publication_graph(
             "id": f"edge_{normalize_text(edge.get('id'))}",
             "endpointA": normalize_text(edge.get("fromUnitId")),
             "endpointB": normalize_text(edge.get("toUnitId")),
+            **(
+                {
+                    "primitiveCounts": {
+                        "electrinoCount": int(edge.get("primitiveCounts", {}).get("electrinoCount", 0)),
+                        "positrinoCount": int(edge.get("primitiveCounts", {}).get("positrinoCount", 0)),
+                    }
+                }
+                if isinstance(edge.get("primitiveCounts"), dict)
+                else {}
+            ),
         }
         for edge in publication_graph.get("edges", [])
     ]

@@ -42,6 +42,18 @@ function parseNonnegativeInteger(value) {
   return Number.isInteger(parsedValue) ? parsedValue : null;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function isEditingElement(element) {
   const tagName = String(element?.tagName ?? "").toLowerCase();
   return tagName === "input" || tagName === "textarea" || element?.isContentEditable === true;
@@ -277,7 +289,15 @@ function getPdgeditBalanceState(document = {}) {
   };
 }
 
-function getPdgeditAssemblyConnectorCounts(object = {}) {
+function getPdgeditConnectorSourceCounts(object = {}) {
+  if (object?.kind === "operator") {
+    const electrinoCount = normalizeInteger(object?.electrinoCount, -1);
+    const positrinoCount = normalizeInteger(object?.positrinoCount, -1);
+    if (electrinoCount >= 0 && positrinoCount >= 0) {
+      return { electrinoCount, positrinoCount };
+    }
+    return null;
+  }
   if (object?.kind !== "assembly") {
     return null;
   }
@@ -301,13 +321,7 @@ function getPdgeditAssemblyConnectorCounts(object = {}) {
 }
 
 function resolvePdgeditConnectorHighlightColor(catalog, model) {
-  const assemblyObject =
-    model?.leftObject?.kind === "assembly"
-      ? model.leftObject
-      : model?.rightObject?.kind === "assembly"
-        ? model.rightObject
-        : null;
-  const counts = getPdgeditAssemblyConnectorCounts(assemblyObject);
+  const counts = normalizePrimitiveCounts(model?.link?.primitiveCounts) || getPdgeditConnectorSourceCounts(model?.leftObject);
   if (!counts) {
     return resolvePdgeditCatalogColor(catalog, "purple");
   }
@@ -320,23 +334,43 @@ function resolvePdgeditConnectorHighlightColor(catalog, model) {
   return resolvePdgeditCatalogColor(catalog, "purple");
 }
 
-function formatPdgeditBalanceTotals(totals = {}) {
-  return `(\u03b5\u207b ${normalizeInteger(totals?.epsilonMinusCount)} : \u03b5\u207a ${normalizeInteger(totals?.epsilonPlusCount)})`;
+function createBalanceTermElement(documentLike, className, label, count) {
+  const element = documentLike.createElement("span");
+  element.className = `pdgedit-balance-term ${className}`;
+  const labelElement = documentLike.createElement("span");
+  labelElement.className = "pdgedit-balance-label";
+  labelElement.textContent = label;
+  const countElement = documentLike.createElement("span");
+  countElement.className = "pdgedit-balance-count";
+  countElement.textContent = String(normalizeInteger(count));
+  element.append(labelElement, documentLike.createTextNode(" "), countElement);
+  return element;
 }
 
-function createBalanceBadgeElement(documentLike, role, totals, isSolvedExact) {
+function createBalanceBadgeElement(documentLike, role, totals) {
   const stageX = getPdgeditAssemblyStageXForRole(role);
   if (!stageX) {
     return null;
   }
   const element = documentLike.createElement("div");
   element.className = "pdgedit-balance-badge";
-  if (isSolvedExact) {
-    element.classList.add("is-balanced");
-  }
   element.dataset.balanceRole = role;
   element.style.left = `${(stageX - 1) * PDGEDIT_TILE_SIZE_PX + PDGEDIT_TILE_SIZE_PX * 2}px`;
-  element.textContent = formatPdgeditBalanceTotals(totals);
+  element.append(
+    createBalanceTermElement(
+      documentLike,
+      "is-negative",
+      "\u03b5\u207b",
+      totals?.epsilonMinusCount,
+    ),
+    createTextElement(documentLike, "span", "pdgedit-balance-separator", ":"),
+    createBalanceTermElement(
+      documentLike,
+      "is-positive",
+      "\u03b5\u207a",
+      totals?.epsilonPlusCount,
+    ),
+  );
   return element;
 }
 
@@ -650,14 +684,12 @@ export function createPdgeditAppRuntime({
     const reactantBadge = createBalanceBadgeElement(
       documentLike,
       "reactant",
-      balanceSummary.reactantTotals,
-      balanceState.isBalanced && balanceState.isLinkComplete
+      balanceSummary.reactantTotals
     );
     const productBadge = createBalanceBadgeElement(
       documentLike,
       "product",
-      balanceSummary.productTotals,
-      balanceState.isBalanced && balanceState.isLinkComplete
+      balanceSummary.productTotals
     );
     balanceLayerElement.replaceChildren(...[reactantBadge, productBadge].filter(Boolean));
   }

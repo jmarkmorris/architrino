@@ -326,6 +326,9 @@
           "endpointB": {
             "type": "string",
             "minLength": 1
+          },
+          "primitiveCounts": {
+            "$ref": "#/$defs/primitiveCounts"
           }
         }
       }
