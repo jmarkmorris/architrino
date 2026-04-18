@@ -40,9 +40,205 @@ DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
 DEFAULT_RESULT_CORPUS_INDEX_PATH = DEFAULT_TMP_DIR / "result-corpus.v1.json"
 DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR = DEFAULT_TMP_DIR / "pdgedit" / "documents"
 DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH = DEFAULT_TMP_DIR / "pdgedit" / "manifest.v1.json"
-LIVE_PDGEDIT_EXACT_ENTRY_LIMIT = 16
+LIVE_PDGEDIT_EXACT_ENTRY_LIMIT = 64
 LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT = 16
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
+
+PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS = (
+    {
+        "type": "noether-quad-composite",
+        "text": "Noether Quad",
+        "recipeSequence": ("pro_noether_core", "anti_noether_core", "pro_noether_core", "anti_noether_core"),
+    },
+    {
+        "type": "pro-proton-composite",
+        "text": "Proton",
+        "recipeSequence": ("pro_up_quark", "pro_up_quark", "pro_down_quark"),
+    },
+    {
+        "type": "anti-proton-composite",
+        "text": "Anti Proton",
+        "recipeSequence": ("anti_up_quark", "anti_up_quark", "anti_down_quark"),
+    },
+    {
+        "type": "pro-neutron-composite",
+        "text": "Neutron",
+        "recipeSequence": ("pro_down_quark", "pro_up_quark", "pro_down_quark"),
+    },
+    {
+        "type": "anti-neutron-composite",
+        "text": "Anti Neutron",
+        "recipeSequence": ("anti_down_quark", "anti_up_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-pion-composite",
+        "text": "Positive Pion",
+        "recipeSequence": ("pro_up_quark", "anti_down_quark"),
+    },
+    {
+        "type": "negative-pion-composite",
+        "text": "Negative Pion",
+        "recipeSequence": ("pro_down_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-pion-u-composite",
+        "text": "Neutral Pion",
+        "recipeSequence": ("pro_up_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-pion-d-composite",
+        "text": "Neutral Pion",
+        "recipeSequence": ("pro_down_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-kaon-composite",
+        "text": "Positive Kaon",
+        "recipeSequence": ("pro_up_quark", "anti_strange_quark"),
+    },
+    {
+        "type": "negative-kaon-composite",
+        "text": "Negative Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-kaon-d-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_down_quark", "anti_strange_quark"),
+    },
+    {
+        "type": "neutral-kaon-s-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-b-meson-composite",
+        "text": "Positive B Meson",
+        "recipeSequence": ("pro_up_quark", "anti_bottom_quark"),
+    },
+    {
+        "type": "negative-b-meson-composite",
+        "text": "Negative B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-b-meson-d-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_down_quark", "anti_bottom_quark"),
+    },
+    {
+        "type": "neutral-b-meson-b-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_down_quark"),
+    },
+)
+
+PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPECS = (
+    {
+        "canonicalId": "photon",
+        "type": "photon-composite",
+        "text": "Photon",
+        "recipeSequence": ("pro_noether_core", "anti_noether_core"),
+    },
+    {
+        "canonicalId": "noether_pair",
+        "type": "noether-pair-composite",
+        "text": "Noether Pair",
+        "recipeSequence": ("pro_noether_core", "anti_noether_core"),
+    },
+    {
+        "canonicalId": "proton",
+        "type": "pro-proton-composite",
+        "text": "Proton",
+        "recipeSequence": ("pro_up_quark", "pro_up_quark", "pro_down_quark"),
+    },
+    {
+        "canonicalId": "anti_proton",
+        "type": "anti-proton-composite",
+        "text": "Anti Proton",
+        "recipeSequence": ("anti_up_quark", "anti_up_quark", "anti_down_quark"),
+    },
+    {
+        "canonicalId": "neutron",
+        "type": "pro-neutron-composite",
+        "text": "Neutron",
+        "recipeSequence": ("pro_down_quark", "pro_up_quark", "pro_down_quark"),
+    },
+    {
+        "canonicalId": "anti_neutron",
+        "type": "anti-neutron-composite",
+        "text": "Anti Neutron",
+        "recipeSequence": ("anti_down_quark", "anti_up_quark", "anti_down_quark"),
+    },
+    {
+        "canonicalId": "positive_pion",
+        "type": "positive-pion-composite",
+        "text": "Positive Pion",
+        "recipeSequence": ("pro_up_quark", "anti_down_quark"),
+    },
+    {
+        "canonicalId": "negative_pion",
+        "type": "negative-pion-composite",
+        "text": "Negative Pion",
+        "recipeSequence": ("pro_down_quark", "anti_up_quark"),
+    },
+    {
+        "canonicalId": "positive_kaon",
+        "type": "positive-kaon-composite",
+        "text": "Positive Kaon",
+        "recipeSequence": ("pro_up_quark", "anti_strange_quark"),
+    },
+    {
+        "canonicalId": "negative_kaon",
+        "type": "negative-kaon-composite",
+        "text": "Negative Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_up_quark"),
+    },
+    {
+        "canonicalId": "neutral_kaon",
+        "type": "neutral-kaon-d-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_down_quark", "anti_strange_quark"),
+    },
+    {
+        "canonicalId": "anti_neutral_kaon",
+        "type": "neutral-kaon-s-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_down_quark"),
+    },
+    {
+        "canonicalId": "positive_b_meson",
+        "type": "positive-b-meson-composite",
+        "text": "Positive B Meson",
+        "recipeSequence": ("pro_up_quark", "anti_bottom_quark"),
+    },
+    {
+        "canonicalId": "negative_b_meson",
+        "type": "negative-b-meson-composite",
+        "text": "Negative B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_up_quark"),
+    },
+    {
+        "canonicalId": "neutral_b_meson",
+        "type": "neutral-b-meson-d-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_down_quark", "anti_bottom_quark"),
+    },
+    {
+        "canonicalId": "anti_neutral_b_meson",
+        "type": "neutral-b-meson-b-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_down_quark"),
+    },
+)
+
+PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPEC_BY_CANONICAL_ID = {
+    spec["canonicalId"]: spec for spec in PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPECS
+}
+
+PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE = {
+    "left": "reactant",
+    "right": "product",
+}
 
 ASSEMBLY_DISPLAY = {
     "pro_noether_core_I": {
@@ -915,6 +1111,47 @@ def count_core_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
     return counts
 
 
+def compute_added_tri_binary_support_pair_count(
+    reactant_core_counts: dict[str, int],
+    middle_supply_counts: dict[str, int],
+    product_core_counts: dict[str, int],
+) -> int:
+    required_pair_count_by_charge = {"pro": 0, "anti": 0}
+
+    for charge in ("pro", "anti"):
+        remaining_required = {
+            generation: int(product_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+        available_direct = {
+            generation: int(reactant_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+        available_middle = {
+            generation: int(middle_supply_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+
+        for generation, direct_sources in (
+            ("III", ("III", "II", "I")),
+            ("II", ("II", "I")),
+            ("I", ("I",)),
+        ):
+            used_middle = min(remaining_required[generation], available_middle[generation])
+            remaining_required[generation] -= used_middle
+            available_middle[generation] -= used_middle
+            for direct_generation in direct_sources:
+                used_direct = min(remaining_required[generation], available_direct[direct_generation])
+                remaining_required[generation] -= used_direct
+                available_direct[direct_generation] -= used_direct
+                if remaining_required[generation] == 0:
+                    break
+
+        required_pair_count_by_charge[charge] = sum(remaining_required.values())
+
+    return max(required_pair_count_by_charge.values())
+
+
 def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
     assembly_id = normalize_text(product.get("assemblyId"))
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
@@ -1121,6 +1358,20 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     for task in core_product_tasks:
         product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
 
+    support_pair_count = compute_added_tri_binary_support_pair_count(
+        reactant_core_counts,
+        middle_supply_counts,
+        product_core_counts,
+    )
+    for index in range(1, support_pair_count + 1):
+        pro_support = build_core_support_occurrence("pro", "I", index)
+        anti_support = build_core_support_occurrence("anti", "I", index)
+        reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
+        added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
+        remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
+        reactant_core_counts["pro_noether_core_I"] += 1
+        reactant_core_counts["anti_noether_core_I"] += 1
+
     ladder_conversion_counts = {
         assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
     }
@@ -1150,27 +1401,6 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
             ladder_conversion_counts[source_id] = convert_count
             reactant_core_counts[source_id] -= convert_count
             middle_supply_counts[target_id] += convert_count
-
-    for generation in ("I", "II", "III"):
-        pro_id = f"pro_noether_core_{generation}"
-        anti_id = f"anti_noether_core_{generation}"
-        pro_deficit = max(
-            0,
-            product_core_counts[pro_id] - reactant_core_counts[pro_id] - middle_supply_counts[pro_id],
-        )
-        anti_deficit = max(
-            0,
-            product_core_counts[anti_id] - reactant_core_counts[anti_id] - middle_supply_counts[anti_id],
-        )
-        pair_count = max(pro_deficit, anti_deficit)
-        for index in range(1, pair_count + 1):
-            pro_support = build_core_support_occurrence("pro", generation, index)
-            anti_support = build_core_support_occurrence("anti", generation, index)
-            reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
-            added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
-            remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
-            reactant_core_counts[pro_id] += 1
-            reactant_core_counts[anti_id] += 1
 
     cores_by_type: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
     for core_occurrence in remaining_reactant_cores:
@@ -2429,34 +2659,156 @@ def residue_counts_from_publication_graph_unit(
     return explicit_counts or build_primitive_counts(0, 0)
 
 
+def normalize_pdgedit_composite_recipe_id(recipe_id: str) -> str:
+    normalized_recipe_id = normalize_text(recipe_id)
+    for suffix in ("_III", "_II", "_I"):
+        if normalized_recipe_id.endswith(suffix):
+            return normalized_recipe_id[: -len(suffix)]
+    return normalized_recipe_id
+
+
+def normalize_pdgedit_composite_row_record(row_record: dict[str, Any]) -> dict[str, str]:
+    return {
+        "recipeId": normalize_pdgedit_composite_recipe_id(row_record.get("recipeId", "")),
+        "occurrenceKey": normalize_text(row_record.get("occurrenceKey")),
+    }
+
+
+def parse_pdgedit_composite_occurrence_key(occurrence_key: str) -> dict[str, Any] | None:
+    normalized_occurrence_key = normalize_text(occurrence_key)
+    if ".row." not in normalized_occurrence_key:
+        return None
+    base_key, _, row_text = normalized_occurrence_key.partition(".row.")
+    if not base_key or not row_text:
+        return None
+    base_parts = base_key.split("_")
+    if len(base_parts) < 3 or base_parts[0] not in {"reactant", "product"}:
+        return None
+    try:
+        occurrence_index = int(base_parts[-1])
+        row_number = int(row_text)
+    except ValueError:
+        return None
+    canonical_id = "_".join(base_parts[1:-1])
+    if not canonical_id:
+        return None
+    return {
+        "role": base_parts[0],
+        "canonicalId": canonical_id,
+        "occurrenceIndex": occurrence_index,
+        "rowNumber": row_number,
+        "baseKey": base_key,
+    }
+
+
+def match_pdgedit_composite_occurrence_label(
+    row_records: list[dict[str, Any]],
+    *,
+    start_index: int,
+    side: str,
+) -> dict[str, Any] | None:
+    first_row = row_records[start_index] if start_index < len(row_records) else None
+    if first_row is None:
+        return None
+    first_occurrence = parse_pdgedit_composite_occurrence_key(first_row.get("occurrenceKey", ""))
+    if first_occurrence is None:
+        return None
+    expected_role = PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE.get(normalize_text(side), "")
+    if expected_role and first_occurrence["role"] != expected_role:
+        return None
+    occurrence_spec = PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPEC_BY_CANONICAL_ID.get(first_occurrence["canonicalId"])
+    if occurrence_spec is None:
+        return None
+    recipe_sequence = occurrence_spec["recipeSequence"]
+    for offset, expected_recipe_id in enumerate(recipe_sequence):
+        row_record = row_records[start_index + offset] if start_index + offset < len(row_records) else None
+        if row_record is None:
+            return None
+        occurrence = parse_pdgedit_composite_occurrence_key(row_record.get("occurrenceKey", ""))
+        if (
+            occurrence is None
+            or occurrence["baseKey"] != first_occurrence["baseKey"]
+            or occurrence["rowNumber"] != offset + 1
+            or normalize_pdgedit_composite_recipe_id(row_record.get("recipeId", "")) != expected_recipe_id
+        ):
+            return None
+    next_index = start_index + len(recipe_sequence)
+    next_occurrence = (
+        parse_pdgedit_composite_occurrence_key(row_records[next_index].get("occurrenceKey", ""))
+        if next_index < len(row_records)
+        else None
+    )
+    if next_occurrence is not None and next_occurrence["baseKey"] == first_occurrence["baseKey"]:
+        return None
+    return {
+        "id": (
+            f"label.{normalize_text(side)}."
+            f"{occurrence_spec['type'].removesuffix('-composite')}."
+            f"{first_occurrence['baseKey']}"
+        ),
+        "type": occurrence_spec["type"],
+        "text": occurrence_spec["text"],
+        "rowEnd": start_index + len(recipe_sequence) - 1,
+    }
+
+
 def build_pdgedit_composite_labels(
-    reactant_recipe_ids: list[str],
-    product_recipe_ids: list[str],
+    reactant_rows: list[dict[str, Any]],
+    product_rows: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    composite_labels = []
-    if reactant_recipe_ids == ["pro_down_quark_I", "pro_up_quark_I", "pro_down_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.left.neutron",
-                "type": "pro-neutron-composite",
-                "side": "left",
-                "text": "Neutron",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
-    if product_recipe_ids[:3] == ["pro_up_quark_I", "pro_down_quark_I", "pro_up_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.right.proton",
-                "type": "pro-proton-composite",
-                "side": "right",
-                "text": "Proton",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
-    return composite_labels
+    def build_side_labels(row_records: list[dict[str, Any]], side: str) -> list[dict[str, Any]]:
+        normalized_rows = [normalize_pdgedit_composite_row_record(row_record) for row_record in row_records]
+        normalized_recipe_ids = [row_record["recipeId"] for row_record in normalized_rows]
+        composite_labels: list[dict[str, Any]] = []
+        row_index = 0
+        while row_index < len(normalized_recipe_ids):
+            occurrence_match = match_pdgedit_composite_occurrence_label(
+                normalized_rows,
+                start_index=row_index,
+                side=side,
+            )
+            if occurrence_match is not None:
+                composite_labels.append(
+                    {
+                        "id": occurrence_match["id"],
+                        "type": occurrence_match["type"],
+                        "side": side,
+                        "text": occurrence_match["text"],
+                        "rowStart": row_index,
+                        "rowEnd": occurrence_match["rowEnd"],
+                    }
+                )
+                row_index = occurrence_match["rowEnd"] + 1
+                continue
+            match = next(
+                (
+                    spec
+                    for spec in PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS
+                    if all(
+                        row_index + offset < len(normalized_recipe_ids)
+                        and normalized_recipe_ids[row_index + offset] == recipe_id
+                        for offset, recipe_id in enumerate(spec["recipeSequence"])
+                    )
+                ),
+                None,
+            )
+            if match is None:
+                row_index += 1
+                continue
+            composite_labels.append(
+                {
+                    "id": f"label.{side}.{match['type'].removesuffix('-composite')}.{row_index + 1}",
+                    "type": match["type"],
+                    "side": side,
+                    "text": match["text"],
+                    "rowStart": row_index,
+                    "rowEnd": row_index + len(match["recipeSequence"]) - 1,
+                }
+            )
+            row_index += len(match["recipeSequence"])
+        return composite_labels
+
+    return [*build_side_labels(reactant_rows, "left"), *build_side_labels(product_rows, "right")]
 
 
 def build_pdgedit_assembly_entry(
@@ -2599,13 +2951,19 @@ def build_pdgedit_document_from_publication_graph(
         }
         for edge in publication_graph.get("edges", [])
     ]
-    reactant_recipe_ids = [
-        normalize_text(unit.get("recipeId"))
+    reactant_composite_rows = [
+        {
+            "recipeId": normalize_text(unit.get("recipeId")),
+            "occurrenceKey": normalize_text(unit.get("occurrenceKey")),
+        }
         for unit in publication_graph.get("units", [])
         if normalize_text(unit.get("stage")) == "reactantAssemblies"
     ]
-    product_recipe_ids = [
-        normalize_text(unit.get("recipeId"))
+    product_composite_rows = [
+        {
+            "recipeId": normalize_text(unit.get("recipeId")),
+            "occurrenceKey": normalize_text(unit.get("occurrenceKey")),
+        }
         for unit in publication_graph.get("units", [])
         if normalize_text(unit.get("stage")) == "productAssemblies"
     ]
@@ -2628,7 +2986,7 @@ def build_pdgedit_document_from_publication_graph(
         "assemblies": assemblies,
         "operators": operators,
         "links": links,
-        "compositeLabels": build_pdgedit_composite_labels(reactant_recipe_ids, product_recipe_ids),
+        "compositeLabels": build_pdgedit_composite_labels(reactant_composite_rows, product_composite_rows),
     }
 
 
@@ -2694,8 +3052,20 @@ def build_pdgedit_document_from_request_review(
         "operators": [],
         "links": [],
         "compositeLabels": build_pdgedit_composite_labels(
-            [normalize_text(record.get("assemblyId")) for record in reactants],
-            [normalize_text(record.get("assemblyId")) for record in products],
+            [
+                {
+                    "recipeId": normalize_text(record.get("assemblyId")),
+                    "occurrenceKey": normalize_text(record.get("id")),
+                }
+                for record in reactants
+            ],
+            [
+                {
+                    "recipeId": normalize_text(record.get("assemblyId")),
+                    "occurrenceKey": normalize_text(record.get("id")),
+                }
+                for record in products
+            ],
         ),
     }
 

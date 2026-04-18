@@ -43,14 +43,28 @@ REQUEST_ASSEMBLY_AAA_BY_ID = {
     mapping.canonical_id: mapping.aaa_notation
     for mapping in REQUEST_ASSEMBLY_MAPPINGS
 }
+REQUEST_ASSEMBLY_TITLE_BY_ID = {
+    mapping.canonical_id: mapping.full_name
+    for mapping in REQUEST_ASSEMBLY_MAPPINGS
+}
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
-NOETHER_PAIR_PRIMITIVE_TOTALS = {
-    "electrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["electrinoCount"]
-    + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["electrinoCount"],
-    "positrinoCount": REQUEST_ASSEMBLY_COUNTS["pro_noether_core_I"]["positrinoCount"]
-    + REQUEST_ASSEMBLY_COUNTS["anti_noether_core_I"]["positrinoCount"],
+NOETHER_CORE_GENERATIONS = ("I", "II", "III")
+NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION = {
+    generation: {
+        "electrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_core_{generation}"]["electrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_core_{generation}"]["electrinoCount"],
+        "positrinoCount": REQUEST_ASSEMBLY_COUNTS[f"pro_noether_core_{generation}"]["positrinoCount"]
+        + REQUEST_ASSEMBLY_COUNTS[f"anti_noether_core_{generation}"]["positrinoCount"],
+    }
+    for generation in NOETHER_CORE_GENERATIONS
 }
+NOETHER_PAIR_PRIMITIVE_TOTALS = NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]
+NOETHER_CORE_ASSEMBLY_IDS = tuple(
+    assembly_id
+    for generation in NOETHER_CORE_GENERATIONS
+    for assembly_id in (f"pro_noether_core_{generation}", f"anti_noether_core_{generation}")
+)
 INCOMPLETE_NOTE_MARKERS = (
     "generic-or-textual-item",
     "generic-family-charge-",
@@ -326,21 +340,30 @@ def transform_participants_for_pdgsolve(
     return transformed_rows
 
 
-def build_noether_pair_occurrences(side: str, pair_count: int) -> list[dict[str, Any]]:
+def build_noether_pair_occurrences(
+    side: str,
+    pair_count: int,
+    *,
+    generation: str = "I",
+    id_prefix: str = "noether_pair",
+) -> list[dict[str, Any]]:
+    pair_id_prefix = id_prefix if generation == "I" and id_prefix == "noether_pair" else f"{id_prefix}_{generation.lower()}"
+    pro_assembly_id = f"pro_noether_core_{generation}"
+    anti_assembly_id = f"anti_noether_core_{generation}"
     occurrences: list[dict[str, Any]] = []
     for index in range(1, pair_count + 1):
         occurrences.append(
             {
-                "id": f"{side}_noether_pair_{index}.row.1",
-                "assemblyId": "pro_noether_core_I",
-                "title": "Pro Noether Core",
+                "id": f"{side}_{pair_id_prefix}_{index}.row.1",
+                "assemblyId": pro_assembly_id,
+                "title": REQUEST_ASSEMBLY_TITLE_BY_ID[pro_assembly_id],
             }
         )
         occurrences.append(
             {
-                "id": f"{side}_noether_pair_{index}.row.2",
-                "assemblyId": "anti_noether_core_I",
-                "title": "Anti Noether Core",
+                "id": f"{side}_{pair_id_prefix}_{index}.row.2",
+                "assemblyId": anti_assembly_id,
+                "title": REQUEST_ASSEMBLY_TITLE_BY_ID[anti_assembly_id],
             }
         )
     return occurrences
@@ -357,6 +380,43 @@ def build_unbound_architrinos_residue_product(
         "electrinoCount": electrino_count,
         "positrinoCount": positrino_count,
     }
+
+
+def merge_unbound_architrinos_residue_product(
+    products: list[dict[str, Any]],
+    electrino_count: int,
+    positrino_count: int,
+) -> list[dict[str, Any]] | None:
+    if electrino_count == 0 and positrino_count == 0:
+        return products
+
+    residue_index: int | None = None
+    updated_products: list[dict[str, Any]] = []
+    for index, occurrence in enumerate(products):
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id != UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+            updated_products.append(occurrence)
+            continue
+        if residue_index is not None:
+            return None
+        counts = get_pdgsolve_occurrence_primitive_counts(occurrence)
+        if counts is None:
+            return None
+        updated_products.append(
+            {
+                **occurrence,
+                "electrinoCount": counts["electrinoCount"] + electrino_count,
+                "positrinoCount": counts["positrinoCount"] + positrino_count,
+            }
+        )
+        residue_index = index
+
+    if residue_index is not None:
+        return updated_products
+    return [
+        *updated_products,
+        build_unbound_architrinos_residue_product(electrino_count, positrino_count),
+    ]
 
 
 def add_minimum_noether_pair_reactants_for_balance(
@@ -382,6 +442,132 @@ def add_minimum_noether_pair_reactants_for_balance(
         return reactants
 
     return [*reactants, *build_noether_pair_occurrences("reactant", pair_count)]
+
+
+def get_noether_core_assembly_id_for_occurrence(occurrence: dict[str, Any]) -> str | None:
+    assembly_id = str(occurrence.get("assemblyId", "")).strip()
+    if not assembly_id or assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
+        return None
+    if assembly_id in NOETHER_CORE_ASSEMBLY_IDS:
+        return assembly_id
+    generation = assembly_id.rsplit("_", 1)[-1] if "_" in assembly_id else ""
+    if not generation:
+        return None
+    if assembly_id.startswith("pro_"):
+        core_assembly_id = f"pro_noether_core_{generation}"
+    elif assembly_id.startswith("anti_"):
+        core_assembly_id = f"anti_noether_core_{generation}"
+    else:
+        return None
+    return core_assembly_id if core_assembly_id in REQUEST_ASSEMBLY_COUNTS else None
+
+
+def count_noether_core_support_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        core_assembly_id = get_noether_core_assembly_id_for_occurrence(occurrence)
+        if core_assembly_id is None:
+            continue
+        counts[core_assembly_id] += 1
+    return counts
+
+
+def count_direct_noether_core_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            counts[assembly_id] += 1
+    return counts
+
+
+def count_noether_core_middle_supply_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            continue
+        core_assembly_id = get_noether_core_assembly_id_for_occurrence(occurrence)
+        if core_assembly_id is None:
+            continue
+        counts[core_assembly_id] += 1
+    return counts
+
+
+def compute_required_full_noether_pair_count(
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> int:
+    direct_counts = count_direct_noether_core_occurrences(reactants)
+    middle_supply_counts = count_noether_core_middle_supply_occurrences(reactants)
+    required_counts = count_noether_core_support_occurrences(products)
+    required_pair_count_by_charge = {"pro": 0, "anti": 0}
+
+    for charge in ("pro", "anti"):
+        remaining_required = {
+            generation: required_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
+        available_direct = {
+            generation: direct_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
+        available_middle = {
+            generation: middle_supply_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
+
+        for generation, direct_sources in (
+            ("III", ("III", "II", "I")),
+            ("II", ("II", "I")),
+            ("I", ("I",)),
+        ):
+            used_middle = min(remaining_required[generation], available_middle[generation])
+            remaining_required[generation] -= used_middle
+            available_middle[generation] -= used_middle
+            for direct_generation in direct_sources:
+                used_direct = min(remaining_required[generation], available_direct[direct_generation])
+                remaining_required[generation] -= used_direct
+                available_direct[direct_generation] -= used_direct
+                if remaining_required[generation] == 0:
+                    break
+
+        required_pair_count_by_charge[charge] = sum(remaining_required.values())
+
+    return max(required_pair_count_by_charge.values())
+
+
+def add_core_balance_support_pairs_and_unbound_residue(
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]] | None:
+    pair_count = compute_required_full_noether_pair_count(reactants, products)
+    if pair_count == 0:
+        return reactants, products
+
+    updated_reactants = [
+        *reactants,
+        *build_noether_pair_occurrences(
+            "reactant",
+            pair_count,
+            generation="I",
+            id_prefix="core_balance_noether_pair",
+        ),
+    ]
+    updated_products = merge_unbound_architrinos_residue_product(
+        products,
+        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["electrinoCount"],
+        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["positrinoCount"],
+    )
+    if updated_products is None:
+        return None
+    return updated_reactants, updated_products
 
 
 def add_maximum_noether_pair_products_from_surplus(
@@ -420,13 +606,7 @@ def add_unbound_architrino_residue_product_from_surplus(
         return None
     if electrino_surplus == 0 and positrino_surplus == 0:
         return products
-    if electrino_surplus > 5 or positrino_surplus > 5:
-        return None
-
-    return [
-        *products,
-        build_unbound_architrinos_residue_product(electrino_surplus, positrino_surplus),
-    ]
+    return merge_unbound_architrinos_residue_product(products, electrino_surplus, positrino_surplus)
 
 
 def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, Any]]] | None:
@@ -445,6 +625,10 @@ def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[s
     products = add_unbound_architrino_residue_product_from_surplus(reactants, products)
     if products is None:
         return None
+    core_balanced = add_core_balance_support_pairs_and_unbound_residue(reactants, products)
+    if core_balanced is None:
+        return None
+    reactants, products = core_balanced
     return {
         "reactants": reactants,
         "products": products,
@@ -701,6 +885,29 @@ def get_request_residue_counts(pdgsolve_request: Any) -> tuple[int, int] | None:
     return counts["electrinoCount"], counts["positrinoCount"]
 
 
+def request_has_total_primitive_balance(pdgsolve_request: Any) -> bool:
+    if not isinstance(pdgsolve_request, dict):
+        return False
+    reactant_totals = get_pdgsolve_occurrence_primitive_totals(pdgsolve_request.get("reactants", []))
+    product_totals = get_pdgsolve_occurrence_primitive_totals(pdgsolve_request.get("products", []))
+    if reactant_totals is None or product_totals is None:
+        return False
+    return reactant_totals == product_totals
+
+
+def request_has_unbound_architrino_residue_product(pdgsolve_request: Any) -> bool:
+    if not isinstance(pdgsolve_request, dict):
+        return False
+    products = pdgsolve_request.get("products", [])
+    if not isinstance(products, list):
+        return False
+    return any(
+        isinstance(occurrence, dict)
+        and str(occurrence.get("assemblyId", "")) == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
+        for occurrence in products
+    )
+
+
 def build_supported_reaction_csv_row(
     case: PdgCase,
     proposal_payload: dict[str, Any],
@@ -868,16 +1075,20 @@ def build_live_reaction_summary_rows(
     manifest = build_live_manifest_payload(database_url, api=api)
     supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
     total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
-    delta_counts: Counter[int] = Counter()
+    total_balance_closure_count = 0
+    total_balance_with_residue_count = 0
+    ready_without_total_balance_count = 0
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
-        residue_counts = get_request_residue_counts(entry.get("pdgsolveRequest", {}))
-        if residue_counts is None:
+        pdgsolve_request = entry.get("pdgsolveRequest", {})
+        if not request_has_total_primitive_balance(pdgsolve_request):
+            ready_without_total_balance_count += 1
             continue
-        electrino_delta, positrino_delta = residue_counts
-        if electrino_delta == positrino_delta and 0 <= electrino_delta <= 5:
-            delta_counts[electrino_delta] += 1
+        total_balance_closure_count += 1
+        if request_has_unbound_architrino_residue_product(pdgsolve_request):
+            total_balance_with_residue_count += 1
+    total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
     incomplete_count = 0
     aaa_complete_count = 0
     backlog_count = 0
@@ -907,11 +1118,11 @@ def build_live_reaction_summary_rows(
         ("Number of AAAcomplete reactions", aaa_complete_count),
         ("Number of backlog reactions", backlog_count),
         ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
+        ("Number of reactions closed by total primitive balance", total_balance_closure_count),
+        ("Number of total-balance closures with product unbound architrinos", total_balance_with_residue_count),
+        ("Number of total-balance closures without product unbound architrinos", total_balance_without_residue_count),
+        ("Number of ready reactions lacking total primitive balance", ready_without_total_balance_count),
     ]
-    rows.extend(
-        (f"Number of reactions leaving {count}/{count} architrinos", delta_counts[count])
-        for count in range(0, 6)
-    )
     rows.extend(
         [
             ("Number of reactions ready", int(manifest.get("readyCount", 0) or 0)),

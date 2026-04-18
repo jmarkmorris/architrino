@@ -2,6 +2,11 @@ import {
   getPdgeditAssemblyStageXForRole,
   getPdgeditOperatorStageXForSide,
 } from "./PdgeditSurfaceGeometryRuntime.js";
+import {
+  buildPdgeditCompositeBlocks,
+  buildPdgeditCompositeLabelsForRole,
+  buildPdgeditRowByObjectIdFromBlocks,
+} from "./PdgeditCompositeLabelRuntime.js";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -198,36 +203,95 @@ function getNeighborObjects(objectsById, neighborsById, objectId) {
     .sort(compareByYThenXThenId);
 }
 
-function buildLaneState(records = [], { pinnedTopIds = [], pinnedBottomIds = [] } = {}) {
+function buildLaneStateFromGroups(groups = [], records = [], { pinnedTopIds = [], pinnedBottomIds = [] } = {}) {
   const stableRecords = [...records].sort(compareByYThenXThenId);
   const recordById = new Map(stableRecords.map((record) => [record.id, record]));
-  const stableIdSet = new Set(stableRecords.map((record) => record.id));
-  const normalizedPinnedTopIds = pinnedTopIds.filter((id) => stableIdSet.has(id));
+  const stableRecordIdSet = new Set(stableRecords.map((record) => record.id));
+  const fallbackGroups = stableRecords.map((record) => ({
+    id: record.id,
+    objectIds: [record.id],
+  }));
+  const normalizedGroups = (Array.isArray(groups) && groups.length ? groups : fallbackGroups)
+    .map((group, index) => {
+      const objectIds = (Array.isArray(group?.objectIds) ? group.objectIds : [])
+        .map((objectId) => normalizeText(objectId))
+        .filter((objectId) => stableRecordIdSet.has(objectId));
+      const uniqueObjectIds = [...new Set(objectIds)];
+      if (!uniqueObjectIds.length) {
+        return null;
+      }
+      return {
+        ...group,
+        id: normalizeText(group?.id) || `group_${index + 1}_${uniqueObjectIds[0]}`,
+        objectIds: uniqueObjectIds,
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => {
+      const leftFirst = recordById.get(left.objectIds[0]);
+      const rightFirst = recordById.get(right.objectIds[0]);
+      return compareByYThenXThenId(leftFirst, rightFirst);
+    });
+  const groupById = new Map(normalizedGroups.map((group) => [group.id, group]));
+  const groupIdByObjectId = new Map();
+  normalizedGroups.forEach((group) => {
+    group.objectIds.forEach((objectId) => {
+      groupIdByObjectId.set(objectId, group.id);
+    });
+  });
+
+  function collectPinnedGroupIds(candidateIds = [], excludedGroupIds = new Set()) {
+    const nextExcludedGroupIds = new Set(excludedGroupIds);
+    return candidateIds
+      .map((objectId) => groupIdByObjectId.get(normalizeText(objectId)) ?? "")
+      .filter((groupId) => {
+        if (!groupId || nextExcludedGroupIds.has(groupId)) {
+          return false;
+        }
+        nextExcludedGroupIds.add(groupId);
+        return true;
+      });
+  }
+
+  const normalizedPinnedTopIds = collectPinnedGroupIds(pinnedTopIds);
   const pinnedTopIdSet = new Set(normalizedPinnedTopIds);
-  const normalizedPinnedBottomIds = pinnedBottomIds.filter(
-    (id) => stableIdSet.has(id) && !pinnedTopIdSet.has(id)
-  );
+  const normalizedPinnedBottomIds = collectPinnedGroupIds(pinnedBottomIds, pinnedTopIdSet);
   const pinnedBottomIdSet = new Set(normalizedPinnedBottomIds);
   const orderIds = [
     ...normalizedPinnedTopIds,
-    ...stableRecords
-      .map((record) => record.id)
+    ...normalizedGroups
+      .map((group) => group.id)
       .filter((id) => !pinnedTopIdSet.has(id) && !pinnedBottomIdSet.has(id)),
     ...normalizedPinnedBottomIds,
   ];
-  return {
+  const laneState = {
     recordById,
-    stableIndexById: createIndexById(stableRecords.map((record) => record.id)),
-    orderIds,
-    orderIndexById: createIndexById(orderIds),
+    groupById,
+    groupIdByObjectId,
+    stableIndexById: createIndexById(normalizedGroups.map((group) => group.id)),
+    orderIds: [],
+    orderIndexById: new Map(),
+    orderIndexByObjectId: new Map(),
     pinnedTopCount: normalizedPinnedTopIds.length,
     pinnedBottomCount: normalizedPinnedBottomIds.length,
   };
+  updateLaneOrder(laneState, orderIds);
+  return laneState;
+}
+
+function buildLaneState(records = [], { pinnedTopIds = [], pinnedBottomIds = [] } = {}) {
+  return buildLaneStateFromGroups([], records, { pinnedTopIds, pinnedBottomIds });
 }
 
 function updateLaneOrder(laneState = {}, orderIds = []) {
   laneState.orderIds = [...orderIds];
   laneState.orderIndexById = createIndexById(laneState.orderIds);
+  laneState.orderIndexByObjectId = new Map();
+  laneState.orderIds.forEach((groupId, orderIndex) => {
+    (laneState.groupById?.get(groupId)?.objectIds ?? []).forEach((objectId) => {
+      laneState.orderIndexByObjectId.set(objectId, orderIndex);
+    });
+  });
 }
 
 function buildLaneIndexByObjectId(laneStates = []) {
@@ -274,7 +338,8 @@ function buildEdgesByLanePair(document = {}, laneIndexByObjectId = new Map()) {
 }
 
 function getNeighborPositionsForLane(
-  objectId = "",
+  laneState = {},
+  groupId = "",
   targetLaneIndex = -1,
   neighborsById = new Map(),
   laneIndexByObjectId = new Map(),
@@ -284,9 +349,11 @@ function getNeighborPositionsForLane(
   if (!targetLane) {
     return [];
   }
-  return [...(neighborsById.get(normalizeText(objectId)) ?? [])]
+  const objectIds = laneState.groupById?.get(normalizeText(groupId))?.objectIds ?? [];
+  return objectIds
+    .flatMap((objectId) => [...(neighborsById.get(normalizeText(objectId)) ?? [])])
     .filter((neighborId) => laneIndexByObjectId.get(neighborId) === targetLaneIndex)
-    .map((neighborId) => targetLane.orderIndexById.get(neighborId))
+    .map((neighborId) => targetLane.orderIndexByObjectId.get(neighborId))
     .filter((position) => Number.isFinite(position))
     .sort((left, right) => left - right);
 }
@@ -316,10 +383,24 @@ function reorderLaneByMedian(
   const pinnedBottomIds = laneState.orderIds.slice(endIndex);
   const nextMovableIds = [...movableIds].sort((leftId, rightId) => {
     const leftMedian = computeMedian(
-      getNeighborPositionsForLane(leftId, referenceLaneIndex, neighborsById, laneIndexByObjectId, laneStates)
+      getNeighborPositionsForLane(
+        laneState,
+        leftId,
+        referenceLaneIndex,
+        neighborsById,
+        laneIndexByObjectId,
+        laneStates
+      )
     );
     const rightMedian = computeMedian(
-      getNeighborPositionsForLane(rightId, referenceLaneIndex, neighborsById, laneIndexByObjectId, laneStates)
+      getNeighborPositionsForLane(
+        laneState,
+        rightId,
+        referenceLaneIndex,
+        neighborsById,
+        laneIndexByObjectId,
+        laneStates
+      )
     );
     const leftFallback =
       laneState.orderIndexById.get(leftId) ?? laneState.stableIndexById.get(leftId) ?? Number.MAX_SAFE_INTEGER;
@@ -347,14 +428,14 @@ function countLanePairCrossings(leftLaneState = {}, rightLaneState = {}, edges =
   }
   let crossings = 0;
   for (let leftEdgeIndex = 0; leftEdgeIndex < edges.length; leftEdgeIndex += 1) {
-    const firstLeft = leftLaneState.orderIndexById.get(edges[leftEdgeIndex].leftId);
-    const firstRight = rightLaneState.orderIndexById.get(edges[leftEdgeIndex].rightId);
+    const firstLeft = leftLaneState.orderIndexByObjectId.get(edges[leftEdgeIndex].leftId);
+    const firstRight = rightLaneState.orderIndexByObjectId.get(edges[leftEdgeIndex].rightId);
     if (!Number.isFinite(firstLeft) || !Number.isFinite(firstRight)) {
       continue;
     }
     for (let rightEdgeIndex = leftEdgeIndex + 1; rightEdgeIndex < edges.length; rightEdgeIndex += 1) {
-      const secondLeft = leftLaneState.orderIndexById.get(edges[rightEdgeIndex].leftId);
-      const secondRight = rightLaneState.orderIndexById.get(edges[rightEdgeIndex].rightId);
+      const secondLeft = leftLaneState.orderIndexByObjectId.get(edges[rightEdgeIndex].leftId);
+      const secondRight = rightLaneState.orderIndexByObjectId.get(edges[rightEdgeIndex].rightId);
       if (!Number.isFinite(secondLeft) || !Number.isFinite(secondRight)) {
         continue;
       }
@@ -448,16 +529,20 @@ function reduceLaneCrossings(laneStates = [], document = {}) {
 }
 
 function buildLaneRowById(laneState = {}) {
-  return new Map(laneState.orderIds.map((recordId, rowIndex) => [recordId, rowIndex]));
+  return buildPdgeditRowByObjectIdFromBlocks(
+    laneState.orderIds.map((groupId) => laneState.groupById?.get(groupId) ?? null).filter(Boolean)
+  );
 }
 
 function buildOrderedLaneRecords(laneState = {}) {
-  return laneState.orderIds
-    .map((recordId, rowIndex) => ({
-      ...laneState.recordById.get(recordId),
-      y: rowIndex,
+  const rowById = buildLaneRowById(laneState);
+  return [...laneState.recordById.values()]
+    .map((record) => ({
+      ...record,
+      y: rowById.get(record.id),
     }))
-    .filter(Boolean);
+    .filter((record) => Number.isFinite(record.y))
+    .sort(compareByYThenXThenId);
 }
 
 function isAssemblyForRoleAndType(assembly = {}, role = "", type = "") {
@@ -482,6 +567,23 @@ function isUnboundArchitrinosAssembly(assembly = {}) {
     normalizeText(assembly?.type) === "unbound-architrinos-assembly" ||
     normalizeText(assembly?.title) === "Unbound Architrinos"
   );
+}
+
+function isCanonicalAssemblyLaneRecord(assembly = {}) {
+  const role = normalizeText(assembly?.role);
+  const stageX = getPdgeditAssemblyStageXForRole(role);
+  return Boolean(stageX) && normalizeInteger(assembly?.x) === stageX;
+}
+
+function isCanonicalOperatorLaneRecord(operator = {}) {
+  const x = normalizeInteger(operator?.x);
+  return x === getPdgeditOperatorStageXForSide("reactant") || x === getPdgeditOperatorStageXForSide("product");
+}
+
+function documentUsesCanonicalLaneGeometry(document = {}) {
+  const assemblies = Array.isArray(document?.assemblies) ? document.assemblies : [];
+  const operators = Array.isArray(document?.operators) ? document.operators : [];
+  return assemblies.every(isCanonicalAssemblyLaneRecord) && operators.every(isCanonicalOperatorLaneRecord);
 }
 
 function matchCatalystPassThruChain({ reactantAssembly, objectsById, neighborsById }) {
@@ -565,31 +667,6 @@ function matchCatalystPassThruChain({ reactantAssembly, objectsById, neighborsBy
   };
 }
 
-function buildOldRowToNewRow(records = [], rowById = new Map()) {
-  return new Map(
-    records.map((record) => [normalizeInteger(record.y), rowById.get(record.id) ?? normalizeInteger(record.y)])
-  );
-}
-
-function remapCompositeLabelRows(label = {}, oldRowToNewRow = new Map()) {
-  const rowStart = normalizeInteger(label?.rowStart);
-  const rowEnd = normalizeInteger(label?.rowEnd);
-  const mappedRows = [];
-  for (let row = rowStart; row <= rowEnd; row += 1) {
-    if (oldRowToNewRow.has(row)) {
-      mappedRows.push(oldRowToNewRow.get(row));
-    }
-  }
-  if (!mappedRows.length) {
-    return cloneCompositeLabel(label);
-  }
-  return {
-    ...cloneCompositeLabel(label),
-    rowStart: Math.min(...mappedRows),
-    rowEnd: Math.max(...mappedRows),
-  };
-}
-
 export function findPdgeditCatalystPassThruChains(document = {}) {
   const objectsById = buildObjectsById(document);
   const neighborsById = buildNeighborIdsByObjectId(document);
@@ -642,6 +719,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     compositeLabels,
   };
 
+  if (!documentUsesCanonicalLaneGeometry(nextDocument)) {
+    return nextDocument;
+  }
+
   const catalystChains = findPdgeditCatalystPassThruChains(nextDocument);
   const catalystAssemblyIdsByRole = {
     reactant: catalystChains.map((chain) => chain.reactantAssemblyId),
@@ -668,6 +749,8 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const reactantAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "reactant");
   const intermediateAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "intermediate");
   const productAssemblies = assemblies.filter((assembly) => normalizeText(assembly.role) === "product");
+  const reactantAssemblyBlocks = buildPdgeditCompositeBlocks(reactantAssemblies, compositeLabels, "reactant");
+  const productAssemblyBlocks = buildPdgeditCompositeBlocks(productAssemblies, compositeLabels, "product");
   const reactantOperators = operators.filter(
     (operator) => normalizeInteger(operator.x) === getPdgeditOperatorStageXForSide("reactant")
   );
@@ -675,7 +758,7 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     (operator) => normalizeInteger(operator.x) === getPdgeditOperatorStageXForSide("product")
   );
 
-  const reactantAssemblyLane = buildLaneState(reactantAssemblies, {
+  const reactantAssemblyLane = buildLaneStateFromGroups(reactantAssemblyBlocks, reactantAssemblies, {
     pinnedTopIds: catalystAssemblyIdsByRole.reactant,
   });
   const reactantOperatorLane = buildLaneState(reactantOperators, {
@@ -688,7 +771,7 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const productOperatorLane = buildLaneState(productOperators, {
     pinnedTopIds: catalystOperatorIdsBySide.product,
   });
-  const productAssemblyLane = buildLaneState(productAssemblies, {
+  const productAssemblyLane = buildLaneStateFromGroups(productAssemblyBlocks, productAssemblies, {
     pinnedTopIds: catalystAssemblyIdsByRole.product,
     pinnedBottomIds: trailingAssemblyIdsByRole.product,
   });
@@ -717,8 +800,12 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     )
   );
 
-  const reactantOldRowToNewRow = buildOldRowToNewRow(reactantAssemblies, buildLaneRowById(reactantAssemblyLane));
-  const productOldRowToNewRow = buildOldRowToNewRow(productAssemblies, buildLaneRowById(productAssemblyLane));
+  const orderedReactantAssemblyBlocks = reactantAssemblyLane.orderIds
+    .map((groupId) => reactantAssemblyLane.groupById.get(groupId))
+    .filter(Boolean);
+  const orderedProductAssemblyBlocks = productAssemblyLane.orderIds
+    .map((groupId) => productAssemblyLane.groupById.get(groupId))
+    .filter(Boolean);
 
   const nextMetadata = cloneMetadata(nextDocument.metadata);
   return {
@@ -731,15 +818,9 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
       .map((operator) => operatorUpdatesById.get(operator.id) ?? operator)
       .sort(compareByYThenXThenId),
     links,
-    compositeLabels: compositeLabels.map((label) => {
-      const side = normalizeText(label.side);
-      if (side === "left") {
-        return remapCompositeLabelRows(label, reactantOldRowToNewRow);
-      }
-      if (side === "right") {
-        return remapCompositeLabelRows(label, productOldRowToNewRow);
-      }
-      return label;
-    }),
+    compositeLabels: [
+      ...buildPdgeditCompositeLabelsForRole(orderedReactantAssemblyBlocks, "reactant"),
+      ...buildPdgeditCompositeLabelsForRole(orderedProductAssemblyBlocks, "product"),
+    ],
   };
 }

@@ -1,6 +1,7 @@
 import unittest
 
 import pdgfeed
+import pdgsolve
 from pdgfeed_test_fakes import FakeApi, FakeDecay, FakeDecayProduct, FakeParticle
 
 
@@ -69,6 +70,53 @@ class PdgfeedContractTests(unittest.TestCase):
             ["pro_electron_I", "anti_electron_neutrino_I", "pro_muon_neutrino_II"],
         )
 
+    def test_proton_decay_like_request_adds_core_balance_pairs_and_unbound_residue(self):
+        case = pdgfeed.PdgCase(
+            case_id="p_decay_like_case",
+            proposal_id="p_decay_like_case",
+            title="p -> e+ gamma",
+            source_kind="pdg-live",
+            source={"mcid": 2212, "pdgIdentifier": "TEST.P"},
+            reactants=(pdgfeed.CaseParticle(name="p", pdg_id="p"),),
+            products=(
+                pdgfeed.CaseParticle(name="e+", pdg_id="e+"),
+                pdgfeed.CaseParticle(name="gamma", pdg_id="gamma"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        request = pdgfeed.build_pdgsolve_request(proposal)
+
+        self.assertIsNotNone(request)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["reactants"]],
+            [
+                "pro_up_quark_I",
+                "pro_up_quark_I",
+                "pro_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
+        )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["products"]],
+            [
+                "anti_electron_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "unbound_architrinos_residue",
+            ],
+        )
+        self.assertEqual(request["products"][-1]["electrinoCount"], 18)
+        self.assertEqual(request["products"][-1]["positrinoCount"], 18)
+        self.assertEqual(pdgsolve.solve_request(request)["searchStatus"], "exact_available")
+
     def test_neutral_pion_expands_all_superposition_constituents_for_pdgsolve(self):
         case = pdgfeed.PdgCase(
             case_id="pi_zero_case",
@@ -87,7 +135,16 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertIsNotNone(request)
         self.assertEqual(
             [entry["assemblyId"] for entry in request["reactants"]],
-            ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
+            [
+                "pro_up_quark_I",
+                "anti_up_quark_I",
+                "pro_down_quark_I",
+                "anti_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
@@ -100,8 +157,11 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_noether_core_I",
                 "pro_noether_core_I",
                 "anti_noether_core_I",
+                "unbound_architrinos_residue",
             ],
         )
+        self.assertEqual(request["products"][-1]["electrinoCount"], 12)
+        self.assertEqual(request["products"][-1]["positrinoCount"], 12)
 
     def test_supported_csv_rows_include_known_status_and_exact_ids(self):
         api = FakeApi(
@@ -228,7 +288,12 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["reactants"]],
-            ["pro_up_quark_I", "anti_down_quark_I"],
+            [
+                "pro_up_quark_I",
+                "anti_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["products"]],
@@ -240,11 +305,11 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             pion_request["products"][-1]["electrinoCount"],
-            2,
+            8,
         )
         self.assertEqual(
             pion_request["products"][-1]["positrinoCount"],
-            2,
+            8,
         )
 
     def test_neutral_pion_transform_uses_all_superposition_rows(self):
@@ -263,7 +328,16 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertIsNotNone(transformed)
         self.assertEqual(
             [entry["assemblyId"] for entry in transformed["reactants"]],
-            ["pro_up_quark_I", "anti_up_quark_I", "pro_down_quark_I", "anti_down_quark_I"],
+            [
+                "pro_up_quark_I",
+                "anti_up_quark_I",
+                "pro_down_quark_I",
+                "anti_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
         )
 
     def test_kaons_d_mesons_sigma_xi_lambda_omega_baryons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
@@ -401,7 +475,7 @@ class PdgfeedContractTests(unittest.TestCase):
         for row in rows:
             self.assertEqual(row["category"], "supported")
             self.assertEqual(row["product_names_aaa"], "d2.ad2")
-            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2")
+            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2.6:6@")
 
     def test_d_mesons_move_from_backlog_to_supported(self):
         api = FakeApi(
@@ -639,7 +713,12 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(omega_request["products"][-1]["electrinoCount"], 4)
         self.assertEqual(omega_request["products"][-1]["positrinoCount"], 4)
-        self.assertEqual(cbar_products, ["anti_charm_quark_II", "pro_charm_quark_II"])
+        self.assertEqual(
+            cbar_products,
+            ["anti_charm_quark_II", "pro_charm_quark_II", "unbound_architrinos_residue"],
+        )
+        self.assertEqual(cbar_request["products"][-1]["electrinoCount"], 6)
+        self.assertEqual(cbar_request["products"][-1]["positrinoCount"], 6)
         self.assertEqual(
             ubar_products,
             ["anti_up_quark_I", "pro_up_quark_I", "unbound_architrinos_residue"],

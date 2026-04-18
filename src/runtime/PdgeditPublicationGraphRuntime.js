@@ -2,6 +2,7 @@ import {
   getPdgeditAssemblyStageXForRole,
   getPdgeditOperatorStageXForSide,
 } from "../apps/pdgedit/PdgeditSurfaceGeometryRuntime.js";
+import { resolvePdgeditCompositeLabelText } from "../apps/pdgedit/PdgeditCompositeLabelRuntime.js";
 import { prepareAcceptedPdgeditDocument } from "./PdgeditAcceptedDocumentRuntime.js";
 
 const PDGEDIT_DOCUMENT_SCHEMA = "pdgedit/v1";
@@ -16,6 +17,169 @@ const ASSEMBLY_ROLE_BY_STAGE = Object.freeze({
 const OPERATOR_SIDE_BY_STAGE = Object.freeze({
   reactantSideOperators: "reactant",
   productSideOperators: "product",
+});
+
+const COMPOSITE_LABEL_SEQUENCE_SPECS = Object.freeze([
+  {
+    type: "noether-quad-composite",
+    recipeSequence: ["pro_noether_core", "anti_noether_core", "pro_noether_core", "anti_noether_core"],
+  },
+  {
+    type: "pro-proton-composite",
+    recipeSequence: ["pro_up_quark", "pro_up_quark", "pro_down_quark"],
+  },
+  {
+    type: "anti-proton-composite",
+    recipeSequence: ["anti_up_quark", "anti_up_quark", "anti_down_quark"],
+  },
+  {
+    type: "pro-neutron-composite",
+    recipeSequence: ["pro_down_quark", "pro_up_quark", "pro_down_quark"],
+  },
+  {
+    type: "anti-neutron-composite",
+    recipeSequence: ["anti_down_quark", "anti_up_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-pion-composite",
+    recipeSequence: ["pro_up_quark", "anti_down_quark"],
+  },
+  {
+    type: "negative-pion-composite",
+    recipeSequence: ["pro_down_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-pion-u-composite",
+    recipeSequence: ["pro_up_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-pion-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-kaon-composite",
+    recipeSequence: ["pro_up_quark", "anti_strange_quark"],
+  },
+  {
+    type: "negative-kaon-composite",
+    recipeSequence: ["pro_strange_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-kaon-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_strange_quark"],
+  },
+  {
+    type: "neutral-kaon-s-composite",
+    recipeSequence: ["pro_strange_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-b-meson-composite",
+    recipeSequence: ["pro_up_quark", "anti_bottom_quark"],
+  },
+  {
+    type: "negative-b-meson-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-b-meson-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_bottom_quark"],
+  },
+  {
+    type: "neutral-b-meson-b-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_down_quark"],
+  },
+]);
+
+const COMPOSITE_LABEL_OCCURRENCE_SPECS = Object.freeze([
+  {
+    canonicalId: "photon",
+    type: "photon-composite",
+    recipeSequence: ["pro_noether_core", "anti_noether_core"],
+  },
+  {
+    canonicalId: "noether_pair",
+    type: "noether-pair-composite",
+    recipeSequence: ["pro_noether_core", "anti_noether_core"],
+  },
+  {
+    canonicalId: "proton",
+    type: "pro-proton-composite",
+    recipeSequence: ["pro_up_quark", "pro_up_quark", "pro_down_quark"],
+  },
+  {
+    canonicalId: "anti_proton",
+    type: "anti-proton-composite",
+    recipeSequence: ["anti_up_quark", "anti_up_quark", "anti_down_quark"],
+  },
+  {
+    canonicalId: "neutron",
+    type: "pro-neutron-composite",
+    recipeSequence: ["pro_down_quark", "pro_up_quark", "pro_down_quark"],
+  },
+  {
+    canonicalId: "anti_neutron",
+    type: "anti-neutron-composite",
+    recipeSequence: ["anti_down_quark", "anti_up_quark", "anti_down_quark"],
+  },
+  {
+    canonicalId: "positive_pion",
+    type: "positive-pion-composite",
+    recipeSequence: ["pro_up_quark", "anti_down_quark"],
+  },
+  {
+    canonicalId: "negative_pion",
+    type: "negative-pion-composite",
+    recipeSequence: ["pro_down_quark", "anti_up_quark"],
+  },
+  {
+    canonicalId: "positive_kaon",
+    type: "positive-kaon-composite",
+    recipeSequence: ["pro_up_quark", "anti_strange_quark"],
+  },
+  {
+    canonicalId: "negative_kaon",
+    type: "negative-kaon-composite",
+    recipeSequence: ["pro_strange_quark", "anti_up_quark"],
+  },
+  {
+    canonicalId: "neutral_kaon",
+    type: "neutral-kaon-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_strange_quark"],
+  },
+  {
+    canonicalId: "anti_neutral_kaon",
+    type: "neutral-kaon-s-composite",
+    recipeSequence: ["pro_strange_quark", "anti_down_quark"],
+  },
+  {
+    canonicalId: "positive_b_meson",
+    type: "positive-b-meson-composite",
+    recipeSequence: ["pro_up_quark", "anti_bottom_quark"],
+  },
+  {
+    canonicalId: "negative_b_meson",
+    type: "negative-b-meson-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_up_quark"],
+  },
+  {
+    canonicalId: "neutral_b_meson",
+    type: "neutral-b-meson-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_bottom_quark"],
+  },
+  {
+    canonicalId: "anti_neutral_b_meson",
+    type: "neutral-b-meson-b-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_down_quark"],
+  },
+]);
+
+const COMPOSITE_LABEL_OCCURRENCE_SPEC_BY_CANONICAL_ID = new Map(
+  COMPOSITE_LABEL_OCCURRENCE_SPECS.map((spec) => [spec.canonicalId, spec])
+);
+
+const COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE = Object.freeze({
+  left: "reactant",
+  right: "product",
 });
 
 function normalizeText(value = "") {
@@ -37,6 +201,76 @@ function normalizePrimitiveCounts(rawCounts) {
     return null;
   }
   return { electrinoCount, positrinoCount };
+}
+
+function normalizeCompositeRecipeId(recipeId = "") {
+  const normalizedRecipeId = normalizeText(recipeId);
+  if (normalizedRecipeId.endsWith("_III")) {
+    return normalizedRecipeId.slice(0, -4);
+  }
+  if (normalizedRecipeId.endsWith("_II")) {
+    return normalizedRecipeId.slice(0, -3);
+  }
+  if (normalizedRecipeId.endsWith("_I")) {
+    return normalizedRecipeId.slice(0, -2);
+  }
+  return normalizedRecipeId;
+}
+
+function normalizeCompositeRowRecord(rowRecord = {}) {
+  return {
+    recipeId: normalizeCompositeRecipeId(rowRecord?.recipeId),
+    occurrenceKey: normalizeText(rowRecord?.occurrenceKey),
+  };
+}
+
+function parseCompositeOccurrenceKey(occurrenceKey = "") {
+  const match = /^(reactant|product)_(.+)_(\d+)\.row\.(\d+)$/u.exec(normalizeText(occurrenceKey));
+  if (!match) {
+    return null;
+  }
+  return {
+    role: match[1],
+    canonicalId: match[2],
+    occurrenceIndex: normalizeInteger(match[3], 0),
+    rowNumber: normalizeInteger(match[4], 0),
+    baseKey: `${match[1]}_${match[2]}_${match[3]}`,
+  };
+}
+
+function matchCompositeOccurrenceLabel(rowRecords = [], startIndex = 0, side = "left") {
+  const firstRow = rowRecords[startIndex];
+  const firstOccurrence = parseCompositeOccurrenceKey(firstRow?.occurrenceKey);
+  if (!firstOccurrence) {
+    return null;
+  }
+  const expectedRole = COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE[normalizeText(side)] ?? "";
+  if (expectedRole && firstOccurrence.role !== expectedRole) {
+    return null;
+  }
+  const occurrenceSpec = COMPOSITE_LABEL_OCCURRENCE_SPEC_BY_CANONICAL_ID.get(firstOccurrence.canonicalId);
+  if (!occurrenceSpec) {
+    return null;
+  }
+  for (let offset = 0; offset < occurrenceSpec.recipeSequence.length; offset += 1) {
+    const rowRecord = rowRecords[startIndex + offset];
+    const occurrence = parseCompositeOccurrenceKey(rowRecord?.occurrenceKey);
+    if (!rowRecord || !occurrence || occurrence.baseKey !== firstOccurrence.baseKey || occurrence.rowNumber !== offset + 1) {
+      return null;
+    }
+    if (normalizeCompositeRecipeId(rowRecord.recipeId) !== occurrenceSpec.recipeSequence[offset]) {
+      return null;
+    }
+  }
+  const nextOccurrence = parseCompositeOccurrenceKey(rowRecords[startIndex + occurrenceSpec.recipeSequence.length]?.occurrenceKey);
+  if (nextOccurrence?.baseKey === firstOccurrence.baseKey) {
+    return null;
+  }
+  return {
+    id: `label.${normalizeText(side)}.${occurrenceSpec.type.replace(/-composite$/u, "")}.${firstOccurrence.baseKey}`,
+    type: occurrenceSpec.type,
+    rowEnd: startIndex + occurrenceSpec.recipeSequence.length - 1,
+  };
 }
 
 function buildUnitsById(publicationGraph = {}) {
@@ -162,29 +396,51 @@ function getResidueSampleCountsFromPublicationGraph(assemblyUnit = {}, unitsById
   return explicitCounts ?? { electrinoCount: 0, positrinoCount: 0 };
 }
 
-function buildCompositeLabels(reactantRecipeIds = [], productRecipeIds = []) {
+function buildCompositeLabelsForSide(rowRecords = [], side = "left") {
+  const normalizedSide = normalizeText(side);
+  const normalizedRows = (Array.isArray(rowRecords) ? rowRecords : []).map(normalizeCompositeRowRecord);
+  const normalizedRecipeIds = normalizedRows.map((rowRecord) => rowRecord.recipeId);
   const compositeLabels = [];
-  if (reactantRecipeIds.join(",") === "pro_down_quark_I,pro_up_quark_I,pro_down_quark_I") {
+  let rowIndex = 0;
+  while (rowIndex < normalizedRecipeIds.length) {
+    const occurrenceMatch = matchCompositeOccurrenceLabel(normalizedRows, rowIndex, normalizedSide);
+    if (occurrenceMatch) {
+      compositeLabels.push({
+        id: occurrenceMatch.id,
+        type: occurrenceMatch.type,
+        side: normalizedSide,
+        text: resolvePdgeditCompositeLabelText(occurrenceMatch.type),
+        rowStart: rowIndex,
+        rowEnd: occurrenceMatch.rowEnd,
+      });
+      rowIndex = occurrenceMatch.rowEnd + 1;
+      continue;
+    }
+    const match = COMPOSITE_LABEL_SEQUENCE_SPECS.find((spec) =>
+      spec.recipeSequence.every((recipeId, offset) => normalizedRecipeIds[rowIndex + offset] === recipeId)
+    );
+    if (!match) {
+      rowIndex += 1;
+      continue;
+    }
     compositeLabels.push({
-      id: "label.left.neutron",
-      type: "pro-neutron-composite",
-      side: "left",
-      text: "Neutron",
-      rowStart: 0,
-      rowEnd: 2,
+      id: `label.${normalizedSide}.${match.type.replace(/-composite$/u, "")}.${rowIndex + 1}`,
+      type: match.type,
+      side: normalizedSide,
+      text: resolvePdgeditCompositeLabelText(match.type),
+      rowStart: rowIndex,
+      rowEnd: rowIndex + match.recipeSequence.length - 1,
     });
-  }
-  if (productRecipeIds.slice(0, 3).join(",") === "pro_up_quark_I,pro_down_quark_I,pro_up_quark_I") {
-    compositeLabels.push({
-      id: "label.right.proton",
-      type: "pro-proton-composite",
-      side: "right",
-      text: "Proton",
-      rowStart: 0,
-      rowEnd: 2,
-    });
+    rowIndex += match.recipeSequence.length;
   }
   return compositeLabels;
+}
+
+function buildCompositeLabels(reactantRows = [], productRows = []) {
+  return [
+    ...buildCompositeLabelsForSide(reactantRows, "left"),
+    ...buildCompositeLabelsForSide(productRows, "right"),
+  ];
 }
 
 function resolveAssemblyPresentationPayload(unit = {}, resolver = null) {
@@ -225,6 +481,10 @@ export function buildPdgeditDocumentFromPublicationGraph(
   const nextRowByStage = new Map();
   const assemblies = [];
   const operators = [];
+  const compositeLabelRowsByRole = {
+    reactant: [],
+    product: [],
+  };
 
   (Array.isArray(publicationGraph?.units) ? publicationGraph.units : []).forEach((unit) => {
     const kind = normalizeText(unit?.kind);
@@ -233,6 +493,7 @@ export function buildPdgeditDocumentFromPublicationGraph(
     nextRowByStage.set(stage, y + 1);
 
     if (kind === "assembly" && ASSEMBLY_ROLE_BY_STAGE[stage]) {
+      const role = ASSEMBLY_ROLE_BY_STAGE[stage];
       const presentation = resolveAssemblyPresentationPayload(unit, resolveAssemblyPresentation);
       const counts = getAssemblyUnitCounts(unit) ?? { electrinoCount: 0, positrinoCount: 0 };
       const residueCounts =
@@ -242,10 +503,10 @@ export function buildPdgeditDocumentFromPublicationGraph(
       assemblies.push({
         id: normalizeText(unit?.id),
         type: presentation.type,
-        x: getPdgeditAssemblyStageXForRole(ASSEMBLY_ROLE_BY_STAGE[stage]),
+        x: getPdgeditAssemblyStageXForRole(role),
         y,
         title: normalizeText(unit?.title) || presentation.title || presentation.type,
-        role: ASSEMBLY_ROLE_BY_STAGE[stage],
+        role,
         tiles: [...presentation.tiles],
         primitiveCounts: {
           electrinoCount: residueCounts?.electrinoCount ?? counts.electrinoCount,
@@ -260,6 +521,12 @@ export function buildPdgeditDocumentFromPublicationGraph(
             }
           : {}),
       });
+      if (role === "reactant" || role === "product") {
+        compositeLabelRowsByRole[role].push({
+          recipeId: normalizeText(unit?.recipeId),
+          occurrenceKey: normalizeText(unit?.occurrenceKey),
+        });
+      }
       return;
     }
 
@@ -289,14 +556,7 @@ export function buildPdgeditDocumentFromPublicationGraph(
         ? { primitiveCounts: normalizePrimitiveCounts(edge?.primitiveCounts) }
         : {}),
     })),
-    compositeLabels: buildCompositeLabels(
-      assemblies
-        .filter((assembly) => assembly.role === "reactant")
-        .map((assembly) => normalizeText(publicationGraph.units.find((unit) => unit.id === assembly.id)?.recipeId)),
-      assemblies
-        .filter((assembly) => assembly.role === "product")
-        .map((assembly) => normalizeText(publicationGraph.units.find((unit) => unit.id === assembly.id)?.recipeId))
-    ),
+    compositeLabels: buildCompositeLabels(compositeLabelRowsByRole.reactant, compositeLabelRowsByRole.product),
   };
 
   return prepareForDisplay ? prepareAcceptedPdgeditDocument(document) : document;

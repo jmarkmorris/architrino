@@ -21,8 +21,12 @@ import {
   PDGEDIT_RESERVED_TOP_ROW_COUNT,
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
-import { resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
+import { resolvePdgeditCompositeLabelTileKey } from "./PdgeditCompositeLabelRuntime.js";
+import { getPdgeditFrameGeometry, resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
+
+const PDGEDIT_BALANCE_EPSILON_GLYPH = "ϵ";
+const PDGEDIT_BALANCE_EPSILON_FONT_FAMILY = "'STIX Two Text', Cambria Math, Georgia, serif";
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -171,6 +175,19 @@ function createTextElement(documentLike, tagName, className, textContent) {
   }
   element.textContent = textContent;
   return element;
+}
+
+function getPdgeditBalanceTypography(tileCatalog = {}) {
+  const textLayout = tileCatalog?.textLayout ?? {};
+  const fontSizePx = Number(textLayout.fontSizePx) || 11.75;
+  const fontWeight = Number(textLayout.fontWeight) || 700;
+  const fontFamily = normalizeText(textLayout.fontFamily) || '"Helvetica Neue", Helvetica, Arial, sans-serif';
+  return {
+    fontSizePx,
+    fontWeight,
+    fontFamily,
+    superscriptSizePx: Math.max(7, fontSizePx - 2.5),
+  };
 }
 
 function createReactionParticipantElement(documentLike, text) {
@@ -334,12 +351,29 @@ function resolvePdgeditConnectorHighlightColor(catalog, model) {
   return resolvePdgeditCatalogColor(catalog, "purple");
 }
 
-function createBalanceTermElement(documentLike, className, label, count) {
-  const element = documentLike.createElement("span");
-  element.className = `pdgedit-balance-term ${className}`;
+function createBalanceLabelElement(documentLike, sign, tileCatalog) {
+  const typography = getPdgeditBalanceTypography(tileCatalog);
   const labelElement = documentLike.createElement("span");
   labelElement.className = "pdgedit-balance-label";
-  labelElement.textContent = label;
+
+  const epsilonElement = documentLike.createElement("span");
+  epsilonElement.className = "pdgedit-balance-epsilon";
+  epsilonElement.textContent = PDGEDIT_BALANCE_EPSILON_GLYPH;
+  epsilonElement.style.fontFamily = PDGEDIT_BALANCE_EPSILON_FONT_FAMILY;
+
+  const signElement = documentLike.createElement("span");
+  signElement.className = "pdgedit-balance-sign";
+  signElement.textContent = sign;
+  signElement.style.fontSize = `${typography.superscriptSizePx}px`;
+
+  labelElement.append(epsilonElement, signElement);
+  return labelElement;
+}
+
+function createBalanceTermElement(documentLike, className, sign, count, tileCatalog) {
+  const element = documentLike.createElement("span");
+  element.className = `pdgedit-balance-term ${className}`;
+  const labelElement = createBalanceLabelElement(documentLike, sign, tileCatalog);
   const countElement = documentLike.createElement("span");
   countElement.className = "pdgedit-balance-count";
   countElement.textContent = String(normalizeInteger(count));
@@ -347,28 +381,34 @@ function createBalanceTermElement(documentLike, className, label, count) {
   return element;
 }
 
-function createBalanceBadgeElement(documentLike, role, totals) {
+function createBalanceBadgeElement(documentLike, role, totals, tileCatalog) {
   const stageX = getPdgeditAssemblyStageXForRole(role);
   if (!stageX) {
     return null;
   }
+  const typography = getPdgeditBalanceTypography(tileCatalog);
   const element = documentLike.createElement("div");
   element.className = "pdgedit-balance-badge";
   element.dataset.balanceRole = role;
   element.style.left = `${(stageX - 1) * PDGEDIT_TILE_SIZE_PX + PDGEDIT_TILE_SIZE_PX * 2}px`;
+  element.style.fontFamily = typography.fontFamily;
+  element.style.fontSize = `${typography.fontSizePx}px`;
+  element.style.fontWeight = String(typography.fontWeight);
   element.append(
     createBalanceTermElement(
       documentLike,
       "is-negative",
-      "\u03b5\u207b",
+      "\u2212",
       totals?.epsilonMinusCount,
+      tileCatalog,
     ),
     createTextElement(documentLike, "span", "pdgedit-balance-separator", ":"),
     createBalanceTermElement(
       documentLike,
       "is-positive",
-      "\u03b5\u207a",
+      "+",
       totals?.epsilonPlusCount,
+      tileCatalog,
     ),
   );
   return element;
@@ -550,12 +590,12 @@ export function createPdgeditAppRuntime({
         button.setAttribute("aria-pressed", isSelected ? "true" : "false");
       });
     }
-    documentPanelElement.replaceChildren(
-      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
-      ...(filteredEntries.length
-        ? []
-        : [createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")]),
-      ...filteredEntries.map((entry) => {
+    const optionList = documentLike.createElement("div");
+    optionList.className = "pdgedit-document-option-list";
+    if (!filteredEntries.length) {
+      optionList.append(createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions."));
+    } else {
+      filteredEntries.forEach((entry) => {
         const option = documentLike.createElement("button");
         option.type = "button";
         option.className = "pdgedit-document-option";
@@ -564,8 +604,12 @@ export function createPdgeditAppRuntime({
         option.setAttribute("aria-selected", entry.id === state.selectedEntry?.id ? "true" : "false");
         option.classList.toggle("is-selected", entry.id === state.selectedEntry?.id);
         option.textContent = entry.displayTitle;
-        return option;
-      })
+        optionList.append(option);
+      });
+    }
+    documentPanelElement.replaceChildren(
+      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
+      optionList
     );
   }
 
@@ -684,17 +728,20 @@ export function createPdgeditAppRuntime({
     const reactantBadge = createBalanceBadgeElement(
       documentLike,
       "reactant",
-      balanceSummary.reactantTotals
+      balanceSummary.reactantTotals,
+      state.tileCatalog,
     );
     const productBadge = createBalanceBadgeElement(
       documentLike,
       "product",
-      balanceSummary.productTotals
+      balanceSummary.productTotals,
+      state.tileCatalog,
     );
     balanceLayerElement.replaceChildren(...[reactantBadge, productBadge].filter(Boolean));
   }
 
   function createCompositeLabelElement(label) {
+    const frame = getPdgeditFrameGeometry(state.tileCatalog);
     const wrapper = documentLike.createElement("div");
     wrapper.className = `pdgedit-composite-label pdgedit-composite-label-${label.side}`;
     wrapper.dataset.compositeType = label.type;
@@ -705,8 +752,16 @@ export function createPdgeditAppRuntime({
 
     const line = documentLike.createElement("div");
     line.className = "pdgedit-composite-line";
-    const text = createTextElement(documentLike, "div", "pdgedit-composite-text", label.text);
-    wrapper.append(line, text);
+    line.style.top = `${frame.outerInset}px`;
+    line.style.bottom = `${frame.outerInset}px`;
+    line.style.left = label.side === "left" ? "100%" : "0";
+    line.style.zIndex = "2";
+    const tileKey = resolvePdgeditCompositeLabelTileKey(label.type) || normalizeText(label.type) || label.text;
+    const tileElement = createTileElement(tileKey);
+    tileElement.classList.add("pdgedit-composite-tile");
+    tileElement.setAttribute("aria-hidden", "true");
+    tileElement.style.zIndex = "1";
+    wrapper.append(tileElement, line);
     return wrapper;
   }
 

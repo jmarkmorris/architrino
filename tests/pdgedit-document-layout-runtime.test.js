@@ -393,14 +393,85 @@ test("lane ordering keeps unbound architrinos last while reordering free rows be
   );
 });
 
+test("non-canonical review layouts keep their original dense row geometry", () => {
+  const document = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
+  const sorted = sortPdgeditCatalystPassThruChainsToTop(document);
+
+  assert.deepEqual(
+    sorted.assemblies.map(({ id, x, y, role }) => ({ id, x, y, role })),
+    document.assemblies.map(({ id, x, y, role }) => ({ id, x, y, role }))
+  );
+  assert.deepEqual(sorted.operators, document.operators);
+  assert.deepEqual(sorted.compositeLabels, document.compositeLabels);
+});
+
 test("document loading applies catalyst top-sorting before pdgedit renders the document", async () => {
+  const sourceDocument = {
+    schema: "pdgedit/v1",
+    assemblies: [
+      {
+        id: "intermediate_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 9,
+        y: 1,
+        title: "Intermediate Up Quark",
+        role: "intermediate",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+      {
+        id: "product_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 16,
+        y: 2,
+        title: "Output Up Quark",
+        role: "product",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+      {
+        id: "reactant_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 2,
+        y: 3,
+        title: "Input Up Quark",
+        role: "reactant",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+    ],
+    operators: [
+      {
+        id: "pass_thru_stage_2",
+        type: "pass-thru",
+        x: 14,
+        y: 2,
+        title: "Pass Thru",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+      {
+        id: "pass_thru_stage_1",
+        type: "pass-thru",
+        x: 7,
+        y: 3,
+        title: "Pass Thru",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+    ],
+    links: [
+      { id: "edge_1", endpointA: "reactant_up_quark", endpointB: "pass_thru_stage_1" },
+      { id: "edge_2", endpointA: "pass_thru_stage_1", endpointB: "intermediate_up_quark" },
+      { id: "edge_3", endpointA: "intermediate_up_quark", endpointB: "pass_thru_stage_2" },
+      { id: "edge_4", endpointA: "pass_thru_stage_2", endpointB: "product_up_quark" },
+    ],
+    compositeLabels: [],
+  };
   const loaded = await loadPdgeditDocument({
-    specUrl: "https://architrino.local/content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+    specUrl: "https://architrino.local/content/contracts/examples/pdgedit/synthetic_pass_thru_chain.v1.json",
     fetchImpl: async () => ({
       ok: true,
       status: 200,
       statusText: "OK",
-      json: async () => readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json"),
+      json: async () => sourceDocument,
     }),
   });
 
