@@ -1147,7 +1147,8 @@ def build_live_reaction_summary_rows(
             residue_count_buckets[residue_counts] += 1
             if residue_counts not in residue_count_examples:
                 residue_count_examples[residue_counts] = (
-                    str(entry.get("caseId", "")).strip()
+                    str(entry.get("title", "")).strip()
+                    or str(entry.get("caseId", "")).strip()
                     or str(entry.get("proposalId", "")).strip()
                     or str(pdgsolve_request.get("requestId", "")).strip()
                 )
@@ -1411,7 +1412,7 @@ def write_live_reaction_summary_markdown(
         body.extend(
             [
                 "",
-                "| Product Unbound Architrino Counts | Count | Example Reaction ID |",
+                "| Product Unbound Architrino Counts | Count | Example Mode |",
                 "| --- | --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
