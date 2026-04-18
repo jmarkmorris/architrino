@@ -457,35 +457,31 @@
 
       .pdgedit-composite-label {
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 4px;
-      }
-
-      .pdgedit-composite-label-left {
-        flex-direction: row;
-      }
-
-      .pdgedit-composite-label-right {
-        flex-direction: row-reverse;
+        width: 80px;
+        overflow: visible;
       }
 
       .pdgedit-composite-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
         width: 1px;
-        height: 100%;
         background: rgba(245, 247, 255, 0.7);
       }
 
-      .pdgedit-composite-text {
-        max-width: 56px;
-        color: #f5f7ff;
-        font-size: 11px;
-        font-weight: 600;
-        line-height: 1.2;
-        text-align: center;
-        text-wrap: balance;
+      .pdgedit-composite-label-left .pdgedit-composite-line {
+        right: 1px;
+      }
+
+      .pdgedit-composite-label-right .pdgedit-composite-line {
+        left: 1px;
+      }
+
+      .pdgedit-composite-tile {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
       }
 
       .pdgedit-create-list {

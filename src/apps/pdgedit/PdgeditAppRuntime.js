@@ -21,6 +21,7 @@ import {
   PDGEDIT_RESERVED_TOP_ROW_COUNT,
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
+import { resolvePdgeditCompositeLabelTileKey } from "./PdgeditCompositeLabelRuntime.js";
 import { resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
 
@@ -705,8 +706,11 @@ export function createPdgeditAppRuntime({
 
     const line = documentLike.createElement("div");
     line.className = "pdgedit-composite-line";
-    const text = createTextElement(documentLike, "div", "pdgedit-composite-text", label.text);
-    wrapper.append(line, text);
+    const tileKey = resolvePdgeditCompositeLabelTileKey(label.type) || normalizeText(label.type) || label.text;
+    const tileElement = createTileElement(tileKey);
+    tileElement.classList.add("pdgedit-composite-tile");
+    tileElement.setAttribute("aria-hidden", "true");
+    wrapper.append(line, tileElement);
     return wrapper;
   }
 

@@ -3,6 +3,13 @@ import {
   normalizePdgeditDocument,
 } from "./PdgeditDocumentRuntime.js";
 import {
+  buildPdgeditCompositeBlocks,
+  buildPdgeditRowByObjectIdFromBlocks,
+  findPdgeditCompositeBlockInsertionIndex,
+  getPdgeditCompositeBlockMembership,
+  rebuildPdgeditCompositeLabelsForRole,
+} from "./PdgeditCompositeLabelRuntime.js";
+import {
   getPdgeditAssemblyStageXForRole,
   getPdgeditObjectRect,
   getPdgeditRoleForAssemblyX,
@@ -222,13 +229,6 @@ function hasOverlapWithObjects(candidate = {}, objects = []) {
   });
 }
 
-function compactLaneRecords(records = []) {
-  return [...records].sort(compareByYThenXThenId).map((record, index) => ({
-    ...record,
-    y: index,
-  }));
-}
-
 function replaceAssembliesForRole(document, role, nextRoleAssemblies) {
   const cloned = cloneDocument(document);
   cloned.assemblies = [
@@ -260,6 +260,44 @@ function getCompactOperatorsForX(document, x, excludedId = "") {
         normalizeInteger(operator.x) === normalizeInteger(x) && operator.id !== normalizeText(excludedId)
     )
     .sort(compareByYThenXThenId);
+}
+
+function buildCompositeBlocksForRole(document, role) {
+  const normalizedRole = normalizeText(role);
+  if (!normalizedRole) {
+    return [];
+  }
+  const normalizedDocument = normalizePdgeditDocument(document);
+  return buildPdgeditCompositeBlocks(
+    getCompactAssembliesForRole(normalizedDocument, normalizedRole),
+    normalizedDocument.compositeLabels,
+    normalizedRole
+  );
+}
+
+function getBlockRowCount(block = {}) {
+  return (Array.isArray(block?.objectIds) ? block.objectIds : []).filter(Boolean).length;
+}
+
+function buildAssembliesFromBlocks(assemblies = [], blocks = []) {
+  const rowById = buildPdgeditRowByObjectIdFromBlocks(blocks);
+  return assemblies
+    .map((assembly) => ({
+      ...assembly,
+      y: rowById.get(assembly.id),
+    }))
+    .filter((assembly) => Number.isFinite(assembly.y))
+    .sort(compareByYThenXThenId);
+}
+
+function replaceAssembliesAndCompositeLabelsForRole(document, role, nextRoleAssemblies, nextBlocks) {
+  const nextDocument = replaceAssembliesForRole(document, role, nextRoleAssemblies);
+  nextDocument.compositeLabels = rebuildPdgeditCompositeLabelsForRole(
+    nextDocument.compositeLabels,
+    role,
+    nextBlocks
+  );
+  return nextDocument;
 }
 
 function normalizeAssemblyInsertionRow(document, role, requestedRow) {
@@ -339,24 +377,35 @@ export function createPdgeditAssembly(document = {}, template = {}, role = "", r
   const normalizedDocument = normalizePdgeditDocument(document);
   const insertionRow = normalizeAssemblyInsertionRow(normalizedDocument, normalizedRole, requestedRow);
   const compactStage = getCompactAssembliesForRole(normalizedDocument, normalizedRole);
-  const nextStage = [
-    ...compactStage.slice(0, insertionRow),
-    {
-      id: buildAssemblyId(normalizedDocument, template.type),
-      type: normalizeText(template.type),
-      x: stageX,
-      y: insertionRow,
-      title: normalizeText(template.title) || normalizeText(template.displayTitle) || normalizeText(template.type),
-      role: normalizedRole,
-      tiles: template.tiles.map((tileKey) => normalizeText(tileKey)),
-    },
-    ...compactStage.slice(insertionRow),
-  ].map((assembly, index) => ({
-    ...assembly,
-    y: index,
-  }));
-  const nextDocument = replaceAssembliesForRole(normalizedDocument, normalizedRole, nextStage);
-  const createdAssembly = nextStage[insertionRow];
+  const createdAssembly = {
+    id: buildAssemblyId(normalizedDocument, template.type),
+    type: normalizeText(template.type),
+    x: stageX,
+    y: insertionRow,
+    title: normalizeText(template.title) || normalizeText(template.displayTitle) || normalizeText(template.type),
+    role: normalizedRole,
+    tiles: template.tiles.map((tileKey) => normalizeText(tileKey)),
+  };
+  const laneBlocks = buildCompositeBlocksForRole(normalizedDocument, normalizedRole);
+  const createdBlock = {
+    id: `assembly:${createdAssembly.id}`,
+    role: normalizedRole,
+    objectIds: [createdAssembly.id],
+    label: null,
+  };
+  const insertionIndex = findPdgeditCompositeBlockInsertionIndex(laneBlocks, insertionRow);
+  const nextBlocks = [
+    ...laneBlocks.slice(0, insertionIndex),
+    createdBlock,
+    ...laneBlocks.slice(insertionIndex),
+  ];
+  const nextStage = buildAssembliesFromBlocks([...compactStage, createdAssembly], nextBlocks);
+  const nextDocument = replaceAssembliesAndCompositeLabelsForRole(
+    normalizedDocument,
+    normalizedRole,
+    nextStage,
+    nextBlocks
+  );
   return {
     ok: true,
     document: nextDocument,
@@ -428,19 +477,32 @@ export function movePdgeditObjectToRow(document = {}, objectId = "", requestedRo
     return { ok: false, document: normalizedDocument };
   }
   if (object.kind === "assembly") {
-    const compactLane = getCompactAssembliesForRole(normalizedDocument, object.role, object.id);
-    const insertionRow = Math.max(0, Math.min(normalizedRow, compactLane.length));
-    const nextLane = [
-      ...compactLane.slice(0, insertionRow),
-      object,
-      ...compactLane.slice(insertionRow),
-    ].map((assembly, index) => ({
-      ...assembly,
-      y: index,
-    }));
+    const compactLane = getCompactAssembliesForRole(normalizedDocument, object.role);
+    const laneBlocks = buildCompositeBlocksForRole(normalizedDocument, object.role);
+    const membership = getPdgeditCompositeBlockMembership(laneBlocks, object.id);
+    if (!membership) {
+      return { ok: false, document: normalizedDocument };
+    }
+    const movingBlock = membership.block;
+    const movingMemberOffset = membership.memberIndex;
+    const remainingBlocks = laneBlocks.filter((_block, blockIndex) => blockIndex !== membership.blockIndex);
+    const maxStartRow = remainingBlocks.reduce((total, block) => total + getBlockRowCount(block), 0);
+    const requestedStartRow = Math.max(0, Math.min(normalizedRow - movingMemberOffset, maxStartRow));
+    const insertionIndex = findPdgeditCompositeBlockInsertionIndex(remainingBlocks, requestedStartRow);
+    const nextBlocks = [
+      ...remainingBlocks.slice(0, insertionIndex),
+      movingBlock,
+      ...remainingBlocks.slice(insertionIndex),
+    ];
+    const nextLane = buildAssembliesFromBlocks(compactLane, nextBlocks);
     return {
       ok: true,
-      document: replaceAssembliesForRole(normalizedDocument, object.role, nextLane),
+      document: replaceAssembliesAndCompositeLabelsForRole(
+        normalizedDocument,
+        object.role,
+        nextLane,
+        nextBlocks
+      ),
     };
   }
   const compactLane = getCompactOperatorsForX(normalizedDocument, object.x, object.id);
@@ -470,13 +532,48 @@ export function deletePdgeditObject(document = {}, objectId = "") {
     (link) => link.endpointA !== object.id && link.endpointB !== object.id
   );
   if (object.kind === "assembly") {
-    const compactedLane = compactLaneRecords(
-      nextDocument.assemblies.filter((assembly) => assembly.role === object.role && assembly.id !== object.id)
+    const compactLane = getCompactAssembliesForRole(nextDocument, object.role);
+    const laneBlocks = buildCompositeBlocksForRole(nextDocument, object.role);
+    const membership = getPdgeditCompositeBlockMembership(laneBlocks, object.id);
+    if (!membership) {
+      return { ok: false, document: normalizedDocument };
+    }
+    const nextBlocks = laneBlocks.flatMap((block, blockIndex) => {
+      if (blockIndex !== membership.blockIndex) {
+        return [block];
+      }
+      const nextObjectIds = block.objectIds.filter((candidateId) => candidateId !== object.id);
+      if (!nextObjectIds.length) {
+        return [];
+      }
+      if (block.label) {
+        return nextObjectIds.map((candidateId) => ({
+          id: `assembly:${candidateId}`,
+          role: block.role,
+          side: block.side,
+          objectIds: [candidateId],
+          label: null,
+        }));
+      }
+      return [
+        {
+          ...block,
+          objectIds: nextObjectIds,
+        },
+      ];
+    });
+    const compactedLane = buildAssembliesFromBlocks(
+      compactLane.filter((assembly) => assembly.id !== object.id),
+      nextBlocks
     );
-    nextDocument.assemblies = [
-      ...nextDocument.assemblies.filter((assembly) => assembly.role !== object.role && assembly.id !== object.id),
-      ...compactedLane,
-    ].sort(compareByYThenXThenId);
+    const rewrittenDocument = replaceAssembliesAndCompositeLabelsForRole(
+      nextDocument,
+      object.role,
+      compactedLane,
+      nextBlocks
+    );
+    nextDocument.assemblies = rewrittenDocument.assemblies;
+    nextDocument.compositeLabels = rewrittenDocument.compositeLabels;
   } else {
     nextDocument.operators = nextDocument.operators
       .filter((operator) => operator.id !== object.id)

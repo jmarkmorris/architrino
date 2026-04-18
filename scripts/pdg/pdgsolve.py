@@ -44,6 +44,94 @@ LIVE_PDGEDIT_EXACT_ENTRY_LIMIT = 16
 LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT = 16
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 
+PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS = (
+    {
+        "type": "noether-quad-composite",
+        "text": "Noether Quad",
+        "recipeSequence": ("pro_noether_core", "anti_noether_core", "pro_noether_core", "anti_noether_core"),
+    },
+    {
+        "type": "pro-proton-composite",
+        "text": "Proton",
+        "recipeSequence": ("pro_up_quark", "pro_down_quark", "pro_up_quark"),
+    },
+    {
+        "type": "anti-proton-composite",
+        "text": "Anti Proton",
+        "recipeSequence": ("anti_up_quark", "anti_down_quark", "anti_up_quark"),
+    },
+    {
+        "type": "pro-neutron-composite",
+        "text": "Neutron",
+        "recipeSequence": ("pro_down_quark", "pro_up_quark", "pro_down_quark"),
+    },
+    {
+        "type": "anti-neutron-composite",
+        "text": "Anti Neutron",
+        "recipeSequence": ("anti_down_quark", "anti_up_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-pion-composite",
+        "text": "Positive Pion",
+        "recipeSequence": ("pro_up_quark", "anti_down_quark"),
+    },
+    {
+        "type": "negative-pion-composite",
+        "text": "Negative Pion",
+        "recipeSequence": ("pro_down_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-pion-u-composite",
+        "text": "Neutral Pion",
+        "recipeSequence": ("pro_up_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-pion-d-composite",
+        "text": "Neutral Pion",
+        "recipeSequence": ("pro_down_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-kaon-composite",
+        "text": "Positive Kaon",
+        "recipeSequence": ("pro_up_quark", "anti_strange_quark"),
+    },
+    {
+        "type": "negative-kaon-composite",
+        "text": "Negative Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-kaon-d-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_down_quark", "anti_strange_quark"),
+    },
+    {
+        "type": "neutral-kaon-s-composite",
+        "text": "Neutral Kaon",
+        "recipeSequence": ("pro_strange_quark", "anti_down_quark"),
+    },
+    {
+        "type": "positive-b-meson-composite",
+        "text": "Positive B Meson",
+        "recipeSequence": ("pro_up_quark", "anti_bottom_quark"),
+    },
+    {
+        "type": "negative-b-meson-composite",
+        "text": "Negative B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_up_quark"),
+    },
+    {
+        "type": "neutral-b-meson-d-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_down_quark", "anti_bottom_quark"),
+    },
+    {
+        "type": "neutral-b-meson-b-composite",
+        "text": "Neutral B Meson",
+        "recipeSequence": ("pro_bottom_quark", "anti_down_quark"),
+    },
+)
+
 ASSEMBLY_DISPLAY = {
     "pro_noether_core_I": {
         "title": "Pro Noether Core",
@@ -2433,30 +2521,47 @@ def build_pdgedit_composite_labels(
     reactant_recipe_ids: list[str],
     product_recipe_ids: list[str],
 ) -> list[dict[str, Any]]:
-    composite_labels = []
-    if reactant_recipe_ids == ["pro_down_quark_I", "pro_up_quark_I", "pro_down_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.left.neutron",
-                "type": "pro-neutron-composite",
-                "side": "left",
-                "text": "Neutron",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
-    if product_recipe_ids[:3] == ["pro_up_quark_I", "pro_down_quark_I", "pro_up_quark_I"]:
-        composite_labels.append(
-            {
-                "id": "label.right.proton",
-                "type": "pro-proton-composite",
-                "side": "right",
-                "text": "Proton",
-                "rowStart": 0,
-                "rowEnd": 2,
-            }
-        )
-    return composite_labels
+    def normalize_composite_recipe_id(recipe_id: str) -> str:
+        normalized_recipe_id = normalize_text(recipe_id)
+        for suffix in ("_III", "_II", "_I"):
+            if normalized_recipe_id.endswith(suffix):
+                return normalized_recipe_id[: -len(suffix)]
+        return normalized_recipe_id
+
+    def build_side_labels(recipe_ids: list[str], side: str) -> list[dict[str, Any]]:
+        normalized_recipe_ids = [normalize_composite_recipe_id(recipe_id) for recipe_id in recipe_ids]
+        composite_labels: list[dict[str, Any]] = []
+        row_index = 0
+        while row_index < len(normalized_recipe_ids):
+            match = next(
+                (
+                    spec
+                    for spec in PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS
+                    if all(
+                        row_index + offset < len(normalized_recipe_ids)
+                        and normalized_recipe_ids[row_index + offset] == recipe_id
+                        for offset, recipe_id in enumerate(spec["recipeSequence"])
+                    )
+                ),
+                None,
+            )
+            if match is None:
+                row_index += 1
+                continue
+            composite_labels.append(
+                {
+                    "id": f"label.{side}.{match['type'].removesuffix('-composite')}.{row_index + 1}",
+                    "type": match["type"],
+                    "side": side,
+                    "text": match["text"],
+                    "rowStart": row_index,
+                    "rowEnd": row_index + len(match["recipeSequence"]) - 1,
+                }
+            )
+            row_index += len(match["recipeSequence"])
+        return composite_labels
+
+    return [*build_side_labels(reactant_recipe_ids, "left"), *build_side_labels(product_recipe_ids, "right")]
 
 
 def build_pdgedit_assembly_entry(

@@ -2,6 +2,7 @@ import {
   getPdgeditAssemblyStageXForRole,
   getPdgeditOperatorStageXForSide,
 } from "../apps/pdgedit/PdgeditSurfaceGeometryRuntime.js";
+import { resolvePdgeditCompositeLabelText } from "../apps/pdgedit/PdgeditCompositeLabelRuntime.js";
 import { prepareAcceptedPdgeditDocument } from "./PdgeditAcceptedDocumentRuntime.js";
 
 const PDGEDIT_DOCUMENT_SCHEMA = "pdgedit/v1";
@@ -17,6 +18,77 @@ const OPERATOR_SIDE_BY_STAGE = Object.freeze({
   reactantSideOperators: "reactant",
   productSideOperators: "product",
 });
+
+const COMPOSITE_LABEL_SEQUENCE_SPECS = Object.freeze([
+  {
+    type: "noether-quad-composite",
+    recipeSequence: ["pro_noether_core", "anti_noether_core", "pro_noether_core", "anti_noether_core"],
+  },
+  {
+    type: "pro-proton-composite",
+    recipeSequence: ["pro_up_quark", "pro_down_quark", "pro_up_quark"],
+  },
+  {
+    type: "anti-proton-composite",
+    recipeSequence: ["anti_up_quark", "anti_down_quark", "anti_up_quark"],
+  },
+  {
+    type: "pro-neutron-composite",
+    recipeSequence: ["pro_down_quark", "pro_up_quark", "pro_down_quark"],
+  },
+  {
+    type: "anti-neutron-composite",
+    recipeSequence: ["anti_down_quark", "anti_up_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-pion-composite",
+    recipeSequence: ["pro_up_quark", "anti_down_quark"],
+  },
+  {
+    type: "negative-pion-composite",
+    recipeSequence: ["pro_down_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-pion-u-composite",
+    recipeSequence: ["pro_up_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-pion-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-kaon-composite",
+    recipeSequence: ["pro_up_quark", "anti_strange_quark"],
+  },
+  {
+    type: "negative-kaon-composite",
+    recipeSequence: ["pro_strange_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-kaon-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_strange_quark"],
+  },
+  {
+    type: "neutral-kaon-s-composite",
+    recipeSequence: ["pro_strange_quark", "anti_down_quark"],
+  },
+  {
+    type: "positive-b-meson-composite",
+    recipeSequence: ["pro_up_quark", "anti_bottom_quark"],
+  },
+  {
+    type: "negative-b-meson-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_up_quark"],
+  },
+  {
+    type: "neutral-b-meson-d-composite",
+    recipeSequence: ["pro_down_quark", "anti_bottom_quark"],
+  },
+  {
+    type: "neutral-b-meson-b-composite",
+    recipeSequence: ["pro_bottom_quark", "anti_down_quark"],
+  },
+]);
 
 function normalizeText(value = "") {
   return String(value ?? "").trim();
@@ -37,6 +109,20 @@ function normalizePrimitiveCounts(rawCounts) {
     return null;
   }
   return { electrinoCount, positrinoCount };
+}
+
+function normalizeCompositeRecipeId(recipeId = "") {
+  const normalizedRecipeId = normalizeText(recipeId);
+  if (normalizedRecipeId.endsWith("_III")) {
+    return normalizedRecipeId.slice(0, -4);
+  }
+  if (normalizedRecipeId.endsWith("_II")) {
+    return normalizedRecipeId.slice(0, -3);
+  }
+  if (normalizedRecipeId.endsWith("_I")) {
+    return normalizedRecipeId.slice(0, -2);
+  }
+  return normalizedRecipeId;
 }
 
 function buildUnitsById(publicationGraph = {}) {
@@ -162,29 +248,37 @@ function getResidueSampleCountsFromPublicationGraph(assemblyUnit = {}, unitsById
   return explicitCounts ?? { electrinoCount: 0, positrinoCount: 0 };
 }
 
-function buildCompositeLabels(reactantRecipeIds = [], productRecipeIds = []) {
+function buildCompositeLabelsForSide(recipeIds = [], side = "left") {
+  const normalizedSide = normalizeText(side);
+  const normalizedRecipeIds = (Array.isArray(recipeIds) ? recipeIds : []).map(normalizeCompositeRecipeId);
   const compositeLabels = [];
-  if (reactantRecipeIds.join(",") === "pro_down_quark_I,pro_up_quark_I,pro_down_quark_I") {
+  let rowIndex = 0;
+  while (rowIndex < normalizedRecipeIds.length) {
+    const match = COMPOSITE_LABEL_SEQUENCE_SPECS.find((spec) =>
+      spec.recipeSequence.every((recipeId, offset) => normalizedRecipeIds[rowIndex + offset] === recipeId)
+    );
+    if (!match) {
+      rowIndex += 1;
+      continue;
+    }
     compositeLabels.push({
-      id: "label.left.neutron",
-      type: "pro-neutron-composite",
-      side: "left",
-      text: "Neutron",
-      rowStart: 0,
-      rowEnd: 2,
+      id: `label.${normalizedSide}.${match.type.replace(/-composite$/u, "")}.${rowIndex + 1}`,
+      type: match.type,
+      side: normalizedSide,
+      text: resolvePdgeditCompositeLabelText(match.type),
+      rowStart: rowIndex,
+      rowEnd: rowIndex + match.recipeSequence.length - 1,
     });
-  }
-  if (productRecipeIds.slice(0, 3).join(",") === "pro_up_quark_I,pro_down_quark_I,pro_up_quark_I") {
-    compositeLabels.push({
-      id: "label.right.proton",
-      type: "pro-proton-composite",
-      side: "right",
-      text: "Proton",
-      rowStart: 0,
-      rowEnd: 2,
-    });
+    rowIndex += match.recipeSequence.length;
   }
   return compositeLabels;
+}
+
+function buildCompositeLabels(reactantRecipeIds = [], productRecipeIds = []) {
+  return [
+    ...buildCompositeLabelsForSide(reactantRecipeIds, "left"),
+    ...buildCompositeLabelsForSide(productRecipeIds, "right"),
+  ];
 }
 
 function resolveAssemblyPresentationPayload(unit = {}, resolver = null) {
