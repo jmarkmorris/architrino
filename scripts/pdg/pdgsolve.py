@@ -1384,6 +1384,106 @@ def compute_added_tri_binary_support_pair_count(
     return max(required_pair_count_by_charge.values())
 
 
+def build_direct_core_supply_from_reactant_cores(
+    remaining_reactant_cores: list[dict[str, Any]],
+    product_core_counts: dict[str, int],
+    middle_supply_counts: dict[str, int],
+    *,
+    reactant_operator_choices: list[dict[str, Any]],
+    intermediate_occurrences: list[dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]] | None:
+    available_core_pool: dict[str, list[dict[str, Any]]] = {
+        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    for occurrence in remaining_reactant_cores:
+        available_core_pool[normalize_text(occurrence.get("assemblyId"))].append(clone_json(occurrence))
+
+    direct_core_pool: dict[str, list[dict[str, Any]]] = {
+        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+
+    def materialize_direct_core(
+        source_occurrence: dict[str, Any],
+        target_assembly_id: str,
+        *,
+        suffix: str,
+    ) -> dict[str, Any] | None:
+        source_assembly_id = normalize_text(source_occurrence.get("assemblyId"))
+        if source_assembly_id == target_assembly_id:
+            intermediate = build_intermediate_clone(source_occurrence, suffix)
+            intermediate_occurrences.append(clone_json(intermediate))
+            reactant_operator_choices.append(
+                build_operator_choice(
+                    f"reactant_operator.{slugify(normalize_text(source_occurrence.get('id')))}.{suffix}.pass_thru",
+                    "pass-thru",
+                    law_id=get_pass_thru_law(source_assembly_id)["lawId"],
+                    input_occurrence_keys=[normalize_text(source_occurrence.get("id"))],
+                    output_occurrence_keys=[normalize_text(intermediate.get("id"))],
+                )
+            )
+            return intermediate
+        return add_single_dissociation(
+            source_occurrence,
+            reactant_operator_choices=reactant_operator_choices,
+            intermediate_occurrences=intermediate_occurrences,
+            suffix=suffix,
+            target_core_assembly_id=target_assembly_id,
+        )
+
+    for charge in ("pro", "anti"):
+        source_to_targets = (
+            (f"{charge}_noether_core_III", (f"{charge}_noether_core_III",)),
+            (f"{charge}_noether_core_II", (f"{charge}_noether_core_III", f"{charge}_noether_core_II")),
+            (
+                f"{charge}_noether_core_I",
+                (
+                    f"{charge}_noether_core_III",
+                    f"{charge}_noether_core_II",
+                    f"{charge}_noether_core_I",
+                ),
+            ),
+        )
+        for target_assembly_id in (
+            f"{charge}_noether_core_III",
+            f"{charge}_noether_core_II",
+            f"{charge}_noether_core_I",
+        ):
+            remaining_demand = (
+                product_core_counts[target_assembly_id]
+                - middle_supply_counts[target_assembly_id]
+                - len(direct_core_pool[target_assembly_id])
+            )
+            if remaining_demand <= 0:
+                continue
+            for source_assembly_id, supported_targets in source_to_targets:
+                if target_assembly_id not in supported_targets:
+                    continue
+                while remaining_demand > 0 and available_core_pool[source_assembly_id]:
+                    source_occurrence = available_core_pool[source_assembly_id].pop(0)
+                    intermediate = materialize_direct_core(
+                        source_occurrence,
+                        target_assembly_id,
+                        suffix=f"direct_core.{slugify(target_assembly_id)}.{len(direct_core_pool[target_assembly_id]) + 1}",
+                    )
+                    if intermediate is None:
+                        return None
+                    direct_core_pool[target_assembly_id].append(clone_json(intermediate))
+                    remaining_demand -= 1
+                if remaining_demand == 0:
+                    break
+
+    for source_occurrences in available_core_pool.values():
+        for index, occurrence in enumerate(source_occurrences, start=1):
+            add_full_core_dissociation(
+                occurrence,
+                reactant_operator_choices=reactant_operator_choices,
+                intermediate_occurrences=intermediate_occurrences,
+                suffix=f"extra_core.{slugify(normalize_text(occurrence.get('id')))}.{index}",
+            )
+
+    return direct_core_pool
+
+
 def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
     assembly_id = normalize_text(product.get("assemblyId"))
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
@@ -1609,112 +1709,24 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         reactant_core_counts["pro_noether_core_I"] += 1
         reactant_core_counts["anti_noether_core_I"] += 1
 
-    ladder_conversion_counts = {
-        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
-    }
-    for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_I"
-        target_id = f"{charge}_noether_core_II"
-        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
-        unmet_target = max(
-            0,
-            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
-        )
-        convert_count = min(source_surplus, unmet_target)
-        if convert_count > 0:
-            ladder_conversion_counts[source_id] = convert_count
-            reactant_core_counts[source_id] -= convert_count
-            middle_supply_counts[target_id] += convert_count
-    for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_II"
-        target_id = f"{charge}_noether_core_III"
-        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
-        unmet_target = max(
-            0,
-            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
-        )
-        convert_count = min(source_surplus, unmet_target)
-        if convert_count > 0:
-            ladder_conversion_counts[source_id] = convert_count
-            reactant_core_counts[source_id] -= convert_count
-            middle_supply_counts[target_id] += convert_count
-
-    cores_by_type: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    for core_occurrence in remaining_reactant_cores:
-        cores_by_type[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
-
-    ladder_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    for source_id, convert_count in ladder_conversion_counts.items():
-        if convert_count <= 0:
-            continue
-        successor_id = normalize_text(NOETHER_CORE_SUCCESSOR.get(source_id))
-        if not successor_id:
-            continue
-        converted_occurrences = cores_by_type[source_id][:convert_count]
-        cores_by_type[source_id] = cores_by_type[source_id][convert_count:]
-        for index, occurrence in enumerate(converted_occurrences, start=1):
-            accumulator = ensure_residue_accumulator(intermediate_occurrences)
-            accumulator["electrinoCount"] += 1
-            accumulator["positrinoCount"] += 1
-            intermediate = {
-                "id": f"intermediate.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}",
-                "assemblyId": successor_id,
-                "title": ASSEMBLY_DISPLAY[successor_id]["title"],
-            }
-            intermediate_occurrences.append(clone_json(intermediate))
-            reactant_operator_choices.append(
-                build_operator_choice(
-                    f"reactant_operator.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}.dissociate",
-                    "dissociate",
-                    law_id=get_dissociation_law(source_id)["lawId"],
-                    input_occurrence_keys=[normalize_text(occurrence.get("id"))],
-                    output_occurrence_keys=[
-                        normalize_text(intermediate.get("id")),
-                        normalize_text(accumulator.get("id")),
-                    ],
-                )
-            )
-            ladder_core_pool[successor_id].append(clone_json(intermediate))
-
-    direct_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    direct_task_quota = {
-        assembly_id: min(len(core_occurrences), product_core_counts[assembly_id])
-        for assembly_id, core_occurrences in cores_by_type.items()
-    }
-    for assembly_id, core_occurrences in cores_by_type.items():
-        needed_count = direct_task_quota[assembly_id]
-        necessary = core_occurrences[:needed_count]
-        extras = core_occurrences[needed_count:]
-        for index, occurrence in enumerate(necessary, start=1):
-            intermediate = build_intermediate_clone(occurrence, f"bare_core.{index}")
-            intermediate_occurrences.append(clone_json(intermediate))
-            reactant_operator_choices.append(
-                build_operator_choice(
-                    f"reactant_operator.{slugify(normalize_text(occurrence.get('id')))}.pass_thru",
-                    "pass-thru",
-                    law_id=get_pass_thru_law(assembly_id)["lawId"],
-                    input_occurrence_keys=[normalize_text(occurrence.get("id"))],
-                    output_occurrence_keys=[normalize_text(intermediate.get("id"))],
-                )
-            )
-            direct_core_pool[assembly_id].append(clone_json(intermediate))
-        for index, occurrence in enumerate(extras, start=1):
-            add_full_core_dissociation(
-                occurrence,
-                reactant_operator_choices=reactant_operator_choices,
-                intermediate_occurrences=intermediate_occurrences,
-                suffix=f"extra_core.{slugify(normalize_text(occurrence.get('id')))}.{index}",
-            )
-
+    direct_core_pool = build_direct_core_supply_from_reactant_cores(
+        remaining_reactant_cores,
+        product_core_counts,
+        middle_supply_counts,
+        reactant_operator_choices=reactant_operator_choices,
+        intermediate_occurrences=intermediate_occurrences,
+    )
+    if direct_core_pool is None:
+        return None
     middle_core_pool: dict[str, list[dict[str, Any]]] = {
-        assembly_id: [clone_json(occurrence) for occurrence in ladder_core_pool[assembly_id]]
+        assembly_id: []
         for assembly_id in NOETHER_CORE_SUCCESSOR
     }
     remaining_middle_demand = {
         assembly_id: max(
             0,
             product_core_counts[assembly_id]
-            - direct_task_quota[assembly_id]
+            - len(direct_core_pool[assembly_id])
             - len(middle_core_pool[assembly_id]),
         )
         for assembly_id in NOETHER_CORE_SUCCESSOR
@@ -1751,10 +1763,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
 
     for task_index, task in enumerate(core_product_tasks, start=1):
         core_assembly_id = normalize_text(task["coreAssemblyId"])
-        if direct_task_quota[core_assembly_id] > 0:
-            if not direct_core_pool[core_assembly_id]:
-                return None
-            direct_task_quota[core_assembly_id] -= 1
+        if direct_core_pool[core_assembly_id]:
             core_input = direct_core_pool[core_assembly_id].pop(0)
         else:
             if not middle_core_pool[core_assembly_id]:

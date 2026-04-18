@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `regression_and_enforcement` — Expand contract test cases, standalone boot smoke tests, and boundary checks so shared-runtime backsliding becomes harder to land than to avoid. Status: `active`. Depends on: none.
+- none currently.
 
 ## Scope
 
@@ -27,13 +27,13 @@ Within that split, higher-scale composite language should be handled only at the
 - pdgsolve core remains assembly-native only;
 - and downstream publication or staging may collapse explicit accepted assemblies back into composite/grouping language only after solve.
 
-The active job is not to invent a different pipeline. It is to keep hardening launcher boundaries, upstream request handling, and downstream handoff around the now-real dedicated `pdgsolve` and `pdgedit` apps while keeping the accepted-record publication seam frozen, `pdgfeed` explicit upstream, `pdgview` explicit downstream, and `app.js` on a path toward launcher-only ownership.
+The active job is not to invent a different pipeline. It is to keep hardening launcher boundaries, upstream request handling, and downstream handoff around the current `pdgfeed -> pdgsolve -> pdgedit -> pdgview` chain while keeping `pdgsolve` CLI-and-contract only, `pdgedit` and `pdgview` as the standalone web apps, the accepted-record publication seam frozen, and `app.js` on a path toward launcher-only ownership.
 
 ## Directory Guide
 
 - [pdgapps](./pdgapps.md) — overall architecture for how dedicated apps fit into the Architrino web app.
 - [pdgfeed](./pdgfeed.md) — PDG-facing ingest, normalization, proposal review, and upstream request emission.
-- [pdgsolve](./pdgsolve.md) — pdgsolve app design as the request-intake, solve-review, acceptance, and pdgedit-publication surface.
+- [pdgsolve](./pdgsolve.md) — pdgsolve boundary design as the request-intake, solve, acceptance, and pdgedit-publication stage.
 - [pdgedit](./pdgedit.md) — final authored-surface document model, tile grammar, manifest behavior, and direct object editing.
 - [pdgview](./pdgview.md) — downstream observer-stage scene staging, framing, overlays, playback, and export.
 
@@ -41,21 +41,12 @@ The active job is not to invent a different pipeline. It is to keep hardening la
 
 - `src/contracts/` plus `content/contracts/examples/` now carry the request, result, acceptance, publication-graph, package, pdgedit library-manifest, and `pdgedit/v1` schemas and test cases that freeze the shared JSON denominator across the PDG chain.
 - `pdgedit.html` plus `src/apps/pdgedit/main.js` now boot the authored surface directly, while the catalog-review harness stays isolated under `src/apps/pdgedit/review/`; the manifest picker, home control, fixed-column strip, spline rendering, composite labels, and direct object editing now live under `src/apps/pdgedit/`.
-- `pdgsolve.html` plus `src/apps/pdgsolve/main.js` now boot a dedicated solve-and-review app that loads explicit request URLs, pdgfeed-manifest requests, direct JSON requests, and reopened acceptance records; it runs deterministic v1 family search, presents ranked families, locks accepted records, and derives downstream `pdgedit` previews from the accepted solve graph.
-- `src/apps/pdgsolve/PdgsolvePdgeditPublicationRuntime.js` now freezes accepted-record publication into final `pdgedit/v1` documents, durable manifest-entry upserts, and pdgedit launch payloads; `pdgedit` consumes those launch payloads as explicit final documents instead of reconstructing solver meaning.
+- `scripts/pdg/pdgsolve.py` now owns the active solve boundary directly: its CLI normalizes `pdgsolve-request/v1`, emits `pdgsolve-result/v1`, locks accepted exact families into `pdgsolve-acceptance/v1`, and publishes final `pdgedit/v1` documents plus manifest-ready payloads without a standalone browser surface.
 - `content/contracts/examples/pdgedit/manifest.v1.json` now includes solver-published final pdgedit documents in the same manifest-driven picker without admitting raw solver request/result payloads into pdgedit.
-- `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for all three, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
+- `src/apps/navigator/StandaloneAppLaunchRuntime.js` now routes `pdgview` and `pdgedit` into dedicated standalone HTML entrypoints; the main Applications scene carries launcher scene stubs for those web apps, root `app.js` is thin entry glue, and `src/apps/pdgview/main.js` now enters through the app-owned scene-shell module instead of importing the root entrypoint.
 - `scripts/pdg/pdgfeed.py` now owns the PDG feed implementation, and root `pdgfeed.py` delegates CLI and Python module entry into it.
 - `src/contracts/pdgview-staging/v1/schema.json` and `src/apps/pdgview/PdgviewPdgeditImportRuntime.js` now freeze accepted `pdgedit/v1` import into pdgview-owned staging, observer framing, preview, and export data without importing pdgsolve or pdgedit app runtimes.
-
-## Development Plan
-
-### 1. Put Regression And Boundary Enforcement On The Critical Path
-
-- Add standalone boot smoke tests for `pdgsolve`, `pdgedit`, and `pdgview`.
-- Expand contract validation and test cases around request emission, solve results, accepted records, publication graphs, publication packages, pdgedit documents, manifests, and downstream pdgview imports.
-- Tighten boundary checks so direct cross-app runtime imports and shared-root backsliding fail quickly.
-- Exit criterion: contract drift or boundary regressions fail in automated checks rather than surfacing later during manual review.
+- standalone launch tests, PDG architecture audits, and the `pdgview` runtime wiring checker now run in the git-hook path so launcher or boundary drift fails before commit or push.
 
 ## Subapp Workflow Overview
 
@@ -106,7 +97,7 @@ Purpose:
 
 - loads explicit solve requests;
 - normalizes them into a pdgsolve-owned solve problem expressed only in explicit assemblies;
-- computes and reviews conservative candidate outcomes;
+- computes deterministic candidate outcomes and review artifacts;
 - accepts one outcome for publication;
 - and publishes final `pdgedit/v1` documents.
 
@@ -126,7 +117,7 @@ Output:
 
 Visual output:
 
-- yes: pdgsolve is the solve-and-review surface.
+- none.
 
 #### `pdgedit`
 
@@ -201,15 +192,15 @@ Workflow:
 2. Choose a PDG test reaction or a user-specified PDG reaction or channel.
 3. Inspect the generated proposal JSON artifacts.
 4. Emit an explicit request artifact for pdgsolve intake.
-5. Load that request into pdgsolve.
-6. Review candidate solve families in pdgsolve and accept one outcome.
-7. Publish the accepted result into final `pdgedit/v1`.
+5. Run `pdgsolve.py solve` or `pdgsolve.py solve-manifest` on that request.
+6. Inspect the emitted result JSON, then lock one exact family with `pdgsolve.py accept` when needed.
+7. Publish the accepted result into final `pdgedit/v1` with `pdgsolve.py publish`.
 8. Open the published document in pdgedit for authored-surface inspection or editing.
 9. Hand accepted authored-surface content into pdgview when observer-stage staging is needed.
 
 Short form:
 
-- choose PDG channel -> emit request -> solve and review in pdgsolve -> publish pdgedit -> stage in pdgview.
+- choose PDG channel -> emit request -> solve and review via pdgsolve CLI artifacts -> publish pdgedit -> stage in pdgview.
 
 ### B. Start With `pdgsolve`
 
@@ -222,22 +213,21 @@ Use this when you already know the request you want to solve and do not need PDG
 
 Boundary rule:
 
-- pdgsolve should consume explicit request data rather than hidden app state or inferred browser-local structure.
+- pdgsolve should consume explicit request data rather than hidden process-local state, browser-local structure, or inferred UI state.
 
 Workflow:
 
-1. Open pdgsolve.
-2. Choose a built-in request, reopen a pdgsolve work item, or load explicit request JSON.
-3. Run the solve.
-4. Inspect and compare the candidate families.
-5. Accept one family for publication.
-6. Publish the accepted result into final `pdgedit/v1`.
-7. Open the published document in pdgedit.
-8. Hand accepted authored-surface content into pdgview if downstream scene staging is needed.
+1. Choose a built-in request, one emitted by `pdgfeed`, or a direct explicit request JSON file.
+2. Run `pdgsolve.py solve` or `pdgsolve.py solve-manifest`.
+3. Inspect and compare the emitted candidate families in the result JSON.
+4. Accept one exact family for publication with `pdgsolve.py accept` when the solve is exact.
+5. Publish the accepted result into final `pdgedit/v1` with `pdgsolve.py publish`.
+6. Open the published document in pdgedit.
+7. Hand accepted authored-surface content into pdgview if downstream scene staging is needed.
 
 Short form:
 
-- choose request -> solve and review in pdgsolve -> publish pdgedit -> stage in pdgview.
+- choose request -> solve and review via pdgsolve CLI artifacts -> publish pdgedit -> stage in pdgview.
 
 ### C. Start With `pdgedit`
 
@@ -289,7 +279,7 @@ If work begins from PDG data, the workflow should be:
 - choose PDG reaction or channel;
 - normalize it in `pdgfeed`;
 - emit explicit request data;
-- solve and review it in pdgsolve;
+- solve and review it through `pdgsolve` CLI artifacts;
 - publish accepted output into final `pdgedit/v1`;
 - inspect or refine the authored surface in pdgedit as needed;
 - and only then hand accepted authored-surface content into pdgview.

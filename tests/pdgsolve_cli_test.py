@@ -3,6 +3,7 @@ import io
 import json
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 import pdgsolve
@@ -148,6 +149,112 @@ def make_b_plus_decay_mode_41_request(request_id="b_plus_s041_184"):
                 "electrinoCount": 2,
                 "positrinoCount": 2,
             },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_dual_charge_direct_core_request(request_id="dual_charge_direct_core"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Dual-charge direct-core support request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_tau_neutrino_2",
+                "assemblyId": "pro_tau_neutrino_III",
+                "title": "Tau Neutrino",
+            },
+            {
+                "id": "product_residue_3",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 7,
+                "positrinoCount": 1,
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_double_uni_binary_direct_core_request(request_id="double_uni_binary_direct_core"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Double uni-binary direct-core support request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_5", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_6", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_anti_tau_neutrino_2",
+                "assemblyId": "anti_tau_neutrino_III",
+                "title": "Anti Tau Neutrino",
+            },
+            {
+                "id": "product_residue_3",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 13,
+                "positrinoCount": 7,
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_middle_supply_priority_request(request_id="middle_supply_priority"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Middle-supply priority request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_charm_1", "assemblyId": "pro_charm_quark_II", "title": "Charm Quark"},
+            {"id": "reactant_anti_down_2", "assemblyId": "anti_down_quark_I", "title": "Anti Down Quark"},
+            {"id": "reactant_support_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_support_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_support_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_support_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_up_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+            {"id": "product_down_2", "assemblyId": "pro_down_quark_I", "title": "Down Quark"},
+            {"id": "product_strange_3", "assemblyId": "pro_strange_quark_II", "title": "Strange Quark"},
+            {"id": "product_positron_4", "assemblyId": "anti_electron_I", "title": "Anti Electron"},
         ],
         "policy": {
             "exactClosureRequired": True,
@@ -415,6 +522,38 @@ class PdgsolveCliTests(unittest.TestCase):
             "dissociate.pro_up_quark_I.to.pro_noether_core_III",
             [choice["lawId"] for choice in family["reactantSideOperators"]],
         )
+
+    def test_solve_request_supports_direct_uni_binary_dissociation_for_both_core_charges(self):
+        request = make_dual_charge_direct_core_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
+        self.assertIn("dissociate.pro_noether_core_I.to.pro_noether_core_III", law_ids)
+        self.assertIn("dissociate.anti_noether_core_I.to.anti_noether_core_III", law_ids)
+
+    def test_solve_request_can_emit_multiple_direct_uni_binary_dissociations_from_generation_i_support(self):
+        request = make_double_uni_binary_direct_core_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_counts = Counter(choice["lawId"] for choice in family["reactantSideOperators"])
+        self.assertEqual(law_counts["dissociate.anti_noether_core_I.to.anti_noether_core_III"], 2)
+
+    def test_solve_request_prioritizes_non_core_middle_supply_before_spending_support_core_i(self):
+        request = make_middle_supply_priority_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
+        self.assertIn("dissociate.pro_charm_quark_II", law_ids)
+        self.assertNotIn("dissociate.pro_noether_core_I.to.pro_noether_core_II", law_ids)
 
     def test_publication_graph_is_layout_neutral_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")

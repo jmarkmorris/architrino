@@ -21,6 +21,7 @@ test("pdgedit scene resolves to the standalone pdgedit app path", () => {
 
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
+  assert.equal(getStandaloneAppPathForScene("pdgsolve"), null);
   assert.equal(getStandaloneAppPathForScene("not_a_scene"), null);
 });
 
