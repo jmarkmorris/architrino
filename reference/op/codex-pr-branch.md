@@ -14,6 +14,9 @@ The active branch series for this repo is currently the periodic table sequence.
 - Keep the element prefix canonical even when using a topic suffix.
 - Do not invent an unrelated branch name unless there is an explicit reason to step outside the element sequence.
 - After `codex/hydrogen`, the next standard branch is `codex/helium`, then `codex/lithium`, and so on.
+- When rolling over to the next branch, explicitly tell the operator/developer which element was chosen and include a short factual blurb about that element.
+- The blurb should be a short paragraph, not just the branch name by itself.
+- The blurb should identify the element name, symbol, and atomic number, then give one or two concise factual notes.
 
 This keeps the branch series ordered, memorable, and easy to reason about during rollover.
 
@@ -489,6 +492,8 @@ This makes the next branch the new canonical branch in the series.
 
 - All new commits for the next unit of work should land there.
 - Open the next PR only when the branch has a coherent reviewable unit.
+- In the operator/developer-facing rollover response, include the element paragraph required by [Final Response Requirements](#final-response-requirements).
+- That paragraph should appear after the new branch has been created and published, so the explanation refers to the actual canonical branch now in use.
 
 Commands:
 

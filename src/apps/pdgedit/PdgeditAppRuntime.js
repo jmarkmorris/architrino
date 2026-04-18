@@ -563,9 +563,12 @@ export function createPdgeditAppRuntime({
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
     setPickerVisibility(documentPanelElement, state.documentPanelOpen && Boolean(state.manifest?.entries?.length));
     const normalizedQuery = String(state.documentQuery || "").trim().toLowerCase();
-    const normalizedSourceFilter = state.documentSourceFilter === "exact" || state.documentSourceFilter === "example"
-      ? state.documentSourceFilter
-      : "all";
+    const normalizedSourceFilter =
+      state.documentSourceFilter === "exact" ||
+      state.documentSourceFilter === "example" ||
+      state.documentSourceFilter === "unsolved"
+        ? state.documentSourceFilter
+        : "all";
     const filteredEntries = (Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).filter((entry) => {
       if (normalizedSourceFilter !== "all" && entry.sourceKind !== normalizedSourceFilter) {
         return false;

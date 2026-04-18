@@ -65,6 +65,14 @@ NOETHER_CORE_ASSEMBLY_IDS = tuple(
     for generation in NOETHER_CORE_GENERATIONS
     for assembly_id in (f"pro_noether_core_{generation}", f"anti_noether_core_{generation}")
 )
+NOETHER_CORE_SUCCESSOR = {
+    "pro_noether_core_I": "pro_noether_core_II",
+    "anti_noether_core_I": "anti_noether_core_II",
+    "pro_noether_core_II": "pro_noether_core_III",
+    "anti_noether_core_II": "anti_noether_core_III",
+    "pro_noether_core_III": None,
+    "anti_noether_core_III": None,
+}
 INCOMPLETE_NOTE_MARKERS = (
     "generic-or-textual-item",
     "generic-family-charge-",
@@ -500,13 +508,55 @@ def count_noether_core_middle_supply_occurrences(occurrences: list[dict[str, Any
     return counts
 
 
+def get_reachable_noether_core_assembly_ids(core_assembly_id: str) -> tuple[str, ...]:
+    reachable_core_ids: list[str] = []
+    current_core_assembly_id = str(core_assembly_id or "").strip()
+    while current_core_assembly_id:
+        reachable_core_ids.append(current_core_assembly_id)
+        current_core_assembly_id = str(NOETHER_CORE_SUCCESSOR.get(current_core_assembly_id) or "").strip()
+    return tuple(reachable_core_ids)
+
+
+def plan_noether_core_middle_supply_occurrences(
+    occurrences: list[dict[str, Any]],
+    required_counts: dict[str, int],
+) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    remaining_required = {
+        assembly_id: int(required_counts.get(assembly_id, 0) or 0)
+        for assembly_id in NOETHER_CORE_ASSEMBLY_IDS
+    }
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            continue
+        core_assembly_id = get_noether_core_assembly_id_for_occurrence(occurrence)
+        if core_assembly_id is None:
+            continue
+        target_core_assembly_id = next(
+            (
+                candidate_id
+                for candidate_id in reversed(get_reachable_noether_core_assembly_ids(core_assembly_id))
+                if remaining_required[candidate_id] > 0
+            ),
+            None,
+        )
+        if target_core_assembly_id is None:
+            continue
+        counts[target_core_assembly_id] += 1
+        remaining_required[target_core_assembly_id] -= 1
+    return counts
+
+
 def compute_required_full_noether_pair_count(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
 ) -> int:
     direct_counts = count_direct_noether_core_occurrences(reactants)
-    middle_supply_counts = count_noether_core_middle_supply_occurrences(reactants)
     required_counts = count_noether_core_support_occurrences(products)
+    middle_supply_counts = plan_noether_core_middle_supply_occurrences(reactants, required_counts)
     required_pair_count_by_charge = {"pro": 0, "anti": 0}
 
     for charge in ("pro", "anti"):

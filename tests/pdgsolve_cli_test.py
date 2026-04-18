@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 import pdgsolve
+from scripts.pdg import pdgfeed_registry
 
 
 def make_unsolved_request(request_id="reference_unsolved"):
@@ -107,6 +108,45 @@ def make_muon_decay_mode_1_request(request_id="mu_minus_s004_1"):
                 "id": "product_muon_neutrino_3",
                 "assemblyId": "pro_muon_neutrino_II",
                 "title": "Pro Muon Neutrino",
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_b_plus_decay_mode_41_request(request_id="b_plus_s041_184"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "B+ decay mode 41",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_positive_b_meson_1.row.1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+            {
+                "id": "reactant_positive_b_meson_1.row.2",
+                "assemblyId": "anti_bottom_quark_III",
+                "title": "Anti Bottom Quark",
+            },
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_tau_neutrino_2",
+                "assemblyId": "pro_tau_neutrino_III",
+                "title": "Tau Neutrino",
+            },
+            {
+                "id": "product_unbound_architrinos_residue_1",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 2,
+                "positrinoCount": 2,
             },
         ],
         "policy": {
@@ -363,6 +403,19 @@ class PdgsolveCliTests(unittest.TestCase):
         )
         self.assertTrue(family["publicationReady"])
 
+    def test_solve_request_can_target_uni_binary_from_up_quark_dissociation(self):
+        request = make_b_plus_decay_mode_41_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(result["bestFamilyId"], "family.exact.1")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        self.assertIn(
+            "dissociate.pro_up_quark_I.to.pro_noether_core_III",
+            [choice["lawId"] for choice in family["reactantSideOperators"]],
+        )
+
     def test_publication_graph_is_layout_neutral_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
         result = pdgsolve.solve_request(request)
@@ -502,6 +555,28 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(result["bestFamilyId"], "family.exact.1")
         self.assertTrue(result["optionFamilies"][0]["publicationReady"])
 
+    def test_solver_admitted_assembly_ids_stay_in_sync_with_registry_request_rows(self):
+        registry_ids = set(pdgfeed_registry.REQUEST_ASSEMBLY_IDS)
+        self.assertEqual(set(pdgsolve.REQUEST_REACTANT_ASSEMBLY_IDS), registry_ids)
+        self.assertEqual(
+            set(pdgsolve.REQUEST_PRODUCT_ASSEMBLY_IDS),
+            registry_ids | {pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID},
+        )
+        mapping_by_id = {
+            mapping.canonical_id: mapping
+            for mapping in pdgfeed_registry.REQUEST_ASSEMBLY_MAPPINGS
+        }
+        for assembly_id, mapping in mapping_by_id.items():
+            self.assertIn(assembly_id, pdgsolve.ASSEMBLY_DISPLAY)
+            self.assertEqual(
+                pdgsolve.ASSEMBLY_DISPLAY[assembly_id]["electrinoCount"],
+                mapping.electrino_count,
+            )
+            self.assertEqual(
+                pdgsolve.ASSEMBLY_DISPLAY[assembly_id]["positrinoCount"],
+                mapping.positrino_count,
+            )
+
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")
         result = make_exact_result(request)
@@ -592,7 +667,7 @@ class PdgsolveCliTests(unittest.TestCase):
             pdgedit_manifest = self.read_json(pdgedit_manifest_path)
             self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
             self.assertEqual(len(pdgedit_manifest["entries"]), 2)
-            self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "example")
+            self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "unsolved")
             self.assertEqual(pdgedit_manifest["defaultEntryId"], pdgedit_manifest["entries"][0]["id"])
 
     def test_solve_manifest_writes_pdgedit_documents_for_exact_results(self):
