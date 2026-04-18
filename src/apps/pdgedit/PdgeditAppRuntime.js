@@ -22,7 +22,7 @@ import {
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
 import { resolvePdgeditCompositeLabelTileKey } from "./PdgeditCompositeLabelRuntime.js";
-import { resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
+import { getPdgeditFrameGeometry, resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
 
 function normalizeText(value) {
@@ -696,6 +696,7 @@ export function createPdgeditAppRuntime({
   }
 
   function createCompositeLabelElement(label) {
+    const frame = getPdgeditFrameGeometry(state.tileCatalog);
     const wrapper = documentLike.createElement("div");
     wrapper.className = `pdgedit-composite-label pdgedit-composite-label-${label.side}`;
     wrapper.dataset.compositeType = label.type;
@@ -706,11 +707,16 @@ export function createPdgeditAppRuntime({
 
     const line = documentLike.createElement("div");
     line.className = "pdgedit-composite-line";
+    line.style.top = `${frame.outerInset}px`;
+    line.style.bottom = `${frame.outerInset}px`;
+    line.style.left = label.side === "left" ? "100%" : "0";
+    line.style.zIndex = "2";
     const tileKey = resolvePdgeditCompositeLabelTileKey(label.type) || normalizeText(label.type) || label.text;
     const tileElement = createTileElement(tileKey);
     tileElement.classList.add("pdgedit-composite-tile");
     tileElement.setAttribute("aria-hidden", "true");
-    wrapper.append(line, tileElement);
+    tileElement.style.zIndex = "1";
+    wrapper.append(tileElement, line);
     return wrapper;
   }
 
