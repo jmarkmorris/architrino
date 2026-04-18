@@ -142,6 +142,38 @@ function applyOptionalFilter(element, filterValue) {
   element.style.filter = filterValue;
 }
 
+function parseNonnegativeInteger(value) {
+  const normalizedValue = String(value ?? "").trim();
+  if (!/^\d+$/u.test(normalizedValue)) {
+    return null;
+  }
+  const parsedValue = Number(normalizedValue);
+  return Number.isInteger(parsedValue) ? parsedValue : null;
+}
+
+function isOperatorTile(tile = {}) {
+  return tile?.key === "associate" || tile?.key === "dissociate" || tile?.key === "pass-thru";
+}
+
+function resolvePdgeditOperatorFrameBorderColor(catalog, tile, sampleCounts) {
+  const defaultBorderColor = resolvePdgeditCatalogColor(catalog, tile?.borderColor);
+  if (!isOperatorTile(tile)) {
+    return defaultBorderColor;
+  }
+  const positrinoCount = parseNonnegativeInteger(sampleCounts?.topCount);
+  const electrinoCount = parseNonnegativeInteger(sampleCounts?.bottomCount);
+  if (positrinoCount === null || electrinoCount === null) {
+    return defaultBorderColor;
+  }
+  if (positrinoCount > electrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "red");
+  }
+  if (electrinoCount > positrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "blue");
+  }
+  return resolvePdgeditCatalogColor(catalog, "purple");
+}
+
 function appendBinaryGlyphBandSvg(documentLike, parent, catalog, band) {
   const orbit = band?.orbit ?? {};
   const rotationDeg = Number(band?.rotationDeg ?? 0);
@@ -298,7 +330,7 @@ export function renderPdgeditTileSvg({
   innerRect.setAttribute("height", frame.rectSize.toFixed(2));
   innerRect.setAttribute("rx", frame.rectRadius.toFixed(2));
   innerRect.setAttribute("fill", "none");
-  innerRect.setAttribute("stroke", resolvePdgeditCatalogColor(catalog, tile.borderColor));
+  innerRect.setAttribute("stroke", resolvePdgeditOperatorFrameBorderColor(catalog, tile, sampleCounts));
   innerRect.setAttribute("stroke-width", String(frame.strokeWidth));
   svg.append(innerRect);
 
