@@ -569,6 +569,23 @@ function isUnboundArchitrinosAssembly(assembly = {}) {
   );
 }
 
+function isCanonicalAssemblyLaneRecord(assembly = {}) {
+  const role = normalizeText(assembly?.role);
+  const stageX = getPdgeditAssemblyStageXForRole(role);
+  return Boolean(stageX) && normalizeInteger(assembly?.x) === stageX;
+}
+
+function isCanonicalOperatorLaneRecord(operator = {}) {
+  const x = normalizeInteger(operator?.x);
+  return x === getPdgeditOperatorStageXForSide("reactant") || x === getPdgeditOperatorStageXForSide("product");
+}
+
+function documentUsesCanonicalLaneGeometry(document = {}) {
+  const assemblies = Array.isArray(document?.assemblies) ? document.assemblies : [];
+  const operators = Array.isArray(document?.operators) ? document.operators : [];
+  return assemblies.every(isCanonicalAssemblyLaneRecord) && operators.every(isCanonicalOperatorLaneRecord);
+}
+
 function matchCatalystPassThruChain({ reactantAssembly, objectsById, neighborsById }) {
   const catalystType = normalizeText(reactantAssembly?.type);
   if (!isAssemblyForRoleAndType(reactantAssembly, "reactant", catalystType)) {
@@ -701,6 +718,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
     links,
     compositeLabels,
   };
+
+  if (!documentUsesCanonicalLaneGeometry(nextDocument)) {
+    return nextDocument;
+  }
 
   const catalystChains = findPdgeditCatalystPassThruChains(nextDocument);
   const catalystAssemblyIdsByRole = {

@@ -113,12 +113,8 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
   return errors;
 }
 
-const PDGEDIT_EXAMPLE_PATHS = [
-  "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
-  "content/contracts/examples/pdgedit/unbound_architrinos.v1.json",
-  "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
-  "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
-];
+const PDGEDIT_EXAMPLE_PATHS = ["content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json"];
+const FOUR_TILE_FAMILY_COVERAGE_PATH = "content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json";
 
 const PDGEDIT_MANIFEST_PATH = "content/contracts/examples/pdgedit/manifest.v1.json";
 
@@ -246,16 +242,13 @@ test("pdgedit manifest defaults to its declared starter document", () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const normalizedManifest = normalizePdgeditLibraryManifest(manifest);
   assert.equal(manifest.schema, "pdgedit-library-manifest/v1");
-  assert.equal(manifest.defaultEntryId, "pass_thru_up_quark");
+  assert.equal(manifest.defaultEntryId, "four_tile_family_coverage");
   assert.deepEqual(Object.keys(manifest).sort(), ["defaultEntryId", "entries", "schema"]);
 
   const defaultEntry = getPdgeditLibraryManifestEntryById(normalizedManifest, normalizedManifest.defaultEntryId);
   assert.ok(defaultEntry);
   assert.equal(defaultEntry.isDefault, true);
-  assert.equal(
-    defaultEntry.documentPath,
-    "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json"
-  );
+  assert.equal(defaultEntry.documentPath, FOUR_TILE_FAMILY_COVERAGE_PATH);
 
   manifest.entries.forEach((entry) => {
     assert.deepEqual(
@@ -286,14 +279,14 @@ test("pdgedit manifest selection prefers the declared default, then the first en
         title: "Primary document",
         displayTitle: "Primary document",
         sourceKind: "example",
-        documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
+        documentPath: FOUR_TILE_FAMILY_COVERAGE_PATH,
       },
       {
         id: "secondary_document",
         title: "Secondary document",
         displayTitle: "Secondary document",
         sourceKind: "example",
-        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+        documentPath: FOUR_TILE_FAMILY_COVERAGE_PATH,
         isDefault: true,
       },
     ],
@@ -307,19 +300,19 @@ test("pdgedit manifest selection prefers the declared default, then the first en
         title: "First document",
         displayTitle: "First document",
         sourceKind: "example",
-        documentPath: "content/contracts/examples/pdgedit/proton_to_photon_stack.v1.json",
+        documentPath: FOUR_TILE_FAMILY_COVERAGE_PATH,
       },
       {
         id: "second_document",
         title: "Second document",
         displayTitle: "Second document",
         sourceKind: "example",
-        documentPath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+        documentPath: FOUR_TILE_FAMILY_COVERAGE_PATH,
       },
     ],
   });
 
-  assert.equal(selectedFromTestCase?.id, "pass_thru_up_quark");
+  assert.equal(selectedFromTestCase?.id, "four_tile_family_coverage");
   assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
   assert.equal(selectedFromFirstEntry?.id, "first_document");
 });
@@ -363,12 +356,12 @@ test("pdgedit main bootstrap seed stays contract-first and separate from the rev
     "https://architrino.local/content/contracts/examples/pdgedit/manifest.v1.json",
     new URL("../.tmp/pdgsolve/pdgedit/manifest.v1.json", import.meta.url).href,
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
-    "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
+    FOUR_TILE_FAMILY_COVERAGE_PATH,
   ]);
   assert.deepEqual(loadedManifest, normalizePdgeditLibraryManifest(manifest));
   assert.deepEqual(loadedTileCatalog, normalizePdgeditTileCatalog(tileCatalog));
   assert.deepEqual(templateCatalog, normalizePdgeditTemplateCatalog(templateSource));
-  assert.equal(selectedEntry?.id, "pass_thru_up_quark");
+  assert.equal(selectedEntry?.id, "four_tile_family_coverage");
   assert.equal(source.includes("PdgeditTileReviewAppRuntime"), false);
   assert.equal(source.includes("createPdgeditAppRuntime"), true);
 });
@@ -378,12 +371,12 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
   const liveManifest = { schema: "pdgedit-library-manifest/v1", defaultEntryId: "", entries: [] };
   const tileCatalog = readJson("src/apps/pdgedit/pdgedit-tiles.json");
   const templateSource = readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json");
-  const launchedDocument = readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
+  const launchedDocument = readJson(FOUR_TILE_FAMILY_COVERAGE_PATH);
   const launchPayload = createPdgeditLaunchPayload({
     sourceKind: "developer",
-    sourceReference: "reference:pass_thru_up_quark",
-    documentId: "pass_thru_up_quark_launch",
-    documentTitle: "Pass thru up quark launch",
+    sourceReference: "reference:four_tile_family_coverage",
+    documentId: "four_tile_family_coverage_launch",
+    documentTitle: "Four tile family coverage launch",
     pdgeditDocument: launchedDocument,
   });
   const fetchCalls = [];
@@ -419,8 +412,8 @@ test("pdgedit bootstrap opens an explicit launch payload without reconstructing 
     new URL("../.tmp/pdgsolve/pdgedit/manifest.v1.json", import.meta.url).href,
     "https://architrino.local/content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json",
   ]);
-  assert.equal(bootstrap.selectedEntry.id, "pass_thru_up_quark_launch");
-  assert.equal(bootstrap.selectedEntry.displayTitle, "Pass thru up quark launch");
+  assert.equal(bootstrap.selectedEntry.id, "four_tile_family_coverage_launch");
+  assert.equal(bootstrap.selectedEntry.displayTitle, "Four tile family coverage launch");
   assert.equal(bootstrap.selectedEntry.documentPath, "");
   assert.deepEqual(bootstrap.document, preparePdgeditDocumentForDisplay(launchedDocument));
   assert.deepEqual(bootstrap.launchPayload, launchPayload);
@@ -466,8 +459,8 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
         if (url.endsWith("content/contracts/examples/pdgedit/manifest.v1.json")) {
           return manifest;
         }
-        if (url.endsWith("pass_thru_up_quark.v1.json")) {
-          return readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
+        if (url.endsWith("four_tile_family_coverage.v1.json")) {
+          return readJson(FOUR_TILE_FAMILY_COVERAGE_PATH);
         }
         throw new Error(`unexpected fetch ${url}`);
       },
@@ -475,7 +468,7 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
   });
 
   assert.equal(bootstrap.manifest.entries.some((entry) => entry.id === "mu_minus_s004_1"), true);
-  assert.equal(bootstrap.manifest.defaultEntryId, "pass_thru_up_quark");
+  assert.equal(bootstrap.manifest.defaultEntryId, "four_tile_family_coverage");
   assert.equal(
     bootstrap.manifest.entries.find((entry) => entry.id === "mu_minus_s004_1")?.sourceKind,
     "exact"

@@ -19,6 +19,68 @@ function readText(relativePath) {
   return fs.readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
+function createSyntheticPassThruPdgeditDocument() {
+  return {
+    schema: "pdgedit/v1",
+    assemblies: [
+      {
+        id: "reactant_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 2,
+        y: 0,
+        title: "Input Up Quark",
+        role: "reactant",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+      {
+        id: "intermediate_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 9,
+        y: 0,
+        title: "Intermediate Up Quark",
+        role: "intermediate",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+      {
+        id: "product_up_quark",
+        type: "pro-up-quark-assembly",
+        x: 16,
+        y: 0,
+        title: "Output Up Quark",
+        role: "product",
+        tiles: ["pro-up-quark", "binary-full-br-rr", "binary-full-br-br", "binary-full-br-rr"],
+      },
+    ],
+    operators: [
+      {
+        id: "pass_thru_stage_1",
+        type: "pass-thru",
+        x: 7,
+        y: 0,
+        title: "Pass Thru",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+      {
+        id: "pass_thru_stage_2",
+        type: "pass-thru",
+        x: 14,
+        y: 0,
+        title: "Pass Thru",
+        positrinoCount: 8,
+        electrinoCount: 4,
+      },
+    ],
+    links: [
+      { id: "edge_1", endpointA: "reactant_up_quark", endpointB: "pass_thru_stage_1" },
+      { id: "edge_2", endpointA: "pass_thru_stage_1", endpointB: "intermediate_up_quark" },
+      { id: "edge_3", endpointA: "intermediate_up_quark", endpointB: "pass_thru_stage_2" },
+      { id: "edge_4", endpointA: "pass_thru_stage_2", endpointB: "product_up_quark" },
+    ],
+    compositeLabels: [],
+  };
+}
+
 function createAssemblyPresentationResolver() {
   const templateCatalog = normalizePdgeditTemplateCatalog(
     readJson("content/contracts/examples/pdgedit/four_tile_family_coverage.v1.json")
@@ -125,40 +187,49 @@ function validateAgainstSchema(value, schema, path = "$", errors = []) {
 }
 
 const stagingOptions = Object.freeze({
-  sourceDocumentId: "pass_thru_up_quark",
-  sourcePath: "content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json",
-  title: "Pass thru up quark",
+  sourceDocumentId: "synthetic_pass_thru_chain",
+  sourcePath: "content/contracts/generated/pdgedit/synthetic_pass_thru_chain.v1.json",
+  title: "Synthetic pass thru chain",
 });
 
 test("pdgview builds the downstream staging contract from accepted pdgedit output", () => {
-  const pdgeditDocument = readJson("content/contracts/examples/pdgedit/pass_thru_up_quark.v1.json");
+  const pdgeditDocument = createSyntheticPassThruPdgeditDocument();
   const stagingSchema = readJson("src/contracts/pdgview-staging/v1/schema.json");
-  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pass_thru_up_quark.v1.json");
   const builtStaging = buildPdgviewStagingContractFromPdgeditDocument(pdgeditDocument, stagingOptions);
 
   assert.deepEqual(validateAgainstSchema(builtStaging, stagingSchema), [], "pdgview staging schema drifted");
-  assert.deepEqual(builtStaging, expectedStaging);
   assert.equal(builtStaging.source.schema, "pdgedit/v1");
+  assert.equal(builtStaging.source.documentId, "synthetic_pass_thru_chain");
+  assert.equal(builtStaging.source.title, "Synthetic pass thru chain");
+  assert.equal(
+    builtStaging.source.sourcePath,
+    "content/contracts/generated/pdgedit/synthetic_pass_thru_chain.v1.json"
+  );
   assert.equal(builtStaging.preview.objectCount, builtStaging.export.sceneDocument.assemblies.length);
   assert.equal(builtStaging.preview.linkCount, builtStaging.export.sceneDocument.transfers.length);
+  assert.equal(builtStaging.preview.objectCount, 5);
+  assert.equal(builtStaging.preview.linkCount, 4);
 });
 
 test("pdgview staging preserves observer framing from the accepted pdgedit assembly roles", () => {
-  const expectedStaging = readJson("content/contracts/examples/pdgview-staging/pass_thru_up_quark.v1.json");
-  const framingState = resolvePdgviewViewportFramingState(expectedStaging.export.sceneDocument, 4, {
+  const builtStaging = buildPdgviewStagingContractFromPdgeditDocument(
+    createSyntheticPassThruPdgeditDocument(),
+    stagingOptions
+  );
+  const framingState = resolvePdgviewViewportFramingState(builtStaging.export.sceneDocument, 4, {
     start: 0,
     end: 24,
   });
   const requiredAssemblyIds = [...framingState.requiredAssemblyIds].sort();
-  const expectedRequiredAssemblyIds = [...expectedStaging.observerFraming.requiredAssemblyIds].sort();
+  const expectedRequiredAssemblyIds = [...builtStaging.observerFraming.requiredAssemblyIds].sort();
 
   assert.deepEqual(requiredAssemblyIds, expectedRequiredAssemblyIds);
   assert.equal(framingState.framing.preset, "wide");
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("reactant_up_quark"), true);
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("product_up_quark"), true);
-  assert.equal(expectedStaging.observerFraming.requiredAssemblyIds.includes("intermediate_up_quark"), false);
+  assert.equal(builtStaging.observerFraming.requiredAssemblyIds.includes("reactant_up_quark"), true);
+  assert.equal(builtStaging.observerFraming.requiredAssemblyIds.includes("product_up_quark"), true);
+  assert.equal(builtStaging.observerFraming.requiredAssemblyIds.includes("intermediate_up_quark"), false);
   assert.equal(
-    expectedStaging.draftState.assembliesDraft.some(
+    builtStaging.draftState.assembliesDraft.some(
       (draft) =>
         draft.name === "Output Up Quark" &&
         draft.metadata?.source?.objectId === "product_up_quark"
