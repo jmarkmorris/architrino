@@ -1111,6 +1111,47 @@ def count_core_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
     return counts
 
 
+def compute_added_tri_binary_support_pair_count(
+    reactant_core_counts: dict[str, int],
+    middle_supply_counts: dict[str, int],
+    product_core_counts: dict[str, int],
+) -> int:
+    required_pair_count_by_charge = {"pro": 0, "anti": 0}
+
+    for charge in ("pro", "anti"):
+        remaining_required = {
+            generation: int(product_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+        available_direct = {
+            generation: int(reactant_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+        available_middle = {
+            generation: int(middle_supply_counts[f"{charge}_noether_core_{generation}"] or 0)
+            for generation in ("I", "II", "III")
+        }
+
+        for generation, direct_sources in (
+            ("III", ("III", "II", "I")),
+            ("II", ("II", "I")),
+            ("I", ("I",)),
+        ):
+            used_middle = min(remaining_required[generation], available_middle[generation])
+            remaining_required[generation] -= used_middle
+            available_middle[generation] -= used_middle
+            for direct_generation in direct_sources:
+                used_direct = min(remaining_required[generation], available_direct[direct_generation])
+                remaining_required[generation] -= used_direct
+                available_direct[direct_generation] -= used_direct
+                if remaining_required[generation] == 0:
+                    break
+
+        required_pair_count_by_charge[charge] = sum(remaining_required.values())
+
+    return max(required_pair_count_by_charge.values())
+
+
 def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
     assembly_id = normalize_text(product.get("assemblyId"))
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
@@ -1317,6 +1358,20 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     for task in core_product_tasks:
         product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
 
+    support_pair_count = compute_added_tri_binary_support_pair_count(
+        reactant_core_counts,
+        middle_supply_counts,
+        product_core_counts,
+    )
+    for index in range(1, support_pair_count + 1):
+        pro_support = build_core_support_occurrence("pro", "I", index)
+        anti_support = build_core_support_occurrence("anti", "I", index)
+        reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
+        added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
+        remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
+        reactant_core_counts["pro_noether_core_I"] += 1
+        reactant_core_counts["anti_noether_core_I"] += 1
+
     ladder_conversion_counts = {
         assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
     }
@@ -1346,27 +1401,6 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
             ladder_conversion_counts[source_id] = convert_count
             reactant_core_counts[source_id] -= convert_count
             middle_supply_counts[target_id] += convert_count
-
-    for generation in ("I", "II", "III"):
-        pro_id = f"pro_noether_core_{generation}"
-        anti_id = f"anti_noether_core_{generation}"
-        pro_deficit = max(
-            0,
-            product_core_counts[pro_id] - reactant_core_counts[pro_id] - middle_supply_counts[pro_id],
-        )
-        anti_deficit = max(
-            0,
-            product_core_counts[anti_id] - reactant_core_counts[anti_id] - middle_supply_counts[anti_id],
-        )
-        pair_count = max(pro_deficit, anti_deficit)
-        for index in range(1, pair_count + 1):
-            pro_support = build_core_support_occurrence("pro", generation, index)
-            anti_support = build_core_support_occurrence("anti", generation, index)
-            reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
-            added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
-            remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
-            reactant_core_counts[pro_id] += 1
-            reactant_core_counts[anti_id] += 1
 
     cores_by_type: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
     for core_occurrence in remaining_reactant_cores:

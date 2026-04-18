@@ -288,7 +288,12 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["reactants"]],
-            ["pro_up_quark_I", "anti_down_quark_I"],
+            [
+                "pro_up_quark_I",
+                "anti_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["products"]],
@@ -300,11 +305,11 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             pion_request["products"][-1]["electrinoCount"],
-            2,
+            8,
         )
         self.assertEqual(
             pion_request["products"][-1]["positrinoCount"],
-            2,
+            8,
         )
 
     def test_neutral_pion_transform_uses_all_superposition_rows(self):
@@ -470,7 +475,7 @@ class PdgfeedContractTests(unittest.TestCase):
         for row in rows:
             self.assertEqual(row["category"], "supported")
             self.assertEqual(row["product_names_aaa"], "d2.ad2")
-            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2.4:4@")
+            self.assertEqual(row["transformed_product_names_aaa"], "d2.ad2.6:6@")
 
     def test_d_mesons_move_from_backlog_to_supported(self):
         api = FakeApi(
@@ -712,8 +717,8 @@ class PdgfeedContractTests(unittest.TestCase):
             cbar_products,
             ["anti_charm_quark_II", "pro_charm_quark_II", "unbound_architrinos_residue"],
         )
-        self.assertEqual(cbar_request["products"][-1]["electrinoCount"], 4)
-        self.assertEqual(cbar_request["products"][-1]["positrinoCount"], 4)
+        self.assertEqual(cbar_request["products"][-1]["electrinoCount"], 6)
+        self.assertEqual(cbar_request["products"][-1]["positrinoCount"], 6)
         self.assertEqual(
             ubar_products,
             ["anti_up_quark_I", "pro_up_quark_I", "unbound_architrinos_residue"],

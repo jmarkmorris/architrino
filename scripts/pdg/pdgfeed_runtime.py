@@ -474,81 +474,96 @@ def count_noether_core_support_occurrences(occurrences: list[dict[str, Any]]) ->
     return counts
 
 
-def compute_required_core_balance_support_pairs(
+def count_direct_noether_core_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            counts[assembly_id] += 1
+    return counts
+
+
+def count_noether_core_middle_supply_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            continue
+        core_assembly_id = get_noether_core_assembly_id_for_occurrence(occurrence)
+        if core_assembly_id is None:
+            continue
+        counts[core_assembly_id] += 1
+    return counts
+
+
+def compute_required_full_noether_pair_count(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
-) -> dict[str, int]:
-    available_counts = count_noether_core_support_occurrences(reactants)
+) -> int:
+    direct_counts = count_direct_noether_core_occurrences(reactants)
+    middle_supply_counts = count_noether_core_middle_supply_occurrences(reactants)
     required_counts = count_noether_core_support_occurrences(products)
+    required_pair_count_by_charge = {"pro": 0, "anti": 0}
 
     for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_I"
-        target_id = f"{charge}_noether_core_II"
-        source_surplus = max(0, available_counts[source_id] - required_counts[source_id])
-        target_deficit = max(0, required_counts[target_id] - available_counts[target_id])
-        converted_count = min(source_surplus, target_deficit)
-        if converted_count == 0:
-            continue
-        available_counts[source_id] -= converted_count
-        available_counts[target_id] += converted_count
+        remaining_required = {
+            generation: required_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
+        available_direct = {
+            generation: direct_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
+        available_middle = {
+            generation: middle_supply_counts[f"{charge}_noether_core_{generation}"]
+            for generation in NOETHER_CORE_GENERATIONS
+        }
 
-    for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_II"
-        target_id = f"{charge}_noether_core_III"
-        source_surplus = max(0, available_counts[source_id] - required_counts[source_id])
-        target_deficit = max(0, required_counts[target_id] - available_counts[target_id])
-        converted_count = min(source_surplus, target_deficit)
-        if converted_count == 0:
-            continue
-        available_counts[source_id] -= converted_count
-        available_counts[target_id] += converted_count
+        for generation, direct_sources in (
+            ("III", ("III", "II", "I")),
+            ("II", ("II", "I")),
+            ("I", ("I",)),
+        ):
+            used_middle = min(remaining_required[generation], available_middle[generation])
+            remaining_required[generation] -= used_middle
+            available_middle[generation] -= used_middle
+            for direct_generation in direct_sources:
+                used_direct = min(remaining_required[generation], available_direct[direct_generation])
+                remaining_required[generation] -= used_direct
+                available_direct[direct_generation] -= used_direct
+                if remaining_required[generation] == 0:
+                    break
 
-    pair_requirements = {generation: 0 for generation in NOETHER_CORE_GENERATIONS}
-    for generation in NOETHER_CORE_GENERATIONS:
-        pro_id = f"pro_noether_core_{generation}"
-        anti_id = f"anti_noether_core_{generation}"
-        pro_deficit = max(0, required_counts[pro_id] - available_counts[pro_id])
-        anti_deficit = max(0, required_counts[anti_id] - available_counts[anti_id])
-        pair_count = max(pro_deficit, anti_deficit)
-        if pair_count == 0:
-            continue
-        pair_requirements[generation] = pair_count
-        available_counts[pro_id] += pair_count
-        available_counts[anti_id] += pair_count
+        required_pair_count_by_charge[charge] = sum(remaining_required.values())
 
-    return pair_requirements
+    return max(required_pair_count_by_charge.values())
 
 
 def add_core_balance_support_pairs_and_unbound_residue(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]] | None:
-    pair_requirements = compute_required_core_balance_support_pairs(reactants, products)
-    if not any(pair_requirements.values()):
+    pair_count = compute_required_full_noether_pair_count(reactants, products)
+    if pair_count == 0:
         return reactants, products
 
-    updated_reactants = list(reactants)
-    extra_residue_electrinos = 0
-    extra_residue_positrinos = 0
-    for generation in NOETHER_CORE_GENERATIONS:
-        pair_count = pair_requirements[generation]
-        if pair_count == 0:
-            continue
-        updated_reactants.extend(
-            build_noether_pair_occurrences(
-                "reactant",
-                pair_count,
-                generation=generation,
-                id_prefix="core_balance_noether_pair",
-            )
-        )
-        extra_residue_electrinos += pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION[generation]["electrinoCount"]
-        extra_residue_positrinos += pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION[generation]["positrinoCount"]
-
+    updated_reactants = [
+        *reactants,
+        *build_noether_pair_occurrences(
+            "reactant",
+            pair_count,
+            generation="I",
+            id_prefix="core_balance_noether_pair",
+        ),
+    ]
     updated_products = merge_unbound_architrinos_residue_product(
         products,
-        extra_residue_electrinos,
-        extra_residue_positrinos,
+        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["electrinoCount"],
+        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["positrinoCount"],
     )
     if updated_products is None:
         return None
