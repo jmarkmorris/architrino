@@ -28,6 +28,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("nubar_e"),
                                 FakeDecayProduct("nu_mu"),
                             ],
+                            value=0.95,
                         ),
                         FakeDecay(
                             "TEST.MU.GAMMA",
@@ -38,6 +39,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("nu_mu"),
                                 FakeDecayProduct("gamma"),
                             ],
+                            value=0.85,
                         ),
                     ],
                     mcid=13,
@@ -52,6 +54,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("mu+"),
                                 FakeDecayProduct("nu_mu"),
                             ],
+                            value=0.75,
                         )
                     ],
                     mcid=211,
@@ -65,6 +68,7 @@ class PdgfeedCliTests(unittest.TestCase):
                             [
                                 FakeDecayProduct("gamma"),
                             ],
+                            value=0.65,
                         ),
                         FakeDecay(
                             "fake",
@@ -74,6 +78,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("gamma"),
                             ],
                             mode_number=2,
+                            value=0.05,
                         )
                     ],
                     mcid=111,
@@ -279,7 +284,7 @@ class PdgfeedCliTests(unittest.TestCase):
 
             self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 2)
+            self.assertEqual(len(content), 3)
             headers, rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(headers, ["Metric", "Count"])
             self.assertEqual(
@@ -298,7 +303,25 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of reactions blocked", "Count": "0"},
                 ],
             )
-            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            probability_headers, probability_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(probability_headers, ["Branching Probability Decile (%)", "Count"])
+            self.assertEqual(
+                probability_rows,
+                [
+                    {"Branching Probability Decile (%)": "90-100", "Count": "1"},
+                    {"Branching Probability Decile (%)": "80-90", "Count": "1"},
+                    {"Branching Probability Decile (%)": "70-80", "Count": "1"},
+                    {"Branching Probability Decile (%)": "60-70", "Count": "1"},
+                    {"Branching Probability Decile (%)": "50-60", "Count": "0"},
+                    {"Branching Probability Decile (%)": "40-50", "Count": "0"},
+                    {"Branching Probability Decile (%)": "30-40", "Count": "0"},
+                    {"Branching Probability Decile (%)": "20-30", "Count": "0"},
+                    {"Branching Probability Decile (%)": "10-20", "Count": "0"},
+                    {"Branching Probability Decile (%)": "0-10", "Count": "1"},
+                    {"Branching Probability Decile (%)": "No numeric value", "Count": "0"},
+                ],
+            )
+            residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
             self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
             self.assertEqual(
                 residue_rows,
@@ -319,6 +342,7 @@ class PdgfeedCliTests(unittest.TestCase):
                             "TEST.B.PHI",
                             "B+ -> K+ phi",
                             [FakeDecayProduct("K+"), FakeDecayProduct("phi")],
+                            value=0.91,
                         )
                     ],
                     mcid=521,
@@ -335,7 +359,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 2)
+            self.assertEqual(len(content), 3)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
@@ -353,7 +377,25 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[8], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
             self.assertEqual(metric_rows[9], {"Metric": "Number of reactions ready", "Count": "1"})
             self.assertEqual(metric_rows[10], {"Metric": "Number of reactions blocked", "Count": "0"})
-            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            probability_headers, probability_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(probability_headers, ["Branching Probability Decile (%)", "Count"])
+            self.assertEqual(
+                probability_rows,
+                [
+                    {"Branching Probability Decile (%)": "90-100", "Count": "1"},
+                    {"Branching Probability Decile (%)": "80-90", "Count": "0"},
+                    {"Branching Probability Decile (%)": "70-80", "Count": "0"},
+                    {"Branching Probability Decile (%)": "60-70", "Count": "0"},
+                    {"Branching Probability Decile (%)": "50-60", "Count": "0"},
+                    {"Branching Probability Decile (%)": "40-50", "Count": "0"},
+                    {"Branching Probability Decile (%)": "30-40", "Count": "0"},
+                    {"Branching Probability Decile (%)": "20-30", "Count": "0"},
+                    {"Branching Probability Decile (%)": "10-20", "Count": "0"},
+                    {"Branching Probability Decile (%)": "0-10", "Count": "0"},
+                    {"Branching Probability Decile (%)": "No numeric value", "Count": "0"},
+                ],
+            )
+            residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
             self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
             self.assertEqual(
                 residue_rows,

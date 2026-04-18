@@ -12,7 +12,14 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from scripts.pdg.pdgfeed_generic_family import canonicalize_generic_family_name, is_supported_generic_family
-from scripts.pdg.pdgfeed_live import connect_pdg, known_reaction_status, load_live_case_by_id, load_live_cases
+from scripts.pdg.pdgfeed_live import (
+    connect_pdg,
+    iter_candidate_branching_fractions,
+    iter_live_particles,
+    known_reaction_status,
+    load_live_case_by_id,
+    load_live_cases,
+)
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
     DEFAULT_PDGSOLVE_REQUEST_POLICY,
@@ -79,6 +86,22 @@ INCOMPLETE_NOTE_MARKERS = (
     ":generic-family-unresolved",
     ":missing-name",
 )
+BRANCHING_PROBABILITY_DECILE_LABELS = tuple(
+    f"{lower}-{upper}"
+    for lower, upper in (
+        (90, 100),
+        (80, 90),
+        (70, 80),
+        (60, 70),
+        (50, 60),
+        (40, 50),
+        (30, 40),
+        (20, 30),
+        (10, 20),
+        (0, 10),
+    )
+)
+NO_NUMERIC_BRANCHING_PROBABILITY_LABEL = "No numeric value"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -1017,6 +1040,50 @@ def supported_reaction_sort_key(row: dict[str, str | int]) -> tuple[int, int, in
     )
 
 
+def normalize_branching_probability(value: Any) -> float | None:
+    try:
+        probability = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(probability):
+        return None
+    if -1e-12 <= probability <= 1.0 + 1e-12:
+        return min(1.0, max(0.0, probability))
+    return None
+
+
+def branching_probability_decile_label(probability: float) -> str:
+    percent = probability * 100.0
+    if percent >= 100.0:
+        return "90-100"
+    lower = int(percent // 10) * 10
+    upper = lower + 10
+    return f"{lower}-{upper}"
+
+
+def build_live_branching_probability_deciles(
+    database_url: str | None = None,
+    *,
+    api: Any | None = None,
+    source: str = "pdg-reactions",
+) -> list[tuple[str, int]]:
+    if source != "pdg-reactions":
+        raise ValueError(f"Unsupported source: {source}")
+    api = api or connect_pdg(database_url, pedantic=False)
+    counts: Counter[str] = Counter()
+    for particle in iter_live_particles(api):
+        for decay in iter_candidate_branching_fractions(particle):
+            probability = normalize_branching_probability(getattr(decay, "value", None))
+            if probability is None:
+                counts[NO_NUMERIC_BRANCHING_PROBABILITY_LABEL] += 1
+                continue
+            counts[branching_probability_decile_label(probability)] += 1
+    return [
+        *((label, counts.get(label, 0)) for label in BRANCHING_PROBABILITY_DECILE_LABELS),
+        (NO_NUMERIC_BRANCHING_PROBABILITY_LABEL, counts.get(NO_NUMERIC_BRANCHING_PROBABILITY_LABEL, 0)),
+    ]
+
+
 def build_supported_reaction_csv_rows(cases: list[PdgCase]) -> list[dict[str, str | int]]:
     rows: list[dict[str, str | int]] = []
     for case in cases:
@@ -1122,12 +1189,13 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
+) -> tuple[list[tuple[str, int]], list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
     manifest = build_live_manifest_payload(database_url, api=api)
     supported_rows = build_live_supported_reaction_csv_rows(database_url, api=api, manifest=manifest)
+    probability_deciles = build_live_branching_probability_deciles(database_url, api=api, source=source)
     total_reaction_count = int(manifest.get("readyCount", 0) or 0) + int(manifest.get("blockedCount", 0) or 0)
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
@@ -1213,7 +1281,7 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0]),
         )[:10]
     ]
-    return rows, residue_counts, backlog_particles
+    return rows, probability_deciles, residue_counts, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -1395,6 +1463,7 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
+    probability_deciles: Sequence[tuple[str, int]] = (),
     residue_counts: Sequence[tuple[str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
@@ -1408,6 +1477,18 @@ def write_live_reaction_summary_markdown(
             for row in metrics
         ],
     ]
+    if probability_deciles:
+        body.extend(
+            [
+                "",
+                "| Branching Probability Decile (%) | Count |",
+                "| --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in probability_deciles
+                ],
+            ]
+        )
     if residue_counts:
         body.extend(
             [
@@ -1441,9 +1522,19 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    metrics, residue_counts, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    metrics, probability_deciles, residue_counts, backlog_particles = build_live_reaction_summary_rows(
+        database_url,
+        source=source,
+        api=api,
+    )
     path = summary_markdown_output_path(source)
-    write_live_reaction_summary_markdown(path, metrics, residue_counts=residue_counts, backlog_particles=backlog_particles)
+    write_live_reaction_summary_markdown(
+        path,
+        metrics,
+        probability_deciles=probability_deciles,
+        residue_counts=residue_counts,
+        backlog_particles=backlog_particles,
+    )
     return path
 
 

@@ -12,6 +12,20 @@
 | Number of reactions ready | 1402 |
 | Number of reactions blocked | 13276 |
 
+| Branching Probability Decile (%) | Count |
+| --- | --- |
+| 90-100 | 63 |
+| 80-90 | 30 |
+| 70-80 | 23 |
+| 60-70 | 27 |
+| 50-60 | 35 |
+| 40-50 | 40 |
+| 30-40 | 92 |
+| 20-30 | 126 |
+| 10-20 | 310 |
+| 0-10 | 8114 |
+| No numeric value | 5818 |
+
 | Product Unbound Architrino Counts | Count | Example Mode |
 | --- | --- | --- |
 | 5:5 | 296 | mu- decay mode 5 |

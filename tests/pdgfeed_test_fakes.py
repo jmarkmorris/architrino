@@ -13,12 +13,13 @@ class FakeDecayProduct:
 
 
 class FakeDecay:
-    def __init__(self, pdgid, description, products, *, mode_number=1, display_value_text=""):
+    def __init__(self, pdgid, description, products, *, mode_number=1, display_value_text="", value=None):
         self.pdgid = pdgid
         self.description = description
         self.decay_products = products
         self.mode_number = mode_number
         self.display_value_text = display_value_text
+        self.value = value
 
 
 class FakeParticle:
