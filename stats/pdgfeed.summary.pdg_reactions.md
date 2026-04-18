@@ -3,16 +3,14 @@
 | Number of total PDG reactions | 14678 |
 | Number of incomplete PDG reactions | 9723 |
 | Number of AAAcomplete reactions | 6 |
-| Number of backlog reactions | 3601 |
-| Number of PDG reactions supported and transformed into AAA | 1346 |
-| Number of reactions leaving 0/0 architrinos | 333 |
-| Number of reactions leaving 1/1 architrinos | 285 |
-| Number of reactions leaving 2/2 architrinos | 154 |
-| Number of reactions leaving 3/3 architrinos | 97 |
-| Number of reactions leaving 4/4 architrinos | 159 |
-| Number of reactions leaving 5/5 architrinos | 326 |
-| Number of reactions ready | 1354 |
-| Number of reactions blocked | 13324 |
+| Number of backlog reactions | 3553 |
+| Number of PDG reactions supported and transformed into AAA | 1394 |
+| Number of reactions closed by total primitive balance | 1402 |
+| Number of total-balance closures with product unbound architrinos | 1134 |
+| Number of total-balance closures without product unbound architrinos | 268 |
+| Number of ready reactions lacking total primitive balance | 0 |
+| Number of reactions ready | 1402 |
+| Number of reactions blocked | 13276 |
 
 | Backlog Particle | Count |
 | --- | --- |
