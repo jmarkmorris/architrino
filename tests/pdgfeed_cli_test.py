@@ -278,8 +278,9 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
-            markdown_lines = output_path.read_text(encoding="utf-8").strip().splitlines()
-            headers, rows = self.parse_markdown_table(markdown_lines)
+            content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
+            self.assertEqual(len(content), 2)
+            headers, rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(headers, ["Metric", "Count"])
             self.assertEqual(
                 rows,
@@ -295,6 +296,16 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"},
                     {"Metric": "Number of reactions ready", "Count": "5"},
                     {"Metric": "Number of reactions blocked", "Count": "0"},
+                ],
+            )
+            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count"])
+            self.assertEqual(
+                residue_rows,
+                [
+                    {"Product Unbound Architrino Counts": "0:0", "Count": "2"},
+                    {"Product Unbound Architrino Counts": "12:12", "Count": "2"},
+                    {"Product Unbound Architrino Counts": "2:2", "Count": "1"},
                 ],
             )
 
@@ -324,7 +335,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 1)
+            self.assertEqual(len(content), 2)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
@@ -342,6 +353,14 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[8], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
             self.assertEqual(metric_rows[9], {"Metric": "Number of reactions ready", "Count": "1"})
             self.assertEqual(metric_rows[10], {"Metric": "Number of reactions blocked", "Count": "0"})
+            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count"])
+            self.assertEqual(
+                residue_rows,
+                [
+                    {"Product Unbound Architrino Counts": "1:1", "Count": "1"},
+                ],
+            )
 
 
 if __name__ == "__main__":

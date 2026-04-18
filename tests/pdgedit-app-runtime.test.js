@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildPdgeditLinkRenderModels } from "../src/apps/pdgedit/PdgeditAppRuntime.js";
+import {
+  buildPdgeditLinkRenderModels,
+  compactPdgeditReactionParticipants,
+  compactPdgeditReactionTitle,
+} from "../src/apps/pdgedit/PdgeditAppRuntime.js";
 
 function createAssembly({ id, x, y }) {
   return {
@@ -27,6 +31,47 @@ function createOperator({ id, x, y }) {
     electrinoCount: 1,
   };
 }
+
+test("reaction title compacts repeated AAA bracket groups", () => {
+  assert.equal(
+    compactPdgeditReactionTitle(
+      "+ [Pro Noether Core+Anti Noether Core+Pro Noether Core+Anti Noether Core]AAA"
+    ),
+    "+ 2x[Pro Noether Core+Anti Noether Core]AAA"
+  );
+});
+
+test("reaction participant compaction collapses repeated sequences for summary rendering", () => {
+  assert.deepEqual(
+    compactPdgeditReactionParticipants([
+      { text: "Anti Noether Core" },
+      { text: "Pro Noether Core" },
+      { text: "Anti Noether Core" },
+      { text: "Pro Noether Core" },
+    ]),
+    {
+      repeatCount: 2,
+      participants: ["Anti Noether Core", "Pro Noether Core"],
+    }
+  );
+});
+
+test("reaction title leaves non-repeated AAA groups unchanged", () => {
+  assert.equal(
+    compactPdgeditReactionTitle("+ [Pro Noether Core+Anti Noether Core+Pro Up Quark]AAA"),
+    "+ [Pro Noether Core+Anti Noether Core+Pro Up Quark]AAA"
+  );
+});
+
+test("reaction title compacts each repeated AAA group independently", () => {
+  assert.equal(
+    compactPdgeditReactionTitle(
+      "[Pro Noether Core + Anti Noether Core + Pro Noether Core + Anti Noether Core]AAA -> " +
+        "[Pro Electron+Pro Electron]AAA"
+    ),
+    "2x[Pro Noether Core+Anti Noether Core]AAA -> 2x[Pro Electron]AAA"
+  );
+});
 
 test("link render models sort shared routing columns by geometry rather than link id", () => {
   const topAssembly = createAssembly({ id: "reactant_top", x: 2, y: 0 });

@@ -935,6 +935,10 @@ def get_request_residue_counts(pdgsolve_request: Any) -> tuple[int, int] | None:
     return counts["electrinoCount"], counts["positrinoCount"]
 
 
+def format_residue_counts(counts: tuple[int, int]) -> str:
+    return f"{counts[0]}:{counts[1]}"
+
+
 def request_has_total_primitive_balance(pdgsolve_request: Any) -> bool:
     if not isinstance(pdgsolve_request, dict):
         return False
@@ -1118,7 +1122,7 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
+) -> tuple[list[tuple[str, int]], list[tuple[str, int]], list[tuple[str, int]]]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
@@ -1128,6 +1132,7 @@ def build_live_reaction_summary_rows(
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
+    residue_count_buckets: Counter[tuple[int, int]] = Counter()
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1136,6 +1141,9 @@ def build_live_reaction_summary_rows(
             ready_without_total_balance_count += 1
             continue
         total_balance_closure_count += 1
+        residue_counts = get_request_residue_counts(pdgsolve_request)
+        if residue_counts is not None:
+            residue_count_buckets[residue_counts] += 1
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
@@ -1179,6 +1187,13 @@ def build_live_reaction_summary_rows(
             ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
         ]
     )
+    residue_counts = [
+        (format_residue_counts(residue_count), count)
+        for residue_count, count in sorted(
+            residue_count_buckets.items(),
+            key=lambda item: (-item[1], item[0][0], item[0][1]),
+        )
+    ]
     backlog_particles = [
         (particle_name, count)
         for particle_name, count in sorted(
@@ -1186,7 +1201,7 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0]),
         )[:10]
     ]
-    return rows, backlog_particles
+    return rows, residue_counts, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -1368,6 +1383,7 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
+    residue_counts: Sequence[tuple[str, int]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1380,6 +1396,18 @@ def write_live_reaction_summary_markdown(
             for row in metrics
         ],
     ]
+    if residue_counts:
+        body.extend(
+            [
+                "",
+                "| Product Unbound Architrino Counts | Count |",
+                "| --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in residue_counts
+                ],
+            ]
+        )
     if backlog_particles:
         body.extend(
             [
@@ -1401,9 +1429,9 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    metrics, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    metrics, residue_counts, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
     path = summary_markdown_output_path(source)
-    write_live_reaction_summary_markdown(path, metrics, backlog_particles=backlog_particles)
+    write_live_reaction_summary_markdown(path, metrics, residue_counts=residue_counts, backlog_particles=backlog_particles)
     return path
 
 

@@ -215,14 +215,23 @@ function createReactionProvenanceElement(documentLike, provenance) {
 }
 
 function createReactionBracketedGroupElement(documentLike, participants, provenance) {
-  const normalizedParticipants = Array.isArray(participants)
-    ? participants.map((participant) => normalizeText(participant?.text)).filter(Boolean)
-    : [];
+  const compactedParticipants = compactPdgeditReactionParticipants(participants);
+  const normalizedParticipants = compactedParticipants.participants;
   if (!normalizedParticipants.length) {
     return null;
   }
   const element = documentLike.createElement("span");
   element.className = "pdgedit-reaction-group";
+  if (compactedParticipants.repeatCount > 1) {
+    element.append(
+      createTextElement(
+        documentLike,
+        "span",
+        "pdgedit-reaction-multiplier",
+        `${compactedParticipants.repeatCount}x`
+      )
+    );
+  }
   element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "["));
   normalizedParticipants.forEach((text, index) => {
     if (index > 0) {
@@ -249,6 +258,70 @@ function appendReactionParticipantGroup(documentLike, container, participants, h
     appended = true;
   });
   return appended;
+}
+
+function findRepeatedParticipantSequence(participants = []) {
+  const normalizedParticipants = (Array.isArray(participants) ? participants : [])
+    .map((participant) => normalizeText(participant))
+    .filter(Boolean);
+  if (normalizedParticipants.length < 2) {
+    return null;
+  }
+  for (let sequenceLength = 1; sequenceLength <= normalizedParticipants.length / 2; sequenceLength += 1) {
+    if (normalizedParticipants.length % sequenceLength !== 0) {
+      continue;
+    }
+    const repeatCount = normalizedParticipants.length / sequenceLength;
+    if (repeatCount <= 1) {
+      continue;
+    }
+    const sequence = normalizedParticipants.slice(0, sequenceLength);
+    const matchesRepeatedSequence = normalizedParticipants.every(
+      (participant, index) => participant === sequence[index % sequenceLength]
+    );
+    if (matchesRepeatedSequence) {
+      return {
+        repeatCount,
+        sequence,
+      };
+    }
+  }
+  return null;
+}
+
+export function compactPdgeditReactionParticipants(participants = []) {
+  const normalizedParticipants = (Array.isArray(participants) ? participants : [])
+    .map((participant) => normalizeText(participant?.text ?? participant))
+    .filter(Boolean);
+  const repeatedSequence = findRepeatedParticipantSequence(normalizedParticipants);
+  if (!repeatedSequence) {
+    return {
+      repeatCount: 1,
+      participants: normalizedParticipants,
+    };
+  }
+  return {
+    repeatCount: repeatedSequence.repeatCount,
+    participants: repeatedSequence.sequence,
+  };
+}
+
+export function compactPdgeditReactionTitle(title = "") {
+  const normalizedTitle = normalizeText(title);
+  if (!normalizedTitle) {
+    return "";
+  }
+  return normalizedTitle.replace(/\[([^\]]+)\]AAA/gu, (match, groupText) => {
+    const compactedParticipants = compactPdgeditReactionParticipants(
+      String(groupText)
+        .split(/\s*\+\s*/u)
+        .map((participant) => normalizeText(participant))
+    );
+    if (compactedParticipants.repeatCount <= 1) {
+      return match;
+    }
+    return `${compactedParticipants.repeatCount}x[${compactedParticipants.participants.join("+")}]AAA`;
+  });
 }
 
 function renderReactionSide(documentLike, summary, side) {
@@ -530,14 +603,15 @@ export function createPdgeditAppRuntime({
   function renderDocumentHeader() {
     const renderedDocument = getRenderedDocument();
     const reactionSummary = renderedDocument?.metadata?.reactionSummary ?? null;
-    const headingText =
+    const rawHeadingText =
       normalizeText(reactionSummary?.title) ||
       normalizeText(state.selectedEntry?.title) ||
       normalizeText(state.selectedEntry?.displayTitle) ||
       "No reaction selected";
+    const headingText = compactPdgeditReactionTitle(rawHeadingText);
     if (documentTitleElement) {
       documentTitleElement.textContent = headingText;
-      documentTitleElement.title = headingText;
+      documentTitleElement.title = rawHeadingText;
     }
     if (!reactionSummaryElement) {
       return;
