@@ -164,6 +164,42 @@ function setPickerVisibility(element, isOpen) {
   element.hidden = !isOpen;
 }
 
+export function ensurePdgeditPickerChildElement(parentElement, childElement) {
+  if (!parentElement || !childElement) {
+    return;
+  }
+  if (typeof parentElement.contains === "function" && parentElement.contains(childElement)) {
+    return;
+  }
+  parentElement.append(childElement);
+}
+
+export function updateTextInputValuePreservingSelection(inputElement, nextValue, { documentLike = globalThis.document } = {}) {
+  if (!inputElement) {
+    return;
+  }
+  const normalizedNextValue = String(nextValue ?? "");
+  if (inputElement.value === normalizedNextValue) {
+    return;
+  }
+  const isFocused = documentLike?.activeElement === inputElement;
+  const selectionStart = typeof inputElement.selectionStart === "number" ? inputElement.selectionStart : null;
+  const selectionEnd = typeof inputElement.selectionEnd === "number" ? inputElement.selectionEnd : null;
+  inputElement.value = normalizedNextValue;
+  if (
+    isFocused &&
+    selectionStart !== null &&
+    selectionEnd !== null &&
+    typeof inputElement.setSelectionRange === "function"
+  ) {
+    const maxOffset = inputElement.value.length;
+    inputElement.setSelectionRange(
+      Math.min(selectionStart, maxOffset),
+      Math.min(selectionEnd, maxOffset)
+    );
+  }
+}
+
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
@@ -519,6 +555,8 @@ export function createPdgeditAppRuntime({
 
   const measurementContext = documentLike.createElement("canvas").getContext("2d");
   const tileElementPrototypeCache = new Map();
+  const documentOptionListElement = documentLike.createElement("div");
+  documentOptionListElement.className = "pdgedit-document-option-list";
   const state = {
     tileCatalog: null,
     tileByKey: new Map(),
@@ -654,10 +692,10 @@ export function createPdgeditAppRuntime({
         String(value || "")
           .toLowerCase()
           .includes(normalizedQuery)
-      );
+        );
     });
     if (documentSearchInputElement) {
-      documentSearchInputElement.value = state.documentQuery;
+      updateTextInputValuePreservingSelection(documentSearchInputElement, state.documentQuery, { documentLike });
     }
     if (documentSourceFilterElement) {
       const buttons = documentSourceFilterElement.querySelectorAll("[data-source-filter]");
@@ -667,11 +705,12 @@ export function createPdgeditAppRuntime({
         button.setAttribute("aria-pressed", isSelected ? "true" : "false");
       });
     }
-    const optionList = documentLike.createElement("div");
-    optionList.className = "pdgedit-document-option-list";
     if (!filteredEntries.length) {
-      optionList.append(createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions."));
+      documentOptionListElement.replaceChildren(
+        createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")
+      );
     } else {
+      const optionElements = [];
       filteredEntries.forEach((entry) => {
         const option = documentLike.createElement("button");
         option.type = "button";
@@ -681,13 +720,13 @@ export function createPdgeditAppRuntime({
         option.setAttribute("aria-selected", entry.id === state.selectedEntry?.id ? "true" : "false");
         option.classList.toggle("is-selected", entry.id === state.selectedEntry?.id);
         option.textContent = entry.displayTitle;
-        optionList.append(option);
+        optionElements.push(option);
       });
+      documentOptionListElement.replaceChildren(...optionElements);
     }
-    documentPanelElement.replaceChildren(
-      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
-      optionList
-    );
+    ensurePdgeditPickerChildElement(documentPanelElement, documentSearchInputElement);
+    ensurePdgeditPickerChildElement(documentPanelElement, documentSourceFilterElement);
+    ensurePdgeditPickerChildElement(documentPanelElement, documentOptionListElement);
   }
 
   function createTileElement(tileKey, sampleCounts = undefined) {

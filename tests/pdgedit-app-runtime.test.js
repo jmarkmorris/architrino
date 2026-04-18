@@ -5,6 +5,8 @@ import {
   buildPdgeditLinkRenderModels,
   compactPdgeditReactionParticipants,
   compactPdgeditReactionTitle,
+  ensurePdgeditPickerChildElement,
+  updateTextInputValuePreservingSelection,
 } from "../src/apps/pdgedit/PdgeditAppRuntime.js";
 
 function createAssembly({ id, x, y }) {
@@ -29,6 +31,21 @@ function createOperator({ id, x, y }) {
     title: id,
     positrinoCount: 1,
     electrinoCount: 1,
+  };
+}
+
+function createMockParentElement() {
+  return {
+    children: [],
+    contains(child) {
+      return this.children.includes(child);
+    },
+    append(child) {
+      if (!this.children.includes(child)) {
+        this.children.push(child);
+      }
+      child.parentElement = this;
+    },
   };
 }
 
@@ -99,4 +116,43 @@ test("link render models sort shared routing columns by geometry rather than lin
       ["a_bottom", 3],
     ]
   );
+});
+
+test("picker child mounting preserves existing mounted controls", () => {
+  const panel = createMockParentElement();
+  const searchInput = { id: "search" };
+  const filterGroup = { id: "filter" };
+  const optionList = { id: "options" };
+
+  ensurePdgeditPickerChildElement(panel, searchInput);
+  ensurePdgeditPickerChildElement(panel, filterGroup);
+  ensurePdgeditPickerChildElement(panel, optionList);
+  ensurePdgeditPickerChildElement(panel, searchInput);
+  ensurePdgeditPickerChildElement(panel, filterGroup);
+
+  assert.deepEqual(
+    panel.children.map((child) => child.id),
+    ["search", "filter", "options"]
+  );
+});
+
+test("text input updates preserve caret selection for focused picker search fields", () => {
+  const input = {
+    value: "reaction",
+    selectionStart: 3,
+    selectionEnd: 3,
+    setSelectionRange(start, end) {
+      this.selectionStart = start;
+      this.selectionEnd = end;
+    },
+  };
+  const documentLike = {
+    activeElement: input,
+  };
+
+  updateTextInputValuePreservingSelection(input, "react", { documentLike });
+
+  assert.equal(input.value, "react");
+  assert.equal(input.selectionStart, 3);
+  assert.equal(input.selectionEnd, 3);
 });
