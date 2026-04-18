@@ -43,10 +43,24 @@ function cloneAssembly(assembly = {}) {
           bottomCount: normalizeText(assembly.sampleCounts.bottomCount),
         }
       : null;
+  const primitiveCounts =
+    assembly?.primitiveCounts && typeof assembly.primitiveCounts === "object"
+      ? {
+          electrinoCount: normalizeInteger(assembly.primitiveCounts.electrinoCount, -1),
+          positrinoCount: normalizeInteger(assembly.primitiveCounts.positrinoCount, -1),
+        }
+      : null;
   return {
     ...assembly,
     tiles: Array.isArray(assembly?.tiles) ? [...assembly.tiles] : [],
     ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
+    ...(
+      primitiveCounts &&
+      primitiveCounts.electrinoCount >= 0 &&
+      primitiveCounts.positrinoCount >= 0
+        ? { primitiveCounts }
+        : {}
+    ),
   };
 }
 

@@ -2353,6 +2353,7 @@ def build_pdgedit_assembly_entry(
 ) -> dict[str, Any]:
     assembly_id = normalize_text(occurrence.get("assemblyId"))
     metadata = ASSEMBLY_DISPLAY[assembly_id]
+    primitive_counts = get_occurrence_primitive_counts(occurrence)
     entry = {
         "id": object_id,
         "type": metadata["pdgeditType"],
@@ -2361,6 +2362,16 @@ def build_pdgedit_assembly_entry(
         "title": metadata["title"],
         "role": role,
         "tiles": clone_json(metadata["tiles"]),
+        **(
+            {
+                "primitiveCounts": {
+                    "electrinoCount": primitive_counts["electrinoCount"],
+                    "positrinoCount": primitive_counts["positrinoCount"],
+                }
+            }
+            if primitive_counts is not None
+            else {}
+        ),
     }
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
         entry["sampleCounts"] = {
@@ -2402,6 +2413,7 @@ def build_pdgedit_document_from_publication_graph(
                 if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID
                 else None
             )
+            primitive_counts = residue_counts or build_assembly_counts_from_publication_unit(unit)
             assemblies.append(
                 {
                     "id": normalize_text(unit.get("id")),
@@ -2411,6 +2423,16 @@ def build_pdgedit_document_from_publication_graph(
                     "title": normalize_text(unit.get("title")) or metadata["title"],
                     "role": PDGEDIT_ROLE_BY_PUBLICATION_STAGE[stage],
                     "tiles": clone_json(metadata["tiles"]),
+                    **(
+                        {
+                            "primitiveCounts": {
+                                "electrinoCount": primitive_counts["electrinoCount"],
+                                "positrinoCount": primitive_counts["positrinoCount"],
+                            }
+                        }
+                        if primitive_counts is not None
+                        else {}
+                    ),
                     **(
                         {
                             "sampleCounts": {

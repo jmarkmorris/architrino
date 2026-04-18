@@ -21,6 +21,7 @@ import {
   PDGEDIT_RESERVED_TOP_ROW_COUNT,
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
+import { resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
 
 function normalizeText(value) {
@@ -30,6 +31,15 @@ function normalizeText(value) {
 function normalizeInteger(value, fallback = 0) {
   const number = Number(value);
   return Number.isInteger(number) ? number : fallback;
+}
+
+function parseNonnegativeInteger(value) {
+  const normalizedValue = String(value ?? "").trim();
+  if (!/^\d+$/u.test(normalizedValue)) {
+    return null;
+  }
+  const parsedValue = Number(normalizedValue);
+  return Number.isInteger(parsedValue) ? parsedValue : null;
 }
 
 function isEditingElement(element) {
@@ -265,6 +275,49 @@ function getPdgeditBalanceState(document = {}) {
     isBalanced: balanceSummary?.isBalanced === true,
     isLinkComplete: isPdgeditDocumentLinkComplete(document),
   };
+}
+
+function getPdgeditAssemblyConnectorCounts(object = {}) {
+  if (object?.kind !== "assembly") {
+    return null;
+  }
+  const primitiveCounts = object?.primitiveCounts;
+  if (primitiveCounts && typeof primitiveCounts === "object") {
+    const electrinoCount = normalizeInteger(primitiveCounts.electrinoCount, -1);
+    const positrinoCount = normalizeInteger(primitiveCounts.positrinoCount, -1);
+    if (electrinoCount >= 0 && positrinoCount >= 0) {
+      return { electrinoCount, positrinoCount };
+    }
+  }
+  const sampleCounts = object?.sampleCounts;
+  if (sampleCounts && typeof sampleCounts === "object") {
+    const electrinoCount = parseNonnegativeInteger(sampleCounts.topCount);
+    const positrinoCount = parseNonnegativeInteger(sampleCounts.bottomCount);
+    if (electrinoCount !== null && positrinoCount !== null) {
+      return { electrinoCount, positrinoCount };
+    }
+  }
+  return null;
+}
+
+function resolvePdgeditConnectorHighlightColor(catalog, model) {
+  const assemblyObject =
+    model?.leftObject?.kind === "assembly"
+      ? model.leftObject
+      : model?.rightObject?.kind === "assembly"
+        ? model.rightObject
+        : null;
+  const counts = getPdgeditAssemblyConnectorCounts(assemblyObject);
+  if (!counts) {
+    return resolvePdgeditCatalogColor(catalog, "purple");
+  }
+  if (counts.positrinoCount > counts.electrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "red");
+  }
+  if (counts.electrinoCount > counts.positrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "blue");
+  }
+  return resolvePdgeditCatalogColor(catalog, "purple");
 }
 
 function formatPdgeditBalanceTotals(totals = {}) {
@@ -547,10 +600,6 @@ export function createPdgeditAppRuntime({
     const objectsById = new Map(getPdgeditDocumentObjects(document).map((record) => [record.id, record]));
     const models = buildPdgeditLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
     const balanceState = getPdgeditBalanceState(document);
-    const visibleStrokeColor =
-      balanceState.isBalanced && balanceState.isLinkComplete
-        ? "rgba(122, 225, 146, 0.98)"
-        : "#ffffff";
     const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
     const heightPx = totalRows * PDGEDIT_TILE_SIZE_PX;
     linkOverlayElement.setAttribute("viewBox", `0 0 ${PDGEDIT_GRID_STRIP_WIDTH_PX} ${heightPx}`);
@@ -561,7 +610,12 @@ export function createPdgeditAppRuntime({
         const visiblePath = documentLike.createElementNS("http://www.w3.org/2000/svg", "path");
         visiblePath.setAttribute("d", model.spline.path);
         visiblePath.setAttribute("fill", "none");
-        visiblePath.setAttribute("stroke", visibleStrokeColor);
+        visiblePath.setAttribute(
+          "stroke",
+          balanceState.isBalanced && balanceState.isLinkComplete
+            ? resolvePdgeditConnectorHighlightColor(state.tileCatalog, model)
+            : "#ffffff"
+        );
         visiblePath.setAttribute("stroke-width", "2");
         visiblePath.setAttribute("stroke-linecap", "round");
         visiblePath.setAttribute("stroke-linejoin", "round");

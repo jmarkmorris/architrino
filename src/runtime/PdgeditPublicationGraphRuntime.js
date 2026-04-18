@@ -235,6 +235,10 @@ export function buildPdgeditDocumentFromPublicationGraph(
         title: normalizeText(unit?.title) || presentation.title || presentation.type,
         role: ASSEMBLY_ROLE_BY_STAGE[stage],
         tiles: [...presentation.tiles],
+        primitiveCounts: {
+          electrinoCount: residueCounts?.electrinoCount ?? counts.electrinoCount,
+          positrinoCount: residueCounts?.positrinoCount ?? counts.positrinoCount,
+        },
         ...(normalizeText(unit?.recipeId) === "unbound_architrinos_residue"
           ? {
               sampleCounts: {

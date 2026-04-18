@@ -24,6 +24,13 @@ function normalizeAssembly(record) {
           bottomCount: normalizeText(record.sampleCounts.bottomCount),
         }
       : null;
+  const primitiveCounts =
+    record?.primitiveCounts && typeof record.primitiveCounts === "object"
+      ? {
+          electrinoCount: normalizeInteger(record.primitiveCounts.electrinoCount, -1),
+          positrinoCount: normalizeInteger(record.primitiveCounts.positrinoCount, -1),
+        }
+      : null;
   return {
     id: normalizeText(record?.id),
     type: normalizeText(record?.type),
@@ -33,6 +40,13 @@ function normalizeAssembly(record) {
     role: normalizeText(record?.role),
     tiles: normalizeTileKeys(record?.tiles),
     ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
+    ...(
+      primitiveCounts &&
+      primitiveCounts.electrinoCount >= 0 &&
+      primitiveCounts.positrinoCount >= 0
+        ? { primitiveCounts }
+        : {}
+    ),
   };
 }
 

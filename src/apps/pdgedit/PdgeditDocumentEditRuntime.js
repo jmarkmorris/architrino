@@ -113,6 +113,8 @@ function cloneDocument(document = {}) {
     assemblies: normalizedDocument.assemblies.map((assembly) => ({
       ...assembly,
       tiles: [...assembly.tiles],
+      ...(assembly?.sampleCounts ? { sampleCounts: { ...assembly.sampleCounts } } : {}),
+      ...(assembly?.primitiveCounts ? { primitiveCounts: { ...assembly.primitiveCounts } } : {}),
     })),
     operators: normalizedDocument.operators.map((operator) => ({ ...operator })),
     links: normalizedDocument.links.map((link) => ({ ...link })),
