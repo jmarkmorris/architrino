@@ -299,13 +299,13 @@ class PdgfeedCliTests(unittest.TestCase):
                 ],
             )
             residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
-            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count"])
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Reaction ID"])
             self.assertEqual(
                 residue_rows,
                 [
-                    {"Product Unbound Architrino Counts": "0:0", "Count": "2"},
-                    {"Product Unbound Architrino Counts": "12:12", "Count": "2"},
-                    {"Product Unbound Architrino Counts": "2:2", "Count": "1"},
+                    {"Product Unbound Architrino Counts": "0:0", "Count": "2", "Example Reaction ID": "mu_minus_test_mu_1"},
+                    {"Product Unbound Architrino Counts": "12:12", "Count": "2", "Example Reaction ID": "pi0_test_pi_zero_one_gamma"},
+                    {"Product Unbound Architrino Counts": "2:2", "Count": "1", "Example Reaction ID": "pi_plus_test_pi_plus"},
                 ],
             )
 
@@ -354,11 +354,11 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[9], {"Metric": "Number of reactions ready", "Count": "1"})
             self.assertEqual(metric_rows[10], {"Metric": "Number of reactions blocked", "Count": "0"})
             residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
-            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count"])
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Reaction ID"])
             self.assertEqual(
                 residue_rows,
                 [
-                    {"Product Unbound Architrino Counts": "1:1", "Count": "1"},
+                    {"Product Unbound Architrino Counts": "1:1", "Count": "1", "Example Reaction ID": "b_plus_test_b_phi"},
                 ],
             )
 

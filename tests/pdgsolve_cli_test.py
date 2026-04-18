@@ -862,6 +862,57 @@ class PdgsolveCliTests(unittest.TestCase):
             self.assertEqual(len(pdgedit_manifest["entries"]), 1)
             self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "exact")
 
+    def test_solve_manifest_keeps_all_exact_pdgedit_entries_beyond_previous_scroll_picker_cap(self):
+        ready_entries = [
+            {
+                "batchId": index + 1,
+                "caseId": f"reference_exact_{index + 1}",
+                "proposalId": f"reference_exact_{index + 1}",
+                "pdgsolveRequest": make_pass_thru_request(f"reference_exact_{index + 1}"),
+            }
+            for index in range(70)
+        ]
+        manifest = {
+            "schema": "pdg-live-manifest/v1",
+            "readyCount": len(ready_entries),
+            "blockedCount": 0,
+            "topBlockedParticles": [],
+            "readyEntries": ready_entries,
+            "blockedEntries": [],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            manifest_path = tmp_dir / "manifest.json"
+            index_path = tmp_dir / "index.json"
+            output_dir = tmp_dir / "results"
+            pdgedit_output_dir = tmp_dir / "pdgedit-documents"
+            pdgedit_manifest_path = tmp_dir / "pdgedit-manifest.json"
+            manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+            output = self.run_main(
+                [
+                    "solve-manifest",
+                    str(manifest_path),
+                    "--output-dir",
+                    str(output_dir),
+                    "--write-index",
+                    str(index_path),
+                    "--pdgedit-output-dir",
+                    str(pdgedit_output_dir),
+                    "--write-pdgedit-manifest",
+                    str(pdgedit_manifest_path),
+                ]
+            )
+
+            self.assertEqual(output.splitlines(), [str(output_dir), str(index_path), str(pdgedit_manifest_path)])
+            index_payload = self.read_json(index_path)
+            self.assertEqual(index_payload["exactAvailableCount"], 70)
+            self.assertEqual(index_payload["noExactClosureCount"], 0)
+            pdgedit_manifest = self.read_json(pdgedit_manifest_path)
+            self.assertEqual(len(pdgedit_manifest["entries"]), 70)
+            self.assertEqual(Counter(entry["sourceKind"] for entry in pdgedit_manifest["entries"]), Counter({"exact": 70}))
+
     def test_parse_args_uses_repo_local_tmp_defaults_for_manifest_solves(self):
         args = pdgsolve.parse_args(["solve-manifest", "manifest.json"])
 

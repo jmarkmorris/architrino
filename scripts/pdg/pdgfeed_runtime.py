@@ -1122,7 +1122,7 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int]], list[tuple[str, int]]]:
+) -> tuple[list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
@@ -1133,6 +1133,7 @@ def build_live_reaction_summary_rows(
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
     residue_count_buckets: Counter[tuple[int, int]] = Counter()
+    residue_count_examples: dict[tuple[int, int], str] = {}
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1144,6 +1145,12 @@ def build_live_reaction_summary_rows(
         residue_counts = get_request_residue_counts(pdgsolve_request)
         if residue_counts is not None:
             residue_count_buckets[residue_counts] += 1
+            if residue_counts not in residue_count_examples:
+                residue_count_examples[residue_counts] = (
+                    str(entry.get("caseId", "")).strip()
+                    or str(entry.get("proposalId", "")).strip()
+                    or str(pdgsolve_request.get("requestId", "")).strip()
+                )
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
@@ -1188,7 +1195,11 @@ def build_live_reaction_summary_rows(
         ]
     )
     residue_counts = [
-        (format_residue_counts(residue_count), count)
+        (
+            format_residue_counts(residue_count),
+            count,
+            residue_count_examples.get(residue_count, ""),
+        )
         for residue_count, count in sorted(
             residue_count_buckets.items(),
             key=lambda item: (-item[1], item[0][0], item[0][1]),
@@ -1383,7 +1394,7 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
-    residue_counts: Sequence[tuple[str, int]] = (),
+    residue_counts: Sequence[tuple[str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1400,8 +1411,8 @@ def write_live_reaction_summary_markdown(
         body.extend(
             [
                 "",
-                "| Product Unbound Architrino Counts | Count |",
-                "| --- | --- |",
+                "| Product Unbound Architrino Counts | Count | Example Reaction ID |",
+                "| --- | --- | --- |",
                 *[
                     "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
                     for row in residue_counts
