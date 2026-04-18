@@ -65,6 +65,14 @@ NOETHER_CORE_ASSEMBLY_IDS = tuple(
     for generation in NOETHER_CORE_GENERATIONS
     for assembly_id in (f"pro_noether_core_{generation}", f"anti_noether_core_{generation}")
 )
+NOETHER_CORE_SUCCESSOR = {
+    "pro_noether_core_I": "pro_noether_core_II",
+    "anti_noether_core_I": "anti_noether_core_II",
+    "pro_noether_core_II": "pro_noether_core_III",
+    "anti_noether_core_II": "anti_noether_core_III",
+    "pro_noether_core_III": None,
+    "anti_noether_core_III": None,
+}
 INCOMPLETE_NOTE_MARKERS = (
     "generic-or-textual-item",
     "generic-family-charge-",
@@ -500,13 +508,55 @@ def count_noether_core_middle_supply_occurrences(occurrences: list[dict[str, Any
     return counts
 
 
+def get_reachable_noether_core_assembly_ids(core_assembly_id: str) -> tuple[str, ...]:
+    reachable_core_ids: list[str] = []
+    current_core_assembly_id = str(core_assembly_id or "").strip()
+    while current_core_assembly_id:
+        reachable_core_ids.append(current_core_assembly_id)
+        current_core_assembly_id = str(NOETHER_CORE_SUCCESSOR.get(current_core_assembly_id) or "").strip()
+    return tuple(reachable_core_ids)
+
+
+def plan_noether_core_middle_supply_occurrences(
+    occurrences: list[dict[str, Any]],
+    required_counts: dict[str, int],
+) -> dict[str, int]:
+    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_ASSEMBLY_IDS}
+    remaining_required = {
+        assembly_id: int(required_counts.get(assembly_id, 0) or 0)
+        for assembly_id in NOETHER_CORE_ASSEMBLY_IDS
+    }
+    for occurrence in occurrences:
+        if not isinstance(occurrence, dict):
+            continue
+        assembly_id = str(occurrence.get("assemblyId", "")).strip()
+        if assembly_id in counts:
+            continue
+        core_assembly_id = get_noether_core_assembly_id_for_occurrence(occurrence)
+        if core_assembly_id is None:
+            continue
+        target_core_assembly_id = next(
+            (
+                candidate_id
+                for candidate_id in reversed(get_reachable_noether_core_assembly_ids(core_assembly_id))
+                if remaining_required[candidate_id] > 0
+            ),
+            None,
+        )
+        if target_core_assembly_id is None:
+            continue
+        counts[target_core_assembly_id] += 1
+        remaining_required[target_core_assembly_id] -= 1
+    return counts
+
+
 def compute_required_full_noether_pair_count(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
 ) -> int:
     direct_counts = count_direct_noether_core_occurrences(reactants)
-    middle_supply_counts = count_noether_core_middle_supply_occurrences(reactants)
     required_counts = count_noether_core_support_occurrences(products)
+    middle_supply_counts = plan_noether_core_middle_supply_occurrences(reactants, required_counts)
     required_pair_count_by_charge = {"pro": 0, "anti": 0}
 
     for charge in ("pro", "anti"):
@@ -885,6 +935,10 @@ def get_request_residue_counts(pdgsolve_request: Any) -> tuple[int, int] | None:
     return counts["electrinoCount"], counts["positrinoCount"]
 
 
+def format_residue_counts(counts: tuple[int, int]) -> str:
+    return f"{counts[0]}:{counts[1]}"
+
+
 def request_has_total_primitive_balance(pdgsolve_request: Any) -> bool:
     if not isinstance(pdgsolve_request, dict):
         return False
@@ -1068,7 +1122,7 @@ def build_live_reaction_summary_rows(
     *,
     source: str = "pdg-reactions",
     api: Any | None = None,
-) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
+) -> tuple[list[tuple[str, int]], list[tuple[str, int, str]], list[tuple[str, int]]]:
     if source != "pdg-reactions":
         raise ValueError(f"Unsupported source: {source}")
     api = api or connect_pdg(database_url, pedantic=False)
@@ -1078,6 +1132,8 @@ def build_live_reaction_summary_rows(
     total_balance_closure_count = 0
     total_balance_with_residue_count = 0
     ready_without_total_balance_count = 0
+    residue_count_buckets: Counter[tuple[int, int]] = Counter()
+    residue_count_examples: dict[tuple[int, int], str] = {}
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1086,6 +1142,16 @@ def build_live_reaction_summary_rows(
             ready_without_total_balance_count += 1
             continue
         total_balance_closure_count += 1
+        residue_counts = get_request_residue_counts(pdgsolve_request)
+        if residue_counts is not None:
+            residue_count_buckets[residue_counts] += 1
+            if residue_counts not in residue_count_examples:
+                residue_count_examples[residue_counts] = (
+                    str(entry.get("title", "")).strip()
+                    or str(entry.get("caseId", "")).strip()
+                    or str(entry.get("proposalId", "")).strip()
+                    or str(pdgsolve_request.get("requestId", "")).strip()
+                )
         if request_has_unbound_architrino_residue_product(pdgsolve_request):
             total_balance_with_residue_count += 1
     total_balance_without_residue_count = total_balance_closure_count - total_balance_with_residue_count
@@ -1129,6 +1195,17 @@ def build_live_reaction_summary_rows(
             ("Number of reactions blocked", int(manifest.get("blockedCount", 0) or 0)),
         ]
     )
+    residue_counts = [
+        (
+            format_residue_counts(residue_count),
+            count,
+            residue_count_examples.get(residue_count, ""),
+        )
+        for residue_count, count in sorted(
+            residue_count_buckets.items(),
+            key=lambda item: (-item[1], item[0][0], item[0][1]),
+        )
+    ]
     backlog_particles = [
         (particle_name, count)
         for particle_name, count in sorted(
@@ -1136,7 +1213,7 @@ def build_live_reaction_summary_rows(
             key=lambda item: (-item[1], item[0]),
         )[:10]
     ]
-    return rows, backlog_particles
+    return rows, residue_counts, backlog_particles
 
 
 def write_supported_reaction_csv(path: Path, rows: list[dict[str, str | int]]) -> None:
@@ -1318,6 +1395,7 @@ def write_live_reaction_summary_markdown(
     path: Path,
     rows: Sequence[tuple[str, int]],
     *,
+    residue_counts: Sequence[tuple[str, int, str]] = (),
     backlog_particles: Sequence[tuple[str, int]] = (),
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1330,6 +1408,18 @@ def write_live_reaction_summary_markdown(
             for row in metrics
         ],
     ]
+    if residue_counts:
+        body.extend(
+            [
+                "",
+                "| Product Unbound Architrino Counts | Count | Example Mode |",
+                "| --- | --- | --- |",
+                *[
+                    "| " + " | ".join(escape_markdown_table_cell(cell) for cell in row) + " |"
+                    for row in residue_counts
+                ],
+            ]
+        )
     if backlog_particles:
         body.extend(
             [
@@ -1351,9 +1441,9 @@ def write_live_reaction_summary_report(
     *,
     api: Any | None = None,
 ) -> Path:
-    metrics, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
+    metrics, residue_counts, backlog_particles = build_live_reaction_summary_rows(database_url, source=source, api=api)
     path = summary_markdown_output_path(source)
-    write_live_reaction_summary_markdown(path, metrics, backlog_particles=backlog_particles)
+    write_live_reaction_summary_markdown(path, metrics, residue_counts=residue_counts, backlog_particles=backlog_particles)
     return path
 
 

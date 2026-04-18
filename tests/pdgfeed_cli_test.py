@@ -149,19 +149,14 @@ class PdgfeedCliTests(unittest.TestCase):
 
             self.assertEqual(
                 [entry["assemblyId"] for entry in request["reactants"]],
-                [
-                    "pro_up_quark_I",
-                    "anti_down_quark_I",
-                    "pro_noether_core_I",
-                    "anti_noether_core_I",
-                ],
+                ["pro_up_quark_I", "anti_down_quark_I"],
             )
             self.assertEqual(
                 [entry["assemblyId"] for entry in request["products"]],
                 ["anti_muon_II", "pro_muon_neutrino_II", "unbound_architrinos_residue"],
             )
-            self.assertEqual(request["products"][-1]["electrinoCount"], 8)
-            self.assertEqual(request["products"][-1]["positrinoCount"], 8)
+            self.assertEqual(request["products"][-1]["electrinoCount"], 2)
+            self.assertEqual(request["products"][-1]["positrinoCount"], 2)
 
     def test_request_uses_full_pi_zero_superposition_transform(self):
         api = self.build_api()
@@ -216,7 +211,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     "u,mu_minus_test_mu_gamma,13,TEST.MU.GAMMA,mu- decay mode 1,e2,e.av.v2.hp,26,26,0,20,20,0",
                     "u,pi0_test_pi_zero_one_gamma,111,TEST.PI.ZERO.ONE.GAMMA,pi0 decay mode 1,u.au.d.ad,hp,36,36,0,36,36,0",
                     "u,pi0_fake,111,fake,pi0 decay mode 2,u.au.d.ad,hp.hp,36,36,0,36,36,0",
-                    "u,pi_plus_test_pi_plus,211,TEST.PI.PLUS,pi+ decay mode 1,u.ad,ae2.v2,15,15,0,21,21,0",
+                    "u,pi_plus_test_pi_plus,211,TEST.PI.PLUS,pi+ decay mode 1,u.ad,ae2.v2,9,9,0,15,15,0",
                 ],
             )
 
@@ -263,8 +258,8 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Reactant AAA"], "u.au.d.ad.h.ah.h.ah")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Product AAA"], "h.ah.h.ah.h.ah.h.ah.12:12@")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Delta Ledger"], "0.0@")
-            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Reactant AAA"], "u.ad.h.ah")
-            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Product AAA"], "ae2.v2.8:8@")
+            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Reactant AAA"], "u.ad")
+            self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Product AAA"], "ae2.v2.2:2@")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Delta Ledger"], "0.0@")
             self.assertEqual(row_by_id["pi0_fake"]["Reactant AAA"], "u.au.d.ad")
             self.assertEqual(row_by_id["pi0_fake"]["Transformed Reactant AAA"], "u.au.d.ad.h.ah.h.ah")
@@ -283,8 +278,9 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
-            markdown_lines = output_path.read_text(encoding="utf-8").strip().splitlines()
-            headers, rows = self.parse_markdown_table(markdown_lines)
+            content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
+            self.assertEqual(len(content), 2)
+            headers, rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(headers, ["Metric", "Count"])
             self.assertEqual(
                 rows,
@@ -300,6 +296,16 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"},
                     {"Metric": "Number of reactions ready", "Count": "5"},
                     {"Metric": "Number of reactions blocked", "Count": "0"},
+                ],
+            )
+            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
+            self.assertEqual(
+                residue_rows,
+                [
+                    {"Product Unbound Architrino Counts": "0:0", "Count": "2", "Example Mode": "mu- decay mode 1"},
+                    {"Product Unbound Architrino Counts": "12:12", "Count": "2", "Example Mode": "pi0 decay mode 1"},
+                    {"Product Unbound Architrino Counts": "2:2", "Count": "1", "Example Mode": "pi+ decay mode 1"},
                 ],
             )
 
@@ -329,7 +335,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 1)
+            self.assertEqual(len(content), 2)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
@@ -347,6 +353,14 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[8], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
             self.assertEqual(metric_rows[9], {"Metric": "Number of reactions ready", "Count": "1"})
             self.assertEqual(metric_rows[10], {"Metric": "Number of reactions blocked", "Count": "0"})
+            residue_headers, residue_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(residue_headers, ["Product Unbound Architrino Counts", "Count", "Example Mode"])
+            self.assertEqual(
+                residue_rows,
+                [
+                    {"Product Unbound Architrino Counts": "1:1", "Count": "1", "Example Mode": "B+ decay mode 1"},
+                ],
+            )
 
 
 if __name__ == "__main__":

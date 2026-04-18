@@ -260,7 +260,7 @@ test("pdgedit manifest defaults to its declared starter document", () => {
     assert.equal(typeof entry.id, "string");
     assert.equal(typeof entry.title, "string");
     assert.equal(typeof entry.displayTitle, "string");
-    assert.equal(["example", "exact"].includes(entry.sourceKind), true);
+    assert.equal(["example", "exact", "unsolved"].includes(entry.sourceKind), true);
     assert.equal(typeof entry.documentPath, "string");
     assert.equal(entry.documentPath.endsWith(".v1.json"), true);
     assert.equal(fs.existsSync(new URL(`../${entry.documentPath}`, import.meta.url)), true, entry.documentPath);
@@ -315,6 +315,24 @@ test("pdgedit manifest selection prefers the declared default, then the first en
   assert.equal(selectedFromTestCase?.id, "four_tile_family_coverage");
   assert.equal(selectedFromDeclaredDefault?.id, "secondary_document");
   assert.equal(selectedFromFirstEntry?.id, "first_document");
+});
+
+test("pdgedit library manifest preserves unsolved live entries as a distinct source kind", () => {
+  const normalizedManifest = normalizePdgeditLibraryManifest({
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "review_reference_unsolved",
+    entries: [
+      {
+        id: "review_reference_unsolved",
+        title: "Review: reference unsolved",
+        displayTitle: "Review: reference unsolved",
+        sourceKind: "unsolved",
+        documentPath: ".tmp/pdgsolve/pdgedit/documents/0001_reference_unsolved.pdgedit.v1.json",
+      },
+    ],
+  });
+
+  assert.equal(normalizedManifest.entries[0]?.sourceKind, "unsolved");
 });
 
 test("pdgedit main bootstrap seed stays contract-first and separate from the review harness", async () => {
@@ -503,4 +521,13 @@ test("pdgedit document picker keeps a dedicated touch-scroll option list", () =>
     /\.pdgedit-document-option-list\s*\{[\s\S]*overflow-y:\s*auto;[\s\S]*touch-action:\s*pan-y;/u
   );
   assert.equal(runtimeSource.includes('optionList.className = "pdgedit-document-option-list"'), true);
+});
+
+test("pdgedit document picker exposes an unsolved filter for live review documents", () => {
+  const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
+  const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");
+
+  assert.equal(htmlSource.includes('data-source-filter="unsolved"'), true);
+  assert.equal(htmlSource.includes("Unsolved"), true);
+  assert.equal(runtimeSource.includes('state.documentSourceFilter === "unsolved"'), true);
 });

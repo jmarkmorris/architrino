@@ -40,8 +40,6 @@ DEFAULT_RESULT_CORPUS_OUTPUT_DIR = DEFAULT_TMP_DIR / "results"
 DEFAULT_RESULT_CORPUS_INDEX_PATH = DEFAULT_TMP_DIR / "result-corpus.v1.json"
 DEFAULT_PDGEDIT_PUBLISHED_OUTPUT_DIR = DEFAULT_TMP_DIR / "pdgedit" / "documents"
 DEFAULT_PDGEDIT_PUBLISHED_MANIFEST_PATH = DEFAULT_TMP_DIR / "pdgedit" / "manifest.v1.json"
-LIVE_PDGEDIT_EXACT_ENTRY_LIMIT = 64
-LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT = 16
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 
 PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS = (
@@ -325,6 +323,18 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 7,
         "positrinoCount": 5,
     },
+    "anti_down_quark_I": {
+        "title": "Anti Down Quark",
+        "pdgeditType": "anti-down-quark-assembly",
+        "tiles": [
+            "anti-down-quark",
+            "binary-full-rb-rb",
+            "binary-full-rb-rr",
+            "binary-full-rb-rb",
+        ],
+        "electrinoCount": 5,
+        "positrinoCount": 7,
+    },
     "pro_up_quark_I": {
         "title": "Pro Up Quark",
         "pdgeditType": "pro-up-quark-assembly",
@@ -336,6 +346,18 @@ ASSEMBLY_DISPLAY = {
         ],
         "electrinoCount": 4,
         "positrinoCount": 8,
+    },
+    "anti_up_quark_I": {
+        "title": "Anti Up Quark",
+        "pdgeditType": "anti-up-quark-assembly",
+        "tiles": [
+            "anti-up-quark",
+            "binary-full-rb-bb",
+            "binary-full-rb-rb",
+            "binary-full-rb-bb",
+        ],
+        "electrinoCount": 8,
+        "positrinoCount": 4,
     },
     "pro_electron_I": {
         "title": "Pro Electron",
@@ -431,6 +453,150 @@ ASSEMBLY_DISPLAY = {
             "binary-polar-none-rb",
         ],
         "electrinoCount": 5,
+        "positrinoCount": 5,
+    },
+    "pro_charm_quark_II": {
+        "title": "Pro Charm Quark",
+        "pdgeditType": "pro-charm-quark-assembly",
+        "tiles": [
+            "pro-charm-quark",
+            "binary-full-br-rr",
+            "binary-full-br-br",
+            "binary-polar-none-rr",
+        ],
+        "electrinoCount": 3,
+        "positrinoCount": 7,
+    },
+    "anti_charm_quark_II": {
+        "title": "Anti Charm Quark",
+        "pdgeditType": "anti-charm-quark-assembly",
+        "tiles": [
+            "anti-charm-quark",
+            "binary-full-rb-bb",
+            "binary-full-rb-rb",
+            "binary-polar-none-bb",
+        ],
+        "electrinoCount": 7,
+        "positrinoCount": 3,
+    },
+    "pro_strange_quark_II": {
+        "title": "Pro Strange Quark",
+        "pdgeditType": "pro-strange-quark-assembly",
+        "tiles": [
+            "pro-strange-quark",
+            "binary-full-br-br",
+            "binary-full-br-bb",
+            "binary-polar-none-br",
+        ],
+        "electrinoCount": 6,
+        "positrinoCount": 4,
+    },
+    "anti_strange_quark_II": {
+        "title": "Anti Strange Quark",
+        "pdgeditType": "anti-strange-quark-assembly",
+        "tiles": [
+            "anti-strange-quark",
+            "binary-full-rb-rb",
+            "binary-full-rb-rr",
+            "binary-polar-none-rb",
+        ],
+        "electrinoCount": 4,
+        "positrinoCount": 6,
+    },
+    "pro_tau_III": {
+        "title": "Pro Tau",
+        "pdgeditType": "pro-tau-assembly",
+        "tiles": [
+            "pro-tau",
+            "binary-full-br-bb",
+            "binary-polar-none-bb",
+            "binary-polar-none-bb",
+        ],
+        "electrinoCount": 7,
+        "positrinoCount": 1,
+    },
+    "anti_tau_III": {
+        "title": "Anti Tau",
+        "pdgeditType": "anti-tau-assembly",
+        "tiles": [
+            "anti-tau",
+            "binary-full-rb-rr",
+            "binary-polar-none-rr",
+            "binary-polar-none-rr",
+        ],
+        "electrinoCount": 1,
+        "positrinoCount": 7,
+    },
+    "pro_tau_neutrino_III": {
+        "title": "Pro Tau Neutrino",
+        "pdgeditType": "pro-tau-neutrino-assembly",
+        "tiles": [
+            "pro-tau-neutrino",
+            "binary-full-br-br",
+            "binary-polar-none-br",
+            "binary-polar-none-br",
+        ],
+        "electrinoCount": 4,
+        "positrinoCount": 4,
+    },
+    "anti_tau_neutrino_III": {
+        "title": "Anti Tau Neutrino",
+        "pdgeditType": "anti-tau-neutrino-assembly",
+        "tiles": [
+            "anti-tau-neutrino",
+            "binary-full-rb-rb",
+            "binary-polar-none-rb",
+            "binary-polar-none-rb",
+        ],
+        "electrinoCount": 4,
+        "positrinoCount": 4,
+    },
+    "pro_top_quark_III": {
+        "title": "Pro Top Quark",
+        "pdgeditType": "pro-top-quark-assembly",
+        "tiles": [
+            "pro-top-quark",
+            "binary-full-br-rr",
+            "binary-polar-none-br",
+            "binary-polar-none-rr",
+        ],
+        "electrinoCount": 2,
+        "positrinoCount": 6,
+    },
+    "anti_top_quark_III": {
+        "title": "Anti Top Quark",
+        "pdgeditType": "anti-top-quark-assembly",
+        "tiles": [
+            "anti-top-quark",
+            "binary-full-rb-bb",
+            "binary-polar-none-rb",
+            "binary-polar-none-bb",
+        ],
+        "electrinoCount": 6,
+        "positrinoCount": 2,
+    },
+    "pro_bottom_quark_III": {
+        "title": "Pro Bottom Quark",
+        "pdgeditType": "pro-bottom-quark-assembly",
+        "tiles": [
+            "pro-bottom-quark",
+            "binary-full-br-br",
+            "binary-polar-none-bb",
+            "binary-polar-none-br",
+        ],
+        "electrinoCount": 5,
+        "positrinoCount": 3,
+    },
+    "anti_bottom_quark_III": {
+        "title": "Anti Bottom Quark",
+        "pdgeditType": "anti-bottom-quark-assembly",
+        "tiles": [
+            "anti-bottom-quark",
+            "binary-full-rb-rb",
+            "binary-polar-none-rr",
+            "binary-polar-none-rb",
+        ],
+        "electrinoCount": 3,
         "positrinoCount": 5,
     },
     UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID: {
@@ -887,6 +1053,70 @@ def get_noether_core_for_assembly(assembly_id: str) -> str | None:
     return None
 
 
+def get_reachable_noether_core_ids_for_assembly(assembly_id: str) -> tuple[str, ...]:
+    direct_core_assembly_id = get_noether_core_for_assembly(assembly_id)
+    if not direct_core_assembly_id:
+        return ()
+    reachable_core_ids: list[str] = []
+    current_core_assembly_id = direct_core_assembly_id
+    while current_core_assembly_id:
+        reachable_core_ids.append(current_core_assembly_id)
+        current_core_assembly_id = normalize_text(NOETHER_CORE_SUCCESSOR.get(current_core_assembly_id))
+    return tuple(reachable_core_ids)
+
+
+def build_targeted_dissociation_residue_counts(
+    assembly_id: str,
+    target_core_assembly_id: str,
+) -> dict[str, int] | None:
+    if target_core_assembly_id not in get_reachable_noether_core_ids_for_assembly(assembly_id):
+        return None
+    assembly_metadata = ASSEMBLY_DISPLAY.get(assembly_id)
+    target_core_metadata = ASSEMBLY_DISPLAY.get(target_core_assembly_id)
+    if assembly_metadata is None or target_core_metadata is None:
+        return None
+    residue_counts = primitive_counts_difference(
+        build_primitive_counts(assembly_metadata["electrinoCount"], assembly_metadata["positrinoCount"]),
+        build_primitive_counts(target_core_metadata["electrinoCount"], target_core_metadata["positrinoCount"]),
+    )
+    if residue_counts["electrinoCount"] < 0 or residue_counts["positrinoCount"] < 0:
+        return None
+    return residue_counts
+
+
+def select_dissociation_target_core_assembly(
+    assembly_id: str,
+    remaining_core_demand: dict[str, int],
+) -> str | None:
+    reachable_core_ids = get_reachable_noether_core_ids_for_assembly(assembly_id)
+    for target_core_assembly_id in reversed(reachable_core_ids):
+        if int(remaining_core_demand.get(target_core_assembly_id, 0) or 0) > 0:
+            return target_core_assembly_id
+    return None
+
+
+def plan_middle_supply_counts(
+    non_core_reactants: list[dict[str, Any]],
+    reactant_core_counts: dict[str, int],
+    product_core_counts: dict[str, int],
+) -> dict[str, int]:
+    middle_supply_counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR}
+    remaining_core_demand = {
+        assembly_id: max(0, product_core_counts[assembly_id] - reactant_core_counts[assembly_id])
+        for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    for reactant in non_core_reactants:
+        target_core_assembly_id = select_dissociation_target_core_assembly(
+            normalize_text(reactant.get("assemblyId")),
+            remaining_core_demand,
+        )
+        if target_core_assembly_id is None:
+            continue
+        middle_supply_counts[target_core_assembly_id] += 1
+        remaining_core_demand[target_core_assembly_id] -= 1
+    return middle_supply_counts
+
+
 def build_standard_model_law_inventory() -> dict[str, Any]:
     pass_thru = {
         assembly_id: {
@@ -1152,6 +1382,106 @@ def compute_added_tri_binary_support_pair_count(
     return max(required_pair_count_by_charge.values())
 
 
+def build_direct_core_supply_from_reactant_cores(
+    remaining_reactant_cores: list[dict[str, Any]],
+    product_core_counts: dict[str, int],
+    middle_supply_counts: dict[str, int],
+    *,
+    reactant_operator_choices: list[dict[str, Any]],
+    intermediate_occurrences: list[dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]] | None:
+    available_core_pool: dict[str, list[dict[str, Any]]] = {
+        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+    for occurrence in remaining_reactant_cores:
+        available_core_pool[normalize_text(occurrence.get("assemblyId"))].append(clone_json(occurrence))
+
+    direct_core_pool: dict[str, list[dict[str, Any]]] = {
+        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+    }
+
+    def materialize_direct_core(
+        source_occurrence: dict[str, Any],
+        target_assembly_id: str,
+        *,
+        suffix: str,
+    ) -> dict[str, Any] | None:
+        source_assembly_id = normalize_text(source_occurrence.get("assemblyId"))
+        if source_assembly_id == target_assembly_id:
+            intermediate = build_intermediate_clone(source_occurrence, suffix)
+            intermediate_occurrences.append(clone_json(intermediate))
+            reactant_operator_choices.append(
+                build_operator_choice(
+                    f"reactant_operator.{slugify(normalize_text(source_occurrence.get('id')))}.{suffix}.pass_thru",
+                    "pass-thru",
+                    law_id=get_pass_thru_law(source_assembly_id)["lawId"],
+                    input_occurrence_keys=[normalize_text(source_occurrence.get("id"))],
+                    output_occurrence_keys=[normalize_text(intermediate.get("id"))],
+                )
+            )
+            return intermediate
+        return add_single_dissociation(
+            source_occurrence,
+            reactant_operator_choices=reactant_operator_choices,
+            intermediate_occurrences=intermediate_occurrences,
+            suffix=suffix,
+            target_core_assembly_id=target_assembly_id,
+        )
+
+    for charge in ("pro", "anti"):
+        source_to_targets = (
+            (f"{charge}_noether_core_III", (f"{charge}_noether_core_III",)),
+            (f"{charge}_noether_core_II", (f"{charge}_noether_core_III", f"{charge}_noether_core_II")),
+            (
+                f"{charge}_noether_core_I",
+                (
+                    f"{charge}_noether_core_III",
+                    f"{charge}_noether_core_II",
+                    f"{charge}_noether_core_I",
+                ),
+            ),
+        )
+        for target_assembly_id in (
+            f"{charge}_noether_core_III",
+            f"{charge}_noether_core_II",
+            f"{charge}_noether_core_I",
+        ):
+            remaining_demand = (
+                product_core_counts[target_assembly_id]
+                - middle_supply_counts[target_assembly_id]
+                - len(direct_core_pool[target_assembly_id])
+            )
+            if remaining_demand <= 0:
+                continue
+            for source_assembly_id, supported_targets in source_to_targets:
+                if target_assembly_id not in supported_targets:
+                    continue
+                while remaining_demand > 0 and available_core_pool[source_assembly_id]:
+                    source_occurrence = available_core_pool[source_assembly_id].pop(0)
+                    intermediate = materialize_direct_core(
+                        source_occurrence,
+                        target_assembly_id,
+                        suffix=f"direct_core.{slugify(target_assembly_id)}.{len(direct_core_pool[target_assembly_id]) + 1}",
+                    )
+                    if intermediate is None:
+                        return None
+                    direct_core_pool[target_assembly_id].append(clone_json(intermediate))
+                    remaining_demand -= 1
+                if remaining_demand == 0:
+                    break
+
+    for source_occurrences in available_core_pool.values():
+        for index, occurrence in enumerate(source_occurrences, start=1):
+            add_full_core_dissociation(
+                occurrence,
+                reactant_operator_choices=reactant_operator_choices,
+                intermediate_occurrences=intermediate_occurrences,
+                suffix=f"extra_core.{slugify(normalize_text(occurrence.get('id')))}.{index}",
+            )
+
+    return direct_core_pool
+
+
 def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
     assembly_id = normalize_text(product.get("assemblyId"))
     if assembly_id == UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID:
@@ -1243,12 +1573,15 @@ def add_single_dissociation(
     reactant_operator_choices: list[dict[str, Any]],
     intermediate_occurrences: list[dict[str, Any]],
     suffix: str,
+    target_core_assembly_id: str | None = None,
 ) -> dict[str, Any] | None:
     assembly_id = normalize_text(source_occurrence.get("assemblyId"))
-    core_assembly_id = get_noether_core_for_assembly(assembly_id)
+    core_assembly_id = normalize_text(target_core_assembly_id) or get_noether_core_for_assembly(assembly_id)
     if core_assembly_id is None:
         return None
-    residue_counts = clone_json(FERMION_RESIDUE_COUNTS[assembly_id])
+    residue_counts = build_targeted_dissociation_residue_counts(assembly_id, core_assembly_id)
+    if residue_counts is None:
+        return None
     core_occurrence = {
         "id": f"intermediate.{slugify(normalize_text(source_occurrence.get('id')))}.{suffix}.core",
         "assemblyId": core_assembly_id,
@@ -1262,7 +1595,11 @@ def add_single_dissociation(
         build_operator_choice(
             f"reactant_operator.{suffix}.dissociate",
             "dissociate",
-            law_id=get_dissociation_law(assembly_id)["lawId"] if get_dissociation_law(assembly_id) is not None else f"dissociate.{assembly_id}",
+            law_id=(
+                get_dissociation_law(assembly_id)["lawId"]
+                if core_assembly_id == get_noether_core_for_assembly(assembly_id) and get_dissociation_law(assembly_id) is not None
+                else f"dissociate.{assembly_id}.to.{core_assembly_id}"
+            ),
             input_occurrence_keys=[normalize_text(source_occurrence.get("id"))],
             output_occurrence_keys=[normalize_text(core_occurrence.get("id")), normalize_text(residue.get("id"))],
         )
@@ -1345,18 +1682,16 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     ]
 
     reactant_core_counts = count_core_occurrences(remaining_reactant_cores)
-    middle_supply_counts = {
-        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
-    }
-    for reactant in remaining_non_core_reactants:
-        core_assembly_id = get_noether_core_for_assembly(normalize_text(reactant.get("assemblyId")))
-        if core_assembly_id is not None:
-            middle_supply_counts[core_assembly_id] += 1
     product_core_counts = {
         assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
     }
     for task in core_product_tasks:
         product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
+    middle_supply_counts = plan_middle_supply_counts(
+        remaining_non_core_reactants,
+        reactant_core_counts,
+        product_core_counts,
+    )
 
     support_pair_count = compute_added_tri_binary_support_pair_count(
         reactant_core_counts,
@@ -1372,127 +1707,43 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         reactant_core_counts["pro_noether_core_I"] += 1
         reactant_core_counts["anti_noether_core_I"] += 1
 
-    ladder_conversion_counts = {
-        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
-    }
-    for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_I"
-        target_id = f"{charge}_noether_core_II"
-        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
-        unmet_target = max(
-            0,
-            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
-        )
-        convert_count = min(source_surplus, unmet_target)
-        if convert_count > 0:
-            ladder_conversion_counts[source_id] = convert_count
-            reactant_core_counts[source_id] -= convert_count
-            middle_supply_counts[target_id] += convert_count
-    for charge in ("pro", "anti"):
-        source_id = f"{charge}_noether_core_II"
-        target_id = f"{charge}_noether_core_III"
-        source_surplus = max(0, reactant_core_counts[source_id] - product_core_counts[source_id])
-        unmet_target = max(
-            0,
-            product_core_counts[target_id] - reactant_core_counts[target_id] - middle_supply_counts[target_id],
-        )
-        convert_count = min(source_surplus, unmet_target)
-        if convert_count > 0:
-            ladder_conversion_counts[source_id] = convert_count
-            reactant_core_counts[source_id] -= convert_count
-            middle_supply_counts[target_id] += convert_count
-
-    cores_by_type: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    for core_occurrence in remaining_reactant_cores:
-        cores_by_type[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
-
-    ladder_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    for source_id, convert_count in ladder_conversion_counts.items():
-        if convert_count <= 0:
-            continue
-        successor_id = normalize_text(NOETHER_CORE_SUCCESSOR.get(source_id))
-        if not successor_id:
-            continue
-        converted_occurrences = cores_by_type[source_id][:convert_count]
-        cores_by_type[source_id] = cores_by_type[source_id][convert_count:]
-        for index, occurrence in enumerate(converted_occurrences, start=1):
-            accumulator = ensure_residue_accumulator(intermediate_occurrences)
-            accumulator["electrinoCount"] += 1
-            accumulator["positrinoCount"] += 1
-            intermediate = {
-                "id": f"intermediate.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}",
-                "assemblyId": successor_id,
-                "title": ASSEMBLY_DISPLAY[successor_id]["title"],
-            }
-            intermediate_occurrences.append(clone_json(intermediate))
-            reactant_operator_choices.append(
-                build_operator_choice(
-                    f"reactant_operator.{slugify(normalize_text(occurrence.get('id')))}.ladder.{index}.dissociate",
-                    "dissociate",
-                    law_id=get_dissociation_law(source_id)["lawId"],
-                    input_occurrence_keys=[normalize_text(occurrence.get("id"))],
-                    output_occurrence_keys=[
-                        normalize_text(intermediate.get("id")),
-                        normalize_text(accumulator.get("id")),
-                    ],
-                )
-            )
-            ladder_core_pool[successor_id].append(clone_json(intermediate))
-
-    direct_core_pool: dict[str, list[dict[str, Any]]] = {assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR}
-    direct_task_quota = {
-        assembly_id: min(len(core_occurrences), product_core_counts[assembly_id])
-        for assembly_id, core_occurrences in cores_by_type.items()
-    }
-    for assembly_id, core_occurrences in cores_by_type.items():
-        needed_count = direct_task_quota[assembly_id]
-        necessary = core_occurrences[:needed_count]
-        extras = core_occurrences[needed_count:]
-        for index, occurrence in enumerate(necessary, start=1):
-            intermediate = build_intermediate_clone(occurrence, f"bare_core.{index}")
-            intermediate_occurrences.append(clone_json(intermediate))
-            reactant_operator_choices.append(
-                build_operator_choice(
-                    f"reactant_operator.{slugify(normalize_text(occurrence.get('id')))}.pass_thru",
-                    "pass-thru",
-                    law_id=get_pass_thru_law(assembly_id)["lawId"],
-                    input_occurrence_keys=[normalize_text(occurrence.get("id"))],
-                    output_occurrence_keys=[normalize_text(intermediate.get("id"))],
-                )
-            )
-            direct_core_pool[assembly_id].append(clone_json(intermediate))
-        for index, occurrence in enumerate(extras, start=1):
-            add_full_core_dissociation(
-                occurrence,
-                reactant_operator_choices=reactant_operator_choices,
-                intermediate_occurrences=intermediate_occurrences,
-                suffix=f"extra_core.{slugify(normalize_text(occurrence.get('id')))}.{index}",
-            )
-
+    direct_core_pool = build_direct_core_supply_from_reactant_cores(
+        remaining_reactant_cores,
+        product_core_counts,
+        middle_supply_counts,
+        reactant_operator_choices=reactant_operator_choices,
+        intermediate_occurrences=intermediate_occurrences,
+    )
+    if direct_core_pool is None:
+        return None
     middle_core_pool: dict[str, list[dict[str, Any]]] = {
-        assembly_id: [clone_json(occurrence) for occurrence in ladder_core_pool[assembly_id]]
+        assembly_id: []
         for assembly_id in NOETHER_CORE_SUCCESSOR
     }
     remaining_middle_demand = {
         assembly_id: max(
             0,
             product_core_counts[assembly_id]
-            - direct_task_quota[assembly_id]
+            - len(direct_core_pool[assembly_id])
             - len(middle_core_pool[assembly_id]),
         )
         for assembly_id in NOETHER_CORE_SUCCESSOR
     }
     for reactant_index, reactant in enumerate(remaining_non_core_reactants, start=1):
-        core_assembly_id = get_noether_core_for_assembly(normalize_text(reactant.get("assemblyId")))
-        if core_assembly_id is not None and remaining_middle_demand[core_assembly_id] > 0:
+        target_core_assembly_id = select_dissociation_target_core_assembly(
+            normalize_text(reactant.get("assemblyId")),
+            remaining_middle_demand,
+        )
+        if target_core_assembly_id is not None:
             core_occurrence = add_single_dissociation(
                 reactant,
                 reactant_operator_choices=reactant_operator_choices,
                 intermediate_occurrences=intermediate_occurrences,
                 suffix=f"reactant.{reactant_index}",
+                target_core_assembly_id=target_core_assembly_id,
             )
             if core_occurrence is not None:
-                remaining_middle_demand[core_assembly_id] -= 1
+                remaining_middle_demand[target_core_assembly_id] -= 1
                 middle_core_pool[normalize_text(core_occurrence.get("assemblyId"))].append(clone_json(core_occurrence))
                 continue
         add_full_core_dissociation(
@@ -1510,10 +1761,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
 
     for task_index, task in enumerate(core_product_tasks, start=1):
         core_assembly_id = normalize_text(task["coreAssemblyId"])
-        if direct_task_quota[core_assembly_id] > 0:
-            if not direct_core_pool[core_assembly_id]:
-                return None
-            direct_task_quota[core_assembly_id] -= 1
+        if direct_core_pool[core_assembly_id]:
             core_input = direct_core_pool[core_assembly_id].pop(0)
         else:
             if not middle_core_pool[core_assembly_id]:
@@ -3280,11 +3528,11 @@ def solve_manifest_payload(
     selected_candidates = [
         *[
             ("exact", candidate)
-            for candidate in exact_candidates[:LIVE_PDGEDIT_EXACT_ENTRY_LIMIT]
+            for candidate in exact_candidates
         ],
         *[
             ("review", candidate)
-            for candidate in review_candidates[:LIVE_PDGEDIT_REVIEW_ENTRY_LIMIT]
+            for candidate in review_candidates
         ],
     ]
 
@@ -3331,7 +3579,7 @@ def solve_manifest_payload(
                 document_id=f"review_{case_id}",
                 document_title=f"Review: {base_title}",
                 document_path="",
-                source_kind="example",
+                source_kind="unsolved",
                 is_default=not pdgedit_manifest_entries,
             )
         write_json(pdgedit_document_path, pdgedit_document)

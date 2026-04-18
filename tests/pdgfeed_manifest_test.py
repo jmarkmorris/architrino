@@ -288,12 +288,7 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["reactants"]],
-            [
-                "pro_up_quark_I",
-                "anti_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-            ],
+            ["pro_up_quark_I", "anti_down_quark_I"],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in pion_request["products"]],
@@ -305,12 +300,46 @@ class PdgfeedContractTests(unittest.TestCase):
         )
         self.assertEqual(
             pion_request["products"][-1]["electrinoCount"],
-            8,
+            2,
         )
         self.assertEqual(
             pion_request["products"][-1]["positrinoCount"],
-            8,
+            2,
         )
+        self.assertEqual(
+            pdgsolve.solve_request(pion_request)["searchStatus"],
+            "exact_available",
+        )
+
+    def test_b_plus_to_anti_tau_and_tau_neutrino_no_longer_adds_redundant_noether_pair(self):
+        case = pdgfeed.PdgCase(
+            case_id="b_plus_s041_184",
+            proposal_id="b_plus_s041_184",
+            title="B+ decay mode 41",
+            source_kind="pdg-live",
+            source={"mcid": 521, "pdgIdentifier": "S041.184/2025"},
+            reactants=(pdgfeed.CaseParticle(name="B+", pdg_id="B+"),),
+            products=(
+                pdgfeed.CaseParticle(name="tau+", pdg_id="tau+"),
+                pdgfeed.CaseParticle(name="nu_tau", pdg_id="nu_tau"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        request = pdgfeed.build_pdgsolve_request(proposal)
+
+        self.assertIsNotNone(request)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["reactants"]],
+            ["pro_up_quark_I", "anti_bottom_quark_III"],
+        )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["products"]],
+            ["anti_tau_III", "pro_tau_neutrino_III", "unbound_architrinos_residue"],
+        )
+        self.assertEqual(request["products"][-1]["electrinoCount"], 2)
+        self.assertEqual(request["products"][-1]["positrinoCount"], 2)
+        self.assertEqual(pdgsolve.solve_request(request)["searchStatus"], "exact_available")
 
     def test_neutral_pion_transform_uses_all_superposition_rows(self):
         case = pdgfeed.PdgCase(

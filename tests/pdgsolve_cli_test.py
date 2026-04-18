@@ -3,9 +3,11 @@ import io
 import json
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 import pdgsolve
+from scripts.pdg import pdgfeed_registry
 
 
 def make_unsolved_request(request_id="reference_unsolved"):
@@ -108,6 +110,151 @@ def make_muon_decay_mode_1_request(request_id="mu_minus_s004_1"):
                 "assemblyId": "pro_muon_neutrino_II",
                 "title": "Pro Muon Neutrino",
             },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_b_plus_decay_mode_41_request(request_id="b_plus_s041_184"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "B+ decay mode 41",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_positive_b_meson_1.row.1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+            {
+                "id": "reactant_positive_b_meson_1.row.2",
+                "assemblyId": "anti_bottom_quark_III",
+                "title": "Anti Bottom Quark",
+            },
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_tau_neutrino_2",
+                "assemblyId": "pro_tau_neutrino_III",
+                "title": "Tau Neutrino",
+            },
+            {
+                "id": "product_unbound_architrinos_residue_1",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 2,
+                "positrinoCount": 2,
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_dual_charge_direct_core_request(request_id="dual_charge_direct_core"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Dual-charge direct-core support request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_tau_neutrino_2",
+                "assemblyId": "pro_tau_neutrino_III",
+                "title": "Tau Neutrino",
+            },
+            {
+                "id": "product_residue_3",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 7,
+                "positrinoCount": 1,
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_double_uni_binary_direct_core_request(request_id="double_uni_binary_direct_core"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Double uni-binary direct-core support request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_5", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_6", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
+            {
+                "id": "product_anti_tau_neutrino_2",
+                "assemblyId": "anti_tau_neutrino_III",
+                "title": "Anti Tau Neutrino",
+            },
+            {
+                "id": "product_residue_3",
+                "assemblyId": "unbound_architrinos_residue",
+                "title": "Unbound Architrinos",
+                "electrinoCount": 13,
+                "positrinoCount": 7,
+            },
+        ],
+        "policy": {
+            "exactClosureRequired": True,
+            "allowedBoundaryAugmentations": ["none"],
+        },
+    }
+
+
+def make_middle_supply_priority_request(request_id="middle_supply_priority"):
+    return {
+        "schema": "pdgsolve-request/v1",
+        "requestId": request_id,
+        "source": {
+            "kind": "developer",
+            "title": "Middle-supply priority request",
+            "sourceDocumentId": f"developer:{request_id}",
+        },
+        "reactants": [
+            {"id": "reactant_charm_1", "assemblyId": "pro_charm_quark_II", "title": "Charm Quark"},
+            {"id": "reactant_anti_down_2", "assemblyId": "anti_down_quark_I", "title": "Anti Down Quark"},
+            {"id": "reactant_support_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_support_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_support_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_support_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+        ],
+        "products": [
+            {"id": "product_up_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
+            {"id": "product_down_2", "assemblyId": "pro_down_quark_I", "title": "Down Quark"},
+            {"id": "product_strange_3", "assemblyId": "pro_strange_quark_II", "title": "Strange Quark"},
+            {"id": "product_positron_4", "assemblyId": "anti_electron_I", "title": "Anti Electron"},
         ],
         "policy": {
             "exactClosureRequired": True,
@@ -363,6 +510,51 @@ class PdgsolveCliTests(unittest.TestCase):
         )
         self.assertTrue(family["publicationReady"])
 
+    def test_solve_request_can_target_uni_binary_from_up_quark_dissociation(self):
+        request = make_b_plus_decay_mode_41_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        self.assertEqual(result["bestFamilyId"], "family.exact.1")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        self.assertIn(
+            "dissociate.pro_up_quark_I.to.pro_noether_core_III",
+            [choice["lawId"] for choice in family["reactantSideOperators"]],
+        )
+
+    def test_solve_request_supports_direct_uni_binary_dissociation_for_both_core_charges(self):
+        request = make_dual_charge_direct_core_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
+        self.assertIn("dissociate.pro_noether_core_I.to.pro_noether_core_III", law_ids)
+        self.assertIn("dissociate.anti_noether_core_I.to.anti_noether_core_III", law_ids)
+
+    def test_solve_request_can_emit_multiple_direct_uni_binary_dissociations_from_generation_i_support(self):
+        request = make_double_uni_binary_direct_core_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_counts = Counter(choice["lawId"] for choice in family["reactantSideOperators"])
+        self.assertEqual(law_counts["dissociate.anti_noether_core_I.to.anti_noether_core_III"], 2)
+
+    def test_solve_request_prioritizes_non_core_middle_supply_before_spending_support_core_i(self):
+        request = make_middle_supply_priority_request()
+        result = pdgsolve.solve_request(request)
+
+        self.assertEqual(result["searchStatus"], "exact_available")
+        family = result["optionFamilies"][0]
+        self.assertTrue(family["publicationReady"])
+        law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
+        self.assertIn("dissociate.pro_charm_quark_II", law_ids)
+        self.assertNotIn("dissociate.pro_noether_core_I.to.pro_noether_core_II", law_ids)
+
     def test_publication_graph_is_layout_neutral_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
         result = pdgsolve.solve_request(request)
@@ -502,6 +694,28 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(result["bestFamilyId"], "family.exact.1")
         self.assertTrue(result["optionFamilies"][0]["publicationReady"])
 
+    def test_solver_admitted_assembly_ids_stay_in_sync_with_registry_request_rows(self):
+        registry_ids = set(pdgfeed_registry.REQUEST_ASSEMBLY_IDS)
+        self.assertEqual(set(pdgsolve.REQUEST_REACTANT_ASSEMBLY_IDS), registry_ids)
+        self.assertEqual(
+            set(pdgsolve.REQUEST_PRODUCT_ASSEMBLY_IDS),
+            registry_ids | {pdgsolve.UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID},
+        )
+        mapping_by_id = {
+            mapping.canonical_id: mapping
+            for mapping in pdgfeed_registry.REQUEST_ASSEMBLY_MAPPINGS
+        }
+        for assembly_id, mapping in mapping_by_id.items():
+            self.assertIn(assembly_id, pdgsolve.ASSEMBLY_DISPLAY)
+            self.assertEqual(
+                pdgsolve.ASSEMBLY_DISPLAY[assembly_id]["electrinoCount"],
+                mapping.electrino_count,
+            )
+            self.assertEqual(
+                pdgsolve.ASSEMBLY_DISPLAY[assembly_id]["positrinoCount"],
+                mapping.positrino_count,
+            )
+
     def test_publish_command_writes_pdgedit_document_from_explicit_acceptance(self):
         request = make_unsolved_request("synthetic_pass_thru")
         result = make_exact_result(request)
@@ -592,7 +806,7 @@ class PdgsolveCliTests(unittest.TestCase):
             pdgedit_manifest = self.read_json(pdgedit_manifest_path)
             self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
             self.assertEqual(len(pdgedit_manifest["entries"]), 2)
-            self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "example")
+            self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "unsolved")
             self.assertEqual(pdgedit_manifest["defaultEntryId"], pdgedit_manifest["entries"][0]["id"])
 
     def test_solve_manifest_writes_pdgedit_documents_for_exact_results(self):
@@ -647,6 +861,57 @@ class PdgsolveCliTests(unittest.TestCase):
             pdgedit_manifest = self.read_json(pdgedit_manifest_path)
             self.assertEqual(len(pdgedit_manifest["entries"]), 1)
             self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "exact")
+
+    def test_solve_manifest_keeps_all_exact_pdgedit_entries_beyond_previous_scroll_picker_cap(self):
+        ready_entries = [
+            {
+                "batchId": index + 1,
+                "caseId": f"reference_exact_{index + 1}",
+                "proposalId": f"reference_exact_{index + 1}",
+                "pdgsolveRequest": make_pass_thru_request(f"reference_exact_{index + 1}"),
+            }
+            for index in range(70)
+        ]
+        manifest = {
+            "schema": "pdg-live-manifest/v1",
+            "readyCount": len(ready_entries),
+            "blockedCount": 0,
+            "topBlockedParticles": [],
+            "readyEntries": ready_entries,
+            "blockedEntries": [],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            manifest_path = tmp_dir / "manifest.json"
+            index_path = tmp_dir / "index.json"
+            output_dir = tmp_dir / "results"
+            pdgedit_output_dir = tmp_dir / "pdgedit-documents"
+            pdgedit_manifest_path = tmp_dir / "pdgedit-manifest.json"
+            manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+            output = self.run_main(
+                [
+                    "solve-manifest",
+                    str(manifest_path),
+                    "--output-dir",
+                    str(output_dir),
+                    "--write-index",
+                    str(index_path),
+                    "--pdgedit-output-dir",
+                    str(pdgedit_output_dir),
+                    "--write-pdgedit-manifest",
+                    str(pdgedit_manifest_path),
+                ]
+            )
+
+            self.assertEqual(output.splitlines(), [str(output_dir), str(index_path), str(pdgedit_manifest_path)])
+            index_payload = self.read_json(index_path)
+            self.assertEqual(index_payload["exactAvailableCount"], 70)
+            self.assertEqual(index_payload["noExactClosureCount"], 0)
+            pdgedit_manifest = self.read_json(pdgedit_manifest_path)
+            self.assertEqual(len(pdgedit_manifest["entries"]), 70)
+            self.assertEqual(Counter(entry["sourceKind"] for entry in pdgedit_manifest["entries"]), Counter({"exact": 70}))
 
     def test_parse_args_uses_repo_local_tmp_defaults_for_manifest_solves(self):
         args = pdgsolve.parse_args(["solve-manifest", "manifest.json"])

@@ -55,7 +55,7 @@
         },
         "sourceKind": {
           "type": "string",
-          "enum": ["example", "exact"]
+          "enum": ["example", "exact", "unsolved"]
         },
         "documentPath": {
           "type": "string",

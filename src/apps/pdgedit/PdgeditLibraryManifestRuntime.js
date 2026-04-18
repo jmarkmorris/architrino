@@ -8,7 +8,7 @@ function normalizeBoolean(value) {
 
 function normalizeSourceKind(value, documentPath = "") {
   const normalizedValue = normalizeText(value);
-  if (normalizedValue === "example" || normalizedValue === "exact") {
+  if (normalizedValue === "example" || normalizedValue === "exact" || normalizedValue === "unsolved") {
     return normalizedValue;
   }
   const normalizedPath = normalizeText(documentPath);

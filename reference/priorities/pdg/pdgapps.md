@@ -15,7 +15,8 @@ This document defines the overall architectural approach for incorporating dedic
 It owns:
 
 - the role of the main Architrino web app as launcher and discovery surface;
-- the role of dedicated apps such as pdgview, pdgsolve, and pdgedit as independent runtimes within one repo;
+- the role of dedicated web apps such as pdgview and pdgedit as independent runtimes within one repo;
+- the role of adjacent non-UI PDG boundaries such as pdgfeed and pdgsolve within the same forward pipeline;
 - the rules for app boundaries, shared code, and cross-app exchange;
 - the modularity rules that keep app growth from collapsing back into one shared runtime;
 - and the testing and enforcement posture that protects those boundaries over time.
@@ -29,29 +30,29 @@ It does not own:
 
 ## Current State
 
-- The codebase now has `pdgview.html`, `pdgsolve.html`, and `pdgedit.html` as active standalone app entrypoints in the main web surface.
+- The codebase now has `pdgview.html` and `pdgedit.html` as active standalone app entrypoints in the main web surface, while `pdgsolve` intentionally remains a Python/contract boundary without a standalone UI.
 - pdgview now owns a meaningful app tree under `src/apps/pdgview/`, and root `app.js` has been thinned to entry glue, but too much live behavior still remains concentrated in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
 - The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> pdgview`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
 - The repository has the right overall direction, but the architecture still needs stronger enforcement so improvements do not drift back into shared-runtime coupling.
-- Near-term work still has to run on two tracks at once: make the dedicated apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
+- Near-term work still has to run on two tracks at once: make the dedicated web apps more useful, and keep improving seams so that usefulness does not come at the cost of tighter coupling.
 
 ## Design
 
 ### Overall Runtime Shape
 
-The Architrino web app should be understood as one product with multiple dedicated runtimes.
+The Architrino web app should be understood as one product with multiple dedicated runtimes plus adjacent non-UI PDG boundaries.
 
 The intended structure is:
 
 - one repo;
 - one main Architrino discovery surface;
 - one pdgview runtime;
-- one pdgsolve runtime;
 - one pdgedit runtime;
-- and explicit data boundaries between those runtimes.
+- `pdgfeed` and `pdgsolve` as contract-first CLI boundaries in the same chain;
+- and explicit data boundaries between those stages.
 
-This is not a multi-product split. It is one product with a launcher/discovery layer and dedicated tools that open into their own app runtimes when the user enters them.
+This is not a multi-product split. It is one product with a launcher/discovery layer, dedicated web tools that open into their own app runtimes when the user enters them, and upstream PDG boundaries that stay outside the browser runtime.
 
 ### Main Web App Role
 
@@ -68,16 +69,22 @@ The main web app should not continue accumulating app-specific state or logic ju
 
 ### Dedicated App Role
 
-Dedicated apps such as pdgview, pdgsolve, and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
+Dedicated web apps such as pdgview and pdgedit should be treated as standalone runtimes within the overall Architrino experience.
 
-Each dedicated app should own:
+Each dedicated web app should own:
 
 - its own app composition;
 - its own runtime state and UI behavior;
 - its own domain logic and supporting modules;
 - and its own import/export adapters at the app boundary.
 
-Each dedicated app should avoid reaching back into another app's runtime for behavior that belongs behind an explicit data boundary.
+Each dedicated web app should avoid reaching back into another app's runtime for behavior that belongs behind an explicit data boundary.
+
+Adjacent non-UI boundaries such as `pdgfeed` and `pdgsolve` should follow the same ownership rule on the data side:
+
+- own their own CLI behavior and contract logic;
+- avoid becoming hidden browser runtimes by accident;
+- and hand off only explicit versioned data to downstream apps.
 
 Boundary translation should usually live inside the app that owns that boundary rather than becoming a new middle app by default.
 
@@ -89,7 +96,7 @@ In particular:
 
 ### Cross-App Boundary Rule
 
-The preferred boundary between dedicated apps is explicit versioned data, not shared live behavior.
+The preferred boundary between dedicated apps and adjacent PDG boundaries is explicit versioned data, not shared live behavior.
 
 Allowed sharing:
 
@@ -108,7 +115,7 @@ Not allowed:
 - shared app-specific UI behavior;
 - or hidden coupling through launcher-state assumptions.
 
-When dedicated apps exchange information, the exchange should happen through a versioned contract rather than through shared executable helpers.
+When dedicated apps exchange information, or when `pdgsolve` hands published output to `pdgedit`, the exchange should happen through a versioned contract rather than through shared executable helpers.
 
 For the intended forward solve/publication chain:
 
@@ -258,12 +265,13 @@ Status: `active`
 
 Current:
 
-- standalone launch routing now exists for `pdgview`, `pdgsolve`, and `pdgedit`;
-- but `pdgview` still shares the larger Architrino scene-shell runtime while the remaining pdgview-owned behavior is moved out of that shell.
+- standalone launch routing now exists for `pdgview` and `pdgedit`;
+- `pdgsolve` intentionally remains off the standalone launcher surface;
+- and `pdgview` still shares the larger Architrino scene-shell runtime while the remaining pdgview-owned behavior is moved out of that shell.
 
 Objective:
 
-- keep making the main web app a launcher and discovery surface only, with pdgview and the forward dedicated apps each owning their own runtime path.
+- keep making the main web app a launcher and discovery surface only, with pdgview and pdgedit owning their own runtime paths while pdgsolve stays on the explicit CLI/data boundary.
 
 ### 2. Keep Cross-App Exchange Contract-First
 
@@ -278,20 +286,7 @@ Objective:
 
 - keep app-to-app exchange versioned and data-first as the contract grows.
 
-### 3. Add Architectural Enforcement That Blocks Regressions
-
-Status: `next`
-
-Current:
-
-- standalone launch tests, contract tests, and boundary checks already exist;
-- but the boundary checker is not part of the git-hook audit path.
-
-Objective:
-
-- make cross-import and shared-runtime backsliding harder to land than to avoid.
-
-### 4. Reduce The Remaining Oversized Composition Roots
+### 3. Reduce The Remaining Oversized Composition Roots
 
 Status: `active`
 
@@ -304,7 +299,7 @@ Objective:
 
 - move app-owned behavior into smaller modules and leave composition roots with wiring only.
 
-### 5. Keep New Work Landing In App-Owned Trees
+### 4. Keep New Work Landing In App-Owned Trees
 
 Status: `pending`
 

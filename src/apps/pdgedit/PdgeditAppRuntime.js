@@ -164,6 +164,42 @@ function setPickerVisibility(element, isOpen) {
   element.hidden = !isOpen;
 }
 
+export function ensurePdgeditPickerChildElement(parentElement, childElement) {
+  if (!parentElement || !childElement) {
+    return;
+  }
+  if (typeof parentElement.contains === "function" && parentElement.contains(childElement)) {
+    return;
+  }
+  parentElement.append(childElement);
+}
+
+export function updateTextInputValuePreservingSelection(inputElement, nextValue, { documentLike = globalThis.document } = {}) {
+  if (!inputElement) {
+    return;
+  }
+  const normalizedNextValue = String(nextValue ?? "");
+  if (inputElement.value === normalizedNextValue) {
+    return;
+  }
+  const isFocused = documentLike?.activeElement === inputElement;
+  const selectionStart = typeof inputElement.selectionStart === "number" ? inputElement.selectionStart : null;
+  const selectionEnd = typeof inputElement.selectionEnd === "number" ? inputElement.selectionEnd : null;
+  inputElement.value = normalizedNextValue;
+  if (
+    isFocused &&
+    selectionStart !== null &&
+    selectionEnd !== null &&
+    typeof inputElement.setSelectionRange === "function"
+  ) {
+    const maxOffset = inputElement.value.length;
+    inputElement.setSelectionRange(
+      Math.min(selectionStart, maxOffset),
+      Math.min(selectionEnd, maxOffset)
+    );
+  }
+}
+
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
@@ -215,14 +251,23 @@ function createReactionProvenanceElement(documentLike, provenance) {
 }
 
 function createReactionBracketedGroupElement(documentLike, participants, provenance) {
-  const normalizedParticipants = Array.isArray(participants)
-    ? participants.map((participant) => normalizeText(participant?.text)).filter(Boolean)
-    : [];
+  const compactedParticipants = compactPdgeditReactionParticipants(participants);
+  const normalizedParticipants = compactedParticipants.participants;
   if (!normalizedParticipants.length) {
     return null;
   }
   const element = documentLike.createElement("span");
   element.className = "pdgedit-reaction-group";
+  if (compactedParticipants.repeatCount > 1) {
+    element.append(
+      createTextElement(
+        documentLike,
+        "span",
+        "pdgedit-reaction-multiplier",
+        `${compactedParticipants.repeatCount}x`
+      )
+    );
+  }
   element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "["));
   normalizedParticipants.forEach((text, index) => {
     if (index > 0) {
@@ -249,6 +294,70 @@ function appendReactionParticipantGroup(documentLike, container, participants, h
     appended = true;
   });
   return appended;
+}
+
+function findRepeatedParticipantSequence(participants = []) {
+  const normalizedParticipants = (Array.isArray(participants) ? participants : [])
+    .map((participant) => normalizeText(participant))
+    .filter(Boolean);
+  if (normalizedParticipants.length < 2) {
+    return null;
+  }
+  for (let sequenceLength = 1; sequenceLength <= normalizedParticipants.length / 2; sequenceLength += 1) {
+    if (normalizedParticipants.length % sequenceLength !== 0) {
+      continue;
+    }
+    const repeatCount = normalizedParticipants.length / sequenceLength;
+    if (repeatCount <= 1) {
+      continue;
+    }
+    const sequence = normalizedParticipants.slice(0, sequenceLength);
+    const matchesRepeatedSequence = normalizedParticipants.every(
+      (participant, index) => participant === sequence[index % sequenceLength]
+    );
+    if (matchesRepeatedSequence) {
+      return {
+        repeatCount,
+        sequence,
+      };
+    }
+  }
+  return null;
+}
+
+export function compactPdgeditReactionParticipants(participants = []) {
+  const normalizedParticipants = (Array.isArray(participants) ? participants : [])
+    .map((participant) => normalizeText(participant?.text ?? participant))
+    .filter(Boolean);
+  const repeatedSequence = findRepeatedParticipantSequence(normalizedParticipants);
+  if (!repeatedSequence) {
+    return {
+      repeatCount: 1,
+      participants: normalizedParticipants,
+    };
+  }
+  return {
+    repeatCount: repeatedSequence.repeatCount,
+    participants: repeatedSequence.sequence,
+  };
+}
+
+export function compactPdgeditReactionTitle(title = "") {
+  const normalizedTitle = normalizeText(title);
+  if (!normalizedTitle) {
+    return "";
+  }
+  return normalizedTitle.replace(/\[([^\]]+)\]AAA/gu, (match, groupText) => {
+    const compactedParticipants = compactPdgeditReactionParticipants(
+      String(groupText)
+        .split(/\s*\+\s*/u)
+        .map((participant) => normalizeText(participant))
+    );
+    if (compactedParticipants.repeatCount <= 1) {
+      return match;
+    }
+    return `${compactedParticipants.repeatCount}x[${compactedParticipants.participants.join("+")}]AAA`;
+  });
 }
 
 function renderReactionSide(documentLike, summary, side) {
@@ -446,6 +555,8 @@ export function createPdgeditAppRuntime({
 
   const measurementContext = documentLike.createElement("canvas").getContext("2d");
   const tileElementPrototypeCache = new Map();
+  const documentOptionListElement = documentLike.createElement("div");
+  documentOptionListElement.className = "pdgedit-document-option-list";
   const state = {
     tileCatalog: null,
     tileByKey: new Map(),
@@ -530,14 +641,15 @@ export function createPdgeditAppRuntime({
   function renderDocumentHeader() {
     const renderedDocument = getRenderedDocument();
     const reactionSummary = renderedDocument?.metadata?.reactionSummary ?? null;
-    const headingText =
+    const rawHeadingText =
       normalizeText(reactionSummary?.title) ||
       normalizeText(state.selectedEntry?.title) ||
       normalizeText(state.selectedEntry?.displayTitle) ||
       "No reaction selected";
+    const headingText = compactPdgeditReactionTitle(rawHeadingText);
     if (documentTitleElement) {
       documentTitleElement.textContent = headingText;
-      documentTitleElement.title = headingText;
+      documentTitleElement.title = rawHeadingText;
     }
     if (!reactionSummaryElement) {
       return;
@@ -563,9 +675,12 @@ export function createPdgeditAppRuntime({
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
     setPickerVisibility(documentPanelElement, state.documentPanelOpen && Boolean(state.manifest?.entries?.length));
     const normalizedQuery = String(state.documentQuery || "").trim().toLowerCase();
-    const normalizedSourceFilter = state.documentSourceFilter === "exact" || state.documentSourceFilter === "example"
-      ? state.documentSourceFilter
-      : "all";
+    const normalizedSourceFilter =
+      state.documentSourceFilter === "exact" ||
+      state.documentSourceFilter === "example" ||
+      state.documentSourceFilter === "unsolved"
+        ? state.documentSourceFilter
+        : "all";
     const filteredEntries = (Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).filter((entry) => {
       if (normalizedSourceFilter !== "all" && entry.sourceKind !== normalizedSourceFilter) {
         return false;
@@ -577,10 +692,10 @@ export function createPdgeditAppRuntime({
         String(value || "")
           .toLowerCase()
           .includes(normalizedQuery)
-      );
+        );
     });
     if (documentSearchInputElement) {
-      documentSearchInputElement.value = state.documentQuery;
+      updateTextInputValuePreservingSelection(documentSearchInputElement, state.documentQuery, { documentLike });
     }
     if (documentSourceFilterElement) {
       const buttons = documentSourceFilterElement.querySelectorAll("[data-source-filter]");
@@ -590,11 +705,12 @@ export function createPdgeditAppRuntime({
         button.setAttribute("aria-pressed", isSelected ? "true" : "false");
       });
     }
-    const optionList = documentLike.createElement("div");
-    optionList.className = "pdgedit-document-option-list";
     if (!filteredEntries.length) {
-      optionList.append(createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions."));
+      documentOptionListElement.replaceChildren(
+        createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")
+      );
     } else {
+      const optionElements = [];
       filteredEntries.forEach((entry) => {
         const option = documentLike.createElement("button");
         option.type = "button";
@@ -604,13 +720,13 @@ export function createPdgeditAppRuntime({
         option.setAttribute("aria-selected", entry.id === state.selectedEntry?.id ? "true" : "false");
         option.classList.toggle("is-selected", entry.id === state.selectedEntry?.id);
         option.textContent = entry.displayTitle;
-        optionList.append(option);
+        optionElements.push(option);
       });
+      documentOptionListElement.replaceChildren(...optionElements);
     }
-    documentPanelElement.replaceChildren(
-      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
-      optionList
-    );
+    ensurePdgeditPickerChildElement(documentPanelElement, documentSearchInputElement);
+    ensurePdgeditPickerChildElement(documentPanelElement, documentSourceFilterElement);
+    ensurePdgeditPickerChildElement(documentPanelElement, documentOptionListElement);
   }
 
   function createTileElement(tileKey, sampleCounts = undefined) {
