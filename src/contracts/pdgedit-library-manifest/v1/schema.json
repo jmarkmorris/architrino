@@ -39,6 +39,26 @@
             "type": "string",
             "enum": ["example", "exact", "unsolved"]
           },
+          "branchingProbability": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "productUnboundArchitrinoCounts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["electrinoCount", "positrinoCount"],
+            "properties": {
+              "electrinoCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "positrinoCount": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
           "isDefault": {
             "type": "boolean"
           }

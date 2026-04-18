@@ -256,6 +256,27 @@
         padding: 9px 10px;
       }
 
+      .pdgedit-document-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .pdgedit-document-option-label {
+        min-width: 0;
+        flex: 1 1 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .pdgedit-document-option-probability {
+        flex: 0 0 auto;
+        font-variant-numeric: tabular-nums;
+        color: rgba(177, 197, 255, 0.9);
+      }
+
       .pdgedit-document-option + .pdgedit-document-option,
       .pdgedit-create-option + .pdgedit-create-option {
         margin-top: 6px;
@@ -572,7 +593,7 @@
               autocomplete="off"
               spellcheck="false"
             />
-            <div id="pdgedit-document-source-filter" role="group" aria-label="Filter reaction source">
+            <div id="pdgedit-document-source-filter" role="group" aria-label="Filter reactions">
               <button
                 type="button"
                 class="pdgedit-document-source-filter-button is-selected"
@@ -584,18 +605,18 @@
               <button
                 type="button"
                 class="pdgedit-document-source-filter-button"
-                data-source-filter="exact"
+                data-source-filter="exact-zero-residue"
                 aria-pressed="false"
               >
-                Exact only
+                Exact 0:0
               </button>
               <button
                 type="button"
                 class="pdgedit-document-source-filter-button"
-                data-source-filter="unsolved"
+                data-source-filter="probability"
                 aria-pressed="false"
               >
-                Unsolved
+                Probability
               </button>
             </div>
           </div>

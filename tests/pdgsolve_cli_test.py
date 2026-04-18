@@ -751,12 +751,14 @@ class PdgsolveCliTests(unittest.TestCase):
                     "batchId": 1,
                     "caseId": "reference_unsolved_a",
                     "proposalId": "reference_unsolved_a",
+                    "branchingProbability": 0.81,
                     "pdgsolveRequest": make_unsolved_request("reference_unsolved_a"),
                 },
                 {
                     "batchId": 2,
                     "caseId": "reference_unsolved_b",
                     "proposalId": "reference_unsolved_b",
+                    "branchingProbability": 0.35,
                     "pdgsolveRequest": make_unsolved_request("reference_unsolved_b"),
                 },
             ],
@@ -807,6 +809,11 @@ class PdgsolveCliTests(unittest.TestCase):
             self.assertEqual(pdgedit_manifest["schema"], "pdgedit-library-manifest/v1")
             self.assertEqual(len(pdgedit_manifest["entries"]), 2)
             self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "unsolved")
+            self.assertEqual(pdgedit_manifest["entries"][0]["branchingProbability"], 0.81)
+            self.assertEqual(
+                pdgedit_manifest["entries"][0]["productUnboundArchitrinoCounts"],
+                {"electrinoCount": 0, "positrinoCount": 0},
+            )
             self.assertEqual(pdgedit_manifest["defaultEntryId"], pdgedit_manifest["entries"][0]["id"])
 
     def test_solve_manifest_writes_pdgedit_documents_for_exact_results(self):
@@ -820,6 +827,7 @@ class PdgsolveCliTests(unittest.TestCase):
                     "batchId": 1,
                     "caseId": "reference_exact",
                     "proposalId": "reference_exact",
+                    "branchingProbability": 0.98765,
                     "pdgsolveRequest": make_pass_thru_request("reference_exact"),
                 },
             ],
@@ -861,6 +869,11 @@ class PdgsolveCliTests(unittest.TestCase):
             pdgedit_manifest = self.read_json(pdgedit_manifest_path)
             self.assertEqual(len(pdgedit_manifest["entries"]), 1)
             self.assertEqual(pdgedit_manifest["entries"][0]["sourceKind"], "exact")
+            self.assertEqual(pdgedit_manifest["entries"][0]["branchingProbability"], 0.98765)
+            self.assertEqual(
+                pdgedit_manifest["entries"][0]["productUnboundArchitrinoCounts"],
+                {"electrinoCount": 0, "positrinoCount": 0},
+            )
 
     def test_solve_manifest_keeps_all_exact_pdgedit_entries_beyond_previous_scroll_picker_cap(self):
         ready_entries = [

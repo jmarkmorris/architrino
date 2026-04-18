@@ -52,6 +52,7 @@ class PdgfeedContractTests(unittest.TestCase):
 
         self.assertEqual(case.case_id, "mu_minus_s004_1")
         self.assertEqual(case.source["knownStatus"], "k")
+        self.assertEqual(case.source["branchingProbability"], 1.0)
         self.assertTrue(pdgfeed.proposal_is_ready_for_pdgsolve(proposal))
         self.assertEqual(proposal.products[1].pdg_name, "anti-nu_e")
         self.assertIsNotNone(request)
@@ -852,6 +853,7 @@ class PdgfeedContractTests(unittest.TestCase):
                                 FakeDecayProduct("nu_mu"),
                             ],
                             display_value_text="(100)",
+                            value=0.999877,
                         ),
                         FakeDecay(
                             "S004.2/2025",
@@ -863,6 +865,7 @@ class PdgfeedContractTests(unittest.TestCase):
                                 FakeDecayProduct("gamma"),
                             ],
                             display_value_text="(rad)",
+                            value=0.014,
                         ),
                     ],
                     mcid=13,
@@ -882,6 +885,7 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(manifest["blockedEntries"], [])
         self.assertEqual(manifest["readyEntries"][0]["pdgIdentifier"], "S004.1/2025")
         self.assertEqual(manifest["readyEntries"][0]["mcid"], 13)
+        self.assertEqual(manifest["readyEntries"][0]["branchingProbability"], 0.999877)
 
     def test_live_manifest_and_supported_rows_include_charge_resolved_generic_family_cases(self):
         api = FakeApi(

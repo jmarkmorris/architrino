@@ -6,6 +6,34 @@ function normalizeBoolean(value) {
   return value === true;
 }
 
+function normalizeNonnegativeInteger(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 0 ? number : null;
+}
+
+function normalizeBranchingProbability(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+  const number = Number(value);
+  if (!Number.isFinite(number) || number < 0 || number > 1) {
+    return null;
+  }
+  return number;
+}
+
+function normalizePrimitiveCounts(value) {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeNonnegativeInteger(value.electrinoCount);
+  const positrinoCount = normalizeNonnegativeInteger(value.positrinoCount);
+  if (electrinoCount === null || positrinoCount === null) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function normalizeSourceKind(value, documentPath = "") {
   const normalizedValue = normalizeText(value);
   if (normalizedValue === "example" || normalizedValue === "exact" || normalizedValue === "unsolved") {
@@ -27,6 +55,8 @@ export function createPdgeditLibraryManifestEntry({
   displayTitle = "",
   documentPath = "",
   sourceKind = "",
+  branchingProbability = null,
+  productUnboundArchitrinoCounts = null,
   isDefault = false,
 } = {}) {
   const normalizedTitle = normalizeText(title);
@@ -38,6 +68,14 @@ export function createPdgeditLibraryManifestEntry({
     documentPath: normalizedDocumentPath,
     sourceKind: normalizeSourceKind(sourceKind, normalizedDocumentPath),
   };
+  const normalizedBranchingProbability = normalizeBranchingProbability(branchingProbability);
+  if (normalizedBranchingProbability !== null) {
+    entry.branchingProbability = normalizedBranchingProbability;
+  }
+  const normalizedProductUnboundArchitrinoCounts = normalizePrimitiveCounts(productUnboundArchitrinoCounts);
+  if (normalizedProductUnboundArchitrinoCounts) {
+    entry.productUnboundArchitrinoCounts = normalizedProductUnboundArchitrinoCounts;
+  }
   if (normalizeBoolean(isDefault)) {
     entry.isDefault = true;
   }
@@ -51,6 +89,8 @@ export function normalizePdgeditLibraryManifestEntry(entry = {}) {
     displayTitle: entry?.displayTitle,
     documentPath: entry?.documentPath,
     sourceKind: entry?.sourceKind,
+    branchingProbability: entry?.branchingProbability,
+    productUnboundArchitrinoCounts: entry?.productUnboundArchitrinoCounts,
     isDefault: entry?.isDefault,
   });
 }

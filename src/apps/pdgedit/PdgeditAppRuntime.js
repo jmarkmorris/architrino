@@ -58,6 +58,79 @@ function normalizePrimitiveCounts(rawCounts) {
   return { electrinoCount, positrinoCount };
 }
 
+function normalizeBranchingProbability(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+  const probability = Number(value);
+  if (!Number.isFinite(probability) || probability < 0 || probability > 1) {
+    return null;
+  }
+  return probability;
+}
+
+function normalizeDocumentSourceFilter(value) {
+  return value === "exact-zero-residue" || value === "probability" ? value : "all";
+}
+
+function entryMatchesDocumentQuery(entry, normalizedQuery) {
+  if (!normalizedQuery) {
+    return true;
+  }
+  return [entry.displayTitle, entry.title, entry.id].some((value) =>
+    String(value || "")
+      .toLowerCase()
+      .includes(normalizedQuery)
+  );
+}
+
+function hasZeroUnboundArchitrinoResidue(entry) {
+  const counts = normalizePrimitiveCounts(entry?.productUnboundArchitrinoCounts);
+  return Boolean(counts) && counts.electrinoCount === 0 && counts.positrinoCount === 0;
+}
+
+function comparePdgeditDocumentEntriesByProbability(left, right) {
+  const leftProbability = normalizeBranchingProbability(left?.branchingProbability) ?? -1;
+  const rightProbability = normalizeBranchingProbability(right?.branchingProbability) ?? -1;
+  return (
+    rightProbability - leftProbability ||
+    String(left?.displayTitle || left?.title || left?.id || "").localeCompare(
+      String(right?.displayTitle || right?.title || right?.id || "")
+    ) ||
+    String(left?.id || "").localeCompare(String(right?.id || ""))
+  );
+}
+
+export function formatPdgeditBranchingProbability(value) {
+  const probability = normalizeBranchingProbability(value);
+  if (probability === null) {
+    return "";
+  }
+  return `${(probability * 100).toFixed(1)}%`;
+}
+
+export function getPdgeditDocumentPickerEntries(entries, { query = "", sourceFilter = "all" } = {}) {
+  const normalizedQuery = String(query || "").trim().toLowerCase();
+  const normalizedSourceFilter = normalizeDocumentSourceFilter(sourceFilter);
+  const filteredEntries = (Array.isArray(entries) ? entries : []).filter((entry) => {
+    if (normalizedSourceFilter === "exact-zero-residue") {
+      if (entry?.sourceKind !== "exact" || !hasZeroUnboundArchitrinoResidue(entry)) {
+        return false;
+      }
+    } else if (normalizedSourceFilter === "probability") {
+      const probability = normalizeBranchingProbability(entry?.branchingProbability);
+      if (probability === null || probability + 1e-12 < 0.3) {
+        return false;
+      }
+    }
+    return entryMatchesDocumentQuery(entry, normalizedQuery);
+  });
+  if (normalizedSourceFilter === "probability") {
+    filteredEntries.sort(comparePdgeditDocumentEntriesByProbability);
+  }
+  return filteredEntries;
+}
+
 function isEditingElement(element) {
   const tagName = String(element?.tagName ?? "").toLowerCase();
   return tagName === "input" || tagName === "textarea" || element?.isContentEditable === true;
@@ -674,25 +747,10 @@ export function createPdgeditAppRuntime({
     documentTriggerElement.textContent = state.selectedEntry?.displayTitle || "No documents";
     documentTriggerElement.disabled = !(state.manifest?.entries?.length);
     setPickerVisibility(documentPanelElement, state.documentPanelOpen && Boolean(state.manifest?.entries?.length));
-    const normalizedQuery = String(state.documentQuery || "").trim().toLowerCase();
-    const normalizedSourceFilter =
-      state.documentSourceFilter === "exact" ||
-      state.documentSourceFilter === "example" ||
-      state.documentSourceFilter === "unsolved"
-        ? state.documentSourceFilter
-        : "all";
-    const filteredEntries = (Array.isArray(state.manifest?.entries) ? state.manifest.entries : []).filter((entry) => {
-      if (normalizedSourceFilter !== "all" && entry.sourceKind !== normalizedSourceFilter) {
-        return false;
-      }
-      if (!normalizedQuery) {
-        return true;
-      }
-      return [entry.displayTitle, entry.title, entry.id].some((value) =>
-        String(value || "")
-          .toLowerCase()
-          .includes(normalizedQuery)
-        );
+    const normalizedSourceFilter = normalizeDocumentSourceFilter(state.documentSourceFilter);
+    const filteredEntries = getPdgeditDocumentPickerEntries(state.manifest?.entries, {
+      query: state.documentQuery,
+      sourceFilter: normalizedSourceFilter,
     });
     if (documentSearchInputElement) {
       updateTextInputValuePreservingSelection(documentSearchInputElement, state.documentQuery, { documentLike });
@@ -719,7 +777,19 @@ export function createPdgeditAppRuntime({
         option.setAttribute("role", "option");
         option.setAttribute("aria-selected", entry.id === state.selectedEntry?.id ? "true" : "false");
         option.classList.toggle("is-selected", entry.id === state.selectedEntry?.id);
-        option.textContent = entry.displayTitle;
+        option.title = entry.displayTitle;
+        option.append(createTextElement(documentLike, "span", "pdgedit-document-option-label", entry.displayTitle));
+        const formattedProbability = formatPdgeditBranchingProbability(entry.branchingProbability);
+        if (formattedProbability) {
+          option.append(
+            createTextElement(
+              documentLike,
+              "span",
+              "pdgedit-document-option-probability",
+              formattedProbability
+            )
+          );
+        }
         optionElements.push(option);
       });
       documentOptionListElement.replaceChildren(...optionElements);
@@ -1115,7 +1185,7 @@ export function createPdgeditAppRuntime({
       if (!button) {
         return;
       }
-      state.documentSourceFilter = button.dataset.sourceFilter || "all";
+      state.documentSourceFilter = normalizeDocumentSourceFilter(button.dataset.sourceFilter);
       renderDocumentPicker();
     });
 

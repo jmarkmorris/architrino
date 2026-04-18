@@ -335,6 +335,33 @@ test("pdgedit library manifest preserves unsolved live entries as a distinct sou
   assert.equal(normalizedManifest.entries[0]?.sourceKind, "unsolved");
 });
 
+test("pdgedit library manifest preserves live picker probability and residue metadata", () => {
+  const normalizedManifest = normalizePdgeditLibraryManifest({
+    schema: "pdgedit-library-manifest/v1",
+    defaultEntryId: "mu_minus_s004_1",
+    entries: [
+      {
+        id: "mu_minus_s004_1",
+        title: "mu- decay mode 1",
+        displayTitle: "mu- decay mode 1",
+        sourceKind: "exact",
+        documentPath: ".tmp/pdgsolve/pdgedit/documents/0001_mu_minus_s004_1.pdgedit.v1.json",
+        branchingProbability: 0.999877,
+        productUnboundArchitrinoCounts: {
+          electrinoCount: 0,
+          positrinoCount: 0,
+        },
+      },
+    ],
+  });
+
+  assert.equal(normalizedManifest.entries[0]?.branchingProbability, 0.999877);
+  assert.deepEqual(normalizedManifest.entries[0]?.productUnboundArchitrinoCounts, {
+    electrinoCount: 0,
+    positrinoCount: 0,
+  });
+});
+
 test("pdgedit main bootstrap seed stays contract-first and separate from the review harness", async () => {
   const manifest = readJson(PDGEDIT_MANIFEST_PATH);
   const liveManifest = { schema: "pdgedit-library-manifest/v1", defaultEntryId: "", entries: [] };
@@ -449,6 +476,11 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
         displayTitle: "mu- decay mode 1",
         sourceKind: "exact",
         documentPath: ".tmp/pdgsolve/pdgedit/documents/0001_mu_minus_s004_1.pdgedit.v1.json",
+        branchingProbability: 0.999877,
+        productUnboundArchitrinoCounts: {
+          electrinoCount: 0,
+          positrinoCount: 0,
+        },
         isDefault: true,
       },
     ],
@@ -491,6 +523,10 @@ test("pdgedit bootstrap merges the live exact-reaction manifest into the picker 
     bootstrap.manifest.entries.find((entry) => entry.id === "mu_minus_s004_1")?.sourceKind,
     "exact"
   );
+  assert.equal(
+    bootstrap.manifest.entries.find((entry) => entry.id === "mu_minus_s004_1")?.branchingProbability,
+    0.999877
+  );
 });
 
 test("pdgedit standalone surface keeps the link overlay transparent while preserving link hit targets", () => {
@@ -520,14 +556,17 @@ test("pdgedit document picker keeps a dedicated touch-scroll option list", () =>
     htmlSource,
     /\.pdgedit-document-option-list\s*\{[\s\S]*overflow-y:\s*auto;[\s\S]*touch-action:\s*pan-y;/u
   );
-  assert.equal(runtimeSource.includes('optionList.className = "pdgedit-document-option-list"'), true);
+  assert.equal(runtimeSource.includes('className = "pdgedit-document-option-list"'), true);
 });
 
-test("pdgedit document picker exposes an unsolved filter for live review documents", () => {
+test("pdgedit document picker exposes Exact 0:0 and Probability filters for live reaction search", () => {
   const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
   const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");
 
-  assert.equal(htmlSource.includes('data-source-filter="unsolved"'), true);
-  assert.equal(htmlSource.includes("Unsolved"), true);
-  assert.equal(runtimeSource.includes('state.documentSourceFilter === "unsolved"'), true);
+  assert.equal(htmlSource.includes('data-source-filter="exact-zero-residue"'), true);
+  assert.equal(htmlSource.includes("Exact 0:0"), true);
+  assert.equal(htmlSource.includes('data-source-filter="probability"'), true);
+  assert.equal(htmlSource.includes("Probability"), true);
+  assert.equal(runtimeSource.includes('value === "exact-zero-residue" || value === "probability"'), true);
+  assert.equal(runtimeSource.includes("formatPdgeditBranchingProbability"), true);
 });

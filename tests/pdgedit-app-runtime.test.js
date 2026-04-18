@@ -6,6 +6,8 @@ import {
   compactPdgeditReactionParticipants,
   compactPdgeditReactionTitle,
   ensurePdgeditPickerChildElement,
+  formatPdgeditBranchingProbability,
+  getPdgeditDocumentPickerEntries,
   updateTextInputValuePreservingSelection,
 } from "../src/apps/pdgedit/PdgeditAppRuntime.js";
 
@@ -115,6 +117,85 @@ test("link render models sort shared routing columns by geometry rather than lin
       ["z_top", -3],
       ["a_bottom", 3],
     ]
+  );
+});
+
+test("picker formats decay branching probability with one decimal place", () => {
+  assert.equal(formatPdgeditBranchingProbability(0.3), "30.0%");
+  assert.equal(formatPdgeditBranchingProbability(0.999), "99.9%");
+  assert.equal(formatPdgeditBranchingProbability(null), "");
+});
+
+test("picker exact 0:0 filter keeps only exact entries with no unbound architrino residue", () => {
+  const entries = [
+    {
+      id: "exact_zero",
+      title: "Exact Zero",
+      displayTitle: "Exact Zero",
+      sourceKind: "exact",
+      productUnboundArchitrinoCounts: { electrinoCount: 0, positrinoCount: 0 },
+    },
+    {
+      id: "exact_residue",
+      title: "Exact Residue",
+      displayTitle: "Exact Residue",
+      sourceKind: "exact",
+      productUnboundArchitrinoCounts: { electrinoCount: 3, positrinoCount: 3 },
+    },
+    {
+      id: "review_zero",
+      title: "Review Zero",
+      displayTitle: "Review Zero",
+      sourceKind: "unsolved",
+      productUnboundArchitrinoCounts: { electrinoCount: 0, positrinoCount: 0 },
+    },
+  ];
+
+  assert.deepEqual(
+    getPdgeditDocumentPickerEntries(entries, { sourceFilter: "exact-zero-residue" }).map((entry) => entry.id),
+    ["exact_zero"]
+  );
+});
+
+test("picker probability filter keeps >=30% reactions and sorts them descending", () => {
+  const entries = [
+    {
+      id: "review_high",
+      title: "Review High",
+      displayTitle: "Review High",
+      sourceKind: "unsolved",
+      branchingProbability: 0.91,
+    },
+    {
+      id: "exact_mid",
+      title: "Exact Mid",
+      displayTitle: "Exact Mid",
+      sourceKind: "exact",
+      branchingProbability: 0.67,
+    },
+    {
+      id: "example_low",
+      title: "Example Low",
+      displayTitle: "Example Low",
+      sourceKind: "example",
+      branchingProbability: 0.4,
+    },
+    {
+      id: "exact_below_threshold",
+      title: "Exact Below Threshold",
+      displayTitle: "Exact Below Threshold",
+      sourceKind: "exact",
+      branchingProbability: 0.29,
+    },
+  ];
+
+  assert.deepEqual(
+    getPdgeditDocumentPickerEntries(entries, { sourceFilter: "probability" }).map((entry) => entry.id),
+    ["review_high", "exact_mid", "example_low"]
+  );
+  assert.deepEqual(
+    getPdgeditDocumentPickerEntries(entries, { sourceFilter: "probability", query: "mid" }).map((entry) => entry.id),
+    ["exact_mid"]
   );
 });
 

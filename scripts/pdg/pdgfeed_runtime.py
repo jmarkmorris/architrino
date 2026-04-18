@@ -1126,6 +1126,9 @@ def build_live_manifest_payload(
             "blockedParticles": blocked_names,
             "proposal": proposal.to_dict(),
         }
+        branching_probability = normalize_branching_probability(live_case.source.get("branchingProbability"))
+        if branching_probability is not None:
+            entry["branchingProbability"] = branching_probability
         if pdgsolve_request is None:
             blocked_entries.append(entry)
             continue

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+import re
 from typing import Any
 
 from scripts.pdg.pdgfeed_generic_family import is_supported_generic_family, resolve_generic_family_products
@@ -15,6 +17,9 @@ KNOWN_REACTION_KEYS: tuple[tuple[int, str], ...] = (
     (211, "S008.1/2025"),
 )
 KNOWN_REACTION_ORDER = {key: index for index, key in enumerate(KNOWN_REACTION_KEYS)}
+BRANCHING_DISPLAY_PERCENT_PATTERN = re.compile(
+    r"^[~(]*\s*([0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)"
+)
 
 
 def connect_pdg(database_url: str | None = None, *, pedantic: bool = False) -> Any:
@@ -41,6 +46,34 @@ def safe_api_info(api: Any, key: str) -> str | None:
     if value in (None, ""):
         return None
     return str(value)
+
+
+def normalize_branching_probability(value: Any) -> float | None:
+    try:
+        probability = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(probability):
+        return None
+    if -1e-12 <= probability <= 1.0 + 1e-12:
+        return min(1.0, max(0.0, probability))
+    return None
+
+
+def normalize_branching_probability_from_display(text: Any) -> float | None:
+    normalized_text = str(text or "").strip()
+    if not normalized_text or "<" in normalized_text or ">" in normalized_text:
+        return None
+    match = BRANCHING_DISPLAY_PERCENT_PATTERN.match(normalized_text)
+    if match is None:
+        return None
+    try:
+        percent_probability = float(match.group(1))
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(percent_probability):
+        return None
+    return normalize_branching_probability(percent_probability / 100.0)
 
 
 def identifier_token(text: str) -> str:
@@ -296,6 +329,11 @@ def load_live_case_from_decay(
         "isSubdecay": bool(getattr(decay, "is_subdecay", False)),
         "subdecayLevel": int(getattr(decay, "subdecay_level", 0) or 0),
     }
+    branching_probability = normalize_branching_probability(getattr(decay, "value", None))
+    if branching_probability is None:
+        branching_probability = normalize_branching_probability_from_display(source["branchingDisplay"])
+    if branching_probability is not None:
+        source["branchingProbability"] = branching_probability
     particle_mcid = getattr(particle, "mcid", None)
     if particle_mcid is not None:
         source["mcid"] = int(particle_mcid)
