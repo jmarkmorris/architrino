@@ -231,41 +231,31 @@ function renderReactionSide(documentLike, summary, side) {
   return sideElement;
 }
 
-function isPdgeditDocumentFullyConnected(document = {}) {
+function isPdgeditDocumentLinkComplete(document = {}) {
   const objects = getPdgeditDocumentObjects(document);
   if (objects.length < 2 || !Array.isArray(document?.links) || document.links.length === 0) {
     return false;
   }
-  const objectIds = new Set(objects.map((object) => normalizeText(object.id)).filter(Boolean));
-  if (!objectIds.size) {
+  const linkCountByObjectId = new Map();
+  objects.forEach((object) => {
+    const objectId = normalizeText(object?.id);
+    if (objectId) {
+      linkCountByObjectId.set(objectId, 0);
+    }
+  });
+  if (!linkCountByObjectId.size) {
     return false;
   }
-  const neighborsById = new Map([...objectIds].map((objectId) => [objectId, new Set()]));
   document.links.forEach((link) => {
     const endpointA = normalizeText(link?.endpointA);
     const endpointB = normalizeText(link?.endpointB);
-    if (!objectIds.has(endpointA) || !objectIds.has(endpointB) || endpointA === endpointB) {
+    if (!linkCountByObjectId.has(endpointA) || !linkCountByObjectId.has(endpointB) || endpointA === endpointB) {
       return;
     }
-    neighborsById.get(endpointA).add(endpointB);
-    neighborsById.get(endpointB).add(endpointA);
+    linkCountByObjectId.set(endpointA, linkCountByObjectId.get(endpointA) + 1);
+    linkCountByObjectId.set(endpointB, linkCountByObjectId.get(endpointB) + 1);
   });
-  const [startId] = objectIds;
-  const visited = new Set();
-  const queue = [startId];
-  while (queue.length) {
-    const objectId = queue.shift();
-    if (!objectId || visited.has(objectId)) {
-      continue;
-    }
-    visited.add(objectId);
-    (neighborsById.get(objectId) ?? []).forEach((neighborId) => {
-      if (!visited.has(neighborId)) {
-        queue.push(neighborId);
-      }
-    });
-  }
-  return visited.size === objectIds.size;
+  return [...linkCountByObjectId.values()].every((count) => count > 0);
 }
 
 function getPdgeditBalanceState(document = {}) {
@@ -273,7 +263,7 @@ function getPdgeditBalanceState(document = {}) {
   return {
     balanceSummary,
     isBalanced: balanceSummary?.isBalanced === true,
-    isFullyConnected: isPdgeditDocumentFullyConnected(document),
+    isLinkComplete: isPdgeditDocumentLinkComplete(document),
   };
 }
 
@@ -558,7 +548,7 @@ export function createPdgeditAppRuntime({
     const models = buildPdgeditLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
     const balanceState = getPdgeditBalanceState(document);
     const visibleStrokeColor =
-      balanceState.isBalanced && balanceState.isFullyConnected
+      balanceState.isBalanced && balanceState.isLinkComplete
         ? "rgba(122, 225, 146, 0.98)"
         : "#ffffff";
     const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
@@ -607,13 +597,13 @@ export function createPdgeditAppRuntime({
       documentLike,
       "reactant",
       balanceSummary.reactantTotals,
-      balanceState.isBalanced && balanceState.isFullyConnected
+      balanceState.isBalanced && balanceState.isLinkComplete
     );
     const productBadge = createBalanceBadgeElement(
       documentLike,
       "product",
       balanceSummary.productTotals,
-      balanceState.isBalanced && balanceState.isFullyConnected
+      balanceState.isBalanced && balanceState.isLinkComplete
     );
     balanceLayerElement.replaceChildren(...[reactantBadge, productBadge].filter(Boolean));
   }
