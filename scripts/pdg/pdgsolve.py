@@ -53,12 +53,12 @@ PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS = (
     {
         "type": "pro-proton-composite",
         "text": "Proton",
-        "recipeSequence": ("pro_up_quark", "pro_down_quark", "pro_up_quark"),
+        "recipeSequence": ("pro_up_quark", "pro_up_quark", "pro_down_quark"),
     },
     {
         "type": "anti-proton-composite",
         "text": "Anti Proton",
-        "recipeSequence": ("anti_up_quark", "anti_down_quark", "anti_up_quark"),
+        "recipeSequence": ("anti_up_quark", "anti_up_quark", "anti_down_quark"),
     },
     {
         "type": "pro-neutron-composite",
@@ -149,13 +149,13 @@ PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPECS = (
         "canonicalId": "proton",
         "type": "pro-proton-composite",
         "text": "Proton",
-        "recipeSequence": ("pro_up_quark", "pro_down_quark", "pro_up_quark"),
+        "recipeSequence": ("pro_up_quark", "pro_up_quark", "pro_down_quark"),
     },
     {
         "canonicalId": "anti_proton",
         "type": "anti-proton-composite",
         "text": "Anti Proton",
-        "recipeSequence": ("anti_up_quark", "anti_down_quark", "anti_up_quark"),
+        "recipeSequence": ("anti_up_quark", "anti_up_quark", "anti_down_quark"),
     },
     {
         "canonicalId": "neutron",

@@ -26,11 +26,11 @@ const COMPOSITE_LABEL_SEQUENCE_SPECS = Object.freeze([
   },
   {
     type: "pro-proton-composite",
-    recipeSequence: ["pro_up_quark", "pro_down_quark", "pro_up_quark"],
+    recipeSequence: ["pro_up_quark", "pro_up_quark", "pro_down_quark"],
   },
   {
     type: "anti-proton-composite",
-    recipeSequence: ["anti_up_quark", "anti_down_quark", "anti_up_quark"],
+    recipeSequence: ["anti_up_quark", "anti_up_quark", "anti_down_quark"],
   },
   {
     type: "pro-neutron-composite",
@@ -104,12 +104,12 @@ const COMPOSITE_LABEL_OCCURRENCE_SPECS = Object.freeze([
   {
     canonicalId: "proton",
     type: "pro-proton-composite",
-    recipeSequence: ["pro_up_quark", "pro_down_quark", "pro_up_quark"],
+    recipeSequence: ["pro_up_quark", "pro_up_quark", "pro_down_quark"],
   },
   {
     canonicalId: "anti_proton",
     type: "anti-proton-composite",
-    recipeSequence: ["anti_up_quark", "anti_down_quark", "anti_up_quark"],
+    recipeSequence: ["anti_up_quark", "anti_up_quark", "anti_down_quark"],
   },
   {
     canonicalId: "neutron",
