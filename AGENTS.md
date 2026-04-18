@@ -17,9 +17,10 @@ This document distinguishes three audience scopes:
 - Math rendering target is `KaTeX` in the web app context.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Do not allow markdown emphasis parsing to mutate TeX subscripts/superscripts (for example `_i`, `^2`).
-- Prefer inline math (`$...$` or `\(...\)`) for short expressions inside prose; reserve display math (`$$...$$` or `\[...\]`) for standalone equations only.
+- Prefer `$...$` for inline math in authored markdown; reserve `$$...$$` for standalone equations only.
+- Treat `\(...\)` and `\[...\]` as compatibility delimiters rather than default authoring forms; use them only when a literal TeX example or a renderer-specific validated case requires them.
 - Do not place `$$...$$` display math inline inside sentences, headings, list labels, callouts, or preview text; those contexts must use inline-safe math.
-- For inline inequalities or expressions containing `<` or `>` inside prose, prefer `\(...\)` with spaces (for example `\(1 < m < n\)`) to avoid markdown/HTML parsing errors.
+- For inline inequalities or expressions containing `<` or `>` inside prose, keep them in `$...$` with spaces around the operators (for example `$1 < m < n$`).
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
 
 ### Operator/Developer Communication

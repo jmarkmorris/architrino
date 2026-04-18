@@ -200,10 +200,11 @@ Do not rewrite prose in ways that break KaTeX rendering or accidentally trigger 
 
 KaTeX authoring rules:
 
-- Use inline math for short expressions that live inside prose sentences.
-- Use display math only for standalone equations, not for sentence fragments or preview-style summary lines.
+- Use `$...$` for inline math in prose sentences.
+- Use `$$...$$` only for standalone equations, not for sentence fragments or preview-style summary lines.
+- Treat `\(...\)` and `\[...\]` as compatibility forms for literal examples or renderer-specific validated cases, not as default authoring syntax.
 - Do not place `$$...$$` inline inside headings, list items, callouts, captions, or notebook summary sentences.
-- For inline inequalities or expressions containing `<` or `>` in prose, prefer `\(...\)` with spaces, for example `\(1 < m < n\)`.
+- For inline inequalities or expressions containing `<` or `>` in prose, keep them in `$...$` with spaces, for example `$1 < m < n$`.
 - When a short formula is part of a narrative sentence, prefer one inline expression over a stacked display unless the derivation truly needs display layout.
 
 ### Causal-delay terminology

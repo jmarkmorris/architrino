@@ -9,6 +9,18 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function normalizeTileKeys(tiles) {
   if (!Array.isArray(tiles)) {
     return [];
@@ -24,6 +36,7 @@ function normalizeAssembly(record) {
           bottomCount: normalizeText(record.sampleCounts.bottomCount),
         }
       : null;
+  const primitiveCounts = normalizePrimitiveCounts(record?.primitiveCounts);
   return {
     id: normalizeText(record?.id),
     type: normalizeText(record?.type),
@@ -33,6 +46,13 @@ function normalizeAssembly(record) {
     role: normalizeText(record?.role),
     tiles: normalizeTileKeys(record?.tiles),
     ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
+    ...(
+      primitiveCounts &&
+      primitiveCounts.electrinoCount >= 0 &&
+      primitiveCounts.positrinoCount >= 0
+        ? { primitiveCounts }
+        : {}
+    ),
   };
 }
 
@@ -49,10 +69,12 @@ function normalizeOperator(record) {
 }
 
 function normalizeLink(record) {
+  const primitiveCounts = normalizePrimitiveCounts(record?.primitiveCounts);
   return {
     id: normalizeText(record?.id),
     endpointA: normalizeText(record?.endpointA),
     endpointB: normalizeText(record?.endpointB),
+    ...(primitiveCounts ? { primitiveCounts } : {}),
   };
 }
 
@@ -67,9 +89,83 @@ function normalizeCompositeLabel(record) {
   };
 }
 
+function normalizeReactionSummaryParticipant(record) {
+  return {
+    text: normalizeText(record?.text),
+  };
+}
+
+function normalizeReactionSummaryParticipants(records) {
+  if (!Array.isArray(records)) {
+    return [];
+  }
+  return records
+    .map(normalizeReactionSummaryParticipant)
+    .filter((participant) => participant.text);
+}
+
+function normalizeBalanceTotals(rawTotals) {
+  if (!rawTotals || typeof rawTotals !== "object") {
+    return null;
+  }
+  const epsilonMinusCount = normalizeInteger(rawTotals.epsilonMinusCount, -1);
+  const epsilonPlusCount = normalizeInteger(rawTotals.epsilonPlusCount, -1);
+  if (epsilonMinusCount < 0 || epsilonPlusCount < 0) {
+    return null;
+  }
+  return {
+    epsilonMinusCount,
+    epsilonPlusCount,
+  };
+}
+
+function normalizePdgeditMetadata(rawMetadata) {
+  if (!rawMetadata || typeof rawMetadata !== "object") {
+    return null;
+  }
+  const rawReactionSummary = rawMetadata.reactionSummary;
+  const metadata = {};
+  if (rawReactionSummary && typeof rawReactionSummary === "object") {
+    const reactionSummary = {
+      title: normalizeText(rawReactionSummary.title),
+      pdgReactants: normalizeReactionSummaryParticipants(rawReactionSummary.pdgReactants),
+      aaaReactants: normalizeReactionSummaryParticipants(rawReactionSummary.aaaReactants),
+      pdgProducts: normalizeReactionSummaryParticipants(rawReactionSummary.pdgProducts),
+      aaaProducts: normalizeReactionSummaryParticipants(rawReactionSummary.aaaProducts),
+    };
+    const pdgIdentifier = normalizeText(rawReactionSummary.pdgIdentifier);
+    if (pdgIdentifier) {
+      reactionSummary.pdgIdentifier = pdgIdentifier;
+    }
+    if (
+      reactionSummary.title ||
+      reactionSummary.pdgReactants.length ||
+      reactionSummary.aaaReactants.length ||
+      reactionSummary.pdgProducts.length ||
+      reactionSummary.aaaProducts.length
+    ) {
+      metadata.reactionSummary = reactionSummary;
+    }
+  }
+  const reactantTotals = normalizeBalanceTotals(rawMetadata.balanceSummary?.reactantTotals);
+  const productTotals = normalizeBalanceTotals(rawMetadata.balanceSummary?.productTotals);
+  if (reactantTotals && productTotals) {
+    metadata.balanceSummary = {
+      reactantTotals,
+      productTotals,
+      isBalanced:
+        reactantTotals.epsilonMinusCount === productTotals.epsilonMinusCount &&
+        reactantTotals.epsilonPlusCount === productTotals.epsilonPlusCount,
+    };
+  }
+  return Object.keys(metadata).length ? metadata : null;
+}
+
 export function normalizePdgeditDocument(rawDocument = {}) {
+  const metadata = normalizePdgeditMetadata(rawDocument?.metadata);
   return {
     schema: normalizeText(rawDocument?.schema),
+    ...(metadata ? { metadata } : {}),
     assemblies: Array.isArray(rawDocument?.assemblies)
       ? rawDocument.assemblies.map(normalizeAssembly)
       : [],

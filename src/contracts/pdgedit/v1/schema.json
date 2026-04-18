@@ -4,6 +4,120 @@
   "title": "pdgedit Document v1",
   "type": "object",
   "additionalProperties": false,
+  "$defs": {
+    "reactionSummaryParticipant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "reactionSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "pdgReactants",
+        "aaaReactants",
+        "pdgProducts",
+        "aaaProducts"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pdgIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pdgReactants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "aaaReactants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "pdgProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "aaaProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        }
+      }
+    },
+    "balanceTotals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "epsilonMinusCount",
+        "epsilonPlusCount"
+      ],
+      "properties": {
+        "epsilonMinusCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "epsilonPlusCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "balanceSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reactantTotals",
+        "productTotals",
+        "isBalanced"
+      ],
+      "properties": {
+        "reactantTotals": {
+          "$ref": "#/$defs/balanceTotals"
+        },
+        "productTotals": {
+          "$ref": "#/$defs/balanceTotals"
+        },
+        "isBalanced": {
+          "type": "boolean"
+        }
+      }
+    },
+    "primitiveCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "electrinoCount",
+        "positrinoCount"
+      ],
+      "properties": {
+        "electrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
   "required": [
     "schema",
     "assemblies",
@@ -14,6 +128,19 @@
   "properties": {
     "schema": {
       "const": "pdgedit/v1"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reactionSummary"],
+      "properties": {
+        "reactionSummary": {
+          "$ref": "#/$defs/reactionSummary"
+        },
+        "balanceSummary": {
+          "$ref": "#/$defs/balanceSummary"
+        }
+      }
     },
     "assemblies": {
       "type": "array",
@@ -120,6 +247,9 @@
                 "minLength": 1
               }
             }
+          },
+          "primitiveCounts": {
+            "$ref": "#/$defs/primitiveCounts"
           }
         }
       }
@@ -196,6 +326,9 @@
           "endpointB": {
             "type": "string",
             "minLength": 1
+          },
+          "primitiveCounts": {
+            "$ref": "#/$defs/primitiveCounts"
           }
         }
       }

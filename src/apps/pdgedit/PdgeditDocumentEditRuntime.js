@@ -33,6 +33,81 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
+function normalizeBalanceTotals(rawTotals) {
+  if (!rawTotals || typeof rawTotals !== "object") {
+    return null;
+  }
+  const epsilonMinusCount = normalizeInteger(rawTotals.epsilonMinusCount, -1);
+  const epsilonPlusCount = normalizeInteger(rawTotals.epsilonPlusCount, -1);
+  if (epsilonMinusCount < 0 || epsilonPlusCount < 0) {
+    return null;
+  }
+  return {
+    epsilonMinusCount,
+    epsilonPlusCount,
+  };
+}
+
+function cloneMetadata(metadata = null) {
+  if (!metadata || typeof metadata !== "object") {
+    return undefined;
+  }
+  const reactionSummary = metadata.reactionSummary;
+  const clonedMetadata = {};
+  if (reactionSummary && typeof reactionSummary === "object") {
+    clonedMetadata.reactionSummary = {
+      title: normalizeText(reactionSummary.title),
+      ...(normalizeText(reactionSummary.pdgIdentifier)
+        ? { pdgIdentifier: normalizeText(reactionSummary.pdgIdentifier) }
+        : {}),
+      pdgReactants: Array.isArray(reactionSummary.pdgReactants)
+        ? reactionSummary.pdgReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaReactants: Array.isArray(reactionSummary.aaaReactants)
+        ? reactionSummary.aaaReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      pdgProducts: Array.isArray(reactionSummary.pdgProducts)
+        ? reactionSummary.pdgProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaProducts: Array.isArray(reactionSummary.aaaProducts)
+        ? reactionSummary.aaaProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+    };
+  }
+  const reactantTotals = normalizeBalanceTotals(metadata.balanceSummary?.reactantTotals);
+  const productTotals = normalizeBalanceTotals(metadata.balanceSummary?.productTotals);
+  if (reactantTotals && productTotals) {
+    clonedMetadata.balanceSummary = {
+      reactantTotals,
+      productTotals,
+      isBalanced:
+        reactantTotals.epsilonMinusCount === productTotals.epsilonMinusCount &&
+        reactantTotals.epsilonPlusCount === productTotals.epsilonPlusCount,
+    };
+  }
+  return Object.keys(clonedMetadata).length ? clonedMetadata : undefined;
+}
+
 function slugifyIdentifier(value, fallback = "item") {
   const slug = normalizeText(value)
     .toLowerCase()
@@ -42,15 +117,25 @@ function slugifyIdentifier(value, fallback = "item") {
 }
 
 function cloneDocument(document = {}) {
+  const normalizedDocument = normalizePdgeditDocument(document);
+  const metadata = cloneMetadata(normalizedDocument.metadata);
   return {
     schema: "pdgedit/v1",
-    assemblies: normalizePdgeditDocument(document).assemblies.map((assembly) => ({
+    ...(metadata ? { metadata } : {}),
+    assemblies: normalizedDocument.assemblies.map((assembly) => ({
       ...assembly,
       tiles: [...assembly.tiles],
+      ...(assembly?.sampleCounts ? { sampleCounts: { ...assembly.sampleCounts } } : {}),
+      ...(assembly?.primitiveCounts ? { primitiveCounts: { ...assembly.primitiveCounts } } : {}),
     })),
-    operators: normalizePdgeditDocument(document).operators.map((operator) => ({ ...operator })),
-    links: normalizePdgeditDocument(document).links.map((link) => ({ ...link })),
-    compositeLabels: normalizePdgeditDocument(document).compositeLabels.map((label) => ({ ...label })),
+    operators: normalizedDocument.operators.map((operator) => ({ ...operator })),
+    links: normalizedDocument.links.map((link) => ({
+      ...link,
+      ...(normalizePrimitiveCounts(link?.primitiveCounts)
+        ? { primitiveCounts: { ...normalizePrimitiveCounts(link?.primitiveCounts) } }
+        : {}),
+    })),
+    compositeLabels: normalizedDocument.compositeLabels.map((label) => ({ ...label })),
   };
 }
 

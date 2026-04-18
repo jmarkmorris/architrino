@@ -94,7 +94,7 @@ The first assumption is the one that now carries the regime claim: outside the b
 $$
 v_M=c_f.
 $$
-The second assumption is exact integer phase closure relative to the Outer period, $f_O:f_M:f_I=1:m:n$ with \(1 < m < n\), so that when the Outer completes one cycle, the Middle and Inner also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
+The second assumption is exact integer phase closure relative to the Outer period, $f_O:f_M:f_I=1:m:n$ with $1 < m < n$, so that when the Outer completes one cycle, the Middle and Inner also return to cycle start. The third assumption is fixed relative phase lock, and the fourth is a selection principle: among admissible integer locks, the realized one should be the one that maximizes cycle-averaged cancellation of the low-order far-field or effective potential signal.
 
 Under these assumptions, the geometry is controlled by the integer pair $(m,n)$ together with the remaining speed factors $\beta_O$ and $\beta_I$. The immediate formulas are
 $$

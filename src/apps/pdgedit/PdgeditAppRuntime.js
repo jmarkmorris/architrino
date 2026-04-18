@@ -14,13 +14,45 @@ import {
 } from "./PdgeditDocumentEditRuntime.js";
 import {
   buildPdgeditSplinePath,
+  getPdgeditAssemblyStageXForRole,
   getPdgeditGridCellFromLocalPoint,
   getPdgeditRoutingColumnForObjectPair,
   PDGEDIT_GRID_STRIP_WIDTH_PX,
   PDGEDIT_RESERVED_TOP_ROW_COUNT,
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
+import { resolvePdgeditCatalogColor } from "./PdgeditTileCatalogRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
+
+function normalizeText(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeInteger(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isInteger(number) ? number : fallback;
+}
+
+function parseNonnegativeInteger(value) {
+  const normalizedValue = String(value ?? "").trim();
+  if (!/^\d+$/u.test(normalizedValue)) {
+    return null;
+  }
+  const parsedValue = Number(normalizedValue);
+  return Number.isInteger(parsedValue) ? parsedValue : null;
+}
+
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
 
 function isEditingElement(element) {
   const tagName = String(element?.tagName ?? "").toLowerCase();
@@ -141,6 +173,207 @@ function createTextElement(documentLike, tagName, className, textContent) {
   return element;
 }
 
+function createReactionParticipantElement(documentLike, text) {
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-participant";
+  const label = documentLike.createElement("span");
+  label.className = "pdgedit-reaction-label";
+  label.textContent = text;
+  element.append(label);
+  return element;
+}
+
+function createReactionSeparatorElement(documentLike) {
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-separator";
+  element.textContent = "+";
+  return element;
+}
+
+function createReactionProvenanceElement(documentLike, provenance) {
+  const superscript = documentLike.createElement("sup");
+  superscript.className = "pdgedit-reaction-provenance";
+  superscript.textContent = provenance;
+  return superscript;
+}
+
+function createReactionBracketedGroupElement(documentLike, participants, provenance) {
+  const normalizedParticipants = Array.isArray(participants)
+    ? participants.map((participant) => normalizeText(participant?.text)).filter(Boolean)
+    : [];
+  if (!normalizedParticipants.length) {
+    return null;
+  }
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-group";
+  element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "["));
+  normalizedParticipants.forEach((text, index) => {
+    if (index > 0) {
+      element.append(createReactionSeparatorElement(documentLike));
+    }
+    element.append(createReactionParticipantElement(documentLike, text));
+  });
+  element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "]"));
+  element.append(createReactionProvenanceElement(documentLike, provenance));
+  return element;
+}
+
+function appendReactionParticipantGroup(documentLike, container, participants, hasPreviousParticipant) {
+  let appended = hasPreviousParticipant;
+  participants.forEach((participant) => {
+    const text = normalizeText(participant?.text);
+    if (!text) {
+      return;
+    }
+    if (appended) {
+      container.append(createReactionSeparatorElement(documentLike));
+    }
+    container.append(createReactionParticipantElement(documentLike, text));
+    appended = true;
+  });
+  return appended;
+}
+
+function renderReactionSide(documentLike, summary, side) {
+  const pdgParticipants = Array.isArray(summary?.[`pdg${side}`]) ? summary[`pdg${side}`] : [];
+  const aaaParticipants = Array.isArray(summary?.[`aaa${side}`]) ? summary[`aaa${side}`] : [];
+  const sideElement = documentLike.createElement("span");
+  sideElement.className = "pdgedit-reaction-side";
+  const hasPdgParticipants = appendReactionParticipantGroup(documentLike, sideElement, pdgParticipants, false);
+  const aaaGroup = createReactionBracketedGroupElement(documentLike, aaaParticipants, "AAA");
+  if (aaaGroup) {
+    if (hasPdgParticipants) {
+      sideElement.append(createReactionSeparatorElement(documentLike));
+    }
+    sideElement.append(aaaGroup);
+  }
+  if (!hasPdgParticipants && !aaaGroup) {
+    sideElement.append(documentLike.createTextNode(side === "Reactants" ? "No reactants" : "No products"));
+  }
+  return sideElement;
+}
+
+function isPdgeditDocumentLinkComplete(document = {}) {
+  const objects = getPdgeditDocumentObjects(document);
+  if (objects.length < 2 || !Array.isArray(document?.links) || document.links.length === 0) {
+    return false;
+  }
+  const linkCountByObjectId = new Map();
+  objects.forEach((object) => {
+    const objectId = normalizeText(object?.id);
+    if (objectId) {
+      linkCountByObjectId.set(objectId, 0);
+    }
+  });
+  if (!linkCountByObjectId.size) {
+    return false;
+  }
+  document.links.forEach((link) => {
+    const endpointA = normalizeText(link?.endpointA);
+    const endpointB = normalizeText(link?.endpointB);
+    if (!linkCountByObjectId.has(endpointA) || !linkCountByObjectId.has(endpointB) || endpointA === endpointB) {
+      return;
+    }
+    linkCountByObjectId.set(endpointA, linkCountByObjectId.get(endpointA) + 1);
+    linkCountByObjectId.set(endpointB, linkCountByObjectId.get(endpointB) + 1);
+  });
+  return [...linkCountByObjectId.values()].every((count) => count > 0);
+}
+
+function getPdgeditBalanceState(document = {}) {
+  const balanceSummary = document?.metadata?.balanceSummary;
+  return {
+    balanceSummary,
+    isBalanced: balanceSummary?.isBalanced === true,
+    isLinkComplete: isPdgeditDocumentLinkComplete(document),
+  };
+}
+
+function getPdgeditConnectorSourceCounts(object = {}) {
+  if (object?.kind === "operator") {
+    const electrinoCount = normalizeInteger(object?.electrinoCount, -1);
+    const positrinoCount = normalizeInteger(object?.positrinoCount, -1);
+    if (electrinoCount >= 0 && positrinoCount >= 0) {
+      return { electrinoCount, positrinoCount };
+    }
+    return null;
+  }
+  if (object?.kind !== "assembly") {
+    return null;
+  }
+  const primitiveCounts = object?.primitiveCounts;
+  if (primitiveCounts && typeof primitiveCounts === "object") {
+    const electrinoCount = normalizeInteger(primitiveCounts.electrinoCount, -1);
+    const positrinoCount = normalizeInteger(primitiveCounts.positrinoCount, -1);
+    if (electrinoCount >= 0 && positrinoCount >= 0) {
+      return { electrinoCount, positrinoCount };
+    }
+  }
+  const sampleCounts = object?.sampleCounts;
+  if (sampleCounts && typeof sampleCounts === "object") {
+    const electrinoCount = parseNonnegativeInteger(sampleCounts.topCount);
+    const positrinoCount = parseNonnegativeInteger(sampleCounts.bottomCount);
+    if (electrinoCount !== null && positrinoCount !== null) {
+      return { electrinoCount, positrinoCount };
+    }
+  }
+  return null;
+}
+
+function resolvePdgeditConnectorHighlightColor(catalog, model) {
+  const counts = normalizePrimitiveCounts(model?.link?.primitiveCounts) || getPdgeditConnectorSourceCounts(model?.leftObject);
+  if (!counts) {
+    return resolvePdgeditCatalogColor(catalog, "purple");
+  }
+  if (counts.positrinoCount > counts.electrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "red");
+  }
+  if (counts.electrinoCount > counts.positrinoCount) {
+    return resolvePdgeditCatalogColor(catalog, "blue");
+  }
+  return resolvePdgeditCatalogColor(catalog, "purple");
+}
+
+function createBalanceTermElement(documentLike, className, label, count) {
+  const element = documentLike.createElement("span");
+  element.className = `pdgedit-balance-term ${className}`;
+  const labelElement = documentLike.createElement("span");
+  labelElement.className = "pdgedit-balance-label";
+  labelElement.textContent = label;
+  const countElement = documentLike.createElement("span");
+  countElement.className = "pdgedit-balance-count";
+  countElement.textContent = String(normalizeInteger(count));
+  element.append(labelElement, documentLike.createTextNode(" "), countElement);
+  return element;
+}
+
+function createBalanceBadgeElement(documentLike, role, totals) {
+  const stageX = getPdgeditAssemblyStageXForRole(role);
+  if (!stageX) {
+    return null;
+  }
+  const element = documentLike.createElement("div");
+  element.className = "pdgedit-balance-badge";
+  element.dataset.balanceRole = role;
+  element.style.left = `${(stageX - 1) * PDGEDIT_TILE_SIZE_PX + PDGEDIT_TILE_SIZE_PX * 2}px`;
+  element.append(
+    createBalanceTermElement(
+      documentLike,
+      "is-negative",
+      "\u03b5\u207b",
+      totals?.epsilonMinusCount,
+    ),
+    createTextElement(documentLike, "span", "pdgedit-balance-separator", ":"),
+    createBalanceTermElement(
+      documentLike,
+      "is-positive",
+      "\u03b5\u207a",
+      totals?.epsilonPlusCount,
+    ),
+  );
+  return element;
+}
+
 export function createPdgeditAppRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
@@ -153,12 +386,15 @@ export function createPdgeditAppRuntime({
   objectLayerElement,
   linkOverlayElement,
   compositeLayerElement,
+  balanceLayerElement,
+  documentTitleElement,
   documentTriggerElement,
   documentPanelElement,
   documentSearchInputElement,
   documentSourceFilterElement,
   homeButtonElement,
   createPickerElement,
+  reactionSummaryElement,
   manifestUrl,
   tileCatalogUrl,
   templateCatalogUrl,
@@ -242,11 +478,44 @@ export function createPdgeditAppRuntime({
     renderObjects(document);
     renderLinks(document);
     renderCompositeLabels(document);
+    renderBalanceBadges(document);
   }
 
   function renderChrome() {
+    renderDocumentHeader();
     renderDocumentPicker();
     renderCreatePicker();
+  }
+
+  function renderDocumentHeader() {
+    const renderedDocument = getRenderedDocument();
+    const reactionSummary = renderedDocument?.metadata?.reactionSummary ?? null;
+    const headingText =
+      normalizeText(reactionSummary?.title) ||
+      normalizeText(state.selectedEntry?.title) ||
+      normalizeText(state.selectedEntry?.displayTitle) ||
+      "No reaction selected";
+    if (documentTitleElement) {
+      documentTitleElement.textContent = headingText;
+      documentTitleElement.title = headingText;
+    }
+    if (!reactionSummaryElement) {
+      return;
+    }
+    reactionSummaryElement.replaceChildren();
+    if (!reactionSummary) {
+      reactionSummaryElement.hidden = true;
+      reactionSummaryElement.setAttribute("aria-hidden", "true");
+      return;
+    }
+    const summaryLine = documentLike.createElement("p");
+    summaryLine.className = "pdgedit-reaction-summary-line";
+    summaryLine.append(renderReactionSide(documentLike, reactionSummary, "Reactants"));
+    summaryLine.append(createTextElement(documentLike, "span", "pdgedit-reaction-arrow", "\u2192"));
+    summaryLine.append(renderReactionSide(documentLike, reactionSummary, "Products"));
+    reactionSummaryElement.hidden = false;
+    reactionSummaryElement.setAttribute("aria-hidden", "false");
+    reactionSummaryElement.append(summaryLine);
   }
 
   function renderDocumentPicker() {
@@ -364,6 +633,7 @@ export function createPdgeditAppRuntime({
   function renderLinks(document) {
     const objectsById = new Map(getPdgeditDocumentObjects(document).map((record) => [record.id, record]));
     const models = buildPdgeditLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
+    const balanceState = getPdgeditBalanceState(document);
     const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
     const heightPx = totalRows * PDGEDIT_TILE_SIZE_PX;
     linkOverlayElement.setAttribute("viewBox", `0 0 ${PDGEDIT_GRID_STRIP_WIDTH_PX} ${heightPx}`);
@@ -374,7 +644,12 @@ export function createPdgeditAppRuntime({
         const visiblePath = documentLike.createElementNS("http://www.w3.org/2000/svg", "path");
         visiblePath.setAttribute("d", model.spline.path);
         visiblePath.setAttribute("fill", "none");
-        visiblePath.setAttribute("stroke", "#ffffff");
+        visiblePath.setAttribute(
+          "stroke",
+          balanceState.isBalanced && balanceState.isLinkComplete
+            ? resolvePdgeditConnectorHighlightColor(state.tileCatalog, model)
+            : "#ffffff"
+        );
         visiblePath.setAttribute("stroke-width", "2");
         visiblePath.setAttribute("stroke-linecap", "round");
         visiblePath.setAttribute("stroke-linejoin", "round");
@@ -394,6 +669,29 @@ export function createPdgeditAppRuntime({
         return [visiblePath, hitPath];
       })
     );
+  }
+
+  function renderBalanceBadges(document) {
+    if (!balanceLayerElement) {
+      return;
+    }
+    balanceLayerElement.replaceChildren();
+    const balanceSummary = document?.metadata?.balanceSummary ?? null;
+    if (!balanceSummary) {
+      return;
+    }
+    const balanceState = getPdgeditBalanceState(document);
+    const reactantBadge = createBalanceBadgeElement(
+      documentLike,
+      "reactant",
+      balanceSummary.reactantTotals
+    );
+    const productBadge = createBalanceBadgeElement(
+      documentLike,
+      "product",
+      balanceSummary.productTotals
+    );
+    balanceLayerElement.replaceChildren(...[reactantBadge, productBadge].filter(Boolean));
   }
 
   function createCompositeLabelElement(label) {

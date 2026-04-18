@@ -5,6 +5,24 @@
   "type": "object",
   "additionalProperties": false,
   "$defs": {
+    "primitiveCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "electrinoCount",
+        "positrinoCount"
+      ],
+      "properties": {
+        "electrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positrinoCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
     "assemblyUnit": {
       "type": "object",
       "additionalProperties": false,
@@ -142,6 +160,9 @@
         "toPortId": {
           "type": "string",
           "minLength": 1
+        },
+        "primitiveCounts": {
+          "$ref": "#/$defs/primitiveCounts"
         }
       }
     }

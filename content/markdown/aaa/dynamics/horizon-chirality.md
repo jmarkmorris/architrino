@@ -84,7 +84,7 @@ This comparison helps keep the horizon problem honest. The goal is not to prove 
 
 ## Exterior Planar Spin Basis
 
-Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar spin-sign space contains exactly \(2^3 = 8\) possibilities.
+Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar spin-sign space contains exactly $2^3 = 8$ possibilities.
 
 | Row | H | M | L | Class | Comment |
 | --- | --- | --- | --- | --- | --- |

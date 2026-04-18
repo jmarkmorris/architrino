@@ -2,33 +2,39 @@
 
 ## LLM Instructions
 
-- Keep this document focused on `pdgsolve` as a solve-only Python tool.
-- Keep `Design` about durable solver boundaries, assemblies, operators, search, scoring, and JSON contracts.
+- Keep this document focused on `pdgsolve` as the Python solve, acceptance, and publication boundary upstream of `pdgedit`.
+- Keep `Design` about durable request normalization, solver boundaries, assemblies, operators, acceptance locking, publication-graph construction, and JSON contracts.
 - Keep `Priorities` ordered as the active work queue.
 - Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](./pdgfeed.md) matters.
 
 ## Purpose
 
-`pdgsolve` is the dedicated solving tool between upstream request sources and downstream solve-result artifacts.
+`pdgsolve` is the dedicated Python boundary between upstream request sources and downstream accepted-publication artifacts for `pdgedit`.
 
 It owns:
 
 - intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a `pdgsolve`-owned solve problem expressed only in explicit admitted assemblies;
-- combinatorial search over conservative solve candidates;
-- deterministic scoring and ranking of exact and partial solution families;
-- and emission of JSON solve outputs.
+- deterministic exact-family construction and no-exact fallback emission for the current vertical slice;
+- deterministic scoring, diagnostics, and review-state emission;
+- locking one accepted exact family into an acceptance artifact;
+- building a layout-neutral publication graph from the accepted solve graph;
+- and publishing `pdgedit` documents plus manifest entries from accepted or review-ready inputs.
 
 It does not own:
 
 - PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
-- or downstream document-generation steps that belong outside the solve boundary.
+- free-form pdgedit authoring behavior that belongs in [pdgedit](./pdgedit.md);
+- or downstream viewer staging behavior that belongs in `pdgview`.
 
 ## Current State
 
-- The active target is a solve-only Python implementation.
-- The implementation boundary should be one Python file, `scripts/pdg/pdgsolve.py`.
-- The tool should consume explicit `pdgsolve-request/v1` JSON and emit JSON solve outputs containing all exact solution families, the top three partial solution families, and the scores for all emitted families.
+- The active implementation boundary is still one Python file, `scripts/pdg/pdgsolve.py`.
+- The current CLI owns four concrete flows: `solve`, `accept`, `publish`, and `solve-manifest`.
+- `solve` normalizes `pdgsolve-request/v1` into `pdgsolve-problem/v1`, emits `pdgsolve-result/v1`, and currently returns either one publication-ready exact family or one deterministic no-exact-closure family.
+- `accept` locks one exact publication-ready family into `pdgsolve-acceptance/v1`.
+- `publish` turns one acceptance record into a final `pdgedit/v1` document through the layout-neutral `pdgsolve-publication-graph/v2` seam carried inside the acceptance.
+- `solve-manifest` solves every ready request in a live manifest, writes a `pdgsolve-result-corpus/v1` index, and optionally publishes exact and review `pdgedit` documents plus a `pdgedit-library-manifest/v1`.
 
 ## Design
 
@@ -49,9 +55,11 @@ The durable `pdgsolve` structure should separate:
 
 - request intake;
 - request normalization;
-- solve-core search;
-- scoring and family canonicalization;
-- and solve-output emission.
+- solve-core law application;
+- family scoring and diagnostics;
+- acceptance locking;
+- layout-neutral publication-graph construction;
+- and pdgedit publication emission.
 
 Large coordinator files may assemble those pieces temporarily, but they should not become the long-term home of solver semantics.
 
@@ -64,7 +72,7 @@ Composite labels, higher-scale particle names, grouping interpretations, support
 - one and only one explicit counted `Unbound Architrinos` assembly in the intermediate stage;
 - and one explicit counted `Unbound Architrinos` occurrence on the product side when either upstream already emitted it at the boundary or an intermediate-side `Pass Thru` routes to it.
 
-The intermediate `Unbound Architrinos` assembly is a ledger object. It may appear only as the shared output target of reactant-side `Dissociate` operators. Multiple reactant-side `Dissociate` operators may route Electrinos and Positrinos into it within the same branch. It is not a wildcard well, and it is not replaced by multiple separate intermediate `Unbound Architrinos` objects. Its Electrino and Positrino counts are part of the solver state and are routed explicitly through `Associate` and `Pass Thru` operators.
+The intermediate `Unbound Architrinos` assembly is a ledger object. It may appear only as the shared output target of reactant-side `Dissociate` operators. Multiple reactant-side `Dissociate` operators may route Electrinos and Positrinos into it within the same constructed candidate. It is not a wildcard well, and it is not replaced by multiple separate intermediate `Unbound Architrinos` objects. Its Electrino and Positrino counts are part of the solver state and are routed explicitly through `Associate` and `Pass Thru` operators.
 
 Aside from that explicit `Unbound Architrinos` handling, higher-scale language does not enter `pdgsolve` as reactant assemblies, intermediate assemblies, product assemblies, operator inputs, operator outputs, or search symbols. If upstream language uses higher-scale terms, a boundary adapter must translate them into explicit admitted Standard Model assemblies before `pdgsolve` sees the request. If that translation cannot be completed, the source request is un-mappable and should remain upstream in `pdgfeed` rather than being emitted to `pdgsolve`. If downstream tools want higher-scale summaries, they may derive them only after `pdgsolve` has finished.
 
@@ -107,7 +115,7 @@ In `pdgsolve` terminology, an **assembly** is one solver-native AAA assembly obj
 
 Inside `pdgsolve`, all routing, scoring, provenance, search symbols, and emitted output should use only individual assembly ids such as `pro_down_quark_I`, `pro_up_quark_I`, `pro_electron_I`, and `anti_electron_neutrino_I`.
 
-`pdgsolve` should treat this as a combinatorial state graph, not as presentation geometry.
+`pdgsolve` should treat this as a semantic solve graph, not as presentation geometry.
 
 That means:
 
@@ -142,25 +150,13 @@ That means:
 
 `pdgsolve` should model the nontrivial operators as finite law tables.
 
-For dissociation, each operator-admissible assembly \(a \in \mathcal{A}\) has a finite set
+For dissociation, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set $\Delta(a) \subset \mathbb{N}^{\mathcal{A}}$, where each $d \in \Delta(a)$ is one legal dissociation output multiset for $a$.
 
-$$
-\Delta(a) \subset \mathbb{N}^{\mathcal{A}},
-$$
-
-where each \(d \in \Delta(a)\) is one legal dissociation output multiset for \(a\).
-
-For association, each operator-admissible assembly \(a \in \mathcal{A}\) has a finite set
-
-$$
-\Gamma(a) \subset \mathbb{N}^{\mathcal{A}},
-$$
-
-where each \(g \in \Gamma(a)\) is one legal gathered input multiset that can assemble into \(a\).
+For association, each operator-admissible assembly $a \in \mathcal{A}$ has a finite set $\Gamma(a) \subset \mathbb{N}^{\mathcal{A}}$, where each $g \in \Gamma(a)$ is one legal gathered input multiset that can assemble into $a$.
 
 `Pass Thru` is the identity law and therefore does not need a separate family table.
 
-The important constraint is that \(\Delta\) and \(\Gamma\) are finite for a fixed solve family.
+The important constraint is that $\Delta$ and $\Gamma$ are finite for a fixed solve family.
 
 Every executable law should be local to one explicit assembly id. `Dissociate` rewrites one reactant assembly occurrence into an allowed output multiset of intermediate assemblies. `Associate` closes an allowed gathered input multiset of intermediate assemblies into one product assembly.
 
@@ -175,7 +171,7 @@ Applied to beta-decay, the same rule means the `pdgsolve` core expression must b
 
 From that point forward:
 
-- the core search may use only explicit assembly ids from \(\mathcal{A}\);
+- the core search may use only explicit assembly ids from $\mathcal{A}$;
 - and requests that arrive with higher-scale reactant or product terms are handled by the boundary rule stated above.
 
 Candidate quality should be judged on assembly-native legality, conservation, provenance clarity, and deterministic ranking.
@@ -186,34 +182,15 @@ So the design rule is: the solver core reasons only over explicit admitted assem
 
 `pdgsolve` should model the wildcard-like Noether freedom as a bounded boundary augmentation, not as a solver-native composite, grouping label, dissociation target, or association target.
 
-Define one Noether-pair augmentation unit by the explicit two-assembly multiset
+Define one Noether-pair augmentation unit by the explicit two-assembly multiset $N_{\mathrm{Noether}} = \mathbf{1}_{\mathrm{pro\ Noether\ core}} + \mathbf{1}_{\mathrm{anti\ Noether\ core}}$.
 
-$$
-N_{\mathrm{Noether}}
-=
-\mathbf{1}_{\mathrm{pro\ Noether\ core}}
-+
-\mathbf{1}_{\mathrm{anti\ Noether\ core}}.
-$$
+A raw request still enters as requested boundary multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$.
 
-A raw request still enters as requested boundary multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\).
+If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set $B(\Pi) \subset \mathbb{N} \times \mathbb{N}$, where one choice $b = (\alpha, \beta)$ means $R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}$ and $T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}$.
 
-If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set
+For `pdgsolve` v1, one emitted family should augment at most one boundary side, so $\alpha \beta = 0$. That prevents redundant add-on-both-sides variants that do not add solve meaning.
 
-$$
-B(\Pi) \subset \mathbb{N} \times \mathbb{N},
-$$
-
-where one choice \(b = (\alpha, \beta)\) means:
-
-$$
-R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}, \qquad
-T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}.
-$$
-
-For `pdgsolve` v1, one emitted family should augment at most one boundary side, so \(\alpha \beta = 0\). That prevents redundant add-on-both-sides variants that do not add solve meaning.
-
-After one augmentation choice \(b\) is fixed:
+After one augmentation choice $b$ is fixed:
 
 - every added Noether core is just one ordinary assembly occurrence;
 - the pair is not carried through the interior search as a composite symbol;
@@ -238,55 +215,37 @@ That solve problem model should describe reactant assemblies, product assemblies
 
 That solve problem model must contain only explicit admitted assemblies.
 
-Mathematically, `pdgsolve` should describe one solve instance as
+Mathematically, `pdgsolve` should describe one solve instance as $Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \Delta, \Gamma, \Pi)$, where:
 
-$$
-Q = (\mathcal{A}, \mathcal{P}, \mu, R, T, \Delta, \Gamma, \Pi),
-$$
+- $\mathcal{A}$ is the finite assembly alphabet of explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assemblies for the active solve family;
+- $\mathcal{P}$ is the basis of conserved primitive content;
+- $\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}$ is the conserved-content map;
+- $R, T \in \mathbb{N}^{\mathcal{A}}$ are the active reactant and product multisets for the solve instance after any admitted boundary augmentation has been fixed;
+- $\Delta$ and $\Gamma$ are the dissociation and association law tables;
+- and $\Pi$ is the active policy bundle.
 
-where:
+By the time $R$ and $T$ exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
 
-- \(\mathcal{A}\) is the finite assembly alphabet of explicit admitted \(\mathbb{A}\mathbb{A}\mathbb{A}\) assemblies for the active solve family;
-- \(\mathcal{P}\) is the basis of conserved primitive content;
-- \(\mu : \mathcal{A} \to \mathbb{N}^{\mathcal{P}}\) is the conserved-content map;
-- \(R, T \in \mathbb{N}^{\mathcal{A}}\) are the active reactant and product multisets for the solve instance after any admitted boundary augmentation has been fixed;
-- \(\Delta\) and \(\Gamma\) are the dissociation and association law tables;
-- and \(\Pi\) is the active policy bundle.
+If boundary augmentation is enabled, $R$ and $T$ should be understood as one augmented solve instance derived from the requested boundary multisets under the active policy bundle $\Pi$.
 
-By the time \(R\) and \(T\) exist, any higher-scale upstream description has already been translated into explicit assembly multisets or marked un-mappable at the boundary.
+For `pdgsolve` v1, the explicit conserved basis should be $\mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}$.
 
-If boundary augmentation is enabled, \(R\) and \(T\) should be understood as one augmented solve instance derived from the requested boundary multisets under the active policy bundle \(\Pi\).
+That means the first concrete interpretation of $\mu$ is:
 
-For `pdgsolve` v1, the explicit conserved basis should be
+- $\mu(a)_{\mathrm{Electrino}}$ = the number of Electrinos carried by assembly $a$;
+- $\mu(a)_{\mathrm{Positrino}}$ = the number of Positrinos carried by assembly $a$.
 
-$$
-\mathcal{P}_{0} = \{\mathrm{Electrino}, \mathrm{Positrino}\}.
-$$
-
-That means the first concrete interpretation of \(\mu\) is:
-
-- \(\mu(a)_{\mathrm{Electrino}}\) = the number of Electrinos carried by assembly \(a\);
-- \(\mu(a)_{\mathrm{Positrino}}\) = the number of Positrinos carried by assembly \(a\).
-
-The conserved-content map should extend linearly from assemblies to multisets:
-
-$$
-\mu(x) = \sum_{a \in \mathcal{A}} x(a)\,\mu(a), \qquad x \in \mathbb{N}^{\mathcal{A}}.
-$$
+The conserved-content map should extend linearly from assemblies to multisets: $\mu(x) = \sum_{a \in \mathcal{A}} x(a)\,\mu(a)$, for $x \in \mathbb{N}^{\mathcal{A}}$.
 
 Every legal operator law should preserve this ledger.
 
 That means:
 
-- if \(d \in \Delta(a)\), then \(\mu(d) = \mu(a)\);
-- if \(g \in \Gamma(a)\), then \(\mu(g) = \mu(a)\);
-- and `Pass Thru` preserves \(\mu\) trivially.
+- if $d \in \Delta(a)$, then $\mu(d) = \mu(a)$;
+- if $g \in \Gamma(a)$, then $\mu(g) = \mu(a)$;
+- and `Pass Thru` preserves $\mu$ trivially.
 
-For shorthand, `pdgsolve` should define the primitive counts
-
-$$
-N_{E}(x) = \mu(x)_{\mathrm{Electrino}}, \qquad N_{P}(x) = \mu(x)_{\mathrm{Positrino}}.
-$$
+For shorthand, `pdgsolve` should define the primitive counts $N_{E}(x) = \mu(x)_{\mathrm{Electrino}}$ and $N_{P}(x) = \mu(x)_{\mathrm{Positrino}}$.
 
 These are the first conserved sums that must match across the solve.
 
@@ -294,13 +253,7 @@ These are the first conserved sums that must match across the solve.
 
 `pdgsolve` should use the full admitted Standard Model assembly alphabet for mapped PDG requests.
 
-For `pdgsolve`, denote that alphabet by
-
-$$
-\mathcal{A}_{\mathrm{v1}}
-$$
-
-where \(\mathcal{A}_{\mathrm{v1}}\) is the complete canonical assembly table shared by `pdgfeed` translation and `pdgsolve` normalization.
+For `pdgsolve`, denote that alphabet by $\mathcal{A}_{\mathrm{v1}}$, where $\mathcal{A}_{\mathrm{v1}}$ is the complete canonical assembly table shared by `pdgfeed` translation and `pdgsolve` normalization.
 
 The assembly table should list the full Standard Model inventory:
 
@@ -314,12 +267,12 @@ The assembly table should list the full Standard Model inventory:
 
 The concrete conserved-content rows for every admitted assembly in that table should be written here rather than deferred to a later phase. The running beta-boundary bookkeeping values already used elsewhere in this document include:
 
-- \(\mu(\mathrm{pro\_down\_quark\_I}) = (7, 5)\);
-- \(\mu(\mathrm{pro\_up\_quark\_I}) = (4, 8)\);
-- \(\mu(\mathrm{pro\_electron\_I}) = (9, 3)\);
-- and \(\mu(\mathrm{anti\_electron\_neutrino\_I}) = (6, 6)\).
+- $\mu(\mathrm{pro\_down\_quark\_I}) = (7, 5)$;
+- $\mu(\mathrm{pro\_up\_quark\_I}) = (4, 8)$;
+- $\mu(\mathrm{pro\_electron\_I}) = (9, 3)$;
+- and $\mu(\mathrm{anti\_electron\_neutrino\_I}) = (6, 6)$.
 
-`pdgsolve` should treat equality of \(\mu\) as necessary for conservation, not as permission to identify assemblies.
+`pdgsolve` should treat equality of $\mu$ as necessary for conservation, not as permission to identify assemblies.
 
 ### Rule Table
 
@@ -343,7 +296,7 @@ It should be expressed as:
 - one family of Noether-core ladder dissociation laws;
 - and one shared counted `Unbound Architrinos` assembly in the intermediate stage.
 
-This section is the executable interpretation of \(\Delta\) and \(\Gamma\) for v1.
+This section is the executable interpretation of $\Delta$ and $\Gamma$ for v1.
 
 #### One Shared Intermediate `Unbound Architrinos` Ledger
 
@@ -353,7 +306,7 @@ That assembly carries exactly:
 
 - an Electrino count;
 - a Positrino count;
-- and the corresponding \( \epsilon^- \) and \( \epsilon^+ \) display characters shown with those counts in the tile glyph.
+- and the corresponding $ \epsilon^- $ and $ \epsilon^+ $ display characters shown with those counts in the tile glyph.
 
 This intermediate `Unbound Architrinos` assembly is not a wildcard well and not a composite label.
 
@@ -363,23 +316,17 @@ It is a shared ledger used only as:
 - input to one or more product-side `Associate` operators;
 - or input to a product-side `Pass Thru` whose output is a product-side `Unbound Architrinos` assembly.
 
-Every branch must satisfy:
+Every constructed candidate must satisfy:
 
-- Electrino count \(\ge 0\);
-- Positrino count \(\ge 0\);
+- Electrino count $\ge 0$;
+- Positrino count $\ge 0$;
 - routed counts may never drive either count below zero;
 - an `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion rather than reading those polar charges directly from an intact Noether core;
 - and there may never be a second intermediate `Unbound Architrinos` assembly.
 
 #### Universal Identity Law
 
-For every admitted assembly \(a \in \mathcal{A}_{\mathrm{v1}}\),
-
-$$
-e_{a}: a \mapsto a
-$$
-
-is always legal.
+For every admitted assembly $a \in \mathcal{A}_{\mathrm{v1}}$, $e_{a}: a \mapsto a$ is always legal.
 
 So `Pass Thru` is globally available and must be included in every local action set.
 
@@ -447,13 +394,9 @@ This Noether-core-plus-`Unbound Architrinos` form is the first concrete v1 law-t
 
 #### Fermion Dissociation Laws
 
-For every admitted visible fermion assembly \(f\), the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
+For every admitted visible fermion assembly $f$, the executable dissociation table should contain exactly the inverse of the corresponding association recipe.
 
-In symbols:
-
-$$
-\Delta(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
-$$
+In symbols, $\Delta(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
 Concretely, the first-pass dissociation rules are:
 
@@ -494,17 +437,13 @@ Each such rule emits:
 
 #### Fermion Association Laws
 
-For every admitted visible fermion assembly \(f\), the executable association table should contain exactly the inverse gather law.
+For every admitted visible fermion assembly $f$, the executable association table should contain exactly the inverse gather law.
 
-In symbols:
+In symbols, $\Gamma(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}$.
 
-$$
-\Gamma(f) = \{\text{Noether core}(f) + \text{Unbound Architrinos counts}(f)\}.
-$$
+Concretely, `Associate` may create $f$ if and only if the gathered inputs are exactly:
 
-Concretely, `Associate` may create \(f\) if and only if the gathered inputs are exactly:
-
-- the generation-matched Noether-core row of \(f\);
+- the generation-matched Noether-core row of $f$;
 - plus the required routed counts from the one shared intermediate `Unbound Architrinos` ledger.
 
 So, for example:
@@ -517,7 +456,7 @@ So, for example:
 
 An `Associate` operator consumes `Unbound Architrinos` to populate the polar charges of a fermion. It does not read those polar charges directly from an intact Noether core row.
 
-If a branch needs additional Electrinos or Positrinos in the ledger, it must first create them by lawful dissociation before the associated product is attempted.
+If a constructed candidate needs additional Electrinos or Positrinos in the ledger, it must first create them by lawful dissociation before the associated product is attempted.
 
 The `Associate` tile should display the Electrino and Positrino counts it routes from the intermediate `Unbound Architrinos` ledger into the product assembly.
 
@@ -544,7 +483,7 @@ These rules make the Noether-core ladder explicit:
 - bi-binary to uni-binary releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger;
 - uni-binary to fully unbound releases `1` Electrino and `1` Positrino into the shared intermediate `Unbound Architrinos` ledger.
 
-This is the first lawful mechanism by which a branch can add neutral charge into the intermediate ledger for later associations.
+This is the first lawful mechanism by which a constructed candidate can add neutral charge into the intermediate ledger for later associations.
 
 #### No Hidden Direct-Use Rule
 
@@ -563,20 +502,20 @@ So the following are illegal:
 
 The `Pass Thru` tile should display the Electrino and Positrino counts it routes when it carries `Unbound Architrinos` from the intermediate stage to the product stage.
 
-#### First Coding Target
+#### Current Executable Law Slice
 
-The first real `pdgsolve` implementation should code exactly this `pdgsolve-laws/v1-standard-model` law family before adding refinements.
+The shipped `pdgsolve` vertical slice currently freezes `pdgsolve-laws/v1-standard-model` as its executable law table.
 
-That means the first executable solver should assume:
+That means the current deterministic solver assumes:
 
-- one shared admitted assembly alphabet \(\mathcal{A}_{\mathrm{v1}}\);
-- universal pass-thru;
+- one shared admitted assembly alphabet $\mathcal{A}_{\mathrm{v1}}$;
+- universal pass-thru over the admitted assemblies;
 - the Noether-core-plus-`Unbound Architrinos` dissociate/associate family above;
-- the Noether-core ladder laws above;
-- one shared intermediate `Unbound Architrinos` ledger with nonnegative counts;
-- and no hidden reaction-specific shortcuts.
+- the Noether-core ladder dissociation laws above;
+- one shared intermediate `Unbound Architrinos` ledger, implemented as one residue accumulator with nonnegative counts;
+- and no hand-authored reaction-specific solves or hidden shortcuts.
 
-If this first-pass law family proves insufficient for specific corpus channels, the next step should be to revise this table explicitly here rather than to reintroduce hand-authored solved reactions in code.
+If specific corpus channels require broader coverage, the next step should be to revise or extend this explicit law inventory and the constructive mapper that uses it, rather than to reintroduce per-channel solved reactions in code.
 
 ### Normalization Rules
 
@@ -590,9 +529,9 @@ Normalization should then do the following, in order:
 
 1. receive only assembly ids from the upstream boundary adapter, such as `pro_down_quark_I`, `pro_up_quark_I`, `pro_electron_I`, and `anti_electron_neutrino_I`;
 2. preserve the resulting occurrence order so the search can assign stable occurrence indices later;
-3. reject any assembly outside \(\mathcal{A}_{\mathrm{v1}}\) with `pdgsolve.request.unsupported_assembly`;
-4. freeze the active primitive basis as \(\mathcal{P}_{0}\) and the executable law table as `pdgsolve-laws/v1-standard-model`;
-5. build the requested multisets \(R_{\mathrm{req}}\) and \(T_{\mathrm{req}}\);
+3. reject any assembly outside $\mathcal{A}_{\mathrm{v1}}$ with `pdgsolve.request.unsupported_assembly`;
+4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-standard-model`;
+5. build the requested multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$;
 6. normalize the finite Noether-pair boundary augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
 7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether core then anti Noether core, with pair indices ascending;
 8. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup, including the requested multisets and the finite augmentation modes to enumerate.
@@ -601,50 +540,34 @@ Normalization should then do the following, in order:
 
 `pdgsolve` should make the balance laws explicit across reactant assemblies, intermediate assemblies, and product assemblies.
 
-Because architrinos have provenance in \(\mathbb{A}\mathbb{A}\mathbb{A}\), the correct solve picture is not a disappearing flow ledger.
+Because architrinos have provenance in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correct solve picture is not a disappearing flow ledger.
 
 It is one fixed primitive carrier set viewed through three different assembly partitions.
 
-Define the explicit reactant assemblies and explicit product assemblies
-
-$$
-x_{1} = R, \qquad x_{5} = T.
-$$
+Define the explicit reactant assemblies and explicit product assemblies by $x_{1} = R$ and $x_{5} = T$.
 
 An exact candidate must find:
 
-- intermediate assemblies \(x_{3} \in \mathbb{N}^{\mathcal{A}}\);
-- a finite primitive carrier set \(\Omega = \Omega_{E} \sqcup \Omega_{P}\);
-- and assembly partitions \(P_{1}, P_{3}, P_{5}\) of \(\Omega\);
+- intermediate assemblies $x_{3} \in \mathbb{N}^{\mathcal{A}}$;
+- a finite primitive carrier set $\Omega = \Omega_{E} \sqcup \Omega_{P}$;
+- and assembly partitions $P_{1}, P_{3}, P_{5}$ of $\Omega$;
 
 such that:
 
-- \(P_{1}\) realizes \(x_{1}\);
-- \(P_{3}\) realizes \(x_{3}\);
-- \(P_{5}\) realizes \(x_{5}\);
-- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from \(P_{1}\) to \(P_{3}\) and from \(P_{3}\) to \(P_{5}\).
+- $P_{1}$ realizes $x_{1}$;
+- $P_{3}$ realizes $x_{3}$;
+- $P_{5}$ realizes $x_{5}$;
+- and the reactant-side operators and product-side operators are legal provenance-preserving rewrites from $P_{1}$ to $P_{3}$ and from $P_{3}$ to $P_{5}$.
 
 Here, "realizes" means:
 
-- each block in \(P_{\ell}\) is labeled by some assembly \(a \in \mathcal{A}\);
-- the block contains exactly \(\mu(a)_{\mathrm{Electrino}}\) Electrinos and \(\mu(a)_{\mathrm{Positrino}}\) Positrinos;
-- and the multiplicity of each label \(a\) agrees with \(x_{\ell}(a)\).
+- each block in $P_{\ell}$ is labeled by some assembly $a \in \mathcal{A}$;
+- the block contains exactly $\mu(a)_{\mathrm{Electrino}}$ Electrinos and $\mu(a)_{\mathrm{Positrino}}$ Positrinos;
+- and the multiplicity of each label $a$ agrees with $x_{\ell}(a)$.
 
-The primitive invariants across these assembly partitions are therefore
+The primitive invariants across these assembly partitions are therefore $\mu(x_{1}) = \mu(x_{3}) = \mu(x_{5})$.
 
-$$
-\mu(x_{1}) = \mu(x_{3}) = \mu(x_{5}).
-$$
-
-In particular, `pdgsolve` must preserve the Electrino and Positrino counts separately:
-
-$$
-N_{E}(x_{1}) = N_{E}(x_{3}) = N_{E}(x_{5}),
-$$
-
-$$
-N_{P}(x_{1}) = N_{P}(x_{3}) = N_{P}(x_{5}).
-$$
+In particular, `pdgsolve` must preserve the Electrino and Positrino counts separately: $N_{E}(x_{1}) = N_{E}(x_{3}) = N_{E}(x_{5})$ and $N_{P}(x_{1}) = N_{P}(x_{3}) = N_{P}(x_{5})$.
 
 So the reaction does not merely conserve totals in the aggregate.
 
@@ -652,381 +575,120 @@ It preserves one underlying architrino population whose grouping changes across 
 
 If a request fails these equalities at the boundary, `pdgsolve` should not silently repair that mismatch.
 
-Instead, it should report the primitive imbalance vector
+Instead, it should report the primitive imbalance vector $\delta(Q) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}}$, with concrete components $\delta_{E} = N_{E}(x_{1}) - N_{E}(x_{5})$ and $\delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5})$.
 
-$$
-\delta(Q) = \mu(x_{1}) - \mu(x_{5}) \in \mathbb{Z}^{\mathcal{P}_{0}},
-$$
-
-with the concrete components
-
-$$
-\delta_{E} = N_{E}(x_{1}) - N_{E}(x_{5}), \qquad
-\delta_{P} = N_{P}(x_{1}) - N_{P}(x_{5}).
-$$
-
-If \(\delta(Q) \neq 0\), then exact closure is impossible for that request under the active assembly-native law table.
+If $\delta(Q) \neq 0$, then exact closure is impossible for that request under the active assembly-native law table.
 
 So at the first primitive level, `pdgsolve` should always be able to say:
 
-- Electrinos balanced or imbalanced by \(\delta_{E}\);
-- Positrinos balanced or imbalanced by \(\delta_{P}\);
+- Electrinos balanced or imbalanced by $\delta_{E}$;
+- Positrinos balanced or imbalanced by $\delta_{P}$;
 - and whether the explicit admitted assembly request can possibly close without leaving the assembly-native ontology.
 
-### Combinatorial Search Model
+### Deterministic Construction Model
 
-`pdgsolve` should treat solving as an explicit combinatorial search problem.
+The shipped `pdgsolve.py` algorithm is not a combinatorial search engine. It is a deterministic constructive mapper over the normalized request.
 
-The search design should specify:
+The current exact-family path proceeds in one fixed order:
 
-- what one branch-state record contains;
-- what counts as one candidate expansion;
-- how operators such as `Pass Thru`, `Dissociate`, and `Associate` expand the state;
-- how conservation and provenance prune illegal branches;
-- how mismatch, ambiguity, and no-exact-closure cases are represented explicitly;
-- and how deterministic ranking chooses one exact or partial solution family over another.
+1. normalize the request into explicit ordered reactant and product occurrences plus primitive totals;
+2. reject immediately when normalization yields blocking diagnostics or when the boundary primitive imbalance makes exact closure impossible;
+3. pair same-assembly reactant/product occurrences first as catalyst-style `Pass Thru` mappings;
+4. classify remaining product requirements into core-bearing closures and residue pass-through closures;
+5. compute how many Noether-core rows must be carried directly, converted upward through the core ladder, or added as support occurrences;
+6. dissociate remaining non-core reactants either into one required core plus residue or into residue only when no core is still needed;
+7. allocate the single intermediate `Unbound Architrinos` accumulator across product-side `Associate` and residue `Pass Thru` operators;
+8. reject the candidate if any required core input is unavailable or if any residue remains unmatched;
+9. validate operator balances and intermediate-ledger conservation;
+10. emit one exact family when the construction closes, otherwise emit one deterministic `no_exact_closure` family.
 
-The search model should remain solution-focused.
+So the runtime does not enumerate alternative branches and then rank them. It builds one candidate according to a fixed core-first policy and either proves that candidate internally consistent or falls back explicitly.
 
-This limited geometry should be exploited aggressively.
+### Deterministic Operator Construction
 
-If policy admits Noether-pair augmentation, the search should enumerate the finite augmentation set \(B(\Pi)\) before ordinary operator assignment begins.
+The constructive path still uses the five semantic stages:
 
-For each augmentation mode \(b = (\alpha, \beta) \in B(\Pi)\), the search should define
+- reactant assemblies;
+- reactant-side operators;
+- intermediate assemblies;
+- product-side operators;
+- and product assemblies.
 
-$$
-x_{1}^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}, \qquad
-x_{5}^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}},
-$$
+But those stages are now filled by a deterministic mapping rather than by branch enumeration.
 
-and then run the ordinary meet-in-the-middle operator search on that augmented boundary pair.
+In the current vertical slice:
 
-That augmentation choice belongs to candidate identity, scoring, and output, but it is not itself a reactant-side or product-side operator.
+- `Pass Thru` is chosen first for same-assembly catalyst pairs;
+- remaining non-core reactants are opened by deterministic `Dissociate` rules into one core plus residue, or residue only when no core is still needed;
+- remaining product tasks are closed by deterministic `Associate` rules that consume one required core occurrence plus residue from the shared accumulator when the recipe needs it;
+- and one residue product may be emitted by `Pass Thru` from that accumulator.
 
-In particular:
+The important property is not that many legal rewrites exist and are searched. The important property is that the runtime applies one explicit law table and one fixed allocation policy to construct a candidate solve graph.
 
-- each reactant assembly that is allowed to feed intermediate assemblies presents a small action set, typically `Pass Thru` or `Dissociate`;
-- each intermediate assembly or assembly-set presents a small action set, typically `Pass Thru` or `Associate`;
-- each `Dissociate` choice consumes exactly one assembly reactant input;
-- each `Associate` choice emits exactly one assembly product output;
-- candidate growth therefore comes from combinations of a bounded family of local choices rather than from unconstrained geometric routing;
-- and that bounded choice structure makes branch scoring and pruning practical.
+### Deterministic Failure Gates
 
-Let
+Because the algorithm is constructive, failure is represented by explicit gates rather than by search exhaustion.
 
-$$
-\mathcal{A}_{\mathrm{mid}} \subset \mathcal{A}
-$$
+The current runtime fails the exact-family path when any of the following occurs:
 
-be the subset of assemblies that are legal in the intermediate assemblies of the active solve family.
+- normalization reports blocking request diagnostics;
+- the request primitive ledgers are imbalanced while exact closure is required;
+- a product requirement cannot be translated into a supported deterministic task;
+- the construction cannot supply a needed core input;
+- the shared residue accumulator cannot satisfy the required product-side residue counts;
+- residue remains unmatched after all product tasks are assigned;
+- operator-balance validation fails;
+- or intermediate-ledger conservation fails.
 
-For the reactant-side operators, `pdgsolve` should define the one-assembly reactant rewrite family only on \(\mathcal{A}_{\mathrm{mid}}\):
-
-$$
-\Lambda_{2}(a) = \{e_{a}\} \cup \Delta(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
-$$
-
-where \(e_{a}\) represents `Pass Thru` and each \(d \in \Delta(a)\) represents one legal `Dissociate` output.
-
-For the product-side operators, `pdgsolve` should define the one-assembly product-closure family only on \(\mathcal{A}_{\mathrm{mid}}\):
-
-$$
-\Lambda_{4}(a) = \{e_{a}\} \cup \Gamma(a), \qquad a \in \mathcal{A}_{\mathrm{mid}},
-$$
-
-where \(e_{a}\) represents `Pass Thru` and each \(g \in \Gamma(a)\) represents one legal intermediate-assemblies input multiset that can `Associate` into \(a\).
-
-Given full reactant assemblies \(x_{1}\), the reactant-side-generated intermediate family from one-assembly choices is
-
-$$
-\mathfrak{M}_{\mathrm{reactant}}(x_{1}) =
-\left\{
-\sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{i=1}^{x_{1}(a)} y_{a,i}
-\;\middle|\;
-y_{a,i} \in \Lambda_{2}(a)
-\right\}.
-$$
-
-Given full product assemblies \(x_{5}\), the product-side-required intermediate family from one-assembly choices is
-
-$$
-\mathfrak{M}_{\mathrm{product}}(x_{5}) =
-\left\{
-\sum_{a \in \mathcal{A}_{\mathrm{mid}}} \sum_{j=1}^{x_{5}(a)} z_{a,j}
-\;\middle|\;
-z_{a,j} \in \Lambda_{4}(a)
-\right\}.
-$$
-
-An exact solve therefore requires
-
-$$
-\exists x_{3} \in \mathfrak{M}_{\mathrm{reactant}}(x_{1}) \cap \mathfrak{M}_{\mathrm{product}}(x_{5}),
-$$
-
-together with a provenance witness showing that the chosen reactant-side and product-side rewrite families act on the same fixed primitive carrier set \(\Omega\).
-
-One useful branch-state record is
-
-$$
-s = (b, \phi_{2}, \phi_{4}, x_{3}^{\mathrm{reactant}}, x_{3}^{\mathrm{product}}, W),
-$$
-
-where:
-
-- \(b \in B(\Pi)\) is the active Noether-pair boundary augmentation choice;
-- \(\phi_{2}\) is a partial assignment of reactant-side operator choices to reactant assembly occurrences;
-- \(\phi_{4}\) is a partial assignment of product-side operator choices to product assembly occurrences;
-- \(x_{3}^{\mathrm{reactant}}\) is the partial intermediate assemblies generated from the reactant assemblies;
-- \(x_{3}^{\mathrm{product}}\) is the partial intermediate assemblies required by the product assemblies;
-- and \(W\) is the current partial provenance witness.
-
-`pdgsolve` should execute this search as a bounded meet-in-the-middle enumeration.
-
-The operational loop should be:
-
-1. enumerate the finite boundary augmentation mode set derived from policy, defaulting to the no-augmentation mode only;
-2. for each augmentation mode, reject that mode immediately if the primitive imbalance vector \(\delta(Q)\) is nonzero and the current search mode requires exact closure;
-3. initialize the empty branch state for that augmentation mode with no reactant-side or product-side operator assignments;
-4. choose the next unassigned reactant or product assembly occurrence, preferring the side with fewer legal local rewrites or tighter intermediate-assemblies constraints;
-5. expand that occurrence by one member of \(\Lambda_{2}(a)\) or \(\Lambda_{4}(a)\);
-6. update the partial middle inventories \(x_{3}^{\mathrm{reactant}}\) and \(x_{3}^{\mathrm{product}}\), and update the partial provenance witness \(W\);
-7. prune the branch if the remaining unassigned occurrences can no longer close the middle or provenance constraints;
-8. continue until all reactant and product occurrences are assigned;
-9. emit a terminal candidate when the completed branch has a complete provenance witness, a scored intermediate-assemblies outcome, and one explicit boundary augmentation summary.
-
-So the search does not guess full reactions in one jump.
-
-It builds them one local operator choice at a time.
-
-Each branch decision is therefore one small legal rewrite choice, and each completed branch is one fully specified candidate solve.
-
-### Pruning Rules
-
-`pdgsolve` should prune partial branches aggressively.
-
-At minimum, the search should prune a branch under the following conditions:
-
-- primitive impossibility:
-  the request already has nonzero primitive imbalance in an exact-closure search;
-- middle oversupply:
-  the current reactant-side-generated intermediate assemblies already exceed the maximum possible product-side-required intermediate assemblies for some assembly coordinate;
-- middle undersupply:
-  the current product-side-required intermediate assemblies already exceed the maximum possible reactant-side-generated intermediate assemblies for some assembly coordinate;
-- recipe impossibility:
-  the remaining unassigned reactant occurrences cannot generate the assembly ingredients still required by unresolved product-side closures;
-- absorption impossibility:
-  the remaining unassigned product occurrences cannot absorb the middle assemblies already forced by the reactant-side choices;
-- provenance impossibility:
-  the partial provenance witness \(W\) can no longer be extended to a full carrier partition consistent with the chosen dissociate/associate laws;
-- dominance:
-  another branch with the same unresolved occurrence set is already no worse on middle mismatch, operator count, dissociation count, and provenance penalty;
-- and bound failure:
-  the optimistic lower-bound score for the partial branch is already worse than the current best emitted exact candidate or worse than the retained top-three partial threshold.
-
-These pruning rules are what make the search practical.
-
-The raw Cartesian product of all local rewrite choices may still be large, but most branches should die early because they cannot possibly meet in the middle or preserve provenance.
-
-### Pass-Thru Safety
-
-`Pass Thru` must be treated as a live fallback option until a specific assembly occurrence has actually been assigned a different rewrite.
-
-So `pdgsolve` should not prune a branch merely because:
-
-- a reactant assembly has not yet been dissociated;
-- a product assembly has not yet been associated;
-- or the current partial branch looks non-minimal if unresolved occurrences were later allowed to pass straight through.
-
-Safe pruning therefore requires bounds that still include pass-thru.
-
-For a partial branch \(s\), let \(U_{2}(s)\) be the unresolved reactant occurrences and \(U_{4}(s)\) the unresolved product occurrences.
-
-For each intermediate-assemblies coordinate \(m \in \mathcal{A}\), define the pass-thru-safe envelopes
-
-$$
-M^{-}_{\mathrm{reactant},s}(m)
-=
-x_{3}^{\mathrm{reactant}}(m)
-+
-\sum_{\rho \in U_{2}(s)}
-\min_{y \in \Lambda_{2}(a_{\rho})} y(m),
-$$
-
-$$
-M^{+}_{\mathrm{reactant},s}(m)
-=
-x_{3}^{\mathrm{reactant}}(m)
-+
-\sum_{\rho \in U_{2}(s)}
-\max_{y \in \Lambda_{2}(a_{\rho})} y(m),
-$$
-
-$$
-M^{-}_{\mathrm{product},s}(m)
-=
-x_{3}^{\mathrm{product}}(m)
-+
-\sum_{\pi \in U_{4}(s)}
-\min_{z \in \Lambda_{4}(a_{\pi})} z(m),
-$$
-
-$$
-M^{+}_{\mathrm{product},s}(m)
-=
-x_{3}^{\mathrm{product}}(m)
-+
-\sum_{\pi \in U_{4}(s)}
-\max_{z \in \Lambda_{4}(a_{\pi})} z(m).
-$$
-
-Here \(a_{\rho}\) and \(a_{\pi}\) are the assemblies attached to those unresolved occurrences.
-
-For every unresolved occurrence whose assembly lies in \(\mathcal{A}_{\mathrm{mid}}\), the corresponding family still contains the identity element \(e_{a}\).
-
-So these envelopes automatically include the pass-thru possibility for every unresolved occurrence that is actually eligible for pass-thru.
-
-So an intermediate-assemblies prune is safe only if one of the coordinatewise intervals is already disjoint:
-
-$$
-M^{-}_{\mathrm{reactant},s}(m) > M^{+}_{\mathrm{product},s}(m)
-\quad\text{or}\quad
-M^{-}_{\mathrm{product},s}(m) > M^{+}_{\mathrm{reactant},s}(m)
-$$
-
-for some \(m \in \mathcal{A}\).
-
-In plain language:
-
-- if the reactant side is already guaranteed to overproduce some middle assembly even after giving the product side every remaining legal chance to absorb it, prune;
-- if the product side is already guaranteed to demand some middle assembly that the reactant side can no longer produce even after giving the reactant side every remaining legal chance, prune;
-- otherwise keep the branch alive, because pass-thru may still rescue it.
-
-The same conservatism should apply to operator-count bounds.
-
-For unresolved occurrences that are eligible for pass-thru, the lower-bound future operator burden should treat pass-thru as zero additional non-identity cost unless a non-identity rewrite is provably forced.
+Those cases do not leave partially explored branches behind. They collapse directly into one deterministic `no_exact_closure` family with explicit diagnostics.
 
 ### How Rules Produce Solution Families
 
-The rules lead to solution families in a direct way.
+For the current implementation, one normalized problem produces at most one constructed exact family.
 
-A raw option is one complete assignment
+That family is determined by:
 
-$$
-O_{\mathrm{raw}} = (b, \phi_{2}, \phi_{4}).
-$$
+- the normalized occurrence order;
+- the catalyst pairings selected by same-assembly first match;
+- the fixed core-demand accounting;
+- the fixed ladder-conversion and support-row policy;
+- the deterministic residue allocation;
+- and the fixed tie-break key `deterministic_core_first`.
 
-From that raw option, `pdgsolve` derives:
+If any of those steps cannot close legally, `pdgsolve` emits one deterministic fallback family instead of exploring alternates.
 
-- the active boundary augmentation summary attached to \(b\);
-- the reactant-side-generated intermediate assemblies \(x_{3}^{\mathrm{reactant}}\);
-- the product-side-required intermediate assemblies \(x_{3}^{\mathrm{product}}\);
-- the completed provenance witness \(W\), if one exists;
-- and the candidate score tuple \(\kappa\).
-
-A raw option becomes an exact solve candidate when:
-
-- \(x_{3}^{\mathrm{reactant}} = x_{3}^{\mathrm{product}}\);
-- the primitive imbalance is zero;
-- and \(W\) closes as a complete provenance witness.
-
-A raw option becomes a partial solve candidate when:
-
-- the branch is complete;
-- but middle closure, primitive balance, or provenance closure still fails in an explicit diagnosable way.
-
-Multiple raw options may canonicalize to the same solution family.
-
-That should happen when they emit the same boundary augmentation summary, the same reactant assemblies, intermediate assemblies, and product assemblies, the same reactant-side and product-side operator choices, and the same effective provenance/accounting summary.
-
-So the emitted solve outputs should not show every raw branch separately.
-
-They should show ranked solution families, each with:
-
-- one canonical representative candidate;
-- its score tuple;
-- a summary of why it ranks where it does;
-- and the count or description of equivalent raw branches folded into that family.
-
-This yields a finite branch graph for any finite request.
-
-The key reason is:
-
-- each reactant occurrence that can feed intermediate assemblies contributes one finite choice from \(\Lambda_{2}(a)\);
-- each product occurrence that can be matched from intermediate assemblies contributes one finite choice from \(\Lambda_{4}(a)\);
-- \(\mathfrak{M}_{\mathrm{reactant}}(x_{1})\) and \(\mathfrak{M}_{\mathrm{product}}(x_{5})\) are therefore finite;
-- and provenance matching is performed over a finite primitive carrier set.
-
-So yes, this limited geometry is not merely drawable. It is mathematically enumerable.
+So the current family model is not "many raw branches canonicalized into one family." It is "one constructive candidate, or one explicit failure family."
 
 ### Solve Output Model
 
-`pdgsolve` should return one `pdgsolve`-owned solve result model from the search core.
+`pdgsolve` should return one `pdgsolve`-owned solve result model from the deterministic construction core.
 
 That internal model should be solver-shaped rather than workflow-shaped.
 
 It should be rich enough to carry:
 
-- all exact solution families;
-- the retained top three partial solution families;
+- the current exact-family or deterministic no-exact family output for the shipped vertical slice;
 - diagnostics and no-exact-closure notes;
+- explicit review-state and acceptance-readiness information;
 - explicit provenance/accounting summaries;
-- and the information needed to emit downstream JSON artifacts without making other tools reconstruct omitted semantics.
+- and the information needed to emit downstream acceptance and publication artifacts without making other tools reconstruct omitted semantics.
 
-At the batch boundary, this model should serialize into one `pdgsolve-result/v1` summary JSON and may also serialize into additional per-family JSON artifacts if that helps inspection or regression tests.
+At the batch boundary, this model should serialize into one `pdgsolve-result/v1` file per solved request plus the companion corpus and publication artifacts used by the manifest workflow.
 
 ### Solution Family Identity
 
-`pdgsolve` should surface solution families rather than raw branches.
+`pdgsolve` should still surface solution families rather than low-level transient construction state, but in the current runtime a family is already the direct emitted product of one deterministic construction pass.
 
-For completed raw options
+So family identity is presently frozen by the emitted solve summary itself:
 
-$$
-O_{\mathrm{raw}} = (b, \phi_{2}, \phi_{4}, W),
-$$
+- the boundary augmentation summary;
+- the reactant, intermediate, and product assembly inventories;
+- the ordered reactant-side and product-side operator choices;
+- the provenance summary;
+- the diagnostics;
+- and the score tuple.
 
-two branches should belong to the same solution family exactly when they agree on the full emitted solve summary:
-
-- the same boundary augmentation summary;
-- the same reactant assemblies, intermediate assemblies, and product assemblies;
-- the same ordered reactant-side operator assignments after canonical reactant-occurrence ordering;
-- the same ordered product-side operator assignments after canonical product-occurrence ordering;
-- the same score tuple \(\kappa\);
-- the same emitted provenance summary;
-- and the same diagnostic id set.
-
-Two completed raw branches should not split into different solution families merely because they:
-
-- rename primitive carriers inside the witness;
-- permute indistinguishable assembly occurrences with the same canonical occurrence index class;
-- or differ only in low-level witness detail that leaves the emitted assembly inventories, operator choices, diagnostics, and provenance summary unchanged.
-
-The family key should therefore be
-
-$$
-\operatorname{fam}(O_{\mathrm{raw}})
-=
-\bigl(
-x_{1},
-x_{3},
-x_{5},
-\sigma_{2},
-\sigma_{4},
-\rho,
-\kappa
-\bigr),
-$$
-
-where \(\sigma_{2}\) and \(\sigma_{4}\) are the canonical ordered operator signatures and \(\rho\) is the canonical emitted provenance summary.
-
-Differing provenance-witness detail should create a different solution family only when it changes \(\rho\).
-
-So:
-
-- witness detail that changes which assembly occurrence is the active rewrite source, spectator source, or ambiguous source does change family identity;
-- but witness detail that only renames equivalent primitive carriers does not.
-
-The canonical representative of a solution family should be the member with minimal deterministic tie-break key \(\tau\) inside that family.
+There is no separate raw-branch equivalence class in the shipped vertical slice because the runtime does not generate multiple equal-summary candidates first.
 
 ### pdgsolve Result Contract
 
@@ -1035,15 +697,14 @@ The canonical representative of a solution family should be the member with mini
 That contract should be assembled from:
 
 - the current normalized `pdgsolve` problem;
-- the current ranked exact solution families;
-- the current ranked retained partial solution families;
+- the current emitted exact or deterministic fallback family;
 - and the current top-level diagnostics.
 
 The concrete field inventory for `pdgsolve-result/v1` and its family members is collected under `Interfaces -> Outputs` near the end of this document.
 
 ### Candidate Scoring
 
-`pdgsolve` should score candidates explicitly rather than relying on ad hoc success/failure buckets alone.
+`pdgsolve` should score constructed candidates explicitly rather than relying on ad hoc success/failure buckets alone.
 
 The score model should prefer, in order:
 
@@ -1057,13 +718,7 @@ The score model should prefer, in order:
 
 `pdgsolve` should formalize that ranking as a lexicographic minimization problem.
 
-For a terminal candidate
-
-$$
-C = (b_{C}, \phi_{2,C}, \phi_{4,C}, x_{3,C}^{\mathrm{reactant}}, x_{3,C}^{\mathrm{product}}, W_{C}),
-$$
-
-define
+For the emitted exact candidate $C = (x_{1}, \phi_{2,C}, x_{3}, \phi_{4,C}, x_{5})$, define
 
 $$
 \kappa(C) =
@@ -1081,14 +736,14 @@ $$
 
 with smaller values preferred, where:
 
-- \(\epsilon(C) = 0\) when \(x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}\) and \(W_{C}\) is a complete provenance witness, and \(1\) otherwise;
-- \(m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}\);
-- \(m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}\), viewing the difference in \(\mathbb{Z}^{\mathcal{A}}\);
-- \(n_{\mathrm{aug}}(C)\) is the number of Noether pairs added by the chosen boundary augmentation mode;
-- \(n_{\mathrm{op}}(C)\) is the total non-identity operator count in \(\phi_{2,C}\) and \(\phi_{4,C}\);
-- \(n_{\mathrm{diss}}(C)\) is the dissociation count in \(\phi_{2,C}\);
-- \(n_{\mathrm{amb}}(C)\) is the explicit ambiguity/provenance penalty count;
-- and \(\tau(C)\) is a deterministic tie-break key.
+- $\epsilon(C) = 0$ when $x_{3,C}^{\mathrm{reactant}} = x_{3,C}^{\mathrm{product}}$ and $W_{C}$ is a complete provenance witness, and $1$ otherwise;
+- $m_{\mathrm{prim}}(C) = \lVert \mu(R) - \mu(T) \rVert_{1}$;
+- $m_{\mathrm{mid}}(C) = \lVert x_{3,C}^{\mathrm{reactant}} - x_{3,C}^{\mathrm{product}} \rVert_{1}$, viewing the difference in $\mathbb{Z}^{\mathcal{A}}$;
+- $n_{\mathrm{aug}}(C)$ is the auxiliary support burden introduced by the constructive policy;
+- $n_{\mathrm{op}}(C)$ is the total non-identity operator count in $\phi_{2,C}$ and $\phi_{4,C}$;
+- $n_{\mathrm{diss}}(C)$ is the dissociation count in $\phi_{2,C}$;
+- $n_{\mathrm{amb}}(C)$ is the explicit ambiguity/provenance penalty count;
+- and $\tau(C)$ is a deterministic tie-break key.
 
 Candidate comparison should be strictly lexicographic.
 
@@ -1101,22 +756,14 @@ That means:
 5. then fewer non-identity operators wins;
 6. then fewer dissociations wins;
 7. then lower ambiguity/provenance penalty wins;
-8. and finally \(\tau(C)\) breaks any remaining tie deterministically.
+8. and finally $\tau(C)$ breaks any remaining tie deterministically.
 
-`pdgsolve` should score partial branches too, using an optimistic lower-bound score derived from the same tuple structure.
+The current shipped runtime does not score partial branches because it does not maintain a live branch frontier.
 
-For a partial branch \(s\), the search should compute:
+Instead, it scores:
 
-- whether exact closure is still possible;
-- the unavoidable primitive imbalance already fixed by the explicit request;
-- the minimum possible eventual intermediate-assemblies mismatch after all remaining assignments;
-- the boundary augmentation burden already fixed by the chosen augmentation mode;
-- the minimum additional operator burden still forced, with unresolved pass-thru choices contributing zero unless non-identity is provably necessary;
-- and the minimum remaining ambiguity/provenance penalty.
-
-If that lower-bound branch score is already worse than the current incumbent exact candidate, the branch should be pruned.
-
-This is the branch-and-bound bridge between search and scoring.
+- the one constructed exact candidate when closure succeeds;
+- or one deterministic fallback family when closure fails.
 
 This means the limited reactant/intermediate/product assemblies and reactant-side/product-side operators geometry is not just a legality constraint.
 
@@ -1126,7 +773,7 @@ It is also the basis of a useful score function:
 - whether the reactant-side-generated and product-side-required middle inventories meet exactly;
 - how much structure had to be opened;
 - how much structure had to be rebuilt;
-- whether the branch stayed entirely within the admitted explicit assembly ontology;
+- whether the construction stayed entirely within the admitted explicit assembly ontology;
 - and how directly the product set was reached.
 
 A solution family should inherit the score of its best canonical representative.
@@ -1134,12 +781,11 @@ A solution family should inherit the score of its best canonical representative.
 That means the emitted results can show:
 
 - the best exact option first;
-- alternate exact options next, in score order;
-- and partial or non-closing options after that, also in score order with explicit diagnostics.
+- and non-closing fallback output with explicit diagnostics when exact construction fails.
 
 ### Deterministic Tie-Break Rule
 
-`pdgsolve` should freeze the deterministic tie-break key \(\tau(C)\) rather than leaving it implicit.
+`pdgsolve` should freeze the deterministic tie-break key $\tau(C)$ rather than leaving it implicit.
 
 For candidate comparison, define
 
@@ -1156,24 +802,24 @@ $$
 
 with lexicographic comparison and the concrete orders:
 
-- canonical assembly order: lexicographic order of the canonical ids in \(\mathcal{A}_{\mathrm{v1}}\);
+- canonical assembly order: lexicographic order of the canonical ids in $\mathcal{A}_{\mathrm{v1}}$;
 - reactant-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - product-occurrence order: normalized request order, with same-id duplicates numbered in first-seen order;
 - reactant-side operator order: the sequence of operator assignments in reactant-occurrence order;
 - product-side operator order: the sequence of operator assignments in product-occurrence order;
 - and intermediate-assemblies order: assembly counts listed in canonical assembly order.
 
-For `pdgsolve` v1, the operator symbol order inside \(\sigma_{2}\) and \(\sigma_{4}\) should be:
+For `pdgsolve` v1, the operator symbol order inside $\sigma_{2}$ and $\sigma_{4}$ should be:
 
 - `pass_thru`;
 - then the remaining admitted law-family symbols in the fixed canonical order of the active law table.
 
-The provenance signature \(\rho(C)\) should summarize, in canonical product-occurrence order:
+The provenance signature $\rho(C)$ should summarize, in canonical product-occurrence order:
 
 - whether each product occurrence is pure pass-thru or active rewrite output;
 - and any explicit ambiguity marker bits.
 
-This means repeated runs over the same normalized problem must produce the same best-family representative even when the raw search explores equal-score branches in a different transient order.
+This means repeated runs over the same normalized problem must produce the same emitted family representative because the construction order is fixed.
 
 ### Diagnostic Codes
 
@@ -1187,11 +833,11 @@ The v1 set should be:
 | `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
 | `pdgsolve.request.invalid_boundary_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
 | `pdgsolve.request.unsupported_boundary_augmentation` | request | the request policy asks for a boundary augmentation mode outside the admitted v1 Noether-pair augmentation set | requested augmentation token and allowed augmentation set |
-| `pdgsolve.search.primitive_imbalance` | search | \(\delta(Q) \neq 0\) for the retained branch or retained request summary | request id and \((\delta_E, \delta_P)\) |
+| `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained constructed candidate or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
-| `pdgsolve.search.provenance_failure` | search | no complete provenance witness extends the retained branch | retained operator summary and failing witness clause |
+| `pdgsolve.search.provenance_failure` | search | no complete provenance witness exists for the retained constructed candidate | retained operator summary and failing witness clause |
 | `pdgsolve.search.no_exact_closure` | search | the request is assembly-native, but no exact closure was found inside the admitted explicit assembly ontology | request id and retained closure-failure summary |
-| `pdgsolve.search.non_exact_candidate_retained` | search | a partial or non-closing family was kept among the emitted retained partial solutions with explicit failure context | family id and retained failure mode |
+| `pdgsolve.search.non_exact_candidate_retained` | search | a non-closing fallback family was kept with explicit failure context | family id and retained failure mode |
 
 ### Core Regression Test-Case Set
 
@@ -1200,7 +846,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | Test-case id | Raw request | Key policy | Minimum expected outcome |
 | --- | --- | --- | --- |
 | `explicit_beta_request_exact_closure` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I + pro_electron_I + anti_electron_neutrino_I` | default | at least one exact assembly-native family exists; no composite or non-native symbol is introduced |
-| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with \((\delta_E, \delta_P) = (3, -3)\); no exact family exists |
+| `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark_I + pro_up_quark_I -> 2 pro_down_quark_I + pro_up_quark_I` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
 | `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
@@ -1410,7 +1056,10 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 
 #### Supporting Runtime Inputs
 
-- `pdgsolve`-owned solve policy.
+- `pdgsolve`-owned solve policy;
+- accepted result records used by the `accept` command;
+- acceptance records used by the `publish` command;
+- and live-manifest payloads whose `readyEntries[*].pdgsolveRequest` records drive the `solve-manifest` batch path.
 
 #### Input Boundary Conditions
 
@@ -1423,32 +1072,35 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 
 ### Outputs
 
-#### Search-Core And Solve Outputs
+#### Solve, Acceptance, And Publication Outputs
 
-- `pdgsolve`-owned internal search results;
-- ranked exact solution families;
-- ranked retained partial solution families, capped at the top three;
-- and developer-facing diagnostics about solve completeness, ambiguity, and non-closing families.
+- `pdgsolve-problem/v1` normalized solve problems inside the runtime;
+- `pdgsolve-result/v1` solve and review outputs;
+- `pdgsolve-acceptance/v1` locked accepted records;
+- `pdgsolve-publication-graph/v2` solve-graph publication payloads embedded in acceptances;
+- `pdgedit/v1` documents emitted from accepted or review publication paths;
+- `pdgedit-library-manifest/v1` manifests for batch publication;
+- and `pdgsolve-result-corpus/v1` indexes summarizing manifest solves.
 
 #### Solve Result Contract: `pdgsolve-result/v1`
 
 - `schema: "pdgsolve-result/v1"`;
 - `problemId`;
+- `searchStatus`, currently `exact_available` or `no_exact_closure` in the shipped vertical slice;
 - `requestId`;
-- `searchStatus`, with values `exact_available`, `partial_only`, or `no_exact_closure`;
-- `bestFamilyId`, nullable only when no family is emitted;
+- `bestFamilyId`;
+- `acceptedFamilyId`, currently `null` until an explicit acceptance is created;
 - top-level `diagnostics`;
-- `scoreOrder`, carrying the concrete comparison order for \(\kappa\);
-- `exactFamilies`, containing every emitted exact solution family;
-- and `partialFamilies`, containing only the top three emitted partial solution families.
+- `optionFamilies`, currently one exact family or one deterministic no-exact family;
+- `review`, carrying review state, the selected family id, and blocking diagnostics;
+- and `publication`, currently `null` until downstream publication packaging is requested.
 
-Each member of `exactFamilies` and `partialFamilies` should contain:
+Each member of `optionFamilies` currently contains:
 
 - `familyId`;
-- `kind`, with values `exact` or `partial`;
-- `rank`;
-- `score`, carrying the concrete components of \(\kappa\);
-- `boundaryAugmentation`, carrying the chosen augmentation kind, side, pair count, and the added occurrence ids;
+- `kind`, currently `exact` or `no_exact_closure`;
+- `score`, carrying the concrete components of $\kappa$;
+- `augmentation`, carrying the chosen boundary augmentation mode;
 - `reactantAssemblies`, carrying the canonical reactant assemblies;
 - `reactantSideOperators`, carrying the canonical reactant-side operator choices;
 - `intermediateAssemblies`, carrying the canonical intermediate assemblies;
@@ -1456,23 +1108,55 @@ Each member of `exactFamilies` and `partialFamilies` should contain:
 - `productAssemblies`, carrying the canonical product assemblies;
 - `provenanceSummary`, carrying the family-level witness summary;
 - `diagnostics`, carrying family-local diagnostics;
-- `rawBranchCount`, the number of raw branches folded into the family;
+- `rawBranchCount`, currently `1` for the shipped exact-family path and `0` for the deterministic fallback family;
+- `publicationReady`, indicating whether the family is eligible for acceptance and publication;
+- `addedSupportOccurrences`, when extra support rows were introduced during normalization;
 - and `canonicalCandidate`, the fully specified representative candidate.
 
-When `pdgsolve` emits more than one JSON artifact for a run, the preferred layout is:
+For the current implementation, the exact family path also carries `canonicalCandidate.solveGraph`, which is the layout-neutral publication graph source used by acceptance and pdgedit publication.
 
-- one `pdgsolve-result/v1` summary JSON carrying all exact families and the retained top three partial families;
-- and optionally one per-family detailed JSON file for each emitted family.
+#### Acceptance Contract: `pdgsolve-acceptance/v1`
+
+- `schema: "pdgsolve-acceptance/v1"`;
+- `problemId`;
+- `familyId`;
+- `resultDigest`;
+- `acceptedScore`;
+- `acceptedDiagnostics`;
+- `acceptedState: "accepted"`;
+- `lockedNormalizationSummary`;
+- `lockedPolicySummary`;
+- `lockedReactantAssemblies`;
+- `lockedReactantSideOperators`;
+- `lockedIntermediateAssemblies`;
+- `lockedProductSideOperators`;
+- `lockedProductAssemblies`;
+- `lockedProvenanceSummary`;
+- and `lockedSolveGraph`, which currently uses `pdgsolve-publication-graph/v2`.
+
+#### Publication Contracts
+
+- `pdgsolve-publication-graph/v2` is the layout-neutral seam between accepted solve structure and downstream pdgedit layout. It freezes five semantic stages as graph units and edges rather than asking pdgedit to reconstruct solver meaning from ad hoc rows.
+- `pdgedit/v1` is the final emitted document shape produced either from an acceptance record or from a request-review fallback in the manifest batch path.
+- `pdgsolve-pdgedit-package/v1` exists as a package helper for carrying a pdgedit document together with its manifest entry and source acceptance digest.
+- `pdgsolve-result-corpus/v1` summarizes batch solve outcomes and records the written result and pdgedit document paths.
+
+When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred layout is:
+
+- one `pdgsolve-result/v1` file per solved ready request;
+- one `pdgsolve-result-corpus/v1` index summarizing the run;
+- zero or more published `pdgedit/v1` documents for exact and review entries;
+- and one `pdgedit-library-manifest/v1` describing the emitted pdgedit documents.
 
 #### Output Boundary Conditions
 
 - own solve normalization, search, scoring, and output emission inside the explicit assembly-native ontology;
-- emit exact and partial solution families in explicit admitted assemblies only;
+- emit exact and no-exact families in explicit admitted assemblies only;
 - when Noether-pair augmentation is used, emit the added Noether cores as explicit assemblies plus an explicit boundary augmentation summary;
-- include the scores for all emitted families;
-- do not ask downstream tools to infer missing solve semantics;
+- include the scores and diagnostics for every emitted family;
+- freeze accepted solve structure before publication rather than asking downstream tools to infer it;
 - do not duplicate PDG normalization logic locally;
-- and do not let launcher or presentation concerns become the source of solve semantics.
+- and keep pdgedit layout derivation downstream of the layout-neutral publication graph rather than inside solve laws.
 
 ### Neighboring Components, Each with Related Priorities
 
@@ -1481,76 +1165,29 @@ When `pdgsolve` emits more than one JSON artifact for a run, the preferred layou
 
 ## Priorities
 
-### 1. Enforce The Assembly-Native Composite Boundary
+The boundary, CLI, acceptance seam, and publication contracts above are now baseline assumptions rather than active queue items.
+
+### 1. Expand Solver Coverage Against The Ready Corpus
 
 Status: `active`
 
 Current:
 
-- higher-scale beta language still has enough historical weight in the surrounding workstream that it can leak into solver discussions as if it were native ontology;
-- that creates risk that request ids, search symbols, or emitted family units drift away from explicit admitted assemblies and toward composite placeholders;
-- and the document set still needs stronger regression and diagnostic framing around the rule that higher-scale reactant and product terms belong to boundary translation only.
+- the local ready-corpus baseline is `1354` solved requests, with `16` `exact_available`, `0` `partialOnly`, and `1338` `no_exact_closure`;
+- the dominant blocking diagnostic is `pdgsolve.request.unsupported_assembly`, which means most failures still occur at the admitted-assembly boundary rather than deep inside the constructive mapper;
+- the most common unsupported assemblies in the current corpus are `anti_up_quark_I`, `anti_down_quark_I`, `pro_strange_quark_II`, `anti_strange_quark_II`, `pro_charm_quark_II`, `anti_charm_quark_II`, `pro_bottom_quark_III`, `anti_bottom_quark_III`, `pro_tau_III`, `anti_tau_III`, `pro_tau_neutrino_III`, and `anti_tau_neutrino_III`;
+- and the current code already carries residue-count rules for many of those assemblies, so the main gap is alignment between the admitted assembly alphabet and the executable law inventory.
 
 Objective:
 
-- keep every solver-native input, intermediate, operator law, search symbol, and emitted output expressed only in explicit admitted Standard Model assemblies;
-- keep `pdgfeed` responsible for classifying source requests as un-mappable when translation into explicit Standard Model assemblies fails, while keeping malformed direct `pdgsolve` inputs explicit in diagnostics;
-- keep solve-output contracts free of composite ids;
-- make downstream grouping or naming clearly adapter-owned rather than solver-owned;
-- and keep the regression set centered on proving that composites are expanded or collapsed only outside the solve core.
-
-### 2. Freeze The Solve-Only Python Boundary
-
-Status: `active`
-
-Current:
-
-- the target tool boundary is now one Python process;
-- the intended implementation file is `scripts/pdg/pdgsolve.py`;
-- and the document still needs the surrounding workstream to treat `pdgsolve` primarily as JSON-in, JSON-out solving machinery.
-
-Objective:
-
-- keep `pdgsolve` as a solve-only Python tool;
-- keep intake, normalization, search, scoring, and output emission in that boundary;
-- prefer explicit CLI and pipe-safe JSON workflows over hidden process state;
-- and avoid reintroducing presentation-driven requirements into the solver definition.
-
-### 3. Freeze The Solve Output Contract
-
-Status: `active`
-
-Current:
-
-- the output boundary now needs to center on exact solution families, retained partial solution families, and explicit scores;
-- the previous solve-state and downstream-oriented contracts carried more workflow detail than the solving boundary now needs;
-- and the summary-versus-per-family emission layout should stay deterministic and simple.
-
-Objective:
-
-- keep `pdgsolve-result/v1` centered on solving output;
-- emit all exact solution families;
-- emit only the top three partial solution families;
-- include stable scores and diagnostics for all emitted families;
-- and keep canonical family identity and tie-break behavior frozen enough for regression tests.
-
-### 4. Keep Solver Correctness On The Active Priority Queue
-
-Status: `active`
-
-Current:
-
-- computed assembly-level result construction is now the center of gravity;
-- the core boundary is intentionally stricter than some earlier beta-family drafts;
-- and correctness now depends on disciplined law tables, pruning rules, provenance constraints, and deterministic family ranking.
-
-Objective:
-
-- keep correctness work focused on assembly legality, primitive conservation, provenance closure, and exact-versus-partial family ranking;
-- expand regression coverage whenever the admitted assembly table or law table grows;
-- and make it harder to land solver drift than to keep the boundary clean.
+- align the admitted assembly alphabet, request acceptance surface, and executable law inventory so the ready corpus can actually enter the deterministic solver;
+- rerun corpus evaluation after each admitted-surface expansion and track exact count, no-exact count, and dominant blocking diagnostics;
+- extend law-table coverage only in explicit assembly-native form, without reintroducing composite terms or hand-authored per-channel solved reactions;
+- and, after alphabet alignment, determine whether the current Noether-core ladder needs broader lawful opening rules to improve exact closure.
 
 Active work queue:
 
-1. Run corpus-level evaluation on the ready set.
-   Track exact count, partial count, unsolved count, and the dominant blocking diagnostics so law-table work can be prioritized against the real `pdgfeed` corpus.
+1. Expand the admitted request/product alphabet to include the unsupported assemblies already implied by the current Standard Model law inventory.
+2. Keep `ASSEMBLY_DISPLAY`, request-side admission sets, and the dissociate/associate law inventory synchronized so admitted assemblies are also solver-legal.
+3. Rerun `solve-manifest` on the ready corpus after each admitted-surface expansion and record exact count, no-exact count, and dominant diagnostics.
+4. If exact coverage remains low after admitted-alphabet alignment, revise the explicit law table, starting with the Noether-core ladder and related opening rules, rather than adding channel-specific solves.

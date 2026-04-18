@@ -140,6 +140,62 @@
         "tieBreakKey": { "type": "string", "minLength": 1 }
       }
     },
+    "reactionSummaryParticipant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "reactionSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "pdgReactants",
+        "aaaReactants",
+        "pdgProducts",
+        "aaaProducts"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pdgIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pdgReactants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "aaaReactants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "pdgProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        },
+        "aaaProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reactionSummaryParticipant"
+          }
+        }
+      }
+    },
     "publicationAssemblyUnit": {
       "type": "object",
       "additionalProperties": false,
@@ -337,6 +393,9 @@
     },
     "lockedProvenanceSummary": {
       "$ref": "#/$defs/provenanceSummary"
+    },
+    "lockedReactionSummary": {
+      "$ref": "#/$defs/reactionSummary"
     },
     "lockedSolveGraph": {
       "$ref": "#/$defs/publicationGraph"

@@ -27,6 +27,18 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
 function buildUnitsById(publicationGraph = {}) {
   return new Map(
     (Array.isArray(publicationGraph?.units) ? publicationGraph.units : [])
@@ -235,6 +247,10 @@ export function buildPdgeditDocumentFromPublicationGraph(
         title: normalizeText(unit?.title) || presentation.title || presentation.type,
         role: ASSEMBLY_ROLE_BY_STAGE[stage],
         tiles: [...presentation.tiles],
+        primitiveCounts: {
+          electrinoCount: residueCounts?.electrinoCount ?? counts.electrinoCount,
+          positrinoCount: residueCounts?.positrinoCount ?? counts.positrinoCount,
+        },
         ...(normalizeText(unit?.recipeId) === "unbound_architrinos_residue"
           ? {
               sampleCounts: {
@@ -269,6 +285,9 @@ export function buildPdgeditDocumentFromPublicationGraph(
       id: `edge_${normalizeText(edge?.id)}`,
       endpointA: normalizeText(edge?.fromUnitId),
       endpointB: normalizeText(edge?.toUnitId),
+      ...(normalizePrimitiveCounts(edge?.primitiveCounts)
+        ? { primitiveCounts: normalizePrimitiveCounts(edge?.primitiveCounts) }
+        : {}),
     })),
     compositeLabels: buildCompositeLabels(
       assemblies

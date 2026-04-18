@@ -12,6 +12,33 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizePrimitiveCounts(rawCounts) {
+  if (!rawCounts || typeof rawCounts !== "object") {
+    return null;
+  }
+  const electrinoCount = normalizeInteger(rawCounts.electrinoCount, -1);
+  const positrinoCount = normalizeInteger(rawCounts.positrinoCount, -1);
+  if (electrinoCount < 0 || positrinoCount < 0) {
+    return null;
+  }
+  return { electrinoCount, positrinoCount };
+}
+
+function normalizeBalanceTotals(rawTotals) {
+  if (!rawTotals || typeof rawTotals !== "object") {
+    return null;
+  }
+  const epsilonMinusCount = normalizeInteger(rawTotals.epsilonMinusCount, -1);
+  const epsilonPlusCount = normalizeInteger(rawTotals.epsilonPlusCount, -1);
+  if (epsilonMinusCount < 0 || epsilonPlusCount < 0) {
+    return null;
+  }
+  return {
+    epsilonMinusCount,
+    epsilonPlusCount,
+  };
+}
+
 function compareByYThenXThenId(left = {}, right = {}) {
   return (
     normalizeInteger(left.y) - normalizeInteger(right.y) ||
@@ -28,10 +55,24 @@ function cloneAssembly(assembly = {}) {
           bottomCount: normalizeText(assembly.sampleCounts.bottomCount),
         }
       : null;
+  const primitiveCounts =
+    assembly?.primitiveCounts && typeof assembly.primitiveCounts === "object"
+      ? {
+          electrinoCount: normalizeInteger(assembly.primitiveCounts.electrinoCount, -1),
+          positrinoCount: normalizeInteger(assembly.primitiveCounts.positrinoCount, -1),
+        }
+      : null;
   return {
     ...assembly,
     tiles: Array.isArray(assembly?.tiles) ? [...assembly.tiles] : [],
     ...(sampleCounts?.topCount && sampleCounts?.bottomCount ? { sampleCounts } : {}),
+    ...(
+      primitiveCounts &&
+      primitiveCounts.electrinoCount >= 0 &&
+      primitiveCounts.positrinoCount >= 0
+        ? { primitiveCounts }
+        : {}
+    ),
   };
 }
 
@@ -40,11 +81,64 @@ function cloneOperator(operator = {}) {
 }
 
 function cloneLink(link = {}) {
-  return { ...link };
+  return {
+    ...link,
+    ...(normalizePrimitiveCounts(link?.primitiveCounts)
+      ? { primitiveCounts: { ...normalizePrimitiveCounts(link?.primitiveCounts) } }
+      : {}),
+  };
 }
 
 function cloneCompositeLabel(label = {}) {
   return { ...label };
+}
+
+function cloneMetadata(metadata = null) {
+  if (!metadata || typeof metadata !== "object") {
+    return undefined;
+  }
+  const reactionSummary = metadata.reactionSummary;
+  const clonedMetadata = {};
+  if (reactionSummary && typeof reactionSummary === "object") {
+    clonedMetadata.reactionSummary = {
+      title: normalizeText(reactionSummary.title),
+      ...(normalizeText(reactionSummary.pdgIdentifier)
+        ? { pdgIdentifier: normalizeText(reactionSummary.pdgIdentifier) }
+        : {}),
+      pdgReactants: Array.isArray(reactionSummary.pdgReactants)
+        ? reactionSummary.pdgReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaReactants: Array.isArray(reactionSummary.aaaReactants)
+        ? reactionSummary.aaaReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      pdgProducts: Array.isArray(reactionSummary.pdgProducts)
+        ? reactionSummary.pdgProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaProducts: Array.isArray(reactionSummary.aaaProducts)
+        ? reactionSummary.aaaProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+    };
+  }
+  const reactantTotals = normalizeBalanceTotals(metadata.balanceSummary?.reactantTotals);
+  const productTotals = normalizeBalanceTotals(metadata.balanceSummary?.productTotals);
+  if (reactantTotals && productTotals) {
+    clonedMetadata.balanceSummary = {
+      reactantTotals,
+      productTotals,
+      isBalanced:
+        reactantTotals.epsilonMinusCount === productTotals.epsilonMinusCount &&
+        reactantTotals.epsilonPlusCount === productTotals.epsilonPlusCount,
+    };
+  }
+  return Object.keys(clonedMetadata).length ? clonedMetadata : undefined;
 }
 
 function createIndexById(ids = []) {
@@ -538,8 +632,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const compositeLabels = (Array.isArray(document?.compositeLabels) ? document.compositeLabels : []).map(
     cloneCompositeLabel
   );
+  const metadata = cloneMetadata(document?.metadata);
   const nextDocument = {
     schema: normalizeText(document?.schema),
+    ...(metadata ? { metadata } : {}),
     assemblies,
     operators,
     links,
@@ -624,8 +720,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const reactantOldRowToNewRow = buildOldRowToNewRow(reactantAssemblies, buildLaneRowById(reactantAssemblyLane));
   const productOldRowToNewRow = buildOldRowToNewRow(productAssemblies, buildLaneRowById(productAssemblyLane));
 
+  const nextMetadata = cloneMetadata(nextDocument.metadata);
   return {
     schema: nextDocument.schema,
+    ...(nextMetadata ? { metadata: nextMetadata } : {}),
     assemblies: assemblies
       .map((assembly) => assemblyUpdatesById.get(assembly.id) ?? assembly)
       .sort(compareByYThenXThenId),
