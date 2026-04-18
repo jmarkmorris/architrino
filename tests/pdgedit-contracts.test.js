@@ -489,3 +489,18 @@ test("pdgedit standalone surface keeps the link overlay transparent while preser
   );
   assert.equal(runtimeSource.includes('hitPath.setAttribute("pointer-events", "stroke")'), true);
 });
+
+test("pdgedit document picker keeps a dedicated touch-scroll option list", () => {
+  const htmlSource = fs.readFileSync(new URL("../pdgedit.html", import.meta.url), "utf8");
+  const runtimeSource = fs.readFileSync(new URL("../src/apps/pdgedit/PdgeditAppRuntime.js", import.meta.url), "utf8");
+
+  assert.match(
+    htmlSource,
+    /#pdgedit-document-panel\s*\{[\s\S]*display:\s*flex;[\s\S]*overflow:\s*hidden;[\s\S]*touch-action:\s*pan-y;/u
+  );
+  assert.match(
+    htmlSource,
+    /\.pdgedit-document-option-list\s*\{[\s\S]*overflow-y:\s*auto;[\s\S]*touch-action:\s*pan-y;/u
+  );
+  assert.equal(runtimeSource.includes('optionList.className = "pdgedit-document-option-list"'), true);
+});

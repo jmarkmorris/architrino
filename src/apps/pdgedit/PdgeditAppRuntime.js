@@ -590,12 +590,12 @@ export function createPdgeditAppRuntime({
         button.setAttribute("aria-pressed", isSelected ? "true" : "false");
       });
     }
-    documentPanelElement.replaceChildren(
-      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
-      ...(filteredEntries.length
-        ? []
-        : [createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions.")]),
-      ...filteredEntries.map((entry) => {
+    const optionList = documentLike.createElement("div");
+    optionList.className = "pdgedit-document-option-list";
+    if (!filteredEntries.length) {
+      optionList.append(createTextElement(documentLike, "div", "pdgedit-document-empty", "No matching reactions."));
+    } else {
+      filteredEntries.forEach((entry) => {
         const option = documentLike.createElement("button");
         option.type = "button";
         option.className = "pdgedit-document-option";
@@ -604,8 +604,12 @@ export function createPdgeditAppRuntime({
         option.setAttribute("aria-selected", entry.id === state.selectedEntry?.id ? "true" : "false");
         option.classList.toggle("is-selected", entry.id === state.selectedEntry?.id);
         option.textContent = entry.displayTitle;
-        return option;
-      })
+        optionList.append(option);
+      });
+    }
+    documentPanelElement.replaceChildren(
+      ...([documentSearchInputElement, documentSourceFilterElement].filter(Boolean)),
+      optionList
     );
   }
 

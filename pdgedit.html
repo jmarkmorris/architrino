@@ -223,6 +223,13 @@
       #pdgedit-document-panel {
         top: 44px;
         right: 0;
+        display: flex;
+        flex-direction: column;
+        max-height: min(calc(100vh - 72px), 80vh);
+        max-height: min(calc(100dvh - 72px), 80dvh);
+        overflow: hidden;
+        overscroll-behavior: contain;
+        touch-action: pan-y;
       }
 
       #pdgedit-document-panel[hidden],
@@ -301,6 +308,15 @@
         padding: 10px;
         color: rgba(245, 247, 255, 0.68);
         font-size: 13px;
+      }
+
+      .pdgedit-document-option-list {
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
       }
 
       .pdgedit-document-option.is-selected,
