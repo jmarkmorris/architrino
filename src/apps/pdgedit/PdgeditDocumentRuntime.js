@@ -67,9 +67,83 @@ function normalizeCompositeLabel(record) {
   };
 }
 
+function normalizeReactionSummaryParticipant(record) {
+  return {
+    text: normalizeText(record?.text),
+  };
+}
+
+function normalizeReactionSummaryParticipants(records) {
+  if (!Array.isArray(records)) {
+    return [];
+  }
+  return records
+    .map(normalizeReactionSummaryParticipant)
+    .filter((participant) => participant.text);
+}
+
+function normalizeBalanceTotals(rawTotals) {
+  if (!rawTotals || typeof rawTotals !== "object") {
+    return null;
+  }
+  const epsilonMinusCount = normalizeInteger(rawTotals.epsilonMinusCount, -1);
+  const epsilonPlusCount = normalizeInteger(rawTotals.epsilonPlusCount, -1);
+  if (epsilonMinusCount < 0 || epsilonPlusCount < 0) {
+    return null;
+  }
+  return {
+    epsilonMinusCount,
+    epsilonPlusCount,
+  };
+}
+
+function normalizePdgeditMetadata(rawMetadata) {
+  if (!rawMetadata || typeof rawMetadata !== "object") {
+    return null;
+  }
+  const rawReactionSummary = rawMetadata.reactionSummary;
+  const metadata = {};
+  if (rawReactionSummary && typeof rawReactionSummary === "object") {
+    const reactionSummary = {
+      title: normalizeText(rawReactionSummary.title),
+      pdgReactants: normalizeReactionSummaryParticipants(rawReactionSummary.pdgReactants),
+      aaaReactants: normalizeReactionSummaryParticipants(rawReactionSummary.aaaReactants),
+      pdgProducts: normalizeReactionSummaryParticipants(rawReactionSummary.pdgProducts),
+      aaaProducts: normalizeReactionSummaryParticipants(rawReactionSummary.aaaProducts),
+    };
+    const pdgIdentifier = normalizeText(rawReactionSummary.pdgIdentifier);
+    if (pdgIdentifier) {
+      reactionSummary.pdgIdentifier = pdgIdentifier;
+    }
+    if (
+      reactionSummary.title ||
+      reactionSummary.pdgReactants.length ||
+      reactionSummary.aaaReactants.length ||
+      reactionSummary.pdgProducts.length ||
+      reactionSummary.aaaProducts.length
+    ) {
+      metadata.reactionSummary = reactionSummary;
+    }
+  }
+  const reactantTotals = normalizeBalanceTotals(rawMetadata.balanceSummary?.reactantTotals);
+  const productTotals = normalizeBalanceTotals(rawMetadata.balanceSummary?.productTotals);
+  if (reactantTotals && productTotals) {
+    metadata.balanceSummary = {
+      reactantTotals,
+      productTotals,
+      isBalanced:
+        reactantTotals.epsilonMinusCount === productTotals.epsilonMinusCount &&
+        reactantTotals.epsilonPlusCount === productTotals.epsilonPlusCount,
+    };
+  }
+  return Object.keys(metadata).length ? metadata : null;
+}
+
 export function normalizePdgeditDocument(rawDocument = {}) {
+  const metadata = normalizePdgeditMetadata(rawDocument?.metadata);
   return {
     schema: normalizeText(rawDocument?.schema),
+    ...(metadata ? { metadata } : {}),
     assemblies: Array.isArray(rawDocument?.assemblies)
       ? rawDocument.assemblies.map(normalizeAssembly)
       : [],

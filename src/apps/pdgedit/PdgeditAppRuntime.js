@@ -14,6 +14,7 @@ import {
 } from "./PdgeditDocumentEditRuntime.js";
 import {
   buildPdgeditSplinePath,
+  getPdgeditAssemblyStageXForRole,
   getPdgeditGridCellFromLocalPoint,
   getPdgeditRoutingColumnForObjectPair,
   PDGEDIT_GRID_STRIP_WIDTH_PX,
@@ -21,6 +22,15 @@ import {
   PDGEDIT_TILE_SIZE_PX,
 } from "./PdgeditSurfaceGeometryRuntime.js";
 import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
+
+function normalizeText(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeInteger(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isInteger(number) ? number : fallback;
+}
 
 function isEditingElement(element) {
   const tagName = String(element?.tagName ?? "").toLowerCase();
@@ -141,6 +151,152 @@ function createTextElement(documentLike, tagName, className, textContent) {
   return element;
 }
 
+function createReactionParticipantElement(documentLike, text) {
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-participant";
+  const label = documentLike.createElement("span");
+  label.className = "pdgedit-reaction-label";
+  label.textContent = text;
+  element.append(label);
+  return element;
+}
+
+function createReactionSeparatorElement(documentLike) {
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-separator";
+  element.textContent = "+";
+  return element;
+}
+
+function createReactionProvenanceElement(documentLike, provenance) {
+  const superscript = documentLike.createElement("sup");
+  superscript.className = "pdgedit-reaction-provenance";
+  superscript.textContent = provenance;
+  return superscript;
+}
+
+function createReactionBracketedGroupElement(documentLike, participants, provenance) {
+  const normalizedParticipants = Array.isArray(participants)
+    ? participants.map((participant) => normalizeText(participant?.text)).filter(Boolean)
+    : [];
+  if (!normalizedParticipants.length) {
+    return null;
+  }
+  const element = documentLike.createElement("span");
+  element.className = "pdgedit-reaction-group";
+  element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "["));
+  normalizedParticipants.forEach((text, index) => {
+    if (index > 0) {
+      element.append(createReactionSeparatorElement(documentLike));
+    }
+    element.append(createReactionParticipantElement(documentLike, text));
+  });
+  element.append(createTextElement(documentLike, "span", "pdgedit-reaction-bracket", "]"));
+  element.append(createReactionProvenanceElement(documentLike, provenance));
+  return element;
+}
+
+function appendReactionParticipantGroup(documentLike, container, participants, hasPreviousParticipant) {
+  let appended = hasPreviousParticipant;
+  participants.forEach((participant) => {
+    const text = normalizeText(participant?.text);
+    if (!text) {
+      return;
+    }
+    if (appended) {
+      container.append(createReactionSeparatorElement(documentLike));
+    }
+    container.append(createReactionParticipantElement(documentLike, text));
+    appended = true;
+  });
+  return appended;
+}
+
+function renderReactionSide(documentLike, summary, side) {
+  const pdgParticipants = Array.isArray(summary?.[`pdg${side}`]) ? summary[`pdg${side}`] : [];
+  const aaaParticipants = Array.isArray(summary?.[`aaa${side}`]) ? summary[`aaa${side}`] : [];
+  const sideElement = documentLike.createElement("span");
+  sideElement.className = "pdgedit-reaction-side";
+  const hasPdgParticipants = appendReactionParticipantGroup(documentLike, sideElement, pdgParticipants, false);
+  const aaaGroup = createReactionBracketedGroupElement(documentLike, aaaParticipants, "AAA");
+  if (aaaGroup) {
+    if (hasPdgParticipants) {
+      sideElement.append(createReactionSeparatorElement(documentLike));
+    }
+    sideElement.append(aaaGroup);
+  }
+  if (!hasPdgParticipants && !aaaGroup) {
+    sideElement.append(documentLike.createTextNode(side === "Reactants" ? "No reactants" : "No products"));
+  }
+  return sideElement;
+}
+
+function isPdgeditDocumentFullyConnected(document = {}) {
+  const objects = getPdgeditDocumentObjects(document);
+  if (objects.length < 2 || !Array.isArray(document?.links) || document.links.length === 0) {
+    return false;
+  }
+  const objectIds = new Set(objects.map((object) => normalizeText(object.id)).filter(Boolean));
+  if (!objectIds.size) {
+    return false;
+  }
+  const neighborsById = new Map([...objectIds].map((objectId) => [objectId, new Set()]));
+  document.links.forEach((link) => {
+    const endpointA = normalizeText(link?.endpointA);
+    const endpointB = normalizeText(link?.endpointB);
+    if (!objectIds.has(endpointA) || !objectIds.has(endpointB) || endpointA === endpointB) {
+      return;
+    }
+    neighborsById.get(endpointA).add(endpointB);
+    neighborsById.get(endpointB).add(endpointA);
+  });
+  const [startId] = objectIds;
+  const visited = new Set();
+  const queue = [startId];
+  while (queue.length) {
+    const objectId = queue.shift();
+    if (!objectId || visited.has(objectId)) {
+      continue;
+    }
+    visited.add(objectId);
+    (neighborsById.get(objectId) ?? []).forEach((neighborId) => {
+      if (!visited.has(neighborId)) {
+        queue.push(neighborId);
+      }
+    });
+  }
+  return visited.size === objectIds.size;
+}
+
+function getPdgeditBalanceState(document = {}) {
+  const balanceSummary = document?.metadata?.balanceSummary;
+  return {
+    balanceSummary,
+    isBalanced: balanceSummary?.isBalanced === true,
+    isFullyConnected: isPdgeditDocumentFullyConnected(document),
+  };
+}
+
+function formatPdgeditBalanceTotals(totals = {}) {
+  return `(\u03b5\u207b ${normalizeInteger(totals?.epsilonMinusCount)} : \u03b5\u207a ${normalizeInteger(totals?.epsilonPlusCount)})`;
+}
+
+function createBalanceBadgeElement(documentLike, role, totals, isSolvedExact) {
+  const stageX = getPdgeditAssemblyStageXForRole(role);
+  if (!stageX) {
+    return null;
+  }
+  const element = documentLike.createElement("div");
+  element.className = "pdgedit-balance-badge";
+  if (isSolvedExact) {
+    element.classList.add("is-balanced");
+  }
+  element.dataset.balanceRole = role;
+  element.style.left = `${(stageX - 1) * PDGEDIT_TILE_SIZE_PX + PDGEDIT_TILE_SIZE_PX * 2}px`;
+  element.textContent = formatPdgeditBalanceTotals(totals);
+  return element;
+}
+
 export function createPdgeditAppRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
@@ -153,12 +309,15 @@ export function createPdgeditAppRuntime({
   objectLayerElement,
   linkOverlayElement,
   compositeLayerElement,
+  balanceLayerElement,
+  documentTitleElement,
   documentTriggerElement,
   documentPanelElement,
   documentSearchInputElement,
   documentSourceFilterElement,
   homeButtonElement,
   createPickerElement,
+  reactionSummaryElement,
   manifestUrl,
   tileCatalogUrl,
   templateCatalogUrl,
@@ -242,11 +401,44 @@ export function createPdgeditAppRuntime({
     renderObjects(document);
     renderLinks(document);
     renderCompositeLabels(document);
+    renderBalanceBadges(document);
   }
 
   function renderChrome() {
+    renderDocumentHeader();
     renderDocumentPicker();
     renderCreatePicker();
+  }
+
+  function renderDocumentHeader() {
+    const renderedDocument = getRenderedDocument();
+    const reactionSummary = renderedDocument?.metadata?.reactionSummary ?? null;
+    const headingText =
+      normalizeText(reactionSummary?.title) ||
+      normalizeText(state.selectedEntry?.title) ||
+      normalizeText(state.selectedEntry?.displayTitle) ||
+      "No reaction selected";
+    if (documentTitleElement) {
+      documentTitleElement.textContent = headingText;
+      documentTitleElement.title = headingText;
+    }
+    if (!reactionSummaryElement) {
+      return;
+    }
+    reactionSummaryElement.replaceChildren();
+    if (!reactionSummary) {
+      reactionSummaryElement.hidden = true;
+      reactionSummaryElement.setAttribute("aria-hidden", "true");
+      return;
+    }
+    const summaryLine = documentLike.createElement("p");
+    summaryLine.className = "pdgedit-reaction-summary-line";
+    summaryLine.append(renderReactionSide(documentLike, reactionSummary, "Reactants"));
+    summaryLine.append(createTextElement(documentLike, "span", "pdgedit-reaction-arrow", "\u2192"));
+    summaryLine.append(renderReactionSide(documentLike, reactionSummary, "Products"));
+    reactionSummaryElement.hidden = false;
+    reactionSummaryElement.setAttribute("aria-hidden", "false");
+    reactionSummaryElement.append(summaryLine);
   }
 
   function renderDocumentPicker() {
@@ -364,6 +556,11 @@ export function createPdgeditAppRuntime({
   function renderLinks(document) {
     const objectsById = new Map(getPdgeditDocumentObjects(document).map((record) => [record.id, record]));
     const models = buildPdgeditLinkRenderModels(document, (objectId) => objectsById.get(objectId) ?? null);
+    const balanceState = getPdgeditBalanceState(document);
+    const visibleStrokeColor =
+      balanceState.isBalanced && balanceState.isFullyConnected
+        ? "rgba(122, 225, 146, 0.98)"
+        : "#ffffff";
     const totalRows = Math.max(2, getPdgeditDocumentMaxRow(document) + PDGEDIT_RESERVED_TOP_ROW_COUNT + 1);
     const heightPx = totalRows * PDGEDIT_TILE_SIZE_PX;
     linkOverlayElement.setAttribute("viewBox", `0 0 ${PDGEDIT_GRID_STRIP_WIDTH_PX} ${heightPx}`);
@@ -374,7 +571,7 @@ export function createPdgeditAppRuntime({
         const visiblePath = documentLike.createElementNS("http://www.w3.org/2000/svg", "path");
         visiblePath.setAttribute("d", model.spline.path);
         visiblePath.setAttribute("fill", "none");
-        visiblePath.setAttribute("stroke", "#ffffff");
+        visiblePath.setAttribute("stroke", visibleStrokeColor);
         visiblePath.setAttribute("stroke-width", "2");
         visiblePath.setAttribute("stroke-linecap", "round");
         visiblePath.setAttribute("stroke-linejoin", "round");
@@ -394,6 +591,31 @@ export function createPdgeditAppRuntime({
         return [visiblePath, hitPath];
       })
     );
+  }
+
+  function renderBalanceBadges(document) {
+    if (!balanceLayerElement) {
+      return;
+    }
+    balanceLayerElement.replaceChildren();
+    const balanceSummary = document?.metadata?.balanceSummary ?? null;
+    if (!balanceSummary) {
+      return;
+    }
+    const balanceState = getPdgeditBalanceState(document);
+    const reactantBadge = createBalanceBadgeElement(
+      documentLike,
+      "reactant",
+      balanceSummary.reactantTotals,
+      balanceState.isBalanced && balanceState.isFullyConnected
+    );
+    const productBadge = createBalanceBadgeElement(
+      documentLike,
+      "product",
+      balanceSummary.productTotals,
+      balanceState.isBalanced && balanceState.isFullyConnected
+    );
+    balanceLayerElement.replaceChildren(...[reactantBadge, productBadge].filter(Boolean));
   }
 
   function createCompositeLabelElement(label) {

@@ -12,6 +12,21 @@ function normalizeInteger(value, fallback = 0) {
   return Number.isInteger(number) ? number : fallback;
 }
 
+function normalizeBalanceTotals(rawTotals) {
+  if (!rawTotals || typeof rawTotals !== "object") {
+    return null;
+  }
+  const epsilonMinusCount = normalizeInteger(rawTotals.epsilonMinusCount, -1);
+  const epsilonPlusCount = normalizeInteger(rawTotals.epsilonPlusCount, -1);
+  if (epsilonMinusCount < 0 || epsilonPlusCount < 0) {
+    return null;
+  }
+  return {
+    epsilonMinusCount,
+    epsilonPlusCount,
+  };
+}
+
 function compareByYThenXThenId(left = {}, right = {}) {
   return (
     normalizeInteger(left.y) - normalizeInteger(right.y) ||
@@ -45,6 +60,54 @@ function cloneLink(link = {}) {
 
 function cloneCompositeLabel(label = {}) {
   return { ...label };
+}
+
+function cloneMetadata(metadata = null) {
+  if (!metadata || typeof metadata !== "object") {
+    return undefined;
+  }
+  const reactionSummary = metadata.reactionSummary;
+  const clonedMetadata = {};
+  if (reactionSummary && typeof reactionSummary === "object") {
+    clonedMetadata.reactionSummary = {
+      title: normalizeText(reactionSummary.title),
+      ...(normalizeText(reactionSummary.pdgIdentifier)
+        ? { pdgIdentifier: normalizeText(reactionSummary.pdgIdentifier) }
+        : {}),
+      pdgReactants: Array.isArray(reactionSummary.pdgReactants)
+        ? reactionSummary.pdgReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaReactants: Array.isArray(reactionSummary.aaaReactants)
+        ? reactionSummary.aaaReactants
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      pdgProducts: Array.isArray(reactionSummary.pdgProducts)
+        ? reactionSummary.pdgProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+      aaaProducts: Array.isArray(reactionSummary.aaaProducts)
+        ? reactionSummary.aaaProducts
+            .map((participant) => ({ text: normalizeText(participant?.text) }))
+            .filter((participant) => participant.text)
+        : [],
+    };
+  }
+  const reactantTotals = normalizeBalanceTotals(metadata.balanceSummary?.reactantTotals);
+  const productTotals = normalizeBalanceTotals(metadata.balanceSummary?.productTotals);
+  if (reactantTotals && productTotals) {
+    clonedMetadata.balanceSummary = {
+      reactantTotals,
+      productTotals,
+      isBalanced:
+        reactantTotals.epsilonMinusCount === productTotals.epsilonMinusCount &&
+        reactantTotals.epsilonPlusCount === productTotals.epsilonPlusCount,
+    };
+  }
+  return Object.keys(clonedMetadata).length ? clonedMetadata : undefined;
 }
 
 function createIndexById(ids = []) {
@@ -538,8 +601,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const compositeLabels = (Array.isArray(document?.compositeLabels) ? document.compositeLabels : []).map(
     cloneCompositeLabel
   );
+  const metadata = cloneMetadata(document?.metadata);
   const nextDocument = {
     schema: normalizeText(document?.schema),
+    ...(metadata ? { metadata } : {}),
     assemblies,
     operators,
     links,
@@ -624,8 +689,10 @@ export function sortPdgeditCatalystPassThruChainsToTop(document = {}) {
   const reactantOldRowToNewRow = buildOldRowToNewRow(reactantAssemblies, buildLaneRowById(reactantAssemblyLane));
   const productOldRowToNewRow = buildOldRowToNewRow(productAssemblies, buildLaneRowById(productAssemblyLane));
 
+  const nextMetadata = cloneMetadata(nextDocument.metadata);
   return {
     schema: nextDocument.schema,
+    ...(nextMetadata ? { metadata: nextMetadata } : {}),
     assemblies: assemblies
       .map((assembly) => assemblyUpdatesById.get(assembly.id) ?? assembly)
       .sort(compareByYThenXThenId),

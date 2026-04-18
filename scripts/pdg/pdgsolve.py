@@ -356,6 +356,62 @@ def clone_json(payload: Any) -> Any:
     return json.loads(json.dumps(payload))
 
 
+def normalize_reaction_summary_participants(participants: Any) -> list[dict[str, str]]:
+    normalized_participants: list[dict[str, str]] = []
+    if not isinstance(participants, list):
+        return normalized_participants
+    for participant in participants:
+        if not isinstance(participant, dict):
+            continue
+        text = normalize_text(participant.get("text"))
+        if not text:
+            continue
+        normalized_participants.append({"text": text})
+    return normalized_participants
+
+
+def clone_reaction_summary(summary: Any) -> dict[str, Any] | None:
+    if not isinstance(summary, dict):
+        return None
+    title = normalize_text(summary.get("title"))
+    if not title:
+        return None
+    normalized_summary: dict[str, Any] = {
+        "title": title,
+        "pdgReactants": normalize_reaction_summary_participants(summary.get("pdgReactants")),
+        "aaaReactants": normalize_reaction_summary_participants(summary.get("aaaReactants")),
+        "pdgProducts": normalize_reaction_summary_participants(summary.get("pdgProducts")),
+        "aaaProducts": normalize_reaction_summary_participants(summary.get("aaaProducts")),
+    }
+    pdg_identifier = normalize_text(summary.get("pdgIdentifier"))
+    if pdg_identifier:
+        normalized_summary["pdgIdentifier"] = pdg_identifier
+    return normalized_summary
+
+
+def clone_balance_summary(summary: Any) -> dict[str, Any] | None:
+    if not isinstance(summary, dict):
+        return None
+    reactant_totals = summary.get("reactantTotals")
+    product_totals = summary.get("productTotals")
+    if not isinstance(reactant_totals, dict) or not isinstance(product_totals, dict):
+        return None
+    normalized_summary = {
+        "reactantTotals": {
+            "epsilonMinusCount": int(reactant_totals.get("epsilonMinusCount", 0) or 0),
+            "epsilonPlusCount": int(reactant_totals.get("epsilonPlusCount", 0) or 0),
+        },
+        "productTotals": {
+            "epsilonMinusCount": int(product_totals.get("epsilonMinusCount", 0) or 0),
+            "epsilonPlusCount": int(product_totals.get("epsilonPlusCount", 0) or 0),
+        },
+    }
+    normalized_summary["isBalanced"] = (
+        normalized_summary["reactantTotals"] == normalized_summary["productTotals"]
+    )
+    return normalized_summary
+
+
 def count_assemblies(occurrences: list[dict[str, Any]]) -> list[dict[str, Any]]:
     counts: OrderedDict[str, int] = OrderedDict()
     for occurrence in occurrences:
@@ -419,6 +475,33 @@ def primitive_counts_difference(
     return {
         "electrinoCount": int(left.get("electrinoCount", 0)) - int(right.get("electrinoCount", 0)),
         "positrinoCount": int(left.get("positrinoCount", 0)) - int(right.get("positrinoCount", 0)),
+    }
+
+
+def build_pdgedit_balance_summary(
+    reactant_totals: dict[str, int] | None,
+    product_totals: dict[str, int] | None,
+) -> dict[str, Any] | None:
+    if reactant_totals is None or product_totals is None:
+        return None
+    normalized_reactant_totals = build_primitive_counts(
+        reactant_totals.get("electrinoCount"),
+        reactant_totals.get("positrinoCount"),
+    )
+    normalized_product_totals = build_primitive_counts(
+        product_totals.get("electrinoCount"),
+        product_totals.get("positrinoCount"),
+    )
+    return {
+        "reactantTotals": {
+            "epsilonMinusCount": normalized_reactant_totals["electrinoCount"],
+            "epsilonPlusCount": normalized_reactant_totals["positrinoCount"],
+        },
+        "productTotals": {
+            "epsilonMinusCount": normalized_product_totals["electrinoCount"],
+            "epsilonPlusCount": normalized_product_totals["positrinoCount"],
+        },
+        "isBalanced": primitive_counts_equal(normalized_reactant_totals, normalized_product_totals),
     }
 
 
@@ -2040,6 +2123,7 @@ def build_acceptance(
     solve_graph = family.get("canonicalCandidate", {}).get("solveGraph")
     if not isinstance(solve_graph, dict):
         raise ValueError("Accepted family is missing a solve graph.")
+    reaction_summary = clone_reaction_summary(request.get("reactionSummary"))
     return {
         "schema": PDGSOLVE_ACCEPTANCE_SCHEMA,
         "problemId": normalize_text(result.get("problemId")),
@@ -2059,6 +2143,13 @@ def build_acceptance(
         "lockedProductSideOperators": clone_json(family["productSideOperators"]),
         "lockedProductAssemblies": clone_json(family["productAssemblies"]),
         "lockedProvenanceSummary": clone_json(family["provenanceSummary"]),
+        **(
+            {
+                "lockedReactionSummary": reaction_summary,
+            }
+            if reaction_summary is not None
+            else {}
+        ),
         "lockedSolveGraph": clone_json(solve_graph),
     }
 
@@ -2093,6 +2184,26 @@ def build_publication_graph_adjacency_maps(
         append_unit_id(incoming_by_unit_id, to_unit_id, from_unit_id)
 
     return incoming_by_unit_id, outgoing_by_unit_id
+
+
+def build_publication_graph_stage_primitive_totals(
+    publication_graph: dict[str, Any],
+    stage: str,
+) -> dict[str, int] | None:
+    totals = build_primitive_counts(0, 0)
+    found_any = False
+    for unit in publication_graph.get("units", []):
+        if normalize_text(unit.get("kind")) != "assembly":
+            continue
+        if normalize_text(unit.get("stage")) != stage:
+            continue
+        counts = build_assembly_counts_from_publication_unit(unit)
+        if counts is None:
+            return None
+        totals["electrinoCount"] += counts["electrinoCount"]
+        totals["positrinoCount"] += counts["positrinoCount"]
+        found_any = True
+    return totals if found_any else build_primitive_counts(0, 0)
 
 
 def build_assembly_counts_from_publication_unit(unit: dict[str, Any]) -> dict[str, int] | None:
@@ -2264,6 +2375,7 @@ def build_pdgedit_document_from_publication_graph(
     *,
     document_id: str | None = None,
     document_title: str | None = None,
+    reaction_summary: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     units_by_id = build_publication_graph_unit_map(publication_graph)
     incoming_by_unit_id, outgoing_by_unit_id = build_publication_graph_adjacency_maps(publication_graph)
@@ -2350,8 +2462,21 @@ def build_pdgedit_document_from_publication_graph(
         if normalize_text(unit.get("stage")) == "productAssemblies"
     ]
     _ = document_id, document_title
+    normalized_reaction_summary = clone_reaction_summary(reaction_summary)
+    normalized_balance_summary = clone_balance_summary(
+        build_pdgedit_balance_summary(
+            build_publication_graph_stage_primitive_totals(publication_graph, "reactantAssemblies"),
+            build_publication_graph_stage_primitive_totals(publication_graph, "productAssemblies"),
+        )
+    )
+    metadata: dict[str, Any] = {}
+    if normalized_reaction_summary is not None:
+        metadata["reactionSummary"] = normalized_reaction_summary
+    if normalized_balance_summary is not None:
+        metadata["balanceSummary"] = normalized_balance_summary
     return {
         "schema": PDGEDIT_SCHEMA,
+        **({"metadata": metadata} if metadata else {}),
         "assemblies": assemblies,
         "operators": operators,
         "links": links,
@@ -2369,6 +2494,7 @@ def build_pdgedit_document_from_acceptance(
         acceptance["lockedSolveGraph"],
         document_id=document_id,
         document_title=document_title,
+        reaction_summary=acceptance.get("lockedReactionSummary"),
     )
 
 def build_pdgedit_document_from_request_review(
@@ -2401,8 +2527,21 @@ def build_pdgedit_document_from_request_review(
             )
         )
     _ = document_id, document_title
+    normalized_reaction_summary = clone_reaction_summary(request.get("reactionSummary"))
+    normalized_balance_summary = clone_balance_summary(
+        build_pdgedit_balance_summary(
+            sum_primitive_counts(reactants),
+            sum_primitive_counts(products),
+        )
+    )
+    metadata: dict[str, Any] = {}
+    if normalized_reaction_summary is not None:
+        metadata["reactionSummary"] = normalized_reaction_summary
+    if normalized_balance_summary is not None:
+        metadata["balanceSummary"] = normalized_balance_summary
     return {
         "schema": PDGEDIT_SCHEMA,
+        **({"metadata": metadata} if metadata else {}),
         "assemblies": assemblies,
         "operators": [],
         "links": [],

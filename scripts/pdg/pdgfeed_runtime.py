@@ -178,6 +178,103 @@ def build_pdgsolve_request_source(proposal: Proposal) -> dict[str, str]:
     }
 
 
+def build_reaction_summary_participant(text: Any) -> dict[str, str] | None:
+    normalized_text = str(text or "").strip()
+    if not normalized_text:
+        return None
+    return {"text": normalized_text}
+
+
+def is_noether_core_request_occurrence(occurrence: dict[str, Any]) -> bool:
+    assembly_id = str(occurrence.get("assemblyId", "")).strip()
+    return assembly_id.startswith("pro_noether_core_") or assembly_id.startswith("anti_noether_core_")
+
+
+def build_pdg_provenance_reaction_summary_participants(
+    participants: Sequence[NormalizedParticipant],
+ ) -> tuple[list[dict[str, str]], set[str]]:
+    direct_occurrence_ids: set[str] = set()
+    pdg_entries: list[dict[str, str]] = []
+    for participant in participants:
+        if not participant.request_occurrences:
+            continue
+        participant_occurrences = list(participant.to_request_occurrences())
+        for occurrence in participant_occurrences:
+            occurrence_id = str(occurrence.get("id", "")).strip()
+            if occurrence_id:
+                direct_occurrence_ids.add(occurrence_id)
+        titles = [
+            str(occurrence.get("title", "")).strip()
+            for occurrence in participant_occurrences
+            if str(occurrence.get("title", "")).strip()
+        ]
+        if not titles:
+            continue
+        if len(titles) == 1:
+            entry = build_reaction_summary_participant(titles[0])
+            if entry is not None:
+                pdg_entries.append(entry)
+            continue
+        if all(is_noether_core_request_occurrence(occurrence) for occurrence in participant_occurrences):
+            label = str(participant.label or participant.pdg_name or "").strip()
+            if label:
+                entry = build_reaction_summary_participant(f"{label} [{' + '.join(titles)}]")
+                if entry is not None:
+                    pdg_entries.append(entry)
+                continue
+        for title in titles:
+            entry = build_reaction_summary_participant(title)
+            if entry is not None:
+                pdg_entries.append(entry)
+    return pdg_entries, direct_occurrence_ids
+
+
+def build_aaa_added_reaction_summary_participants(
+    transformed_occurrences: Sequence[dict[str, Any]],
+    direct_occurrence_ids: set[str],
+) -> list[dict[str, str]]:
+    aaa_entries: list[dict[str, str]] = []
+    for occurrence in transformed_occurrences:
+        occurrence_id = str(occurrence.get("id", "")).strip()
+        if occurrence_id and occurrence_id in direct_occurrence_ids:
+            continue
+        entry = build_reaction_summary_participant(occurrence.get("title"))
+        if entry is not None:
+            aaa_entries.append(entry)
+    return aaa_entries
+
+
+def build_pdgsolve_request_reaction_summary(
+    proposal: Proposal,
+    transformed: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    pdg_reactants, reactant_occurrence_ids = build_pdg_provenance_reaction_summary_participants(
+        proposal.reactants,
+    )
+    pdg_products, product_occurrence_ids = build_pdg_provenance_reaction_summary_participants(
+        proposal.products,
+    )
+    aaa_reactants = build_aaa_added_reaction_summary_participants(
+        transformed["reactants"],
+        reactant_occurrence_ids,
+    )
+    aaa_products = build_aaa_added_reaction_summary_participants(
+        transformed["products"],
+        product_occurrence_ids,
+    )
+    summary: dict[str, Any] = {
+        "title": proposal.title,
+        "pdgReactants": pdg_reactants,
+        "aaaReactants": aaa_reactants,
+        "pdgProducts": pdg_products,
+        "aaaProducts": aaa_products,
+    }
+    pdg_identifier = str(proposal.source.get("pdgIdentifier", "")).strip()
+    if pdg_identifier:
+        summary["pdgIdentifier"] = pdg_identifier
+    return summary
+
+
 def has_unsupported_transform_notes(notes: tuple[str, ...] | list[str]) -> bool:
     return any(str(note).startswith("unsupported:") for note in notes)
 
@@ -366,6 +463,7 @@ def build_pdgsolve_request(proposal: Proposal) -> dict[str, Any] | None:
         "schema": PDGSOLVE_REQUEST_SCHEMA,
         "requestId": proposal.proposal_id,
         "source": build_pdgsolve_request_source(proposal),
+        "reactionSummary": build_pdgsolve_request_reaction_summary(proposal, transformed),
         "reactants": transformed["reactants"],
         "products": transformed["products"],
         "policy": {
