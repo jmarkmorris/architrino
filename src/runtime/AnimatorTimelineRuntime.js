@@ -1,4 +1,4 @@
-export const PDGVIEW_TIMELINE_MIN_DURATION_SECONDS = 2;
+export const ANIMATOR_TIMELINE_MIN_DURATION_SECONDS = 2;
 
 export function parseAnimatorTimingLines(rawText, parseLine) {
   const source = String(rawText ?? "");
@@ -26,7 +26,7 @@ export function parseAnimatorTimingLines(rawText, parseLine) {
 
 export function getAnimatorTimelineMinimumSpan(
   duration = Infinity,
-  minimumDuration = PDGVIEW_TIMELINE_MIN_DURATION_SECONDS
+  minimumDuration = ANIMATOR_TIMELINE_MIN_DURATION_SECONDS
 ) {
   const normalizedDuration = Number(duration);
   if (!Number.isFinite(normalizedDuration)) {
@@ -40,7 +40,7 @@ export function clampAnimatorTimelineSpan(
   rawEnd,
   duration,
   {
-    minimumDuration = PDGVIEW_TIMELINE_MIN_DURATION_SECONDS,
+    minimumDuration = ANIMATOR_TIMELINE_MIN_DURATION_SECONDS,
     clampFn,
   } = {}
 ) {

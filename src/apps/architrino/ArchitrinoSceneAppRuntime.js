@@ -6,7 +6,7 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
 import {
   clampAnimatorTimelineSpan,
-  PDGVIEW_TIMELINE_MIN_DURATION_SECONDS as animatorTimelineMinDurationSeconds,
+  ANIMATOR_TIMELINE_MIN_DURATION_SECONDS as animatorTimelineMinDurationSeconds,
   getAnimatorSceneTimeWindow,
   getAnimatorTimelineFraction,
   getAnimatorTimelineTimeAtClientX as getAnimatorTimelineTimeAtClientXRuntime,
@@ -97,8 +97,8 @@ import {
 } from "../../services/SceneCapabilitiesService.js";
 import { resolveStandaloneAppHrefForScene } from "../navigator/StandaloneAppLaunchRuntime.js";
 import {
-  PDGVIEW_SCENE_PATH,
-  STANDALONE_PDGVIEW_NAVIGATOR_HREF,
+  ANIMATOR_SCENE_PATH,
+  STANDALONE_ANIMATOR_NAVIGATOR_HREF,
   createAnimatorAppRuntime,
   createAnimatorAppStore,
   getAnimatorAppMode,
@@ -107,9 +107,9 @@ import {
   navigateStandaloneAnimatorHome,
 } from "../animator/AnimatorAppModeRuntime.js";
 import {
-  PDGVIEW_MEDIA_ASSET_DIRECTORIES as animatorMediaAssetDirectories,
-  PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS as animatorSupportedMediaExtensions,
-  DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
+  ANIMATOR_MEDIA_ASSET_DIRECTORIES as animatorMediaAssetDirectories,
+  ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS as animatorSupportedMediaExtensions,
+  DEFAULT_ANIMATOR_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
   getAnimatorDomElements,
 } from "../animator/AnimatorDomRuntime.js";
 import {
@@ -1003,11 +1003,11 @@ function formatScaleLabel(value) {
   return `${normalized.toFixed(2)}x`;
 }
 
-const PDGVIEW_FRAME_SCALE_BASELINE = 0.4;
+const ANIMATOR_FRAME_SCALE_BASELINE = 0.4;
 
 function getAnimatorEffectiveFrameScale(value = animatorFrameState.scale) {
   const normalized = Math.max(0.01, Number(value ?? 1) || 1);
-  return normalized * PDGVIEW_FRAME_SCALE_BASELINE;
+  return normalized * ANIMATOR_FRAME_SCALE_BASELINE;
 }
 
 function formatAnimatorTimeLabel(value) {
@@ -3959,7 +3959,7 @@ const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
 const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
-const animatorScenePath = PDGVIEW_SCENE_PATH;
+const animatorScenePath = ANIMATOR_SCENE_PATH;
 const animatorSceneId = "animator";
 const animatorPreviewSceneId = "animator_preview";
 const animatorPreviewScenePath = "__animator_preview__";
@@ -3967,7 +3967,7 @@ const animatorDocsPath =
   "reference/priorities/animator/animator.md";
 const appMode = getAnimatorAppMode(globalThis.window);
 const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
-const standaloneNavigatorHref = STANDALONE_PDGVIEW_NAVIGATOR_HREF;
+const standaloneNavigatorHref = STANDALONE_ANIMATOR_NAVIGATOR_HREF;
 
 function isAnimatorOverlaySceneId(sceneId = "") {
   return sceneId === animatorSceneId || sceneId === animatorPreviewSceneId;

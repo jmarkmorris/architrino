@@ -1,6 +1,6 @@
 import {
   clampAnimatorTimelineSpan,
-  PDGVIEW_TIMELINE_MIN_DURATION_SECONDS,
+  ANIMATOR_TIMELINE_MIN_DURATION_SECONDS,
   findAnimatorTimelineOverlap as findAnimatorTimelineOverlapRuntime,
   getAnimatorTimelineAuthoringItems as getAnimatorTimelineAuthoringItemsRuntime,
   parseAnimatorTimingLines,
@@ -24,7 +24,7 @@ import {
 export function createAnimatorTimelineOverlayRuntime(options = {}) {
   const clampFn = options.clampFn ?? ((value) => value);
   const minDurationSeconds =
-    Number(options.minDurationSeconds) || PDGVIEW_TIMELINE_MIN_DURATION_SECONDS;
+    Number(options.minDurationSeconds) || ANIMATOR_TIMELINE_MIN_DURATION_SECONDS;
   const sanitizeEntityId = options.sanitizeEntityId ?? ((value, fallback = "") => fallback || value || "");
   const sanitizeTarget = options.sanitizeTarget ?? ((target) => target ?? null);
   const getAssemblyDrafts = options.getAssemblyDrafts ?? (() => []);

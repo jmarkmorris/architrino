@@ -8,9 +8,9 @@ import {
   sanitizeAnimatorId,
 } from "./AnimatorDraftScaffoldRuntime.js";
 
-export const PDGVIEW_PDGEDIT_STAGING_SCHEMA = "animator-staging/v1";
-export const PDGVIEW_PDGEDIT_PREVIEW_SCHEMA = "animator-preview/v1";
-export const PDGVIEW_PDGEDIT_EXPORT_SCHEMA = "animator-export/v1";
+export const ANIMATOR_PDGEDIT_STAGING_SCHEMA = "animator-staging/v1";
+export const ANIMATOR_PDGEDIT_PREVIEW_SCHEMA = "animator-preview/v1";
+export const ANIMATOR_PDGEDIT_EXPORT_SCHEMA = "animator-export/v1";
 
 const PDGEDIT_DOCUMENT_SCHEMA = "pdgedit/v1";
 const DEFAULT_SCENE_DURATION_SECONDS = 24;
@@ -430,7 +430,7 @@ export function buildAnimatorDraftStateFromPdgeditDocument(pdgeditDocument = {},
     metadata: {
       sourceContract: {
         upstreamSchema: PDGEDIT_DOCUMENT_SCHEMA,
-        downstreamSchema: PDGVIEW_PDGEDIT_STAGING_SCHEMA,
+        downstreamSchema: ANIMATOR_PDGEDIT_STAGING_SCHEMA,
         handoffMode: "accepted-pdgedit-import",
       },
       pdgedit: source,
@@ -455,13 +455,13 @@ export function createAnimatorPdgeditImportRuntime(options = {}) {
       palette: runtimeOptions.palette,
     });
     return {
-      schema: PDGVIEW_PDGEDIT_STAGING_SCHEMA,
+      schema: ANIMATOR_PDGEDIT_STAGING_SCHEMA,
       stagingId: draftState.id,
       source,
       observerFraming: cloneJson(draftState.cameraShots[0].framing),
       draftState: cloneJson(draftState),
       preview: {
-        schema: PDGVIEW_PDGEDIT_PREVIEW_SCHEMA,
+        schema: ANIMATOR_PDGEDIT_PREVIEW_SCHEMA,
         sceneId: previewScene.scene.id,
         title: previewScene.scene.title,
         objectCount: Array.isArray(previewScene.objects) ? previewScene.objects.length : 0,
@@ -474,7 +474,7 @@ export function createAnimatorPdgeditImportRuntime(options = {}) {
           : [],
       },
       export: {
-        schema: PDGVIEW_PDGEDIT_EXPORT_SCHEMA,
+        schema: ANIMATOR_PDGEDIT_EXPORT_SCHEMA,
         defaultFileName: `${draftState.id}.animator-scene.v1.json`,
         sceneDocument,
       },

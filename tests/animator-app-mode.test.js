@@ -2,9 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  PDGVIEW_APP_MODE,
-  PDGVIEW_SCENE_PATH,
-  STANDALONE_PDGVIEW_NAVIGATOR_HREF,
+  ANIMATOR_APP_MODE,
+  ANIMATOR_SCENE_PATH,
+  STANDALONE_ANIMATOR_NAVIGATOR_HREF,
   getAnimatorAppMode,
   getAnimatorInitialScenePath,
   isStandaloneAnimatorAppMode,
@@ -14,7 +14,7 @@ import {
 test("animator app mode resolves from the standalone window flag", () => {
   assert.equal(
     getAnimatorAppMode({ __ARCHITRINO_APP_MODE__: "animator" }),
-    PDGVIEW_APP_MODE
+    ANIMATOR_APP_MODE
   );
   assert.equal(isStandaloneAnimatorAppMode("animator"), true);
   assert.equal(isStandaloneAnimatorAppMode("reaction"), false);
@@ -23,7 +23,7 @@ test("animator app mode resolves from the standalone window flag", () => {
 test("animator standalone initial scene defaults to the animator scene path", () => {
   assert.equal(
     getAnimatorInitialScenePath({ requestedScenePath: "", rootScenePath: "content/scenes/root.json" }),
-    PDGVIEW_SCENE_PATH
+    ANIMATOR_SCENE_PATH
   );
   assert.equal(
     getAnimatorInitialScenePath({
@@ -45,5 +45,5 @@ test("animator standalone home navigation uses the standalone navigator href", (
   const navigated = navigateStandaloneAnimatorHome(locationLike);
 
   assert.equal(navigated, true);
-  assert.equal(assignedHref, STANDALONE_PDGVIEW_NAVIGATOR_HREF);
+  assert.equal(assignedHref, STANDALONE_ANIMATOR_NAVIGATOR_HREF);
 });

@@ -1,15 +1,15 @@
-export const PDGVIEW_LIBRARY_STORAGE_KEY = "architrino.animator.library.v1";
-export const PDGVIEW_MEDIA_ASSET_DIRECTORIES = Object.freeze({
+export const ANIMATOR_LIBRARY_STORAGE_KEY = "architrino.animator.library.v1";
+export const ANIMATOR_MEDIA_ASSET_DIRECTORIES = Object.freeze({
   image: "content/assets/animator/images/",
   video: "content/assets/animator/video/",
   audio: "content/assets/animator/audio/",
 });
-export const PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS = Object.freeze({
+export const ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS = Object.freeze({
   image: Object.freeze(["jpg", "jpeg", "png", "svg"]),
   video: Object.freeze(["mp4", "mov"]),
   audio: Object.freeze(["mp3"]),
 });
-export const DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX = Object.freeze({ x: 160, y: 140 });
+export const DEFAULT_ANIMATOR_ROOT_LAYOUT_MARGIN_PX = Object.freeze({ x: 160, y: 140 });
 
 function getElementById(documentLike = null, id = "") {
   return typeof documentLike?.getElementById === "function" ? documentLike.getElementById(id) : null;

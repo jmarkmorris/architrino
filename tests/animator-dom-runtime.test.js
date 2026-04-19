@@ -2,10 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  PDGVIEW_LIBRARY_STORAGE_KEY,
-  PDGVIEW_MEDIA_ASSET_DIRECTORIES,
-  PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS,
-  DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX,
+  ANIMATOR_LIBRARY_STORAGE_KEY,
+  ANIMATOR_MEDIA_ASSET_DIRECTORIES,
+  ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS,
+  DEFAULT_ANIMATOR_ROOT_LAYOUT_MARGIN_PX,
   getAnimatorDomElements,
 } from "../src/apps/animator/AnimatorDomRuntime.js";
 
@@ -49,8 +49,8 @@ test("animator dom runtime collects animator shell elements and bindings", () =>
 });
 
 test("animator dom runtime exposes animator shell constants", () => {
-  assert.equal(PDGVIEW_LIBRARY_STORAGE_KEY, "architrino.animator.library.v1");
-  assert.equal(PDGVIEW_MEDIA_ASSET_DIRECTORIES.image, "content/assets/animator/images/");
-  assert.deepEqual(PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS.video, ["mp4", "mov"]);
-  assert.deepEqual(DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX, { x: 160, y: 140 });
+  assert.equal(ANIMATOR_LIBRARY_STORAGE_KEY, "architrino.animator.library.v1");
+  assert.equal(ANIMATOR_MEDIA_ASSET_DIRECTORIES.image, "content/assets/animator/images/");
+  assert.deepEqual(ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS.video, ["mp4", "mov"]);
+  assert.deepEqual(DEFAULT_ANIMATOR_ROOT_LAYOUT_MARGIN_PX, { x: 160, y: 140 });
 });
