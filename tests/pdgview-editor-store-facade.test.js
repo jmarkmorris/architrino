@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { createPdgviewEditorStore } from "../src/runtime/PdgviewStoreRuntime.js";
-import { createPdgviewEditorStoreFacade } from "../src/apps/pdgview/PdgviewEditorStoreFacadeRuntime.js";
+import { createPdgviewEditorStoreFacade } from "../src/apps/animator/PdgviewEditorStoreFacadeRuntime.js";
 
 test("pdgview editor store facade exposes the pdgview-specific store operations", () => {
   const editorStore = createPdgviewEditorStore({

@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {
   createPdgviewAppRuntime,
   createPdgviewAppStore,
-} from "../src/apps/pdgview/PdgviewAppModeRuntime.js";
+} from "../src/apps/animator/PdgviewAppModeRuntime.js";
 
 test("pdgview app store provides panel map, palette, editor store, and path state", () => {
   const store = createPdgviewAppStore({
@@ -40,7 +40,7 @@ test("pdgview app runtime wires pdgview ui and controls through the app layer", 
       pdgviewSceneId: "pdgview",
       pdgviewPreviewSceneId: "pdgview_preview",
       pdgviewPreviewScenePath: "__pdgview_preview__",
-      pdgviewDocsPath: "pdgview.md",
+      pdgviewDocsPath: "reference/priorities/animator/animator.md",
       levelConfigs: {},
       levels: new Map(),
       initPdgviewCanvas() {},

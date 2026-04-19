@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createPdgviewTimelineOverlayRuntime } from "../src/apps/pdgview/PdgviewTimelineOverlayRuntime.js";
+import { createPdgviewTimelineOverlayRuntime } from "../src/apps/animator/PdgviewTimelineOverlayRuntime.js";
 
 function createClassListRecorder() {
   const values = new Map();

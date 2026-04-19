@@ -7,7 +7,7 @@ import {
   createDefaultPdgviewAssemblyDraft,
   sanitizePdgviewEntityId,
   sanitizePdgviewId,
-} from "../src/apps/pdgview/PdgviewDraftScaffoldRuntime.js";
+} from "../src/apps/animator/PdgviewDraftScaffoldRuntime.js";
 
 test("pdgview draft scaffold sanitizes scene and entity ids", () => {
   assert.equal(sanitizePdgviewId(" My Scene! "), "my_scene");

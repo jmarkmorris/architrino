@@ -276,43 +276,29 @@ class PdgfeedCliTests(unittest.TestCase):
 
             self.assertEqual(output_path, tmp_dir / "pdgfeed.summary.pdg_reactions.md")
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 4)
+            self.assertEqual(len(content), 3)
             headers, rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(headers, ["Metric", "Count"])
             self.assertEqual(
                 rows,
                 [
                     {"Metric": "Number of total PDG reactions", "Count": "5"},
-                    {"Metric": "Number of incomplete PDG reactions", "Count": "0"},
-                    {"Metric": "Number of AAAcomplete reactions", "Count": "0"},
-                    {"Metric": "Number of backlog reactions", "Count": "0"},
-                    {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "5"},
-                    {"Metric": "Number of reactions excluded from app (<20.0% branching probability)", "Count": "1"},
-                    {"Metric": "Number of reactions excluded from app (no branching probability specified)", "Count": "0"},
-                    {"Metric": "Number of reactions closed by total primitive balance", "Count": "5"},
-                    {"Metric": "Number of total-balance closures with product unbound architrinos", "Count": "3"},
-                    {"Metric": "Number of total-balance closures without product unbound architrinos", "Count": "2"},
-                    {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"},
-                    {"Metric": "Number of reactions ready", "Count": "5"},
-                    {"Metric": "Number of reactions blocked", "Count": "0"},
+                    {"Metric": "Number of reactions excluded as incomplete or without numeric branching probability", "Count": "0"},
+                    {"Metric": "Number of reactions excluded below 20.0% branching probability", "Count": "1"},
+                    {"Metric": "Number of reactions remaining to solve with AAA", "Count": "4"},
                 ],
             )
-            probability_headers, probability_rows = self.parse_markdown_table(content[1].splitlines())
-            self.assertEqual(probability_headers, ["Branching Probability Decile (%)", "Count"])
+            breakdown_headers, breakdown_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(breakdown_headers, ["Metric", "Count"])
             self.assertEqual(
-                probability_rows,
+                breakdown_rows,
                 [
-                    {"Branching Probability Decile (%)": "90-100", "Count": "1"},
-                    {"Branching Probability Decile (%)": "80-90", "Count": "1"},
-                    {"Branching Probability Decile (%)": "70-80", "Count": "1"},
-                    {"Branching Probability Decile (%)": "60-70", "Count": "1"},
-                    {"Branching Probability Decile (%)": "50-60", "Count": "0"},
-                    {"Branching Probability Decile (%)": "40-50", "Count": "0"},
-                    {"Branching Probability Decile (%)": "30-40", "Count": "0"},
-                    {"Branching Probability Decile (%)": "20-30", "Count": "0"},
-                    {"Branching Probability Decile (%)": "10-20", "Count": "0"},
-                    {"Branching Probability Decile (%)": "0-10", "Count": "1"},
-                    {"Branching Probability Decile (%)": "No numeric value", "Count": "0"},
+                    {"Metric": "Number of remaining reactions ready and transformed into AAA", "Count": "4"},
+                    {"Metric": "Number of remaining reactions blocked by AAA backlog", "Count": "0"},
+                    {"Metric": "Number of remaining ready reactions closed by total primitive balance", "Count": "4"},
+                    {"Metric": "Number of remaining closures with product unbound architrinos", "Count": "2"},
+                    {"Metric": "Number of remaining closures without product unbound architrinos", "Count": "2"},
+                    {"Metric": "Number of remaining ready reactions lacking total primitive balance", "Count": "0"},
                 ],
             )
             residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
@@ -324,53 +310,19 @@ class PdgfeedCliTests(unittest.TestCase):
                 residue_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
+                        "Reaction Set": "AAA-eligible ready total-balance closures",
                         "Product Unbound Architrino Counts": "0:0",
                         "Count": "2",
                         "Example Mode": "mu- decay mode 1",
                     },
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
+                        "Reaction Set": "AAA-eligible ready total-balance closures",
                         "Product Unbound Architrino Counts": "2:2",
                         "Count": "1",
                         "Example Mode": "pi+ decay mode 1",
                     },
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
-                        "Product Unbound Architrino Counts": "18:18",
-                        "Count": "1",
-                        "Example Mode": "pi0 decay mode 1",
-                    },
-                ],
-            )
-            all_residue_headers, all_residue_rows = self.parse_markdown_table(content[3].splitlines())
-            self.assertEqual(
-                all_residue_headers,
-                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
-            )
-            self.assertEqual(
-                all_residue_rows,
-                [
-                    {
-                        "Reaction Set": "All ready total-balance closures",
-                        "Product Unbound Architrino Counts": "0:0",
-                        "Count": "2",
-                        "Example Mode": "mu- decay mode 1",
-                    },
-                    {
-                        "Reaction Set": "All ready total-balance closures",
-                        "Product Unbound Architrino Counts": "2:2",
-                        "Count": "1",
-                        "Example Mode": "pi+ decay mode 1",
-                    },
-                    {
-                        "Reaction Set": "All ready total-balance closures",
-                        "Product Unbound Architrino Counts": "12:12",
-                        "Count": "1",
-                        "Example Mode": "pi0 decay mode 2",
-                    },
-                    {
-                        "Reaction Set": "All ready total-balance closures",
+                        "Reaction Set": "AAA-eligible ready total-balance closures",
                         "Product Unbound Architrino Counts": "18:18",
                         "Count": "1",
                         "Example Mode": "pi0 decay mode 1",
@@ -405,48 +357,32 @@ class PdgfeedCliTests(unittest.TestCase):
                 output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
 
             content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
-            self.assertEqual(len(content), 4)
+            self.assertEqual(len(content), 3)
             metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
             self.assertEqual(metric_headers, ["Metric", "Count"])
-            self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
-            self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "0"})
-            self.assertEqual(metric_rows[4], {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "1"})
             self.assertEqual(
-                metric_rows[5],
-                {"Metric": "Number of reactions excluded from app (<20.0% branching probability)", "Count": "0"},
+                metric_rows[1],
+                {"Metric": "Number of reactions excluded as incomplete or without numeric branching probability", "Count": "0"},
             )
             self.assertEqual(
-                metric_rows[6],
-                {"Metric": "Number of reactions excluded from app (no branching probability specified)", "Count": "0"},
-            )
-            self.assertEqual(metric_rows[7], {"Metric": "Number of reactions closed by total primitive balance", "Count": "1"})
-            self.assertEqual(
-                metric_rows[8],
-                {"Metric": "Number of total-balance closures with product unbound architrinos", "Count": "1"},
+                metric_rows[2],
+                {"Metric": "Number of reactions excluded below 20.0% branching probability", "Count": "0"},
             )
             self.assertEqual(
-                metric_rows[9],
-                {"Metric": "Number of total-balance closures without product unbound architrinos", "Count": "0"},
+                metric_rows[3],
+                {"Metric": "Number of reactions remaining to solve with AAA", "Count": "1"},
             )
-            self.assertEqual(metric_rows[10], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
-            self.assertEqual(metric_rows[11], {"Metric": "Number of reactions ready", "Count": "1"})
-            self.assertEqual(metric_rows[12], {"Metric": "Number of reactions blocked", "Count": "0"})
-            probability_headers, probability_rows = self.parse_markdown_table(content[1].splitlines())
-            self.assertEqual(probability_headers, ["Branching Probability Decile (%)", "Count"])
+            breakdown_headers, breakdown_rows = self.parse_markdown_table(content[1].splitlines())
+            self.assertEqual(breakdown_headers, ["Metric", "Count"])
             self.assertEqual(
-                probability_rows,
+                breakdown_rows,
                 [
-                    {"Branching Probability Decile (%)": "90-100", "Count": "1"},
-                    {"Branching Probability Decile (%)": "80-90", "Count": "0"},
-                    {"Branching Probability Decile (%)": "70-80", "Count": "0"},
-                    {"Branching Probability Decile (%)": "60-70", "Count": "0"},
-                    {"Branching Probability Decile (%)": "50-60", "Count": "0"},
-                    {"Branching Probability Decile (%)": "40-50", "Count": "0"},
-                    {"Branching Probability Decile (%)": "30-40", "Count": "0"},
-                    {"Branching Probability Decile (%)": "20-30", "Count": "0"},
-                    {"Branching Probability Decile (%)": "10-20", "Count": "0"},
-                    {"Branching Probability Decile (%)": "0-10", "Count": "0"},
-                    {"Branching Probability Decile (%)": "No numeric value", "Count": "0"},
+                    {"Metric": "Number of remaining reactions ready and transformed into AAA", "Count": "1"},
+                    {"Metric": "Number of remaining reactions blocked by AAA backlog", "Count": "0"},
+                    {"Metric": "Number of remaining ready reactions closed by total primitive balance", "Count": "1"},
+                    {"Metric": "Number of remaining closures with product unbound architrinos", "Count": "1"},
+                    {"Metric": "Number of remaining closures without product unbound architrinos", "Count": "0"},
+                    {"Metric": "Number of remaining ready reactions lacking total primitive balance", "Count": "0"},
                 ],
             )
             residue_headers, residue_rows = self.parse_markdown_table(content[2].splitlines())
@@ -458,23 +394,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 residue_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
-                        "Product Unbound Architrino Counts": "1:1",
-                        "Count": "1",
-                        "Example Mode": "B+ decay mode 1",
-                    },
-                ],
-            )
-            all_residue_headers, all_residue_rows = self.parse_markdown_table(content[3].splitlines())
-            self.assertEqual(
-                all_residue_headers,
-                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
-            )
-            self.assertEqual(
-                all_residue_rows,
-                [
-                    {
-                        "Reaction Set": "All ready total-balance closures",
+                        "Reaction Set": "AAA-eligible ready total-balance closures",
                         "Product Unbound Architrino Counts": "1:1",
                         "Count": "1",
                         "Example Mode": "B+ decay mode 1",
@@ -537,33 +457,81 @@ class PdgfeedCliTests(unittest.TestCase):
                 threshold_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
+                        "Reaction Set": "AAA-eligible ready total-balance closures",
                         "Product Unbound Architrino Counts": "2:2",
                         "Count": "1",
                         "Example Mode": "pi+ decay mode 1",
                     }
                 ],
             )
-            all_headers, all_rows = self.parse_markdown_table(content[3].splitlines())
+            breakdown_headers, breakdown_rows = self.parse_markdown_table(content[1].splitlines())
             self.assertEqual(
-                all_headers,
-                ["Reaction Set", "Product Unbound Architrino Counts", "Count", "Example Mode"],
+                breakdown_headers,
+                ["Metric", "Count"],
             )
             self.assertEqual(
-                all_rows,
+                breakdown_rows,
                 [
-                    {
-                        "Reaction Set": "All ready total-balance closures",
-                        "Product Unbound Architrino Counts": "0:0",
-                        "Count": "1",
-                        "Example Mode": "mu- decay mode 1",
-                    },
-                    {
-                        "Reaction Set": "All ready total-balance closures",
-                        "Product Unbound Architrino Counts": "2:2",
-                        "Count": "1",
-                        "Example Mode": "pi+ decay mode 1",
-                    },
+                    {"Metric": "Number of remaining reactions ready and transformed into AAA", "Count": "1"},
+                    {"Metric": "Number of remaining reactions blocked by AAA backlog", "Count": "0"},
+                    {"Metric": "Number of remaining ready reactions closed by total primitive balance", "Count": "1"},
+                    {"Metric": "Number of remaining closures with product unbound architrinos", "Count": "1"},
+                    {"Metric": "Number of remaining closures without product unbound architrinos", "Count": "0"},
+                    {"Metric": "Number of remaining ready reactions lacking total primitive balance", "Count": "0"},
+                ],
+            )
+
+    def test_summary_report_treats_missing_branching_probability_as_incomplete_funnel_exclusion(self):
+        api = FakeApi(
+            [
+                FakeParticle(
+                    "mu-",
+                    [
+                        FakeDecay(
+                            "TEST.MU.NOBF",
+                            "mu- -> e- nubar_e nu_mu",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("nubar_e"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                            value=None,
+                        ),
+                        FakeDecay(
+                            "TEST.MU.HIGH",
+                            "mu- -> e- nubar_e nu_mu",
+                            [
+                                FakeDecayProduct("e-"),
+                                FakeDecayProduct("nubar_e"),
+                                FakeDecayProduct("nu_mu"),
+                            ],
+                            mode_number=2,
+                            value=0.95,
+                        ),
+                    ],
+                    mcid=13,
+                ),
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            tmp_dir = Path(tmp_dir_name)
+            with (
+                patch.object(pdgfeed_runtime, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_live, "connect_pdg", return_value=api),
+                patch.object(pdgfeed_runtime, "DEFAULT_TMP_DIR", tmp_dir),
+            ):
+                output_path = pdgfeed.write_live_reaction_summary_report("pdg-reactions")
+
+            content = output_path.read_text(encoding="utf-8").strip().split("\n\n")
+            metric_headers, metric_rows = self.parse_markdown_table(content[0].splitlines())
+            self.assertEqual(metric_headers, ["Metric", "Count"])
+            self.assertEqual(
+                metric_rows,
+                [
+                    {"Metric": "Number of total PDG reactions", "Count": "2"},
+                    {"Metric": "Number of reactions excluded as incomplete or without numeric branching probability", "Count": "1"},
+                    {"Metric": "Number of reactions excluded below 20.0% branching probability", "Count": "0"},
+                    {"Metric": "Number of reactions remaining to solve with AAA", "Count": "1"},
                 ],
             )
 

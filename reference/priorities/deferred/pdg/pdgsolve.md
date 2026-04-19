@@ -4,8 +4,8 @@
 
 - Keep this document focused on `pdgsolve` as the Python solve, acceptance, and publication boundary upstream of `pdgedit`.
 - Keep `Design` about durable request normalization, solver boundaries, assemblies, operators, acceptance locking, publication-graph construction, and JSON contracts.
-- Keep `Priorities` ordered as the active work queue.
-- Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](./pdgfeed.md) matters.
+- Treat this as a deferred reference note, not an active work queue.
+- Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](pdgfeed.md) matters.
 
 ## Purpose
 
@@ -13,7 +13,7 @@
 
 It owns:
 
-- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
+- intake of explicit solve requests from upstream sources such as [pdgfeed](pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a `pdgsolve`-owned solve problem expressed only in explicit admitted assemblies;
 - deterministic exact-family construction and no-exact fallback emission for the current vertical slice;
 - deterministic scoring, diagnostics, and review-state emission;
@@ -23,18 +23,18 @@ It owns:
 
 It does not own:
 
-- PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
-- free-form pdgedit authoring behavior that belongs in [pdgedit](./pdgedit.md);
-- or downstream viewer staging behavior that belongs in `pdgview`.
+- PDG data access and normalization logic that belongs in [pdgfeed](pdgfeed.md);
+- free-form pdgedit authoring behavior that belongs in [pdgedit](pdgedit.md);
+- or downstream scene-staging behavior that belongs outside `pdgsolve`.
 
-## Current State
+## Deferred State
 
-- The active implementation boundary is still one Python file, `scripts/pdg/pdgsolve.py`.
-- The current CLI owns four concrete flows: `solve`, `accept`, `publish`, and `solve-manifest`.
-- `solve` normalizes `pdgsolve-request/v1` into `pdgsolve-problem/v1`, emits `pdgsolve-result/v1`, and currently returns either one publication-ready exact family or one deterministic no-exact-closure family.
-- `accept` locks one exact publication-ready family into `pdgsolve-acceptance/v1`.
-- `publish` turns one acceptance record into a final `pdgedit/v1` document through the layout-neutral `pdgsolve-publication-graph/v2` seam carried inside the acceptance.
-- `solve-manifest` solves every ready request in a live manifest, writes a `pdgsolve-result-corpus/v1` index, and optionally publishes exact and review `pdgedit` documents plus a `pdgedit-library-manifest/v1`.
+- When work paused, the implementation boundary remained centered on `scripts/pdg/pdgsolve.py`.
+- The stable CLI flows were `solve`, `accept`, `publish`, and `solve-manifest`.
+- `solve` normalized `pdgsolve-request/v1` into `pdgsolve-problem/v1` and emitted `pdgsolve-result/v1`.
+- `accept` locked one exact family into `pdgsolve-acceptance/v1`.
+- `publish` emitted final `pdgedit/v1` documents through the layout-neutral `pdgsolve-publication-graph/v2` seam.
+- `solve-manifest` evaluated ready requests in bulk and could publish exact or review `pdgedit` documents plus a `pdgedit-library-manifest/v1`.
 
 ## Design
 
@@ -851,7 +851,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
 | `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
-Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](./pdgfeed.md), not in `pdgsolve`.
+Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](pdgfeed.md), not in `pdgsolve`.
 
 `pdgsolve` should keep only assembly-native solve regressions plus boundary rejection coverage for direct developer-loaded inputs.
 
@@ -862,7 +862,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 #### Source Inventory
 
 - canonical test-case requests;
-- PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
+- PDG-backed requests emitted by [pdgfeed](pdgfeed.md);
 - and direct load of explicit request JSON by a developer.
 
 #### Raw Request Contract: `pdgsolve-request/v1`
@@ -876,7 +876,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 
 #### Example `pdgfeed` Requests
 
-The following frozen JSON blocks show the handoff shape that `pdgsolve` should accept from [pdgfeed](./pdgfeed.md). The neutron beta examples remain the clearest boundary reference because they show how composite neutron and proton terms are expanded into explicit request-side assemblies before solve.
+The following frozen JSON blocks show the handoff shape that `pdgsolve` should accept from [pdgfeed](pdgfeed.md). The neutron beta examples remain the clearest boundary reference because they show how composite neutron and proton terms are expanded into explicit request-side assemblies before solve.
 
 ##### Free neutron beta decay from a local PDG test case
 
@@ -1158,36 +1158,23 @@ When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred
 - do not duplicate PDG normalization logic locally;
 - and keep pdgedit layout derivation downstream of the layout-neutral publication graph rather than inside solve laws.
 
-### Neighboring Components, Each with Related Priorities
+### Neighboring Components
 
-- [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
+- [pdgfeed](pdgfeed.md) owns upstream PDG normalization and request emission.
 - [pdgapps](pdgapps.md) owns the cross-boundary modularity rules that still apply where relevant.
 
-## Priorities
+## Deferred Notes
 
-The boundary, CLI, acceptance seam, and publication contracts above are now baseline assumptions rather than active queue items.
+The solver boundary, CLI flows, acceptance seam, and publication contracts above are the baseline reference.
 
-### 1. Expand Solver Coverage Against The Ready Corpus
+Work intentionally left open at deferral time included:
 
-Status: `active`
+- broader admitted-assembly and law-table coverage across the ready corpus;
+- repeated corpus evaluation after alphabet or law changes;
+- and any deeper law-table expansion beyond the explicit v1 assembly-native slice.
 
-Current:
+If work resumes:
 
-- the local ready-corpus baseline is `1354` solved requests, with `16` `exact_available`, `0` `partialOnly`, and `1338` `no_exact_closure`;
-- the dominant blocking diagnostic is `pdgsolve.request.unsupported_assembly`, which means most failures still occur at the admitted-assembly boundary rather than deep inside the constructive mapper;
-- the most common unsupported assemblies in the current corpus are `anti_up_quark_I`, `anti_down_quark_I`, `pro_strange_quark_II`, `anti_strange_quark_II`, `pro_charm_quark_II`, `anti_charm_quark_II`, `pro_bottom_quark_III`, `anti_bottom_quark_III`, `pro_tau_III`, `anti_tau_III`, `pro_tau_neutrino_III`, and `anti_tau_neutrino_III`;
-- and the current code already carries residue-count rules for many of those assemblies, so the main gap is alignment between the admitted assembly alphabet and the executable law inventory.
-
-Objective:
-
-- align the admitted assembly alphabet, request acceptance surface, and executable law inventory so the ready corpus can actually enter the deterministic solver;
-- rerun corpus evaluation after each admitted-surface expansion and track exact count, no-exact count, and dominant blocking diagnostics;
-- extend law-table coverage only in explicit assembly-native form, without reintroducing composite terms or hand-authored per-channel solved reactions;
-- and, after alphabet alignment, determine whether the current Noether-core ladder needs broader lawful opening rules to improve exact closure.
-
-Active work queue:
-
-1. Expand the admitted request/product alphabet to include the unsupported assemblies already implied by the current Standard Model law inventory.
-2. Keep `ASSEMBLY_DISPLAY`, request-side admission sets, and the dissociate/associate law inventory synchronized so admitted assemblies are also solver-legal.
-3. Rerun `solve-manifest` on the ready corpus after each admitted-surface expansion and record exact count, no-exact count, and dominant diagnostics.
-4. If exact coverage remains low after admitted-alphabet alignment, revise the explicit law table, starting with the Noether-core ladder and related opening rules, rather than adding channel-specific solves.
+- verify the admitted assembly alphabet, request admission sets, and executable law inventory stay synchronized;
+- rerun corpus evaluation before widening the law surface;
+- and keep all expansions assembly-native and contract-first rather than adding channel-specific special cases.

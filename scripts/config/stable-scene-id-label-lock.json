@@ -76,18 +76,6 @@
         "information_computation": "Information / Computation"
       }
     },
-    "content/scenes/archie/pdgview.json": {
-      "sceneId": "pdgview",
-      "sceneName": "pdgview",
-      "objects": {
-        "pdgview_export": "Export / Validate",
-        "pdgview_interactions": "Interactions",
-        "pdgview_orbit": "Orbit Editor",
-        "pdgview_path": "Path Editor",
-        "pdgview_preview": "Preview",
-        "pdgview_tree": "Scene Tree"
-      }
-    },
     "content/scenes/archie/archie.json": {
       "sceneId": "archie",
       "sceneName": "Archie",

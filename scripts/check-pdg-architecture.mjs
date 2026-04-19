@@ -14,6 +14,15 @@ function repoFileExists(relativePath) {
   return fs.existsSync(path.resolve(repoRoot, relativePath));
 }
 
+function resolveFirstExistingRepoPath(candidatePaths = []) {
+  for (const relativePath of candidatePaths) {
+    if (repoFileExists(relativePath)) {
+      return relativePath;
+    }
+  }
+  return null;
+}
+
 function getLineNumber(source, searchValue) {
   const offset = source.indexOf(searchValue);
   if (offset < 0) {
@@ -25,19 +34,19 @@ function getLineNumber(source, searchValue) {
 export function auditPdgArchitecture() {
   const issues = [];
 
-  const requiredStandaloneEntrypoints = [
+  const archivedStandaloneEntrypoints = [
     ["pdgedit", "./pdgedit.html"],
     ["pdgview", "./pdgview.html"],
   ];
-  requiredStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
+  archivedStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
     const actualPath = getStandaloneAppPathForScene(sceneId);
-    if (actualPath !== expectedPath) {
+    if (actualPath !== null) {
       issues.push(
-        `Standalone launcher route '${sceneId}' resolved to '${actualPath ?? "null"}' instead of '${expectedPath}'.`
+        `Main webapp launcher still exposes archived PDG route '${sceneId}' as '${actualPath}'.`
       );
     }
     if (!repoFileExists(expectedPath.slice(2))) {
-      issues.push(`Expected standalone entrypoint '${expectedPath}' does not exist.`);
+      issues.push(`Expected archived standalone entrypoint '${expectedPath}' does not exist.`);
     }
   });
 
@@ -57,9 +66,15 @@ export function auditPdgArchitecture() {
   });
 
   const docsToAudit = [
-    "reference/priorities/pdg/pdg.md",
-    "reference/priorities/pdg/pdgapps.md",
-  ];
+    resolveFirstExistingRepoPath([
+      "reference/priorities/deferred/pdg/pdg.md",
+      "reference/priorities/pdg/pdg.md",
+    ]),
+    resolveFirstExistingRepoPath([
+      "reference/priorities/deferred/pdg/pdgapps.md",
+      "reference/priorities/pdg/pdgapps.md",
+    ]),
+  ].filter(Boolean);
   const forbiddenDocSnippets = [
     {
       text: "`pdgsolve.html`",
@@ -86,6 +101,14 @@ export function auditPdgArchitecture() {
       message: "Docs still claim pdgsolve has a standalone HTML entrypoint.",
     },
     {
+      text: "active standalone app entrypoints in the main web surface",
+      message: "Docs still describe archived PDG entrypoints as part of the main web surface.",
+    },
+    {
+      text: "standalone launch routing now exists for `pdgview` and `pdgedit`",
+      message: "Docs still claim the main launcher routes archived PDG apps.",
+    },
+    {
       text: "yes: pdgsolve is the solve-and-review surface.",
       message: "Docs still describe pdgsolve as a visual surface.",
     },
@@ -94,6 +117,9 @@ export function auditPdgArchitecture() {
       message: "Docs still instruct operators to launch pdgsolve as a UI.",
     },
   ];
+  if (docsToAudit.length !== 2) {
+    issues.push("PDG architecture docs could not be found at the expected priority paths.");
+  }
   docsToAudit.forEach((relativePath) => {
     const source = readRepoFile(relativePath);
     forbiddenDocSnippets.forEach(({ text, message }) => {

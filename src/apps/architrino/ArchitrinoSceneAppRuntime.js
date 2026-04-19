@@ -105,20 +105,20 @@ import {
   getPdgviewInitialScenePath,
   isStandalonePdgviewAppMode,
   navigateStandalonePdgviewHome,
-} from "../pdgview/PdgviewAppModeRuntime.js";
+} from "../animator/PdgviewAppModeRuntime.js";
 import {
   PDGVIEW_MEDIA_ASSET_DIRECTORIES as pdgviewMediaAssetDirectories,
   PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS as pdgviewSupportedMediaExtensions,
   DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX as defaultRootLayoutMarginPx,
   getPdgviewDomElements,
-} from "../pdgview/PdgviewDomRuntime.js";
+} from "../animator/PdgviewDomRuntime.js";
 import {
   createPdgviewDefaultCoreSpec,
   createPdgviewDefaultPathPoints,
   createDefaultPdgviewAssemblyDraft,
   sanitizePdgviewEntityId,
   sanitizePdgviewId,
-} from "../pdgview/PdgviewDraftScaffoldRuntime.js";
+} from "../animator/PdgviewDraftScaffoldRuntime.js";
 import {
   formatPdgviewMemberList,
   formatPdgviewSubassemblyList,
@@ -133,7 +133,7 @@ import {
   parsePdgviewMemberEntry,
   prunePdgviewSubassemblyList,
   roundPdgviewTriplet,
-} from "../pdgview/PdgviewAssemblyListRuntime.js";
+} from "../animator/PdgviewAssemblyListRuntime.js";
 import {
   createPdgviewGenIFermionPersonalityMembers,
   createPdgviewPersonalityMembers,
@@ -143,24 +143,24 @@ import {
   getPdgviewBuiltInPersonalityStates,
   getPdgviewGraphicDefaultOffset,
   sanitizePdgviewGraphicTarget,
-} from "../pdgview/PdgviewAuthoringHelpersRuntime.js";
-import { createPdgviewAssemblyAuthoringRuntime } from "../pdgview/PdgviewAssemblyAuthoringRuntime.js";
-import { createPdgviewAssemblyInspectorRuntime } from "../pdgview/PdgviewAssemblyInspectorRuntime.js";
-import { createPdgviewAssemblyLabelRuntime } from "../pdgview/PdgviewAssemblyLabelRuntime.js";
-import { createPdgviewAuthoringStateRuntime } from "../pdgview/PdgviewAuthoringStateRuntime.js";
-import { createPdgviewCanvasBootstrapRuntime } from "../pdgview/PdgviewCanvasBootstrapRuntime.js";
-import { createPdgviewCameraPathRuntime } from "../pdgview/PdgviewCameraPathRuntime.js";
-import { createPdgviewDraftStateRuntime } from "../pdgview/PdgviewDraftStateRuntime.js";
-import { createPdgviewPlaybackTimelineRuntime } from "../pdgview/PdgviewPlaybackTimelineRuntime.js";
-import { createPdgviewPointerHitRuntime } from "../pdgview/PdgviewPointerHitRuntime.js";
-import { createPdgviewPointerInteractionRuntime } from "../pdgview/PdgviewPointerInteractionRuntime.js";
-import { createPdgviewRenderAssetsRuntime } from "../pdgview/PdgviewRenderAssetsRuntime.js";
-import { createPdgviewStructureGeometryRuntime } from "../pdgview/PdgviewStructureGeometryRuntime.js";
-import { createPdgviewTimelineOverlayRuntime } from "../pdgview/PdgviewTimelineOverlayRuntime.js";
-import { createPdgviewDocumentWorkspaceRuntime } from "../pdgview/PdgviewDocumentWorkspaceRuntime.js";
-import { createPdgviewViewportDisplayRuntime } from "../pdgview/PdgviewViewportDisplayRuntime.js";
-import { createPdgviewViewportOverlayPillRuntime } from "../pdgview/PdgviewViewportOverlayPillRuntime.js";
-import { createPdgviewViewportRenderRuntime } from "../pdgview/PdgviewViewportRenderRuntime.js";
+} from "../animator/PdgviewAuthoringHelpersRuntime.js";
+import { createPdgviewAssemblyAuthoringRuntime } from "../animator/PdgviewAssemblyAuthoringRuntime.js";
+import { createPdgviewAssemblyInspectorRuntime } from "../animator/PdgviewAssemblyInspectorRuntime.js";
+import { createPdgviewAssemblyLabelRuntime } from "../animator/PdgviewAssemblyLabelRuntime.js";
+import { createPdgviewAuthoringStateRuntime } from "../animator/PdgviewAuthoringStateRuntime.js";
+import { createPdgviewCanvasBootstrapRuntime } from "../animator/PdgviewCanvasBootstrapRuntime.js";
+import { createPdgviewCameraPathRuntime } from "../animator/PdgviewCameraPathRuntime.js";
+import { createPdgviewDraftStateRuntime } from "../animator/PdgviewDraftStateRuntime.js";
+import { createPdgviewPlaybackTimelineRuntime } from "../animator/PdgviewPlaybackTimelineRuntime.js";
+import { createPdgviewPointerHitRuntime } from "../animator/PdgviewPointerHitRuntime.js";
+import { createPdgviewPointerInteractionRuntime } from "../animator/PdgviewPointerInteractionRuntime.js";
+import { createPdgviewRenderAssetsRuntime } from "../animator/PdgviewRenderAssetsRuntime.js";
+import { createPdgviewStructureGeometryRuntime } from "../animator/PdgviewStructureGeometryRuntime.js";
+import { createPdgviewTimelineOverlayRuntime } from "../animator/PdgviewTimelineOverlayRuntime.js";
+import { createPdgviewDocumentWorkspaceRuntime } from "../animator/PdgviewDocumentWorkspaceRuntime.js";
+import { createPdgviewViewportDisplayRuntime } from "../animator/PdgviewViewportDisplayRuntime.js";
+import { createPdgviewViewportOverlayPillRuntime } from "../animator/PdgviewViewportOverlayPillRuntime.js";
+import { createPdgviewViewportRenderRuntime } from "../animator/PdgviewViewportRenderRuntime.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
@@ -3964,7 +3964,7 @@ const pdgviewSceneId = "pdgview";
 const pdgviewPreviewSceneId = "pdgview_preview";
 const pdgviewPreviewScenePath = "__pdgview_preview__";
 const pdgviewDocsPath =
-  "reference/priorities/pdg/pdgview.md";
+  "reference/priorities/animator/animator.md";
 const appMode = getPdgviewAppMode(globalThis.window);
 const isStandalonePdgviewApp = isStandalonePdgviewAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_PDGVIEW_NAVIGATOR_HREF;

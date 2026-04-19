@@ -6,11 +6,18 @@ import {
   createDevServerHttpCacheHeaders,
   isFreshDevServerHttpCacheRequest,
 } from "./DevServerHttpCache.mjs";
+import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
 const PORT = Number.parseInt(process.env.PORT ?? "5173", 10);
 const HOST = process.env.HOST ?? "127.0.0.1";
+const pdgLiveArtifactRuntime = createPdgLiveArtifactRuntime({
+  repoRootPath: REPO_ROOT,
+  log(message) {
+    process.stdout.write(`${String(message).trim()}\n`);
+  },
+});
 
 const MIME_TYPES = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -79,21 +86,24 @@ function serveFile(request, response) {
 
 const server = createServer(async (request, response) => {
   try {
+    await pdgLiveArtifactRuntime.ensureFreshForRequest(request.url);
     serveFile(request, response);
-  } catch (_error) {
+  } catch (error) {
     response.writeHead(500, {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
     });
-    response.end("Internal server error");
+    response.end(String(error?.message || "Internal server error"));
   }
 });
 
 server.listen(PORT, HOST, () => {
   process.stdout.write(`local dev server: http://${HOST}:${PORT}/\n`);
 });
+pdgLiveArtifactRuntime.start();
 
 function shutdown(exitCode = 0) {
+  pdgLiveArtifactRuntime.close();
   server.close(() => {
     process.exit(exitCode);
   });

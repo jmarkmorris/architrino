@@ -7,7 +7,7 @@ import {
   PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS,
   DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX,
   getPdgviewDomElements,
-} from "../src/apps/pdgview/PdgviewDomRuntime.js";
+} from "../src/apps/animator/PdgviewDomRuntime.js";
 
 test("pdgview dom runtime collects pdgview shell elements and bindings", () => {
   const elementMap = new Map();

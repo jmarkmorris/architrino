@@ -10,6 +10,12 @@ node scripts/dev/start-local-dev.mjs
 
 Then open `http://localhost:5173/`.
 
+The local dev server now treats the live PDG reports and `pdgedit` reaction
+artifacts as generated outputs. When files under `scripts/pdg/`, `pdgfeed.py`,
+`pdgsolve.py`, or `src/apps/pdgedit/` change, it clears the old live
+`.tmp/pdgsolve` tree and regenerates the PDG report/tool artifacts before
+serving those paths again.
+
 ## Controls
 - Click/tap a sphere to descend into its contents.
 - Pinch in/out to zoom (trackpad pinch supported).
