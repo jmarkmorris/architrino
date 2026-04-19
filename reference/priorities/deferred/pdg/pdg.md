@@ -32,10 +32,10 @@ This document is no longer an active backlog. It is the compact orientation note
 
 ## Directory Guide
 
-- [pdgapps](./pdgapps.md) — cross-app and cross-boundary architecture rules for the deferred PDG workstream.
-- [pdgfeed](./pdgfeed.md) — upstream PDG ingest, normalization, and request-boundary reference.
-- [pdgsolve](./pdgsolve.md) — solve, acceptance, and publication-boundary reference.
-- [pdgedit](./pdgedit.md) — final authored-surface document and editor reference.
+- [pdgapps](pdgapps.md) — cross-app and cross-boundary architecture rules for the deferred PDG workstream.
+- [pdgfeed](pdgfeed.md) — upstream PDG ingest, normalization, and request-boundary reference.
+- [pdgsolve](pdgsolve.md) — solve, acceptance, and publication-boundary reference.
+- [pdgedit](pdgedit.md) — final authored-surface document and editor reference.
 
 ## Deferred State
 

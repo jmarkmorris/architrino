@@ -14,6 +14,15 @@ function repoFileExists(relativePath) {
   return fs.existsSync(path.resolve(repoRoot, relativePath));
 }
 
+function resolveFirstExistingRepoPath(candidatePaths = []) {
+  for (const relativePath of candidatePaths) {
+    if (repoFileExists(relativePath)) {
+      return relativePath;
+    }
+  }
+  return null;
+}
+
 function getLineNumber(source, searchValue) {
   const offset = source.indexOf(searchValue);
   if (offset < 0) {
@@ -57,9 +66,15 @@ export function auditPdgArchitecture() {
   });
 
   const docsToAudit = [
-    "reference/priorities/pdg/pdg.md",
-    "reference/priorities/pdg/pdgapps.md",
-  ];
+    resolveFirstExistingRepoPath([
+      "reference/priorities/deferred/pdg/pdg.md",
+      "reference/priorities/pdg/pdg.md",
+    ]),
+    resolveFirstExistingRepoPath([
+      "reference/priorities/deferred/pdg/pdgapps.md",
+      "reference/priorities/pdg/pdgapps.md",
+    ]),
+  ].filter(Boolean);
   const forbiddenDocSnippets = [
     {
       text: "`pdgsolve.html`",
@@ -102,6 +117,9 @@ export function auditPdgArchitecture() {
       message: "Docs still instruct operators to launch pdgsolve as a UI.",
     },
   ];
+  if (docsToAudit.length !== 2) {
+    issues.push("PDG architecture docs could not be found at the expected priority paths.");
+  }
   docsToAudit.forEach((relativePath) => {
     const source = readRepoFile(relativePath);
     forbiddenDocSnippets.forEach(({ text, message }) => {

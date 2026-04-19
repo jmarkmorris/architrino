@@ -1658,7 +1658,7 @@ For solver publications that target pdgedit:
 - pdgedit owns the final `pdgedit/v1` object grammar consumed by the renderer and editor;
 - pdgedit owns the fixed surface grid, visible placement rules, adjacent-column link rule, and other final document constraints;
 - the upstream solver-publication adapter owns the mapping from accepted solver units into concrete pdgedit rows, operators, links, and downstream composite label/span effects;
-- and the detailed accepted-solution-to-pdgedit translation contract should be documented with the solver/publication boundary in [pdgsolve](./pdgsolve.md), not here.
+- and the detailed accepted-solution-to-pdgedit translation contract should be documented with the solver/publication boundary in [pdgsolve](pdgsolve.md), not here.
 
 This document should therefore constrain the final published surface without becoming the primary specification for solver-side recipe families, accepted-unit mappings, adapter package formats, or accepted-graph expansion logic.
 

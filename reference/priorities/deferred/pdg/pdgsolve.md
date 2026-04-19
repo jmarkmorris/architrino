@@ -5,7 +5,7 @@
 - Keep this document focused on `pdgsolve` as the Python solve, acceptance, and publication boundary upstream of `pdgedit`.
 - Keep `Design` about durable request normalization, solver boundaries, assemblies, operators, acceptance locking, publication-graph construction, and JSON contracts.
 - Treat this as a deferred reference note, not an active work queue.
-- Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](./pdgfeed.md) matters.
+- Do not restate low-level PDG ingest internals except where the explicit request boundary from [pdgfeed](pdgfeed.md) matters.
 
 ## Purpose
 
@@ -13,7 +13,7 @@
 
 It owns:
 
-- intake of explicit solve requests from upstream sources such as [pdgfeed](./pdgfeed.md), test cases, and direct developer input;
+- intake of explicit solve requests from upstream sources such as [pdgfeed](pdgfeed.md), test cases, and direct developer input;
 - normalization of those requests into a `pdgsolve`-owned solve problem expressed only in explicit admitted assemblies;
 - deterministic exact-family construction and no-exact fallback emission for the current vertical slice;
 - deterministic scoring, diagnostics, and review-state emission;
@@ -23,8 +23,8 @@ It owns:
 
 It does not own:
 
-- PDG data access and normalization logic that belongs in [pdgfeed](./pdgfeed.md);
-- free-form pdgedit authoring behavior that belongs in [pdgedit](./pdgedit.md);
+- PDG data access and normalization logic that belongs in [pdgfeed](pdgfeed.md);
+- free-form pdgedit authoring behavior that belongs in [pdgedit](pdgedit.md);
 - or downstream scene-staging behavior that belongs outside `pdgsolve`.
 
 ## Deferred State
@@ -851,7 +851,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
 | `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether core and anti Noether core as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
-Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](./pdgfeed.md), not in `pdgsolve`.
+Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](pdgfeed.md), not in `pdgsolve`.
 
 `pdgsolve` should keep only assembly-native solve regressions plus boundary rejection coverage for direct developer-loaded inputs.
 
@@ -862,7 +862,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 #### Source Inventory
 
 - canonical test-case requests;
-- PDG-backed requests emitted by [pdgfeed](./pdgfeed.md);
+- PDG-backed requests emitted by [pdgfeed](pdgfeed.md);
 - and direct load of explicit request JSON by a developer.
 
 #### Raw Request Contract: `pdgsolve-request/v1`
@@ -876,7 +876,7 @@ Positive regression coverage for PDG-to-assembly translation and un-mappable cla
 
 #### Example `pdgfeed` Requests
 
-The following frozen JSON blocks show the handoff shape that `pdgsolve` should accept from [pdgfeed](./pdgfeed.md). The neutron beta examples remain the clearest boundary reference because they show how composite neutron and proton terms are expanded into explicit request-side assemblies before solve.
+The following frozen JSON blocks show the handoff shape that `pdgsolve` should accept from [pdgfeed](pdgfeed.md). The neutron beta examples remain the clearest boundary reference because they show how composite neutron and proton terms are expanded into explicit request-side assemblies before solve.
 
 ##### Free neutron beta decay from a local PDG test case
 
@@ -1160,7 +1160,7 @@ When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred
 
 ### Neighboring Components
 
-- [pdgfeed](./pdgfeed.md) owns upstream PDG normalization and request emission.
+- [pdgfeed](pdgfeed.md) owns upstream PDG normalization and request emission.
 - [pdgapps](pdgapps.md) owns the cross-boundary modularity rules that still apply where relevant.
 
 ## Deferred Notes
