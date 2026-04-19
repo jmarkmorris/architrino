@@ -13,7 +13,7 @@ import {
   normalizePdgviewSubassemblyList,
   prunePdgviewSubassemblyList,
   roundPdgviewTriplet,
-} from "../src/apps/pdgview/PdgviewAssemblyListRuntime.js";
+} from "../src/apps/animator/PdgviewAssemblyListRuntime.js";
 
 test("pdgview assembly list runtime normalizes member positions and records", () => {
   assert.deepEqual(normalizePdgviewMemberPosition([1, 2, 3]), [1, 2, 3]);

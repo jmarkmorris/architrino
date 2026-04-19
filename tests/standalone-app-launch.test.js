@@ -40,7 +40,7 @@ test("archived PDG scenes no longer resolve to standalone launch hrefs from the 
 
 test("standalone app entrypoints stay outside root app.js", () => {
   const rootEntrypoint = readRepoFile("app.js").trim();
-  const pdgviewEntrypoint = readRepoFile("src/apps/pdgview/main.js");
+  const pdgviewEntrypoint = readRepoFile("src/apps/animator/main.js");
   const pdgeditEntrypoint = readRepoFile("src/apps/pdgedit/main.js");
 
   assert.equal(

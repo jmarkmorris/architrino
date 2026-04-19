@@ -63,7 +63,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | — | [`SUMMARY`](./priorities.md) | Action-items report control surface | — | — | — |
 | — | [`archive`](../../archive/priorities-legacy.md) | Archive | — | — | — |
 | — | [`icebox`](../deferred/proof-check.md) | Icebox | — | — | — |
-| — | [`animator`](../pdg/animator.md) | animator | — | — | — |
+| — | [`animator`](../animator/animator.md) | animator | — | — | — |
 | — | [`pdgfeed`](../pdg/pdgfeed.md) | PDG | — | — | — |
 | — | [`3x3`](../3x3/3x3.md) | 3x3 binary-slot matrix | — | — | — |
 | — | [`ellipsoid`](../ellipsoid/ellipsoid.md) | Ellipsoid app idea | — | — | — |

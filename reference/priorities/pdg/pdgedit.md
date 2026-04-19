@@ -2,8 +2,8 @@
 
 ## LLM Instructions
 
-- Keep `Priorities` ordered as the current work queue, with the most important active item first.
-- Keep `Design` descriptive and stable; move task-shaped material into `Priorities`.
+- Treat this document as a deferred reference note rather than an active queue.
+- Keep `Design` descriptive and stable; keep any deferred follow-on notes brief.
 - Keep pdgedit focused on the authoring surface, the visible tile grammar, and the JSON boundary with the solver.
 - Prefer simple surface rules over inferred geometry, hidden spacing logic, or special-case rendering heuristics.
 - Use `pdgedit` in code and file naming for the new app family.
@@ -1671,44 +1671,18 @@ The downstream constraints that remain important here are:
 - if pdgedit-originated content is ever transformed upstream for solve, `compositeLabels` and other grouping metadata must stay outside the solver-core request ontology and be ignored, stripped, or expanded by the boundary transform;
 - and the renderer/editor should consume the final `pdgedit/v1` document directly without reconstructing omitted solver meaning.
 
-## Priorities
+## Deferred Notes
 
-### 1. Define Downstream Composite Grouping Authoring On Top Of The Direct Object-Editing Workflow
+`pdgedit` is deferred. The surface grammar, document model, and solver-boundary rules above are the baseline reference.
 
-Status: `deferred`
+The main intentionally unfinished area at deferral time was richer downstream composite grouping authoring on top of the direct object-editing workflow. That follow-on work remained optional and downstream-only:
 
-Current:
+- composite labels and spans were still meant to stay visual rather than solver-native;
+- no composite workflow had been admitted beyond explicit grouping graphics over row-level assemblies;
+- and any future transform back toward solve would still need to ignore, strip, or expand composite metadata before the explicit request seam.
 
-- the base direct object-editing workflow for single assemblies and operators is now defined;
-- pdgedit now reserves the outer columns and renders optional composite labels as a final pass;
-- no richer composite-label semantics are intended beyond explicit visual grouping;
-- composite authoring still has no explicit surface workflow of its own;
-- and composite-aware insertion behavior may remain deferred until that composite workflow is implemented.
+If work resumes:
 
-Objective:
-
-- build on the direct object-editing workflow defined above so pdgedit can describe downstream visual composites made from explicit assembly rows without redefining solver ontology;
-- define a composite as one authored grouping of multiple assembly rows that belong together;
-- allow one optional visual span bar to illustrate the grouping, but for visual effect only;
-- place the composite reactant label tile such as `Pro Neutron` in tile column 1, vertically centered against the composite rows;
-- place the composite product label tile such as `Pro Proton` in tile column 20, vertically centered against the composite rows;
-- treat the composite's occupied area in one assembly cell as one `n-row x 4-column` rectangle for drag hit testing and insertion;
-- and keep the composite label and optional span-bar records downstream-only unless a separate boundary transform later chooses to ignore, strip, or expand them before building an explicit assembly-native solve request.
-
-Purposes:
-
-- make it easy to add a composite from the same surface-local create-picker family;
-- make it easy to move all rows belonging to a composite together by dragging the composite vertically within an assembly stage;
-- make it easy to drag an assembly over a composite rectangle and have that composite shift down as one block to make room;
-- make it easy to delete a composite from its composite label tile without a side panel workflow;
-- and preserve composite labels and spans as visual organizing graphics for still reaction images.
-
-Done when:
-
-- the composite workflow built on the direct object-editing model can create both individual assembly rows and composite row groups;
-- a composite can author multiple grouped rows in one action;
-- composite reactant and product label tiles are placed in the outer tile columns and stay vertically centered against their grouped rows;
-- dragging an assembly over a composite's `n-row x 4-column` assembly-cellrectangle inserts relative to that composite as one block;
-- assembly cells remain densely packed with no empty rows between occupied assembly or composite extents;
-- optional span bars remain visual-only grouping graphics;
-- and any future pdgedit-to-solve transform proves that composite label/span data stays outside solver-core ontology by stripping or expanding it before the explicit request seam.
+- validate that the renderer, editor, and `pdgedit/v1` document model still agree before adding new surface behavior;
+- keep any composite extension downstream-only unless the boundary contract is explicitly revised;
+- and avoid reintroducing solver ontology into `pdgedit` surface features.

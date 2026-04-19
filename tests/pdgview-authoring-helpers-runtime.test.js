@@ -10,7 +10,7 @@ import {
   getPdgviewBuiltInPersonalityStates,
   getPdgviewGraphicDefaultOffset,
   sanitizePdgviewGraphicTarget,
-} from "../src/apps/pdgview/PdgviewAuthoringHelpersRuntime.js";
+} from "../src/apps/animator/PdgviewAuthoringHelpersRuntime.js";
 
 test("pdgview authoring helpers format transfer provenance", () => {
   const transfer = {

@@ -4,7 +4,7 @@ import fs from "node:fs";
 
 import {
   buildPdgviewStagingContractFromPdgeditDocument,
-} from "../src/apps/pdgview/PdgviewPdgeditImportRuntime.js";
+} from "../src/apps/animator/PdgviewPdgeditImportRuntime.js";
 import { normalizePdgeditTemplateCatalog } from "../src/apps/pdgedit/PdgeditTemplateCatalogRuntime.js";
 import { buildPdgeditDocumentFromPublicationGraph } from "../src/runtime/PdgeditPublicationGraphRuntime.js";
 import {
@@ -311,7 +311,7 @@ test("pdgview staging still accepts pdgedit documents derived from publication g
 });
 
 test("pdgview pdgedit import runtime stays on the data side of the app boundary", () => {
-  const runtimeSource = readText("src/apps/pdgview/PdgviewPdgeditImportRuntime.js");
+  const runtimeSource = readText("src/apps/animator/PdgviewPdgeditImportRuntime.js");
 
   assert.doesNotMatch(runtimeSource, /from\s+["']\.\.\/pdgedit\//);
   assert.doesNotMatch(runtimeSource, /from\s+["']\.\.\/pdgsolve\//);

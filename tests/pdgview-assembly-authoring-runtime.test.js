@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { createPdgviewAssemblyAuthoringRuntime } from "../src/apps/pdgview/PdgviewAssemblyAuthoringRuntime.js";
+import { createPdgviewAssemblyAuthoringRuntime } from "../src/apps/animator/PdgviewAssemblyAuthoringRuntime.js";
 
 function makeRuntimeContext() {
   const assemblyStore = new Map();

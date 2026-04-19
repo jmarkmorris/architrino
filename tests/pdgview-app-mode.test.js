@@ -9,7 +9,7 @@ import {
   getPdgviewInitialScenePath,
   isStandalonePdgviewAppMode,
   navigateStandalonePdgviewHome,
-} from "../src/apps/pdgview/PdgviewAppModeRuntime.js";
+} from "../src/apps/animator/PdgviewAppModeRuntime.js";
 
 test("pdgview app mode resolves from the standalone window flag", () => {
   assert.equal(
