@@ -176,19 +176,11 @@ class PdgfeedCliTests(unittest.TestCase):
                 "anti_up_quark_I",
                 "pro_down_quark_I",
                 "anti_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
             ],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             [
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
                 "pro_noether_core_I",
                 "anti_noether_core_I",
                 "pro_noether_core_I",
@@ -214,8 +206,8 @@ class PdgfeedCliTests(unittest.TestCase):
                     "known_status,reaction_id,mcid,pdg_identifier,title,reactant_names_aaa,product_names_aaa,reactant_electrinos,product_electrinos,electrino_delta,reactant_positrinos,product_positrinos,positrino_delta",
                     "u,mu_minus_test_mu_1,13,TEST.MU.1,mu- decay mode 1,e2,e.av.v2,20,20,0,14,14,0",
                     "u,mu_minus_test_mu_gamma,13,TEST.MU.GAMMA,mu- decay mode 1,e2,e.av.v2.hp,26,26,0,20,20,0",
-                    "u,pi0_test_pi_zero_one_gamma,111,TEST.PI.ZERO.ONE.GAMMA,pi0 decay mode 1,u.au.d.ad,hp,36,36,0,36,36,0",
-                    "u,pi0_fake,111,fake,pi0 decay mode 2,u.au.d.ad,hp.hp,36,36,0,36,36,0",
+                    "u,pi0_test_pi_zero_one_gamma,111,TEST.PI.ZERO.ONE.GAMMA,pi0 decay mode 1,u.au.d.ad,hp,24,24,0,24,24,0",
+                    "u,pi0_fake,111,fake,pi0 decay mode 2,u.au.d.ad,hp.hp,24,24,0,24,24,0",
                     "u,pi_plus_test_pi_plus,211,TEST.PI.PLUS,pi+ decay mode 1,u.ad,ae2.v2,9,9,0,15,15,0",
                 ],
             )
@@ -260,15 +252,15 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Transformed Product AAA"], "e.av.v2.h.ah")
             self.assertEqual(row_by_id["mu_minus_test_mu_gamma"]["Delta Ledger"], "0.0@")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Reactant AAA"], "u.au.d.ad")
-            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Reactant AAA"], "u.au.d.ad.h.ah.h.ah")
-            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Product AAA"], "h.ah.h.ah.h.ah.h.ah.12:12@")
+            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Reactant AAA"], "u.au.d.ad")
+            self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Transformed Product AAA"], "h.ah.18:18@")
             self.assertEqual(row_by_id["pi0_test_pi_zero_one_gamma"]["Delta Ledger"], "0.0@")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Reactant AAA"], "u.ad")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Transformed Product AAA"], "ae2.v2.2:2@")
             self.assertEqual(row_by_id["pi_plus_test_pi_plus"]["Delta Ledger"], "0.0@")
             self.assertEqual(row_by_id["pi0_fake"]["Reactant AAA"], "u.au.d.ad")
-            self.assertEqual(row_by_id["pi0_fake"]["Transformed Reactant AAA"], "u.au.d.ad.h.ah.h.ah")
-            self.assertEqual(row_by_id["pi0_fake"]["Transformed Product AAA"], "h.ah.h.ah.h.ah.h.ah.12:12@")
+            self.assertEqual(row_by_id["pi0_fake"]["Transformed Reactant AAA"], "u.au.d.ad")
+            self.assertEqual(row_by_id["pi0_fake"]["Transformed Product AAA"], "h.ah.h.ah.12:12@")
             self.assertEqual(row_by_id["pi0_fake"]["Delta Ledger"], "0.0@")
 
     def test_summary_report_writes_counts_markdown(self):
@@ -295,6 +287,8 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of AAAcomplete reactions", "Count": "0"},
                     {"Metric": "Number of backlog reactions", "Count": "0"},
                     {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "5"},
+                    {"Metric": "Number of reactions excluded from app (<5.0% branching probability)", "Count": "0"},
+                    {"Metric": "Number of reactions excluded from app (no branching probability specified)", "Count": "0"},
                     {"Metric": "Number of reactions closed by total primitive balance", "Count": "5"},
                     {"Metric": "Number of total-balance closures with product unbound architrinos", "Count": "3"},
                     {"Metric": "Number of total-balance closures without product unbound architrinos", "Count": "2"},
@@ -327,8 +321,9 @@ class PdgfeedCliTests(unittest.TestCase):
                 residue_rows,
                 [
                     {"Product Unbound Architrino Counts": "0:0", "Count": "2", "Example Mode": "mu- decay mode 1"},
-                    {"Product Unbound Architrino Counts": "12:12", "Count": "2", "Example Mode": "pi0 decay mode 1"},
                     {"Product Unbound Architrino Counts": "2:2", "Count": "1", "Example Mode": "pi+ decay mode 1"},
+                    {"Product Unbound Architrino Counts": "12:12", "Count": "1", "Example Mode": "pi0 decay mode 2"},
+                    {"Product Unbound Architrino Counts": "18:18", "Count": "1", "Example Mode": "pi0 decay mode 1"},
                 ],
             )
 
@@ -365,18 +360,26 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[2], {"Metric": "Number of AAAcomplete reactions", "Count": "0"})
             self.assertEqual(metric_rows[3], {"Metric": "Number of backlog reactions", "Count": "0"})
             self.assertEqual(metric_rows[4], {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "1"})
-            self.assertEqual(metric_rows[5], {"Metric": "Number of reactions closed by total primitive balance", "Count": "1"})
+            self.assertEqual(
+                metric_rows[5],
+                {"Metric": "Number of reactions excluded from app (<5.0% branching probability)", "Count": "0"},
+            )
             self.assertEqual(
                 metric_rows[6],
+                {"Metric": "Number of reactions excluded from app (no branching probability specified)", "Count": "0"},
+            )
+            self.assertEqual(metric_rows[7], {"Metric": "Number of reactions closed by total primitive balance", "Count": "1"})
+            self.assertEqual(
+                metric_rows[8],
                 {"Metric": "Number of total-balance closures with product unbound architrinos", "Count": "1"},
             )
             self.assertEqual(
-                metric_rows[7],
+                metric_rows[9],
                 {"Metric": "Number of total-balance closures without product unbound architrinos", "Count": "0"},
             )
-            self.assertEqual(metric_rows[8], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
-            self.assertEqual(metric_rows[9], {"Metric": "Number of reactions ready", "Count": "1"})
-            self.assertEqual(metric_rows[10], {"Metric": "Number of reactions blocked", "Count": "0"})
+            self.assertEqual(metric_rows[10], {"Metric": "Number of ready reactions lacking total primitive balance", "Count": "0"})
+            self.assertEqual(metric_rows[11], {"Metric": "Number of reactions ready", "Count": "1"})
+            self.assertEqual(metric_rows[12], {"Metric": "Number of reactions blocked", "Count": "0"})
             probability_headers, probability_rows = self.parse_markdown_table(content[1].splitlines())
             self.assertEqual(probability_headers, ["Branching Probability Decile (%)", "Count"])
             self.assertEqual(

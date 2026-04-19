@@ -99,8 +99,6 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_noether_core_I",
                 "pro_noether_core_I",
                 "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
             ],
         )
         self.assertEqual(
@@ -109,13 +107,63 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_electron_I",
                 "pro_noether_core_I",
                 "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
                 "unbound_architrinos_residue",
             ],
         )
         self.assertEqual(request["products"][-1]["electrinoCount"], 18)
         self.assertEqual(request["products"][-1]["positrinoCount"], 18)
+        self.assertTrue(all("core_balance" not in entry["id"] for entry in request["reactants"]))
+        self.assertEqual(pdgsolve.solve_request(request)["searchStatus"], "exact_available")
+
+    def test_antineutron_decay_uses_one_reactant_noether_pair_block(self):
+        case = pdgfeed.PdgCase(
+            case_id="anti_neutron_case",
+            proposal_id="anti_neutron_case",
+            title="anti-n -> p e- anti-nu_e",
+            source_kind="pdg-live",
+            source={"mcid": -2112, "pdgIdentifier": "TEST.NBAR"},
+            reactants=(pdgfeed.CaseParticle(name="anti-n", pdg_id="anti-n"),),
+            products=(
+                pdgfeed.CaseParticle(name="p", pdg_id="p"),
+                pdgfeed.CaseParticle(name="e-", pdg_id="e-"),
+                pdgfeed.CaseParticle(name="anti-nu_e", pdg_id="anti-nu_e"),
+            ),
+        )
+
+        proposal = pdgfeed.build_proposal(case)
+        request = pdgfeed.build_pdgsolve_request(proposal)
+
+        self.assertIsNotNone(request)
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["reactants"]],
+            [
+                "anti_up_quark_I",
+                "anti_down_quark_I",
+                "anti_down_quark_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+            ],
+        )
+        self.assertTrue(all("core_balance" not in entry["id"] for entry in request["reactants"]))
+        self.assertEqual(
+            [entry["assemblyId"] for entry in request["products"]],
+            [
+                "pro_up_quark_I",
+                "pro_up_quark_I",
+                "pro_down_quark_I",
+                "pro_electron_I",
+                "anti_electron_neutrino_I",
+                "unbound_architrinos_residue",
+            ],
+        )
+        self.assertEqual(request["products"][-1]["electrinoCount"], 12)
+        self.assertEqual(request["products"][-1]["positrinoCount"], 12)
         self.assertEqual(pdgsolve.solve_request(request)["searchStatus"], "exact_available")
 
     def test_neutral_pion_expands_all_superposition_constituents_for_pdgsolve(self):
@@ -141,10 +189,6 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_up_quark_I",
                 "pro_down_quark_I",
                 "anti_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
             ],
         )
         self.assertEqual(
@@ -152,17 +196,11 @@ class PdgfeedContractTests(unittest.TestCase):
             [
                 "pro_noether_core_I",
                 "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
                 "unbound_architrinos_residue",
             ],
         )
-        self.assertEqual(request["products"][-1]["electrinoCount"], 12)
-        self.assertEqual(request["products"][-1]["positrinoCount"], 12)
+        self.assertEqual(request["products"][-1]["electrinoCount"], 18)
+        self.assertEqual(request["products"][-1]["positrinoCount"], 18)
 
     def test_supported_csv_rows_include_known_status_and_exact_ids(self):
         api = FakeApi(
@@ -363,12 +401,18 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_up_quark_I",
                 "pro_down_quark_I",
                 "anti_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
             ],
         )
+        self.assertEqual(
+            [entry["assemblyId"] for entry in transformed["products"]],
+            [
+                "pro_noether_core_I",
+                "anti_noether_core_I",
+                "unbound_architrinos_residue",
+            ],
+        )
+        self.assertEqual(transformed["products"][-1]["electrinoCount"], 18)
+        self.assertEqual(transformed["products"][-1]["positrinoCount"], 18)
 
     def test_kaons_d_mesons_sigma_xi_lambda_omega_baryons_b_mesons_and_phi_energy_levels_expand_into_assembly_rows(self):
         expected = {

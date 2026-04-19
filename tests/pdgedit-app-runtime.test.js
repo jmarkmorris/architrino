@@ -133,6 +133,7 @@ test("picker exact 0:0 filter keeps only exact entries with no unbound architrin
       title: "Exact Zero",
       displayTitle: "Exact Zero",
       sourceKind: "exact",
+      branchingProbability: 0.92,
       productUnboundArchitrinoCounts: { electrinoCount: 0, positrinoCount: 0 },
     },
     {
@@ -140,24 +141,34 @@ test("picker exact 0:0 filter keeps only exact entries with no unbound architrin
       title: "Exact Residue",
       displayTitle: "Exact Residue",
       sourceKind: "exact",
+      branchingProbability: 0.83,
       productUnboundArchitrinoCounts: { electrinoCount: 3, positrinoCount: 3 },
+    },
+    {
+      id: "exact_zero_lower",
+      title: "Exact Zero Lower",
+      displayTitle: "Exact Zero Lower",
+      sourceKind: "exact",
+      branchingProbability: 0.41,
+      productUnboundArchitrinoCounts: { electrinoCount: 0, positrinoCount: 0 },
     },
     {
       id: "review_zero",
       title: "Review Zero",
       displayTitle: "Review Zero",
       sourceKind: "unsolved",
+      branchingProbability: 0.97,
       productUnboundArchitrinoCounts: { electrinoCount: 0, positrinoCount: 0 },
     },
   ];
 
   assert.deepEqual(
     getPdgeditDocumentPickerEntries(entries, { sourceFilter: "exact-zero-residue" }).map((entry) => entry.id),
-    ["exact_zero"]
+    ["exact_zero", "exact_zero_lower"]
   );
 });
 
-test("picker probability filter keeps >=30% reactions and sorts them descending", () => {
+test("picker probability filter keeps >=5% reactions and sorts them descending", () => {
   const entries = [
     {
       id: "review_high",
@@ -185,7 +196,7 @@ test("picker probability filter keeps >=30% reactions and sorts them descending"
       title: "Exact Below Threshold",
       displayTitle: "Exact Below Threshold",
       sourceKind: "exact",
-      branchingProbability: 0.29,
+      branchingProbability: 0.04,
     },
   ];
 
@@ -196,6 +207,49 @@ test("picker probability filter keeps >=30% reactions and sorts them descending"
   assert.deepEqual(
     getPdgeditDocumentPickerEntries(entries, { sourceFilter: "probability", query: "mid" }).map((entry) => entry.id),
     ["exact_mid"]
+  );
+});
+
+test("picker all filter removes live reactions below 5% and sorts remaining entries descending by probability", () => {
+  const entries = [
+    {
+      id: "example_reference",
+      title: "Example Reference",
+      displayTitle: "Example Reference",
+      sourceKind: "example",
+    },
+    {
+      id: "exact_top",
+      title: "Exact Top",
+      displayTitle: "Exact Top",
+      sourceKind: "exact",
+      branchingProbability: 0.91,
+    },
+    {
+      id: "unsolved_mid",
+      title: "Unsolved Mid",
+      displayTitle: "Unsolved Mid",
+      sourceKind: "unsolved",
+      branchingProbability: 0.27,
+    },
+    {
+      id: "exact_below_floor",
+      title: "Exact Below Floor",
+      displayTitle: "Exact Below Floor",
+      sourceKind: "exact",
+      branchingProbability: 0.049,
+    },
+    {
+      id: "exact_no_numeric",
+      title: "Exact No Numeric",
+      displayTitle: "Exact No Numeric",
+      sourceKind: "exact",
+    },
+  ];
+
+  assert.deepEqual(
+    getPdgeditDocumentPickerEntries(entries).map((entry) => entry.id),
+    ["exact_top", "unsolved_mid", "example_reference"]
   );
 });
 

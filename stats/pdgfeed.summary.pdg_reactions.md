@@ -5,6 +5,8 @@
 | Number of AAAcomplete reactions | 6 |
 | Number of backlog reactions | 3553 |
 | Number of PDG reactions supported and transformed into AAA | 1394 |
+| Number of reactions excluded from app (<5.0% branching probability) | 8841 |
+| Number of reactions excluded from app (no branching probability specified) | 3809 |
 | Number of reactions closed by total primitive balance | 1402 |
 | Number of total-balance closures with product unbound architrinos | 1140 |
 | Number of total-balance closures without product unbound architrinos | 262 |
@@ -14,17 +16,17 @@
 
 | Branching Probability Decile (%) | Count |
 | --- | --- |
-| 90-100 | 63 |
+| 90-100 | 92 |
 | 80-90 | 30 |
-| 70-80 | 23 |
-| 60-70 | 27 |
-| 50-60 | 35 |
-| 40-50 | 40 |
-| 30-40 | 92 |
-| 20-30 | 126 |
-| 10-20 | 310 |
-| 0-10 | 8114 |
-| No numeric value | 5818 |
+| 70-80 | 39 |
+| 60-70 | 31 |
+| 50-60 | 73 |
+| 40-50 | 76 |
+| 30-40 | 176 |
+| 20-30 | 226 |
+| 10-20 | 566 |
+| 0-10 | 9560 |
+| No numeric value | 3809 |
 
 | Product Unbound Architrino Counts | Count | Example Mode |
 | --- | --- | --- |
@@ -34,31 +36,32 @@
 | 2:2 | 144 | pi+ decay mode 1 |
 | 4:4 | 144 | B+ decay mode 29 |
 | 3:3 | 91 | B+ decay mode 9 |
-| 6:6 | 46 | B+ decay mode 40 |
+| 6:6 | 44 | B+ decay mode 40 |
 | 11:11 | 28 | B+ decay mode 694 |
-| 7:7 | 15 | B+ decay mode 680 |
-| 12:12 | 15 | B+ decay mode 693 |
-| 10:10 | 11 | B0 decay mode 546 |
+| 12:12 | 17 | B+ decay mode 693 |
+| 7:7 | 13 | B+ decay mode 680 |
+| 13:13 | 11 | Lambda0 decay mode 14 |
 | 14:2 | 11 | B- decay mode 454 |
+| 10:10 | 10 | B0 decay mode 546 |
 | 15:3 | 10 | B- decay mode 450 |
-| 18:18 | 10 | pbar decay mode 42 |
 | 13:1 | 9 | D- decay mode 19 |
-| 13:13 | 9 | Lambda0 decay mode 14 |
+| 18:18 | 9 | pbar decay mode 42 |
 | 4:16 | 6 | tau+ decay mode 48 |
+| 14:14 | 6 | pbar decay mode 50 |
 | 19:19 | 6 | pbar decay mode 43 |
-| 8:8 | 5 | pbar decay mode 89 |
-| 14:14 | 5 | pbar decay mode 50 |
+| 8:8 | 4 | pbar decay mode 89 |
 | 9:9 | 4 | pbar decay mode 90 |
 | 2:14 | 3 | p decay mode 89 |
 | 3:15 | 3 | p decay mode 90 |
+| 22:22 | 3 | eta decay mode 2 |
 | 5:17 | 2 | tau+ decay mode 58 |
 | 15:15 | 2 | pbar decay mode 57 |
 | 16:4 | 2 | D- decay mode 108 |
 | 16:16 | 2 | eta decay mode 11 |
 | 17:17 | 2 | Lambdabar0 decay mode 3 |
-| 22:22 | 2 | eta decay mode 2 |
 | 0:12 | 1 | tau+ decay mode 192 |
 | 1:13 | 1 | tau+ decay mode 193 |
+| 24:24 | 1 | eta decay mode 14 |
 
 | Backlog Particle | Count |
 | --- | --- |

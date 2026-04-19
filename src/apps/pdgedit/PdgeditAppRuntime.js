@@ -27,6 +27,8 @@ import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
 
 const PDGEDIT_BALANCE_EPSILON_GLYPH = "ϵ";
 const PDGEDIT_BALANCE_EPSILON_FONT_FAMILY = "'STIX Two Text', Cambria Math, Georgia, serif";
+const PDGEDIT_MIN_APP_BRANCHING_PROBABILITY = 0.05;
+const PDGEDIT_PROBABILITY_FILTER_MIN_BRANCHING_PROBABILITY = 0.05;
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -89,6 +91,21 @@ function hasZeroUnboundArchitrinoResidue(entry) {
   return Boolean(counts) && counts.electrinoCount === 0 && counts.positrinoCount === 0;
 }
 
+function isPdgeditLiveReactionEntry(entry) {
+  return entry?.sourceKind === "exact" || entry?.sourceKind === "unsolved";
+}
+
+function passesPdgeditAppProbabilityFloor(entry) {
+  if (!isPdgeditLiveReactionEntry(entry)) {
+    return true;
+  }
+  const probability = normalizeBranchingProbability(entry?.branchingProbability);
+  if (probability === null) {
+    return false;
+  }
+  return probability + 1e-12 >= PDGEDIT_MIN_APP_BRANCHING_PROBABILITY;
+}
+
 function comparePdgeditDocumentEntriesByProbability(left, right) {
   const leftProbability = normalizeBranchingProbability(left?.branchingProbability) ?? -1;
   const rightProbability = normalizeBranchingProbability(right?.branchingProbability) ?? -1;
@@ -113,21 +130,22 @@ export function getPdgeditDocumentPickerEntries(entries, { query = "", sourceFil
   const normalizedQuery = String(query || "").trim().toLowerCase();
   const normalizedSourceFilter = normalizeDocumentSourceFilter(sourceFilter);
   const filteredEntries = (Array.isArray(entries) ? entries : []).filter((entry) => {
+    if (!passesPdgeditAppProbabilityFloor(entry)) {
+      return false;
+    }
     if (normalizedSourceFilter === "exact-zero-residue") {
       if (entry?.sourceKind !== "exact" || !hasZeroUnboundArchitrinoResidue(entry)) {
         return false;
       }
     } else if (normalizedSourceFilter === "probability") {
       const probability = normalizeBranchingProbability(entry?.branchingProbability);
-      if (probability === null || probability + 1e-12 < 0.3) {
+      if (probability === null || probability + 1e-12 < PDGEDIT_PROBABILITY_FILTER_MIN_BRANCHING_PROBABILITY) {
         return false;
       }
     }
     return entryMatchesDocumentQuery(entry, normalizedQuery);
   });
-  if (normalizedSourceFilter === "probability") {
-    filteredEntries.sort(comparePdgeditDocumentEntriesByProbability);
-  }
+  filteredEntries.sort(comparePdgeditDocumentEntriesByProbability);
   return filteredEntries;
 }
 

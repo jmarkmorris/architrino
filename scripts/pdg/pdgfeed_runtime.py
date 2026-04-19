@@ -19,6 +19,7 @@ from scripts.pdg.pdgfeed_live import (
     known_reaction_status,
     load_live_case_by_id,
     load_live_cases,
+    normalize_branching_probability_from_display,
 )
 from scripts.pdg.pdgfeed_model import (
     DEFAULT_OUTPUT_DIR,
@@ -56,6 +57,7 @@ REQUEST_ASSEMBLY_TITLE_BY_ID = {
 }
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
+PDGEDIT_APP_MIN_BRANCHING_PROBABILITY = 0.05
 NOETHER_CORE_GENERATIONS = ("I", "II", "III")
 NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION = {
     generation: {
@@ -450,10 +452,10 @@ def merge_unbound_architrinos_residue_product(
     ]
 
 
-def add_minimum_noether_pair_reactants_for_balance(
+def compute_minimum_reactant_noether_pair_count_for_balance(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
-) -> list[dict[str, Any]] | None:
+) -> int | None:
     reactant_totals = get_pdgsolve_occurrence_primitive_totals(reactants)
     product_totals = get_pdgsolve_occurrence_primitive_totals(products)
     if reactant_totals is None or product_totals is None:
@@ -469,9 +471,25 @@ def add_minimum_noether_pair_reactants_for_balance(
         if positrino_deficit
         else 0,
     )
+    return pair_count
+
+
+def add_reactant_noether_pairs_for_balance(
+    reactants: list[dict[str, Any]],
+    products: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    minimum_pair_count = compute_minimum_reactant_noether_pair_count_for_balance(reactants, products)
+    if minimum_pair_count is None:
+        return None
+
+    provisional_reactants = [
+        *reactants,
+        *build_noether_pair_occurrences("reactant", minimum_pair_count),
+    ]
+    additional_pair_count = compute_required_full_noether_pair_count(provisional_reactants, products)
+    pair_count = minimum_pair_count + additional_pair_count
     if pair_count == 0:
         return reactants
-
     return [*reactants, *build_noether_pair_occurrences("reactant", pair_count)]
 
 
@@ -616,33 +634,6 @@ def compute_required_full_noether_pair_count(
     return max(required_pair_count_by_charge.values())
 
 
-def add_core_balance_support_pairs_and_unbound_residue(
-    reactants: list[dict[str, Any]],
-    products: list[dict[str, Any]],
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]] | None:
-    pair_count = compute_required_full_noether_pair_count(reactants, products)
-    if pair_count == 0:
-        return reactants, products
-
-    updated_reactants = [
-        *reactants,
-        *build_noether_pair_occurrences(
-            "reactant",
-            pair_count,
-            generation="I",
-            id_prefix="core_balance_noether_pair",
-        ),
-    ]
-    updated_products = merge_unbound_architrinos_residue_product(
-        products,
-        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["electrinoCount"],
-        pair_count * NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION["I"]["positrinoCount"],
-    )
-    if updated_products is None:
-        return None
-    return updated_reactants, updated_products
-
-
 def add_maximum_noether_pair_products_from_surplus(
     reactants: list[dict[str, Any]],
     products: list[dict[str, Any]],
@@ -689,19 +680,12 @@ def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[s
     products = transform_participants_for_pdgsolve(proposal.products)
     if reactants is None or products is None:
         return None
-    reactants = add_minimum_noether_pair_reactants_for_balance(reactants, products)
+    reactants = add_reactant_noether_pairs_for_balance(reactants, products)
     if reactants is None:
-        return None
-    products = add_maximum_noether_pair_products_from_surplus(reactants, products)
-    if products is None:
         return None
     products = add_unbound_architrino_residue_product_from_surplus(reactants, products)
     if products is None:
         return None
-    core_balanced = add_core_balance_support_pairs_and_unbound_residue(reactants, products)
-    if core_balanced is None:
-        return None
-    reactants, products = core_balanced
     return {
         "reactants": reactants,
         "products": products,
@@ -1075,6 +1059,8 @@ def build_live_branching_probability_deciles(
         for decay in iter_candidate_branching_fractions(particle):
             probability = normalize_branching_probability(getattr(decay, "value", None))
             if probability is None:
+                probability = normalize_branching_probability_from_display(getattr(decay, "display_value_text", ""))
+            if probability is None:
                 counts[NO_NUMERIC_BRANCHING_PROBABILITY_LABEL] += 1
                 continue
             counts[branching_probability_decile_label(probability)] += 1
@@ -1229,7 +1215,18 @@ def build_live_reaction_summary_rows(
     incomplete_count = 0
     aaa_complete_count = 0
     backlog_count = 0
+    app_excluded_low_probability_count = 0
+    app_excluded_missing_probability_count = 0
     backlog_particle_counts: Counter[str] = Counter()
+    for entry in [*manifest.get("readyEntries", []), *manifest.get("blockedEntries", [])]:
+        if not isinstance(entry, dict):
+            continue
+        probability = normalize_branching_probability(entry.get("branchingProbability"))
+        if probability is None:
+            app_excluded_missing_probability_count += 1
+            continue
+        if probability + 1e-12 < PDGEDIT_APP_MIN_BRANCHING_PROBABILITY:
+            app_excluded_low_probability_count += 1
     for entry in manifest.get("readyEntries", []):
         if not isinstance(entry, dict):
             continue
@@ -1255,6 +1252,14 @@ def build_live_reaction_summary_rows(
         ("Number of AAAcomplete reactions", aaa_complete_count),
         ("Number of backlog reactions", backlog_count),
         ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
+        (
+            "Number of reactions excluded from app (<5.0% branching probability)",
+            app_excluded_low_probability_count,
+        ),
+        (
+            "Number of reactions excluded from app (no branching probability specified)",
+            app_excluded_missing_probability_count,
+        ),
         ("Number of reactions closed by total primitive balance", total_balance_closure_count),
         ("Number of total-balance closures with product unbound architrinos", total_balance_with_residue_count),
         ("Number of total-balance closures without product unbound architrinos", total_balance_without_residue_count),
