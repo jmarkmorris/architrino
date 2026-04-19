@@ -48,7 +48,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | [`breather-proof`](../breather-proof/breather-proof.md) | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | [`mass-map`](../mass-map/mass-map.md) | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | [`pdgview-reaction`](../deferred/pdg/pdg.md) | Scene system, PDG ingest, pdgsolve, pdgedit, pdgview, and later enhancements | 9 | 4 | 2.25 |
+| 3 | [`animator-reaction`](../deferred/pdg/pdg.md) | Scene system, PDG ingest, pdgsolve, pdgedit, animator, and later enhancements | 9 | 4 | 2.25 |
 | 4 | [`master-equation-closure`](../master-equation-closure/master-equation-closure.md) | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | [`dyadic-lock`](../dyadic-lock/dyadic-lock.md) | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -75,7 +75,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 - Workstream `breather-proof`: the architecture is frozen; the next phase is literal proof writing inside the existing theorem DAG.
 - Workstream `mass-map`: derive the first reusable mass map from tri-binary geometry rather than bookkeeping the parameter ledger in isolation.
-- Workstream `pdgview-reaction`: finish the forward pdgsolve/pdgedit/pdgview split and keep the active app path clean and contract-first.
+- Workstream `animator-reaction`: finish the forward pdgsolve/pdgedit/animator split and keep the active app path clean and contract-first.
 - Workstream `master-equation-closure`: carry the tractable master-equation stack far enough to support Lorentz / GR closure, quantum closure, and the first-principles mass program.
 - Workstream `planar-bridge-closure`: isolate the first planar delayed bridge strongly enough to support cone control, bounded fold transit, radial turnaround, and a tame return map.
 
@@ -83,7 +83,7 @@ This single table is the canonical rollup for every direct child of `priorities`
 
 1. Formalize the first proof-writing package in the breather program, starting with seed-side persistence and early branch-regularity lemmas.
 2. Turn the mass-side placeholders into a first derived map with one attractor family, shielding extraction, and a baseline electron-mass prediction target.
-3. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into pdgview.
+3. Freeze the pdgsolve-to-pdgedit publication seam and land the first clean downstream handoff into animator.
 
 ## Info
 

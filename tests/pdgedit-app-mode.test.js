@@ -15,7 +15,7 @@ test("pdgedit app mode resolves from the standalone window flag", () => {
     PDGEDIT_APP_MODE
   );
   assert.equal(isStandalonePdgeditAppMode("pdgedit"), true);
-  assert.equal(isStandalonePdgeditAppMode("pdgview"), false);
+  assert.equal(isStandalonePdgeditAppMode("animator"), false);
 });
 
 test("pdgedit standalone home navigation uses the standalone navigator href", () => {

@@ -36,7 +36,7 @@ export function auditPdgArchitecture() {
 
   const archivedStandaloneEntrypoints = [
     ["pdgedit", "./pdgedit.html"],
-    ["pdgview", "./pdgview.html"],
+    ["animator", "./animator.html"],
   ];
   archivedStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
     const actualPath = getStandaloneAppPathForScene(sceneId);
@@ -89,15 +89,15 @@ export function auditPdgArchitecture() {
       message: "Docs still describe a nonexistent pdgsolve publication runtime file.",
     },
     {
-      text: "routes `pdgview`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints",
+      text: "routes `animator`, `pdgsolve`, and `pdgedit` into dedicated standalone HTML entrypoints",
       message: "Docs still claim the launcher routes pdgsolve as a standalone app.",
     },
     {
-      text: "standalone launch routing now exists for `pdgview`, `pdgsolve`, and `pdgedit`",
+      text: "standalone launch routing now exists for `animator`, `pdgsolve`, and `pdgedit`",
       message: "Docs still claim pdgsolve participates in standalone launch routing.",
     },
     {
-      text: "`pdgview.html`, `pdgsolve.html`, and `pdgedit.html` as active standalone app entrypoints",
+      text: "`animator.html`, `pdgsolve.html`, and `pdgedit.html` as active standalone app entrypoints",
       message: "Docs still claim pdgsolve has a standalone HTML entrypoint.",
     },
     {
@@ -105,7 +105,7 @@ export function auditPdgArchitecture() {
       message: "Docs still describe archived PDG entrypoints as part of the main web surface.",
     },
     {
-      text: "standalone launch routing now exists for `pdgview` and `pdgedit`",
+      text: "standalone launch routing now exists for `animator` and `pdgedit`",
       message: "Docs still claim the main launcher routes archived PDG apps.",
     },
     {

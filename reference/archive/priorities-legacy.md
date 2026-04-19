@@ -17,7 +17,7 @@ Scoring system:
 | ---: | --- | ---: | ---: | ---: |
 | 1 | Execute the frozen breather proof program | 10 | 4 | 2.50 |
 | 2 | Noether-core stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
-| 3 | Scene system, pdgview, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
+| 3 | Scene system, animator, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
 | 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
@@ -143,11 +143,11 @@ Scoring system:
   - the first shared canonical-structure bridge now exists in the animator as a read-only integration path, but it does not yet drive live structure mutations;
   - observer-path controls exist, but true authored observer intervals still do not;
   - and `Audio` remains placeholder-only.
-- Remaining pdgview objectives, in order:
+- Remaining animator objectives, in order:
   1. finish the reaction app as a genuinely usable manual provenance tool;
-  2. bridge solved reactions back into the main pdgview as staged animated results;
+  2. bridge solved reactions back into the main animator as staged animated results;
   3. replace observer/editorial placeholders with a real authored timeline model;
-  4. move pdgview-side structural editing and visualization onto the shared canonical structure model.
+  4. move animator-side structural editing and visualization onto the shared canonical structure model.
 - Priority 1: finish the reaction app manual workflow:
   - keep the current left / center / right hierarchy solver as the near-term reaction-authoring baseline rather than trying to jump immediately to full free placement;
   - improve state legibility inside the existing reaction app:
@@ -165,12 +165,12 @@ Scoring system:
     - timeline/reaction handoff assumptions,
     - and the remaining visual/manual regression points that still need refresh-and-audit checking;
   - keep the old straight transfer-drafting bridge only as compatibility scaffolding while the dedicated reaction app becomes the clear primary workflow.
-- Priority 2: bridge solved reactions back into the main pdgview:
+- Priority 2: bridge solved reactions back into the main animator:
   - convert an accepted reaction-app solve into durable reaction data rather than leaving it trapped in the temporary solver UI state;
   - feed solved participants, mappings, and provenance into the shared reaction item on the timeline;
   - define the first concrete handoff from hierarchy mappings to staged motion grammar such as `detach`, `flight`, and `reassemble`;
   - make the accepted mapping geometry become the starting point for observer-facing spline refinement rather than a disposable diagnostic overlay;
-  - and keep the normal pdgview responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
+  - and keep the normal animator responsible for staging, timing, viewpoint, and explanatory overlays rather than for re-solving the reaction.
 - Priority 3: replace observer/editorial placeholders with a real authored timeline model:
   - turn `Observer` into a true timeline item with authored spans, framing intent, and synchronized observer-path behavior;
   - define the first concrete observer-object model for the design view, the observer path, and any future synchronized inset;
@@ -178,10 +178,10 @@ Scoring system:
   - improve timeline zoom and local navigation so short spans remain editable in long scenes;
   - improve media-asset entry beyond typed paths where practical;
   - continue visible observer-language cleanup while allowing runtime internals to remain transitional until the object model is stable.
-- Priority 4: move pdgview-side structure onto the shared canonical model:
-  - keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc pdgview-only assembly helpers;
-  - extend the first pdgview-side visual path that already reads canonical structure into additional viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges;
-  - move at least one actual pdgview mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
+- Priority 4: move animator-side structure onto the shared canonical model:
+  - keep the new canonical structure bridge as the only direction of travel and stop adding fresh ontology to ad hoc animator-only assembly helpers;
+  - extend the first animator-side visual path that already reads canonical structure into additional viewport and editor surfaces instead of leaving the bridge as isolated summaries and badges;
+  - move at least one actual animator mutation path onto shared structure transforms, likely regroup/group-split or another narrow hierarchy edit;
   - make parent/child nesting read as local structure rather than grouped ids alone;
   - add richer subassembly transforms, presets, and instance overrides once the canonical edit path exists;
   - decide how anti-Noether cores and similar theory-facing structures should be depicted and edited;
@@ -200,7 +200,7 @@ Scoring system:
     - external API use where it sharpens solving rather than distracting from the manual baseline,
     - possible MadGraph-assisted channel work,
     - and scene-builder / API-mode handoff once the stored reaction payload is stable;
-  - pdgview architecture follow-on:
+  - animator architecture follow-on:
     - retire the remaining raw timing / reaction text bridges once structured authoring can replace them cleanly;
     - close the gap between the current preview bridge and the dedicated `Scene-Composed-Animation` runtime path;
   - history traces and exclusion envelopes:
@@ -214,7 +214,7 @@ Scoring system:
     - keep turning repeated text-entry flows into structured or direct-manipulation authoring where that improves clarity,
     - and leave repo-facing persistence, validation, reusable libraries, and lint as later follow-on work unless they become blockers for the above priorities.
 - Guardrails for the next pass:
-  - the pdgview should stay visual, canvas-first, and light on persistent text authoring;
+  - the animator should stay visual, canvas-first, and light on persistent text authoring;
   - anything about a given assembly should be managed through that assembly's center control point where practical;
   - path markers should remain directly draggable;
   - timeline items should become more authorable, not more abstract;

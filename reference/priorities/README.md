@@ -13,8 +13,4 @@ The current preferred style for live priority docs is:
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
 
-This pattern was applied across:
 
-- [reference/priorities/pdg/pdgapps.md](deferred/pdg/pdgapps.md)
-- [reference/priorities/animator/animator.md](../priorities/animator/animator.md)
-- [reference/priorities/pdg/pdgfeed.md](deferred/pdg/pdgfeed.md)

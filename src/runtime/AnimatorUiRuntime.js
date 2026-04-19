@@ -1,0 +1,185 @@
+export function createAnimatorUiRuntime(deps) {
+  const {
+    app,
+    animatorOverlay,
+    animatorTabs,
+    animatorPanels,
+    animatorSceneId,
+    animatorPreviewSceneId,
+    animatorPreviewScenePath,
+    animatorDocsPath,
+    levelConfigs,
+    levels,
+    initAnimatorCanvas,
+    renderAnimatorJsonPreview,
+    stopAnimatorCameraFlightPreview,
+    showMarkdownPanel,
+    readAnimatorDraftState,
+    buildAnimatorSceneDocument,
+    buildAnimatorPreviewSceneData,
+    jumpToScene,
+    setAnimatorStatus,
+  } = deps;
+
+  let animatorActivePanel = "tree";
+
+  function setAnimatorPanel(panelId) {
+    if (!animatorOverlay) {
+      return;
+    }
+    const targetId = panelId || "tree";
+    const hasPanel = animatorPanels.some((panel) => panel.dataset.panel === targetId);
+    const nextPanel = hasPanel ? targetId : "tree";
+    animatorActivePanel = nextPanel;
+    animatorTabs.forEach((tab) => {
+      const isActive = tab.dataset.panel === nextPanel;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+    animatorPanels.forEach((panel) => {
+      const isActive = panel.dataset.panel === nextPanel;
+      panel.classList.toggle("is-active", isActive);
+      panel.setAttribute("aria-hidden", String(!isActive));
+    });
+    if (nextPanel === "path") {
+      deps.setAnimatorNeedsResize(true);
+    }
+    if (nextPanel === "export") {
+      renderAnimatorJsonPreview();
+    }
+  }
+
+  function updateAnimatorOverlay(currentLevel) {
+    if (!animatorOverlay) {
+      return;
+    }
+    const isAnimatorScene =
+      currentLevel?.sceneId === animatorSceneId ||
+      currentLevel?.sceneId === animatorPreviewSceneId;
+    const isOverlayScene = isAnimatorScene;
+    animatorOverlay.classList.toggle("is-open", !!isOverlayScene);
+    animatorOverlay.setAttribute("aria-hidden", isOverlayScene ? "false" : "true");
+    animatorOverlay.inert = !isOverlayScene;
+    if (app) {
+      app.classList.toggle("animator-mode", !!isOverlayScene);
+    }
+    if (isAnimatorScene) {
+      initAnimatorCanvas();
+      deps.setAnimatorNeedsResize(true);
+      setAnimatorPanel(animatorActivePanel);
+      renderAnimatorJsonPreview();
+    } else {
+      stopAnimatorCameraFlightPreview();
+    }
+  }
+
+  function openAnimatorDocs(isTransitionActive) {
+    if (isTransitionActive) {
+      return;
+    }
+    showMarkdownPanel({
+      name: "animator docs",
+      markdownPath: animatorDocsPath,
+      markdownColumns: 2,
+    });
+  }
+
+  function openAnimatorPreview(isTransitionActive) {
+    if (isTransitionActive) {
+      return;
+    }
+    const draftState = readAnimatorDraftState();
+    const document = buildAnimatorSceneDocument(draftState, {
+      sceneId: animatorPreviewSceneId,
+      sceneName: `${draftState.name} (Preview)`,
+    });
+    const sceneData = buildAnimatorPreviewSceneData(document, {
+      sceneId: animatorPreviewSceneId,
+      sceneTitle: `${draftState.name} (Preview)`,
+    });
+    levelConfigs[animatorPreviewScenePath] = sceneData;
+    levels.delete(animatorPreviewScenePath);
+    animatorActivePanel = "preview";
+    setAnimatorPanel("preview");
+    setAnimatorStatus(`Previewing "${draftState.name}". Use Back to return.`);
+    jumpToScene(animatorPreviewScenePath, {
+      mode: "jump",
+      startScale: 0.6,
+      duration: 700,
+    });
+  }
+
+  function exportAnimatorScene() {
+    const draftState = readAnimatorDraftState();
+    const sceneDocument = buildAnimatorSceneDocument(draftState);
+    const json = JSON.stringify(sceneDocument, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${draftState.id || "animator_scene"}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setAnimatorStatus(`Exported ${draftState.id}.json`);
+    renderAnimatorJsonPreview();
+  }
+
+  async function saveAnimatorSceneToRepoFile() {
+    const draftState = readAnimatorDraftState();
+    const sceneDocument = buildAnimatorSceneDocument(draftState);
+    const json = JSON.stringify(sceneDocument, null, 2);
+    const suggestedName = `${draftState.id || "animator_scene"}.json`;
+    const picker = globalThis.window?.showSaveFilePicker;
+
+    if (typeof picker === "function") {
+      try {
+        const handle = await picker({
+          suggestedName,
+          types: [
+            {
+              description: "JSON Scene",
+              accept: {
+                "application/json": [".json"],
+              },
+            },
+          ],
+        });
+        const writable = await handle.createWritable();
+        await writable.write(json);
+        await writable.close();
+        setAnimatorStatus(`Saved ${suggestedName}. Place it under content/scenes/ where you want it in the repo.`);
+        renderAnimatorJsonPreview();
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") {
+          setAnimatorStatus("Repo save canceled.");
+          return;
+        }
+      }
+    }
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = suggestedName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setAnimatorStatus(`Downloaded ${suggestedName}. Move it into content/scenes/ to add it to the repo.`);
+    renderAnimatorJsonPreview();
+  }
+
+  return {
+    setAnimatorPanel,
+    updateAnimatorOverlay,
+    openAnimatorDocs,
+    openAnimatorPreview,
+    exportAnimatorScene,
+    saveAnimatorSceneToRepoFile,
+  };
+}

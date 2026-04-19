@@ -15,7 +15,7 @@ When using multiple Codex threads in parallel against repo priorities:
   - Solver-core / regression work,
   - PDG ingest / mapping / contract work,
   - Architecture enforcement / scripts / tests,
-  - pdgview timeline / observer / import work;
+  - animator timeline / observer / import work;
 - avoid pairing tasks that are the same cut-over seen from two sides, for example Reaction solver-cut-over work with Solver external-cut-over work;
 - avoid pairing tasks that both want to own the same report or sweep surface.
 

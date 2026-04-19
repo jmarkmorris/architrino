@@ -1,7 +1,7 @@
 import {
   PDGVIEW_APP_MODE,
   PDGVIEW_SCENE_PATH,
-} from "./PdgviewAppModeRuntime.js";
+} from "./AnimatorAppModeRuntime.js";
 
 if (typeof window !== "undefined") {
   window.__ARCHITRINO_APP_MODE__ = PDGVIEW_APP_MODE;

@@ -1,0 +1,56 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+
+import {
+  PDGVIEW_LIBRARY_STORAGE_KEY,
+  PDGVIEW_MEDIA_ASSET_DIRECTORIES,
+  PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS,
+  DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX,
+  getAnimatorDomElements,
+} from "../src/apps/animator/AnimatorDomRuntime.js";
+
+test("animator dom runtime collects animator shell elements and bindings", () => {
+  const elementMap = new Map();
+  const overlay = {
+    querySelectorAll(selector) {
+      if (selector === ".animator-tab") {
+        return [{ id: "tab_a" }, { id: "tab_b" }];
+      }
+      if (selector === ".animator-panel") {
+        return [{ id: "panel_a" }];
+      }
+      return [];
+    },
+  };
+  const canvasParent = { id: "canvas_wrap" };
+  const canvas = { id: "animator-canvas", parentElement: canvasParent };
+  elementMap.set("animator-overlay", overlay);
+  elementMap.set("animator-canvas", canvas);
+  elementMap.set("animator-hud-labels-toggle", { id: "labels" });
+  elementMap.set("animator-hud-paths-toggle", { id: "paths" });
+  elementMap.set("animator-hud-history-toggle", { id: "history" });
+  elementMap.set("animator-hud-envelopes-toggle", { id: "envelopes" });
+  elementMap.set("animator-hud-camera-guides-toggle", { id: "camera_guides" });
+
+  const dom = getAnimatorDomElements({
+    getElementById(id) {
+      return elementMap.get(id) ?? null;
+    },
+  });
+
+  assert.equal(dom.animatorOverlay, overlay);
+  assert.equal(dom.animatorCanvas, canvas);
+  assert.equal(dom.animatorCanvasWrap, canvasParent);
+  assert.equal(dom.animatorTabs.length, 2);
+  assert.equal(dom.animatorPanels.length, 1);
+  assert.equal(dom.animatorHudViewportToggleBindings.length, 5);
+  assert.equal(dom.animatorHudViewportToggleBindings[0]?.key, "showLabels");
+  assert.equal(dom.animatorHudViewportToggleBindings[4]?.key, "showCameraGuides");
+});
+
+test("animator dom runtime exposes animator shell constants", () => {
+  assert.equal(PDGVIEW_LIBRARY_STORAGE_KEY, "architrino.animator.library.v1");
+  assert.equal(PDGVIEW_MEDIA_ASSET_DIRECTORIES.image, "content/assets/animator/images/");
+  assert.deepEqual(PDGVIEW_SUPPORTED_MEDIA_EXTENSIONS.video, ["mp4", "mov"]);
+  assert.deepEqual(DEFAULT_PDGVIEW_ROOT_LAYOUT_MARGIN_PX, { x: 160, y: 140 });
+});

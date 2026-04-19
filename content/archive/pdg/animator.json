@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "animator",
+    "title": "animator",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "hideScaleLabels": true,
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": [
+    {
+      "id": "animator_tree",
+      "label": "Scene Tree",
+      "radius": 1.1,
+      "color": "#243d8f",
+      "labelTitle": "Scene Tree"
+    },
+    {
+      "id": "animator_path",
+      "label": "Path Editor",
+      "radius": 1.1,
+      "color": "#2f6b6f",
+      "labelTitle": "Path Editor"
+    },
+    {
+      "id": "animator_orbit",
+      "label": "Orbit Editor",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "labelTitle": "Orbit Editor"
+    },
+    {
+      "id": "animator_interactions",
+      "label": "Interactions",
+      "radius": 1.1,
+      "color": "#4b0082",
+      "labelTitle": "Interactions"
+    },
+    {
+      "id": "animator_preview",
+      "label": "Preview",
+      "radius": 1.1,
+      "color": "#3a5f9f",
+      "labelTitle": "Preview"
+    },
+    {
+      "id": "animator_export",
+      "label": "Export / Validate",
+      "radius": 1.1,
+      "color": "#2f4f7a",
+      "labelTitle": "Export / Validate"
+    }
+  ]
+}

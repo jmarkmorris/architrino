@@ -204,73 +204,73 @@
           <div id="markdown-body"></div>
         </div>
       </div>
-      <div id="pdgview-overlay" aria-hidden="true">
-        <div class="pdgview-header">
-          <div class="pdgview-header-main">
-            <div id="pdgview-status" class="pdgview-header-status" aria-live="polite"></div>
+      <div id="animator-overlay" aria-hidden="true">
+        <div class="animator-header">
+          <div class="animator-header-main">
+            <div id="animator-status" class="animator-header-status" aria-live="polite"></div>
           </div>
-          <div class="pdgview-actions">
-            <div class="pdgview-view-toggle" role="group" aria-label="Viewport mode">
+          <div class="animator-actions">
+            <div class="animator-view-toggle" role="group" aria-label="Viewport mode">
               <button
-                id="pdgview-view-design-button"
+                id="animator-view-design-button"
                 type="button"
-                class="pdgview-view-toggle-button is-active"
+                class="animator-view-toggle-button is-active"
                 aria-pressed="true"
               >
                 Design
               </button>
               <button
-                id="pdgview-view-authored-button"
+                id="animator-view-authored-button"
                 type="button"
-                class="pdgview-view-toggle-button"
+                class="animator-view-toggle-button"
                 aria-pressed="false"
               >
                 Observer
               </button>
             </div>
-            <button id="pdgview-scene-button" type="button" aria-label="Open scene controls">
+            <button id="animator-scene-button" type="button" aria-label="Open scene controls">
               Scene
             </button>
-            <button id="pdgview-clear-button" type="button" aria-label="Clear the current scene">
+            <button id="animator-clear-button" type="button" aria-label="Clear the current scene">
               Clear
             </button>
-            <button id="pdgview-save-button" type="button" aria-label="Open library and save controls">
+            <button id="animator-save-button" type="button" aria-label="Open library and save controls">
               Library
             </button>
             <button
-              id="pdgview-docs-button"
+              id="animator-docs-button"
               type="button"
-              aria-label="Open pdgview docs"
+              aria-label="Open animator docs"
             >
-              <span class="pdgview-docs-icon" aria-hidden="true">📚</span>
-              <span>pdgview Docs</span>
+              <span class="animator-docs-icon" aria-hidden="true">📚</span>
+              <span>animator Docs</span>
             </button>
-            <button id="pdgview-exit-button" type="button" aria-label="Exit pdgview">
+            <button id="animator-exit-button" type="button" aria-label="Exit animator">
               Exit
             </button>
           </div>
         </div>
-        <div class="pdgview-workspace">
-          <main class="pdgview-main">
-            <div class="pdgview-canvas-wrap">
-              <canvas id="pdgview-canvas"></canvas>
-              <div id="pdgview-viewport-overlays" class="pdgview-viewport-overlays" aria-hidden="true"></div>
-              <div id="pdgview-assembly-menu" class="pdgview-assembly-menu" aria-hidden="true"></div>
-              <div class="pdgview-timeline-overlay">
-                <div class="pdgview-timeline-toolbar">
-                  <div class="pdgview-timeline-transport">
-                    <button id="pdgview-play-toggle" type="button" class="pdgview-transport-icon" aria-label="Play"></button>
-                    <button id="pdgview-play-reset" type="button" class="pdgview-transport-icon" aria-label="Restart"></button>
+        <div class="animator-workspace">
+          <main class="animator-main">
+            <div class="animator-canvas-wrap">
+              <canvas id="animator-canvas"></canvas>
+              <div id="animator-viewport-overlays" class="animator-viewport-overlays" aria-hidden="true"></div>
+              <div id="animator-assembly-menu" class="animator-assembly-menu" aria-hidden="true"></div>
+              <div class="animator-timeline-overlay">
+                <div class="animator-timeline-toolbar">
+                  <div class="animator-timeline-transport">
+                    <button id="animator-play-toggle" type="button" class="animator-transport-icon" aria-label="Play"></button>
+                    <button id="animator-play-reset" type="button" class="animator-transport-icon" aria-label="Restart"></button>
                   </div>
-                  <div id="pdgview-timeline-track" class="pdgview-timeline-track">
-                    <div id="pdgview-timeline-warps" class="pdgview-timeline-layer"></div>
-                    <div id="pdgview-timeline-pauses" class="pdgview-timeline-layer"></div>
-                    <div id="pdgview-timeline-markers" class="pdgview-timeline-layer"></div>
-                    <div id="pdgview-timeline-playhead" class="pdgview-timeline-playhead"></div>
+                  <div id="animator-timeline-track" class="animator-timeline-track">
+                    <div id="animator-timeline-warps" class="animator-timeline-layer"></div>
+                    <div id="animator-timeline-pauses" class="animator-timeline-layer"></div>
+                    <div id="animator-timeline-markers" class="animator-timeline-layer"></div>
+                    <div id="animator-timeline-playhead" class="animator-timeline-playhead"></div>
                   </div>
-                  <div class="pdgview-timeline-summary">
+                  <div class="animator-timeline-summary">
                     <button
-                      id="pdgview-timeline-summary"
+                      id="animator-timeline-summary"
                       type="button"
                       title="Click to edit duration and loop"
                       aria-label="Edit scene duration and loop"
@@ -278,63 +278,63 @@
                   </div>
                 </div>
               </div>
-              <div class="pdgview-canvas-hud">
+              <div class="animator-canvas-hud">
                 <span>Canvas UI</span>
                 <span>Click/Drag: 3D Rotate</span>
                 <span>Right-Click: Scene, Frame, Observer</span>
-                <div class="pdgview-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
-                  <button id="pdgview-hud-labels-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
+                <div class="animator-canvas-hud-toggles" role="group" aria-label="Canvas view controls">
+                  <button id="animator-hud-labels-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Observer Labels
                   </button>
-                  <button id="pdgview-hud-paths-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-paths-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Transport Paths
                   </button>
-                  <button id="pdgview-hud-history-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-history-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     History Traces
                   </button>
-                  <button id="pdgview-hud-envelopes-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-envelopes-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Envelopes
                   </button>
-                  <button id="pdgview-hud-camera-guides-toggle" type="button" class="pdgview-canvas-hud-toggle" aria-pressed="true">
+                  <button id="animator-hud-camera-guides-toggle" type="button" class="animator-canvas-hud-toggle" aria-pressed="true">
                     Observer Guides
                   </button>
                 </div>
               </div>
             </div>
           </main>
-          <div class="pdgview-store" hidden aria-hidden="true">
-            <input id="pdgview-scene-id" type="text" value="pdgview_scene" />
-            <input id="pdgview-scene-name" type="text" value="pdgview Scene" />
-            <input id="pdgview-scene-duration" type="number" min="1" step="0.5" value="24" />
-            <input id="pdgview-scene-loop" type="checkbox" />
+          <div class="animator-store" hidden aria-hidden="true">
+            <input id="animator-scene-id" type="text" value="animator_scene" />
+            <input id="animator-scene-name" type="text" value="animator Scene" />
+            <input id="animator-scene-duration" type="number" min="1" step="0.5" value="24" />
+            <input id="animator-scene-loop" type="checkbox" />
             <textarea
-              id="pdgview-marker-list"
+              id="animator-marker-list"
               rows="3"
               placeholder="0: Start&#10;3.5: Shell Lock&#10;7.0: Slow Branch"
             ></textarea>
-            <div id="pdgview-marker-status">No timeline notes authored.</div>
+            <div id="animator-marker-status">No timeline notes authored.</div>
             <textarea
-              id="pdgview-pause-list"
+              id="animator-pause-list"
               rows="2"
               placeholder="3.0, 1.0&#10;8.5, 0.6"
             ></textarea>
-            <div id="pdgview-pause-status">No pauses authored.</div>
+            <div id="animator-pause-status">No pauses authored.</div>
             <textarea
-              id="pdgview-warp-list"
+              id="animator-warp-list"
               rows="2"
               placeholder="7.0, 10.0, 0.5&#10;18.0, 24.0, 1.8"
             ></textarea>
-            <div id="pdgview-warp-status">No warps authored.</div>
-            <button id="pdgview-repo-save-button" type="button">Save Repo</button>
-            <button id="pdgview-library-save" type="button">Save Library</button>
-            <button id="pdgview-export-button" type="button">Export JSON</button>
-            <select id="pdgview-library-select">
+            <div id="animator-warp-status">No warps authored.</div>
+            <button id="animator-repo-save-button" type="button">Save Repo</button>
+            <button id="animator-library-save" type="button">Save Library</button>
+            <button id="animator-export-button" type="button">Export JSON</button>
+            <select id="animator-library-select">
               <option value="">No saved scenes</option>
             </select>
-            <button id="pdgview-library-load" type="button">Load Selected</button>
-            <button id="pdgview-library-delete" type="button">Delete</button>
-            <div id="pdgview-library-status">Library storage is browser-local for now.</div>
-            <pre id="pdgview-json-preview" class="pdgview-json-preview"></pre>
+            <button id="animator-library-load" type="button">Load Selected</button>
+            <button id="animator-library-delete" type="button">Delete</button>
+            <div id="animator-library-status">Library storage is browser-local for now.</div>
+            <pre id="animator-json-preview" class="animator-json-preview"></pre>
           </div>
         </div>
       </div>
