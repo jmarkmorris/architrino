@@ -287,7 +287,7 @@ class PdgfeedCliTests(unittest.TestCase):
                     {"Metric": "Number of AAAcomplete reactions", "Count": "0"},
                     {"Metric": "Number of backlog reactions", "Count": "0"},
                     {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "5"},
-                    {"Metric": "Number of reactions excluded from app (<5.0% branching probability)", "Count": "0"},
+                    {"Metric": "Number of reactions excluded from app (<20.0% branching probability)", "Count": "1"},
                     {"Metric": "Number of reactions excluded from app (no branching probability specified)", "Count": "0"},
                     {"Metric": "Number of reactions closed by total primitive balance", "Count": "5"},
                     {"Metric": "Number of total-balance closures with product unbound architrinos", "Count": "3"},
@@ -324,25 +324,19 @@ class PdgfeedCliTests(unittest.TestCase):
                 residue_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
                         "Product Unbound Architrino Counts": "0:0",
                         "Count": "2",
                         "Example Mode": "mu- decay mode 1",
                     },
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
                         "Product Unbound Architrino Counts": "2:2",
                         "Count": "1",
                         "Example Mode": "pi+ decay mode 1",
                     },
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
-                        "Product Unbound Architrino Counts": "12:12",
-                        "Count": "1",
-                        "Example Mode": "pi0 decay mode 2",
-                    },
-                    {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
                         "Product Unbound Architrino Counts": "18:18",
                         "Count": "1",
                         "Example Mode": "pi0 decay mode 1",
@@ -419,7 +413,7 @@ class PdgfeedCliTests(unittest.TestCase):
             self.assertEqual(metric_rows[4], {"Metric": "Number of PDG reactions supported and transformed into AAA", "Count": "1"})
             self.assertEqual(
                 metric_rows[5],
-                {"Metric": "Number of reactions excluded from app (<5.0% branching probability)", "Count": "0"},
+                {"Metric": "Number of reactions excluded from app (<20.0% branching probability)", "Count": "0"},
             )
             self.assertEqual(
                 metric_rows[6],
@@ -464,7 +458,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 residue_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
                         "Product Unbound Architrino Counts": "1:1",
                         "Count": "1",
                         "Example Mode": "B+ decay mode 1",
@@ -502,7 +496,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("nubar_e"),
                                 FakeDecayProduct("nu_mu"),
                             ],
-                            value=0.04,
+                            value=0.19,
                         ),
                     ],
                     mcid=13,
@@ -517,7 +511,7 @@ class PdgfeedCliTests(unittest.TestCase):
                                 FakeDecayProduct("mu+"),
                                 FakeDecayProduct("nu_mu"),
                             ],
-                            value=0.05,
+                            value=0.20,
                         ),
                     ],
                     mcid=211,
@@ -543,7 +537,7 @@ class PdgfeedCliTests(unittest.TestCase):
                 threshold_rows,
                 [
                     {
-                        "Reaction Set": "Ready total-balance closures with branching probability >= 5.0%",
+                        "Reaction Set": "Ready total-balance closures with branching probability >= 20.0%",
                         "Product Unbound Architrino Counts": "2:2",
                         "Count": "1",
                         "Example Mode": "pi+ decay mode 1",

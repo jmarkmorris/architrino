@@ -57,7 +57,7 @@ REQUEST_ASSEMBLY_TITLE_BY_ID = {
 }
 UNBOUND_ARCHITRINOS_RESIDUE_ASSEMBLY_ID = "unbound_architrinos_residue"
 UNBOUND_ARCHITRINOS_RESIDUE_TITLE = "Unbound Architrinos"
-PDGEDIT_APP_MIN_BRANCHING_PROBABILITY = 0.05
+PDGEDIT_APP_MIN_BRANCHING_PROBABILITY = 0.20
 NOETHER_CORE_GENERATIONS = ("I", "II", "III")
 NOETHER_PAIR_PRIMITIVE_TOTALS_BY_GENERATION = {
     generation: {
@@ -676,6 +676,8 @@ def add_unbound_architrino_residue_product_from_surplus(
 def transform_proposal_for_pdgsolve(proposal: Proposal) -> dict[str, list[dict[str, Any]]] | None:
     if has_unsupported_transform_notes(proposal.notes):
         return None
+    if not proposal.products:
+        return None
     reactants = transform_participants_for_pdgsolve(proposal.reactants)
     products = transform_participants_for_pdgsolve(proposal.products)
     if reactants is None or products is None:
@@ -1247,7 +1249,7 @@ def build_live_reaction_summary_rows(
         ("Number of backlog reactions", backlog_count),
         ("Number of PDG reactions supported and transformed into AAA", len(supported_rows)),
         (
-            "Number of reactions excluded from app (<5.0% branching probability)",
+            f"Number of reactions excluded from app (<{PDGEDIT_APP_MIN_BRANCHING_PROBABILITY * 100:.1f}% branching probability)",
             app_excluded_low_probability_count,
         ),
         (

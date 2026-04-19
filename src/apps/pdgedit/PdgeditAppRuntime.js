@@ -27,8 +27,7 @@ import { renderPdgeditTileSvg } from "./PdgeditTileSvgRuntime.js";
 
 const PDGEDIT_BALANCE_EPSILON_GLYPH = "ϵ";
 const PDGEDIT_BALANCE_EPSILON_FONT_FAMILY = "'STIX Two Text', Cambria Math, Georgia, serif";
-const PDGEDIT_MIN_APP_BRANCHING_PROBABILITY = 0.05;
-const PDGEDIT_PROBABILITY_FILTER_MIN_BRANCHING_PROBABILITY = 0.05;
+const PDGEDIT_MIN_BRANCHING_PROBABILITY = 0.2;
 
 function normalizeText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -103,7 +102,7 @@ function passesPdgeditAppProbabilityFloor(entry) {
   if (probability === null) {
     return false;
   }
-  return probability + 1e-12 >= PDGEDIT_MIN_APP_BRANCHING_PROBABILITY;
+  return probability + 1e-12 >= PDGEDIT_MIN_BRANCHING_PROBABILITY;
 }
 
 function comparePdgeditDocumentEntriesByProbability(left, right) {
@@ -139,7 +138,7 @@ export function getPdgeditDocumentPickerEntries(entries, { query = "", sourceFil
       }
     } else if (normalizedSourceFilter === "probability") {
       const probability = normalizeBranchingProbability(entry?.branchingProbability);
-      if (probability === null || probability + 1e-12 < PDGEDIT_PROBABILITY_FILTER_MIN_BRANCHING_PROBABILITY) {
+      if (probability === null || probability + 1e-12 < PDGEDIT_MIN_BRANCHING_PROBABILITY) {
         return false;
       }
     }

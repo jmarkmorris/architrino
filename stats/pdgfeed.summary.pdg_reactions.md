@@ -1,3 +1,4 @@
+
 | Metric | Count |
 | --- | --- |
 | Number of total PDG reactions | 14678 |
@@ -5,7 +6,7 @@
 | Number of AAAcomplete reactions | 6 |
 | Number of backlog reactions | 3553 |
 | Number of PDG reactions supported and transformed into AAA | 1394 |
-| Number of reactions excluded from app (<5.0% branching probability) | 8841 |
+| Number of reactions excluded from app (<20.0% branching probability) | 8841 |
 | Number of reactions excluded from app (no branching probability specified) | 3809 |
 | Number of reactions closed by total primitive balance | 1402 |
 | Number of total-balance closures with product unbound architrinos | 1140 |
@@ -28,17 +29,17 @@
 | 0-10 | 9560 |
 | No numeric value | 3809 |
 
-| Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |
-| --- | --- | --- | --- |
-| Ready total-balance closures with branching probability >= 5.0% | 0:0 | 24 | mu- decay mode 1 |
-| Ready total-balance closures with branching probability >= 5.0% | 5:5 | 19 | K+ decay mode 3 |
-| Ready total-balance closures with branching probability >= 5.0% | 2:2 | 7 | pi+ decay mode 1 |
-| Ready total-balance closures with branching probability >= 5.0% | 11:11 | 7 | D0 decay mode 1 |
-| Ready total-balance closures with branching probability >= 5.0% | 1:1 | 5 | D+ decay mode 72 |
-| Ready total-balance closures with branching probability >= 5.0% | 4:4 | 2 | eta decay mode 3 |
-| Ready total-balance closures with branching probability >= 5.0% | 12:12 | 2 | nbar decay mode 1 |
-| Ready total-balance closures with branching probability >= 5.0% | 13:1 | 1 | D- decay mode 72 |
-| Ready total-balance closures with branching probability >= 5.0% | 22:22 | 1 | eta decay mode 2 |
+| Reaction Set                                                         | Product Unbound Architrino Counts | Count | Example Mode      |
+| -------------------------------------------------------------------- | --------------------------------- | ----- | ----------------- |
+| Ready total-balance closures with branching probability >= 20.0%     | 0:0                               | 24    | mu- decay mode 1  |
+| Ready total-balance closures with branching probability >= 20.0%     | 5:5                               | 19    | K+ decay mode 3   |
+| Ready total-balance closures with branching probability >= 20.0%     | 2:2                               | 7     | pi+ decay mode 1  |
+| Ready total-balance closures with branching probability >= 20.0%     | 11:11                             | 7     | D0 decay mode 1   |
+| Ready total-balance closures with branching probability >= 20.0%     | 1:1                               | 5     | D+ decay mode 72  |
+| Ready total-balance closures with branching probability >= 20.0%     | 4:4                               | 2     | eta decay mode 3  |
+| Ready total-balance closures with branching probability >= 20.0%     | 12:12                             | 2     | nbar decay mode 1 |
+| Ready total-balance closures with branching probability >= 20.0%     | 13:1                              | 1     | D- decay mode 72  |
+| [[]]Ready total-balance closures with branching probability >= 20.0% | 22:22                             | 1     | eta decay mode 2  |
 
 | Reaction Set | Product Unbound Architrino Counts | Count | Example Mode |
 | --- | --- | --- | --- |

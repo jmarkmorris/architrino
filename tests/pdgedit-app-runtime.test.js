@@ -168,7 +168,7 @@ test("picker exact 0:0 filter keeps only exact entries with no unbound architrin
   );
 });
 
-test("picker probability filter keeps >=5% reactions and sorts them descending", () => {
+test("picker probability filter keeps >=20% reactions and sorts them descending", () => {
   const entries = [
     {
       id: "review_high",
@@ -196,7 +196,7 @@ test("picker probability filter keeps >=5% reactions and sorts them descending",
       title: "Exact Below Threshold",
       displayTitle: "Exact Below Threshold",
       sourceKind: "exact",
-      branchingProbability: 0.04,
+      branchingProbability: 0.19,
     },
   ];
 
@@ -210,7 +210,7 @@ test("picker probability filter keeps >=5% reactions and sorts them descending",
   );
 });
 
-test("picker all filter removes live reactions below 5% and sorts remaining entries descending by probability", () => {
+test("picker all filter removes live reactions below 20% and sorts remaining entries descending by probability", () => {
   const entries = [
     {
       id: "example_reference",
@@ -237,7 +237,7 @@ test("picker all filter removes live reactions below 5% and sorts remaining entr
       title: "Exact Below Floor",
       displayTitle: "Exact Below Floor",
       sourceKind: "exact",
-      branchingProbability: 0.049,
+      branchingProbability: 0.199,
     },
     {
       id: "exact_no_numeric",
