@@ -1,5 +1,5 @@
 export const PDGVIEW_APP_MODE = "pdgview";
-export const PDGVIEW_SCENE_PATH = "content/scenes/archie/pdgview.json";
+export const PDGVIEW_SCENE_PATH = "content/archive/pdg/pdgview.json";
 export const STANDALONE_PDGVIEW_NAVIGATOR_HREF = "./index.html";
 
 export function getPdgviewAppMode(windowLike = globalThis.window) {

@@ -11,33 +11,30 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("pdgview scene resolves to the standalone pdgview app path", () => {
-  assert.equal(getStandaloneAppPathForScene("pdgview"), "./pdgview.html");
+test("pdgview scene no longer resolves to a standalone app path from the main webapp", () => {
+  assert.equal(getStandaloneAppPathForScene("pdgview"), null);
 });
 
-test("pdgedit scene resolves to the standalone pdgedit app path", () => {
-  assert.equal(getStandaloneAppPathForScene("pdgedit"), "./pdgedit.html");
+test("pdgedit scene no longer resolves to a standalone app path from the main webapp", () => {
+  assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
 });
 
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
+  assert.equal(getStandaloneAppPathForScene("pdgview"), null);
+  assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
   assert.equal(getStandaloneAppPathForScene("pdgsolve"), null);
   assert.equal(getStandaloneAppPathForScene("not_a_scene"), null);
 });
 
-test("pdgview href resolution uses the current page as the base URL", () => {
-  const href = resolveStandaloneAppHrefForScene(
-    "pdgview",
-    "http://127.0.0.1:5173/index.html"
+test("archived PDG scenes no longer resolve to standalone launch hrefs from the main webapp", () => {
+  assert.equal(
+    resolveStandaloneAppHrefForScene("pdgview", "http://127.0.0.1:5173/index.html"),
+    null
   );
-
-  assert.equal(href, "http://127.0.0.1:5173/pdgview.html");
-});
-
-test("pdgedit href resolution stays route-only", () => {
   assert.equal(
     resolveStandaloneAppHrefForScene("pdgedit", "http://127.0.0.1:5173/index.html"),
-    "http://127.0.0.1:5173/pdgedit.html"
+    null
   );
 });
 

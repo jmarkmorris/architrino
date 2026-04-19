@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 422,
-      "edges": 1166,
-      "scenes": 291,
+      "nodes": 419,
+      "edges": 1163,
+      "scenes": 288,
       "markdownIndexes": 0,
       "markdownDocs": 131,
       "runtimeEdges": 476,
@@ -1727,12 +1727,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "pdgview",
-      "name": "pdgview",
-      "path": "content/scenes/archie/pdgview.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "archie__about",
       "name": "About the Webapp",
       "path": "content/scenes/archie/about.json",
@@ -1880,18 +1874,6 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "pdgedit",
-      "name": "pdgedit",
-      "path": "content/scenes/archie/pdgedit.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "pdgsolve",
-      "name": "pdgsolve",
-      "path": "content/scenes/archie/pdgsolve.json",
       "nodeType": "scene"
     },
     {
@@ -2779,33 +2761,6 @@
       "name": "Mathematical Terminology Reference",
       "path": "content/scenes/archie/mathematical_terminology.json",
       "searchTarget": "content/scenes/archie/mathematical_terminology.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/pdgedit.json",
-      "nodeType": "scene",
-      "id": "pdgedit",
-      "name": "pdgedit",
-      "path": "content/scenes/archie/pdgedit.json",
-      "searchTarget": "content/scenes/archie/pdgedit.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/pdgsolve.json",
-      "nodeType": "scene",
-      "id": "pdgsolve",
-      "name": "pdgsolve",
-      "path": "content/scenes/archie/pdgsolve.json",
-      "searchTarget": "content/scenes/archie/pdgsolve.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/pdgview.json",
-      "nodeType": "scene",
-      "id": "pdgview",
-      "name": "pdgview",
-      "path": "content/scenes/archie/pdgview.json",
-      "searchTarget": "content/scenes/archie/pdgview.json",
       "implicit": false
     },
     {
@@ -6484,59 +6439,38 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/pdgedit.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/pdgsolve.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/pdgview.json",
+      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/molecule.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",

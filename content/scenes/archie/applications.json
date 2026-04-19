@@ -12,18 +12,6 @@
     "hideScaleLabels": true,
     "children": [
       {
-        "nodeId": "pdgview",
-        "scenePath": "content/scenes/archie/pdgview.json"
-      },
-      {
-        "nodeId": "pdgsolve",
-        "scenePath": "content/scenes/archie/pdgsolve.json"
-      },
-      {
-        "nodeId": "pdgedit",
-        "scenePath": "content/scenes/archie/pdgedit.json"
-      },
-      {
         "nodeId": "hyde_periodic_table",
         "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
       },
@@ -46,27 +34,6 @@
     ]
   },
   "objects": [
-    {
-      "id": "pdgview",
-      "title": "pdgview",
-      "radius": 2.2,
-      "color": "#7ee0d7",
-      "labelTitle": "pdgview"
-    },
-    {
-      "id": "pdgsolve",
-      "title": "pdgsolve",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "labelTitle": "pdgsolve"
-    },
-    {
-      "id": "pdgedit",
-      "title": "pdgedit",
-      "radius": 2.2,
-      "color": "#7a4a1f",
-      "labelTitle": "pdgedit"
-    },
     {
       "id": "hyde_periodic_table",
       "title": "Hyde Periodic Table",

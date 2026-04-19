@@ -30,7 +30,7 @@ It does not own:
 
 ## Current State
 
-- The codebase now has `pdgview.html` and `pdgedit.html` as active standalone app entrypoints in the main web surface, while `pdgsolve` intentionally remains a Python/contract boundary without a standalone UI.
+- The codebase still has `pdgview.html` and `pdgedit.html` as standalone entrypoints in-repo, but the main Architrino web surface no longer exposes launcher routes into those archived PDG tools; `pdgsolve` intentionally remains a Python/contract boundary without a standalone UI.
 - pdgview now owns a meaningful app tree under `src/apps/pdgview/`, and root `app.js` has been thinned to entry glue, but too much live behavior still remains concentrated in the shared `src/apps/architrino/ArchitrinoSceneAppRuntime.js` scene shell.
 - The forward architectural split is now clearer in docs: `pdgfeed -> pdgsolve -> pdgedit -> pdgview`.
 - The main remaining structural debt is concentrated in oversized shared roots, broad coordinator files, and migration-era assumptions that still reflect older shared-runtime thinking.
@@ -265,7 +265,7 @@ Status: `active`
 
 Current:
 
-- standalone launch routing now exists for `pdgview` and `pdgedit`;
+- the standalone entrypoints still exist for `pdgview` and `pdgedit`, but the main launcher no longer routes into them;
 - `pdgsolve` intentionally remains off the standalone launcher surface;
 - and `pdgview` still shares the larger Architrino scene-shell runtime while the remaining pdgview-owned behavior is moved out of that shell.
 

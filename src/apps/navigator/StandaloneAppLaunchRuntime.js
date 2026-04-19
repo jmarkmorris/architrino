@@ -1,7 +1,4 @@
-const standaloneScenePathById = Object.freeze({
-  pdgedit: "./pdgedit.html",
-  pdgview: "./pdgview.html",
-});
+const standaloneScenePathById = Object.freeze({});
 
 export function getStandaloneAppPathForScene(sceneId = "") {
   const normalizedSceneId = String(sceneId ?? "").trim();

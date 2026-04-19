@@ -1316,11 +1316,6 @@
       "path": "content/scenes/philosophy_history/information_computation.json"
     },
     {
-      "id": "pdgview",
-      "name": "pdgview",
-      "path": "content/scenes/archie/pdgview.json"
-    },
-    {
       "id": "archie__about",
       "name": "About the Webapp",
       "path": "content/scenes/archie/about.json"
@@ -1444,16 +1439,6 @@
       "id": "archie__user_interface",
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json"
-    },
-    {
-      "id": "pdgedit",
-      "name": "pdgedit",
-      "path": "content/scenes/archie/pdgedit.json"
-    },
-    {
-      "id": "pdgsolve",
-      "name": "pdgsolve",
-      "path": "content/scenes/archie/pdgsolve.json"
     }
   ]
 }

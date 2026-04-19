@@ -25,19 +25,19 @@ function getLineNumber(source, searchValue) {
 export function auditPdgArchitecture() {
   const issues = [];
 
-  const requiredStandaloneEntrypoints = [
+  const archivedStandaloneEntrypoints = [
     ["pdgedit", "./pdgedit.html"],
     ["pdgview", "./pdgview.html"],
   ];
-  requiredStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
+  archivedStandaloneEntrypoints.forEach(([sceneId, expectedPath]) => {
     const actualPath = getStandaloneAppPathForScene(sceneId);
-    if (actualPath !== expectedPath) {
+    if (actualPath !== null) {
       issues.push(
-        `Standalone launcher route '${sceneId}' resolved to '${actualPath ?? "null"}' instead of '${expectedPath}'.`
+        `Main webapp launcher still exposes archived PDG route '${sceneId}' as '${actualPath}'.`
       );
     }
     if (!repoFileExists(expectedPath.slice(2))) {
-      issues.push(`Expected standalone entrypoint '${expectedPath}' does not exist.`);
+      issues.push(`Expected archived standalone entrypoint '${expectedPath}' does not exist.`);
     }
   });
 
@@ -84,6 +84,14 @@ export function auditPdgArchitecture() {
     {
       text: "`pdgview.html`, `pdgsolve.html`, and `pdgedit.html` as active standalone app entrypoints",
       message: "Docs still claim pdgsolve has a standalone HTML entrypoint.",
+    },
+    {
+      text: "active standalone app entrypoints in the main web surface",
+      message: "Docs still describe archived PDG entrypoints as part of the main web surface.",
+    },
+    {
+      text: "standalone launch routing now exists for `pdgview` and `pdgedit`",
+      message: "Docs still claim the main launcher routes archived PDG apps.",
     },
     {
       text: "yes: pdgsolve is the solve-and-review surface.",
